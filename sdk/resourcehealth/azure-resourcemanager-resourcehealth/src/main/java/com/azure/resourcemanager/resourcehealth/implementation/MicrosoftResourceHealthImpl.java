@@ -69,18 +69,6 @@ public final class MicrosoftResourceHealthImpl implements MicrosoftResourceHealt
         return this.endpoint;
     }
 
-    /** Api Version. */
-    private final String apiVersion;
-
-    /**
-     * Gets Api Version.
-     *
-     * @return the apiVersion value.
-     */
-    public String getApiVersion() {
-        return this.apiVersion;
-    }
-
     /** The HTTP pipeline to send requests through. */
     private final HttpPipeline httpPipeline;
 
@@ -139,18 +127,6 @@ public final class MicrosoftResourceHealthImpl implements MicrosoftResourceHealt
      */
     public OperationsClient getOperations() {
         return this.operations;
-    }
-
-    /** The MetadatasClient object to access its operations. */
-    private final MetadatasClient metadatas;
-
-    /**
-     * Gets the MetadatasClient object to access its operations.
-     *
-     * @return the MetadatasClient object.
-     */
-    public MetadatasClient getMetadatas() {
-        return this.metadatas;
     }
 
     /** The ImpactedResourcesClient object to access its operations. */
@@ -237,6 +213,18 @@ public final class MicrosoftResourceHealthImpl implements MicrosoftResourceHealt
         return this.emergingIssues;
     }
 
+    /** The MetadatasClient object to access its operations. */
+    private final MetadatasClient metadatas;
+
+    /**
+     * Gets the MetadatasClient object to access its operations.
+     *
+     * @return the MetadatasClient object.
+     */
+    public MetadatasClient getMetadatas() {
+        return this.metadatas;
+    }
+
     /**
      * Initializes an instance of MicrosoftResourceHealth client.
      *
@@ -259,10 +247,8 @@ public final class MicrosoftResourceHealthImpl implements MicrosoftResourceHealt
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2022-10-01";
         this.availabilityStatuses = new AvailabilityStatusesClientImpl(this);
         this.operations = new OperationsClientImpl(this);
-        this.metadatas = new MetadatasClientImpl(this);
         this.impactedResources = new ImpactedResourcesClientImpl(this);
         this.securityAdvisoryImpactedResources = new SecurityAdvisoryImpactedResourcesClientImpl(this);
         this.eventsOperations = new EventsOperationsClientImpl(this);
@@ -270,6 +256,7 @@ public final class MicrosoftResourceHealthImpl implements MicrosoftResourceHealt
         this.childAvailabilityStatuses = new ChildAvailabilityStatusesClientImpl(this);
         this.childResources = new ChildResourcesClientImpl(this);
         this.emergingIssues = new EmergingIssuesClientImpl(this);
+        this.metadatas = new MetadatasClientImpl(this);
     }
 
     /**

@@ -103,10 +103,10 @@ public final class MetadatasClientImpl implements MetadatasClient {
                     new IllegalArgumentException(
                         "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
+        final String apiVersion = "2018-07-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.list(this.client.getEndpoint(), apiVersion, accept, context))
             .<PagedResponse<MetadataEntityInner>>map(
                 res ->
                     new PagedResponseBase<>(
@@ -136,10 +136,11 @@ public final class MetadatasClientImpl implements MetadatasClient {
                     new IllegalArgumentException(
                         "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
+        final String apiVersion = "2018-07-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .list(this.client.getEndpoint(), this.client.getApiVersion(), accept, context)
+            .list(this.client.getEndpoint(), apiVersion, accept, context)
             .map(
                 res ->
                     new PagedResponseBase<>(
@@ -224,11 +225,10 @@ public final class MetadatasClientImpl implements MetadatasClient {
         if (name == null) {
             return Mono.error(new IllegalArgumentException("Parameter name is required and cannot be null."));
         }
+        final String apiVersion = "2018-07-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service.getEntity(this.client.getEndpoint(), name, this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.getEntity(this.client.getEndpoint(), name, apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -253,9 +253,10 @@ public final class MetadatasClientImpl implements MetadatasClient {
         if (name == null) {
             return Mono.error(new IllegalArgumentException("Parameter name is required and cannot be null."));
         }
+        final String apiVersion = "2018-07-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.getEntity(this.client.getEndpoint(), name, this.client.getApiVersion(), accept, context);
+        return service.getEntity(this.client.getEndpoint(), name, apiVersion, accept, context);
     }
 
     /**

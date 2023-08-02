@@ -58,8 +58,6 @@ public final class ResourceHealthManager {
 
     private Operations operations;
 
-    private Metadatas metadatas;
-
     private ImpactedResources impactedResources;
 
     private SecurityAdvisoryImpactedResources securityAdvisoryImpactedResources;
@@ -73,6 +71,8 @@ public final class ResourceHealthManager {
     private ChildResources childResources;
 
     private EmergingIssues emergingIssues;
+
+    private Metadatas metadatas;
 
     private final MicrosoftResourceHealth clientObject;
 
@@ -239,7 +239,7 @@ public final class ResourceHealthManager {
                 .append("-")
                 .append("com.azure.resourcemanager.resourcehealth")
                 .append("/")
-                .append("1.1.0-beta.1");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -318,18 +318,6 @@ public final class ResourceHealthManager {
             this.operations = new OperationsImpl(clientObject.getOperations(), this);
         }
         return operations;
-    }
-
-    /**
-     * Gets the resource collection API of Metadatas.
-     *
-     * @return Resource collection API of Metadatas.
-     */
-    public Metadatas metadatas() {
-        if (this.metadatas == null) {
-            this.metadatas = new MetadatasImpl(clientObject.getMetadatas(), this);
-        }
-        return metadatas;
     }
 
     /**
@@ -416,6 +404,18 @@ public final class ResourceHealthManager {
             this.emergingIssues = new EmergingIssuesImpl(clientObject.getEmergingIssues(), this);
         }
         return emergingIssues;
+    }
+
+    /**
+     * Gets the resource collection API of Metadatas.
+     *
+     * @return Resource collection API of Metadatas.
+     */
+    public Metadatas metadatas() {
+        if (this.metadatas == null) {
+            this.metadatas = new MetadatasImpl(clientObject.getMetadatas(), this);
+        }
+        return metadatas;
     }
 
     /**

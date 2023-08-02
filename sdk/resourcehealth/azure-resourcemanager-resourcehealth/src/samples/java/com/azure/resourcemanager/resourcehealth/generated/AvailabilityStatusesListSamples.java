@@ -18,4 +18,17 @@ public final class AvailabilityStatusesListSamples {
         com.azure.resourcemanager.resourcehealth.ResourceHealthManager manager) {
         manager.availabilityStatuses().list("resourceUri", null, null, com.azure.core.util.Context.NONE);
     }
+
+    /*
+     * x-ms-original-file: specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/stable/2018-07-01/examples/AvailabilityStatuses_List.json
+     */
+    /**
+     * Sample code: GetHealthHistoryByResource.
+     *
+     * @param manager Entry point to ResourceHealthManager.
+     */
+    public static void getHealthHistoryByResource(
+        com.azure.resourcemanager.resourcehealth.ResourceHealthManager manager) {
+        manager.availabilityStatuses().list("resourceUri", null, null, com.azure.core.util.Context.NONE);
+    }
 }

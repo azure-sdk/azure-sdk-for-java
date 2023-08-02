@@ -24,13 +24,6 @@ public interface MicrosoftResourceHealth {
     String getEndpoint();
 
     /**
-     * Gets Api Version.
-     *
-     * @return the apiVersion value.
-     */
-    String getApiVersion();
-
-    /**
      * Gets The HTTP pipeline to send requests through.
      *
      * @return the httpPipeline value.
@@ -57,13 +50,6 @@ public interface MicrosoftResourceHealth {
      * @return the OperationsClient object.
      */
     OperationsClient getOperations();
-
-    /**
-     * Gets the MetadatasClient object to access its operations.
-     *
-     * @return the MetadatasClient object.
-     */
-    MetadatasClient getMetadatas();
 
     /**
      * Gets the ImpactedResourcesClient object to access its operations.
@@ -113,4 +99,11 @@ public interface MicrosoftResourceHealth {
      * @return the EmergingIssuesClient object.
      */
     EmergingIssuesClient getEmergingIssues();
+
+    /**
+     * Gets the MetadatasClient object to access its operations.
+     *
+     * @return the MetadatasClient object.
+     */
+    MetadatasClient getMetadatas();
 }

@@ -23,4 +23,23 @@ public final class EventsOperationListBySingleResourceSamples {
                 null,
                 com.azure.core.util.Context.NONE);
     }
+
+    /*
+     * x-ms-original-file: specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/stable/2018-07-01/examples/Events_ListBySingleResource.json
+     */
+    /**
+     * Sample code: ListEventsBySingleResource.
+     *
+     * @param manager Entry point to ResourceHealthManager.
+     */
+    public static void listEventsBySingleResource(
+        com.azure.resourcemanager.resourcehealth.ResourceHealthManager manager) {
+        manager
+            .eventsOperations()
+            .listBySingleResource(
+                "subscriptions/4abcdefgh-ijkl-mnop-qrstuvwxyz/resourceGroups/rhctestenv/providers/Microsoft.Compute/virtualMachines/rhctestenvV1PI",
+                null,
+                null,
+                com.azure.core.util.Context.NONE);
+    }
 }

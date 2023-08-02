@@ -160,6 +160,7 @@ public final class ImpactedResourcesClientImpl implements ImpactedResourcesClien
             return Mono
                 .error(new IllegalArgumentException("Parameter eventTrackingId is required and cannot be null."));
         }
+        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -169,7 +170,7 @@ public final class ImpactedResourcesClientImpl implements ImpactedResourcesClien
                             this.client.getEndpoint(),
                             this.client.getSubscriptionId(),
                             eventTrackingId,
-                            this.client.getApiVersion(),
+                            apiVersion,
                             filter,
                             accept,
                             context))
@@ -217,6 +218,7 @@ public final class ImpactedResourcesClientImpl implements ImpactedResourcesClien
             return Mono
                 .error(new IllegalArgumentException("Parameter eventTrackingId is required and cannot be null."));
         }
+        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -224,7 +226,7 @@ public final class ImpactedResourcesClientImpl implements ImpactedResourcesClien
                 this.client.getEndpoint(),
                 this.client.getSubscriptionId(),
                 eventTrackingId,
-                this.client.getApiVersion(),
+                apiVersion,
                 filter,
                 accept,
                 context)
@@ -362,6 +364,7 @@ public final class ImpactedResourcesClientImpl implements ImpactedResourcesClien
             return Mono
                 .error(new IllegalArgumentException("Parameter impactedResourceName is required and cannot be null."));
         }
+        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -372,7 +375,7 @@ public final class ImpactedResourcesClientImpl implements ImpactedResourcesClien
                             this.client.getSubscriptionId(),
                             eventTrackingId,
                             impactedResourceName,
-                            this.client.getApiVersion(),
+                            apiVersion,
                             accept,
                             context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -413,6 +416,7 @@ public final class ImpactedResourcesClientImpl implements ImpactedResourcesClien
             return Mono
                 .error(new IllegalArgumentException("Parameter impactedResourceName is required and cannot be null."));
         }
+        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -421,7 +425,7 @@ public final class ImpactedResourcesClientImpl implements ImpactedResourcesClien
                 this.client.getSubscriptionId(),
                 eventTrackingId,
                 impactedResourceName,
-                this.client.getApiVersion(),
+                apiVersion,
                 accept,
                 context);
     }
@@ -499,18 +503,14 @@ public final class ImpactedResourcesClientImpl implements ImpactedResourcesClien
             return Mono
                 .error(new IllegalArgumentException("Parameter eventTrackingId is required and cannot be null."));
         }
+        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
                 context ->
                     service
                         .listByTenantIdAndEventId(
-                            this.client.getEndpoint(),
-                            eventTrackingId,
-                            this.client.getApiVersion(),
-                            filter,
-                            accept,
-                            context))
+                            this.client.getEndpoint(), eventTrackingId, apiVersion, filter, accept, context))
             .<PagedResponse<EventImpactedResourceInner>>map(
                 res ->
                     new PagedResponseBase<>(
@@ -549,11 +549,11 @@ public final class ImpactedResourcesClientImpl implements ImpactedResourcesClien
             return Mono
                 .error(new IllegalArgumentException("Parameter eventTrackingId is required and cannot be null."));
         }
+        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByTenantIdAndEventId(
-                this.client.getEndpoint(), eventTrackingId, this.client.getApiVersion(), filter, accept, context)
+            .listByTenantIdAndEventId(this.client.getEndpoint(), eventTrackingId, apiVersion, filter, accept, context)
             .map(
                 res ->
                     new PagedResponseBase<>(
@@ -681,6 +681,7 @@ public final class ImpactedResourcesClientImpl implements ImpactedResourcesClien
             return Mono
                 .error(new IllegalArgumentException("Parameter impactedResourceName is required and cannot be null."));
         }
+        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -690,7 +691,7 @@ public final class ImpactedResourcesClientImpl implements ImpactedResourcesClien
                             this.client.getEndpoint(),
                             eventTrackingId,
                             impactedResourceName,
-                            this.client.getApiVersion(),
+                            apiVersion,
                             accept,
                             context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -725,16 +726,12 @@ public final class ImpactedResourcesClientImpl implements ImpactedResourcesClien
             return Mono
                 .error(new IllegalArgumentException("Parameter impactedResourceName is required and cannot be null."));
         }
+        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .getByTenantId(
-                this.client.getEndpoint(),
-                eventTrackingId,
-                impactedResourceName,
-                this.client.getApiVersion(),
-                accept,
-                context);
+                this.client.getEndpoint(), eventTrackingId, impactedResourceName, apiVersion, accept, context);
     }
 
     /**

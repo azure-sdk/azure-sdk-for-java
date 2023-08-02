@@ -141,6 +141,7 @@ public final class SecurityAdvisoryImpactedResourcesClientImpl implements Securi
             return Mono
                 .error(new IllegalArgumentException("Parameter eventTrackingId is required and cannot be null."));
         }
+        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -150,7 +151,7 @@ public final class SecurityAdvisoryImpactedResourcesClientImpl implements Securi
                             this.client.getEndpoint(),
                             this.client.getSubscriptionId(),
                             eventTrackingId,
-                            this.client.getApiVersion(),
+                            apiVersion,
                             filter,
                             accept,
                             context))
@@ -198,6 +199,7 @@ public final class SecurityAdvisoryImpactedResourcesClientImpl implements Securi
             return Mono
                 .error(new IllegalArgumentException("Parameter eventTrackingId is required and cannot be null."));
         }
+        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -205,7 +207,7 @@ public final class SecurityAdvisoryImpactedResourcesClientImpl implements Securi
                 this.client.getEndpoint(),
                 this.client.getSubscriptionId(),
                 eventTrackingId,
-                this.client.getApiVersion(),
+                apiVersion,
                 filter,
                 accept,
                 context)
@@ -334,18 +336,14 @@ public final class SecurityAdvisoryImpactedResourcesClientImpl implements Securi
             return Mono
                 .error(new IllegalArgumentException("Parameter eventTrackingId is required and cannot be null."));
         }
+        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
                 context ->
                     service
                         .listByTenantIdAndEventId(
-                            this.client.getEndpoint(),
-                            eventTrackingId,
-                            this.client.getApiVersion(),
-                            filter,
-                            accept,
-                            context))
+                            this.client.getEndpoint(), eventTrackingId, apiVersion, filter, accept, context))
             .<PagedResponse<EventImpactedResourceInner>>map(
                 res ->
                     new PagedResponseBase<>(
@@ -384,11 +382,11 @@ public final class SecurityAdvisoryImpactedResourcesClientImpl implements Securi
             return Mono
                 .error(new IllegalArgumentException("Parameter eventTrackingId is required and cannot be null."));
         }
+        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByTenantIdAndEventId(
-                this.client.getEndpoint(), eventTrackingId, this.client.getApiVersion(), filter, accept, context)
+            .listByTenantIdAndEventId(this.client.getEndpoint(), eventTrackingId, apiVersion, filter, accept, context)
             .map(
                 res ->
                     new PagedResponseBase<>(

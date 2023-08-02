@@ -122,19 +122,14 @@ public final class ChildAvailabilityStatusesClientImpl implements ChildAvailabil
         if (resourceUri == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
         }
+        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
                 context ->
                     service
                         .getByResource(
-                            this.client.getEndpoint(),
-                            resourceUri,
-                            this.client.getApiVersion(),
-                            filter,
-                            expand,
-                            accept,
-                            context))
+                            this.client.getEndpoint(), resourceUri, apiVersion, filter, expand, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -166,11 +161,11 @@ public final class ChildAvailabilityStatusesClientImpl implements ChildAvailabil
         if (resourceUri == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
         }
+        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .getByResource(
-                this.client.getEndpoint(), resourceUri, this.client.getApiVersion(), filter, expand, accept, context);
+            .getByResource(this.client.getEndpoint(), resourceUri, apiVersion, filter, expand, accept, context);
     }
 
     /**
@@ -259,19 +254,12 @@ public final class ChildAvailabilityStatusesClientImpl implements ChildAvailabil
         if (resourceUri == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
         }
+        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
                 context ->
-                    service
-                        .list(
-                            this.client.getEndpoint(),
-                            resourceUri,
-                            this.client.getApiVersion(),
-                            filter,
-                            expand,
-                            accept,
-                            context))
+                    service.list(this.client.getEndpoint(), resourceUri, apiVersion, filter, expand, accept, context))
             .<PagedResponse<AvailabilityStatusInner>>map(
                 res ->
                     new PagedResponseBase<>(
@@ -313,10 +301,11 @@ public final class ChildAvailabilityStatusesClientImpl implements ChildAvailabil
         if (resourceUri == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
         }
+        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .list(this.client.getEndpoint(), resourceUri, this.client.getApiVersion(), filter, expand, accept, context)
+            .list(this.client.getEndpoint(), resourceUri, apiVersion, filter, expand, accept, context)
             .map(
                 res ->
                     new PagedResponseBase<>(

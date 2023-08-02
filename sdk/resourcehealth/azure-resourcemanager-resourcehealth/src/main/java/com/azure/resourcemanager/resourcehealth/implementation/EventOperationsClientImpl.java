@@ -136,6 +136,7 @@ public final class EventOperationsClientImpl implements EventOperationsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter eventTrackingId is required and cannot be null."));
         }
+        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -143,7 +144,7 @@ public final class EventOperationsClientImpl implements EventOperationsClient {
                     service
                         .getBySubscriptionIdAndTrackingId(
                             this.client.getEndpoint(),
-                            this.client.getApiVersion(),
+                            apiVersion,
                             filter,
                             queryStartTime,
                             this.client.getSubscriptionId(),
@@ -186,12 +187,13 @@ public final class EventOperationsClientImpl implements EventOperationsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter eventTrackingId is required and cannot be null."));
         }
+        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .getBySubscriptionIdAndTrackingId(
                 this.client.getEndpoint(),
-                this.client.getApiVersion(),
+                apiVersion,
                 filter,
                 queryStartTime,
                 this.client.getSubscriptionId(),
@@ -284,6 +286,7 @@ public final class EventOperationsClientImpl implements EventOperationsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter eventTrackingId is required and cannot be null."));
         }
+        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -291,7 +294,7 @@ public final class EventOperationsClientImpl implements EventOperationsClient {
                     service
                         .fetchDetailsBySubscriptionIdAndTrackingId(
                             this.client.getEndpoint(),
-                            this.client.getApiVersion(),
+                            apiVersion,
                             this.client.getSubscriptionId(),
                             eventTrackingId,
                             accept,
@@ -329,12 +332,13 @@ public final class EventOperationsClientImpl implements EventOperationsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter eventTrackingId is required and cannot be null."));
         }
+        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .fetchDetailsBySubscriptionIdAndTrackingId(
                 this.client.getEndpoint(),
-                this.client.getApiVersion(),
+                apiVersion,
                 this.client.getSubscriptionId(),
                 eventTrackingId,
                 accept,
@@ -415,6 +419,7 @@ public final class EventOperationsClientImpl implements EventOperationsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter eventTrackingId is required and cannot be null."));
         }
+        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -422,7 +427,7 @@ public final class EventOperationsClientImpl implements EventOperationsClient {
                     service
                         .getByTenantIdAndTrackingId(
                             this.client.getEndpoint(),
-                            this.client.getApiVersion(),
+                            apiVersion,
                             filter,
                             queryStartTime,
                             eventTrackingId,
@@ -458,17 +463,12 @@ public final class EventOperationsClientImpl implements EventOperationsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter eventTrackingId is required and cannot be null."));
         }
+        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .getByTenantIdAndTrackingId(
-                this.client.getEndpoint(),
-                this.client.getApiVersion(),
-                filter,
-                queryStartTime,
-                eventTrackingId,
-                accept,
-                context);
+                this.client.getEndpoint(), apiVersion, filter, queryStartTime, eventTrackingId, accept, context);
     }
 
     /**
@@ -546,13 +546,14 @@ public final class EventOperationsClientImpl implements EventOperationsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter eventTrackingId is required and cannot be null."));
         }
+        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
                 context ->
                     service
                         .fetchDetailsByTenantIdAndTrackingId(
-                            this.client.getEndpoint(), this.client.getApiVersion(), eventTrackingId, accept, context))
+                            this.client.getEndpoint(), apiVersion, eventTrackingId, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -580,11 +581,12 @@ public final class EventOperationsClientImpl implements EventOperationsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter eventTrackingId is required and cannot be null."));
         }
+        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .fetchDetailsByTenantIdAndTrackingId(
-                this.client.getEndpoint(), this.client.getApiVersion(), eventTrackingId, accept, context);
+                this.client.getEndpoint(), apiVersion, eventTrackingId, accept, context);
     }
 
     /**

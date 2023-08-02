@@ -6,7 +6,6 @@ package com.azure.resourcemanager.resourcehealth.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.List;
 
 /** The metadata supported value detail. */
 @Fluent
@@ -22,12 +21,6 @@ public final class MetadataSupportedValueDetail {
      */
     @JsonProperty(value = "displayName")
     private String displayName;
-
-    /*
-     * The list of associated resource types.
-     */
-    @JsonProperty(value = "resourceTypes")
-    private List<String> resourceTypes;
 
     /** Creates an instance of MetadataSupportedValueDetail class. */
     public MetadataSupportedValueDetail() {
@@ -70,26 +63,6 @@ public final class MetadataSupportedValueDetail {
      */
     public MetadataSupportedValueDetail withDisplayName(String displayName) {
         this.displayName = displayName;
-        return this;
-    }
-
-    /**
-     * Get the resourceTypes property: The list of associated resource types.
-     *
-     * @return the resourceTypes value.
-     */
-    public List<String> resourceTypes() {
-        return this.resourceTypes;
-    }
-
-    /**
-     * Set the resourceTypes property: The list of associated resource types.
-     *
-     * @param resourceTypes the resourceTypes value to set.
-     * @return the MetadataSupportedValueDetail object itself.
-     */
-    public MetadataSupportedValueDetail withResourceTypes(List<String> resourceTypes) {
-        this.resourceTypes = resourceTypes;
         return this;
     }
 

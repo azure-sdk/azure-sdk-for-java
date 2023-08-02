@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.resourcehealth.implementation;
 
-import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.resourcehealth.fluent.models.MetadataEntityInner;
 import com.azure.resourcemanager.resourcehealth.models.MetadataEntity;
 import com.azure.resourcemanager.resourcehealth.models.MetadataSupportedValueDetail;
@@ -34,10 +33,6 @@ public final class MetadataEntityImpl implements MetadataEntity {
 
     public String type() {
         return this.innerModel().type();
-    }
-
-    public SystemData systemData() {
-        return this.innerModel().systemData();
     }
 
     public String displayName() {

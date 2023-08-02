@@ -8,7 +8,10 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Impacted resource status of the resource. */
+/**
+ * Availability status of the resource. When it is null, this availabilityStatus object represents an availability
+ * impacting event.
+ */
 public final class AvailabilityStateValues extends ExpandableStringEnum<AvailabilityStateValues> {
     /** Static value Available for AvailabilityStateValues. */
     public static final AvailabilityStateValues AVAILABLE = fromString("Available");

@@ -31,8 +31,8 @@
 
 ## EventsOperation
 
-- [List](#eventsoperation_list)
 - [ListBySingleResource](#eventsoperation_listbysingleresource)
+- [ListBySubscriptionId](#eventsoperation_listbysubscriptionid)
 - [ListByTenantId](#eventsoperation_listbytenantid)
 
 ## ImpactedResources
@@ -74,6 +74,21 @@ public final class AvailabilityStatusesGetByResourceSamples {
             .availabilityStatuses()
             .getByResourceWithResponse("resourceUri", null, "recommendedactions", com.azure.core.util.Context.NONE);
     }
+
+    /*
+     * x-ms-original-file: specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/stable/2018-07-01/examples/AvailabilityStatus_GetByResource.json
+     */
+    /**
+     * Sample code: GetCurrentHealthByResource.
+     *
+     * @param manager Entry point to ResourceHealthManager.
+     */
+    public static void getCurrentHealthByResource(
+        com.azure.resourcemanager.resourcehealth.ResourceHealthManager manager) {
+        manager
+            .availabilityStatuses()
+            .getByResourceWithResponse("resourceUri", null, "recommendedactions", com.azure.core.util.Context.NONE);
+    }
 }
 ```
 
@@ -84,6 +99,19 @@ public final class AvailabilityStatusesGetByResourceSamples {
 public final class AvailabilityStatusesListSamples {
     /*
      * x-ms-original-file: specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/stable/2022-10-01/examples/AvailabilityStatuses_List.json
+     */
+    /**
+     * Sample code: GetHealthHistoryByResource.
+     *
+     * @param manager Entry point to ResourceHealthManager.
+     */
+    public static void getHealthHistoryByResource(
+        com.azure.resourcemanager.resourcehealth.ResourceHealthManager manager) {
+        manager.availabilityStatuses().list("resourceUri", null, null, com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/stable/2018-07-01/examples/AvailabilityStatuses_List.json
      */
     /**
      * Sample code: GetHealthHistoryByResource.
@@ -115,6 +143,20 @@ public final class AvailabilityStatusesListByResourceGroupSamples {
             .availabilityStatuses()
             .listByResourceGroup("resourceGroupName", null, "recommendedactions", com.azure.core.util.Context.NONE);
     }
+
+    /*
+     * x-ms-original-file: specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/stable/2018-07-01/examples/AvailabilityStatuses_ListByResourceGroup.json
+     */
+    /**
+     * Sample code: ListByResourceGroup.
+     *
+     * @param manager Entry point to ResourceHealthManager.
+     */
+    public static void listByResourceGroup(com.azure.resourcemanager.resourcehealth.ResourceHealthManager manager) {
+        manager
+            .availabilityStatuses()
+            .listByResourceGroup("resourceGroupName", null, "recommendedactions", com.azure.core.util.Context.NONE);
+    }
 }
 ```
 
@@ -125,6 +167,21 @@ public final class AvailabilityStatusesListByResourceGroupSamples {
 public final class AvailabilityStatusesListBySubscriptionIdSamples {
     /*
      * x-ms-original-file: specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/stable/2022-10-01/examples/AvailabilityStatuses_ListBySubscriptionId.json
+     */
+    /**
+     * Sample code: ListHealthBySubscriptionId.
+     *
+     * @param manager Entry point to ResourceHealthManager.
+     */
+    public static void listHealthBySubscriptionId(
+        com.azure.resourcemanager.resourcehealth.ResourceHealthManager manager) {
+        manager
+            .availabilityStatuses()
+            .listBySubscriptionId(null, "recommendedactions", com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/stable/2018-07-01/examples/AvailabilityStatuses_ListBySubscriptionId.json
      */
     /**
      * Sample code: ListHealthBySubscriptionId.
@@ -230,6 +287,18 @@ public final class EmergingIssuesGetSamples {
     public static void getEmergingIssues(com.azure.resourcemanager.resourcehealth.ResourceHealthManager manager) {
         manager.emergingIssues().getWithResponse(IssueNameParameter.DEFAULT, com.azure.core.util.Context.NONE);
     }
+
+    /*
+     * x-ms-original-file: specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/stable/2018-07-01/examples/EmergingIssues_Get.json
+     */
+    /**
+     * Sample code: GetEmergingIssues.
+     *
+     * @param manager Entry point to ResourceHealthManager.
+     */
+    public static void getEmergingIssues(com.azure.resourcemanager.resourcehealth.ResourceHealthManager manager) {
+        manager.emergingIssues().getWithResponse(com.azure.core.util.Context.NONE);
+    }
 }
 ```
 
@@ -240,6 +309,18 @@ public final class EmergingIssuesGetSamples {
 public final class EmergingIssuesListSamples {
     /*
      * x-ms-original-file: specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/stable/2022-10-01/examples/EmergingIssues_List.json
+     */
+    /**
+     * Sample code: GetEmergingIssues.
+     *
+     * @param manager Entry point to ResourceHealthManager.
+     */
+    public static void getEmergingIssues(com.azure.resourcemanager.resourcehealth.ResourceHealthManager manager) {
+        manager.emergingIssues().list(com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/stable/2018-07-01/examples/EmergingIssues_List.json
      */
     /**
      * Sample code: GetEmergingIssues.
@@ -342,29 +423,6 @@ public final class EventOperationGetByTenantIdAndTrackingIdSamples {
 }
 ```
 
-### EventsOperation_List
-
-```java
-/** Samples for EventsOperation List. */
-public final class EventsOperationListSamples {
-    /*
-     * x-ms-original-file: specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/stable/2022-10-01/examples/Events_ListBySubscriptionId.json
-     */
-    /**
-     * Sample code: ListEventsBySubscriptionId.
-     *
-     * @param manager Entry point to ResourceHealthManager.
-     */
-    public static void listEventsBySubscriptionId(
-        com.azure.resourcemanager.resourcehealth.ResourceHealthManager manager) {
-        manager
-            .eventsOperations()
-            .list(
-                "service eq 'Virtual Machines' or region eq 'West US'", "7/24/2020", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
 ### EventsOperation_ListBySingleResource
 
 ```java
@@ -384,6 +442,67 @@ public final class EventsOperationListBySingleResourceSamples {
             .eventsOperations()
             .listBySingleResource(
                 "subscriptions/4abcdefgh-ijkl-mnop-qrstuvwxyz/resourceGroups/rhctestenv/providers/Microsoft.Compute/virtualMachines/rhctestenvV1PI",
+                null,
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/stable/2018-07-01/examples/Events_ListBySingleResource.json
+     */
+    /**
+     * Sample code: ListEventsBySingleResource.
+     *
+     * @param manager Entry point to ResourceHealthManager.
+     */
+    public static void listEventsBySingleResource(
+        com.azure.resourcemanager.resourcehealth.ResourceHealthManager manager) {
+        manager
+            .eventsOperations()
+            .listBySingleResource(
+                "subscriptions/4abcdefgh-ijkl-mnop-qrstuvwxyz/resourceGroups/rhctestenv/providers/Microsoft.Compute/virtualMachines/rhctestenvV1PI",
+                null,
+                null,
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### EventsOperation_ListBySubscriptionId
+
+```java
+/** Samples for EventsOperation ListBySubscriptionId. */
+public final class EventsOperationListBySubscriptionIdSamples {
+    /*
+     * x-ms-original-file: specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/stable/2022-10-01/examples/Events_ListBySubscriptionId.json
+     */
+    /**
+     * Sample code: ListEventsBySubscriptionId.
+     *
+     * @param manager Entry point to ResourceHealthManager.
+     */
+    public static void listEventsBySubscriptionId(
+        com.azure.resourcemanager.resourcehealth.ResourceHealthManager manager) {
+        manager
+            .eventsOperations()
+            .listBySubscriptionId(
+                "service eq 'Virtual Machines' or region eq 'West US'", "7/24/2020", com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/stable/2018-07-01/examples/Events_ListBySubscriptionId.json
+     */
+    /**
+     * Sample code: ListEventsBySubscriptionId.
+     *
+     * @param manager Entry point to ResourceHealthManager.
+     */
+    public static void listEventsBySubscriptionId(
+        com.azure.resourcemanager.resourcehealth.ResourceHealthManager manager) {
+        manager
+            .eventsOperations()
+            .listBySubscriptionId(
+                "service eq 'Virtual Machines' or region eq 'West US'",
+                "7/24/2020",
                 null,
                 com.azure.core.util.Context.NONE);
     }
@@ -501,7 +620,7 @@ public final class ImpactedResourcesListByTenantIdAndEventIdSamples {
 /** Samples for Metadata GetEntity. */
 public final class MetadataGetEntitySamples {
     /*
-     * x-ms-original-file: specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/stable/2022-10-01/examples/Metadata_GetEntity.json
+     * x-ms-original-file: specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/stable/2018-07-01/examples/Metadata_GetEntity.json
      */
     /**
      * Sample code: GetMetadata.
@@ -520,7 +639,7 @@ public final class MetadataGetEntitySamples {
 /** Samples for Metadata List. */
 public final class MetadataListSamples {
     /*
-     * x-ms-original-file: specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/stable/2022-10-01/examples/Metadata_List.json
+     * x-ms-original-file: specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/stable/2018-07-01/examples/Metadata_List.json
      */
     /**
      * Sample code: GetMetadata.

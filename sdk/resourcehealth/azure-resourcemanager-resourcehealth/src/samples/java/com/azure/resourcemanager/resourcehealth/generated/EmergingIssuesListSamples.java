@@ -17,4 +17,16 @@ public final class EmergingIssuesListSamples {
     public static void getEmergingIssues(com.azure.resourcemanager.resourcehealth.ResourceHealthManager manager) {
         manager.emergingIssues().list(com.azure.core.util.Context.NONE);
     }
+
+    /*
+     * x-ms-original-file: specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/stable/2018-07-01/examples/EmergingIssues_List.json
+     */
+    /**
+     * Sample code: GetEmergingIssues.
+     *
+     * @param manager Entry point to ResourceHealthManager.
+     */
+    public static void getEmergingIssues(com.azure.resourcemanager.resourcehealth.ResourceHealthManager manager) {
+        manager.emergingIssues().list(com.azure.core.util.Context.NONE);
+    }
 }
