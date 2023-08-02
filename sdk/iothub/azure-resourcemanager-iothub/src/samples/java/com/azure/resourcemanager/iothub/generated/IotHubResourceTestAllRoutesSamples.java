@@ -31,8 +31,8 @@ public final class IotHubResourceTestAllRoutesSamples {
                     .withMessage(
                         new RoutingMessage()
                             .withBody("Body of message")
-                            .withAppProperties(mapOf("key1", "value1"))
-                            .withSystemProperties(mapOf("key1", "value1"))),
+                            .withAppProperties(mapOf("key1", "fakeTokenPlaceholder"))
+                            .withSystemProperties(mapOf("key1", "fakeTokenPlaceholder"))),
                 com.azure.core.util.Context.NONE);
     }
 
