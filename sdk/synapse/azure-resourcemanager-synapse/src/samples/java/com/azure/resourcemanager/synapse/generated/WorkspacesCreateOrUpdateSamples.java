@@ -37,7 +37,7 @@ public final class WorkspacesCreateOrUpdateSamples {
             .define("workspace1")
             .withRegion("East US")
             .withExistingResourceGroup("resourceGroup1")
-            .withTags(mapOf("key", "value"))
+            .withTags(mapOf("key", "fakeTokenPlaceholder"))
             .withIdentity(
                 new ManagedIdentity()
                     .withType(ResourceIdentityType.SYSTEM_ASSIGNED_USER_ASSIGNED)

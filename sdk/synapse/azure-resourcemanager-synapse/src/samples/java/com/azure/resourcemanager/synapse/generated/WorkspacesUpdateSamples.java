@@ -36,7 +36,7 @@ public final class WorkspacesUpdateSamples {
                 .getValue();
         resource
             .update()
-            .withTags(mapOf("key", "value"))
+            .withTags(mapOf("key", "fakeTokenPlaceholder"))
             .withIdentity(new ManagedIdentity().withType(ResourceIdentityType.SYSTEM_ASSIGNED))
             .withSqlAdministratorLoginPassword("password")
             .withManagedVirtualNetworkSettings(

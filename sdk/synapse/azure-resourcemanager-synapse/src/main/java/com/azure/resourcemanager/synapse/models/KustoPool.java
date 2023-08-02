@@ -176,11 +176,13 @@ public interface KustoPool {
             DefinitionStages.WithSku,
             DefinitionStages.WithCreate {
     }
+
     /** The KustoPool definition stages. */
     interface DefinitionStages {
         /** The first stage of the KustoPool definition. */
         interface Blank extends WithLocation {
         }
+
         /** The stage of the KustoPool definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -199,6 +201,7 @@ public interface KustoPool {
              */
             WithParentResource withRegion(String location);
         }
+
         /** The stage of the KustoPool definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -210,6 +213,7 @@ public interface KustoPool {
              */
             WithSku withExistingWorkspace(String workspaceName, String resourceGroupName);
         }
+
         /** The stage of the KustoPool definition allowing to specify sku. */
         interface WithSku {
             /**
@@ -220,6 +224,7 @@ public interface KustoPool {
              */
             WithCreate withSku(AzureSku sku);
         }
+
         /**
          * The stage of the KustoPool definition which contains all the minimum required properties for the resource to
          * be created, but also allows for any other optional properties to be specified.
@@ -247,6 +252,7 @@ public interface KustoPool {
              */
             KustoPool create(Context context);
         }
+
         /** The stage of the KustoPool definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -257,6 +263,7 @@ public interface KustoPool {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
         /** The stage of the KustoPool definition allowing to specify optimizedAutoscale. */
         interface WithOptimizedAutoscale {
             /**
@@ -267,6 +274,7 @@ public interface KustoPool {
              */
             WithCreate withOptimizedAutoscale(OptimizedAutoscale optimizedAutoscale);
         }
+
         /** The stage of the KustoPool definition allowing to specify enableStreamingIngest. */
         interface WithEnableStreamingIngest {
             /**
@@ -278,6 +286,7 @@ public interface KustoPool {
              */
             WithCreate withEnableStreamingIngest(Boolean enableStreamingIngest);
         }
+
         /** The stage of the KustoPool definition allowing to specify enablePurge. */
         interface WithEnablePurge {
             /**
@@ -288,6 +297,7 @@ public interface KustoPool {
              */
             WithCreate withEnablePurge(Boolean enablePurge);
         }
+
         /** The stage of the KustoPool definition allowing to specify workspaceUid. */
         interface WithWorkspaceUid {
             /**
@@ -298,6 +308,7 @@ public interface KustoPool {
              */
             WithCreate withWorkspaceUid(String workspaceUid);
         }
+
         /** The stage of the KustoPool definition allowing to specify ifMatch. */
         interface WithIfMatch {
             /**
@@ -311,6 +322,7 @@ public interface KustoPool {
              */
             WithCreate withIfMatch(String ifMatch);
         }
+
         /** The stage of the KustoPool definition allowing to specify ifNoneMatch. */
         interface WithIfNoneMatch {
             /**
@@ -324,6 +336,7 @@ public interface KustoPool {
             WithCreate withIfNoneMatch(String ifNoneMatch);
         }
     }
+
     /**
      * Begins update for the KustoPool resource.
      *
@@ -354,6 +367,7 @@ public interface KustoPool {
          */
         KustoPool apply(Context context);
     }
+
     /** The KustoPool update stages. */
     interface UpdateStages {
         /** The stage of the KustoPool update allowing to specify tags. */
@@ -366,6 +380,7 @@ public interface KustoPool {
              */
             Update withTags(Map<String, String> tags);
         }
+
         /** The stage of the KustoPool update allowing to specify sku. */
         interface WithSku {
             /**
@@ -376,6 +391,7 @@ public interface KustoPool {
              */
             Update withSku(AzureSku sku);
         }
+
         /** The stage of the KustoPool update allowing to specify optimizedAutoscale. */
         interface WithOptimizedAutoscale {
             /**
@@ -386,6 +402,7 @@ public interface KustoPool {
              */
             Update withOptimizedAutoscale(OptimizedAutoscale optimizedAutoscale);
         }
+
         /** The stage of the KustoPool update allowing to specify enableStreamingIngest. */
         interface WithEnableStreamingIngest {
             /**
@@ -397,6 +414,7 @@ public interface KustoPool {
              */
             Update withEnableStreamingIngest(Boolean enableStreamingIngest);
         }
+
         /** The stage of the KustoPool update allowing to specify enablePurge. */
         interface WithEnablePurge {
             /**
@@ -407,6 +425,7 @@ public interface KustoPool {
              */
             Update withEnablePurge(Boolean enablePurge);
         }
+
         /** The stage of the KustoPool update allowing to specify ifMatch. */
         interface WithIfMatch {
             /**
@@ -421,6 +440,7 @@ public interface KustoPool {
             Update withIfMatch(String ifMatch);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

@@ -24,7 +24,7 @@ public final class PrivateLinkHubsUpdateSamples {
                 .privateLinkHubs()
                 .getByResourceGroupWithResponse("resourceGroup1", "privateLinkHub1", com.azure.core.util.Context.NONE)
                 .getValue();
-        resource.update().withTags(mapOf("key", "value")).apply();
+        resource.update().withTags(mapOf("key", "fakeTokenPlaceholder")).apply();
     }
 
     @SuppressWarnings("unchecked")
