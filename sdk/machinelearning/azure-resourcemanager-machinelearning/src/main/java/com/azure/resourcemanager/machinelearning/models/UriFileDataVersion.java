@@ -27,6 +27,27 @@ public final class UriFileDataVersion extends DataVersionBaseProperties {
 
     /** {@inheritDoc} */
     @Override
+    public UriFileDataVersion withIntellectualProperty(IntellectualProperty intellectualProperty) {
+        super.withIntellectualProperty(intellectualProperty);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public UriFileDataVersion withStage(String stage) {
+        super.withStage(stage);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public UriFileDataVersion withAutoDeleteSetting(AutoDeleteSetting autoDeleteSetting) {
+        super.withAutoDeleteSetting(autoDeleteSetting);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public UriFileDataVersion withIsAnonymous(Boolean isAnonymous) {
         super.withIsAnonymous(isAnonymous);
         return this;
