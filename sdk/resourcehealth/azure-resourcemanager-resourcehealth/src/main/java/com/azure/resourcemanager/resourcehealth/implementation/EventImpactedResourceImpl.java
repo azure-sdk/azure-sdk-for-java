@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.resourcehealth.implementation;
 
-import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.resourcehealth.fluent.models.EventImpactedResourceInner;
 import com.azure.resourcemanager.resourcehealth.models.EventImpactedResource;
 import com.azure.resourcemanager.resourcehealth.models.KeyValueItem;
@@ -33,10 +32,6 @@ public final class EventImpactedResourceImpl implements EventImpactedResource {
 
     public String type() {
         return this.innerModel().type();
-    }
-
-    public SystemData systemData() {
-        return this.innerModel().systemData();
     }
 
     public String targetResourceType() {

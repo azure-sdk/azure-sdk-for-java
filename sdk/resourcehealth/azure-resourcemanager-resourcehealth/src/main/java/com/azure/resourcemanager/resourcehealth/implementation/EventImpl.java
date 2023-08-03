@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.resourcehealth.implementation;
 
-import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.resourcehealth.fluent.models.EventInner;
 import com.azure.resourcemanager.resourcehealth.models.Event;
 import com.azure.resourcemanager.resourcehealth.models.EventLevelValues;
@@ -42,10 +41,6 @@ public final class EventImpl implements Event {
 
     public String type() {
         return this.innerModel().type();
-    }
-
-    public SystemData systemData() {
-        return this.innerModel().systemData();
     }
 
     public EventTypeValues eventType() {
