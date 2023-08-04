@@ -122,11 +122,13 @@ public interface AdaptiveApplicationControlGroup {
     interface Definition
         extends DefinitionStages.Blank, DefinitionStages.WithParentResource, DefinitionStages.WithCreate {
     }
+
     /** The AdaptiveApplicationControlGroup definition stages. */
     interface DefinitionStages {
         /** The first stage of the AdaptiveApplicationControlGroup definition. */
         interface Blank extends WithParentResource {
         }
+
         /** The stage of the AdaptiveApplicationControlGroup definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -138,6 +140,7 @@ public interface AdaptiveApplicationControlGroup {
              */
             WithCreate withExistingLocation(String ascLocation);
         }
+
         /**
          * The stage of the AdaptiveApplicationControlGroup definition which contains all the minimum required
          * properties for the resource to be created, but also allows for any other optional properties to be specified.
@@ -162,6 +165,7 @@ public interface AdaptiveApplicationControlGroup {
              */
             AdaptiveApplicationControlGroup create(Context context);
         }
+
         /** The stage of the AdaptiveApplicationControlGroup definition allowing to specify enforcementMode. */
         interface WithEnforcementMode {
             /**
@@ -173,6 +177,7 @@ public interface AdaptiveApplicationControlGroup {
              */
             WithCreate withEnforcementMode(EnforcementMode enforcementMode);
         }
+
         /** The stage of the AdaptiveApplicationControlGroup definition allowing to specify protectionMode. */
         interface WithProtectionMode {
             /**
@@ -185,6 +190,7 @@ public interface AdaptiveApplicationControlGroup {
              */
             WithCreate withProtectionMode(ProtectionMode protectionMode);
         }
+
         /** The stage of the AdaptiveApplicationControlGroup definition allowing to specify vmRecommendations. */
         interface WithVmRecommendations {
             /**
@@ -195,6 +201,7 @@ public interface AdaptiveApplicationControlGroup {
              */
             WithCreate withVmRecommendations(List<VmRecommendation> vmRecommendations);
         }
+
         /** The stage of the AdaptiveApplicationControlGroup definition allowing to specify pathRecommendations. */
         interface WithPathRecommendations {
             /**
@@ -206,6 +213,7 @@ public interface AdaptiveApplicationControlGroup {
             WithCreate withPathRecommendations(List<PathRecommendation> pathRecommendations);
         }
     }
+
     /**
      * Begins update for the AdaptiveApplicationControlGroup resource.
      *
@@ -234,6 +242,7 @@ public interface AdaptiveApplicationControlGroup {
          */
         AdaptiveApplicationControlGroup apply(Context context);
     }
+
     /** The AdaptiveApplicationControlGroup update stages. */
     interface UpdateStages {
         /** The stage of the AdaptiveApplicationControlGroup update allowing to specify enforcementMode. */
@@ -247,6 +256,7 @@ public interface AdaptiveApplicationControlGroup {
              */
             Update withEnforcementMode(EnforcementMode enforcementMode);
         }
+
         /** The stage of the AdaptiveApplicationControlGroup update allowing to specify protectionMode. */
         interface WithProtectionMode {
             /**
@@ -259,6 +269,7 @@ public interface AdaptiveApplicationControlGroup {
              */
             Update withProtectionMode(ProtectionMode protectionMode);
         }
+
         /** The stage of the AdaptiveApplicationControlGroup update allowing to specify vmRecommendations. */
         interface WithVmRecommendations {
             /**
@@ -269,6 +280,7 @@ public interface AdaptiveApplicationControlGroup {
              */
             Update withVmRecommendations(List<VmRecommendation> vmRecommendations);
         }
+
         /** The stage of the AdaptiveApplicationControlGroup update allowing to specify pathRecommendations. */
         interface WithPathRecommendations {
             /**
@@ -280,6 +292,7 @@ public interface AdaptiveApplicationControlGroup {
             Update withPathRecommendations(List<PathRecommendation> pathRecommendations);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *
