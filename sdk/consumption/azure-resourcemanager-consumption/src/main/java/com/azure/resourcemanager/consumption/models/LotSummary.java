@@ -131,11 +131,33 @@ public interface LotSummary {
     Reseller reseller();
 
     /**
+     * Gets the isEstimatedBalance property: If true, the listed details are based on an estimation and it will be
+     * subjected to change.
+     *
+     * @return the isEstimatedBalance value.
+     */
+    Boolean isEstimatedBalance();
+
+    /**
      * Gets the etagPropertiesEtag property: The eTag for the resource.
      *
      * @return the etagPropertiesEtag value.
      */
     String etagPropertiesEtag();
+
+    /**
+     * Gets the orgType property: The organization type of the lot.
+     *
+     * @return the orgType value.
+     */
+    OrgType orgType();
+
+    /**
+     * Gets the usedAmount property: Amount consumed from the commitment.
+     *
+     * @return the usedAmount value.
+     */
+    Amount usedAmount();
 
     /**
      * Gets the inner com.azure.resourcemanager.consumption.fluent.models.LotSummaryInner object.
