@@ -25,7 +25,7 @@ public final class PartnerRegistrationsUpdateSamples {
                 .getByResourceGroupWithResponse(
                     "examplerg", "examplePartnerRegistrationName1", com.azure.core.util.Context.NONE)
                 .getValue();
-        resource.update().withTags(mapOf("NewKey", "NewValue")).apply();
+        resource.update().withTags(mapOf("NewKey", "fakeTokenPlaceholder")).apply();
     }
 
     @SuppressWarnings("unchecked")
