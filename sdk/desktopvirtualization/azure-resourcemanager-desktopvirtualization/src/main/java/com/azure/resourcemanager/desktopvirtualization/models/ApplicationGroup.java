@@ -189,11 +189,13 @@ public interface ApplicationGroup {
             DefinitionStages.WithApplicationGroupType,
             DefinitionStages.WithCreate {
     }
+
     /** The ApplicationGroup definition stages. */
     interface DefinitionStages {
         /** The first stage of the ApplicationGroup definition. */
         interface Blank extends WithLocation {
         }
+
         /** The stage of the ApplicationGroup definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -212,6 +214,7 @@ public interface ApplicationGroup {
              */
             WithResourceGroup withRegion(String location);
         }
+
         /** The stage of the ApplicationGroup definition allowing to specify parent resource. */
         interface WithResourceGroup {
             /**
@@ -222,6 +225,7 @@ public interface ApplicationGroup {
              */
             WithHostPoolArmPath withExistingResourceGroup(String resourceGroupName);
         }
+
         /** The stage of the ApplicationGroup definition allowing to specify hostPoolArmPath. */
         interface WithHostPoolArmPath {
             /**
@@ -232,6 +236,7 @@ public interface ApplicationGroup {
              */
             WithApplicationGroupType withHostPoolArmPath(String hostPoolArmPath);
         }
+
         /** The stage of the ApplicationGroup definition allowing to specify applicationGroupType. */
         interface WithApplicationGroupType {
             /**
@@ -242,6 +247,7 @@ public interface ApplicationGroup {
              */
             WithCreate withApplicationGroupType(ApplicationGroupType applicationGroupType);
         }
+
         /**
          * The stage of the ApplicationGroup definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
@@ -270,6 +276,7 @@ public interface ApplicationGroup {
              */
             ApplicationGroup create(Context context);
         }
+
         /** The stage of the ApplicationGroup definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -280,6 +287,7 @@ public interface ApplicationGroup {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
         /** The stage of the ApplicationGroup definition allowing to specify managedBy. */
         interface WithManagedBy {
             /**
@@ -295,6 +303,7 @@ public interface ApplicationGroup {
              */
             WithCreate withManagedBy(String managedBy);
         }
+
         /** The stage of the ApplicationGroup definition allowing to specify kind. */
         interface WithKind {
             /**
@@ -309,6 +318,7 @@ public interface ApplicationGroup {
              */
             WithCreate withKind(String kind);
         }
+
         /** The stage of the ApplicationGroup definition allowing to specify identity. */
         interface WithIdentity {
             /**
@@ -319,6 +329,7 @@ public interface ApplicationGroup {
              */
             WithCreate withIdentity(ResourceModelWithAllowedPropertySetIdentity identity);
         }
+
         /** The stage of the ApplicationGroup definition allowing to specify sku. */
         interface WithSku {
             /**
@@ -329,6 +340,7 @@ public interface ApplicationGroup {
              */
             WithCreate withSku(ResourceModelWithAllowedPropertySetSku sku);
         }
+
         /** The stage of the ApplicationGroup definition allowing to specify plan. */
         interface WithPlan {
             /**
@@ -339,6 +351,7 @@ public interface ApplicationGroup {
              */
             WithCreate withPlan(ResourceModelWithAllowedPropertySetPlan plan);
         }
+
         /** The stage of the ApplicationGroup definition allowing to specify description. */
         interface WithDescription {
             /**
@@ -349,6 +362,7 @@ public interface ApplicationGroup {
              */
             WithCreate withDescription(String description);
         }
+
         /** The stage of the ApplicationGroup definition allowing to specify friendlyName. */
         interface WithFriendlyName {
             /**
@@ -360,6 +374,7 @@ public interface ApplicationGroup {
             WithCreate withFriendlyName(String friendlyName);
         }
     }
+
     /**
      * Begins update for the ApplicationGroup resource.
      *
@@ -384,6 +399,7 @@ public interface ApplicationGroup {
          */
         ApplicationGroup apply(Context context);
     }
+
     /** The ApplicationGroup update stages. */
     interface UpdateStages {
         /** The stage of the ApplicationGroup update allowing to specify tags. */
@@ -396,6 +412,7 @@ public interface ApplicationGroup {
              */
             Update withTags(Map<String, String> tags);
         }
+
         /** The stage of the ApplicationGroup update allowing to specify description. */
         interface WithDescription {
             /**
@@ -406,6 +423,7 @@ public interface ApplicationGroup {
              */
             Update withDescription(String description);
         }
+
         /** The stage of the ApplicationGroup update allowing to specify friendlyName. */
         interface WithFriendlyName {
             /**
@@ -417,6 +435,7 @@ public interface ApplicationGroup {
             Update withFriendlyName(String friendlyName);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *
