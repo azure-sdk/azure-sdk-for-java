@@ -15,37 +15,37 @@ import com.azure.core.management.exception.ManagementException;
 import com.azure.core.management.polling.PollResult;
 import com.azure.core.management.polling.PollerFactory;
 import com.azure.core.util.Context;
+import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.core.util.polling.AsyncPollResponse;
 import com.azure.core.util.polling.LongRunningOperationStatus;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
-import com.azure.resourcemanager.hardwaresecuritymodules.fluent.AzureDedicatedHsmResourceProvider;
+import com.azure.resourcemanager.hardwaresecuritymodules.fluent.AzureHsmResourceProvider;
+import com.azure.resourcemanager.hardwaresecuritymodules.fluent.CloudHsmClusterPrivateEndpointConnectionsClient;
+import com.azure.resourcemanager.hardwaresecuritymodules.fluent.CloudHsmClusterPrivateLinkResourcesClient;
+import com.azure.resourcemanager.hardwaresecuritymodules.fluent.CloudHsmClustersClient;
 import com.azure.resourcemanager.hardwaresecuritymodules.fluent.DedicatedHsmsClient;
 import com.azure.resourcemanager.hardwaresecuritymodules.fluent.OperationsClient;
+import com.azure.resourcemanager.hardwaresecuritymodules.fluent.PrivateEndpointConnectionsClient;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.time.Duration;
-import java.util.Map;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-/** Initializes a new instance of the AzureDedicatedHsmResourceProviderImpl type. */
-@ServiceClient(builder = AzureDedicatedHsmResourceProviderBuilder.class)
-public final class AzureDedicatedHsmResourceProviderImpl implements AzureDedicatedHsmResourceProvider {
-    /**
-     * Subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of
-     * the URI for every service call.
-     */
+/** Initializes a new instance of the AzureHsmResourceProviderImpl type. */
+@ServiceClient(builder = AzureHsmResourceProviderBuilder.class)
+public final class AzureHsmResourceProviderImpl implements AzureHsmResourceProvider {
+    /** The ID of the target subscription. */
     private final String subscriptionId;
 
     /**
-     * Gets Subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms
-     * part of the URI for every service call.
+     * Gets The ID of the target subscription.
      *
      * @return the subscriptionId value.
      */
@@ -63,18 +63,6 @@ public final class AzureDedicatedHsmResourceProviderImpl implements AzureDedicat
      */
     public String getEndpoint() {
         return this.endpoint;
-    }
-
-    /** Api Version. */
-    private final String apiVersion;
-
-    /**
-     * Gets Api Version.
-     *
-     * @return the apiVersion value.
-     */
-    public String getApiVersion() {
-        return this.apiVersion;
     }
 
     /** The HTTP pipeline to send requests through. */
@@ -113,6 +101,54 @@ public final class AzureDedicatedHsmResourceProviderImpl implements AzureDedicat
         return this.defaultPollInterval;
     }
 
+    /** The CloudHsmClustersClient object to access its operations. */
+    private final CloudHsmClustersClient cloudHsmClusters;
+
+    /**
+     * Gets the CloudHsmClustersClient object to access its operations.
+     *
+     * @return the CloudHsmClustersClient object.
+     */
+    public CloudHsmClustersClient getCloudHsmClusters() {
+        return this.cloudHsmClusters;
+    }
+
+    /** The CloudHsmClusterPrivateLinkResourcesClient object to access its operations. */
+    private final CloudHsmClusterPrivateLinkResourcesClient cloudHsmClusterPrivateLinkResources;
+
+    /**
+     * Gets the CloudHsmClusterPrivateLinkResourcesClient object to access its operations.
+     *
+     * @return the CloudHsmClusterPrivateLinkResourcesClient object.
+     */
+    public CloudHsmClusterPrivateLinkResourcesClient getCloudHsmClusterPrivateLinkResources() {
+        return this.cloudHsmClusterPrivateLinkResources;
+    }
+
+    /** The CloudHsmClusterPrivateEndpointConnectionsClient object to access its operations. */
+    private final CloudHsmClusterPrivateEndpointConnectionsClient cloudHsmClusterPrivateEndpointConnections;
+
+    /**
+     * Gets the CloudHsmClusterPrivateEndpointConnectionsClient object to access its operations.
+     *
+     * @return the CloudHsmClusterPrivateEndpointConnectionsClient object.
+     */
+    public CloudHsmClusterPrivateEndpointConnectionsClient getCloudHsmClusterPrivateEndpointConnections() {
+        return this.cloudHsmClusterPrivateEndpointConnections;
+    }
+
+    /** The PrivateEndpointConnectionsClient object to access its operations. */
+    private final PrivateEndpointConnectionsClient privateEndpointConnections;
+
+    /**
+     * Gets the PrivateEndpointConnectionsClient object to access its operations.
+     *
+     * @return the PrivateEndpointConnectionsClient object.
+     */
+    public PrivateEndpointConnectionsClient getPrivateEndpointConnections() {
+        return this.privateEndpointConnections;
+    }
+
     /** The OperationsClient object to access its operations. */
     private final OperationsClient operations;
 
@@ -138,17 +174,16 @@ public final class AzureDedicatedHsmResourceProviderImpl implements AzureDedicat
     }
 
     /**
-     * Initializes an instance of AzureDedicatedHsmResourceProvider client.
+     * Initializes an instance of AzureHsmResourceProvider client.
      *
      * @param httpPipeline The HTTP pipeline to send requests through.
      * @param serializerAdapter The serializer to serialize an object into a string.
      * @param defaultPollInterval The default poll interval for long-running operation.
      * @param environment The Azure environment.
-     * @param subscriptionId Subscription credentials which uniquely identify Microsoft Azure subscription. The
-     *     subscription ID forms part of the URI for every service call.
+     * @param subscriptionId The ID of the target subscription.
      * @param endpoint server parameter.
      */
-    AzureDedicatedHsmResourceProviderImpl(
+    AzureHsmResourceProviderImpl(
         HttpPipeline httpPipeline,
         SerializerAdapter serializerAdapter,
         Duration defaultPollInterval,
@@ -160,7 +195,10 @@ public final class AzureDedicatedHsmResourceProviderImpl implements AzureDedicat
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2021-11-30";
+        this.cloudHsmClusters = new CloudHsmClustersClientImpl(this);
+        this.cloudHsmClusterPrivateLinkResources = new CloudHsmClusterPrivateLinkResourcesClientImpl(this);
+        this.cloudHsmClusterPrivateEndpointConnections = new CloudHsmClusterPrivateEndpointConnectionsClientImpl(this);
+        this.privateEndpointConnections = new PrivateEndpointConnectionsClientImpl(this);
         this.operations = new OperationsClientImpl(this);
         this.dedicatedHsms = new DedicatedHsmsClientImpl(this);
     }
@@ -181,10 +219,7 @@ public final class AzureDedicatedHsmResourceProviderImpl implements AzureDedicat
      * @return the merged context.
      */
     public Context mergeContext(Context context) {
-        for (Map.Entry<Object, Object> entry : this.getContext().getValues().entrySet()) {
-            context = context.addData(entry.getKey(), entry.getValue());
-        }
-        return context;
+        return CoreUtils.mergeContexts(this.getContext(), context);
     }
 
     /**
@@ -308,5 +343,5 @@ public final class AzureDedicatedHsmResourceProviderImpl implements AzureDedicat
         }
     }
 
-    private static final ClientLogger LOGGER = new ClientLogger(AzureDedicatedHsmResourceProviderImpl.class);
+    private static final ClientLogger LOGGER = new ClientLogger(AzureHsmResourceProviderImpl.class);
 }

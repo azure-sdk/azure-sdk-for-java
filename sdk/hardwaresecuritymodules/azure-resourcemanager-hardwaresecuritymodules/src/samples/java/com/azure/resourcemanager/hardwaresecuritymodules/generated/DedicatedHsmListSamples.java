@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.hardwaresecuritymodules.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for DedicatedHsm List. */
 public final class DedicatedHsmListSamples {
     /*
@@ -18,7 +16,7 @@ public final class DedicatedHsmListSamples {
      */
     public static void listDedicatedHSMDevicesInASubscriptionIncludingPaymentHSM(
         com.azure.resourcemanager.hardwaresecuritymodules.HardwareSecurityModulesManager manager) {
-        manager.dedicatedHsms().list(null, Context.NONE);
+        manager.dedicatedHsms().list(null, com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -31,6 +29,6 @@ public final class DedicatedHsmListSamples {
      */
     public static void listDedicatedHSMDevicesInASubscription(
         com.azure.resourcemanager.hardwaresecuritymodules.HardwareSecurityModulesManager manager) {
-        manager.dedicatedHsms().list(null, Context.NONE);
+        manager.dedicatedHsms().list(null, com.azure.core.util.Context.NONE);
     }
 }
