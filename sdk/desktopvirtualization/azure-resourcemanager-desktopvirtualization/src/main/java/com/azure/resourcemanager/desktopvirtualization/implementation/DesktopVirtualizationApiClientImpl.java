@@ -30,6 +30,8 @@ import com.azure.resourcemanager.desktopvirtualization.fluent.HostPoolsClient;
 import com.azure.resourcemanager.desktopvirtualization.fluent.MsixImagesClient;
 import com.azure.resourcemanager.desktopvirtualization.fluent.MsixPackagesClient;
 import com.azure.resourcemanager.desktopvirtualization.fluent.OperationsClient;
+import com.azure.resourcemanager.desktopvirtualization.fluent.PrivateEndpointConnectionsClient;
+import com.azure.resourcemanager.desktopvirtualization.fluent.PrivateLinkResourcesClient;
 import com.azure.resourcemanager.desktopvirtualization.fluent.ScalingPlanPooledSchedulesClient;
 import com.azure.resourcemanager.desktopvirtualization.fluent.ScalingPlansClient;
 import com.azure.resourcemanager.desktopvirtualization.fluent.SessionHostsClient;
@@ -142,6 +144,30 @@ public final class DesktopVirtualizationApiClientImpl implements DesktopVirtuali
      */
     public WorkspacesClient getWorkspaces() {
         return this.workspaces;
+    }
+
+    /** The PrivateEndpointConnectionsClient object to access its operations. */
+    private final PrivateEndpointConnectionsClient privateEndpointConnections;
+
+    /**
+     * Gets the PrivateEndpointConnectionsClient object to access its operations.
+     *
+     * @return the PrivateEndpointConnectionsClient object.
+     */
+    public PrivateEndpointConnectionsClient getPrivateEndpointConnections() {
+        return this.privateEndpointConnections;
+    }
+
+    /** The PrivateLinkResourcesClient object to access its operations. */
+    private final PrivateLinkResourcesClient privateLinkResources;
+
+    /**
+     * Gets the PrivateLinkResourcesClient object to access its operations.
+     *
+     * @return the PrivateLinkResourcesClient object.
+     */
+    public PrivateLinkResourcesClient getPrivateLinkResources() {
+        return this.privateLinkResources;
     }
 
     /** The ScalingPlansClient object to access its operations. */
@@ -298,9 +324,11 @@ public final class DesktopVirtualizationApiClientImpl implements DesktopVirtuali
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2022-09-09";
+        this.apiVersion = "2022-10-14-preview";
         this.operations = new OperationsClientImpl(this);
         this.workspaces = new WorkspacesClientImpl(this);
+        this.privateEndpointConnections = new PrivateEndpointConnectionsClientImpl(this);
+        this.privateLinkResources = new PrivateLinkResourcesClientImpl(this);
         this.scalingPlans = new ScalingPlansClientImpl(this);
         this.scalingPlanPooledSchedules = new ScalingPlanPooledSchedulesClientImpl(this);
         this.applicationGroups = new ApplicationGroupsClientImpl(this);
