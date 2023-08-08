@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.networkfunction.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for CollectorPolicies Get. */
 public final class CollectorPoliciesGetSamples {
     /*
@@ -18,6 +16,6 @@ public final class CollectorPoliciesGetSamples {
      */
     public static void getCollectionPolicy(
         com.azure.resourcemanager.networkfunction.AzureTrafficCollectorManager manager) {
-        manager.collectorPolicies().getWithResponse("rg1", "atc", "cp1", Context.NONE);
+        manager.collectorPolicies().getWithResponse("rg1", "atc", "cp1", com.azure.core.util.Context.NONE);
     }
 }
