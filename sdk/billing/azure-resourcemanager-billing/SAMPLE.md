@@ -1457,7 +1457,7 @@ public final class InvoiceSectionsCreateOrUpdateSamples {
                 "{invoiceSectionName}",
                 new InvoiceSectionInner()
                     .withDisplayName("invoiceSection1")
-                    .withLabels(mapOf("costCategory", "Support", "pcCode", "A123456")),
+                    .withLabels(mapOf("costCategory", "Support", "pcCode", "fakeTokenPlaceholder")),
                 com.azure.core.util.Context.NONE);
     }
 
