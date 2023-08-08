@@ -24,12 +24,16 @@ public final class NotebookResourceInfoImpl implements NotebookResourceInfo {
         return this.innerModel().fqdn();
     }
 
-    public String resourceId() {
-        return this.innerModel().resourceId();
+    public Boolean isPrivateLinkEnabled() {
+        return this.innerModel().isPrivateLinkEnabled();
     }
 
     public NotebookPreparationError notebookPreparationError() {
         return this.innerModel().notebookPreparationError();
+    }
+
+    public String resourceId() {
+        return this.innerModel().resourceId();
     }
 
     public NotebookResourceInfoInner innerModel() {

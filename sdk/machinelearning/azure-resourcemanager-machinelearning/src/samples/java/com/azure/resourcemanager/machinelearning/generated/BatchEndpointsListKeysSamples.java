@@ -7,14 +7,15 @@ package com.azure.resourcemanager.machinelearning.generated;
 /** Samples for BatchEndpoints ListKeys. */
 public final class BatchEndpointsListKeysSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/BatchEndpoint/listKeys.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2023-08-01-preview/examples/Workspace/BatchEndpoint/listKeys.json
      */
     /**
-     * Sample code: ListKeys Batch Endpoint.
+     * Sample code: ListKeys Workspace Batch Endpoint.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void listKeysBatchEndpoint(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+    public static void listKeysWorkspaceBatchEndpoint(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager
             .batchEndpoints()
             .listKeysWithResponse("test-rg", "my-aml-workspace", "testEndpointName", com.azure.core.util.Context.NONE);

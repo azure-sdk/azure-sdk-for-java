@@ -5,62 +5,42 @@
 package com.azure.resourcemanager.machinelearning.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.resourcemanager.machinelearning.models.PrivateEndpointServiceConnectionStatus;
+import com.azure.resourcemanager.machinelearning.models.EndpointServiceConnectionStatus;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Properties of a shared private link resource. */
 @Fluent
 public final class SharedPrivateLinkResourceProperty {
     /*
-     * The resource id that private link links to.
-     */
-    @JsonProperty(value = "privateLinkResourceId")
-    private String privateLinkResourceId;
-
-    /*
-     * The private link resource group id.
+     * group id of the private link
      */
     @JsonProperty(value = "groupId")
     private String groupId;
 
     /*
-     * Request message.
+     * the resource id that private link links to
+     */
+    @JsonProperty(value = "privateLinkResourceId")
+    private String privateLinkResourceId;
+
+    /*
+     * Request message
      */
     @JsonProperty(value = "requestMessage")
     private String requestMessage;
 
     /*
-     * Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service.
+     * Connection status of the service consumer with the service provider
      */
     @JsonProperty(value = "status")
-    private PrivateEndpointServiceConnectionStatus status;
+    private EndpointServiceConnectionStatus status;
 
     /** Creates an instance of SharedPrivateLinkResourceProperty class. */
     public SharedPrivateLinkResourceProperty() {
     }
 
     /**
-     * Get the privateLinkResourceId property: The resource id that private link links to.
-     *
-     * @return the privateLinkResourceId value.
-     */
-    public String privateLinkResourceId() {
-        return this.privateLinkResourceId;
-    }
-
-    /**
-     * Set the privateLinkResourceId property: The resource id that private link links to.
-     *
-     * @param privateLinkResourceId the privateLinkResourceId value to set.
-     * @return the SharedPrivateLinkResourceProperty object itself.
-     */
-    public SharedPrivateLinkResourceProperty withPrivateLinkResourceId(String privateLinkResourceId) {
-        this.privateLinkResourceId = privateLinkResourceId;
-        return this;
-    }
-
-    /**
-     * Get the groupId property: The private link resource group id.
+     * Get the groupId property: group id of the private link.
      *
      * @return the groupId value.
      */
@@ -69,13 +49,33 @@ public final class SharedPrivateLinkResourceProperty {
     }
 
     /**
-     * Set the groupId property: The private link resource group id.
+     * Set the groupId property: group id of the private link.
      *
      * @param groupId the groupId value to set.
      * @return the SharedPrivateLinkResourceProperty object itself.
      */
     public SharedPrivateLinkResourceProperty withGroupId(String groupId) {
         this.groupId = groupId;
+        return this;
+    }
+
+    /**
+     * Get the privateLinkResourceId property: the resource id that private link links to.
+     *
+     * @return the privateLinkResourceId value.
+     */
+    public String privateLinkResourceId() {
+        return this.privateLinkResourceId;
+    }
+
+    /**
+     * Set the privateLinkResourceId property: the resource id that private link links to.
+     *
+     * @param privateLinkResourceId the privateLinkResourceId value to set.
+     * @return the SharedPrivateLinkResourceProperty object itself.
+     */
+    public SharedPrivateLinkResourceProperty withPrivateLinkResourceId(String privateLinkResourceId) {
+        this.privateLinkResourceId = privateLinkResourceId;
         return this;
     }
 
@@ -100,23 +100,21 @@ public final class SharedPrivateLinkResourceProperty {
     }
 
     /**
-     * Get the status property: Indicates whether the connection has been Approved/Rejected/Removed by the owner of the
-     * service.
+     * Get the status property: Connection status of the service consumer with the service provider.
      *
      * @return the status value.
      */
-    public PrivateEndpointServiceConnectionStatus status() {
+    public EndpointServiceConnectionStatus status() {
         return this.status;
     }
 
     /**
-     * Set the status property: Indicates whether the connection has been Approved/Rejected/Removed by the owner of the
-     * service.
+     * Set the status property: Connection status of the service consumer with the service provider.
      *
      * @param status the status value to set.
      * @return the SharedPrivateLinkResourceProperty object itself.
      */
-    public SharedPrivateLinkResourceProperty withStatus(PrivateEndpointServiceConnectionStatus status) {
+    public SharedPrivateLinkResourceProperty withStatus(EndpointServiceConnectionStatus status) {
         this.status = status;
         return this;
     }
