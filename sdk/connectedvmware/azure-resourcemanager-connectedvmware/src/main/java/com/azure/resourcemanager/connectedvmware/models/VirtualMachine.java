@@ -227,11 +227,11 @@ public interface VirtualMachine {
     List<ResourceStatus> statuses();
 
     /**
-     * Gets the provisioningState property: Gets or sets the provisioning state.
+     * Gets the provisioningState property: Gets the provisioning state.
      *
      * @return the provisioningState value.
      */
-    String provisioningState();
+    ProvisioningState provisioningState();
 
     /**
      * Gets the vmId property: Gets or sets a unique identifier for the vm resource.
@@ -275,11 +275,13 @@ public interface VirtualMachine {
             DefinitionStages.WithResourceGroup,
             DefinitionStages.WithCreate {
     }
+
     /** The VirtualMachine definition stages. */
     interface DefinitionStages {
         /** The first stage of the VirtualMachine definition. */
         interface Blank extends WithLocation {
         }
+
         /** The stage of the VirtualMachine definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -298,6 +300,7 @@ public interface VirtualMachine {
              */
             WithResourceGroup withRegion(String location);
         }
+
         /** The stage of the VirtualMachine definition allowing to specify parent resource. */
         interface WithResourceGroup {
             /**
@@ -308,6 +311,7 @@ public interface VirtualMachine {
              */
             WithCreate withExistingResourceGroup(String resourceGroupName);
         }
+
         /**
          * The stage of the VirtualMachine definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
@@ -346,6 +350,7 @@ public interface VirtualMachine {
              */
             VirtualMachine create(Context context);
         }
+
         /** The stage of the VirtualMachine definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -356,6 +361,7 @@ public interface VirtualMachine {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
         /** The stage of the VirtualMachine definition allowing to specify extendedLocation. */
         interface WithExtendedLocation {
             /**
@@ -366,6 +372,7 @@ public interface VirtualMachine {
              */
             WithCreate withExtendedLocation(ExtendedLocation extendedLocation);
         }
+
         /** The stage of the VirtualMachine definition allowing to specify kind. */
         interface WithKind {
             /**
@@ -380,6 +387,7 @@ public interface VirtualMachine {
              */
             WithCreate withKind(String kind);
         }
+
         /** The stage of the VirtualMachine definition allowing to specify identity. */
         interface WithIdentity {
             /**
@@ -390,6 +398,7 @@ public interface VirtualMachine {
              */
             WithCreate withIdentity(Identity identity);
         }
+
         /** The stage of the VirtualMachine definition allowing to specify resourcePoolId. */
         interface WithResourcePoolId {
             /**
@@ -402,6 +411,7 @@ public interface VirtualMachine {
              */
             WithCreate withResourcePoolId(String resourcePoolId);
         }
+
         /** The stage of the VirtualMachine definition allowing to specify templateId. */
         interface WithTemplateId {
             /**
@@ -413,6 +423,7 @@ public interface VirtualMachine {
              */
             WithCreate withTemplateId(String templateId);
         }
+
         /** The stage of the VirtualMachine definition allowing to specify vCenterId. */
         interface WithVCenterId {
             /**
@@ -424,6 +435,7 @@ public interface VirtualMachine {
              */
             WithCreate withVCenterId(String vCenterId);
         }
+
         /** The stage of the VirtualMachine definition allowing to specify placementProfile. */
         interface WithPlacementProfile {
             /**
@@ -434,6 +446,7 @@ public interface VirtualMachine {
              */
             WithCreate withPlacementProfile(PlacementProfile placementProfile);
         }
+
         /** The stage of the VirtualMachine definition allowing to specify osProfile. */
         interface WithOsProfile {
             /**
@@ -444,6 +457,7 @@ public interface VirtualMachine {
              */
             WithCreate withOsProfile(OsProfile osProfile);
         }
+
         /** The stage of the VirtualMachine definition allowing to specify hardwareProfile. */
         interface WithHardwareProfile {
             /**
@@ -454,6 +468,7 @@ public interface VirtualMachine {
              */
             WithCreate withHardwareProfile(HardwareProfile hardwareProfile);
         }
+
         /** The stage of the VirtualMachine definition allowing to specify networkProfile. */
         interface WithNetworkProfile {
             /**
@@ -464,6 +479,7 @@ public interface VirtualMachine {
              */
             WithCreate withNetworkProfile(NetworkProfile networkProfile);
         }
+
         /** The stage of the VirtualMachine definition allowing to specify storageProfile. */
         interface WithStorageProfile {
             /**
@@ -474,6 +490,7 @@ public interface VirtualMachine {
              */
             WithCreate withStorageProfile(StorageProfile storageProfile);
         }
+
         /** The stage of the VirtualMachine definition allowing to specify guestAgentProfile. */
         interface WithGuestAgentProfile {
             /**
@@ -484,6 +501,7 @@ public interface VirtualMachine {
              */
             WithCreate withGuestAgentProfile(GuestAgentProfile guestAgentProfile);
         }
+
         /** The stage of the VirtualMachine definition allowing to specify securityProfile. */
         interface WithSecurityProfile {
             /**
@@ -494,6 +512,7 @@ public interface VirtualMachine {
              */
             WithCreate withSecurityProfile(SecurityProfile securityProfile);
         }
+
         /** The stage of the VirtualMachine definition allowing to specify moRefId. */
         interface WithMoRefId {
             /**
@@ -505,6 +524,7 @@ public interface VirtualMachine {
              */
             WithCreate withMoRefId(String moRefId);
         }
+
         /** The stage of the VirtualMachine definition allowing to specify inventoryItemId. */
         interface WithInventoryItemId {
             /**
@@ -515,6 +535,7 @@ public interface VirtualMachine {
              */
             WithCreate withInventoryItemId(String inventoryItemId);
         }
+
         /** The stage of the VirtualMachine definition allowing to specify smbiosUuid. */
         interface WithSmbiosUuid {
             /**
@@ -525,6 +546,7 @@ public interface VirtualMachine {
              */
             WithCreate withSmbiosUuid(String smbiosUuid);
         }
+
         /** The stage of the VirtualMachine definition allowing to specify firmwareType. */
         interface WithFirmwareType {
             /**
@@ -536,6 +558,7 @@ public interface VirtualMachine {
             WithCreate withFirmwareType(FirmwareType firmwareType);
         }
     }
+
     /**
      * Begins update for the VirtualMachine resource.
      *
@@ -550,7 +573,8 @@ public interface VirtualMachine {
             UpdateStages.WithHardwareProfile,
             UpdateStages.WithOsProfile,
             UpdateStages.WithStorageProfile,
-            UpdateStages.WithNetworkProfile {
+            UpdateStages.WithNetworkProfile,
+            UpdateStages.WithGuestAgentProfile {
         /**
          * Executes the update request.
          *
@@ -566,6 +590,7 @@ public interface VirtualMachine {
          */
         VirtualMachine apply(Context context);
     }
+
     /** The VirtualMachine update stages. */
     interface UpdateStages {
         /** The stage of the VirtualMachine update allowing to specify tags. */
@@ -578,6 +603,7 @@ public interface VirtualMachine {
              */
             Update withTags(Map<String, String> tags);
         }
+
         /** The stage of the VirtualMachine update allowing to specify identity. */
         interface WithIdentity {
             /**
@@ -588,16 +614,18 @@ public interface VirtualMachine {
              */
             Update withIdentity(Identity identity);
         }
+
         /** The stage of the VirtualMachine update allowing to specify hardwareProfile. */
         interface WithHardwareProfile {
             /**
-             * Specifies the hardwareProfile property: Defines the resource properties..
+             * Specifies the hardwareProfile property: Specifies the hardware settings for the virtual machine..
              *
-             * @param hardwareProfile Defines the resource properties.
+             * @param hardwareProfile Specifies the hardware settings for the virtual machine.
              * @return the next definition stage.
              */
             Update withHardwareProfile(HardwareProfile hardwareProfile);
         }
+
         /** The stage of the VirtualMachine update allowing to specify osProfile. */
         interface WithOsProfile {
             /**
@@ -608,27 +636,41 @@ public interface VirtualMachine {
              */
             Update withOsProfile(OsProfileUpdate osProfile);
         }
+
         /** The stage of the VirtualMachine update allowing to specify storageProfile. */
         interface WithStorageProfile {
             /**
-             * Specifies the storageProfile property: Defines the resource update properties..
+             * Specifies the storageProfile property: Specifies the storage settings for the virtual machine disks..
              *
-             * @param storageProfile Defines the resource update properties.
+             * @param storageProfile Specifies the storage settings for the virtual machine disks.
              * @return the next definition stage.
              */
             Update withStorageProfile(StorageProfileUpdate storageProfile);
         }
+
         /** The stage of the VirtualMachine update allowing to specify networkProfile. */
         interface WithNetworkProfile {
             /**
-             * Specifies the networkProfile property: Defines the update resource properties..
+             * Specifies the networkProfile property: Specifies the network interfaces of the virtual machine..
              *
-             * @param networkProfile Defines the update resource properties.
+             * @param networkProfile Specifies the network interfaces of the virtual machine.
              * @return the next definition stage.
              */
             Update withNetworkProfile(NetworkProfileUpdate networkProfile);
         }
+
+        /** The stage of the VirtualMachine update allowing to specify guestAgentProfile. */
+        interface WithGuestAgentProfile {
+            /**
+             * Specifies the guestAgentProfile property: Specifies the guest agent settings for the virtual machine..
+             *
+             * @param guestAgentProfile Specifies the guest agent settings for the virtual machine.
+             * @return the next definition stage.
+             */
+            Update withGuestAgentProfile(GuestAgentProfileUpdate guestAgentProfile);
+        }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *
@@ -645,16 +687,48 @@ public interface VirtualMachine {
     VirtualMachine refresh(Context context);
 
     /**
-     * Implements the operation to stop a virtual machine.
+     * The operation to assess patches on a vSphere VMware machine identity in Azure.
      *
-     * <p>Stop virtual machine.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return describes the properties of an AssessPatches result.
+     */
+    VirtualMachineAssessPatchesResult assessPatches();
+
+    /**
+     * The operation to assess patches on a vSphere VMware machine identity in Azure.
      *
-     * @param body Virtualmachine stop action payload.
+     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return describes the properties of an AssessPatches result.
      */
-    void stop(StopVirtualMachineOptions body);
+    VirtualMachineAssessPatchesResult assessPatches(Context context);
+
+    /**
+     * The operation to install patches on a vSphere VMware machine identity in Azure.
+     *
+     * @param installPatchesInput Input for InstallPatches as directly received by the API.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the result summary of an installation operation.
+     */
+    VirtualMachineInstallPatchesResult installPatches(VirtualMachineInstallPatchesParameters installPatchesInput);
+
+    /**
+     * The operation to install patches on a vSphere VMware machine identity in Azure.
+     *
+     * @param installPatchesInput Input for InstallPatches as directly received by the API.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the result summary of an installation operation.
+     */
+    VirtualMachineInstallPatchesResult installPatches(
+        VirtualMachineInstallPatchesParameters installPatchesInput, Context context);
 
     /**
      * Implements the operation to stop a virtual machine.

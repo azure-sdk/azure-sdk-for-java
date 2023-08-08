@@ -164,11 +164,13 @@ public interface MachineExtension {
             DefinitionStages.WithParentResource,
             DefinitionStages.WithCreate {
     }
+
     /** The MachineExtension definition stages. */
     interface DefinitionStages {
         /** The first stage of the MachineExtension definition. */
         interface Blank extends WithLocation {
         }
+
         /** The stage of the MachineExtension definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -187,17 +189,19 @@ public interface MachineExtension {
              */
             WithParentResource withRegion(String location);
         }
+
         /** The stage of the MachineExtension definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
-             * Specifies resourceGroupName, name.
+             * Specifies resourceGroupName, virtualMachineName.
              *
              * @param resourceGroupName The Resource Group Name.
-             * @param name The name of the machine where the extension should be created or updated.
+             * @param virtualMachineName The name of the machine where the extension should be created or updated.
              * @return the next definition stage.
              */
-            WithCreate withExistingVirtualMachine(String resourceGroupName, String name);
+            WithCreate withExistingVirtualMachine(String resourceGroupName, String virtualMachineName);
         }
+
         /**
          * The stage of the MachineExtension definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
@@ -228,6 +232,7 @@ public interface MachineExtension {
              */
             MachineExtension create(Context context);
         }
+
         /** The stage of the MachineExtension definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -238,6 +243,7 @@ public interface MachineExtension {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
         /** The stage of the MachineExtension definition allowing to specify forceUpdateTag. */
         interface WithForceUpdateTag {
             /**
@@ -250,6 +256,7 @@ public interface MachineExtension {
              */
             WithCreate withForceUpdateTag(String forceUpdateTag);
         }
+
         /** The stage of the MachineExtension definition allowing to specify publisher. */
         interface WithPublisher {
             /**
@@ -260,6 +267,7 @@ public interface MachineExtension {
              */
             WithCreate withPublisher(String publisher);
         }
+
         /** The stage of the MachineExtension definition allowing to specify typePropertiesType. */
         interface WithTypePropertiesType {
             /**
@@ -271,6 +279,7 @@ public interface MachineExtension {
              */
             WithCreate withTypePropertiesType(String typePropertiesType);
         }
+
         /** The stage of the MachineExtension definition allowing to specify typeHandlerVersion. */
         interface WithTypeHandlerVersion {
             /**
@@ -281,6 +290,7 @@ public interface MachineExtension {
              */
             WithCreate withTypeHandlerVersion(String typeHandlerVersion);
         }
+
         /** The stage of the MachineExtension definition allowing to specify enableAutomaticUpgrade. */
         interface WithEnableAutomaticUpgrade {
             /**
@@ -293,6 +303,7 @@ public interface MachineExtension {
              */
             WithCreate withEnableAutomaticUpgrade(Boolean enableAutomaticUpgrade);
         }
+
         /** The stage of the MachineExtension definition allowing to specify autoUpgradeMinorVersion. */
         interface WithAutoUpgradeMinorVersion {
             /**
@@ -307,6 +318,7 @@ public interface MachineExtension {
              */
             WithCreate withAutoUpgradeMinorVersion(Boolean autoUpgradeMinorVersion);
         }
+
         /** The stage of the MachineExtension definition allowing to specify settings. */
         interface WithSettings {
             /**
@@ -317,6 +329,7 @@ public interface MachineExtension {
              */
             WithCreate withSettings(Object settings);
         }
+
         /** The stage of the MachineExtension definition allowing to specify protectedSettings. */
         interface WithProtectedSettings {
             /**
@@ -329,6 +342,7 @@ public interface MachineExtension {
              */
             WithCreate withProtectedSettings(Object protectedSettings);
         }
+
         /** The stage of the MachineExtension definition allowing to specify instanceView. */
         interface WithInstanceView {
             /**
@@ -340,6 +354,7 @@ public interface MachineExtension {
             WithCreate withInstanceView(MachineExtensionPropertiesInstanceView instanceView);
         }
     }
+
     /**
      * Begins update for the MachineExtension resource.
      *
@@ -373,6 +388,7 @@ public interface MachineExtension {
          */
         MachineExtension apply(Context context);
     }
+
     /** The MachineExtension update stages. */
     interface UpdateStages {
         /** The stage of the MachineExtension update allowing to specify tags. */
@@ -385,6 +401,7 @@ public interface MachineExtension {
              */
             Update withTags(Map<String, String> tags);
         }
+
         /** The stage of the MachineExtension update allowing to specify forceUpdateTag. */
         interface WithForceUpdateTag {
             /**
@@ -397,6 +414,7 @@ public interface MachineExtension {
              */
             Update withForceUpdateTag(String forceUpdateTag);
         }
+
         /** The stage of the MachineExtension update allowing to specify publisher. */
         interface WithPublisher {
             /**
@@ -407,6 +425,7 @@ public interface MachineExtension {
              */
             Update withPublisher(String publisher);
         }
+
         /** The stage of the MachineExtension update allowing to specify type. */
         interface WithType {
             /**
@@ -417,6 +436,7 @@ public interface MachineExtension {
              */
             Update withType(String type);
         }
+
         /** The stage of the MachineExtension update allowing to specify typeHandlerVersion. */
         interface WithTypeHandlerVersion {
             /**
@@ -427,6 +447,7 @@ public interface MachineExtension {
              */
             Update withTypeHandlerVersion(String typeHandlerVersion);
         }
+
         /** The stage of the MachineExtension update allowing to specify enableAutomaticUpgrade. */
         interface WithEnableAutomaticUpgrade {
             /**
@@ -439,6 +460,7 @@ public interface MachineExtension {
              */
             Update withEnableAutomaticUpgrade(Boolean enableAutomaticUpgrade);
         }
+
         /** The stage of the MachineExtension update allowing to specify autoUpgradeMinorVersion. */
         interface WithAutoUpgradeMinorVersion {
             /**
@@ -453,6 +475,7 @@ public interface MachineExtension {
              */
             Update withAutoUpgradeMinorVersion(Boolean autoUpgradeMinorVersion);
         }
+
         /** The stage of the MachineExtension update allowing to specify settings. */
         interface WithSettings {
             /**
@@ -463,6 +486,7 @@ public interface MachineExtension {
              */
             Update withSettings(Object settings);
         }
+
         /** The stage of the MachineExtension update allowing to specify protectedSettings. */
         interface WithProtectedSettings {
             /**
@@ -476,6 +500,7 @@ public interface MachineExtension {
             Update withProtectedSettings(Object protectedSettings);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

@@ -62,6 +62,10 @@ public final class MachineExtensionUpdateProperties {
     @JsonProperty(value = "protectedSettings")
     private Object protectedSettings;
 
+    /** Creates an instance of MachineExtensionUpdateProperties class. */
+    public MachineExtensionUpdateProperties() {
+    }
+
     /**
      * Get the forceUpdateTag property: How the extension handler should be forced to update even if the extension
      * configuration has not changed.

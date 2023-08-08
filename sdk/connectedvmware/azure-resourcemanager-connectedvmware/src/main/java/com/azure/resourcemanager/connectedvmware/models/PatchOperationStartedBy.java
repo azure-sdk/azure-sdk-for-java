@@ -8,13 +8,22 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for PatchOperationStartedBy. */
+/** Indicates if operation was triggered by user or by platform. */
 public final class PatchOperationStartedBy extends ExpandableStringEnum<PatchOperationStartedBy> {
     /** Static value User for PatchOperationStartedBy. */
     public static final PatchOperationStartedBy USER = fromString("User");
 
     /** Static value Platform for PatchOperationStartedBy. */
     public static final PatchOperationStartedBy PLATFORM = fromString("Platform");
+
+    /**
+     * Creates a new instance of PatchOperationStartedBy value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public PatchOperationStartedBy() {
+    }
 
     /**
      * Creates or finds a PatchOperationStartedBy from its string representation.
