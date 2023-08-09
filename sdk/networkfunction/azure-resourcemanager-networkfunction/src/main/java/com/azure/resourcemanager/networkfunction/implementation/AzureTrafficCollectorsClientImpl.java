@@ -64,8 +64,7 @@ public final class AzureTrafficCollectorsClientImpl implements AzureTrafficColle
     public interface AzureTrafficCollectorsService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkFunction"
-                + "/azureTrafficCollectors/{azureTrafficCollectorName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkFunction/azureTrafficCollectors/{azureTrafficCollectorName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<AzureTrafficCollectorInner>> getByResourceGroup(
@@ -79,8 +78,7 @@ public final class AzureTrafficCollectorsClientImpl implements AzureTrafficColle
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkFunction"
-                + "/azureTrafficCollectors/{azureTrafficCollectorName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkFunction/azureTrafficCollectors/{azureTrafficCollectorName}")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
@@ -95,8 +93,7 @@ public final class AzureTrafficCollectorsClientImpl implements AzureTrafficColle
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkFunction"
-                + "/azureTrafficCollectors/{azureTrafficCollectorName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkFunction/azureTrafficCollectors/{azureTrafficCollectorName}")
         @ExpectedResponses({200, 202, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(
@@ -110,8 +107,7 @@ public final class AzureTrafficCollectorsClientImpl implements AzureTrafficColle
 
         @Headers({"Content-Type: application/json"})
         @Patch(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkFunction"
-                + "/azureTrafficCollectors/{azureTrafficCollectorName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkFunction/azureTrafficCollectors/{azureTrafficCollectorName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<AzureTrafficCollectorInner>> updateTags(
@@ -465,7 +461,7 @@ public final class AzureTrafficCollectorsClientImpl implements AzureTrafficColle
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<AzureTrafficCollectorInner>, AzureTrafficCollectorInner> beginCreateOrUpdate(
         String resourceGroupName, String azureTrafficCollectorName, AzureTrafficCollectorInner parameters) {
-        return beginCreateOrUpdateAsync(resourceGroupName, azureTrafficCollectorName, parameters).getSyncPoller();
+        return this.beginCreateOrUpdateAsync(resourceGroupName, azureTrafficCollectorName, parameters).getSyncPoller();
     }
 
     /**
@@ -486,7 +482,8 @@ public final class AzureTrafficCollectorsClientImpl implements AzureTrafficColle
         String azureTrafficCollectorName,
         AzureTrafficCollectorInner parameters,
         Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, azureTrafficCollectorName, parameters, context)
+        return this
+            .beginCreateOrUpdateAsync(resourceGroupName, azureTrafficCollectorName, parameters, context)
             .getSyncPoller();
     }
 
@@ -724,7 +721,7 @@ public final class AzureTrafficCollectorsClientImpl implements AzureTrafficColle
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String azureTrafficCollectorName) {
-        return beginDeleteAsync(resourceGroupName, azureTrafficCollectorName).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, azureTrafficCollectorName).getSyncPoller();
     }
 
     /**
@@ -741,7 +738,7 @@ public final class AzureTrafficCollectorsClientImpl implements AzureTrafficColle
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String azureTrafficCollectorName, Context context) {
-        return beginDeleteAsync(resourceGroupName, azureTrafficCollectorName, context).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, azureTrafficCollectorName, context).getSyncPoller();
     }
 
     /**

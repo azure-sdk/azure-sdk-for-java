@@ -24,7 +24,7 @@ public final class AzureTrafficCollectorsCreateOrUpdateSamples {
             .define("atc")
             .withRegion("West US")
             .withExistingResourceGroup("rg1")
-            .withTags(mapOf("key1", "value1"))
+            .withTags(mapOf("key1", "fakeTokenPlaceholder"))
             .create();
     }
 
