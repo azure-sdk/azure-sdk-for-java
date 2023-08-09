@@ -91,11 +91,13 @@ public interface SecurityAssessmentResponse {
     /** The entirety of the SecurityAssessmentResponse definition. */
     interface Definition extends DefinitionStages.Blank, DefinitionStages.WithScope, DefinitionStages.WithCreate {
     }
+
     /** The SecurityAssessmentResponse definition stages. */
     interface DefinitionStages {
         /** The first stage of the SecurityAssessmentResponse definition. */
         interface Blank extends WithScope {
         }
+
         /** The stage of the SecurityAssessmentResponse definition allowing to specify parent resource. */
         interface WithScope {
             /**
@@ -106,6 +108,7 @@ public interface SecurityAssessmentResponse {
              */
             WithCreate withExistingResourceId(String resourceId);
         }
+
         /**
          * The stage of the SecurityAssessmentResponse definition which contains all the minimum required properties for
          * the resource to be created, but also allows for any other optional properties to be specified.
@@ -131,6 +134,7 @@ public interface SecurityAssessmentResponse {
              */
             SecurityAssessmentResponse create(Context context);
         }
+
         /** The stage of the SecurityAssessmentResponse definition allowing to specify status. */
         interface WithStatus {
             /**
@@ -141,6 +145,7 @@ public interface SecurityAssessmentResponse {
              */
             WithCreate withStatus(AssessmentStatus status);
         }
+
         /** The stage of the SecurityAssessmentResponse definition allowing to specify resourceDetails. */
         interface WithResourceDetails {
             /**
@@ -151,6 +156,7 @@ public interface SecurityAssessmentResponse {
              */
             WithCreate withResourceDetails(ResourceDetails resourceDetails);
         }
+
         /** The stage of the SecurityAssessmentResponse definition allowing to specify additionalData. */
         interface WithAdditionalData {
             /**
@@ -161,6 +167,7 @@ public interface SecurityAssessmentResponse {
              */
             WithCreate withAdditionalData(Map<String, String> additionalData);
         }
+
         /** The stage of the SecurityAssessmentResponse definition allowing to specify metadata. */
         interface WithMetadata {
             /**
@@ -171,6 +178,7 @@ public interface SecurityAssessmentResponse {
              */
             WithCreate withMetadata(SecurityAssessmentMetadataProperties metadata);
         }
+
         /** The stage of the SecurityAssessmentResponse definition allowing to specify partnersData. */
         interface WithPartnersData {
             /**
@@ -182,6 +190,7 @@ public interface SecurityAssessmentResponse {
             WithCreate withPartnersData(SecurityAssessmentPartnerData partnersData);
         }
     }
+
     /**
      * Begins update for the SecurityAssessmentResponse resource.
      *
@@ -211,6 +220,7 @@ public interface SecurityAssessmentResponse {
          */
         SecurityAssessmentResponse apply(Context context);
     }
+
     /** The SecurityAssessmentResponse update stages. */
     interface UpdateStages {
         /** The stage of the SecurityAssessmentResponse update allowing to specify status. */
@@ -223,6 +233,7 @@ public interface SecurityAssessmentResponse {
              */
             Update withStatus(AssessmentStatus status);
         }
+
         /** The stage of the SecurityAssessmentResponse update allowing to specify resourceDetails. */
         interface WithResourceDetails {
             /**
@@ -233,6 +244,7 @@ public interface SecurityAssessmentResponse {
              */
             Update withResourceDetails(ResourceDetails resourceDetails);
         }
+
         /** The stage of the SecurityAssessmentResponse update allowing to specify additionalData. */
         interface WithAdditionalData {
             /**
@@ -243,6 +255,7 @@ public interface SecurityAssessmentResponse {
              */
             Update withAdditionalData(Map<String, String> additionalData);
         }
+
         /** The stage of the SecurityAssessmentResponse update allowing to specify metadata. */
         interface WithMetadata {
             /**
@@ -253,6 +266,7 @@ public interface SecurityAssessmentResponse {
              */
             Update withMetadata(SecurityAssessmentMetadataProperties metadata);
         }
+
         /** The stage of the SecurityAssessmentResponse update allowing to specify partnersData. */
         interface WithPartnersData {
             /**
@@ -264,6 +278,7 @@ public interface SecurityAssessmentResponse {
             Update withPartnersData(SecurityAssessmentPartnerData partnersData);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *
