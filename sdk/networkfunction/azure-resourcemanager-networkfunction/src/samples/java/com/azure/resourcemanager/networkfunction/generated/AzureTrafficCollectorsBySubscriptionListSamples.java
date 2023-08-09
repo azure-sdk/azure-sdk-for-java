@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.networkfunction.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for AzureTrafficCollectorsBySubscription List. */
 public final class AzureTrafficCollectorsBySubscriptionListSamples {
     /*
@@ -18,6 +16,6 @@ public final class AzureTrafficCollectorsBySubscriptionListSamples {
      */
     public static void listOfTrafficCollectorsBySubscription(
         com.azure.resourcemanager.networkfunction.AzureTrafficCollectorManager manager) {
-        manager.azureTrafficCollectorsBySubscriptions().list(Context.NONE);
+        manager.azureTrafficCollectorsBySubscriptions().list(com.azure.core.util.Context.NONE);
     }
 }

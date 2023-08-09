@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.networkfunction.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for CollectorPolicies Delete. */
 public final class CollectorPoliciesDeleteSamples {
     /*
@@ -18,6 +16,6 @@ public final class CollectorPoliciesDeleteSamples {
      */
     public static void deleteCollectionPolicy(
         com.azure.resourcemanager.networkfunction.AzureTrafficCollectorManager manager) {
-        manager.collectorPolicies().delete("rg1", "atc", "cp1", Context.NONE);
+        manager.collectorPolicies().delete("rg1", "atc", "cp1", com.azure.core.util.Context.NONE);
     }
 }
