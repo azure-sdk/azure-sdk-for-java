@@ -10,6 +10,7 @@ import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.machinelearning.fluent.models.ComputeResourceInner;
+import java.util.List;
 import java.util.Map;
 
 /** An immutable client-side representation of ComputeResource. */
@@ -109,11 +110,13 @@ public interface ComputeResource {
     interface Definition
         extends DefinitionStages.Blank, DefinitionStages.WithParentResource, DefinitionStages.WithCreate {
     }
+
     /** The ComputeResource definition stages. */
     interface DefinitionStages {
         /** The first stage of the ComputeResource definition. */
         interface Blank extends WithParentResource {
         }
+
         /** The stage of the ComputeResource definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -125,6 +128,7 @@ public interface ComputeResource {
              */
             WithCreate withExistingWorkspace(String resourceGroupName, String workspaceName);
         }
+
         /**
          * The stage of the ComputeResource definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
@@ -150,6 +154,7 @@ public interface ComputeResource {
              */
             ComputeResource create(Context context);
         }
+
         /** The stage of the ComputeResource definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -168,6 +173,7 @@ public interface ComputeResource {
              */
             WithCreate withRegion(String location);
         }
+
         /** The stage of the ComputeResource definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -178,6 +184,7 @@ public interface ComputeResource {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
         /** The stage of the ComputeResource definition allowing to specify identity. */
         interface WithIdentity {
             /**
@@ -188,6 +195,7 @@ public interface ComputeResource {
              */
             WithCreate withIdentity(ManagedServiceIdentity identity);
         }
+
         /** The stage of the ComputeResource definition allowing to specify sku. */
         interface WithSku {
             /**
@@ -198,6 +206,7 @@ public interface ComputeResource {
              */
             WithCreate withSku(Sku sku);
         }
+
         /** The stage of the ComputeResource definition allowing to specify properties. */
         interface WithProperties {
             /**
@@ -209,6 +218,7 @@ public interface ComputeResource {
             WithCreate withProperties(Compute properties);
         }
     }
+
     /**
      * Begins update for the ComputeResource resource.
      *
@@ -233,6 +243,7 @@ public interface ComputeResource {
          */
         ComputeResource apply(Context context);
     }
+
     /** The ComputeResource update stages. */
     interface UpdateStages {
         /** The stage of the ComputeResource update allowing to specify properties. */
@@ -246,6 +257,7 @@ public interface ComputeResource {
             Update withProperties(ScaleSettingsInformation properties);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *
@@ -260,6 +272,28 @@ public interface ComputeResource {
      * @return the refreshed resource.
      */
     ComputeResource refresh(Context context);
+
+    /**
+     * Updates the custom services list. The list of custom services provided shall be overwritten.
+     *
+     * @param customServices New list of Custom Services.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    Response<Void> updateCustomServicesWithResponse(List<CustomService> customServices, Context context);
+
+    /**
+     * Updates the custom services list. The list of custom services provided shall be overwritten.
+     *
+     * @param customServices New list of Custom Services.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void updateCustomServices(List<CustomService> customServices);
 
     /**
      * Get the details (e.g IP address, port etc) of all the compute nodes in the compute.
@@ -357,4 +391,67 @@ public interface ComputeResource {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     void restart(Context context);
+
+    /**
+     * Updates the idle shutdown setting of a compute instance.
+     *
+     * @param parameters The object for updating idle shutdown setting of specified ComputeInstance.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    Response<Void> updateIdleShutdownSettingWithResponse(IdleShutdownSetting parameters, Context context);
+
+    /**
+     * Updates the idle shutdown setting of a compute instance.
+     *
+     * @param parameters The object for updating idle shutdown setting of specified ComputeInstance.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void updateIdleShutdownSetting(IdleShutdownSetting parameters);
+
+    /**
+     * Returns supported virtual machine sizes for resize.
+     *
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the List Virtual Machine size operation response along with {@link Response}.
+     */
+    Response<VirtualMachineSizeListResult> getAllowedResizeSizesWithResponse(Context context);
+
+    /**
+     * Returns supported virtual machine sizes for resize.
+     *
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the List Virtual Machine size operation response.
+     */
+    VirtualMachineSizeListResult getAllowedResizeSizes();
+
+    /**
+     * Updates the size of a Compute Instance.
+     *
+     * @param parameters The object for updating VM size setting of specified Compute Instance.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void resize(ResizeSchema parameters);
+
+    /**
+     * Updates the size of a Compute Instance.
+     *
+     * @param parameters The object for updating VM size setting of specified Compute Instance.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void resize(ResizeSchema parameters, Context context);
 }

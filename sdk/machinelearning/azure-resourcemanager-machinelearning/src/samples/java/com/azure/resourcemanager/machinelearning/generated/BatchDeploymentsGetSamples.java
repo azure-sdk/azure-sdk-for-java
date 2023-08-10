@@ -7,14 +7,15 @@ package com.azure.resourcemanager.machinelearning.generated;
 /** Samples for BatchDeployments Get. */
 public final class BatchDeploymentsGetSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/BatchDeployment/get.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2023-08-01-preview/examples/Workspace/BatchDeployment/get.json
      */
     /**
-     * Sample code: Get Batch Deployment.
+     * Sample code: Get Workspace Batch Deployment.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void getBatchDeployment(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+    public static void getWorkspaceBatchDeployment(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager
             .batchDeployments()
             .getWithResponse(

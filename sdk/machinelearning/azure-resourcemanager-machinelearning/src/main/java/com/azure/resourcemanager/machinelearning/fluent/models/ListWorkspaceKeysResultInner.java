@@ -4,27 +4,15 @@
 
 package com.azure.resourcemanager.machinelearning.fluent.models;
 
-import com.azure.core.annotation.Immutable;
+import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.machinelearning.models.RegistryListCredentialsResult;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** The ListWorkspaceKeysResult model. */
-@Immutable
+@Fluent
 public final class ListWorkspaceKeysResultInner {
     /*
-     * The userStorageKey property.
-     */
-    @JsonProperty(value = "userStorageKey", access = JsonProperty.Access.WRITE_ONLY)
-    private String userStorageKey;
-
-    /*
-     * The userStorageResourceId property.
-     */
-    @JsonProperty(value = "userStorageResourceId", access = JsonProperty.Access.WRITE_ONLY)
-    private String userStorageResourceId;
-
-    /*
-     * The appInsightsInstrumentationKey property.
+     * The access key of the workspace app insights
      */
     @JsonProperty(value = "appInsightsInstrumentationKey", access = JsonProperty.Access.WRITE_ONLY)
     private String appInsightsInstrumentationKey;
@@ -32,39 +20,33 @@ public final class ListWorkspaceKeysResultInner {
     /*
      * The containerRegistryCredentials property.
      */
-    @JsonProperty(value = "containerRegistryCredentials", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "containerRegistryCredentials")
     private RegistryListCredentialsResult containerRegistryCredentials;
 
     /*
      * The notebookAccessKeys property.
      */
-    @JsonProperty(value = "notebookAccessKeys", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "notebookAccessKeys")
     private ListNotebookKeysResultInner notebookAccessKeys;
+
+    /*
+     * The arm Id key of the workspace storage
+     */
+    @JsonProperty(value = "userStorageArmId", access = JsonProperty.Access.WRITE_ONLY)
+    private String userStorageArmId;
+
+    /*
+     * The access key of the workspace storage
+     */
+    @JsonProperty(value = "userStorageKey", access = JsonProperty.Access.WRITE_ONLY)
+    private String userStorageKey;
 
     /** Creates an instance of ListWorkspaceKeysResultInner class. */
     public ListWorkspaceKeysResultInner() {
     }
 
     /**
-     * Get the userStorageKey property: The userStorageKey property.
-     *
-     * @return the userStorageKey value.
-     */
-    public String userStorageKey() {
-        return this.userStorageKey;
-    }
-
-    /**
-     * Get the userStorageResourceId property: The userStorageResourceId property.
-     *
-     * @return the userStorageResourceId value.
-     */
-    public String userStorageResourceId() {
-        return this.userStorageResourceId;
-    }
-
-    /**
-     * Get the appInsightsInstrumentationKey property: The appInsightsInstrumentationKey property.
+     * Get the appInsightsInstrumentationKey property: The access key of the workspace app insights.
      *
      * @return the appInsightsInstrumentationKey value.
      */
@@ -82,12 +64,53 @@ public final class ListWorkspaceKeysResultInner {
     }
 
     /**
+     * Set the containerRegistryCredentials property: The containerRegistryCredentials property.
+     *
+     * @param containerRegistryCredentials the containerRegistryCredentials value to set.
+     * @return the ListWorkspaceKeysResultInner object itself.
+     */
+    public ListWorkspaceKeysResultInner withContainerRegistryCredentials(
+        RegistryListCredentialsResult containerRegistryCredentials) {
+        this.containerRegistryCredentials = containerRegistryCredentials;
+        return this;
+    }
+
+    /**
      * Get the notebookAccessKeys property: The notebookAccessKeys property.
      *
      * @return the notebookAccessKeys value.
      */
     public ListNotebookKeysResultInner notebookAccessKeys() {
         return this.notebookAccessKeys;
+    }
+
+    /**
+     * Set the notebookAccessKeys property: The notebookAccessKeys property.
+     *
+     * @param notebookAccessKeys the notebookAccessKeys value to set.
+     * @return the ListWorkspaceKeysResultInner object itself.
+     */
+    public ListWorkspaceKeysResultInner withNotebookAccessKeys(ListNotebookKeysResultInner notebookAccessKeys) {
+        this.notebookAccessKeys = notebookAccessKeys;
+        return this;
+    }
+
+    /**
+     * Get the userStorageArmId property: The arm Id key of the workspace storage.
+     *
+     * @return the userStorageArmId value.
+     */
+    public String userStorageArmId() {
+        return this.userStorageArmId;
+    }
+
+    /**
+     * Get the userStorageKey property: The access key of the workspace storage.
+     *
+     * @return the userStorageKey value.
+     */
+    public String userStorageKey() {
+        return this.userStorageKey;
     }
 
     /**
