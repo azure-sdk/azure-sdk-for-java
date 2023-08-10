@@ -40,7 +40,7 @@ public final class DppIdentityDetails {
      */
     @JsonProperty(value = "userAssignedIdentities")
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
-    private Map<String, UserAssignedIdentity> userAssignedIdentities;
+    private Map<String, UserAssignedIdentityDetails> userAssignedIdentities;
 
     /** Creates an instance of DppIdentityDetails class. */
     public DppIdentityDetails() {
@@ -93,7 +93,7 @@ public final class DppIdentityDetails {
      *
      * @return the userAssignedIdentities value.
      */
-    public Map<String, UserAssignedIdentity> userAssignedIdentities() {
+    public Map<String, UserAssignedIdentityDetails> userAssignedIdentities() {
         return this.userAssignedIdentities;
     }
 
@@ -103,7 +103,8 @@ public final class DppIdentityDetails {
      * @param userAssignedIdentities the userAssignedIdentities value to set.
      * @return the DppIdentityDetails object itself.
      */
-    public DppIdentityDetails withUserAssignedIdentities(Map<String, UserAssignedIdentity> userAssignedIdentities) {
+    public DppIdentityDetails withUserAssignedIdentities(
+        Map<String, UserAssignedIdentityDetails> userAssignedIdentities) {
         this.userAssignedIdentities = userAssignedIdentities;
         return this;
     }

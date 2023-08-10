@@ -58,12 +58,6 @@ public final class DatasourceSet {
     @JsonProperty(value = "resourceUri")
     private String resourceUri;
 
-    /*
-     * Properties specific to data source set
-     */
-    @JsonProperty(value = "resourceProperties")
-    private BaseResourceProperties resourceProperties;
-
     /** Creates an instance of DatasourceSet class. */
     public DatasourceSet() {
     }
@@ -211,26 +205,6 @@ public final class DatasourceSet {
     }
 
     /**
-     * Get the resourceProperties property: Properties specific to data source set.
-     *
-     * @return the resourceProperties value.
-     */
-    public BaseResourceProperties resourceProperties() {
-        return this.resourceProperties;
-    }
-
-    /**
-     * Set the resourceProperties property: Properties specific to data source set.
-     *
-     * @param resourceProperties the resourceProperties value to set.
-     * @return the DatasourceSet object itself.
-     */
-    public DatasourceSet withResourceProperties(BaseResourceProperties resourceProperties) {
-        this.resourceProperties = resourceProperties;
-        return this;
-    }
-
-    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -240,9 +214,6 @@ public final class DatasourceSet {
             throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property resourceId in model DatasourceSet"));
-        }
-        if (resourceProperties() != null) {
-            resourceProperties().validate();
         }
     }
 

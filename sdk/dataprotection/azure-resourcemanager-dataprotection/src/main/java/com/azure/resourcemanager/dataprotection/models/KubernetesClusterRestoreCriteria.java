@@ -78,12 +78,6 @@ public final class KubernetesClusterRestoreCriteria extends ItemLevelRestoreCrit
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> namespaceMappings;
 
-    /*
-     * Gets or sets the restore hook references. This property sets the hook reference to be executed during restore.
-     */
-    @JsonProperty(value = "restoreHookReferences")
-    private List<NamespacedNameResource> restoreHookReferences;
-
     /** Creates an instance of KubernetesClusterRestoreCriteria class. */
     public KubernetesClusterRestoreCriteria() {
     }
@@ -288,29 +282,6 @@ public final class KubernetesClusterRestoreCriteria extends ItemLevelRestoreCrit
     }
 
     /**
-     * Get the restoreHookReferences property: Gets or sets the restore hook references. This property sets the hook
-     * reference to be executed during restore.
-     *
-     * @return the restoreHookReferences value.
-     */
-    public List<NamespacedNameResource> restoreHookReferences() {
-        return this.restoreHookReferences;
-    }
-
-    /**
-     * Set the restoreHookReferences property: Gets or sets the restore hook references. This property sets the hook
-     * reference to be executed during restore.
-     *
-     * @param restoreHookReferences the restoreHookReferences value to set.
-     * @return the KubernetesClusterRestoreCriteria object itself.
-     */
-    public KubernetesClusterRestoreCriteria withRestoreHookReferences(
-        List<NamespacedNameResource> restoreHookReferences) {
-        this.restoreHookReferences = restoreHookReferences;
-        return this;
-    }
-
-    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -318,8 +289,5 @@ public final class KubernetesClusterRestoreCriteria extends ItemLevelRestoreCrit
     @Override
     public void validate() {
         super.validate();
-        if (restoreHookReferences() != null) {
-            restoreHookReferences().forEach(e -> e.validate());
-        }
     }
 }
