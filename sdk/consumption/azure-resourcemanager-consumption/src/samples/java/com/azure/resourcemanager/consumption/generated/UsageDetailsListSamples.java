@@ -4,13 +4,12 @@
 
 package com.azure.resourcemanager.consumption.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.consumption.models.Metrictype;
 
 /** Samples for UsageDetails List. */
 public final class UsageDetailsListSamples {
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/UsageDetailsListForBillingPeriodByBillingAccount.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2023-11-01/examples/UsageDetailsListForBillingPeriodByBillingAccount.json
      */
     /**
      * Sample code: BillingAccountUsageDetailsListForBillingPeriod-Legacy.
@@ -21,11 +20,18 @@ public final class UsageDetailsListSamples {
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .usageDetails()
-            .list("providers/Microsoft.Billing/BillingAccounts/1234", null, null, null, null, null, Context.NONE);
+            .list(
+                "providers/Microsoft.Billing/BillingAccounts/1234",
+                null,
+                null,
+                null,
+                null,
+                null,
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/UsageDetailsListByMCAInvoiceSection.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2023-11-01/examples/UsageDetailsListByMCAInvoiceSection.json
      */
     /**
      * Sample code: InvoiceSectionUsageDetailsList-Modern.
@@ -43,11 +49,11 @@ public final class UsageDetailsListSamples {
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/UsageDetailsList.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2023-11-01/examples/UsageDetailsList.json
      */
     /**
      * Sample code: UsageDetailsList-Legacy.
@@ -57,11 +63,18 @@ public final class UsageDetailsListSamples {
     public static void usageDetailsListLegacy(com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .usageDetails()
-            .list("subscriptions/00000000-0000-0000-0000-000000000000", null, null, null, null, null, Context.NONE);
+            .list(
+                "subscriptions/00000000-0000-0000-0000-000000000000",
+                null,
+                null,
+                null,
+                null,
+                null,
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/UsageDetailsListFilterByTag.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2023-11-01/examples/UsageDetailsListFilterByTag.json
      */
     /**
      * Sample code: UsageDetailsListFilterByTag-Legacy.
@@ -79,11 +92,11 @@ public final class UsageDetailsListSamples {
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/UsageDetailsListByBillingAccount.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2023-11-01/examples/UsageDetailsListByBillingAccount.json
      */
     /**
      * Sample code: BillingAccountUsageDetailsList-Legacy.
@@ -94,11 +107,18 @@ public final class UsageDetailsListSamples {
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .usageDetails()
-            .list("providers/Microsoft.Billing/BillingAccounts/1234", null, null, null, null, null, Context.NONE);
+            .list(
+                "providers/Microsoft.Billing/BillingAccounts/1234",
+                null,
+                null,
+                null,
+                null,
+                null,
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/UsageDetailsListByMCABillingProfile.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2023-11-01/examples/UsageDetailsListByMCABillingProfile.json
      */
     /**
      * Sample code: BillingProfileUsageDetailsList-Modern.
@@ -116,11 +136,11 @@ public final class UsageDetailsListSamples {
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/UsageDetailsListForBillingPeriodByDepartment.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2023-11-01/examples/UsageDetailsListForBillingPeriodByDepartment.json
      */
     /**
      * Sample code: DepartmentUsageDetailsListForBillingPeriod-Legacy.
@@ -131,11 +151,18 @@ public final class UsageDetailsListSamples {
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .usageDetails()
-            .list("providers/Microsoft.Billing/Departments/1234", null, null, null, null, null, Context.NONE);
+            .list(
+                "providers/Microsoft.Billing/Departments/1234",
+                null,
+                null,
+                null,
+                null,
+                null,
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/UsageDetailsListForBillingPeriodByManagementGroup.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2023-11-01/examples/UsageDetailsListForBillingPeriodByManagementGroup.json
      */
     /**
      * Sample code: ManagementGroupUsageDetailsListForBillingPeriod-Legacy.
@@ -146,11 +173,18 @@ public final class UsageDetailsListSamples {
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .usageDetails()
-            .list("subscriptions/00000000-0000-0000-0000-000000000000", null, null, null, null, null, Context.NONE);
+            .list(
+                "subscriptions/00000000-0000-0000-0000-000000000000",
+                null,
+                null,
+                null,
+                null,
+                null,
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/UsageDetailsListByMetricAmortizedCost.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2023-11-01/examples/UsageDetailsListByMetricAmortizedCost.json
      */
     /**
      * Sample code: UsageDetailsListByMetricAmortizedCost-Legacy.
@@ -168,11 +202,11 @@ public final class UsageDetailsListSamples {
                 null,
                 null,
                 Metrictype.AMORTIZEDCOST,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/UsageDetailsListByMetricUsage.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2023-11-01/examples/UsageDetailsListByMetricUsage.json
      */
     /**
      * Sample code: UsageDetailsListByMetricUsage-Legacy.
@@ -190,11 +224,11 @@ public final class UsageDetailsListSamples {
                 null,
                 null,
                 Metrictype.USAGE,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/UsageDetailsListByManagementGroup.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2023-11-01/examples/UsageDetailsListByManagementGroup.json
      */
     /**
      * Sample code: ManagementGroupUsageDetailsList-Legacy.
@@ -205,11 +239,18 @@ public final class UsageDetailsListSamples {
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .usageDetails()
-            .list("subscriptions/00000000-0000-0000-0000-000000000000", null, null, null, null, null, Context.NONE);
+            .list(
+                "subscriptions/00000000-0000-0000-0000-000000000000",
+                null,
+                null,
+                null,
+                null,
+                null,
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/UsageDetailsListByDepartment.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2023-11-01/examples/UsageDetailsListByDepartment.json
      */
     /**
      * Sample code: DepartmentUsageDetailsList-Legacy.
@@ -220,11 +261,18 @@ public final class UsageDetailsListSamples {
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .usageDetails()
-            .list("providers/Microsoft.Billing/Departments/1234", null, null, null, null, null, Context.NONE);
+            .list(
+                "providers/Microsoft.Billing/Departments/1234",
+                null,
+                null,
+                null,
+                null,
+                null,
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/UsageDetailsListByMetricActualCost.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2023-11-01/examples/UsageDetailsListByMetricActualCost.json
      */
     /**
      * Sample code: UsageDetailsListByMetricActualCost-Legacy.
@@ -242,11 +290,11 @@ public final class UsageDetailsListSamples {
                 null,
                 null,
                 Metrictype.ACTUALCOST,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/UsageDetailsListByEnrollmentAccount.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2023-11-01/examples/UsageDetailsListByEnrollmentAccount.json
      */
     /**
      * Sample code: EnrollmentAccountUsageDetailsList-Legacy.
@@ -257,11 +305,18 @@ public final class UsageDetailsListSamples {
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .usageDetails()
-            .list("providers/Microsoft.Billing/EnrollmentAccounts/1234", null, null, null, null, null, Context.NONE);
+            .list(
+                "providers/Microsoft.Billing/EnrollmentAccounts/1234",
+                null,
+                null,
+                null,
+                null,
+                null,
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/UsageDetailsListByMCABillingAccount.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2023-11-01/examples/UsageDetailsListByMCABillingAccount.json
      */
     /**
      * Sample code: BillingAccountUsageDetailsList-Modern.
@@ -272,11 +327,18 @@ public final class UsageDetailsListSamples {
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .usageDetails()
-            .list("providers/Microsoft.Billing/BillingAccounts/1234:56789", null, null, null, null, null, Context.NONE);
+            .list(
+                "providers/Microsoft.Billing/BillingAccounts/1234:56789",
+                null,
+                null,
+                null,
+                null,
+                null,
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/UsageDetailsListByMCACustomer.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2023-11-01/examples/UsageDetailsListByMCACustomer.json
      */
     /**
      * Sample code: CustomerUsageDetailsList-Modern.
@@ -294,11 +356,11 @@ public final class UsageDetailsListSamples {
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/UsageDetailsExpand.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2023-11-01/examples/UsageDetailsExpand.json
      */
     /**
      * Sample code: UsageDetailsExpand-Legacy.
@@ -315,11 +377,11 @@ public final class UsageDetailsListSamples {
                 null,
                 1,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/UsageDetailsListForBillingPeriodByEnrollmentAccount.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2023-11-01/examples/UsageDetailsListForBillingPeriodByEnrollmentAccount.json
      */
     /**
      * Sample code: EnrollmentAccountUsageDetailsListForBillingPeriod-Legacy.
@@ -330,11 +392,18 @@ public final class UsageDetailsListSamples {
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .usageDetails()
-            .list("providers/Microsoft.Billing/EnrollmentAccounts/1234", null, null, null, null, null, Context.NONE);
+            .list(
+                "providers/Microsoft.Billing/EnrollmentAccounts/1234",
+                null,
+                null,
+                null,
+                null,
+                null,
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/UsageDetailsListForBillingPeriod.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2023-11-01/examples/UsageDetailsListForBillingPeriod.json
      */
     /**
      * Sample code: UsageDetailsListForBillingPeriod-Legacy.
@@ -345,6 +414,13 @@ public final class UsageDetailsListSamples {
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .usageDetails()
-            .list("subscriptions/00000000-0000-0000-0000-000000000000", null, null, null, null, null, Context.NONE);
+            .list(
+                "subscriptions/00000000-0000-0000-0000-000000000000",
+                null,
+                null,
+                null,
+                null,
+                null,
+                com.azure.core.util.Context.NONE);
     }
 }

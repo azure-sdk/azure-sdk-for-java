@@ -5,16 +5,12 @@
 package com.azure.resourcemanager.consumption.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.math.BigDecimal;
 
 /** The amount plus currency . */
 @Immutable
 public class Amount {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(Amount.class);
-
     /*
      * Amount currency.
      */
@@ -26,6 +22,10 @@ public class Amount {
      */
     @JsonProperty(value = "value", access = JsonProperty.Access.WRITE_ONLY)
     private BigDecimal value;
+
+    /** Creates an instance of Amount class. */
+    public Amount() {
+    }
 
     /**
      * Get the currency property: Amount currency.
