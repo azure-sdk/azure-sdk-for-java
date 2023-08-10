@@ -12,7 +12,7 @@ import java.util.Map;
 /** Samples for Workspaces Diagnose. */
 public final class WorkspacesDiagnoseSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Workspace/diagnose.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2023-08-01-preview/examples/Workspace/diagnose.json
      */
     /**
      * Sample code: Diagnose Workspace.
@@ -28,15 +28,15 @@ public final class WorkspacesDiagnoseSamples {
                 new DiagnoseWorkspaceParameters()
                     .withValue(
                         new DiagnoseRequestProperties()
-                            .withUdr(mapOf())
-                            .withNsg(mapOf())
-                            .withResourceLock(mapOf())
-                            .withDnsResolution(mapOf())
-                            .withStorageAccount(mapOf())
-                            .withKeyVault(mapOf())
-                            .withContainerRegistry(mapOf())
                             .withApplicationInsights(mapOf())
-                            .withOthers(mapOf())),
+                            .withContainerRegistry(mapOf())
+                            .withDnsResolution(mapOf())
+                            .withKeyVault(mapOf())
+                            .withNsg(mapOf())
+                            .withOthers(mapOf())
+                            .withResourceLock(mapOf())
+                            .withStorageAccount(mapOf())
+                            .withUdr(mapOf())),
                 com.azure.core.util.Context.NONE);
     }
 
