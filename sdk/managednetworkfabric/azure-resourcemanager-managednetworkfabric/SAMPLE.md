@@ -246,6 +246,7 @@ import com.azure.resourcemanager.managednetworkfabric.models.AccessControlListMa
 import com.azure.resourcemanager.managednetworkfabric.models.AccessControlListPortCondition;
 import com.azure.resourcemanager.managednetworkfabric.models.AclActionType;
 import com.azure.resourcemanager.managednetworkfabric.models.CommonDynamicMatchConfiguration;
+import com.azure.resourcemanager.managednetworkfabric.models.CommunityActionTypes;
 import com.azure.resourcemanager.managednetworkfabric.models.ConfigurationType;
 import com.azure.resourcemanager.managednetworkfabric.models.IpAddressType;
 import com.azure.resourcemanager.managednetworkfabric.models.IpGroupProperties;
@@ -281,6 +282,7 @@ public final class AccessControlListsCreateSamples {
             .withTags(mapOf("keyID", "fakeTokenPlaceholder"))
             .withConfigurationType(ConfigurationType.FILE)
             .withAclsUrl("https://ACL-Storage-URL")
+            .withDefaultAction(CommunityActionTypes.PERMIT)
             .withMatchConfigurations(
                 Arrays
                     .asList(
@@ -474,6 +476,7 @@ import com.azure.resourcemanager.managednetworkfabric.models.AccessControlListMa
 import com.azure.resourcemanager.managednetworkfabric.models.AccessControlListPortCondition;
 import com.azure.resourcemanager.managednetworkfabric.models.AclActionType;
 import com.azure.resourcemanager.managednetworkfabric.models.CommonDynamicMatchConfiguration;
+import com.azure.resourcemanager.managednetworkfabric.models.CommunityActionTypes;
 import com.azure.resourcemanager.managednetworkfabric.models.ConfigurationType;
 import com.azure.resourcemanager.managednetworkfabric.models.IpAddressType;
 import com.azure.resourcemanager.managednetworkfabric.models.IpGroupProperties;
@@ -512,6 +515,7 @@ public final class AccessControlListsUpdateSamples {
             .withAnnotation("annotation")
             .withConfigurationType(ConfigurationType.FILE)
             .withAclsUrl("https://microsoft.com/a")
+            .withDefaultAction(CommunityActionTypes.PERMIT)
             .withMatchConfigurations(
                 Arrays
                     .asList(
@@ -5514,6 +5518,7 @@ public final class RoutePoliciesCommitConfigurationSamples {
 import com.azure.resourcemanager.managednetworkfabric.models.ActionIpCommunityProperties;
 import com.azure.resourcemanager.managednetworkfabric.models.ActionIpExtendedCommunityProperties;
 import com.azure.resourcemanager.managednetworkfabric.models.AddressFamilyType;
+import com.azure.resourcemanager.managednetworkfabric.models.CommunityActionTypes;
 import com.azure.resourcemanager.managednetworkfabric.models.IpCommunityIdList;
 import com.azure.resourcemanager.managednetworkfabric.models.IpExtendedCommunityIdList;
 import com.azure.resourcemanager.managednetworkfabric.models.RoutePolicyActionType;
@@ -5546,6 +5551,7 @@ public final class RoutePoliciesCreateSamples {
                 "/subscriptions/1234ABCD-0A1B-1234-5678-123456ABCDEF/resourceGroups/example-rg/providers/Microsoft.ManagedNetworkFabric/networkFabrics/example-fabric")
             .withTags(mapOf("keyID", "fakeTokenPlaceholder"))
             .withAddressFamilyType(AddressFamilyType.IPV4)
+            .withDefaultAction(CommunityActionTypes.DENY)
             .withStatements(
                 Arrays
                     .asList(
@@ -5713,6 +5719,7 @@ public final class RoutePoliciesListByResourceGroupSamples {
 ```java
 import com.azure.resourcemanager.managednetworkfabric.models.ActionIpCommunityProperties;
 import com.azure.resourcemanager.managednetworkfabric.models.ActionIpExtendedCommunityProperties;
+import com.azure.resourcemanager.managednetworkfabric.models.CommunityActionTypes;
 import com.azure.resourcemanager.managednetworkfabric.models.IpCommunityIdList;
 import com.azure.resourcemanager.managednetworkfabric.models.IpExtendedCommunityIdList;
 import com.azure.resourcemanager.managednetworkfabric.models.RoutePolicy;
@@ -5745,6 +5752,7 @@ public final class RoutePoliciesUpdateSamples {
         resource
             .update()
             .withTags(mapOf("keyID", "fakeTokenPlaceholder"))
+            .withDefaultAction(CommunityActionTypes.DENY)
             .withStatements(
                 Arrays
                     .asList(
