@@ -78,7 +78,7 @@ public final class CreateAndAssociatePLFiltersClientImpl implements CreateAndAss
     /**
      * Create and Associate private link traffic filter for the given deployment.
      *
-     * @param resourceGroupName The name of the resource group to which the Elastic resource belongs.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param monitorName Monitor resource name.
      * @param name Name of the traffic filter.
      * @param privateEndpointGuid Guid of the private endpoint.
@@ -136,7 +136,7 @@ public final class CreateAndAssociatePLFiltersClientImpl implements CreateAndAss
     /**
      * Create and Associate private link traffic filter for the given deployment.
      *
-     * @param resourceGroupName The name of the resource group to which the Elastic resource belongs.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param monitorName Monitor resource name.
      * @param name Name of the traffic filter.
      * @param privateEndpointGuid Guid of the private endpoint.
@@ -193,7 +193,7 @@ public final class CreateAndAssociatePLFiltersClientImpl implements CreateAndAss
     /**
      * Create and Associate private link traffic filter for the given deployment.
      *
-     * @param resourceGroupName The name of the resource group to which the Elastic resource belongs.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param monitorName Monitor resource name.
      * @param name Name of the traffic filter.
      * @param privateEndpointGuid Guid of the private endpoint.
@@ -221,7 +221,7 @@ public final class CreateAndAssociatePLFiltersClientImpl implements CreateAndAss
     /**
      * Create and Associate private link traffic filter for the given deployment.
      *
-     * @param resourceGroupName The name of the resource group to which the Elastic resource belongs.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param monitorName Monitor resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -244,7 +244,7 @@ public final class CreateAndAssociatePLFiltersClientImpl implements CreateAndAss
     /**
      * Create and Associate private link traffic filter for the given deployment.
      *
-     * @param resourceGroupName The name of the resource group to which the Elastic resource belongs.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param monitorName Monitor resource name.
      * @param name Name of the traffic filter.
      * @param privateEndpointGuid Guid of the private endpoint.
@@ -275,7 +275,7 @@ public final class CreateAndAssociatePLFiltersClientImpl implements CreateAndAss
     /**
      * Create and Associate private link traffic filter for the given deployment.
      *
-     * @param resourceGroupName The name of the resource group to which the Elastic resource belongs.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param monitorName Monitor resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -295,7 +295,7 @@ public final class CreateAndAssociatePLFiltersClientImpl implements CreateAndAss
     /**
      * Create and Associate private link traffic filter for the given deployment.
      *
-     * @param resourceGroupName The name of the resource group to which the Elastic resource belongs.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param monitorName Monitor resource name.
      * @param name Name of the traffic filter.
      * @param privateEndpointGuid Guid of the private endpoint.
@@ -322,7 +322,7 @@ public final class CreateAndAssociatePLFiltersClientImpl implements CreateAndAss
     /**
      * Create and Associate private link traffic filter for the given deployment.
      *
-     * @param resourceGroupName The name of the resource group to which the Elastic resource belongs.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param monitorName Monitor resource name.
      * @param name Name of the traffic filter.
      * @param privateEndpointGuid Guid of the private endpoint.
@@ -347,7 +347,7 @@ public final class CreateAndAssociatePLFiltersClientImpl implements CreateAndAss
     /**
      * Create and Associate private link traffic filter for the given deployment.
      *
-     * @param resourceGroupName The name of the resource group to which the Elastic resource belongs.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param monitorName Monitor resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -367,7 +367,7 @@ public final class CreateAndAssociatePLFiltersClientImpl implements CreateAndAss
     /**
      * Create and Associate private link traffic filter for the given deployment.
      *
-     * @param resourceGroupName The name of the resource group to which the Elastic resource belongs.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param monitorName Monitor resource name.
      * @param name Name of the traffic filter.
      * @param privateEndpointGuid Guid of the private endpoint.
@@ -394,7 +394,7 @@ public final class CreateAndAssociatePLFiltersClientImpl implements CreateAndAss
     /**
      * Create and Associate private link traffic filter for the given deployment.
      *
-     * @param resourceGroupName The name of the resource group to which the Elastic resource belongs.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param monitorName Monitor resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -411,7 +411,7 @@ public final class CreateAndAssociatePLFiltersClientImpl implements CreateAndAss
     /**
      * Create and Associate private link traffic filter for the given deployment.
      *
-     * @param resourceGroupName The name of the resource group to which the Elastic resource belongs.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param monitorName Monitor resource name.
      * @param name Name of the traffic filter.
      * @param privateEndpointGuid Guid of the private endpoint.
