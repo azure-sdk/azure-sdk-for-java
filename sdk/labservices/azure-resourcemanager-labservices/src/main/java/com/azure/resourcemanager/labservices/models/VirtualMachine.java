@@ -52,6 +52,13 @@ public interface VirtualMachine {
     VirtualMachineState state();
 
     /**
+     * Gets the resourceOperationError property: Error details of last operation done on lab plan.
+     *
+     * @return the resourceOperationError value.
+     */
+    ResourceOperationError resourceOperationError();
+
+    /**
      * Gets the connectionProfile property: Profile for information about connecting to the virtual machine.
      *
      * @return the connectionProfile value.

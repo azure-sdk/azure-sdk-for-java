@@ -169,11 +169,13 @@ public interface Image {
     interface Definition
         extends DefinitionStages.Blank, DefinitionStages.WithParentResource, DefinitionStages.WithCreate {
     }
+
     /** The Image definition stages. */
     interface DefinitionStages {
         /** The first stage of the Image definition. */
         interface Blank extends WithParentResource {
         }
+
         /** The stage of the Image definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -186,6 +188,7 @@ public interface Image {
              */
             WithCreate withExistingLabPlan(String resourceGroupName, String labPlanName);
         }
+
         /**
          * The stage of the Image definition which contains all the minimum required properties for the resource to be
          * created, but also allows for any other optional properties to be specified.
@@ -206,6 +209,7 @@ public interface Image {
              */
             Image create(Context context);
         }
+
         /** The stage of the Image definition allowing to specify availableRegions. */
         interface WithAvailableRegions {
             /**
@@ -216,6 +220,7 @@ public interface Image {
              */
             WithCreate withAvailableRegions(List<String> availableRegions);
         }
+
         /** The stage of the Image definition allowing to specify enabledState. */
         interface WithEnabledState {
             /**
@@ -227,6 +232,7 @@ public interface Image {
             WithCreate withEnabledState(EnableState enabledState);
         }
     }
+
     /**
      * Begins update for the Image resource.
      *
@@ -251,6 +257,7 @@ public interface Image {
          */
         Image apply(Context context);
     }
+
     /** The Image update stages. */
     interface UpdateStages {
         /** The stage of the Image update allowing to specify enabledState. */
@@ -264,6 +271,7 @@ public interface Image {
             Update withEnabledState(EnableState enabledState);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

@@ -54,7 +54,7 @@ public final class SkusClientImpl implements SkusClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "LabServicesClientSku")
-    private interface SkusService {
+    public interface SkusService {
         @Headers({"Content-Type: application/json"})
         @Get("/subscriptions/{subscriptionId}/providers/Microsoft.LabServices/skus")
         @ExpectedResponses({200})

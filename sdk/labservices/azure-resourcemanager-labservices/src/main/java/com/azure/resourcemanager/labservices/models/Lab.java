@@ -78,6 +78,13 @@ public interface Lab {
     LabState state();
 
     /**
+     * Gets the resourceOperationError property: Error details of last operation done on lab.
+     *
+     * @return the resourceOperationError value.
+     */
+    ResourceOperationError resourceOperationError();
+
+    /**
      * Gets the autoShutdownProfile property: The resource auto shutdown configuration for the lab. This controls
      * whether actions are taken on resources that are sitting idle.
      *
@@ -172,11 +179,13 @@ public interface Lab {
             DefinitionStages.WithResourceGroup,
             DefinitionStages.WithCreate {
     }
+
     /** The Lab definition stages. */
     interface DefinitionStages {
         /** The first stage of the Lab definition. */
         interface Blank extends WithLocation {
         }
+
         /** The stage of the Lab definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -195,6 +204,7 @@ public interface Lab {
              */
             WithResourceGroup withRegion(String location);
         }
+
         /** The stage of the Lab definition allowing to specify parent resource. */
         interface WithResourceGroup {
             /**
@@ -205,6 +215,7 @@ public interface Lab {
              */
             WithCreate withExistingResourceGroup(String resourceGroupName);
         }
+
         /**
          * The stage of the Lab definition which contains all the minimum required properties for the resource to be
          * created, but also allows for any other optional properties to be specified.
@@ -235,6 +246,7 @@ public interface Lab {
              */
             Lab create(Context context);
         }
+
         /** The stage of the Lab definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -245,6 +257,7 @@ public interface Lab {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
         /** The stage of the Lab definition allowing to specify networkProfile. */
         interface WithNetworkProfile {
             /**
@@ -257,6 +270,7 @@ public interface Lab {
              */
             WithCreate withNetworkProfile(LabNetworkProfile networkProfile);
         }
+
         /** The stage of the Lab definition allowing to specify autoShutdownProfile. */
         interface WithAutoShutdownProfile {
             /**
@@ -269,6 +283,7 @@ public interface Lab {
              */
             WithCreate withAutoShutdownProfile(AutoShutdownProfile autoShutdownProfile);
         }
+
         /** The stage of the Lab definition allowing to specify connectionProfile. */
         interface WithConnectionProfile {
             /**
@@ -281,6 +296,7 @@ public interface Lab {
              */
             WithCreate withConnectionProfile(ConnectionProfile connectionProfile);
         }
+
         /** The stage of the Lab definition allowing to specify virtualMachineProfile. */
         interface WithVirtualMachineProfile {
             /**
@@ -291,6 +307,7 @@ public interface Lab {
              */
             WithCreate withVirtualMachineProfile(VirtualMachineProfile virtualMachineProfile);
         }
+
         /** The stage of the Lab definition allowing to specify securityProfile. */
         interface WithSecurityProfile {
             /**
@@ -301,6 +318,7 @@ public interface Lab {
              */
             WithCreate withSecurityProfile(SecurityProfile securityProfile);
         }
+
         /** The stage of the Lab definition allowing to specify rosterProfile. */
         interface WithRosterProfile {
             /**
@@ -311,6 +329,7 @@ public interface Lab {
              */
             WithCreate withRosterProfile(RosterProfile rosterProfile);
         }
+
         /** The stage of the Lab definition allowing to specify labPlanId. */
         interface WithLabPlanId {
             /**
@@ -325,6 +344,7 @@ public interface Lab {
              */
             WithCreate withLabPlanId(String labPlanId);
         }
+
         /** The stage of the Lab definition allowing to specify title. */
         interface WithTitle {
             /**
@@ -335,6 +355,7 @@ public interface Lab {
              */
             WithCreate withTitle(String title);
         }
+
         /** The stage of the Lab definition allowing to specify description. */
         interface WithDescription {
             /**
@@ -346,6 +367,7 @@ public interface Lab {
             WithCreate withDescription(String description);
         }
     }
+
     /**
      * Begins update for the Lab resource.
      *
@@ -379,6 +401,7 @@ public interface Lab {
          */
         Lab apply(Context context);
     }
+
     /** The Lab update stages. */
     interface UpdateStages {
         /** The stage of the Lab update allowing to specify tags. */
@@ -391,6 +414,7 @@ public interface Lab {
              */
             Update withTags(List<String> tags);
         }
+
         /** The stage of the Lab update allowing to specify autoShutdownProfile. */
         interface WithAutoShutdownProfile {
             /**
@@ -403,6 +427,7 @@ public interface Lab {
              */
             Update withAutoShutdownProfile(AutoShutdownProfile autoShutdownProfile);
         }
+
         /** The stage of the Lab update allowing to specify connectionProfile. */
         interface WithConnectionProfile {
             /**
@@ -415,6 +440,7 @@ public interface Lab {
              */
             Update withConnectionProfile(ConnectionProfile connectionProfile);
         }
+
         /** The stage of the Lab update allowing to specify virtualMachineProfile. */
         interface WithVirtualMachineProfile {
             /**
@@ -425,6 +451,7 @@ public interface Lab {
              */
             Update withVirtualMachineProfile(VirtualMachineProfile virtualMachineProfile);
         }
+
         /** The stage of the Lab update allowing to specify securityProfile. */
         interface WithSecurityProfile {
             /**
@@ -435,6 +462,7 @@ public interface Lab {
              */
             Update withSecurityProfile(SecurityProfile securityProfile);
         }
+
         /** The stage of the Lab update allowing to specify rosterProfile. */
         interface WithRosterProfile {
             /**
@@ -445,6 +473,7 @@ public interface Lab {
              */
             Update withRosterProfile(RosterProfile rosterProfile);
         }
+
         /** The stage of the Lab update allowing to specify labPlanId. */
         interface WithLabPlanId {
             /**
@@ -459,6 +488,7 @@ public interface Lab {
              */
             Update withLabPlanId(String labPlanId);
         }
+
         /** The stage of the Lab update allowing to specify title. */
         interface WithTitle {
             /**
@@ -469,6 +499,7 @@ public interface Lab {
              */
             Update withTitle(String title);
         }
+
         /** The stage of the Lab update allowing to specify description. */
         interface WithDescription {
             /**
@@ -480,6 +511,7 @@ public interface Lab {
             Update withDescription(String description);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

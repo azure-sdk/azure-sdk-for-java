@@ -34,6 +34,10 @@ public final class SupportInfo {
     @JsonProperty(value = "instructions")
     private String instructions;
 
+    /** Creates an instance of SupportInfo class. */
+    public SupportInfo() {
+    }
+
     /**
      * Get the url property: Support web address.
      *

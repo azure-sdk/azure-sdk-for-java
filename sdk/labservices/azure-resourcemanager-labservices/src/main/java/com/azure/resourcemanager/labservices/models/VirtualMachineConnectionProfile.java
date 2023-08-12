@@ -52,6 +52,10 @@ public final class VirtualMachineConnectionProfile {
     @JsonProperty(value = "nonAdminUsername", access = JsonProperty.Access.WRITE_ONLY)
     private String nonAdminUsername;
 
+    /** Creates an instance of VirtualMachineConnectionProfile class. */
+    public VirtualMachineConnectionProfile() {
+    }
+
     /**
      * Get the privateIpAddress property: The private IP address of the virtual machine.
      *
