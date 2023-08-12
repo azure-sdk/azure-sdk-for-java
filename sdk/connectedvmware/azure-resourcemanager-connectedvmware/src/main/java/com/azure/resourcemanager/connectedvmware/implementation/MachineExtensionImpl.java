@@ -111,15 +111,15 @@ public final class MachineExtensionImpl
 
     private String resourceGroupName;
 
-    private String name;
+    private String virtualMachineName;
 
     private String extensionName;
 
     private MachineExtensionUpdate updateExtensionParameters;
 
-    public MachineExtensionImpl withExistingVirtualMachine(String resourceGroupName, String name) {
+    public MachineExtensionImpl withExistingVirtualMachine(String resourceGroupName, String virtualMachineName) {
         this.resourceGroupName = resourceGroupName;
-        this.name = name;
+        this.virtualMachineName = virtualMachineName;
         return this;
     }
 
@@ -128,7 +128,7 @@ public final class MachineExtensionImpl
             serviceManager
                 .serviceClient()
                 .getMachineExtensions()
-                .createOrUpdate(resourceGroupName, name, extensionName, this.innerModel(), Context.NONE);
+                .createOrUpdate(resourceGroupName, virtualMachineName, extensionName, this.innerModel(), Context.NONE);
         return this;
     }
 
@@ -137,7 +137,7 @@ public final class MachineExtensionImpl
             serviceManager
                 .serviceClient()
                 .getMachineExtensions()
-                .createOrUpdate(resourceGroupName, name, extensionName, this.innerModel(), context);
+                .createOrUpdate(resourceGroupName, virtualMachineName, extensionName, this.innerModel(), context);
         return this;
     }
 
@@ -157,7 +157,7 @@ public final class MachineExtensionImpl
             serviceManager
                 .serviceClient()
                 .getMachineExtensions()
-                .update(resourceGroupName, name, extensionName, updateExtensionParameters, Context.NONE);
+                .update(resourceGroupName, virtualMachineName, extensionName, updateExtensionParameters, Context.NONE);
         return this;
     }
 
@@ -166,7 +166,7 @@ public final class MachineExtensionImpl
             serviceManager
                 .serviceClient()
                 .getMachineExtensions()
-                .update(resourceGroupName, name, extensionName, updateExtensionParameters, context);
+                .update(resourceGroupName, virtualMachineName, extensionName, updateExtensionParameters, context);
         return this;
     }
 
@@ -176,7 +176,7 @@ public final class MachineExtensionImpl
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
         this.resourceGroupName = Utils.getValueFromIdByName(innerObject.id(), "resourceGroups");
-        this.name = Utils.getValueFromIdByName(innerObject.id(), "virtualMachines");
+        this.virtualMachineName = Utils.getValueFromIdByName(innerObject.id(), "virtualMachines");
         this.extensionName = Utils.getValueFromIdByName(innerObject.id(), "extensions");
     }
 
@@ -185,7 +185,7 @@ public final class MachineExtensionImpl
             serviceManager
                 .serviceClient()
                 .getMachineExtensions()
-                .getWithResponse(resourceGroupName, name, extensionName, Context.NONE)
+                .getWithResponse(resourceGroupName, virtualMachineName, extensionName, Context.NONE)
                 .getValue();
         return this;
     }
@@ -195,7 +195,7 @@ public final class MachineExtensionImpl
             serviceManager
                 .serviceClient()
                 .getMachineExtensions()
-                .getWithResponse(resourceGroupName, name, extensionName, context)
+                .getWithResponse(resourceGroupName, virtualMachineName, extensionName, context)
                 .getValue();
         return this;
     }

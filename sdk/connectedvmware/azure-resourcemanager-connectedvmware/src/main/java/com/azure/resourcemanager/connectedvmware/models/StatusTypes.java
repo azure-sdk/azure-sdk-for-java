@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for StatusTypes. */
+/** The status of the hybrid machine agent. */
 public final class StatusTypes extends ExpandableStringEnum<StatusTypes> {
     /** Static value Connected for StatusTypes. */
     public static final StatusTypes CONNECTED = fromString("Connected");
@@ -18,6 +18,15 @@ public final class StatusTypes extends ExpandableStringEnum<StatusTypes> {
 
     /** Static value Error for StatusTypes. */
     public static final StatusTypes ERROR = fromString("Error");
+
+    /**
+     * Creates a new instance of StatusTypes value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public StatusTypes() {
+    }
 
     /**
      * Creates or finds a StatusTypes from its string representation.

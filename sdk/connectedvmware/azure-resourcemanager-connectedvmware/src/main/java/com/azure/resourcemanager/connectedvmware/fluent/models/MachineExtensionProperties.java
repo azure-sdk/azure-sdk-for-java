@@ -75,6 +75,10 @@ public final class MachineExtensionProperties {
     @JsonProperty(value = "instanceView")
     private MachineExtensionPropertiesInstanceView instanceView;
 
+    /** Creates an instance of MachineExtensionProperties class. */
+    public MachineExtensionProperties() {
+    }
+
     /**
      * Get the forceUpdateTag property: How the extension handler should be forced to update even if the extension
      * configuration has not changed.
