@@ -11,7 +11,7 @@ import java.util.Map;
 /** Samples for ApplicationGroups CreateOrUpdate. */
 public final class ApplicationGroupsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2022-09-09/examples/ApplicationGroup_Create.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2023-07-07-preview/examples/ApplicationGroup_Create.json
      */
     /**
      * Sample code: ApplicationGroup_Create.
@@ -31,6 +31,7 @@ public final class ApplicationGroupsCreateOrUpdateSamples {
             .withTags(mapOf("tag1", "value1", "tag2", "value2"))
             .withDescription("des1")
             .withFriendlyName("friendly")
+            .withShowInFeed(true)
             .create();
     }
 
