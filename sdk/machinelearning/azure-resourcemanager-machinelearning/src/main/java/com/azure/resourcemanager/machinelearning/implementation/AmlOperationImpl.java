@@ -6,7 +6,7 @@ package com.azure.resourcemanager.machinelearning.implementation;
 
 import com.azure.resourcemanager.machinelearning.fluent.models.AmlOperationInner;
 import com.azure.resourcemanager.machinelearning.models.AmlOperation;
-import com.azure.resourcemanager.machinelearning.models.AmlOperationDisplay;
+import com.azure.resourcemanager.machinelearning.models.OperationDisplay;
 
 public final class AmlOperationImpl implements AmlOperation {
     private AmlOperationInner innerObject;
@@ -20,16 +20,20 @@ public final class AmlOperationImpl implements AmlOperation {
         this.serviceManager = serviceManager;
     }
 
-    public String name() {
-        return this.innerModel().name();
-    }
-
-    public AmlOperationDisplay display() {
+    public OperationDisplay display() {
         return this.innerModel().display();
     }
 
     public Boolean isDataAction() {
         return this.innerModel().isDataAction();
+    }
+
+    public String name() {
+        return this.innerModel().name();
+    }
+
+    public String origin() {
+        return this.innerModel().origin();
     }
 
     public AmlOperationInner innerModel() {

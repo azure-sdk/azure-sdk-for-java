@@ -9,41 +9,21 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** The WorkspaceConnectionManagedIdentity model. */
 @Fluent
-public class WorkspaceConnectionManagedIdentity {
-    /*
-     * The resourceId property.
-     */
-    @JsonProperty(value = "resourceId")
-    private String resourceId;
-
+public final class WorkspaceConnectionManagedIdentity {
     /*
      * The clientId property.
      */
     @JsonProperty(value = "clientId")
     private String clientId;
 
+    /*
+     * The resourceId property.
+     */
+    @JsonProperty(value = "resourceId")
+    private String resourceId;
+
     /** Creates an instance of WorkspaceConnectionManagedIdentity class. */
     public WorkspaceConnectionManagedIdentity() {
-    }
-
-    /**
-     * Get the resourceId property: The resourceId property.
-     *
-     * @return the resourceId value.
-     */
-    public String resourceId() {
-        return this.resourceId;
-    }
-
-    /**
-     * Set the resourceId property: The resourceId property.
-     *
-     * @param resourceId the resourceId value to set.
-     * @return the WorkspaceConnectionManagedIdentity object itself.
-     */
-    public WorkspaceConnectionManagedIdentity withResourceId(String resourceId) {
-        this.resourceId = resourceId;
-        return this;
     }
 
     /**
@@ -63,6 +43,26 @@ public class WorkspaceConnectionManagedIdentity {
      */
     public WorkspaceConnectionManagedIdentity withClientId(String clientId) {
         this.clientId = clientId;
+        return this;
+    }
+
+    /**
+     * Get the resourceId property: The resourceId property.
+     *
+     * @return the resourceId value.
+     */
+    public String resourceId() {
+        return this.resourceId;
+    }
+
+    /**
+     * Set the resourceId property: The resourceId property.
+     *
+     * @param resourceId the resourceId value to set.
+     * @return the WorkspaceConnectionManagedIdentity object itself.
+     */
+    public WorkspaceConnectionManagedIdentity withResourceId(String resourceId) {
+        this.resourceId = resourceId;
         return this;
     }
 

@@ -12,25 +12,130 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class EncryptionProperty {
     /*
+     * The byok cosmosdb account that customer brings to store customer's data
+     * with encryption
+     */
+    @JsonProperty(value = "cosmosDbResourceId")
+    private String cosmosDbResourceId;
+
+    /*
+     * Identity to be used with the keyVault
+     */
+    @JsonProperty(value = "identity")
+    private IdentityForCmk identity;
+
+    /*
+     * KeyVault details to do the encryption
+     */
+    @JsonProperty(value = "keyVaultProperties", required = true)
+    private KeyVaultProperties keyVaultProperties;
+
+    /*
+     * The byok search account that customer brings to store customer's data
+     * with encryption
+     */
+    @JsonProperty(value = "searchAccountResourceId")
+    private String searchAccountResourceId;
+
+    /*
      * Indicates whether or not the encryption is enabled for the workspace.
      */
     @JsonProperty(value = "status", required = true)
     private EncryptionStatus status;
 
     /*
-     * The identity that will be used to access the key vault for encryption at rest.
+     * The byok storage account that customer brings to store customer's data
+     * with encryption
      */
-    @JsonProperty(value = "identity")
-    private IdentityForCmk identity;
-
-    /*
-     * Customer Key vault properties.
-     */
-    @JsonProperty(value = "keyVaultProperties", required = true)
-    private EncryptionKeyVaultProperties keyVaultProperties;
+    @JsonProperty(value = "storageAccountResourceId")
+    private String storageAccountResourceId;
 
     /** Creates an instance of EncryptionProperty class. */
     public EncryptionProperty() {
+    }
+
+    /**
+     * Get the cosmosDbResourceId property: The byok cosmosdb account that customer brings to store customer's data with
+     * encryption.
+     *
+     * @return the cosmosDbResourceId value.
+     */
+    public String cosmosDbResourceId() {
+        return this.cosmosDbResourceId;
+    }
+
+    /**
+     * Set the cosmosDbResourceId property: The byok cosmosdb account that customer brings to store customer's data with
+     * encryption.
+     *
+     * @param cosmosDbResourceId the cosmosDbResourceId value to set.
+     * @return the EncryptionProperty object itself.
+     */
+    public EncryptionProperty withCosmosDbResourceId(String cosmosDbResourceId) {
+        this.cosmosDbResourceId = cosmosDbResourceId;
+        return this;
+    }
+
+    /**
+     * Get the identity property: Identity to be used with the keyVault.
+     *
+     * @return the identity value.
+     */
+    public IdentityForCmk identity() {
+        return this.identity;
+    }
+
+    /**
+     * Set the identity property: Identity to be used with the keyVault.
+     *
+     * @param identity the identity value to set.
+     * @return the EncryptionProperty object itself.
+     */
+    public EncryptionProperty withIdentity(IdentityForCmk identity) {
+        this.identity = identity;
+        return this;
+    }
+
+    /**
+     * Get the keyVaultProperties property: KeyVault details to do the encryption.
+     *
+     * @return the keyVaultProperties value.
+     */
+    public KeyVaultProperties keyVaultProperties() {
+        return this.keyVaultProperties;
+    }
+
+    /**
+     * Set the keyVaultProperties property: KeyVault details to do the encryption.
+     *
+     * @param keyVaultProperties the keyVaultProperties value to set.
+     * @return the EncryptionProperty object itself.
+     */
+    public EncryptionProperty withKeyVaultProperties(KeyVaultProperties keyVaultProperties) {
+        this.keyVaultProperties = keyVaultProperties;
+        return this;
+    }
+
+    /**
+     * Get the searchAccountResourceId property: The byok search account that customer brings to store customer's data
+     * with encryption.
+     *
+     * @return the searchAccountResourceId value.
+     */
+    public String searchAccountResourceId() {
+        return this.searchAccountResourceId;
+    }
+
+    /**
+     * Set the searchAccountResourceId property: The byok search account that customer brings to store customer's data
+     * with encryption.
+     *
+     * @param searchAccountResourceId the searchAccountResourceId value to set.
+     * @return the EncryptionProperty object itself.
+     */
+    public EncryptionProperty withSearchAccountResourceId(String searchAccountResourceId) {
+        this.searchAccountResourceId = searchAccountResourceId;
+        return this;
     }
 
     /**
@@ -54,42 +159,24 @@ public final class EncryptionProperty {
     }
 
     /**
-     * Get the identity property: The identity that will be used to access the key vault for encryption at rest.
+     * Get the storageAccountResourceId property: The byok storage account that customer brings to store customer's data
+     * with encryption.
      *
-     * @return the identity value.
+     * @return the storageAccountResourceId value.
      */
-    public IdentityForCmk identity() {
-        return this.identity;
+    public String storageAccountResourceId() {
+        return this.storageAccountResourceId;
     }
 
     /**
-     * Set the identity property: The identity that will be used to access the key vault for encryption at rest.
+     * Set the storageAccountResourceId property: The byok storage account that customer brings to store customer's data
+     * with encryption.
      *
-     * @param identity the identity value to set.
+     * @param storageAccountResourceId the storageAccountResourceId value to set.
      * @return the EncryptionProperty object itself.
      */
-    public EncryptionProperty withIdentity(IdentityForCmk identity) {
-        this.identity = identity;
-        return this;
-    }
-
-    /**
-     * Get the keyVaultProperties property: Customer Key vault properties.
-     *
-     * @return the keyVaultProperties value.
-     */
-    public EncryptionKeyVaultProperties keyVaultProperties() {
-        return this.keyVaultProperties;
-    }
-
-    /**
-     * Set the keyVaultProperties property: Customer Key vault properties.
-     *
-     * @param keyVaultProperties the keyVaultProperties value to set.
-     * @return the EncryptionProperty object itself.
-     */
-    public EncryptionProperty withKeyVaultProperties(EncryptionKeyVaultProperties keyVaultProperties) {
-        this.keyVaultProperties = keyVaultProperties;
+    public EncryptionProperty withStorageAccountResourceId(String storageAccountResourceId) {
+        this.storageAccountResourceId = storageAccountResourceId;
         return this;
     }
 
@@ -99,11 +186,6 @@ public final class EncryptionProperty {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (status() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property status in model EncryptionProperty"));
-        }
         if (identity() != null) {
             identity().validate();
         }
@@ -114,6 +196,11 @@ public final class EncryptionProperty {
                         "Missing required property keyVaultProperties in model EncryptionProperty"));
         } else {
             keyVaultProperties().validate();
+        }
+        if (status() == null) {
+            throw LOGGER
+                .logExceptionAsError(
+                    new IllegalArgumentException("Missing required property status in model EncryptionProperty"));
         }
     }
 
