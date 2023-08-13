@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class SensorIntegration {
     /*
-     * Sensor integration enable state. Allowed values are True, None
+     * Sensor integration enable state.
      */
     @JsonProperty(value = "enabled")
     private String enabled;
@@ -32,8 +32,12 @@ public final class SensorIntegration {
     @JsonProperty(value = "provisioningInfo")
     private ManagementError provisioningInfo;
 
+    /** Creates an instance of SensorIntegration class. */
+    public SensorIntegration() {
+    }
+
     /**
-     * Get the enabled property: Sensor integration enable state. Allowed values are True, None.
+     * Get the enabled property: Sensor integration enable state.
      *
      * @return the enabled value.
      */
@@ -42,7 +46,7 @@ public final class SensorIntegration {
     }
 
     /**
-     * Set the enabled property: Sensor integration enable state. Allowed values are True, None.
+     * Set the enabled property: Sensor integration enable state.
      *
      * @param enabled the enabled value to set.
      * @return the SensorIntegration object itself.
