@@ -1,0 +1,47 @@
+# NOTE: Please refer to https://aka.ms/azsdk/engsys/ci-yaml before editing this file.
+
+trigger:
+  branches:
+    include:
+      - main
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/contentsafetyinternal/ci.yml
+      - sdk/contentsafetyinternal/azure-ai-contentsafetyinternal/
+    exclude:
+      - sdk/contentsafetyinternal/pom.xml
+      - sdk/contentsafetyinternal/azure-ai-contentsafetyinternal/pom.xml
+
+pr:
+  branches:
+    include:
+      - main
+      - feature/*
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/contentsafetyinternal/ci.yml
+      - sdk/contentsafetyinternal/azure-ai-contentsafetyinternal/
+    exclude:
+      - sdk/contentsafetyinternal/pom.xml
+      - sdk/contentsafetyinternal/azure-ai-contentsafetyinternal/pom.xml
+
+parameters:
+  - name: release_azureaicontentsafetyinternal
+    displayName: azure-ai-contentsafetyinternal
+    type: boolean
+    default: true
+
+extends:
+  template: ../../eng/pipelines/templates/stages/archetype-sdk-client.yml
+  parameters:
+    ServiceDirectory: contentsafetyinternal
+    EnableBatchRelease: true
+    Artifacts:
+      - name: azure-ai-contentsafetyinternal
+        groupId: com.azure
+        safeName: azureaicontentsafetyinternal
+        releaseInBatch: ${{ parameters.release_azureaicontentsafetyinternal }}
