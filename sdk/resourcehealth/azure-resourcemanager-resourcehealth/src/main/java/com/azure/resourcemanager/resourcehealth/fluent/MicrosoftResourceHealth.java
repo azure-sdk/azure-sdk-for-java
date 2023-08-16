@@ -94,20 +94,6 @@ public interface MicrosoftResourceHealth {
     EventOperationsClient getEventOperations();
 
     /**
-     * Gets the ChildAvailabilityStatusesClient object to access its operations.
-     *
-     * @return the ChildAvailabilityStatusesClient object.
-     */
-    ChildAvailabilityStatusesClient getChildAvailabilityStatuses();
-
-    /**
-     * Gets the ChildResourcesClient object to access its operations.
-     *
-     * @return the ChildResourcesClient object.
-     */
-    ChildResourcesClient getChildResources();
-
-    /**
      * Gets the EmergingIssuesClient object to access its operations.
      *
      * @return the EmergingIssuesClient object.

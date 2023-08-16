@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.resourcehealth.models;
 
-import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.resourcehealth.fluent.models.EventInner;
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -31,13 +30,6 @@ public interface Event {
      * @return the type value.
      */
     String type();
-
-    /**
-     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
-     * @return the systemData value.
-     */
-    SystemData systemData();
 
     /**
      * Gets the eventType property: Type of event.
@@ -101,13 +93,6 @@ public interface Event {
      * @return the externalIncidentId value.
      */
     String externalIncidentId();
-
-    /**
-     * Gets the reason property: The reason for the Incident.
-     *
-     * @return the reason value.
-     */
-    String reason();
 
     /**
      * Gets the article property: Article of event.
@@ -238,6 +223,27 @@ public interface Event {
      * @return the impactType value.
      */
     String impactType();
+
+    /**
+     * Gets the maintenanceId property: Unique Id for Planned maintenance event.
+     *
+     * @return the maintenanceId value.
+     */
+    String maintenanceId();
+
+    /**
+     * Gets the maintenanceType property: The type of Planned maintenance event.
+     *
+     * @return the maintenanceType value.
+     */
+    String maintenanceType();
+
+    /**
+     * Gets the argQuery property: ARG Query to fetch the affected resources from their existing ARG locations.
+     *
+     * @return the argQuery value.
+     */
+    String argQuery();
 
     /**
      * Gets the inner com.azure.resourcemanager.resourcehealth.fluent.models.EventInner object.

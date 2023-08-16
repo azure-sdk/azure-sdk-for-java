@@ -59,12 +59,6 @@ public final class AvailabilityStatusProperties {
     private String category;
 
     /*
-     * The Article Id
-     */
-    @JsonProperty(value = "articleId")
-    private String articleId;
-
-    /*
      * When the resource's availabilityState is Unavailable, it provides the Timestamp for when the health impacting
      * event was received.
      */
@@ -291,26 +285,6 @@ public final class AvailabilityStatusProperties {
      */
     public AvailabilityStatusProperties withCategory(String category) {
         this.category = category;
-        return this;
-    }
-
-    /**
-     * Get the articleId property: The Article Id.
-     *
-     * @return the articleId value.
-     */
-    public String articleId() {
-        return this.articleId;
-    }
-
-    /**
-     * Set the articleId property: The Article Id.
-     *
-     * @param articleId the articleId value to set.
-     * @return the AvailabilityStatusProperties object itself.
-     */
-    public AvailabilityStatusProperties withArticleId(String articleId) {
-        this.articleId = articleId;
         return this;
     }
 

@@ -23,13 +23,7 @@ public final class RecommendedAction {
     private String actionUrl;
 
     /*
-     * the comment for the Action
-     */
-    @JsonProperty(value = "_ActionUrl.Comment")
-    private String actionUrlComment;
-
-    /*
-     * Substring of action, it describes which text should host the action URL.
+     * Substring of action, it describes which text should host the action url.
      */
     @JsonProperty(value = "actionUrlText")
     private String actionUrlText;
@@ -79,27 +73,7 @@ public final class RecommendedAction {
     }
 
     /**
-     * Get the actionUrlComment property: the comment for the Action.
-     *
-     * @return the actionUrlComment value.
-     */
-    public String actionUrlComment() {
-        return this.actionUrlComment;
-    }
-
-    /**
-     * Set the actionUrlComment property: the comment for the Action.
-     *
-     * @param actionUrlComment the actionUrlComment value to set.
-     * @return the RecommendedAction object itself.
-     */
-    public RecommendedAction withActionUrlComment(String actionUrlComment) {
-        this.actionUrlComment = actionUrlComment;
-        return this;
-    }
-
-    /**
-     * Get the actionUrlText property: Substring of action, it describes which text should host the action URL.
+     * Get the actionUrlText property: Substring of action, it describes which text should host the action url.
      *
      * @return the actionUrlText value.
      */
@@ -108,7 +82,7 @@ public final class RecommendedAction {
     }
 
     /**
-     * Set the actionUrlText property: Substring of action, it describes which text should host the action URL.
+     * Set the actionUrlText property: Substring of action, it describes which text should host the action url.
      *
      * @param actionUrlText the actionUrlText value to set.
      * @return the RecommendedAction object itself.

@@ -25,8 +25,6 @@ import com.azure.core.util.Configuration;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.resourcehealth.fluent.MicrosoftResourceHealth;
 import com.azure.resourcemanager.resourcehealth.implementation.AvailabilityStatusesImpl;
-import com.azure.resourcemanager.resourcehealth.implementation.ChildAvailabilityStatusesImpl;
-import com.azure.resourcemanager.resourcehealth.implementation.ChildResourcesImpl;
 import com.azure.resourcemanager.resourcehealth.implementation.EmergingIssuesImpl;
 import com.azure.resourcemanager.resourcehealth.implementation.EventOperationsImpl;
 import com.azure.resourcemanager.resourcehealth.implementation.EventsOperationsImpl;
@@ -36,8 +34,6 @@ import com.azure.resourcemanager.resourcehealth.implementation.MicrosoftResource
 import com.azure.resourcemanager.resourcehealth.implementation.OperationsImpl;
 import com.azure.resourcemanager.resourcehealth.implementation.SecurityAdvisoryImpactedResourcesImpl;
 import com.azure.resourcemanager.resourcehealth.models.AvailabilityStatuses;
-import com.azure.resourcemanager.resourcehealth.models.ChildAvailabilityStatuses;
-import com.azure.resourcemanager.resourcehealth.models.ChildResources;
 import com.azure.resourcemanager.resourcehealth.models.EmergingIssues;
 import com.azure.resourcemanager.resourcehealth.models.EventOperations;
 import com.azure.resourcemanager.resourcehealth.models.EventsOperations;
@@ -67,10 +63,6 @@ public final class ResourceHealthManager {
     private EventsOperations eventsOperations;
 
     private EventOperations eventOperations;
-
-    private ChildAvailabilityStatuses childAvailabilityStatuses;
-
-    private ChildResources childResources;
 
     private EmergingIssues emergingIssues;
 
@@ -239,7 +231,7 @@ public final class ResourceHealthManager {
                 .append("-")
                 .append("com.azure.resourcemanager.resourcehealth")
                 .append("/")
-                .append("1.1.0-beta.1");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -379,31 +371,6 @@ public final class ResourceHealthManager {
             this.eventOperations = new EventOperationsImpl(clientObject.getEventOperations(), this);
         }
         return eventOperations;
-    }
-
-    /**
-     * Gets the resource collection API of ChildAvailabilityStatuses.
-     *
-     * @return Resource collection API of ChildAvailabilityStatuses.
-     */
-    public ChildAvailabilityStatuses childAvailabilityStatuses() {
-        if (this.childAvailabilityStatuses == null) {
-            this.childAvailabilityStatuses =
-                new ChildAvailabilityStatusesImpl(clientObject.getChildAvailabilityStatuses(), this);
-        }
-        return childAvailabilityStatuses;
-    }
-
-    /**
-     * Gets the resource collection API of ChildResources.
-     *
-     * @return Resource collection API of ChildResources.
-     */
-    public ChildResources childResources() {
-        if (this.childResources == null) {
-            this.childResources = new ChildResourcesImpl(clientObject.getChildResources(), this);
-        }
-        return childResources;
     }
 
     /**

@@ -23,8 +23,6 @@ import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.resourcehealth.fluent.AvailabilityStatusesClient;
-import com.azure.resourcemanager.resourcehealth.fluent.ChildAvailabilityStatusesClient;
-import com.azure.resourcemanager.resourcehealth.fluent.ChildResourcesClient;
 import com.azure.resourcemanager.resourcehealth.fluent.EmergingIssuesClient;
 import com.azure.resourcemanager.resourcehealth.fluent.EventOperationsClient;
 import com.azure.resourcemanager.resourcehealth.fluent.EventsOperationsClient;
@@ -201,30 +199,6 @@ public final class MicrosoftResourceHealthImpl implements MicrosoftResourceHealt
         return this.eventOperations;
     }
 
-    /** The ChildAvailabilityStatusesClient object to access its operations. */
-    private final ChildAvailabilityStatusesClient childAvailabilityStatuses;
-
-    /**
-     * Gets the ChildAvailabilityStatusesClient object to access its operations.
-     *
-     * @return the ChildAvailabilityStatusesClient object.
-     */
-    public ChildAvailabilityStatusesClient getChildAvailabilityStatuses() {
-        return this.childAvailabilityStatuses;
-    }
-
-    /** The ChildResourcesClient object to access its operations. */
-    private final ChildResourcesClient childResources;
-
-    /**
-     * Gets the ChildResourcesClient object to access its operations.
-     *
-     * @return the ChildResourcesClient object.
-     */
-    public ChildResourcesClient getChildResources() {
-        return this.childResources;
-    }
-
     /** The EmergingIssuesClient object to access its operations. */
     private final EmergingIssuesClient emergingIssues;
 
@@ -259,7 +233,7 @@ public final class MicrosoftResourceHealthImpl implements MicrosoftResourceHealt
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2022-10-01";
+        this.apiVersion = "2023-07-01-preview";
         this.availabilityStatuses = new AvailabilityStatusesClientImpl(this);
         this.operations = new OperationsClientImpl(this);
         this.metadatas = new MetadatasClientImpl(this);
@@ -267,8 +241,6 @@ public final class MicrosoftResourceHealthImpl implements MicrosoftResourceHealt
         this.securityAdvisoryImpactedResources = new SecurityAdvisoryImpactedResourcesClientImpl(this);
         this.eventsOperations = new EventsOperationsClientImpl(this);
         this.eventOperations = new EventOperationsClientImpl(this);
-        this.childAvailabilityStatuses = new ChildAvailabilityStatusesClientImpl(this);
-        this.childResources = new ChildResourcesClientImpl(this);
         this.emergingIssues = new EmergingIssuesClientImpl(this);
     }
 

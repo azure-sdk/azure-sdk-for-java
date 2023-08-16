@@ -78,12 +78,6 @@ public final class EventProperties {
     private String externalIncidentId;
 
     /*
-     * The reason for the Incident
-     */
-    @JsonProperty(value = "reason")
-    private String reason;
-
-    /*
      * Article of event.
      */
     @JsonProperty(value = "article")
@@ -192,6 +186,24 @@ public final class EventProperties {
      */
     @JsonProperty(value = "impactType")
     private String impactType;
+
+    /*
+     * Unique Id for Planned maintenance event
+     */
+    @JsonProperty(value = "maintenanceId")
+    private String maintenanceId;
+
+    /*
+     * The type of Planned maintenance event
+     */
+    @JsonProperty(value = "maintenanceType")
+    private String maintenanceType;
+
+    /*
+     * ARG Query to fetch the affected resources from their existing ARG locations
+     */
+    @JsonProperty(value = "argQuery")
+    private String argQuery;
 
     /** Creates an instance of EventProperties class. */
     public EventProperties() {
@@ -374,26 +386,6 @@ public final class EventProperties {
      */
     public EventProperties withExternalIncidentId(String externalIncidentId) {
         this.externalIncidentId = externalIncidentId;
-        return this;
-    }
-
-    /**
-     * Get the reason property: The reason for the Incident.
-     *
-     * @return the reason value.
-     */
-    public String reason() {
-        return this.reason;
-    }
-
-    /**
-     * Set the reason property: The reason for the Incident.
-     *
-     * @param reason the reason value to set.
-     * @return the EventProperties object itself.
-     */
-    public EventProperties withReason(String reason) {
-        this.reason = reason;
         return this;
     }
 
@@ -762,6 +754,66 @@ public final class EventProperties {
      */
     public EventProperties withImpactType(String impactType) {
         this.impactType = impactType;
+        return this;
+    }
+
+    /**
+     * Get the maintenanceId property: Unique Id for Planned maintenance event.
+     *
+     * @return the maintenanceId value.
+     */
+    public String maintenanceId() {
+        return this.maintenanceId;
+    }
+
+    /**
+     * Set the maintenanceId property: Unique Id for Planned maintenance event.
+     *
+     * @param maintenanceId the maintenanceId value to set.
+     * @return the EventProperties object itself.
+     */
+    public EventProperties withMaintenanceId(String maintenanceId) {
+        this.maintenanceId = maintenanceId;
+        return this;
+    }
+
+    /**
+     * Get the maintenanceType property: The type of Planned maintenance event.
+     *
+     * @return the maintenanceType value.
+     */
+    public String maintenanceType() {
+        return this.maintenanceType;
+    }
+
+    /**
+     * Set the maintenanceType property: The type of Planned maintenance event.
+     *
+     * @param maintenanceType the maintenanceType value to set.
+     * @return the EventProperties object itself.
+     */
+    public EventProperties withMaintenanceType(String maintenanceType) {
+        this.maintenanceType = maintenanceType;
+        return this;
+    }
+
+    /**
+     * Get the argQuery property: ARG Query to fetch the affected resources from their existing ARG locations.
+     *
+     * @return the argQuery value.
+     */
+    public String argQuery() {
+        return this.argQuery;
+    }
+
+    /**
+     * Set the argQuery property: ARG Query to fetch the affected resources from their existing ARG locations.
+     *
+     * @param argQuery the argQuery value to set.
+     * @return the EventProperties object itself.
+     */
+    public EventProperties withArgQuery(String argQuery) {
+        this.argQuery = argQuery;
         return this;
     }
 
