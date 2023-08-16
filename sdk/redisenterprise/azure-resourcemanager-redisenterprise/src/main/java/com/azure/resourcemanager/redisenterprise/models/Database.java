@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.redisenterprise.models;
 
 import com.azure.core.http.rest.Response;
-import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.redisenterprise.fluent.models.DatabaseInner;
 import java.util.List;
@@ -32,13 +31,6 @@ public interface Database {
      * @return the type value.
      */
     String type();
-
-    /**
-     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
-     * @return the systemData value.
-     */
-    SystemData systemData();
 
     /**
      * Gets the clientProtocol property: Specifies whether redis clients can connect using TLS-encrypted or plaintext
@@ -124,11 +116,13 @@ public interface Database {
     interface Definition
         extends DefinitionStages.Blank, DefinitionStages.WithParentResource, DefinitionStages.WithCreate {
     }
+
     /** The Database definition stages. */
     interface DefinitionStages {
         /** The first stage of the Database definition. */
         interface Blank extends WithParentResource {
         }
+
         /** The stage of the Database definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -140,6 +134,7 @@ public interface Database {
              */
             WithCreate withExistingRedisEnterprise(String resourceGroupName, String clusterName);
         }
+
         /**
          * The stage of the Database definition which contains all the minimum required properties for the resource to
          * be created, but also allows for any other optional properties to be specified.
@@ -167,6 +162,7 @@ public interface Database {
              */
             Database create(Context context);
         }
+
         /** The stage of the Database definition allowing to specify clientProtocol. */
         interface WithClientProtocol {
             /**
@@ -179,6 +175,7 @@ public interface Database {
              */
             WithCreate withClientProtocol(Protocol clientProtocol);
         }
+
         /** The stage of the Database definition allowing to specify port. */
         interface WithPort {
             /**
@@ -190,6 +187,7 @@ public interface Database {
              */
             WithCreate withPort(Integer port);
         }
+
         /** The stage of the Database definition allowing to specify clusteringPolicy. */
         interface WithClusteringPolicy {
             /**
@@ -201,6 +199,7 @@ public interface Database {
              */
             WithCreate withClusteringPolicy(ClusteringPolicy clusteringPolicy);
         }
+
         /** The stage of the Database definition allowing to specify evictionPolicy. */
         interface WithEvictionPolicy {
             /**
@@ -211,6 +210,7 @@ public interface Database {
              */
             WithCreate withEvictionPolicy(EvictionPolicy evictionPolicy);
         }
+
         /** The stage of the Database definition allowing to specify persistence. */
         interface WithPersistence {
             /**
@@ -221,6 +221,7 @@ public interface Database {
              */
             WithCreate withPersistence(Persistence persistence);
         }
+
         /** The stage of the Database definition allowing to specify modules. */
         interface WithModules {
             /**
@@ -233,6 +234,7 @@ public interface Database {
              */
             WithCreate withModules(List<Module> modules);
         }
+
         /** The stage of the Database definition allowing to specify geoReplication. */
         interface WithGeoReplication {
             /**
@@ -245,6 +247,7 @@ public interface Database {
             WithCreate withGeoReplication(DatabasePropertiesGeoReplication geoReplication);
         }
     }
+
     /**
      * Begins update for the Database resource.
      *
@@ -270,6 +273,7 @@ public interface Database {
          */
         Database apply(Context context);
     }
+
     /** The Database update stages. */
     interface UpdateStages {
         /** The stage of the Database update allowing to specify clientProtocol. */
@@ -284,6 +288,7 @@ public interface Database {
              */
             Update withClientProtocol(Protocol clientProtocol);
         }
+
         /** The stage of the Database update allowing to specify evictionPolicy. */
         interface WithEvictionPolicy {
             /**
@@ -294,6 +299,7 @@ public interface Database {
              */
             Update withEvictionPolicy(EvictionPolicy evictionPolicy);
         }
+
         /** The stage of the Database update allowing to specify persistence. */
         interface WithPersistence {
             /**
@@ -305,6 +311,7 @@ public interface Database {
             Update withPersistence(Persistence persistence);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *
