@@ -23,7 +23,7 @@ public final class PrivateLinkHubsCreateOrUpdateSamples {
             .define("privateLinkHub1")
             .withRegion("East US")
             .withExistingResourceGroup("resourceGroup1")
-            .withTags(mapOf("key", "value"))
+            .withTags(mapOf("key", "fakeTokenPlaceholder"))
             .create();
     }
 
