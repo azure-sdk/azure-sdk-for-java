@@ -154,18 +154,11 @@ public final class QuotasClientImpl implements QuotasClient {
         if (scope == null) {
             return Mono.error(new IllegalArgumentException("Parameter scope is required and cannot be null."));
         }
+        final String apiVersion = "2023-02-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
-                context ->
-                    service
-                        .get(
-                            this.client.getEndpoint(),
-                            resourceName,
-                            this.client.getApiVersion(),
-                            scope,
-                            accept,
-                            context))
+                context -> service.get(this.client.getEndpoint(), resourceName, apiVersion, scope, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -199,10 +192,10 @@ public final class QuotasClientImpl implements QuotasClient {
         if (scope == null) {
             return Mono.error(new IllegalArgumentException("Parameter scope is required and cannot be null."));
         }
+        final String apiVersion = "2023-02-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .get(this.client.getEndpoint(), resourceName, this.client.getApiVersion(), scope, accept, context);
+        return service.get(this.client.getEndpoint(), resourceName, apiVersion, scope, accept, context);
     }
 
     /**
@@ -307,6 +300,7 @@ public final class QuotasClientImpl implements QuotasClient {
         } else {
             createQuotaRequest.validate();
         }
+        final String apiVersion = "2023-02-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -315,7 +309,7 @@ public final class QuotasClientImpl implements QuotasClient {
                         .createOrUpdate(
                             this.client.getEndpoint(),
                             resourceName,
-                            this.client.getApiVersion(),
+                            apiVersion,
                             scope,
                             createQuotaRequest,
                             accept,
@@ -365,17 +359,12 @@ public final class QuotasClientImpl implements QuotasClient {
         } else {
             createQuotaRequest.validate();
         }
+        final String apiVersion = "2023-02-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .createOrUpdate(
-                this.client.getEndpoint(),
-                resourceName,
-                this.client.getApiVersion(),
-                scope,
-                createQuotaRequest,
-                accept,
-                context);
+                this.client.getEndpoint(), resourceName, apiVersion, scope, createQuotaRequest, accept, context);
     }
 
     /**
@@ -654,6 +643,7 @@ public final class QuotasClientImpl implements QuotasClient {
         } else {
             createQuotaRequest.validate();
         }
+        final String apiVersion = "2023-02-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -662,7 +652,7 @@ public final class QuotasClientImpl implements QuotasClient {
                         .update(
                             this.client.getEndpoint(),
                             resourceName,
-                            this.client.getApiVersion(),
+                            apiVersion,
                             scope,
                             createQuotaRequest,
                             accept,
@@ -712,17 +702,11 @@ public final class QuotasClientImpl implements QuotasClient {
         } else {
             createQuotaRequest.validate();
         }
+        final String apiVersion = "2023-02-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .update(
-                this.client.getEndpoint(),
-                resourceName,
-                this.client.getApiVersion(),
-                scope,
-                createQuotaRequest,
-                accept,
-                context);
+            .update(this.client.getEndpoint(), resourceName, apiVersion, scope, createQuotaRequest, accept, context);
     }
 
     /**
@@ -984,10 +968,10 @@ public final class QuotasClientImpl implements QuotasClient {
         if (scope == null) {
             return Mono.error(new IllegalArgumentException("Parameter scope is required and cannot be null."));
         }
+        final String apiVersion = "2023-02-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(), scope, accept, context))
+            .withContext(context -> service.list(this.client.getEndpoint(), apiVersion, scope, accept, context))
             .<PagedResponse<CurrentQuotaLimitBaseInner>>map(
                 res ->
                     new PagedResponseBase<>(
@@ -1026,10 +1010,11 @@ public final class QuotasClientImpl implements QuotasClient {
         if (scope == null) {
             return Mono.error(new IllegalArgumentException("Parameter scope is required and cannot be null."));
         }
+        final String apiVersion = "2023-02-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .list(this.client.getEndpoint(), this.client.getApiVersion(), scope, accept, context)
+            .list(this.client.getEndpoint(), apiVersion, scope, accept, context)
             .map(
                 res ->
                     new PagedResponseBase<>(
