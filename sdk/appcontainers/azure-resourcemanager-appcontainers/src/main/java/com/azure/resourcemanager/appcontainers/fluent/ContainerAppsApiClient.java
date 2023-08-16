@@ -101,20 +101,6 @@ public interface ContainerAppsApiClient {
     ContainerAppsClient getContainerApps();
 
     /**
-     * Gets the JobsClient object to access its operations.
-     *
-     * @return the JobsClient object.
-     */
-    JobsClient getJobs();
-
-    /**
-     * Gets the JobsExecutionsClient object to access its operations.
-     *
-     * @return the JobsExecutionsClient object.
-     */
-    JobsExecutionsClient getJobsExecutions();
-
-    /**
      * Gets the ContainerAppsRevisionsClient object to access its operations.
      *
      * @return the ContainerAppsRevisionsClient object.
@@ -155,6 +141,27 @@ public interface ContainerAppsApiClient {
      * @return the OperationsClient object.
      */
     OperationsClient getOperations();
+
+    /**
+     * Gets the JobsClient object to access its operations.
+     *
+     * @return the JobsClient object.
+     */
+    JobsClient getJobs();
+
+    /**
+     * Gets the JobsExecutionsClient object to access its operations.
+     *
+     * @return the JobsExecutionsClient object.
+     */
+    JobsExecutionsClient getJobsExecutions();
+
+    /**
+     * Gets the ResourceProvidersClient object to access its operations.
+     *
+     * @return the ResourceProvidersClient object.
+     */
+    ResourceProvidersClient getResourceProviders();
 
     /**
      * Gets the ManagedEnvironmentsClient object to access its operations.
@@ -204,4 +211,18 @@ public interface ContainerAppsApiClient {
      * @return the ContainerAppsSourceControlsClient object.
      */
     ContainerAppsSourceControlsClient getContainerAppsSourceControls();
+
+    /**
+     * Gets the UsagesClient object to access its operations.
+     *
+     * @return the UsagesClient object.
+     */
+    UsagesClient getUsages();
+
+    /**
+     * Gets the ManagedEnvironmentUsagesClient object to access its operations.
+     *
+     * @return the ManagedEnvironmentUsagesClient object.
+     */
+    ManagedEnvironmentUsagesClient getManagedEnvironmentUsages();
 }

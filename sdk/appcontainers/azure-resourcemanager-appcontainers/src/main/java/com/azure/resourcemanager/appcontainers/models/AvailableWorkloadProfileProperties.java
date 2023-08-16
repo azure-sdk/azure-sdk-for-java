@@ -35,6 +35,12 @@ public final class AvailableWorkloadProfileProperties {
     private Integer memoryGiB;
 
     /*
+     * Number of GPUs.
+     */
+    @JsonProperty(value = "gpus")
+    private Integer gpus;
+
+    /*
      * The everyday name of the workload profile.
      */
     @JsonProperty(value = "displayName")
@@ -121,6 +127,26 @@ public final class AvailableWorkloadProfileProperties {
      */
     public AvailableWorkloadProfileProperties withMemoryGiB(Integer memoryGiB) {
         this.memoryGiB = memoryGiB;
+        return this;
+    }
+
+    /**
+     * Get the gpus property: Number of GPUs.
+     *
+     * @return the gpus value.
+     */
+    public Integer gpus() {
+        return this.gpus;
+    }
+
+    /**
+     * Set the gpus property: Number of GPUs.
+     *
+     * @param gpus the gpus value to set.
+     * @return the AvailableWorkloadProfileProperties object itself.
+     */
+    public AvailableWorkloadProfileProperties withGpus(Integer gpus) {
+        this.gpus = gpus;
         return this;
     }
 

@@ -41,11 +41,14 @@ import com.azure.resourcemanager.appcontainers.fluent.JobsClient;
 import com.azure.resourcemanager.appcontainers.fluent.JobsExecutionsClient;
 import com.azure.resourcemanager.appcontainers.fluent.ManagedCertificatesClient;
 import com.azure.resourcemanager.appcontainers.fluent.ManagedEnvironmentDiagnosticsClient;
+import com.azure.resourcemanager.appcontainers.fluent.ManagedEnvironmentUsagesClient;
 import com.azure.resourcemanager.appcontainers.fluent.ManagedEnvironmentsClient;
 import com.azure.resourcemanager.appcontainers.fluent.ManagedEnvironmentsDiagnosticsClient;
 import com.azure.resourcemanager.appcontainers.fluent.ManagedEnvironmentsStoragesClient;
 import com.azure.resourcemanager.appcontainers.fluent.NamespacesClient;
 import com.azure.resourcemanager.appcontainers.fluent.OperationsClient;
+import com.azure.resourcemanager.appcontainers.fluent.ResourceProvidersClient;
+import com.azure.resourcemanager.appcontainers.fluent.UsagesClient;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.nio.ByteBuffer;
@@ -226,30 +229,6 @@ public final class ContainerAppsApiClientImpl implements ContainerAppsApiClient 
         return this.containerApps;
     }
 
-    /** The JobsClient object to access its operations. */
-    private final JobsClient jobs;
-
-    /**
-     * Gets the JobsClient object to access its operations.
-     *
-     * @return the JobsClient object.
-     */
-    public JobsClient getJobs() {
-        return this.jobs;
-    }
-
-    /** The JobsExecutionsClient object to access its operations. */
-    private final JobsExecutionsClient jobsExecutions;
-
-    /**
-     * Gets the JobsExecutionsClient object to access its operations.
-     *
-     * @return the JobsExecutionsClient object.
-     */
-    public JobsExecutionsClient getJobsExecutions() {
-        return this.jobsExecutions;
-    }
-
     /** The ContainerAppsRevisionsClient object to access its operations. */
     private final ContainerAppsRevisionsClient containerAppsRevisions;
 
@@ -320,6 +299,42 @@ public final class ContainerAppsApiClientImpl implements ContainerAppsApiClient 
      */
     public OperationsClient getOperations() {
         return this.operations;
+    }
+
+    /** The JobsClient object to access its operations. */
+    private final JobsClient jobs;
+
+    /**
+     * Gets the JobsClient object to access its operations.
+     *
+     * @return the JobsClient object.
+     */
+    public JobsClient getJobs() {
+        return this.jobs;
+    }
+
+    /** The JobsExecutionsClient object to access its operations. */
+    private final JobsExecutionsClient jobsExecutions;
+
+    /**
+     * Gets the JobsExecutionsClient object to access its operations.
+     *
+     * @return the JobsExecutionsClient object.
+     */
+    public JobsExecutionsClient getJobsExecutions() {
+        return this.jobsExecutions;
+    }
+
+    /** The ResourceProvidersClient object to access its operations. */
+    private final ResourceProvidersClient resourceProviders;
+
+    /**
+     * Gets the ResourceProvidersClient object to access its operations.
+     *
+     * @return the ResourceProvidersClient object.
+     */
+    public ResourceProvidersClient getResourceProviders() {
+        return this.resourceProviders;
     }
 
     /** The ManagedEnvironmentsClient object to access its operations. */
@@ -406,6 +421,30 @@ public final class ContainerAppsApiClientImpl implements ContainerAppsApiClient 
         return this.containerAppsSourceControls;
     }
 
+    /** The UsagesClient object to access its operations. */
+    private final UsagesClient usages;
+
+    /**
+     * Gets the UsagesClient object to access its operations.
+     *
+     * @return the UsagesClient object.
+     */
+    public UsagesClient getUsages() {
+        return this.usages;
+    }
+
+    /** The ManagedEnvironmentUsagesClient object to access its operations. */
+    private final ManagedEnvironmentUsagesClient managedEnvironmentUsages;
+
+    /**
+     * Gets the ManagedEnvironmentUsagesClient object to access its operations.
+     *
+     * @return the ManagedEnvironmentUsagesClient object.
+     */
+    public ManagedEnvironmentUsagesClient getManagedEnvironmentUsages() {
+        return this.managedEnvironmentUsages;
+    }
+
     /**
      * Initializes an instance of ContainerAppsApiClient client.
      *
@@ -428,7 +467,7 @@ public final class ContainerAppsApiClientImpl implements ContainerAppsApiClient 
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2022-11-01-preview";
+        this.apiVersion = "2023-08-01-preview";
         this.containerAppsAuthConfigs = new ContainerAppsAuthConfigsClientImpl(this);
         this.availableWorkloadProfiles = new AvailableWorkloadProfilesClientImpl(this);
         this.billingMeters = new BillingMetersClientImpl(this);
@@ -437,14 +476,15 @@ public final class ContainerAppsApiClientImpl implements ContainerAppsApiClient 
         this.connectedEnvironmentsDaprComponents = new ConnectedEnvironmentsDaprComponentsClientImpl(this);
         this.connectedEnvironmentsStorages = new ConnectedEnvironmentsStoragesClientImpl(this);
         this.containerApps = new ContainerAppsClientImpl(this);
-        this.jobs = new JobsClientImpl(this);
-        this.jobsExecutions = new JobsExecutionsClientImpl(this);
         this.containerAppsRevisions = new ContainerAppsRevisionsClientImpl(this);
         this.containerAppsRevisionReplicas = new ContainerAppsRevisionReplicasClientImpl(this);
         this.containerAppsDiagnostics = new ContainerAppsDiagnosticsClientImpl(this);
         this.managedEnvironmentDiagnostics = new ManagedEnvironmentDiagnosticsClientImpl(this);
         this.managedEnvironmentsDiagnostics = new ManagedEnvironmentsDiagnosticsClientImpl(this);
         this.operations = new OperationsClientImpl(this);
+        this.jobs = new JobsClientImpl(this);
+        this.jobsExecutions = new JobsExecutionsClientImpl(this);
+        this.resourceProviders = new ResourceProvidersClientImpl(this);
         this.managedEnvironments = new ManagedEnvironmentsClientImpl(this);
         this.certificates = new CertificatesClientImpl(this);
         this.managedCertificates = new ManagedCertificatesClientImpl(this);
@@ -452,6 +492,8 @@ public final class ContainerAppsApiClientImpl implements ContainerAppsApiClient 
         this.daprComponents = new DaprComponentsClientImpl(this);
         this.managedEnvironmentsStorages = new ManagedEnvironmentsStoragesClientImpl(this);
         this.containerAppsSourceControls = new ContainerAppsSourceControlsClientImpl(this);
+        this.usages = new UsagesClientImpl(this);
+        this.managedEnvironmentUsages = new ManagedEnvironmentUsagesClientImpl(this);
     }
 
     /**

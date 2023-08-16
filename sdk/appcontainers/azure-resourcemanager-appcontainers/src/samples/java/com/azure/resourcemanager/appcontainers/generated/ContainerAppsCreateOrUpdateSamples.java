@@ -21,6 +21,7 @@ import com.azure.resourcemanager.appcontainers.models.CustomScaleRule;
 import com.azure.resourcemanager.appcontainers.models.Dapr;
 import com.azure.resourcemanager.appcontainers.models.Ingress;
 import com.azure.resourcemanager.appcontainers.models.IngressClientCertificateMode;
+import com.azure.resourcemanager.appcontainers.models.IngressPortMapping;
 import com.azure.resourcemanager.appcontainers.models.IngressStickySessions;
 import com.azure.resourcemanager.appcontainers.models.IngressTransportMethod;
 import com.azure.resourcemanager.appcontainers.models.InitContainer;
@@ -28,6 +29,8 @@ import com.azure.resourcemanager.appcontainers.models.IpSecurityRestrictionRule;
 import com.azure.resourcemanager.appcontainers.models.LogLevel;
 import com.azure.resourcemanager.appcontainers.models.Scale;
 import com.azure.resourcemanager.appcontainers.models.ScaleRule;
+import com.azure.resourcemanager.appcontainers.models.Service;
+import com.azure.resourcemanager.appcontainers.models.ServiceBind;
 import com.azure.resourcemanager.appcontainers.models.TcpScaleRule;
 import com.azure.resourcemanager.appcontainers.models.Template;
 import com.azure.resourcemanager.appcontainers.models.TrafficWeight;
@@ -39,7 +42,7 @@ import java.util.Map;
 /** Samples for ContainerApps CreateOrUpdate. */
 public final class ContainerAppsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2022-11-01-preview/examples/ContainerApps_CreateOrUpdate.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2023-08-01-preview/examples/ContainerApps_CreateOrUpdate.json
      */
     /**
      * Sample code: Create or Update Container App.
@@ -106,7 +109,15 @@ public final class ContainerAppsCreateOrUpdateSamples {
                                     .withAllowedHeaders(Arrays.asList("HEADER1", "HEADER2"))
                                     .withExposeHeaders(Arrays.asList("HEADER3", "HEADER4"))
                                     .withMaxAge(1234)
-                                    .withAllowCredentials(true)))
+                                    .withAllowCredentials(true))
+                            .withAdditionalPortMappings(
+                                Arrays
+                                    .asList(
+                                        new IngressPortMapping().withExternal(true).withTargetPort(1234),
+                                        new IngressPortMapping()
+                                            .withExternal(false)
+                                            .withTargetPort(2345)
+                                            .withExposedPort(3456))))
                     .withDapr(
                         new Dapr()
                             .withEnabled(true)
@@ -116,7 +127,8 @@ public final class ContainerAppsCreateOrUpdateSamples {
                             .withHttpMaxRequestSize(10)
                             .withLogLevel(LogLevel.DEBUG)
                             .withEnableApiLogging(true))
-                    .withMaxInactiveRevisions(10))
+                    .withMaxInactiveRevisions(10)
+                    .withService(new Service().withType("redis")))
             .withTemplate(
                 new Template()
                     .withInitContainers(
@@ -163,12 +175,19 @@ public final class ContainerAppsCreateOrUpdateSamples {
                                             .withCustom(
                                                 new CustomScaleRule()
                                                     .withType("http")
-                                                    .withMetadata(mapOf("concurrentRequests", "50")))))))
+                                                    .withMetadata(mapOf("concurrentRequests", "50"))))))
+                    .withServiceBinds(
+                        Arrays
+                            .asList(
+                                new ServiceBind()
+                                    .withServiceId(
+                                        "/subscriptions/34adfa4f-cedf-4dc0-ba29-b6d1a69ab345/resourceGroups/rg/providers/Microsoft.App/containerApps/redisService")
+                                    .withName("redisService"))))
             .create();
     }
 
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2022-11-01-preview/examples/ContainerApps_TcpApp_CreateOrUpdate.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2023-08-01-preview/examples/ContainerApps_TcpApp_CreateOrUpdate.json
      */
     /**
      * Sample code: Create or Update Tcp App.
@@ -229,7 +248,7 @@ public final class ContainerAppsCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2022-11-01-preview/examples/ContainerApps_ManagedBy_CreateOrUpdate.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2023-08-01-preview/examples/ContainerApps_ManagedBy_CreateOrUpdate.json
      */
     /**
      * Sample code: Create or Update ManagedBy App.
