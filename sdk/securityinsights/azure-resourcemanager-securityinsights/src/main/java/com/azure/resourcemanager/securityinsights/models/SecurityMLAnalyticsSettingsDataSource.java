@@ -23,6 +23,10 @@ public final class SecurityMLAnalyticsSettingsDataSource {
     @JsonProperty(value = "dataTypes")
     private List<String> dataTypes;
 
+    /** Creates an instance of SecurityMLAnalyticsSettingsDataSource class. */
+    public SecurityMLAnalyticsSettingsDataSource() {
+    }
+
     /**
      * Get the connectorId property: The connector id that provides the following data types.
      *

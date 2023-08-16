@@ -16,7 +16,9 @@ import java.util.List;
 @Fluent
 public final class MetadataDependencies {
     /*
-     * Id of the content item we depend on
+     * Static ID for the content.  Used to identify dependencies and content from solutions or community.
+     * Hard-coded/static for out of the box content and solutions. Can be optionally set for user created content to
+     * define dependencies.  If an active content item is made from a metadata, both will have the same contentId.
      */
     @JsonProperty(value = "contentId")
     private String contentId;
@@ -52,8 +54,15 @@ public final class MetadataDependencies {
     @JsonProperty(value = "criteria")
     private List<MetadataDependencies> criteria;
 
+    /** Creates an instance of MetadataDependencies class. */
+    public MetadataDependencies() {
+    }
+
     /**
-     * Get the contentId property: Id of the content item we depend on.
+     * Get the contentId property: Static ID for the content. Used to identify dependencies and content from solutions
+     * or community. Hard-coded/static for out of the box content and solutions. Can be optionally set for user created
+     * content to define dependencies. If an active content item is made from a metadata, both will have the same
+     * contentId.
      *
      * @return the contentId value.
      */
@@ -62,7 +71,10 @@ public final class MetadataDependencies {
     }
 
     /**
-     * Set the contentId property: Id of the content item we depend on.
+     * Set the contentId property: Static ID for the content. Used to identify dependencies and content from solutions
+     * or community. Hard-coded/static for out of the box content and solutions. Can be optionally set for user created
+     * content to define dependencies. If an active content item is made from a metadata, both will have the same
+     * contentId.
      *
      * @param contentId the contentId value to set.
      * @return the MetadataDependencies object itself.

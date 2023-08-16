@@ -22,6 +22,10 @@ public final class InsightQueryItemPropertiesDefaultTimeRange {
     @JsonProperty(value = "afterRange")
     private String afterRange;
 
+    /** Creates an instance of InsightQueryItemPropertiesDefaultTimeRange class. */
+    public InsightQueryItemPropertiesDefaultTimeRange() {
+    }
+
     /**
      * Get the beforeRange property: The padding for the start time of the query.
      *

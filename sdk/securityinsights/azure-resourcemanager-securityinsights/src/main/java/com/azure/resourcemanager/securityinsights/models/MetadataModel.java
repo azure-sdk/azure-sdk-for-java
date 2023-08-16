@@ -154,7 +154,7 @@ public interface MetadataModel {
     String contentSchemaVersion();
 
     /**
-     * Gets the icon property: the icon identifier. this id can later be fetched from the solution template.
+     * Gets the icon property: the icon identifier. this id can later be fetched from the content metadata.
      *
      * @return the icon value.
      */
@@ -208,11 +208,13 @@ public interface MetadataModel {
     interface Definition
         extends DefinitionStages.Blank, DefinitionStages.WithParentResource, DefinitionStages.WithCreate {
     }
+
     /** The MetadataModel definition stages. */
     interface DefinitionStages {
         /** The first stage of the MetadataModel definition. */
         interface Blank extends WithParentResource {
         }
+
         /** The stage of the MetadataModel definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -224,6 +226,7 @@ public interface MetadataModel {
              */
             WithCreate withExistingWorkspace(String resourceGroupName, String workspaceName);
         }
+
         /**
          * The stage of the MetadataModel definition which contains all the minimum required properties for the resource
          * to be created, but also allows for any other optional properties to be specified.
@@ -264,6 +267,7 @@ public interface MetadataModel {
              */
             MetadataModel create(Context context);
         }
+
         /** The stage of the MetadataModel definition allowing to specify etag. */
         interface WithEtag {
             /**
@@ -274,6 +278,7 @@ public interface MetadataModel {
              */
             WithCreate withEtag(String etag);
         }
+
         /** The stage of the MetadataModel definition allowing to specify contentId. */
         interface WithContentId {
             /**
@@ -288,6 +293,7 @@ public interface MetadataModel {
              */
             WithCreate withContentId(String contentId);
         }
+
         /** The stage of the MetadataModel definition allowing to specify parentId. */
         interface WithParentId {
             /**
@@ -300,6 +306,7 @@ public interface MetadataModel {
              */
             WithCreate withParentId(String parentId);
         }
+
         /** The stage of the MetadataModel definition allowing to specify version. */
         interface WithVersion {
             /**
@@ -314,6 +321,7 @@ public interface MetadataModel {
              */
             WithCreate withVersion(String version);
         }
+
         /** The stage of the MetadataModel definition allowing to specify kind. */
         interface WithKind {
             /**
@@ -324,6 +332,7 @@ public interface MetadataModel {
              */
             WithCreate withKind(Kind kind);
         }
+
         /** The stage of the MetadataModel definition allowing to specify source. */
         interface WithSource {
             /**
@@ -334,6 +343,7 @@ public interface MetadataModel {
              */
             WithCreate withSource(MetadataSource source);
         }
+
         /** The stage of the MetadataModel definition allowing to specify author. */
         interface WithAuthor {
             /**
@@ -344,6 +354,7 @@ public interface MetadataModel {
              */
             WithCreate withAuthor(MetadataAuthor author);
         }
+
         /** The stage of the MetadataModel definition allowing to specify support. */
         interface WithSupport {
             /**
@@ -354,6 +365,7 @@ public interface MetadataModel {
              */
             WithCreate withSupport(MetadataSupport support);
         }
+
         /** The stage of the MetadataModel definition allowing to specify dependencies. */
         interface WithDependencies {
             /**
@@ -368,6 +380,7 @@ public interface MetadataModel {
              */
             WithCreate withDependencies(MetadataDependencies dependencies);
         }
+
         /** The stage of the MetadataModel definition allowing to specify categories. */
         interface WithCategories {
             /**
@@ -378,6 +391,7 @@ public interface MetadataModel {
              */
             WithCreate withCategories(MetadataCategories categories);
         }
+
         /** The stage of the MetadataModel definition allowing to specify providers. */
         interface WithProviders {
             /**
@@ -388,6 +402,7 @@ public interface MetadataModel {
              */
             WithCreate withProviders(List<String> providers);
         }
+
         /** The stage of the MetadataModel definition allowing to specify firstPublishDate. */
         interface WithFirstPublishDate {
             /**
@@ -398,6 +413,7 @@ public interface MetadataModel {
              */
             WithCreate withFirstPublishDate(LocalDate firstPublishDate);
         }
+
         /** The stage of the MetadataModel definition allowing to specify lastPublishDate. */
         interface WithLastPublishDate {
             /**
@@ -408,6 +424,7 @@ public interface MetadataModel {
              */
             WithCreate withLastPublishDate(LocalDate lastPublishDate);
         }
+
         /** The stage of the MetadataModel definition allowing to specify customVersion. */
         interface WithCustomVersion {
             /**
@@ -418,6 +435,7 @@ public interface MetadataModel {
              */
             WithCreate withCustomVersion(String customVersion);
         }
+
         /** The stage of the MetadataModel definition allowing to specify contentSchemaVersion. */
         interface WithContentSchemaVersion {
             /**
@@ -430,17 +448,18 @@ public interface MetadataModel {
              */
             WithCreate withContentSchemaVersion(String contentSchemaVersion);
         }
+
         /** The stage of the MetadataModel definition allowing to specify icon. */
         interface WithIcon {
             /**
-             * Specifies the icon property: the icon identifier. this id can later be fetched from the solution
-             * template.
+             * Specifies the icon property: the icon identifier. this id can later be fetched from the content metadata.
              *
-             * @param icon the icon identifier. this id can later be fetched from the solution template.
+             * @param icon the icon identifier. this id can later be fetched from the content metadata.
              * @return the next definition stage.
              */
             WithCreate withIcon(String icon);
         }
+
         /** The stage of the MetadataModel definition allowing to specify threatAnalysisTactics. */
         interface WithThreatAnalysisTactics {
             /**
@@ -451,6 +470,7 @@ public interface MetadataModel {
              */
             WithCreate withThreatAnalysisTactics(List<String> threatAnalysisTactics);
         }
+
         /** The stage of the MetadataModel definition allowing to specify threatAnalysisTechniques. */
         interface WithThreatAnalysisTechniques {
             /**
@@ -463,6 +483,7 @@ public interface MetadataModel {
              */
             WithCreate withThreatAnalysisTechniques(List<String> threatAnalysisTechniques);
         }
+
         /** The stage of the MetadataModel definition allowing to specify previewImages. */
         interface WithPreviewImages {
             /**
@@ -474,6 +495,7 @@ public interface MetadataModel {
              */
             WithCreate withPreviewImages(List<String> previewImages);
         }
+
         /** The stage of the MetadataModel definition allowing to specify previewImagesDark. */
         interface WithPreviewImagesDark {
             /**
@@ -487,6 +509,7 @@ public interface MetadataModel {
             WithCreate withPreviewImagesDark(List<String> previewImagesDark);
         }
     }
+
     /**
      * Begins update for the MetadataModel resource.
      *
@@ -531,6 +554,7 @@ public interface MetadataModel {
          */
         MetadataModel apply(Context context);
     }
+
     /** The MetadataModel update stages. */
     interface UpdateStages {
         /** The stage of the MetadataModel update allowing to specify etag. */
@@ -543,6 +567,7 @@ public interface MetadataModel {
              */
             Update withEtag(String etag);
         }
+
         /** The stage of the MetadataModel update allowing to specify contentId. */
         interface WithContentId {
             /**
@@ -557,6 +582,7 @@ public interface MetadataModel {
              */
             Update withContentId(String contentId);
         }
+
         /** The stage of the MetadataModel update allowing to specify parentId. */
         interface WithParentId {
             /**
@@ -569,6 +595,7 @@ public interface MetadataModel {
              */
             Update withParentId(String parentId);
         }
+
         /** The stage of the MetadataModel update allowing to specify version. */
         interface WithVersion {
             /**
@@ -583,6 +610,7 @@ public interface MetadataModel {
              */
             Update withVersion(String version);
         }
+
         /** The stage of the MetadataModel update allowing to specify kind. */
         interface WithKind {
             /**
@@ -593,6 +621,7 @@ public interface MetadataModel {
              */
             Update withKind(Kind kind);
         }
+
         /** The stage of the MetadataModel update allowing to specify source. */
         interface WithSource {
             /**
@@ -603,6 +632,7 @@ public interface MetadataModel {
              */
             Update withSource(MetadataSource source);
         }
+
         /** The stage of the MetadataModel update allowing to specify author. */
         interface WithAuthor {
             /**
@@ -613,6 +643,7 @@ public interface MetadataModel {
              */
             Update withAuthor(MetadataAuthor author);
         }
+
         /** The stage of the MetadataModel update allowing to specify support. */
         interface WithSupport {
             /**
@@ -623,6 +654,7 @@ public interface MetadataModel {
              */
             Update withSupport(MetadataSupport support);
         }
+
         /** The stage of the MetadataModel update allowing to specify dependencies. */
         interface WithDependencies {
             /**
@@ -637,6 +669,7 @@ public interface MetadataModel {
              */
             Update withDependencies(MetadataDependencies dependencies);
         }
+
         /** The stage of the MetadataModel update allowing to specify categories. */
         interface WithCategories {
             /**
@@ -647,6 +680,7 @@ public interface MetadataModel {
              */
             Update withCategories(MetadataCategories categories);
         }
+
         /** The stage of the MetadataModel update allowing to specify providers. */
         interface WithProviders {
             /**
@@ -657,6 +691,7 @@ public interface MetadataModel {
              */
             Update withProviders(List<String> providers);
         }
+
         /** The stage of the MetadataModel update allowing to specify firstPublishDate. */
         interface WithFirstPublishDate {
             /**
@@ -667,6 +702,7 @@ public interface MetadataModel {
              */
             Update withFirstPublishDate(LocalDate firstPublishDate);
         }
+
         /** The stage of the MetadataModel update allowing to specify lastPublishDate. */
         interface WithLastPublishDate {
             /**
@@ -677,6 +713,7 @@ public interface MetadataModel {
              */
             Update withLastPublishDate(LocalDate lastPublishDate);
         }
+
         /** The stage of the MetadataModel update allowing to specify customVersion. */
         interface WithCustomVersion {
             /**
@@ -687,6 +724,7 @@ public interface MetadataModel {
              */
             Update withCustomVersion(String customVersion);
         }
+
         /** The stage of the MetadataModel update allowing to specify contentSchemaVersion. */
         interface WithContentSchemaVersion {
             /**
@@ -699,17 +737,18 @@ public interface MetadataModel {
              */
             Update withContentSchemaVersion(String contentSchemaVersion);
         }
+
         /** The stage of the MetadataModel update allowing to specify icon. */
         interface WithIcon {
             /**
-             * Specifies the icon property: the icon identifier. this id can later be fetched from the solution
-             * template.
+             * Specifies the icon property: the icon identifier. this id can later be fetched from the content metadata.
              *
-             * @param icon the icon identifier. this id can later be fetched from the solution template.
+             * @param icon the icon identifier. this id can later be fetched from the content metadata.
              * @return the next definition stage.
              */
             Update withIcon(String icon);
         }
+
         /** The stage of the MetadataModel update allowing to specify threatAnalysisTactics. */
         interface WithThreatAnalysisTactics {
             /**
@@ -720,6 +759,7 @@ public interface MetadataModel {
              */
             Update withThreatAnalysisTactics(List<String> threatAnalysisTactics);
         }
+
         /** The stage of the MetadataModel update allowing to specify threatAnalysisTechniques. */
         interface WithThreatAnalysisTechniques {
             /**
@@ -732,6 +772,7 @@ public interface MetadataModel {
              */
             Update withThreatAnalysisTechniques(List<String> threatAnalysisTechniques);
         }
+
         /** The stage of the MetadataModel update allowing to specify previewImages. */
         interface WithPreviewImages {
             /**
@@ -743,6 +784,7 @@ public interface MetadataModel {
              */
             Update withPreviewImages(List<String> previewImages);
         }
+
         /** The stage of the MetadataModel update allowing to specify previewImagesDark. */
         interface WithPreviewImagesDark {
             /**
@@ -756,6 +798,7 @@ public interface MetadataModel {
             Update withPreviewImagesDark(List<String> previewImagesDark);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

@@ -50,17 +50,6 @@ public final class IncidentCommentsImpl implements IncidentComments {
         return Utils.mapPage(inner, inner1 -> new IncidentCommentImpl(inner1, this.manager()));
     }
 
-    public IncidentComment get(
-        String resourceGroupName, String workspaceName, String incidentId, String incidentCommentId) {
-        IncidentCommentInner inner =
-            this.serviceClient().get(resourceGroupName, workspaceName, incidentId, incidentCommentId);
-        if (inner != null) {
-            return new IncidentCommentImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<IncidentComment> getWithResponse(
         String resourceGroupName, String workspaceName, String incidentId, String incidentCommentId, Context context) {
         Response<IncidentCommentInner> inner =
@@ -78,8 +67,15 @@ public final class IncidentCommentsImpl implements IncidentComments {
         }
     }
 
-    public void delete(String resourceGroupName, String workspaceName, String incidentId, String incidentCommentId) {
-        this.serviceClient().delete(resourceGroupName, workspaceName, incidentId, incidentCommentId);
+    public IncidentComment get(
+        String resourceGroupName, String workspaceName, String incidentId, String incidentCommentId) {
+        IncidentCommentInner inner =
+            this.serviceClient().get(resourceGroupName, workspaceName, incidentId, incidentCommentId);
+        if (inner != null) {
+            return new IncidentCommentImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public Response<Void> deleteWithResponse(
@@ -87,6 +83,10 @@ public final class IncidentCommentsImpl implements IncidentComments {
         return this
             .serviceClient()
             .deleteWithResponse(resourceGroupName, workspaceName, incidentId, incidentCommentId, context);
+    }
+
+    public void delete(String resourceGroupName, String workspaceName, String incidentId, String incidentCommentId) {
+        this.serviceClient().delete(resourceGroupName, workspaceName, incidentId, incidentCommentId);
     }
 
     public IncidentComment getById(String id) {

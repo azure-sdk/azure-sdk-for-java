@@ -25,6 +25,10 @@ public final class MetadataModelInner extends ResourceWithEtag {
     @JsonProperty(value = "properties")
     private MetadataProperties innerProperties;
 
+    /** Creates an instance of MetadataModelInner class. */
+    public MetadataModelInner() {
+    }
+
     /**
      * Get the innerProperties property: Metadata properties.
      *
@@ -380,7 +384,7 @@ public final class MetadataModelInner extends ResourceWithEtag {
     }
 
     /**
-     * Get the icon property: the icon identifier. this id can later be fetched from the solution template.
+     * Get the icon property: the icon identifier. this id can later be fetched from the content metadata.
      *
      * @return the icon value.
      */
@@ -389,7 +393,7 @@ public final class MetadataModelInner extends ResourceWithEtag {
     }
 
     /**
-     * Set the icon property: the icon identifier. this id can later be fetched from the solution template.
+     * Set the icon property: the icon identifier. this id can later be fetched from the content metadata.
      *
      * @param icon the icon value to set.
      * @return the MetadataModelInner object itself.

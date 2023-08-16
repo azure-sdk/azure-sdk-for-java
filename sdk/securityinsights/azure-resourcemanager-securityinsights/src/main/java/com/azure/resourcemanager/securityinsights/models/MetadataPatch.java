@@ -19,6 +19,10 @@ public final class MetadataPatch extends ResourceWithEtag {
     @JsonProperty(value = "properties")
     private MetadataPropertiesPatch innerProperties;
 
+    /** Creates an instance of MetadataPatch class. */
+    public MetadataPatch() {
+    }
+
     /**
      * Get the innerProperties property: Metadata patch request body.
      *
@@ -374,7 +378,7 @@ public final class MetadataPatch extends ResourceWithEtag {
     }
 
     /**
-     * Get the icon property: the icon identifier. this id can later be fetched from the solution template.
+     * Get the icon property: the icon identifier. this id can later be fetched from the content metadata.
      *
      * @return the icon value.
      */
@@ -383,7 +387,7 @@ public final class MetadataPatch extends ResourceWithEtag {
     }
 
     /**
-     * Set the icon property: the icon identifier. this id can later be fetched from the solution template.
+     * Set the icon property: the icon identifier. this id can later be fetched from the content metadata.
      *
      * @param icon the icon value to set.
      * @return the MetadataPatch object itself.

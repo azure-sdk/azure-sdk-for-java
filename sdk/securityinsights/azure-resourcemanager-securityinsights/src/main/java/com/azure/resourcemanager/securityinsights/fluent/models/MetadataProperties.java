@@ -109,7 +109,7 @@ public final class MetadataProperties {
     private String contentSchemaVersion;
 
     /*
-     * the icon identifier. this id can later be fetched from the solution template
+     * the icon identifier. this id can later be fetched from the content metadata
      */
     @JsonProperty(value = "icon")
     private String icon;
@@ -137,6 +137,10 @@ public final class MetadataProperties {
      */
     @JsonProperty(value = "previewImagesDark")
     private List<String> previewImagesDark;
+
+    /** Creates an instance of MetadataProperties class. */
+    public MetadataProperties() {
+    }
 
     /**
      * Get the contentId property: Static ID for the content. Used to identify dependencies and content from solutions
@@ -435,7 +439,7 @@ public final class MetadataProperties {
     }
 
     /**
-     * Get the icon property: the icon identifier. this id can later be fetched from the solution template.
+     * Get the icon property: the icon identifier. this id can later be fetched from the content metadata.
      *
      * @return the icon value.
      */
@@ -444,7 +448,7 @@ public final class MetadataProperties {
     }
 
     /**
-     * Set the icon property: the icon identifier. this id can later be fetched from the solution template.
+     * Set the icon property: the icon identifier. this id can later be fetched from the content metadata.
      *
      * @param icon the icon value to set.
      * @return the MetadataProperties object itself.
