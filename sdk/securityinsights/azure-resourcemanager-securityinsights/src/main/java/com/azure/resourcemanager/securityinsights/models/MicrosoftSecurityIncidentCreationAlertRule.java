@@ -24,6 +24,10 @@ public final class MicrosoftSecurityIncidentCreationAlertRule extends AlertRuleI
     @JsonProperty(value = "properties")
     private MicrosoftSecurityIncidentCreationAlertRuleProperties innerProperties;
 
+    /** Creates an instance of MicrosoftSecurityIncidentCreationAlertRule class. */
+    public MicrosoftSecurityIncidentCreationAlertRule() {
+    }
+
     /**
      * Get the innerProperties property: MicrosoftSecurityIncidentCreation rule properties.
      *

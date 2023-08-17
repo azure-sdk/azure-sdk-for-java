@@ -21,7 +21,6 @@ import com.azure.resourcemanager.securityinsights.models.IncidentOwnerInfo;
 import com.azure.resourcemanager.securityinsights.models.IncidentSeverity;
 import com.azure.resourcemanager.securityinsights.models.IncidentStatus;
 import com.azure.resourcemanager.securityinsights.models.TeamInformation;
-import com.azure.resourcemanager.securityinsights.models.TeamProperties;
 import java.time.OffsetDateTime;
 import java.util.Collections;
 import java.util.List;
@@ -51,40 +50,36 @@ public final class IncidentImpl implements Incident, Incident.Definition, Incide
         return this.innerModel().systemData();
     }
 
-    public IncidentAdditionalData additionalData() {
-        return this.innerModel().additionalData();
-    }
-
-    public IncidentClassification classification() {
-        return this.innerModel().classification();
-    }
-
-    public String classificationComment() {
-        return this.innerModel().classificationComment();
-    }
-
-    public IncidentClassificationReason classificationReason() {
-        return this.innerModel().classificationReason();
-    }
-
-    public OffsetDateTime createdTimeUtc() {
-        return this.innerModel().createdTimeUtc();
+    public String title() {
+        return this.innerModel().title();
     }
 
     public String description() {
         return this.innerModel().description();
     }
 
-    public OffsetDateTime firstActivityTimeUtc() {
-        return this.innerModel().firstActivityTimeUtc();
+    public IncidentSeverity severity() {
+        return this.innerModel().severity();
     }
 
-    public String incidentUrl() {
-        return this.innerModel().incidentUrl();
+    public IncidentStatus status() {
+        return this.innerModel().status();
     }
 
-    public Integer incidentNumber() {
-        return this.innerModel().incidentNumber();
+    public IncidentClassification classification() {
+        return this.innerModel().classification();
+    }
+
+    public IncidentClassificationReason classificationReason() {
+        return this.innerModel().classificationReason();
+    }
+
+    public String classificationComment() {
+        return this.innerModel().classificationComment();
+    }
+
+    public IncidentOwnerInfo owner() {
+        return this.innerModel().owner();
     }
 
     public List<IncidentLabel> labels() {
@@ -96,12 +91,8 @@ public final class IncidentImpl implements Incident, Incident.Definition, Incide
         }
     }
 
-    public String providerName() {
-        return this.innerModel().providerName();
-    }
-
-    public String providerIncidentId() {
-        return this.innerModel().providerIncidentId();
+    public OffsetDateTime firstActivityTimeUtc() {
+        return this.innerModel().firstActivityTimeUtc();
     }
 
     public OffsetDateTime lastActivityTimeUtc() {
@@ -112,8 +103,16 @@ public final class IncidentImpl implements Incident, Incident.Definition, Incide
         return this.innerModel().lastModifiedTimeUtc();
     }
 
-    public IncidentOwnerInfo owner() {
-        return this.innerModel().owner();
+    public OffsetDateTime createdTimeUtc() {
+        return this.innerModel().createdTimeUtc();
+    }
+
+    public Integer incidentNumber() {
+        return this.innerModel().incidentNumber();
+    }
+
+    public IncidentAdditionalData additionalData() {
+        return this.innerModel().additionalData();
     }
 
     public List<String> relatedAnalyticRuleIds() {
@@ -125,12 +124,16 @@ public final class IncidentImpl implements Incident, Incident.Definition, Incide
         }
     }
 
-    public IncidentSeverity severity() {
-        return this.innerModel().severity();
+    public String incidentUrl() {
+        return this.innerModel().incidentUrl();
     }
 
-    public IncidentStatus status() {
-        return this.innerModel().status();
+    public String providerName() {
+        return this.innerModel().providerName();
+    }
+
+    public String providerIncidentId() {
+        return this.innerModel().providerIncidentId();
     }
 
     public TeamInformation teamInformation() {
@@ -140,10 +143,6 @@ public final class IncidentImpl implements Incident, Incident.Definition, Incide
         } else {
             return null;
         }
-    }
-
-    public String title() {
-        return this.innerModel().title();
     }
 
     public String resourceGroupName() {
@@ -251,26 +250,22 @@ public final class IncidentImpl implements Incident, Incident.Definition, Incide
         return this;
     }
 
-    public TeamInformation createTeam(TeamProperties teamProperties) {
-        return serviceManager.incidents().createTeam(resourceGroupName, workspaceName, incidentId, teamProperties);
-    }
-
-    public Response<TeamInformation> createTeamWithResponse(TeamProperties teamProperties, Context context) {
+    public Response<TeamInformation> createTeamWithResponse(TeamInformationInner teamProperties, Context context) {
         return serviceManager
             .incidents()
             .createTeamWithResponse(resourceGroupName, workspaceName, incidentId, teamProperties, context);
     }
 
-    public IncidentAlertList listAlerts() {
-        return serviceManager.incidents().listAlerts(resourceGroupName, workspaceName, incidentId);
+    public TeamInformation createTeam(TeamInformationInner teamProperties) {
+        return serviceManager.incidents().createTeam(resourceGroupName, workspaceName, incidentId, teamProperties);
     }
 
     public Response<IncidentAlertList> listAlertsWithResponse(Context context) {
         return serviceManager.incidents().listAlertsWithResponse(resourceGroupName, workspaceName, incidentId, context);
     }
 
-    public IncidentBookmarkList listBookmarks() {
-        return serviceManager.incidents().listBookmarks(resourceGroupName, workspaceName, incidentId);
+    public IncidentAlertList listAlerts() {
+        return serviceManager.incidents().listAlerts(resourceGroupName, workspaceName, incidentId);
     }
 
     public Response<IncidentBookmarkList> listBookmarksWithResponse(Context context) {
@@ -279,8 +274,8 @@ public final class IncidentImpl implements Incident, Incident.Definition, Incide
             .listBookmarksWithResponse(resourceGroupName, workspaceName, incidentId, context);
     }
 
-    public IncidentEntitiesResponse listEntities() {
-        return serviceManager.incidents().listEntities(resourceGroupName, workspaceName, incidentId);
+    public IncidentBookmarkList listBookmarks() {
+        return serviceManager.incidents().listBookmarks(resourceGroupName, workspaceName, incidentId);
     }
 
     public Response<IncidentEntitiesResponse> listEntitiesWithResponse(Context context) {
@@ -289,58 +284,22 @@ public final class IncidentImpl implements Incident, Incident.Definition, Incide
             .listEntitiesWithResponse(resourceGroupName, workspaceName, incidentId, context);
     }
 
+    public IncidentEntitiesResponse listEntities() {
+        return serviceManager.incidents().listEntities(resourceGroupName, workspaceName, incidentId);
+    }
+
     public IncidentImpl withEtag(String etag) {
         this.innerModel().withEtag(etag);
         return this;
     }
 
-    public IncidentImpl withClassification(IncidentClassification classification) {
-        this.innerModel().withClassification(classification);
-        return this;
-    }
-
-    public IncidentImpl withClassificationComment(String classificationComment) {
-        this.innerModel().withClassificationComment(classificationComment);
-        return this;
-    }
-
-    public IncidentImpl withClassificationReason(IncidentClassificationReason classificationReason) {
-        this.innerModel().withClassificationReason(classificationReason);
+    public IncidentImpl withTitle(String title) {
+        this.innerModel().withTitle(title);
         return this;
     }
 
     public IncidentImpl withDescription(String description) {
         this.innerModel().withDescription(description);
-        return this;
-    }
-
-    public IncidentImpl withFirstActivityTimeUtc(OffsetDateTime firstActivityTimeUtc) {
-        this.innerModel().withFirstActivityTimeUtc(firstActivityTimeUtc);
-        return this;
-    }
-
-    public IncidentImpl withLabels(List<IncidentLabel> labels) {
-        this.innerModel().withLabels(labels);
-        return this;
-    }
-
-    public IncidentImpl withProviderName(String providerName) {
-        this.innerModel().withProviderName(providerName);
-        return this;
-    }
-
-    public IncidentImpl withProviderIncidentId(String providerIncidentId) {
-        this.innerModel().withProviderIncidentId(providerIncidentId);
-        return this;
-    }
-
-    public IncidentImpl withLastActivityTimeUtc(OffsetDateTime lastActivityTimeUtc) {
-        this.innerModel().withLastActivityTimeUtc(lastActivityTimeUtc);
-        return this;
-    }
-
-    public IncidentImpl withOwner(IncidentOwnerInfo owner) {
-        this.innerModel().withOwner(owner);
         return this;
     }
 
@@ -354,13 +313,43 @@ public final class IncidentImpl implements Incident, Incident.Definition, Incide
         return this;
     }
 
-    public IncidentImpl withTeamInformation(TeamInformationInner teamInformation) {
-        this.innerModel().withTeamInformation(teamInformation);
+    public IncidentImpl withClassification(IncidentClassification classification) {
+        this.innerModel().withClassification(classification);
         return this;
     }
 
-    public IncidentImpl withTitle(String title) {
-        this.innerModel().withTitle(title);
+    public IncidentImpl withClassificationReason(IncidentClassificationReason classificationReason) {
+        this.innerModel().withClassificationReason(classificationReason);
+        return this;
+    }
+
+    public IncidentImpl withClassificationComment(String classificationComment) {
+        this.innerModel().withClassificationComment(classificationComment);
+        return this;
+    }
+
+    public IncidentImpl withOwner(IncidentOwnerInfo owner) {
+        this.innerModel().withOwner(owner);
+        return this;
+    }
+
+    public IncidentImpl withLabels(List<IncidentLabel> labels) {
+        this.innerModel().withLabels(labels);
+        return this;
+    }
+
+    public IncidentImpl withFirstActivityTimeUtc(OffsetDateTime firstActivityTimeUtc) {
+        this.innerModel().withFirstActivityTimeUtc(firstActivityTimeUtc);
+        return this;
+    }
+
+    public IncidentImpl withLastActivityTimeUtc(OffsetDateTime lastActivityTimeUtc) {
+        this.innerModel().withLastActivityTimeUtc(lastActivityTimeUtc);
+        return this;
+    }
+
+    public IncidentImpl withTeamInformation(TeamInformationInner teamInformation) {
+        this.innerModel().withTeamInformation(teamInformation);
         return this;
     }
 }

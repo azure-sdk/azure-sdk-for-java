@@ -78,11 +78,13 @@ public interface ActionResponse {
     interface Definition
         extends DefinitionStages.Blank, DefinitionStages.WithParentResource, DefinitionStages.WithCreate {
     }
+
     /** The ActionResponse definition stages. */
     interface DefinitionStages {
         /** The first stage of the ActionResponse definition. */
         interface Blank extends WithParentResource {
         }
+
         /** The stage of the ActionResponse definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -95,6 +97,7 @@ public interface ActionResponse {
              */
             WithCreate withExistingAlertRule(String resourceGroupName, String workspaceName, String ruleId);
         }
+
         /**
          * The stage of the ActionResponse definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
@@ -118,6 +121,7 @@ public interface ActionResponse {
              */
             ActionResponse create(Context context);
         }
+
         /** The stage of the ActionResponse definition allowing to specify etag. */
         interface WithEtag {
             /**
@@ -128,6 +132,7 @@ public interface ActionResponse {
              */
             WithCreate withEtag(String etag);
         }
+
         /** The stage of the ActionResponse definition allowing to specify triggerUri. */
         interface WithTriggerUri {
             /**
@@ -138,6 +143,7 @@ public interface ActionResponse {
              */
             WithCreate withTriggerUri(String triggerUri);
         }
+
         /** The stage of the ActionResponse definition allowing to specify logicAppResourceId. */
         interface WithLogicAppResourceId {
             /**
@@ -151,6 +157,7 @@ public interface ActionResponse {
             WithCreate withLogicAppResourceId(String logicAppResourceId);
         }
     }
+
     /**
      * Begins update for the ActionResponse resource.
      *
@@ -175,6 +182,7 @@ public interface ActionResponse {
          */
         ActionResponse apply(Context context);
     }
+
     /** The ActionResponse update stages. */
     interface UpdateStages {
         /** The stage of the ActionResponse update allowing to specify etag. */
@@ -187,6 +195,7 @@ public interface ActionResponse {
              */
             Update withEtag(String etag);
         }
+
         /** The stage of the ActionResponse update allowing to specify triggerUri. */
         interface WithTriggerUri {
             /**
@@ -197,6 +206,7 @@ public interface ActionResponse {
              */
             Update withTriggerUri(String triggerUri);
         }
+
         /** The stage of the ActionResponse update allowing to specify logicAppResourceId. */
         interface WithLogicAppResourceId {
             /**
@@ -210,6 +220,7 @@ public interface ActionResponse {
             Update withLogicAppResourceId(String logicAppResourceId);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

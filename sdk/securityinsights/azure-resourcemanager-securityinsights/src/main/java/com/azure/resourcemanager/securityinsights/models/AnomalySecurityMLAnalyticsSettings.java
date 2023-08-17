@@ -26,6 +26,10 @@ public final class AnomalySecurityMLAnalyticsSettings extends SecurityMLAnalytic
     @JsonProperty(value = "properties")
     private AnomalySecurityMLAnalyticsSettingsProperties innerProperties;
 
+    /** Creates an instance of AnomalySecurityMLAnalyticsSettings class. */
+    public AnomalySecurityMLAnalyticsSettings() {
+    }
+
     /**
      * Get the innerProperties property: Anomaly Security ML Analytics Settings properties.
      *

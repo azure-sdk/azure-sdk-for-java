@@ -35,6 +35,10 @@ public final class InsightQueryItemPropertiesTableQueryQueriesDefinitionsItem {
     @JsonProperty(value = "linkColumnsDefinitions")
     private List<InsightQueryItemPropertiesTableQueryQueriesDefinitionsPropertiesItemsItem> linkColumnsDefinitions;
 
+    /** Creates an instance of InsightQueryItemPropertiesTableQueryQueriesDefinitionsItem class. */
+    public InsightQueryItemPropertiesTableQueryQueriesDefinitionsItem() {
+    }
+
     /**
      * Get the filter property: Insight column header.
      *
