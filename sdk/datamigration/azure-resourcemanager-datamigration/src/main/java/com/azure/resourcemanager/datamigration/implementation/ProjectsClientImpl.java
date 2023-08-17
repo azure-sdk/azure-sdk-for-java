@@ -61,11 +61,10 @@ public final class ProjectsClientImpl implements ProjectsClient {
     public interface ProjectsService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.DataMigration/services"
-                + "/{serviceName}/projects")
+            "/subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.DataMigration/services/{serviceName}/projects")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ProjectList>> listByResourceGroup(
+        Mono<Response<ProjectList>> list(
             @HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("groupName") String groupName,
@@ -76,8 +75,7 @@ public final class ProjectsClientImpl implements ProjectsClient {
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.DataMigration/services"
-                + "/{serviceName}/projects/{projectName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.DataMigration/services/{serviceName}/projects/{projectName}")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ProjectInner>> createOrUpdate(
@@ -93,8 +91,7 @@ public final class ProjectsClientImpl implements ProjectsClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.DataMigration/services"
-                + "/{serviceName}/projects/{projectName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.DataMigration/services/{serviceName}/projects/{projectName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ProjectInner>> get(
@@ -109,8 +106,7 @@ public final class ProjectsClientImpl implements ProjectsClient {
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.DataMigration/services"
-                + "/{serviceName}/projects/{projectName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.DataMigration/services/{serviceName}/projects/{projectName}")
         @ExpectedResponses({200, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Void>> delete(
@@ -126,8 +122,7 @@ public final class ProjectsClientImpl implements ProjectsClient {
 
         @Headers({"Content-Type: application/json"})
         @Patch(
-            "/subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.DataMigration/services"
-                + "/{serviceName}/projects/{projectName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.DataMigration/services/{serviceName}/projects/{projectName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ProjectInner>> update(
@@ -145,7 +140,7 @@ public final class ProjectsClientImpl implements ProjectsClient {
         @Get("{nextLink}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ProjectList>> listByResourceGroupNext(
+        Mono<Response<ProjectList>> listNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink,
             @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept,
@@ -167,7 +162,7 @@ public final class ProjectsClientImpl implements ProjectsClient {
      *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ProjectInner>> listByResourceGroupSinglePageAsync(String groupName, String serviceName) {
+    private Mono<PagedResponse<ProjectInner>> listSinglePageAsync(String groupName, String serviceName) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -191,7 +186,7 @@ public final class ProjectsClientImpl implements ProjectsClient {
             .withContext(
                 context ->
                     service
-                        .listByResourceGroup(
+                        .list(
                             this.client.getEndpoint(),
                             this.client.getSubscriptionId(),
                             groupName,
@@ -227,7 +222,7 @@ public final class ProjectsClientImpl implements ProjectsClient {
      *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ProjectInner>> listByResourceGroupSinglePageAsync(
+    private Mono<PagedResponse<ProjectInner>> listSinglePageAsync(
         String groupName, String serviceName, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -250,7 +245,7 @@ public final class ProjectsClientImpl implements ProjectsClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByResourceGroup(
+            .list(
                 this.client.getEndpoint(),
                 this.client.getSubscriptionId(),
                 groupName,
@@ -283,10 +278,9 @@ public final class ProjectsClientImpl implements ProjectsClient {
      * @return oData page of project resources as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<ProjectInner> listByResourceGroupAsync(String groupName, String serviceName) {
+    private PagedFlux<ProjectInner> listAsync(String groupName, String serviceName) {
         return new PagedFlux<>(
-            () -> listByResourceGroupSinglePageAsync(groupName, serviceName),
-            nextLink -> listByResourceGroupNextSinglePageAsync(nextLink));
+            () -> listSinglePageAsync(groupName, serviceName), nextLink -> listNextSinglePageAsync(nextLink));
     }
 
     /**
@@ -304,10 +298,10 @@ public final class ProjectsClientImpl implements ProjectsClient {
      * @return oData page of project resources as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<ProjectInner> listByResourceGroupAsync(String groupName, String serviceName, Context context) {
+    private PagedFlux<ProjectInner> listAsync(String groupName, String serviceName, Context context) {
         return new PagedFlux<>(
-            () -> listByResourceGroupSinglePageAsync(groupName, serviceName, context),
-            nextLink -> listByResourceGroupNextSinglePageAsync(nextLink, context));
+            () -> listSinglePageAsync(groupName, serviceName, context),
+            nextLink -> listNextSinglePageAsync(nextLink, context));
     }
 
     /**
@@ -324,8 +318,8 @@ public final class ProjectsClientImpl implements ProjectsClient {
      * @return oData page of project resources as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<ProjectInner> listByResourceGroup(String groupName, String serviceName) {
-        return new PagedIterable<>(listByResourceGroupAsync(groupName, serviceName));
+    public PagedIterable<ProjectInner> list(String groupName, String serviceName) {
+        return new PagedIterable<>(listAsync(groupName, serviceName));
     }
 
     /**
@@ -343,8 +337,8 @@ public final class ProjectsClientImpl implements ProjectsClient {
      * @return oData page of project resources as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<ProjectInner> listByResourceGroup(String groupName, String serviceName, Context context) {
-        return new PagedIterable<>(listByResourceGroupAsync(groupName, serviceName, context));
+    public PagedIterable<ProjectInner> list(String groupName, String serviceName, Context context) {
+        return new PagedIterable<>(listAsync(groupName, serviceName, context));
     }
 
     /**
@@ -1074,7 +1068,7 @@ public final class ProjectsClientImpl implements ProjectsClient {
      *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ProjectInner>> listByResourceGroupNextSinglePageAsync(String nextLink) {
+    private Mono<PagedResponse<ProjectInner>> listNextSinglePageAsync(String nextLink) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
@@ -1086,8 +1080,7 @@ public final class ProjectsClientImpl implements ProjectsClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.listByResourceGroupNext(nextLink, this.client.getEndpoint(), accept, context))
+            .withContext(context -> service.listNext(nextLink, this.client.getEndpoint(), accept, context))
             .<PagedResponse<ProjectInner>>map(
                 res ->
                     new PagedResponseBase<>(
@@ -1113,7 +1106,7 @@ public final class ProjectsClientImpl implements ProjectsClient {
      *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ProjectInner>> listByResourceGroupNextSinglePageAsync(String nextLink, Context context) {
+    private Mono<PagedResponse<ProjectInner>> listNextSinglePageAsync(String nextLink, Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
@@ -1126,7 +1119,7 @@ public final class ProjectsClientImpl implements ProjectsClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByResourceGroupNext(nextLink, this.client.getEndpoint(), accept, context)
+            .listNext(nextLink, this.client.getEndpoint(), accept, context)
             .map(
                 res ->
                     new PagedResponseBase<>(
