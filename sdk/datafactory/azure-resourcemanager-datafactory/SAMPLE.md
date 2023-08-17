@@ -5,6 +5,16 @@
 
 - [QueryByPipelineRun](#activityruns_querybypipelinerun)
 
+## ChangeDataCapture
+
+- [CreateOrUpdate](#changedatacapture_createorupdate)
+- [Delete](#changedatacapture_delete)
+- [Get](#changedatacapture_get)
+- [ListByFactory](#changedatacapture_listbyfactory)
+- [Start](#changedatacapture_start)
+- [Status](#changedatacapture_status)
+- [Stop](#changedatacapture_stop)
+
 ## CredentialOperations
 
 - [CreateOrUpdate](#credentialoperations_createorupdate)
@@ -188,6 +198,219 @@ public final class ActivityRunsQueryByPipelineRunSamples {
                 new RunFilterParameters()
                     .withLastUpdatedAfter(OffsetDateTime.parse("2018-06-16T00:36:44.3345758Z"))
                     .withLastUpdatedBefore(OffsetDateTime.parse("2018-06-16T00:49:48.3686473Z")),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ChangeDataCapture_CreateOrUpdate
+
+```java
+import com.azure.resourcemanager.datafactory.models.ChangeDataCaptureResource;
+import com.azure.resourcemanager.datafactory.models.MapperPolicy;
+import com.azure.resourcemanager.datafactory.models.MapperSourceConnectionsInfo;
+import com.azure.resourcemanager.datafactory.models.MapperTargetConnectionsInfo;
+import java.util.List;
+
+/** Samples for ChangeDataCapture CreateOrUpdate. */
+public final class ChangeDataCaptureCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file: specification/datafactory/resource-manager/Microsoft.DataFactory/stable/2018-06-01/examples/ChangeDataCapture_Create.json
+     */
+    /**
+     * Sample code: ChangeDataCapture_Create.
+     *
+     * @param manager Entry point to DataFactoryManager.
+     */
+    public static void changeDataCaptureCreate(com.azure.resourcemanager.datafactory.DataFactoryManager manager) {
+        manager
+            .changeDataCaptures()
+            .define("exampleChangeDataCapture")
+            .withExistingFactory("exampleResourceGroup", "exampleFactoryName")
+            .withSourceConnectionsInfo((List<MapperSourceConnectionsInfo>) null)
+            .withTargetConnectionsInfo((List<MapperTargetConnectionsInfo>) null)
+            .withPolicy((MapperPolicy) null)
+            .withDescription(
+                "Sample demo change data capture to transfer data from delimited (csv) to Azure SQL Database with"
+                    + " automapped and non-automapped mappings.")
+            .withAllowVNetOverride(false)
+            .create();
+    }
+
+    /*
+     * x-ms-original-file: specification/datafactory/resource-manager/Microsoft.DataFactory/stable/2018-06-01/examples/ChangeDataCapture_Update.json
+     */
+    /**
+     * Sample code: ChangeDataCapture_Update.
+     *
+     * @param manager Entry point to DataFactoryManager.
+     */
+    public static void changeDataCaptureUpdate(com.azure.resourcemanager.datafactory.DataFactoryManager manager) {
+        ChangeDataCaptureResource resource =
+            manager
+                .changeDataCaptures()
+                .getWithResponse(
+                    "exampleResourceGroup",
+                    "exampleFactoryName",
+                    "exampleChangeDataCapture",
+                    null,
+                    com.azure.core.util.Context.NONE)
+                .getValue();
+        resource
+            .update()
+            .withDescription(
+                "Sample demo change data capture to transfer data from delimited (csv) to Azure SQL Database. Updating"
+                    + " table mappings.")
+            .withAllowVNetOverride(false)
+            .withStatus("Stopped")
+            .apply();
+    }
+}
+```
+
+### ChangeDataCapture_Delete
+
+```java
+/** Samples for ChangeDataCapture Delete. */
+public final class ChangeDataCaptureDeleteSamples {
+    /*
+     * x-ms-original-file: specification/datafactory/resource-manager/Microsoft.DataFactory/stable/2018-06-01/examples/ChangeDataCapture_Delete.json
+     */
+    /**
+     * Sample code: ChangeDataCapture_Delete.
+     *
+     * @param manager Entry point to DataFactoryManager.
+     */
+    public static void changeDataCaptureDelete(com.azure.resourcemanager.datafactory.DataFactoryManager manager) {
+        manager
+            .changeDataCaptures()
+            .deleteWithResponse(
+                "exampleResourceGroup",
+                "exampleFactoryName",
+                "exampleChangeDataCapture",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ChangeDataCapture_Get
+
+```java
+/** Samples for ChangeDataCapture Get. */
+public final class ChangeDataCaptureGetSamples {
+    /*
+     * x-ms-original-file: specification/datafactory/resource-manager/Microsoft.DataFactory/stable/2018-06-01/examples/ChangeDataCapture_Get.json
+     */
+    /**
+     * Sample code: ChangeDataCapture_Get.
+     *
+     * @param manager Entry point to DataFactoryManager.
+     */
+    public static void changeDataCaptureGet(com.azure.resourcemanager.datafactory.DataFactoryManager manager) {
+        manager
+            .changeDataCaptures()
+            .getWithResponse(
+                "exampleResourceGroup",
+                "exampleFactoryName",
+                "exampleChangeDataCapture",
+                null,
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ChangeDataCapture_ListByFactory
+
+```java
+/** Samples for ChangeDataCapture ListByFactory. */
+public final class ChangeDataCaptureListByFactorySamples {
+    /*
+     * x-ms-original-file: specification/datafactory/resource-manager/Microsoft.DataFactory/stable/2018-06-01/examples/ChangeDataCapture_ListByFactory.json
+     */
+    /**
+     * Sample code: ChangeDataCapture_ListByFactory.
+     *
+     * @param manager Entry point to DataFactoryManager.
+     */
+    public static void changeDataCaptureListByFactory(
+        com.azure.resourcemanager.datafactory.DataFactoryManager manager) {
+        manager
+            .changeDataCaptures()
+            .listByFactory("exampleResourceGroup", "exampleFactoryName", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ChangeDataCapture_Start
+
+```java
+/** Samples for ChangeDataCapture Start. */
+public final class ChangeDataCaptureStartSamples {
+    /*
+     * x-ms-original-file: specification/datafactory/resource-manager/Microsoft.DataFactory/stable/2018-06-01/examples/ChangeDataCapture_Start.json
+     */
+    /**
+     * Sample code: ChangeDataCapture_Start.
+     *
+     * @param manager Entry point to DataFactoryManager.
+     */
+    public static void changeDataCaptureStart(com.azure.resourcemanager.datafactory.DataFactoryManager manager) {
+        manager
+            .changeDataCaptures()
+            .startWithResponse(
+                "exampleResourceGroup",
+                "exampleFactoryName",
+                "exampleChangeDataCapture",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ChangeDataCapture_Status
+
+```java
+/** Samples for ChangeDataCapture Status. */
+public final class ChangeDataCaptureStatusSamples {
+    /*
+     * x-ms-original-file: specification/datafactory/resource-manager/Microsoft.DataFactory/stable/2018-06-01/examples/ChangeDataCapture_Status.json
+     */
+    /**
+     * Sample code: ChangeDataCapture_Start.
+     *
+     * @param manager Entry point to DataFactoryManager.
+     */
+    public static void changeDataCaptureStart(com.azure.resourcemanager.datafactory.DataFactoryManager manager) {
+        manager
+            .changeDataCaptures()
+            .statusWithResponse(
+                "exampleResourceGroup",
+                "exampleFactoryName",
+                "exampleChangeDataCapture",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ChangeDataCapture_Stop
+
+```java
+/** Samples for ChangeDataCapture Stop. */
+public final class ChangeDataCaptureStopSamples {
+    /*
+     * x-ms-original-file: specification/datafactory/resource-manager/Microsoft.DataFactory/stable/2018-06-01/examples/ChangeDataCapture_Stop.json
+     */
+    /**
+     * Sample code: ChangeDataCapture_Stop.
+     *
+     * @param manager Entry point to DataFactoryManager.
+     */
+    public static void changeDataCaptureStop(com.azure.resourcemanager.datafactory.DataFactoryManager manager) {
+        manager
+            .changeDataCaptures()
+            .stopWithResponse(
+                "exampleResourceGroup",
+                "exampleFactoryName",
+                "exampleChangeDataCapture",
                 com.azure.core.util.Context.NONE);
     }
 }
