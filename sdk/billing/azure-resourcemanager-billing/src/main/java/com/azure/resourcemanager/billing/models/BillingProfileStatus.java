@@ -19,6 +19,15 @@ public final class BillingProfileStatus extends ExpandableStringEnum<BillingProf
     /** Static value Warned for BillingProfileStatus. */
     public static final BillingProfileStatus WARNED = fromString("Warned");
 
+    /** Static value Deleted for BillingProfileStatus. */
+    public static final BillingProfileStatus DELETED = fromString("Deleted");
+
+    /** Static value UnderReview for BillingProfileStatus. */
+    public static final BillingProfileStatus UNDER_REVIEW = fromString("UnderReview");
+
+    /** Static value Unknown for BillingProfileStatus. */
+    public static final BillingProfileStatus UNKNOWN = fromString("Unknown");
+
     /**
      * Creates a new instance of BillingProfileStatus value.
      *
