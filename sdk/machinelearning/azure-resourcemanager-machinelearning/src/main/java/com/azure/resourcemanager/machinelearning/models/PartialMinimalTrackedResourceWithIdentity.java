@@ -10,7 +10,7 @@ import java.util.Map;
 
 /** Strictly used in update requests. */
 @Fluent
-public class PartialMinimalTrackedResourceWithIdentity extends PartialMinimalTrackedResource {
+public final class PartialMinimalTrackedResourceWithIdentity extends PartialMinimalTrackedResource {
     /*
      * Managed service identity (system assigned and/or user assigned identities)
      */
