@@ -20,7 +20,7 @@ public final class SecurityAssessmentPartnerData {
     /*
      * secret to authenticate the partner - write only
      */
-    @JsonProperty(value = "secret", required = true)
+    @JsonProperty(value = "secret")
     private String secret;
 
     /** Creates an instance of SecurityAssessmentPartnerData class. */
