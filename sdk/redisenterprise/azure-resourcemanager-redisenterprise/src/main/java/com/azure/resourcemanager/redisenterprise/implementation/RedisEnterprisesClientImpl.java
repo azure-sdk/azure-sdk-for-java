@@ -14,6 +14,7 @@ import com.azure.core.annotation.Host;
 import com.azure.core.annotation.HostParam;
 import com.azure.core.annotation.Patch;
 import com.azure.core.annotation.PathParam;
+import com.azure.core.annotation.Post;
 import com.azure.core.annotation.Put;
 import com.azure.core.annotation.QueryParam;
 import com.azure.core.annotation.ReturnType;
@@ -34,6 +35,7 @@ import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.redisenterprise.fluent.RedisEnterprisesClient;
 import com.azure.resourcemanager.redisenterprise.fluent.models.ClusterInner;
+import com.azure.resourcemanager.redisenterprise.models.CheckNameAvailabilityParameters;
 import com.azure.resourcemanager.redisenterprise.models.ClusterList;
 import com.azure.resourcemanager.redisenterprise.models.ClusterUpdate;
 import java.nio.ByteBuffer;
@@ -145,6 +147,18 @@ public final class RedisEnterprisesClientImpl implements RedisEnterprisesClient 
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
             @PathParam("subscriptionId") String subscriptionId,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
+        @Post("/subscriptions/{subscriptionId}/providers/Microsoft.Cache/checkNameAvailability")
+        @ExpectedResponses({204})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Void>> checkNameAvailability(
+            @HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion,
+            @PathParam("subscriptionId") String subscriptionId,
+            @BodyParam("application/json") CheckNameAvailabilityParameters parameters,
             @HeaderParam("Accept") String accept,
             Context context);
 
@@ -1370,6 +1384,139 @@ public final class RedisEnterprisesClientImpl implements RedisEnterprisesClient 
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ClusterInner> list(Context context) {
         return new PagedIterable<>(listAsync(context));
+    }
+
+    /**
+     * Checks that the Redis Enterprise cache name is valid and is not already in use.
+     *
+     * @param parameters Parameters supplied to the CheckNameAvailability Redis operation. The only supported resource
+     *     type is 'Microsoft.Cache/redisenterprise'.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Void>> checkNameAvailabilityWithResponseAsync(CheckNameAvailabilityParameters parameters) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (parameters == null) {
+            return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
+        } else {
+            parameters.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service
+                        .checkNameAvailability(
+                            this.client.getEndpoint(),
+                            this.client.getApiVersion(),
+                            this.client.getSubscriptionId(),
+                            parameters,
+                            accept,
+                            context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Checks that the Redis Enterprise cache name is valid and is not already in use.
+     *
+     * @param parameters Parameters supplied to the CheckNameAvailability Redis operation. The only supported resource
+     *     type is 'Microsoft.Cache/redisenterprise'.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Void>> checkNameAvailabilityWithResponseAsync(
+        CheckNameAvailabilityParameters parameters, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (parameters == null) {
+            return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
+        } else {
+            parameters.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .checkNameAvailability(
+                this.client.getEndpoint(),
+                this.client.getApiVersion(),
+                this.client.getSubscriptionId(),
+                parameters,
+                accept,
+                context);
+    }
+
+    /**
+     * Checks that the Redis Enterprise cache name is valid and is not already in use.
+     *
+     * @param parameters Parameters supplied to the CheckNameAvailability Redis operation. The only supported resource
+     *     type is 'Microsoft.Cache/redisenterprise'.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Void> checkNameAvailabilityAsync(CheckNameAvailabilityParameters parameters) {
+        return checkNameAvailabilityWithResponseAsync(parameters).flatMap(ignored -> Mono.empty());
+    }
+
+    /**
+     * Checks that the Redis Enterprise cache name is valid and is not already in use.
+     *
+     * @param parameters Parameters supplied to the CheckNameAvailability Redis operation. The only supported resource
+     *     type is 'Microsoft.Cache/redisenterprise'.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<Void> checkNameAvailabilityWithResponse(
+        CheckNameAvailabilityParameters parameters, Context context) {
+        return checkNameAvailabilityWithResponseAsync(parameters, context).block();
+    }
+
+    /**
+     * Checks that the Redis Enterprise cache name is valid and is not already in use.
+     *
+     * @param parameters Parameters supplied to the CheckNameAvailability Redis operation. The only supported resource
+     *     type is 'Microsoft.Cache/redisenterprise'.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void checkNameAvailability(CheckNameAvailabilityParameters parameters) {
+        checkNameAvailabilityWithResponse(parameters, Context.NONE);
     }
 
     /**
