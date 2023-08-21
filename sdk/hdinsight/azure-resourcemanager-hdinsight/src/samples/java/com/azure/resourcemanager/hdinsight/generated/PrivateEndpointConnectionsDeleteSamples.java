@@ -7,7 +7,7 @@ package com.azure.resourcemanager.hdinsight.generated;
 /** Samples for PrivateEndpointConnections Delete. */
 public final class PrivateEndpointConnectionsDeleteSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2023-04-15-preview/examples/DeletePrivateEndpointConnection.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2023-08-15-preview/examples/DeletePrivateEndpointConnection.json
      */
     /**
      * Sample code: Delete specific private endpoint connection for a specific HDInsight cluster.

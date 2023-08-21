@@ -9,7 +9,7 @@ import com.azure.resourcemanager.hdinsight.models.UpdateClusterIdentityCertifica
 /** Samples for Clusters UpdateIdentityCertificate. */
 public final class ClustersUpdateIdentityCertificateSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2023-04-15-preview/examples/HDI_Clusters_UpdateClusterIdentityCertificate.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2023-08-15-preview/examples/HDI_Clusters_UpdateClusterIdentityCertificate.json
      */
     /**
      * Sample code: Update cluster identity certificate.

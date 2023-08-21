@@ -10,7 +10,7 @@ import java.util.Map;
 /** Samples for Configurations Update. */
 public final class ConfigurationsUpdateSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2023-04-15-preview/examples/ChangeHttpConnectivityEnable.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2023-08-15-preview/examples/ChangeHttpConnectivityEnable.json
      */
     /**
      * Sample code: Enable HTTP connectivity.
@@ -35,7 +35,7 @@ public final class ConfigurationsUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2023-04-15-preview/examples/ChangeHttpConnectivityDisable.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2023-08-15-preview/examples/ChangeHttpConnectivityDisable.json
      */
     /**
      * Sample code: Disable HTTP connectivity.
@@ -53,6 +53,7 @@ public final class ConfigurationsUpdateSamples {
                 com.azure.core.util.Context.NONE);
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

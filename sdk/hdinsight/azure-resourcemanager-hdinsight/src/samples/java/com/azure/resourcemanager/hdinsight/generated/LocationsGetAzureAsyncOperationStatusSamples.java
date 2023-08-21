@@ -7,7 +7,7 @@ package com.azure.resourcemanager.hdinsight.generated;
 /** Samples for Locations GetAzureAsyncOperationStatus. */
 public final class LocationsGetAzureAsyncOperationStatusSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2023-04-15-preview/examples/HDI_Locations_GetAsyncOperationStatus.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2023-08-15-preview/examples/HDI_Locations_GetAsyncOperationStatus.json
      */
     /**
      * Sample code: Gets the azure async operation status.

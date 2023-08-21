@@ -26,7 +26,7 @@ import java.util.Map;
 /** Samples for Locations ValidateClusterCreateRequest. */
 public final class LocationsValidateClusterCreateRequestSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2023-04-15-preview/examples/HDI_Locations_ValidateClusterCreateRequest.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2023-08-15-preview/examples/HDI_Locations_ValidateClusterCreateRequest.json
      */
     /**
      * Sample code: Get the subscription usages for specific location.
@@ -122,6 +122,7 @@ public final class LocationsValidateClusterCreateRequestSamples {
                 com.azure.core.util.Context.NONE);
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

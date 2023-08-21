@@ -9,7 +9,7 @@ import com.azure.resourcemanager.hdinsight.models.AzureMonitorRequest;
 /** Samples for Extensions EnableAzureMonitor. */
 public final class ExtensionsEnableAzureMonitorSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2023-04-15-preview/examples/EnableLinuxClusterAzureMonitor.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2023-08-15-preview/examples/EnableLinuxClusterAzureMonitor.json
      */
     /**
      * Sample code: Enable cluster monitoring.

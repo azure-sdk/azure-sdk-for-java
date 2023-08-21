@@ -7,7 +7,7 @@ package com.azure.resourcemanager.hdinsight.generated;
 /** Samples for ScriptExecutionHistory ListByCluster. */
 public final class ScriptExecutionHistoryListByClusterSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2023-04-15-preview/examples/GetScriptExecutionHistory.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2023-08-15-preview/examples/GetScriptExecutionHistory.json
      */
     /**
      * Sample code: Get Script Execution History List.

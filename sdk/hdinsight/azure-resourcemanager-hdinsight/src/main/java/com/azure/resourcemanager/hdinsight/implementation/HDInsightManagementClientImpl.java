@@ -277,7 +277,7 @@ public final class HDInsightManagementClientImpl implements HDInsightManagementC
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2023-04-15-preview";
+        this.apiVersion = "2023-08-15-preview";
         this.applications = new ApplicationsClientImpl(this);
         this.clusters = new ClustersClientImpl(this);
         this.configurations = new ConfigurationsClientImpl(this);

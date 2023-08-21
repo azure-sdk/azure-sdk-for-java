@@ -11,7 +11,7 @@ import java.util.Arrays;
 /** Samples for Clusters ExecuteScriptActions. */
 public final class ClustersExecuteScriptActionsSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2023-04-15-preview/examples/PostExecuteScriptAction.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2023-08-15-preview/examples/PostExecuteScriptAction.json
      */
     /**
      * Sample code: Execute script action on HDInsight cluster.
