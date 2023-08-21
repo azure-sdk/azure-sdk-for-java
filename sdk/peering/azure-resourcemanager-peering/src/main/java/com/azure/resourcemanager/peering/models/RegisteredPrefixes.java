@@ -97,6 +97,36 @@ public interface RegisteredPrefixes {
     PagedIterable<PeeringRegisteredPrefix> listByPeering(String resourceGroupName, String peeringName, Context context);
 
     /**
+     * Validates an existing registered prefix with the specified name under the given subscription, resource group and
+     * peering.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param peeringName The name of the peering.
+     * @param registeredPrefixName The name of the registered prefix.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the customer's prefix that is registered by the peering service provider along with {@link Response}.
+     */
+    Response<PeeringRegisteredPrefix> validateWithResponse(
+        String resourceGroupName, String peeringName, String registeredPrefixName, Context context);
+
+    /**
+     * Validates an existing registered prefix with the specified name under the given subscription, resource group and
+     * peering.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param peeringName The name of the peering.
+     * @param registeredPrefixName The name of the registered prefix.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the customer's prefix that is registered by the peering service provider.
+     */
+    PeeringRegisteredPrefix validate(String resourceGroupName, String peeringName, String registeredPrefixName);
+
+    /**
      * Gets an existing registered prefix with the specified name under the given subscription, resource group and
      * peering.
      *

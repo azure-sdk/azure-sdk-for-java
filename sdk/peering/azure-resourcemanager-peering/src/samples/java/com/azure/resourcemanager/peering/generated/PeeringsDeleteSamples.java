@@ -7,7 +7,7 @@ package com.azure.resourcemanager.peering.generated;
 /** Samples for Peerings Delete. */
 public final class PeeringsDeleteSamples {
     /*
-     * x-ms-original-file: specification/peering/resource-manager/Microsoft.Peering/stable/2021-01-01/examples/DeletePeering.json
+     * x-ms-original-file: specification/peering/resource-manager/Microsoft.Peering/stable/2023-08-01/examples/DeletePeering.json
      */
     /**
      * Sample code: Delete a peering.

@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.peering.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.resourcemanager.peering.models.LogAnalyticsWorkspaceProperties;
 import com.azure.resourcemanager.peering.models.ProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -40,6 +41,12 @@ public final class PeeringServiceProperties {
      */
     @JsonProperty(value = "providerBackupPeeringLocation")
     private String providerBackupPeeringLocation;
+
+    /*
+     * The Log Analytics Workspace Properties
+     */
+    @JsonProperty(value = "logAnalyticsWorkspaceProperties")
+    private LogAnalyticsWorkspaceProperties logAnalyticsWorkspaceProperties;
 
     /** Creates an instance of PeeringServiceProperties class. */
     public PeeringServiceProperties() {
@@ -139,10 +146,34 @@ public final class PeeringServiceProperties {
     }
 
     /**
+     * Get the logAnalyticsWorkspaceProperties property: The Log Analytics Workspace Properties.
+     *
+     * @return the logAnalyticsWorkspaceProperties value.
+     */
+    public LogAnalyticsWorkspaceProperties logAnalyticsWorkspaceProperties() {
+        return this.logAnalyticsWorkspaceProperties;
+    }
+
+    /**
+     * Set the logAnalyticsWorkspaceProperties property: The Log Analytics Workspace Properties.
+     *
+     * @param logAnalyticsWorkspaceProperties the logAnalyticsWorkspaceProperties value to set.
+     * @return the PeeringServiceProperties object itself.
+     */
+    public PeeringServiceProperties withLogAnalyticsWorkspaceProperties(
+        LogAnalyticsWorkspaceProperties logAnalyticsWorkspaceProperties) {
+        this.logAnalyticsWorkspaceProperties = logAnalyticsWorkspaceProperties;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (logAnalyticsWorkspaceProperties() != null) {
+            logAnalyticsWorkspaceProperties().validate();
+        }
     }
 }

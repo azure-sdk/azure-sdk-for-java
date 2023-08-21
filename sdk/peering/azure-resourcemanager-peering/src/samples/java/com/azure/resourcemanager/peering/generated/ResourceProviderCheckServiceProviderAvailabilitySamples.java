@@ -9,7 +9,7 @@ import com.azure.resourcemanager.peering.models.CheckServiceProviderAvailability
 /** Samples for ResourceProvider CheckServiceProviderAvailability. */
 public final class ResourceProviderCheckServiceProviderAvailabilitySamples {
     /*
-     * x-ms-original-file: specification/peering/resource-manager/Microsoft.Peering/stable/2021-01-01/examples/CheckServiceProviderAvailability.json
+     * x-ms-original-file: specification/peering/resource-manager/Microsoft.Peering/stable/2023-08-01/examples/CheckServiceProviderAvailability.json
      */
     /**
      * Sample code: Check if peering service provider is available in customer location.

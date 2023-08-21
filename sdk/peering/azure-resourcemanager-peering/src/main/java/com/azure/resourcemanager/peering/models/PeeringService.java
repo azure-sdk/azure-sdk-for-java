@@ -91,6 +91,13 @@ public interface PeeringService {
     String providerBackupPeeringLocation();
 
     /**
+     * Gets the logAnalyticsWorkspaceProperties property: The Log Analytics Workspace Properties.
+     *
+     * @return the logAnalyticsWorkspaceProperties value.
+     */
+    LogAnalyticsWorkspaceProperties logAnalyticsWorkspaceProperties();
+
+    /**
      * Gets the region of the resource.
      *
      * @return the region of the resource.
@@ -125,11 +132,13 @@ public interface PeeringService {
             DefinitionStages.WithResourceGroup,
             DefinitionStages.WithCreate {
     }
+
     /** The PeeringService definition stages. */
     interface DefinitionStages {
         /** The first stage of the PeeringService definition. */
         interface Blank extends WithLocation {
         }
+
         /** The stage of the PeeringService definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -148,6 +157,7 @@ public interface PeeringService {
              */
             WithResourceGroup withRegion(String location);
         }
+
         /** The stage of the PeeringService definition allowing to specify parent resource. */
         interface WithResourceGroup {
             /**
@@ -158,6 +168,7 @@ public interface PeeringService {
              */
             WithCreate withExistingResourceGroup(String resourceGroupName);
         }
+
         /**
          * The stage of the PeeringService definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
@@ -168,7 +179,8 @@ public interface PeeringService {
                 DefinitionStages.WithPeeringServiceLocation,
                 DefinitionStages.WithPeeringServiceProvider,
                 DefinitionStages.WithProviderPrimaryPeeringLocation,
-                DefinitionStages.WithProviderBackupPeeringLocation {
+                DefinitionStages.WithProviderBackupPeeringLocation,
+                DefinitionStages.WithLogAnalyticsWorkspaceProperties {
             /**
              * Executes the create request.
              *
@@ -184,6 +196,7 @@ public interface PeeringService {
              */
             PeeringService create(Context context);
         }
+
         /** The stage of the PeeringService definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -194,6 +207,7 @@ public interface PeeringService {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
         /** The stage of the PeeringService definition allowing to specify sku. */
         interface WithSku {
             /**
@@ -204,6 +218,7 @@ public interface PeeringService {
              */
             WithCreate withSku(PeeringServiceSku sku);
         }
+
         /** The stage of the PeeringService definition allowing to specify peeringServiceLocation. */
         interface WithPeeringServiceLocation {
             /**
@@ -214,6 +229,7 @@ public interface PeeringService {
              */
             WithCreate withPeeringServiceLocation(String peeringServiceLocation);
         }
+
         /** The stage of the PeeringService definition allowing to specify peeringServiceProvider. */
         interface WithPeeringServiceProvider {
             /**
@@ -224,6 +240,7 @@ public interface PeeringService {
              */
             WithCreate withPeeringServiceProvider(String peeringServiceProvider);
         }
+
         /** The stage of the PeeringService definition allowing to specify providerPrimaryPeeringLocation. */
         interface WithProviderPrimaryPeeringLocation {
             /**
@@ -236,6 +253,7 @@ public interface PeeringService {
              */
             WithCreate withProviderPrimaryPeeringLocation(String providerPrimaryPeeringLocation);
         }
+
         /** The stage of the PeeringService definition allowing to specify providerBackupPeeringLocation. */
         interface WithProviderBackupPeeringLocation {
             /**
@@ -248,7 +266,20 @@ public interface PeeringService {
              */
             WithCreate withProviderBackupPeeringLocation(String providerBackupPeeringLocation);
         }
+
+        /** The stage of the PeeringService definition allowing to specify logAnalyticsWorkspaceProperties. */
+        interface WithLogAnalyticsWorkspaceProperties {
+            /**
+             * Specifies the logAnalyticsWorkspaceProperties property: The Log Analytics Workspace Properties.
+             *
+             * @param logAnalyticsWorkspaceProperties The Log Analytics Workspace Properties.
+             * @return the next definition stage.
+             */
+            WithCreate withLogAnalyticsWorkspaceProperties(
+                LogAnalyticsWorkspaceProperties logAnalyticsWorkspaceProperties);
+        }
     }
+
     /**
      * Begins update for the PeeringService resource.
      *
@@ -273,6 +304,7 @@ public interface PeeringService {
          */
         PeeringService apply(Context context);
     }
+
     /** The PeeringService update stages. */
     interface UpdateStages {
         /** The stage of the PeeringService update allowing to specify tags. */
@@ -286,6 +318,7 @@ public interface PeeringService {
             Update withTags(Map<String, String> tags);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

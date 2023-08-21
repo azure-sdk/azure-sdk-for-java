@@ -7,7 +7,7 @@ package com.azure.resourcemanager.peering.generated;
 /** Samples for Prefixes ListByPeeringService. */
 public final class PrefixesListByPeeringServiceSamples {
     /*
-     * x-ms-original-file: specification/peering/resource-manager/Microsoft.Peering/stable/2021-01-01/examples/ListPrefixesByPeeringService.json
+     * x-ms-original-file: specification/peering/resource-manager/Microsoft.Peering/stable/2023-08-01/examples/ListPrefixesByPeeringService.json
      */
     /**
      * Sample code: List all the prefixes associated with the peering service.

@@ -25,7 +25,9 @@ import com.azure.core.util.Configuration;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.peering.fluent.PeeringManagementClient;
 import com.azure.resourcemanager.peering.implementation.CdnPeeringPrefixesImpl;
+import com.azure.resourcemanager.peering.implementation.ConnectionMonitorTestsImpl;
 import com.azure.resourcemanager.peering.implementation.LegacyPeeringsImpl;
+import com.azure.resourcemanager.peering.implementation.LookingGlassImpl;
 import com.azure.resourcemanager.peering.implementation.OperationsImpl;
 import com.azure.resourcemanager.peering.implementation.PeerAsnsImpl;
 import com.azure.resourcemanager.peering.implementation.PeeringLocationsImpl;
@@ -40,8 +42,11 @@ import com.azure.resourcemanager.peering.implementation.ReceivedRoutesImpl;
 import com.azure.resourcemanager.peering.implementation.RegisteredAsnsImpl;
 import com.azure.resourcemanager.peering.implementation.RegisteredPrefixesImpl;
 import com.azure.resourcemanager.peering.implementation.ResourceProvidersImpl;
+import com.azure.resourcemanager.peering.implementation.RpUnbilledPrefixesImpl;
 import com.azure.resourcemanager.peering.models.CdnPeeringPrefixes;
+import com.azure.resourcemanager.peering.models.ConnectionMonitorTests;
 import com.azure.resourcemanager.peering.models.LegacyPeerings;
+import com.azure.resourcemanager.peering.models.LookingGlass;
 import com.azure.resourcemanager.peering.models.Operations;
 import com.azure.resourcemanager.peering.models.PeerAsns;
 import com.azure.resourcemanager.peering.models.PeeringLocations;
@@ -55,6 +60,7 @@ import com.azure.resourcemanager.peering.models.ReceivedRoutes;
 import com.azure.resourcemanager.peering.models.RegisteredAsns;
 import com.azure.resourcemanager.peering.models.RegisteredPrefixes;
 import com.azure.resourcemanager.peering.models.ResourceProviders;
+import com.azure.resourcemanager.peering.models.RpUnbilledPrefixes;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -70,6 +76,8 @@ public final class PeeringManager {
 
     private LegacyPeerings legacyPeerings;
 
+    private LookingGlass lookingGlass;
+
     private Operations operations;
 
     private PeerAsns peerAsns;
@@ -84,6 +92,8 @@ public final class PeeringManager {
 
     private ReceivedRoutes receivedRoutes;
 
+    private ConnectionMonitorTests connectionMonitorTests;
+
     private PeeringServiceCountries peeringServiceCountries;
 
     private PeeringServiceLocations peeringServiceLocations;
@@ -93,6 +103,8 @@ public final class PeeringManager {
     private PeeringServiceProviders peeringServiceProviders;
 
     private PeeringServices peeringServices;
+
+    private RpUnbilledPrefixes rpUnbilledPrefixes;
 
     private final PeeringManagementClient clientObject;
 
@@ -259,7 +271,7 @@ public final class PeeringManager {
                 .append("-")
                 .append("com.azure.resourcemanager.peering")
                 .append("/")
-                .append("1.0.0-beta.2");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -353,6 +365,18 @@ public final class PeeringManager {
     }
 
     /**
+     * Gets the resource collection API of LookingGlass.
+     *
+     * @return Resource collection API of LookingGlass.
+     */
+    public LookingGlass lookingGlass() {
+        if (this.lookingGlass == null) {
+            this.lookingGlass = new LookingGlassImpl(clientObject.getLookingGlass(), this);
+        }
+        return lookingGlass;
+    }
+
+    /**
      * Gets the resource collection API of Operations.
      *
      * @return Resource collection API of Operations.
@@ -437,6 +461,19 @@ public final class PeeringManager {
     }
 
     /**
+     * Gets the resource collection API of ConnectionMonitorTests. It manages ConnectionMonitorTest.
+     *
+     * @return Resource collection API of ConnectionMonitorTests.
+     */
+    public ConnectionMonitorTests connectionMonitorTests() {
+        if (this.connectionMonitorTests == null) {
+            this.connectionMonitorTests =
+                new ConnectionMonitorTestsImpl(clientObject.getConnectionMonitorTests(), this);
+        }
+        return connectionMonitorTests;
+    }
+
+    /**
      * Gets the resource collection API of PeeringServiceCountries.
      *
      * @return Resource collection API of PeeringServiceCountries.
@@ -500,8 +537,22 @@ public final class PeeringManager {
     }
 
     /**
-     * @return Wrapped service client PeeringManagementClient providing direct access to the underlying auto-generated
-     *     API implementation, based on Azure REST API.
+     * Gets the resource collection API of RpUnbilledPrefixes.
+     *
+     * @return Resource collection API of RpUnbilledPrefixes.
+     */
+    public RpUnbilledPrefixes rpUnbilledPrefixes() {
+        if (this.rpUnbilledPrefixes == null) {
+            this.rpUnbilledPrefixes = new RpUnbilledPrefixesImpl(clientObject.getRpUnbilledPrefixes(), this);
+        }
+        return rpUnbilledPrefixes;
+    }
+
+    /**
+     * Gets wrapped service client PeeringManagementClient providing direct access to the underlying auto-generated API
+     * implementation, based on Azure REST API.
+     *
+     * @return Wrapped service client PeeringManagementClient.
      */
     public PeeringManagementClient serviceClient() {
         return this.clientObject;

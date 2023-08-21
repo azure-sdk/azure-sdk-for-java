@@ -19,7 +19,7 @@ import java.util.Arrays;
 /** Samples for Peerings CreateOrUpdate. */
 public final class PeeringsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/peering/resource-manager/Microsoft.Peering/stable/2021-01-01/examples/CreatePeeringWithExchangeRouteServer.json
+     * x-ms-original-file: specification/peering/resource-manager/Microsoft.Peering/stable/2023-08-01/examples/CreatePeeringWithExchangeRouteServer.json
      */
     /**
      * Sample code: Create a peering with exchange route server.
@@ -60,7 +60,7 @@ public final class PeeringsCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/peering/resource-manager/Microsoft.Peering/stable/2021-01-01/examples/CreateExchangePeering.json
+     * x-ms-original-file: specification/peering/resource-manager/Microsoft.Peering/stable/2023-08-01/examples/CreateExchangePeering.json
      */
     /**
      * Sample code: Create an exchange peering.
@@ -107,7 +107,7 @@ public final class PeeringsCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/peering/resource-manager/Microsoft.Peering/stable/2021-01-01/examples/CreateDirectPeering.json
+     * x-ms-original-file: specification/peering/resource-manager/Microsoft.Peering/stable/2023-08-01/examples/CreateDirectPeering.json
      */
     /**
      * Sample code: Create a direct peering.

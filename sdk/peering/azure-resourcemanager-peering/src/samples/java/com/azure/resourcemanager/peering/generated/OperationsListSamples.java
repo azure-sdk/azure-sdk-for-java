@@ -7,7 +7,7 @@ package com.azure.resourcemanager.peering.generated;
 /** Samples for Operations List. */
 public final class OperationsListSamples {
     /*
-     * x-ms-original-file: specification/peering/resource-manager/Microsoft.Peering/stable/2021-01-01/examples/ListPeeringOperations.json
+     * x-ms-original-file: specification/peering/resource-manager/Microsoft.Peering/stable/2023-08-01/examples/ListPeeringOperations.json
      */
     /**
      * Sample code: List peering operations.

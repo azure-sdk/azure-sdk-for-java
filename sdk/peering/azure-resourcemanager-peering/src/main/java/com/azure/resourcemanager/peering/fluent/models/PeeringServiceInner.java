@@ -7,6 +7,7 @@ package com.azure.resourcemanager.peering.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
 import com.azure.core.util.logging.ClientLogger;
+import com.azure.resourcemanager.peering.models.LogAnalyticsWorkspaceProperties;
 import com.azure.resourcemanager.peering.models.PeeringServiceSku;
 import com.azure.resourcemanager.peering.models.ProvisioningState;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -216,6 +217,30 @@ public final class PeeringServiceInner extends ProxyResource {
             this.innerProperties = new PeeringServiceProperties();
         }
         this.innerProperties().withProviderBackupPeeringLocation(providerBackupPeeringLocation);
+        return this;
+    }
+
+    /**
+     * Get the logAnalyticsWorkspaceProperties property: The Log Analytics Workspace Properties.
+     *
+     * @return the logAnalyticsWorkspaceProperties value.
+     */
+    public LogAnalyticsWorkspaceProperties logAnalyticsWorkspaceProperties() {
+        return this.innerProperties() == null ? null : this.innerProperties().logAnalyticsWorkspaceProperties();
+    }
+
+    /**
+     * Set the logAnalyticsWorkspaceProperties property: The Log Analytics Workspace Properties.
+     *
+     * @param logAnalyticsWorkspaceProperties the logAnalyticsWorkspaceProperties value to set.
+     * @return the PeeringServiceInner object itself.
+     */
+    public PeeringServiceInner withLogAnalyticsWorkspaceProperties(
+        LogAnalyticsWorkspaceProperties logAnalyticsWorkspaceProperties) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new PeeringServiceProperties();
+        }
+        this.innerProperties().withLogAnalyticsWorkspaceProperties(logAnalyticsWorkspaceProperties);
         return this;
     }
 

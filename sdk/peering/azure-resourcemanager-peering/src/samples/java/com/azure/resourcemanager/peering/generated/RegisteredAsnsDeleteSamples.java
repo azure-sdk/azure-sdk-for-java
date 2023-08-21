@@ -7,7 +7,7 @@ package com.azure.resourcemanager.peering.generated;
 /** Samples for RegisteredAsns Delete. */
 public final class RegisteredAsnsDeleteSamples {
     /*
-     * x-ms-original-file: specification/peering/resource-manager/Microsoft.Peering/stable/2021-01-01/examples/DeleteRegisteredAsn.json
+     * x-ms-original-file: specification/peering/resource-manager/Microsoft.Peering/stable/2023-08-01/examples/DeleteRegisteredAsn.json
      */
     /**
      * Sample code: Deletes a registered ASN associated with the peering.

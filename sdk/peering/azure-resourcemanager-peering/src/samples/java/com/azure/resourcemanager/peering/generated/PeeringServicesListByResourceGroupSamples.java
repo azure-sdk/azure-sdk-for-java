@@ -7,7 +7,7 @@ package com.azure.resourcemanager.peering.generated;
 /** Samples for PeeringServices ListByResourceGroup. */
 public final class PeeringServicesListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/peering/resource-manager/Microsoft.Peering/stable/2021-01-01/examples/ListPeeringServicesByResourceGroup.json
+     * x-ms-original-file: specification/peering/resource-manager/Microsoft.Peering/stable/2023-08-01/examples/ListPeeringServicesByResourceGroup.json
      */
     /**
      * Sample code: List peering services in a resource group.

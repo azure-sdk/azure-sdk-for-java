@@ -31,6 +31,9 @@ public final class PeeringLocationsDirectPeeringType extends ExpandableStringEnu
     /** Static value Voice for PeeringLocationsDirectPeeringType. */
     public static final PeeringLocationsDirectPeeringType VOICE = fromString("Voice");
 
+    /** Static value EdgeZoneForOperators for PeeringLocationsDirectPeeringType. */
+    public static final PeeringLocationsDirectPeeringType EDGE_ZONE_FOR_OPERATORS = fromString("EdgeZoneForOperators");
+
     /**
      * Creates a new instance of PeeringLocationsDirectPeeringType value.
      *

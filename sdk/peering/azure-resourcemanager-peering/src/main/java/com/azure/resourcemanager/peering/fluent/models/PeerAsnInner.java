@@ -112,20 +112,6 @@ public final class PeerAsnInner extends ProxyResource {
     }
 
     /**
-     * Set the validationState property: The validation state of the ASN associated with the peer.
-     *
-     * @param validationState the validationState value to set.
-     * @return the PeerAsnInner object itself.
-     */
-    public PeerAsnInner withValidationState(ValidationState validationState) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new PeerAsnProperties();
-        }
-        this.innerProperties().withValidationState(validationState);
-        return this;
-    }
-
-    /**
      * Get the errorMessage property: The error message for the validation state.
      *
      * @return the errorMessage value.

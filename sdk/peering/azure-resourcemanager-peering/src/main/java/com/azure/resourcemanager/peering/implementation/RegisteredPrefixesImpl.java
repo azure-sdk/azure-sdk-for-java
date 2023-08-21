@@ -74,6 +74,31 @@ public final class RegisteredPrefixesImpl implements RegisteredPrefixes {
         return Utils.mapPage(inner, inner1 -> new PeeringRegisteredPrefixImpl(inner1, this.manager()));
     }
 
+    public Response<PeeringRegisteredPrefix> validateWithResponse(
+        String resourceGroupName, String peeringName, String registeredPrefixName, Context context) {
+        Response<PeeringRegisteredPrefixInner> inner =
+            this.serviceClient().validateWithResponse(resourceGroupName, peeringName, registeredPrefixName, context);
+        if (inner != null) {
+            return new SimpleResponse<>(
+                inner.getRequest(),
+                inner.getStatusCode(),
+                inner.getHeaders(),
+                new PeeringRegisteredPrefixImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public PeeringRegisteredPrefix validate(String resourceGroupName, String peeringName, String registeredPrefixName) {
+        PeeringRegisteredPrefixInner inner =
+            this.serviceClient().validate(resourceGroupName, peeringName, registeredPrefixName);
+        if (inner != null) {
+            return new PeeringRegisteredPrefixImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
     public PeeringRegisteredPrefix getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {

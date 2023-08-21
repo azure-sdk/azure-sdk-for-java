@@ -98,11 +98,13 @@ public interface PeeringServicePrefix {
     interface Definition
         extends DefinitionStages.Blank, DefinitionStages.WithParentResource, DefinitionStages.WithCreate {
     }
+
     /** The PeeringServicePrefix definition stages. */
     interface DefinitionStages {
         /** The first stage of the PeeringServicePrefix definition. */
         interface Blank extends WithParentResource {
         }
+
         /** The stage of the PeeringServicePrefix definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -114,6 +116,7 @@ public interface PeeringServicePrefix {
              */
             WithCreate withExistingPeeringService(String resourceGroupName, String peeringServiceName);
         }
+
         /**
          * The stage of the PeeringServicePrefix definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
@@ -134,6 +137,7 @@ public interface PeeringServicePrefix {
              */
             PeeringServicePrefix create(Context context);
         }
+
         /** The stage of the PeeringServicePrefix definition allowing to specify prefix. */
         interface WithPrefix {
             /**
@@ -144,6 +148,7 @@ public interface PeeringServicePrefix {
              */
             WithCreate withPrefix(String prefix);
         }
+
         /** The stage of the PeeringServicePrefix definition allowing to specify peeringServicePrefixKey. */
         interface WithPeeringServicePrefixKey {
             /**
@@ -155,6 +160,7 @@ public interface PeeringServicePrefix {
             WithCreate withPeeringServicePrefixKey(String peeringServicePrefixKey);
         }
     }
+
     /**
      * Begins update for the PeeringServicePrefix resource.
      *
@@ -179,6 +185,7 @@ public interface PeeringServicePrefix {
          */
         PeeringServicePrefix apply(Context context);
     }
+
     /** The PeeringServicePrefix update stages. */
     interface UpdateStages {
         /** The stage of the PeeringServicePrefix update allowing to specify prefix. */
@@ -191,6 +198,7 @@ public interface PeeringServicePrefix {
              */
             Update withPrefix(String prefix);
         }
+
         /** The stage of the PeeringServicePrefix update allowing to specify peeringServicePrefixKey. */
         interface WithPeeringServicePrefixKey {
             /**
@@ -202,6 +210,7 @@ public interface PeeringServicePrefix {
             Update withPeeringServicePrefixKey(String peeringServicePrefixKey);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

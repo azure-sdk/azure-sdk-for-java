@@ -80,6 +80,14 @@ public final class PeeringServicesImpl implements PeeringServices {
         return Utils.mapPage(inner, inner1 -> new PeeringServiceImpl(inner1, this.manager()));
     }
 
+    public Response<Void> initializeConnectionMonitorWithResponse(Context context) {
+        return this.serviceClient().initializeConnectionMonitorWithResponse(context);
+    }
+
+    public void initializeConnectionMonitor() {
+        this.serviceClient().initializeConnectionMonitor();
+    }
+
     public PeeringService getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {

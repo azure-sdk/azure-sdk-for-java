@@ -7,7 +7,7 @@ package com.azure.resourcemanager.peering.generated;
 /** Samples for RegisteredAsns ListByPeering. */
 public final class RegisteredAsnsListByPeeringSamples {
     /*
-     * x-ms-original-file: specification/peering/resource-manager/Microsoft.Peering/stable/2021-01-01/examples/ListRegisteredAsnsByPeering.json
+     * x-ms-original-file: specification/peering/resource-manager/Microsoft.Peering/stable/2023-08-01/examples/ListRegisteredAsnsByPeering.json
      */
     /**
      * Sample code: List all the registered ASNs associated with the peering.

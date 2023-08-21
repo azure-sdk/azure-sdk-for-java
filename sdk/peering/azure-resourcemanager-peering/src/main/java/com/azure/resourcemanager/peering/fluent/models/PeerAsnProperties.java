@@ -34,7 +34,7 @@ public final class PeerAsnProperties {
     /*
      * The validation state of the ASN associated with the peer.
      */
-    @JsonProperty(value = "validationState")
+    @JsonProperty(value = "validationState", access = JsonProperty.Access.WRITE_ONLY)
     private ValidationState validationState;
 
     /*
@@ -114,17 +114,6 @@ public final class PeerAsnProperties {
      */
     public ValidationState validationState() {
         return this.validationState;
-    }
-
-    /**
-     * Set the validationState property: The validation state of the ASN associated with the peer.
-     *
-     * @param validationState the validationState value to set.
-     * @return the PeerAsnProperties object itself.
-     */
-    public PeerAsnProperties withValidationState(ValidationState validationState) {
-        this.validationState = validationState;
-        return this;
     }
 
     /**

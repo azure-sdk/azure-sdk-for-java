@@ -125,11 +125,13 @@ public interface Peering {
             DefinitionStages.WithKind,
             DefinitionStages.WithCreate {
     }
+
     /** The Peering definition stages. */
     interface DefinitionStages {
         /** The first stage of the Peering definition. */
         interface Blank extends WithLocation {
         }
+
         /** The stage of the Peering definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -148,6 +150,7 @@ public interface Peering {
              */
             WithResourceGroup withRegion(String location);
         }
+
         /** The stage of the Peering definition allowing to specify parent resource. */
         interface WithResourceGroup {
             /**
@@ -158,6 +161,7 @@ public interface Peering {
              */
             WithSku withExistingResourceGroup(String resourceGroupName);
         }
+
         /** The stage of the Peering definition allowing to specify sku. */
         interface WithSku {
             /**
@@ -168,6 +172,7 @@ public interface Peering {
              */
             WithKind withSku(PeeringSku sku);
         }
+
         /** The stage of the Peering definition allowing to specify kind. */
         interface WithKind {
             /**
@@ -178,6 +183,7 @@ public interface Peering {
              */
             WithCreate withKind(Kind kind);
         }
+
         /**
          * The stage of the Peering definition which contains all the minimum required properties for the resource to be
          * created, but also allows for any other optional properties to be specified.
@@ -202,6 +208,7 @@ public interface Peering {
              */
             Peering create(Context context);
         }
+
         /** The stage of the Peering definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -212,6 +219,7 @@ public interface Peering {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
         /** The stage of the Peering definition allowing to specify direct. */
         interface WithDirect {
             /**
@@ -222,6 +230,7 @@ public interface Peering {
              */
             WithCreate withDirect(PeeringPropertiesDirect direct);
         }
+
         /** The stage of the Peering definition allowing to specify exchange. */
         interface WithExchange {
             /**
@@ -232,6 +241,7 @@ public interface Peering {
              */
             WithCreate withExchange(PeeringPropertiesExchange exchange);
         }
+
         /** The stage of the Peering definition allowing to specify peeringLocation. */
         interface WithPeeringLocation {
             /**
@@ -243,6 +253,7 @@ public interface Peering {
             WithCreate withPeeringLocation(String peeringLocation);
         }
     }
+
     /**
      * Begins update for the Peering resource.
      *
@@ -267,6 +278,7 @@ public interface Peering {
          */
         Peering apply(Context context);
     }
+
     /** The Peering update stages. */
     interface UpdateStages {
         /** The stage of the Peering update allowing to specify tags. */
@@ -280,6 +292,7 @@ public interface Peering {
             Update withTags(Map<String, String> tags);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *
