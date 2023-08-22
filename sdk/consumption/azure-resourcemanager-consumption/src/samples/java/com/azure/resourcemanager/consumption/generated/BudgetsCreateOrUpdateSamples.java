@@ -24,7 +24,7 @@ import java.util.Map;
 /** Samples for Budgets CreateOrUpdate. */
 public final class BudgetsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/CreateOrUpdateBudget.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2023-11-01/examples/CreateOrUpdateBudget.json
      */
     /**
      * Sample code: CreateOrUpdateBudget.
@@ -89,6 +89,7 @@ public final class BudgetsCreateOrUpdateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

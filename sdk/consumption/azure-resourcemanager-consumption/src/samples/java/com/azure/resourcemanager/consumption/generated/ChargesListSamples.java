@@ -4,12 +4,10 @@
 
 package com.azure.resourcemanager.consumption.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Charges List. */
 public final class ChargesListSamples {
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/ChargesListByModernBillingAccount.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2023-11-01/examples/ChargesListByModernBillingAccount.json
      */
     /**
      * Sample code: ChargesListByBillingAccount-Modern.
@@ -26,11 +24,11 @@ public final class ChargesListSamples {
                 "2019-10-31",
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/ChargesForBillingPeriodByEnrollmentAccount.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2023-11-01/examples/ChargesForBillingPeriodByEnrollmentAccount.json
      */
     /**
      * Sample code: ChangesForBillingPeriodByEnrollmentAccount-Legacy.
@@ -47,11 +45,11 @@ public final class ChargesListSamples {
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/ChargesListByModernBillingAccountGroupByCustomerId.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2023-11-01/examples/ChargesListByModernBillingAccountGroupByCustomerId.json
      */
     /**
      * Sample code: ChargesListByBillingAccountGroupByCustomerId-Modern.
@@ -68,11 +66,11 @@ public final class ChargesListSamples {
                 "2019-09-30",
                 null,
                 "groupby((properties/customerId))",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/ChargesListByModernBillingProfile.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2023-11-01/examples/ChargesListByModernBillingProfile.json
      */
     /**
      * Sample code: ChargesListByBillingProfile-Modern.
@@ -89,11 +87,11 @@ public final class ChargesListSamples {
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/ChargesListByModernBillingProfileInvoiceSection.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2023-11-01/examples/ChargesListByModernBillingProfileInvoiceSection.json
      */
     /**
      * Sample code: ChargesListByBillingProfileInvoiceSection-Modern.
@@ -110,11 +108,11 @@ public final class ChargesListSamples {
                 "2019-10-31",
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/ChargesListByModernCustomer.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2023-11-01/examples/ChargesListByModernCustomer.json
      */
     /**
      * Sample code: ChargesListByCustomer-Modern.
@@ -130,11 +128,11 @@ public final class ChargesListSamples {
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/ChargesListForDepartmentFilterByStartEndDate.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2023-11-01/examples/ChargesListForDepartmentFilterByStartEndDate.json
      */
     /**
      * Sample code: ChargesListByDepartment-Legacy.
@@ -150,11 +148,11 @@ public final class ChargesListSamples {
                 null,
                 "usageStart eq '2018-04-01' AND usageEnd eq '2018-05-30'",
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/ChargesListForEnrollmentAccountFilterByStartEndDate.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2023-11-01/examples/ChargesListForEnrollmentAccountFilterByStartEndDate.json
      */
     /**
      * Sample code: ChargesListForEnrollmentAccount-Legacy.
@@ -171,11 +169,11 @@ public final class ChargesListSamples {
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/ChargesListByModernBillingProfileGroupByInvoiceSectionId.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2023-11-01/examples/ChargesListByModernBillingProfileGroupByInvoiceSectionId.json
      */
     /**
      * Sample code: ChargesListByBillingProfileGroupByInvoiceSectionId-Modern.
@@ -192,11 +190,11 @@ public final class ChargesListSamples {
                 "2019-09-30",
                 null,
                 "groupby((properties/invoiceSectionId))",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/ChargesListByModernBillingAccountGroupByBillingProfileId.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2023-11-01/examples/ChargesListByModernBillingAccountGroupByBillingProfileId.json
      */
     /**
      * Sample code: ChargesListByBillingAccountGroupByBillingProfileId-Modern.
@@ -213,11 +211,11 @@ public final class ChargesListSamples {
                 "2019-09-30",
                 null,
                 "groupby((properties/billingProfileId))",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/ChargesListByModernBillingAccountGroupByInvoiceSectionId.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2023-11-01/examples/ChargesListByModernBillingAccountGroupByInvoiceSectionId.json
      */
     /**
      * Sample code: ChargesListByBillingAccountGroupByInvoiceSectionId-Modern.
@@ -234,11 +232,11 @@ public final class ChargesListSamples {
                 "2019-09-30",
                 null,
                 "groupby((properties/invoiceSectionId))",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/ChargesForBillingPeriodByDepartment.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2023-11-01/examples/ChargesForBillingPeriodByDepartment.json
      */
     /**
      * Sample code: ChangesForBillingPeriodByDepartment-Legacy.
@@ -255,11 +253,11 @@ public final class ChargesListSamples {
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/ChargesListByModernInvoiceSectionId.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2023-11-01/examples/ChargesListByModernInvoiceSectionId.json
      */
     /**
      * Sample code: ChargesListByInvoiceSectionId-Modern.
@@ -276,6 +274,6 @@ public final class ChargesListSamples {
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

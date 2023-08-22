@@ -4,12 +4,10 @@
 
 package com.azure.resourcemanager.consumption.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for AggregatedCost GetForBillingPeriodByManagementGroup. */
 public final class AggregatedCostGetForBillingPeriodByManagementGroupSamples {
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/AggregatedCostForBillingPeriodByManagementGroup.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2023-11-01/examples/AggregatedCostForBillingPeriodByManagementGroup.json
      */
     /**
      * Sample code: AggregatedCostListForBillingPeriodByManagementGroup.
@@ -20,6 +18,7 @@ public final class AggregatedCostGetForBillingPeriodByManagementGroupSamples {
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .aggregatedCosts()
-            .getForBillingPeriodByManagementGroupWithResponse("managementGroupForTest", "201807", Context.NONE);
+            .getForBillingPeriodByManagementGroupWithResponse(
+                "managementGroupForTest", "201807", com.azure.core.util.Context.NONE);
     }
 }
