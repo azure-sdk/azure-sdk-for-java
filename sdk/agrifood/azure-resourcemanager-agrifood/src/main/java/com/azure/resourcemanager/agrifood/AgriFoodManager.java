@@ -25,20 +25,28 @@ import com.azure.core.util.Configuration;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.agrifood.fluent.AgriFoodManagementClient;
 import com.azure.resourcemanager.agrifood.implementation.AgriFoodManagementClientBuilder;
+import com.azure.resourcemanager.agrifood.implementation.CheckNameAvailabilitiesImpl;
+import com.azure.resourcemanager.agrifood.implementation.DataConnectorsImpl;
+import com.azure.resourcemanager.agrifood.implementation.DataManagerForAgricultureExtensionsImpl;
+import com.azure.resourcemanager.agrifood.implementation.DataManagerForAgricultureResourcesImpl;
 import com.azure.resourcemanager.agrifood.implementation.ExtensionsImpl;
-import com.azure.resourcemanager.agrifood.implementation.FarmBeatsExtensionsImpl;
-import com.azure.resourcemanager.agrifood.implementation.FarmBeatsModelsImpl;
-import com.azure.resourcemanager.agrifood.implementation.LocationsImpl;
+import com.azure.resourcemanager.agrifood.implementation.OperationResultsImpl;
 import com.azure.resourcemanager.agrifood.implementation.OperationsImpl;
 import com.azure.resourcemanager.agrifood.implementation.PrivateEndpointConnectionsImpl;
 import com.azure.resourcemanager.agrifood.implementation.PrivateLinkResourcesImpl;
+import com.azure.resourcemanager.agrifood.implementation.SolutionsDiscoverabilitiesImpl;
+import com.azure.resourcemanager.agrifood.implementation.SolutionsImpl;
+import com.azure.resourcemanager.agrifood.models.CheckNameAvailabilities;
+import com.azure.resourcemanager.agrifood.models.DataConnectors;
+import com.azure.resourcemanager.agrifood.models.DataManagerForAgricultureExtensions;
+import com.azure.resourcemanager.agrifood.models.DataManagerForAgricultureResources;
 import com.azure.resourcemanager.agrifood.models.Extensions;
-import com.azure.resourcemanager.agrifood.models.FarmBeatsExtensions;
-import com.azure.resourcemanager.agrifood.models.FarmBeatsModels;
-import com.azure.resourcemanager.agrifood.models.Locations;
+import com.azure.resourcemanager.agrifood.models.OperationResults;
 import com.azure.resourcemanager.agrifood.models.Operations;
 import com.azure.resourcemanager.agrifood.models.PrivateEndpointConnections;
 import com.azure.resourcemanager.agrifood.models.PrivateLinkResources;
+import com.azure.resourcemanager.agrifood.models.Solutions;
+import com.azure.resourcemanager.agrifood.models.SolutionsDiscoverabilities;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -46,21 +54,29 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-/** Entry point to AgriFoodManager. APIs documentation for Azure AgFoodPlatform Resource Provider Service. */
+/** Entry point to AgriFoodManager. APIs documentation for Microsoft Azure Data Manager for Agriculture Service. */
 public final class AgriFoodManager {
+    private CheckNameAvailabilities checkNameAvailabilities;
+
+    private DataConnectors dataConnectors;
+
+    private DataManagerForAgricultureExtensions dataManagerForAgricultureExtensions;
+
+    private DataManagerForAgricultureResources dataManagerForAgricultureResources;
+
+    private OperationResults operationResults;
+
     private Extensions extensions;
-
-    private FarmBeatsExtensions farmBeatsExtensions;
-
-    private FarmBeatsModels farmBeatsModels;
-
-    private Locations locations;
 
     private Operations operations;
 
     private PrivateEndpointConnections privateEndpointConnections;
 
     private PrivateLinkResources privateLinkResources;
+
+    private Solutions solutions;
+
+    private SolutionsDiscoverabilities solutionsDiscoverabilities;
 
     private final AgriFoodManagementClient clientObject;
 
@@ -285,7 +301,71 @@ public final class AgriFoodManager {
     }
 
     /**
-     * Gets the resource collection API of Extensions.
+     * Gets the resource collection API of CheckNameAvailabilities.
+     *
+     * @return Resource collection API of CheckNameAvailabilities.
+     */
+    public CheckNameAvailabilities checkNameAvailabilities() {
+        if (this.checkNameAvailabilities == null) {
+            this.checkNameAvailabilities =
+                new CheckNameAvailabilitiesImpl(clientObject.getCheckNameAvailabilities(), this);
+        }
+        return checkNameAvailabilities;
+    }
+
+    /**
+     * Gets the resource collection API of DataConnectors. It manages DataConnector.
+     *
+     * @return Resource collection API of DataConnectors.
+     */
+    public DataConnectors dataConnectors() {
+        if (this.dataConnectors == null) {
+            this.dataConnectors = new DataConnectorsImpl(clientObject.getDataConnectors(), this);
+        }
+        return dataConnectors;
+    }
+
+    /**
+     * Gets the resource collection API of DataManagerForAgricultureExtensions.
+     *
+     * @return Resource collection API of DataManagerForAgricultureExtensions.
+     */
+    public DataManagerForAgricultureExtensions dataManagerForAgricultureExtensions() {
+        if (this.dataManagerForAgricultureExtensions == null) {
+            this.dataManagerForAgricultureExtensions =
+                new DataManagerForAgricultureExtensionsImpl(
+                    clientObject.getDataManagerForAgricultureExtensions(), this);
+        }
+        return dataManagerForAgricultureExtensions;
+    }
+
+    /**
+     * Gets the resource collection API of DataManagerForAgricultureResources. It manages DataManagerForAgriculture.
+     *
+     * @return Resource collection API of DataManagerForAgricultureResources.
+     */
+    public DataManagerForAgricultureResources dataManagerForAgricultureResources() {
+        if (this.dataManagerForAgricultureResources == null) {
+            this.dataManagerForAgricultureResources =
+                new DataManagerForAgricultureResourcesImpl(clientObject.getDataManagerForAgricultureResources(), this);
+        }
+        return dataManagerForAgricultureResources;
+    }
+
+    /**
+     * Gets the resource collection API of OperationResults.
+     *
+     * @return Resource collection API of OperationResults.
+     */
+    public OperationResults operationResults() {
+        if (this.operationResults == null) {
+            this.operationResults = new OperationResultsImpl(clientObject.getOperationResults(), this);
+        }
+        return operationResults;
+    }
+
+    /**
+     * Gets the resource collection API of Extensions. It manages Extension.
      *
      * @return Resource collection API of Extensions.
      */
@@ -294,42 +374,6 @@ public final class AgriFoodManager {
             this.extensions = new ExtensionsImpl(clientObject.getExtensions(), this);
         }
         return extensions;
-    }
-
-    /**
-     * Gets the resource collection API of FarmBeatsExtensions.
-     *
-     * @return Resource collection API of FarmBeatsExtensions.
-     */
-    public FarmBeatsExtensions farmBeatsExtensions() {
-        if (this.farmBeatsExtensions == null) {
-            this.farmBeatsExtensions = new FarmBeatsExtensionsImpl(clientObject.getFarmBeatsExtensions(), this);
-        }
-        return farmBeatsExtensions;
-    }
-
-    /**
-     * Gets the resource collection API of FarmBeatsModels. It manages FarmBeats.
-     *
-     * @return Resource collection API of FarmBeatsModels.
-     */
-    public FarmBeatsModels farmBeatsModels() {
-        if (this.farmBeatsModels == null) {
-            this.farmBeatsModels = new FarmBeatsModelsImpl(clientObject.getFarmBeatsModels(), this);
-        }
-        return farmBeatsModels;
-    }
-
-    /**
-     * Gets the resource collection API of Locations.
-     *
-     * @return Resource collection API of Locations.
-     */
-    public Locations locations() {
-        if (this.locations == null) {
-            this.locations = new LocationsImpl(clientObject.getLocations(), this);
-        }
-        return locations;
     }
 
     /**
@@ -370,8 +414,35 @@ public final class AgriFoodManager {
     }
 
     /**
-     * @return Wrapped service client AgriFoodManagementClient providing direct access to the underlying auto-generated
-     *     API implementation, based on Azure REST API.
+     * Gets the resource collection API of Solutions. It manages Solution.
+     *
+     * @return Resource collection API of Solutions.
+     */
+    public Solutions solutions() {
+        if (this.solutions == null) {
+            this.solutions = new SolutionsImpl(clientObject.getSolutions(), this);
+        }
+        return solutions;
+    }
+
+    /**
+     * Gets the resource collection API of SolutionsDiscoverabilities.
+     *
+     * @return Resource collection API of SolutionsDiscoverabilities.
+     */
+    public SolutionsDiscoverabilities solutionsDiscoverabilities() {
+        if (this.solutionsDiscoverabilities == null) {
+            this.solutionsDiscoverabilities =
+                new SolutionsDiscoverabilitiesImpl(clientObject.getSolutionsDiscoverabilities(), this);
+        }
+        return solutionsDiscoverabilities;
+    }
+
+    /**
+     * Gets wrapped service client AgriFoodManagementClient providing direct access to the underlying auto-generated API
+     * implementation, based on Azure REST API.
+     *
+     * @return Wrapped service client AgriFoodManagementClient.
      */
     public AgriFoodManagementClient serviceClient() {
         return this.clientObject;
