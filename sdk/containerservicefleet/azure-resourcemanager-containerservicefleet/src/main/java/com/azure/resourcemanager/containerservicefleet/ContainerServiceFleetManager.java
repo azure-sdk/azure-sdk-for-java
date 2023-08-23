@@ -322,8 +322,10 @@ public final class ContainerServiceFleetManager {
     }
 
     /**
-     * @return Wrapped service client ContainerServiceFleetManagementClient providing direct access to the underlying
-     *     auto-generated API implementation, based on Azure REST API.
+     * Gets wrapped service client ContainerServiceFleetManagementClient providing direct access to the underlying
+     * auto-generated API implementation, based on Azure REST API.
+     *
+     * @return Wrapped service client ContainerServiceFleetManagementClient.
      */
     public ContainerServiceFleetManagementClient serviceClient() {
         return this.clientObject;
