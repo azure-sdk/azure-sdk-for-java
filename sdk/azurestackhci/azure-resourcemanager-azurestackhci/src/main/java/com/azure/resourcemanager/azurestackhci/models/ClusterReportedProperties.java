@@ -54,6 +54,34 @@ public final class ClusterReportedProperties {
     @JsonProperty(value = "diagnosticLevel")
     private DiagnosticLevel diagnosticLevel;
 
+    /*
+     * Capabilities supported by the cluster.
+     */
+    @JsonProperty(value = "supportedCapabilities", access = JsonProperty.Access.WRITE_ONLY)
+    private List<String> supportedCapabilities;
+
+    /*
+     * The node type of all the nodes of the cluster.
+     */
+    @JsonProperty(value = "clusterType", access = JsonProperty.Access.WRITE_ONLY)
+    private ClusterNodeType clusterType;
+
+    /*
+     * The manufacturer of all the nodes of the cluster.
+     */
+    @JsonProperty(value = "manufacturer", access = JsonProperty.Access.WRITE_ONLY)
+    private String manufacturer;
+
+    /*
+     * OEM activation status of the cluster.
+     */
+    @JsonProperty(value = "oemActivation", access = JsonProperty.Access.WRITE_ONLY)
+    private OemActivation oemActivation;
+
+    /** Creates an instance of ClusterReportedProperties class. */
+    public ClusterReportedProperties() {
+    }
+
     /**
      * Get the clusterName property: Name of the on-prem cluster connected to this resource.
      *
@@ -126,6 +154,42 @@ public final class ClusterReportedProperties {
     public ClusterReportedProperties withDiagnosticLevel(DiagnosticLevel diagnosticLevel) {
         this.diagnosticLevel = diagnosticLevel;
         return this;
+    }
+
+    /**
+     * Get the supportedCapabilities property: Capabilities supported by the cluster.
+     *
+     * @return the supportedCapabilities value.
+     */
+    public List<String> supportedCapabilities() {
+        return this.supportedCapabilities;
+    }
+
+    /**
+     * Get the clusterType property: The node type of all the nodes of the cluster.
+     *
+     * @return the clusterType value.
+     */
+    public ClusterNodeType clusterType() {
+        return this.clusterType;
+    }
+
+    /**
+     * Get the manufacturer property: The manufacturer of all the nodes of the cluster.
+     *
+     * @return the manufacturer value.
+     */
+    public String manufacturer() {
+        return this.manufacturer;
+    }
+
+    /**
+     * Get the oemActivation property: OEM activation status of the cluster.
+     *
+     * @return the oemActivation value.
+     */
+    public OemActivation oemActivation() {
+        return this.oemActivation;
     }
 
     /**

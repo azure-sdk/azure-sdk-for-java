@@ -6,6 +6,7 @@ package com.azure.resourcemanager.azurestackhci.models;
 
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.time.OffsetDateTime;
 
 /** Cluster node details. */
 @Immutable
@@ -27,6 +28,18 @@ public final class ClusterNode {
      */
     @JsonProperty(value = "windowsServerSubscription", access = JsonProperty.Access.WRITE_ONLY)
     private WindowsServerSubscription windowsServerSubscription;
+
+    /*
+     * Type of the cluster node hardware.
+     */
+    @JsonProperty(value = "nodeType", access = JsonProperty.Access.WRITE_ONLY)
+    private ClusterNodeType nodeType;
+
+    /*
+     * Edge Hardware Center Resource Id
+     */
+    @JsonProperty(value = "ehcResourceId", access = JsonProperty.Access.WRITE_ONLY)
+    private String ehcResourceId;
 
     /*
      * Manufacturer of the cluster node hardware.
@@ -53,6 +66,12 @@ public final class ClusterNode {
     private String osVersion;
 
     /*
+     * Display version of the operating system running on the cluster node.
+     */
+    @JsonProperty(value = "osDisplayVersion", access = JsonProperty.Access.WRITE_ONLY)
+    private String osDisplayVersion;
+
+    /*
      * Immutable id of the cluster node.
      */
     @JsonProperty(value = "serialNumber", access = JsonProperty.Access.WRITE_ONLY)
@@ -69,6 +88,22 @@ public final class ClusterNode {
      */
     @JsonProperty(value = "memoryInGiB", access = JsonProperty.Access.WRITE_ONLY)
     private Float memoryInGiB;
+
+    /*
+     * Most recent licensing timestamp.
+     */
+    @JsonProperty(value = "lastLicensingTimestamp", access = JsonProperty.Access.WRITE_ONLY)
+    private OffsetDateTime lastLicensingTimestamp;
+
+    /*
+     * OEM activation status of the node.
+     */
+    @JsonProperty(value = "oemActivation", access = JsonProperty.Access.WRITE_ONLY)
+    private OemActivation oemActivation;
+
+    /** Creates an instance of ClusterNode class. */
+    public ClusterNode() {
+    }
 
     /**
      * Get the name property: Name of the cluster node.
@@ -95,6 +130,24 @@ public final class ClusterNode {
      */
     public WindowsServerSubscription windowsServerSubscription() {
         return this.windowsServerSubscription;
+    }
+
+    /**
+     * Get the nodeType property: Type of the cluster node hardware.
+     *
+     * @return the nodeType value.
+     */
+    public ClusterNodeType nodeType() {
+        return this.nodeType;
+    }
+
+    /**
+     * Get the ehcResourceId property: Edge Hardware Center Resource Id.
+     *
+     * @return the ehcResourceId value.
+     */
+    public String ehcResourceId() {
+        return this.ehcResourceId;
     }
 
     /**
@@ -134,6 +187,15 @@ public final class ClusterNode {
     }
 
     /**
+     * Get the osDisplayVersion property: Display version of the operating system running on the cluster node.
+     *
+     * @return the osDisplayVersion value.
+     */
+    public String osDisplayVersion() {
+        return this.osDisplayVersion;
+    }
+
+    /**
      * Get the serialNumber property: Immutable id of the cluster node.
      *
      * @return the serialNumber value.
@@ -158,6 +220,24 @@ public final class ClusterNode {
      */
     public Float memoryInGiB() {
         return this.memoryInGiB;
+    }
+
+    /**
+     * Get the lastLicensingTimestamp property: Most recent licensing timestamp.
+     *
+     * @return the lastLicensingTimestamp value.
+     */
+    public OffsetDateTime lastLicensingTimestamp() {
+        return this.lastLicensingTimestamp;
+    }
+
+    /**
+     * Get the oemActivation property: OEM activation status of the node.
+     *
+     * @return the oemActivation value.
+     */
+    public OemActivation oemActivation() {
+        return this.oemActivation;
     }
 
     /**
