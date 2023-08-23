@@ -8,8 +8,6 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
-import com.azure.resourcemanager.redisenterprise.models.ClusterPropertiesEncryption;
-import com.azure.resourcemanager.redisenterprise.models.ManagedServiceIdentity;
 import com.azure.resourcemanager.redisenterprise.models.ProvisioningState;
 import com.azure.resourcemanager.redisenterprise.models.ResourceState;
 import com.azure.resourcemanager.redisenterprise.models.Sku;
@@ -32,12 +30,6 @@ public final class ClusterInner extends Resource {
      */
     @JsonProperty(value = "zones")
     private List<String> zones;
-
-    /*
-     * The identity of the resource.
-     */
-    @JsonProperty(value = "identity")
-    private ManagedServiceIdentity identity;
 
     /*
      * RedisEnterprise cluster properties
@@ -94,26 +86,6 @@ public final class ClusterInner extends Resource {
      */
     public ClusterInner withZones(List<String> zones) {
         this.zones = zones;
-        return this;
-    }
-
-    /**
-     * Get the identity property: The identity of the resource.
-     *
-     * @return the identity value.
-     */
-    public ManagedServiceIdentity identity() {
-        return this.identity;
-    }
-
-    /**
-     * Set the identity property: The identity of the resource.
-     *
-     * @param identity the identity value to set.
-     * @return the ClusterInner object itself.
-     */
-    public ClusterInner withIdentity(ManagedServiceIdentity identity) {
-        this.identity = identity;
         return this;
     }
 
@@ -175,29 +147,6 @@ public final class ClusterInner extends Resource {
     }
 
     /**
-     * Get the encryption property: Encryption-at-rest configuration for the cluster.
-     *
-     * @return the encryption value.
-     */
-    public ClusterPropertiesEncryption encryption() {
-        return this.innerProperties() == null ? null : this.innerProperties().encryption();
-    }
-
-    /**
-     * Set the encryption property: Encryption-at-rest configuration for the cluster.
-     *
-     * @param encryption the encryption value to set.
-     * @return the ClusterInner object itself.
-     */
-    public ClusterInner withEncryption(ClusterPropertiesEncryption encryption) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new ClusterProperties();
-        }
-        this.innerProperties().withEncryption(encryption);
-        return this;
-    }
-
-    /**
      * Get the hostname property: DNS name of the cluster endpoint.
      *
      * @return the hostname value.
@@ -255,9 +204,6 @@ public final class ClusterInner extends Resource {
                     new IllegalArgumentException("Missing required property sku in model ClusterInner"));
         } else {
             sku().validate();
-        }
-        if (identity() != null) {
-            identity().validate();
         }
         if (innerProperties() != null) {
             innerProperties().validate();
