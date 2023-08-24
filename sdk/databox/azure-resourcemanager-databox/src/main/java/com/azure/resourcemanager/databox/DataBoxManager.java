@@ -215,7 +215,7 @@ public final class DataBoxManager {
                 .append("-")
                 .append("com.azure.resourcemanager.databox")
                 .append("/")
-                .append("1.0.0-beta.3");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -321,8 +321,10 @@ public final class DataBoxManager {
     }
 
     /**
-     * @return Wrapped service client DataBoxManagementClient providing direct access to the underlying auto-generated
-     *     API implementation, based on Azure REST API.
+     * Gets wrapped service client DataBoxManagementClient providing direct access to the underlying auto-generated API
+     * implementation, based on Azure REST API.
+     *
+     * @return Wrapped service client DataBoxManagementClient.
      */
     public DataBoxManagementClient serviceClient() {
         return this.clientObject;

@@ -129,6 +129,13 @@ public interface JobResource {
     StageName status();
 
     /**
+     * Gets the delayedStage property: Name of the stage where delay might be present.
+     *
+     * @return the delayedStage value.
+     */
+    StageName delayedStage();
+
+    /**
      * Gets the startTime property: Time at which the job was started in UTC ISO 8601 format.
      *
      * @return the startTime value.
@@ -214,11 +221,13 @@ public interface JobResource {
             DefinitionStages.WithTransferType,
             DefinitionStages.WithCreate {
     }
+
     /** The JobResource definition stages. */
     interface DefinitionStages {
         /** The first stage of the JobResource definition. */
         interface Blank extends WithLocation {
         }
+
         /** The stage of the JobResource definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -237,6 +246,7 @@ public interface JobResource {
              */
             WithResourceGroup withRegion(String location);
         }
+
         /** The stage of the JobResource definition allowing to specify parent resource. */
         interface WithResourceGroup {
             /**
@@ -247,6 +257,7 @@ public interface JobResource {
              */
             WithSku withExistingResourceGroup(String resourceGroupName);
         }
+
         /** The stage of the JobResource definition allowing to specify sku. */
         interface WithSku {
             /**
@@ -257,6 +268,7 @@ public interface JobResource {
              */
             WithTransferType withSku(Sku sku);
         }
+
         /** The stage of the JobResource definition allowing to specify transferType. */
         interface WithTransferType {
             /**
@@ -267,6 +279,7 @@ public interface JobResource {
              */
             WithCreate withTransferType(TransferType transferType);
         }
+
         /**
          * The stage of the JobResource definition which contains all the minimum required properties for the resource
          * to be created, but also allows for any other optional properties to be specified.
@@ -292,6 +305,7 @@ public interface JobResource {
              */
             JobResource create(Context context);
         }
+
         /** The stage of the JobResource definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -302,6 +316,7 @@ public interface JobResource {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
         /** The stage of the JobResource definition allowing to specify identity. */
         interface WithIdentity {
             /**
@@ -312,6 +327,7 @@ public interface JobResource {
              */
             WithCreate withIdentity(ResourceIdentity identity);
         }
+
         /** The stage of the JobResource definition allowing to specify details. */
         interface WithDetails {
             /**
@@ -323,6 +339,7 @@ public interface JobResource {
              */
             WithCreate withDetails(JobDetails details);
         }
+
         /** The stage of the JobResource definition allowing to specify deliveryType. */
         interface WithDeliveryType {
             /**
@@ -333,6 +350,7 @@ public interface JobResource {
              */
             WithCreate withDeliveryType(JobDeliveryType deliveryType);
         }
+
         /** The stage of the JobResource definition allowing to specify deliveryInfo. */
         interface WithDeliveryInfo {
             /**
@@ -344,6 +362,7 @@ public interface JobResource {
             WithCreate withDeliveryInfo(JobDeliveryInfo deliveryInfo);
         }
     }
+
     /**
      * Begins update for the JobResource resource.
      *
@@ -369,6 +388,7 @@ public interface JobResource {
          */
         JobResource apply(Context context);
     }
+
     /** The JobResource update stages. */
     interface UpdateStages {
         /** The stage of the JobResource update allowing to specify tags. */
@@ -383,6 +403,7 @@ public interface JobResource {
              */
             Update withTags(Map<String, String> tags);
         }
+
         /** The stage of the JobResource update allowing to specify identity. */
         interface WithIdentity {
             /**
@@ -393,6 +414,7 @@ public interface JobResource {
              */
             Update withIdentity(ResourceIdentity identity);
         }
+
         /** The stage of the JobResource update allowing to specify details. */
         interface WithDetails {
             /**
@@ -403,6 +425,7 @@ public interface JobResource {
              */
             Update withDetails(UpdateJobDetails details);
         }
+
         /** The stage of the JobResource update allowing to specify ifMatch. */
         interface WithIfMatch {
             /**
@@ -416,6 +439,7 @@ public interface JobResource {
             Update withIfMatch(String ifMatch);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

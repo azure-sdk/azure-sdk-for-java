@@ -26,7 +26,7 @@ public final class ImportDiskDetails {
     /*
      * BitLocker key used to encrypt the disk.
      */
-    @JsonProperty(value = "bitLockerKey", required = true)
+    @JsonProperty(value = "bitLockerKey")
     private String bitLockerKey;
 
     /*

@@ -257,6 +257,15 @@ public final class JobResourceInner extends Resource {
     }
 
     /**
+     * Get the delayedStage property: Name of the stage where delay might be present.
+     *
+     * @return the delayedStage value.
+     */
+    public StageName delayedStage() {
+        return this.innerProperties() == null ? null : this.innerProperties().delayedStage();
+    }
+
+    /**
      * Get the startTime property: Time at which the job was started in UTC ISO 8601 format.
      *
      * @return the startTime value.
