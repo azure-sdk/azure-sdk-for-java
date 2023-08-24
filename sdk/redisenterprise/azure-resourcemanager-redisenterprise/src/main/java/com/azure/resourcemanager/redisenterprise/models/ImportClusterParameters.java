@@ -19,7 +19,7 @@ public final class ImportClusterParameters {
     /*
      * SAS URIs for the target blobs to import from
      */
-    @JsonProperty(value = "sasUris", required = true)
+    @JsonProperty(value = "sasUris")
     private List<String> sasUris;
 
     /** Creates an instance of ImportClusterParameters class. */

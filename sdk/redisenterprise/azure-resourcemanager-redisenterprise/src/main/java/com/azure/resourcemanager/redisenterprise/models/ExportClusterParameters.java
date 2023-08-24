@@ -18,7 +18,7 @@ public final class ExportClusterParameters {
     /*
      * SAS URI for the target directory to export to
      */
-    @JsonProperty(value = "sasUri", required = true)
+    @JsonProperty(value = "sasUri")
     private String sasUri;
 
     /** Creates an instance of ExportClusterParameters class. */
