@@ -88,11 +88,13 @@ public interface DelegatedController {
             DefinitionStages.WithResourceGroup,
             DefinitionStages.WithCreate {
     }
+
     /** The DelegatedController definition stages. */
     interface DefinitionStages {
         /** The first stage of the DelegatedController definition. */
         interface Blank extends WithLocation {
         }
+
         /** The stage of the DelegatedController definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -111,6 +113,7 @@ public interface DelegatedController {
              */
             WithResourceGroup withRegion(String location);
         }
+
         /** The stage of the DelegatedController definition allowing to specify parent resource. */
         interface WithResourceGroup {
             /**
@@ -121,11 +124,12 @@ public interface DelegatedController {
              */
             WithCreate withExistingResourceGroup(String resourceGroupName);
         }
+
         /**
          * The stage of the DelegatedController definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithTags {
+        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithProperties {
             /**
              * Executes the create request.
              *
@@ -141,6 +145,7 @@ public interface DelegatedController {
              */
             DelegatedController create(Context context);
         }
+
         /** The stage of the DelegatedController definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -151,7 +156,19 @@ public interface DelegatedController {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
+        /** The stage of the DelegatedController definition allowing to specify properties. */
+        interface WithProperties {
+            /**
+             * Specifies the properties property: Properties of the provision operation request..
+             *
+             * @param properties Properties of the provision operation request.
+             * @return the next definition stage.
+             */
+            WithCreate withProperties(DelegatedControllerProperties properties);
+        }
     }
+
     /**
      * Begins update for the DelegatedController resource.
      *
@@ -176,6 +193,7 @@ public interface DelegatedController {
          */
         DelegatedController apply(Context context);
     }
+
     /** The DelegatedController update stages. */
     interface UpdateStages {
         /** The stage of the DelegatedController update allowing to specify tags. */
@@ -189,6 +207,7 @@ public interface DelegatedController {
             Update withTags(Map<String, String> tags);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *
