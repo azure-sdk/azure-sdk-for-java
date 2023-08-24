@@ -70,6 +70,13 @@ public interface LabPlan {
     ProvisioningState provisioningState();
 
     /**
+     * Gets the resourceOperationError property: Error details of last operation done on lab plan.
+     *
+     * @return the resourceOperationError value.
+     */
+    ResourceOperationError resourceOperationError();
+
+    /**
      * Gets the defaultConnectionProfile property: The default lab connection profile. This can be changed on a lab
      * resource and only provides a default profile.
      *
@@ -160,11 +167,13 @@ public interface LabPlan {
             DefinitionStages.WithResourceGroup,
             DefinitionStages.WithCreate {
     }
+
     /** The LabPlan definition stages. */
     interface DefinitionStages {
         /** The first stage of the LabPlan definition. */
         interface Blank extends WithLocation {
         }
+
         /** The stage of the LabPlan definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -183,6 +192,7 @@ public interface LabPlan {
              */
             WithResourceGroup withRegion(String location);
         }
+
         /** The stage of the LabPlan definition allowing to specify parent resource. */
         interface WithResourceGroup {
             /**
@@ -193,6 +203,7 @@ public interface LabPlan {
              */
             WithCreate withExistingResourceGroup(String resourceGroupName);
         }
+
         /**
          * The stage of the LabPlan definition which contains all the minimum required properties for the resource to be
          * created, but also allows for any other optional properties to be specified.
@@ -222,6 +233,7 @@ public interface LabPlan {
              */
             LabPlan create(Context context);
         }
+
         /** The stage of the LabPlan definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -232,6 +244,7 @@ public interface LabPlan {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
         /** The stage of the LabPlan definition allowing to specify identity. */
         interface WithIdentity {
             /**
@@ -242,6 +255,7 @@ public interface LabPlan {
              */
             WithCreate withIdentity(Identity identity);
         }
+
         /** The stage of the LabPlan definition allowing to specify defaultConnectionProfile. */
         interface WithDefaultConnectionProfile {
             /**
@@ -254,6 +268,7 @@ public interface LabPlan {
              */
             WithCreate withDefaultConnectionProfile(ConnectionProfile defaultConnectionProfile);
         }
+
         /** The stage of the LabPlan definition allowing to specify defaultAutoShutdownProfile. */
         interface WithDefaultAutoShutdownProfile {
             /**
@@ -266,6 +281,7 @@ public interface LabPlan {
              */
             WithCreate withDefaultAutoShutdownProfile(AutoShutdownProfile defaultAutoShutdownProfile);
         }
+
         /** The stage of the LabPlan definition allowing to specify defaultNetworkProfile. */
         interface WithDefaultNetworkProfile {
             /**
@@ -279,6 +295,7 @@ public interface LabPlan {
              */
             WithCreate withDefaultNetworkProfile(LabPlanNetworkProfile defaultNetworkProfile);
         }
+
         /** The stage of the LabPlan definition allowing to specify allowedRegions. */
         interface WithAllowedRegions {
             /**
@@ -291,6 +308,7 @@ public interface LabPlan {
              */
             WithCreate withAllowedRegions(List<String> allowedRegions);
         }
+
         /** The stage of the LabPlan definition allowing to specify sharedGalleryId. */
         interface WithSharedGalleryId {
             /**
@@ -305,6 +323,7 @@ public interface LabPlan {
              */
             WithCreate withSharedGalleryId(String sharedGalleryId);
         }
+
         /** The stage of the LabPlan definition allowing to specify supportInfo. */
         interface WithSupportInfo {
             /**
@@ -318,6 +337,7 @@ public interface LabPlan {
              */
             WithCreate withSupportInfo(SupportInfo supportInfo);
         }
+
         /** The stage of the LabPlan definition allowing to specify linkedLmsInstance. */
         interface WithLinkedLmsInstance {
             /**
@@ -330,6 +350,7 @@ public interface LabPlan {
             WithCreate withLinkedLmsInstance(String linkedLmsInstance);
         }
     }
+
     /**
      * Begins update for the LabPlan resource.
      *
@@ -363,6 +384,7 @@ public interface LabPlan {
          */
         LabPlan apply(Context context);
     }
+
     /** The LabPlan update stages. */
     interface UpdateStages {
         /** The stage of the LabPlan update allowing to specify tags. */
@@ -375,6 +397,7 @@ public interface LabPlan {
              */
             Update withTags(List<String> tags);
         }
+
         /** The stage of the LabPlan update allowing to specify identity. */
         interface WithIdentity {
             /**
@@ -385,6 +408,7 @@ public interface LabPlan {
              */
             Update withIdentity(Identity identity);
         }
+
         /** The stage of the LabPlan update allowing to specify defaultConnectionProfile. */
         interface WithDefaultConnectionProfile {
             /**
@@ -397,6 +421,7 @@ public interface LabPlan {
              */
             Update withDefaultConnectionProfile(ConnectionProfile defaultConnectionProfile);
         }
+
         /** The stage of the LabPlan update allowing to specify defaultAutoShutdownProfile. */
         interface WithDefaultAutoShutdownProfile {
             /**
@@ -409,6 +434,7 @@ public interface LabPlan {
              */
             Update withDefaultAutoShutdownProfile(AutoShutdownProfile defaultAutoShutdownProfile);
         }
+
         /** The stage of the LabPlan update allowing to specify defaultNetworkProfile. */
         interface WithDefaultNetworkProfile {
             /**
@@ -422,6 +448,7 @@ public interface LabPlan {
              */
             Update withDefaultNetworkProfile(LabPlanNetworkProfile defaultNetworkProfile);
         }
+
         /** The stage of the LabPlan update allowing to specify allowedRegions. */
         interface WithAllowedRegions {
             /**
@@ -434,6 +461,7 @@ public interface LabPlan {
              */
             Update withAllowedRegions(List<String> allowedRegions);
         }
+
         /** The stage of the LabPlan update allowing to specify sharedGalleryId. */
         interface WithSharedGalleryId {
             /**
@@ -448,6 +476,7 @@ public interface LabPlan {
              */
             Update withSharedGalleryId(String sharedGalleryId);
         }
+
         /** The stage of the LabPlan update allowing to specify supportInfo. */
         interface WithSupportInfo {
             /**
@@ -461,6 +490,7 @@ public interface LabPlan {
              */
             Update withSupportInfo(SupportInfo supportInfo);
         }
+
         /** The stage of the LabPlan update allowing to specify linkedLmsInstance. */
         interface WithLinkedLmsInstance {
             /**
@@ -473,6 +503,7 @@ public interface LabPlan {
             Update withLinkedLmsInstance(String linkedLmsInstance);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

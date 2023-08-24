@@ -239,7 +239,7 @@ public final class LabServicesManager {
                 .append("-")
                 .append("com.azure.resourcemanager.labservices")
                 .append("/")
-                .append("1.0.0-beta.3");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -417,8 +417,10 @@ public final class LabServicesManager {
     }
 
     /**
-     * @return Wrapped service client LabServicesClient providing direct access to the underlying auto-generated API
-     *     implementation, based on Azure REST API.
+     * Gets wrapped service client LabServicesClient providing direct access to the underlying auto-generated API
+     * implementation, based on Azure REST API.
+     *
+     * @return Wrapped service client LabServicesClient.
      */
     public LabServicesClient serviceClient() {
         return this.clientObject;

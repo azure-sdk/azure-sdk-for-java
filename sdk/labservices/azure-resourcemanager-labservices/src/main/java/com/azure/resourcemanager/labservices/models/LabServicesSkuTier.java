@@ -17,6 +17,15 @@ public final class LabServicesSkuTier extends ExpandableStringEnum<LabServicesSk
     public static final LabServicesSkuTier PREMIUM = fromString("Premium");
 
     /**
+     * Creates a new instance of LabServicesSkuTier value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public LabServicesSkuTier() {
+    }
+
+    /**
      * Creates or finds a LabServicesSkuTier from its string representation.
      *
      * @param name a name to look for.

@@ -46,6 +46,10 @@ public final class ImageReference {
     @JsonProperty(value = "exactVersion", access = JsonProperty.Access.WRITE_ONLY)
     private String exactVersion;
 
+    /** Creates an instance of ImageReference class. */
+    public ImageReference() {
+    }
+
     /**
      * Get the id property: Image resource ID.
      *

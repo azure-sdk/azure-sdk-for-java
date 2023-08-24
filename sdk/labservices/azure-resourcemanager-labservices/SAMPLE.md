@@ -79,7 +79,7 @@ import com.azure.resourcemanager.labservices.models.EnableState;
 /** Samples for Images CreateOrUpdate. */
 public final class ImagesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Images/putImage.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/Images/putImage.json
      */
     /**
      * Sample code: putImage.
@@ -90,7 +90,7 @@ public final class ImagesCreateOrUpdateSamples {
         manager
             .images()
             .define("image1")
-            .withExistingLabPlan("fakeResourceGroupPlaceholder", "testlabplan")
+            .withExistingLabPlan("testrg123", "testlabplan")
             .withEnabledState(EnableState.ENABLED)
             .create();
     }
@@ -100,12 +100,10 @@ public final class ImagesCreateOrUpdateSamples {
 ### Images_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Images Get. */
 public final class ImagesGetSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Images/getImage.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/Images/getImage.json
      */
     /**
      * Sample code: getImage.
@@ -113,7 +111,7 @@ public final class ImagesGetSamples {
      * @param manager Entry point to LabServicesManager.
      */
     public static void getImage(com.azure.resourcemanager.labservices.LabServicesManager manager) {
-        manager.images().getWithResponse("fakeResourceGroupPlaceholder", "testlabplan", "image1", Context.NONE);
+        manager.images().getWithResponse("testrg123", "testlabplan", "image1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -121,12 +119,10 @@ public final class ImagesGetSamples {
 ### Images_ListByLabPlan
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Images ListByLabPlan. */
 public final class ImagesListByLabPlanSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Images/listImages.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/Images/listImages.json
      */
     /**
      * Sample code: listImages.
@@ -134,7 +130,7 @@ public final class ImagesListByLabPlanSamples {
      * @param manager Entry point to LabServicesManager.
      */
     public static void listImages(com.azure.resourcemanager.labservices.LabServicesManager manager) {
-        manager.images().listByLabPlan("fakeResourceGroupPlaceholder", "testlabplan", null, Context.NONE);
+        manager.images().listByLabPlan("testrg123", "testlabplan", null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -142,14 +138,13 @@ public final class ImagesListByLabPlanSamples {
 ### Images_Update
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.labservices.models.EnableState;
 import com.azure.resourcemanager.labservices.models.Image;
 
 /** Samples for Images Update. */
 public final class ImagesUpdateSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Images/patchImage.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/Images/patchImage.json
      */
     /**
      * Sample code: patchImage.
@@ -158,7 +153,10 @@ public final class ImagesUpdateSamples {
      */
     public static void patchImage(com.azure.resourcemanager.labservices.LabServicesManager manager) {
         Image resource =
-            manager.images().getWithResponse("fakeResourceGroupPlaceholder", "testlabplan", "image1", Context.NONE).getValue();
+            manager
+                .images()
+                .getWithResponse("testrg123", "testlabplan", "image1", com.azure.core.util.Context.NONE)
+                .getValue();
         resource.update().withEnabledState(EnableState.ENABLED).apply();
     }
 }
@@ -179,7 +177,7 @@ import java.time.Duration;
 /** Samples for LabPlans CreateOrUpdate. */
 public final class LabPlansCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/LabPlans/putLabPlan.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/LabPlans/putLabPlan.json
      */
     /**
      * Sample code: putLabPlan.
@@ -191,7 +189,7 @@ public final class LabPlansCreateOrUpdateSamples {
             .labPlans()
             .define("testlabplan")
             .withRegion("westus")
-            .withExistingResourceGroup("fakeResourceGroupPlaceholder")
+            .withExistingResourceGroup("testrg123")
             .withDefaultConnectionProfile(
                 new ConnectionProfile()
                     .withWebSshAccess(ConnectionType.NONE)
@@ -209,9 +207,9 @@ public final class LabPlansCreateOrUpdateSamples {
             .withDefaultNetworkProfile(
                 new LabPlanNetworkProfile()
                     .withSubnetId(
-                        "/subscriptions/34adfa4f-cedf-4dc0-ba29-b6d1a69ab345/resourceGroups/fakeResourceGroupPlaceholder/providers/Microsoft.Network/virtualNetworks/test-vnet/subnets/default"))
+                        "/subscriptions/34adfa4f-cedf-4dc0-ba29-b6d1a69ab345/resourceGroups/testrg123/providers/Microsoft.Network/virtualNetworks/test-vnet/subnets/default"))
             .withSharedGalleryId(
-                "/subscriptions/34adfa4f-cedf-4dc0-ba29-b6d1a69ab345/resourceGroups/fakeResourceGroupPlaceholder/providers/Microsoft.Compute/galleries/testsig")
+                "/subscriptions/34adfa4f-cedf-4dc0-ba29-b6d1a69ab345/resourceGroups/testrg123/providers/Microsoft.Compute/galleries/testsig")
             .withSupportInfo(
                 new SupportInfo()
                     .withUrl("help.contoso.com")
@@ -226,12 +224,10 @@ public final class LabPlansCreateOrUpdateSamples {
 ### LabPlans_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for LabPlans Delete. */
 public final class LabPlansDeleteSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/LabPlans/deleteLabPlan.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/LabPlans/deleteLabPlan.json
      */
     /**
      * Sample code: deleteLabPlan.
@@ -239,7 +235,7 @@ public final class LabPlansDeleteSamples {
      * @param manager Entry point to LabServicesManager.
      */
     public static void deleteLabPlan(com.azure.resourcemanager.labservices.LabServicesManager manager) {
-        manager.labPlans().delete("fakeResourceGroupPlaceholder", "testlabplan", Context.NONE);
+        manager.labPlans().delete("testrg123", "testlabplan", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -247,12 +243,10 @@ public final class LabPlansDeleteSamples {
 ### LabPlans_GetByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for LabPlans GetByResourceGroup. */
 public final class LabPlansGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/LabPlans/getLabPlan.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/LabPlans/getLabPlan.json
      */
     /**
      * Sample code: getLabPlan.
@@ -260,7 +254,7 @@ public final class LabPlansGetByResourceGroupSamples {
      * @param manager Entry point to LabServicesManager.
      */
     public static void getLabPlan(com.azure.resourcemanager.labservices.LabServicesManager manager) {
-        manager.labPlans().getByResourceGroupWithResponse("fakeResourceGroupPlaceholder", "testlabplan", Context.NONE);
+        manager.labPlans().getByResourceGroupWithResponse("testrg123", "testlabplan", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -268,12 +262,10 @@ public final class LabPlansGetByResourceGroupSamples {
 ### LabPlans_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for LabPlans List. */
 public final class LabPlansListSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/LabPlans/listLabPlans.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/LabPlans/listLabPlans.json
      */
     /**
      * Sample code: listLabPlans.
@@ -281,7 +273,7 @@ public final class LabPlansListSamples {
      * @param manager Entry point to LabServicesManager.
      */
     public static void listLabPlans(com.azure.resourcemanager.labservices.LabServicesManager manager) {
-        manager.labPlans().list(null, Context.NONE);
+        manager.labPlans().list(null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -289,12 +281,10 @@ public final class LabPlansListSamples {
 ### LabPlans_ListByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for LabPlans ListByResourceGroup. */
 public final class LabPlansListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/LabPlans/listResourceGroupLabPlans.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/LabPlans/listResourceGroupLabPlans.json
      */
     /**
      * Sample code: listResourceGroupLabPlans.
@@ -302,7 +292,7 @@ public final class LabPlansListByResourceGroupSamples {
      * @param manager Entry point to LabServicesManager.
      */
     public static void listResourceGroupLabPlans(com.azure.resourcemanager.labservices.LabServicesManager manager) {
-        manager.labPlans().listByResourceGroup("fakeResourceGroupPlaceholder", Context.NONE);
+        manager.labPlans().listByResourceGroup("testrg123", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -310,13 +300,12 @@ public final class LabPlansListByResourceGroupSamples {
 ### LabPlans_SaveImage
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.labservices.models.SaveImageBody;
 
 /** Samples for LabPlans SaveImage. */
 public final class LabPlansSaveImageSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/LabPlans/saveImageVirtualMachine.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/LabPlans/saveImageVirtualMachine.json
      */
     /**
      * Sample code: saveImageVirtualMachine.
@@ -327,13 +316,13 @@ public final class LabPlansSaveImageSamples {
         manager
             .labPlans()
             .saveImage(
-                "fakeResourceGroupPlaceholder",
+                "testrg123",
                 "testlabplan",
                 new SaveImageBody()
                     .withName("Test Image")
                     .withLabVirtualMachineId(
-                        "/subscriptions/34adfa4f-cedf-4dc0-ba29-b6d1a69ab345/resourceGroups/fakeResourceGroupPlaceholder/providers/Microsoft.LabServices/labs/testlab/virtualMachines/template"),
-                Context.NONE);
+                        "/subscriptions/34adfa4f-cedf-4dc0-ba29-b6d1a69ab345/resourceGroups/testrg123/providers/Microsoft.LabServices/labs/testlab/virtualMachines/template"),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -341,7 +330,6 @@ public final class LabPlansSaveImageSamples {
 ### LabPlans_Update
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.labservices.models.ConnectionProfile;
 import com.azure.resourcemanager.labservices.models.ConnectionType;
 import com.azure.resourcemanager.labservices.models.LabPlan;
@@ -349,7 +337,7 @@ import com.azure.resourcemanager.labservices.models.LabPlan;
 /** Samples for LabPlans Update. */
 public final class LabPlansUpdateSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/LabPlans/patchLabPlan.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/LabPlans/patchLabPlan.json
      */
     /**
      * Sample code: patchLabPlan.
@@ -358,7 +346,10 @@ public final class LabPlansUpdateSamples {
      */
     public static void patchLabPlan(com.azure.resourcemanager.labservices.LabServicesManager manager) {
         LabPlan resource =
-            manager.labPlans().getByResourceGroupWithResponse("fakeResourceGroupPlaceholder", "testlabplan", Context.NONE).getValue();
+            manager
+                .labPlans()
+                .getByResourceGroupWithResponse("testrg123", "testlabplan", com.azure.core.util.Context.NONE)
+                .getValue();
         resource
             .update()
             .withDefaultConnectionProfile(
@@ -393,7 +384,7 @@ import java.time.Duration;
 /** Samples for Labs CreateOrUpdate. */
 public final class LabsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Labs/putLab.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/Labs/putLab.json
      */
     /**
      * Sample code: putLab.
@@ -405,11 +396,11 @@ public final class LabsCreateOrUpdateSamples {
             .labs()
             .define("testlab")
             .withRegion("westus")
-            .withExistingResourceGroup("fakeResourceGroupPlaceholder")
+            .withExistingResourceGroup("testrg123")
             .withNetworkProfile(
                 new LabNetworkProfile()
                     .withSubnetId(
-                        "/subscriptions/34adfa4f-cedf-4dc0-ba29-b6d1a69ab345/resourceGroups/fakeResourceGroupPlaceholder/providers/Microsoft.Network/virtualNetworks/test-vnet/subnets/default"))
+                        "/subscriptions/34adfa4f-cedf-4dc0-ba29-b6d1a69ab345/resourceGroups/testrg123/providers/Microsoft.Network/virtualNetworks/test-vnet/subnets/default"))
             .withAutoShutdownProfile(
                 new AutoShutdownProfile()
                     .withShutdownOnDisconnect(EnableState.ENABLED)
@@ -441,7 +432,7 @@ public final class LabsCreateOrUpdateSamples {
                     .withAdminUser(new Credentials().withUsername("test-user")))
             .withSecurityProfile(new SecurityProfile().withOpenAccess(EnableState.DISABLED))
             .withLabPlanId(
-                "/subscriptions/34adfa4f-cedf-4dc0-ba29-b6d1a69ab345/resourceGroups/fakeResourceGroupPlaceholder/providers/Microsoft.LabServices/labPlans/testlabplan")
+                "/subscriptions/34adfa4f-cedf-4dc0-ba29-b6d1a69ab345/resourceGroups/testrg123/providers/Microsoft.LabServices/labPlans/testlabplan")
             .withTitle("Test Lab")
             .withDescription("This is a test lab.")
             .create();
@@ -452,12 +443,10 @@ public final class LabsCreateOrUpdateSamples {
 ### Labs_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Labs Delete. */
 public final class LabsDeleteSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Labs/deleteLab.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/Labs/deleteLab.json
      */
     /**
      * Sample code: deleteLab.
@@ -465,7 +454,7 @@ public final class LabsDeleteSamples {
      * @param manager Entry point to LabServicesManager.
      */
     public static void deleteLab(com.azure.resourcemanager.labservices.LabServicesManager manager) {
-        manager.labs().delete("fakeResourceGroupPlaceholder", "testlab", Context.NONE);
+        manager.labs().delete("testrg123", "testlab", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -473,12 +462,10 @@ public final class LabsDeleteSamples {
 ### Labs_GetByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Labs GetByResourceGroup. */
 public final class LabsGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Labs/getLab.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/Labs/getLab.json
      */
     /**
      * Sample code: getLab.
@@ -486,7 +473,7 @@ public final class LabsGetByResourceGroupSamples {
      * @param manager Entry point to LabServicesManager.
      */
     public static void getLab(com.azure.resourcemanager.labservices.LabServicesManager manager) {
-        manager.labs().getByResourceGroupWithResponse("fakeResourceGroupPlaceholder", "testlab", Context.NONE);
+        manager.labs().getByResourceGroupWithResponse("testrg123", "testlab", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -494,12 +481,10 @@ public final class LabsGetByResourceGroupSamples {
 ### Labs_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Labs List. */
 public final class LabsListSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Labs/listLabs.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/Labs/listLabs.json
      */
     /**
      * Sample code: listLabs.
@@ -507,7 +492,7 @@ public final class LabsListSamples {
      * @param manager Entry point to LabServicesManager.
      */
     public static void listLabs(com.azure.resourcemanager.labservices.LabServicesManager manager) {
-        manager.labs().list(null, Context.NONE);
+        manager.labs().list(null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -515,12 +500,10 @@ public final class LabsListSamples {
 ### Labs_ListByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Labs ListByResourceGroup. */
 public final class LabsListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Labs/listResourceGroupLabs.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/Labs/listResourceGroupLabs.json
      */
     /**
      * Sample code: listResourceGroupLabs.
@@ -528,7 +511,7 @@ public final class LabsListByResourceGroupSamples {
      * @param manager Entry point to LabServicesManager.
      */
     public static void listResourceGroupLabs(com.azure.resourcemanager.labservices.LabServicesManager manager) {
-        manager.labs().listByResourceGroup("fakeResourceGroupPlaceholder", Context.NONE);
+        manager.labs().listByResourceGroup("testrg123", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -536,12 +519,10 @@ public final class LabsListByResourceGroupSamples {
 ### Labs_Publish
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Labs Publish. */
 public final class LabsPublishSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Labs/publishLab.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/Labs/publishLab.json
      */
     /**
      * Sample code: publishLab.
@@ -549,7 +530,7 @@ public final class LabsPublishSamples {
      * @param manager Entry point to LabServicesManager.
      */
     public static void publishLab(com.azure.resourcemanager.labservices.LabServicesManager manager) {
-        manager.labs().publish("fakeResourceGroupPlaceholder", "testlab", Context.NONE);
+        manager.labs().publish("testrg123", "testlab", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -557,12 +538,10 @@ public final class LabsPublishSamples {
 ### Labs_SyncGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Labs SyncGroup. */
 public final class LabsSyncGroupSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Labs/syncLab.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/Labs/syncLab.json
      */
     /**
      * Sample code: syncLab.
@@ -570,7 +549,7 @@ public final class LabsSyncGroupSamples {
      * @param manager Entry point to LabServicesManager.
      */
     public static void syncLab(com.azure.resourcemanager.labservices.LabServicesManager manager) {
-        manager.labs().syncGroup("fakeResourceGroupPlaceholder", "testlab", Context.NONE);
+        manager.labs().syncGroup("testrg123", "testlab", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -578,7 +557,6 @@ public final class LabsSyncGroupSamples {
 ### Labs_Update
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.labservices.models.EnableState;
 import com.azure.resourcemanager.labservices.models.Lab;
 import com.azure.resourcemanager.labservices.models.SecurityProfile;
@@ -586,7 +564,7 @@ import com.azure.resourcemanager.labservices.models.SecurityProfile;
 /** Samples for Labs Update. */
 public final class LabsUpdateSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Labs/patchLab.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/Labs/patchLab.json
      */
     /**
      * Sample code: patchLab.
@@ -594,7 +572,11 @@ public final class LabsUpdateSamples {
      * @param manager Entry point to LabServicesManager.
      */
     public static void patchLab(com.azure.resourcemanager.labservices.LabServicesManager manager) {
-        Lab resource = manager.labs().getByResourceGroupWithResponse("fakeResourceGroupPlaceholder", "testlab", Context.NONE).getValue();
+        Lab resource =
+            manager
+                .labs()
+                .getByResourceGroupWithResponse("testrg123", "testlab", com.azure.core.util.Context.NONE)
+                .getValue();
         resource.update().withSecurityProfile(new SecurityProfile().withOpenAccess(EnableState.ENABLED)).apply();
     }
 }
@@ -603,12 +585,10 @@ public final class LabsUpdateSamples {
 ### OperationResults_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for OperationResults Get. */
 public final class OperationResultsGetSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/OperationResults/getOperationResult.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/OperationResults/getOperationResult.json
      */
     /**
      * Sample code: getOperationResult.
@@ -616,7 +596,9 @@ public final class OperationResultsGetSamples {
      * @param manager Entry point to LabServicesManager.
      */
     public static void getOperationResult(com.azure.resourcemanager.labservices.LabServicesManager manager) {
-        manager.operationResults().getWithResponse("a64149d8-84cb-4566-ab8e-b4ee1a074174", Context.NONE);
+        manager
+            .operationResults()
+            .getWithResponse("a64149d8-84cb-4566-ab8e-b4ee1a074174", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -624,12 +606,10 @@ public final class OperationResultsGetSamples {
 ### Operations_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Operations List. */
 public final class OperationsListSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/LabServices/listOperations.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/LabServices/listOperations.json
      */
     /**
      * Sample code: listOperations.
@@ -637,7 +617,7 @@ public final class OperationsListSamples {
      * @param manager Entry point to LabServicesManager.
      */
     public static void listOperations(com.azure.resourcemanager.labservices.LabServicesManager manager) {
-        manager.operations().list(Context.NONE);
+        manager.operations().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -652,7 +632,7 @@ import java.time.OffsetDateTime;
 /** Samples for Schedules CreateOrUpdate. */
 public final class SchedulesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Schedules/putSchedule.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/Schedules/putSchedule.json
      */
     /**
      * Sample code: putSchedule.
@@ -663,7 +643,7 @@ public final class SchedulesCreateOrUpdateSamples {
         manager
             .schedules()
             .define("schedule1")
-            .withExistingLab("fakeResourceGroupPlaceholder", "testlab")
+            .withExistingLab("testrg123", "testlab")
             .withStartAt(OffsetDateTime.parse("2020-05-26T12:00:00Z"))
             .withStopAt(OffsetDateTime.parse("2020-05-26T18:00:00Z"))
             .withRecurrencePattern(
@@ -681,12 +661,10 @@ public final class SchedulesCreateOrUpdateSamples {
 ### Schedules_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Schedules Delete. */
 public final class SchedulesDeleteSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Schedules/deleteSchedule.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/Schedules/deleteSchedule.json
      */
     /**
      * Sample code: deleteSchedule.
@@ -694,7 +672,7 @@ public final class SchedulesDeleteSamples {
      * @param manager Entry point to LabServicesManager.
      */
     public static void deleteSchedule(com.azure.resourcemanager.labservices.LabServicesManager manager) {
-        manager.schedules().delete("fakeResourceGroupPlaceholder", "testlab", "schedule1", Context.NONE);
+        manager.schedules().delete("testrg123", "testlab", "schedule1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -702,12 +680,10 @@ public final class SchedulesDeleteSamples {
 ### Schedules_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Schedules Get. */
 public final class SchedulesGetSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Schedules/getSchedule.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/Schedules/getSchedule.json
      */
     /**
      * Sample code: getSchedule.
@@ -715,7 +691,7 @@ public final class SchedulesGetSamples {
      * @param manager Entry point to LabServicesManager.
      */
     public static void getSchedule(com.azure.resourcemanager.labservices.LabServicesManager manager) {
-        manager.schedules().getWithResponse("fakeResourceGroupPlaceholder", "testlab", "schedule1", Context.NONE);
+        manager.schedules().getWithResponse("testrg123", "testlab", "schedule1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -723,12 +699,10 @@ public final class SchedulesGetSamples {
 ### Schedules_ListByLab
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Schedules ListByLab. */
 public final class SchedulesListByLabSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Schedules/listSchedule.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/Schedules/listSchedule.json
      */
     /**
      * Sample code: getListSchedule.
@@ -736,7 +710,7 @@ public final class SchedulesListByLabSamples {
      * @param manager Entry point to LabServicesManager.
      */
     public static void getListSchedule(com.azure.resourcemanager.labservices.LabServicesManager manager) {
-        manager.schedules().listByLab("fakeResourceGroupPlaceholder", "testlab", null, Context.NONE);
+        manager.schedules().listByLab("testrg123", "testlab", null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -744,7 +718,6 @@ public final class SchedulesListByLabSamples {
 ### Schedules_Update
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.labservices.models.RecurrenceFrequency;
 import com.azure.resourcemanager.labservices.models.RecurrencePattern;
 import com.azure.resourcemanager.labservices.models.Schedule;
@@ -753,7 +726,7 @@ import java.time.OffsetDateTime;
 /** Samples for Schedules Update. */
 public final class SchedulesUpdateSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Schedules/patchSchedule.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/Schedules/patchSchedule.json
      */
     /**
      * Sample code: patchSchedule.
@@ -762,7 +735,10 @@ public final class SchedulesUpdateSamples {
      */
     public static void patchSchedule(com.azure.resourcemanager.labservices.LabServicesManager manager) {
         Schedule resource =
-            manager.schedules().getWithResponse("fakeResourceGroupPlaceholder", "testlab", "schedule1", Context.NONE).getValue();
+            manager
+                .schedules()
+                .getWithResponse("testrg123", "testlab", "schedule1", com.azure.core.util.Context.NONE)
+                .getValue();
         resource
             .update()
             .withRecurrencePattern(
@@ -778,12 +754,10 @@ public final class SchedulesUpdateSamples {
 ### Skus_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Skus List. */
 public final class SkusListSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Skus/listSkus.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/Skus/listSkus.json
      */
     /**
      * Sample code: listSkus.
@@ -791,7 +765,7 @@ public final class SkusListSamples {
      * @param manager Entry point to LabServicesManager.
      */
     public static void listSkus(com.azure.resourcemanager.labservices.LabServicesManager manager) {
-        manager.skus().list(null, Context.NONE);
+        manager.skus().list(null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -799,12 +773,10 @@ public final class SkusListSamples {
 ### Usages_ListByLocation
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Usages ListByLocation. */
 public final class UsagesListByLocationSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Usages/getUsages.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/Usages/getUsages.json
      */
     /**
      * Sample code: listUsages.
@@ -812,7 +784,7 @@ public final class UsagesListByLocationSamples {
      * @param manager Entry point to LabServicesManager.
      */
     public static void listUsages(com.azure.resourcemanager.labservices.LabServicesManager manager) {
-        manager.usages().listByLocation("eastus2", null, Context.NONE);
+        manager.usages().listByLocation("eastus2", null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -825,7 +797,7 @@ import java.time.Duration;
 /** Samples for Users CreateOrUpdate. */
 public final class UsersCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Users/putUser.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/Users/putUser.json
      */
     /**
      * Sample code: putUser.
@@ -836,7 +808,7 @@ public final class UsersCreateOrUpdateSamples {
         manager
             .users()
             .define("testuser")
-            .withExistingLab("fakeResourceGroupPlaceholder", "testlab")
+            .withExistingLab("testrg123", "testlab")
             .withEmail("testuser@contoso.com")
             .withAdditionalUsageQuota(Duration.parse("PT10H"))
             .create();
@@ -847,12 +819,10 @@ public final class UsersCreateOrUpdateSamples {
 ### Users_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Users Delete. */
 public final class UsersDeleteSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Users/deleteUser.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/Users/deleteUser.json
      */
     /**
      * Sample code: deleteUser.
@@ -860,7 +830,7 @@ public final class UsersDeleteSamples {
      * @param manager Entry point to LabServicesManager.
      */
     public static void deleteUser(com.azure.resourcemanager.labservices.LabServicesManager manager) {
-        manager.users().delete("fakeResourceGroupPlaceholder", "testlab", "testuser", Context.NONE);
+        manager.users().delete("testrg123", "testlab", "testuser", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -868,12 +838,10 @@ public final class UsersDeleteSamples {
 ### Users_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Users Get. */
 public final class UsersGetSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Users/getUser.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/Users/getUser.json
      */
     /**
      * Sample code: getUser.
@@ -881,7 +849,7 @@ public final class UsersGetSamples {
      * @param manager Entry point to LabServicesManager.
      */
     public static void getUser(com.azure.resourcemanager.labservices.LabServicesManager manager) {
-        manager.users().getWithResponse("fakeResourceGroupPlaceholder", "testlab", "testuser", Context.NONE);
+        manager.users().getWithResponse("testrg123", "testlab", "testuser", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -889,13 +857,12 @@ public final class UsersGetSamples {
 ### Users_Invite
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.labservices.models.InviteBody;
 
 /** Samples for Users Invite. */
 public final class UsersInviteSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Users/inviteUser.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/Users/inviteUser.json
      */
     /**
      * Sample code: inviteUser.
@@ -906,11 +873,11 @@ public final class UsersInviteSamples {
         manager
             .users()
             .invite(
-                "fakeResourceGroupPlaceholder",
+                "testrg123",
                 "testlab",
                 "testuser",
                 new InviteBody().withText("Invitation to lab testlab"),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -918,12 +885,10 @@ public final class UsersInviteSamples {
 ### Users_ListByLab
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Users ListByLab. */
 public final class UsersListByLabSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Users/listUser.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/Users/listUser.json
      */
     /**
      * Sample code: listUser.
@@ -931,7 +896,7 @@ public final class UsersListByLabSamples {
      * @param manager Entry point to LabServicesManager.
      */
     public static void listUser(com.azure.resourcemanager.labservices.LabServicesManager manager) {
-        manager.users().listByLab("fakeResourceGroupPlaceholder", "testlab", null, Context.NONE);
+        manager.users().listByLab("testrg123", "testlab", null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -939,14 +904,13 @@ public final class UsersListByLabSamples {
 ### Users_Update
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.labservices.models.User;
 import java.time.Duration;
 
 /** Samples for Users Update. */
 public final class UsersUpdateSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Users/patchUser.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/Users/patchUser.json
      */
     /**
      * Sample code: patchUser.
@@ -954,7 +918,11 @@ public final class UsersUpdateSamples {
      * @param manager Entry point to LabServicesManager.
      */
     public static void patchUser(com.azure.resourcemanager.labservices.LabServicesManager manager) {
-        User resource = manager.users().getWithResponse("fakeResourceGroupPlaceholder", "testlab", "testuser", Context.NONE).getValue();
+        User resource =
+            manager
+                .users()
+                .getWithResponse("testrg123", "testlab", "testuser", com.azure.core.util.Context.NONE)
+                .getValue();
         resource.update().withAdditionalUsageQuota(Duration.parse("PT10H")).apply();
     }
 }
@@ -963,12 +931,10 @@ public final class UsersUpdateSamples {
 ### VirtualMachines_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for VirtualMachines Get. */
 public final class VirtualMachinesGetSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/VirtualMachines/getVirtualMachine.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/VirtualMachines/getVirtualMachine.json
      */
     /**
      * Sample code: getVirtualMachine.
@@ -976,7 +942,7 @@ public final class VirtualMachinesGetSamples {
      * @param manager Entry point to LabServicesManager.
      */
     public static void getVirtualMachine(com.azure.resourcemanager.labservices.LabServicesManager manager) {
-        manager.virtualMachines().getWithResponse("fakeResourceGroupPlaceholder", "testlab", "template", Context.NONE);
+        manager.virtualMachines().getWithResponse("testrg123", "testlab", "template", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -984,12 +950,10 @@ public final class VirtualMachinesGetSamples {
 ### VirtualMachines_ListByLab
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for VirtualMachines ListByLab. */
 public final class VirtualMachinesListByLabSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/VirtualMachines/listVirtualMachine.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/VirtualMachines/listVirtualMachine.json
      */
     /**
      * Sample code: listVirtualMachine.
@@ -997,7 +961,7 @@ public final class VirtualMachinesListByLabSamples {
      * @param manager Entry point to LabServicesManager.
      */
     public static void listVirtualMachine(com.azure.resourcemanager.labservices.LabServicesManager manager) {
-        manager.virtualMachines().listByLab("fakeResourceGroupPlaceholder", "testlab", null, Context.NONE);
+        manager.virtualMachines().listByLab("testrg123", "testlab", null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1005,12 +969,10 @@ public final class VirtualMachinesListByLabSamples {
 ### VirtualMachines_Redeploy
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for VirtualMachines Redeploy. */
 public final class VirtualMachinesRedeploySamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/VirtualMachines/redeployVirtualMachine.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/VirtualMachines/redeployVirtualMachine.json
      */
     /**
      * Sample code: redeployVirtualMachine.
@@ -1018,7 +980,7 @@ public final class VirtualMachinesRedeploySamples {
      * @param manager Entry point to LabServicesManager.
      */
     public static void redeployVirtualMachine(com.azure.resourcemanager.labservices.LabServicesManager manager) {
-        manager.virtualMachines().redeploy("fakeResourceGroupPlaceholder", "testlab", "template", Context.NONE);
+        manager.virtualMachines().redeploy("testrg123", "testlab", "template", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1026,12 +988,10 @@ public final class VirtualMachinesRedeploySamples {
 ### VirtualMachines_Reimage
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for VirtualMachines Reimage. */
 public final class VirtualMachinesReimageSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/VirtualMachines/reimageVirtualMachine.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/VirtualMachines/reimageVirtualMachine.json
      */
     /**
      * Sample code: reimageVirtualMachine.
@@ -1039,7 +999,7 @@ public final class VirtualMachinesReimageSamples {
      * @param manager Entry point to LabServicesManager.
      */
     public static void reimageVirtualMachine(com.azure.resourcemanager.labservices.LabServicesManager manager) {
-        manager.virtualMachines().reimage("fakeResourceGroupPlaceholder", "testlab", "template", Context.NONE);
+        manager.virtualMachines().reimage("testrg123", "testlab", "template", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1047,13 +1007,12 @@ public final class VirtualMachinesReimageSamples {
 ### VirtualMachines_ResetPassword
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.labservices.models.ResetPasswordBody;
 
 /** Samples for VirtualMachines ResetPassword. */
 public final class VirtualMachinesResetPasswordSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/VirtualMachines/resetPasswordVirtualMachine.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/VirtualMachines/resetPasswordVirtualMachine.json
      */
     /**
      * Sample code: resetPasswordVirtualMachine.
@@ -1064,11 +1023,11 @@ public final class VirtualMachinesResetPasswordSamples {
         manager
             .virtualMachines()
             .resetPassword(
-                "fakeResourceGroupNamePlaceholder",
+                "testrg123",
                 "testlab",
                 "template",
-                new ResetPasswordBody().withUsername("example-username").withPassword("example-password"),
-                Context.NONE);
+                new ResetPasswordBody().withUsername("example-username").withPassword("fakeTokenPlaceholder"),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1076,12 +1035,10 @@ public final class VirtualMachinesResetPasswordSamples {
 ### VirtualMachines_Start
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for VirtualMachines Start. */
 public final class VirtualMachinesStartSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/VirtualMachines/startVirtualMachine.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/VirtualMachines/startVirtualMachine.json
      */
     /**
      * Sample code: startVirtualMachine.
@@ -1089,7 +1046,7 @@ public final class VirtualMachinesStartSamples {
      * @param manager Entry point to LabServicesManager.
      */
     public static void startVirtualMachine(com.azure.resourcemanager.labservices.LabServicesManager manager) {
-        manager.virtualMachines().start("fakeResourceGroupPlaceholder", "testlab", "template", Context.NONE);
+        manager.virtualMachines().start("testrg123", "testlab", "template", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1097,12 +1054,10 @@ public final class VirtualMachinesStartSamples {
 ### VirtualMachines_Stop
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for VirtualMachines Stop. */
 public final class VirtualMachinesStopSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/VirtualMachines/stopVirtualMachine.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/VirtualMachines/stopVirtualMachine.json
      */
     /**
      * Sample code: stopVirtualMachine.
@@ -1110,7 +1065,7 @@ public final class VirtualMachinesStopSamples {
      * @param manager Entry point to LabServicesManager.
      */
     public static void stopVirtualMachine(com.azure.resourcemanager.labservices.LabServicesManager manager) {
-        manager.virtualMachines().stop("fakeResourceGroupPlaceholder", "testlab", "template", Context.NONE);
+        manager.virtualMachines().stop("testrg123", "testlab", "template", com.azure.core.util.Context.NONE);
     }
 }
 ```

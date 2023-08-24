@@ -14,6 +14,15 @@ public final class RestrictionType extends ExpandableStringEnum<RestrictionType>
     public static final RestrictionType LOCATION = fromString("Location");
 
     /**
+     * Creates a new instance of RestrictionType value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public RestrictionType() {
+    }
+
+    /**
      * Creates or finds a RestrictionType from its string representation.
      *
      * @param name a name to look for.
