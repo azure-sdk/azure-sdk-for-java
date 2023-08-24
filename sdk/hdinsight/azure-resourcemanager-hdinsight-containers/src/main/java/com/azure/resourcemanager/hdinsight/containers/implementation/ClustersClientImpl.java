@@ -52,24 +52,24 @@ public final class ClustersClientImpl implements ClustersClient {
     private final ClustersService service;
 
     /** The service client containing this operation class. */
-    private final HDInsightContainersManagementClientImpl client;
+    private final HDInsightOnAksManagementClientImpl client;
 
     /**
      * Initializes an instance of ClustersClientImpl.
      *
      * @param client the instance of the service client containing this operation class.
      */
-    ClustersClientImpl(HDInsightContainersManagementClientImpl client) {
+    ClustersClientImpl(HDInsightOnAksManagementClientImpl client) {
         this.service = RestProxy.create(ClustersService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for HDInsightContainersManagementClientClusters to be used by the proxy
+     * The interface defining all the services for HDInsightOnAksManagementClientClusters to be used by the proxy
      * service to perform REST calls.
      */
     @Host("{$host}")
-    @ServiceInterface(name = "HDInsightContainersM")
+    @ServiceInterface(name = "HDInsightOnAksManage")
     public interface ClustersService {
         @Headers({"Content-Type: application/json"})
         @Get(

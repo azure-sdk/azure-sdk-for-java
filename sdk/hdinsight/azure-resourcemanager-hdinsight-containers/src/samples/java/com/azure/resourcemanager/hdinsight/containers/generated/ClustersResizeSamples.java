@@ -14,10 +14,10 @@ public final class ClustersResizeSamples {
     /**
      * Sample code: HDInsightClusterResize.
      *
-     * @param manager Entry point to HDInsightContainersManager.
+     * @param manager Entry point to HDInsightOnAksManager.
      */
     public static void hDInsightClusterResize(
-        com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager manager) {
+        com.azure.resourcemanager.hdinsight.containers.HDInsightOnAksManager manager) {
         manager
             .clusters()
             .resize(

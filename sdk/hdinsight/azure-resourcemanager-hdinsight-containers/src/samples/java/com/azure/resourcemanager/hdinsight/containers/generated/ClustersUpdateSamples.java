@@ -30,10 +30,10 @@ public final class ClustersUpdateSamples {
     /**
      * Sample code: HDInsightClustersPatchTags.
      *
-     * @param manager Entry point to HDInsightContainersManager.
+     * @param manager Entry point to HDInsightOnAksManager.
      */
     public static void hDInsightClustersPatchTags(
-        com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager manager) {
+        com.azure.resourcemanager.hdinsight.containers.HDInsightOnAksManager manager) {
         Cluster resource =
             manager
                 .clusters()

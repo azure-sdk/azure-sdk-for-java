@@ -16,10 +16,10 @@ public final class ClusterPoolsUpdateTagsSamples {
     /**
      * Sample code: ClusterPoolsPatchTags.
      *
-     * @param manager Entry point to HDInsightContainersManager.
+     * @param manager Entry point to HDInsightOnAksManager.
      */
     public static void clusterPoolsPatchTags(
-        com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager manager) {
+        com.azure.resourcemanager.hdinsight.containers.HDInsightOnAksManager manager) {
         ClusterPool resource =
             manager
                 .clusterPools()

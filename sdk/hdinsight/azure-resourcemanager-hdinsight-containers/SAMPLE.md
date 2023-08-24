@@ -53,10 +53,10 @@ public final class AvailableClusterPoolVersionsListByLocationSamples {
     /**
      * Sample code: ClusterPoolVersionListResult.
      *
-     * @param manager Entry point to HDInsightContainersManager.
+     * @param manager Entry point to HDInsightOnAksManager.
      */
     public static void clusterPoolVersionListResult(
-        com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager manager) {
+        com.azure.resourcemanager.hdinsight.containers.HDInsightOnAksManager manager) {
         manager.availableClusterPoolVersions().listByLocation("westus2", com.azure.core.util.Context.NONE);
     }
 }
@@ -73,10 +73,10 @@ public final class AvailableClusterVersionsListByLocationSamples {
     /**
      * Sample code: ClusterVersionListResult.
      *
-     * @param manager Entry point to HDInsightContainersManager.
+     * @param manager Entry point to HDInsightOnAksManager.
      */
     public static void clusterVersionListResult(
-        com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager manager) {
+        com.azure.resourcemanager.hdinsight.containers.HDInsightOnAksManager manager) {
         manager.availableClusterVersions().listByLocation("westus2", com.azure.core.util.Context.NONE);
     }
 }
@@ -93,10 +93,9 @@ public final class ClusterJobsListSamples {
     /**
      * Sample code: ListClusterJobs.
      *
-     * @param manager Entry point to HDInsightContainersManager.
+     * @param manager Entry point to HDInsightOnAksManager.
      */
-    public static void listClusterJobs(
-        com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager manager) {
+    public static void listClusterJobs(com.azure.resourcemanager.hdinsight.containers.HDInsightOnAksManager manager) {
         manager.clusterJobs().list("hiloResourcegroup", "clusterPool1", "cluster1", com.azure.core.util.Context.NONE);
     }
 }
@@ -119,10 +118,9 @@ public final class ClusterJobsRunJobSamples {
     /**
      * Sample code: RunClusterJob.
      *
-     * @param manager Entry point to HDInsightContainersManager.
+     * @param manager Entry point to HDInsightOnAksManager.
      */
-    public static void runClusterJob(
-        com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager manager) {
+    public static void runClusterJob(com.azure.resourcemanager.hdinsight.containers.HDInsightOnAksManager manager) {
         manager
             .clusterJobs()
             .runJob(
@@ -174,10 +172,9 @@ public final class ClusterPoolsCreateOrUpdateSamples {
     /**
      * Sample code: ClusterPoolPut.
      *
-     * @param manager Entry point to HDInsightContainersManager.
+     * @param manager Entry point to HDInsightOnAksManager.
      */
-    public static void clusterPoolPut(
-        com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager manager) {
+    public static void clusterPoolPut(com.azure.resourcemanager.hdinsight.containers.HDInsightOnAksManager manager) {
         manager
             .clusterPools()
             .define("clusterpool1")
@@ -201,10 +198,9 @@ public final class ClusterPoolsDeleteSamples {
     /**
      * Sample code: ClusterPoolDelete.
      *
-     * @param manager Entry point to HDInsightContainersManager.
+     * @param manager Entry point to HDInsightOnAksManager.
      */
-    public static void clusterPoolDelete(
-        com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager manager) {
+    public static void clusterPoolDelete(com.azure.resourcemanager.hdinsight.containers.HDInsightOnAksManager manager) {
         manager.clusterPools().delete("rg1", "clusterpool1", com.azure.core.util.Context.NONE);
     }
 }
@@ -221,10 +217,9 @@ public final class ClusterPoolsGetByResourceGroupSamples {
     /**
      * Sample code: ClusterPoolGet.
      *
-     * @param manager Entry point to HDInsightContainersManager.
+     * @param manager Entry point to HDInsightOnAksManager.
      */
-    public static void clusterPoolGet(
-        com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager manager) {
+    public static void clusterPoolGet(com.azure.resourcemanager.hdinsight.containers.HDInsightOnAksManager manager) {
         manager
             .clusterPools()
             .getByResourceGroupWithResponse("hiloResourcegroup", "clusterpool1", com.azure.core.util.Context.NONE);
@@ -243,10 +238,10 @@ public final class ClusterPoolsListSamples {
     /**
      * Sample code: ClusterPoolsListBySubscription.
      *
-     * @param manager Entry point to HDInsightContainersManager.
+     * @param manager Entry point to HDInsightOnAksManager.
      */
     public static void clusterPoolsListBySubscription(
-        com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager manager) {
+        com.azure.resourcemanager.hdinsight.containers.HDInsightOnAksManager manager) {
         manager.clusterPools().list(com.azure.core.util.Context.NONE);
     }
 }
@@ -263,10 +258,10 @@ public final class ClusterPoolsListByResourceGroupSamples {
     /**
      * Sample code: ClusterPoolsListByResourceGroup.
      *
-     * @param manager Entry point to HDInsightContainersManager.
+     * @param manager Entry point to HDInsightOnAksManager.
      */
     public static void clusterPoolsListByResourceGroup(
-        com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager manager) {
+        com.azure.resourcemanager.hdinsight.containers.HDInsightOnAksManager manager) {
         manager.clusterPools().listByResourceGroup("hiloResourcegroup", com.azure.core.util.Context.NONE);
     }
 }
@@ -287,10 +282,10 @@ public final class ClusterPoolsUpdateTagsSamples {
     /**
      * Sample code: ClusterPoolsPatchTags.
      *
-     * @param manager Entry point to HDInsightContainersManager.
+     * @param manager Entry point to HDInsightOnAksManager.
      */
     public static void clusterPoolsPatchTags(
-        com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager manager) {
+        com.azure.resourcemanager.hdinsight.containers.HDInsightOnAksManager manager) {
         ClusterPool resource =
             manager
                 .clusterPools()
@@ -348,10 +343,10 @@ public final class ClustersCreateSamples {
     /**
      * Sample code: HDInsightSparkClusterPut.
      *
-     * @param manager Entry point to HDInsightContainersManager.
+     * @param manager Entry point to HDInsightOnAksManager.
      */
     public static void hDInsightSparkClusterPut(
-        com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager manager) {
+        com.azure.resourcemanager.hdinsight.containers.HDInsightOnAksManager manager) {
         manager
             .clusters()
             .define("cluster1")
@@ -430,10 +425,10 @@ public final class ClustersCreateSamples {
     /**
      * Sample code: HDInsightClusterPut.
      *
-     * @param manager Entry point to HDInsightContainersManager.
+     * @param manager Entry point to HDInsightOnAksManager.
      */
     public static void hDInsightClusterPut(
-        com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager manager) {
+        com.azure.resourcemanager.hdinsight.containers.HDInsightOnAksManager manager) {
         manager
             .clusters()
             .define("cluster1")
@@ -533,10 +528,10 @@ public final class ClustersDeleteSamples {
     /**
      * Sample code: HDInsightClustersDelete.
      *
-     * @param manager Entry point to HDInsightContainersManager.
+     * @param manager Entry point to HDInsightOnAksManager.
      */
     public static void hDInsightClustersDelete(
-        com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager manager) {
+        com.azure.resourcemanager.hdinsight.containers.HDInsightOnAksManager manager) {
         manager.clusters().delete("rg1", "clusterpool1", "cluster1", com.azure.core.util.Context.NONE);
     }
 }
@@ -553,10 +548,10 @@ public final class ClustersGetSamples {
     /**
      * Sample code: HDInsightClusterGet.
      *
-     * @param manager Entry point to HDInsightContainersManager.
+     * @param manager Entry point to HDInsightOnAksManager.
      */
     public static void hDInsightClusterGet(
-        com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager manager) {
+        com.azure.resourcemanager.hdinsight.containers.HDInsightOnAksManager manager) {
         manager
             .clusters()
             .getWithResponse("hiloResourcegroup", "clusterpool1", "cluster1", com.azure.core.util.Context.NONE);
@@ -575,10 +570,10 @@ public final class ClustersGetInstanceViewSamples {
     /**
      * Sample code: HDInsightClusterGetInstanceView.
      *
-     * @param manager Entry point to HDInsightContainersManager.
+     * @param manager Entry point to HDInsightOnAksManager.
      */
     public static void hDInsightClusterGetInstanceView(
-        com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager manager) {
+        com.azure.resourcemanager.hdinsight.containers.HDInsightOnAksManager manager) {
         manager
             .clusters()
             .getInstanceViewWithResponse("rg1", "clusterPool1", "cluster1", com.azure.core.util.Context.NONE);
@@ -597,10 +592,10 @@ public final class ClustersListByClusterPoolNameSamples {
     /**
      * Sample code: HDInsightClustersListByClusterPoolName.
      *
-     * @param manager Entry point to HDInsightContainersManager.
+     * @param manager Entry point to HDInsightOnAksManager.
      */
     public static void hDInsightClustersListByClusterPoolName(
-        com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager manager) {
+        com.azure.resourcemanager.hdinsight.containers.HDInsightOnAksManager manager) {
         manager.clusters().listByClusterPoolName("hiloResourcegroup", "clusterpool1", com.azure.core.util.Context.NONE);
     }
 }
@@ -617,10 +612,10 @@ public final class ClustersListInstanceViewsSamples {
     /**
      * Sample code: HDInsightClusterGetInstanceViews.
      *
-     * @param manager Entry point to HDInsightContainersManager.
+     * @param manager Entry point to HDInsightOnAksManager.
      */
     public static void hDInsightClusterGetInstanceViews(
-        com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager manager) {
+        com.azure.resourcemanager.hdinsight.containers.HDInsightOnAksManager manager) {
         manager.clusters().listInstanceViews("rg1", "clusterPool1", "cluster1", com.azure.core.util.Context.NONE);
     }
 }
@@ -637,10 +632,10 @@ public final class ClustersListServiceConfigsSamples {
     /**
      * Sample code: HDInsightClusterGetServiceConfigs.
      *
-     * @param manager Entry point to HDInsightContainersManager.
+     * @param manager Entry point to HDInsightOnAksManager.
      */
     public static void hDInsightClusterGetServiceConfigs(
-        com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager manager) {
+        com.azure.resourcemanager.hdinsight.containers.HDInsightOnAksManager manager) {
         manager.clusters().listServiceConfigs("rg1", "clusterPool1", "cluster1", com.azure.core.util.Context.NONE);
     }
 }
@@ -659,10 +654,10 @@ public final class ClustersResizeSamples {
     /**
      * Sample code: HDInsightClusterResize.
      *
-     * @param manager Entry point to HDInsightContainersManager.
+     * @param manager Entry point to HDInsightOnAksManager.
      */
     public static void hDInsightClusterResize(
-        com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager manager) {
+        com.azure.resourcemanager.hdinsight.containers.HDInsightOnAksManager manager) {
         manager
             .clusters()
             .resize(
@@ -704,10 +699,10 @@ public final class ClustersUpdateSamples {
     /**
      * Sample code: HDInsightClustersPatchTags.
      *
-     * @param manager Entry point to HDInsightContainersManager.
+     * @param manager Entry point to HDInsightOnAksManager.
      */
     public static void hDInsightClustersPatchTags(
-        com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager manager) {
+        com.azure.resourcemanager.hdinsight.containers.HDInsightOnAksManager manager) {
         Cluster resource =
             manager
                 .clusters()
@@ -842,10 +837,10 @@ public final class LocationsCheckNameAvailabilitySamples {
     /**
      * Sample code: LocationsNameAvailability.
      *
-     * @param manager Entry point to HDInsightContainersManager.
+     * @param manager Entry point to HDInsightOnAksManager.
      */
     public static void locationsNameAvailability(
-        com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager manager) {
+        com.azure.resourcemanager.hdinsight.containers.HDInsightOnAksManager manager) {
         manager
             .locations()
             .checkNameAvailabilityWithResponse(
@@ -869,10 +864,9 @@ public final class OperationsListSamples {
     /**
      * Sample code: ListOperations.
      *
-     * @param manager Entry point to HDInsightContainersManager.
+     * @param manager Entry point to HDInsightOnAksManager.
      */
-    public static void listOperations(
-        com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager manager) {
+    public static void listOperations(com.azure.resourcemanager.hdinsight.containers.HDInsightOnAksManager manager) {
         manager.operations().list(com.azure.core.util.Context.NONE);
     }
 }

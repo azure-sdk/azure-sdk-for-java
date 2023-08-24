@@ -12,10 +12,10 @@ public final class ClustersDeleteSamples {
     /**
      * Sample code: HDInsightClustersDelete.
      *
-     * @param manager Entry point to HDInsightContainersManager.
+     * @param manager Entry point to HDInsightOnAksManager.
      */
     public static void hDInsightClustersDelete(
-        com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager manager) {
+        com.azure.resourcemanager.hdinsight.containers.HDInsightOnAksManager manager) {
         manager.clusters().delete("rg1", "clusterpool1", "cluster1", com.azure.core.util.Context.NONE);
     }
 }

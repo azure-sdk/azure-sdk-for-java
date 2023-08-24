@@ -12,10 +12,10 @@ public final class ClusterPoolsListSamples {
     /**
      * Sample code: ClusterPoolsListBySubscription.
      *
-     * @param manager Entry point to HDInsightContainersManager.
+     * @param manager Entry point to HDInsightOnAksManager.
      */
     public static void clusterPoolsListBySubscription(
-        com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager manager) {
+        com.azure.resourcemanager.hdinsight.containers.HDInsightOnAksManager manager) {
         manager.clusterPools().list(com.azure.core.util.Context.NONE);
     }
 }

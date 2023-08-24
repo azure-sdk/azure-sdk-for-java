@@ -36,14 +36,14 @@ public final class AvailableClusterVersionsClientImpl implements AvailableCluste
     private final AvailableClusterVersionsService service;
 
     /** The service client containing this operation class. */
-    private final HDInsightContainersManagementClientImpl client;
+    private final HDInsightOnAksManagementClientImpl client;
 
     /**
      * Initializes an instance of AvailableClusterVersionsClientImpl.
      *
      * @param client the instance of the service client containing this operation class.
      */
-    AvailableClusterVersionsClientImpl(HDInsightContainersManagementClientImpl client) {
+    AvailableClusterVersionsClientImpl(HDInsightOnAksManagementClientImpl client) {
         this.service =
             RestProxy
                 .create(AvailableClusterVersionsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
@@ -51,11 +51,11 @@ public final class AvailableClusterVersionsClientImpl implements AvailableCluste
     }
 
     /**
-     * The interface defining all the services for HDInsightContainersManagementClientAvailableClusterVersions to be
-     * used by the proxy service to perform REST calls.
+     * The interface defining all the services for HDInsightOnAksManagementClientAvailableClusterVersions to be used by
+     * the proxy service to perform REST calls.
      */
     @Host("{$host}")
-    @ServiceInterface(name = "HDInsightContainersM")
+    @ServiceInterface(name = "HDInsightOnAksManage")
     public interface AvailableClusterVersionsService {
         @Headers({"Content-Type: application/json"})
         @Get(

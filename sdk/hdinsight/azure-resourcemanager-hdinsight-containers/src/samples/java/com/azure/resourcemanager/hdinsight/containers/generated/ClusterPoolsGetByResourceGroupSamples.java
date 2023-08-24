@@ -12,10 +12,9 @@ public final class ClusterPoolsGetByResourceGroupSamples {
     /**
      * Sample code: ClusterPoolGet.
      *
-     * @param manager Entry point to HDInsightContainersManager.
+     * @param manager Entry point to HDInsightOnAksManager.
      */
-    public static void clusterPoolGet(
-        com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager manager) {
+    public static void clusterPoolGet(com.azure.resourcemanager.hdinsight.containers.HDInsightOnAksManager manager) {
         manager
             .clusterPools()
             .getByResourceGroupWithResponse("hiloResourcegroup", "clusterpool1", com.azure.core.util.Context.NONE);

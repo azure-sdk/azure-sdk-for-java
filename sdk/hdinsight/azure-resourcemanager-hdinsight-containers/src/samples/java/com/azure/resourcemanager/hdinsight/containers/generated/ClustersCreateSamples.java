@@ -36,10 +36,10 @@ public final class ClustersCreateSamples {
     /**
      * Sample code: HDInsightSparkClusterPut.
      *
-     * @param manager Entry point to HDInsightContainersManager.
+     * @param manager Entry point to HDInsightOnAksManager.
      */
     public static void hDInsightSparkClusterPut(
-        com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager manager) {
+        com.azure.resourcemanager.hdinsight.containers.HDInsightOnAksManager manager) {
         manager
             .clusters()
             .define("cluster1")
@@ -118,10 +118,10 @@ public final class ClustersCreateSamples {
     /**
      * Sample code: HDInsightClusterPut.
      *
-     * @param manager Entry point to HDInsightContainersManager.
+     * @param manager Entry point to HDInsightOnAksManager.
      */
     public static void hDInsightClusterPut(
-        com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager manager) {
+        com.azure.resourcemanager.hdinsight.containers.HDInsightOnAksManager manager) {
         manager
             .clusters()
             .define("cluster1")

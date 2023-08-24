@@ -36,25 +36,25 @@ public final class OperationsClientImpl implements OperationsClient {
     private final OperationsService service;
 
     /** The service client containing this operation class. */
-    private final HDInsightContainersManagementClientImpl client;
+    private final HDInsightOnAksManagementClientImpl client;
 
     /**
      * Initializes an instance of OperationsClientImpl.
      *
      * @param client the instance of the service client containing this operation class.
      */
-    OperationsClientImpl(HDInsightContainersManagementClientImpl client) {
+    OperationsClientImpl(HDInsightOnAksManagementClientImpl client) {
         this.service =
             RestProxy.create(OperationsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for HDInsightContainersManagementClientOperations to be used by the proxy
+     * The interface defining all the services for HDInsightOnAksManagementClientOperations to be used by the proxy
      * service to perform REST calls.
      */
     @Host("{$host}")
-    @ServiceInterface(name = "HDInsightContainersM")
+    @ServiceInterface(name = "HDInsightOnAksManage")
     public interface OperationsService {
         @Headers({"Content-Type: application/json"})
         @Get("/providers/Microsoft.HDInsight/operations")

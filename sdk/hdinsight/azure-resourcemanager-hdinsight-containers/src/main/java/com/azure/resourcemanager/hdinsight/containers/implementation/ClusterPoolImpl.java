@@ -22,7 +22,7 @@ import java.util.Map;
 public final class ClusterPoolImpl implements ClusterPool, ClusterPool.Definition, ClusterPool.Update {
     private ClusterPoolInner innerObject;
 
-    private final com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager serviceManager;
+    private final com.azure.resourcemanager.hdinsight.containers.HDInsightOnAksManager serviceManager;
 
     public String id() {
         return this.innerModel().id();
@@ -109,7 +109,7 @@ public final class ClusterPoolImpl implements ClusterPool, ClusterPool.Definitio
         return this.innerObject;
     }
 
-    private com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager manager() {
+    private com.azure.resourcemanager.hdinsight.containers.HDInsightOnAksManager manager() {
         return this.serviceManager;
     }
 
@@ -142,8 +142,7 @@ public final class ClusterPoolImpl implements ClusterPool, ClusterPool.Definitio
         return this;
     }
 
-    ClusterPoolImpl(
-        String name, com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager serviceManager) {
+    ClusterPoolImpl(String name, com.azure.resourcemanager.hdinsight.containers.HDInsightOnAksManager serviceManager) {
         this.innerObject = new ClusterPoolInner();
         this.serviceManager = serviceManager;
         this.clusterPoolName = name;
@@ -174,7 +173,7 @@ public final class ClusterPoolImpl implements ClusterPool, ClusterPool.Definitio
 
     ClusterPoolImpl(
         ClusterPoolInner innerObject,
-        com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager serviceManager) {
+        com.azure.resourcemanager.hdinsight.containers.HDInsightOnAksManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
         this.resourceGroupName = Utils.getValueFromIdByName(innerObject.id(), "resourceGroups");

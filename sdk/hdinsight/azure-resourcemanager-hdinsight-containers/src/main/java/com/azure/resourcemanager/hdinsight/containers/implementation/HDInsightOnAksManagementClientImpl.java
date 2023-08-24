@@ -27,7 +27,7 @@ import com.azure.resourcemanager.hdinsight.containers.fluent.AvailableClusterVer
 import com.azure.resourcemanager.hdinsight.containers.fluent.ClusterJobsClient;
 import com.azure.resourcemanager.hdinsight.containers.fluent.ClusterPoolsClient;
 import com.azure.resourcemanager.hdinsight.containers.fluent.ClustersClient;
-import com.azure.resourcemanager.hdinsight.containers.fluent.HDInsightContainersManagementClient;
+import com.azure.resourcemanager.hdinsight.containers.fluent.HDInsightOnAksManagementClient;
 import com.azure.resourcemanager.hdinsight.containers.fluent.LocationsClient;
 import com.azure.resourcemanager.hdinsight.containers.fluent.OperationsClient;
 import java.io.IOException;
@@ -39,9 +39,9 @@ import java.time.Duration;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-/** Initializes a new instance of the HDInsightContainersManagementClientImpl type. */
-@ServiceClient(builder = HDInsightContainersManagementClientBuilder.class)
-public final class HDInsightContainersManagementClientImpl implements HDInsightContainersManagementClient {
+/** Initializes a new instance of the HDInsightOnAksManagementClientImpl type. */
+@ServiceClient(builder = HDInsightOnAksManagementClientBuilder.class)
+public final class HDInsightOnAksManagementClientImpl implements HDInsightOnAksManagementClient {
     /** The ID of the target subscription. The value must be an UUID. */
     private final String subscriptionId;
 
@@ -199,7 +199,7 @@ public final class HDInsightContainersManagementClientImpl implements HDInsightC
     }
 
     /**
-     * Initializes an instance of HDInsightContainersManagementClient client.
+     * Initializes an instance of HDInsightOnAksManagementClient client.
      *
      * @param httpPipeline The HTTP pipeline to send requests through.
      * @param serializerAdapter The serializer to serialize an object into a string.
@@ -208,7 +208,7 @@ public final class HDInsightContainersManagementClientImpl implements HDInsightC
      * @param subscriptionId The ID of the target subscription. The value must be an UUID.
      * @param endpoint server parameter.
      */
-    HDInsightContainersManagementClientImpl(
+    HDInsightOnAksManagementClientImpl(
         HttpPipeline httpPipeline,
         SerializerAdapter serializerAdapter,
         Duration defaultPollInterval,
@@ -370,5 +370,5 @@ public final class HDInsightContainersManagementClientImpl implements HDInsightC
         }
     }
 
-    private static final ClientLogger LOGGER = new ClientLogger(HDInsightContainersManagementClientImpl.class);
+    private static final ClientLogger LOGGER = new ClientLogger(HDInsightOnAksManagementClientImpl.class);
 }

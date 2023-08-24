@@ -7,8 +7,8 @@ package com.azure.resourcemanager.hdinsight.containers.fluent;
 import com.azure.core.http.HttpPipeline;
 import java.time.Duration;
 
-/** The interface for HDInsightContainersManagementClient class. */
-public interface HDInsightContainersManagementClient {
+/** The interface for HDInsightOnAksManagementClient class. */
+public interface HDInsightOnAksManagementClient {
     /**
      * Gets The ID of the target subscription. The value must be an UUID.
      *

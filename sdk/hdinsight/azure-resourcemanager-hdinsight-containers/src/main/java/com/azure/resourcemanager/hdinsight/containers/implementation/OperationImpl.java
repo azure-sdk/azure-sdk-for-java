@@ -13,11 +13,11 @@ import com.azure.resourcemanager.hdinsight.containers.models.Origin;
 public final class OperationImpl implements Operation {
     private OperationInner innerObject;
 
-    private final com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager serviceManager;
+    private final com.azure.resourcemanager.hdinsight.containers.HDInsightOnAksManager serviceManager;
 
     OperationImpl(
         OperationInner innerObject,
-        com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager serviceManager) {
+        com.azure.resourcemanager.hdinsight.containers.HDInsightOnAksManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
     }
@@ -46,7 +46,7 @@ public final class OperationImpl implements Operation {
         return this.innerObject;
     }
 
-    private com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager manager() {
+    private com.azure.resourcemanager.hdinsight.containers.HDInsightOnAksManager manager() {
         return this.serviceManager;
     }
 }

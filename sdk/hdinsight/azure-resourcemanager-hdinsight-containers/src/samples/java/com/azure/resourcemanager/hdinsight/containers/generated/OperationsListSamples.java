@@ -12,10 +12,9 @@ public final class OperationsListSamples {
     /**
      * Sample code: ListOperations.
      *
-     * @param manager Entry point to HDInsightContainersManager.
+     * @param manager Entry point to HDInsightOnAksManager.
      */
-    public static void listOperations(
-        com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager manager) {
+    public static void listOperations(com.azure.resourcemanager.hdinsight.containers.HDInsightOnAksManager manager) {
         manager.operations().list(com.azure.core.util.Context.NONE);
     }
 }

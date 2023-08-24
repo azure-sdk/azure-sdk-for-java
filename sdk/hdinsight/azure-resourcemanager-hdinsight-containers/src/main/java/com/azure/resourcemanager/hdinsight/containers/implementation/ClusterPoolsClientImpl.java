@@ -46,25 +46,25 @@ public final class ClusterPoolsClientImpl implements ClusterPoolsClient {
     private final ClusterPoolsService service;
 
     /** The service client containing this operation class. */
-    private final HDInsightContainersManagementClientImpl client;
+    private final HDInsightOnAksManagementClientImpl client;
 
     /**
      * Initializes an instance of ClusterPoolsClientImpl.
      *
      * @param client the instance of the service client containing this operation class.
      */
-    ClusterPoolsClientImpl(HDInsightContainersManagementClientImpl client) {
+    ClusterPoolsClientImpl(HDInsightOnAksManagementClientImpl client) {
         this.service =
             RestProxy.create(ClusterPoolsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for HDInsightContainersManagementClientClusterPools to be used by the
-     * proxy service to perform REST calls.
+     * The interface defining all the services for HDInsightOnAksManagementClientClusterPools to be used by the proxy
+     * service to perform REST calls.
      */
     @Host("{$host}")
-    @ServiceInterface(name = "HDInsightContainersM")
+    @ServiceInterface(name = "HDInsightOnAksManage")
     public interface ClusterPoolsService {
         @Headers({"Content-Type: application/json"})
         @Get(

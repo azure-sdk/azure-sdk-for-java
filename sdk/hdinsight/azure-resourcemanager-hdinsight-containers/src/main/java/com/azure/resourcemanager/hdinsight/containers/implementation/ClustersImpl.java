@@ -24,11 +24,11 @@ public final class ClustersImpl implements Clusters {
 
     private final ClustersClient innerClient;
 
-    private final com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager serviceManager;
+    private final com.azure.resourcemanager.hdinsight.containers.HDInsightOnAksManager serviceManager;
 
     public ClustersImpl(
         ClustersClient innerClient,
-        com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager serviceManager) {
+        com.azure.resourcemanager.hdinsight.containers.HDInsightOnAksManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
@@ -266,7 +266,7 @@ public final class ClustersImpl implements Clusters {
         return this.innerClient;
     }
 
-    private com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager manager() {
+    private com.azure.resourcemanager.hdinsight.containers.HDInsightOnAksManager manager() {
         return this.serviceManager;
     }
 

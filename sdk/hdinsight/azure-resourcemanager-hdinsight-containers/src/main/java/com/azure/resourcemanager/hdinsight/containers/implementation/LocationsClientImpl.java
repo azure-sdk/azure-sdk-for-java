@@ -33,25 +33,25 @@ public final class LocationsClientImpl implements LocationsClient {
     private final LocationsService service;
 
     /** The service client containing this operation class. */
-    private final HDInsightContainersManagementClientImpl client;
+    private final HDInsightOnAksManagementClientImpl client;
 
     /**
      * Initializes an instance of LocationsClientImpl.
      *
      * @param client the instance of the service client containing this operation class.
      */
-    LocationsClientImpl(HDInsightContainersManagementClientImpl client) {
+    LocationsClientImpl(HDInsightOnAksManagementClientImpl client) {
         this.service =
             RestProxy.create(LocationsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for HDInsightContainersManagementClientLocations to be used by the proxy
+     * The interface defining all the services for HDInsightOnAksManagementClientLocations to be used by the proxy
      * service to perform REST calls.
      */
     @Host("{$host}")
-    @ServiceInterface(name = "HDInsightContainersM")
+    @ServiceInterface(name = "HDInsightOnAksManage")
     public interface LocationsService {
         @Headers({"Content-Type: application/json"})
         @Post(

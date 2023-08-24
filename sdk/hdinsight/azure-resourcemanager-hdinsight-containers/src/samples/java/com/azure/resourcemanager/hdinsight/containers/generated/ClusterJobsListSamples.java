@@ -12,10 +12,9 @@ public final class ClusterJobsListSamples {
     /**
      * Sample code: ListClusterJobs.
      *
-     * @param manager Entry point to HDInsightContainersManager.
+     * @param manager Entry point to HDInsightOnAksManager.
      */
-    public static void listClusterJobs(
-        com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager manager) {
+    public static void listClusterJobs(com.azure.resourcemanager.hdinsight.containers.HDInsightOnAksManager manager) {
         manager.clusterJobs().list("hiloResourcegroup", "clusterPool1", "cluster1", com.azure.core.util.Context.NONE);
     }
 }

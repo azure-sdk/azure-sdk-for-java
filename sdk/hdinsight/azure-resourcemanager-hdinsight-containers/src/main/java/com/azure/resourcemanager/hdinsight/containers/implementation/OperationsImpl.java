@@ -17,11 +17,11 @@ public final class OperationsImpl implements Operations {
 
     private final OperationsClient innerClient;
 
-    private final com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager serviceManager;
+    private final com.azure.resourcemanager.hdinsight.containers.HDInsightOnAksManager serviceManager;
 
     public OperationsImpl(
         OperationsClient innerClient,
-        com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager serviceManager) {
+        com.azure.resourcemanager.hdinsight.containers.HDInsightOnAksManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
@@ -40,7 +40,7 @@ public final class OperationsImpl implements Operations {
         return this.innerClient;
     }
 
-    private com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager manager() {
+    private com.azure.resourcemanager.hdinsight.containers.HDInsightOnAksManager manager() {
         return this.serviceManager;
     }
 }

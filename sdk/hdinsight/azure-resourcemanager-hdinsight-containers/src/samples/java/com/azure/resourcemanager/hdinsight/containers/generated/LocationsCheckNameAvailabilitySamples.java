@@ -14,10 +14,10 @@ public final class LocationsCheckNameAvailabilitySamples {
     /**
      * Sample code: LocationsNameAvailability.
      *
-     * @param manager Entry point to HDInsightContainersManager.
+     * @param manager Entry point to HDInsightOnAksManager.
      */
     public static void locationsNameAvailability(
-        com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager manager) {
+        com.azure.resourcemanager.hdinsight.containers.HDInsightOnAksManager manager) {
         manager
             .locations()
             .checkNameAvailabilityWithResponse(

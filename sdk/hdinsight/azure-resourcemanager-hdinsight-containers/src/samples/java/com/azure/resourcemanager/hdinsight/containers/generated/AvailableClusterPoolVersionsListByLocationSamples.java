@@ -12,10 +12,10 @@ public final class AvailableClusterPoolVersionsListByLocationSamples {
     /**
      * Sample code: ClusterPoolVersionListResult.
      *
-     * @param manager Entry point to HDInsightContainersManager.
+     * @param manager Entry point to HDInsightOnAksManager.
      */
     public static void clusterPoolVersionListResult(
-        com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager manager) {
+        com.azure.resourcemanager.hdinsight.containers.HDInsightOnAksManager manager) {
         manager.availableClusterPoolVersions().listByLocation("westus2", com.azure.core.util.Context.NONE);
     }
 }

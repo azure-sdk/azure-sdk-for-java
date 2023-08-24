@@ -14,9 +14,9 @@ import com.azure.core.management.serializer.SerializerFactory;
 import com.azure.core.util.serializer.SerializerAdapter;
 import java.time.Duration;
 
-/** A builder for creating a new instance of the HDInsightContainersManagementClientImpl type. */
-@ServiceClientBuilder(serviceClients = {HDInsightContainersManagementClientImpl.class})
-public final class HDInsightContainersManagementClientBuilder {
+/** A builder for creating a new instance of the HDInsightOnAksManagementClientImpl type. */
+@ServiceClientBuilder(serviceClients = {HDInsightOnAksManagementClientImpl.class})
+public final class HDInsightOnAksManagementClientBuilder {
     /*
      * The ID of the target subscription. The value must be an UUID.
      */
@@ -26,9 +26,9 @@ public final class HDInsightContainersManagementClientBuilder {
      * Sets The ID of the target subscription. The value must be an UUID.
      *
      * @param subscriptionId the subscriptionId value.
-     * @return the HDInsightContainersManagementClientBuilder.
+     * @return the HDInsightOnAksManagementClientBuilder.
      */
-    public HDInsightContainersManagementClientBuilder subscriptionId(String subscriptionId) {
+    public HDInsightOnAksManagementClientBuilder subscriptionId(String subscriptionId) {
         this.subscriptionId = subscriptionId;
         return this;
     }
@@ -42,9 +42,9 @@ public final class HDInsightContainersManagementClientBuilder {
      * Sets server parameter.
      *
      * @param endpoint the endpoint value.
-     * @return the HDInsightContainersManagementClientBuilder.
+     * @return the HDInsightOnAksManagementClientBuilder.
      */
-    public HDInsightContainersManagementClientBuilder endpoint(String endpoint) {
+    public HDInsightOnAksManagementClientBuilder endpoint(String endpoint) {
         this.endpoint = endpoint;
         return this;
     }
@@ -58,9 +58,9 @@ public final class HDInsightContainersManagementClientBuilder {
      * Sets The environment to connect to.
      *
      * @param environment the environment value.
-     * @return the HDInsightContainersManagementClientBuilder.
+     * @return the HDInsightOnAksManagementClientBuilder.
      */
-    public HDInsightContainersManagementClientBuilder environment(AzureEnvironment environment) {
+    public HDInsightOnAksManagementClientBuilder environment(AzureEnvironment environment) {
         this.environment = environment;
         return this;
     }
@@ -74,9 +74,9 @@ public final class HDInsightContainersManagementClientBuilder {
      * Sets The HTTP pipeline to send requests through.
      *
      * @param pipeline the pipeline value.
-     * @return the HDInsightContainersManagementClientBuilder.
+     * @return the HDInsightOnAksManagementClientBuilder.
      */
-    public HDInsightContainersManagementClientBuilder pipeline(HttpPipeline pipeline) {
+    public HDInsightOnAksManagementClientBuilder pipeline(HttpPipeline pipeline) {
         this.pipeline = pipeline;
         return this;
     }
@@ -90,9 +90,9 @@ public final class HDInsightContainersManagementClientBuilder {
      * Sets The default poll interval for long-running operation.
      *
      * @param defaultPollInterval the defaultPollInterval value.
-     * @return the HDInsightContainersManagementClientBuilder.
+     * @return the HDInsightOnAksManagementClientBuilder.
      */
-    public HDInsightContainersManagementClientBuilder defaultPollInterval(Duration defaultPollInterval) {
+    public HDInsightOnAksManagementClientBuilder defaultPollInterval(Duration defaultPollInterval) {
         this.defaultPollInterval = defaultPollInterval;
         return this;
     }
@@ -106,19 +106,19 @@ public final class HDInsightContainersManagementClientBuilder {
      * Sets The serializer to serialize an object into a string.
      *
      * @param serializerAdapter the serializerAdapter value.
-     * @return the HDInsightContainersManagementClientBuilder.
+     * @return the HDInsightOnAksManagementClientBuilder.
      */
-    public HDInsightContainersManagementClientBuilder serializerAdapter(SerializerAdapter serializerAdapter) {
+    public HDInsightOnAksManagementClientBuilder serializerAdapter(SerializerAdapter serializerAdapter) {
         this.serializerAdapter = serializerAdapter;
         return this;
     }
 
     /**
-     * Builds an instance of HDInsightContainersManagementClientImpl with the provided parameters.
+     * Builds an instance of HDInsightOnAksManagementClientImpl with the provided parameters.
      *
-     * @return an instance of HDInsightContainersManagementClientImpl.
+     * @return an instance of HDInsightOnAksManagementClientImpl.
      */
-    public HDInsightContainersManagementClientImpl buildClient() {
+    public HDInsightOnAksManagementClientImpl buildClient() {
         String localEndpoint = (endpoint != null) ? endpoint : "https://management.azure.com";
         AzureEnvironment localEnvironment = (environment != null) ? environment : AzureEnvironment.AZURE;
         HttpPipeline localPipeline =
@@ -131,8 +131,8 @@ public final class HDInsightContainersManagementClientBuilder {
             (serializerAdapter != null)
                 ? serializerAdapter
                 : SerializerFactory.createDefaultManagementSerializerAdapter();
-        HDInsightContainersManagementClientImpl client =
-            new HDInsightContainersManagementClientImpl(
+        HDInsightOnAksManagementClientImpl client =
+            new HDInsightOnAksManagementClientImpl(
                 localPipeline,
                 localSerializerAdapter,
                 localDefaultPollInterval,

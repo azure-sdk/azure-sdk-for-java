@@ -23,13 +23,13 @@ import com.azure.core.management.http.policy.ArmChallengeAuthenticationPolicy;
 import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.util.Configuration;
 import com.azure.core.util.logging.ClientLogger;
-import com.azure.resourcemanager.hdinsight.containers.fluent.HDInsightContainersManagementClient;
+import com.azure.resourcemanager.hdinsight.containers.fluent.HDInsightOnAksManagementClient;
 import com.azure.resourcemanager.hdinsight.containers.implementation.AvailableClusterPoolVersionsImpl;
 import com.azure.resourcemanager.hdinsight.containers.implementation.AvailableClusterVersionsImpl;
 import com.azure.resourcemanager.hdinsight.containers.implementation.ClusterJobsImpl;
 import com.azure.resourcemanager.hdinsight.containers.implementation.ClusterPoolsImpl;
 import com.azure.resourcemanager.hdinsight.containers.implementation.ClustersImpl;
-import com.azure.resourcemanager.hdinsight.containers.implementation.HDInsightContainersManagementClientBuilder;
+import com.azure.resourcemanager.hdinsight.containers.implementation.HDInsightOnAksManagementClientBuilder;
 import com.azure.resourcemanager.hdinsight.containers.implementation.LocationsImpl;
 import com.azure.resourcemanager.hdinsight.containers.implementation.OperationsImpl;
 import com.azure.resourcemanager.hdinsight.containers.models.AvailableClusterPoolVersions;
@@ -46,8 +46,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-/** Entry point to HDInsightContainersManager. HDInsight Containers Management Client. */
-public final class HDInsightContainersManager {
+/** Entry point to HDInsightOnAksManager. HDInsight On Aks Management Client. */
+public final class HDInsightOnAksManager {
     private ClusterPools clusterPools;
 
     private Clusters clusters;
@@ -62,13 +62,13 @@ public final class HDInsightContainersManager {
 
     private AvailableClusterVersions availableClusterVersions;
 
-    private final HDInsightContainersManagementClient clientObject;
+    private final HDInsightOnAksManagementClient clientObject;
 
-    private HDInsightContainersManager(HttpPipeline httpPipeline, AzureProfile profile, Duration defaultPollInterval) {
+    private HDInsightOnAksManager(HttpPipeline httpPipeline, AzureProfile profile, Duration defaultPollInterval) {
         Objects.requireNonNull(httpPipeline, "'httpPipeline' cannot be null.");
         Objects.requireNonNull(profile, "'profile' cannot be null.");
         this.clientObject =
-            new HDInsightContainersManagementClientBuilder()
+            new HDInsightOnAksManagementClientBuilder()
                 .pipeline(httpPipeline)
                 .endpoint(profile.getEnvironment().getResourceManagerEndpoint())
                 .subscriptionId(profile.getSubscriptionId())
@@ -77,38 +77,38 @@ public final class HDInsightContainersManager {
     }
 
     /**
-     * Creates an instance of HDInsightContainers service API entry point.
+     * Creates an instance of HDInsightOnAks service API entry point.
      *
      * @param credential the credential to use.
      * @param profile the Azure profile for client.
-     * @return the HDInsightContainers service API instance.
+     * @return the HDInsightOnAks service API instance.
      */
-    public static HDInsightContainersManager authenticate(TokenCredential credential, AzureProfile profile) {
+    public static HDInsightOnAksManager authenticate(TokenCredential credential, AzureProfile profile) {
         Objects.requireNonNull(credential, "'credential' cannot be null.");
         Objects.requireNonNull(profile, "'profile' cannot be null.");
         return configure().authenticate(credential, profile);
     }
 
     /**
-     * Creates an instance of HDInsightContainers service API entry point.
+     * Creates an instance of HDInsightOnAks service API entry point.
      *
      * @param httpPipeline the {@link HttpPipeline} configured with Azure authentication credential.
      * @param profile the Azure profile for client.
-     * @return the HDInsightContainers service API instance.
+     * @return the HDInsightOnAks service API instance.
      */
-    public static HDInsightContainersManager authenticate(HttpPipeline httpPipeline, AzureProfile profile) {
+    public static HDInsightOnAksManager authenticate(HttpPipeline httpPipeline, AzureProfile profile) {
         Objects.requireNonNull(httpPipeline, "'httpPipeline' cannot be null.");
         Objects.requireNonNull(profile, "'profile' cannot be null.");
-        return new HDInsightContainersManager(httpPipeline, profile, null);
+        return new HDInsightOnAksManager(httpPipeline, profile, null);
     }
 
     /**
-     * Gets a Configurable instance that can be used to create HDInsightContainersManager with optional configuration.
+     * Gets a Configurable instance that can be used to create HDInsightOnAksManager with optional configuration.
      *
      * @return the Configurable instance allowing configurations.
      */
     public static Configurable configure() {
-        return new HDInsightContainersManager.Configurable();
+        return new HDInsightOnAksManager.Configurable();
     }
 
     /** The Configurable allowing configurations to be set. */
@@ -211,13 +211,13 @@ public final class HDInsightContainersManager {
         }
 
         /**
-         * Creates an instance of HDInsightContainers service API entry point.
+         * Creates an instance of HDInsightOnAks service API entry point.
          *
          * @param credential the credential to use.
          * @param profile the Azure profile for client.
-         * @return the HDInsightContainers service API instance.
+         * @return the HDInsightOnAks service API instance.
          */
-        public HDInsightContainersManager authenticate(TokenCredential credential, AzureProfile profile) {
+        public HDInsightOnAksManager authenticate(TokenCredential credential, AzureProfile profile) {
             Objects.requireNonNull(credential, "'credential' cannot be null.");
             Objects.requireNonNull(profile, "'profile' cannot be null.");
 
@@ -280,7 +280,7 @@ public final class HDInsightContainersManager {
                     .httpClient(httpClient)
                     .policies(policies.toArray(new HttpPipelinePolicy[0]))
                     .build();
-            return new HDInsightContainersManager(httpPipeline, profile, defaultPollInterval);
+            return new HDInsightOnAksManager(httpPipeline, profile, defaultPollInterval);
         }
     }
 
@@ -371,12 +371,12 @@ public final class HDInsightContainersManager {
     }
 
     /**
-     * Gets wrapped service client HDInsightContainersManagementClient providing direct access to the underlying
+     * Gets wrapped service client HDInsightOnAksManagementClient providing direct access to the underlying
      * auto-generated API implementation, based on Azure REST API.
      *
-     * @return Wrapped service client HDInsightContainersManagementClient.
+     * @return Wrapped service client HDInsightOnAksManagementClient.
      */
-    public HDInsightContainersManagementClient serviceClient() {
+    public HDInsightOnAksManagementClient serviceClient() {
         return this.clientObject;
     }
 }

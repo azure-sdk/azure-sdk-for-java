@@ -18,10 +18,9 @@ public final class ClusterJobsRunJobSamples {
     /**
      * Sample code: RunClusterJob.
      *
-     * @param manager Entry point to HDInsightContainersManager.
+     * @param manager Entry point to HDInsightOnAksManager.
      */
-    public static void runClusterJob(
-        com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager manager) {
+    public static void runClusterJob(com.azure.resourcemanager.hdinsight.containers.HDInsightOnAksManager manager) {
         manager
             .clusterJobs()
             .runJob(

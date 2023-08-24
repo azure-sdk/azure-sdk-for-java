@@ -10,11 +10,11 @@ import com.azure.resourcemanager.hdinsight.containers.models.ClusterPoolVersion;
 public final class ClusterPoolVersionImpl implements ClusterPoolVersion {
     private ClusterPoolVersionInner innerObject;
 
-    private final com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager serviceManager;
+    private final com.azure.resourcemanager.hdinsight.containers.HDInsightOnAksManager serviceManager;
 
     ClusterPoolVersionImpl(
         ClusterPoolVersionInner innerObject,
-        com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager serviceManager) {
+        com.azure.resourcemanager.hdinsight.containers.HDInsightOnAksManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
     }
@@ -47,7 +47,7 @@ public final class ClusterPoolVersionImpl implements ClusterPoolVersion {
         return this.innerObject;
     }
 
-    private com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager manager() {
+    private com.azure.resourcemanager.hdinsight.containers.HDInsightOnAksManager manager() {
         return this.serviceManager;
     }
 }

@@ -15,10 +15,9 @@ public final class ClusterPoolsCreateOrUpdateSamples {
     /**
      * Sample code: ClusterPoolPut.
      *
-     * @param manager Entry point to HDInsightContainersManager.
+     * @param manager Entry point to HDInsightOnAksManager.
      */
-    public static void clusterPoolPut(
-        com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager manager) {
+    public static void clusterPoolPut(com.azure.resourcemanager.hdinsight.containers.HDInsightOnAksManager manager) {
         manager
             .clusterPools()
             .define("clusterpool1")

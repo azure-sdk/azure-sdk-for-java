@@ -10,11 +10,11 @@ import com.azure.resourcemanager.hdinsight.containers.models.NameAvailabilityRes
 public final class NameAvailabilityResultImpl implements NameAvailabilityResult {
     private NameAvailabilityResultInner innerObject;
 
-    private final com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager serviceManager;
+    private final com.azure.resourcemanager.hdinsight.containers.HDInsightOnAksManager serviceManager;
 
     NameAvailabilityResultImpl(
         NameAvailabilityResultInner innerObject,
-        com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager serviceManager) {
+        com.azure.resourcemanager.hdinsight.containers.HDInsightOnAksManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
     }
@@ -35,7 +35,7 @@ public final class NameAvailabilityResultImpl implements NameAvailabilityResult 
         return this.innerObject;
     }
 
-    private com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager manager() {
+    private com.azure.resourcemanager.hdinsight.containers.HDInsightOnAksManager manager() {
         return this.serviceManager;
     }
 }

@@ -13,11 +13,11 @@ import java.util.Map;
 public final class ServiceConfigResultImpl implements ServiceConfigResult {
     private ServiceConfigResultInner innerObject;
 
-    private final com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager serviceManager;
+    private final com.azure.resourcemanager.hdinsight.containers.HDInsightOnAksManager serviceManager;
 
     ServiceConfigResultImpl(
         ServiceConfigResultInner innerObject,
-        com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager serviceManager) {
+        com.azure.resourcemanager.hdinsight.containers.HDInsightOnAksManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
     }
@@ -68,7 +68,7 @@ public final class ServiceConfigResultImpl implements ServiceConfigResult {
         return this.innerObject;
     }
 
-    private com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager manager() {
+    private com.azure.resourcemanager.hdinsight.containers.HDInsightOnAksManager manager() {
         return this.serviceManager;
     }
 }
