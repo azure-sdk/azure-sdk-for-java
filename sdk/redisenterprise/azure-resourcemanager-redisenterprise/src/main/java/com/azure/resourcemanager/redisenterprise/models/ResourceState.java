@@ -46,6 +46,12 @@ public final class ResourceState extends ExpandableStringEnum<ResourceState> {
     /** Static value Disabled for ResourceState. */
     public static final ResourceState DISABLED = fromString("Disabled");
 
+    /** Static value Scaling for ResourceState. */
+    public static final ResourceState SCALING = fromString("Scaling");
+
+    /** Static value ScalingFailed for ResourceState. */
+    public static final ResourceState SCALING_FAILED = fromString("ScalingFailed");
+
     /**
      * Creates a new instance of ResourceState value.
      *

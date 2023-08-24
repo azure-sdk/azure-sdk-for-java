@@ -12,6 +12,7 @@ import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.redisenterprise.fluent.models.ClusterInner;
+import com.azure.resourcemanager.redisenterprise.models.CheckNameAvailabilityParameters;
 import com.azure.resourcemanager.redisenterprise.models.ClusterUpdate;
 
 /** An instance of this class provides access to all the operations defined in RedisEnterprisesClient. */
@@ -264,4 +265,30 @@ public interface RedisEnterprisesClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ClusterInner> list(Context context);
+
+    /**
+     * Checks that the Redis Enterprise cache name is valid and is not already in use.
+     *
+     * @param parameters Parameters supplied to the CheckNameAvailability Redis operation. The only supported resource
+     *     type is 'Microsoft.Cache/redisenterprise'.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<Void> checkNameAvailabilityWithResponse(CheckNameAvailabilityParameters parameters, Context context);
+
+    /**
+     * Checks that the Redis Enterprise cache name is valid and is not already in use.
+     *
+     * @param parameters Parameters supplied to the CheckNameAvailability Redis operation. The only supported resource
+     *     type is 'Microsoft.Cache/redisenterprise'.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    void checkNameAvailability(CheckNameAvailabilityParameters parameters);
 }
