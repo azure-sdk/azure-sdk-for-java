@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.eventgrid.generated;
 
-import com.azure.resourcemanager.eventgrid.fluent.models.EventSubscriptionInner;
 import com.azure.resourcemanager.eventgrid.models.EventSubscriptionFilter;
 import com.azure.resourcemanager.eventgrid.models.WebhookEventSubscriptionDestination;
 
@@ -22,19 +21,14 @@ public final class DomainTopicEventSubscriptionsCreateOrUpdateSamples {
         com.azure.resourcemanager.eventgrid.EventGridManager manager) {
         manager
             .domainTopicEventSubscriptions()
-            .createOrUpdate(
-                "examplerg",
-                "exampleDomain1",
-                "exampleDomainTopic1",
-                "exampleEventSubscriptionName1",
-                new EventSubscriptionInner()
-                    .withDestination(
-                        new WebhookEventSubscriptionDestination().withEndpointUrl("https://requestb.in/15ksip71"))
-                    .withFilter(
-                        new EventSubscriptionFilter()
-                            .withSubjectBeginsWith("ExamplePrefix")
-                            .withSubjectEndsWith("ExampleSuffix")
-                            .withIsSubjectCaseSensitive(false)),
-                com.azure.core.util.Context.NONE);
+            .define("exampleEventSubscriptionName1")
+            .withExistingTopic("examplerg", "exampleDomain1", "exampleDomainTopic1")
+            .withDestination(new WebhookEventSubscriptionDestination().withEndpointUrl("https://requestb.in/15ksip71"))
+            .withFilter(
+                new EventSubscriptionFilter()
+                    .withSubjectBeginsWith("ExamplePrefix")
+                    .withSubjectEndsWith("ExampleSuffix")
+                    .withIsSubjectCaseSensitive(false))
+            .create();
     }
 }

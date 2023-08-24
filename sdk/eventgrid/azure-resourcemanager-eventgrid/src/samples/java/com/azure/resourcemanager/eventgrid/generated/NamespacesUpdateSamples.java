@@ -27,6 +27,7 @@ public final class NamespacesUpdateSamples {
         resource.update().withTags(mapOf("tag1", "value1Updated")).apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
