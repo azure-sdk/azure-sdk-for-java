@@ -217,11 +217,13 @@ public interface Watchlist {
     interface Definition
         extends DefinitionStages.Blank, DefinitionStages.WithParentResource, DefinitionStages.WithCreate {
     }
+
     /** The Watchlist definition stages. */
     interface DefinitionStages {
         /** The first stage of the Watchlist definition. */
         interface Blank extends WithParentResource {
         }
+
         /** The stage of the Watchlist definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -233,6 +235,7 @@ public interface Watchlist {
              */
             WithCreate withExistingWorkspace(String resourceGroupName, String workspaceName);
         }
+
         /**
          * The stage of the Watchlist definition which contains all the minimum required properties for the resource to
          * be created, but also allows for any other optional properties to be specified.
@@ -275,6 +278,7 @@ public interface Watchlist {
              */
             Watchlist create(Context context);
         }
+
         /** The stage of the Watchlist definition allowing to specify etag. */
         interface WithEtag {
             /**
@@ -285,6 +289,7 @@ public interface Watchlist {
              */
             WithCreate withEtag(String etag);
         }
+
         /** The stage of the Watchlist definition allowing to specify watchlistId. */
         interface WithWatchlistId {
             /**
@@ -295,6 +300,7 @@ public interface Watchlist {
              */
             WithCreate withWatchlistId(String watchlistId);
         }
+
         /** The stage of the Watchlist definition allowing to specify displayName. */
         interface WithDisplayName {
             /**
@@ -305,6 +311,7 @@ public interface Watchlist {
              */
             WithCreate withDisplayName(String displayName);
         }
+
         /** The stage of the Watchlist definition allowing to specify provider. */
         interface WithProvider {
             /**
@@ -315,6 +322,7 @@ public interface Watchlist {
              */
             WithCreate withProvider(String provider);
         }
+
         /** The stage of the Watchlist definition allowing to specify source. */
         interface WithSource {
             /**
@@ -325,6 +333,7 @@ public interface Watchlist {
              */
             WithCreate withSource(String source);
         }
+
         /** The stage of the Watchlist definition allowing to specify sourceType. */
         interface WithSourceType {
             /**
@@ -335,6 +344,7 @@ public interface Watchlist {
              */
             WithCreate withSourceType(SourceType sourceType);
         }
+
         /** The stage of the Watchlist definition allowing to specify created. */
         interface WithCreated {
             /**
@@ -345,6 +355,7 @@ public interface Watchlist {
              */
             WithCreate withCreated(OffsetDateTime created);
         }
+
         /** The stage of the Watchlist definition allowing to specify updated. */
         interface WithUpdated {
             /**
@@ -355,6 +366,7 @@ public interface Watchlist {
              */
             WithCreate withUpdated(OffsetDateTime updated);
         }
+
         /** The stage of the Watchlist definition allowing to specify createdBy. */
         interface WithCreatedBy {
             /**
@@ -365,6 +377,7 @@ public interface Watchlist {
              */
             WithCreate withCreatedBy(UserInfo createdBy);
         }
+
         /** The stage of the Watchlist definition allowing to specify updatedBy. */
         interface WithUpdatedBy {
             /**
@@ -375,6 +388,7 @@ public interface Watchlist {
              */
             WithCreate withUpdatedBy(UserInfo updatedBy);
         }
+
         /** The stage of the Watchlist definition allowing to specify description. */
         interface WithDescription {
             /**
@@ -385,6 +399,7 @@ public interface Watchlist {
              */
             WithCreate withDescription(String description);
         }
+
         /** The stage of the Watchlist definition allowing to specify watchlistType. */
         interface WithWatchlistType {
             /**
@@ -395,6 +410,7 @@ public interface Watchlist {
              */
             WithCreate withWatchlistType(String watchlistType);
         }
+
         /** The stage of the Watchlist definition allowing to specify watchlistAlias. */
         interface WithWatchlistAlias {
             /**
@@ -405,6 +421,7 @@ public interface Watchlist {
              */
             WithCreate withWatchlistAlias(String watchlistAlias);
         }
+
         /** The stage of the Watchlist definition allowing to specify isDeleted. */
         interface WithIsDeleted {
             /**
@@ -415,6 +432,7 @@ public interface Watchlist {
              */
             WithCreate withIsDeleted(Boolean isDeleted);
         }
+
         /** The stage of the Watchlist definition allowing to specify labels. */
         interface WithLabels {
             /**
@@ -425,6 +443,7 @@ public interface Watchlist {
              */
             WithCreate withLabels(List<String> labels);
         }
+
         /** The stage of the Watchlist definition allowing to specify defaultDuration. */
         interface WithDefaultDuration {
             /**
@@ -436,6 +455,7 @@ public interface Watchlist {
              */
             WithCreate withDefaultDuration(Duration defaultDuration);
         }
+
         /** The stage of the Watchlist definition allowing to specify tenantId. */
         interface WithTenantId {
             /**
@@ -446,6 +466,7 @@ public interface Watchlist {
              */
             WithCreate withTenantId(String tenantId);
         }
+
         /** The stage of the Watchlist definition allowing to specify numberOfLinesToSkip. */
         interface WithNumberOfLinesToSkip {
             /**
@@ -457,6 +478,7 @@ public interface Watchlist {
              */
             WithCreate withNumberOfLinesToSkip(Integer numberOfLinesToSkip);
         }
+
         /** The stage of the Watchlist definition allowing to specify rawContent. */
         interface WithRawContent {
             /**
@@ -469,6 +491,7 @@ public interface Watchlist {
              */
             WithCreate withRawContent(String rawContent);
         }
+
         /** The stage of the Watchlist definition allowing to specify itemsSearchKey. */
         interface WithItemsSearchKey {
             /**
@@ -483,6 +506,7 @@ public interface Watchlist {
              */
             WithCreate withItemsSearchKey(String itemsSearchKey);
         }
+
         /** The stage of the Watchlist definition allowing to specify contentType. */
         interface WithContentType {
             /**
@@ -493,6 +517,7 @@ public interface Watchlist {
              */
             WithCreate withContentType(String contentType);
         }
+
         /** The stage of the Watchlist definition allowing to specify uploadStatus. */
         interface WithUploadStatus {
             /**
@@ -506,6 +531,7 @@ public interface Watchlist {
             WithCreate withUploadStatus(String uploadStatus);
         }
     }
+
     /**
      * Begins update for the Watchlist resource.
      *
@@ -552,6 +578,7 @@ public interface Watchlist {
          */
         Watchlist apply(Context context);
     }
+
     /** The Watchlist update stages. */
     interface UpdateStages {
         /** The stage of the Watchlist update allowing to specify etag. */
@@ -564,6 +591,7 @@ public interface Watchlist {
              */
             Update withEtag(String etag);
         }
+
         /** The stage of the Watchlist update allowing to specify watchlistId. */
         interface WithWatchlistId {
             /**
@@ -574,6 +602,7 @@ public interface Watchlist {
              */
             Update withWatchlistId(String watchlistId);
         }
+
         /** The stage of the Watchlist update allowing to specify displayName. */
         interface WithDisplayName {
             /**
@@ -584,6 +613,7 @@ public interface Watchlist {
              */
             Update withDisplayName(String displayName);
         }
+
         /** The stage of the Watchlist update allowing to specify provider. */
         interface WithProvider {
             /**
@@ -594,6 +624,7 @@ public interface Watchlist {
              */
             Update withProvider(String provider);
         }
+
         /** The stage of the Watchlist update allowing to specify source. */
         interface WithSource {
             /**
@@ -604,6 +635,7 @@ public interface Watchlist {
              */
             Update withSource(String source);
         }
+
         /** The stage of the Watchlist update allowing to specify sourceType. */
         interface WithSourceType {
             /**
@@ -614,6 +646,7 @@ public interface Watchlist {
              */
             Update withSourceType(SourceType sourceType);
         }
+
         /** The stage of the Watchlist update allowing to specify created. */
         interface WithCreated {
             /**
@@ -624,6 +657,7 @@ public interface Watchlist {
              */
             Update withCreated(OffsetDateTime created);
         }
+
         /** The stage of the Watchlist update allowing to specify updated. */
         interface WithUpdated {
             /**
@@ -634,6 +668,7 @@ public interface Watchlist {
              */
             Update withUpdated(OffsetDateTime updated);
         }
+
         /** The stage of the Watchlist update allowing to specify createdBy. */
         interface WithCreatedBy {
             /**
@@ -644,6 +679,7 @@ public interface Watchlist {
              */
             Update withCreatedBy(UserInfo createdBy);
         }
+
         /** The stage of the Watchlist update allowing to specify updatedBy. */
         interface WithUpdatedBy {
             /**
@@ -654,6 +690,7 @@ public interface Watchlist {
              */
             Update withUpdatedBy(UserInfo updatedBy);
         }
+
         /** The stage of the Watchlist update allowing to specify description. */
         interface WithDescription {
             /**
@@ -664,6 +701,7 @@ public interface Watchlist {
              */
             Update withDescription(String description);
         }
+
         /** The stage of the Watchlist update allowing to specify watchlistType. */
         interface WithWatchlistType {
             /**
@@ -674,6 +712,7 @@ public interface Watchlist {
              */
             Update withWatchlistType(String watchlistType);
         }
+
         /** The stage of the Watchlist update allowing to specify watchlistAlias. */
         interface WithWatchlistAlias {
             /**
@@ -684,6 +723,7 @@ public interface Watchlist {
              */
             Update withWatchlistAlias(String watchlistAlias);
         }
+
         /** The stage of the Watchlist update allowing to specify isDeleted. */
         interface WithIsDeleted {
             /**
@@ -694,6 +734,7 @@ public interface Watchlist {
              */
             Update withIsDeleted(Boolean isDeleted);
         }
+
         /** The stage of the Watchlist update allowing to specify labels. */
         interface WithLabels {
             /**
@@ -704,6 +745,7 @@ public interface Watchlist {
              */
             Update withLabels(List<String> labels);
         }
+
         /** The stage of the Watchlist update allowing to specify defaultDuration. */
         interface WithDefaultDuration {
             /**
@@ -715,6 +757,7 @@ public interface Watchlist {
              */
             Update withDefaultDuration(Duration defaultDuration);
         }
+
         /** The stage of the Watchlist update allowing to specify tenantId. */
         interface WithTenantId {
             /**
@@ -725,6 +768,7 @@ public interface Watchlist {
              */
             Update withTenantId(String tenantId);
         }
+
         /** The stage of the Watchlist update allowing to specify numberOfLinesToSkip. */
         interface WithNumberOfLinesToSkip {
             /**
@@ -736,6 +780,7 @@ public interface Watchlist {
              */
             Update withNumberOfLinesToSkip(Integer numberOfLinesToSkip);
         }
+
         /** The stage of the Watchlist update allowing to specify rawContent. */
         interface WithRawContent {
             /**
@@ -748,6 +793,7 @@ public interface Watchlist {
              */
             Update withRawContent(String rawContent);
         }
+
         /** The stage of the Watchlist update allowing to specify itemsSearchKey. */
         interface WithItemsSearchKey {
             /**
@@ -762,6 +808,7 @@ public interface Watchlist {
              */
             Update withItemsSearchKey(String itemsSearchKey);
         }
+
         /** The stage of the Watchlist update allowing to specify contentType. */
         interface WithContentType {
             /**
@@ -772,6 +819,7 @@ public interface Watchlist {
              */
             Update withContentType(String contentType);
         }
+
         /** The stage of the Watchlist update allowing to specify uploadStatus. */
         interface WithUploadStatus {
             /**
@@ -785,6 +833,7 @@ public interface Watchlist {
             Update withUploadStatus(String uploadStatus);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

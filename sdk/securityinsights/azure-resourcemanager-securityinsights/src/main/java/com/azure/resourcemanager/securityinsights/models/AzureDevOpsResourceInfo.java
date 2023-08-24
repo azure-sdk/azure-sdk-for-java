@@ -22,6 +22,10 @@ public final class AzureDevOpsResourceInfo {
     @JsonProperty(value = "serviceConnectionId")
     private String serviceConnectionId;
 
+    /** Creates an instance of AzureDevOpsResourceInfo class. */
+    public AzureDevOpsResourceInfo() {
+    }
+
     /**
      * Get the pipelineId property: Id of the pipeline created for the source-control.
      *

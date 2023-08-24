@@ -23,6 +23,10 @@ public final class HostEntity extends EntityInner {
     @JsonProperty(value = "properties")
     private HostEntityProperties innerProperties;
 
+    /** Creates an instance of HostEntity class. */
+    public HostEntity() {
+    }
+
     /**
      * Get the innerProperties property: Host entity properties.
      *

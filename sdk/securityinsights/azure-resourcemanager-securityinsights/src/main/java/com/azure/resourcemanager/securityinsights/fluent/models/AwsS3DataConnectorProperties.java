@@ -37,6 +37,10 @@ public final class AwsS3DataConnectorProperties {
     @JsonProperty(value = "dataTypes", required = true)
     private AwsS3DataConnectorDataTypes dataTypes;
 
+    /** Creates an instance of AwsS3DataConnectorProperties class. */
+    public AwsS3DataConnectorProperties() {
+    }
+
     /**
      * Get the destinationTable property: The logs destination table name in LogAnalytics.
      *

@@ -171,6 +171,10 @@ public final class SecurityAlertProperties extends EntityCommonProperties {
     @JsonProperty(value = "resourceIdentifiers", access = JsonProperty.Access.WRITE_ONLY)
     private List<Object> resourceIdentifiers;
 
+    /** Creates an instance of SecurityAlertProperties class. */
+    public SecurityAlertProperties() {
+    }
+
     /**
      * Get the alertDisplayName property: The display name of the alert.
      *
