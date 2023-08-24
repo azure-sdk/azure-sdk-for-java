@@ -7,7 +7,7 @@ package com.azure.resourcemanager.managementgroups.generated;
 /** Samples for ManagementGroupSubscriptions Delete. */
 public final class ManagementGroupSubscriptionsDeleteSamples {
     /*
-     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2021-04-01/examples/RemoveManagementGroupSubscription.json
+     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2023-04-01/examples/RemoveManagementGroupSubscription.json
      */
     /**
      * Sample code: DeleteSubscriptionFromManagementGroup.

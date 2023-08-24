@@ -358,8 +358,10 @@ public final class ManagementGroupsManager {
     }
 
     /**
-     * @return Wrapped service client ManagementGroupsApi providing direct access to the underlying auto-generated API
-     *     implementation, based on Azure REST API.
+     * Gets wrapped service client ManagementGroupsApi providing direct access to the underlying auto-generated API
+     * implementation, based on Azure REST API.
+     *
+     * @return Wrapped service client ManagementGroupsApi.
      */
     public ManagementGroupsApi serviceClient() {
         return this.clientObject;
