@@ -210,7 +210,7 @@ public final class SelfHelpManager {
                 .append("-")
                 .append("com.azure.resourcemanager.selfhelp")
                 .append("/")
-                .append("1.0.0");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -304,8 +304,10 @@ public final class SelfHelpManager {
     }
 
     /**
-     * @return Wrapped service client HelpRP providing direct access to the underlying auto-generated API
-     *     implementation, based on Azure REST API.
+     * Gets wrapped service client HelpRP providing direct access to the underlying auto-generated API implementation,
+     * based on Azure REST API.
+     *
+     * @return Wrapped service client HelpRP.
      */
     public HelpRP serviceClient() {
         return this.clientObject;
