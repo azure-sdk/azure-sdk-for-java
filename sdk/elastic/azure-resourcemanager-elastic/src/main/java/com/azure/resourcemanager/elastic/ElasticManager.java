@@ -26,6 +26,8 @@ import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.elastic.fluent.MicrosoftElastic;
 import com.azure.resourcemanager.elastic.implementation.AllTrafficFiltersImpl;
 import com.azure.resourcemanager.elastic.implementation.AssociateTrafficFiltersImpl;
+import com.azure.resourcemanager.elastic.implementation.BillingInfoesImpl;
+import com.azure.resourcemanager.elastic.implementation.ConnectedPartnerResourcesImpl;
 import com.azure.resourcemanager.elastic.implementation.CreateAndAssociateIpFiltersImpl;
 import com.azure.resourcemanager.elastic.implementation.CreateAndAssociatePLFiltersImpl;
 import com.azure.resourcemanager.elastic.implementation.DeploymentInfoesImpl;
@@ -48,6 +50,8 @@ import com.azure.resourcemanager.elastic.implementation.VMHostsImpl;
 import com.azure.resourcemanager.elastic.implementation.VMIngestionsImpl;
 import com.azure.resourcemanager.elastic.models.AllTrafficFilters;
 import com.azure.resourcemanager.elastic.models.AssociateTrafficFilters;
+import com.azure.resourcemanager.elastic.models.BillingInfoes;
+import com.azure.resourcemanager.elastic.models.ConnectedPartnerResources;
 import com.azure.resourcemanager.elastic.models.CreateAndAssociateIpFilters;
 import com.azure.resourcemanager.elastic.models.CreateAndAssociatePLFilters;
 import com.azure.resourcemanager.elastic.models.DeploymentInfoes;
@@ -87,6 +91,10 @@ public final class ElasticManager {
     private DeploymentInfoes deploymentInfoes;
 
     private ExternalUsers externalUsers;
+
+    private BillingInfoes billingInfoes;
+
+    private ConnectedPartnerResources connectedPartnerResources;
 
     private TagRules tagRules;
 
@@ -283,7 +291,7 @@ public final class ElasticManager {
                 .append("-")
                 .append("com.azure.resourcemanager.elastic")
                 .append("/")
-                .append("1.0.0-beta.4");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -410,6 +418,31 @@ public final class ElasticManager {
             this.externalUsers = new ExternalUsersImpl(clientObject.getExternalUsers(), this);
         }
         return externalUsers;
+    }
+
+    /**
+     * Gets the resource collection API of BillingInfoes.
+     *
+     * @return Resource collection API of BillingInfoes.
+     */
+    public BillingInfoes billingInfoes() {
+        if (this.billingInfoes == null) {
+            this.billingInfoes = new BillingInfoesImpl(clientObject.getBillingInfoes(), this);
+        }
+        return billingInfoes;
+    }
+
+    /**
+     * Gets the resource collection API of ConnectedPartnerResources.
+     *
+     * @return Resource collection API of ConnectedPartnerResources.
+     */
+    public ConnectedPartnerResources connectedPartnerResources() {
+        if (this.connectedPartnerResources == null) {
+            this.connectedPartnerResources =
+                new ConnectedPartnerResourcesImpl(clientObject.getConnectedPartnerResources(), this);
+        }
+        return connectedPartnerResources;
     }
 
     /**
@@ -598,8 +631,10 @@ public final class ElasticManager {
     }
 
     /**
-     * @return Wrapped service client MicrosoftElastic providing direct access to the underlying auto-generated API
-     *     implementation, based on Azure REST API.
+     * Gets wrapped service client MicrosoftElastic providing direct access to the underlying auto-generated API
+     * implementation, based on Azure REST API.
+     *
+     * @return Wrapped service client MicrosoftElastic.
      */
     public MicrosoftElastic serviceClient() {
         return this.clientObject;

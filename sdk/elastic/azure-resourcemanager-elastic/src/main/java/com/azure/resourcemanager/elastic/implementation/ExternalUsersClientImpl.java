@@ -73,7 +73,7 @@ public final class ExternalUsersClientImpl implements ExternalUsersClient {
      * Create User inside elastic deployment which are used by customers to perform operations on the elastic
      * deployment.
      *
-     * @param resourceGroupName The name of the resource group to which the Elastic resource belongs.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param monitorName Monitor resource name.
      * @param body Elastic External User Creation Parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -128,7 +128,7 @@ public final class ExternalUsersClientImpl implements ExternalUsersClient {
      * Create User inside elastic deployment which are used by customers to perform operations on the elastic
      * deployment.
      *
-     * @param resourceGroupName The name of the resource group to which the Elastic resource belongs.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param monitorName Monitor resource name.
      * @param body Elastic External User Creation Parameters.
      * @param context The context to associate with this operation.
@@ -181,7 +181,7 @@ public final class ExternalUsersClientImpl implements ExternalUsersClient {
      * Create User inside elastic deployment which are used by customers to perform operations on the elastic
      * deployment.
      *
-     * @param resourceGroupName The name of the resource group to which the Elastic resource belongs.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param monitorName Monitor resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -200,7 +200,7 @@ public final class ExternalUsersClientImpl implements ExternalUsersClient {
      * Create User inside elastic deployment which are used by customers to perform operations on the elastic
      * deployment.
      *
-     * @param resourceGroupName The name of the resource group to which the Elastic resource belongs.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param monitorName Monitor resource name.
      * @param body Elastic External User Creation Parameters.
      * @param context The context to associate with this operation.
@@ -220,7 +220,7 @@ public final class ExternalUsersClientImpl implements ExternalUsersClient {
      * Create User inside elastic deployment which are used by customers to perform operations on the elastic
      * deployment.
      *
-     * @param resourceGroupName The name of the resource group to which the Elastic resource belongs.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param monitorName Monitor resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

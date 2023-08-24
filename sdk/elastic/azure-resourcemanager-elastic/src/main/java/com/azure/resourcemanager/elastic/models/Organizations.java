@@ -33,4 +33,26 @@ public interface Organizations {
      *     request.
      */
     UserApiKeyResponse getApiKey();
+
+    /**
+     * Get Elastic Organization To Azure Subscription Mapping details for the logged-in user.
+     *
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return elastic Organization To Azure Subscription Mapping details for the logged-in user along with {@link
+     *     Response}.
+     */
+    Response<ElasticOrganizationToAzureSubscriptionMappingResponse> getElasticToAzureSubscriptionMappingWithResponse(
+        Context context);
+
+    /**
+     * Get Elastic Organization To Azure Subscription Mapping details for the logged-in user.
+     *
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return elastic Organization To Azure Subscription Mapping details for the logged-in user.
+     */
+    ElasticOrganizationToAzureSubscriptionMappingResponse getElasticToAzureSubscriptionMapping();
 }
