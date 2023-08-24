@@ -376,7 +376,6 @@
 - [Get](#sqlpools_get)
 - [ListByWorkspace](#sqlpools_listbyworkspace)
 - [Pause](#sqlpools_pause)
-- [Rename](#sqlpools_rename)
 - [Resume](#sqlpools_resume)
 - [Update](#sqlpools_update)
 
@@ -554,7 +553,7 @@ public final class BigDataPoolsCreateOrUpdateSamples {
             .define("ExamplePool")
             .withRegion("West US 2")
             .withExistingWorkspace("ExampleResourceGroup", "ExampleWorkspace")
-            .withTags(mapOf("key", "value"))
+            .withTags(mapOf("key", "fakeTokenPlaceholder"))
             .withAutoScale(new AutoScaleProperties().withMinNodeCount(3).withEnabled(true).withMaxNodeCount(50))
             .withAutoPause(new AutoPauseProperties().withDelayInMinutes(15).withEnabled(true))
             .withIsAutotuneEnabled(false)
@@ -568,6 +567,7 @@ public final class BigDataPoolsCreateOrUpdateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -669,9 +669,10 @@ public final class BigDataPoolsUpdateSamples {
                 .getWithResponse(
                     "ExampleResourceGroup", "ExampleWorkspace", "ExamplePool", com.azure.core.util.Context.NONE)
                 .getValue();
-        resource.update().withTags(mapOf("key", "value")).apply();
+        resource.update().withTags(mapOf("key", "fakeTokenPlaceholder")).apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -1818,6 +1819,7 @@ public final class IpFirewallRulesReplaceAllSamples {
                 com.azure.core.util.Context.NONE);
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -3503,10 +3505,11 @@ public final class PrivateLinkHubsCreateOrUpdateSamples {
             .define("privateLinkHub1")
             .withRegion("East US")
             .withExistingResourceGroup("resourceGroup1")
-            .withTags(mapOf("key", "value"))
+            .withTags(mapOf("key", "fakeTokenPlaceholder"))
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -3621,9 +3624,10 @@ public final class PrivateLinkHubsUpdateSamples {
                 .privateLinkHubs()
                 .getByResourceGroupWithResponse("resourceGroup1", "privateLinkHub1", com.azure.core.util.Context.NONE)
                 .getValue();
-        resource.update().withTags(mapOf("key", "value")).apply();
+        resource.update().withTags(mapOf("key", "fakeTokenPlaceholder")).apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -5630,6 +5634,7 @@ public final class SqlPoolsCreateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -5737,36 +5742,6 @@ public final class SqlPoolsPauseSamples {
 }
 ```
 
-### SqlPools_Rename
-
-```java
-import com.azure.resourcemanager.synapse.models.ResourceMoveDefinition;
-
-/** Samples for SqlPools Rename. */
-public final class SqlPoolsRenameSamples {
-    /*
-     * x-ms-original-file: specification/synapse/resource-manager/Microsoft.Synapse/stable/2021-06-01/examples/RenameSqlPool.json
-     */
-    /**
-     * Sample code: Rename a SQL Analytics pool.
-     *
-     * @param manager Entry point to SynapseManager.
-     */
-    public static void renameASQLAnalyticsPool(com.azure.resourcemanager.synapse.SynapseManager manager) {
-        manager
-            .sqlPools()
-            .renameWithResponse(
-                "Default-SQL-SouthEastAsia",
-                "testsvr",
-                "testdb",
-                new ResourceMoveDefinition()
-                    .withId(
-                        "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/Default-SQL-SouthEastAsia/providers/Microsoft.Synapse/workspaces/testsvr/sqlPools/newtestdb"),
-                com.azure.core.util.Context.NONE);
-    }
-}
-```
-
 ### SqlPools_Resume
 
 ```java
@@ -5816,6 +5791,7 @@ public final class SqlPoolsUpdateSamples {
         resource.update().withTags(mapOf()).withSku(new Sku().withTier("").withName("")).withMaxSizeBytes(0L).apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -6557,7 +6533,7 @@ public final class WorkspaceManagedSqlServerUsagesListSamples {
 
 ```java
 import com.azure.resourcemanager.synapse.models.VulnerabilityAssessmentName;
-import com.azure.resourcemanager.synapse.models.VulnerabilityAssessmentRecurringScansPropertiesAutoGenerated;
+import com.azure.resourcemanager.synapse.models.VulnerabilityAssessmentRecurringScansProperties;
 import java.util.Arrays;
 
 /** Samples for WorkspaceManagedSqlServerVulnerabilityAssessments CreateOrUpdate. */
@@ -6622,7 +6598,7 @@ public final class WorkspaceManagedSqlServerVulnerabilityAssessmentsCreateOrUpda
             .withStorageContainerSasKey("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
             .withStorageAccountAccessKey("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
             .withRecurringScans(
-                new VulnerabilityAssessmentRecurringScansPropertiesAutoGenerated()
+                new VulnerabilityAssessmentRecurringScansProperties()
                     .withIsEnabled(true)
                     .withEmailSubscriptionAdmins(true)
                     .withEmails(Arrays.asList("email1@mail.com", "email2@mail.com")))
@@ -6811,7 +6787,7 @@ public final class WorkspacesCreateOrUpdateSamples {
             .define("workspace1")
             .withRegion("East US")
             .withExistingResourceGroup("resourceGroup1")
-            .withTags(mapOf("key", "value"))
+            .withTags(mapOf("key", "fakeTokenPlaceholder"))
             .withIdentity(
                 new ManagedIdentity()
                     .withType(ResourceIdentityType.SYSTEM_ASSIGNED_USER_ASSIGNED)
@@ -6863,6 +6839,7 @@ public final class WorkspacesCreateOrUpdateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -6989,7 +6966,7 @@ public final class WorkspacesUpdateSamples {
                 .getValue();
         resource
             .update()
-            .withTags(mapOf("key", "value"))
+            .withTags(mapOf("key", "fakeTokenPlaceholder"))
             .withIdentity(new ManagedIdentity().withType(ResourceIdentityType.SYSTEM_ASSIGNED))
             .withSqlAdministratorLoginPassword("password")
             .withManagedVirtualNetworkSettings(
@@ -7020,6 +6997,7 @@ public final class WorkspacesUpdateSamples {
             .apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

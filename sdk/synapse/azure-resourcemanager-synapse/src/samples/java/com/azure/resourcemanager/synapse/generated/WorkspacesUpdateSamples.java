@@ -36,7 +36,7 @@ public final class WorkspacesUpdateSamples {
                 .getValue();
         resource
             .update()
-            .withTags(mapOf("key", "value"))
+            .withTags(mapOf("key", "fakeTokenPlaceholder"))
             .withIdentity(new ManagedIdentity().withType(ResourceIdentityType.SYSTEM_ASSIGNED))
             .withSqlAdministratorLoginPassword("password")
             .withManagedVirtualNetworkSettings(
@@ -67,6 +67,7 @@ public final class WorkspacesUpdateSamples {
             .apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

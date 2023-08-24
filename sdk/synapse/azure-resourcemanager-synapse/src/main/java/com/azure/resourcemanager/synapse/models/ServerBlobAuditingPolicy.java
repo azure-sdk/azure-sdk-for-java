@@ -193,11 +193,13 @@ public interface ServerBlobAuditingPolicy {
     interface Definition
         extends DefinitionStages.Blank, DefinitionStages.WithParentResource, DefinitionStages.WithCreate {
     }
+
     /** The ServerBlobAuditingPolicy definition stages. */
     interface DefinitionStages {
         /** The first stage of the ServerBlobAuditingPolicy definition. */
         interface Blank extends WithParentResource {
         }
+
         /** The stage of the ServerBlobAuditingPolicy definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -209,6 +211,7 @@ public interface ServerBlobAuditingPolicy {
              */
             WithCreate withExistingWorkspace(String resourceGroupName, String workspaceName);
         }
+
         /**
          * The stage of the ServerBlobAuditingPolicy definition which contains all the minimum required properties for
          * the resource to be created, but also allows for any other optional properties to be specified.
@@ -239,6 +242,7 @@ public interface ServerBlobAuditingPolicy {
              */
             ServerBlobAuditingPolicy create(Context context);
         }
+
         /** The stage of the ServerBlobAuditingPolicy definition allowing to specify state. */
         interface WithState {
             /**
@@ -251,6 +255,7 @@ public interface ServerBlobAuditingPolicy {
              */
             WithCreate withState(BlobAuditingPolicyState state);
         }
+
         /** The stage of the ServerBlobAuditingPolicy definition allowing to specify storageEndpoint. */
         interface WithStorageEndpoint {
             /**
@@ -265,6 +270,7 @@ public interface ServerBlobAuditingPolicy {
              */
             WithCreate withStorageEndpoint(String storageEndpoint);
         }
+
         /** The stage of the ServerBlobAuditingPolicy definition allowing to specify storageAccountAccessKey. */
         interface WithStorageAccountAccessKey {
             /**
@@ -287,6 +293,7 @@ public interface ServerBlobAuditingPolicy {
              */
             WithCreate withStorageAccountAccessKey(String storageAccountAccessKey);
         }
+
         /** The stage of the ServerBlobAuditingPolicy definition allowing to specify retentionDays. */
         interface WithRetentionDays {
             /**
@@ -298,6 +305,7 @@ public interface ServerBlobAuditingPolicy {
              */
             WithCreate withRetentionDays(Integer retentionDays);
         }
+
         /** The stage of the ServerBlobAuditingPolicy definition allowing to specify auditActionsAndGroups. */
         interface WithAuditActionsAndGroups {
             /**
@@ -382,6 +390,7 @@ public interface ServerBlobAuditingPolicy {
              */
             WithCreate withAuditActionsAndGroups(List<String> auditActionsAndGroups);
         }
+
         /** The stage of the ServerBlobAuditingPolicy definition allowing to specify storageAccountSubscriptionId. */
         interface WithStorageAccountSubscriptionId {
             /**
@@ -392,6 +401,7 @@ public interface ServerBlobAuditingPolicy {
              */
             WithCreate withStorageAccountSubscriptionId(UUID storageAccountSubscriptionId);
         }
+
         /** The stage of the ServerBlobAuditingPolicy definition allowing to specify isStorageSecondaryKeyInUse. */
         interface WithIsStorageSecondaryKeyInUse {
             /**
@@ -404,6 +414,7 @@ public interface ServerBlobAuditingPolicy {
              */
             WithCreate withIsStorageSecondaryKeyInUse(Boolean isStorageSecondaryKeyInUse);
         }
+
         /** The stage of the ServerBlobAuditingPolicy definition allowing to specify isAzureMonitorTargetEnabled. */
         interface WithIsAzureMonitorTargetEnabled {
             /**
@@ -437,6 +448,7 @@ public interface ServerBlobAuditingPolicy {
              */
             WithCreate withIsAzureMonitorTargetEnabled(Boolean isAzureMonitorTargetEnabled);
         }
+
         /** The stage of the ServerBlobAuditingPolicy definition allowing to specify queueDelayMs. */
         interface WithQueueDelayMs {
             /**
@@ -450,6 +462,7 @@ public interface ServerBlobAuditingPolicy {
              */
             WithCreate withQueueDelayMs(Integer queueDelayMs);
         }
+
         /** The stage of the ServerBlobAuditingPolicy definition allowing to specify isDevopsAuditEnabled. */
         interface WithIsDevopsAuditEnabled {
             /**
@@ -482,6 +495,7 @@ public interface ServerBlobAuditingPolicy {
             WithCreate withIsDevopsAuditEnabled(Boolean isDevopsAuditEnabled);
         }
     }
+
     /**
      * Begins update for the ServerBlobAuditingPolicy resource.
      *
@@ -513,6 +527,7 @@ public interface ServerBlobAuditingPolicy {
          */
         ServerBlobAuditingPolicy apply(Context context);
     }
+
     /** The ServerBlobAuditingPolicy update stages. */
     interface UpdateStages {
         /** The stage of the ServerBlobAuditingPolicy update allowing to specify state. */
@@ -527,6 +542,7 @@ public interface ServerBlobAuditingPolicy {
              */
             Update withState(BlobAuditingPolicyState state);
         }
+
         /** The stage of the ServerBlobAuditingPolicy update allowing to specify storageEndpoint. */
         interface WithStorageEndpoint {
             /**
@@ -541,6 +557,7 @@ public interface ServerBlobAuditingPolicy {
              */
             Update withStorageEndpoint(String storageEndpoint);
         }
+
         /** The stage of the ServerBlobAuditingPolicy update allowing to specify storageAccountAccessKey. */
         interface WithStorageAccountAccessKey {
             /**
@@ -563,6 +580,7 @@ public interface ServerBlobAuditingPolicy {
              */
             Update withStorageAccountAccessKey(String storageAccountAccessKey);
         }
+
         /** The stage of the ServerBlobAuditingPolicy update allowing to specify isStorageSecondaryKeyInUse. */
         interface WithIsStorageSecondaryKeyInUse {
             /**
@@ -575,6 +593,7 @@ public interface ServerBlobAuditingPolicy {
              */
             Update withIsStorageSecondaryKeyInUse(Boolean isStorageSecondaryKeyInUse);
         }
+
         /** The stage of the ServerBlobAuditingPolicy update allowing to specify isAzureMonitorTargetEnabled. */
         interface WithIsAzureMonitorTargetEnabled {
             /**
@@ -608,6 +627,7 @@ public interface ServerBlobAuditingPolicy {
              */
             Update withIsAzureMonitorTargetEnabled(Boolean isAzureMonitorTargetEnabled);
         }
+
         /** The stage of the ServerBlobAuditingPolicy update allowing to specify queueDelayMs. */
         interface WithQueueDelayMs {
             /**
@@ -621,6 +641,7 @@ public interface ServerBlobAuditingPolicy {
              */
             Update withQueueDelayMs(Integer queueDelayMs);
         }
+
         /** The stage of the ServerBlobAuditingPolicy update allowing to specify isDevopsAuditEnabled. */
         interface WithIsDevopsAuditEnabled {
             /**
@@ -653,6 +674,7 @@ public interface ServerBlobAuditingPolicy {
             Update withIsDevopsAuditEnabled(Boolean isDevopsAuditEnabled);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *
