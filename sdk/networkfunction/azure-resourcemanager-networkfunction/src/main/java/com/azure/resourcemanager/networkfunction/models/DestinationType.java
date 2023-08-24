@@ -14,6 +14,15 @@ public final class DestinationType extends ExpandableStringEnum<DestinationType>
     public static final DestinationType AZURE_MONITOR = fromString("AzureMonitor");
 
     /**
+     * Creates a new instance of DestinationType value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public DestinationType() {
+    }
+
+    /**
      * Creates or finds a DestinationType from its string representation.
      *
      * @param name a name to look for.

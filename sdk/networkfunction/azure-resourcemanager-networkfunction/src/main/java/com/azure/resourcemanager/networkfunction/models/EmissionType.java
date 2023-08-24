@@ -14,6 +14,15 @@ public final class EmissionType extends ExpandableStringEnum<EmissionType> {
     public static final EmissionType IPFIX = fromString("IPFIX");
 
     /**
+     * Creates a new instance of EmissionType value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public EmissionType() {
+    }
+
+    /**
      * Creates or finds a EmissionType from its string representation.
      *
      * @param name a name to look for.
