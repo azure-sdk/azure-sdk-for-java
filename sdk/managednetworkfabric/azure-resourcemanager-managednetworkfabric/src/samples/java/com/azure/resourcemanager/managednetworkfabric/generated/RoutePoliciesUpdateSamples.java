@@ -6,6 +6,7 @@ package com.azure.resourcemanager.managednetworkfabric.generated;
 
 import com.azure.resourcemanager.managednetworkfabric.models.ActionIpCommunityProperties;
 import com.azure.resourcemanager.managednetworkfabric.models.ActionIpExtendedCommunityProperties;
+import com.azure.resourcemanager.managednetworkfabric.models.CommunityActionTypes;
 import com.azure.resourcemanager.managednetworkfabric.models.IpCommunityIdList;
 import com.azure.resourcemanager.managednetworkfabric.models.IpExtendedCommunityIdList;
 import com.azure.resourcemanager.managednetworkfabric.models.RoutePolicy;
@@ -38,6 +39,7 @@ public final class RoutePoliciesUpdateSamples {
         resource
             .update()
             .withTags(mapOf("keyID", "fakeTokenPlaceholder"))
+            .withDefaultAction(CommunityActionTypes.DENY)
             .withStatements(
                 Arrays
                     .asList(
@@ -104,6 +106,7 @@ public final class RoutePoliciesUpdateSamples {
             .apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

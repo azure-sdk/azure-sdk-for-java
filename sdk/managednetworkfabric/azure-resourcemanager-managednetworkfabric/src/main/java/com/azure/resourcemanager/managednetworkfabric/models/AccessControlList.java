@@ -99,6 +99,14 @@ public interface AccessControlList {
     String aclsUrl();
 
     /**
+     * Gets the defaultAction property: Default action that needs to be applied when no condition is matched. Example:
+     * Permit | Deny.
+     *
+     * @return the defaultAction value.
+     */
+    CommunityActionTypes defaultAction();
+
+    /**
      * Gets the matchConfigurations property: List of match configurations.
      *
      * @return the matchConfigurations value.
@@ -199,6 +207,7 @@ public interface AccessControlList {
             extends DefinitionStages.WithTags,
                 DefinitionStages.WithConfigurationType,
                 DefinitionStages.WithAclsUrl,
+                DefinitionStages.WithDefaultAction,
                 DefinitionStages.WithMatchConfigurations,
                 DefinitionStages.WithDynamicMatchConfigurations,
                 DefinitionStages.WithAnnotation {
@@ -251,6 +260,19 @@ public interface AccessControlList {
             WithCreate withAclsUrl(String aclsUrl);
         }
 
+        /** The stage of the AccessControlList definition allowing to specify defaultAction. */
+        interface WithDefaultAction {
+            /**
+             * Specifies the defaultAction property: Default action that needs to be applied when no condition is
+             * matched. Example: Permit | Deny..
+             *
+             * @param defaultAction Default action that needs to be applied when no condition is matched. Example:
+             *     Permit | Deny.
+             * @return the next definition stage.
+             */
+            WithCreate withDefaultAction(CommunityActionTypes defaultAction);
+        }
+
         /** The stage of the AccessControlList definition allowing to specify matchConfigurations. */
         interface WithMatchConfigurations {
             /**
@@ -298,6 +320,7 @@ public interface AccessControlList {
             UpdateStages.WithAnnotation,
             UpdateStages.WithConfigurationType,
             UpdateStages.WithAclsUrl,
+            UpdateStages.WithDefaultAction,
             UpdateStages.WithMatchConfigurations,
             UpdateStages.WithDynamicMatchConfigurations {
         /**
@@ -360,6 +383,19 @@ public interface AccessControlList {
              * @return the next definition stage.
              */
             Update withAclsUrl(String aclsUrl);
+        }
+
+        /** The stage of the AccessControlList update allowing to specify defaultAction. */
+        interface WithDefaultAction {
+            /**
+             * Specifies the defaultAction property: Default action that needs to be applied when no condition is
+             * matched. Example: Permit | Deny..
+             *
+             * @param defaultAction Default action that needs to be applied when no condition is matched. Example:
+             *     Permit | Deny.
+             * @return the next definition stage.
+             */
+            Update withDefaultAction(CommunityActionTypes defaultAction);
         }
 
         /** The stage of the AccessControlList update allowing to specify matchConfigurations. */

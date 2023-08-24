@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** IP Address type. */
+/** IP Address type that needs to be matched. */
 public final class SourceDestinationType extends ExpandableStringEnum<SourceDestinationType> {
     /** Static value SourceIP for SourceDestinationType. */
     public static final SourceDestinationType SOURCE_IP = fromString("SourceIP");
