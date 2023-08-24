@@ -1,0 +1,5 @@
+repo: Azure/azure-rest-api-specs
+additionalDirectories: []
+commit: 11c996bba026a39dd4c3d38cc03ab742452beb39
+directory: specification/codesigning/CodeSigning
+
