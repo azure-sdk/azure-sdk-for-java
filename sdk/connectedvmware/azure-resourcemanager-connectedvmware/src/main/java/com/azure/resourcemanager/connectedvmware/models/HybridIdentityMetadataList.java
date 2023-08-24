@@ -25,6 +25,10 @@ public final class HybridIdentityMetadataList {
     @JsonProperty(value = "value", required = true)
     private List<HybridIdentityMetadataInner> value;
 
+    /** Creates an instance of HybridIdentityMetadataList class. */
+    public HybridIdentityMetadataList() {
+    }
+
     /**
      * Get the nextLink property: Url to follow for getting next page of HybridIdentityMetadata.
      *

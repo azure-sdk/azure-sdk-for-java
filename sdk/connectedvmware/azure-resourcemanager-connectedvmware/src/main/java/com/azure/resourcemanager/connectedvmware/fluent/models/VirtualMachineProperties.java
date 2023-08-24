@@ -11,13 +11,14 @@ import com.azure.resourcemanager.connectedvmware.models.HardwareProfile;
 import com.azure.resourcemanager.connectedvmware.models.NetworkProfile;
 import com.azure.resourcemanager.connectedvmware.models.OsProfile;
 import com.azure.resourcemanager.connectedvmware.models.PlacementProfile;
+import com.azure.resourcemanager.connectedvmware.models.ProvisioningState;
 import com.azure.resourcemanager.connectedvmware.models.ResourceStatus;
 import com.azure.resourcemanager.connectedvmware.models.SecurityProfile;
 import com.azure.resourcemanager.connectedvmware.models.StorageProfile;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Defines the resource properties. */
+/** Describes the properties of a Virtual Machine. */
 @Fluent
 public final class VirtualMachineProperties {
     /*
@@ -148,16 +149,20 @@ public final class VirtualMachineProperties {
     private List<ResourceStatus> statuses;
 
     /*
-     * Gets or sets the provisioning state.
+     * Gets the provisioning state.
      */
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
-    private String provisioningState;
+    private ProvisioningState provisioningState;
 
     /*
      * Gets or sets a unique identifier for the vm resource.
      */
     @JsonProperty(value = "vmId", access = JsonProperty.Access.WRITE_ONLY)
     private String vmId;
+
+    /** Creates an instance of VirtualMachineProperties class. */
+    public VirtualMachineProperties() {
+    }
 
     /**
      * Get the resourcePoolId property: Gets or sets the ARM Id of the resourcePool resource on which this virtual
@@ -505,11 +510,11 @@ public final class VirtualMachineProperties {
     }
 
     /**
-     * Get the provisioningState property: Gets or sets the provisioning state.
+     * Get the provisioningState property: Gets the provisioning state.
      *
      * @return the provisioningState value.
      */
-    public String provisioningState() {
+    public ProvisioningState provisioningState() {
         return this.provisioningState;
     }
 

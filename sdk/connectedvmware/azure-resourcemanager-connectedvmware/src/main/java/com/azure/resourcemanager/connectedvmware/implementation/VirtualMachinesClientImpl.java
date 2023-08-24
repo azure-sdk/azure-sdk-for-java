@@ -70,11 +70,10 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "ConnectedVMwareClien")
-    private interface VirtualMachinesService {
+    public interface VirtualMachinesService {
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.ConnectedVMwarevSphere/virtualMachines/{name}/assessPatches")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConnectedVMwarevSphere/virtualMachines/{virtualMachineName}/assessPatches")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> assessPatches(
@@ -82,14 +81,13 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
             @QueryParam("api-version") String apiVersion,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("name") String name,
+            @PathParam("virtualMachineName") String virtualMachineName,
             @HeaderParam("Accept") String accept,
             Context context);
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.ConnectedVMwarevSphere/virtualMachines/{name}/installPatches")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConnectedVMwarevSphere/virtualMachines/{virtualMachineName}/installPatches")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> installPatches(
@@ -97,18 +95,17 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
             @QueryParam("api-version") String apiVersion,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("name") String name,
+            @PathParam("virtualMachineName") String virtualMachineName,
             @BodyParam("application/json") VirtualMachineInstallPatchesParameters installPatchesInput,
             @HeaderParam("Accept") String accept,
             Context context);
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.ConnectedVMwarevSphere/virtualMachines/{virtualMachineName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConnectedVMwarevSphere/virtualMachines/{virtualMachineName}")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> create(
+        Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
             @HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
@@ -120,8 +117,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.ConnectedVMwarevSphere/virtualMachines/{virtualMachineName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConnectedVMwarevSphere/virtualMachines/{virtualMachineName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<VirtualMachineInner>> getByResourceGroup(
@@ -135,8 +131,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
 
         @Headers({"Content-Type: application/json"})
         @Patch(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.ConnectedVMwarevSphere/virtualMachines/{virtualMachineName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConnectedVMwarevSphere/virtualMachines/{virtualMachineName}")
         @ExpectedResponses({200, 201, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> update(
@@ -151,8 +146,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.ConnectedVMwarevSphere/virtualMachines/{virtualMachineName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConnectedVMwarevSphere/virtualMachines/{virtualMachineName}")
         @ExpectedResponses({200, 202, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(
@@ -161,15 +155,14 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("virtualMachineName") String virtualMachineName,
             @QueryParam("api-version") String apiVersion,
+            @QueryParam("deleteFromHost") Boolean deleteFromHost,
             @QueryParam("force") Boolean force,
-            @QueryParam("retain") Boolean retain,
             @HeaderParam("Accept") String accept,
             Context context);
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.ConnectedVMwarevSphere/virtualMachines/{virtualMachineName}/stop")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConnectedVMwarevSphere/virtualMachines/{virtualMachineName}/stop")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> stop(
@@ -184,8 +177,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.ConnectedVMwarevSphere/virtualMachines/{virtualMachineName}/start")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConnectedVMwarevSphere/virtualMachines/{virtualMachineName}/start")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> start(
@@ -199,8 +191,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.ConnectedVMwarevSphere/virtualMachines/{virtualMachineName}/restart")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConnectedVMwarevSphere/virtualMachines/{virtualMachineName}/restart")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> restart(
@@ -225,8 +216,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.ConnectedVMwarevSphere/virtualMachines")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConnectedVMwarevSphere/virtualMachines")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<VirtualMachinesList>> listByResourceGroup(
@@ -241,7 +231,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
         @Get("{nextLink}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<VirtualMachinesList>> listNext(
+        Mono<Response<VirtualMachinesList>> listAllNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink,
             @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept,
@@ -251,7 +241,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
         @Get("{nextLink}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<VirtualMachinesList>> listByResourceGroupNext(
+        Mono<Response<VirtualMachinesList>> listNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink,
             @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept,
@@ -262,7 +252,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      * The operation to assess patches on a vSphere VMware machine identity in Azure.
      *
      * @param resourceGroupName The name of the resource group.
-     * @param name The name of the vSphere VMware machine.
+     * @param virtualMachineName The name of the vSphere VMware machine.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -270,7 +260,8 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      *     of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> assessPatchesWithResponseAsync(String resourceGroupName, String name) {
+    private Mono<Response<Flux<ByteBuffer>>> assessPatchesWithResponseAsync(
+        String resourceGroupName, String virtualMachineName) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -287,8 +278,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        if (name == null) {
-            return Mono.error(new IllegalArgumentException("Parameter name is required and cannot be null."));
+        if (virtualMachineName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter virtualMachineName is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
@@ -300,7 +292,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
                             this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
-                            name,
+                            virtualMachineName,
                             accept,
                             context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -310,7 +302,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      * The operation to assess patches on a vSphere VMware machine identity in Azure.
      *
      * @param resourceGroupName The name of the resource group.
-     * @param name The name of the vSphere VMware machine.
+     * @param virtualMachineName The name of the vSphere VMware machine.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -320,7 +312,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> assessPatchesWithResponseAsync(
-        String resourceGroupName, String name, Context context) {
+        String resourceGroupName, String virtualMachineName, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -337,8 +329,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        if (name == null) {
-            return Mono.error(new IllegalArgumentException("Parameter name is required and cannot be null."));
+        if (virtualMachineName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter virtualMachineName is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
@@ -348,7 +341,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
                 this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
-                name,
+                virtualMachineName,
                 accept,
                 context);
     }
@@ -357,7 +350,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      * The operation to assess patches on a vSphere VMware machine identity in Azure.
      *
      * @param resourceGroupName The name of the resource group.
-     * @param name The name of the vSphere VMware machine.
+     * @param virtualMachineName The name of the vSphere VMware machine.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -365,8 +358,8 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<VirtualMachineAssessPatchesResultInner>, VirtualMachineAssessPatchesResultInner>
-        beginAssessPatchesAsync(String resourceGroupName, String name) {
-        Mono<Response<Flux<ByteBuffer>>> mono = assessPatchesWithResponseAsync(resourceGroupName, name);
+        beginAssessPatchesAsync(String resourceGroupName, String virtualMachineName) {
+        Mono<Response<Flux<ByteBuffer>>> mono = assessPatchesWithResponseAsync(resourceGroupName, virtualMachineName);
         return this
             .client
             .<VirtualMachineAssessPatchesResultInner, VirtualMachineAssessPatchesResultInner>getLroResult(
@@ -381,7 +374,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      * The operation to assess patches on a vSphere VMware machine identity in Azure.
      *
      * @param resourceGroupName The name of the resource group.
-     * @param name The name of the vSphere VMware machine.
+     * @param virtualMachineName The name of the vSphere VMware machine.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -390,9 +383,10 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<VirtualMachineAssessPatchesResultInner>, VirtualMachineAssessPatchesResultInner>
-        beginAssessPatchesAsync(String resourceGroupName, String name, Context context) {
+        beginAssessPatchesAsync(String resourceGroupName, String virtualMachineName, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono = assessPatchesWithResponseAsync(resourceGroupName, name, context);
+        Mono<Response<Flux<ByteBuffer>>> mono =
+            assessPatchesWithResponseAsync(resourceGroupName, virtualMachineName, context);
         return this
             .client
             .<VirtualMachineAssessPatchesResultInner, VirtualMachineAssessPatchesResultInner>getLroResult(
@@ -407,7 +401,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      * The operation to assess patches on a vSphere VMware machine identity in Azure.
      *
      * @param resourceGroupName The name of the resource group.
-     * @param name The name of the vSphere VMware machine.
+     * @param virtualMachineName The name of the vSphere VMware machine.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -415,15 +409,15 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<VirtualMachineAssessPatchesResultInner>, VirtualMachineAssessPatchesResultInner>
-        beginAssessPatches(String resourceGroupName, String name) {
-        return beginAssessPatchesAsync(resourceGroupName, name).getSyncPoller();
+        beginAssessPatches(String resourceGroupName, String virtualMachineName) {
+        return this.beginAssessPatchesAsync(resourceGroupName, virtualMachineName).getSyncPoller();
     }
 
     /**
      * The operation to assess patches on a vSphere VMware machine identity in Azure.
      *
      * @param resourceGroupName The name of the resource group.
-     * @param name The name of the vSphere VMware machine.
+     * @param virtualMachineName The name of the vSphere VMware machine.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -432,31 +426,15 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<VirtualMachineAssessPatchesResultInner>, VirtualMachineAssessPatchesResultInner>
-        beginAssessPatches(String resourceGroupName, String name, Context context) {
-        return beginAssessPatchesAsync(resourceGroupName, name, context).getSyncPoller();
+        beginAssessPatches(String resourceGroupName, String virtualMachineName, Context context) {
+        return this.beginAssessPatchesAsync(resourceGroupName, virtualMachineName, context).getSyncPoller();
     }
 
     /**
      * The operation to assess patches on a vSphere VMware machine identity in Azure.
      *
      * @param resourceGroupName The name of the resource group.
-     * @param name The name of the vSphere VMware machine.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return describes the properties of an AssessPatches result on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<VirtualMachineAssessPatchesResultInner> assessPatchesAsync(String resourceGroupName, String name) {
-        return beginAssessPatchesAsync(resourceGroupName, name).last().flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * The operation to assess patches on a vSphere VMware machine identity in Azure.
-     *
-     * @param resourceGroupName The name of the resource group.
-     * @param name The name of the vSphere VMware machine.
-     * @param context The context to associate with this operation.
+     * @param virtualMachineName The name of the vSphere VMware machine.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -464,8 +442,8 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<VirtualMachineAssessPatchesResultInner> assessPatchesAsync(
-        String resourceGroupName, String name, Context context) {
-        return beginAssessPatchesAsync(resourceGroupName, name, context)
+        String resourceGroupName, String virtualMachineName) {
+        return beginAssessPatchesAsync(resourceGroupName, virtualMachineName)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
@@ -474,22 +452,41 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      * The operation to assess patches on a vSphere VMware machine identity in Azure.
      *
      * @param resourceGroupName The name of the resource group.
-     * @param name The name of the vSphere VMware machine.
+     * @param virtualMachineName The name of the vSphere VMware machine.
+     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return describes the properties of an AssessPatches result.
+     * @return describes the properties of an AssessPatches result on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public VirtualMachineAssessPatchesResultInner assessPatches(String resourceGroupName, String name) {
-        return assessPatchesAsync(resourceGroupName, name).block();
+    private Mono<VirtualMachineAssessPatchesResultInner> assessPatchesAsync(
+        String resourceGroupName, String virtualMachineName, Context context) {
+        return beginAssessPatchesAsync(resourceGroupName, virtualMachineName, context)
+            .last()
+            .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * The operation to assess patches on a vSphere VMware machine identity in Azure.
      *
      * @param resourceGroupName The name of the resource group.
-     * @param name The name of the vSphere VMware machine.
+     * @param virtualMachineName The name of the vSphere VMware machine.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return describes the properties of an AssessPatches result.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public VirtualMachineAssessPatchesResultInner assessPatches(String resourceGroupName, String virtualMachineName) {
+        return assessPatchesAsync(resourceGroupName, virtualMachineName).block();
+    }
+
+    /**
+     * The operation to assess patches on a vSphere VMware machine identity in Azure.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param virtualMachineName The name of the vSphere VMware machine.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -498,15 +495,15 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public VirtualMachineAssessPatchesResultInner assessPatches(
-        String resourceGroupName, String name, Context context) {
-        return assessPatchesAsync(resourceGroupName, name, context).block();
+        String resourceGroupName, String virtualMachineName, Context context) {
+        return assessPatchesAsync(resourceGroupName, virtualMachineName, context).block();
     }
 
     /**
      * The operation to install patches on a vSphere VMware machine identity in Azure.
      *
      * @param resourceGroupName The name of the resource group.
-     * @param name The name of the vSphere VMware machine.
+     * @param virtualMachineName The name of the vSphere VMware machine.
      * @param installPatchesInput Input for InstallPatches as directly received by the API.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -516,7 +513,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> installPatchesWithResponseAsync(
-        String resourceGroupName, String name, VirtualMachineInstallPatchesParameters installPatchesInput) {
+        String resourceGroupName,
+        String virtualMachineName,
+        VirtualMachineInstallPatchesParameters installPatchesInput) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -533,8 +532,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        if (name == null) {
-            return Mono.error(new IllegalArgumentException("Parameter name is required and cannot be null."));
+        if (virtualMachineName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter virtualMachineName is required and cannot be null."));
         }
         if (installPatchesInput == null) {
             return Mono
@@ -552,7 +552,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
                             this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
-                            name,
+                            virtualMachineName,
                             installPatchesInput,
                             accept,
                             context))
@@ -563,7 +563,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      * The operation to install patches on a vSphere VMware machine identity in Azure.
      *
      * @param resourceGroupName The name of the resource group.
-     * @param name The name of the vSphere VMware machine.
+     * @param virtualMachineName The name of the vSphere VMware machine.
      * @param installPatchesInput Input for InstallPatches as directly received by the API.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -575,7 +575,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> installPatchesWithResponseAsync(
         String resourceGroupName,
-        String name,
+        String virtualMachineName,
         VirtualMachineInstallPatchesParameters installPatchesInput,
         Context context) {
         if (this.client.getEndpoint() == null) {
@@ -594,8 +594,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        if (name == null) {
-            return Mono.error(new IllegalArgumentException("Parameter name is required and cannot be null."));
+        if (virtualMachineName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter virtualMachineName is required and cannot be null."));
         }
         if (installPatchesInput == null) {
             return Mono
@@ -611,7 +612,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
                 this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
-                name,
+                virtualMachineName,
                 installPatchesInput,
                 accept,
                 context);
@@ -621,7 +622,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      * The operation to install patches on a vSphere VMware machine identity in Azure.
      *
      * @param resourceGroupName The name of the resource group.
-     * @param name The name of the vSphere VMware machine.
+     * @param virtualMachineName The name of the vSphere VMware machine.
      * @param installPatchesInput Input for InstallPatches as directly received by the API.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -631,9 +632,11 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<VirtualMachineInstallPatchesResultInner>, VirtualMachineInstallPatchesResultInner>
         beginInstallPatchesAsync(
-            String resourceGroupName, String name, VirtualMachineInstallPatchesParameters installPatchesInput) {
+            String resourceGroupName,
+            String virtualMachineName,
+            VirtualMachineInstallPatchesParameters installPatchesInput) {
         Mono<Response<Flux<ByteBuffer>>> mono =
-            installPatchesWithResponseAsync(resourceGroupName, name, installPatchesInput);
+            installPatchesWithResponseAsync(resourceGroupName, virtualMachineName, installPatchesInput);
         return this
             .client
             .<VirtualMachineInstallPatchesResultInner, VirtualMachineInstallPatchesResultInner>getLroResult(
@@ -648,7 +651,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      * The operation to install patches on a vSphere VMware machine identity in Azure.
      *
      * @param resourceGroupName The name of the resource group.
-     * @param name The name of the vSphere VMware machine.
+     * @param virtualMachineName The name of the vSphere VMware machine.
      * @param installPatchesInput Input for InstallPatches as directly received by the API.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -660,12 +663,12 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     private PollerFlux<PollResult<VirtualMachineInstallPatchesResultInner>, VirtualMachineInstallPatchesResultInner>
         beginInstallPatchesAsync(
             String resourceGroupName,
-            String name,
+            String virtualMachineName,
             VirtualMachineInstallPatchesParameters installPatchesInput,
             Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono =
-            installPatchesWithResponseAsync(resourceGroupName, name, installPatchesInput, context);
+            installPatchesWithResponseAsync(resourceGroupName, virtualMachineName, installPatchesInput, context);
         return this
             .client
             .<VirtualMachineInstallPatchesResultInner, VirtualMachineInstallPatchesResultInner>getLroResult(
@@ -680,7 +683,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      * The operation to install patches on a vSphere VMware machine identity in Azure.
      *
      * @param resourceGroupName The name of the resource group.
-     * @param name The name of the vSphere VMware machine.
+     * @param virtualMachineName The name of the vSphere VMware machine.
      * @param installPatchesInput Input for InstallPatches as directly received by the API.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -690,15 +693,19 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<VirtualMachineInstallPatchesResultInner>, VirtualMachineInstallPatchesResultInner>
         beginInstallPatches(
-            String resourceGroupName, String name, VirtualMachineInstallPatchesParameters installPatchesInput) {
-        return beginInstallPatchesAsync(resourceGroupName, name, installPatchesInput).getSyncPoller();
+            String resourceGroupName,
+            String virtualMachineName,
+            VirtualMachineInstallPatchesParameters installPatchesInput) {
+        return this
+            .beginInstallPatchesAsync(resourceGroupName, virtualMachineName, installPatchesInput)
+            .getSyncPoller();
     }
 
     /**
      * The operation to install patches on a vSphere VMware machine identity in Azure.
      *
      * @param resourceGroupName The name of the resource group.
-     * @param name The name of the vSphere VMware machine.
+     * @param virtualMachineName The name of the vSphere VMware machine.
      * @param installPatchesInput Input for InstallPatches as directly received by the API.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -710,17 +717,19 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     public SyncPoller<PollResult<VirtualMachineInstallPatchesResultInner>, VirtualMachineInstallPatchesResultInner>
         beginInstallPatches(
             String resourceGroupName,
-            String name,
+            String virtualMachineName,
             VirtualMachineInstallPatchesParameters installPatchesInput,
             Context context) {
-        return beginInstallPatchesAsync(resourceGroupName, name, installPatchesInput, context).getSyncPoller();
+        return this
+            .beginInstallPatchesAsync(resourceGroupName, virtualMachineName, installPatchesInput, context)
+            .getSyncPoller();
     }
 
     /**
      * The operation to install patches on a vSphere VMware machine identity in Azure.
      *
      * @param resourceGroupName The name of the resource group.
-     * @param name The name of the vSphere VMware machine.
+     * @param virtualMachineName The name of the vSphere VMware machine.
      * @param installPatchesInput Input for InstallPatches as directly received by the API.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -729,8 +738,10 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<VirtualMachineInstallPatchesResultInner> installPatchesAsync(
-        String resourceGroupName, String name, VirtualMachineInstallPatchesParameters installPatchesInput) {
-        return beginInstallPatchesAsync(resourceGroupName, name, installPatchesInput)
+        String resourceGroupName,
+        String virtualMachineName,
+        VirtualMachineInstallPatchesParameters installPatchesInput) {
+        return beginInstallPatchesAsync(resourceGroupName, virtualMachineName, installPatchesInput)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
@@ -739,7 +750,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      * The operation to install patches on a vSphere VMware machine identity in Azure.
      *
      * @param resourceGroupName The name of the resource group.
-     * @param name The name of the vSphere VMware machine.
+     * @param virtualMachineName The name of the vSphere VMware machine.
      * @param installPatchesInput Input for InstallPatches as directly received by the API.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -750,10 +761,10 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<VirtualMachineInstallPatchesResultInner> installPatchesAsync(
         String resourceGroupName,
-        String name,
+        String virtualMachineName,
         VirtualMachineInstallPatchesParameters installPatchesInput,
         Context context) {
-        return beginInstallPatchesAsync(resourceGroupName, name, installPatchesInput, context)
+        return beginInstallPatchesAsync(resourceGroupName, virtualMachineName, installPatchesInput, context)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
@@ -762,7 +773,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      * The operation to install patches on a vSphere VMware machine identity in Azure.
      *
      * @param resourceGroupName The name of the resource group.
-     * @param name The name of the vSphere VMware machine.
+     * @param virtualMachineName The name of the vSphere VMware machine.
      * @param installPatchesInput Input for InstallPatches as directly received by the API.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -771,15 +782,17 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public VirtualMachineInstallPatchesResultInner installPatches(
-        String resourceGroupName, String name, VirtualMachineInstallPatchesParameters installPatchesInput) {
-        return installPatchesAsync(resourceGroupName, name, installPatchesInput).block();
+        String resourceGroupName,
+        String virtualMachineName,
+        VirtualMachineInstallPatchesParameters installPatchesInput) {
+        return installPatchesAsync(resourceGroupName, virtualMachineName, installPatchesInput).block();
     }
 
     /**
      * The operation to install patches on a vSphere VMware machine identity in Azure.
      *
      * @param resourceGroupName The name of the resource group.
-     * @param name The name of the vSphere VMware machine.
+     * @param virtualMachineName The name of the vSphere VMware machine.
      * @param installPatchesInput Input for InstallPatches as directly received by the API.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -790,10 +803,10 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public VirtualMachineInstallPatchesResultInner installPatches(
         String resourceGroupName,
-        String name,
+        String virtualMachineName,
         VirtualMachineInstallPatchesParameters installPatchesInput,
         Context context) {
-        return installPatchesAsync(resourceGroupName, name, installPatchesInput, context).block();
+        return installPatchesAsync(resourceGroupName, virtualMachineName, installPatchesInput, context).block();
     }
 
     /**
@@ -810,7 +823,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      * @return define the virtualMachine along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createWithResponseAsync(
+    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
         String resourceGroupName, String virtualMachineName, VirtualMachineInner body) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -840,7 +853,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
             .withContext(
                 context ->
                     service
-                        .create(
+                        .createOrUpdate(
                             this.client.getEndpoint(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
@@ -867,7 +880,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      * @return define the virtualMachine along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createWithResponseAsync(
+    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
         String resourceGroupName, String virtualMachineName, VirtualMachineInner body, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -895,7 +908,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .create(
+            .createOrUpdate(
                 this.client.getEndpoint(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
@@ -920,9 +933,38 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      * @return the {@link PollerFlux} for polling of define the virtualMachine.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<VirtualMachineInner>, VirtualMachineInner> beginCreateAsync(
+    private PollerFlux<PollResult<VirtualMachineInner>, VirtualMachineInner> beginCreateOrUpdateAsync(
         String resourceGroupName, String virtualMachineName, VirtualMachineInner body) {
-        Mono<Response<Flux<ByteBuffer>>> mono = createWithResponseAsync(resourceGroupName, virtualMachineName, body);
+        Mono<Response<Flux<ByteBuffer>>> mono =
+            createOrUpdateWithResponseAsync(resourceGroupName, virtualMachineName, body);
+        return this
+            .client
+            .<VirtualMachineInner, VirtualMachineInner>getLroResult(
+                mono,
+                this.client.getHttpPipeline(),
+                VirtualMachineInner.class,
+                VirtualMachineInner.class,
+                this.client.getContext());
+    }
+
+    /**
+     * Implements virtual machine PUT method.
+     *
+     * <p>Create Or Update virtual machine.
+     *
+     * @param resourceGroupName The Resource Group Name.
+     * @param virtualMachineName Name of the virtual machine resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of define the virtualMachine.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<VirtualMachineInner>, VirtualMachineInner> beginCreateOrUpdateAsync(
+        String resourceGroupName, String virtualMachineName) {
+        final VirtualMachineInner body = null;
+        Mono<Response<Flux<ByteBuffer>>> mono =
+            createOrUpdateWithResponseAsync(resourceGroupName, virtualMachineName, body);
         return this
             .client
             .<VirtualMachineInner, VirtualMachineInner>getLroResult(
@@ -948,11 +990,11 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      * @return the {@link PollerFlux} for polling of define the virtualMachine.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<VirtualMachineInner>, VirtualMachineInner> beginCreateAsync(
+    private PollerFlux<PollResult<VirtualMachineInner>, VirtualMachineInner> beginCreateOrUpdateAsync(
         String resourceGroupName, String virtualMachineName, VirtualMachineInner body, Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono =
-            createWithResponseAsync(resourceGroupName, virtualMachineName, body, context);
+            createOrUpdateWithResponseAsync(resourceGroupName, virtualMachineName, body, context);
         return this
             .client
             .<VirtualMachineInner, VirtualMachineInner>getLroResult(
@@ -966,16 +1008,16 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      *
      * @param resourceGroupName The Resource Group Name.
      * @param virtualMachineName Name of the virtual machine resource.
-     * @param body Request payload.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of define the virtualMachine.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<VirtualMachineInner>, VirtualMachineInner> beginCreate(
-        String resourceGroupName, String virtualMachineName, VirtualMachineInner body) {
-        return beginCreateAsync(resourceGroupName, virtualMachineName, body).getSyncPoller();
+    public SyncPoller<PollResult<VirtualMachineInner>, VirtualMachineInner> beginCreateOrUpdate(
+        String resourceGroupName, String virtualMachineName) {
+        final VirtualMachineInner body = null;
+        return this.beginCreateOrUpdateAsync(resourceGroupName, virtualMachineName, body).getSyncPoller();
     }
 
     /**
@@ -993,9 +1035,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      * @return the {@link SyncPoller} for polling of define the virtualMachine.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<VirtualMachineInner>, VirtualMachineInner> beginCreate(
+    public SyncPoller<PollResult<VirtualMachineInner>, VirtualMachineInner> beginCreateOrUpdate(
         String resourceGroupName, String virtualMachineName, VirtualMachineInner body, Context context) {
-        return beginCreateAsync(resourceGroupName, virtualMachineName, body, context).getSyncPoller();
+        return this.beginCreateOrUpdateAsync(resourceGroupName, virtualMachineName, body, context).getSyncPoller();
     }
 
     /**
@@ -1012,9 +1054,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      * @return define the virtualMachine on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<VirtualMachineInner> createAsync(
+    private Mono<VirtualMachineInner> createOrUpdateAsync(
         String resourceGroupName, String virtualMachineName, VirtualMachineInner body) {
-        return beginCreateAsync(resourceGroupName, virtualMachineName, body)
+        return beginCreateOrUpdateAsync(resourceGroupName, virtualMachineName, body)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
@@ -1032,9 +1074,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      * @return define the virtualMachine on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<VirtualMachineInner> createAsync(String resourceGroupName, String virtualMachineName) {
+    private Mono<VirtualMachineInner> createOrUpdateAsync(String resourceGroupName, String virtualMachineName) {
         final VirtualMachineInner body = null;
-        return beginCreateAsync(resourceGroupName, virtualMachineName, body)
+        return beginCreateOrUpdateAsync(resourceGroupName, virtualMachineName, body)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
@@ -1054,9 +1096,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      * @return define the virtualMachine on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<VirtualMachineInner> createAsync(
+    private Mono<VirtualMachineInner> createOrUpdateAsync(
         String resourceGroupName, String virtualMachineName, VirtualMachineInner body, Context context) {
-        return beginCreateAsync(resourceGroupName, virtualMachineName, body, context)
+        return beginCreateOrUpdateAsync(resourceGroupName, virtualMachineName, body, context)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
@@ -1068,33 +1110,15 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      *
      * @param resourceGroupName The Resource Group Name.
      * @param virtualMachineName Name of the virtual machine resource.
-     * @param body Request payload.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return define the virtualMachine.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public VirtualMachineInner create(String resourceGroupName, String virtualMachineName, VirtualMachineInner body) {
-        return createAsync(resourceGroupName, virtualMachineName, body).block();
-    }
-
-    /**
-     * Implements virtual machine PUT method.
-     *
-     * <p>Create Or Update virtual machine.
-     *
-     * @param resourceGroupName The Resource Group Name.
-     * @param virtualMachineName Name of the virtual machine resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return define the virtualMachine.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public VirtualMachineInner create(String resourceGroupName, String virtualMachineName) {
+    public VirtualMachineInner createOrUpdate(String resourceGroupName, String virtualMachineName) {
         final VirtualMachineInner body = null;
-        return createAsync(resourceGroupName, virtualMachineName, body).block();
+        return createOrUpdateAsync(resourceGroupName, virtualMachineName, body).block();
     }
 
     /**
@@ -1112,9 +1136,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      * @return define the virtualMachine.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public VirtualMachineInner create(
+    public VirtualMachineInner createOrUpdate(
         String resourceGroupName, String virtualMachineName, VirtualMachineInner body, Context context) {
-        return createAsync(resourceGroupName, virtualMachineName, body, context).block();
+        return createOrUpdateAsync(resourceGroupName, virtualMachineName, body, context).block();
     }
 
     /**
@@ -1242,23 +1266,6 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      *
      * @param resourceGroupName The Resource Group Name.
      * @param virtualMachineName Name of the virtual machine resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return define the virtualMachine.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public VirtualMachineInner getByResourceGroup(String resourceGroupName, String virtualMachineName) {
-        return getByResourceGroupAsync(resourceGroupName, virtualMachineName).block();
-    }
-
-    /**
-     * Gets a virtual machine.
-     *
-     * <p>Implements virtual machine GET method.
-     *
-     * @param resourceGroupName The Resource Group Name.
-     * @param virtualMachineName Name of the virtual machine resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1269,6 +1276,23 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     public Response<VirtualMachineInner> getByResourceGroupWithResponse(
         String resourceGroupName, String virtualMachineName, Context context) {
         return getByResourceGroupWithResponseAsync(resourceGroupName, virtualMachineName, context).block();
+    }
+
+    /**
+     * Gets a virtual machine.
+     *
+     * <p>Implements virtual machine GET method.
+     *
+     * @param resourceGroupName The Resource Group Name.
+     * @param virtualMachineName Name of the virtual machine resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return define the virtualMachine.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public VirtualMachineInner getByResourceGroup(String resourceGroupName, String virtualMachineName) {
+        return getByResourceGroupWithResponse(resourceGroupName, virtualMachineName, Context.NONE).getValue();
     }
 
     /**
@@ -1415,6 +1439,33 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      *
      * @param resourceGroupName The Resource Group Name.
      * @param virtualMachineName Name of the virtual machine resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of define the virtualMachine.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<VirtualMachineInner>, VirtualMachineInner> beginUpdateAsync(
+        String resourceGroupName, String virtualMachineName) {
+        final VirtualMachineUpdate body = null;
+        Mono<Response<Flux<ByteBuffer>>> mono = updateWithResponseAsync(resourceGroupName, virtualMachineName, body);
+        return this
+            .client
+            .<VirtualMachineInner, VirtualMachineInner>getLroResult(
+                mono,
+                this.client.getHttpPipeline(),
+                VirtualMachineInner.class,
+                VirtualMachineInner.class,
+                this.client.getContext());
+    }
+
+    /**
+     * Updates a virtual machine.
+     *
+     * <p>API to update certain properties of the virtual machine resource.
+     *
+     * @param resourceGroupName The Resource Group Name.
+     * @param virtualMachineName Name of the virtual machine resource.
      * @param body Resource properties to update.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1441,7 +1492,6 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      *
      * @param resourceGroupName The Resource Group Name.
      * @param virtualMachineName Name of the virtual machine resource.
-     * @param body Resource properties to update.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1449,8 +1499,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<VirtualMachineInner>, VirtualMachineInner> beginUpdate(
-        String resourceGroupName, String virtualMachineName, VirtualMachineUpdate body) {
-        return beginUpdateAsync(resourceGroupName, virtualMachineName, body).getSyncPoller();
+        String resourceGroupName, String virtualMachineName) {
+        final VirtualMachineUpdate body = null;
+        return this.beginUpdateAsync(resourceGroupName, virtualMachineName, body).getSyncPoller();
     }
 
     /**
@@ -1470,7 +1521,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<VirtualMachineInner>, VirtualMachineInner> beginUpdate(
         String resourceGroupName, String virtualMachineName, VirtualMachineUpdate body, Context context) {
-        return beginUpdateAsync(resourceGroupName, virtualMachineName, body, context).getSyncPoller();
+        return this.beginUpdateAsync(resourceGroupName, virtualMachineName, body, context).getSyncPoller();
     }
 
     /**
@@ -1543,24 +1594,6 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      *
      * @param resourceGroupName The Resource Group Name.
      * @param virtualMachineName Name of the virtual machine resource.
-     * @param body Resource properties to update.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return define the virtualMachine.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public VirtualMachineInner update(String resourceGroupName, String virtualMachineName, VirtualMachineUpdate body) {
-        return updateAsync(resourceGroupName, virtualMachineName, body).block();
-    }
-
-    /**
-     * Updates a virtual machine.
-     *
-     * <p>API to update certain properties of the virtual machine resource.
-     *
-     * @param resourceGroupName The Resource Group Name.
-     * @param virtualMachineName Name of the virtual machine resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1599,8 +1632,8 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      *
      * @param resourceGroupName The Resource Group Name.
      * @param virtualMachineName Name of the virtual machine resource.
+     * @param deleteFromHost Whether to delete the VM from the vCenter.
      * @param force Whether force delete was specified.
-     * @param retain Whether to just disable the VM from azure and retain the VM in the VMM.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1608,7 +1641,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
-        String resourceGroupName, String virtualMachineName, Boolean force, Boolean retain) {
+        String resourceGroupName, String virtualMachineName, Boolean deleteFromHost, Boolean force) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -1640,8 +1673,8 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
                             resourceGroupName,
                             virtualMachineName,
                             this.client.getApiVersion(),
+                            deleteFromHost,
                             force,
-                            retain,
                             accept,
                             context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -1654,8 +1687,8 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      *
      * @param resourceGroupName The Resource Group Name.
      * @param virtualMachineName Name of the virtual machine resource.
+     * @param deleteFromHost Whether to delete the VM from the vCenter.
      * @param force Whether force delete was specified.
-     * @param retain Whether to just disable the VM from azure and retain the VM in the VMM.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1664,7 +1697,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
-        String resourceGroupName, String virtualMachineName, Boolean force, Boolean retain, Context context) {
+        String resourceGroupName, String virtualMachineName, Boolean deleteFromHost, Boolean force, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -1694,8 +1727,8 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
                 resourceGroupName,
                 virtualMachineName,
                 this.client.getApiVersion(),
+                deleteFromHost,
                 force,
-                retain,
                 accept,
                 context);
     }
@@ -1707,8 +1740,8 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      *
      * @param resourceGroupName The Resource Group Name.
      * @param virtualMachineName Name of the virtual machine resource.
+     * @param deleteFromHost Whether to delete the VM from the vCenter.
      * @param force Whether force delete was specified.
-     * @param retain Whether to just disable the VM from azure and retain the VM in the VMM.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1716,9 +1749,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
-        String resourceGroupName, String virtualMachineName, Boolean force, Boolean retain) {
+        String resourceGroupName, String virtualMachineName, Boolean deleteFromHost, Boolean force) {
         Mono<Response<Flux<ByteBuffer>>> mono =
-            deleteWithResponseAsync(resourceGroupName, virtualMachineName, force, retain);
+            deleteWithResponseAsync(resourceGroupName, virtualMachineName, deleteFromHost, force);
         return this
             .client
             .<Void, Void>getLroResult(
@@ -1732,8 +1765,32 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      *
      * @param resourceGroupName The Resource Group Name.
      * @param virtualMachineName Name of the virtual machine resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String virtualMachineName) {
+        final Boolean deleteFromHost = null;
+        final Boolean force = null;
+        Mono<Response<Flux<ByteBuffer>>> mono =
+            deleteWithResponseAsync(resourceGroupName, virtualMachineName, deleteFromHost, force);
+        return this
+            .client
+            .<Void, Void>getLroResult(
+                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+    }
+
+    /**
+     * Deletes an virtual machine.
+     *
+     * <p>Implements virtual machine DELETE method.
+     *
+     * @param resourceGroupName The Resource Group Name.
+     * @param virtualMachineName Name of the virtual machine resource.
+     * @param deleteFromHost Whether to delete the VM from the vCenter.
      * @param force Whether force delete was specified.
-     * @param retain Whether to just disable the VM from azure and retain the VM in the VMM.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1742,10 +1799,10 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
-        String resourceGroupName, String virtualMachineName, Boolean force, Boolean retain, Context context) {
+        String resourceGroupName, String virtualMachineName, Boolean deleteFromHost, Boolean force, Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono =
-            deleteWithResponseAsync(resourceGroupName, virtualMachineName, force, retain, context);
+            deleteWithResponseAsync(resourceGroupName, virtualMachineName, deleteFromHost, force, context);
         return this
             .client
             .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, context);
@@ -1758,17 +1815,16 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      *
      * @param resourceGroupName The Resource Group Name.
      * @param virtualMachineName Name of the virtual machine resource.
-     * @param force Whether force delete was specified.
-     * @param retain Whether to just disable the VM from azure and retain the VM in the VMM.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDelete(
-        String resourceGroupName, String virtualMachineName, Boolean force, Boolean retain) {
-        return beginDeleteAsync(resourceGroupName, virtualMachineName, force, retain).getSyncPoller();
+    public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String virtualMachineName) {
+        final Boolean deleteFromHost = null;
+        final Boolean force = null;
+        return this.beginDeleteAsync(resourceGroupName, virtualMachineName, deleteFromHost, force).getSyncPoller();
     }
 
     /**
@@ -1778,8 +1834,8 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      *
      * @param resourceGroupName The Resource Group Name.
      * @param virtualMachineName Name of the virtual machine resource.
+     * @param deleteFromHost Whether to delete the VM from the vCenter.
      * @param force Whether force delete was specified.
-     * @param retain Whether to just disable the VM from azure and retain the VM in the VMM.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1788,8 +1844,10 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
-        String resourceGroupName, String virtualMachineName, Boolean force, Boolean retain, Context context) {
-        return beginDeleteAsync(resourceGroupName, virtualMachineName, force, retain, context).getSyncPoller();
+        String resourceGroupName, String virtualMachineName, Boolean deleteFromHost, Boolean force, Context context) {
+        return this
+            .beginDeleteAsync(resourceGroupName, virtualMachineName, deleteFromHost, force, context)
+            .getSyncPoller();
     }
 
     /**
@@ -1799,16 +1857,17 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      *
      * @param resourceGroupName The Resource Group Name.
      * @param virtualMachineName Name of the virtual machine resource.
+     * @param deleteFromHost Whether to delete the VM from the vCenter.
      * @param force Whether force delete was specified.
-     * @param retain Whether to just disable the VM from azure and retain the VM in the VMM.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> deleteAsync(String resourceGroupName, String virtualMachineName, Boolean force, Boolean retain) {
-        return beginDeleteAsync(resourceGroupName, virtualMachineName, force, retain)
+    private Mono<Void> deleteAsync(
+        String resourceGroupName, String virtualMachineName, Boolean deleteFromHost, Boolean force) {
+        return beginDeleteAsync(resourceGroupName, virtualMachineName, deleteFromHost, force)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
@@ -1827,9 +1886,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String resourceGroupName, String virtualMachineName) {
+        final Boolean deleteFromHost = null;
         final Boolean force = null;
-        final Boolean retain = null;
-        return beginDeleteAsync(resourceGroupName, virtualMachineName, force, retain)
+        return beginDeleteAsync(resourceGroupName, virtualMachineName, deleteFromHost, force)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
@@ -1841,8 +1900,8 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      *
      * @param resourceGroupName The Resource Group Name.
      * @param virtualMachineName Name of the virtual machine resource.
+     * @param deleteFromHost Whether to delete the VM from the vCenter.
      * @param force Whether force delete was specified.
-     * @param retain Whether to just disable the VM from azure and retain the VM in the VMM.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1851,28 +1910,10 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(
-        String resourceGroupName, String virtualMachineName, Boolean force, Boolean retain, Context context) {
-        return beginDeleteAsync(resourceGroupName, virtualMachineName, force, retain, context)
+        String resourceGroupName, String virtualMachineName, Boolean deleteFromHost, Boolean force, Context context) {
+        return beginDeleteAsync(resourceGroupName, virtualMachineName, deleteFromHost, force, context)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Deletes an virtual machine.
-     *
-     * <p>Implements virtual machine DELETE method.
-     *
-     * @param resourceGroupName The Resource Group Name.
-     * @param virtualMachineName Name of the virtual machine resource.
-     * @param force Whether force delete was specified.
-     * @param retain Whether to just disable the VM from azure and retain the VM in the VMM.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceGroupName, String virtualMachineName, Boolean force, Boolean retain) {
-        deleteAsync(resourceGroupName, virtualMachineName, force, retain).block();
     }
 
     /**
@@ -1888,9 +1929,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public void delete(String resourceGroupName, String virtualMachineName) {
+        final Boolean deleteFromHost = null;
         final Boolean force = null;
-        final Boolean retain = null;
-        deleteAsync(resourceGroupName, virtualMachineName, force, retain).block();
+        deleteAsync(resourceGroupName, virtualMachineName, deleteFromHost, force).block();
     }
 
     /**
@@ -1900,8 +1941,8 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      *
      * @param resourceGroupName The Resource Group Name.
      * @param virtualMachineName Name of the virtual machine resource.
+     * @param deleteFromHost Whether to delete the VM from the vCenter.
      * @param force Whether force delete was specified.
-     * @param retain Whether to just disable the VM from azure and retain the VM in the VMM.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1909,8 +1950,8 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public void delete(
-        String resourceGroupName, String virtualMachineName, Boolean force, Boolean retain, Context context) {
-        deleteAsync(resourceGroupName, virtualMachineName, force, retain, context).block();
+        String resourceGroupName, String virtualMachineName, Boolean deleteFromHost, Boolean force, Context context) {
+        deleteAsync(resourceGroupName, virtualMachineName, deleteFromHost, force, context).block();
     }
 
     /**
@@ -2053,6 +2094,28 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      *
      * @param resourceGroupName The Resource Group Name.
      * @param virtualMachineName Name of the virtual machine resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginStopAsync(String resourceGroupName, String virtualMachineName) {
+        final StopVirtualMachineOptions body = null;
+        Mono<Response<Flux<ByteBuffer>>> mono = stopWithResponseAsync(resourceGroupName, virtualMachineName, body);
+        return this
+            .client
+            .<Void, Void>getLroResult(
+                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+    }
+
+    /**
+     * Implements the operation to stop a virtual machine.
+     *
+     * <p>Stop virtual machine.
+     *
+     * @param resourceGroupName The Resource Group Name.
+     * @param virtualMachineName Name of the virtual machine resource.
      * @param body Virtualmachine stop action payload.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2078,16 +2141,15 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      *
      * @param resourceGroupName The Resource Group Name.
      * @param virtualMachineName Name of the virtual machine resource.
-     * @param body Virtualmachine stop action payload.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginStop(
-        String resourceGroupName, String virtualMachineName, StopVirtualMachineOptions body) {
-        return beginStopAsync(resourceGroupName, virtualMachineName, body).getSyncPoller();
+    public SyncPoller<PollResult<Void>, Void> beginStop(String resourceGroupName, String virtualMachineName) {
+        final StopVirtualMachineOptions body = null;
+        return this.beginStopAsync(resourceGroupName, virtualMachineName, body).getSyncPoller();
     }
 
     /**
@@ -2107,7 +2169,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginStop(
         String resourceGroupName, String virtualMachineName, StopVirtualMachineOptions body, Context context) {
-        return beginStopAsync(resourceGroupName, virtualMachineName, body, context).getSyncPoller();
+        return this.beginStopAsync(resourceGroupName, virtualMachineName, body, context).getSyncPoller();
     }
 
     /**
@@ -2170,23 +2232,6 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
         return beginStopAsync(resourceGroupName, virtualMachineName, body, context)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Implements the operation to stop a virtual machine.
-     *
-     * <p>Stop virtual machine.
-     *
-     * @param resourceGroupName The Resource Group Name.
-     * @param virtualMachineName Name of the virtual machine resource.
-     * @param body Virtualmachine stop action payload.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void stop(String resourceGroupName, String virtualMachineName, StopVirtualMachineOptions body) {
-        stopAsync(resourceGroupName, virtualMachineName, body).block();
     }
 
     /**
@@ -2383,7 +2428,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginStart(String resourceGroupName, String virtualMachineName) {
-        return beginStartAsync(resourceGroupName, virtualMachineName).getSyncPoller();
+        return this.beginStartAsync(resourceGroupName, virtualMachineName).getSyncPoller();
     }
 
     /**
@@ -2402,7 +2447,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginStart(
         String resourceGroupName, String virtualMachineName, Context context) {
-        return beginStartAsync(resourceGroupName, virtualMachineName, context).getSyncPoller();
+        return this.beginStartAsync(resourceGroupName, virtualMachineName, context).getSyncPoller();
     }
 
     /**
@@ -2636,7 +2681,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginRestart(String resourceGroupName, String virtualMachineName) {
-        return beginRestartAsync(resourceGroupName, virtualMachineName).getSyncPoller();
+        return this.beginRestartAsync(resourceGroupName, virtualMachineName).getSyncPoller();
     }
 
     /**
@@ -2655,7 +2700,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginRestart(
         String resourceGroupName, String virtualMachineName, Context context) {
-        return beginRestartAsync(resourceGroupName, virtualMachineName, context).getSyncPoller();
+        return this.beginRestartAsync(resourceGroupName, virtualMachineName, context).getSyncPoller();
     }
 
     /**
@@ -2832,7 +2877,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<VirtualMachineInner> listAsync() {
-        return new PagedFlux<>(() -> listSinglePageAsync(), nextLink -> listNextSinglePageAsync(nextLink));
+        return new PagedFlux<>(() -> listSinglePageAsync(), nextLink -> listAllNextSinglePageAsync(nextLink));
     }
 
     /**
@@ -2849,7 +2894,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<VirtualMachineInner> listAsync(Context context) {
         return new PagedFlux<>(
-            () -> listSinglePageAsync(context), nextLink -> listNextSinglePageAsync(nextLink, context));
+            () -> listSinglePageAsync(context), nextLink -> listAllNextSinglePageAsync(nextLink, context));
     }
 
     /**
@@ -3001,8 +3046,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<VirtualMachineInner> listByResourceGroupAsync(String resourceGroupName) {
         return new PagedFlux<>(
-            () -> listByResourceGroupSinglePageAsync(resourceGroupName),
-            nextLink -> listByResourceGroupNextSinglePageAsync(nextLink));
+            () -> listByResourceGroupSinglePageAsync(resourceGroupName), nextLink -> listNextSinglePageAsync(nextLink));
     }
 
     /**
@@ -3021,7 +3065,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     private PagedFlux<VirtualMachineInner> listByResourceGroupAsync(String resourceGroupName, Context context) {
         return new PagedFlux<>(
             () -> listByResourceGroupSinglePageAsync(resourceGroupName, context),
-            nextLink -> listByResourceGroupNextSinglePageAsync(nextLink, context));
+            nextLink -> listNextSinglePageAsync(nextLink, context));
     }
 
     /**
@@ -3060,7 +3104,81 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of VirtualMachines along with {@link PagedResponse} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<VirtualMachineInner>> listAllNextSinglePageAsync(String nextLink) {
+        if (nextLink == null) {
+            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.listAllNext(nextLink, this.client.getEndpoint(), accept, context))
+            .<PagedResponse<VirtualMachineInner>>map(
+                res ->
+                    new PagedResponseBase<>(
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink(),
+                        null))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Get the next page of items.
+     *
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of VirtualMachines along with {@link PagedResponse} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<VirtualMachineInner>> listAllNextSinglePageAsync(String nextLink, Context context) {
+        if (nextLink == null) {
+            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .listAllNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(
+                res ->
+                    new PagedResponseBase<>(
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink(),
+                        null));
+    }
+
+    /**
+     * Get the next page of items.
+     *
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -3095,7 +3213,8 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -3117,79 +3236,6 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
         context = this.client.mergeContext(context);
         return service
             .listNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
-    }
-
-    /**
-     * Get the next page of items.
-     *
-     * @param nextLink The nextLink parameter.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of VirtualMachines along with {@link PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<VirtualMachineInner>> listByResourceGroupNextSinglePageAsync(String nextLink) {
-        if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
-        }
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(
-                context -> service.listByResourceGroupNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<VirtualMachineInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Get the next page of items.
-     *
-     * @param nextLink The nextLink parameter.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of VirtualMachines along with {@link PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<VirtualMachineInner>> listByResourceGroupNextSinglePageAsync(
-        String nextLink, Context context) {
-        if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
-        }
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .listByResourceGroupNext(nextLink, this.client.getEndpoint(), accept, context)
             .map(
                 res ->
                     new PagedResponseBase<>(

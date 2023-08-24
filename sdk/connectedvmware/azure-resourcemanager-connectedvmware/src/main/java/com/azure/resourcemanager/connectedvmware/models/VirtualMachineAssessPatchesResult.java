@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.connectedvmware.models;
 
+import com.azure.core.management.exception.ManagementError;
 import com.azure.resourcemanager.connectedvmware.fluent.models.VirtualMachineAssessPatchesResultInner;
 import java.time.OffsetDateTime;
 
@@ -77,14 +78,12 @@ public interface VirtualMachineAssessPatchesResult {
     OsTypeUM osType();
 
     /**
-     * Gets the errorDetails property: Error details.
-     *
-     * <p>The errors that were encountered during execution of the operation. The details array contains the list of
-     * them.
+     * Gets the errorDetails property: The errors that were encountered during execution of the operation. The details
+     * array contains the list of them.
      *
      * @return the errorDetails value.
      */
-    ErrorDetail errorDetails();
+    ManagementError errorDetails();
 
     /**
      * Gets the inner com.azure.resourcemanager.connectedvmware.fluent.models.VirtualMachineAssessPatchesResultInner
