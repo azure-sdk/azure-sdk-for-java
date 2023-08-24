@@ -4,22 +4,52 @@
 
 package com.azure.resourcemanager.machinelearning.models;
 
-import com.azure.resourcemanager.machinelearning.fluent.models.PrivateLinkResourceListResultInner;
+import com.azure.core.annotation.Fluent;
+import com.azure.resourcemanager.machinelearning.fluent.models.PrivateLinkResourceInner;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** An immutable client-side representation of PrivateLinkResourceListResult. */
-public interface PrivateLinkResourceListResult {
+/** A list of private link resources. */
+@Fluent
+public final class PrivateLinkResourceListResult {
+    /*
+     * The value property.
+     */
+    @JsonProperty(value = "value")
+    private List<PrivateLinkResourceInner> value;
+
+    /** Creates an instance of PrivateLinkResourceListResult class. */
+    public PrivateLinkResourceListResult() {
+    }
+
     /**
-     * Gets the value property: Array of private link resources.
+     * Get the value property: The value property.
      *
      * @return the value value.
      */
-    List<PrivateLinkResource> value();
+    public List<PrivateLinkResourceInner> value() {
+        return this.value;
+    }
 
     /**
-     * Gets the inner com.azure.resourcemanager.machinelearning.fluent.models.PrivateLinkResourceListResultInner object.
+     * Set the value property: The value property.
      *
-     * @return the inner object.
+     * @param value the value value to set.
+     * @return the PrivateLinkResourceListResult object itself.
      */
-    PrivateLinkResourceListResultInner innerModel();
+    public PrivateLinkResourceListResult withValue(List<PrivateLinkResourceInner> value) {
+        this.value = value;
+        return this;
+    }
+
+    /**
+     * Validates the instance.
+     *
+     * @throws IllegalArgumentException thrown if the instance is not valid.
+     */
+    public void validate() {
+        if (value() != null) {
+            value().forEach(e -> e.validate());
+        }
+    }
 }

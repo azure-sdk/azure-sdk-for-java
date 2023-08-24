@@ -40,21 +40,21 @@ public final class EnvironmentVersionsClientImpl implements EnvironmentVersionsC
     private final EnvironmentVersionsService service;
 
     /** The service client containing this operation class. */
-    private final AzureMachineLearningWorkspacesImpl client;
+    private final AzureMachineLearningServicesImpl client;
 
     /**
      * Initializes an instance of EnvironmentVersionsClientImpl.
      *
      * @param client the instance of the service client containing this operation class.
      */
-    EnvironmentVersionsClientImpl(AzureMachineLearningWorkspacesImpl client) {
+    EnvironmentVersionsClientImpl(AzureMachineLearningServicesImpl client) {
         this.service =
             RestProxy.create(EnvironmentVersionsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for AzureMachineLearningWorkspacesEnvironmentVersions to be used by the
+     * The interface defining all the services for AzureMachineLearningServicesEnvironmentVersions to be used by the
      * proxy service to perform REST calls.
      */
     @Host("{$host}")
@@ -62,8 +62,7 @@ public final class EnvironmentVersionsClientImpl implements EnvironmentVersionsC
     public interface EnvironmentVersionsService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/environments/{name}/versions")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/environments/{name}/versions")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<EnvironmentVersionResourceArmPaginatedResult>> list(
@@ -77,14 +76,13 @@ public final class EnvironmentVersionsClientImpl implements EnvironmentVersionsC
             @QueryParam("$top") Integer top,
             @QueryParam("$skip") String skip,
             @QueryParam("listViewType") ListViewType listViewType,
+            @QueryParam("stage") String stage,
             @HeaderParam("Accept") String accept,
             Context context);
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/environments/{name}/versions"
-                + "/{version}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/environments/{name}/versions/{version}")
         @ExpectedResponses({200, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Void>> delete(
@@ -100,9 +98,7 @@ public final class EnvironmentVersionsClientImpl implements EnvironmentVersionsC
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/environments/{name}/versions"
-                + "/{version}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/environments/{name}/versions/{version}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<EnvironmentVersionInner>> get(
@@ -118,9 +114,7 @@ public final class EnvironmentVersionsClientImpl implements EnvironmentVersionsC
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/environments/{name}/versions"
-                + "/{version}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/environments/{name}/versions/{version}")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<EnvironmentVersionInner>> createOrUpdate(
@@ -156,6 +150,7 @@ public final class EnvironmentVersionsClientImpl implements EnvironmentVersionsC
      * @param top Maximum number of records to return.
      * @param skip Continuation token for pagination.
      * @param listViewType View type for including/excluding (for example) archived entities.
+     * @param stage Stage for including/excluding (for example) archived entities. Takes priority over listViewType.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -170,7 +165,8 @@ public final class EnvironmentVersionsClientImpl implements EnvironmentVersionsC
         String orderBy,
         Integer top,
         String skip,
-        ListViewType listViewType) {
+        ListViewType listViewType,
+        String stage) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -209,6 +205,7 @@ public final class EnvironmentVersionsClientImpl implements EnvironmentVersionsC
                             top,
                             skip,
                             listViewType,
+                            stage,
                             accept,
                             context))
             .<PagedResponse<EnvironmentVersionInner>>map(
@@ -233,6 +230,7 @@ public final class EnvironmentVersionsClientImpl implements EnvironmentVersionsC
      * @param top Maximum number of records to return.
      * @param skip Continuation token for pagination.
      * @param listViewType View type for including/excluding (for example) archived entities.
+     * @param stage Stage for including/excluding (for example) archived entities. Takes priority over listViewType.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -249,6 +247,7 @@ public final class EnvironmentVersionsClientImpl implements EnvironmentVersionsC
         Integer top,
         String skip,
         ListViewType listViewType,
+        String stage,
         Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -286,6 +285,7 @@ public final class EnvironmentVersionsClientImpl implements EnvironmentVersionsC
                 top,
                 skip,
                 listViewType,
+                stage,
                 accept,
                 context)
             .map(
@@ -309,6 +309,7 @@ public final class EnvironmentVersionsClientImpl implements EnvironmentVersionsC
      * @param top Maximum number of records to return.
      * @param skip Continuation token for pagination.
      * @param listViewType View type for including/excluding (for example) archived entities.
+     * @param stage Stage for including/excluding (for example) archived entities. Takes priority over listViewType.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -322,9 +323,10 @@ public final class EnvironmentVersionsClientImpl implements EnvironmentVersionsC
         String orderBy,
         Integer top,
         String skip,
-        ListViewType listViewType) {
+        ListViewType listViewType,
+        String stage) {
         return new PagedFlux<>(
-            () -> listSinglePageAsync(resourceGroupName, workspaceName, name, orderBy, top, skip, listViewType),
+            () -> listSinglePageAsync(resourceGroupName, workspaceName, name, orderBy, top, skip, listViewType, stage),
             nextLink -> listNextSinglePageAsync(nextLink));
     }
 
@@ -345,8 +347,9 @@ public final class EnvironmentVersionsClientImpl implements EnvironmentVersionsC
         final Integer top = null;
         final String skip = null;
         final ListViewType listViewType = null;
+        final String stage = null;
         return new PagedFlux<>(
-            () -> listSinglePageAsync(resourceGroupName, workspaceName, name, orderBy, top, skip, listViewType),
+            () -> listSinglePageAsync(resourceGroupName, workspaceName, name, orderBy, top, skip, listViewType, stage),
             nextLink -> listNextSinglePageAsync(nextLink));
     }
 
@@ -360,6 +363,7 @@ public final class EnvironmentVersionsClientImpl implements EnvironmentVersionsC
      * @param top Maximum number of records to return.
      * @param skip Continuation token for pagination.
      * @param listViewType View type for including/excluding (for example) archived entities.
+     * @param stage Stage for including/excluding (for example) archived entities. Takes priority over listViewType.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -375,10 +379,12 @@ public final class EnvironmentVersionsClientImpl implements EnvironmentVersionsC
         Integer top,
         String skip,
         ListViewType listViewType,
+        String stage,
         Context context) {
         return new PagedFlux<>(
             () ->
-                listSinglePageAsync(resourceGroupName, workspaceName, name, orderBy, top, skip, listViewType, context),
+                listSinglePageAsync(
+                    resourceGroupName, workspaceName, name, orderBy, top, skip, listViewType, stage, context),
             nextLink -> listNextSinglePageAsync(nextLink, context));
     }
 
@@ -399,7 +405,9 @@ public final class EnvironmentVersionsClientImpl implements EnvironmentVersionsC
         final Integer top = null;
         final String skip = null;
         final ListViewType listViewType = null;
-        return new PagedIterable<>(listAsync(resourceGroupName, workspaceName, name, orderBy, top, skip, listViewType));
+        final String stage = null;
+        return new PagedIterable<>(
+            listAsync(resourceGroupName, workspaceName, name, orderBy, top, skip, listViewType, stage));
     }
 
     /**
@@ -412,6 +420,7 @@ public final class EnvironmentVersionsClientImpl implements EnvironmentVersionsC
      * @param top Maximum number of records to return.
      * @param skip Continuation token for pagination.
      * @param listViewType View type for including/excluding (for example) archived entities.
+     * @param stage Stage for including/excluding (for example) archived entities. Takes priority over listViewType.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -427,9 +436,10 @@ public final class EnvironmentVersionsClientImpl implements EnvironmentVersionsC
         Integer top,
         String skip,
         ListViewType listViewType,
+        String stage,
         Context context) {
         return new PagedIterable<>(
-            listAsync(resourceGroupName, workspaceName, name, orderBy, top, skip, listViewType, context));
+            listAsync(resourceGroupName, workspaceName, name, orderBy, top, skip, listViewType, stage, context));
     }
 
     /**
