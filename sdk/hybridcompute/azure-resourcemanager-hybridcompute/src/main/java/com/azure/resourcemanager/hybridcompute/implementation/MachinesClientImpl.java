@@ -59,8 +59,7 @@ public final class MachinesClientImpl implements MachinesClient {
     public interface MachinesService {
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridCompute"
-                + "/machines/{machineName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridCompute/machines/{machineName}")
         @ExpectedResponses({200, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Void>> delete(
@@ -74,8 +73,7 @@ public final class MachinesClientImpl implements MachinesClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridCompute"
-                + "/machines/{machineName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridCompute/machines/{machineName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<MachineInner>> getByResourceGroup(
@@ -90,8 +88,7 @@ public final class MachinesClientImpl implements MachinesClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridCompute"
-                + "/machines")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridCompute/machines")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<MachineListResult>> listByResourceGroup(
@@ -135,7 +132,7 @@ public final class MachinesClientImpl implements MachinesClient {
     }
 
     /**
-     * The operation to remove a hybrid machine identity in Azure.
+     * The operation to delete a hybrid machine.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param machineName The name of the hybrid machine.
@@ -182,7 +179,7 @@ public final class MachinesClientImpl implements MachinesClient {
     }
 
     /**
-     * The operation to remove a hybrid machine identity in Azure.
+     * The operation to delete a hybrid machine.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param machineName The name of the hybrid machine.
@@ -228,7 +225,7 @@ public final class MachinesClientImpl implements MachinesClient {
     }
 
     /**
-     * The operation to remove a hybrid machine identity in Azure.
+     * The operation to delete a hybrid machine.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param machineName The name of the hybrid machine.
@@ -243,7 +240,7 @@ public final class MachinesClientImpl implements MachinesClient {
     }
 
     /**
-     * The operation to remove a hybrid machine identity in Azure.
+     * The operation to delete a hybrid machine.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param machineName The name of the hybrid machine.
@@ -259,7 +256,7 @@ public final class MachinesClientImpl implements MachinesClient {
     }
 
     /**
-     * The operation to remove a hybrid machine identity in Azure.
+     * The operation to delete a hybrid machine.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param machineName The name of the hybrid machine.
