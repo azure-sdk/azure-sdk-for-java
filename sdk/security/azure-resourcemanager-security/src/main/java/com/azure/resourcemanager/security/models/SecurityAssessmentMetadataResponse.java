@@ -156,11 +156,13 @@ public interface SecurityAssessmentMetadataResponse {
     /** The entirety of the SecurityAssessmentMetadataResponse definition. */
     interface Definition extends DefinitionStages.Blank, DefinitionStages.WithCreate {
     }
+
     /** The SecurityAssessmentMetadataResponse definition stages. */
     interface DefinitionStages {
         /** The first stage of the SecurityAssessmentMetadataResponse definition. */
         interface Blank extends WithCreate {
         }
+
         /**
          * The stage of the SecurityAssessmentMetadataResponse definition which contains all the minimum required
          * properties for the resource to be created, but also allows for any other optional properties to be specified.
@@ -196,6 +198,7 @@ public interface SecurityAssessmentMetadataResponse {
              */
             SecurityAssessmentMetadataResponse create(Context context);
         }
+
         /** The stage of the SecurityAssessmentMetadataResponse definition allowing to specify publishDates. */
         interface WithPublishDates {
             /**
@@ -206,6 +209,7 @@ public interface SecurityAssessmentMetadataResponse {
              */
             WithCreate withPublishDates(SecurityAssessmentMetadataPropertiesResponsePublishDates publishDates);
         }
+
         /**
          * The stage of the SecurityAssessmentMetadataResponse definition allowing to specify plannedDeprecationDate.
          */
@@ -218,6 +222,7 @@ public interface SecurityAssessmentMetadataResponse {
              */
             WithCreate withPlannedDeprecationDate(String plannedDeprecationDate);
         }
+
         /** The stage of the SecurityAssessmentMetadataResponse definition allowing to specify tactics. */
         interface WithTactics {
             /**
@@ -228,6 +233,7 @@ public interface SecurityAssessmentMetadataResponse {
              */
             WithCreate withTactics(List<Tactics> tactics);
         }
+
         /** The stage of the SecurityAssessmentMetadataResponse definition allowing to specify techniques. */
         interface WithTechniques {
             /**
@@ -238,6 +244,7 @@ public interface SecurityAssessmentMetadataResponse {
              */
             WithCreate withTechniques(List<Techniques> techniques);
         }
+
         /** The stage of the SecurityAssessmentMetadataResponse definition allowing to specify displayName. */
         interface WithDisplayName {
             /**
@@ -248,6 +255,7 @@ public interface SecurityAssessmentMetadataResponse {
              */
             WithCreate withDisplayName(String displayName);
         }
+
         /** The stage of the SecurityAssessmentMetadataResponse definition allowing to specify description. */
         interface WithDescription {
             /**
@@ -258,6 +266,7 @@ public interface SecurityAssessmentMetadataResponse {
              */
             WithCreate withDescription(String description);
         }
+
         /**
          * The stage of the SecurityAssessmentMetadataResponse definition allowing to specify remediationDescription.
          */
@@ -272,6 +281,7 @@ public interface SecurityAssessmentMetadataResponse {
              */
             WithCreate withRemediationDescription(String remediationDescription);
         }
+
         /** The stage of the SecurityAssessmentMetadataResponse definition allowing to specify categories. */
         interface WithCategories {
             /**
@@ -282,6 +292,7 @@ public interface SecurityAssessmentMetadataResponse {
              */
             WithCreate withCategories(List<Categories> categories);
         }
+
         /** The stage of the SecurityAssessmentMetadataResponse definition allowing to specify severity. */
         interface WithSeverity {
             /**
@@ -292,6 +303,7 @@ public interface SecurityAssessmentMetadataResponse {
              */
             WithCreate withSeverity(Severity severity);
         }
+
         /** The stage of the SecurityAssessmentMetadataResponse definition allowing to specify userImpact. */
         interface WithUserImpact {
             /**
@@ -302,6 +314,7 @@ public interface SecurityAssessmentMetadataResponse {
              */
             WithCreate withUserImpact(UserImpact userImpact);
         }
+
         /** The stage of the SecurityAssessmentMetadataResponse definition allowing to specify implementationEffort. */
         interface WithImplementationEffort {
             /**
@@ -313,6 +326,7 @@ public interface SecurityAssessmentMetadataResponse {
              */
             WithCreate withImplementationEffort(ImplementationEffort implementationEffort);
         }
+
         /** The stage of the SecurityAssessmentMetadataResponse definition allowing to specify threats. */
         interface WithThreats {
             /**
@@ -323,6 +337,7 @@ public interface SecurityAssessmentMetadataResponse {
              */
             WithCreate withThreats(List<Threats> threats);
         }
+
         /** The stage of the SecurityAssessmentMetadataResponse definition allowing to specify preview. */
         interface WithPreview {
             /**
@@ -333,6 +348,7 @@ public interface SecurityAssessmentMetadataResponse {
              */
             WithCreate withPreview(Boolean preview);
         }
+
         /** The stage of the SecurityAssessmentMetadataResponse definition allowing to specify assessmentType. */
         interface WithAssessmentType {
             /**
@@ -345,6 +361,7 @@ public interface SecurityAssessmentMetadataResponse {
              */
             WithCreate withAssessmentType(AssessmentType assessmentType);
         }
+
         /** The stage of the SecurityAssessmentMetadataResponse definition allowing to specify partnerData. */
         interface WithPartnerData {
             /**
@@ -356,6 +373,7 @@ public interface SecurityAssessmentMetadataResponse {
             WithCreate withPartnerData(SecurityAssessmentMetadataPartnerData partnerData);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *
