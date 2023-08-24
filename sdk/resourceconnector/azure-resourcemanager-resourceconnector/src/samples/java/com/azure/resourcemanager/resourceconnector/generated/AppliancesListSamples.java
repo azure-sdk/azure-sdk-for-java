@@ -12,10 +12,10 @@ public final class AppliancesListSamples {
     /**
      * Sample code: List Appliances by subscription.
      *
-     * @param manager Entry point to ResourceConnectorManager.
+     * @param manager Entry point to AppliancesManager.
      */
     public static void listAppliancesBySubscription(
-        com.azure.resourcemanager.resourceconnector.ResourceConnectorManager manager) {
+        com.azure.resourcemanager.resourceconnector.AppliancesManager manager) {
         manager.appliances().list(com.azure.core.util.Context.NONE);
     }
 }

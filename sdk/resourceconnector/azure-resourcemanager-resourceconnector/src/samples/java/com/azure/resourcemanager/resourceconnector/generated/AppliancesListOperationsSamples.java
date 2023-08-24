@@ -12,10 +12,9 @@ public final class AppliancesListOperationsSamples {
     /**
      * Sample code: List Appliances operations.
      *
-     * @param manager Entry point to ResourceConnectorManager.
+     * @param manager Entry point to AppliancesManager.
      */
-    public static void listAppliancesOperations(
-        com.azure.resourcemanager.resourceconnector.ResourceConnectorManager manager) {
+    public static void listAppliancesOperations(com.azure.resourcemanager.resourceconnector.AppliancesManager manager) {
         manager.appliances().listOperations(com.azure.core.util.Context.NONE);
     }
 }

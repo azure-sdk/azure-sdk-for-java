@@ -16,10 +16,9 @@ public final class AppliancesCreateOrUpdateSamples {
     /**
      * Sample code: Create/Update Appliance.
      *
-     * @param manager Entry point to ResourceConnectorManager.
+     * @param manager Entry point to AppliancesManager.
      */
-    public static void createUpdateAppliance(
-        com.azure.resourcemanager.resourceconnector.ResourceConnectorManager manager) {
+    public static void createUpdateAppliance(com.azure.resourcemanager.resourceconnector.AppliancesManager manager) {
         manager
             .appliances()
             .define("appliance01")

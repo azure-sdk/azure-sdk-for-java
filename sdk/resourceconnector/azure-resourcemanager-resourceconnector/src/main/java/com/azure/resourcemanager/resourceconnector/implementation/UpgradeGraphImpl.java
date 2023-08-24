@@ -11,11 +11,10 @@ import com.azure.resourcemanager.resourceconnector.models.UpgradeGraphProperties
 public final class UpgradeGraphImpl implements UpgradeGraph {
     private UpgradeGraphInner innerObject;
 
-    private final com.azure.resourcemanager.resourceconnector.ResourceConnectorManager serviceManager;
+    private final com.azure.resourcemanager.resourceconnector.AppliancesManager serviceManager;
 
     UpgradeGraphImpl(
-        UpgradeGraphInner innerObject,
-        com.azure.resourcemanager.resourceconnector.ResourceConnectorManager serviceManager) {
+        UpgradeGraphInner innerObject, com.azure.resourcemanager.resourceconnector.AppliancesManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
     }
@@ -36,7 +35,7 @@ public final class UpgradeGraphImpl implements UpgradeGraph {
         return this.innerObject;
     }
 
-    private com.azure.resourcemanager.resourceconnector.ResourceConnectorManager manager() {
+    private com.azure.resourcemanager.resourceconnector.AppliancesManager manager() {
         return this.serviceManager;
     }
 }

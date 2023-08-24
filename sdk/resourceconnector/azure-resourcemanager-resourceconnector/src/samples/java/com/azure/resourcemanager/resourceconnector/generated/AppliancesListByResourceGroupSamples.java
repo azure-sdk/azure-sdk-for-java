@@ -12,10 +12,10 @@ public final class AppliancesListByResourceGroupSamples {
     /**
      * Sample code: List Appliances by resource group.
      *
-     * @param manager Entry point to ResourceConnectorManager.
+     * @param manager Entry point to AppliancesManager.
      */
     public static void listAppliancesByResourceGroup(
-        com.azure.resourcemanager.resourceconnector.ResourceConnectorManager manager) {
+        com.azure.resourcemanager.resourceconnector.AppliancesManager manager) {
         manager.appliances().listByResourceGroup("testresourcegroup", com.azure.core.util.Context.NONE);
     }
 }

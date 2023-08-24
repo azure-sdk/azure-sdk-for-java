@@ -1,8 +1,8 @@
-# Azure Resource Manager Resource Connector client library for Java
+# Azure Resource Manager Appliances client library for Java
 
-Azure Resource Manager Resource Connector client library for Java.
+Azure Resource Manager Appliances client library for Java.
 
-This package contains Microsoft Azure SDK for Resource Connector Management SDK. The appliances Rest API spec. Package tag package-2022-10-27. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
+This package contains Microsoft Azure SDK for Appliances Management SDK. The appliances Rest API spec. Package tag package-2022-10-27. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ## We'd love to hear your feedback
 
@@ -32,7 +32,7 @@ Various documentation is available to help you get started
 <dependency>
     <groupId>com.azure.resourcemanager</groupId>
     <artifactId>azure-resourcemanager-resourceconnector</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0-beta.1</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -60,7 +60,7 @@ AzureProfile profile = new AzureProfile(AzureEnvironment.AZURE);
 TokenCredential credential = new DefaultAzureCredentialBuilder()
     .authorityHost(profile.getEnvironment().getActiveDirectoryEndpoint())
     .build();
-ResourceConnectorManager manager = ResourceConnectorManager
+AppliancesManager manager = AppliancesManager
     .authenticate(credential, profile);
 ```
 

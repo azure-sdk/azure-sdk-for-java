@@ -29,10 +29,9 @@ public final class AppliancesCreateOrUpdateSamples {
     /**
      * Sample code: Create/Update Appliance.
      *
-     * @param manager Entry point to ResourceConnectorManager.
+     * @param manager Entry point to AppliancesManager.
      */
-    public static void createUpdateAppliance(
-        com.azure.resourcemanager.resourceconnector.ResourceConnectorManager manager) {
+    public static void createUpdateAppliance(com.azure.resourcemanager.resourceconnector.AppliancesManager manager) {
         manager
             .appliances()
             .define("appliance01")
@@ -56,9 +55,9 @@ public final class AppliancesDeleteSamples {
     /**
      * Sample code: Delete Appliance.
      *
-     * @param manager Entry point to ResourceConnectorManager.
+     * @param manager Entry point to AppliancesManager.
      */
-    public static void deleteAppliance(com.azure.resourcemanager.resourceconnector.ResourceConnectorManager manager) {
+    public static void deleteAppliance(com.azure.resourcemanager.resourceconnector.AppliancesManager manager) {
         manager.appliances().delete("testresourcegroup", "appliance01", com.azure.core.util.Context.NONE);
     }
 }
@@ -75,9 +74,9 @@ public final class AppliancesGetByResourceGroupSamples {
     /**
      * Sample code: Get Appliance.
      *
-     * @param manager Entry point to ResourceConnectorManager.
+     * @param manager Entry point to AppliancesManager.
      */
-    public static void getAppliance(com.azure.resourcemanager.resourceconnector.ResourceConnectorManager manager) {
+    public static void getAppliance(com.azure.resourcemanager.resourceconnector.AppliancesManager manager) {
         manager
             .appliances()
             .getByResourceGroupWithResponse("testresourcegroup", "appliance01", com.azure.core.util.Context.NONE);
@@ -96,10 +95,10 @@ public final class AppliancesGetTelemetryConfigSamples {
     /**
      * Sample code: GetTelemetryConfig Appliance.
      *
-     * @param manager Entry point to ResourceConnectorManager.
+     * @param manager Entry point to AppliancesManager.
      */
     public static void getTelemetryConfigAppliance(
-        com.azure.resourcemanager.resourceconnector.ResourceConnectorManager manager) {
+        com.azure.resourcemanager.resourceconnector.AppliancesManager manager) {
         manager.appliances().getTelemetryConfigWithResponse(com.azure.core.util.Context.NONE);
     }
 }
@@ -116,10 +115,9 @@ public final class AppliancesGetUpgradeGraphSamples {
     /**
      * Sample code: Get Appliance Upgrade Graph.
      *
-     * @param manager Entry point to ResourceConnectorManager.
+     * @param manager Entry point to AppliancesManager.
      */
-    public static void getApplianceUpgradeGraph(
-        com.azure.resourcemanager.resourceconnector.ResourceConnectorManager manager) {
+    public static void getApplianceUpgradeGraph(com.azure.resourcemanager.resourceconnector.AppliancesManager manager) {
         manager
             .appliances()
             .getUpgradeGraphWithResponse(
@@ -139,10 +137,10 @@ public final class AppliancesListSamples {
     /**
      * Sample code: List Appliances by subscription.
      *
-     * @param manager Entry point to ResourceConnectorManager.
+     * @param manager Entry point to AppliancesManager.
      */
     public static void listAppliancesBySubscription(
-        com.azure.resourcemanager.resourceconnector.ResourceConnectorManager manager) {
+        com.azure.resourcemanager.resourceconnector.AppliancesManager manager) {
         manager.appliances().list(com.azure.core.util.Context.NONE);
     }
 }
@@ -159,10 +157,10 @@ public final class AppliancesListByResourceGroupSamples {
     /**
      * Sample code: List Appliances by resource group.
      *
-     * @param manager Entry point to ResourceConnectorManager.
+     * @param manager Entry point to AppliancesManager.
      */
     public static void listAppliancesByResourceGroup(
-        com.azure.resourcemanager.resourceconnector.ResourceConnectorManager manager) {
+        com.azure.resourcemanager.resourceconnector.AppliancesManager manager) {
         manager.appliances().listByResourceGroup("testresourcegroup", com.azure.core.util.Context.NONE);
     }
 }
@@ -179,10 +177,10 @@ public final class AppliancesListClusterUserCredentialSamples {
     /**
      * Sample code: ListClusterUserCredentialAppliance.
      *
-     * @param manager Entry point to ResourceConnectorManager.
+     * @param manager Entry point to AppliancesManager.
      */
     public static void listClusterUserCredentialAppliance(
-        com.azure.resourcemanager.resourceconnector.ResourceConnectorManager manager) {
+        com.azure.resourcemanager.resourceconnector.AppliancesManager manager) {
         manager
             .appliances()
             .listClusterUserCredentialWithResponse(
@@ -202,9 +200,9 @@ public final class AppliancesListKeysSamples {
     /**
      * Sample code: ListKeys Appliance.
      *
-     * @param manager Entry point to ResourceConnectorManager.
+     * @param manager Entry point to AppliancesManager.
      */
-    public static void listKeysAppliance(com.azure.resourcemanager.resourceconnector.ResourceConnectorManager manager) {
+    public static void listKeysAppliance(com.azure.resourcemanager.resourceconnector.AppliancesManager manager) {
         manager
             .appliances()
             .listKeysWithResponse("testresourcegroup", "appliance01", null, com.azure.core.util.Context.NONE);
@@ -223,10 +221,9 @@ public final class AppliancesListOperationsSamples {
     /**
      * Sample code: List Appliances operations.
      *
-     * @param manager Entry point to ResourceConnectorManager.
+     * @param manager Entry point to AppliancesManager.
      */
-    public static void listAppliancesOperations(
-        com.azure.resourcemanager.resourceconnector.ResourceConnectorManager manager) {
+    public static void listAppliancesOperations(com.azure.resourcemanager.resourceconnector.AppliancesManager manager) {
         manager.appliances().listOperations(com.azure.core.util.Context.NONE);
     }
 }
@@ -247,9 +244,9 @@ public final class AppliancesUpdateSamples {
     /**
      * Sample code: Update Appliance.
      *
-     * @param manager Entry point to ResourceConnectorManager.
+     * @param manager Entry point to AppliancesManager.
      */
-    public static void updateAppliance(com.azure.resourcemanager.resourceconnector.ResourceConnectorManager manager) {
+    public static void updateAppliance(com.azure.resourcemanager.resourceconnector.AppliancesManager manager) {
         Appliance resource =
             manager
                 .appliances()

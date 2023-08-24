@@ -12,10 +12,10 @@ public final class AppliancesGetTelemetryConfigSamples {
     /**
      * Sample code: GetTelemetryConfig Appliance.
      *
-     * @param manager Entry point to ResourceConnectorManager.
+     * @param manager Entry point to AppliancesManager.
      */
     public static void getTelemetryConfigAppliance(
-        com.azure.resourcemanager.resourceconnector.ResourceConnectorManager manager) {
+        com.azure.resourcemanager.resourceconnector.AppliancesManager manager) {
         manager.appliances().getTelemetryConfigWithResponse(com.azure.core.util.Context.NONE);
     }
 }

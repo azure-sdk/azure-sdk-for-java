@@ -10,11 +10,11 @@ import com.azure.resourcemanager.resourceconnector.models.ApplianceGetTelemetryC
 public final class ApplianceGetTelemetryConfigResultImpl implements ApplianceGetTelemetryConfigResult {
     private ApplianceGetTelemetryConfigResultInner innerObject;
 
-    private final com.azure.resourcemanager.resourceconnector.ResourceConnectorManager serviceManager;
+    private final com.azure.resourcemanager.resourceconnector.AppliancesManager serviceManager;
 
     ApplianceGetTelemetryConfigResultImpl(
         ApplianceGetTelemetryConfigResultInner innerObject,
-        com.azure.resourcemanager.resourceconnector.ResourceConnectorManager serviceManager) {
+        com.azure.resourcemanager.resourceconnector.AppliancesManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
     }
@@ -27,7 +27,7 @@ public final class ApplianceGetTelemetryConfigResultImpl implements ApplianceGet
         return this.innerObject;
     }
 
-    private com.azure.resourcemanager.resourceconnector.ResourceConnectorManager manager() {
+    private com.azure.resourcemanager.resourceconnector.AppliancesManager manager() {
         return this.serviceManager;
     }
 }

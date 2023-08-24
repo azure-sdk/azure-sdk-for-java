@@ -12,9 +12,9 @@ public final class AppliancesListKeysSamples {
     /**
      * Sample code: ListKeys Appliance.
      *
-     * @param manager Entry point to ResourceConnectorManager.
+     * @param manager Entry point to AppliancesManager.
      */
-    public static void listKeysAppliance(com.azure.resourcemanager.resourceconnector.ResourceConnectorManager manager) {
+    public static void listKeysAppliance(com.azure.resourcemanager.resourceconnector.AppliancesManager manager) {
         manager
             .appliances()
             .listKeysWithResponse("testresourcegroup", "appliance01", null, com.azure.core.util.Context.NONE);
