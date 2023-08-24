@@ -7,7 +7,7 @@ package com.azure.resourcemanager.sqlvirtualmachine.generated;
 /** Samples for SqlVirtualMachineGroups GetByResourceGroup. */
 public final class SqlVirtualMachineGroupsGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/sqlvirtualmachine/resource-manager/Microsoft.SqlVirtualMachine/preview/2022-08-01-preview/examples/GetSqlVirtualMachineGroup.json
+     * x-ms-original-file: specification/sqlvirtualmachine/resource-manager/Microsoft.SqlVirtualMachine/preview/2023-01-01-preview/examples/GetSqlVirtualMachineGroup.json
      */
     /**
      * Sample code: Gets a SQL virtual machine group.

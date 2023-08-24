@@ -23,6 +23,12 @@ public final class SqlStorageSettings {
     @JsonProperty(value = "defaultFilePath")
     private String defaultFilePath;
 
+    /*
+     * Use storage pool to build a drive if true or not provided
+     */
+    @JsonProperty(value = "useStoragePool")
+    private Boolean useStoragePool;
+
     /** Creates an instance of SqlStorageSettings class. */
     public SqlStorageSettings() {
     }
@@ -64,6 +70,26 @@ public final class SqlStorageSettings {
      */
     public SqlStorageSettings withDefaultFilePath(String defaultFilePath) {
         this.defaultFilePath = defaultFilePath;
+        return this;
+    }
+
+    /**
+     * Get the useStoragePool property: Use storage pool to build a drive if true or not provided.
+     *
+     * @return the useStoragePool value.
+     */
+    public Boolean useStoragePool() {
+        return this.useStoragePool;
+    }
+
+    /**
+     * Set the useStoragePool property: Use storage pool to build a drive if true or not provided.
+     *
+     * @param useStoragePool the useStoragePool value to set.
+     * @return the SqlStorageSettings object itself.
+     */
+    public SqlStorageSettings withUseStoragePool(Boolean useStoragePool) {
+        this.useStoragePool = useStoragePool;
         return this;
     }
 

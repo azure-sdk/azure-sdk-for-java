@@ -224,7 +224,7 @@ public final class SqlVirtualMachineManager {
                 .append("-")
                 .append("com.azure.resourcemanager.sqlvirtualmachine")
                 .append("/")
-                .append("1.0.0-beta.4");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -345,8 +345,10 @@ public final class SqlVirtualMachineManager {
     }
 
     /**
-     * @return Wrapped service client SqlVirtualMachineManagementClient providing direct access to the underlying
-     *     auto-generated API implementation, based on Azure REST API.
+     * Gets wrapped service client SqlVirtualMachineManagementClient providing direct access to the underlying
+     * auto-generated API implementation, based on Azure REST API.
+     *
+     * @return Wrapped service client SqlVirtualMachineManagementClient.
      */
     public SqlVirtualMachineManagementClient serviceClient() {
         return this.clientObject;

@@ -11,7 +11,7 @@ import java.util.Map;
 /** Samples for SqlVirtualMachineGroups Update. */
 public final class SqlVirtualMachineGroupsUpdateSamples {
     /*
-     * x-ms-original-file: specification/sqlvirtualmachine/resource-manager/Microsoft.SqlVirtualMachine/preview/2022-08-01-preview/examples/UpdateSqlVirtualMachineGroup.json
+     * x-ms-original-file: specification/sqlvirtualmachine/resource-manager/Microsoft.SqlVirtualMachine/preview/2023-01-01-preview/examples/UpdateSqlVirtualMachineGroup.json
      */
     /**
      * Sample code: Updates a SQL virtual machine group tags.
@@ -28,6 +28,7 @@ public final class SqlVirtualMachineGroupsUpdateSamples {
         resource.update().withTags(mapOf("mytag", "myval")).apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
