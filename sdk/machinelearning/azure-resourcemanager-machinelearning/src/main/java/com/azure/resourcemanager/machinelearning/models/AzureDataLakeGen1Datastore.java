@@ -28,6 +28,18 @@ public final class AzureDataLakeGen1Datastore extends DatastoreProperties {
     @JsonProperty(value = "storeName", required = true)
     private String storeName;
 
+    /*
+     * Azure Resource Group name
+     */
+    @JsonProperty(value = "resourceGroup")
+    private String resourceGroup;
+
+    /*
+     * Azure Subscription Id
+     */
+    @JsonProperty(value = "subscriptionId")
+    private String subscriptionId;
+
     /** Creates an instance of AzureDataLakeGen1Datastore class. */
     public AzureDataLakeGen1Datastore() {
     }
@@ -72,6 +84,46 @@ public final class AzureDataLakeGen1Datastore extends DatastoreProperties {
      */
     public AzureDataLakeGen1Datastore withStoreName(String storeName) {
         this.storeName = storeName;
+        return this;
+    }
+
+    /**
+     * Get the resourceGroup property: Azure Resource Group name.
+     *
+     * @return the resourceGroup value.
+     */
+    public String resourceGroup() {
+        return this.resourceGroup;
+    }
+
+    /**
+     * Set the resourceGroup property: Azure Resource Group name.
+     *
+     * @param resourceGroup the resourceGroup value to set.
+     * @return the AzureDataLakeGen1Datastore object itself.
+     */
+    public AzureDataLakeGen1Datastore withResourceGroup(String resourceGroup) {
+        this.resourceGroup = resourceGroup;
+        return this;
+    }
+
+    /**
+     * Get the subscriptionId property: Azure Subscription Id.
+     *
+     * @return the subscriptionId value.
+     */
+    public String subscriptionId() {
+        return this.subscriptionId;
+    }
+
+    /**
+     * Set the subscriptionId property: Azure Subscription Id.
+     *
+     * @param subscriptionId the subscriptionId value to set.
+     * @return the AzureDataLakeGen1Datastore object itself.
+     */
+    public AzureDataLakeGen1Datastore withSubscriptionId(String subscriptionId) {
+        this.subscriptionId = subscriptionId;
         return this;
     }
 

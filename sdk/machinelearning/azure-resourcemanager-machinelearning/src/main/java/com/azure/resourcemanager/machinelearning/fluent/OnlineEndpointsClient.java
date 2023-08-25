@@ -403,7 +403,7 @@ public interface OnlineEndpointsClient {
         Context context);
 
     /**
-     * Retrieve a valid AAD token for an Endpoint using AMLToken-based authentication.
+     * Retrieve a valid AML token for an Endpoint using AMLToken-based authentication.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
@@ -419,7 +419,7 @@ public interface OnlineEndpointsClient {
         String resourceGroupName, String workspaceName, String endpointName, Context context);
 
     /**
-     * Retrieve a valid AAD token for an Endpoint using AMLToken-based authentication.
+     * Retrieve a valid AML token for an Endpoint using AMLToken-based authentication.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
