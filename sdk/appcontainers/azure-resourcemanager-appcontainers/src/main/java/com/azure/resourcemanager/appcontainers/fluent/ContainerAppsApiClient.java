@@ -66,6 +66,20 @@ public interface ContainerAppsApiClient {
     BillingMetersClient getBillingMeters();
 
     /**
+     * Gets the BuildersClient object to access its operations.
+     *
+     * @return the BuildersClient object.
+     */
+    BuildersClient getBuilders();
+
+    /**
+     * Gets the BuildsClient object to access its operations.
+     *
+     * @return the BuildsClient object.
+     */
+    BuildsClient getBuilds();
+
+    /**
      * Gets the ConnectedEnvironmentsClient object to access its operations.
      *
      * @return the ConnectedEnvironmentsClient object.
@@ -206,9 +220,30 @@ public interface ContainerAppsApiClient {
     ManagedEnvironmentsStoragesClient getManagedEnvironmentsStorages();
 
     /**
+     * Gets the PatchesClient object to access its operations.
+     *
+     * @return the PatchesClient object.
+     */
+    PatchesClient getPatches();
+
+    /**
      * Gets the ContainerAppsSourceControlsClient object to access its operations.
      *
      * @return the ContainerAppsSourceControlsClient object.
      */
     ContainerAppsSourceControlsClient getContainerAppsSourceControls();
+
+    /**
+     * Gets the UsagesClient object to access its operations.
+     *
+     * @return the UsagesClient object.
+     */
+    UsagesClient getUsages();
+
+    /**
+     * Gets the ManagedEnvironmentUsagesClient object to access its operations.
+     *
+     * @return the ManagedEnvironmentUsagesClient object.
+     */
+    ManagedEnvironmentUsagesClient getManagedEnvironmentUsages();
 }

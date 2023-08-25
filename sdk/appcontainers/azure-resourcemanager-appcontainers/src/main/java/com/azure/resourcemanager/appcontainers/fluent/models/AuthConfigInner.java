@@ -8,6 +8,7 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.appcontainers.models.AuthPlatform;
+import com.azure.resourcemanager.appcontainers.models.EncryptionSettings;
 import com.azure.resourcemanager.appcontainers.models.GlobalValidation;
 import com.azure.resourcemanager.appcontainers.models.HttpSettings;
 import com.azure.resourcemanager.appcontainers.models.IdentityProviders;
@@ -173,6 +174,31 @@ public final class AuthConfigInner extends ProxyResource {
             this.innerProperties = new AuthConfigProperties();
         }
         this.innerProperties().withHttpSettings(httpSettings);
+        return this;
+    }
+
+    /**
+     * Get the encryptionSettings property: The configuration settings of the secrets references of encryption key and
+     * signing key for ContainerApp Service Authentication/Authorization.
+     *
+     * @return the encryptionSettings value.
+     */
+    public EncryptionSettings encryptionSettings() {
+        return this.innerProperties() == null ? null : this.innerProperties().encryptionSettings();
+    }
+
+    /**
+     * Set the encryptionSettings property: The configuration settings of the secrets references of encryption key and
+     * signing key for ContainerApp Service Authentication/Authorization.
+     *
+     * @param encryptionSettings the encryptionSettings value to set.
+     * @return the AuthConfigInner object itself.
+     */
+    public AuthConfigInner withEncryptionSettings(EncryptionSettings encryptionSettings) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new AuthConfigProperties();
+        }
+        this.innerProperties().withEncryptionSettings(encryptionSettings);
         return this;
     }
 
