@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.security.implementation;
 
+import com.azure.core.annotation.Delete;
 import com.azure.core.annotation.ExpectedResponses;
 import com.azure.core.annotation.Get;
 import com.azure.core.annotation.HeaderParam;
@@ -11,6 +12,7 @@ import com.azure.core.annotation.Headers;
 import com.azure.core.annotation.Host;
 import com.azure.core.annotation.HostParam;
 import com.azure.core.annotation.PathParam;
+import com.azure.core.annotation.Put;
 import com.azure.core.annotation.QueryParam;
 import com.azure.core.annotation.ReturnType;
 import com.azure.core.annotation.ServiceInterface;
@@ -26,8 +28,8 @@ import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
 import com.azure.resourcemanager.security.fluent.ApiCollectionsClient;
-import com.azure.resourcemanager.security.fluent.models.ApiCollectionResponseInner;
-import com.azure.resourcemanager.security.models.ApiCollectionResponseList;
+import com.azure.resourcemanager.security.fluent.models.ApiCollectionInner;
+import com.azure.resourcemanager.security.models.ApiCollectionList;
 import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in ApiCollectionsClient. */
@@ -61,7 +63,7 @@ public final class ApiCollectionsClientImpl implements ApiCollectionsClient {
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/providers/Microsoft.Security/apiCollections")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ApiCollectionResponseList>> list(
+        Mono<Response<ApiCollectionList>> list(
             @HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
@@ -75,7 +77,37 @@ public final class ApiCollectionsClientImpl implements ApiCollectionsClient {
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/providers/Microsoft.Security/apiCollections/{apiCollectionId}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ApiCollectionResponseInner>> get(
+        Mono<Response<ApiCollectionInner>> get(
+            @HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("serviceName") String serviceName,
+            @PathParam("apiCollectionId") String apiCollectionId,
+            @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
+        @Put(
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/providers/Microsoft.Security/apiCollections/{apiCollectionId}")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<ApiCollectionInner>> create(
+            @HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("serviceName") String serviceName,
+            @PathParam("apiCollectionId") String apiCollectionId,
+            @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
+        @Delete(
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/providers/Microsoft.Security/apiCollections/{apiCollectionId}")
+        @ExpectedResponses({200, 204})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Void>> delete(
             @HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
@@ -89,7 +121,7 @@ public final class ApiCollectionsClientImpl implements ApiCollectionsClient {
         @Get("{nextLink}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ApiCollectionResponseList>> listNext(
+        Mono<Response<ApiCollectionList>> listNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink,
             @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept,
@@ -103,7 +135,8 @@ public final class ApiCollectionsClientImpl implements ApiCollectionsClient {
      * Management API is onboarded to Defender for APIs, the system will monitor the operations within the Azure API
      * Management API for intrusive behaviors and provide alerts for attacks that have been detected.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
+     *     insensitive.
      * @param serviceName The name of the API Management service.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -112,8 +145,7 @@ public final class ApiCollectionsClientImpl implements ApiCollectionsClient {
      *     PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ApiCollectionResponseInner>> listSinglePageAsync(
-        String resourceGroupName, String serviceName) {
+    private Mono<PagedResponse<ApiCollectionInner>> listSinglePageAsync(String resourceGroupName, String serviceName) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -147,7 +179,7 @@ public final class ApiCollectionsClientImpl implements ApiCollectionsClient {
                             apiVersion,
                             accept,
                             context))
-            .<PagedResponse<ApiCollectionResponseInner>>map(
+            .<PagedResponse<ApiCollectionInner>>map(
                 res ->
                     new PagedResponseBase<>(
                         res.getRequest(),
@@ -166,7 +198,8 @@ public final class ApiCollectionsClientImpl implements ApiCollectionsClient {
      * Management API is onboarded to Defender for APIs, the system will monitor the operations within the Azure API
      * Management API for intrusive behaviors and provide alerts for attacks that have been detected.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
+     *     insensitive.
      * @param serviceName The name of the API Management service.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -176,7 +209,7 @@ public final class ApiCollectionsClientImpl implements ApiCollectionsClient {
      *     PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ApiCollectionResponseInner>> listSinglePageAsync(
+    private Mono<PagedResponse<ApiCollectionInner>> listSinglePageAsync(
         String resourceGroupName, String serviceName, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -227,7 +260,8 @@ public final class ApiCollectionsClientImpl implements ApiCollectionsClient {
      * Management API is onboarded to Defender for APIs, the system will monitor the operations within the Azure API
      * Management API for intrusive behaviors and provide alerts for attacks that have been detected.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
+     *     insensitive.
      * @param serviceName The name of the API Management service.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -236,7 +270,7 @@ public final class ApiCollectionsClientImpl implements ApiCollectionsClient {
      *     with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<ApiCollectionResponseInner> listAsync(String resourceGroupName, String serviceName) {
+    private PagedFlux<ApiCollectionInner> listAsync(String resourceGroupName, String serviceName) {
         return new PagedFlux<>(
             () -> listSinglePageAsync(resourceGroupName, serviceName), nextLink -> listNextSinglePageAsync(nextLink));
     }
@@ -248,7 +282,8 @@ public final class ApiCollectionsClientImpl implements ApiCollectionsClient {
      * Management API is onboarded to Defender for APIs, the system will monitor the operations within the Azure API
      * Management API for intrusive behaviors and provide alerts for attacks that have been detected.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
+     *     insensitive.
      * @param serviceName The name of the API Management service.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -258,8 +293,7 @@ public final class ApiCollectionsClientImpl implements ApiCollectionsClient {
      *     with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<ApiCollectionResponseInner> listAsync(
-        String resourceGroupName, String serviceName, Context context) {
+    private PagedFlux<ApiCollectionInner> listAsync(String resourceGroupName, String serviceName, Context context) {
         return new PagedFlux<>(
             () -> listSinglePageAsync(resourceGroupName, serviceName, context),
             nextLink -> listNextSinglePageAsync(nextLink, context));
@@ -272,7 +306,8 @@ public final class ApiCollectionsClientImpl implements ApiCollectionsClient {
      * Management API is onboarded to Defender for APIs, the system will monitor the operations within the Azure API
      * Management API for intrusive behaviors and provide alerts for attacks that have been detected.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
+     *     insensitive.
      * @param serviceName The name of the API Management service.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -281,7 +316,7 @@ public final class ApiCollectionsClientImpl implements ApiCollectionsClient {
      *     with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<ApiCollectionResponseInner> list(String resourceGroupName, String serviceName) {
+    public PagedIterable<ApiCollectionInner> list(String resourceGroupName, String serviceName) {
         return new PagedIterable<>(listAsync(resourceGroupName, serviceName));
     }
 
@@ -292,7 +327,8 @@ public final class ApiCollectionsClientImpl implements ApiCollectionsClient {
      * Management API is onboarded to Defender for APIs, the system will monitor the operations within the Azure API
      * Management API for intrusive behaviors and provide alerts for attacks that have been detected.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
+     *     insensitive.
      * @param serviceName The name of the API Management service.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -302,8 +338,7 @@ public final class ApiCollectionsClientImpl implements ApiCollectionsClient {
      *     with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<ApiCollectionResponseInner> list(
-        String resourceGroupName, String serviceName, Context context) {
+    public PagedIterable<ApiCollectionInner> list(String resourceGroupName, String serviceName, Context context) {
         return new PagedIterable<>(listAsync(resourceGroupName, serviceName, context));
     }
 
@@ -314,7 +349,8 @@ public final class ApiCollectionsClientImpl implements ApiCollectionsClient {
      * is onboarded to Defender for APIs, the system will monitor the operations within the Azure API Management API for
      * intrusive behaviors and provide alerts for attacks that have been detected.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
+     *     insensitive.
      * @param serviceName The name of the API Management service.
      * @param apiCollectionId A string representing the apiCollections resource within the Microsoft.Security provider
      *     namespace. This string matches the Azure API Management API name.
@@ -325,7 +361,7 @@ public final class ApiCollectionsClientImpl implements ApiCollectionsClient {
      *     successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<ApiCollectionResponseInner>> getWithResponseAsync(
+    private Mono<Response<ApiCollectionInner>> getWithResponseAsync(
         String resourceGroupName, String serviceName, String apiCollectionId) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -375,7 +411,8 @@ public final class ApiCollectionsClientImpl implements ApiCollectionsClient {
      * is onboarded to Defender for APIs, the system will monitor the operations within the Azure API Management API for
      * intrusive behaviors and provide alerts for attacks that have been detected.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
+     *     insensitive.
      * @param serviceName The name of the API Management service.
      * @param apiCollectionId A string representing the apiCollections resource within the Microsoft.Security provider
      *     namespace. This string matches the Azure API Management API name.
@@ -387,7 +424,7 @@ public final class ApiCollectionsClientImpl implements ApiCollectionsClient {
      *     successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<ApiCollectionResponseInner>> getWithResponseAsync(
+    private Mono<Response<ApiCollectionInner>> getWithResponseAsync(
         String resourceGroupName, String serviceName, String apiCollectionId, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -434,7 +471,8 @@ public final class ApiCollectionsClientImpl implements ApiCollectionsClient {
      * is onboarded to Defender for APIs, the system will monitor the operations within the Azure API Management API for
      * intrusive behaviors and provide alerts for attacks that have been detected.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
+     *     insensitive.
      * @param serviceName The name of the API Management service.
      * @param apiCollectionId A string representing the apiCollections resource within the Microsoft.Security provider
      *     namespace. This string matches the Azure API Management API name.
@@ -445,8 +483,7 @@ public final class ApiCollectionsClientImpl implements ApiCollectionsClient {
      *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ApiCollectionResponseInner> getAsync(
-        String resourceGroupName, String serviceName, String apiCollectionId) {
+    private Mono<ApiCollectionInner> getAsync(String resourceGroupName, String serviceName, String apiCollectionId) {
         return getWithResponseAsync(resourceGroupName, serviceName, apiCollectionId)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
@@ -458,7 +495,8 @@ public final class ApiCollectionsClientImpl implements ApiCollectionsClient {
      * is onboarded to Defender for APIs, the system will monitor the operations within the Azure API Management API for
      * intrusive behaviors and provide alerts for attacks that have been detected.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
+     *     insensitive.
      * @param serviceName The name of the API Management service.
      * @param apiCollectionId A string representing the apiCollections resource within the Microsoft.Security provider
      *     namespace. This string matches the Azure API Management API name.
@@ -469,7 +507,7 @@ public final class ApiCollectionsClientImpl implements ApiCollectionsClient {
      * @return an Azure API Management API if it has been onboarded to Defender for APIs along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApiCollectionResponseInner> getWithResponse(
+    public Response<ApiCollectionInner> getWithResponse(
         String resourceGroupName, String serviceName, String apiCollectionId, Context context) {
         return getWithResponseAsync(resourceGroupName, serviceName, apiCollectionId, context).block();
     }
@@ -481,7 +519,8 @@ public final class ApiCollectionsClientImpl implements ApiCollectionsClient {
      * is onboarded to Defender for APIs, the system will monitor the operations within the Azure API Management API for
      * intrusive behaviors and provide alerts for attacks that have been detected.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
+     *     insensitive.
      * @param serviceName The name of the API Management service.
      * @param apiCollectionId A string representing the apiCollections resource within the Microsoft.Security provider
      *     namespace. This string matches the Azure API Management API name.
@@ -491,8 +530,377 @@ public final class ApiCollectionsClientImpl implements ApiCollectionsClient {
      * @return an Azure API Management API if it has been onboarded to Defender for APIs.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiCollectionResponseInner get(String resourceGroupName, String serviceName, String apiCollectionId) {
+    public ApiCollectionInner get(String resourceGroupName, String serviceName, String apiCollectionId) {
         return getWithResponse(resourceGroupName, serviceName, apiCollectionId, Context.NONE).getValue();
+    }
+
+    /**
+     * Onboard an Azure API Management API to Defender for APIs
+     *
+     * <p>Onboard an Azure API Management API to Defender for APIs. The system will start monitoring the operations
+     * within the Azure Management API for intrusive behaviors and provide alerts for attacks that have been detected.
+     *
+     * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
+     *     insensitive.
+     * @param serviceName The name of the API Management service.
+     * @param apiCollectionId A string representing the apiCollections resource within the Microsoft.Security provider
+     *     namespace. This string matches the Azure API Management API name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return an API collection as represented by Defender for APIs along with {@link Response} on successful
+     *     completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<ApiCollectionInner>> createWithResponseAsync(
+        String resourceGroupName, String serviceName, String apiCollectionId) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (serviceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter serviceName is required and cannot be null."));
+        }
+        if (apiCollectionId == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter apiCollectionId is required and cannot be null."));
+        }
+        final String apiVersion = "2022-11-20-preview";
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service
+                        .create(
+                            this.client.getEndpoint(),
+                            this.client.getSubscriptionId(),
+                            resourceGroupName,
+                            serviceName,
+                            apiCollectionId,
+                            apiVersion,
+                            accept,
+                            context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Onboard an Azure API Management API to Defender for APIs
+     *
+     * <p>Onboard an Azure API Management API to Defender for APIs. The system will start monitoring the operations
+     * within the Azure Management API for intrusive behaviors and provide alerts for attacks that have been detected.
+     *
+     * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
+     *     insensitive.
+     * @param serviceName The name of the API Management service.
+     * @param apiCollectionId A string representing the apiCollections resource within the Microsoft.Security provider
+     *     namespace. This string matches the Azure API Management API name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return an API collection as represented by Defender for APIs along with {@link Response} on successful
+     *     completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<ApiCollectionInner>> createWithResponseAsync(
+        String resourceGroupName, String serviceName, String apiCollectionId, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (serviceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter serviceName is required and cannot be null."));
+        }
+        if (apiCollectionId == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter apiCollectionId is required and cannot be null."));
+        }
+        final String apiVersion = "2022-11-20-preview";
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .create(
+                this.client.getEndpoint(),
+                this.client.getSubscriptionId(),
+                resourceGroupName,
+                serviceName,
+                apiCollectionId,
+                apiVersion,
+                accept,
+                context);
+    }
+
+    /**
+     * Onboard an Azure API Management API to Defender for APIs
+     *
+     * <p>Onboard an Azure API Management API to Defender for APIs. The system will start monitoring the operations
+     * within the Azure Management API for intrusive behaviors and provide alerts for attacks that have been detected.
+     *
+     * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
+     *     insensitive.
+     * @param serviceName The name of the API Management service.
+     * @param apiCollectionId A string representing the apiCollections resource within the Microsoft.Security provider
+     *     namespace. This string matches the Azure API Management API name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return an API collection as represented by Defender for APIs on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<ApiCollectionInner> createAsync(String resourceGroupName, String serviceName, String apiCollectionId) {
+        return createWithResponseAsync(resourceGroupName, serviceName, apiCollectionId)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Onboard an Azure API Management API to Defender for APIs
+     *
+     * <p>Onboard an Azure API Management API to Defender for APIs. The system will start monitoring the operations
+     * within the Azure Management API for intrusive behaviors and provide alerts for attacks that have been detected.
+     *
+     * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
+     *     insensitive.
+     * @param serviceName The name of the API Management service.
+     * @param apiCollectionId A string representing the apiCollections resource within the Microsoft.Security provider
+     *     namespace. This string matches the Azure API Management API name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return an API collection as represented by Defender for APIs along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<ApiCollectionInner> createWithResponse(
+        String resourceGroupName, String serviceName, String apiCollectionId, Context context) {
+        return createWithResponseAsync(resourceGroupName, serviceName, apiCollectionId, context).block();
+    }
+
+    /**
+     * Onboard an Azure API Management API to Defender for APIs
+     *
+     * <p>Onboard an Azure API Management API to Defender for APIs. The system will start monitoring the operations
+     * within the Azure Management API for intrusive behaviors and provide alerts for attacks that have been detected.
+     *
+     * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
+     *     insensitive.
+     * @param serviceName The name of the API Management service.
+     * @param apiCollectionId A string representing the apiCollections resource within the Microsoft.Security provider
+     *     namespace. This string matches the Azure API Management API name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return an API collection as represented by Defender for APIs.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ApiCollectionInner create(String resourceGroupName, String serviceName, String apiCollectionId) {
+        return createWithResponse(resourceGroupName, serviceName, apiCollectionId, Context.NONE).getValue();
+    }
+
+    /**
+     * Offboard an Azure API Management API from Defender for APIs
+     *
+     * <p>Offboard an Azure API Management API from Defender for APIs. The system will stop monitoring the operations
+     * within the Azure API Management API for intrusive behaviors.
+     *
+     * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
+     *     insensitive.
+     * @param serviceName The name of the API Management service.
+     * @param apiCollectionId A string representing the apiCollections resource within the Microsoft.Security provider
+     *     namespace. This string matches the Azure API Management API name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Void>> deleteWithResponseAsync(
+        String resourceGroupName, String serviceName, String apiCollectionId) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (serviceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter serviceName is required and cannot be null."));
+        }
+        if (apiCollectionId == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter apiCollectionId is required and cannot be null."));
+        }
+        final String apiVersion = "2022-11-20-preview";
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service
+                        .delete(
+                            this.client.getEndpoint(),
+                            this.client.getSubscriptionId(),
+                            resourceGroupName,
+                            serviceName,
+                            apiCollectionId,
+                            apiVersion,
+                            accept,
+                            context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Offboard an Azure API Management API from Defender for APIs
+     *
+     * <p>Offboard an Azure API Management API from Defender for APIs. The system will stop monitoring the operations
+     * within the Azure API Management API for intrusive behaviors.
+     *
+     * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
+     *     insensitive.
+     * @param serviceName The name of the API Management service.
+     * @param apiCollectionId A string representing the apiCollections resource within the Microsoft.Security provider
+     *     namespace. This string matches the Azure API Management API name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Void>> deleteWithResponseAsync(
+        String resourceGroupName, String serviceName, String apiCollectionId, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (serviceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter serviceName is required and cannot be null."));
+        }
+        if (apiCollectionId == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter apiCollectionId is required and cannot be null."));
+        }
+        final String apiVersion = "2022-11-20-preview";
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .delete(
+                this.client.getEndpoint(),
+                this.client.getSubscriptionId(),
+                resourceGroupName,
+                serviceName,
+                apiCollectionId,
+                apiVersion,
+                accept,
+                context);
+    }
+
+    /**
+     * Offboard an Azure API Management API from Defender for APIs
+     *
+     * <p>Offboard an Azure API Management API from Defender for APIs. The system will stop monitoring the operations
+     * within the Azure API Management API for intrusive behaviors.
+     *
+     * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
+     *     insensitive.
+     * @param serviceName The name of the API Management service.
+     * @param apiCollectionId A string representing the apiCollections resource within the Microsoft.Security provider
+     *     namespace. This string matches the Azure API Management API name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Void> deleteAsync(String resourceGroupName, String serviceName, String apiCollectionId) {
+        return deleteWithResponseAsync(resourceGroupName, serviceName, apiCollectionId)
+            .flatMap(ignored -> Mono.empty());
+    }
+
+    /**
+     * Offboard an Azure API Management API from Defender for APIs
+     *
+     * <p>Offboard an Azure API Management API from Defender for APIs. The system will stop monitoring the operations
+     * within the Azure API Management API for intrusive behaviors.
+     *
+     * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
+     *     insensitive.
+     * @param serviceName The name of the API Management service.
+     * @param apiCollectionId A string representing the apiCollections resource within the Microsoft.Security provider
+     *     namespace. This string matches the Azure API Management API name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<Void> deleteWithResponse(
+        String resourceGroupName, String serviceName, String apiCollectionId, Context context) {
+        return deleteWithResponseAsync(resourceGroupName, serviceName, apiCollectionId, context).block();
+    }
+
+    /**
+     * Offboard an Azure API Management API from Defender for APIs
+     *
+     * <p>Offboard an Azure API Management API from Defender for APIs. The system will stop monitoring the operations
+     * within the Azure API Management API for intrusive behaviors.
+     *
+     * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
+     *     insensitive.
+     * @param serviceName The name of the API Management service.
+     * @param apiCollectionId A string representing the apiCollections resource within the Microsoft.Security provider
+     *     namespace. This string matches the Azure API Management API name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void delete(String resourceGroupName, String serviceName, String apiCollectionId) {
+        deleteWithResponse(resourceGroupName, serviceName, apiCollectionId, Context.NONE);
     }
 
     /**
@@ -507,7 +915,7 @@ public final class ApiCollectionsClientImpl implements ApiCollectionsClient {
      *     successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ApiCollectionResponseInner>> listNextSinglePageAsync(String nextLink) {
+    private Mono<PagedResponse<ApiCollectionInner>> listNextSinglePageAsync(String nextLink) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
@@ -520,7 +928,7 @@ public final class ApiCollectionsClientImpl implements ApiCollectionsClient {
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<ApiCollectionResponseInner>>map(
+            .<PagedResponse<ApiCollectionInner>>map(
                 res ->
                     new PagedResponseBase<>(
                         res.getRequest(),
@@ -545,7 +953,7 @@ public final class ApiCollectionsClientImpl implements ApiCollectionsClient {
      *     successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ApiCollectionResponseInner>> listNextSinglePageAsync(String nextLink, Context context) {
+    private Mono<PagedResponse<ApiCollectionInner>> listNextSinglePageAsync(String nextLink, Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }

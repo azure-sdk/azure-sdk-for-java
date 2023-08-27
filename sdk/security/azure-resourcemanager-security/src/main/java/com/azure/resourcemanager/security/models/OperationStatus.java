@@ -7,14 +7,14 @@ package com.azure.resourcemanager.security.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** A status describing the success/failure of the extension's enablement/disablement operation. */
+/** A status describing the success/failure of the enablement/disablement operation. */
 @Fluent
 public final class OperationStatus {
     /*
      * The operation status code.
      */
     @JsonProperty(value = "code")
-    private Code code;
+    private String code;
 
     /*
      * Additional information regarding the success/failure of the operation.
@@ -31,7 +31,7 @@ public final class OperationStatus {
      *
      * @return the code value.
      */
-    public Code code() {
+    public String code() {
         return this.code;
     }
 
@@ -41,7 +41,7 @@ public final class OperationStatus {
      * @param code the code value to set.
      * @return the OperationStatus object itself.
      */
-    public OperationStatus withCode(Code code) {
+    public OperationStatus withCode(String code) {
         this.code = code;
         return this;
     }

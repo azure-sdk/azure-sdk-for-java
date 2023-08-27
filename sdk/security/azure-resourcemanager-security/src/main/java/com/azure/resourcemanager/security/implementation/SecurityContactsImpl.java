@@ -4,14 +4,15 @@
 
 package com.azure.resourcemanager.security.implementation;
 
-import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.security.fluent.SecurityContactsClient;
 import com.azure.resourcemanager.security.fluent.models.SecurityContactInner;
+import com.azure.resourcemanager.security.fluent.models.SecurityContactListInner;
 import com.azure.resourcemanager.security.models.SecurityContact;
+import com.azure.resourcemanager.security.models.SecurityContactList;
 import com.azure.resourcemanager.security.models.SecurityContacts;
 
 public final class SecurityContactsImpl implements SecurityContacts {
@@ -27,14 +28,26 @@ public final class SecurityContactsImpl implements SecurityContacts {
         this.serviceManager = serviceManager;
     }
 
-    public PagedIterable<SecurityContact> list() {
-        PagedIterable<SecurityContactInner> inner = this.serviceClient().list();
-        return Utils.mapPage(inner, inner1 -> new SecurityContactImpl(inner1, this.manager()));
+    public Response<SecurityContactList> listWithResponse(Context context) {
+        Response<SecurityContactListInner> inner = this.serviceClient().listWithResponse(context);
+        if (inner != null) {
+            return new SimpleResponse<>(
+                inner.getRequest(),
+                inner.getStatusCode(),
+                inner.getHeaders(),
+                new SecurityContactListImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
     }
 
-    public PagedIterable<SecurityContact> list(Context context) {
-        PagedIterable<SecurityContactInner> inner = this.serviceClient().list(context);
-        return Utils.mapPage(inner, inner1 -> new SecurityContactImpl(inner1, this.manager()));
+    public SecurityContactList list() {
+        SecurityContactListInner inner = this.serviceClient().list();
+        if (inner != null) {
+            return new SecurityContactListImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public Response<SecurityContact> getWithResponse(String securityContactName, Context context) {

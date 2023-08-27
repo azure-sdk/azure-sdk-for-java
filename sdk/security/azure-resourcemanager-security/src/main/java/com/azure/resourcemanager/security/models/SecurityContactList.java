@@ -4,56 +4,22 @@
 
 package com.azure.resourcemanager.security.models;
 
-import com.azure.core.annotation.Immutable;
-import com.azure.resourcemanager.security.fluent.models.SecurityContactInner;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.resourcemanager.security.fluent.models.SecurityContactListInner;
 import java.util.List;
 
-/** List of security contacts response. */
-@Immutable
-public final class SecurityContactList {
-    /*
-     * List of security contacts
-     */
-    @JsonProperty(value = "value", access = JsonProperty.Access.WRITE_ONLY)
-    private List<SecurityContactInner> value;
-
-    /*
-     * The URI to fetch the next page.
-     */
-    @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
-    private String nextLink;
-
-    /** Creates an instance of SecurityContactList class. */
-    public SecurityContactList() {
-    }
-
+/** An immutable client-side representation of SecurityContactList. */
+public interface SecurityContactList {
     /**
-     * Get the value property: List of security contacts.
+     * Gets the value property: List of security contacts.
      *
      * @return the value value.
      */
-    public List<SecurityContactInner> value() {
-        return this.value;
-    }
+    List<SecurityContact> value();
 
     /**
-     * Get the nextLink property: The URI to fetch the next page.
+     * Gets the inner com.azure.resourcemanager.security.fluent.models.SecurityContactListInner object.
      *
-     * @return the nextLink value.
+     * @return the inner object.
      */
-    public String nextLink() {
-        return this.nextLink;
-    }
-
-    /**
-     * Validates the instance.
-     *
-     * @throws IllegalArgumentException thrown if the instance is not valid.
-     */
-    public void validate() {
-        if (value() != null) {
-            value().forEach(e -> e.validate());
-        }
-    }
+    SecurityContactListInner innerModel();
 }

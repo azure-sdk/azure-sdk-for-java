@@ -38,83 +38,6 @@ public interface SecurityCenter {
     Duration getDefaultPollInterval();
 
     /**
-     * Gets the MdeOnboardingsClient object to access its operations.
-     *
-     * @return the MdeOnboardingsClient object.
-     */
-    MdeOnboardingsClient getMdeOnboardings();
-
-    /**
-     * Gets the CustomAssessmentAutomationsClient object to access its operations.
-     *
-     * @return the CustomAssessmentAutomationsClient object.
-     */
-    CustomAssessmentAutomationsClient getCustomAssessmentAutomations();
-
-    /**
-     * Gets the CustomEntityStoreAssignmentsClient object to access its operations.
-     *
-     * @return the CustomEntityStoreAssignmentsClient object.
-     */
-    CustomEntityStoreAssignmentsClient getCustomEntityStoreAssignments();
-
-    /**
-     * Gets the ComplianceResultsClient object to access its operations.
-     *
-     * @return the ComplianceResultsClient object.
-     */
-    ComplianceResultsClient getComplianceResults();
-
-    /**
-     * Gets the PricingsClient object to access its operations.
-     *
-     * @return the PricingsClient object.
-     */
-    PricingsClient getPricings();
-
-    /**
-     * Gets the AdvancedThreatProtectionsClient object to access its operations.
-     *
-     * @return the AdvancedThreatProtectionsClient object.
-     */
-    AdvancedThreatProtectionsClient getAdvancedThreatProtections();
-
-    /**
-     * Gets the DeviceSecurityGroupsClient object to access its operations.
-     *
-     * @return the DeviceSecurityGroupsClient object.
-     */
-    DeviceSecurityGroupsClient getDeviceSecurityGroups();
-
-    /**
-     * Gets the IotSecuritySolutionsClient object to access its operations.
-     *
-     * @return the IotSecuritySolutionsClient object.
-     */
-    IotSecuritySolutionsClient getIotSecuritySolutions();
-
-    /**
-     * Gets the IotSecuritySolutionAnalyticsClient object to access its operations.
-     *
-     * @return the IotSecuritySolutionAnalyticsClient object.
-     */
-    IotSecuritySolutionAnalyticsClient getIotSecuritySolutionAnalytics();
-
-    /**
-     * Gets the IotSecuritySolutionsAnalyticsAggregatedAlertsClient object to access its operations.
-     *
-     * @return the IotSecuritySolutionsAnalyticsAggregatedAlertsClient object.
-     */
-    IotSecuritySolutionsAnalyticsAggregatedAlertsClient getIotSecuritySolutionsAnalyticsAggregatedAlerts();
-
-    /**
-     * Gets the IotSecuritySolutionsAnalyticsRecommendationsClient object to access its operations.
-     *
-     * @return the IotSecuritySolutionsAnalyticsRecommendationsClient object.
-     */
-    IotSecuritySolutionsAnalyticsRecommendationsClient getIotSecuritySolutionsAnalyticsRecommendations();
-
-    /**
      * Gets the LocationsClient object to access its operations.
      *
      * @return the LocationsClient object.
@@ -157,18 +80,25 @@ public interface SecurityCenter {
     InformationProtectionPoliciesClient getInformationProtectionPolicies();
 
     /**
-     * Gets the SecurityContactsClient object to access its operations.
-     *
-     * @return the SecurityContactsClient object.
-     */
-    SecurityContactsClient getSecurityContacts();
-
-    /**
      * Gets the WorkspaceSettingsClient object to access its operations.
      *
      * @return the WorkspaceSettingsClient object.
      */
     WorkspaceSettingsClient getWorkspaceSettings();
+
+    /**
+     * Gets the AlertsSuppressionRulesClient object to access its operations.
+     *
+     * @return the AlertsSuppressionRulesClient object.
+     */
+    AlertsSuppressionRulesClient getAlertsSuppressionRules();
+
+    /**
+     * Gets the AutomationsClient object to access its operations.
+     *
+     * @return the AutomationsClient object.
+     */
+    AutomationsClient getAutomations();
 
     /**
      * Gets the RegulatoryComplianceStandardsClient object to access its operations.
@@ -199,125 +129,6 @@ public interface SecurityCenter {
     SubAssessmentsClient getSubAssessments();
 
     /**
-     * Gets the AutomationsClient object to access its operations.
-     *
-     * @return the AutomationsClient object.
-     */
-    AutomationsClient getAutomations();
-
-    /**
-     * Gets the AlertsSuppressionRulesClient object to access its operations.
-     *
-     * @return the AlertsSuppressionRulesClient object.
-     */
-    AlertsSuppressionRulesClient getAlertsSuppressionRules();
-
-    /**
-     * Gets the ServerVulnerabilityAssessmentsClient object to access its operations.
-     *
-     * @return the ServerVulnerabilityAssessmentsClient object.
-     */
-    ServerVulnerabilityAssessmentsClient getServerVulnerabilityAssessments();
-
-    /**
-     * Gets the AssessmentsMetadatasClient object to access its operations.
-     *
-     * @return the AssessmentsMetadatasClient object.
-     */
-    AssessmentsMetadatasClient getAssessmentsMetadatas();
-
-    /**
-     * Gets the AssessmentsClient object to access its operations.
-     *
-     * @return the AssessmentsClient object.
-     */
-    AssessmentsClient getAssessments();
-
-    /**
-     * Gets the AdaptiveApplicationControlsClient object to access its operations.
-     *
-     * @return the AdaptiveApplicationControlsClient object.
-     */
-    AdaptiveApplicationControlsClient getAdaptiveApplicationControls();
-
-    /**
-     * Gets the AdaptiveNetworkHardeningsClient object to access its operations.
-     *
-     * @return the AdaptiveNetworkHardeningsClient object.
-     */
-    AdaptiveNetworkHardeningsClient getAdaptiveNetworkHardenings();
-
-    /**
-     * Gets the AllowedConnectionsClient object to access its operations.
-     *
-     * @return the AllowedConnectionsClient object.
-     */
-    AllowedConnectionsClient getAllowedConnections();
-
-    /**
-     * Gets the TopologiesClient object to access its operations.
-     *
-     * @return the TopologiesClient object.
-     */
-    TopologiesClient getTopologies();
-
-    /**
-     * Gets the JitNetworkAccessPoliciesClient object to access its operations.
-     *
-     * @return the JitNetworkAccessPoliciesClient object.
-     */
-    JitNetworkAccessPoliciesClient getJitNetworkAccessPolicies();
-
-    /**
-     * Gets the DiscoveredSecuritySolutionsClient object to access its operations.
-     *
-     * @return the DiscoveredSecuritySolutionsClient object.
-     */
-    DiscoveredSecuritySolutionsClient getDiscoveredSecuritySolutions();
-
-    /**
-     * Gets the SecuritySolutionsReferenceDatasClient object to access its operations.
-     *
-     * @return the SecuritySolutionsReferenceDatasClient object.
-     */
-    SecuritySolutionsReferenceDatasClient getSecuritySolutionsReferenceDatas();
-
-    /**
-     * Gets the ExternalSecuritySolutionsClient object to access its operations.
-     *
-     * @return the ExternalSecuritySolutionsClient object.
-     */
-    ExternalSecuritySolutionsClient getExternalSecuritySolutions();
-
-    /**
-     * Gets the SecureScoresClient object to access its operations.
-     *
-     * @return the SecureScoresClient object.
-     */
-    SecureScoresClient getSecureScores();
-
-    /**
-     * Gets the SecureScoreControlsClient object to access its operations.
-     *
-     * @return the SecureScoreControlsClient object.
-     */
-    SecureScoreControlsClient getSecureScoreControls();
-
-    /**
-     * Gets the SecureScoreControlDefinitionsClient object to access its operations.
-     *
-     * @return the SecureScoreControlDefinitionsClient object.
-     */
-    SecureScoreControlDefinitionsClient getSecureScoreControlDefinitions();
-
-    /**
-     * Gets the SecuritySolutionsClient object to access its operations.
-     *
-     * @return the SecuritySolutionsClient object.
-     */
-    SecuritySolutionsClient getSecuritySolutions();
-
-    /**
      * Gets the ConnectorsClient object to access its operations.
      *
      * @return the ConnectorsClient object.
@@ -325,18 +136,11 @@ public interface SecurityCenter {
     ConnectorsClient getConnectors();
 
     /**
-     * Gets the AlertsClient object to access its operations.
+     * Gets the SecurityContactsClient object to access its operations.
      *
-     * @return the AlertsClient object.
+     * @return the SecurityContactsClient object.
      */
-    AlertsClient getAlerts();
-
-    /**
-     * Gets the SettingsClient object to access its operations.
-     *
-     * @return the SettingsClient object.
-     */
-    SettingsClient getSettings();
+    SecurityContactsClient getSecurityContacts();
 
     /**
      * Gets the IngestionSettingsClient object to access its operations.
@@ -353,11 +157,25 @@ public interface SecurityCenter {
     SoftwareInventoriesClient getSoftwareInventories();
 
     /**
-     * Gets the GovernanceRulesClient object to access its operations.
+     * Gets the CustomAssessmentAutomationsClient object to access its operations.
      *
-     * @return the GovernanceRulesClient object.
+     * @return the CustomAssessmentAutomationsClient object.
      */
-    GovernanceRulesClient getGovernanceRules();
+    CustomAssessmentAutomationsClient getCustomAssessmentAutomations();
+
+    /**
+     * Gets the CustomEntityStoreAssignmentsClient object to access its operations.
+     *
+     * @return the CustomEntityStoreAssignmentsClient object.
+     */
+    CustomEntityStoreAssignmentsClient getCustomEntityStoreAssignments();
+
+    /**
+     * Gets the MdeOnboardingsClient object to access its operations.
+     *
+     * @return the MdeOnboardingsClient object.
+     */
+    MdeOnboardingsClient getMdeOnboardings();
 
     /**
      * Gets the GovernanceAssignmentsClient object to access its operations.
@@ -365,6 +183,13 @@ public interface SecurityCenter {
      * @return the GovernanceAssignmentsClient object.
      */
     GovernanceAssignmentsClient getGovernanceAssignments();
+
+    /**
+     * Gets the GovernanceRulesClient object to access its operations.
+     *
+     * @return the GovernanceRulesClient object.
+     */
+    GovernanceRulesClient getGovernanceRules();
 
     /**
      * Gets the ApplicationsClient object to access its operations.
@@ -402,32 +227,25 @@ public interface SecurityCenter {
     ApiCollectionsClient getApiCollections();
 
     /**
-     * Gets the ApiCollectionOnboardingsClient object to access its operations.
+     * Gets the DefenderForStoragesClient object to access its operations.
      *
-     * @return the ApiCollectionOnboardingsClient object.
+     * @return the DefenderForStoragesClient object.
      */
-    ApiCollectionOnboardingsClient getApiCollectionOnboardings();
+    DefenderForStoragesClient getDefenderForStorages();
 
     /**
-     * Gets the ApiCollectionOffboardingsClient object to access its operations.
+     * Gets the SecurityOperatorsClient object to access its operations.
      *
-     * @return the ApiCollectionOffboardingsClient object.
+     * @return the SecurityOperatorsClient object.
      */
-    ApiCollectionOffboardingsClient getApiCollectionOffboardings();
+    SecurityOperatorsClient getSecurityOperators();
 
     /**
-     * Gets the HealthReportsClient object to access its operations.
+     * Gets the SqlVulnerabilityAssessmentBaselineRulesClient object to access its operations.
      *
-     * @return the HealthReportsClient object.
+     * @return the SqlVulnerabilityAssessmentBaselineRulesClient object.
      */
-    HealthReportsClient getHealthReports();
-
-    /**
-     * Gets the HealthReportOperationsClient object to access its operations.
-     *
-     * @return the HealthReportOperationsClient object.
-     */
-    HealthReportOperationsClient getHealthReportOperations();
+    SqlVulnerabilityAssessmentBaselineRulesClient getSqlVulnerabilityAssessmentBaselineRules();
 
     /**
      * Gets the SqlVulnerabilityAssessmentScansClient object to access its operations.
@@ -444,11 +262,11 @@ public interface SecurityCenter {
     SqlVulnerabilityAssessmentScanResultsClient getSqlVulnerabilityAssessmentScanResults();
 
     /**
-     * Gets the SqlVulnerabilityAssessmentBaselineRulesClient object to access its operations.
+     * Gets the SensitivitySettingsClient object to access its operations.
      *
-     * @return the SqlVulnerabilityAssessmentBaselineRulesClient object.
+     * @return the SensitivitySettingsClient object.
      */
-    SqlVulnerabilityAssessmentBaselineRulesClient getSqlVulnerabilityAssessmentBaselineRules();
+    SensitivitySettingsClient getSensitivitySettings();
 
     /**
      * Gets the SecurityConnectorsClient object to access its operations.
@@ -458,9 +276,261 @@ public interface SecurityCenter {
     SecurityConnectorsClient getSecurityConnectors();
 
     /**
-     * Gets the SecurityOperatorsClient object to access its operations.
+     * Gets the HealthReportsClient object to access its operations.
      *
-     * @return the SecurityOperatorsClient object.
+     * @return the HealthReportsClient object.
      */
-    SecurityOperatorsClient getSecurityOperators();
+    HealthReportsClient getHealthReports();
+
+    /**
+     * Gets the AzureDevOpsOrgsClient object to access its operations.
+     *
+     * @return the AzureDevOpsOrgsClient object.
+     */
+    AzureDevOpsOrgsClient getAzureDevOpsOrgs();
+
+    /**
+     * Gets the AzureDevOpsProjectsClient object to access its operations.
+     *
+     * @return the AzureDevOpsProjectsClient object.
+     */
+    AzureDevOpsProjectsClient getAzureDevOpsProjects();
+
+    /**
+     * Gets the AzureDevOpsReposClient object to access its operations.
+     *
+     * @return the AzureDevOpsReposClient object.
+     */
+    AzureDevOpsReposClient getAzureDevOpsRepos();
+
+    /**
+     * Gets the DevOpsConfigurationsClient object to access its operations.
+     *
+     * @return the DevOpsConfigurationsClient object.
+     */
+    DevOpsConfigurationsClient getDevOpsConfigurations();
+
+    /**
+     * Gets the GitHubOwnersClient object to access its operations.
+     *
+     * @return the GitHubOwnersClient object.
+     */
+    GitHubOwnersClient getGitHubOwners();
+
+    /**
+     * Gets the GitHubReposClient object to access its operations.
+     *
+     * @return the GitHubReposClient object.
+     */
+    GitHubReposClient getGitHubRepos();
+
+    /**
+     * Gets the GitLabGroupsClient object to access its operations.
+     *
+     * @return the GitLabGroupsClient object.
+     */
+    GitLabGroupsClient getGitLabGroups();
+
+    /**
+     * Gets the GitLabSubgroupsClient object to access its operations.
+     *
+     * @return the GitLabSubgroupsClient object.
+     */
+    GitLabSubgroupsClient getGitLabSubgroups();
+
+    /**
+     * Gets the GitLabProjectsClient object to access its operations.
+     *
+     * @return the GitLabProjectsClient object.
+     */
+    GitLabProjectsClient getGitLabProjects();
+
+    /**
+     * Gets the DevOpsOperationResultsClient object to access its operations.
+     *
+     * @return the DevOpsOperationResultsClient object.
+     */
+    DevOpsOperationResultsClient getDevOpsOperationResults();
+
+    /**
+     * Gets the ComplianceResultsClient object to access its operations.
+     *
+     * @return the ComplianceResultsClient object.
+     */
+    ComplianceResultsClient getComplianceResults();
+
+    /**
+     * Gets the AdvancedThreatProtectionsClient object to access its operations.
+     *
+     * @return the AdvancedThreatProtectionsClient object.
+     */
+    AdvancedThreatProtectionsClient getAdvancedThreatProtections();
+
+    /**
+     * Gets the DeviceSecurityGroupsClient object to access its operations.
+     *
+     * @return the DeviceSecurityGroupsClient object.
+     */
+    DeviceSecurityGroupsClient getDeviceSecurityGroups();
+
+    /**
+     * Gets the IotSecuritySolutionAnalyticsClient object to access its operations.
+     *
+     * @return the IotSecuritySolutionAnalyticsClient object.
+     */
+    IotSecuritySolutionAnalyticsClient getIotSecuritySolutionAnalytics();
+
+    /**
+     * Gets the IotSecuritySolutionsAnalyticsAggregatedAlertsClient object to access its operations.
+     *
+     * @return the IotSecuritySolutionsAnalyticsAggregatedAlertsClient object.
+     */
+    IotSecuritySolutionsAnalyticsAggregatedAlertsClient getIotSecuritySolutionsAnalyticsAggregatedAlerts();
+
+    /**
+     * Gets the IotSecuritySolutionsAnalyticsRecommendationsClient object to access its operations.
+     *
+     * @return the IotSecuritySolutionsAnalyticsRecommendationsClient object.
+     */
+    IotSecuritySolutionsAnalyticsRecommendationsClient getIotSecuritySolutionsAnalyticsRecommendations();
+
+    /**
+     * Gets the IotSecuritySolutionsClient object to access its operations.
+     *
+     * @return the IotSecuritySolutionsClient object.
+     */
+    IotSecuritySolutionsClient getIotSecuritySolutions();
+
+    /**
+     * Gets the AdaptiveNetworkHardeningsClient object to access its operations.
+     *
+     * @return the AdaptiveNetworkHardeningsClient object.
+     */
+    AdaptiveNetworkHardeningsClient getAdaptiveNetworkHardenings();
+
+    /**
+     * Gets the AllowedConnectionsClient object to access its operations.
+     *
+     * @return the AllowedConnectionsClient object.
+     */
+    AllowedConnectionsClient getAllowedConnections();
+
+    /**
+     * Gets the AdaptiveApplicationControlsClient object to access its operations.
+     *
+     * @return the AdaptiveApplicationControlsClient object.
+     */
+    AdaptiveApplicationControlsClient getAdaptiveApplicationControls();
+
+    /**
+     * Gets the DiscoveredSecuritySolutionsClient object to access its operations.
+     *
+     * @return the DiscoveredSecuritySolutionsClient object.
+     */
+    DiscoveredSecuritySolutionsClient getDiscoveredSecuritySolutions();
+
+    /**
+     * Gets the ExternalSecuritySolutionsClient object to access its operations.
+     *
+     * @return the ExternalSecuritySolutionsClient object.
+     */
+    ExternalSecuritySolutionsClient getExternalSecuritySolutions();
+
+    /**
+     * Gets the JitNetworkAccessPoliciesClient object to access its operations.
+     *
+     * @return the JitNetworkAccessPoliciesClient object.
+     */
+    JitNetworkAccessPoliciesClient getJitNetworkAccessPolicies();
+
+    /**
+     * Gets the SecureScoresClient object to access its operations.
+     *
+     * @return the SecureScoresClient object.
+     */
+    SecureScoresClient getSecureScores();
+
+    /**
+     * Gets the SecureScoreControlsClient object to access its operations.
+     *
+     * @return the SecureScoreControlsClient object.
+     */
+    SecureScoreControlsClient getSecureScoreControls();
+
+    /**
+     * Gets the SecureScoreControlDefinitionsClient object to access its operations.
+     *
+     * @return the SecureScoreControlDefinitionsClient object.
+     */
+    SecureScoreControlDefinitionsClient getSecureScoreControlDefinitions();
+
+    /**
+     * Gets the SecuritySolutionsClient object to access its operations.
+     *
+     * @return the SecuritySolutionsClient object.
+     */
+    SecuritySolutionsClient getSecuritySolutions();
+
+    /**
+     * Gets the SecuritySolutionsReferenceDatasClient object to access its operations.
+     *
+     * @return the SecuritySolutionsReferenceDatasClient object.
+     */
+    SecuritySolutionsReferenceDatasClient getSecuritySolutionsReferenceDatas();
+
+    /**
+     * Gets the ServerVulnerabilityAssessmentsClient object to access its operations.
+     *
+     * @return the ServerVulnerabilityAssessmentsClient object.
+     */
+    ServerVulnerabilityAssessmentsClient getServerVulnerabilityAssessments();
+
+    /**
+     * Gets the TopologiesClient object to access its operations.
+     *
+     * @return the TopologiesClient object.
+     */
+    TopologiesClient getTopologies();
+
+    /**
+     * Gets the AssessmentsMetadatasClient object to access its operations.
+     *
+     * @return the AssessmentsMetadatasClient object.
+     */
+    AssessmentsMetadatasClient getAssessmentsMetadatas();
+
+    /**
+     * Gets the AssessmentsClient object to access its operations.
+     *
+     * @return the AssessmentsClient object.
+     */
+    AssessmentsClient getAssessments();
+
+    /**
+     * Gets the AlertsClient object to access its operations.
+     *
+     * @return the AlertsClient object.
+     */
+    AlertsClient getAlerts();
+
+    /**
+     * Gets the SettingsClient object to access its operations.
+     *
+     * @return the SettingsClient object.
+     */
+    SettingsClient getSettings();
+
+    /**
+     * Gets the PricingsClient object to access its operations.
+     *
+     * @return the PricingsClient object.
+     */
+    PricingsClient getPricings();
+
+    /**
+     * Gets the ServerVulnerabilityAssessmentsSettingsClient object to access its operations.
+     *
+     * @return the ServerVulnerabilityAssessmentsSettingsClient object.
+     */
+    ServerVulnerabilityAssessmentsSettingsClient getServerVulnerabilityAssessmentsSettings();
 }

@@ -6,23 +6,13 @@ package com.azure.resourcemanager.security.fluent;
 
 import com.azure.core.annotation.ReturnType;
 import com.azure.core.annotation.ServiceMethod;
-import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.security.fluent.models.SecurityContactInner;
+import com.azure.resourcemanager.security.fluent.models.SecurityContactListInner;
 
 /** An instance of this class provides access to all the operations defined in SecurityContactsClient. */
 public interface SecurityContactsClient {
-    /**
-     * List all security contact configurations for the subscription.
-     *
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of security contacts response as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<SecurityContactInner> list();
-
     /**
      * List all security contact configurations for the subscription.
      *
@@ -30,10 +20,20 @@ public interface SecurityContactsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of security contacts response as paginated response with {@link PagedIterable}.
+     * @return list of security contacts response along with {@link Response}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<SecurityContactInner> list(Context context);
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<SecurityContactListInner> listWithResponse(Context context);
+
+    /**
+     * List all security contact configurations for the subscription.
+     *
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of security contacts response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    SecurityContactListInner list();
 
     /**
      * Get Default Security contact configurations for the subscription.

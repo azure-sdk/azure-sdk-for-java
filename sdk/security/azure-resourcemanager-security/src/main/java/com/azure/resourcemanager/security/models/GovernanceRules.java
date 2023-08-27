@@ -13,9 +13,8 @@ public interface GovernanceRules {
     /**
      * Get a list of all relevant governance rules over a scope.
      *
-     * @param scope The scope of the Governance rules. Valid scopes are: management group (format:
-     *     'providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
+     * @param scope Scope of the query. can be subscription (/subscriptions/{subscriptionId}) or management group
+     *     (/providers/Microsoft.Management/managementGroups/mgName) or a security connector scope: (format:
      *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -27,9 +26,8 @@ public interface GovernanceRules {
     /**
      * Get a list of all relevant governance rules over a scope.
      *
-     * @param scope The scope of the Governance rules. Valid scopes are: management group (format:
-     *     'providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
+     * @param scope Scope of the query. can be subscription (/subscriptions/{subscriptionId}) or management group
+     *     (/providers/Microsoft.Management/managementGroups/mgName) or a security connector scope: (format:
      *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -42,9 +40,8 @@ public interface GovernanceRules {
     /**
      * Get a specific governance rule for the requested scope by ruleId.
      *
-     * @param scope The scope of the Governance rules. Valid scopes are: management group (format:
-     *     'providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
+     * @param scope Scope of the query. can be subscription (/subscriptions/{subscriptionId}) or management group
+     *     (/providers/Microsoft.Management/managementGroups/mgName) or a security connector scope: (format:
      *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
      * @param context The context to associate with this operation.
@@ -58,9 +55,8 @@ public interface GovernanceRules {
     /**
      * Get a specific governance rule for the requested scope by ruleId.
      *
-     * @param scope The scope of the Governance rules. Valid scopes are: management group (format:
-     *     'providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
+     * @param scope Scope of the query. can be subscription (/subscriptions/{subscriptionId}) or management group
+     *     (/providers/Microsoft.Management/managementGroups/mgName) or a security connector scope: (format:
      *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -73,9 +69,8 @@ public interface GovernanceRules {
     /**
      * Delete a Governance rule over a given scope.
      *
-     * @param scope The scope of the Governance rules. Valid scopes are: management group (format:
-     *     'providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
+     * @param scope Scope of the query. can be subscription (/subscriptions/{subscriptionId}) or management group
+     *     (/providers/Microsoft.Management/managementGroups/mgName) or a security connector scope: (format:
      *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -87,9 +82,8 @@ public interface GovernanceRules {
     /**
      * Delete a Governance rule over a given scope.
      *
-     * @param scope The scope of the Governance rules. Valid scopes are: management group (format:
-     *     'providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
+     * @param scope Scope of the query. can be subscription (/subscriptions/{subscriptionId}) or management group
+     *     (/providers/Microsoft.Management/managementGroups/mgName) or a security connector scope: (format:
      *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
      * @param context The context to associate with this operation.
@@ -102,9 +96,8 @@ public interface GovernanceRules {
     /**
      * Execute a governance rule.
      *
-     * @param scope The scope of the Governance rules. Valid scopes are: management group (format:
-     *     'providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
+     * @param scope Scope of the query. can be subscription (/subscriptions/{subscriptionId}) or management group
+     *     (/providers/Microsoft.Management/managementGroups/mgName) or a security connector scope: (format:
      *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -116,9 +109,8 @@ public interface GovernanceRules {
     /**
      * Execute a governance rule.
      *
-     * @param scope The scope of the Governance rules. Valid scopes are: management group (format:
-     *     'providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
+     * @param scope Scope of the query. can be subscription (/subscriptions/{subscriptionId}) or management group
+     *     (/providers/Microsoft.Management/managementGroups/mgName) or a security connector scope: (format:
      *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
      * @param executeGovernanceRuleParams Execute governance rule over a given scope.
@@ -132,9 +124,8 @@ public interface GovernanceRules {
     /**
      * Get governance rules long run operation result for the requested scope by ruleId and operationId.
      *
-     * @param scope The scope of the Governance rules. Valid scopes are: management group (format:
-     *     'providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
+     * @param scope Scope of the query. can be subscription (/subscriptions/{subscriptionId}) or management group
+     *     (/providers/Microsoft.Management/managementGroups/mgName) or a security connector scope: (format:
      *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
      * @param operationId The governance rule long running operation unique key.
@@ -150,9 +141,8 @@ public interface GovernanceRules {
     /**
      * Get governance rules long run operation result for the requested scope by ruleId and operationId.
      *
-     * @param scope The scope of the Governance rules. Valid scopes are: management group (format:
-     *     'providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
+     * @param scope Scope of the query. can be subscription (/subscriptions/{subscriptionId}) or management group
+     *     (/providers/Microsoft.Management/managementGroups/mgName) or a security connector scope: (format:
      *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
      * @param operationId The governance rule long running operation unique key.

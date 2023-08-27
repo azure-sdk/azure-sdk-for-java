@@ -13,8 +13,9 @@ public interface ComplianceResults {
     /**
      * Security compliance results in the subscription.
      *
-     * @param scope Scope of the query, can be subscription (/subscriptions/0b06d9ea-afe6-4779-bd59-30e5c2d9d13f) or
-     *     management group (/providers/Microsoft.Management/managementGroups/mgName).
+     * @param scope Scope of the query. can be subscription (/subscriptions/{subscriptionId}) or management group
+     *     (/providers/Microsoft.Management/managementGroups/mgName) or a security connector scope: (format:
+     *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -25,8 +26,9 @@ public interface ComplianceResults {
     /**
      * Security compliance results in the subscription.
      *
-     * @param scope Scope of the query, can be subscription (/subscriptions/0b06d9ea-afe6-4779-bd59-30e5c2d9d13f) or
-     *     management group (/providers/Microsoft.Management/managementGroups/mgName).
+     * @param scope Scope of the query. can be subscription (/subscriptions/{subscriptionId}) or management group
+     *     (/providers/Microsoft.Management/managementGroups/mgName) or a security connector scope: (format:
+     *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.

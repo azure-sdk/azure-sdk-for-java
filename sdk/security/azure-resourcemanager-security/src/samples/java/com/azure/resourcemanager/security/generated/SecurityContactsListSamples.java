@@ -15,6 +15,6 @@ public final class SecurityContactsListSamples {
      * @param manager Entry point to SecurityManager.
      */
     public static void listSecurityContactData(com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.securityContacts().list(com.azure.core.util.Context.NONE);
+        manager.securityContacts().listWithResponse(com.azure.core.util.Context.NONE);
     }
 }

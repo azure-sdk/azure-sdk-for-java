@@ -75,7 +75,7 @@ public final class GovernanceRulesClientImpl implements GovernanceRulesClient {
         Mono<Response<GovernanceRuleList>> list(
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
-            @PathParam("scope") String scope,
+            @PathParam(value = "scope", encoded = true) String scope,
             @HeaderParam("Accept") String accept,
             Context context);
 
@@ -86,7 +86,7 @@ public final class GovernanceRulesClientImpl implements GovernanceRulesClient {
         Mono<Response<GovernanceRuleInner>> get(
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
-            @PathParam("scope") String scope,
+            @PathParam(value = "scope", encoded = true) String scope,
             @PathParam("ruleId") String ruleId,
             @HeaderParam("Accept") String accept,
             Context context);
@@ -98,21 +98,22 @@ public final class GovernanceRulesClientImpl implements GovernanceRulesClient {
         Mono<Response<GovernanceRuleInner>> createOrUpdate(
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
-            @PathParam("scope") String scope,
+            @PathParam(value = "scope", encoded = true) String scope,
             @PathParam("ruleId") String ruleId,
             @BodyParam("application/json") GovernanceRuleInner governanceRule,
             @HeaderParam("Accept") String accept,
             Context context);
 
-        @Headers({"Accept: application/json;q=0.9", "Content-Type: application/json"})
+        @Headers({"Content-Type: application/json"})
         @Delete("/{scope}/providers/Microsoft.Security/governanceRules/{ruleId}")
         @ExpectedResponses({200, 202, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
-            @PathParam("scope") String scope,
+            @PathParam(value = "scope", encoded = true) String scope,
             @PathParam("ruleId") String ruleId,
+            @HeaderParam("Accept") String accept,
             Context context);
 
         @Headers({"Content-Type: application/json"})
@@ -122,7 +123,7 @@ public final class GovernanceRulesClientImpl implements GovernanceRulesClient {
         Mono<Response<Flux<ByteBuffer>>> execute(
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
-            @PathParam("scope") String scope,
+            @PathParam(value = "scope", encoded = true) String scope,
             @PathParam("ruleId") String ruleId,
             @BodyParam("application/json") ExecuteGovernanceRuleParams executeGovernanceRuleParams,
             @HeaderParam("Accept") String accept,
@@ -135,7 +136,7 @@ public final class GovernanceRulesClientImpl implements GovernanceRulesClient {
         Mono<GovernanceRulesOperationResultsResponse> operationResults(
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
-            @PathParam("scope") String scope,
+            @PathParam(value = "scope", encoded = true) String scope,
             @PathParam("ruleId") String ruleId,
             @PathParam("operationId") String operationId,
             @HeaderParam("Accept") String accept,
@@ -155,9 +156,8 @@ public final class GovernanceRulesClientImpl implements GovernanceRulesClient {
     /**
      * Get a list of all relevant governance rules over a scope.
      *
-     * @param scope The scope of the Governance rules. Valid scopes are: management group (format:
-     *     'providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
+     * @param scope Scope of the query. can be subscription (/subscriptions/{subscriptionId}) or management group
+     *     (/providers/Microsoft.Management/managementGroups/mgName) or a security connector scope: (format:
      *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -195,9 +195,8 @@ public final class GovernanceRulesClientImpl implements GovernanceRulesClient {
     /**
      * Get a list of all relevant governance rules over a scope.
      *
-     * @param scope The scope of the Governance rules. Valid scopes are: management group (format:
-     *     'providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
+     * @param scope Scope of the query. can be subscription (/subscriptions/{subscriptionId}) or management group
+     *     (/providers/Microsoft.Management/managementGroups/mgName) or a security connector scope: (format:
      *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -236,9 +235,8 @@ public final class GovernanceRulesClientImpl implements GovernanceRulesClient {
     /**
      * Get a list of all relevant governance rules over a scope.
      *
-     * @param scope The scope of the Governance rules. Valid scopes are: management group (format:
-     *     'providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
+     * @param scope Scope of the query. can be subscription (/subscriptions/{subscriptionId}) or management group
+     *     (/providers/Microsoft.Management/managementGroups/mgName) or a security connector scope: (format:
      *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -253,9 +251,8 @@ public final class GovernanceRulesClientImpl implements GovernanceRulesClient {
     /**
      * Get a list of all relevant governance rules over a scope.
      *
-     * @param scope The scope of the Governance rules. Valid scopes are: management group (format:
-     *     'providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
+     * @param scope Scope of the query. can be subscription (/subscriptions/{subscriptionId}) or management group
+     *     (/providers/Microsoft.Management/managementGroups/mgName) or a security connector scope: (format:
      *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -272,9 +269,8 @@ public final class GovernanceRulesClientImpl implements GovernanceRulesClient {
     /**
      * Get a list of all relevant governance rules over a scope.
      *
-     * @param scope The scope of the Governance rules. Valid scopes are: management group (format:
-     *     'providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
+     * @param scope Scope of the query. can be subscription (/subscriptions/{subscriptionId}) or management group
+     *     (/providers/Microsoft.Management/managementGroups/mgName) or a security connector scope: (format:
      *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -289,9 +285,8 @@ public final class GovernanceRulesClientImpl implements GovernanceRulesClient {
     /**
      * Get a list of all relevant governance rules over a scope.
      *
-     * @param scope The scope of the Governance rules. Valid scopes are: management group (format:
-     *     'providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
+     * @param scope Scope of the query. can be subscription (/subscriptions/{subscriptionId}) or management group
+     *     (/providers/Microsoft.Management/managementGroups/mgName) or a security connector scope: (format:
      *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -307,9 +302,8 @@ public final class GovernanceRulesClientImpl implements GovernanceRulesClient {
     /**
      * Get a specific governance rule for the requested scope by ruleId.
      *
-     * @param scope The scope of the Governance rules. Valid scopes are: management group (format:
-     *     'providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
+     * @param scope Scope of the query. can be subscription (/subscriptions/{subscriptionId}) or management group
+     *     (/providers/Microsoft.Management/managementGroups/mgName) or a security connector scope: (format:
      *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -342,9 +336,8 @@ public final class GovernanceRulesClientImpl implements GovernanceRulesClient {
     /**
      * Get a specific governance rule for the requested scope by ruleId.
      *
-     * @param scope The scope of the Governance rules. Valid scopes are: management group (format:
-     *     'providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
+     * @param scope Scope of the query. can be subscription (/subscriptions/{subscriptionId}) or management group
+     *     (/providers/Microsoft.Management/managementGroups/mgName) or a security connector scope: (format:
      *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
      * @param context The context to associate with this operation.
@@ -377,9 +370,8 @@ public final class GovernanceRulesClientImpl implements GovernanceRulesClient {
     /**
      * Get a specific governance rule for the requested scope by ruleId.
      *
-     * @param scope The scope of the Governance rules. Valid scopes are: management group (format:
-     *     'providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
+     * @param scope Scope of the query. can be subscription (/subscriptions/{subscriptionId}) or management group
+     *     (/providers/Microsoft.Management/managementGroups/mgName) or a security connector scope: (format:
      *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -395,9 +387,8 @@ public final class GovernanceRulesClientImpl implements GovernanceRulesClient {
     /**
      * Get a specific governance rule for the requested scope by ruleId.
      *
-     * @param scope The scope of the Governance rules. Valid scopes are: management group (format:
-     *     'providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
+     * @param scope Scope of the query. can be subscription (/subscriptions/{subscriptionId}) or management group
+     *     (/providers/Microsoft.Management/managementGroups/mgName) or a security connector scope: (format:
      *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
      * @param context The context to associate with this operation.
@@ -414,9 +405,8 @@ public final class GovernanceRulesClientImpl implements GovernanceRulesClient {
     /**
      * Get a specific governance rule for the requested scope by ruleId.
      *
-     * @param scope The scope of the Governance rules. Valid scopes are: management group (format:
-     *     'providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
+     * @param scope Scope of the query. can be subscription (/subscriptions/{subscriptionId}) or management group
+     *     (/providers/Microsoft.Management/managementGroups/mgName) or a security connector scope: (format:
      *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -432,9 +422,8 @@ public final class GovernanceRulesClientImpl implements GovernanceRulesClient {
     /**
      * Creates or updates a governance rule over a given scope.
      *
-     * @param scope The scope of the Governance rules. Valid scopes are: management group (format:
-     *     'providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
+     * @param scope Scope of the query. can be subscription (/subscriptions/{subscriptionId}) or management group
+     *     (/providers/Microsoft.Management/managementGroups/mgName) or a security connector scope: (format:
      *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
      * @param governanceRule Governance rule over a given scope.
@@ -477,9 +466,8 @@ public final class GovernanceRulesClientImpl implements GovernanceRulesClient {
     /**
      * Creates or updates a governance rule over a given scope.
      *
-     * @param scope The scope of the Governance rules. Valid scopes are: management group (format:
-     *     'providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
+     * @param scope Scope of the query. can be subscription (/subscriptions/{subscriptionId}) or management group
+     *     (/providers/Microsoft.Management/managementGroups/mgName) or a security connector scope: (format:
      *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
      * @param governanceRule Governance rule over a given scope.
@@ -519,9 +507,8 @@ public final class GovernanceRulesClientImpl implements GovernanceRulesClient {
     /**
      * Creates or updates a governance rule over a given scope.
      *
-     * @param scope The scope of the Governance rules. Valid scopes are: management group (format:
-     *     'providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
+     * @param scope Scope of the query. can be subscription (/subscriptions/{subscriptionId}) or management group
+     *     (/providers/Microsoft.Management/managementGroups/mgName) or a security connector scope: (format:
      *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
      * @param governanceRule Governance rule over a given scope.
@@ -540,9 +527,8 @@ public final class GovernanceRulesClientImpl implements GovernanceRulesClient {
     /**
      * Creates or updates a governance rule over a given scope.
      *
-     * @param scope The scope of the Governance rules. Valid scopes are: management group (format:
-     *     'providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
+     * @param scope Scope of the query. can be subscription (/subscriptions/{subscriptionId}) or management group
+     *     (/providers/Microsoft.Management/managementGroups/mgName) or a security connector scope: (format:
      *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
      * @param governanceRule Governance rule over a given scope.
@@ -561,9 +547,8 @@ public final class GovernanceRulesClientImpl implements GovernanceRulesClient {
     /**
      * Creates or updates a governance rule over a given scope.
      *
-     * @param scope The scope of the Governance rules. Valid scopes are: management group (format:
-     *     'providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
+     * @param scope Scope of the query. can be subscription (/subscriptions/{subscriptionId}) or management group
+     *     (/providers/Microsoft.Management/managementGroups/mgName) or a security connector scope: (format:
      *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
      * @param governanceRule Governance rule over a given scope.
@@ -580,9 +565,8 @@ public final class GovernanceRulesClientImpl implements GovernanceRulesClient {
     /**
      * Delete a Governance rule over a given scope.
      *
-     * @param scope The scope of the Governance rules. Valid scopes are: management group (format:
-     *     'providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
+     * @param scope Scope of the query. can be subscription (/subscriptions/{subscriptionId}) or management group
+     *     (/providers/Microsoft.Management/managementGroups/mgName) or a security connector scope: (format:
      *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -605,17 +589,18 @@ public final class GovernanceRulesClientImpl implements GovernanceRulesClient {
             return Mono.error(new IllegalArgumentException("Parameter ruleId is required and cannot be null."));
         }
         final String apiVersion = "2022-01-01-preview";
+        final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.delete(this.client.getEndpoint(), apiVersion, scope, ruleId, context))
+            .withContext(
+                context -> service.delete(this.client.getEndpoint(), apiVersion, scope, ruleId, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Delete a Governance rule over a given scope.
      *
-     * @param scope The scope of the Governance rules. Valid scopes are: management group (format:
-     *     'providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
+     * @param scope Scope of the query. can be subscription (/subscriptions/{subscriptionId}) or management group
+     *     (/providers/Microsoft.Management/managementGroups/mgName) or a security connector scope: (format:
      *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
      * @param context The context to associate with this operation.
@@ -639,16 +624,16 @@ public final class GovernanceRulesClientImpl implements GovernanceRulesClient {
             return Mono.error(new IllegalArgumentException("Parameter ruleId is required and cannot be null."));
         }
         final String apiVersion = "2022-01-01-preview";
+        final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.delete(this.client.getEndpoint(), apiVersion, scope, ruleId, context);
+        return service.delete(this.client.getEndpoint(), apiVersion, scope, ruleId, accept, context);
     }
 
     /**
      * Delete a Governance rule over a given scope.
      *
-     * @param scope The scope of the Governance rules. Valid scopes are: management group (format:
-     *     'providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
+     * @param scope Scope of the query. can be subscription (/subscriptions/{subscriptionId}) or management group
+     *     (/providers/Microsoft.Management/managementGroups/mgName) or a security connector scope: (format:
      *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -668,9 +653,8 @@ public final class GovernanceRulesClientImpl implements GovernanceRulesClient {
     /**
      * Delete a Governance rule over a given scope.
      *
-     * @param scope The scope of the Governance rules. Valid scopes are: management group (format:
-     *     'providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
+     * @param scope Scope of the query. can be subscription (/subscriptions/{subscriptionId}) or management group
+     *     (/providers/Microsoft.Management/managementGroups/mgName) or a security connector scope: (format:
      *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
      * @param context The context to associate with this operation.
@@ -691,9 +675,8 @@ public final class GovernanceRulesClientImpl implements GovernanceRulesClient {
     /**
      * Delete a Governance rule over a given scope.
      *
-     * @param scope The scope of the Governance rules. Valid scopes are: management group (format:
-     *     'providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
+     * @param scope Scope of the query. can be subscription (/subscriptions/{subscriptionId}) or management group
+     *     (/providers/Microsoft.Management/managementGroups/mgName) or a security connector scope: (format:
      *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -709,9 +692,8 @@ public final class GovernanceRulesClientImpl implements GovernanceRulesClient {
     /**
      * Delete a Governance rule over a given scope.
      *
-     * @param scope The scope of the Governance rules. Valid scopes are: management group (format:
-     *     'providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
+     * @param scope Scope of the query. can be subscription (/subscriptions/{subscriptionId}) or management group
+     *     (/providers/Microsoft.Management/managementGroups/mgName) or a security connector scope: (format:
      *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
      * @param context The context to associate with this operation.
@@ -728,9 +710,8 @@ public final class GovernanceRulesClientImpl implements GovernanceRulesClient {
     /**
      * Delete a Governance rule over a given scope.
      *
-     * @param scope The scope of the Governance rules. Valid scopes are: management group (format:
-     *     'providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
+     * @param scope Scope of the query. can be subscription (/subscriptions/{subscriptionId}) or management group
+     *     (/providers/Microsoft.Management/managementGroups/mgName) or a security connector scope: (format:
      *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -746,9 +727,8 @@ public final class GovernanceRulesClientImpl implements GovernanceRulesClient {
     /**
      * Delete a Governance rule over a given scope.
      *
-     * @param scope The scope of the Governance rules. Valid scopes are: management group (format:
-     *     'providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
+     * @param scope Scope of the query. can be subscription (/subscriptions/{subscriptionId}) or management group
+     *     (/providers/Microsoft.Management/managementGroups/mgName) or a security connector scope: (format:
      *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
      * @param context The context to associate with this operation.
@@ -765,9 +745,8 @@ public final class GovernanceRulesClientImpl implements GovernanceRulesClient {
     /**
      * Delete a Governance rule over a given scope.
      *
-     * @param scope The scope of the Governance rules. Valid scopes are: management group (format:
-     *     'providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
+     * @param scope Scope of the query. can be subscription (/subscriptions/{subscriptionId}) or management group
+     *     (/providers/Microsoft.Management/managementGroups/mgName) or a security connector scope: (format:
      *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -782,9 +761,8 @@ public final class GovernanceRulesClientImpl implements GovernanceRulesClient {
     /**
      * Delete a Governance rule over a given scope.
      *
-     * @param scope The scope of the Governance rules. Valid scopes are: management group (format:
-     *     'providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
+     * @param scope Scope of the query. can be subscription (/subscriptions/{subscriptionId}) or management group
+     *     (/providers/Microsoft.Management/managementGroups/mgName) or a security connector scope: (format:
      *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
      * @param context The context to associate with this operation.
@@ -800,9 +778,8 @@ public final class GovernanceRulesClientImpl implements GovernanceRulesClient {
     /**
      * Execute a governance rule.
      *
-     * @param scope The scope of the Governance rules. Valid scopes are: management group (format:
-     *     'providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
+     * @param scope Scope of the query. can be subscription (/subscriptions/{subscriptionId}) or management group
+     *     (/providers/Microsoft.Management/managementGroups/mgName) or a security connector scope: (format:
      *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
      * @param executeGovernanceRuleParams Execute governance rule over a given scope.
@@ -849,9 +826,8 @@ public final class GovernanceRulesClientImpl implements GovernanceRulesClient {
     /**
      * Execute a governance rule.
      *
-     * @param scope The scope of the Governance rules. Valid scopes are: management group (format:
-     *     'providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
+     * @param scope Scope of the query. can be subscription (/subscriptions/{subscriptionId}) or management group
+     *     (/providers/Microsoft.Management/managementGroups/mgName) or a security connector scope: (format:
      *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
      * @param executeGovernanceRuleParams Execute governance rule over a given scope.
@@ -890,9 +866,8 @@ public final class GovernanceRulesClientImpl implements GovernanceRulesClient {
     /**
      * Execute a governance rule.
      *
-     * @param scope The scope of the Governance rules. Valid scopes are: management group (format:
-     *     'providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
+     * @param scope Scope of the query. can be subscription (/subscriptions/{subscriptionId}) or management group
+     *     (/providers/Microsoft.Management/managementGroups/mgName) or a security connector scope: (format:
      *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
      * @param executeGovernanceRuleParams Execute governance rule over a given scope.
@@ -914,9 +889,8 @@ public final class GovernanceRulesClientImpl implements GovernanceRulesClient {
     /**
      * Execute a governance rule.
      *
-     * @param scope The scope of the Governance rules. Valid scopes are: management group (format:
-     *     'providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
+     * @param scope Scope of the query. can be subscription (/subscriptions/{subscriptionId}) or management group
+     *     (/providers/Microsoft.Management/managementGroups/mgName) or a security connector scope: (format:
      *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -937,9 +911,8 @@ public final class GovernanceRulesClientImpl implements GovernanceRulesClient {
     /**
      * Execute a governance rule.
      *
-     * @param scope The scope of the Governance rules. Valid scopes are: management group (format:
-     *     'providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
+     * @param scope Scope of the query. can be subscription (/subscriptions/{subscriptionId}) or management group
+     *     (/providers/Microsoft.Management/managementGroups/mgName) or a security connector scope: (format:
      *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
      * @param executeGovernanceRuleParams Execute governance rule over a given scope.
@@ -963,9 +936,8 @@ public final class GovernanceRulesClientImpl implements GovernanceRulesClient {
     /**
      * Execute a governance rule.
      *
-     * @param scope The scope of the Governance rules. Valid scopes are: management group (format:
-     *     'providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
+     * @param scope Scope of the query. can be subscription (/subscriptions/{subscriptionId}) or management group
+     *     (/providers/Microsoft.Management/managementGroups/mgName) or a security connector scope: (format:
      *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -982,9 +954,8 @@ public final class GovernanceRulesClientImpl implements GovernanceRulesClient {
     /**
      * Execute a governance rule.
      *
-     * @param scope The scope of the Governance rules. Valid scopes are: management group (format:
-     *     'providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
+     * @param scope Scope of the query. can be subscription (/subscriptions/{subscriptionId}) or management group
+     *     (/providers/Microsoft.Management/managementGroups/mgName) or a security connector scope: (format:
      *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
      * @param executeGovernanceRuleParams Execute governance rule over a given scope.
@@ -1003,9 +974,8 @@ public final class GovernanceRulesClientImpl implements GovernanceRulesClient {
     /**
      * Execute a governance rule.
      *
-     * @param scope The scope of the Governance rules. Valid scopes are: management group (format:
-     *     'providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
+     * @param scope Scope of the query. can be subscription (/subscriptions/{subscriptionId}) or management group
+     *     (/providers/Microsoft.Management/managementGroups/mgName) or a security connector scope: (format:
      *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
      * @param executeGovernanceRuleParams Execute governance rule over a given scope.
@@ -1025,9 +995,8 @@ public final class GovernanceRulesClientImpl implements GovernanceRulesClient {
     /**
      * Execute a governance rule.
      *
-     * @param scope The scope of the Governance rules. Valid scopes are: management group (format:
-     *     'providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
+     * @param scope Scope of the query. can be subscription (/subscriptions/{subscriptionId}) or management group
+     *     (/providers/Microsoft.Management/managementGroups/mgName) or a security connector scope: (format:
      *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1046,9 +1015,8 @@ public final class GovernanceRulesClientImpl implements GovernanceRulesClient {
     /**
      * Execute a governance rule.
      *
-     * @param scope The scope of the Governance rules. Valid scopes are: management group (format:
-     *     'providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
+     * @param scope Scope of the query. can be subscription (/subscriptions/{subscriptionId}) or management group
+     *     (/providers/Microsoft.Management/managementGroups/mgName) or a security connector scope: (format:
      *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
      * @param executeGovernanceRuleParams Execute governance rule over a given scope.
@@ -1069,9 +1037,8 @@ public final class GovernanceRulesClientImpl implements GovernanceRulesClient {
     /**
      * Execute a governance rule.
      *
-     * @param scope The scope of the Governance rules. Valid scopes are: management group (format:
-     *     'providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
+     * @param scope Scope of the query. can be subscription (/subscriptions/{subscriptionId}) or management group
+     *     (/providers/Microsoft.Management/managementGroups/mgName) or a security connector scope: (format:
      *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1087,9 +1054,8 @@ public final class GovernanceRulesClientImpl implements GovernanceRulesClient {
     /**
      * Execute a governance rule.
      *
-     * @param scope The scope of the Governance rules. Valid scopes are: management group (format:
-     *     'providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
+     * @param scope Scope of the query. can be subscription (/subscriptions/{subscriptionId}) or management group
+     *     (/providers/Microsoft.Management/managementGroups/mgName) or a security connector scope: (format:
      *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
      * @param executeGovernanceRuleParams Execute governance rule over a given scope.
@@ -1107,9 +1073,8 @@ public final class GovernanceRulesClientImpl implements GovernanceRulesClient {
     /**
      * Get governance rules long run operation result for the requested scope by ruleId and operationId.
      *
-     * @param scope The scope of the Governance rules. Valid scopes are: management group (format:
-     *     'providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
+     * @param scope Scope of the query. can be subscription (/subscriptions/{subscriptionId}) or management group
+     *     (/providers/Microsoft.Management/managementGroups/mgName) or a security connector scope: (format:
      *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
      * @param operationId The governance rule long running operation unique key.
@@ -1151,9 +1116,8 @@ public final class GovernanceRulesClientImpl implements GovernanceRulesClient {
     /**
      * Get governance rules long run operation result for the requested scope by ruleId and operationId.
      *
-     * @param scope The scope of the Governance rules. Valid scopes are: management group (format:
-     *     'providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
+     * @param scope Scope of the query. can be subscription (/subscriptions/{subscriptionId}) or management group
+     *     (/providers/Microsoft.Management/managementGroups/mgName) or a security connector scope: (format:
      *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
      * @param operationId The governance rule long running operation unique key.
@@ -1192,9 +1156,8 @@ public final class GovernanceRulesClientImpl implements GovernanceRulesClient {
     /**
      * Get governance rules long run operation result for the requested scope by ruleId and operationId.
      *
-     * @param scope The scope of the Governance rules. Valid scopes are: management group (format:
-     *     'providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
+     * @param scope Scope of the query. can be subscription (/subscriptions/{subscriptionId}) or management group
+     *     (/providers/Microsoft.Management/managementGroups/mgName) or a security connector scope: (format:
      *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
      * @param operationId The governance rule long running operation unique key.
@@ -1214,9 +1177,8 @@ public final class GovernanceRulesClientImpl implements GovernanceRulesClient {
     /**
      * Get governance rules long run operation result for the requested scope by ruleId and operationId.
      *
-     * @param scope The scope of the Governance rules. Valid scopes are: management group (format:
-     *     'providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
+     * @param scope Scope of the query. can be subscription (/subscriptions/{subscriptionId}) or management group
+     *     (/providers/Microsoft.Management/managementGroups/mgName) or a security connector scope: (format:
      *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
      * @param operationId The governance rule long running operation unique key.
@@ -1235,9 +1197,8 @@ public final class GovernanceRulesClientImpl implements GovernanceRulesClient {
     /**
      * Get governance rules long run operation result for the requested scope by ruleId and operationId.
      *
-     * @param scope The scope of the Governance rules. Valid scopes are: management group (format:
-     *     'providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format:
-     *     'subscriptions/{subscriptionId}'), or security connector (format:
+     * @param scope Scope of the query. can be subscription (/subscriptions/{subscriptionId}) or management group
+     *     (/providers/Microsoft.Management/managementGroups/mgName) or a security connector scope: (format:
      *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param ruleId The governance rule key - unique key for the standard governance rule (GUID).
      * @param operationId The governance rule long running operation unique key.

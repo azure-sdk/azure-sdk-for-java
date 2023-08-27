@@ -28,8 +28,6 @@ import com.azure.resourcemanager.security.fluent.AdvancedThreatProtectionsClient
 import com.azure.resourcemanager.security.fluent.AlertsClient;
 import com.azure.resourcemanager.security.fluent.AlertsSuppressionRulesClient;
 import com.azure.resourcemanager.security.fluent.AllowedConnectionsClient;
-import com.azure.resourcemanager.security.fluent.ApiCollectionOffboardingsClient;
-import com.azure.resourcemanager.security.fluent.ApiCollectionOnboardingsClient;
 import com.azure.resourcemanager.security.fluent.ApiCollectionsClient;
 import com.azure.resourcemanager.security.fluent.ApplicationOperationsClient;
 import com.azure.resourcemanager.security.fluent.ApplicationsClient;
@@ -37,17 +35,27 @@ import com.azure.resourcemanager.security.fluent.AssessmentsClient;
 import com.azure.resourcemanager.security.fluent.AssessmentsMetadatasClient;
 import com.azure.resourcemanager.security.fluent.AutoProvisioningSettingsClient;
 import com.azure.resourcemanager.security.fluent.AutomationsClient;
+import com.azure.resourcemanager.security.fluent.AzureDevOpsOrgsClient;
+import com.azure.resourcemanager.security.fluent.AzureDevOpsProjectsClient;
+import com.azure.resourcemanager.security.fluent.AzureDevOpsReposClient;
 import com.azure.resourcemanager.security.fluent.ComplianceResultsClient;
 import com.azure.resourcemanager.security.fluent.CompliancesClient;
 import com.azure.resourcemanager.security.fluent.ConnectorsClient;
 import com.azure.resourcemanager.security.fluent.CustomAssessmentAutomationsClient;
 import com.azure.resourcemanager.security.fluent.CustomEntityStoreAssignmentsClient;
+import com.azure.resourcemanager.security.fluent.DefenderForStoragesClient;
+import com.azure.resourcemanager.security.fluent.DevOpsConfigurationsClient;
+import com.azure.resourcemanager.security.fluent.DevOpsOperationResultsClient;
 import com.azure.resourcemanager.security.fluent.DeviceSecurityGroupsClient;
 import com.azure.resourcemanager.security.fluent.DiscoveredSecuritySolutionsClient;
 import com.azure.resourcemanager.security.fluent.ExternalSecuritySolutionsClient;
+import com.azure.resourcemanager.security.fluent.GitHubOwnersClient;
+import com.azure.resourcemanager.security.fluent.GitHubReposClient;
+import com.azure.resourcemanager.security.fluent.GitLabGroupsClient;
+import com.azure.resourcemanager.security.fluent.GitLabProjectsClient;
+import com.azure.resourcemanager.security.fluent.GitLabSubgroupsClient;
 import com.azure.resourcemanager.security.fluent.GovernanceAssignmentsClient;
 import com.azure.resourcemanager.security.fluent.GovernanceRulesClient;
-import com.azure.resourcemanager.security.fluent.HealthReportOperationsClient;
 import com.azure.resourcemanager.security.fluent.HealthReportsClient;
 import com.azure.resourcemanager.security.fluent.InformationProtectionPoliciesClient;
 import com.azure.resourcemanager.security.fluent.IngestionSettingsClient;
@@ -74,7 +82,9 @@ import com.azure.resourcemanager.security.fluent.SecurityContactsClient;
 import com.azure.resourcemanager.security.fluent.SecurityOperatorsClient;
 import com.azure.resourcemanager.security.fluent.SecuritySolutionsClient;
 import com.azure.resourcemanager.security.fluent.SecuritySolutionsReferenceDatasClient;
+import com.azure.resourcemanager.security.fluent.SensitivitySettingsClient;
 import com.azure.resourcemanager.security.fluent.ServerVulnerabilityAssessmentsClient;
+import com.azure.resourcemanager.security.fluent.ServerVulnerabilityAssessmentsSettingsClient;
 import com.azure.resourcemanager.security.fluent.SettingsClient;
 import com.azure.resourcemanager.security.fluent.SoftwareInventoriesClient;
 import com.azure.resourcemanager.security.fluent.SqlVulnerabilityAssessmentBaselineRulesClient;
@@ -156,138 +166,6 @@ public final class SecurityCenterImpl implements SecurityCenter {
         return this.defaultPollInterval;
     }
 
-    /** The MdeOnboardingsClient object to access its operations. */
-    private final MdeOnboardingsClient mdeOnboardings;
-
-    /**
-     * Gets the MdeOnboardingsClient object to access its operations.
-     *
-     * @return the MdeOnboardingsClient object.
-     */
-    public MdeOnboardingsClient getMdeOnboardings() {
-        return this.mdeOnboardings;
-    }
-
-    /** The CustomAssessmentAutomationsClient object to access its operations. */
-    private final CustomAssessmentAutomationsClient customAssessmentAutomations;
-
-    /**
-     * Gets the CustomAssessmentAutomationsClient object to access its operations.
-     *
-     * @return the CustomAssessmentAutomationsClient object.
-     */
-    public CustomAssessmentAutomationsClient getCustomAssessmentAutomations() {
-        return this.customAssessmentAutomations;
-    }
-
-    /** The CustomEntityStoreAssignmentsClient object to access its operations. */
-    private final CustomEntityStoreAssignmentsClient customEntityStoreAssignments;
-
-    /**
-     * Gets the CustomEntityStoreAssignmentsClient object to access its operations.
-     *
-     * @return the CustomEntityStoreAssignmentsClient object.
-     */
-    public CustomEntityStoreAssignmentsClient getCustomEntityStoreAssignments() {
-        return this.customEntityStoreAssignments;
-    }
-
-    /** The ComplianceResultsClient object to access its operations. */
-    private final ComplianceResultsClient complianceResults;
-
-    /**
-     * Gets the ComplianceResultsClient object to access its operations.
-     *
-     * @return the ComplianceResultsClient object.
-     */
-    public ComplianceResultsClient getComplianceResults() {
-        return this.complianceResults;
-    }
-
-    /** The PricingsClient object to access its operations. */
-    private final PricingsClient pricings;
-
-    /**
-     * Gets the PricingsClient object to access its operations.
-     *
-     * @return the PricingsClient object.
-     */
-    public PricingsClient getPricings() {
-        return this.pricings;
-    }
-
-    /** The AdvancedThreatProtectionsClient object to access its operations. */
-    private final AdvancedThreatProtectionsClient advancedThreatProtections;
-
-    /**
-     * Gets the AdvancedThreatProtectionsClient object to access its operations.
-     *
-     * @return the AdvancedThreatProtectionsClient object.
-     */
-    public AdvancedThreatProtectionsClient getAdvancedThreatProtections() {
-        return this.advancedThreatProtections;
-    }
-
-    /** The DeviceSecurityGroupsClient object to access its operations. */
-    private final DeviceSecurityGroupsClient deviceSecurityGroups;
-
-    /**
-     * Gets the DeviceSecurityGroupsClient object to access its operations.
-     *
-     * @return the DeviceSecurityGroupsClient object.
-     */
-    public DeviceSecurityGroupsClient getDeviceSecurityGroups() {
-        return this.deviceSecurityGroups;
-    }
-
-    /** The IotSecuritySolutionsClient object to access its operations. */
-    private final IotSecuritySolutionsClient iotSecuritySolutions;
-
-    /**
-     * Gets the IotSecuritySolutionsClient object to access its operations.
-     *
-     * @return the IotSecuritySolutionsClient object.
-     */
-    public IotSecuritySolutionsClient getIotSecuritySolutions() {
-        return this.iotSecuritySolutions;
-    }
-
-    /** The IotSecuritySolutionAnalyticsClient object to access its operations. */
-    private final IotSecuritySolutionAnalyticsClient iotSecuritySolutionAnalytics;
-
-    /**
-     * Gets the IotSecuritySolutionAnalyticsClient object to access its operations.
-     *
-     * @return the IotSecuritySolutionAnalyticsClient object.
-     */
-    public IotSecuritySolutionAnalyticsClient getIotSecuritySolutionAnalytics() {
-        return this.iotSecuritySolutionAnalytics;
-    }
-
-    /** The IotSecuritySolutionsAnalyticsAggregatedAlertsClient object to access its operations. */
-    private final IotSecuritySolutionsAnalyticsAggregatedAlertsClient iotSecuritySolutionsAnalyticsAggregatedAlerts;
-
-    /**
-     * Gets the IotSecuritySolutionsAnalyticsAggregatedAlertsClient object to access its operations.
-     *
-     * @return the IotSecuritySolutionsAnalyticsAggregatedAlertsClient object.
-     */
-    public IotSecuritySolutionsAnalyticsAggregatedAlertsClient getIotSecuritySolutionsAnalyticsAggregatedAlerts() {
-        return this.iotSecuritySolutionsAnalyticsAggregatedAlerts;
-    }
-
-    /** The IotSecuritySolutionsAnalyticsRecommendationsClient object to access its operations. */
-    private final IotSecuritySolutionsAnalyticsRecommendationsClient iotSecuritySolutionsAnalyticsRecommendations;
-
-    /**
-     * Gets the IotSecuritySolutionsAnalyticsRecommendationsClient object to access its operations.
-     *
-     * @return the IotSecuritySolutionsAnalyticsRecommendationsClient object.
-     */
-    public IotSecuritySolutionsAnalyticsRecommendationsClient getIotSecuritySolutionsAnalyticsRecommendations() {
-        return this.iotSecuritySolutionsAnalyticsRecommendations;
-    }
-
     /** The LocationsClient object to access its operations. */
     private final LocationsClient locations;
 
@@ -360,18 +238,6 @@ public final class SecurityCenterImpl implements SecurityCenter {
         return this.informationProtectionPolicies;
     }
 
-    /** The SecurityContactsClient object to access its operations. */
-    private final SecurityContactsClient securityContacts;
-
-    /**
-     * Gets the SecurityContactsClient object to access its operations.
-     *
-     * @return the SecurityContactsClient object.
-     */
-    public SecurityContactsClient getSecurityContacts() {
-        return this.securityContacts;
-    }
-
     /** The WorkspaceSettingsClient object to access its operations. */
     private final WorkspaceSettingsClient workspaceSettings;
 
@@ -382,6 +248,30 @@ public final class SecurityCenterImpl implements SecurityCenter {
      */
     public WorkspaceSettingsClient getWorkspaceSettings() {
         return this.workspaceSettings;
+    }
+
+    /** The AlertsSuppressionRulesClient object to access its operations. */
+    private final AlertsSuppressionRulesClient alertsSuppressionRules;
+
+    /**
+     * Gets the AlertsSuppressionRulesClient object to access its operations.
+     *
+     * @return the AlertsSuppressionRulesClient object.
+     */
+    public AlertsSuppressionRulesClient getAlertsSuppressionRules() {
+        return this.alertsSuppressionRules;
+    }
+
+    /** The AutomationsClient object to access its operations. */
+    private final AutomationsClient automations;
+
+    /**
+     * Gets the AutomationsClient object to access its operations.
+     *
+     * @return the AutomationsClient object.
+     */
+    public AutomationsClient getAutomations() {
+        return this.automations;
     }
 
     /** The RegulatoryComplianceStandardsClient object to access its operations. */
@@ -432,210 +322,6 @@ public final class SecurityCenterImpl implements SecurityCenter {
         return this.subAssessments;
     }
 
-    /** The AutomationsClient object to access its operations. */
-    private final AutomationsClient automations;
-
-    /**
-     * Gets the AutomationsClient object to access its operations.
-     *
-     * @return the AutomationsClient object.
-     */
-    public AutomationsClient getAutomations() {
-        return this.automations;
-    }
-
-    /** The AlertsSuppressionRulesClient object to access its operations. */
-    private final AlertsSuppressionRulesClient alertsSuppressionRules;
-
-    /**
-     * Gets the AlertsSuppressionRulesClient object to access its operations.
-     *
-     * @return the AlertsSuppressionRulesClient object.
-     */
-    public AlertsSuppressionRulesClient getAlertsSuppressionRules() {
-        return this.alertsSuppressionRules;
-    }
-
-    /** The ServerVulnerabilityAssessmentsClient object to access its operations. */
-    private final ServerVulnerabilityAssessmentsClient serverVulnerabilityAssessments;
-
-    /**
-     * Gets the ServerVulnerabilityAssessmentsClient object to access its operations.
-     *
-     * @return the ServerVulnerabilityAssessmentsClient object.
-     */
-    public ServerVulnerabilityAssessmentsClient getServerVulnerabilityAssessments() {
-        return this.serverVulnerabilityAssessments;
-    }
-
-    /** The AssessmentsMetadatasClient object to access its operations. */
-    private final AssessmentsMetadatasClient assessmentsMetadatas;
-
-    /**
-     * Gets the AssessmentsMetadatasClient object to access its operations.
-     *
-     * @return the AssessmentsMetadatasClient object.
-     */
-    public AssessmentsMetadatasClient getAssessmentsMetadatas() {
-        return this.assessmentsMetadatas;
-    }
-
-    /** The AssessmentsClient object to access its operations. */
-    private final AssessmentsClient assessments;
-
-    /**
-     * Gets the AssessmentsClient object to access its operations.
-     *
-     * @return the AssessmentsClient object.
-     */
-    public AssessmentsClient getAssessments() {
-        return this.assessments;
-    }
-
-    /** The AdaptiveApplicationControlsClient object to access its operations. */
-    private final AdaptiveApplicationControlsClient adaptiveApplicationControls;
-
-    /**
-     * Gets the AdaptiveApplicationControlsClient object to access its operations.
-     *
-     * @return the AdaptiveApplicationControlsClient object.
-     */
-    public AdaptiveApplicationControlsClient getAdaptiveApplicationControls() {
-        return this.adaptiveApplicationControls;
-    }
-
-    /** The AdaptiveNetworkHardeningsClient object to access its operations. */
-    private final AdaptiveNetworkHardeningsClient adaptiveNetworkHardenings;
-
-    /**
-     * Gets the AdaptiveNetworkHardeningsClient object to access its operations.
-     *
-     * @return the AdaptiveNetworkHardeningsClient object.
-     */
-    public AdaptiveNetworkHardeningsClient getAdaptiveNetworkHardenings() {
-        return this.adaptiveNetworkHardenings;
-    }
-
-    /** The AllowedConnectionsClient object to access its operations. */
-    private final AllowedConnectionsClient allowedConnections;
-
-    /**
-     * Gets the AllowedConnectionsClient object to access its operations.
-     *
-     * @return the AllowedConnectionsClient object.
-     */
-    public AllowedConnectionsClient getAllowedConnections() {
-        return this.allowedConnections;
-    }
-
-    /** The TopologiesClient object to access its operations. */
-    private final TopologiesClient topologies;
-
-    /**
-     * Gets the TopologiesClient object to access its operations.
-     *
-     * @return the TopologiesClient object.
-     */
-    public TopologiesClient getTopologies() {
-        return this.topologies;
-    }
-
-    /** The JitNetworkAccessPoliciesClient object to access its operations. */
-    private final JitNetworkAccessPoliciesClient jitNetworkAccessPolicies;
-
-    /**
-     * Gets the JitNetworkAccessPoliciesClient object to access its operations.
-     *
-     * @return the JitNetworkAccessPoliciesClient object.
-     */
-    public JitNetworkAccessPoliciesClient getJitNetworkAccessPolicies() {
-        return this.jitNetworkAccessPolicies;
-    }
-
-    /** The DiscoveredSecuritySolutionsClient object to access its operations. */
-    private final DiscoveredSecuritySolutionsClient discoveredSecuritySolutions;
-
-    /**
-     * Gets the DiscoveredSecuritySolutionsClient object to access its operations.
-     *
-     * @return the DiscoveredSecuritySolutionsClient object.
-     */
-    public DiscoveredSecuritySolutionsClient getDiscoveredSecuritySolutions() {
-        return this.discoveredSecuritySolutions;
-    }
-
-    /** The SecuritySolutionsReferenceDatasClient object to access its operations. */
-    private final SecuritySolutionsReferenceDatasClient securitySolutionsReferenceDatas;
-
-    /**
-     * Gets the SecuritySolutionsReferenceDatasClient object to access its operations.
-     *
-     * @return the SecuritySolutionsReferenceDatasClient object.
-     */
-    public SecuritySolutionsReferenceDatasClient getSecuritySolutionsReferenceDatas() {
-        return this.securitySolutionsReferenceDatas;
-    }
-
-    /** The ExternalSecuritySolutionsClient object to access its operations. */
-    private final ExternalSecuritySolutionsClient externalSecuritySolutions;
-
-    /**
-     * Gets the ExternalSecuritySolutionsClient object to access its operations.
-     *
-     * @return the ExternalSecuritySolutionsClient object.
-     */
-    public ExternalSecuritySolutionsClient getExternalSecuritySolutions() {
-        return this.externalSecuritySolutions;
-    }
-
-    /** The SecureScoresClient object to access its operations. */
-    private final SecureScoresClient secureScores;
-
-    /**
-     * Gets the SecureScoresClient object to access its operations.
-     *
-     * @return the SecureScoresClient object.
-     */
-    public SecureScoresClient getSecureScores() {
-        return this.secureScores;
-    }
-
-    /** The SecureScoreControlsClient object to access its operations. */
-    private final SecureScoreControlsClient secureScoreControls;
-
-    /**
-     * Gets the SecureScoreControlsClient object to access its operations.
-     *
-     * @return the SecureScoreControlsClient object.
-     */
-    public SecureScoreControlsClient getSecureScoreControls() {
-        return this.secureScoreControls;
-    }
-
-    /** The SecureScoreControlDefinitionsClient object to access its operations. */
-    private final SecureScoreControlDefinitionsClient secureScoreControlDefinitions;
-
-    /**
-     * Gets the SecureScoreControlDefinitionsClient object to access its operations.
-     *
-     * @return the SecureScoreControlDefinitionsClient object.
-     */
-    public SecureScoreControlDefinitionsClient getSecureScoreControlDefinitions() {
-        return this.secureScoreControlDefinitions;
-    }
-
-    /** The SecuritySolutionsClient object to access its operations. */
-    private final SecuritySolutionsClient securitySolutions;
-
-    /**
-     * Gets the SecuritySolutionsClient object to access its operations.
-     *
-     * @return the SecuritySolutionsClient object.
-     */
-    public SecuritySolutionsClient getSecuritySolutions() {
-        return this.securitySolutions;
-    }
-
     /** The ConnectorsClient object to access its operations. */
     private final ConnectorsClient connectors;
 
@@ -648,28 +334,16 @@ public final class SecurityCenterImpl implements SecurityCenter {
         return this.connectors;
     }
 
-    /** The AlertsClient object to access its operations. */
-    private final AlertsClient alerts;
+    /** The SecurityContactsClient object to access its operations. */
+    private final SecurityContactsClient securityContacts;
 
     /**
-     * Gets the AlertsClient object to access its operations.
+     * Gets the SecurityContactsClient object to access its operations.
      *
-     * @return the AlertsClient object.
+     * @return the SecurityContactsClient object.
      */
-    public AlertsClient getAlerts() {
-        return this.alerts;
-    }
-
-    /** The SettingsClient object to access its operations. */
-    private final SettingsClient settings;
-
-    /**
-     * Gets the SettingsClient object to access its operations.
-     *
-     * @return the SettingsClient object.
-     */
-    public SettingsClient getSettings() {
-        return this.settings;
+    public SecurityContactsClient getSecurityContacts() {
+        return this.securityContacts;
     }
 
     /** The IngestionSettingsClient object to access its operations. */
@@ -696,16 +370,40 @@ public final class SecurityCenterImpl implements SecurityCenter {
         return this.softwareInventories;
     }
 
-    /** The GovernanceRulesClient object to access its operations. */
-    private final GovernanceRulesClient governanceRules;
+    /** The CustomAssessmentAutomationsClient object to access its operations. */
+    private final CustomAssessmentAutomationsClient customAssessmentAutomations;
 
     /**
-     * Gets the GovernanceRulesClient object to access its operations.
+     * Gets the CustomAssessmentAutomationsClient object to access its operations.
      *
-     * @return the GovernanceRulesClient object.
+     * @return the CustomAssessmentAutomationsClient object.
      */
-    public GovernanceRulesClient getGovernanceRules() {
-        return this.governanceRules;
+    public CustomAssessmentAutomationsClient getCustomAssessmentAutomations() {
+        return this.customAssessmentAutomations;
+    }
+
+    /** The CustomEntityStoreAssignmentsClient object to access its operations. */
+    private final CustomEntityStoreAssignmentsClient customEntityStoreAssignments;
+
+    /**
+     * Gets the CustomEntityStoreAssignmentsClient object to access its operations.
+     *
+     * @return the CustomEntityStoreAssignmentsClient object.
+     */
+    public CustomEntityStoreAssignmentsClient getCustomEntityStoreAssignments() {
+        return this.customEntityStoreAssignments;
+    }
+
+    /** The MdeOnboardingsClient object to access its operations. */
+    private final MdeOnboardingsClient mdeOnboardings;
+
+    /**
+     * Gets the MdeOnboardingsClient object to access its operations.
+     *
+     * @return the MdeOnboardingsClient object.
+     */
+    public MdeOnboardingsClient getMdeOnboardings() {
+        return this.mdeOnboardings;
     }
 
     /** The GovernanceAssignmentsClient object to access its operations. */
@@ -718,6 +416,18 @@ public final class SecurityCenterImpl implements SecurityCenter {
      */
     public GovernanceAssignmentsClient getGovernanceAssignments() {
         return this.governanceAssignments;
+    }
+
+    /** The GovernanceRulesClient object to access its operations. */
+    private final GovernanceRulesClient governanceRules;
+
+    /**
+     * Gets the GovernanceRulesClient object to access its operations.
+     *
+     * @return the GovernanceRulesClient object.
+     */
+    public GovernanceRulesClient getGovernanceRules() {
+        return this.governanceRules;
     }
 
     /** The ApplicationsClient object to access its operations. */
@@ -780,52 +490,40 @@ public final class SecurityCenterImpl implements SecurityCenter {
         return this.apiCollections;
     }
 
-    /** The ApiCollectionOnboardingsClient object to access its operations. */
-    private final ApiCollectionOnboardingsClient apiCollectionOnboardings;
+    /** The DefenderForStoragesClient object to access its operations. */
+    private final DefenderForStoragesClient defenderForStorages;
 
     /**
-     * Gets the ApiCollectionOnboardingsClient object to access its operations.
+     * Gets the DefenderForStoragesClient object to access its operations.
      *
-     * @return the ApiCollectionOnboardingsClient object.
+     * @return the DefenderForStoragesClient object.
      */
-    public ApiCollectionOnboardingsClient getApiCollectionOnboardings() {
-        return this.apiCollectionOnboardings;
+    public DefenderForStoragesClient getDefenderForStorages() {
+        return this.defenderForStorages;
     }
 
-    /** The ApiCollectionOffboardingsClient object to access its operations. */
-    private final ApiCollectionOffboardingsClient apiCollectionOffboardings;
+    /** The SecurityOperatorsClient object to access its operations. */
+    private final SecurityOperatorsClient securityOperators;
 
     /**
-     * Gets the ApiCollectionOffboardingsClient object to access its operations.
+     * Gets the SecurityOperatorsClient object to access its operations.
      *
-     * @return the ApiCollectionOffboardingsClient object.
+     * @return the SecurityOperatorsClient object.
      */
-    public ApiCollectionOffboardingsClient getApiCollectionOffboardings() {
-        return this.apiCollectionOffboardings;
+    public SecurityOperatorsClient getSecurityOperators() {
+        return this.securityOperators;
     }
 
-    /** The HealthReportsClient object to access its operations. */
-    private final HealthReportsClient healthReports;
+    /** The SqlVulnerabilityAssessmentBaselineRulesClient object to access its operations. */
+    private final SqlVulnerabilityAssessmentBaselineRulesClient sqlVulnerabilityAssessmentBaselineRules;
 
     /**
-     * Gets the HealthReportsClient object to access its operations.
+     * Gets the SqlVulnerabilityAssessmentBaselineRulesClient object to access its operations.
      *
-     * @return the HealthReportsClient object.
+     * @return the SqlVulnerabilityAssessmentBaselineRulesClient object.
      */
-    public HealthReportsClient getHealthReports() {
-        return this.healthReports;
-    }
-
-    /** The HealthReportOperationsClient object to access its operations. */
-    private final HealthReportOperationsClient healthReportOperations;
-
-    /**
-     * Gets the HealthReportOperationsClient object to access its operations.
-     *
-     * @return the HealthReportOperationsClient object.
-     */
-    public HealthReportOperationsClient getHealthReportOperations() {
-        return this.healthReportOperations;
+    public SqlVulnerabilityAssessmentBaselineRulesClient getSqlVulnerabilityAssessmentBaselineRules() {
+        return this.sqlVulnerabilityAssessmentBaselineRules;
     }
 
     /** The SqlVulnerabilityAssessmentScansClient object to access its operations. */
@@ -852,16 +550,16 @@ public final class SecurityCenterImpl implements SecurityCenter {
         return this.sqlVulnerabilityAssessmentScanResults;
     }
 
-    /** The SqlVulnerabilityAssessmentBaselineRulesClient object to access its operations. */
-    private final SqlVulnerabilityAssessmentBaselineRulesClient sqlVulnerabilityAssessmentBaselineRules;
+    /** The SensitivitySettingsClient object to access its operations. */
+    private final SensitivitySettingsClient sensitivitySettings;
 
     /**
-     * Gets the SqlVulnerabilityAssessmentBaselineRulesClient object to access its operations.
+     * Gets the SensitivitySettingsClient object to access its operations.
      *
-     * @return the SqlVulnerabilityAssessmentBaselineRulesClient object.
+     * @return the SensitivitySettingsClient object.
      */
-    public SqlVulnerabilityAssessmentBaselineRulesClient getSqlVulnerabilityAssessmentBaselineRules() {
-        return this.sqlVulnerabilityAssessmentBaselineRules;
+    public SensitivitySettingsClient getSensitivitySettings() {
+        return this.sensitivitySettings;
     }
 
     /** The SecurityConnectorsClient object to access its operations. */
@@ -876,16 +574,448 @@ public final class SecurityCenterImpl implements SecurityCenter {
         return this.securityConnectors;
     }
 
-    /** The SecurityOperatorsClient object to access its operations. */
-    private final SecurityOperatorsClient securityOperators;
+    /** The HealthReportsClient object to access its operations. */
+    private final HealthReportsClient healthReports;
 
     /**
-     * Gets the SecurityOperatorsClient object to access its operations.
+     * Gets the HealthReportsClient object to access its operations.
      *
-     * @return the SecurityOperatorsClient object.
+     * @return the HealthReportsClient object.
      */
-    public SecurityOperatorsClient getSecurityOperators() {
-        return this.securityOperators;
+    public HealthReportsClient getHealthReports() {
+        return this.healthReports;
+    }
+
+    /** The AzureDevOpsOrgsClient object to access its operations. */
+    private final AzureDevOpsOrgsClient azureDevOpsOrgs;
+
+    /**
+     * Gets the AzureDevOpsOrgsClient object to access its operations.
+     *
+     * @return the AzureDevOpsOrgsClient object.
+     */
+    public AzureDevOpsOrgsClient getAzureDevOpsOrgs() {
+        return this.azureDevOpsOrgs;
+    }
+
+    /** The AzureDevOpsProjectsClient object to access its operations. */
+    private final AzureDevOpsProjectsClient azureDevOpsProjects;
+
+    /**
+     * Gets the AzureDevOpsProjectsClient object to access its operations.
+     *
+     * @return the AzureDevOpsProjectsClient object.
+     */
+    public AzureDevOpsProjectsClient getAzureDevOpsProjects() {
+        return this.azureDevOpsProjects;
+    }
+
+    /** The AzureDevOpsReposClient object to access its operations. */
+    private final AzureDevOpsReposClient azureDevOpsRepos;
+
+    /**
+     * Gets the AzureDevOpsReposClient object to access its operations.
+     *
+     * @return the AzureDevOpsReposClient object.
+     */
+    public AzureDevOpsReposClient getAzureDevOpsRepos() {
+        return this.azureDevOpsRepos;
+    }
+
+    /** The DevOpsConfigurationsClient object to access its operations. */
+    private final DevOpsConfigurationsClient devOpsConfigurations;
+
+    /**
+     * Gets the DevOpsConfigurationsClient object to access its operations.
+     *
+     * @return the DevOpsConfigurationsClient object.
+     */
+    public DevOpsConfigurationsClient getDevOpsConfigurations() {
+        return this.devOpsConfigurations;
+    }
+
+    /** The GitHubOwnersClient object to access its operations. */
+    private final GitHubOwnersClient gitHubOwners;
+
+    /**
+     * Gets the GitHubOwnersClient object to access its operations.
+     *
+     * @return the GitHubOwnersClient object.
+     */
+    public GitHubOwnersClient getGitHubOwners() {
+        return this.gitHubOwners;
+    }
+
+    /** The GitHubReposClient object to access its operations. */
+    private final GitHubReposClient gitHubRepos;
+
+    /**
+     * Gets the GitHubReposClient object to access its operations.
+     *
+     * @return the GitHubReposClient object.
+     */
+    public GitHubReposClient getGitHubRepos() {
+        return this.gitHubRepos;
+    }
+
+    /** The GitLabGroupsClient object to access its operations. */
+    private final GitLabGroupsClient gitLabGroups;
+
+    /**
+     * Gets the GitLabGroupsClient object to access its operations.
+     *
+     * @return the GitLabGroupsClient object.
+     */
+    public GitLabGroupsClient getGitLabGroups() {
+        return this.gitLabGroups;
+    }
+
+    /** The GitLabSubgroupsClient object to access its operations. */
+    private final GitLabSubgroupsClient gitLabSubgroups;
+
+    /**
+     * Gets the GitLabSubgroupsClient object to access its operations.
+     *
+     * @return the GitLabSubgroupsClient object.
+     */
+    public GitLabSubgroupsClient getGitLabSubgroups() {
+        return this.gitLabSubgroups;
+    }
+
+    /** The GitLabProjectsClient object to access its operations. */
+    private final GitLabProjectsClient gitLabProjects;
+
+    /**
+     * Gets the GitLabProjectsClient object to access its operations.
+     *
+     * @return the GitLabProjectsClient object.
+     */
+    public GitLabProjectsClient getGitLabProjects() {
+        return this.gitLabProjects;
+    }
+
+    /** The DevOpsOperationResultsClient object to access its operations. */
+    private final DevOpsOperationResultsClient devOpsOperationResults;
+
+    /**
+     * Gets the DevOpsOperationResultsClient object to access its operations.
+     *
+     * @return the DevOpsOperationResultsClient object.
+     */
+    public DevOpsOperationResultsClient getDevOpsOperationResults() {
+        return this.devOpsOperationResults;
+    }
+
+    /** The ComplianceResultsClient object to access its operations. */
+    private final ComplianceResultsClient complianceResults;
+
+    /**
+     * Gets the ComplianceResultsClient object to access its operations.
+     *
+     * @return the ComplianceResultsClient object.
+     */
+    public ComplianceResultsClient getComplianceResults() {
+        return this.complianceResults;
+    }
+
+    /** The AdvancedThreatProtectionsClient object to access its operations. */
+    private final AdvancedThreatProtectionsClient advancedThreatProtections;
+
+    /**
+     * Gets the AdvancedThreatProtectionsClient object to access its operations.
+     *
+     * @return the AdvancedThreatProtectionsClient object.
+     */
+    public AdvancedThreatProtectionsClient getAdvancedThreatProtections() {
+        return this.advancedThreatProtections;
+    }
+
+    /** The DeviceSecurityGroupsClient object to access its operations. */
+    private final DeviceSecurityGroupsClient deviceSecurityGroups;
+
+    /**
+     * Gets the DeviceSecurityGroupsClient object to access its operations.
+     *
+     * @return the DeviceSecurityGroupsClient object.
+     */
+    public DeviceSecurityGroupsClient getDeviceSecurityGroups() {
+        return this.deviceSecurityGroups;
+    }
+
+    /** The IotSecuritySolutionAnalyticsClient object to access its operations. */
+    private final IotSecuritySolutionAnalyticsClient iotSecuritySolutionAnalytics;
+
+    /**
+     * Gets the IotSecuritySolutionAnalyticsClient object to access its operations.
+     *
+     * @return the IotSecuritySolutionAnalyticsClient object.
+     */
+    public IotSecuritySolutionAnalyticsClient getIotSecuritySolutionAnalytics() {
+        return this.iotSecuritySolutionAnalytics;
+    }
+
+    /** The IotSecuritySolutionsAnalyticsAggregatedAlertsClient object to access its operations. */
+    private final IotSecuritySolutionsAnalyticsAggregatedAlertsClient iotSecuritySolutionsAnalyticsAggregatedAlerts;
+
+    /**
+     * Gets the IotSecuritySolutionsAnalyticsAggregatedAlertsClient object to access its operations.
+     *
+     * @return the IotSecuritySolutionsAnalyticsAggregatedAlertsClient object.
+     */
+    public IotSecuritySolutionsAnalyticsAggregatedAlertsClient getIotSecuritySolutionsAnalyticsAggregatedAlerts() {
+        return this.iotSecuritySolutionsAnalyticsAggregatedAlerts;
+    }
+
+    /** The IotSecuritySolutionsAnalyticsRecommendationsClient object to access its operations. */
+    private final IotSecuritySolutionsAnalyticsRecommendationsClient iotSecuritySolutionsAnalyticsRecommendations;
+
+    /**
+     * Gets the IotSecuritySolutionsAnalyticsRecommendationsClient object to access its operations.
+     *
+     * @return the IotSecuritySolutionsAnalyticsRecommendationsClient object.
+     */
+    public IotSecuritySolutionsAnalyticsRecommendationsClient getIotSecuritySolutionsAnalyticsRecommendations() {
+        return this.iotSecuritySolutionsAnalyticsRecommendations;
+    }
+
+    /** The IotSecuritySolutionsClient object to access its operations. */
+    private final IotSecuritySolutionsClient iotSecuritySolutions;
+
+    /**
+     * Gets the IotSecuritySolutionsClient object to access its operations.
+     *
+     * @return the IotSecuritySolutionsClient object.
+     */
+    public IotSecuritySolutionsClient getIotSecuritySolutions() {
+        return this.iotSecuritySolutions;
+    }
+
+    /** The AdaptiveNetworkHardeningsClient object to access its operations. */
+    private final AdaptiveNetworkHardeningsClient adaptiveNetworkHardenings;
+
+    /**
+     * Gets the AdaptiveNetworkHardeningsClient object to access its operations.
+     *
+     * @return the AdaptiveNetworkHardeningsClient object.
+     */
+    public AdaptiveNetworkHardeningsClient getAdaptiveNetworkHardenings() {
+        return this.adaptiveNetworkHardenings;
+    }
+
+    /** The AllowedConnectionsClient object to access its operations. */
+    private final AllowedConnectionsClient allowedConnections;
+
+    /**
+     * Gets the AllowedConnectionsClient object to access its operations.
+     *
+     * @return the AllowedConnectionsClient object.
+     */
+    public AllowedConnectionsClient getAllowedConnections() {
+        return this.allowedConnections;
+    }
+
+    /** The AdaptiveApplicationControlsClient object to access its operations. */
+    private final AdaptiveApplicationControlsClient adaptiveApplicationControls;
+
+    /**
+     * Gets the AdaptiveApplicationControlsClient object to access its operations.
+     *
+     * @return the AdaptiveApplicationControlsClient object.
+     */
+    public AdaptiveApplicationControlsClient getAdaptiveApplicationControls() {
+        return this.adaptiveApplicationControls;
+    }
+
+    /** The DiscoveredSecuritySolutionsClient object to access its operations. */
+    private final DiscoveredSecuritySolutionsClient discoveredSecuritySolutions;
+
+    /**
+     * Gets the DiscoveredSecuritySolutionsClient object to access its operations.
+     *
+     * @return the DiscoveredSecuritySolutionsClient object.
+     */
+    public DiscoveredSecuritySolutionsClient getDiscoveredSecuritySolutions() {
+        return this.discoveredSecuritySolutions;
+    }
+
+    /** The ExternalSecuritySolutionsClient object to access its operations. */
+    private final ExternalSecuritySolutionsClient externalSecuritySolutions;
+
+    /**
+     * Gets the ExternalSecuritySolutionsClient object to access its operations.
+     *
+     * @return the ExternalSecuritySolutionsClient object.
+     */
+    public ExternalSecuritySolutionsClient getExternalSecuritySolutions() {
+        return this.externalSecuritySolutions;
+    }
+
+    /** The JitNetworkAccessPoliciesClient object to access its operations. */
+    private final JitNetworkAccessPoliciesClient jitNetworkAccessPolicies;
+
+    /**
+     * Gets the JitNetworkAccessPoliciesClient object to access its operations.
+     *
+     * @return the JitNetworkAccessPoliciesClient object.
+     */
+    public JitNetworkAccessPoliciesClient getJitNetworkAccessPolicies() {
+        return this.jitNetworkAccessPolicies;
+    }
+
+    /** The SecureScoresClient object to access its operations. */
+    private final SecureScoresClient secureScores;
+
+    /**
+     * Gets the SecureScoresClient object to access its operations.
+     *
+     * @return the SecureScoresClient object.
+     */
+    public SecureScoresClient getSecureScores() {
+        return this.secureScores;
+    }
+
+    /** The SecureScoreControlsClient object to access its operations. */
+    private final SecureScoreControlsClient secureScoreControls;
+
+    /**
+     * Gets the SecureScoreControlsClient object to access its operations.
+     *
+     * @return the SecureScoreControlsClient object.
+     */
+    public SecureScoreControlsClient getSecureScoreControls() {
+        return this.secureScoreControls;
+    }
+
+    /** The SecureScoreControlDefinitionsClient object to access its operations. */
+    private final SecureScoreControlDefinitionsClient secureScoreControlDefinitions;
+
+    /**
+     * Gets the SecureScoreControlDefinitionsClient object to access its operations.
+     *
+     * @return the SecureScoreControlDefinitionsClient object.
+     */
+    public SecureScoreControlDefinitionsClient getSecureScoreControlDefinitions() {
+        return this.secureScoreControlDefinitions;
+    }
+
+    /** The SecuritySolutionsClient object to access its operations. */
+    private final SecuritySolutionsClient securitySolutions;
+
+    /**
+     * Gets the SecuritySolutionsClient object to access its operations.
+     *
+     * @return the SecuritySolutionsClient object.
+     */
+    public SecuritySolutionsClient getSecuritySolutions() {
+        return this.securitySolutions;
+    }
+
+    /** The SecuritySolutionsReferenceDatasClient object to access its operations. */
+    private final SecuritySolutionsReferenceDatasClient securitySolutionsReferenceDatas;
+
+    /**
+     * Gets the SecuritySolutionsReferenceDatasClient object to access its operations.
+     *
+     * @return the SecuritySolutionsReferenceDatasClient object.
+     */
+    public SecuritySolutionsReferenceDatasClient getSecuritySolutionsReferenceDatas() {
+        return this.securitySolutionsReferenceDatas;
+    }
+
+    /** The ServerVulnerabilityAssessmentsClient object to access its operations. */
+    private final ServerVulnerabilityAssessmentsClient serverVulnerabilityAssessments;
+
+    /**
+     * Gets the ServerVulnerabilityAssessmentsClient object to access its operations.
+     *
+     * @return the ServerVulnerabilityAssessmentsClient object.
+     */
+    public ServerVulnerabilityAssessmentsClient getServerVulnerabilityAssessments() {
+        return this.serverVulnerabilityAssessments;
+    }
+
+    /** The TopologiesClient object to access its operations. */
+    private final TopologiesClient topologies;
+
+    /**
+     * Gets the TopologiesClient object to access its operations.
+     *
+     * @return the TopologiesClient object.
+     */
+    public TopologiesClient getTopologies() {
+        return this.topologies;
+    }
+
+    /** The AssessmentsMetadatasClient object to access its operations. */
+    private final AssessmentsMetadatasClient assessmentsMetadatas;
+
+    /**
+     * Gets the AssessmentsMetadatasClient object to access its operations.
+     *
+     * @return the AssessmentsMetadatasClient object.
+     */
+    public AssessmentsMetadatasClient getAssessmentsMetadatas() {
+        return this.assessmentsMetadatas;
+    }
+
+    /** The AssessmentsClient object to access its operations. */
+    private final AssessmentsClient assessments;
+
+    /**
+     * Gets the AssessmentsClient object to access its operations.
+     *
+     * @return the AssessmentsClient object.
+     */
+    public AssessmentsClient getAssessments() {
+        return this.assessments;
+    }
+
+    /** The AlertsClient object to access its operations. */
+    private final AlertsClient alerts;
+
+    /**
+     * Gets the AlertsClient object to access its operations.
+     *
+     * @return the AlertsClient object.
+     */
+    public AlertsClient getAlerts() {
+        return this.alerts;
+    }
+
+    /** The SettingsClient object to access its operations. */
+    private final SettingsClient settings;
+
+    /**
+     * Gets the SettingsClient object to access its operations.
+     *
+     * @return the SettingsClient object.
+     */
+    public SettingsClient getSettings() {
+        return this.settings;
+    }
+
+    /** The PricingsClient object to access its operations. */
+    private final PricingsClient pricings;
+
+    /**
+     * Gets the PricingsClient object to access its operations.
+     *
+     * @return the PricingsClient object.
+     */
+    public PricingsClient getPricings() {
+        return this.pricings;
+    }
+
+    /** The ServerVulnerabilityAssessmentsSettingsClient object to access its operations. */
+    private final ServerVulnerabilityAssessmentsSettingsClient serverVulnerabilityAssessmentsSettings;
+
+    /**
+     * Gets the ServerVulnerabilityAssessmentsSettingsClient object to access its operations.
+     *
+     * @return the ServerVulnerabilityAssessmentsSettingsClient object.
+     */
+    public ServerVulnerabilityAssessmentsSettingsClient getServerVulnerabilityAssessmentsSettings() {
+        return this.serverVulnerabilityAssessmentsSettings;
     }
 
     /**
@@ -910,69 +1040,79 @@ public final class SecurityCenterImpl implements SecurityCenter {
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.mdeOnboardings = new MdeOnboardingsClientImpl(this);
-        this.customAssessmentAutomations = new CustomAssessmentAutomationsClientImpl(this);
-        this.customEntityStoreAssignments = new CustomEntityStoreAssignmentsClientImpl(this);
-        this.complianceResults = new ComplianceResultsClientImpl(this);
-        this.pricings = new PricingsClientImpl(this);
-        this.advancedThreatProtections = new AdvancedThreatProtectionsClientImpl(this);
-        this.deviceSecurityGroups = new DeviceSecurityGroupsClientImpl(this);
-        this.iotSecuritySolutions = new IotSecuritySolutionsClientImpl(this);
-        this.iotSecuritySolutionAnalytics = new IotSecuritySolutionAnalyticsClientImpl(this);
-        this.iotSecuritySolutionsAnalyticsAggregatedAlerts =
-            new IotSecuritySolutionsAnalyticsAggregatedAlertsClientImpl(this);
-        this.iotSecuritySolutionsAnalyticsRecommendations =
-            new IotSecuritySolutionsAnalyticsRecommendationsClientImpl(this);
         this.locations = new LocationsClientImpl(this);
         this.operations = new OperationsClientImpl(this);
         this.tasks = new TasksClientImpl(this);
         this.autoProvisioningSettings = new AutoProvisioningSettingsClientImpl(this);
         this.compliances = new CompliancesClientImpl(this);
         this.informationProtectionPolicies = new InformationProtectionPoliciesClientImpl(this);
-        this.securityContacts = new SecurityContactsClientImpl(this);
         this.workspaceSettings = new WorkspaceSettingsClientImpl(this);
+        this.alertsSuppressionRules = new AlertsSuppressionRulesClientImpl(this);
+        this.automations = new AutomationsClientImpl(this);
         this.regulatoryComplianceStandards = new RegulatoryComplianceStandardsClientImpl(this);
         this.regulatoryComplianceControls = new RegulatoryComplianceControlsClientImpl(this);
         this.regulatoryComplianceAssessments = new RegulatoryComplianceAssessmentsClientImpl(this);
         this.subAssessments = new SubAssessmentsClientImpl(this);
-        this.automations = new AutomationsClientImpl(this);
-        this.alertsSuppressionRules = new AlertsSuppressionRulesClientImpl(this);
-        this.serverVulnerabilityAssessments = new ServerVulnerabilityAssessmentsClientImpl(this);
-        this.assessmentsMetadatas = new AssessmentsMetadatasClientImpl(this);
-        this.assessments = new AssessmentsClientImpl(this);
-        this.adaptiveApplicationControls = new AdaptiveApplicationControlsClientImpl(this);
-        this.adaptiveNetworkHardenings = new AdaptiveNetworkHardeningsClientImpl(this);
-        this.allowedConnections = new AllowedConnectionsClientImpl(this);
-        this.topologies = new TopologiesClientImpl(this);
-        this.jitNetworkAccessPolicies = new JitNetworkAccessPoliciesClientImpl(this);
-        this.discoveredSecuritySolutions = new DiscoveredSecuritySolutionsClientImpl(this);
-        this.securitySolutionsReferenceDatas = new SecuritySolutionsReferenceDatasClientImpl(this);
-        this.externalSecuritySolutions = new ExternalSecuritySolutionsClientImpl(this);
-        this.secureScores = new SecureScoresClientImpl(this);
-        this.secureScoreControls = new SecureScoreControlsClientImpl(this);
-        this.secureScoreControlDefinitions = new SecureScoreControlDefinitionsClientImpl(this);
-        this.securitySolutions = new SecuritySolutionsClientImpl(this);
         this.connectors = new ConnectorsClientImpl(this);
-        this.alerts = new AlertsClientImpl(this);
-        this.settings = new SettingsClientImpl(this);
+        this.securityContacts = new SecurityContactsClientImpl(this);
         this.ingestionSettings = new IngestionSettingsClientImpl(this);
         this.softwareInventories = new SoftwareInventoriesClientImpl(this);
-        this.governanceRules = new GovernanceRulesClientImpl(this);
+        this.customAssessmentAutomations = new CustomAssessmentAutomationsClientImpl(this);
+        this.customEntityStoreAssignments = new CustomEntityStoreAssignmentsClientImpl(this);
+        this.mdeOnboardings = new MdeOnboardingsClientImpl(this);
         this.governanceAssignments = new GovernanceAssignmentsClientImpl(this);
+        this.governanceRules = new GovernanceRulesClientImpl(this);
         this.applications = new ApplicationsClientImpl(this);
         this.applicationOperations = new ApplicationOperationsClientImpl(this);
         this.securityConnectorApplications = new SecurityConnectorApplicationsClientImpl(this);
         this.securityConnectorApplicationOperations = new SecurityConnectorApplicationOperationsClientImpl(this);
         this.apiCollections = new ApiCollectionsClientImpl(this);
-        this.apiCollectionOnboardings = new ApiCollectionOnboardingsClientImpl(this);
-        this.apiCollectionOffboardings = new ApiCollectionOffboardingsClientImpl(this);
-        this.healthReports = new HealthReportsClientImpl(this);
-        this.healthReportOperations = new HealthReportOperationsClientImpl(this);
+        this.defenderForStorages = new DefenderForStoragesClientImpl(this);
+        this.securityOperators = new SecurityOperatorsClientImpl(this);
+        this.sqlVulnerabilityAssessmentBaselineRules = new SqlVulnerabilityAssessmentBaselineRulesClientImpl(this);
         this.sqlVulnerabilityAssessmentScans = new SqlVulnerabilityAssessmentScansClientImpl(this);
         this.sqlVulnerabilityAssessmentScanResults = new SqlVulnerabilityAssessmentScanResultsClientImpl(this);
-        this.sqlVulnerabilityAssessmentBaselineRules = new SqlVulnerabilityAssessmentBaselineRulesClientImpl(this);
+        this.sensitivitySettings = new SensitivitySettingsClientImpl(this);
         this.securityConnectors = new SecurityConnectorsClientImpl(this);
-        this.securityOperators = new SecurityOperatorsClientImpl(this);
+        this.healthReports = new HealthReportsClientImpl(this);
+        this.azureDevOpsOrgs = new AzureDevOpsOrgsClientImpl(this);
+        this.azureDevOpsProjects = new AzureDevOpsProjectsClientImpl(this);
+        this.azureDevOpsRepos = new AzureDevOpsReposClientImpl(this);
+        this.devOpsConfigurations = new DevOpsConfigurationsClientImpl(this);
+        this.gitHubOwners = new GitHubOwnersClientImpl(this);
+        this.gitHubRepos = new GitHubReposClientImpl(this);
+        this.gitLabGroups = new GitLabGroupsClientImpl(this);
+        this.gitLabSubgroups = new GitLabSubgroupsClientImpl(this);
+        this.gitLabProjects = new GitLabProjectsClientImpl(this);
+        this.devOpsOperationResults = new DevOpsOperationResultsClientImpl(this);
+        this.complianceResults = new ComplianceResultsClientImpl(this);
+        this.advancedThreatProtections = new AdvancedThreatProtectionsClientImpl(this);
+        this.deviceSecurityGroups = new DeviceSecurityGroupsClientImpl(this);
+        this.iotSecuritySolutionAnalytics = new IotSecuritySolutionAnalyticsClientImpl(this);
+        this.iotSecuritySolutionsAnalyticsAggregatedAlerts =
+            new IotSecuritySolutionsAnalyticsAggregatedAlertsClientImpl(this);
+        this.iotSecuritySolutionsAnalyticsRecommendations =
+            new IotSecuritySolutionsAnalyticsRecommendationsClientImpl(this);
+        this.iotSecuritySolutions = new IotSecuritySolutionsClientImpl(this);
+        this.adaptiveNetworkHardenings = new AdaptiveNetworkHardeningsClientImpl(this);
+        this.allowedConnections = new AllowedConnectionsClientImpl(this);
+        this.adaptiveApplicationControls = new AdaptiveApplicationControlsClientImpl(this);
+        this.discoveredSecuritySolutions = new DiscoveredSecuritySolutionsClientImpl(this);
+        this.externalSecuritySolutions = new ExternalSecuritySolutionsClientImpl(this);
+        this.jitNetworkAccessPolicies = new JitNetworkAccessPoliciesClientImpl(this);
+        this.secureScores = new SecureScoresClientImpl(this);
+        this.secureScoreControls = new SecureScoreControlsClientImpl(this);
+        this.secureScoreControlDefinitions = new SecureScoreControlDefinitionsClientImpl(this);
+        this.securitySolutions = new SecuritySolutionsClientImpl(this);
+        this.securitySolutionsReferenceDatas = new SecuritySolutionsReferenceDatasClientImpl(this);
+        this.serverVulnerabilityAssessments = new ServerVulnerabilityAssessmentsClientImpl(this);
+        this.topologies = new TopologiesClientImpl(this);
+        this.assessmentsMetadatas = new AssessmentsMetadatasClientImpl(this);
+        this.assessments = new AssessmentsClientImpl(this);
+        this.alerts = new AlertsClientImpl(this);
+        this.settings = new SettingsClientImpl(this);
+        this.pricings = new PricingsClientImpl(this);
+        this.serverVulnerabilityAssessmentsSettings = new ServerVulnerabilityAssessmentsSettingsClientImpl(this);
     }
 
     /**

@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.security.models;
 
-import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 
@@ -13,22 +12,22 @@ public interface SecurityContacts {
     /**
      * List all security contact configurations for the subscription.
      *
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of security contacts response as paginated response with {@link PagedIterable}.
-     */
-    PagedIterable<SecurityContact> list();
-
-    /**
-     * List all security contact configurations for the subscription.
-     *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of security contacts response as paginated response with {@link PagedIterable}.
+     * @return list of security contacts response along with {@link Response}.
      */
-    PagedIterable<SecurityContact> list(Context context);
+    Response<SecurityContactList> listWithResponse(Context context);
+
+    /**
+     * List all security contact configurations for the subscription.
+     *
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of security contacts response.
+     */
+    SecurityContactList list();
 
     /**
      * Get Default Security contact configurations for the subscription.

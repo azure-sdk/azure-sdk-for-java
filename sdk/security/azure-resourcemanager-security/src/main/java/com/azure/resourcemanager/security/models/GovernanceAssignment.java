@@ -87,24 +87,28 @@ public interface GovernanceAssignment {
     interface Definition
         extends DefinitionStages.Blank, DefinitionStages.WithParentResource, DefinitionStages.WithCreate {
     }
+
     /** The GovernanceAssignment definition stages. */
     interface DefinitionStages {
         /** The first stage of the GovernanceAssignment definition. */
         interface Blank extends WithParentResource {
         }
+
         /** The stage of the GovernanceAssignment definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
              * Specifies scope, assessmentName.
              *
-             * @param scope The scope of the Governance assignments. Valid scopes are: subscription (format:
-             *     'subscriptions/{subscriptionId}'), or security connector (format:
+             * @param scope Scope of the query. can be subscription (/subscriptions/{subscriptionId}) or management
+             *     group (/providers/Microsoft.Management/managementGroups/mgName) or a security connector scope:
+             *     (format:
              *     'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
-             * @param assessmentName The Assessment Key - A unique key for the assessment type.
+             * @param assessmentName The Assessment Key - Unique key for the assessment type.
              * @return the next definition stage.
              */
             WithCreate withExistingAssessment(String scope, String assessmentName);
         }
+
         /**
          * The stage of the GovernanceAssignment definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
@@ -131,6 +135,7 @@ public interface GovernanceAssignment {
              */
             GovernanceAssignment create(Context context);
         }
+
         /** The stage of the GovernanceAssignment definition allowing to specify owner. */
         interface WithOwner {
             /**
@@ -142,6 +147,7 @@ public interface GovernanceAssignment {
              */
             WithCreate withOwner(String owner);
         }
+
         /** The stage of the GovernanceAssignment definition allowing to specify remediationDueDate. */
         interface WithRemediationDueDate {
             /**
@@ -154,6 +160,7 @@ public interface GovernanceAssignment {
              */
             WithCreate withRemediationDueDate(OffsetDateTime remediationDueDate);
         }
+
         /** The stage of the GovernanceAssignment definition allowing to specify remediationEta. */
         interface WithRemediationEta {
             /**
@@ -165,6 +172,7 @@ public interface GovernanceAssignment {
              */
             WithCreate withRemediationEta(RemediationEta remediationEta);
         }
+
         /** The stage of the GovernanceAssignment definition allowing to specify isGracePeriod. */
         interface WithIsGracePeriod {
             /**
@@ -176,6 +184,7 @@ public interface GovernanceAssignment {
              */
             WithCreate withIsGracePeriod(Boolean isGracePeriod);
         }
+
         /** The stage of the GovernanceAssignment definition allowing to specify governanceEmailNotification. */
         interface WithGovernanceEmailNotification {
             /**
@@ -188,6 +197,7 @@ public interface GovernanceAssignment {
              */
             WithCreate withGovernanceEmailNotification(GovernanceEmailNotification governanceEmailNotification);
         }
+
         /** The stage of the GovernanceAssignment definition allowing to specify additionalData. */
         interface WithAdditionalData {
             /**
@@ -201,6 +211,7 @@ public interface GovernanceAssignment {
             WithCreate withAdditionalData(GovernanceAssignmentAdditionalData additionalData);
         }
     }
+
     /**
      * Begins update for the GovernanceAssignment resource.
      *
@@ -231,6 +242,7 @@ public interface GovernanceAssignment {
          */
         GovernanceAssignment apply(Context context);
     }
+
     /** The GovernanceAssignment update stages. */
     interface UpdateStages {
         /** The stage of the GovernanceAssignment update allowing to specify owner. */
@@ -244,6 +256,7 @@ public interface GovernanceAssignment {
              */
             Update withOwner(String owner);
         }
+
         /** The stage of the GovernanceAssignment update allowing to specify remediationDueDate. */
         interface WithRemediationDueDate {
             /**
@@ -256,6 +269,7 @@ public interface GovernanceAssignment {
              */
             Update withRemediationDueDate(OffsetDateTime remediationDueDate);
         }
+
         /** The stage of the GovernanceAssignment update allowing to specify remediationEta. */
         interface WithRemediationEta {
             /**
@@ -267,6 +281,7 @@ public interface GovernanceAssignment {
              */
             Update withRemediationEta(RemediationEta remediationEta);
         }
+
         /** The stage of the GovernanceAssignment update allowing to specify isGracePeriod. */
         interface WithIsGracePeriod {
             /**
@@ -278,6 +293,7 @@ public interface GovernanceAssignment {
              */
             Update withIsGracePeriod(Boolean isGracePeriod);
         }
+
         /** The stage of the GovernanceAssignment update allowing to specify governanceEmailNotification. */
         interface WithGovernanceEmailNotification {
             /**
@@ -290,6 +306,7 @@ public interface GovernanceAssignment {
              */
             Update withGovernanceEmailNotification(GovernanceEmailNotification governanceEmailNotification);
         }
+
         /** The stage of the GovernanceAssignment update allowing to specify additionalData. */
         interface WithAdditionalData {
             /**
@@ -303,6 +320,7 @@ public interface GovernanceAssignment {
             Update withAdditionalData(GovernanceAssignmentAdditionalData additionalData);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

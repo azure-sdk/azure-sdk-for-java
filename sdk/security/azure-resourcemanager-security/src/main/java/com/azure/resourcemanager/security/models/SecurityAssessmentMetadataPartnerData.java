@@ -26,7 +26,7 @@ public final class SecurityAssessmentMetadataPartnerData {
     /*
      * Secret to authenticate the partner and verify it created the assessment - write only
      */
-    @JsonProperty(value = "secret", required = true)
+    @JsonProperty(value = "secret")
     private String secret;
 
     /** Creates an instance of SecurityAssessmentMetadataPartnerData class. */

@@ -10,8 +10,8 @@ import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.security.fluent.ApiCollectionsClient;
-import com.azure.resourcemanager.security.fluent.models.ApiCollectionResponseInner;
-import com.azure.resourcemanager.security.models.ApiCollectionResponse;
+import com.azure.resourcemanager.security.fluent.models.ApiCollectionInner;
+import com.azure.resourcemanager.security.models.ApiCollection;
 import com.azure.resourcemanager.security.models.ApiCollections;
 
 public final class ApiCollectionsImpl implements ApiCollections {
@@ -27,39 +27,71 @@ public final class ApiCollectionsImpl implements ApiCollections {
         this.serviceManager = serviceManager;
     }
 
-    public PagedIterable<ApiCollectionResponse> list(String resourceGroupName, String serviceName) {
-        PagedIterable<ApiCollectionResponseInner> inner = this.serviceClient().list(resourceGroupName, serviceName);
-        return Utils.mapPage(inner, inner1 -> new ApiCollectionResponseImpl(inner1, this.manager()));
+    public PagedIterable<ApiCollection> list(String resourceGroupName, String serviceName) {
+        PagedIterable<ApiCollectionInner> inner = this.serviceClient().list(resourceGroupName, serviceName);
+        return Utils.mapPage(inner, inner1 -> new ApiCollectionImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<ApiCollectionResponse> list(String resourceGroupName, String serviceName, Context context) {
-        PagedIterable<ApiCollectionResponseInner> inner =
-            this.serviceClient().list(resourceGroupName, serviceName, context);
-        return Utils.mapPage(inner, inner1 -> new ApiCollectionResponseImpl(inner1, this.manager()));
+    public PagedIterable<ApiCollection> list(String resourceGroupName, String serviceName, Context context) {
+        PagedIterable<ApiCollectionInner> inner = this.serviceClient().list(resourceGroupName, serviceName, context);
+        return Utils.mapPage(inner, inner1 -> new ApiCollectionImpl(inner1, this.manager()));
     }
 
-    public Response<ApiCollectionResponse> getWithResponse(
+    public Response<ApiCollection> getWithResponse(
         String resourceGroupName, String serviceName, String apiCollectionId, Context context) {
-        Response<ApiCollectionResponseInner> inner =
+        Response<ApiCollectionInner> inner =
             this.serviceClient().getWithResponse(resourceGroupName, serviceName, apiCollectionId, context);
         if (inner != null) {
             return new SimpleResponse<>(
                 inner.getRequest(),
                 inner.getStatusCode(),
                 inner.getHeaders(),
-                new ApiCollectionResponseImpl(inner.getValue(), this.manager()));
+                new ApiCollectionImpl(inner.getValue(), this.manager()));
         } else {
             return null;
         }
     }
 
-    public ApiCollectionResponse get(String resourceGroupName, String serviceName, String apiCollectionId) {
-        ApiCollectionResponseInner inner = this.serviceClient().get(resourceGroupName, serviceName, apiCollectionId);
+    public ApiCollection get(String resourceGroupName, String serviceName, String apiCollectionId) {
+        ApiCollectionInner inner = this.serviceClient().get(resourceGroupName, serviceName, apiCollectionId);
         if (inner != null) {
-            return new ApiCollectionResponseImpl(inner, this.manager());
+            return new ApiCollectionImpl(inner, this.manager());
         } else {
             return null;
         }
+    }
+
+    public Response<ApiCollection> createWithResponse(
+        String resourceGroupName, String serviceName, String apiCollectionId, Context context) {
+        Response<ApiCollectionInner> inner =
+            this.serviceClient().createWithResponse(resourceGroupName, serviceName, apiCollectionId, context);
+        if (inner != null) {
+            return new SimpleResponse<>(
+                inner.getRequest(),
+                inner.getStatusCode(),
+                inner.getHeaders(),
+                new ApiCollectionImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public ApiCollection create(String resourceGroupName, String serviceName, String apiCollectionId) {
+        ApiCollectionInner inner = this.serviceClient().create(resourceGroupName, serviceName, apiCollectionId);
+        if (inner != null) {
+            return new ApiCollectionImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public Response<Void> deleteWithResponse(
+        String resourceGroupName, String serviceName, String apiCollectionId, Context context) {
+        return this.serviceClient().deleteWithResponse(resourceGroupName, serviceName, apiCollectionId, context);
+    }
+
+    public void delete(String resourceGroupName, String serviceName, String apiCollectionId) {
+        this.serviceClient().delete(resourceGroupName, serviceName, apiCollectionId);
     }
 
     private ApiCollectionsClient serviceClient() {
