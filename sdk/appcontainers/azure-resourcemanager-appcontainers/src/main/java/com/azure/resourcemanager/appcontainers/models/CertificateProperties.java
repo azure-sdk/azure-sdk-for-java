@@ -79,6 +79,12 @@ public final class CertificateProperties {
     @JsonProperty(value = "publicKeyHash", access = JsonProperty.Access.WRITE_ONLY)
     private String publicKeyHash;
 
+    /*
+     * The type of the certificate. Allowed values are `ServerSSLCertificate` and `ImagePullTrustedCA`
+     */
+    @JsonProperty(value = "type")
+    private CertificateType type;
+
     /** Creates an instance of CertificateProperties class. */
     public CertificateProperties() {
     }
@@ -202,6 +208,28 @@ public final class CertificateProperties {
      */
     public String publicKeyHash() {
         return this.publicKeyHash;
+    }
+
+    /**
+     * Get the type property: The type of the certificate. Allowed values are `ServerSSLCertificate` and
+     * `ImagePullTrustedCA`.
+     *
+     * @return the type value.
+     */
+    public CertificateType type() {
+        return this.type;
+    }
+
+    /**
+     * Set the type property: The type of the certificate. Allowed values are `ServerSSLCertificate` and
+     * `ImagePullTrustedCA`.
+     *
+     * @param type the type value to set.
+     * @return the CertificateProperties object itself.
+     */
+    public CertificateProperties withType(CertificateType type) {
+        this.type = type;
+        return this;
     }
 
     /**
