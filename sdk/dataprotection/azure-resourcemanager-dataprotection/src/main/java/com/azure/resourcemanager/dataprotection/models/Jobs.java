@@ -62,4 +62,57 @@ public interface Jobs {
      * @return a job with id in a backup vault.
      */
     AzureBackupJobResource get(String resourceGroupName, String vaultName, String jobId);
+
+    /**
+     * Triggers cancellation of Job and returns an OperationID to track.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param vaultName The name of the backup vault.
+     * @param jobId The Job ID. This is a GUID-formatted string (e.g. 00000000-0000-0000-0000-000000000000).
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void triggerCancel(String resourceGroupName, String vaultName, String jobId);
+
+    /**
+     * Triggers cancellation of Job and returns an OperationID to track.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param vaultName The name of the backup vault.
+     * @param jobId The Job ID. This is a GUID-formatted string (e.g. 00000000-0000-0000-0000-000000000000).
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void triggerCancel(String resourceGroupName, String vaultName, String jobId, Context context);
+
+    /**
+     * Generates read SAS URL for a blob from which current job progress can be read.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param vaultName The name of the backup vault.
+     * @param jobId The Job ID. This is a GUID-formatted string (e.g. 00000000-0000-0000-0000-000000000000).
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return job Progress URL class along with {@link Response}.
+     */
+    Response<AzureBackupJobProgressUrl> generateProgressUrlWithResponse(
+        String resourceGroupName, String vaultName, String jobId, Context context);
+
+    /**
+     * Generates read SAS URL for a blob from which current job progress can be read.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param vaultName The name of the backup vault.
+     * @param jobId The Job ID. This is a GUID-formatted string (e.g. 00000000-0000-0000-0000-000000000000).
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return job Progress URL class.
+     */
+    AzureBackupJobProgressUrl generateProgressUrl(String resourceGroupName, String vaultName, String jobId);
 }

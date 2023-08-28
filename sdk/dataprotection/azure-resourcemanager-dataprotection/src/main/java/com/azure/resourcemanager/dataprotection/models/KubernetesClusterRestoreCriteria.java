@@ -84,6 +84,18 @@ public final class KubernetesClusterRestoreCriteria extends ItemLevelRestoreCrit
     @JsonProperty(value = "restoreHookReferences")
     private List<NamespacedNameResource> restoreHookReferences;
 
+    /*
+     * Gets or sets the staging RG Id for creating staging disks and snapshots during restore.
+     */
+    @JsonProperty(value = "stagingResourceGroupId")
+    private String stagingResourceGroupId;
+
+    /*
+     * Gets or sets the staging Storage Account Id for creating backup object store data during restore.
+     */
+    @JsonProperty(value = "stagingStorageAccountId")
+    private String stagingStorageAccountId;
+
     /** Creates an instance of KubernetesClusterRestoreCriteria class. */
     public KubernetesClusterRestoreCriteria() {
     }
@@ -307,6 +319,50 @@ public final class KubernetesClusterRestoreCriteria extends ItemLevelRestoreCrit
     public KubernetesClusterRestoreCriteria withRestoreHookReferences(
         List<NamespacedNameResource> restoreHookReferences) {
         this.restoreHookReferences = restoreHookReferences;
+        return this;
+    }
+
+    /**
+     * Get the stagingResourceGroupId property: Gets or sets the staging RG Id for creating staging disks and snapshots
+     * during restore.
+     *
+     * @return the stagingResourceGroupId value.
+     */
+    public String stagingResourceGroupId() {
+        return this.stagingResourceGroupId;
+    }
+
+    /**
+     * Set the stagingResourceGroupId property: Gets or sets the staging RG Id for creating staging disks and snapshots
+     * during restore.
+     *
+     * @param stagingResourceGroupId the stagingResourceGroupId value to set.
+     * @return the KubernetesClusterRestoreCriteria object itself.
+     */
+    public KubernetesClusterRestoreCriteria withStagingResourceGroupId(String stagingResourceGroupId) {
+        this.stagingResourceGroupId = stagingResourceGroupId;
+        return this;
+    }
+
+    /**
+     * Get the stagingStorageAccountId property: Gets or sets the staging Storage Account Id for creating backup object
+     * store data during restore.
+     *
+     * @return the stagingStorageAccountId value.
+     */
+    public String stagingStorageAccountId() {
+        return this.stagingStorageAccountId;
+    }
+
+    /**
+     * Set the stagingStorageAccountId property: Gets or sets the staging Storage Account Id for creating backup object
+     * store data during restore.
+     *
+     * @param stagingStorageAccountId the stagingStorageAccountId value to set.
+     * @return the KubernetesClusterRestoreCriteria object itself.
+     */
+    public KubernetesClusterRestoreCriteria withStagingStorageAccountId(String stagingStorageAccountId) {
+        this.stagingStorageAccountId = stagingStorageAccountId;
         return this;
     }
 

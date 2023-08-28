@@ -141,6 +141,12 @@ public final class AzureBackupJob {
     private String restoreType;
 
     /*
+     * The type of the source data store.
+     */
+    @JsonProperty(value = "sourceDataStoreType", access = JsonProperty.Access.WRITE_ONLY)
+    private String sourceDataStoreType;
+
+    /*
      * Resource Group Name of the Datasource
      */
     @JsonProperty(value = "sourceResourceGroup", required = true)
@@ -525,6 +531,15 @@ public final class AzureBackupJob {
      */
     public String restoreType() {
         return this.restoreType;
+    }
+
+    /**
+     * Get the sourceDataStoreType property: The type of the source data store.
+     *
+     * @return the sourceDataStoreType value.
+     */
+    public String sourceDataStoreType() {
+        return this.sourceDataStoreType;
     }
 
     /**
