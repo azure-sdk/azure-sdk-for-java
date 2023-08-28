@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.machinelearning.models;
 
+import com.azure.core.http.rest.Response;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.machinelearning.fluent.models.ComponentVersionInner;
@@ -66,23 +67,26 @@ public interface ComponentVersion {
             DefinitionStages.WithProperties,
             DefinitionStages.WithCreate {
     }
+
     /** The ComponentVersion definition stages. */
     interface DefinitionStages {
         /** The first stage of the ComponentVersion definition. */
         interface Blank extends WithParentResource {
         }
+
         /** The stage of the ComponentVersion definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
-             * Specifies resourceGroupName, workspaceName, name.
+             * Specifies resourceGroupName, registryName, componentName.
              *
              * @param resourceGroupName The name of the resource group. The name is case insensitive.
-             * @param workspaceName Name of Azure Machine Learning workspace.
-             * @param name Container name.
+             * @param registryName Name of Azure Machine Learning registry. This is case-insensitive.
+             * @param componentName Container name.
              * @return the next definition stage.
              */
-            WithProperties withExistingComponent(String resourceGroupName, String workspaceName, String name);
+            WithProperties withExistingComponent(String resourceGroupName, String registryName, String componentName);
         }
+
         /** The stage of the ComponentVersion definition allowing to specify properties. */
         interface WithProperties {
             /**
@@ -93,6 +97,7 @@ public interface ComponentVersion {
              */
             WithCreate withProperties(ComponentVersionProperties properties);
         }
+
         /**
          * The stage of the ComponentVersion definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
@@ -114,6 +119,7 @@ public interface ComponentVersion {
             ComponentVersion create(Context context);
         }
     }
+
     /**
      * Begins update for the ComponentVersion resource.
      *
@@ -138,6 +144,7 @@ public interface ComponentVersion {
          */
         ComponentVersion apply(Context context);
     }
+
     /** The ComponentVersion update stages. */
     interface UpdateStages {
         /** The stage of the ComponentVersion update allowing to specify properties. */
@@ -151,6 +158,7 @@ public interface ComponentVersion {
             Update withProperties(ComponentVersionProperties properties);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *
@@ -165,4 +173,28 @@ public interface ComponentVersion {
      * @return the refreshed resource.
      */
     ComponentVersion refresh(Context context);
+
+    /**
+     * Get a SAS for a blob reference associated with the component.
+     *
+     * @param body blob reference request object.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a SAS for a blob reference associated with the component along with {@link Response}.
+     */
+    Response<BlobReferenceSasResponseDto> getBlobReferenceSasWithResponse(
+        BlobReferenceSasRequestDto body, Context context);
+
+    /**
+     * Get a SAS for a blob reference associated with the component.
+     *
+     * @param body blob reference request object.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a SAS for a blob reference associated with the component.
+     */
+    BlobReferenceSasResponseDto getBlobReferenceSas(BlobReferenceSasRequestDto body);
 }

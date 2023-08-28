@@ -4,9 +4,12 @@
 
 package com.azure.resourcemanager.machinelearning.implementation;
 
+import com.azure.core.http.rest.Response;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.machinelearning.fluent.models.ComponentVersionInner;
+import com.azure.resourcemanager.machinelearning.models.BlobReferenceSasRequestDto;
+import com.azure.resourcemanager.machinelearning.models.BlobReferenceSasResponseDto;
 import com.azure.resourcemanager.machinelearning.models.ComponentVersion;
 import com.azure.resourcemanager.machinelearning.models.ComponentVersionProperties;
 
@@ -50,16 +53,17 @@ public final class ComponentVersionImpl
 
     private String resourceGroupName;
 
-    private String workspaceName;
+    private String registryName;
 
-    private String name;
+    private String componentName;
 
     private String version;
 
-    public ComponentVersionImpl withExistingComponent(String resourceGroupName, String workspaceName, String name) {
+    public ComponentVersionImpl withExistingComponent(
+        String resourceGroupName, String registryName, String componentName) {
         this.resourceGroupName = resourceGroupName;
-        this.workspaceName = workspaceName;
-        this.name = name;
+        this.registryName = registryName;
+        this.componentName = componentName;
         return this;
     }
 
@@ -67,10 +71,9 @@ public final class ComponentVersionImpl
         this.innerObject =
             serviceManager
                 .serviceClient()
-                .getComponentVersions()
-                .createOrUpdateWithResponse(
-                    resourceGroupName, workspaceName, name, version, this.innerModel(), Context.NONE)
-                .getValue();
+                .getRegistryComponentVersions()
+                .createOrUpdate(
+                    resourceGroupName, registryName, componentName, version, this.innerModel(), Context.NONE);
         return this;
     }
 
@@ -78,9 +81,8 @@ public final class ComponentVersionImpl
         this.innerObject =
             serviceManager
                 .serviceClient()
-                .getComponentVersions()
-                .createOrUpdateWithResponse(resourceGroupName, workspaceName, name, version, this.innerModel(), context)
-                .getValue();
+                .getRegistryComponentVersions()
+                .createOrUpdate(resourceGroupName, registryName, componentName, version, this.innerModel(), context);
         return this;
     }
 
@@ -98,10 +100,9 @@ public final class ComponentVersionImpl
         this.innerObject =
             serviceManager
                 .serviceClient()
-                .getComponentVersions()
-                .createOrUpdateWithResponse(
-                    resourceGroupName, workspaceName, name, version, this.innerModel(), Context.NONE)
-                .getValue();
+                .getRegistryComponentVersions()
+                .createOrUpdate(
+                    resourceGroupName, registryName, componentName, version, this.innerModel(), Context.NONE);
         return this;
     }
 
@@ -109,9 +110,8 @@ public final class ComponentVersionImpl
         this.innerObject =
             serviceManager
                 .serviceClient()
-                .getComponentVersions()
-                .createOrUpdateWithResponse(resourceGroupName, workspaceName, name, version, this.innerModel(), context)
-                .getValue();
+                .getRegistryComponentVersions()
+                .createOrUpdate(resourceGroupName, registryName, componentName, version, this.innerModel(), context);
         return this;
     }
 
@@ -121,8 +121,8 @@ public final class ComponentVersionImpl
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
         this.resourceGroupName = Utils.getValueFromIdByName(innerObject.id(), "resourceGroups");
-        this.workspaceName = Utils.getValueFromIdByName(innerObject.id(), "workspaces");
-        this.name = Utils.getValueFromIdByName(innerObject.id(), "components");
+        this.registryName = Utils.getValueFromIdByName(innerObject.id(), "registries");
+        this.componentName = Utils.getValueFromIdByName(innerObject.id(), "components");
         this.version = Utils.getValueFromIdByName(innerObject.id(), "versions");
     }
 
@@ -130,8 +130,8 @@ public final class ComponentVersionImpl
         this.innerObject =
             serviceManager
                 .serviceClient()
-                .getComponentVersions()
-                .getWithResponse(resourceGroupName, workspaceName, name, version, Context.NONE)
+                .getRegistryComponentVersions()
+                .getWithResponse(resourceGroupName, registryName, componentName, version, Context.NONE)
                 .getValue();
         return this;
     }
@@ -140,10 +140,23 @@ public final class ComponentVersionImpl
         this.innerObject =
             serviceManager
                 .serviceClient()
-                .getComponentVersions()
-                .getWithResponse(resourceGroupName, workspaceName, name, version, context)
+                .getRegistryComponentVersions()
+                .getWithResponse(resourceGroupName, registryName, componentName, version, context)
                 .getValue();
         return this;
+    }
+
+    public Response<BlobReferenceSasResponseDto> getBlobReferenceSasWithResponse(
+        BlobReferenceSasRequestDto body, Context context) {
+        return serviceManager
+            .registryComponentVersions()
+            .getBlobReferenceSasWithResponse(resourceGroupName, registryName, componentName, version, body, context);
+    }
+
+    public BlobReferenceSasResponseDto getBlobReferenceSas(BlobReferenceSasRequestDto body) {
+        return serviceManager
+            .registryComponentVersions()
+            .getBlobReferenceSas(resourceGroupName, registryName, componentName, version, body);
     }
 
     public ComponentVersionImpl withProperties(ComponentVersionProperties properties) {
