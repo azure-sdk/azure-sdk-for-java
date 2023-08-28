@@ -37,7 +37,7 @@ import java.util.Map;
 /** Samples for ContainerApps Update. */
 public final class ContainerAppsUpdateSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2023-05-01/examples/ContainerApps_Patch.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2023-08-01-preview/examples/ContainerApps_Patch.json
      */
     /**
      * Sample code: Patch Container App.

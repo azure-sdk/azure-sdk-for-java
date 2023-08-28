@@ -18,6 +18,12 @@ public final class Login {
     private LoginRoutes routes;
 
     /*
+     * The configuration settings of the token store.
+     */
+    @JsonProperty(value = "tokenStore")
+    private TokenStore tokenStore;
+
+    /*
      * <code>true</code> if the fragments from the request are preserved after the login request is made; otherwise,
      * <code>false</code>.
      */
@@ -66,6 +72,26 @@ public final class Login {
      */
     public Login withRoutes(LoginRoutes routes) {
         this.routes = routes;
+        return this;
+    }
+
+    /**
+     * Get the tokenStore property: The configuration settings of the token store.
+     *
+     * @return the tokenStore value.
+     */
+    public TokenStore tokenStore() {
+        return this.tokenStore;
+    }
+
+    /**
+     * Set the tokenStore property: The configuration settings of the token store.
+     *
+     * @param tokenStore the tokenStore value to set.
+     * @return the Login object itself.
+     */
+    public Login withTokenStore(TokenStore tokenStore) {
+        this.tokenStore = tokenStore;
         return this;
     }
 
@@ -165,6 +191,9 @@ public final class Login {
     public void validate() {
         if (routes() != null) {
             routes().validate();
+        }
+        if (tokenStore() != null) {
+            tokenStore().validate();
         }
         if (cookieExpiration() != null) {
             cookieExpiration().validate();

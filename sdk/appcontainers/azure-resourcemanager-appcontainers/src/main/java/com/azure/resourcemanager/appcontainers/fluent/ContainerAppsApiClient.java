@@ -211,4 +211,18 @@ public interface ContainerAppsApiClient {
      * @return the ContainerAppsSourceControlsClient object.
      */
     ContainerAppsSourceControlsClient getContainerAppsSourceControls();
+
+    /**
+     * Gets the UsagesClient object to access its operations.
+     *
+     * @return the UsagesClient object.
+     */
+    UsagesClient getUsages();
+
+    /**
+     * Gets the ManagedEnvironmentUsagesClient object to access its operations.
+     *
+     * @return the ManagedEnvironmentUsagesClient object.
+     */
+    ManagedEnvironmentUsagesClient getManagedEnvironmentUsages();
 }

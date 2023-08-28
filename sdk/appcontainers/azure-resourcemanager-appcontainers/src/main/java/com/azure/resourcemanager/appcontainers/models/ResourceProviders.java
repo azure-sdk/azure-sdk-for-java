@@ -38,4 +38,26 @@ public interface ResourceProviders {
      * @return details of a single job execution.
      */
     JobExecution jobExecution(String resourceGroupName, String jobName, String jobExecutionName);
+
+    /**
+     * Get the verification id of a subscription used for verifying custom domains.
+     *
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.resourcemanager.appcontainers.models.DefaultErrorResponseErrorException thrown if the request
+     *     is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the verification id of a subscription used for verifying custom domains along with {@link Response}.
+     */
+    Response<String> getCustomDomainVerificationIdWithResponse(Context context);
+
+    /**
+     * Get the verification id of a subscription used for verifying custom domains.
+     *
+     * @throws com.azure.resourcemanager.appcontainers.models.DefaultErrorResponseErrorException thrown if the request
+     *     is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the verification id of a subscription used for verifying custom domains.
+     */
+    String getCustomDomainVerificationId();
 }

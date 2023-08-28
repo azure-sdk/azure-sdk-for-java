@@ -9,6 +9,7 @@ import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.appcontainers.fluent.models.ManagedEnvironmentInner;
+import com.azure.resourcemanager.appcontainers.models.AppInsightsConfiguration;
 import com.azure.resourcemanager.appcontainers.models.AppLogsConfiguration;
 import com.azure.resourcemanager.appcontainers.models.CustomDomainConfiguration;
 import com.azure.resourcemanager.appcontainers.models.DaprConfiguration;
@@ -17,6 +18,7 @@ import com.azure.resourcemanager.appcontainers.models.EnvironmentProvisioningSta
 import com.azure.resourcemanager.appcontainers.models.KedaConfiguration;
 import com.azure.resourcemanager.appcontainers.models.ManagedEnvironment;
 import com.azure.resourcemanager.appcontainers.models.ManagedEnvironmentPropertiesPeerAuthentication;
+import com.azure.resourcemanager.appcontainers.models.OpenTelemetryConfiguration;
 import com.azure.resourcemanager.appcontainers.models.VnetConfiguration;
 import com.azure.resourcemanager.appcontainers.models.WorkloadProfile;
 import java.util.Collections;
@@ -92,6 +94,14 @@ public final class ManagedEnvironmentImpl
 
     public AppLogsConfiguration appLogsConfiguration() {
         return this.innerModel().appLogsConfiguration();
+    }
+
+    public AppInsightsConfiguration appInsightsConfiguration() {
+        return this.innerModel().appInsightsConfiguration();
+    }
+
+    public OpenTelemetryConfiguration openTelemetryConfiguration() {
+        return this.innerModel().openTelemetryConfiguration();
     }
 
     public Boolean zoneRedundant() {
@@ -283,6 +293,17 @@ public final class ManagedEnvironmentImpl
 
     public ManagedEnvironmentImpl withAppLogsConfiguration(AppLogsConfiguration appLogsConfiguration) {
         this.innerModel().withAppLogsConfiguration(appLogsConfiguration);
+        return this;
+    }
+
+    public ManagedEnvironmentImpl withAppInsightsConfiguration(AppInsightsConfiguration appInsightsConfiguration) {
+        this.innerModel().withAppInsightsConfiguration(appInsightsConfiguration);
+        return this;
+    }
+
+    public ManagedEnvironmentImpl withOpenTelemetryConfiguration(
+        OpenTelemetryConfiguration openTelemetryConfiguration) {
+        this.innerModel().withOpenTelemetryConfiguration(openTelemetryConfiguration);
         return this;
     }
 
