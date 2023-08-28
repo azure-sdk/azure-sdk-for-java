@@ -50,6 +50,18 @@ public final class SweepJob extends JobBaseProperties {
     private Map<String, JobOutput> outputs;
 
     /*
+     * Queue settings for the job
+     */
+    @JsonProperty(value = "queueSettings")
+    private QueueSettings queueSettings;
+
+    /*
+     * Compute Resource configuration for the job.
+     */
+    @JsonProperty(value = "resources")
+    private JobResourceConfiguration resources;
+
+    /*
      * [Required] The hyperparameter sampling algorithm
      */
     @JsonProperty(value = "samplingAlgorithm", required = true)
@@ -175,6 +187,46 @@ public final class SweepJob extends JobBaseProperties {
     }
 
     /**
+     * Get the queueSettings property: Queue settings for the job.
+     *
+     * @return the queueSettings value.
+     */
+    public QueueSettings queueSettings() {
+        return this.queueSettings;
+    }
+
+    /**
+     * Set the queueSettings property: Queue settings for the job.
+     *
+     * @param queueSettings the queueSettings value to set.
+     * @return the SweepJob object itself.
+     */
+    public SweepJob withQueueSettings(QueueSettings queueSettings) {
+        this.queueSettings = queueSettings;
+        return this;
+    }
+
+    /**
+     * Get the resources property: Compute Resource configuration for the job.
+     *
+     * @return the resources value.
+     */
+    public JobResourceConfiguration resources() {
+        return this.resources;
+    }
+
+    /**
+     * Set the resources property: Compute Resource configuration for the job.
+     *
+     * @param resources the resources value to set.
+     * @return the SweepJob object itself.
+     */
+    public SweepJob withResources(JobResourceConfiguration resources) {
+        this.resources = resources;
+        return this;
+    }
+
+    /**
      * Get the samplingAlgorithm property: [Required] The hyperparameter sampling algorithm.
      *
      * @return the samplingAlgorithm value.
@@ -280,6 +332,20 @@ public final class SweepJob extends JobBaseProperties {
 
     /** {@inheritDoc} */
     @Override
+    public SweepJob withNotificationSetting(NotificationSetting notificationSetting) {
+        super.withNotificationSetting(notificationSetting);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public SweepJob withSecretsConfiguration(Map<String, SecretConfiguration> secretsConfiguration) {
+        super.withSecretsConfiguration(secretsConfiguration);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public SweepJob withServices(Map<String, JobService> services) {
         super.withServices(services);
         return this;
@@ -346,6 +412,12 @@ public final class SweepJob extends JobBaseProperties {
                             e.validate();
                         }
                     });
+        }
+        if (queueSettings() != null) {
+            queueSettings().validate();
+        }
+        if (resources() != null) {
+            resources().validate();
         }
         if (samplingAlgorithm() == null) {
             throw LOGGER

@@ -120,11 +120,13 @@ public interface OnlineEndpoint {
             DefinitionStages.WithProperties,
             DefinitionStages.WithCreate {
     }
+
     /** The OnlineEndpoint definition stages. */
     interface DefinitionStages {
         /** The first stage of the OnlineEndpoint definition. */
         interface Blank extends WithLocation {
         }
+
         /** The stage of the OnlineEndpoint definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -143,6 +145,7 @@ public interface OnlineEndpoint {
              */
             WithParentResource withRegion(String location);
         }
+
         /** The stage of the OnlineEndpoint definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -154,6 +157,7 @@ public interface OnlineEndpoint {
              */
             WithProperties withExistingWorkspace(String resourceGroupName, String workspaceName);
         }
+
         /** The stage of the OnlineEndpoint definition allowing to specify properties. */
         interface WithProperties {
             /**
@@ -164,6 +168,7 @@ public interface OnlineEndpoint {
              */
             WithCreate withProperties(OnlineEndpointProperties properties);
         }
+
         /**
          * The stage of the OnlineEndpoint definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
@@ -188,6 +193,7 @@ public interface OnlineEndpoint {
              */
             OnlineEndpoint create(Context context);
         }
+
         /** The stage of the OnlineEndpoint definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -198,6 +204,7 @@ public interface OnlineEndpoint {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
         /** The stage of the OnlineEndpoint definition allowing to specify identity. */
         interface WithIdentity {
             /**
@@ -209,6 +216,7 @@ public interface OnlineEndpoint {
              */
             WithCreate withIdentity(ManagedServiceIdentity identity);
         }
+
         /** The stage of the OnlineEndpoint definition allowing to specify kind. */
         interface WithKind {
             /**
@@ -221,6 +229,7 @@ public interface OnlineEndpoint {
              */
             WithCreate withKind(String kind);
         }
+
         /** The stage of the OnlineEndpoint definition allowing to specify sku. */
         interface WithSku {
             /**
@@ -232,6 +241,7 @@ public interface OnlineEndpoint {
             WithCreate withSku(Sku sku);
         }
     }
+
     /**
      * Begins update for the OnlineEndpoint resource.
      *
@@ -256,6 +266,7 @@ public interface OnlineEndpoint {
          */
         OnlineEndpoint apply(Context context);
     }
+
     /** The OnlineEndpoint update stages. */
     interface UpdateStages {
         /** The stage of the OnlineEndpoint update allowing to specify tags. */
@@ -268,6 +279,7 @@ public interface OnlineEndpoint {
              */
             Update withTags(Map<String, String> tags);
         }
+
         /** The stage of the OnlineEndpoint update allowing to specify identity. */
         interface WithIdentity {
             /**
@@ -280,6 +292,7 @@ public interface OnlineEndpoint {
             Update withIdentity(PartialManagedServiceIdentity identity);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *
@@ -337,7 +350,7 @@ public interface OnlineEndpoint {
     void regenerateKeys(RegenerateEndpointKeysRequest body, Context context);
 
     /**
-     * Retrieve a valid AAD token for an Endpoint using AMLToken-based authentication.
+     * Retrieve a valid AML token for an Endpoint using AMLToken-based authentication.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -348,7 +361,7 @@ public interface OnlineEndpoint {
     Response<EndpointAuthToken> getTokenWithResponse(Context context);
 
     /**
-     * Retrieve a valid AAD token for an Endpoint using AMLToken-based authentication.
+     * Retrieve a valid AML token for an Endpoint using AMLToken-based authentication.
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.

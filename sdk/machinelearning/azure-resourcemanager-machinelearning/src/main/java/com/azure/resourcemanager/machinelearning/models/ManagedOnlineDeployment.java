@@ -27,6 +27,13 @@ public final class ManagedOnlineDeployment extends OnlineDeploymentProperties {
 
     /** {@inheritDoc} */
     @Override
+    public ManagedOnlineDeployment withDataCollector(DataCollector dataCollector) {
+        super.withDataCollector(dataCollector);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public ManagedOnlineDeployment withEgressPublicNetworkAccess(
         EgressPublicNetworkAccessType egressPublicNetworkAccess) {
         super.withEgressPublicNetworkAccess(egressPublicNetworkAccess);

@@ -16,11 +16,11 @@ public interface NotebookResourceInfo {
     String fqdn();
 
     /**
-     * Gets the resourceId property: the data plane resourceId that used to initialize notebook component.
+     * Gets the isPrivateLinkEnabled property: The isPrivateLinkEnabled property.
      *
-     * @return the resourceId value.
+     * @return the isPrivateLinkEnabled value.
      */
-    String resourceId();
+    Boolean isPrivateLinkEnabled();
 
     /**
      * Gets the notebookPreparationError property: The error that occurs when preparing notebook.
@@ -28,6 +28,13 @@ public interface NotebookResourceInfo {
      * @return the notebookPreparationError value.
      */
     NotebookPreparationError notebookPreparationError();
+
+    /**
+     * Gets the resourceId property: the data plane resourceId that used to initialize notebook component.
+     *
+     * @return the resourceId value.
+     */
+    String resourceId();
 
     /**
      * Gets the inner com.azure.resourcemanager.machinelearning.fluent.models.NotebookResourceInfoInner object.
