@@ -90,6 +90,13 @@ public interface IotFhirDestination {
     String regionName();
 
     /**
+     * Gets the name of the resource group.
+     *
+     * @return the name of the resource group.
+     */
+    String resourceGroupName();
+
+    /**
      * Gets the inner com.azure.resourcemanager.healthcareapis.fluent.models.IotFhirDestinationInner object.
      *
      * @return the inner object.
@@ -105,11 +112,13 @@ public interface IotFhirDestination {
             DefinitionStages.WithFhirMapping,
             DefinitionStages.WithCreate {
     }
+
     /** The IotFhirDestination definition stages. */
     interface DefinitionStages {
         /** The first stage of the IotFhirDestination definition. */
         interface Blank extends WithParentResource {
         }
+
         /** The stage of the IotFhirDestination definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -123,6 +132,7 @@ public interface IotFhirDestination {
             WithResourceIdentityResolutionType withExistingIotconnector(
                 String resourceGroupName, String workspaceName, String iotConnectorName);
         }
+
         /** The stage of the IotFhirDestination definition allowing to specify resourceIdentityResolutionType. */
         interface WithResourceIdentityResolutionType {
             /**
@@ -135,6 +145,7 @@ public interface IotFhirDestination {
             WithFhirServiceResourceId withResourceIdentityResolutionType(
                 IotIdentityResolutionType resourceIdentityResolutionType);
         }
+
         /** The stage of the IotFhirDestination definition allowing to specify fhirServiceResourceId. */
         interface WithFhirServiceResourceId {
             /**
@@ -146,6 +157,7 @@ public interface IotFhirDestination {
              */
             WithFhirMapping withFhirServiceResourceId(String fhirServiceResourceId);
         }
+
         /** The stage of the IotFhirDestination definition allowing to specify fhirMapping. */
         interface WithFhirMapping {
             /**
@@ -156,6 +168,7 @@ public interface IotFhirDestination {
              */
             WithCreate withFhirMapping(IotMappingProperties fhirMapping);
         }
+
         /**
          * The stage of the IotFhirDestination definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
@@ -176,6 +189,7 @@ public interface IotFhirDestination {
              */
             IotFhirDestination create(Context context);
         }
+
         /** The stage of the IotFhirDestination definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -194,6 +208,7 @@ public interface IotFhirDestination {
              */
             WithCreate withRegion(String location);
         }
+
         /** The stage of the IotFhirDestination definition allowing to specify etag. */
         interface WithEtag {
             /**
@@ -206,6 +221,7 @@ public interface IotFhirDestination {
             WithCreate withEtag(String etag);
         }
     }
+
     /**
      * Begins update for the IotFhirDestination resource.
      *
@@ -234,6 +250,7 @@ public interface IotFhirDestination {
          */
         IotFhirDestination apply(Context context);
     }
+
     /** The IotFhirDestination update stages. */
     interface UpdateStages {
         /** The stage of the IotFhirDestination update allowing to specify etag. */
@@ -247,6 +264,7 @@ public interface IotFhirDestination {
              */
             Update withEtag(String etag);
         }
+
         /** The stage of the IotFhirDestination update allowing to specify resourceIdentityResolutionType. */
         interface WithResourceIdentityResolutionType {
             /**
@@ -258,6 +276,7 @@ public interface IotFhirDestination {
              */
             Update withResourceIdentityResolutionType(IotIdentityResolutionType resourceIdentityResolutionType);
         }
+
         /** The stage of the IotFhirDestination update allowing to specify fhirServiceResourceId. */
         interface WithFhirServiceResourceId {
             /**
@@ -269,6 +288,7 @@ public interface IotFhirDestination {
              */
             Update withFhirServiceResourceId(String fhirServiceResourceId);
         }
+
         /** The stage of the IotFhirDestination update allowing to specify fhirMapping. */
         interface WithFhirMapping {
             /**
@@ -280,6 +300,7 @@ public interface IotFhirDestination {
             Update withFhirMapping(IotMappingProperties fhirMapping);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

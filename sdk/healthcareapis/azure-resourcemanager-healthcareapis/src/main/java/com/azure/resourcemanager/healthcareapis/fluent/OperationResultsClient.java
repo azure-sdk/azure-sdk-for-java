@@ -17,19 +17,6 @@ public interface OperationResultsClient {
      *
      * @param locationName The location of the operation.
      * @param operationResultId The ID of the operation result to get.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the operation result for a long running operation.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    OperationResultsDescriptionInner get(String locationName, String operationResultId);
-
-    /**
-     * Get the operation result for a long running operation.
-     *
-     * @param locationName The location of the operation.
-     * @param operationResultId The ID of the operation result to get.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -39,4 +26,17 @@ public interface OperationResultsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<OperationResultsDescriptionInner> getWithResponse(
         String locationName, String operationResultId, Context context);
+
+    /**
+     * Get the operation result for a long running operation.
+     *
+     * @param locationName The location of the operation.
+     * @param operationResultId The ID of the operation result to get.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the operation result for a long running operation.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    OperationResultsDescriptionInner get(String locationName, String operationResultId);
 }

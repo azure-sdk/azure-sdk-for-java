@@ -61,6 +61,13 @@ public interface PrivateEndpointConnectionDescription {
     SystemData systemData();
 
     /**
+     * Gets the name of the resource group.
+     *
+     * @return the name of the resource group.
+     */
+    String resourceGroupName();
+
+    /**
      * Gets the inner com.azure.resourcemanager.healthcareapis.fluent.models.PrivateEndpointConnectionDescriptionInner
      * object.
      *
@@ -72,11 +79,13 @@ public interface PrivateEndpointConnectionDescription {
     interface Definition
         extends DefinitionStages.Blank, DefinitionStages.WithParentResource, DefinitionStages.WithCreate {
     }
+
     /** The PrivateEndpointConnectionDescription definition stages. */
     interface DefinitionStages {
         /** The first stage of the PrivateEndpointConnectionDescription definition. */
         interface Blank extends WithParentResource {
         }
+
         /** The stage of the PrivateEndpointConnectionDescription definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -88,6 +97,7 @@ public interface PrivateEndpointConnectionDescription {
              */
             WithCreate withExistingService(String resourceGroupName, String resourceName);
         }
+
         /**
          * The stage of the PrivateEndpointConnectionDescription definition which contains all the minimum required
          * properties for the resource to be created, but also allows for any other optional properties to be specified.
@@ -109,6 +119,7 @@ public interface PrivateEndpointConnectionDescription {
              */
             PrivateEndpointConnectionDescription create(Context context);
         }
+
         /** The stage of the PrivateEndpointConnectionDescription definition allowing to specify privateEndpoint. */
         interface WithPrivateEndpoint {
             /**
@@ -119,6 +130,7 @@ public interface PrivateEndpointConnectionDescription {
              */
             WithCreate withPrivateEndpoint(PrivateEndpoint privateEndpoint);
         }
+
         /**
          * The stage of the PrivateEndpointConnectionDescription definition allowing to specify
          * privateLinkServiceConnectionState.
@@ -136,6 +148,7 @@ public interface PrivateEndpointConnectionDescription {
                 PrivateLinkServiceConnectionState privateLinkServiceConnectionState);
         }
     }
+
     /**
      * Begins update for the PrivateEndpointConnectionDescription resource.
      *
@@ -160,6 +173,7 @@ public interface PrivateEndpointConnectionDescription {
          */
         PrivateEndpointConnectionDescription apply(Context context);
     }
+
     /** The PrivateEndpointConnectionDescription update stages. */
     interface UpdateStages {
         /** The stage of the PrivateEndpointConnectionDescription update allowing to specify privateEndpoint. */
@@ -172,6 +186,7 @@ public interface PrivateEndpointConnectionDescription {
              */
             Update withPrivateEndpoint(PrivateEndpoint privateEndpoint);
         }
+
         /**
          * The stage of the PrivateEndpointConnectionDescription update allowing to specify
          * privateLinkServiceConnectionState.
@@ -189,6 +204,7 @@ public interface PrivateEndpointConnectionDescription {
                 PrivateLinkServiceConnectionState privateLinkServiceConnectionState);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

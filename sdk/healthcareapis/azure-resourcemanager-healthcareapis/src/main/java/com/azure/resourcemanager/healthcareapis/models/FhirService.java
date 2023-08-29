@@ -84,13 +84,6 @@ public interface FhirService {
     ProvisioningState provisioningState();
 
     /**
-     * Gets the accessPolicies property: Fhir Service access policies.
-     *
-     * @return the accessPolicies value.
-     */
-    List<FhirServiceAccessPolicyEntry> accessPolicies();
-
-    /**
      * Gets the acrConfiguration property: Fhir Service Azure container registry configuration.
      *
      * @return the acrConfiguration value.
@@ -149,6 +142,20 @@ public interface FhirService {
     ResourceVersionPolicyConfiguration resourceVersionPolicyConfiguration();
 
     /**
+     * Gets the importConfiguration property: Fhir Service import configuration.
+     *
+     * @return the importConfiguration value.
+     */
+    FhirServiceImportConfiguration importConfiguration();
+
+    /**
+     * Gets the implementationGuidesConfiguration property: Implementation Guides configuration.
+     *
+     * @return the implementationGuidesConfiguration value.
+     */
+    ImplementationGuidesConfiguration implementationGuidesConfiguration();
+
+    /**
      * Gets the region of the resource.
      *
      * @return the region of the resource.
@@ -163,6 +170,13 @@ public interface FhirService {
     String regionName();
 
     /**
+     * Gets the name of the resource group.
+     *
+     * @return the name of the resource group.
+     */
+    String resourceGroupName();
+
+    /**
      * Gets the inner com.azure.resourcemanager.healthcareapis.fluent.models.FhirServiceInner object.
      *
      * @return the inner object.
@@ -173,11 +187,13 @@ public interface FhirService {
     interface Definition
         extends DefinitionStages.Blank, DefinitionStages.WithParentResource, DefinitionStages.WithCreate {
     }
+
     /** The FhirService definition stages. */
     interface DefinitionStages {
         /** The first stage of the FhirService definition. */
         interface Blank extends WithParentResource {
         }
+
         /** The stage of the FhirService definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -189,6 +205,7 @@ public interface FhirService {
              */
             WithCreate withExistingWorkspace(String resourceGroupName, String workspaceName);
         }
+
         /**
          * The stage of the FhirService definition which contains all the minimum required properties for the resource
          * to be created, but also allows for any other optional properties to be specified.
@@ -199,13 +216,14 @@ public interface FhirService {
                 DefinitionStages.WithEtag,
                 DefinitionStages.WithKind,
                 DefinitionStages.WithIdentity,
-                DefinitionStages.WithAccessPolicies,
                 DefinitionStages.WithAcrConfiguration,
                 DefinitionStages.WithAuthenticationConfiguration,
                 DefinitionStages.WithCorsConfiguration,
                 DefinitionStages.WithExportConfiguration,
                 DefinitionStages.WithPublicNetworkAccess,
-                DefinitionStages.WithResourceVersionPolicyConfiguration {
+                DefinitionStages.WithResourceVersionPolicyConfiguration,
+                DefinitionStages.WithImportConfiguration,
+                DefinitionStages.WithImplementationGuidesConfiguration {
             /**
              * Executes the create request.
              *
@@ -221,6 +239,7 @@ public interface FhirService {
              */
             FhirService create(Context context);
         }
+
         /** The stage of the FhirService definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -239,6 +258,7 @@ public interface FhirService {
              */
             WithCreate withRegion(String location);
         }
+
         /** The stage of the FhirService definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -249,6 +269,7 @@ public interface FhirService {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
         /** The stage of the FhirService definition allowing to specify etag. */
         interface WithEtag {
             /**
@@ -260,6 +281,7 @@ public interface FhirService {
              */
             WithCreate withEtag(String etag);
         }
+
         /** The stage of the FhirService definition allowing to specify kind. */
         interface WithKind {
             /**
@@ -270,6 +292,7 @@ public interface FhirService {
              */
             WithCreate withKind(FhirServiceKind kind);
         }
+
         /** The stage of the FhirService definition allowing to specify identity. */
         interface WithIdentity {
             /**
@@ -281,16 +304,7 @@ public interface FhirService {
              */
             WithCreate withIdentity(ServiceManagedIdentityIdentity identity);
         }
-        /** The stage of the FhirService definition allowing to specify accessPolicies. */
-        interface WithAccessPolicies {
-            /**
-             * Specifies the accessPolicies property: Fhir Service access policies..
-             *
-             * @param accessPolicies Fhir Service access policies.
-             * @return the next definition stage.
-             */
-            WithCreate withAccessPolicies(List<FhirServiceAccessPolicyEntry> accessPolicies);
-        }
+
         /** The stage of the FhirService definition allowing to specify acrConfiguration. */
         interface WithAcrConfiguration {
             /**
@@ -301,6 +315,7 @@ public interface FhirService {
              */
             WithCreate withAcrConfiguration(FhirServiceAcrConfiguration acrConfiguration);
         }
+
         /** The stage of the FhirService definition allowing to specify authenticationConfiguration. */
         interface WithAuthenticationConfiguration {
             /**
@@ -312,6 +327,7 @@ public interface FhirService {
             WithCreate withAuthenticationConfiguration(
                 FhirServiceAuthenticationConfiguration authenticationConfiguration);
         }
+
         /** The stage of the FhirService definition allowing to specify corsConfiguration. */
         interface WithCorsConfiguration {
             /**
@@ -322,6 +338,7 @@ public interface FhirService {
              */
             WithCreate withCorsConfiguration(FhirServiceCorsConfiguration corsConfiguration);
         }
+
         /** The stage of the FhirService definition allowing to specify exportConfiguration. */
         interface WithExportConfiguration {
             /**
@@ -332,6 +349,7 @@ public interface FhirService {
              */
             WithCreate withExportConfiguration(FhirServiceExportConfiguration exportConfiguration);
         }
+
         /** The stage of the FhirService definition allowing to specify publicNetworkAccess. */
         interface WithPublicNetworkAccess {
             /**
@@ -344,6 +362,7 @@ public interface FhirService {
              */
             WithCreate withPublicNetworkAccess(PublicNetworkAccess publicNetworkAccess);
         }
+
         /** The stage of the FhirService definition allowing to specify resourceVersionPolicyConfiguration. */
         interface WithResourceVersionPolicyConfiguration {
             /**
@@ -355,7 +374,31 @@ public interface FhirService {
             WithCreate withResourceVersionPolicyConfiguration(
                 ResourceVersionPolicyConfiguration resourceVersionPolicyConfiguration);
         }
+
+        /** The stage of the FhirService definition allowing to specify importConfiguration. */
+        interface WithImportConfiguration {
+            /**
+             * Specifies the importConfiguration property: Fhir Service import configuration..
+             *
+             * @param importConfiguration Fhir Service import configuration.
+             * @return the next definition stage.
+             */
+            WithCreate withImportConfiguration(FhirServiceImportConfiguration importConfiguration);
+        }
+
+        /** The stage of the FhirService definition allowing to specify implementationGuidesConfiguration. */
+        interface WithImplementationGuidesConfiguration {
+            /**
+             * Specifies the implementationGuidesConfiguration property: Implementation Guides configuration..
+             *
+             * @param implementationGuidesConfiguration Implementation Guides configuration.
+             * @return the next definition stage.
+             */
+            WithCreate withImplementationGuidesConfiguration(
+                ImplementationGuidesConfiguration implementationGuidesConfiguration);
+        }
     }
+
     /**
      * Begins update for the FhirService resource.
      *
@@ -380,6 +423,7 @@ public interface FhirService {
          */
         FhirService apply(Context context);
     }
+
     /** The FhirService update stages. */
     interface UpdateStages {
         /** The stage of the FhirService update allowing to specify tags. */
@@ -392,6 +436,7 @@ public interface FhirService {
              */
             Update withTags(Map<String, String> tags);
         }
+
         /** The stage of the FhirService update allowing to specify identity. */
         interface WithIdentity {
             /**
@@ -404,6 +449,7 @@ public interface FhirService {
             Update withIdentity(ServiceManagedIdentityIdentity identity);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

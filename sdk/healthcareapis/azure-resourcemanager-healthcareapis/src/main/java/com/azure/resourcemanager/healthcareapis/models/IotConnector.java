@@ -104,6 +104,13 @@ public interface IotConnector {
     String regionName();
 
     /**
+     * Gets the name of the resource group.
+     *
+     * @return the name of the resource group.
+     */
+    String resourceGroupName();
+
+    /**
      * Gets the inner com.azure.resourcemanager.healthcareapis.fluent.models.IotConnectorInner object.
      *
      * @return the inner object.
@@ -114,11 +121,13 @@ public interface IotConnector {
     interface Definition
         extends DefinitionStages.Blank, DefinitionStages.WithParentResource, DefinitionStages.WithCreate {
     }
+
     /** The IotConnector definition stages. */
     interface DefinitionStages {
         /** The first stage of the IotConnector definition. */
         interface Blank extends WithParentResource {
         }
+
         /** The stage of the IotConnector definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -130,6 +139,7 @@ public interface IotConnector {
              */
             WithCreate withExistingWorkspace(String resourceGroupName, String workspaceName);
         }
+
         /**
          * The stage of the IotConnector definition which contains all the minimum required properties for the resource
          * to be created, but also allows for any other optional properties to be specified.
@@ -156,6 +166,7 @@ public interface IotConnector {
              */
             IotConnector create(Context context);
         }
+
         /** The stage of the IotConnector definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -174,6 +185,7 @@ public interface IotConnector {
              */
             WithCreate withRegion(String location);
         }
+
         /** The stage of the IotConnector definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -184,6 +196,7 @@ public interface IotConnector {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
         /** The stage of the IotConnector definition allowing to specify etag. */
         interface WithEtag {
             /**
@@ -195,6 +208,7 @@ public interface IotConnector {
              */
             WithCreate withEtag(String etag);
         }
+
         /** The stage of the IotConnector definition allowing to specify identity. */
         interface WithIdentity {
             /**
@@ -206,6 +220,7 @@ public interface IotConnector {
              */
             WithCreate withIdentity(ServiceManagedIdentityIdentity identity);
         }
+
         /** The stage of the IotConnector definition allowing to specify ingestionEndpointConfiguration. */
         interface WithIngestionEndpointConfiguration {
             /**
@@ -217,6 +232,7 @@ public interface IotConnector {
             WithCreate withIngestionEndpointConfiguration(
                 IotEventHubIngestionEndpointConfiguration ingestionEndpointConfiguration);
         }
+
         /** The stage of the IotConnector definition allowing to specify deviceMapping. */
         interface WithDeviceMapping {
             /**
@@ -228,6 +244,7 @@ public interface IotConnector {
             WithCreate withDeviceMapping(IotMappingProperties deviceMapping);
         }
     }
+
     /**
      * Begins update for the IotConnector resource.
      *
@@ -252,6 +269,7 @@ public interface IotConnector {
          */
         IotConnector apply(Context context);
     }
+
     /** The IotConnector update stages. */
     interface UpdateStages {
         /** The stage of the IotConnector update allowing to specify tags. */
@@ -264,6 +282,7 @@ public interface IotConnector {
              */
             Update withTags(Map<String, String> tags);
         }
+
         /** The stage of the IotConnector update allowing to specify identity. */
         interface WithIdentity {
             /**
@@ -276,6 +295,7 @@ public interface IotConnector {
             Update withIdentity(ServiceManagedIdentityIdentity identity);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

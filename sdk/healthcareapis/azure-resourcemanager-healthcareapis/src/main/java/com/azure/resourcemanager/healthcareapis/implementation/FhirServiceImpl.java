@@ -9,13 +9,14 @@ import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.healthcareapis.fluent.models.FhirServiceInner;
 import com.azure.resourcemanager.healthcareapis.models.FhirService;
-import com.azure.resourcemanager.healthcareapis.models.FhirServiceAccessPolicyEntry;
 import com.azure.resourcemanager.healthcareapis.models.FhirServiceAcrConfiguration;
 import com.azure.resourcemanager.healthcareapis.models.FhirServiceAuthenticationConfiguration;
 import com.azure.resourcemanager.healthcareapis.models.FhirServiceCorsConfiguration;
 import com.azure.resourcemanager.healthcareapis.models.FhirServiceExportConfiguration;
+import com.azure.resourcemanager.healthcareapis.models.FhirServiceImportConfiguration;
 import com.azure.resourcemanager.healthcareapis.models.FhirServiceKind;
 import com.azure.resourcemanager.healthcareapis.models.FhirServicePatchResource;
+import com.azure.resourcemanager.healthcareapis.models.ImplementationGuidesConfiguration;
 import com.azure.resourcemanager.healthcareapis.models.PrivateEndpointConnection;
 import com.azure.resourcemanager.healthcareapis.models.ProvisioningState;
 import com.azure.resourcemanager.healthcareapis.models.PublicNetworkAccess;
@@ -76,15 +77,6 @@ public final class FhirServiceImpl implements FhirService, FhirService.Definitio
         return this.innerModel().provisioningState();
     }
 
-    public List<FhirServiceAccessPolicyEntry> accessPolicies() {
-        List<FhirServiceAccessPolicyEntry> inner = this.innerModel().accessPolicies();
-        if (inner != null) {
-            return Collections.unmodifiableList(inner);
-        } else {
-            return Collections.emptyList();
-        }
-    }
-
     public FhirServiceAcrConfiguration acrConfiguration() {
         return this.innerModel().acrConfiguration();
     }
@@ -122,12 +114,24 @@ public final class FhirServiceImpl implements FhirService, FhirService.Definitio
         return this.innerModel().resourceVersionPolicyConfiguration();
     }
 
+    public FhirServiceImportConfiguration importConfiguration() {
+        return this.innerModel().importConfiguration();
+    }
+
+    public ImplementationGuidesConfiguration implementationGuidesConfiguration() {
+        return this.innerModel().implementationGuidesConfiguration();
+    }
+
     public Region region() {
         return Region.fromName(this.regionName());
     }
 
     public String regionName() {
         return this.location();
+    }
+
+    public String resourceGroupName() {
+        return resourceGroupName;
     }
 
     public FhirServiceInner innerModel() {
@@ -269,11 +273,6 @@ public final class FhirServiceImpl implements FhirService, FhirService.Definitio
         }
     }
 
-    public FhirServiceImpl withAccessPolicies(List<FhirServiceAccessPolicyEntry> accessPolicies) {
-        this.innerModel().withAccessPolicies(accessPolicies);
-        return this;
-    }
-
     public FhirServiceImpl withAcrConfiguration(FhirServiceAcrConfiguration acrConfiguration) {
         this.innerModel().withAcrConfiguration(acrConfiguration);
         return this;
@@ -303,6 +302,17 @@ public final class FhirServiceImpl implements FhirService, FhirService.Definitio
     public FhirServiceImpl withResourceVersionPolicyConfiguration(
         ResourceVersionPolicyConfiguration resourceVersionPolicyConfiguration) {
         this.innerModel().withResourceVersionPolicyConfiguration(resourceVersionPolicyConfiguration);
+        return this;
+    }
+
+    public FhirServiceImpl withImportConfiguration(FhirServiceImportConfiguration importConfiguration) {
+        this.innerModel().withImportConfiguration(importConfiguration);
+        return this;
+    }
+
+    public FhirServiceImpl withImplementationGuidesConfiguration(
+        ImplementationGuidesConfiguration implementationGuidesConfiguration) {
+        this.innerModel().withImplementationGuidesConfiguration(implementationGuidesConfiguration);
         return this;
     }
 

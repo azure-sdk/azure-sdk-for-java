@@ -83,6 +83,13 @@ public interface Workspace {
     String regionName();
 
     /**
+     * Gets the name of the resource group.
+     *
+     * @return the name of the resource group.
+     */
+    String resourceGroupName();
+
+    /**
      * Gets the inner com.azure.resourcemanager.healthcareapis.fluent.models.WorkspaceInner object.
      *
      * @return the inner object.
@@ -93,11 +100,13 @@ public interface Workspace {
     interface Definition
         extends DefinitionStages.Blank, DefinitionStages.WithResourceGroup, DefinitionStages.WithCreate {
     }
+
     /** The Workspace definition stages. */
     interface DefinitionStages {
         /** The first stage of the Workspace definition. */
         interface Blank extends WithResourceGroup {
         }
+
         /** The stage of the Workspace definition allowing to specify parent resource. */
         interface WithResourceGroup {
             /**
@@ -108,6 +117,7 @@ public interface Workspace {
              */
             WithCreate withExistingResourceGroup(String resourceGroupName);
         }
+
         /**
          * The stage of the Workspace definition which contains all the minimum required properties for the resource to
          * be created, but also allows for any other optional properties to be specified.
@@ -132,6 +142,7 @@ public interface Workspace {
              */
             Workspace create(Context context);
         }
+
         /** The stage of the Workspace definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -150,6 +161,7 @@ public interface Workspace {
              */
             WithCreate withRegion(String location);
         }
+
         /** The stage of the Workspace definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -160,6 +172,7 @@ public interface Workspace {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
         /** The stage of the Workspace definition allowing to specify etag. */
         interface WithEtag {
             /**
@@ -171,6 +184,7 @@ public interface Workspace {
              */
             WithCreate withEtag(String etag);
         }
+
         /** The stage of the Workspace definition allowing to specify properties. */
         interface WithProperties {
             /**
@@ -182,6 +196,7 @@ public interface Workspace {
             WithCreate withProperties(WorkspaceProperties properties);
         }
     }
+
     /**
      * Begins update for the Workspace resource.
      *
@@ -206,6 +221,7 @@ public interface Workspace {
          */
         Workspace apply(Context context);
     }
+
     /** The Workspace update stages. */
     interface UpdateStages {
         /** The stage of the Workspace update allowing to specify tags. */
@@ -219,6 +235,7 @@ public interface Workspace {
             Update withTags(Map<String, String> tags);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *
