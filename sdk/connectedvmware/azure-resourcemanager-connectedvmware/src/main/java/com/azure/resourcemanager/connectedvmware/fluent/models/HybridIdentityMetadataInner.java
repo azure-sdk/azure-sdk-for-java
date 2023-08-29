@@ -6,9 +6,9 @@ package com.azure.resourcemanager.connectedvmware.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
-import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.connectedvmware.models.Identity;
+import com.azure.resourcemanager.connectedvmware.models.ProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Defines the HybridIdentityMetadata. */
@@ -20,11 +20,9 @@ public final class HybridIdentityMetadataInner extends ProxyResource {
     @JsonProperty(value = "properties", required = true)
     private HybridIdentityMetadataProperties innerProperties = new HybridIdentityMetadataProperties();
 
-    /*
-     * The system data.
-     */
-    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
-    private SystemData systemData;
+    /** Creates an instance of HybridIdentityMetadataInner class. */
+    public HybridIdentityMetadataInner() {
+    }
 
     /**
      * Get the innerProperties property: Resource properties.
@@ -33,15 +31,6 @@ public final class HybridIdentityMetadataInner extends ProxyResource {
      */
     private HybridIdentityMetadataProperties innerProperties() {
         return this.innerProperties;
-    }
-
-    /**
-     * Get the systemData property: The system data.
-     *
-     * @return the systemData value.
-     */
-    public SystemData systemData() {
-        return this.systemData;
     }
 
     /**
@@ -100,11 +89,11 @@ public final class HybridIdentityMetadataInner extends ProxyResource {
     }
 
     /**
-     * Get the provisioningState property: Gets or sets the provisioning state.
+     * Get the provisioningState property: Gets the provisioning state.
      *
      * @return the provisioningState value.
      */
-    public String provisioningState() {
+    public ProvisioningState provisioningState() {
         return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
     }
 

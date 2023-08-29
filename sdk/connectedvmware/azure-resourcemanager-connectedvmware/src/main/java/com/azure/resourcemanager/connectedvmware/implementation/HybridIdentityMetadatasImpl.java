@@ -28,16 +28,6 @@ public final class HybridIdentityMetadatasImpl implements HybridIdentityMetadata
         this.serviceManager = serviceManager;
     }
 
-    public HybridIdentityMetadata get(String resourceGroupName, String virtualMachineName, String metadataName) {
-        HybridIdentityMetadataInner inner =
-            this.serviceClient().get(resourceGroupName, virtualMachineName, metadataName);
-        if (inner != null) {
-            return new HybridIdentityMetadataImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<HybridIdentityMetadata> getWithResponse(
         String resourceGroupName, String virtualMachineName, String metadataName, Context context) {
         Response<HybridIdentityMetadataInner> inner =
@@ -53,8 +43,14 @@ public final class HybridIdentityMetadatasImpl implements HybridIdentityMetadata
         }
     }
 
-    public void delete(String resourceGroupName, String virtualMachineName, String metadataName) {
-        this.serviceClient().delete(resourceGroupName, virtualMachineName, metadataName);
+    public HybridIdentityMetadata get(String resourceGroupName, String virtualMachineName, String metadataName) {
+        HybridIdentityMetadataInner inner =
+            this.serviceClient().get(resourceGroupName, virtualMachineName, metadataName);
+        if (inner != null) {
+            return new HybridIdentityMetadataImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public Response<Void> deleteWithResponse(
@@ -62,16 +58,20 @@ public final class HybridIdentityMetadatasImpl implements HybridIdentityMetadata
         return this.serviceClient().deleteWithResponse(resourceGroupName, virtualMachineName, metadataName, context);
     }
 
-    public PagedIterable<HybridIdentityMetadata> listByVm(String resourceGroupName, String virtualMachineName) {
+    public void delete(String resourceGroupName, String virtualMachineName, String metadataName) {
+        this.serviceClient().delete(resourceGroupName, virtualMachineName, metadataName);
+    }
+
+    public PagedIterable<HybridIdentityMetadata> list(String resourceGroupName, String virtualMachineName) {
         PagedIterable<HybridIdentityMetadataInner> inner =
-            this.serviceClient().listByVm(resourceGroupName, virtualMachineName);
+            this.serviceClient().list(resourceGroupName, virtualMachineName);
         return Utils.mapPage(inner, inner1 -> new HybridIdentityMetadataImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<HybridIdentityMetadata> listByVm(
+    public PagedIterable<HybridIdentityMetadata> list(
         String resourceGroupName, String virtualMachineName, Context context) {
         PagedIterable<HybridIdentityMetadataInner> inner =
-            this.serviceClient().listByVm(resourceGroupName, virtualMachineName, context);
+            this.serviceClient().list(resourceGroupName, virtualMachineName, context);
         return Utils.mapPage(inner, inner1 -> new HybridIdentityMetadataImpl(inner1, this.manager()));
     }
 
