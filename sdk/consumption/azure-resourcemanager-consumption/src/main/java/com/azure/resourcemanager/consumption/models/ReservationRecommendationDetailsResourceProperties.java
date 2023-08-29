@@ -5,17 +5,12 @@
 package com.azure.resourcemanager.consumption.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Details of the resource. */
 @Immutable
 public final class ReservationRecommendationDetailsResourceProperties {
-    @JsonIgnore
-    private final ClientLogger logger = new ClientLogger(ReservationRecommendationDetailsResourceProperties.class);
-
     /*
      * List of subscriptions for which the reservation is applied.
      */
@@ -23,7 +18,7 @@ public final class ReservationRecommendationDetailsResourceProperties {
     private List<String> appliedScopes;
 
     /*
-     * On demand rate of the resource.
+     * Hourly on-demand rate of the resource. Includes only hardware rate i.e, software rate is not included.
      */
     @JsonProperty(value = "onDemandRate", access = JsonProperty.Access.WRITE_ONLY)
     private Float onDemandRate;
@@ -41,7 +36,7 @@ public final class ReservationRecommendationDetailsResourceProperties {
     private String region;
 
     /*
-     * Reservation rate of the resource.
+     * Hourly reservation rate of the resource. Varies based on the term.
      */
     @JsonProperty(value = "reservationRate", access = JsonProperty.Access.WRITE_ONLY)
     private Float reservationRate;
@@ -51,6 +46,10 @@ public final class ReservationRecommendationDetailsResourceProperties {
      */
     @JsonProperty(value = "resourceType", access = JsonProperty.Access.WRITE_ONLY)
     private String resourceType;
+
+    /** Creates an instance of ReservationRecommendationDetailsResourceProperties class. */
+    public ReservationRecommendationDetailsResourceProperties() {
+    }
 
     /**
      * Get the appliedScopes property: List of subscriptions for which the reservation is applied.
@@ -62,7 +61,8 @@ public final class ReservationRecommendationDetailsResourceProperties {
     }
 
     /**
-     * Get the onDemandRate property: On demand rate of the resource.
+     * Get the onDemandRate property: Hourly on-demand rate of the resource. Includes only hardware rate i.e, software
+     * rate is not included.
      *
      * @return the onDemandRate value.
      */
@@ -89,7 +89,7 @@ public final class ReservationRecommendationDetailsResourceProperties {
     }
 
     /**
-     * Get the reservationRate property: Reservation rate of the resource.
+     * Get the reservationRate property: Hourly reservation rate of the resource. Varies based on the term.
      *
      * @return the reservationRate value.
      */
