@@ -4,13 +4,13 @@
 
 package com.azure.resourcemanager.machinelearning.generated;
 
-import com.azure.resourcemanager.machinelearning.models.EncryptionKeyVaultProperties;
 import com.azure.resourcemanager.machinelearning.models.EncryptionProperty;
 import com.azure.resourcemanager.machinelearning.models.EncryptionStatus;
+import com.azure.resourcemanager.machinelearning.models.EndpointServiceConnectionStatus;
 import com.azure.resourcemanager.machinelearning.models.IdentityForCmk;
+import com.azure.resourcemanager.machinelearning.models.KeyVaultProperties;
 import com.azure.resourcemanager.machinelearning.models.ManagedServiceIdentity;
 import com.azure.resourcemanager.machinelearning.models.ManagedServiceIdentityType;
-import com.azure.resourcemanager.machinelearning.models.PrivateEndpointServiceConnectionStatus;
 import com.azure.resourcemanager.machinelearning.models.SharedPrivateLinkResource;
 import com.azure.resourcemanager.machinelearning.models.UserAssignedIdentity;
 import java.util.Arrays;
@@ -20,7 +20,7 @@ import java.util.Map;
 /** Samples for Workspaces CreateOrUpdate. */
 public final class WorkspacesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Workspace/create.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2023-08-01-preview/examples/Workspace/create.json
      */
     /**
      * Sample code: Create Workspace.
@@ -40,42 +40,43 @@ public final class WorkspacesCreateOrUpdateSamples {
                         mapOf(
                             "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/workspace-1234/providers/Microsoft.ManagedIdentity/userAssignedIdentities/testuai",
                             new UserAssignedIdentity())))
-            .withDescription("test description")
-            .withFriendlyName("HelloName")
-            .withKeyVault(
-                "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/workspace-1234/providers/Microsoft.KeyVault/vaults/testkv")
             .withApplicationInsights(
                 "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/workspace-1234/providers/microsoft.insights/components/testinsights")
             .withContainerRegistry(
                 "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/workspace-1234/providers/Microsoft.ContainerRegistry/registries/testRegistry")
-            .withStorageAccount(
-                "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/accountcrud-1234/providers/Microsoft.Storage/storageAccounts/testStorageAccount")
+            .withDescription("test description")
             .withEncryption(
                 new EncryptionProperty()
-                    .withStatus(EncryptionStatus.ENABLED)
                     .withIdentity(
                         new IdentityForCmk()
                             .withUserAssignedIdentity(
                                 "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/workspace-1234/providers/Microsoft.ManagedIdentity/userAssignedIdentities/testuai"))
                     .withKeyVaultProperties(
-                        new EncryptionKeyVaultProperties()
-                            .withKeyVaultArmId("fakeTokenPlaceholder")
+                        new KeyVaultProperties()
+                            .withIdentityClientId("")
                             .withKeyIdentifier("fakeTokenPlaceholder")
-                            .withIdentityClientId("")))
+                            .withKeyVaultArmId("fakeTokenPlaceholder"))
+                    .withStatus(EncryptionStatus.ENABLED))
+            .withFriendlyName("HelloName")
             .withHbiWorkspace(false)
+            .withKeyVault(
+                "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/workspace-1234/providers/Microsoft.KeyVault/vaults/testkv")
             .withSharedPrivateLinkResources(
                 Arrays
                     .asList(
                         new SharedPrivateLinkResource()
                             .withName("testdbresource")
+                            .withGroupId("Sql")
                             .withPrivateLinkResourceId(
                                 "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/workspace-1234/providers/Microsoft.DocumentDB/databaseAccounts/testdbresource/privateLinkResources/Sql")
-                            .withGroupId("Sql")
                             .withRequestMessage("Please approve")
-                            .withStatus(PrivateEndpointServiceConnectionStatus.APPROVED)))
+                            .withStatus(EndpointServiceConnectionStatus.APPROVED)))
+            .withStorageAccount(
+                "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/accountcrud-1234/providers/Microsoft.Storage/storageAccounts/testStorageAccount")
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

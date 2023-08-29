@@ -7,14 +7,14 @@ package com.azure.resourcemanager.machinelearning.generated;
 /** Samples for EnvironmentContainers Get. */
 public final class EnvironmentContainersGetSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/EnvironmentContainer/get.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2023-08-01-preview/examples/Workspace/EnvironmentContainer/get.json
      */
     /**
-     * Sample code: Get Environment Container.
+     * Sample code: Get Workspace Environment Container.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void getEnvironmentContainer(
+    public static void getWorkspaceEnvironmentContainer(
         com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager
             .environmentContainers()

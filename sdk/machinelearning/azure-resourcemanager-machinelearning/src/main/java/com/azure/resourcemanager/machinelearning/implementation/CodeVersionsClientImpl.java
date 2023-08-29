@@ -13,6 +13,7 @@ import com.azure.core.annotation.Headers;
 import com.azure.core.annotation.Host;
 import com.azure.core.annotation.HostParam;
 import com.azure.core.annotation.PathParam;
+import com.azure.core.annotation.Post;
 import com.azure.core.annotation.Put;
 import com.azure.core.annotation.QueryParam;
 import com.azure.core.annotation.ReturnType;
@@ -30,7 +31,9 @@ import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
 import com.azure.resourcemanager.machinelearning.fluent.CodeVersionsClient;
 import com.azure.resourcemanager.machinelearning.fluent.models.CodeVersionInner;
+import com.azure.resourcemanager.machinelearning.fluent.models.PendingUploadResponseDtoInner;
 import com.azure.resourcemanager.machinelearning.models.CodeVersionResourceArmPaginatedResult;
+import com.azure.resourcemanager.machinelearning.models.PendingUploadRequestDto;
 import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in CodeVersionsClient. */
@@ -39,21 +42,21 @@ public final class CodeVersionsClientImpl implements CodeVersionsClient {
     private final CodeVersionsService service;
 
     /** The service client containing this operation class. */
-    private final AzureMachineLearningWorkspacesImpl client;
+    private final AzureMachineLearningServicesImpl client;
 
     /**
      * Initializes an instance of CodeVersionsClientImpl.
      *
      * @param client the instance of the service client containing this operation class.
      */
-    CodeVersionsClientImpl(AzureMachineLearningWorkspacesImpl client) {
+    CodeVersionsClientImpl(AzureMachineLearningServicesImpl client) {
         this.service =
             RestProxy.create(CodeVersionsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for AzureMachineLearningWorkspacesCodeVersions to be used by the proxy
+     * The interface defining all the services for AzureMachineLearningServicesCodeVersions to be used by the proxy
      * service to perform REST calls.
      */
     @Host("{$host}")
@@ -61,8 +64,7 @@ public final class CodeVersionsClientImpl implements CodeVersionsClient {
     public interface CodeVersionsService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/codes/{name}/versions")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/codes/{name}/versions")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<CodeVersionResourceArmPaginatedResult>> list(
@@ -75,13 +77,14 @@ public final class CodeVersionsClientImpl implements CodeVersionsClient {
             @QueryParam("$orderBy") String orderBy,
             @QueryParam("$top") Integer top,
             @QueryParam("$skip") String skip,
+            @QueryParam("hash") String hash,
+            @QueryParam("hashVersion") String hashVersion,
             @HeaderParam("Accept") String accept,
             Context context);
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/codes/{name}/versions/{version}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/codes/{name}/versions/{version}")
         @ExpectedResponses({200, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Void>> delete(
@@ -97,8 +100,7 @@ public final class CodeVersionsClientImpl implements CodeVersionsClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/codes/{name}/versions/{version}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/codes/{name}/versions/{version}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<CodeVersionInner>> get(
@@ -114,8 +116,7 @@ public final class CodeVersionsClientImpl implements CodeVersionsClient {
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/codes/{name}/versions/{version}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/codes/{name}/versions/{version}")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<CodeVersionInner>> createOrUpdate(
@@ -127,6 +128,23 @@ public final class CodeVersionsClientImpl implements CodeVersionsClient {
             @PathParam("version") String version,
             @QueryParam("api-version") String apiVersion,
             @BodyParam("application/json") CodeVersionInner body,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
+        @Post(
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/codes/{name}/versions/{version}/startPendingUpload")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<PendingUploadResponseDtoInner>> createOrGetStartPendingUpload(
+            @HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("workspaceName") String workspaceName,
+            @PathParam("name") String name,
+            @PathParam("version") String version,
+            @QueryParam("api-version") String apiVersion,
+            @BodyParam("application/json") PendingUploadRequestDto body,
             @HeaderParam("Accept") String accept,
             Context context);
 
@@ -150,6 +168,8 @@ public final class CodeVersionsClientImpl implements CodeVersionsClient {
      * @param orderBy Ordering of list.
      * @param top Maximum number of records to return.
      * @param skip Continuation token for pagination.
+     * @param hash If specified, return CodeVersion assets with specified content hash value, regardless of name.
+     * @param hashVersion Hash algorithm version when listing by hash.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -158,7 +178,14 @@ public final class CodeVersionsClientImpl implements CodeVersionsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<CodeVersionInner>> listSinglePageAsync(
-        String resourceGroupName, String workspaceName, String name, String orderBy, Integer top, String skip) {
+        String resourceGroupName,
+        String workspaceName,
+        String name,
+        String orderBy,
+        Integer top,
+        String skip,
+        String hash,
+        String hashVersion) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -196,6 +223,8 @@ public final class CodeVersionsClientImpl implements CodeVersionsClient {
                             orderBy,
                             top,
                             skip,
+                            hash,
+                            hashVersion,
                             accept,
                             context))
             .<PagedResponse<CodeVersionInner>>map(
@@ -219,6 +248,8 @@ public final class CodeVersionsClientImpl implements CodeVersionsClient {
      * @param orderBy Ordering of list.
      * @param top Maximum number of records to return.
      * @param skip Continuation token for pagination.
+     * @param hash If specified, return CodeVersion assets with specified content hash value, regardless of name.
+     * @param hashVersion Hash algorithm version when listing by hash.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -234,6 +265,8 @@ public final class CodeVersionsClientImpl implements CodeVersionsClient {
         String orderBy,
         Integer top,
         String skip,
+        String hash,
+        String hashVersion,
         Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -270,6 +303,8 @@ public final class CodeVersionsClientImpl implements CodeVersionsClient {
                 orderBy,
                 top,
                 skip,
+                hash,
+                hashVersion,
                 accept,
                 context)
             .map(
@@ -292,6 +327,8 @@ public final class CodeVersionsClientImpl implements CodeVersionsClient {
      * @param orderBy Ordering of list.
      * @param top Maximum number of records to return.
      * @param skip Continuation token for pagination.
+     * @param hash If specified, return CodeVersion assets with specified content hash value, regardless of name.
+     * @param hashVersion Hash algorithm version when listing by hash.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -299,9 +336,16 @@ public final class CodeVersionsClientImpl implements CodeVersionsClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<CodeVersionInner> listAsync(
-        String resourceGroupName, String workspaceName, String name, String orderBy, Integer top, String skip) {
+        String resourceGroupName,
+        String workspaceName,
+        String name,
+        String orderBy,
+        Integer top,
+        String skip,
+        String hash,
+        String hashVersion) {
         return new PagedFlux<>(
-            () -> listSinglePageAsync(resourceGroupName, workspaceName, name, orderBy, top, skip),
+            () -> listSinglePageAsync(resourceGroupName, workspaceName, name, orderBy, top, skip, hash, hashVersion),
             nextLink -> listNextSinglePageAsync(nextLink));
     }
 
@@ -321,8 +365,10 @@ public final class CodeVersionsClientImpl implements CodeVersionsClient {
         final String orderBy = null;
         final Integer top = null;
         final String skip = null;
+        final String hash = null;
+        final String hashVersion = null;
         return new PagedFlux<>(
-            () -> listSinglePageAsync(resourceGroupName, workspaceName, name, orderBy, top, skip),
+            () -> listSinglePageAsync(resourceGroupName, workspaceName, name, orderBy, top, skip, hash, hashVersion),
             nextLink -> listNextSinglePageAsync(nextLink));
     }
 
@@ -335,6 +381,8 @@ public final class CodeVersionsClientImpl implements CodeVersionsClient {
      * @param orderBy Ordering of list.
      * @param top Maximum number of records to return.
      * @param skip Continuation token for pagination.
+     * @param hash If specified, return CodeVersion assets with specified content hash value, regardless of name.
+     * @param hashVersion Hash algorithm version when listing by hash.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -349,9 +397,13 @@ public final class CodeVersionsClientImpl implements CodeVersionsClient {
         String orderBy,
         Integer top,
         String skip,
+        String hash,
+        String hashVersion,
         Context context) {
         return new PagedFlux<>(
-            () -> listSinglePageAsync(resourceGroupName, workspaceName, name, orderBy, top, skip, context),
+            () ->
+                listSinglePageAsync(
+                    resourceGroupName, workspaceName, name, orderBy, top, skip, hash, hashVersion, context),
             nextLink -> listNextSinglePageAsync(nextLink, context));
     }
 
@@ -371,7 +423,10 @@ public final class CodeVersionsClientImpl implements CodeVersionsClient {
         final String orderBy = null;
         final Integer top = null;
         final String skip = null;
-        return new PagedIterable<>(listAsync(resourceGroupName, workspaceName, name, orderBy, top, skip));
+        final String hash = null;
+        final String hashVersion = null;
+        return new PagedIterable<>(
+            listAsync(resourceGroupName, workspaceName, name, orderBy, top, skip, hash, hashVersion));
     }
 
     /**
@@ -383,6 +438,8 @@ public final class CodeVersionsClientImpl implements CodeVersionsClient {
      * @param orderBy Ordering of list.
      * @param top Maximum number of records to return.
      * @param skip Continuation token for pagination.
+     * @param hash If specified, return CodeVersion assets with specified content hash value, regardless of name.
+     * @param hashVersion Hash algorithm version when listing by hash.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -397,8 +454,11 @@ public final class CodeVersionsClientImpl implements CodeVersionsClient {
         String orderBy,
         Integer top,
         String skip,
+        String hash,
+        String hashVersion,
         Context context) {
-        return new PagedIterable<>(listAsync(resourceGroupName, workspaceName, name, orderBy, top, skip, context));
+        return new PagedIterable<>(
+            listAsync(resourceGroupName, workspaceName, name, orderBy, top, skip, hash, hashVersion, context));
     }
 
     /**
@@ -934,6 +994,207 @@ public final class CodeVersionsClientImpl implements CodeVersionsClient {
     public CodeVersionInner createOrUpdate(
         String resourceGroupName, String workspaceName, String name, String version, CodeVersionInner body) {
         return createOrUpdateWithResponse(resourceGroupName, workspaceName, name, version, body, Context.NONE)
+            .getValue();
+    }
+
+    /**
+     * Generate a storage location and credential for the client to upload a code asset to.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param name Container name. This is case-sensitive.
+     * @param version Version identifier. This is case-sensitive.
+     * @param body Pending upload request object.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<PendingUploadResponseDtoInner>> createOrGetStartPendingUploadWithResponseAsync(
+        String resourceGroupName, String workspaceName, String name, String version, PendingUploadRequestDto body) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workspaceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
+        }
+        if (name == null) {
+            return Mono.error(new IllegalArgumentException("Parameter name is required and cannot be null."));
+        }
+        if (version == null) {
+            return Mono.error(new IllegalArgumentException("Parameter version is required and cannot be null."));
+        }
+        if (body == null) {
+            return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
+        } else {
+            body.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service
+                        .createOrGetStartPendingUpload(
+                            this.client.getEndpoint(),
+                            this.client.getSubscriptionId(),
+                            resourceGroupName,
+                            workspaceName,
+                            name,
+                            version,
+                            this.client.getApiVersion(),
+                            body,
+                            accept,
+                            context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Generate a storage location and credential for the client to upload a code asset to.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param name Container name. This is case-sensitive.
+     * @param version Version identifier. This is case-sensitive.
+     * @param body Pending upload request object.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<PendingUploadResponseDtoInner>> createOrGetStartPendingUploadWithResponseAsync(
+        String resourceGroupName,
+        String workspaceName,
+        String name,
+        String version,
+        PendingUploadRequestDto body,
+        Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workspaceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
+        }
+        if (name == null) {
+            return Mono.error(new IllegalArgumentException("Parameter name is required and cannot be null."));
+        }
+        if (version == null) {
+            return Mono.error(new IllegalArgumentException("Parameter version is required and cannot be null."));
+        }
+        if (body == null) {
+            return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
+        } else {
+            body.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .createOrGetStartPendingUpload(
+                this.client.getEndpoint(),
+                this.client.getSubscriptionId(),
+                resourceGroupName,
+                workspaceName,
+                name,
+                version,
+                this.client.getApiVersion(),
+                body,
+                accept,
+                context);
+    }
+
+    /**
+     * Generate a storage location and credential for the client to upload a code asset to.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param name Container name. This is case-sensitive.
+     * @param version Version identifier. This is case-sensitive.
+     * @param body Pending upload request object.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PendingUploadResponseDtoInner> createOrGetStartPendingUploadAsync(
+        String resourceGroupName, String workspaceName, String name, String version, PendingUploadRequestDto body) {
+        return createOrGetStartPendingUploadWithResponseAsync(resourceGroupName, workspaceName, name, version, body)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Generate a storage location and credential for the client to upload a code asset to.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param name Container name. This is case-sensitive.
+     * @param version Version identifier. This is case-sensitive.
+     * @param body Pending upload request object.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<PendingUploadResponseDtoInner> createOrGetStartPendingUploadWithResponse(
+        String resourceGroupName,
+        String workspaceName,
+        String name,
+        String version,
+        PendingUploadRequestDto body,
+        Context context) {
+        return createOrGetStartPendingUploadWithResponseAsync(
+                resourceGroupName, workspaceName, name, version, body, context)
+            .block();
+    }
+
+    /**
+     * Generate a storage location and credential for the client to upload a code asset to.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param name Container name. This is case-sensitive.
+     * @param version Version identifier. This is case-sensitive.
+     * @param body Pending upload request object.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public PendingUploadResponseDtoInner createOrGetStartPendingUpload(
+        String resourceGroupName, String workspaceName, String name, String version, PendingUploadRequestDto body) {
+        return createOrGetStartPendingUploadWithResponse(
+                resourceGroupName, workspaceName, name, version, body, Context.NONE)
             .getValue();
     }
 
