@@ -25,6 +25,16 @@ public final class VirtualMachineUpdate {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> tags;
 
+    /*
+     * The identity of the resource.
+     */
+    @JsonProperty(value = "identity")
+    private Identity identity;
+
+    /** Creates an instance of VirtualMachineUpdate class. */
+    public VirtualMachineUpdate() {
+    }
+
     /**
      * Get the properties property: Defines the resource properties.
      *
@@ -66,6 +76,26 @@ public final class VirtualMachineUpdate {
     }
 
     /**
+     * Get the identity property: The identity of the resource.
+     *
+     * @return the identity value.
+     */
+    public Identity identity() {
+        return this.identity;
+    }
+
+    /**
+     * Set the identity property: The identity of the resource.
+     *
+     * @param identity the identity value to set.
+     * @return the VirtualMachineUpdate object itself.
+     */
+    public VirtualMachineUpdate withIdentity(Identity identity) {
+        this.identity = identity;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -73,6 +103,9 @@ public final class VirtualMachineUpdate {
     public void validate() {
         if (properties() != null) {
             properties().validate();
+        }
+        if (identity() != null) {
+            identity().validate();
         }
     }
 }

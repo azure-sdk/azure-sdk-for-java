@@ -63,6 +63,13 @@ public interface VirtualMachine {
     ExtendedLocation extendedLocation();
 
     /**
+     * Gets the identity property: The identity of the resource.
+     *
+     * @return the identity value.
+     */
+    Identity identity();
+
+    /**
      * Gets the inventoryItemId property: Gets or sets the inventory Item ID for the resource.
      *
      * @return the inventoryItemId value.
@@ -96,6 +103,13 @@ public interface VirtualMachine {
      * @return the checkpointType value.
      */
     String checkpointType();
+
+    /**
+     * Gets the lastRestoredVMCheckpoint property: Last restored checkpoint in the vm.
+     *
+     * @return the lastRestoredVMCheckpoint value.
+     */
+    Checkpoint lastRestoredVMCheckpoint();
 
     /**
      * Gets the checkpoints property: Checkpoints in the vm.
@@ -168,6 +182,13 @@ public interface VirtualMachine {
     String powerState();
 
     /**
+     * Gets the guestAgentProfile property: Guest agent status properties.
+     *
+     * @return the guestAgentProfile value.
+     */
+    GuestAgentProfile guestAgentProfile();
+
+    /**
      * Gets the provisioningState property: Gets or sets the provisioning state.
      *
      * @return the provisioningState value.
@@ -189,6 +210,13 @@ public interface VirtualMachine {
     String regionName();
 
     /**
+     * Gets the name of the resource group.
+     *
+     * @return the name of the resource group.
+     */
+    String resourceGroupName();
+
+    /**
      * Gets the inner com.azure.resourcemanager.scvmm.fluent.models.VirtualMachineInner object.
      *
      * @return the inner object.
@@ -203,11 +231,13 @@ public interface VirtualMachine {
             DefinitionStages.WithExtendedLocation,
             DefinitionStages.WithCreate {
     }
+
     /** The VirtualMachine definition stages. */
     interface DefinitionStages {
         /** The first stage of the VirtualMachine definition. */
         interface Blank extends WithLocation {
         }
+
         /** The stage of the VirtualMachine definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -226,6 +256,7 @@ public interface VirtualMachine {
              */
             WithResourceGroup withRegion(String location);
         }
+
         /** The stage of the VirtualMachine definition allowing to specify parent resource. */
         interface WithResourceGroup {
             /**
@@ -236,6 +267,7 @@ public interface VirtualMachine {
              */
             WithExtendedLocation withExistingResourceGroup(String resourceGroupName);
         }
+
         /** The stage of the VirtualMachine definition allowing to specify extendedLocation. */
         interface WithExtendedLocation {
             /**
@@ -246,12 +278,14 @@ public interface VirtualMachine {
              */
             WithCreate withExtendedLocation(ExtendedLocation extendedLocation);
         }
+
         /**
          * The stage of the VirtualMachine definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
          */
         interface WithCreate
             extends DefinitionStages.WithTags,
+                DefinitionStages.WithIdentity,
                 DefinitionStages.WithInventoryItemId,
                 DefinitionStages.WithVmmServerId,
                 DefinitionStages.WithCloudId,
@@ -265,7 +299,8 @@ public interface VirtualMachine {
                 DefinitionStages.WithStorageProfile,
                 DefinitionStages.WithVmName,
                 DefinitionStages.WithUuid,
-                DefinitionStages.WithGeneration {
+                DefinitionStages.WithGeneration,
+                DefinitionStages.WithGuestAgentProfile {
             /**
              * Executes the create request.
              *
@@ -281,6 +316,7 @@ public interface VirtualMachine {
              */
             VirtualMachine create(Context context);
         }
+
         /** The stage of the VirtualMachine definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -291,6 +327,18 @@ public interface VirtualMachine {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
+        /** The stage of the VirtualMachine definition allowing to specify identity. */
+        interface WithIdentity {
+            /**
+             * Specifies the identity property: The identity of the resource..
+             *
+             * @param identity The identity of the resource.
+             * @return the next definition stage.
+             */
+            WithCreate withIdentity(Identity identity);
+        }
+
         /** The stage of the VirtualMachine definition allowing to specify inventoryItemId. */
         interface WithInventoryItemId {
             /**
@@ -301,6 +349,7 @@ public interface VirtualMachine {
              */
             WithCreate withInventoryItemId(String inventoryItemId);
         }
+
         /** The stage of the VirtualMachine definition allowing to specify vmmServerId. */
         interface WithVmmServerId {
             /**
@@ -311,6 +360,7 @@ public interface VirtualMachine {
              */
             WithCreate withVmmServerId(String vmmServerId);
         }
+
         /** The stage of the VirtualMachine definition allowing to specify cloudId. */
         interface WithCloudId {
             /**
@@ -321,6 +371,7 @@ public interface VirtualMachine {
              */
             WithCreate withCloudId(String cloudId);
         }
+
         /** The stage of the VirtualMachine definition allowing to specify templateId. */
         interface WithTemplateId {
             /**
@@ -331,6 +382,7 @@ public interface VirtualMachine {
              */
             WithCreate withTemplateId(String templateId);
         }
+
         /** The stage of the VirtualMachine definition allowing to specify checkpointType. */
         interface WithCheckpointType {
             /**
@@ -341,6 +393,7 @@ public interface VirtualMachine {
              */
             WithCreate withCheckpointType(String checkpointType);
         }
+
         /** The stage of the VirtualMachine definition allowing to specify checkpoints. */
         interface WithCheckpoints {
             /**
@@ -351,6 +404,7 @@ public interface VirtualMachine {
              */
             WithCreate withCheckpoints(List<Checkpoint> checkpoints);
         }
+
         /** The stage of the VirtualMachine definition allowing to specify availabilitySets. */
         interface WithAvailabilitySets {
             /**
@@ -361,6 +415,7 @@ public interface VirtualMachine {
              */
             WithCreate withAvailabilitySets(List<AvailabilitySetListItem> availabilitySets);
         }
+
         /** The stage of the VirtualMachine definition allowing to specify osProfile. */
         interface WithOsProfile {
             /**
@@ -371,6 +426,7 @@ public interface VirtualMachine {
              */
             WithCreate withOsProfile(OsProfile osProfile);
         }
+
         /** The stage of the VirtualMachine definition allowing to specify hardwareProfile. */
         interface WithHardwareProfile {
             /**
@@ -381,6 +437,7 @@ public interface VirtualMachine {
              */
             WithCreate withHardwareProfile(HardwareProfile hardwareProfile);
         }
+
         /** The stage of the VirtualMachine definition allowing to specify networkProfile. */
         interface WithNetworkProfile {
             /**
@@ -391,6 +448,7 @@ public interface VirtualMachine {
              */
             WithCreate withNetworkProfile(NetworkProfile networkProfile);
         }
+
         /** The stage of the VirtualMachine definition allowing to specify storageProfile. */
         interface WithStorageProfile {
             /**
@@ -401,6 +459,7 @@ public interface VirtualMachine {
              */
             WithCreate withStorageProfile(StorageProfile storageProfile);
         }
+
         /** The stage of the VirtualMachine definition allowing to specify vmName. */
         interface WithVmName {
             /**
@@ -411,6 +470,7 @@ public interface VirtualMachine {
              */
             WithCreate withVmName(String vmName);
         }
+
         /** The stage of the VirtualMachine definition allowing to specify uuid. */
         interface WithUuid {
             /**
@@ -421,6 +481,7 @@ public interface VirtualMachine {
              */
             WithCreate withUuid(String uuid);
         }
+
         /** The stage of the VirtualMachine definition allowing to specify generation. */
         interface WithGeneration {
             /**
@@ -431,7 +492,19 @@ public interface VirtualMachine {
              */
             WithCreate withGeneration(Integer generation);
         }
+
+        /** The stage of the VirtualMachine definition allowing to specify guestAgentProfile. */
+        interface WithGuestAgentProfile {
+            /**
+             * Specifies the guestAgentProfile property: Guest agent status properties..
+             *
+             * @param guestAgentProfile Guest agent status properties.
+             * @return the next definition stage.
+             */
+            WithCreate withGuestAgentProfile(GuestAgentProfile guestAgentProfile);
+        }
     }
+
     /**
      * Begins update for the VirtualMachine resource.
      *
@@ -440,7 +513,7 @@ public interface VirtualMachine {
     VirtualMachine.Update update();
 
     /** The template for VirtualMachine update. */
-    interface Update extends UpdateStages.WithTags, UpdateStages.WithProperties {
+    interface Update extends UpdateStages.WithTags, UpdateStages.WithProperties, UpdateStages.WithIdentity {
         /**
          * Executes the update request.
          *
@@ -456,6 +529,7 @@ public interface VirtualMachine {
          */
         VirtualMachine apply(Context context);
     }
+
     /** The VirtualMachine update stages. */
     interface UpdateStages {
         /** The stage of the VirtualMachine update allowing to specify tags. */
@@ -468,6 +542,7 @@ public interface VirtualMachine {
              */
             Update withTags(Map<String, String> tags);
         }
+
         /** The stage of the VirtualMachine update allowing to specify properties. */
         interface WithProperties {
             /**
@@ -478,7 +553,19 @@ public interface VirtualMachine {
              */
             Update withProperties(VirtualMachineUpdateProperties properties);
         }
+
+        /** The stage of the VirtualMachine update allowing to specify identity. */
+        interface WithIdentity {
+            /**
+             * Specifies the identity property: The identity of the resource..
+             *
+             * @param identity The identity of the resource.
+             * @return the next definition stage.
+             */
+            Update withIdentity(Identity identity);
+        }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *
@@ -495,17 +582,9 @@ public interface VirtualMachine {
     VirtualMachine refresh(Context context);
 
     /**
-     * Stop virtual machine.
+     * Implements the operation to stop a virtual machine.
      *
-     * @param body Virtualmachine stop action payload.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void stop(StopVirtualMachineOptions body);
-
-    /**
-     * Stop virtual machine.
+     * <p>Stop virtual machine.
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -513,7 +592,9 @@ public interface VirtualMachine {
     void stop();
 
     /**
-     * Stop virtual machine.
+     * Implements the operation to stop a virtual machine.
+     *
+     * <p>Stop virtual machine.
      *
      * @param body Virtualmachine stop action payload.
      * @param context The context to associate with this operation.
@@ -524,7 +605,9 @@ public interface VirtualMachine {
     void stop(StopVirtualMachineOptions body, Context context);
 
     /**
-     * Start virtual machine.
+     * Implements the operation to start a virtual machine.
+     *
+     * <p>Start virtual machine.
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -532,7 +615,9 @@ public interface VirtualMachine {
     void start();
 
     /**
-     * Start virtual machine.
+     * Implements the operation to start a virtual machine.
+     *
+     * <p>Start virtual machine.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -542,7 +627,9 @@ public interface VirtualMachine {
     void start(Context context);
 
     /**
-     * Restart virtual machine.
+     * Implements the operation to restart a virtual machine.
+     *
+     * <p>Restart virtual machine.
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -550,7 +637,9 @@ public interface VirtualMachine {
     void restart();
 
     /**
-     * Restart virtual machine.
+     * Implements the operation to restart a virtual machine.
+     *
+     * <p>Restart virtual machine.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -560,17 +649,9 @@ public interface VirtualMachine {
     void restart(Context context);
 
     /**
-     * Creates a checkpoint in virtual machine.
+     * Implements the operation to creates a checkpoint in a virtual machine.
      *
-     * @param body Virtualmachine create checkpoint action payload.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void createCheckpoint(VirtualMachineCreateCheckpoint body);
-
-    /**
-     * Creates a checkpoint in virtual machine.
+     * <p>Creates a checkpoint in virtual machine.
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -578,7 +659,9 @@ public interface VirtualMachine {
     void createCheckpoint();
 
     /**
-     * Creates a checkpoint in virtual machine.
+     * Implements the operation to creates a checkpoint in a virtual machine.
+     *
+     * <p>Creates a checkpoint in virtual machine.
      *
      * @param body Virtualmachine create checkpoint action payload.
      * @param context The context to associate with this operation.
@@ -589,17 +672,9 @@ public interface VirtualMachine {
     void createCheckpoint(VirtualMachineCreateCheckpoint body, Context context);
 
     /**
-     * Deletes a checkpoint in virtual machine.
+     * Implements the operation to delete a checkpoint in a virtual machine.
      *
-     * @param body Virtualmachine delete checkpoint action payload.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void deleteCheckpoint(VirtualMachineDeleteCheckpoint body);
-
-    /**
-     * Deletes a checkpoint in virtual machine.
+     * <p>Deletes a checkpoint in virtual machine.
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -607,7 +682,9 @@ public interface VirtualMachine {
     void deleteCheckpoint();
 
     /**
-     * Deletes a checkpoint in virtual machine.
+     * Implements the operation to delete a checkpoint in a virtual machine.
+     *
+     * <p>Deletes a checkpoint in virtual machine.
      *
      * @param body Virtualmachine delete checkpoint action payload.
      * @param context The context to associate with this operation.
@@ -618,17 +695,9 @@ public interface VirtualMachine {
     void deleteCheckpoint(VirtualMachineDeleteCheckpoint body, Context context);
 
     /**
-     * Restores to a checkpoint in virtual machine.
+     * Implements the operation to restores to a checkpoint in a virtual machine.
      *
-     * @param body Virtualmachine restore checkpoint action payload.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void restoreCheckpoint(VirtualMachineRestoreCheckpoint body);
-
-    /**
-     * Restores to a checkpoint in virtual machine.
+     * <p>Restores to a checkpoint in virtual machine.
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -636,7 +705,9 @@ public interface VirtualMachine {
     void restoreCheckpoint();
 
     /**
-     * Restores to a checkpoint in virtual machine.
+     * Implements the operation to restores to a checkpoint in a virtual machine.
+     *
+     * <p>Restores to a checkpoint in virtual machine.
      *
      * @param body Virtualmachine restore checkpoint action payload.
      * @param context The context to associate with this operation.

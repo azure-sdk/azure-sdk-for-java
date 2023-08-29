@@ -23,8 +23,7 @@ public final class NetworkInterfacesUpdate {
     private String macAddress;
 
     /*
-     * Gets or sets the ARM Id of the Microsoft.ScVmm/virtualNetwork resource
-     * to connect the nic.
+     * Gets or sets the ARM Id of the Microsoft.ScVmm/virtualNetwork resource to connect the nic.
      */
     @JsonProperty(value = "virtualNetworkId")
     private String virtualNetworkId;
@@ -52,6 +51,10 @@ public final class NetworkInterfacesUpdate {
      */
     @JsonProperty(value = "nicId")
     private String nicId;
+
+    /** Creates an instance of NetworkInterfacesUpdate class. */
+    public NetworkInterfacesUpdate() {
+    }
 
     /**
      * Get the name property: Gets or sets the name of the network interface.

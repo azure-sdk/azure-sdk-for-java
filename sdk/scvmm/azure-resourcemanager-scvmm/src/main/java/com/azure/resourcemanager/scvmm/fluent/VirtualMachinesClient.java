@@ -21,20 +21,9 @@ import com.azure.resourcemanager.scvmm.models.VirtualMachineUpdate;
 /** An instance of this class provides access to all the operations defined in VirtualMachinesClient. */
 public interface VirtualMachinesClient {
     /**
-     * Implements VirtualMachine GET method.
+     * Gets a VirtualMachine.
      *
-     * @param resourceGroupName The name of the resource group.
-     * @param virtualMachineName Name of the VirtualMachine.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the VirtualMachines resource definition.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    VirtualMachineInner getByResourceGroup(String resourceGroupName, String virtualMachineName);
-
-    /**
-     * Implements VirtualMachine GET method.
+     * <p>Implements VirtualMachine GET method.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -49,7 +38,24 @@ public interface VirtualMachinesClient {
         String resourceGroupName, String virtualMachineName, Context context);
 
     /**
-     * Creates Or Updates virtual machines deployed on scvmm fabric.
+     * Gets a VirtualMachine.
+     *
+     * <p>Implements VirtualMachine GET method.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param virtualMachineName Name of the VirtualMachine.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the VirtualMachines resource definition.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    VirtualMachineInner getByResourceGroup(String resourceGroupName, String virtualMachineName);
+
+    /**
+     * Implements VirtualMachines PUT method.
+     *
+     * <p>Creates Or Updates virtual machines deployed on scvmm fabric.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -64,7 +70,9 @@ public interface VirtualMachinesClient {
         String resourceGroupName, String virtualMachineName, VirtualMachineInner body);
 
     /**
-     * Creates Or Updates virtual machines deployed on scvmm fabric.
+     * Implements VirtualMachines PUT method.
+     *
+     * <p>Creates Or Updates virtual machines deployed on scvmm fabric.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -80,7 +88,9 @@ public interface VirtualMachinesClient {
         String resourceGroupName, String virtualMachineName, VirtualMachineInner body, Context context);
 
     /**
-     * Creates Or Updates virtual machines deployed on scvmm fabric.
+     * Implements VirtualMachines PUT method.
+     *
+     * <p>Creates Or Updates virtual machines deployed on scvmm fabric.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -94,7 +104,9 @@ public interface VirtualMachinesClient {
     VirtualMachineInner createOrUpdate(String resourceGroupName, String virtualMachineName, VirtualMachineInner body);
 
     /**
-     * Creates Or Updates virtual machines deployed on scvmm fabric.
+     * Implements VirtualMachines PUT method.
+     *
+     * <p>Creates Or Updates virtual machines deployed on scvmm fabric.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -110,30 +122,31 @@ public interface VirtualMachinesClient {
         String resourceGroupName, String virtualMachineName, VirtualMachineInner body, Context context);
 
     /**
-     * Deletes a VirtualMachine deployed on ScVmm fabric.
+     * Implements VirtualMachine DELETE method.
+     *
+     * <p>Deletes a VirtualMachine deployed on ScVmm fabric.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
-     * @param retain Whether to just disable the VM from azure and retain the VM in the VMM.
-     * @param force Forces the resource to be deleted from azure. The corresponding CR would be attempted to be deleted
-     *     too.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginDelete(
-        String resourceGroupName, String virtualMachineName, Boolean retain, Boolean force);
+    SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String virtualMachineName);
 
     /**
-     * Deletes a VirtualMachine deployed on ScVmm fabric.
+     * Implements VirtualMachine DELETE method.
+     *
+     * <p>Deletes a VirtualMachine deployed on ScVmm fabric.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
      * @param retain Whether to just disable the VM from azure and retain the VM in the VMM.
      * @param force Forces the resource to be deleted from azure. The corresponding CR would be attempted to be deleted
      *     too.
+     * @param deleteFromHost Whether to disable the VM from azure and also delete it from VMM.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -142,25 +155,17 @@ public interface VirtualMachinesClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginDelete(
-        String resourceGroupName, String virtualMachineName, Boolean retain, Boolean force, Context context);
+        String resourceGroupName,
+        String virtualMachineName,
+        Boolean retain,
+        Boolean force,
+        Boolean deleteFromHost,
+        Context context);
 
     /**
-     * Deletes a VirtualMachine deployed on ScVmm fabric.
+     * Implements VirtualMachine DELETE method.
      *
-     * @param resourceGroupName The name of the resource group.
-     * @param virtualMachineName Name of the VirtualMachine.
-     * @param retain Whether to just disable the VM from azure and retain the VM in the VMM.
-     * @param force Forces the resource to be deleted from azure. The corresponding CR would be attempted to be deleted
-     *     too.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    void delete(String resourceGroupName, String virtualMachineName, Boolean retain, Boolean force);
-
-    /**
-     * Deletes a VirtualMachine deployed on ScVmm fabric.
+     * <p>Deletes a VirtualMachine deployed on ScVmm fabric.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -172,23 +177,34 @@ public interface VirtualMachinesClient {
     void delete(String resourceGroupName, String virtualMachineName);
 
     /**
-     * Deletes a VirtualMachine deployed on ScVmm fabric.
+     * Implements VirtualMachine DELETE method.
+     *
+     * <p>Deletes a VirtualMachine deployed on ScVmm fabric.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
      * @param retain Whether to just disable the VM from azure and retain the VM in the VMM.
      * @param force Forces the resource to be deleted from azure. The corresponding CR would be attempted to be deleted
      *     too.
+     * @param deleteFromHost Whether to disable the VM from azure and also delete it from VMM.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    void delete(String resourceGroupName, String virtualMachineName, Boolean retain, Boolean force, Context context);
+    void delete(
+        String resourceGroupName,
+        String virtualMachineName,
+        Boolean retain,
+        Boolean force,
+        Boolean deleteFromHost,
+        Context context);
 
     /**
-     * Updates the VirtualMachines resource.
+     * Implements the VirtualMachines PATCH method.
+     *
+     * <p>Updates the VirtualMachines resource.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -203,7 +219,9 @@ public interface VirtualMachinesClient {
         String resourceGroupName, String virtualMachineName, VirtualMachineUpdate body);
 
     /**
-     * Updates the VirtualMachines resource.
+     * Implements the VirtualMachines PATCH method.
+     *
+     * <p>Updates the VirtualMachines resource.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -219,7 +237,9 @@ public interface VirtualMachinesClient {
         String resourceGroupName, String virtualMachineName, VirtualMachineUpdate body, Context context);
 
     /**
-     * Updates the VirtualMachines resource.
+     * Implements the VirtualMachines PATCH method.
+     *
+     * <p>Updates the VirtualMachines resource.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -233,7 +253,9 @@ public interface VirtualMachinesClient {
     VirtualMachineInner update(String resourceGroupName, String virtualMachineName, VirtualMachineUpdate body);
 
     /**
-     * Updates the VirtualMachines resource.
+     * Implements the VirtualMachines PATCH method.
+     *
+     * <p>Updates the VirtualMachines resource.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -249,22 +271,24 @@ public interface VirtualMachinesClient {
         String resourceGroupName, String virtualMachineName, VirtualMachineUpdate body, Context context);
 
     /**
-     * Stop virtual machine.
+     * Implements the operation to stop a virtual machine.
+     *
+     * <p>Stop virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
-     * @param body Virtualmachine stop action payload.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginStop(
-        String resourceGroupName, String virtualMachineName, StopVirtualMachineOptions body);
+    SyncPoller<PollResult<Void>, Void> beginStop(String resourceGroupName, String virtualMachineName);
 
     /**
-     * Stop virtual machine.
+     * Implements the operation to stop a virtual machine.
+     *
+     * <p>Stop virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -280,20 +304,9 @@ public interface VirtualMachinesClient {
         String resourceGroupName, String virtualMachineName, StopVirtualMachineOptions body, Context context);
 
     /**
-     * Stop virtual machine.
+     * Implements the operation to stop a virtual machine.
      *
-     * @param resourceGroupName The name of the resource group.
-     * @param virtualMachineName Name of the VirtualMachine.
-     * @param body Virtualmachine stop action payload.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    void stop(String resourceGroupName, String virtualMachineName, StopVirtualMachineOptions body);
-
-    /**
-     * Stop virtual machine.
+     * <p>Stop virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -305,7 +318,9 @@ public interface VirtualMachinesClient {
     void stop(String resourceGroupName, String virtualMachineName);
 
     /**
-     * Stop virtual machine.
+     * Implements the operation to stop a virtual machine.
+     *
+     * <p>Stop virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -319,7 +334,9 @@ public interface VirtualMachinesClient {
     void stop(String resourceGroupName, String virtualMachineName, StopVirtualMachineOptions body, Context context);
 
     /**
-     * Start virtual machine.
+     * Implements the operation to start a virtual machine.
+     *
+     * <p>Start virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -332,7 +349,9 @@ public interface VirtualMachinesClient {
     SyncPoller<PollResult<Void>, Void> beginStart(String resourceGroupName, String virtualMachineName);
 
     /**
-     * Start virtual machine.
+     * Implements the operation to start a virtual machine.
+     *
+     * <p>Start virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -346,7 +365,9 @@ public interface VirtualMachinesClient {
     SyncPoller<PollResult<Void>, Void> beginStart(String resourceGroupName, String virtualMachineName, Context context);
 
     /**
-     * Start virtual machine.
+     * Implements the operation to start a virtual machine.
+     *
+     * <p>Start virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -358,7 +379,9 @@ public interface VirtualMachinesClient {
     void start(String resourceGroupName, String virtualMachineName);
 
     /**
-     * Start virtual machine.
+     * Implements the operation to start a virtual machine.
+     *
+     * <p>Start virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -371,7 +394,9 @@ public interface VirtualMachinesClient {
     void start(String resourceGroupName, String virtualMachineName, Context context);
 
     /**
-     * Restart virtual machine.
+     * Implements the operation to restart a virtual machine.
+     *
+     * <p>Restart virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -384,7 +409,9 @@ public interface VirtualMachinesClient {
     SyncPoller<PollResult<Void>, Void> beginRestart(String resourceGroupName, String virtualMachineName);
 
     /**
-     * Restart virtual machine.
+     * Implements the operation to restart a virtual machine.
+     *
+     * <p>Restart virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -399,7 +426,9 @@ public interface VirtualMachinesClient {
         String resourceGroupName, String virtualMachineName, Context context);
 
     /**
-     * Restart virtual machine.
+     * Implements the operation to restart a virtual machine.
+     *
+     * <p>Restart virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -411,7 +440,9 @@ public interface VirtualMachinesClient {
     void restart(String resourceGroupName, String virtualMachineName);
 
     /**
-     * Restart virtual machine.
+     * Implements the operation to restart a virtual machine.
+     *
+     * <p>Restart virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -424,22 +455,24 @@ public interface VirtualMachinesClient {
     void restart(String resourceGroupName, String virtualMachineName, Context context);
 
     /**
-     * Creates a checkpoint in virtual machine.
+     * Implements the operation to creates a checkpoint in a virtual machine.
+     *
+     * <p>Creates a checkpoint in virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
-     * @param body Virtualmachine create checkpoint action payload.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginCreateCheckpoint(
-        String resourceGroupName, String virtualMachineName, VirtualMachineCreateCheckpoint body);
+    SyncPoller<PollResult<Void>, Void> beginCreateCheckpoint(String resourceGroupName, String virtualMachineName);
 
     /**
-     * Creates a checkpoint in virtual machine.
+     * Implements the operation to creates a checkpoint in a virtual machine.
+     *
+     * <p>Creates a checkpoint in virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -455,20 +488,9 @@ public interface VirtualMachinesClient {
         String resourceGroupName, String virtualMachineName, VirtualMachineCreateCheckpoint body, Context context);
 
     /**
-     * Creates a checkpoint in virtual machine.
+     * Implements the operation to creates a checkpoint in a virtual machine.
      *
-     * @param resourceGroupName The name of the resource group.
-     * @param virtualMachineName Name of the VirtualMachine.
-     * @param body Virtualmachine create checkpoint action payload.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    void createCheckpoint(String resourceGroupName, String virtualMachineName, VirtualMachineCreateCheckpoint body);
-
-    /**
-     * Creates a checkpoint in virtual machine.
+     * <p>Creates a checkpoint in virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -480,7 +502,9 @@ public interface VirtualMachinesClient {
     void createCheckpoint(String resourceGroupName, String virtualMachineName);
 
     /**
-     * Creates a checkpoint in virtual machine.
+     * Implements the operation to creates a checkpoint in a virtual machine.
+     *
+     * <p>Creates a checkpoint in virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -495,22 +519,24 @@ public interface VirtualMachinesClient {
         String resourceGroupName, String virtualMachineName, VirtualMachineCreateCheckpoint body, Context context);
 
     /**
-     * Deletes a checkpoint in virtual machine.
+     * Implements the operation to delete a checkpoint in a virtual machine.
+     *
+     * <p>Deletes a checkpoint in virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
-     * @param body Virtualmachine delete checkpoint action payload.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginDeleteCheckpoint(
-        String resourceGroupName, String virtualMachineName, VirtualMachineDeleteCheckpoint body);
+    SyncPoller<PollResult<Void>, Void> beginDeleteCheckpoint(String resourceGroupName, String virtualMachineName);
 
     /**
-     * Deletes a checkpoint in virtual machine.
+     * Implements the operation to delete a checkpoint in a virtual machine.
+     *
+     * <p>Deletes a checkpoint in virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -526,20 +552,9 @@ public interface VirtualMachinesClient {
         String resourceGroupName, String virtualMachineName, VirtualMachineDeleteCheckpoint body, Context context);
 
     /**
-     * Deletes a checkpoint in virtual machine.
+     * Implements the operation to delete a checkpoint in a virtual machine.
      *
-     * @param resourceGroupName The name of the resource group.
-     * @param virtualMachineName Name of the VirtualMachine.
-     * @param body Virtualmachine delete checkpoint action payload.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    void deleteCheckpoint(String resourceGroupName, String virtualMachineName, VirtualMachineDeleteCheckpoint body);
-
-    /**
-     * Deletes a checkpoint in virtual machine.
+     * <p>Deletes a checkpoint in virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -551,7 +566,9 @@ public interface VirtualMachinesClient {
     void deleteCheckpoint(String resourceGroupName, String virtualMachineName);
 
     /**
-     * Deletes a checkpoint in virtual machine.
+     * Implements the operation to delete a checkpoint in a virtual machine.
+     *
+     * <p>Deletes a checkpoint in virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -566,22 +583,24 @@ public interface VirtualMachinesClient {
         String resourceGroupName, String virtualMachineName, VirtualMachineDeleteCheckpoint body, Context context);
 
     /**
-     * Restores to a checkpoint in virtual machine.
+     * Implements the operation to restores to a checkpoint in a virtual machine.
+     *
+     * <p>Restores to a checkpoint in virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
-     * @param body Virtualmachine restore checkpoint action payload.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginRestoreCheckpoint(
-        String resourceGroupName, String virtualMachineName, VirtualMachineRestoreCheckpoint body);
+    SyncPoller<PollResult<Void>, Void> beginRestoreCheckpoint(String resourceGroupName, String virtualMachineName);
 
     /**
-     * Restores to a checkpoint in virtual machine.
+     * Implements the operation to restores to a checkpoint in a virtual machine.
+     *
+     * <p>Restores to a checkpoint in virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -597,20 +616,9 @@ public interface VirtualMachinesClient {
         String resourceGroupName, String virtualMachineName, VirtualMachineRestoreCheckpoint body, Context context);
 
     /**
-     * Restores to a checkpoint in virtual machine.
+     * Implements the operation to restores to a checkpoint in a virtual machine.
      *
-     * @param resourceGroupName The name of the resource group.
-     * @param virtualMachineName Name of the VirtualMachine.
-     * @param body Virtualmachine restore checkpoint action payload.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    void restoreCheckpoint(String resourceGroupName, String virtualMachineName, VirtualMachineRestoreCheckpoint body);
-
-    /**
-     * Restores to a checkpoint in virtual machine.
+     * <p>Restores to a checkpoint in virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -622,7 +630,9 @@ public interface VirtualMachinesClient {
     void restoreCheckpoint(String resourceGroupName, String virtualMachineName);
 
     /**
-     * Restores to a checkpoint in virtual machine.
+     * Implements the operation to restores to a checkpoint in a virtual machine.
+     *
+     * <p>Restores to a checkpoint in virtual machine.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualMachineName Name of the VirtualMachine.
@@ -637,7 +647,9 @@ public interface VirtualMachinesClient {
         String resourceGroupName, String virtualMachineName, VirtualMachineRestoreCheckpoint body, Context context);
 
     /**
-     * List of VirtualMachines in a resource group.
+     * Implements GET VirtualMachines in a resource group.
+     *
+     * <p>List of VirtualMachines in a resource group.
      *
      * @param resourceGroupName The name of the resource group.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -649,7 +661,9 @@ public interface VirtualMachinesClient {
     PagedIterable<VirtualMachineInner> listByResourceGroup(String resourceGroupName);
 
     /**
-     * List of VirtualMachines in a resource group.
+     * Implements GET VirtualMachines in a resource group.
+     *
+     * <p>List of VirtualMachines in a resource group.
      *
      * @param resourceGroupName The name of the resource group.
      * @param context The context to associate with this operation.
@@ -662,7 +676,9 @@ public interface VirtualMachinesClient {
     PagedIterable<VirtualMachineInner> listByResourceGroup(String resourceGroupName, Context context);
 
     /**
-     * List of VirtualMachines in a subscription.
+     * Implements GET VirtualMachines in a subscription.
+     *
+     * <p>List of VirtualMachines in a subscription.
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -672,7 +688,9 @@ public interface VirtualMachinesClient {
     PagedIterable<VirtualMachineInner> list();
 
     /**
-     * List of VirtualMachines in a subscription.
+     * Implements GET VirtualMachines in a subscription.
+     *
+     * <p>List of VirtualMachines in a subscription.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
