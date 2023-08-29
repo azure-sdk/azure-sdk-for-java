@@ -24,9 +24,10 @@ public final class DevCentersUpdateSamples {
                 .devCenters()
                 .getByResourceGroupWithResponse("rg1", "Contoso", com.azure.core.util.Context.NONE)
                 .getValue();
-        resource.update().withTags(mapOf("CostCode", "12345")).apply();
+        resource.update().withTags(mapOf("CostCode", "fakeTokenPlaceholder")).apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

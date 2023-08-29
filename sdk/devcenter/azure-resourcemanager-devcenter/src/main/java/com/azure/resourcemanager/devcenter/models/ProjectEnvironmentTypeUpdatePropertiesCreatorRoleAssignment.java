@@ -5,41 +5,19 @@
 package com.azure.resourcemanager.devcenter.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
 /** The role definition assigned to the environment creator on backing resources. */
 @Fluent
-public final class ProjectEnvironmentTypeUpdatePropertiesCreatorRoleAssignment {
-    /*
-     * A map of roles to assign to the environment creator.
-     */
-    @JsonProperty(value = "roles")
-    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
-    private Map<String, EnvironmentRole> roles;
-
+public final class ProjectEnvironmentTypeUpdatePropertiesCreatorRoleAssignment extends RoleAssignment {
     /** Creates an instance of ProjectEnvironmentTypeUpdatePropertiesCreatorRoleAssignment class. */
     public ProjectEnvironmentTypeUpdatePropertiesCreatorRoleAssignment() {
     }
 
-    /**
-     * Get the roles property: A map of roles to assign to the environment creator.
-     *
-     * @return the roles value.
-     */
-    public Map<String, EnvironmentRole> roles() {
-        return this.roles;
-    }
-
-    /**
-     * Set the roles property: A map of roles to assign to the environment creator.
-     *
-     * @param roles the roles value to set.
-     * @return the ProjectEnvironmentTypeUpdatePropertiesCreatorRoleAssignment object itself.
-     */
+    /** {@inheritDoc} */
+    @Override
     public ProjectEnvironmentTypeUpdatePropertiesCreatorRoleAssignment withRoles(Map<String, EnvironmentRole> roles) {
-        this.roles = roles;
+        super.withRoles(roles);
         return this;
     }
 
@@ -48,16 +26,8 @@ public final class ProjectEnvironmentTypeUpdatePropertiesCreatorRoleAssignment {
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
+    @Override
     public void validate() {
-        if (roles() != null) {
-            roles()
-                .values()
-                .forEach(
-                    e -> {
-                        if (e != null) {
-                            e.validate();
-                        }
-                    });
-        }
+        super.validate();
     }
 }

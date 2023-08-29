@@ -26,7 +26,7 @@ public final class DevCentersCreateOrUpdateSamples {
             .define("Contoso")
             .withRegion("centralus")
             .withExistingResourceGroup("rg1")
-            .withTags(mapOf("CostCode", "12345"))
+            .withTags(mapOf("CostCode", "fakeTokenPlaceholder"))
             .create();
     }
 
@@ -44,7 +44,7 @@ public final class DevCentersCreateOrUpdateSamples {
             .define("Contoso")
             .withRegion("centralus")
             .withExistingResourceGroup("rg1")
-            .withTags(mapOf("CostCode", "12345"))
+            .withTags(mapOf("CostCode", "fakeTokenPlaceholder"))
             .withIdentity(
                 new ManagedServiceIdentity()
                     .withType(ManagedServiceIdentityType.USER_ASSIGNED)
@@ -55,6 +55,7 @@ public final class DevCentersCreateOrUpdateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

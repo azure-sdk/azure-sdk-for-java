@@ -629,7 +629,7 @@ public final class DevCentersCreateOrUpdateSamples {
             .define("Contoso")
             .withRegion("centralus")
             .withExistingResourceGroup("rg1")
-            .withTags(mapOf("CostCode", "12345"))
+            .withTags(mapOf("CostCode", "fakeTokenPlaceholder"))
             .create();
     }
 
@@ -647,7 +647,7 @@ public final class DevCentersCreateOrUpdateSamples {
             .define("Contoso")
             .withRegion("centralus")
             .withExistingResourceGroup("rg1")
-            .withTags(mapOf("CostCode", "12345"))
+            .withTags(mapOf("CostCode", "fakeTokenPlaceholder"))
             .withIdentity(
                 new ManagedServiceIdentity()
                     .withType(ManagedServiceIdentityType.USER_ASSIGNED)
@@ -658,6 +658,7 @@ public final class DevCentersCreateOrUpdateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -770,9 +771,10 @@ public final class DevCentersUpdateSamples {
                 .devCenters()
                 .getByResourceGroupWithResponse("rg1", "Contoso", com.azure.core.util.Context.NONE)
                 .getValue();
-        resource.update().withTags(mapOf("CostCode", "12345")).apply();
+        resource.update().withTags(mapOf("CostCode", "fakeTokenPlaceholder")).apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -811,6 +813,7 @@ public final class EnvironmentTypesCreateOrUpdateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -907,6 +910,7 @@ public final class EnvironmentTypesUpdateSamples {
         resource.update().withTags(mapOf("Owner", "superuser")).apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -1607,6 +1611,7 @@ public final class ProjectEnvironmentTypesCreateOrUpdateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -1730,6 +1735,7 @@ public final class ProjectEnvironmentTypesUpdateSamples {
             .apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -1795,6 +1801,7 @@ public final class ProjectsCreateOrUpdateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -1910,6 +1917,7 @@ public final class ProjectsUpdateSamples {
         resource.update().withTags(mapOf("CostCenter", "R&D")).withDescription("This is my first project.").apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

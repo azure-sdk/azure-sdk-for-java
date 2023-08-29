@@ -150,11 +150,13 @@ public interface Pool {
             DefinitionStages.WithParentResource,
             DefinitionStages.WithCreate {
     }
+
     /** The Pool definition stages. */
     interface DefinitionStages {
         /** The first stage of the Pool definition. */
         interface Blank extends WithLocation {
         }
+
         /** The stage of the Pool definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -173,6 +175,7 @@ public interface Pool {
              */
             WithParentResource withRegion(String location);
         }
+
         /** The stage of the Pool definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -184,6 +187,7 @@ public interface Pool {
              */
             WithCreate withExistingProject(String resourceGroupName, String projectName);
         }
+
         /**
          * The stage of the Pool definition which contains all the minimum required properties for the resource to be
          * created, but also allows for any other optional properties to be specified.
@@ -210,6 +214,7 @@ public interface Pool {
              */
             Pool create(Context context);
         }
+
         /** The stage of the Pool definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -220,6 +225,7 @@ public interface Pool {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
         /** The stage of the Pool definition allowing to specify devBoxDefinitionName. */
         interface WithDevBoxDefinitionName {
             /**
@@ -230,6 +236,7 @@ public interface Pool {
              */
             WithCreate withDevBoxDefinitionName(String devBoxDefinitionName);
         }
+
         /** The stage of the Pool definition allowing to specify networkConnectionName. */
         interface WithNetworkConnectionName {
             /**
@@ -241,6 +248,7 @@ public interface Pool {
              */
             WithCreate withNetworkConnectionName(String networkConnectionName);
         }
+
         /** The stage of the Pool definition allowing to specify licenseType. */
         interface WithLicenseType {
             /**
@@ -253,6 +261,7 @@ public interface Pool {
              */
             WithCreate withLicenseType(LicenseType licenseType);
         }
+
         /** The stage of the Pool definition allowing to specify localAdministrator. */
         interface WithLocalAdministrator {
             /**
@@ -265,6 +274,7 @@ public interface Pool {
              */
             WithCreate withLocalAdministrator(LocalAdminStatus localAdministrator);
         }
+
         /** The stage of the Pool definition allowing to specify stopOnDisconnect. */
         interface WithStopOnDisconnect {
             /**
@@ -277,6 +287,7 @@ public interface Pool {
             WithCreate withStopOnDisconnect(StopOnDisconnectConfiguration stopOnDisconnect);
         }
     }
+
     /**
      * Begins update for the Pool resource.
      *
@@ -307,6 +318,7 @@ public interface Pool {
          */
         Pool apply(Context context);
     }
+
     /** The Pool update stages. */
     interface UpdateStages {
         /** The stage of the Pool update allowing to specify tags. */
@@ -319,6 +331,7 @@ public interface Pool {
              */
             Update withTags(Map<String, String> tags);
         }
+
         /** The stage of the Pool update allowing to specify devBoxDefinitionName. */
         interface WithDevBoxDefinitionName {
             /**
@@ -329,6 +342,7 @@ public interface Pool {
              */
             Update withDevBoxDefinitionName(String devBoxDefinitionName);
         }
+
         /** The stage of the Pool update allowing to specify networkConnectionName. */
         interface WithNetworkConnectionName {
             /**
@@ -340,6 +354,7 @@ public interface Pool {
              */
             Update withNetworkConnectionName(String networkConnectionName);
         }
+
         /** The stage of the Pool update allowing to specify licenseType. */
         interface WithLicenseType {
             /**
@@ -352,6 +367,7 @@ public interface Pool {
              */
             Update withLicenseType(LicenseType licenseType);
         }
+
         /** The stage of the Pool update allowing to specify localAdministrator. */
         interface WithLocalAdministrator {
             /**
@@ -364,6 +380,7 @@ public interface Pool {
              */
             Update withLocalAdministrator(LocalAdminStatus localAdministrator);
         }
+
         /** The stage of the Pool update allowing to specify stopOnDisconnect. */
         interface WithStopOnDisconnect {
             /**
@@ -376,6 +393,7 @@ public interface Pool {
             Update withStopOnDisconnect(StopOnDisconnectConfiguration stopOnDisconnect);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

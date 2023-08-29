@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.devcenter.models;
 
-import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.devcenter.fluent.models.ImageVersionInner;
 import java.time.OffsetDateTime;
 
@@ -30,13 +29,6 @@ public interface ImageVersion {
      * @return the type value.
      */
     String type();
-
-    /**
-     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
-     * @return the systemData value.
-     */
-    SystemData systemData();
 
     /**
      * Gets the namePropertiesName property: The semantic version string.

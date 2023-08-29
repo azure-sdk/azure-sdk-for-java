@@ -93,11 +93,13 @@ public interface Catalog {
     interface Definition
         extends DefinitionStages.Blank, DefinitionStages.WithParentResource, DefinitionStages.WithCreate {
     }
+
     /** The Catalog definition stages. */
     interface DefinitionStages {
         /** The first stage of the Catalog definition. */
         interface Blank extends WithParentResource {
         }
+
         /** The stage of the Catalog definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -109,6 +111,7 @@ public interface Catalog {
              */
             WithCreate withExistingDevcenter(String resourceGroupName, String devCenterName);
         }
+
         /**
          * The stage of the Catalog definition which contains all the minimum required properties for the resource to be
          * created, but also allows for any other optional properties to be specified.
@@ -129,6 +132,7 @@ public interface Catalog {
              */
             Catalog create(Context context);
         }
+
         /** The stage of the Catalog definition allowing to specify gitHub. */
         interface WithGitHub {
             /**
@@ -139,6 +143,7 @@ public interface Catalog {
              */
             WithCreate withGitHub(GitCatalog gitHub);
         }
+
         /** The stage of the Catalog definition allowing to specify adoGit. */
         interface WithAdoGit {
             /**
@@ -150,6 +155,7 @@ public interface Catalog {
             WithCreate withAdoGit(GitCatalog adoGit);
         }
     }
+
     /**
      * Begins update for the Catalog resource.
      *
@@ -174,6 +180,7 @@ public interface Catalog {
          */
         Catalog apply(Context context);
     }
+
     /** The Catalog update stages. */
     interface UpdateStages {
         /** The stage of the Catalog update allowing to specify tags. */
@@ -186,6 +193,7 @@ public interface Catalog {
              */
             Update withTags(Map<String, String> tags);
         }
+
         /** The stage of the Catalog update allowing to specify gitHub. */
         interface WithGitHub {
             /**
@@ -196,6 +204,7 @@ public interface Catalog {
              */
             Update withGitHub(GitCatalog gitHub);
         }
+
         /** The stage of the Catalog update allowing to specify adoGit. */
         interface WithAdoGit {
             /**
@@ -207,6 +216,7 @@ public interface Catalog {
             Update withAdoGit(GitCatalog adoGit);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *
