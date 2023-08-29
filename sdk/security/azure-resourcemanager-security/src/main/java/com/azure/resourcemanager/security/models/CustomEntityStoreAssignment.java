@@ -64,11 +64,13 @@ public interface CustomEntityStoreAssignment {
     interface Definition
         extends DefinitionStages.Blank, DefinitionStages.WithResourceGroup, DefinitionStages.WithCreate {
     }
+
     /** The CustomEntityStoreAssignment definition stages. */
     interface DefinitionStages {
         /** The first stage of the CustomEntityStoreAssignment definition. */
         interface Blank extends WithResourceGroup {
         }
+
         /** The stage of the CustomEntityStoreAssignment definition allowing to specify parent resource. */
         interface WithResourceGroup {
             /**
@@ -80,6 +82,7 @@ public interface CustomEntityStoreAssignment {
              */
             WithCreate withExistingResourceGroup(String resourceGroupName);
         }
+
         /**
          * The stage of the CustomEntityStoreAssignment definition which contains all the minimum required properties
          * for the resource to be created, but also allows for any other optional properties to be specified.
@@ -100,6 +103,7 @@ public interface CustomEntityStoreAssignment {
              */
             CustomEntityStoreAssignment create(Context context);
         }
+
         /** The stage of the CustomEntityStoreAssignment definition allowing to specify principal. */
         interface WithPrincipal {
             /**
@@ -113,6 +117,7 @@ public interface CustomEntityStoreAssignment {
             WithCreate withPrincipal(String principal);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

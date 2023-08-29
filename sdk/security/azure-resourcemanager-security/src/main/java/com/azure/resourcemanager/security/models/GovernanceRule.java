@@ -152,11 +152,13 @@ public interface GovernanceRule {
     /** The entirety of the GovernanceRule definition. */
     interface Definition extends DefinitionStages.Blank, DefinitionStages.WithScope, DefinitionStages.WithCreate {
     }
+
     /** The GovernanceRule definition stages. */
     interface DefinitionStages {
         /** The first stage of the GovernanceRule definition. */
         interface Blank extends WithScope {
         }
+
         /** The stage of the GovernanceRule definition allowing to specify parent resource. */
         interface WithScope {
             /**
@@ -170,6 +172,7 @@ public interface GovernanceRule {
              */
             WithCreate withExistingScope(String scope);
         }
+
         /**
          * The stage of the GovernanceRule definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
@@ -204,6 +207,7 @@ public interface GovernanceRule {
              */
             GovernanceRule create(Context context);
         }
+
         /** The stage of the GovernanceRule definition allowing to specify displayName. */
         interface WithDisplayName {
             /**
@@ -214,6 +218,7 @@ public interface GovernanceRule {
              */
             WithCreate withDisplayName(String displayName);
         }
+
         /** The stage of the GovernanceRule definition allowing to specify description. */
         interface WithDescription {
             /**
@@ -224,6 +229,7 @@ public interface GovernanceRule {
              */
             WithCreate withDescription(String description);
         }
+
         /** The stage of the GovernanceRule definition allowing to specify remediationTimeframe. */
         interface WithRemediationTimeframe {
             /**
@@ -236,6 +242,7 @@ public interface GovernanceRule {
              */
             WithCreate withRemediationTimeframe(String remediationTimeframe);
         }
+
         /** The stage of the GovernanceRule definition allowing to specify isGracePeriod. */
         interface WithIsGracePeriod {
             /**
@@ -246,6 +253,7 @@ public interface GovernanceRule {
              */
             WithCreate withIsGracePeriod(Boolean isGracePeriod);
         }
+
         /** The stage of the GovernanceRule definition allowing to specify rulePriority. */
         interface WithRulePriority {
             /**
@@ -258,6 +266,7 @@ public interface GovernanceRule {
              */
             WithCreate withRulePriority(int rulePriority);
         }
+
         /** The stage of the GovernanceRule definition allowing to specify isDisabled. */
         interface WithIsDisabled {
             /**
@@ -268,6 +277,7 @@ public interface GovernanceRule {
              */
             WithCreate withIsDisabled(Boolean isDisabled);
         }
+
         /** The stage of the GovernanceRule definition allowing to specify ruleType. */
         interface WithRuleType {
             /**
@@ -279,6 +289,7 @@ public interface GovernanceRule {
              */
             WithCreate withRuleType(GovernanceRuleType ruleType);
         }
+
         /** The stage of the GovernanceRule definition allowing to specify sourceResourceType. */
         interface WithSourceResourceType {
             /**
@@ -290,6 +301,7 @@ public interface GovernanceRule {
              */
             WithCreate withSourceResourceType(GovernanceRuleSourceResourceType sourceResourceType);
         }
+
         /** The stage of the GovernanceRule definition allowing to specify excludedScopes. */
         interface WithExcludedScopes {
             /**
@@ -301,6 +313,7 @@ public interface GovernanceRule {
              */
             WithCreate withExcludedScopes(List<String> excludedScopes);
         }
+
         /** The stage of the GovernanceRule definition allowing to specify conditionSets. */
         interface WithConditionSets {
             /**
@@ -311,6 +324,7 @@ public interface GovernanceRule {
              */
             WithCreate withConditionSets(List<Object> conditionSets);
         }
+
         /** The stage of the GovernanceRule definition allowing to specify includeMemberScopes. */
         interface WithIncludeMemberScopes {
             /**
@@ -323,6 +337,7 @@ public interface GovernanceRule {
              */
             WithCreate withIncludeMemberScopes(Boolean includeMemberScopes);
         }
+
         /** The stage of the GovernanceRule definition allowing to specify ownerSource. */
         interface WithOwnerSource {
             /**
@@ -335,6 +350,7 @@ public interface GovernanceRule {
              */
             WithCreate withOwnerSource(GovernanceRuleOwnerSource ownerSource);
         }
+
         /** The stage of the GovernanceRule definition allowing to specify governanceEmailNotification. */
         interface WithGovernanceEmailNotification {
             /**
@@ -347,6 +363,7 @@ public interface GovernanceRule {
              */
             WithCreate withGovernanceEmailNotification(GovernanceRuleEmailNotification governanceEmailNotification);
         }
+
         /** The stage of the GovernanceRule definition allowing to specify metadata. */
         interface WithMetadata {
             /**
@@ -358,6 +375,7 @@ public interface GovernanceRule {
             WithCreate withMetadata(GovernanceRuleMetadata metadata);
         }
     }
+
     /**
      * Begins update for the GovernanceRule resource.
      *
@@ -396,6 +414,7 @@ public interface GovernanceRule {
          */
         GovernanceRule apply(Context context);
     }
+
     /** The GovernanceRule update stages. */
     interface UpdateStages {
         /** The stage of the GovernanceRule update allowing to specify displayName. */
@@ -408,6 +427,7 @@ public interface GovernanceRule {
              */
             Update withDisplayName(String displayName);
         }
+
         /** The stage of the GovernanceRule update allowing to specify description. */
         interface WithDescription {
             /**
@@ -418,6 +438,7 @@ public interface GovernanceRule {
              */
             Update withDescription(String description);
         }
+
         /** The stage of the GovernanceRule update allowing to specify remediationTimeframe. */
         interface WithRemediationTimeframe {
             /**
@@ -430,6 +451,7 @@ public interface GovernanceRule {
              */
             Update withRemediationTimeframe(String remediationTimeframe);
         }
+
         /** The stage of the GovernanceRule update allowing to specify isGracePeriod. */
         interface WithIsGracePeriod {
             /**
@@ -440,6 +462,7 @@ public interface GovernanceRule {
              */
             Update withIsGracePeriod(Boolean isGracePeriod);
         }
+
         /** The stage of the GovernanceRule update allowing to specify rulePriority. */
         interface WithRulePriority {
             /**
@@ -452,6 +475,7 @@ public interface GovernanceRule {
              */
             Update withRulePriority(int rulePriority);
         }
+
         /** The stage of the GovernanceRule update allowing to specify isDisabled. */
         interface WithIsDisabled {
             /**
@@ -462,6 +486,7 @@ public interface GovernanceRule {
              */
             Update withIsDisabled(Boolean isDisabled);
         }
+
         /** The stage of the GovernanceRule update allowing to specify ruleType. */
         interface WithRuleType {
             /**
@@ -473,6 +498,7 @@ public interface GovernanceRule {
              */
             Update withRuleType(GovernanceRuleType ruleType);
         }
+
         /** The stage of the GovernanceRule update allowing to specify sourceResourceType. */
         interface WithSourceResourceType {
             /**
@@ -484,6 +510,7 @@ public interface GovernanceRule {
              */
             Update withSourceResourceType(GovernanceRuleSourceResourceType sourceResourceType);
         }
+
         /** The stage of the GovernanceRule update allowing to specify excludedScopes. */
         interface WithExcludedScopes {
             /**
@@ -495,6 +522,7 @@ public interface GovernanceRule {
              */
             Update withExcludedScopes(List<String> excludedScopes);
         }
+
         /** The stage of the GovernanceRule update allowing to specify conditionSets. */
         interface WithConditionSets {
             /**
@@ -505,6 +533,7 @@ public interface GovernanceRule {
              */
             Update withConditionSets(List<Object> conditionSets);
         }
+
         /** The stage of the GovernanceRule update allowing to specify includeMemberScopes. */
         interface WithIncludeMemberScopes {
             /**
@@ -517,6 +546,7 @@ public interface GovernanceRule {
              */
             Update withIncludeMemberScopes(Boolean includeMemberScopes);
         }
+
         /** The stage of the GovernanceRule update allowing to specify ownerSource. */
         interface WithOwnerSource {
             /**
@@ -529,6 +559,7 @@ public interface GovernanceRule {
              */
             Update withOwnerSource(GovernanceRuleOwnerSource ownerSource);
         }
+
         /** The stage of the GovernanceRule update allowing to specify governanceEmailNotification. */
         interface WithGovernanceEmailNotification {
             /**
@@ -541,6 +572,7 @@ public interface GovernanceRule {
              */
             Update withGovernanceEmailNotification(GovernanceRuleEmailNotification governanceEmailNotification);
         }
+
         /** The stage of the GovernanceRule update allowing to specify metadata. */
         interface WithMetadata {
             /**
@@ -552,6 +584,7 @@ public interface GovernanceRule {
             Update withMetadata(GovernanceRuleMetadata metadata);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

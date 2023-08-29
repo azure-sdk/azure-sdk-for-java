@@ -166,11 +166,13 @@ public interface IoTSecuritySolutionModel {
     interface Definition
         extends DefinitionStages.Blank, DefinitionStages.WithResourceGroup, DefinitionStages.WithCreate {
     }
+
     /** The IoTSecuritySolutionModel definition stages. */
     interface DefinitionStages {
         /** The first stage of the IoTSecuritySolutionModel definition. */
         interface Blank extends WithResourceGroup {
         }
+
         /** The stage of the IoTSecuritySolutionModel definition allowing to specify parent resource. */
         interface WithResourceGroup {
             /**
@@ -182,6 +184,7 @@ public interface IoTSecuritySolutionModel {
              */
             WithCreate withExistingResourceGroup(String resourceGroupName);
         }
+
         /**
          * The stage of the IoTSecuritySolutionModel definition which contains all the minimum required properties for
          * the resource to be created, but also allows for any other optional properties to be specified.
@@ -214,6 +217,7 @@ public interface IoTSecuritySolutionModel {
              */
             IoTSecuritySolutionModel create(Context context);
         }
+
         /** The stage of the IoTSecuritySolutionModel definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -232,6 +236,7 @@ public interface IoTSecuritySolutionModel {
              */
             WithCreate withRegion(String location);
         }
+
         /** The stage of the IoTSecuritySolutionModel definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -242,6 +247,7 @@ public interface IoTSecuritySolutionModel {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
         /** The stage of the IoTSecuritySolutionModel definition allowing to specify workspace. */
         interface WithWorkspace {
             /**
@@ -252,6 +258,7 @@ public interface IoTSecuritySolutionModel {
              */
             WithCreate withWorkspace(String workspace);
         }
+
         /** The stage of the IoTSecuritySolutionModel definition allowing to specify displayName. */
         interface WithDisplayName {
             /**
@@ -262,6 +269,7 @@ public interface IoTSecuritySolutionModel {
              */
             WithCreate withDisplayName(String displayName);
         }
+
         /** The stage of the IoTSecuritySolutionModel definition allowing to specify status. */
         interface WithStatus {
             /**
@@ -272,6 +280,7 @@ public interface IoTSecuritySolutionModel {
              */
             WithCreate withStatus(SecuritySolutionStatus status);
         }
+
         /** The stage of the IoTSecuritySolutionModel definition allowing to specify export. */
         interface WithExport {
             /**
@@ -282,6 +291,7 @@ public interface IoTSecuritySolutionModel {
              */
             WithCreate withExport(List<ExportData> export);
         }
+
         /** The stage of the IoTSecuritySolutionModel definition allowing to specify disabledDataSources. */
         interface WithDisabledDataSources {
             /**
@@ -293,6 +303,7 @@ public interface IoTSecuritySolutionModel {
              */
             WithCreate withDisabledDataSources(List<DataSource> disabledDataSources);
         }
+
         /** The stage of the IoTSecuritySolutionModel definition allowing to specify iotHubs. */
         interface WithIotHubs {
             /**
@@ -303,6 +314,7 @@ public interface IoTSecuritySolutionModel {
              */
             WithCreate withIotHubs(List<String> iotHubs);
         }
+
         /** The stage of the IoTSecuritySolutionModel definition allowing to specify userDefinedResources. */
         interface WithUserDefinedResources {
             /**
@@ -314,6 +326,7 @@ public interface IoTSecuritySolutionModel {
              */
             WithCreate withUserDefinedResources(UserDefinedResourcesProperties userDefinedResources);
         }
+
         /** The stage of the IoTSecuritySolutionModel definition allowing to specify recommendationsConfiguration. */
         interface WithRecommendationsConfiguration {
             /**
@@ -326,6 +339,7 @@ public interface IoTSecuritySolutionModel {
             WithCreate withRecommendationsConfiguration(
                 List<RecommendationConfigurationProperties> recommendationsConfiguration);
         }
+
         /** The stage of the IoTSecuritySolutionModel definition allowing to specify unmaskedIpLoggingStatus. */
         interface WithUnmaskedIpLoggingStatus {
             /**
@@ -336,6 +350,7 @@ public interface IoTSecuritySolutionModel {
              */
             WithCreate withUnmaskedIpLoggingStatus(UnmaskedIpLoggingStatus unmaskedIpLoggingStatus);
         }
+
         /** The stage of the IoTSecuritySolutionModel definition allowing to specify additionalWorkspaces. */
         interface WithAdditionalWorkspaces {
             /**
@@ -347,6 +362,7 @@ public interface IoTSecuritySolutionModel {
             WithCreate withAdditionalWorkspaces(List<AdditionalWorkspacesProperties> additionalWorkspaces);
         }
     }
+
     /**
      * Begins update for the IoTSecuritySolutionModel resource.
      *
@@ -374,6 +390,7 @@ public interface IoTSecuritySolutionModel {
          */
         IoTSecuritySolutionModel apply(Context context);
     }
+
     /** The IoTSecuritySolutionModel update stages. */
     interface UpdateStages {
         /** The stage of the IoTSecuritySolutionModel update allowing to specify tags. */
@@ -386,6 +403,7 @@ public interface IoTSecuritySolutionModel {
              */
             Update withTags(Map<String, String> tags);
         }
+
         /** The stage of the IoTSecuritySolutionModel update allowing to specify userDefinedResources. */
         interface WithUserDefinedResources {
             /**
@@ -397,6 +415,7 @@ public interface IoTSecuritySolutionModel {
              */
             Update withUserDefinedResources(UserDefinedResourcesProperties userDefinedResources);
         }
+
         /** The stage of the IoTSecuritySolutionModel update allowing to specify recommendationsConfiguration. */
         interface WithRecommendationsConfiguration {
             /**
@@ -410,6 +429,7 @@ public interface IoTSecuritySolutionModel {
                 List<RecommendationConfigurationProperties> recommendationsConfiguration);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *
