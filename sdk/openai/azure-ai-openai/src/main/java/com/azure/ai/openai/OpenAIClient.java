@@ -578,10 +578,225 @@ public final class OpenAIClient {
      *                 name: String (Required)
      *                 arguments: String (Required)
      *             }
-     *             context (Optional): {
-     *                 messages (Optional): [
-     *                     (recursive schema, see above)
+     *         }
+     *     ]
+     *     functions (Optional): [
+     *          (Optional){
+     *             name: String (Required)
+     *             description: String (Optional)
+     *             parameters: Object (Optional)
+     *         }
+     *     ]
+     *     function_call: FunctionCallModelBase (Optional)
+     *     max_tokens: Integer (Optional)
+     *     temperature: Double (Optional)
+     *     top_p: Double (Optional)
+     *     logit_bias (Optional): {
+     *         String: int (Optional)
+     *     }
+     *     user: String (Optional)
+     *     n: Integer (Optional)
+     *     stop (Optional): [
+     *         String (Optional)
+     *     ]
+     *     presence_penalty: Double (Optional)
+     *     frequency_penalty: Double (Optional)
+     *     stream: Boolean (Optional)
+     *     model: String (Optional)
+     *     dataSources (Optional): [
+     *          (Optional){
+     *             type: String(AzureCognitiveSearch) (Required)
+     *             parameters: Object (Required)
+     *         }
+     *     ]
+     * }
+     * }</pre>
+     *
+     * <p><strong>Response Body Schema</strong>
+     *
+     * <pre>{@code
+     * {
+     *     id: String (Required)
+     *     created: long (Required)
+     *     prompt_annotations (Optional): [
+     *          (Optional){
+     *             prompt_index: int (Required)
+     *             content_filter_results (Optional): {
+     *                 sexual (Optional): {
+     *                     severity: String(safe/low/medium/high) (Required)
+     *                     filtered: boolean (Required)
+     *                 }
+     *                 violence (Optional): (recursive schema, see violence above)
+     *                 hate (Optional): (recursive schema, see hate above)
+     *                 self_harm (Optional): (recursive schema, see self_harm above)
+     *             }
+     *         }
+     *     ]
+     *     choices (Required): [
+     *          (Required){
+     *             index: int (Required)
+     *             content_filter_results (Optional): (recursive schema, see content_filter_results above)
+     *             message (Required): {
+     *                 role: String(system/assistant/user/function/tool) (Required)
+     *                 content: String (Required)
+     *                 name: String (Optional)
+     *                 function_call (Optional): {
+     *                     name: String (Required)
+     *                     arguments: String (Required)
+     *                 }
+     *             }
+     *             finish_reason: String(stop/length/content_filter/function_call) (Required)
+     *         }
+     *     ]
+     *     usage (Required): {
+     *         completion_tokens: int (Required)
+     *         prompt_tokens: int (Required)
+     *         total_tokens: int (Required)
+     *     }
+     * }
+     * }</pre>
+     *
+     * @param deploymentOrModelName Specifies either the model deployment name (when using Azure OpenAI) or model name
+     *     (when using non-Azure OpenAI) to use for this request.
+     * @param chatCompletionsOptions The configuration information for a chat completions request. Completions support a
+     *     wide variety of tasks and generate text that continues from or "completes" provided prompt data.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return chat completions for the provided chat messages. This is an Azure-specific version of chat completions
+     *     that supports integration with configured data sources and other augmentations to the base chat completions
+     *     capabilities along with {@link Response}.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<BinaryData> getChatCompletionsWithAzureExtensionsWithResponse(
+            String deploymentOrModelName, BinaryData chatCompletionsOptions, RequestOptions requestOptions) {
+        return this.serviceClient.getChatCompletionsWithAzureExtensionsWithResponse(
+                deploymentOrModelName, chatCompletionsOptions, requestOptions);
+    }
+
+    /**
+     * Gets completions for the provided input prompts. Completions support a wide variety of tasks and generate text
+     * that continues from or "completes" provided prompt data.
+     *
+     * <p><strong>Request Body Schema</strong>
+     *
+     * <pre>{@code
+     * {
+     *     prompt (Required): [
+     *         String (Required)
+     *     ]
+     *     max_tokens: Integer (Optional)
+     *     temperature: Double (Optional)
+     *     top_p: Double (Optional)
+     *     logit_bias (Optional): {
+     *         String: int (Optional)
+     *     }
+     *     user: String (Optional)
+     *     n: Integer (Optional)
+     *     logprobs: Integer (Optional)
+     *     echo: Boolean (Optional)
+     *     stop (Optional): [
+     *         String (Optional)
+     *     ]
+     *     presence_penalty: Double (Optional)
+     *     frequency_penalty: Double (Optional)
+     *     best_of: Integer (Optional)
+     *     stream: Boolean (Optional)
+     *     model: String (Optional)
+     * }
+     * }</pre>
+     *
+     * <p><strong>Response Body Schema</strong>
+     *
+     * <pre>{@code
+     * {
+     *     id: String (Required)
+     *     created: long (Required)
+     *     prompt_annotations (Optional): [
+     *          (Optional){
+     *             prompt_index: int (Required)
+     *             content_filter_results (Optional): {
+     *                 sexual (Optional): {
+     *                     severity: String(safe/low/medium/high) (Required)
+     *                     filtered: boolean (Required)
+     *                 }
+     *                 violence (Optional): (recursive schema, see violence above)
+     *                 hate (Optional): (recursive schema, see hate above)
+     *                 self_harm (Optional): (recursive schema, see self_harm above)
+     *             }
+     *         }
+     *     ]
+     *     choices (Required): [
+     *          (Required){
+     *             text: String (Required)
+     *             index: int (Required)
+     *             content_filter_results (Optional): (recursive schema, see content_filter_results above)
+     *             logprobs (Required): {
+     *                 tokens (Required): [
+     *                     String (Required)
      *                 ]
+     *                 token_logprobs (Required): [
+     *                     double (Required)
+     *                 ]
+     *                 top_logprobs (Required): [
+     *                      (Required){
+     *                         String: double (Required)
+     *                     }
+     *                 ]
+     *                 text_offset (Required): [
+     *                     int (Required)
+     *                 ]
+     *             }
+     *             finish_reason: String(stop/length/content_filter/function_call) (Required)
+     *         }
+     *     ]
+     *     usage (Required): {
+     *         completion_tokens: int (Required)
+     *         prompt_tokens: int (Required)
+     *         total_tokens: int (Required)
+     *     }
+     * }
+     * }</pre>
+     *
+     * @param deploymentOrModelName Specifies either the model deployment name (when using Azure OpenAI) or model name
+     *     (when using non-Azure OpenAI) to use for this request.
+     * @param completionsOptions The configuration information for a completions request. Completions support a wide
+     *     variety of tasks and generate text that continues from or "completes" provided prompt data.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return completions for the provided input prompts. Completions support a wide variety of tasks and generate text
+     *     that continues from or "completes" provided prompt data along with {@link Response}.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<BinaryData> getCompletionsStreamingWithResponse(
+            String deploymentOrModelName, BinaryData completionsOptions, RequestOptions requestOptions) {
+        return this.serviceClient.getCompletionsStreamingWithResponse(
+                deploymentOrModelName, completionsOptions, requestOptions);
+    }
+
+    /**
+     * Gets chat completions for the provided chat messages. Completions support a wide variety of tasks and generate
+     * text that continues from or "completes" provided prompt data.
+     *
+     * <p><strong>Request Body Schema</strong>
+     *
+     * <pre>{@code
+     * {
+     *     messages (Required): [
+     *          (Required){
+     *             role: String(system/assistant/user/function/tool) (Required)
+     *             content: String (Required)
+     *             name: String (Optional)
+     *             function_call (Optional): {
+     *                 name: String (Required)
+     *                 arguments: String (Required)
      *             }
      *         }
      *     ]
@@ -623,25 +838,9 @@ public final class OpenAIClient {
      * {
      *     id: String (Required)
      *     created: long (Required)
-     *     choices (Required): [
-     *          (Required){
-     *             message (Optional): {
-     *                 role: String(system/assistant/user/function/tool) (Required)
-     *                 content: String (Required)
-     *                 name: String (Optional)
-     *                 function_call (Optional): {
-     *                     name: String (Required)
-     *                     arguments: String (Required)
-     *                 }
-     *                 context (Optional): {
-     *                     messages (Optional): [
-     *                         (recursive schema, see above)
-     *                     ]
-     *                 }
-     *             }
-     *             index: int (Required)
-     *             finish_reason: String(stop/length/content_filter/function_call) (Required)
-     *             delta (Optional): (recursive schema, see delta above)
+     *     prompt_annotations (Optional): [
+     *          (Optional){
+     *             prompt_index: int (Required)
      *             content_filter_results (Optional): {
      *                 sexual (Optional): {
      *                     severity: String(safe/low/medium/high) (Required)
@@ -653,10 +852,30 @@ public final class OpenAIClient {
      *             }
      *         }
      *     ]
-     *     prompt_annotations (Optional): [
-     *          (Optional){
-     *             prompt_index: int (Required)
+     *     choices (Required): [
+     *          (Required){
+     *             index: int (Required)
      *             content_filter_results (Optional): (recursive schema, see content_filter_results above)
+     *             delta (Required): {
+     *                 role: String(system/assistant/user/function/tool) (Optional)
+     *                 content: String (Optional)
+     *                 name: String (Optional)
+     *                 function_call (Optional): {
+     *                     name: String (Required)
+     *                     arguments: String (Required)
+     *                 }
+     *                 context (Optional): {
+     *                     messages (Optional): [
+     *                          (Optional){
+     *                             role: String(system/assistant/user/function/tool) (Required)
+     *                             content: String (Required)
+     *                             name: String (Optional)
+     *                             function_call (Optional): (recursive schema, see function_call above)
+     *                         }
+     *                     ]
+     *                 }
+     *             }
+     *             finish_reason: String(stop/length/content_filter/function_call) (Required)
      *         }
      *     ]
      *     usage (Required): {
@@ -676,15 +895,14 @@ public final class OpenAIClient {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return chat completions for the provided chat messages. This is an Azure-specific version of chat completions
-     *     that supports integration with configured data sources and other augmentations to the base chat completions
-     *     capabilities along with {@link Response}.
+     * @return chat completions for the provided chat messages. Completions support a wide variety of tasks and generate
+     *     text that continues from or "completes" provided prompt data along with {@link Response}.
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<BinaryData> getChatCompletionsWithAzureExtensionsWithResponse(
+    Response<BinaryData> getChatCompletionsStreamingWithResponse(
             String deploymentOrModelName, BinaryData chatCompletionsOptions, RequestOptions requestOptions) {
-        return this.serviceClient.getChatCompletionsWithAzureExtensionsWithResponse(
+        return this.serviceClient.getChatCompletionsStreamingWithResponse(
                 deploymentOrModelName, chatCompletionsOptions, requestOptions);
     }
 }
