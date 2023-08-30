@@ -651,6 +651,18 @@ public final class OpenAIAsyncClient {
      *                 violence (Optional): (recursive schema, see violence above)
      *                 hate (Optional): (recursive schema, see hate above)
      *                 self_harm (Optional): (recursive schema, see self_harm above)
+     *                 error (Optional): {
+     *                     code: String (Required)
+     *                     message: String (Required)
+     *                     target: String (Optional)
+     *                     details (Optional): [
+     *                         (recursive schema, see above)
+     *                     ]
+     *                     innererror (Optional): {
+     *                         code: String (Optional)
+     *                         innererror (Optional): (recursive schema, see innererror above)
+     *                     }
+     *                 }
      *             }
      *         }
      *     ]
