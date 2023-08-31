@@ -7,14 +7,14 @@ package com.azure.resourcemanager.machinelearning.generated;
 /** Samples for EnvironmentContainers Delete. */
 public final class EnvironmentContainersDeleteSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/EnvironmentContainer/delete.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2023-08-01-preview/examples/Workspace/EnvironmentContainer/delete.json
      */
     /**
-     * Sample code: Delete Environment Container.
+     * Sample code: Delete Workspace Environment Container.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void deleteEnvironmentContainer(
+    public static void deleteWorkspaceEnvironmentContainer(
         com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager
             .environmentContainers()

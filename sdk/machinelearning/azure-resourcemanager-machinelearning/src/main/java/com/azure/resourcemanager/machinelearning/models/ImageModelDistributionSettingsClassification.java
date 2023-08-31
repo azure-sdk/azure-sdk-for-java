@@ -8,11 +8,11 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Distribution expressions to sweep over values of model settings. &lt;example&gt; Some examples are: &lt;code&gt;
- * ModelName = "choice('seresnext', 'resnest50')"; LearningRate = "uniform(0.001, 0.01)"; LayersToFreeze = "choice(0,
- * 2)"; &lt;/code&gt;&lt;/example&gt; For more details on how to compose distribution expressions please check the
- * documentation: https://docs.microsoft.com/en-us/azure/machine-learning/how-to-tune-hyperparameters For more
- * information on the available settings please visit the official documentation:
+ * Distribution expressions to sweep over values of model settings. &lt;example&gt; Some examples are: ``` ModelName =
+ * "choice('seresnext', 'resnest50')"; LearningRate = "uniform(0.001, 0.01)"; LayersToFreeze = "choice(0, 2)";
+ * ```&lt;/example&gt; For more details on how to compose distribution expressions please check the documentation:
+ * https://docs.microsoft.com/en-us/azure/machine-learning/how-to-tune-hyperparameters For more information on the
+ * available settings please visit the official documentation:
  * https://docs.microsoft.com/en-us/azure/machine-learning/how-to-auto-train-image-models.
  */
 @Fluent
