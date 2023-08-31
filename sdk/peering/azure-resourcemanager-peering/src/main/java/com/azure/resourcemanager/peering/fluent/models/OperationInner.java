@@ -6,6 +6,7 @@ package com.azure.resourcemanager.peering.fluent.models;
 
 import com.azure.core.annotation.Immutable;
 import com.azure.resourcemanager.peering.models.OperationDisplayInfo;
+import com.azure.resourcemanager.peering.models.ServiceSpecification;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** The peering API operation. */
@@ -28,6 +29,12 @@ public final class OperationInner {
      */
     @JsonProperty(value = "isDataAction", access = JsonProperty.Access.WRITE_ONLY)
     private Boolean isDataAction;
+
+    /*
+     * The properties of the operation.
+     */
+    @JsonProperty(value = "properties", access = JsonProperty.Access.WRITE_ONLY)
+    private OperationProperties innerProperties;
 
     /** Creates an instance of OperationInner class. */
     public OperationInner() {
@@ -61,6 +68,24 @@ public final class OperationInner {
     }
 
     /**
+     * Get the innerProperties property: The properties of the operation.
+     *
+     * @return the innerProperties value.
+     */
+    private OperationProperties innerProperties() {
+        return this.innerProperties;
+    }
+
+    /**
+     * Get the serviceSpecification property: Service specification payload.
+     *
+     * @return the serviceSpecification value.
+     */
+    public ServiceSpecification serviceSpecification() {
+        return this.innerProperties() == null ? null : this.innerProperties().serviceSpecification();
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -68,6 +93,9 @@ public final class OperationInner {
     public void validate() {
         if (display() != null) {
             display().validate();
+        }
+        if (innerProperties() != null) {
+            innerProperties().validate();
         }
     }
 }

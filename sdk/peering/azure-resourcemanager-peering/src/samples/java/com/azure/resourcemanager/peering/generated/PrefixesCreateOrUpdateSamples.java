@@ -7,7 +7,7 @@ package com.azure.resourcemanager.peering.generated;
 /** Samples for Prefixes CreateOrUpdate. */
 public final class PrefixesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/peering/resource-manager/Microsoft.Peering/stable/2021-01-01/examples/CreatePeeringServicePrefix.json
+     * x-ms-original-file: specification/peering/resource-manager/Microsoft.Peering/stable/2023-08-01/examples/CreatePeeringServicePrefix.json
      */
     /**
      * Sample code: Create or update a prefix for the peering service.

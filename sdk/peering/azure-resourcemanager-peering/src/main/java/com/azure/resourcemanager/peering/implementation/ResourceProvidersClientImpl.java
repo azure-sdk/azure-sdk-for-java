@@ -54,7 +54,7 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
     @ServiceInterface(name = "PeeringManagementCli")
     public interface ResourceProvidersService {
         @Headers({"Content-Type: application/json"})
-        @Post("/subscriptions/{subscriptionId}/providers/Microsoft.Peering/CheckServiceProviderAvailability")
+        @Post("/subscriptions/{subscriptionId}/providers/Microsoft.Peering/checkServiceProviderAvailability")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Enum0>> checkServiceProviderAvailability(

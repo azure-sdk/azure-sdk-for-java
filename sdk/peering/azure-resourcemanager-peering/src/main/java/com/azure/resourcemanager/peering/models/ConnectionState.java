@@ -34,6 +34,15 @@ public final class ConnectionState extends ExpandableStringEnum<ConnectionState>
     /** Static value Active for ConnectionState. */
     public static final ConnectionState ACTIVE = fromString("Active");
 
+    /** Static value TypeChangeRequested for ConnectionState. */
+    public static final ConnectionState TYPE_CHANGE_REQUESTED = fromString("TypeChangeRequested");
+
+    /** Static value TypeChangeInProgress for ConnectionState. */
+    public static final ConnectionState TYPE_CHANGE_IN_PROGRESS = fromString("TypeChangeInProgress");
+
+    /** Static value ActiveNoBilling for ConnectionState. */
+    public static final ConnectionState ACTIVE_NO_BILLING = fromString("ActiveNoBilling");
+
     /**
      * Creates a new instance of ConnectionState value.
      *

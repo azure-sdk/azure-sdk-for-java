@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.peering.models;
 
+import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.peering.fluent.models.PeeringRegisteredPrefixInner;
 
@@ -83,11 +84,13 @@ public interface PeeringRegisteredPrefix {
     interface Definition
         extends DefinitionStages.Blank, DefinitionStages.WithParentResource, DefinitionStages.WithCreate {
     }
+
     /** The PeeringRegisteredPrefix definition stages. */
     interface DefinitionStages {
         /** The first stage of the PeeringRegisteredPrefix definition. */
         interface Blank extends WithParentResource {
         }
+
         /** The stage of the PeeringRegisteredPrefix definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -99,6 +102,7 @@ public interface PeeringRegisteredPrefix {
              */
             WithCreate withExistingPeering(String resourceGroupName, String peeringName);
         }
+
         /**
          * The stage of the PeeringRegisteredPrefix definition which contains all the minimum required properties for
          * the resource to be created, but also allows for any other optional properties to be specified.
@@ -119,6 +123,7 @@ public interface PeeringRegisteredPrefix {
              */
             PeeringRegisteredPrefix create(Context context);
         }
+
         /** The stage of the PeeringRegisteredPrefix definition allowing to specify prefix. */
         interface WithPrefix {
             /**
@@ -130,6 +135,7 @@ public interface PeeringRegisteredPrefix {
             WithCreate withPrefix(String prefix);
         }
     }
+
     /**
      * Begins update for the PeeringRegisteredPrefix resource.
      *
@@ -154,6 +160,7 @@ public interface PeeringRegisteredPrefix {
          */
         PeeringRegisteredPrefix apply(Context context);
     }
+
     /** The PeeringRegisteredPrefix update stages. */
     interface UpdateStages {
         /** The stage of the PeeringRegisteredPrefix update allowing to specify prefix. */
@@ -167,6 +174,7 @@ public interface PeeringRegisteredPrefix {
             Update withPrefix(String prefix);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *
@@ -181,4 +189,26 @@ public interface PeeringRegisteredPrefix {
      * @return the refreshed resource.
      */
     PeeringRegisteredPrefix refresh(Context context);
+
+    /**
+     * Validates an existing registered prefix with the specified name under the given subscription, resource group and
+     * peering.
+     *
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the customer's prefix that is registered by the peering service provider along with {@link Response}.
+     */
+    Response<PeeringRegisteredPrefix> validateWithResponse(Context context);
+
+    /**
+     * Validates an existing registered prefix with the specified name under the given subscription, resource group and
+     * peering.
+     *
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the customer's prefix that is registered by the peering service provider.
+     */
+    PeeringRegisteredPrefix validate();
 }

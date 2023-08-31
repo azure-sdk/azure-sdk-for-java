@@ -7,7 +7,7 @@ package com.azure.resourcemanager.peering.generated;
 /** Samples for RegisteredPrefixes Get. */
 public final class RegisteredPrefixesGetSamples {
     /*
-     * x-ms-original-file: specification/peering/resource-manager/Microsoft.Peering/stable/2021-01-01/examples/GetRegisteredPrefix.json
+     * x-ms-original-file: specification/peering/resource-manager/Microsoft.Peering/stable/2023-08-01/examples/GetRegisteredPrefix.json
      */
     /**
      * Sample code: Get a registered prefix associated with the peering.

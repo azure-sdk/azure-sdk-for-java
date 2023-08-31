@@ -69,11 +69,13 @@ public interface PeeringRegisteredAsn {
     interface Definition
         extends DefinitionStages.Blank, DefinitionStages.WithParentResource, DefinitionStages.WithCreate {
     }
+
     /** The PeeringRegisteredAsn definition stages. */
     interface DefinitionStages {
         /** The first stage of the PeeringRegisteredAsn definition. */
         interface Blank extends WithParentResource {
         }
+
         /** The stage of the PeeringRegisteredAsn definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -85,6 +87,7 @@ public interface PeeringRegisteredAsn {
              */
             WithCreate withExistingPeering(String resourceGroupName, String peeringName);
         }
+
         /**
          * The stage of the PeeringRegisteredAsn definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
@@ -105,6 +108,7 @@ public interface PeeringRegisteredAsn {
              */
             PeeringRegisteredAsn create(Context context);
         }
+
         /** The stage of the PeeringRegisteredAsn definition allowing to specify asn. */
         interface WithAsn {
             /**
@@ -116,6 +120,7 @@ public interface PeeringRegisteredAsn {
             WithCreate withAsn(Integer asn);
         }
     }
+
     /**
      * Begins update for the PeeringRegisteredAsn resource.
      *
@@ -140,6 +145,7 @@ public interface PeeringRegisteredAsn {
          */
         PeeringRegisteredAsn apply(Context context);
     }
+
     /** The PeeringRegisteredAsn update stages. */
     interface UpdateStages {
         /** The stage of the PeeringRegisteredAsn update allowing to specify asn. */
@@ -153,6 +159,7 @@ public interface PeeringRegisteredAsn {
             Update withAsn(Integer asn);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

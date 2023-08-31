@@ -9,6 +9,7 @@ import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.peering.fluent.LegacyPeeringsClient;
 import com.azure.resourcemanager.peering.fluent.models.PeeringInner;
+import com.azure.resourcemanager.peering.models.DirectPeeringType;
 import com.azure.resourcemanager.peering.models.LegacyPeerings;
 import com.azure.resourcemanager.peering.models.LegacyPeeringsKind;
 import com.azure.resourcemanager.peering.models.Peering;
@@ -31,8 +32,14 @@ public final class LegacyPeeringsImpl implements LegacyPeerings {
         return Utils.mapPage(inner, inner1 -> new PeeringImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<Peering> list(String peeringLocation, LegacyPeeringsKind kind, Integer asn, Context context) {
-        PagedIterable<PeeringInner> inner = this.serviceClient().list(peeringLocation, kind, asn, context);
+    public PagedIterable<Peering> list(
+        String peeringLocation,
+        LegacyPeeringsKind kind,
+        Integer asn,
+        DirectPeeringType directPeeringType,
+        Context context) {
+        PagedIterable<PeeringInner> inner =
+            this.serviceClient().list(peeringLocation, kind, asn, directPeeringType, context);
         return Utils.mapPage(inner, inner1 -> new PeeringImpl(inner1, this.manager()));
     }
 

@@ -7,7 +7,7 @@ package com.azure.resourcemanager.peering.generated;
 /** Samples for PeerAsns Delete. */
 public final class PeerAsnsDeleteSamples {
     /*
-     * x-ms-original-file: specification/peering/resource-manager/Microsoft.Peering/stable/2021-01-01/examples/DeletePeerAsn.json
+     * x-ms-original-file: specification/peering/resource-manager/Microsoft.Peering/stable/2023-08-01/examples/DeletePeerAsn.json
      */
     /**
      * Sample code: Delete a peer ASN.

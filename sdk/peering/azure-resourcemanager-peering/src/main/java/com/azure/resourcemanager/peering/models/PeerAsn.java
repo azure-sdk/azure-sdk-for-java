@@ -76,11 +76,13 @@ public interface PeerAsn {
     /** The entirety of the PeerAsn definition. */
     interface Definition extends DefinitionStages.Blank, DefinitionStages.WithCreate {
     }
+
     /** The PeerAsn definition stages. */
     interface DefinitionStages {
         /** The first stage of the PeerAsn definition. */
         interface Blank extends WithCreate {
         }
+
         /**
          * The stage of the PeerAsn definition which contains all the minimum required properties for the resource to be
          * created, but also allows for any other optional properties to be specified.
@@ -88,8 +90,7 @@ public interface PeerAsn {
         interface WithCreate
             extends DefinitionStages.WithPeerAsn,
                 DefinitionStages.WithPeerContactDetail,
-                DefinitionStages.WithPeerName,
-                DefinitionStages.WithValidationState {
+                DefinitionStages.WithPeerName {
             /**
              * Executes the create request.
              *
@@ -105,6 +106,7 @@ public interface PeerAsn {
              */
             PeerAsn create(Context context);
         }
+
         /** The stage of the PeerAsn definition allowing to specify peerAsn. */
         interface WithPeerAsn {
             /**
@@ -115,6 +117,7 @@ public interface PeerAsn {
              */
             WithCreate withPeerAsn(Integer peerAsn);
         }
+
         /** The stage of the PeerAsn definition allowing to specify peerContactDetail. */
         interface WithPeerContactDetail {
             /**
@@ -125,6 +128,7 @@ public interface PeerAsn {
              */
             WithCreate withPeerContactDetail(List<ContactDetail> peerContactDetail);
         }
+
         /** The stage of the PeerAsn definition allowing to specify peerName. */
         interface WithPeerName {
             /**
@@ -135,17 +139,8 @@ public interface PeerAsn {
              */
             WithCreate withPeerName(String peerName);
         }
-        /** The stage of the PeerAsn definition allowing to specify validationState. */
-        interface WithValidationState {
-            /**
-             * Specifies the validationState property: The validation state of the ASN associated with the peer..
-             *
-             * @param validationState The validation state of the ASN associated with the peer.
-             * @return the next definition stage.
-             */
-            WithCreate withValidationState(ValidationState validationState);
-        }
     }
+
     /**
      * Begins update for the PeerAsn resource.
      *
@@ -154,11 +149,7 @@ public interface PeerAsn {
     PeerAsn.Update update();
 
     /** The template for PeerAsn update. */
-    interface Update
-        extends UpdateStages.WithPeerAsn,
-            UpdateStages.WithPeerContactDetail,
-            UpdateStages.WithPeerName,
-            UpdateStages.WithValidationState {
+    interface Update extends UpdateStages.WithPeerAsn, UpdateStages.WithPeerContactDetail, UpdateStages.WithPeerName {
         /**
          * Executes the update request.
          *
@@ -174,6 +165,7 @@ public interface PeerAsn {
          */
         PeerAsn apply(Context context);
     }
+
     /** The PeerAsn update stages. */
     interface UpdateStages {
         /** The stage of the PeerAsn update allowing to specify peerAsn. */
@@ -186,6 +178,7 @@ public interface PeerAsn {
              */
             Update withPeerAsn(Integer peerAsn);
         }
+
         /** The stage of the PeerAsn update allowing to specify peerContactDetail. */
         interface WithPeerContactDetail {
             /**
@@ -196,6 +189,7 @@ public interface PeerAsn {
              */
             Update withPeerContactDetail(List<ContactDetail> peerContactDetail);
         }
+
         /** The stage of the PeerAsn update allowing to specify peerName. */
         interface WithPeerName {
             /**
@@ -206,17 +200,8 @@ public interface PeerAsn {
              */
             Update withPeerName(String peerName);
         }
-        /** The stage of the PeerAsn update allowing to specify validationState. */
-        interface WithValidationState {
-            /**
-             * Specifies the validationState property: The validation state of the ASN associated with the peer..
-             *
-             * @param validationState The validation state of the ASN associated with the peer.
-             * @return the next definition stage.
-             */
-            Update withValidationState(ValidationState validationState);
-        }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

@@ -11,7 +11,7 @@ import java.util.Map;
 /** Samples for Peerings Update. */
 public final class PeeringsUpdateSamples {
     /*
-     * x-ms-original-file: specification/peering/resource-manager/Microsoft.Peering/stable/2021-01-01/examples/UpdatePeeringTags.json
+     * x-ms-original-file: specification/peering/resource-manager/Microsoft.Peering/stable/2023-08-01/examples/UpdatePeeringTags.json
      */
     /**
      * Sample code: Update peering tags.
@@ -27,6 +27,7 @@ public final class PeeringsUpdateSamples {
         resource.update().withTags(mapOf("tag0", "value0", "tag1", "value1")).apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

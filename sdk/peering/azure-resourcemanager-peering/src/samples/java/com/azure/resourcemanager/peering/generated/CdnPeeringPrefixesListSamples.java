@@ -7,7 +7,7 @@ package com.azure.resourcemanager.peering.generated;
 /** Samples for CdnPeeringPrefixes List. */
 public final class CdnPeeringPrefixesListSamples {
     /*
-     * x-ms-original-file: specification/peering/resource-manager/Microsoft.Peering/stable/2021-01-01/examples/ListCdnPeeringPrefixes.json
+     * x-ms-original-file: specification/peering/resource-manager/Microsoft.Peering/stable/2023-08-01/examples/ListCdnPeeringPrefixes.json
      */
     /**
      * Sample code: List all the cdn peering prefixes advertised at a particular peering location.

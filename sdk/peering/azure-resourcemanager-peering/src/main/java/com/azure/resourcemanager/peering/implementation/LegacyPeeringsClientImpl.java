@@ -27,6 +27,7 @@ import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
 import com.azure.resourcemanager.peering.fluent.LegacyPeeringsClient;
 import com.azure.resourcemanager.peering.fluent.models.PeeringInner;
+import com.azure.resourcemanager.peering.models.DirectPeeringType;
 import com.azure.resourcemanager.peering.models.LegacyPeeringsKind;
 import com.azure.resourcemanager.peering.models.PeeringListResult;
 import reactor.core.publisher.Mono;
@@ -66,6 +67,7 @@ public final class LegacyPeeringsClientImpl implements LegacyPeeringsClient {
             @QueryParam("peeringLocation") String peeringLocation,
             @QueryParam("kind") LegacyPeeringsKind kind,
             @QueryParam("asn") Integer asn,
+            @QueryParam("directPeeringType") DirectPeeringType directPeeringType,
             @PathParam("subscriptionId") String subscriptionId,
             @QueryParam("api-version") String apiVersion,
             @HeaderParam("Accept") String accept,
@@ -88,6 +90,7 @@ public final class LegacyPeeringsClientImpl implements LegacyPeeringsClient {
      * @param peeringLocation The location of the peering.
      * @param kind The kind of the peering.
      * @param asn The ASN number associated with a legacy peering.
+     * @param directPeeringType The direct peering type.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -95,7 +98,7 @@ public final class LegacyPeeringsClientImpl implements LegacyPeeringsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<PeeringInner>> listSinglePageAsync(
-        String peeringLocation, LegacyPeeringsKind kind, Integer asn) {
+        String peeringLocation, LegacyPeeringsKind kind, Integer asn, DirectPeeringType directPeeringType) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -125,6 +128,7 @@ public final class LegacyPeeringsClientImpl implements LegacyPeeringsClient {
                             peeringLocation,
                             kind,
                             asn,
+                            directPeeringType,
                             this.client.getSubscriptionId(),
                             this.client.getApiVersion(),
                             accept,
@@ -147,6 +151,7 @@ public final class LegacyPeeringsClientImpl implements LegacyPeeringsClient {
      * @param peeringLocation The location of the peering.
      * @param kind The kind of the peering.
      * @param asn The ASN number associated with a legacy peering.
+     * @param directPeeringType The direct peering type.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -155,7 +160,11 @@ public final class LegacyPeeringsClientImpl implements LegacyPeeringsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<PeeringInner>> listSinglePageAsync(
-        String peeringLocation, LegacyPeeringsKind kind, Integer asn, Context context) {
+        String peeringLocation,
+        LegacyPeeringsKind kind,
+        Integer asn,
+        DirectPeeringType directPeeringType,
+        Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -183,6 +192,7 @@ public final class LegacyPeeringsClientImpl implements LegacyPeeringsClient {
                 peeringLocation,
                 kind,
                 asn,
+                directPeeringType,
                 this.client.getSubscriptionId(),
                 this.client.getApiVersion(),
                 accept,
@@ -204,15 +214,18 @@ public final class LegacyPeeringsClientImpl implements LegacyPeeringsClient {
      * @param peeringLocation The location of the peering.
      * @param kind The kind of the peering.
      * @param asn The ASN number associated with a legacy peering.
+     * @param directPeeringType The direct peering type.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the paginated list of peerings as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<PeeringInner> listAsync(String peeringLocation, LegacyPeeringsKind kind, Integer asn) {
+    private PagedFlux<PeeringInner> listAsync(
+        String peeringLocation, LegacyPeeringsKind kind, Integer asn, DirectPeeringType directPeeringType) {
         return new PagedFlux<>(
-            () -> listSinglePageAsync(peeringLocation, kind, asn), nextLink -> listNextSinglePageAsync(nextLink));
+            () -> listSinglePageAsync(peeringLocation, kind, asn, directPeeringType),
+            nextLink -> listNextSinglePageAsync(nextLink));
     }
 
     /**
@@ -228,8 +241,10 @@ public final class LegacyPeeringsClientImpl implements LegacyPeeringsClient {
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<PeeringInner> listAsync(String peeringLocation, LegacyPeeringsKind kind) {
         final Integer asn = null;
+        final DirectPeeringType directPeeringType = null;
         return new PagedFlux<>(
-            () -> listSinglePageAsync(peeringLocation, kind, asn), nextLink -> listNextSinglePageAsync(nextLink));
+            () -> listSinglePageAsync(peeringLocation, kind, asn, directPeeringType),
+            nextLink -> listNextSinglePageAsync(nextLink));
     }
 
     /**
@@ -238,6 +253,7 @@ public final class LegacyPeeringsClientImpl implements LegacyPeeringsClient {
      * @param peeringLocation The location of the peering.
      * @param kind The kind of the peering.
      * @param asn The ASN number associated with a legacy peering.
+     * @param directPeeringType The direct peering type.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -246,9 +262,13 @@ public final class LegacyPeeringsClientImpl implements LegacyPeeringsClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<PeeringInner> listAsync(
-        String peeringLocation, LegacyPeeringsKind kind, Integer asn, Context context) {
+        String peeringLocation,
+        LegacyPeeringsKind kind,
+        Integer asn,
+        DirectPeeringType directPeeringType,
+        Context context) {
         return new PagedFlux<>(
-            () -> listSinglePageAsync(peeringLocation, kind, asn, context),
+            () -> listSinglePageAsync(peeringLocation, kind, asn, directPeeringType, context),
             nextLink -> listNextSinglePageAsync(nextLink, context));
     }
 
@@ -265,7 +285,8 @@ public final class LegacyPeeringsClientImpl implements LegacyPeeringsClient {
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<PeeringInner> list(String peeringLocation, LegacyPeeringsKind kind) {
         final Integer asn = null;
-        return new PagedIterable<>(listAsync(peeringLocation, kind, asn));
+        final DirectPeeringType directPeeringType = null;
+        return new PagedIterable<>(listAsync(peeringLocation, kind, asn, directPeeringType));
     }
 
     /**
@@ -274,6 +295,7 @@ public final class LegacyPeeringsClientImpl implements LegacyPeeringsClient {
      * @param peeringLocation The location of the peering.
      * @param kind The kind of the peering.
      * @param asn The ASN number associated with a legacy peering.
+     * @param directPeeringType The direct peering type.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -282,8 +304,12 @@ public final class LegacyPeeringsClientImpl implements LegacyPeeringsClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<PeeringInner> list(
-        String peeringLocation, LegacyPeeringsKind kind, Integer asn, Context context) {
-        return new PagedIterable<>(listAsync(peeringLocation, kind, asn, context));
+        String peeringLocation,
+        LegacyPeeringsKind kind,
+        Integer asn,
+        DirectPeeringType directPeeringType,
+        Context context) {
+        return new PagedIterable<>(listAsync(peeringLocation, kind, asn, directPeeringType, context));
     }
 
     /**
