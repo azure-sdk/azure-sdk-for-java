@@ -12,7 +12,7 @@ import java.util.Map;
 /** Samples for Workspaces Diagnose. */
 public final class WorkspacesDiagnoseSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Workspace/diagnose.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-10-01/examples/Workspace/diagnose.json
      */
     /**
      * Sample code: Diagnose Workspace.
@@ -40,6 +40,7 @@ public final class WorkspacesDiagnoseSamples {
                 com.azure.core.util.Context.NONE);
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
