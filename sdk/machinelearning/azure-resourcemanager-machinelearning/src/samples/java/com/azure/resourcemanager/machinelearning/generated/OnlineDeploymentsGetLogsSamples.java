@@ -10,7 +10,7 @@ import com.azure.resourcemanager.machinelearning.models.DeploymentLogsRequest;
 /** Samples for OnlineDeployments GetLogs. */
 public final class OnlineDeploymentsGetLogsSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/OnlineDeployment/getLogs.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2023-08-01-preview/examples/OnlineDeployment/getLogs.json
      */
     /**
      * Sample code: Get Online Deployment Logs.

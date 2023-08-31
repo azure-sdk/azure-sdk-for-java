@@ -37,7 +37,7 @@ public final class CertificateDatastoreCredentials extends DatastoreCredentials 
     /*
      * [Required] Service principal secrets.
      */
-    @JsonProperty(value = "secrets", required = true)
+    @JsonProperty(value = "secrets")
     private CertificateDatastoreSecrets secrets;
 
     /*

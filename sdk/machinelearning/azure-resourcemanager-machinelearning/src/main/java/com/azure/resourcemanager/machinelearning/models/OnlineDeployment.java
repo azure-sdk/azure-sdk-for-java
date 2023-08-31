@@ -120,11 +120,13 @@ public interface OnlineDeployment {
             DefinitionStages.WithProperties,
             DefinitionStages.WithCreate {
     }
+
     /** The OnlineDeployment definition stages. */
     interface DefinitionStages {
         /** The first stage of the OnlineDeployment definition. */
         interface Blank extends WithLocation {
         }
+
         /** The stage of the OnlineDeployment definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -143,6 +145,7 @@ public interface OnlineDeployment {
              */
             WithParentResource withRegion(String location);
         }
+
         /** The stage of the OnlineDeployment definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -156,6 +159,7 @@ public interface OnlineDeployment {
             WithProperties withExistingOnlineEndpoint(
                 String resourceGroupName, String workspaceName, String endpointName);
         }
+
         /** The stage of the OnlineDeployment definition allowing to specify properties. */
         interface WithProperties {
             /**
@@ -166,6 +170,7 @@ public interface OnlineDeployment {
              */
             WithCreate withProperties(OnlineDeploymentProperties properties);
         }
+
         /**
          * The stage of the OnlineDeployment definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
@@ -190,6 +195,7 @@ public interface OnlineDeployment {
              */
             OnlineDeployment create(Context context);
         }
+
         /** The stage of the OnlineDeployment definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -200,6 +206,7 @@ public interface OnlineDeployment {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
         /** The stage of the OnlineDeployment definition allowing to specify identity. */
         interface WithIdentity {
             /**
@@ -211,6 +218,7 @@ public interface OnlineDeployment {
              */
             WithCreate withIdentity(ManagedServiceIdentity identity);
         }
+
         /** The stage of the OnlineDeployment definition allowing to specify kind. */
         interface WithKind {
             /**
@@ -223,6 +231,7 @@ public interface OnlineDeployment {
              */
             WithCreate withKind(String kind);
         }
+
         /** The stage of the OnlineDeployment definition allowing to specify sku. */
         interface WithSku {
             /**
@@ -234,6 +243,7 @@ public interface OnlineDeployment {
             WithCreate withSku(Sku sku);
         }
     }
+
     /**
      * Begins update for the OnlineDeployment resource.
      *
@@ -258,6 +268,7 @@ public interface OnlineDeployment {
          */
         OnlineDeployment apply(Context context);
     }
+
     /** The OnlineDeployment update stages. */
     interface UpdateStages {
         /** The stage of the OnlineDeployment update allowing to specify tags. */
@@ -270,6 +281,7 @@ public interface OnlineDeployment {
              */
             Update withTags(Map<String, String> tags);
         }
+
         /** The stage of the OnlineDeployment update allowing to specify sku. */
         interface WithSku {
             /**
@@ -281,6 +293,7 @@ public interface OnlineDeployment {
             Update withSku(PartialSku sku);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

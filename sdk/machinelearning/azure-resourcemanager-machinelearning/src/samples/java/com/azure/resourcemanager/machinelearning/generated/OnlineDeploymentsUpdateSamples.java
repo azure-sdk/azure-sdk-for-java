@@ -13,7 +13,7 @@ import java.util.Map;
 /** Samples for OnlineDeployments Update. */
 public final class OnlineDeploymentsUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/OnlineDeployment/ManagedOnlineDeployment/update.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2023-08-01-preview/examples/OnlineDeployment/ManagedOnlineDeployment/update.json
      */
     /**
      * Sample code: Update Managed Online Deployment.
@@ -46,7 +46,7 @@ public final class OnlineDeploymentsUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/OnlineDeployment/KubernetesOnlineDeployment/update.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2023-08-01-preview/examples/OnlineDeployment/KubernetesOnlineDeployment/update.json
      */
     /**
      * Sample code: Update Kubernetes Online Deployment.
@@ -78,6 +78,7 @@ public final class OnlineDeploymentsUpdateSamples {
             .apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
