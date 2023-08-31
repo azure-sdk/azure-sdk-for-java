@@ -8,11 +8,15 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.Map;
 
 /** Trial component definition. */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "trialType")
+@JsonTypeName("CommandComponent")
 @Fluent
-public final class TrialComponent {
+public final class TrialComponent extends Trial {
     /*
      * ARM resource ID of the code asset.
      */
@@ -181,7 +185,9 @@ public final class TrialComponent {
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
+    @Override
     public void validate() {
+        super.validate();
         if (command() == null) {
             throw LOGGER
                 .logExceptionAsError(
