@@ -24,10 +24,11 @@ public final class AzureTrafficCollectorsCreateOrUpdateSamples {
             .define("atc")
             .withRegion("West US")
             .withExistingResourceGroup("rg1")
-            .withTags(mapOf("key1", "value1"))
+            .withTags(mapOf("key1", "fakeTokenPlaceholder"))
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

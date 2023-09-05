@@ -67,8 +67,7 @@ public final class AzureTrafficCollectorsByResourceGroupsClientImpl
     public interface AzureTrafficCollectorsByResourceGroupsService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkFunction"
-                + "/azureTrafficCollectors")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkFunction/azureTrafficCollectors")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<AzureTrafficCollectorListResult>> listByResourceGroup(
