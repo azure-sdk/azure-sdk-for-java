@@ -4,12 +4,10 @@
 
 package com.azure.resourcemanager.consumption.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Budgets Delete. */
 public final class BudgetsDeleteSamples {
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/DeleteBudget.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2023-11-01/examples/DeleteBudget.json
      */
     /**
      * Sample code: DeleteBudget.
@@ -19,6 +17,7 @@ public final class BudgetsDeleteSamples {
     public static void deleteBudget(com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .budgets()
-            .deleteWithResponse("subscriptions/00000000-0000-0000-0000-000000000000", "TestBudget", Context.NONE);
+            .deleteByResourceGroupWithResponse(
+                "subscriptions/00000000-0000-0000-0000-000000000000", "TestBudget", com.azure.core.util.Context.NONE);
     }
 }
