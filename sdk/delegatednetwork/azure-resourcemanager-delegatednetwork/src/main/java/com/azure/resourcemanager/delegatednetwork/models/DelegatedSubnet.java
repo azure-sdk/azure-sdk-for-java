@@ -75,6 +75,14 @@ public interface DelegatedSubnet {
     ControllerDetails controllerDetails();
 
     /**
+     * Gets the allocationBlockPrefixSize property: Defines prefix size of CIDR blocks allocated to nodes in VnetBlock
+     * Mode. Delegated subnet's prefix size should be smaller than this by a minimum of 3.
+     *
+     * @return the allocationBlockPrefixSize value.
+     */
+    Integer allocationBlockPrefixSize();
+
+    /**
      * Gets the region of the resource.
      *
      * @return the region of the resource.
@@ -109,11 +117,13 @@ public interface DelegatedSubnet {
             DefinitionStages.WithResourceGroup,
             DefinitionStages.WithCreate {
     }
+
     /** The DelegatedSubnet definition stages. */
     interface DefinitionStages {
         /** The first stage of the DelegatedSubnet definition. */
         interface Blank extends WithLocation {
         }
+
         /** The stage of the DelegatedSubnet definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -132,6 +142,7 @@ public interface DelegatedSubnet {
              */
             WithResourceGroup withRegion(String location);
         }
+
         /** The stage of the DelegatedSubnet definition allowing to specify parent resource. */
         interface WithResourceGroup {
             /**
@@ -142,6 +153,7 @@ public interface DelegatedSubnet {
              */
             WithCreate withExistingResourceGroup(String resourceGroupName);
         }
+
         /**
          * The stage of the DelegatedSubnet definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
@@ -149,7 +161,8 @@ public interface DelegatedSubnet {
         interface WithCreate
             extends DefinitionStages.WithTags,
                 DefinitionStages.WithSubnetDetails,
-                DefinitionStages.WithControllerDetails {
+                DefinitionStages.WithControllerDetails,
+                DefinitionStages.WithAllocationBlockPrefixSize {
             /**
              * Executes the create request.
              *
@@ -165,6 +178,7 @@ public interface DelegatedSubnet {
              */
             DelegatedSubnet create(Context context);
         }
+
         /** The stage of the DelegatedSubnet definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -175,6 +189,7 @@ public interface DelegatedSubnet {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
         /** The stage of the DelegatedSubnet definition allowing to specify subnetDetails. */
         interface WithSubnetDetails {
             /**
@@ -185,6 +200,7 @@ public interface DelegatedSubnet {
              */
             WithCreate withSubnetDetails(SubnetDetails subnetDetails);
         }
+
         /** The stage of the DelegatedSubnet definition allowing to specify controllerDetails. */
         interface WithControllerDetails {
             /**
@@ -195,7 +211,21 @@ public interface DelegatedSubnet {
              */
             WithCreate withControllerDetails(ControllerDetails controllerDetails);
         }
+
+        /** The stage of the DelegatedSubnet definition allowing to specify allocationBlockPrefixSize. */
+        interface WithAllocationBlockPrefixSize {
+            /**
+             * Specifies the allocationBlockPrefixSize property: Defines prefix size of CIDR blocks allocated to nodes
+             * in VnetBlock Mode. Delegated subnet's prefix size should be smaller than this by a minimum of 3..
+             *
+             * @param allocationBlockPrefixSize Defines prefix size of CIDR blocks allocated to nodes in VnetBlock Mode.
+             *     Delegated subnet's prefix size should be smaller than this by a minimum of 3.
+             * @return the next definition stage.
+             */
+            WithCreate withAllocationBlockPrefixSize(Integer allocationBlockPrefixSize);
+        }
     }
+
     /**
      * Begins update for the DelegatedSubnet resource.
      *
@@ -220,6 +250,7 @@ public interface DelegatedSubnet {
          */
         DelegatedSubnet apply(Context context);
     }
+
     /** The DelegatedSubnet update stages. */
     interface UpdateStages {
         /** The stage of the DelegatedSubnet update allowing to specify tags. */
@@ -233,6 +264,7 @@ public interface DelegatedSubnet {
             Update withTags(Map<String, String> tags);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

@@ -11,7 +11,7 @@ import java.util.Map;
 /** Samples for Controller Patch. */
 public final class ControllerPatchSamples {
     /*
-     * x-ms-original-file: specification/dnc/resource-manager/Microsoft.DelegatedNetwork/stable/2021-03-15/examples/patchController.json
+     * x-ms-original-file: specification/dnc/resource-manager/Microsoft.DelegatedNetwork/preview/2023-06-27-preview/examples/patchController.json
      */
     /**
      * Sample code: update controller.
@@ -24,9 +24,10 @@ public final class ControllerPatchSamples {
                 .controllers()
                 .getByResourceGroupWithResponse("TestRG", "testcontroller", com.azure.core.util.Context.NONE)
                 .getValue();
-        resource.update().withTags(mapOf("key", "value")).apply();
+        resource.update().withTags(mapOf("key", "fakeTokenPlaceholder")).apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

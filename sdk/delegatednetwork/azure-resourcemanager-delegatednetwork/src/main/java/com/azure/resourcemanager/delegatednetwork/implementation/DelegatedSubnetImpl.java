@@ -61,6 +61,10 @@ public final class DelegatedSubnetImpl implements DelegatedSubnet, DelegatedSubn
         return this.innerModel().controllerDetails();
     }
 
+    public Integer allocationBlockPrefixSize() {
+        return this.innerModel().allocationBlockPrefixSize();
+    }
+
     public Region region() {
         return Region.fromName(this.regionName());
     }
@@ -196,6 +200,11 @@ public final class DelegatedSubnetImpl implements DelegatedSubnet, DelegatedSubn
 
     public DelegatedSubnetImpl withControllerDetails(ControllerDetails controllerDetails) {
         this.innerModel().withControllerDetails(controllerDetails);
+        return this;
+    }
+
+    public DelegatedSubnetImpl withAllocationBlockPrefixSize(Integer allocationBlockPrefixSize) {
+        this.innerModel().withAllocationBlockPrefixSize(allocationBlockPrefixSize);
         return this;
     }
 

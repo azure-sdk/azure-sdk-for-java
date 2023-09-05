@@ -7,7 +7,7 @@ package com.azure.resourcemanager.delegatednetwork.generated;
 /** Samples for DelegatedSubnetService List. */
 public final class DelegatedSubnetServiceListSamples {
     /*
-     * x-ms-original-file: specification/dnc/resource-manager/Microsoft.DelegatedNetwork/stable/2021-03-15/examples/delegatedSubnetListBySub.json
+     * x-ms-original-file: specification/dnc/resource-manager/Microsoft.DelegatedNetwork/preview/2023-06-27-preview/examples/delegatedSubnetListBySub.json
      */
     /**
      * Sample code: Get DelegatedSubnets resources by subscription.

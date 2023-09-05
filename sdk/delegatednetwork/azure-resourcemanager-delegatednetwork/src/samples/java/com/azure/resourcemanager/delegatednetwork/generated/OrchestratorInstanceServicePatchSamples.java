@@ -11,7 +11,7 @@ import java.util.Map;
 /** Samples for OrchestratorInstanceService Patch. */
 public final class OrchestratorInstanceServicePatchSamples {
     /*
-     * x-ms-original-file: specification/dnc/resource-manager/Microsoft.DelegatedNetwork/stable/2021-03-15/examples/patchOrchestrator.json
+     * x-ms-original-file: specification/dnc/resource-manager/Microsoft.DelegatedNetwork/preview/2023-06-27-preview/examples/patchOrchestrator.json
      */
     /**
      * Sample code: update Orchestrator Instance.
@@ -25,9 +25,10 @@ public final class OrchestratorInstanceServicePatchSamples {
                 .orchestratorInstanceServices()
                 .getByResourceGroupWithResponse("TestRG", "testk8s1", com.azure.core.util.Context.NONE)
                 .getValue();
-        resource.update().withTags(mapOf("key", "value")).apply();
+        resource.update().withTags(mapOf("key", "fakeTokenPlaceholder")).apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
