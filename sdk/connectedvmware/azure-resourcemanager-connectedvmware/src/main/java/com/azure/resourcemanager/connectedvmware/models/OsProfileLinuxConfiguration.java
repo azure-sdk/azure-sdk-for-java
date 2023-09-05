@@ -17,6 +17,10 @@ public final class OsProfileLinuxConfiguration {
     @JsonProperty(value = "patchSettings")
     private PatchSettings innerPatchSettings;
 
+    /** Creates an instance of OsProfileLinuxConfiguration class. */
+    public OsProfileLinuxConfiguration() {
+    }
+
     /**
      * Get the innerPatchSettings property: Specifies the patch settings.
      *

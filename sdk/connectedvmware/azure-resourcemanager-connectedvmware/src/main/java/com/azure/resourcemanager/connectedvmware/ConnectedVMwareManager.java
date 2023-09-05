@@ -34,10 +34,14 @@ import com.azure.resourcemanager.connectedvmware.implementation.InventoryItemsIm
 import com.azure.resourcemanager.connectedvmware.implementation.MachineExtensionsImpl;
 import com.azure.resourcemanager.connectedvmware.implementation.OperationsImpl;
 import com.azure.resourcemanager.connectedvmware.implementation.ResourcePoolsImpl;
+import com.azure.resourcemanager.connectedvmware.implementation.ResourceProvidersImpl;
 import com.azure.resourcemanager.connectedvmware.implementation.VCentersImpl;
+import com.azure.resourcemanager.connectedvmware.implementation.VMInstanceGuestAgentsImpl;
+import com.azure.resourcemanager.connectedvmware.implementation.VirtualMachineInstancesImpl;
 import com.azure.resourcemanager.connectedvmware.implementation.VirtualMachineTemplatesImpl;
 import com.azure.resourcemanager.connectedvmware.implementation.VirtualMachinesImpl;
 import com.azure.resourcemanager.connectedvmware.implementation.VirtualNetworksImpl;
+import com.azure.resourcemanager.connectedvmware.implementation.VmInstanceHybridIdentityMetadatasImpl;
 import com.azure.resourcemanager.connectedvmware.models.Clusters;
 import com.azure.resourcemanager.connectedvmware.models.Datastores;
 import com.azure.resourcemanager.connectedvmware.models.GuestAgents;
@@ -47,10 +51,14 @@ import com.azure.resourcemanager.connectedvmware.models.InventoryItems;
 import com.azure.resourcemanager.connectedvmware.models.MachineExtensions;
 import com.azure.resourcemanager.connectedvmware.models.Operations;
 import com.azure.resourcemanager.connectedvmware.models.ResourcePools;
+import com.azure.resourcemanager.connectedvmware.models.ResourceProviders;
 import com.azure.resourcemanager.connectedvmware.models.VCenters;
+import com.azure.resourcemanager.connectedvmware.models.VMInstanceGuestAgents;
+import com.azure.resourcemanager.connectedvmware.models.VirtualMachineInstances;
 import com.azure.resourcemanager.connectedvmware.models.VirtualMachineTemplates;
 import com.azure.resourcemanager.connectedvmware.models.VirtualMachines;
 import com.azure.resourcemanager.connectedvmware.models.VirtualNetworks;
+import com.azure.resourcemanager.connectedvmware.models.VmInstanceHybridIdentityMetadatas;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -84,7 +92,15 @@ public final class ConnectedVMwareManager {
 
     private MachineExtensions machineExtensions;
 
+    private ResourceProviders resourceProviders;
+
     private GuestAgents guestAgents;
+
+    private VirtualMachineInstances virtualMachineInstances;
+
+    private VmInstanceHybridIdentityMetadatas vmInstanceHybridIdentityMetadatas;
+
+    private VMInstanceGuestAgents vMInstanceGuestAgents;
 
     private final ConnectedVMwareClient clientObject;
 
@@ -455,6 +471,18 @@ public final class ConnectedVMwareManager {
     }
 
     /**
+     * Gets the resource collection API of ResourceProviders.
+     *
+     * @return Resource collection API of ResourceProviders.
+     */
+    public ResourceProviders resourceProviders() {
+        if (this.resourceProviders == null) {
+            this.resourceProviders = new ResourceProvidersImpl(clientObject.getResourceProviders(), this);
+        }
+        return resourceProviders;
+    }
+
+    /**
      * Gets the resource collection API of GuestAgents. It manages GuestAgent.
      *
      * @return Resource collection API of GuestAgents.
@@ -467,8 +495,48 @@ public final class ConnectedVMwareManager {
     }
 
     /**
-     * @return Wrapped service client ConnectedVMwareClient providing direct access to the underlying auto-generated API
-     *     implementation, based on Azure REST API.
+     * Gets the resource collection API of VirtualMachineInstances.
+     *
+     * @return Resource collection API of VirtualMachineInstances.
+     */
+    public VirtualMachineInstances virtualMachineInstances() {
+        if (this.virtualMachineInstances == null) {
+            this.virtualMachineInstances =
+                new VirtualMachineInstancesImpl(clientObject.getVirtualMachineInstances(), this);
+        }
+        return virtualMachineInstances;
+    }
+
+    /**
+     * Gets the resource collection API of VmInstanceHybridIdentityMetadatas.
+     *
+     * @return Resource collection API of VmInstanceHybridIdentityMetadatas.
+     */
+    public VmInstanceHybridIdentityMetadatas vmInstanceHybridIdentityMetadatas() {
+        if (this.vmInstanceHybridIdentityMetadatas == null) {
+            this.vmInstanceHybridIdentityMetadatas =
+                new VmInstanceHybridIdentityMetadatasImpl(clientObject.getVmInstanceHybridIdentityMetadatas(), this);
+        }
+        return vmInstanceHybridIdentityMetadatas;
+    }
+
+    /**
+     * Gets the resource collection API of VMInstanceGuestAgents.
+     *
+     * @return Resource collection API of VMInstanceGuestAgents.
+     */
+    public VMInstanceGuestAgents vMInstanceGuestAgents() {
+        if (this.vMInstanceGuestAgents == null) {
+            this.vMInstanceGuestAgents = new VMInstanceGuestAgentsImpl(clientObject.getVMInstanceGuestAgents(), this);
+        }
+        return vMInstanceGuestAgents;
+    }
+
+    /**
+     * Gets wrapped service client ConnectedVMwareClient providing direct access to the underlying auto-generated API
+     * implementation, based on Azure REST API.
+     *
+     * @return Wrapped service client ConnectedVMwareClient.
      */
     public ConnectedVMwareClient serviceClient() {
         return this.clientObject;

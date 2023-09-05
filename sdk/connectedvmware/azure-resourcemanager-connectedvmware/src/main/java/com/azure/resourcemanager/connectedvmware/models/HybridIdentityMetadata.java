@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.connectedvmware.models;
 
-import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.connectedvmware.fluent.models.HybridIdentityMetadataInner;
 
@@ -32,13 +31,6 @@ public interface HybridIdentityMetadata {
     String type();
 
     /**
-     * Gets the systemData property: The system data.
-     *
-     * @return the systemData value.
-     */
-    SystemData systemData();
-
-    /**
      * Gets the vmId property: Gets or sets the Vm Id.
      *
      * @return the vmId value.
@@ -60,11 +52,11 @@ public interface HybridIdentityMetadata {
     Identity identity();
 
     /**
-     * Gets the provisioningState property: Gets or sets the provisioning state.
+     * Gets the provisioningState property: Gets the provisioning state.
      *
      * @return the provisioningState value.
      */
-    String provisioningState();
+    ProvisioningState provisioningState();
 
     /**
      * Gets the inner com.azure.resourcemanager.connectedvmware.fluent.models.HybridIdentityMetadataInner object.
@@ -77,11 +69,13 @@ public interface HybridIdentityMetadata {
     interface Definition
         extends DefinitionStages.Blank, DefinitionStages.WithParentResource, DefinitionStages.WithCreate {
     }
+
     /** The HybridIdentityMetadata definition stages. */
     interface DefinitionStages {
         /** The first stage of the HybridIdentityMetadata definition. */
         interface Blank extends WithParentResource {
         }
+
         /** The stage of the HybridIdentityMetadata definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -93,6 +87,7 @@ public interface HybridIdentityMetadata {
              */
             WithCreate withExistingVirtualMachine(String resourceGroupName, String virtualMachineName);
         }
+
         /**
          * The stage of the HybridIdentityMetadata definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
@@ -113,6 +108,7 @@ public interface HybridIdentityMetadata {
              */
             HybridIdentityMetadata create(Context context);
         }
+
         /** The stage of the HybridIdentityMetadata definition allowing to specify vmId. */
         interface WithVmId {
             /**
@@ -123,6 +119,7 @@ public interface HybridIdentityMetadata {
              */
             WithCreate withVmId(String vmId);
         }
+
         /** The stage of the HybridIdentityMetadata definition allowing to specify publicKey. */
         interface WithPublicKey {
             /**
@@ -134,6 +131,7 @@ public interface HybridIdentityMetadata {
             WithCreate withPublicKey(String publicKey);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

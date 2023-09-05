@@ -28,15 +28,6 @@ public final class GuestAgentsImpl implements GuestAgents {
         this.serviceManager = serviceManager;
     }
 
-    public GuestAgent get(String resourceGroupName, String virtualMachineName, String name) {
-        GuestAgentInner inner = this.serviceClient().get(resourceGroupName, virtualMachineName, name);
-        if (inner != null) {
-            return new GuestAgentImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<GuestAgent> getWithResponse(
         String resourceGroupName, String virtualMachineName, String name, Context context) {
         Response<GuestAgentInner> inner =
@@ -52,6 +43,15 @@ public final class GuestAgentsImpl implements GuestAgents {
         }
     }
 
+    public GuestAgent get(String resourceGroupName, String virtualMachineName, String name) {
+        GuestAgentInner inner = this.serviceClient().get(resourceGroupName, virtualMachineName, name);
+        if (inner != null) {
+            return new GuestAgentImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
     public void delete(String resourceGroupName, String virtualMachineName, String name) {
         this.serviceClient().delete(resourceGroupName, virtualMachineName, name);
     }
@@ -60,14 +60,14 @@ public final class GuestAgentsImpl implements GuestAgents {
         this.serviceClient().delete(resourceGroupName, virtualMachineName, name, context);
     }
 
-    public PagedIterable<GuestAgent> listByVm(String resourceGroupName, String virtualMachineName) {
-        PagedIterable<GuestAgentInner> inner = this.serviceClient().listByVm(resourceGroupName, virtualMachineName);
+    public PagedIterable<GuestAgent> list(String resourceGroupName, String virtualMachineName) {
+        PagedIterable<GuestAgentInner> inner = this.serviceClient().list(resourceGroupName, virtualMachineName);
         return Utils.mapPage(inner, inner1 -> new GuestAgentImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<GuestAgent> listByVm(String resourceGroupName, String virtualMachineName, Context context) {
+    public PagedIterable<GuestAgent> list(String resourceGroupName, String virtualMachineName, Context context) {
         PagedIterable<GuestAgentInner> inner =
-            this.serviceClient().listByVm(resourceGroupName, virtualMachineName, context);
+            this.serviceClient().list(resourceGroupName, virtualMachineName, context);
         return Utils.mapPage(inner, inner1 -> new GuestAgentImpl(inner1, this.manager()));
     }
 
