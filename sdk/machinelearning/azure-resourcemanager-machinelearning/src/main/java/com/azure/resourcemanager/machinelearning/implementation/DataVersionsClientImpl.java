@@ -40,21 +40,21 @@ public final class DataVersionsClientImpl implements DataVersionsClient {
     private final DataVersionsService service;
 
     /** The service client containing this operation class. */
-    private final AzureMachineLearningWorkspacesImpl client;
+    private final AzureMachineLearningServicesImpl client;
 
     /**
      * Initializes an instance of DataVersionsClientImpl.
      *
      * @param client the instance of the service client containing this operation class.
      */
-    DataVersionsClientImpl(AzureMachineLearningWorkspacesImpl client) {
+    DataVersionsClientImpl(AzureMachineLearningServicesImpl client) {
         this.service =
             RestProxy.create(DataVersionsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for AzureMachineLearningWorkspacesDataVersions to be used by the proxy
+     * The interface defining all the services for AzureMachineLearningServicesDataVersions to be used by the proxy
      * service to perform REST calls.
      */
     @Host("{$host}")
@@ -62,8 +62,7 @@ public final class DataVersionsClientImpl implements DataVersionsClient {
     public interface DataVersionsService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/data/{name}/versions")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/data/{name}/versions")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<DataVersionBaseResourceArmPaginatedResult>> list(
@@ -78,13 +77,13 @@ public final class DataVersionsClientImpl implements DataVersionsClient {
             @QueryParam("$skip") String skip,
             @QueryParam("$tags") String tags,
             @QueryParam("listViewType") ListViewType listViewType,
+            @QueryParam("stage") String stage,
             @HeaderParam("Accept") String accept,
             Context context);
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/data/{name}/versions/{version}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/data/{name}/versions/{version}")
         @ExpectedResponses({200, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Void>> delete(
@@ -100,8 +99,7 @@ public final class DataVersionsClientImpl implements DataVersionsClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/data/{name}/versions/{version}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/data/{name}/versions/{version}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<DataVersionBaseInner>> get(
@@ -117,8 +115,7 @@ public final class DataVersionsClientImpl implements DataVersionsClient {
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/data/{name}/versions/{version}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/data/{name}/versions/{version}")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<DataVersionBaseInner>> createOrUpdate(
@@ -157,6 +154,7 @@ public final class DataVersionsClientImpl implements DataVersionsClient {
      * @param tags Comma-separated list of tag names (and optionally values). Example: tag1,tag2=value2.
      * @param listViewType [ListViewType.ActiveOnly, ListViewType.ArchivedOnly, ListViewType.All]View type for
      *     including/excluding (for example) archived entities.
+     * @param stage data stage.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -172,7 +170,8 @@ public final class DataVersionsClientImpl implements DataVersionsClient {
         Integer top,
         String skip,
         String tags,
-        ListViewType listViewType) {
+        ListViewType listViewType,
+        String stage) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -212,6 +211,7 @@ public final class DataVersionsClientImpl implements DataVersionsClient {
                             skip,
                             tags,
                             listViewType,
+                            stage,
                             accept,
                             context))
             .<PagedResponse<DataVersionBaseInner>>map(
@@ -239,6 +239,7 @@ public final class DataVersionsClientImpl implements DataVersionsClient {
      * @param tags Comma-separated list of tag names (and optionally values). Example: tag1,tag2=value2.
      * @param listViewType [ListViewType.ActiveOnly, ListViewType.ArchivedOnly, ListViewType.All]View type for
      *     including/excluding (for example) archived entities.
+     * @param stage data stage.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -256,6 +257,7 @@ public final class DataVersionsClientImpl implements DataVersionsClient {
         String skip,
         String tags,
         ListViewType listViewType,
+        String stage,
         Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -294,6 +296,7 @@ public final class DataVersionsClientImpl implements DataVersionsClient {
                 skip,
                 tags,
                 listViewType,
+                stage,
                 accept,
                 context)
             .map(
@@ -320,6 +323,7 @@ public final class DataVersionsClientImpl implements DataVersionsClient {
      * @param tags Comma-separated list of tag names (and optionally values). Example: tag1,tag2=value2.
      * @param listViewType [ListViewType.ActiveOnly, ListViewType.ArchivedOnly, ListViewType.All]View type for
      *     including/excluding (for example) archived entities.
+     * @param stage data stage.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -334,9 +338,12 @@ public final class DataVersionsClientImpl implements DataVersionsClient {
         Integer top,
         String skip,
         String tags,
-        ListViewType listViewType) {
+        ListViewType listViewType,
+        String stage) {
         return new PagedFlux<>(
-            () -> listSinglePageAsync(resourceGroupName, workspaceName, name, orderBy, top, skip, tags, listViewType),
+            () ->
+                listSinglePageAsync(
+                    resourceGroupName, workspaceName, name, orderBy, top, skip, tags, listViewType, stage),
             nextLink -> listNextSinglePageAsync(nextLink));
     }
 
@@ -358,8 +365,11 @@ public final class DataVersionsClientImpl implements DataVersionsClient {
         final String skip = null;
         final String tags = null;
         final ListViewType listViewType = null;
+        final String stage = null;
         return new PagedFlux<>(
-            () -> listSinglePageAsync(resourceGroupName, workspaceName, name, orderBy, top, skip, tags, listViewType),
+            () ->
+                listSinglePageAsync(
+                    resourceGroupName, workspaceName, name, orderBy, top, skip, tags, listViewType, stage),
             nextLink -> listNextSinglePageAsync(nextLink));
     }
 
@@ -376,6 +386,7 @@ public final class DataVersionsClientImpl implements DataVersionsClient {
      * @param tags Comma-separated list of tag names (and optionally values). Example: tag1,tag2=value2.
      * @param listViewType [ListViewType.ActiveOnly, ListViewType.ArchivedOnly, ListViewType.All]View type for
      *     including/excluding (for example) archived entities.
+     * @param stage data stage.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -392,11 +403,12 @@ public final class DataVersionsClientImpl implements DataVersionsClient {
         String skip,
         String tags,
         ListViewType listViewType,
+        String stage,
         Context context) {
         return new PagedFlux<>(
             () ->
                 listSinglePageAsync(
-                    resourceGroupName, workspaceName, name, orderBy, top, skip, tags, listViewType, context),
+                    resourceGroupName, workspaceName, name, orderBy, top, skip, tags, listViewType, stage, context),
             nextLink -> listNextSinglePageAsync(nextLink, context));
     }
 
@@ -418,8 +430,9 @@ public final class DataVersionsClientImpl implements DataVersionsClient {
         final String skip = null;
         final String tags = null;
         final ListViewType listViewType = null;
+        final String stage = null;
         return new PagedIterable<>(
-            listAsync(resourceGroupName, workspaceName, name, orderBy, top, skip, tags, listViewType));
+            listAsync(resourceGroupName, workspaceName, name, orderBy, top, skip, tags, listViewType, stage));
     }
 
     /**
@@ -435,6 +448,7 @@ public final class DataVersionsClientImpl implements DataVersionsClient {
      * @param tags Comma-separated list of tag names (and optionally values). Example: tag1,tag2=value2.
      * @param listViewType [ListViewType.ActiveOnly, ListViewType.ArchivedOnly, ListViewType.All]View type for
      *     including/excluding (for example) archived entities.
+     * @param stage data stage.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -451,9 +465,10 @@ public final class DataVersionsClientImpl implements DataVersionsClient {
         String skip,
         String tags,
         ListViewType listViewType,
+        String stage,
         Context context) {
         return new PagedIterable<>(
-            listAsync(resourceGroupName, workspaceName, name, orderBy, top, skip, tags, listViewType, context));
+            listAsync(resourceGroupName, workspaceName, name, orderBy, top, skip, tags, listViewType, stage, context));
     }
 
     /**
