@@ -17,7 +17,7 @@ import java.util.Arrays;
 /** Samples for Clusters UpdateAutoScaleConfiguration. */
 public final class ClustersUpdateAutoScaleConfigurationSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2023-04-15-preview/examples/EnableOrUpdateAutoScaleWithLoadBasedConfiguration.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2023-08-15-preview/examples/EnableOrUpdateAutoScaleWithLoadBasedConfiguration.json
      */
     /**
      * Sample code: Enable or Update Autoscale with the load based configuration for HDInsight cluster.
@@ -40,7 +40,7 @@ public final class ClustersUpdateAutoScaleConfigurationSamples {
     }
 
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2023-04-15-preview/examples/DisableClusterAutoScale.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2023-08-15-preview/examples/DisableClusterAutoScale.json
      */
     /**
      * Sample code: Disable Autoscale for the HDInsight cluster.
@@ -60,7 +60,7 @@ public final class ClustersUpdateAutoScaleConfigurationSamples {
     }
 
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2023-04-15-preview/examples/EnableOrUpdateAutoScaleWithScheduleBasedConfiguration.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2023-08-15-preview/examples/EnableOrUpdateAutoScaleWithScheduleBasedConfiguration.json
      */
     /**
      * Sample code: Enable or Update Autoscale with the schedule based configuration for HDInsight cluster.
