@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.redisenterprise.implementation;
 
 import com.azure.core.http.rest.Response;
-import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.redisenterprise.fluent.models.DatabaseInner;
 import com.azure.resourcemanager.redisenterprise.models.AccessKeys;
@@ -42,10 +41,6 @@ public final class DatabaseImpl implements Database, Database.Definition, Databa
 
     public String type() {
         return this.innerModel().type();
-    }
-
-    public SystemData systemData() {
-        return this.innerModel().systemData();
     }
 
     public Protocol clientProtocol() {

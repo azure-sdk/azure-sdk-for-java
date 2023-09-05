@@ -9,14 +9,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /**
- * Flush all the keys from the current and all its linked databases
+ * Flush all the keys from the current and all its linked databases.
  *
  * <p>Parameters for a Redis Enterprise active geo-replication flush operation.
  */
 @Fluent
 public final class FlushParameters {
     /*
-     * The resource identifiers of all the other database resources in the georeplication group to be flushed
+     * The identifiers of all the other database resources in the georeplication group to be flushed.
      */
     @JsonProperty(value = "ids")
     private List<String> ids;
@@ -26,8 +26,8 @@ public final class FlushParameters {
     }
 
     /**
-     * Get the ids property: The resource identifiers of all the other database resources in the georeplication group to
-     * be flushed.
+     * Get the ids property: The identifiers of all the other database resources in the georeplication group to be
+     * flushed.
      *
      * @return the ids value.
      */
@@ -36,8 +36,8 @@ public final class FlushParameters {
     }
 
     /**
-     * Set the ids property: The resource identifiers of all the other database resources in the georeplication group to
-     * be flushed.
+     * Set the ids property: The identifiers of all the other database resources in the georeplication group to be
+     * flushed.
      *
      * @param ids the ids value to set.
      * @return the FlushParameters object itself.

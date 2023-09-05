@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.redisenterprise.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.resourcemanager.redisenterprise.models.ClusterPropertiesEncryption;
 import com.azure.resourcemanager.redisenterprise.models.ProvisioningState;
 import com.azure.resourcemanager.redisenterprise.models.ResourceState;
 import com.azure.resourcemanager.redisenterprise.models.TlsVersion;
@@ -24,12 +23,6 @@ public final class ClusterProperties {
      */
     @JsonProperty(value = "minimumTlsVersion")
     private TlsVersion minimumTlsVersion;
-
-    /*
-     * Encryption-at-rest configuration for the cluster.
-     */
-    @JsonProperty(value = "encryption")
-    private ClusterPropertiesEncryption encryption;
 
     /*
      * DNS name of the cluster endpoint
@@ -86,26 +79,6 @@ public final class ClusterProperties {
     }
 
     /**
-     * Get the encryption property: Encryption-at-rest configuration for the cluster.
-     *
-     * @return the encryption value.
-     */
-    public ClusterPropertiesEncryption encryption() {
-        return this.encryption;
-    }
-
-    /**
-     * Set the encryption property: Encryption-at-rest configuration for the cluster.
-     *
-     * @param encryption the encryption value to set.
-     * @return the ClusterProperties object itself.
-     */
-    public ClusterProperties withEncryption(ClusterPropertiesEncryption encryption) {
-        this.encryption = encryption;
-        return this;
-    }
-
-    /**
      * Get the hostname property: DNS name of the cluster endpoint.
      *
      * @return the hostname value.
@@ -157,9 +130,6 @@ public final class ClusterProperties {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (encryption() != null) {
-            encryption().validate();
-        }
         if (privateEndpointConnections() != null) {
             privateEndpointConnections().forEach(e -> e.validate());
         }

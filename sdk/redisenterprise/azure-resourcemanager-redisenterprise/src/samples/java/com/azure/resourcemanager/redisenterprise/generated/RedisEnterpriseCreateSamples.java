@@ -4,16 +4,9 @@
 
 package com.azure.resourcemanager.redisenterprise.generated;
 
-import com.azure.resourcemanager.redisenterprise.models.ClusterPropertiesEncryption;
-import com.azure.resourcemanager.redisenterprise.models.ClusterPropertiesEncryptionCustomerManagedKeyEncryption;
-import com.azure.resourcemanager.redisenterprise.models.ClusterPropertiesEncryptionCustomerManagedKeyEncryptionKeyIdentity;
-import com.azure.resourcemanager.redisenterprise.models.CmkIdentityType;
-import com.azure.resourcemanager.redisenterprise.models.ManagedServiceIdentity;
-import com.azure.resourcemanager.redisenterprise.models.ManagedServiceIdentityType;
 import com.azure.resourcemanager.redisenterprise.models.Sku;
 import com.azure.resourcemanager.redisenterprise.models.SkuName;
 import com.azure.resourcemanager.redisenterprise.models.TlsVersion;
-import com.azure.resourcemanager.redisenterprise.models.UserAssignedIdentity;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -21,7 +14,7 @@ import java.util.Map;
 /** Samples for RedisEnterprise Create. */
 public final class RedisEnterpriseCreateSamples {
     /*
-     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2023-03-01-preview/examples/RedisEnterpriseCreate.json
+     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/stable/2023-07-01/examples/RedisEnterpriseCreate.json
      */
     /**
      * Sample code: RedisEnterpriseCreate.
@@ -37,27 +30,11 @@ public final class RedisEnterpriseCreateSamples {
             .withSku(new Sku().withName(SkuName.ENTERPRISE_FLASH_F300).withCapacity(3))
             .withTags(mapOf("tag1", "value1"))
             .withZones(Arrays.asList("1", "2", "3"))
-            .withIdentity(
-                new ManagedServiceIdentity()
-                    .withType(ManagedServiceIdentityType.USER_ASSIGNED)
-                    .withUserAssignedIdentities(
-                        mapOf(
-                            "/subscriptions/your-subscription/resourceGroups/your-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/your-identity",
-                            new UserAssignedIdentity())))
             .withMinimumTlsVersion(TlsVersion.ONE_TWO)
-            .withEncryption(
-                new ClusterPropertiesEncryption()
-                    .withCustomerManagedKeyEncryption(
-                        new ClusterPropertiesEncryptionCustomerManagedKeyEncryption()
-                            .withKeyEncryptionKeyIdentity(
-                                new ClusterPropertiesEncryptionCustomerManagedKeyEncryptionKeyIdentity()
-                                    .withUserAssignedIdentityResourceId(
-                                        "/subscriptions/your-subscription/resourceGroups/your-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/your-identity")
-                                    .withIdentityType(CmkIdentityType.USER_ASSIGNED_IDENTITY))
-                            .withKeyEncryptionKeyUrl("fakeTokenPlaceholder")))
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

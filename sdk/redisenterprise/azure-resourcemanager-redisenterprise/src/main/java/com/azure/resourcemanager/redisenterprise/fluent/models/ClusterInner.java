@@ -6,10 +6,7 @@ package com.azure.resourcemanager.redisenterprise.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
-import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
-import com.azure.resourcemanager.redisenterprise.models.ClusterPropertiesEncryption;
-import com.azure.resourcemanager.redisenterprise.models.ManagedServiceIdentity;
 import com.azure.resourcemanager.redisenterprise.models.ProvisioningState;
 import com.azure.resourcemanager.redisenterprise.models.ResourceState;
 import com.azure.resourcemanager.redisenterprise.models.Sku;
@@ -34,24 +31,12 @@ public final class ClusterInner extends Resource {
     private List<String> zones;
 
     /*
-     * The identity of the resource.
-     */
-    @JsonProperty(value = "identity")
-    private ManagedServiceIdentity identity;
-
-    /*
      * RedisEnterprise cluster properties
      *
      * Other properties of the cluster.
      */
     @JsonProperty(value = "properties")
     private ClusterProperties innerProperties;
-
-    /*
-     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     */
-    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
-    private SystemData systemData;
 
     /** Creates an instance of ClusterInner class. */
     public ClusterInner() {
@@ -98,26 +83,6 @@ public final class ClusterInner extends Resource {
     }
 
     /**
-     * Get the identity property: The identity of the resource.
-     *
-     * @return the identity value.
-     */
-    public ManagedServiceIdentity identity() {
-        return this.identity;
-    }
-
-    /**
-     * Set the identity property: The identity of the resource.
-     *
-     * @param identity the identity value to set.
-     * @return the ClusterInner object itself.
-     */
-    public ClusterInner withIdentity(ManagedServiceIdentity identity) {
-        this.identity = identity;
-        return this;
-    }
-
-    /**
      * Get the innerProperties property: RedisEnterprise cluster properties
      *
      * <p>Other properties of the cluster.
@@ -126,15 +91,6 @@ public final class ClusterInner extends Resource {
      */
     private ClusterProperties innerProperties() {
         return this.innerProperties;
-    }
-
-    /**
-     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
-     * @return the systemData value.
-     */
-    public SystemData systemData() {
-        return this.systemData;
     }
 
     /** {@inheritDoc} */
@@ -171,29 +127,6 @@ public final class ClusterInner extends Resource {
             this.innerProperties = new ClusterProperties();
         }
         this.innerProperties().withMinimumTlsVersion(minimumTlsVersion);
-        return this;
-    }
-
-    /**
-     * Get the encryption property: Encryption-at-rest configuration for the cluster.
-     *
-     * @return the encryption value.
-     */
-    public ClusterPropertiesEncryption encryption() {
-        return this.innerProperties() == null ? null : this.innerProperties().encryption();
-    }
-
-    /**
-     * Set the encryption property: Encryption-at-rest configuration for the cluster.
-     *
-     * @param encryption the encryption value to set.
-     * @return the ClusterInner object itself.
-     */
-    public ClusterInner withEncryption(ClusterPropertiesEncryption encryption) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new ClusterProperties();
-        }
-        this.innerProperties().withEncryption(encryption);
         return this;
     }
 
@@ -255,9 +188,6 @@ public final class ClusterInner extends Resource {
                     new IllegalArgumentException("Missing required property sku in model ClusterInner"));
         } else {
             sku().validate();
-        }
-        if (identity() != null) {
-            identity().validate();
         }
         if (innerProperties() != null) {
             innerProperties().validate();
