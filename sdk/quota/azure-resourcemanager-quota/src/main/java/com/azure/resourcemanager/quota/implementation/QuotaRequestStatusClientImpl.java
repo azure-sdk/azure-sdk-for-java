@@ -122,11 +122,10 @@ public final class QuotaRequestStatusClientImpl implements QuotaRequestStatusCli
         if (scope == null) {
             return Mono.error(new IllegalArgumentException("Parameter scope is required and cannot be null."));
         }
+        final String apiVersion = "2023-02-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service.get(this.client.getEndpoint(), id, this.client.getApiVersion(), scope, accept, context))
+            .withContext(context -> service.get(this.client.getEndpoint(), id, apiVersion, scope, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -160,9 +159,10 @@ public final class QuotaRequestStatusClientImpl implements QuotaRequestStatusCli
         if (scope == null) {
             return Mono.error(new IllegalArgumentException("Parameter scope is required and cannot be null."));
         }
+        final String apiVersion = "2023-02-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), id, this.client.getApiVersion(), scope, accept, context);
+        return service.get(this.client.getEndpoint(), id, apiVersion, scope, accept, context);
     }
 
     /**
@@ -258,20 +258,12 @@ public final class QuotaRequestStatusClientImpl implements QuotaRequestStatusCli
         if (scope == null) {
             return Mono.error(new IllegalArgumentException("Parameter scope is required and cannot be null."));
         }
+        final String apiVersion = "2023-02-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
                 context ->
-                    service
-                        .list(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            scope,
-                            filter,
-                            top,
-                            skiptoken,
-                            accept,
-                            context))
+                    service.list(this.client.getEndpoint(), apiVersion, scope, filter, top, skiptoken, accept, context))
             .<PagedResponse<QuotaRequestDetailsInner>>map(
                 res ->
                     new PagedResponseBase<>(
@@ -317,11 +309,11 @@ public final class QuotaRequestStatusClientImpl implements QuotaRequestStatusCli
         if (scope == null) {
             return Mono.error(new IllegalArgumentException("Parameter scope is required and cannot be null."));
         }
+        final String apiVersion = "2023-02-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .list(
-                this.client.getEndpoint(), this.client.getApiVersion(), scope, filter, top, skiptoken, accept, context)
+            .list(this.client.getEndpoint(), apiVersion, scope, filter, top, skiptoken, accept, context)
             .map(
                 res ->
                     new PagedResponseBase<>(

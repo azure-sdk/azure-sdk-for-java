@@ -23,9 +23,16 @@ import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.quota.fluent.AzureQuotaExtensionApi;
+import com.azure.resourcemanager.quota.fluent.GroupQuotaLimitsClient;
+import com.azure.resourcemanager.quota.fluent.GroupQuotaLimitsRequestsClient;
+import com.azure.resourcemanager.quota.fluent.GroupQuotaSubscriptionQuotaAllocationRequestsClient;
+import com.azure.resourcemanager.quota.fluent.GroupQuotaSubscriptionQuotaAllocationsClient;
+import com.azure.resourcemanager.quota.fluent.GroupQuotaSubscriptionsClient;
+import com.azure.resourcemanager.quota.fluent.GroupQuotasClient;
 import com.azure.resourcemanager.quota.fluent.QuotaOperationsClient;
 import com.azure.resourcemanager.quota.fluent.QuotaRequestStatusClient;
 import com.azure.resourcemanager.quota.fluent.QuotasClient;
+import com.azure.resourcemanager.quota.fluent.SubscriptionRequestsClient;
 import com.azure.resourcemanager.quota.fluent.UsagesClient;
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -39,6 +46,18 @@ import reactor.core.publisher.Mono;
 /** Initializes a new instance of the AzureQuotaExtensionApiImpl type. */
 @ServiceClient(builder = AzureQuotaExtensionApiBuilder.class)
 public final class AzureQuotaExtensionApiImpl implements AzureQuotaExtensionApi {
+    /** The ID of the target subscription. The value must be an UUID. */
+    private final String subscriptionId;
+
+    /**
+     * Gets The ID of the target subscription. The value must be an UUID.
+     *
+     * @return the subscriptionId value.
+     */
+    public String getSubscriptionId() {
+        return this.subscriptionId;
+    }
+
     /** server parameter. */
     private final String endpoint;
 
@@ -51,16 +70,16 @@ public final class AzureQuotaExtensionApiImpl implements AzureQuotaExtensionApi 
         return this.endpoint;
     }
 
-    /** Api Version. */
-    private final String apiVersion;
+    /** server parameter. */
+    private final String endpoint;
 
     /**
-     * Gets Api Version.
+     * Gets server parameter.
      *
-     * @return the apiVersion value.
+     * @return the endpoint value.
      */
-    public String getApiVersion() {
-        return this.apiVersion;
+    public String getEndpoint() {
+        return this.endpoint;
     }
 
     /** The HTTP pipeline to send requests through. */
@@ -97,6 +116,90 @@ public final class AzureQuotaExtensionApiImpl implements AzureQuotaExtensionApi 
      */
     public Duration getDefaultPollInterval() {
         return this.defaultPollInterval;
+    }
+
+    /** The GroupQuotasClient object to access its operations. */
+    private final GroupQuotasClient groupQuotas;
+
+    /**
+     * Gets the GroupQuotasClient object to access its operations.
+     *
+     * @return the GroupQuotasClient object.
+     */
+    public GroupQuotasClient getGroupQuotas() {
+        return this.groupQuotas;
+    }
+
+    /** The GroupQuotaSubscriptionsClient object to access its operations. */
+    private final GroupQuotaSubscriptionsClient groupQuotaSubscriptions;
+
+    /**
+     * Gets the GroupQuotaSubscriptionsClient object to access its operations.
+     *
+     * @return the GroupQuotaSubscriptionsClient object.
+     */
+    public GroupQuotaSubscriptionsClient getGroupQuotaSubscriptions() {
+        return this.groupQuotaSubscriptions;
+    }
+
+    /** The SubscriptionRequestsClient object to access its operations. */
+    private final SubscriptionRequestsClient subscriptionRequests;
+
+    /**
+     * Gets the SubscriptionRequestsClient object to access its operations.
+     *
+     * @return the SubscriptionRequestsClient object.
+     */
+    public SubscriptionRequestsClient getSubscriptionRequests() {
+        return this.subscriptionRequests;
+    }
+
+    /** The GroupQuotaLimitsClient object to access its operations. */
+    private final GroupQuotaLimitsClient groupQuotaLimits;
+
+    /**
+     * Gets the GroupQuotaLimitsClient object to access its operations.
+     *
+     * @return the GroupQuotaLimitsClient object.
+     */
+    public GroupQuotaLimitsClient getGroupQuotaLimits() {
+        return this.groupQuotaLimits;
+    }
+
+    /** The GroupQuotaLimitsRequestsClient object to access its operations. */
+    private final GroupQuotaLimitsRequestsClient groupQuotaLimitsRequests;
+
+    /**
+     * Gets the GroupQuotaLimitsRequestsClient object to access its operations.
+     *
+     * @return the GroupQuotaLimitsRequestsClient object.
+     */
+    public GroupQuotaLimitsRequestsClient getGroupQuotaLimitsRequests() {
+        return this.groupQuotaLimitsRequests;
+    }
+
+    /** The GroupQuotaSubscriptionQuotaAllocationsClient object to access its operations. */
+    private final GroupQuotaSubscriptionQuotaAllocationsClient groupQuotaSubscriptionQuotaAllocations;
+
+    /**
+     * Gets the GroupQuotaSubscriptionQuotaAllocationsClient object to access its operations.
+     *
+     * @return the GroupQuotaSubscriptionQuotaAllocationsClient object.
+     */
+    public GroupQuotaSubscriptionQuotaAllocationsClient getGroupQuotaSubscriptionQuotaAllocations() {
+        return this.groupQuotaSubscriptionQuotaAllocations;
+    }
+
+    /** The GroupQuotaSubscriptionQuotaAllocationRequestsClient object to access its operations. */
+    private final GroupQuotaSubscriptionQuotaAllocationRequestsClient groupQuotaSubscriptionQuotaAllocationRequests;
+
+    /**
+     * Gets the GroupQuotaSubscriptionQuotaAllocationRequestsClient object to access its operations.
+     *
+     * @return the GroupQuotaSubscriptionQuotaAllocationRequestsClient object.
+     */
+    public GroupQuotaSubscriptionQuotaAllocationRequestsClient getGroupQuotaSubscriptionQuotaAllocationRequests() {
+        return this.groupQuotaSubscriptionQuotaAllocationRequests;
     }
 
     /** The UsagesClient object to access its operations. */
@@ -154,6 +257,8 @@ public final class AzureQuotaExtensionApiImpl implements AzureQuotaExtensionApi 
      * @param serializerAdapter The serializer to serialize an object into a string.
      * @param defaultPollInterval The default poll interval for long-running operation.
      * @param environment The Azure environment.
+     * @param subscriptionId The ID of the target subscription. The value must be an UUID.
+     * @param endpoint server parameter.
      * @param endpoint server parameter.
      */
     AzureQuotaExtensionApiImpl(
@@ -161,12 +266,23 @@ public final class AzureQuotaExtensionApiImpl implements AzureQuotaExtensionApi 
         SerializerAdapter serializerAdapter,
         Duration defaultPollInterval,
         AzureEnvironment environment,
+        String subscriptionId,
+        String endpoint,
         String endpoint) {
         this.httpPipeline = httpPipeline;
         this.serializerAdapter = serializerAdapter;
         this.defaultPollInterval = defaultPollInterval;
+        this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2023-02-01";
+        this.endpoint = endpoint;
+        this.groupQuotas = new GroupQuotasClientImpl(this);
+        this.groupQuotaSubscriptions = new GroupQuotaSubscriptionsClientImpl(this);
+        this.subscriptionRequests = new SubscriptionRequestsClientImpl(this);
+        this.groupQuotaLimits = new GroupQuotaLimitsClientImpl(this);
+        this.groupQuotaLimitsRequests = new GroupQuotaLimitsRequestsClientImpl(this);
+        this.groupQuotaSubscriptionQuotaAllocations = new GroupQuotaSubscriptionQuotaAllocationsClientImpl(this);
+        this.groupQuotaSubscriptionQuotaAllocationRequests =
+            new GroupQuotaSubscriptionQuotaAllocationRequestsClientImpl(this);
         this.usages = new UsagesClientImpl(this);
         this.quotas = new QuotasClientImpl(this);
         this.quotaRequestStatus = new QuotaRequestStatusClientImpl(this);

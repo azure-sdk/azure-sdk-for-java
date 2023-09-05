@@ -25,13 +25,27 @@ import com.azure.core.util.Configuration;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.quota.fluent.AzureQuotaExtensionApi;
 import com.azure.resourcemanager.quota.implementation.AzureQuotaExtensionApiBuilder;
+import com.azure.resourcemanager.quota.implementation.GroupQuotaLimitsImpl;
+import com.azure.resourcemanager.quota.implementation.GroupQuotaLimitsRequestsImpl;
+import com.azure.resourcemanager.quota.implementation.GroupQuotaSubscriptionQuotaAllocationRequestsImpl;
+import com.azure.resourcemanager.quota.implementation.GroupQuotaSubscriptionQuotaAllocationsImpl;
+import com.azure.resourcemanager.quota.implementation.GroupQuotaSubscriptionsImpl;
+import com.azure.resourcemanager.quota.implementation.GroupQuotasImpl;
 import com.azure.resourcemanager.quota.implementation.QuotaOperationsImpl;
 import com.azure.resourcemanager.quota.implementation.QuotaRequestStatusImpl;
 import com.azure.resourcemanager.quota.implementation.QuotasImpl;
+import com.azure.resourcemanager.quota.implementation.SubscriptionRequestsImpl;
 import com.azure.resourcemanager.quota.implementation.UsagesImpl;
+import com.azure.resourcemanager.quota.models.GroupQuotaLimits;
+import com.azure.resourcemanager.quota.models.GroupQuotaLimitsRequests;
+import com.azure.resourcemanager.quota.models.GroupQuotaSubscriptionQuotaAllocationRequests;
+import com.azure.resourcemanager.quota.models.GroupQuotaSubscriptionQuotaAllocations;
+import com.azure.resourcemanager.quota.models.GroupQuotaSubscriptions;
+import com.azure.resourcemanager.quota.models.GroupQuotas;
 import com.azure.resourcemanager.quota.models.QuotaOperations;
 import com.azure.resourcemanager.quota.models.QuotaRequestStatus;
 import com.azure.resourcemanager.quota.models.Quotas;
+import com.azure.resourcemanager.quota.models.SubscriptionRequests;
 import com.azure.resourcemanager.quota.models.Usages;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
@@ -40,8 +54,25 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-/** Entry point to QuotaManager. Microsoft Azure Quota Resource Provider. */
+/**
+ * Entry point to QuotaManager. Microsoft Azure Quota Resource Provider. This Swagger is for Azure MG Group Quota using
+ * GroupQuota Entity.
+ */
 public final class QuotaManager {
+    private GroupQuotas groupQuotas;
+
+    private GroupQuotaSubscriptions groupQuotaSubscriptions;
+
+    private SubscriptionRequests subscriptionRequests;
+
+    private GroupQuotaLimits groupQuotaLimits;
+
+    private GroupQuotaLimitsRequests groupQuotaLimitsRequests;
+
+    private GroupQuotaSubscriptionQuotaAllocations groupQuotaSubscriptionQuotaAllocations;
+
+    private GroupQuotaSubscriptionQuotaAllocationRequests groupQuotaSubscriptionQuotaAllocationRequests;
+
     private Usages usages;
 
     private Quotas quotas;
@@ -59,6 +90,7 @@ public final class QuotaManager {
             new AzureQuotaExtensionApiBuilder()
                 .pipeline(httpPipeline)
                 .endpoint(profile.getEnvironment().getResourceManagerEndpoint())
+                .subscriptionId(profile.getSubscriptionId())
                 .defaultPollInterval(defaultPollInterval)
                 .buildClient();
     }
@@ -214,7 +246,7 @@ public final class QuotaManager {
                 .append("-")
                 .append("com.azure.resourcemanager.quota")
                 .append("/")
-                .append("1.0.0-beta.3");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -272,6 +304,96 @@ public final class QuotaManager {
     }
 
     /**
+     * Gets the resource collection API of GroupQuotas.
+     *
+     * @return Resource collection API of GroupQuotas.
+     */
+    public GroupQuotas groupQuotas() {
+        if (this.groupQuotas == null) {
+            this.groupQuotas = new GroupQuotasImpl(clientObject.getGroupQuotas(), this);
+        }
+        return groupQuotas;
+    }
+
+    /**
+     * Gets the resource collection API of GroupQuotaSubscriptions.
+     *
+     * @return Resource collection API of GroupQuotaSubscriptions.
+     */
+    public GroupQuotaSubscriptions groupQuotaSubscriptions() {
+        if (this.groupQuotaSubscriptions == null) {
+            this.groupQuotaSubscriptions =
+                new GroupQuotaSubscriptionsImpl(clientObject.getGroupQuotaSubscriptions(), this);
+        }
+        return groupQuotaSubscriptions;
+    }
+
+    /**
+     * Gets the resource collection API of SubscriptionRequests.
+     *
+     * @return Resource collection API of SubscriptionRequests.
+     */
+    public SubscriptionRequests subscriptionRequests() {
+        if (this.subscriptionRequests == null) {
+            this.subscriptionRequests = new SubscriptionRequestsImpl(clientObject.getSubscriptionRequests(), this);
+        }
+        return subscriptionRequests;
+    }
+
+    /**
+     * Gets the resource collection API of GroupQuotaLimits.
+     *
+     * @return Resource collection API of GroupQuotaLimits.
+     */
+    public GroupQuotaLimits groupQuotaLimits() {
+        if (this.groupQuotaLimits == null) {
+            this.groupQuotaLimits = new GroupQuotaLimitsImpl(clientObject.getGroupQuotaLimits(), this);
+        }
+        return groupQuotaLimits;
+    }
+
+    /**
+     * Gets the resource collection API of GroupQuotaLimitsRequests.
+     *
+     * @return Resource collection API of GroupQuotaLimitsRequests.
+     */
+    public GroupQuotaLimitsRequests groupQuotaLimitsRequests() {
+        if (this.groupQuotaLimitsRequests == null) {
+            this.groupQuotaLimitsRequests =
+                new GroupQuotaLimitsRequestsImpl(clientObject.getGroupQuotaLimitsRequests(), this);
+        }
+        return groupQuotaLimitsRequests;
+    }
+
+    /**
+     * Gets the resource collection API of GroupQuotaSubscriptionQuotaAllocations.
+     *
+     * @return Resource collection API of GroupQuotaSubscriptionQuotaAllocations.
+     */
+    public GroupQuotaSubscriptionQuotaAllocations groupQuotaSubscriptionQuotaAllocations() {
+        if (this.groupQuotaSubscriptionQuotaAllocations == null) {
+            this.groupQuotaSubscriptionQuotaAllocations =
+                new GroupQuotaSubscriptionQuotaAllocationsImpl(
+                    clientObject.getGroupQuotaSubscriptionQuotaAllocations(), this);
+        }
+        return groupQuotaSubscriptionQuotaAllocations;
+    }
+
+    /**
+     * Gets the resource collection API of GroupQuotaSubscriptionQuotaAllocationRequests.
+     *
+     * @return Resource collection API of GroupQuotaSubscriptionQuotaAllocationRequests.
+     */
+    public GroupQuotaSubscriptionQuotaAllocationRequests groupQuotaSubscriptionQuotaAllocationRequests() {
+        if (this.groupQuotaSubscriptionQuotaAllocationRequests == null) {
+            this.groupQuotaSubscriptionQuotaAllocationRequests =
+                new GroupQuotaSubscriptionQuotaAllocationRequestsImpl(
+                    clientObject.getGroupQuotaSubscriptionQuotaAllocationRequests(), this);
+        }
+        return groupQuotaSubscriptionQuotaAllocationRequests;
+    }
+
+    /**
      * Gets the resource collection API of Usages.
      *
      * @return Resource collection API of Usages.
@@ -320,8 +442,10 @@ public final class QuotaManager {
     }
 
     /**
-     * @return Wrapped service client AzureQuotaExtensionApi providing direct access to the underlying auto-generated
-     *     API implementation, based on Azure REST API.
+     * Gets wrapped service client AzureQuotaExtensionApi providing direct access to the underlying auto-generated API
+     * implementation, based on Azure REST API.
+     *
+     * @return Wrapped service client AzureQuotaExtensionApi.
      */
     public AzureQuotaExtensionApi serviceClient() {
         return this.clientObject;
