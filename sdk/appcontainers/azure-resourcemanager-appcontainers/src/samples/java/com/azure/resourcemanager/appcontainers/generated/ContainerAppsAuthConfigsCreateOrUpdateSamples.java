@@ -6,6 +6,7 @@ package com.azure.resourcemanager.appcontainers.generated;
 
 import com.azure.resourcemanager.appcontainers.models.AppRegistration;
 import com.azure.resourcemanager.appcontainers.models.AuthPlatform;
+import com.azure.resourcemanager.appcontainers.models.EncryptionSettings;
 import com.azure.resourcemanager.appcontainers.models.Facebook;
 import com.azure.resourcemanager.appcontainers.models.GlobalValidation;
 import com.azure.resourcemanager.appcontainers.models.IdentityProviders;
@@ -14,7 +15,7 @@ import com.azure.resourcemanager.appcontainers.models.UnauthenticatedClientActio
 /** Samples for ContainerAppsAuthConfigs CreateOrUpdate. */
 public final class ContainerAppsAuthConfigsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2023-05-01/examples/AuthConfigs_CreateOrUpdate.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2023-08-01-preview/examples/AuthConfigs_CreateOrUpdate.json
      */
     /**
      * Sample code: Create or Update Container App AuthConfig.
@@ -38,6 +39,10 @@ public final class ContainerAppsAuthConfigsCreateOrUpdateSamples {
                                 new AppRegistration()
                                     .withAppId("123")
                                     .withAppSecretSettingName("fakeTokenPlaceholder"))))
+            .withEncryptionSettings(
+                new EncryptionSettings()
+                    .withContainerAppAuthEncryptionSecretName("fakeTokenPlaceholder")
+                    .withContainerAppAuthSigningSecretName("fakeTokenPlaceholder"))
             .create();
     }
 }

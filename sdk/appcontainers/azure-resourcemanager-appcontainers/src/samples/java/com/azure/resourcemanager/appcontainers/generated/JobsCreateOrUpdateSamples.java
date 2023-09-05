@@ -26,7 +26,7 @@ import java.util.Arrays;
 /** Samples for Jobs CreateOrUpdate. */
 public final class JobsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2023-05-01/examples/Job_CreateorUpdate_EventTrigger.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2023-08-01-preview/examples/Job_CreateorUpdate_EventTrigger.json
      */
     /**
      * Sample code: Create or Update Container Apps Job With Event Driven Trigger.
@@ -90,7 +90,7 @@ public final class JobsCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2023-05-01/examples/Job_CreateorUpdate.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2023-08-01-preview/examples/Job_CreateorUpdate.json
      */
     /**
      * Sample code: Create or Update Container Apps Job.

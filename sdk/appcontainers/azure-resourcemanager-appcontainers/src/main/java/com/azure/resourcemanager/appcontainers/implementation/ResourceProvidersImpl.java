@@ -51,6 +51,14 @@ public final class ResourceProvidersImpl implements ResourceProviders {
         }
     }
 
+    public Response<String> getCustomDomainVerificationIdWithResponse(Context context) {
+        return this.serviceClient().getCustomDomainVerificationIdWithResponse(context);
+    }
+
+    public String getCustomDomainVerificationId() {
+        return this.serviceClient().getCustomDomainVerificationId();
+    }
+
     private ResourceProvidersClient serviceClient() {
         return this.innerClient;
     }
