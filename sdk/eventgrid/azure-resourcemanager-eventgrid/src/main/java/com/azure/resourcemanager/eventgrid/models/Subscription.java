@@ -84,11 +84,13 @@ public interface Subscription {
     interface Definition
         extends DefinitionStages.Blank, DefinitionStages.WithParentResource, DefinitionStages.WithCreate {
     }
+
     /** The Subscription definition stages. */
     interface DefinitionStages {
         /** The first stage of the Subscription definition. */
         interface Blank extends WithParentResource {
         }
+
         /** The stage of the Subscription definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -101,6 +103,7 @@ public interface Subscription {
              */
             WithCreate withExistingTopic(String resourceGroupName, String namespaceName, String topicName);
         }
+
         /**
          * The stage of the Subscription definition which contains all the minimum required properties for the resource
          * to be created, but also allows for any other optional properties to be specified.
@@ -124,6 +127,7 @@ public interface Subscription {
              */
             Subscription create(Context context);
         }
+
         /** The stage of the Subscription definition allowing to specify deliveryConfiguration. */
         interface WithDeliveryConfiguration {
             /**
@@ -135,6 +139,7 @@ public interface Subscription {
              */
             WithCreate withDeliveryConfiguration(DeliveryConfiguration deliveryConfiguration);
         }
+
         /** The stage of the Subscription definition allowing to specify eventDeliverySchema. */
         interface WithEventDeliverySchema {
             /**
@@ -145,6 +150,7 @@ public interface Subscription {
              */
             WithCreate withEventDeliverySchema(DeliverySchema eventDeliverySchema);
         }
+
         /** The stage of the Subscription definition allowing to specify filtersConfiguration. */
         interface WithFiltersConfiguration {
             /**
@@ -156,6 +162,7 @@ public interface Subscription {
             WithCreate withFiltersConfiguration(FiltersConfiguration filtersConfiguration);
         }
     }
+
     /**
      * Begins update for the Subscription resource.
      *
@@ -183,6 +190,7 @@ public interface Subscription {
          */
         Subscription apply(Context context);
     }
+
     /** The Subscription update stages. */
     interface UpdateStages {
         /** The stage of the Subscription update allowing to specify deliveryConfiguration. */
@@ -196,6 +204,7 @@ public interface Subscription {
              */
             Update withDeliveryConfiguration(DeliveryConfiguration deliveryConfiguration);
         }
+
         /** The stage of the Subscription update allowing to specify eventDeliverySchema. */
         interface WithEventDeliverySchema {
             /**
@@ -206,6 +215,7 @@ public interface Subscription {
              */
             Update withEventDeliverySchema(DeliverySchema eventDeliverySchema);
         }
+
         /** The stage of the Subscription update allowing to specify filtersConfiguration. */
         interface WithFiltersConfiguration {
             /**
@@ -217,6 +227,7 @@ public interface Subscription {
             Update withFiltersConfiguration(FiltersConfiguration filtersConfiguration);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *
