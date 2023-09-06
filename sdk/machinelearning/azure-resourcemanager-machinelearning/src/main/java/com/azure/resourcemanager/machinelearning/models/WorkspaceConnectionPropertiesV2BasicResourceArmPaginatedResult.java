@@ -13,19 +13,39 @@ import java.util.List;
 @Fluent
 public final class WorkspaceConnectionPropertiesV2BasicResourceArmPaginatedResult {
     /*
+     * The nextLink property.
+     */
+    @JsonProperty(value = "nextLink")
+    private String nextLink;
+
+    /*
      * The value property.
      */
     @JsonProperty(value = "value")
     private List<WorkspaceConnectionPropertiesV2BasicResourceInner> value;
 
-    /*
-     * The nextLink property.
-     */
-    @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
-    private String nextLink;
-
     /** Creates an instance of WorkspaceConnectionPropertiesV2BasicResourceArmPaginatedResult class. */
     public WorkspaceConnectionPropertiesV2BasicResourceArmPaginatedResult() {
+    }
+
+    /**
+     * Get the nextLink property: The nextLink property.
+     *
+     * @return the nextLink value.
+     */
+    public String nextLink() {
+        return this.nextLink;
+    }
+
+    /**
+     * Set the nextLink property: The nextLink property.
+     *
+     * @param nextLink the nextLink value to set.
+     * @return the WorkspaceConnectionPropertiesV2BasicResourceArmPaginatedResult object itself.
+     */
+    public WorkspaceConnectionPropertiesV2BasicResourceArmPaginatedResult withNextLink(String nextLink) {
+        this.nextLink = nextLink;
+        return this;
     }
 
     /**
@@ -47,15 +67,6 @@ public final class WorkspaceConnectionPropertiesV2BasicResourceArmPaginatedResul
         List<WorkspaceConnectionPropertiesV2BasicResourceInner> value) {
         this.value = value;
         return this;
-    }
-
-    /**
-     * Get the nextLink property: The nextLink property.
-     *
-     * @return the nextLink value.
-     */
-    public String nextLink() {
-        return this.nextLink;
     }
 
     /**

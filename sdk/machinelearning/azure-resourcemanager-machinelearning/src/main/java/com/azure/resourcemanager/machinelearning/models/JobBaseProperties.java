@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.resourcemanager.machinelearning.fluent.models.LabelingJobPropertiesInner;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
@@ -20,9 +21,11 @@ import java.util.Map;
     defaultImpl = JobBaseProperties.class)
 @JsonTypeName("JobBaseProperties")
 @JsonSubTypes({
+    @JsonSubTypes.Type(name = "Labeling", value = LabelingJobPropertiesInner.class),
     @JsonSubTypes.Type(name = "AutoML", value = AutoMLJob.class),
     @JsonSubTypes.Type(name = "Command", value = CommandJob.class),
     @JsonSubTypes.Type(name = "Pipeline", value = PipelineJob.class),
+    @JsonSubTypes.Type(name = "Spark", value = SparkJob.class),
     @JsonSubTypes.Type(name = "Sweep", value = SweepJob.class)
 })
 @Fluent
@@ -63,6 +66,19 @@ public class JobBaseProperties extends ResourceBase {
      */
     @JsonProperty(value = "isArchived")
     private Boolean isArchived;
+
+    /*
+     * Notification setting for the job
+     */
+    @JsonProperty(value = "notificationSetting")
+    private NotificationSetting notificationSetting;
+
+    /*
+     * Configuration for secrets to be made available during runtime.
+     */
+    @JsonProperty(value = "secretsConfiguration")
+    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
+    private Map<String, SecretConfiguration> secretsConfiguration;
 
     /*
      * List of JobEndpoints.
@@ -207,6 +223,46 @@ public class JobBaseProperties extends ResourceBase {
     }
 
     /**
+     * Get the notificationSetting property: Notification setting for the job.
+     *
+     * @return the notificationSetting value.
+     */
+    public NotificationSetting notificationSetting() {
+        return this.notificationSetting;
+    }
+
+    /**
+     * Set the notificationSetting property: Notification setting for the job.
+     *
+     * @param notificationSetting the notificationSetting value to set.
+     * @return the JobBaseProperties object itself.
+     */
+    public JobBaseProperties withNotificationSetting(NotificationSetting notificationSetting) {
+        this.notificationSetting = notificationSetting;
+        return this;
+    }
+
+    /**
+     * Get the secretsConfiguration property: Configuration for secrets to be made available during runtime.
+     *
+     * @return the secretsConfiguration value.
+     */
+    public Map<String, SecretConfiguration> secretsConfiguration() {
+        return this.secretsConfiguration;
+    }
+
+    /**
+     * Set the secretsConfiguration property: Configuration for secrets to be made available during runtime.
+     *
+     * @param secretsConfiguration the secretsConfiguration value to set.
+     * @return the JobBaseProperties object itself.
+     */
+    public JobBaseProperties withSecretsConfiguration(Map<String, SecretConfiguration> secretsConfiguration) {
+        this.secretsConfiguration = secretsConfiguration;
+        return this;
+    }
+
+    /**
      * Get the services property: List of JobEndpoints. For local jobs, a job endpoint will have an endpoint value of
      * FileStreamObject.
      *
@@ -268,6 +324,19 @@ public class JobBaseProperties extends ResourceBase {
         super.validate();
         if (identity() != null) {
             identity().validate();
+        }
+        if (notificationSetting() != null) {
+            notificationSetting().validate();
+        }
+        if (secretsConfiguration() != null) {
+            secretsConfiguration()
+                .values()
+                .forEach(
+                    e -> {
+                        if (e != null) {
+                            e.validate();
+                        }
+                    });
         }
         if (services() != null) {
             services()

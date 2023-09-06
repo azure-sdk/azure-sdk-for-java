@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class ServiceManagedResourcesSettings {
     /*
-     * The settings for the service managed cosmosdb account.
+     * The cosmosDb property.
      */
     @JsonProperty(value = "cosmosDb")
     private CosmosDbSettings cosmosDb;
@@ -21,7 +21,7 @@ public final class ServiceManagedResourcesSettings {
     }
 
     /**
-     * Get the cosmosDb property: The settings for the service managed cosmosdb account.
+     * Get the cosmosDb property: The cosmosDb property.
      *
      * @return the cosmosDb value.
      */
@@ -30,7 +30,7 @@ public final class ServiceManagedResourcesSettings {
     }
 
     /**
-     * Set the cosmosDb property: The settings for the service managed cosmosdb account.
+     * Set the cosmosDb property: The cosmosDb property.
      *
      * @param cosmosDb the cosmosDb value to set.
      * @return the ServiceManagedResourcesSettings object itself.
