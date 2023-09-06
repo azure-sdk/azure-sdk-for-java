@@ -23,6 +23,10 @@ public final class FusionTemplateSubTypeSeverityFilter {
     @JsonProperty(value = "severityFilters")
     private List<AlertSeverity> severityFilters;
 
+    /** Creates an instance of FusionTemplateSubTypeSeverityFilter class. */
+    public FusionTemplateSubTypeSeverityFilter() {
+    }
+
     /**
      * Get the isSupported property: Determines whether severity configuration is supported for this source subtype
      * consumed in Fusion detection.

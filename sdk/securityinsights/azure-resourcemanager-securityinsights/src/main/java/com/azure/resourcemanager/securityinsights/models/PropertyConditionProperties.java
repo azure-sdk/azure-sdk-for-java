@@ -20,6 +20,10 @@ public final class PropertyConditionProperties extends AutomationRuleCondition {
     @JsonProperty(value = "conditionProperties")
     private AutomationRulePropertyValuesCondition conditionProperties;
 
+    /** Creates an instance of PropertyConditionProperties class. */
+    public PropertyConditionProperties() {
+    }
+
     /**
      * Get the conditionProperties property: The conditionProperties property.
      *

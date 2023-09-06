@@ -9,6 +9,10 @@ import com.azure.core.annotation.Fluent;
 /** Logs data type. */
 @Fluent
 public final class AwsCloudTrailDataConnectorDataTypesLogs extends DataConnectorDataTypeCommon {
+    /** Creates an instance of AwsCloudTrailDataConnectorDataTypesLogs class. */
+    public AwsCloudTrailDataConnectorDataTypesLogs() {
+    }
+
     /** {@inheritDoc} */
     @Override
     public AwsCloudTrailDataConnectorDataTypesLogs withState(DataTypeState state) {

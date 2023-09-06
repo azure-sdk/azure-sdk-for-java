@@ -91,11 +91,13 @@ public interface Relation {
     interface Definition
         extends DefinitionStages.Blank, DefinitionStages.WithParentResource, DefinitionStages.WithCreate {
     }
+
     /** The Relation definition stages. */
     interface DefinitionStages {
         /** The first stage of the Relation definition. */
         interface Blank extends WithParentResource {
         }
+
         /** The stage of the Relation definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -108,6 +110,7 @@ public interface Relation {
              */
             WithCreate withExistingBookmark(String resourceGroupName, String workspaceName, String bookmarkId);
         }
+
         /**
          * The stage of the Relation definition which contains all the minimum required properties for the resource to
          * be created, but also allows for any other optional properties to be specified.
@@ -128,6 +131,7 @@ public interface Relation {
              */
             Relation create(Context context);
         }
+
         /** The stage of the Relation definition allowing to specify etag. */
         interface WithEtag {
             /**
@@ -138,6 +142,7 @@ public interface Relation {
              */
             WithCreate withEtag(String etag);
         }
+
         /** The stage of the Relation definition allowing to specify relatedResourceId. */
         interface WithRelatedResourceId {
             /**
@@ -149,6 +154,7 @@ public interface Relation {
             WithCreate withRelatedResourceId(String relatedResourceId);
         }
     }
+
     /**
      * Begins update for the Relation resource.
      *
@@ -173,6 +179,7 @@ public interface Relation {
          */
         Relation apply(Context context);
     }
+
     /** The Relation update stages. */
     interface UpdateStages {
         /** The stage of the Relation update allowing to specify etag. */
@@ -185,6 +192,7 @@ public interface Relation {
              */
             Update withEtag(String etag);
         }
+
         /** The stage of the Relation update allowing to specify relatedResourceId. */
         interface WithRelatedResourceId {
             /**
@@ -196,6 +204,7 @@ public interface Relation {
             Update withRelatedResourceId(String relatedResourceId);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *
