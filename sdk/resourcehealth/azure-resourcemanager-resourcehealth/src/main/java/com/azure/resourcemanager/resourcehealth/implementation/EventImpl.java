@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.resourcehealth.implementation;
 
-import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.resourcehealth.fluent.models.EventInner;
 import com.azure.resourcemanager.resourcehealth.models.Event;
 import com.azure.resourcemanager.resourcehealth.models.EventLevelValues;
@@ -13,6 +12,7 @@ import com.azure.resourcemanager.resourcehealth.models.EventPropertiesArticle;
 import com.azure.resourcemanager.resourcehealth.models.EventPropertiesRecommendedActions;
 import com.azure.resourcemanager.resourcehealth.models.EventSourceValues;
 import com.azure.resourcemanager.resourcehealth.models.EventStatusValues;
+import com.azure.resourcemanager.resourcehealth.models.EventSubTypeValues;
 import com.azure.resourcemanager.resourcehealth.models.EventTypeValues;
 import com.azure.resourcemanager.resourcehealth.models.Faq;
 import com.azure.resourcemanager.resourcehealth.models.Impact;
@@ -44,12 +44,12 @@ public final class EventImpl implements Event {
         return this.innerModel().type();
     }
 
-    public SystemData systemData() {
-        return this.innerModel().systemData();
-    }
-
     public EventTypeValues eventType() {
         return this.innerModel().eventType();
+    }
+
+    public EventSubTypeValues eventSubType() {
+        return this.innerModel().eventSubType();
     }
 
     public EventSourceValues eventSource() {
@@ -173,6 +173,18 @@ public final class EventImpl implements Event {
 
     public String impactType() {
         return this.innerModel().impactType();
+    }
+
+    public String maintenanceId() {
+        return this.innerModel().maintenanceId();
+    }
+
+    public String maintenanceType() {
+        return this.innerModel().maintenanceType();
+    }
+
+    public String argQuery() {
+        return this.innerModel().argQuery();
     }
 
     public EventInner innerModel() {

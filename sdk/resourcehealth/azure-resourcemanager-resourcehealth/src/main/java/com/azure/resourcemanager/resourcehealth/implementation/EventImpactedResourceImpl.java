@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.resourcehealth.implementation;
 
-import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.resourcehealth.fluent.models.EventImpactedResourceInner;
 import com.azure.resourcemanager.resourcehealth.models.EventImpactedResource;
 import com.azure.resourcemanager.resourcehealth.models.KeyValueItem;
@@ -35,10 +34,6 @@ public final class EventImpactedResourceImpl implements EventImpactedResource {
         return this.innerModel().type();
     }
 
-    public SystemData systemData() {
-        return this.innerModel().systemData();
-    }
-
     public String targetResourceType() {
         return this.innerModel().targetResourceType();
     }
@@ -49,6 +44,26 @@ public final class EventImpactedResourceImpl implements EventImpactedResource {
 
     public String targetRegion() {
         return this.innerModel().targetRegion();
+    }
+
+    public String resourceName() {
+        return this.innerModel().resourceName();
+    }
+
+    public String resourceGroup() {
+        return this.innerModel().resourceGroup();
+    }
+
+    public String status() {
+        return this.innerModel().status();
+    }
+
+    public String maintenanceStartTime() {
+        return this.innerModel().maintenanceStartTime();
+    }
+
+    public String maintenanceEndTime() {
+        return this.innerModel().maintenanceEndTime();
     }
 
     public List<KeyValueItem> info() {

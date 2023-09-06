@@ -6,13 +6,13 @@ package com.azure.resourcemanager.resourcehealth.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
-import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.resourcehealth.models.EventLevelValues;
 import com.azure.resourcemanager.resourcehealth.models.EventPropertiesAdditionalInformation;
 import com.azure.resourcemanager.resourcehealth.models.EventPropertiesArticle;
 import com.azure.resourcemanager.resourcehealth.models.EventPropertiesRecommendedActions;
 import com.azure.resourcemanager.resourcehealth.models.EventSourceValues;
 import com.azure.resourcemanager.resourcehealth.models.EventStatusValues;
+import com.azure.resourcemanager.resourcehealth.models.EventSubTypeValues;
 import com.azure.resourcemanager.resourcehealth.models.EventTypeValues;
 import com.azure.resourcemanager.resourcehealth.models.Faq;
 import com.azure.resourcemanager.resourcehealth.models.Impact;
@@ -31,12 +31,6 @@ public final class EventInner extends ProxyResource {
     @JsonProperty(value = "properties")
     private EventProperties innerProperties;
 
-    /*
-     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     */
-    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
-    private SystemData systemData;
-
     /** Creates an instance of EventInner class. */
     public EventInner() {
     }
@@ -48,15 +42,6 @@ public final class EventInner extends ProxyResource {
      */
     private EventProperties innerProperties() {
         return this.innerProperties;
-    }
-
-    /**
-     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
-     * @return the systemData value.
-     */
-    public SystemData systemData() {
-        return this.systemData;
     }
 
     /**
@@ -79,6 +64,31 @@ public final class EventInner extends ProxyResource {
             this.innerProperties = new EventProperties();
         }
         this.innerProperties().withEventType(eventType);
+        return this;
+    }
+
+    /**
+     * Get the eventSubType property: Sub type of the event. Currently used to determine retirement communications for
+     * health advisory events.
+     *
+     * @return the eventSubType value.
+     */
+    public EventSubTypeValues eventSubType() {
+        return this.innerProperties() == null ? null : this.innerProperties().eventSubType();
+    }
+
+    /**
+     * Set the eventSubType property: Sub type of the event. Currently used to determine retirement communications for
+     * health advisory events.
+     *
+     * @param eventSubType the eventSubType value to set.
+     * @return the EventInner object itself.
+     */
+    public EventInner withEventSubType(EventSubTypeValues eventSubType) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new EventProperties();
+        }
+        this.innerProperties().withEventSubType(eventSubType);
         return this;
     }
 
@@ -708,6 +718,77 @@ public final class EventInner extends ProxyResource {
             this.innerProperties = new EventProperties();
         }
         this.innerProperties().withImpactType(impactType);
+        return this;
+    }
+
+    /**
+     * Get the maintenanceId property: Unique identifier for planned maintenance event.
+     *
+     * @return the maintenanceId value.
+     */
+    public String maintenanceId() {
+        return this.innerProperties() == null ? null : this.innerProperties().maintenanceId();
+    }
+
+    /**
+     * Set the maintenanceId property: Unique identifier for planned maintenance event.
+     *
+     * @param maintenanceId the maintenanceId value to set.
+     * @return the EventInner object itself.
+     */
+    public EventInner withMaintenanceId(String maintenanceId) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new EventProperties();
+        }
+        this.innerProperties().withMaintenanceId(maintenanceId);
+        return this;
+    }
+
+    /**
+     * Get the maintenanceType property: The type of planned maintenance event.
+     *
+     * @return the maintenanceType value.
+     */
+    public String maintenanceType() {
+        return this.innerProperties() == null ? null : this.innerProperties().maintenanceType();
+    }
+
+    /**
+     * Set the maintenanceType property: The type of planned maintenance event.
+     *
+     * @param maintenanceType the maintenanceType value to set.
+     * @return the EventInner object itself.
+     */
+    public EventInner withMaintenanceType(String maintenanceType) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new EventProperties();
+        }
+        this.innerProperties().withMaintenanceType(maintenanceType);
+        return this;
+    }
+
+    /**
+     * Get the argQuery property: Azure Resource Graph query to fetch the affected resources from their existing Azure
+     * Resource Graph locations.
+     *
+     * @return the argQuery value.
+     */
+    public String argQuery() {
+        return this.innerProperties() == null ? null : this.innerProperties().argQuery();
+    }
+
+    /**
+     * Set the argQuery property: Azure Resource Graph query to fetch the affected resources from their existing Azure
+     * Resource Graph locations.
+     *
+     * @param argQuery the argQuery value to set.
+     * @return the EventInner object itself.
+     */
+    public EventInner withArgQuery(String argQuery) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new EventProperties();
+        }
+        this.innerProperties().withArgQuery(argQuery);
         return this;
     }
 
