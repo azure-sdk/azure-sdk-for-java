@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.paloaltonetworks.ngfw.implementation;
 
 import com.azure.core.http.rest.Response;
-import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.fluent.models.LocalRulesResourceInner;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.models.ActionEnum;
@@ -39,10 +38,6 @@ public final class LocalRulesResourceImpl
 
     public String type() {
         return this.innerModel().type();
-    }
-
-    public SystemData systemData() {
-        return this.innerModel().systemData();
     }
 
     public String etag() {

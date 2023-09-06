@@ -255,7 +255,7 @@ public final class PaloAltoNetworksNgfwManager {
                 .append("-")
                 .append("com.azure.resourcemanager.paloaltonetworks.ngfw")
                 .append("/")
-                .append("1.0.0");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -488,8 +488,10 @@ public final class PaloAltoNetworksNgfwManager {
     }
 
     /**
-     * @return Wrapped service client PaloAltoNetworksCloudngfw providing direct access to the underlying auto-generated
-     *     API implementation, based on Azure REST API.
+     * Gets wrapped service client PaloAltoNetworksCloudngfw providing direct access to the underlying auto-generated
+     * API implementation, based on Azure REST API.
+     *
+     * @return Wrapped service client PaloAltoNetworksCloudngfw.
      */
     public PaloAltoNetworksCloudngfw serviceClient() {
         return this.clientObject;

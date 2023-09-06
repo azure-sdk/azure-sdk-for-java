@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.paloaltonetworks.ngfw.implementation;
 
-import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.fluent.models.PreRulesResourceInner;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.models.ActionEnum;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.models.BooleanEnum;
@@ -41,10 +40,6 @@ public final class PreRulesResourceImpl implements PreRulesResource {
 
     public String type() {
         return this.innerModel().type();
-    }
-
-    public SystemData systemData() {
-        return this.innerModel().systemData();
     }
 
     public String etag() {
