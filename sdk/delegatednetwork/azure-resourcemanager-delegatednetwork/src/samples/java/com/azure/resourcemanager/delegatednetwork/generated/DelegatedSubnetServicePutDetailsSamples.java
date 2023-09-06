@@ -10,7 +10,34 @@ import com.azure.resourcemanager.delegatednetwork.models.SubnetDetails;
 /** Samples for DelegatedSubnetService PutDetails. */
 public final class DelegatedSubnetServicePutDetailsSamples {
     /*
-     * x-ms-original-file: specification/dnc/resource-manager/Microsoft.DelegatedNetwork/stable/2021-03-15/examples/putDelegatedSubnet.json
+     * x-ms-original-file: specification/dnc/resource-manager/Microsoft.DelegatedNetwork/preview/2023-06-27-preview/examples/putDelegatedSubnetVnetBlock.json
+     */
+    /**
+     * Sample code: put delegated subnet vnetblock.
+     *
+     * @param manager Entry point to DelegatedNetworkManager.
+     */
+    public static void putDelegatedSubnetVnetblock(
+        com.azure.resourcemanager.delegatednetwork.DelegatedNetworkManager manager) {
+        manager
+            .delegatedSubnetServices()
+            .define("delegated1")
+            .withRegion("West US")
+            .withExistingResourceGroup("TestRG")
+            .withSubnetDetails(
+                new SubnetDetails()
+                    .withId(
+                        "/subscriptions/613192d7-503f-477a-9cfe-4efc3ee2bd60/resourceGroups/TestRG/providers/Microsoft.Network/virtualNetworks/testvnet/subnets/testsubnet"))
+            .withControllerDetails(
+                new ControllerDetails()
+                    .withId(
+                        "/subscriptions/613192d7-503f-477a-9cfe-4efc3ee2bd60/resourceGroups/TestRG/providers/Microsoft.DelegatedNetwork/controller/dnctestcontroller"))
+            .withAllocationBlockPrefixSize(27)
+            .create();
+    }
+
+    /*
+     * x-ms-original-file: specification/dnc/resource-manager/Microsoft.DelegatedNetwork/preview/2023-06-27-preview/examples/putDelegatedSubnet.json
      */
     /**
      * Sample code: put delegated subnet.
