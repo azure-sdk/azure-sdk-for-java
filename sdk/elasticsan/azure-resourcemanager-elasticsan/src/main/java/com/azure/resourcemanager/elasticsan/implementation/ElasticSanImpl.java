@@ -13,6 +13,7 @@ import com.azure.resourcemanager.elasticsan.models.ElasticSan;
 import com.azure.resourcemanager.elasticsan.models.ElasticSanUpdate;
 import com.azure.resourcemanager.elasticsan.models.PrivateEndpointConnection;
 import com.azure.resourcemanager.elasticsan.models.ProvisioningStates;
+import com.azure.resourcemanager.elasticsan.models.PublicNetworkAccess;
 import com.azure.resourcemanager.elasticsan.models.Sku;
 import java.util.Collections;
 import java.util.List;
@@ -110,6 +111,10 @@ public final class ElasticSanImpl implements ElasticSan, ElasticSan.Definition, 
         } else {
             return Collections.emptyList();
         }
+    }
+
+    public PublicNetworkAccess publicNetworkAccess() {
+        return this.innerModel().publicNetworkAccess();
     }
 
     public Region region() {
@@ -255,6 +260,16 @@ public final class ElasticSanImpl implements ElasticSan, ElasticSan.Definition, 
     public ElasticSanImpl withAvailabilityZones(List<String> availabilityZones) {
         this.innerModel().withAvailabilityZones(availabilityZones);
         return this;
+    }
+
+    public ElasticSanImpl withPublicNetworkAccess(PublicNetworkAccess publicNetworkAccess) {
+        if (isInCreateMode()) {
+            this.innerModel().withPublicNetworkAccess(publicNetworkAccess);
+            return this;
+        } else {
+            this.updateParameters.withPublicNetworkAccess(publicNetworkAccess);
+            return this;
+        }
     }
 
     private boolean isInCreateMode() {

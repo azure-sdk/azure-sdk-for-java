@@ -133,6 +133,14 @@ public interface ElasticSan {
     List<PrivateEndpointConnection> privateEndpointConnections();
 
     /**
+     * Gets the publicNetworkAccess property: Allow or disallow public network access to ElasticSan. Value is optional
+     * but if passed in, must be 'Enabled' or 'Disabled'.
+     *
+     * @return the publicNetworkAccess value.
+     */
+    PublicNetworkAccess publicNetworkAccess();
+
+    /**
      * Gets the region of the resource.
      *
      * @return the region of the resource.
@@ -244,7 +252,10 @@ public interface ElasticSan {
          * The stage of the ElasticSan definition which contains all the minimum required properties for the resource to
          * be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithAvailabilityZones {
+        interface WithCreate
+            extends DefinitionStages.WithTags,
+                DefinitionStages.WithAvailabilityZones,
+                DefinitionStages.WithPublicNetworkAccess {
             /**
              * Executes the create request.
              *
@@ -282,6 +293,19 @@ public interface ElasticSan {
              */
             WithCreate withAvailabilityZones(List<String> availabilityZones);
         }
+
+        /** The stage of the ElasticSan definition allowing to specify publicNetworkAccess. */
+        interface WithPublicNetworkAccess {
+            /**
+             * Specifies the publicNetworkAccess property: Allow or disallow public network access to ElasticSan. Value
+             * is optional but if passed in, must be 'Enabled' or 'Disabled'..
+             *
+             * @param publicNetworkAccess Allow or disallow public network access to ElasticSan. Value is optional but
+             *     if passed in, must be 'Enabled' or 'Disabled'.
+             * @return the next definition stage.
+             */
+            WithCreate withPublicNetworkAccess(PublicNetworkAccess publicNetworkAccess);
+        }
     }
 
     /**
@@ -292,7 +316,7 @@ public interface ElasticSan {
     ElasticSan.Update update();
 
     /** The template for ElasticSan update. */
-    interface Update extends UpdateStages.WithTags {
+    interface Update extends UpdateStages.WithTags, UpdateStages.WithPublicNetworkAccess {
         /**
          * Executes the update request.
          *
@@ -320,6 +344,19 @@ public interface ElasticSan {
              * @return the next definition stage.
              */
             Update withTags(Map<String, String> tags);
+        }
+
+        /** The stage of the ElasticSan update allowing to specify publicNetworkAccess. */
+        interface WithPublicNetworkAccess {
+            /**
+             * Specifies the publicNetworkAccess property: Allow or disallow public network access to ElasticSan
+             * Account. Value is optional but if passed in, must be 'Enabled' or 'Disabled'..
+             *
+             * @param publicNetworkAccess Allow or disallow public network access to ElasticSan Account. Value is
+             *     optional but if passed in, must be 'Enabled' or 'Disabled'.
+             * @return the next definition stage.
+             */
+            Update withPublicNetworkAccess(PublicNetworkAccess publicNetworkAccess);
         }
     }
 

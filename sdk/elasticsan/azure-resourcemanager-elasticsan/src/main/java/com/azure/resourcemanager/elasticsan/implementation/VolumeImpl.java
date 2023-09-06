@@ -7,6 +7,8 @@ package com.azure.resourcemanager.elasticsan.implementation;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.elasticsan.fluent.models.VolumeInner;
 import com.azure.resourcemanager.elasticsan.models.IscsiTargetInfo;
+import com.azure.resourcemanager.elasticsan.models.ManagedByInfo;
+import com.azure.resourcemanager.elasticsan.models.ProvisioningStates;
 import com.azure.resourcemanager.elasticsan.models.SourceCreationData;
 import com.azure.resourcemanager.elasticsan.models.Volume;
 import com.azure.resourcemanager.elasticsan.models.VolumeUpdate;
@@ -42,6 +44,14 @@ public final class VolumeImpl implements Volume, Volume.Definition, Volume.Updat
 
     public IscsiTargetInfo storageTarget() {
         return this.innerModel().storageTarget();
+    }
+
+    public ManagedByInfo managedBy() {
+        return this.innerModel().managedBy();
+    }
+
+    public ProvisioningStates provisioningState() {
+        return this.innerModel().provisioningState();
     }
 
     public String resourceGroupName() {
@@ -157,6 +167,11 @@ public final class VolumeImpl implements Volume, Volume.Definition, Volume.Updat
 
     public VolumeImpl withCreationData(SourceCreationData creationData) {
         this.innerModel().withCreationData(creationData);
+        return this;
+    }
+
+    public VolumeImpl withManagedBy(ManagedByInfo managedBy) {
+        this.innerModel().withManagedBy(managedBy);
         return this;
     }
 

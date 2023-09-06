@@ -59,6 +59,20 @@ public interface Volume {
     IscsiTargetInfo storageTarget();
 
     /**
+     * Gets the managedBy property: Parent resource information.
+     *
+     * @return the managedBy value.
+     */
+    ManagedByInfo managedBy();
+
+    /**
+     * Gets the provisioningState property: State of the operation on the resource.
+     *
+     * @return the provisioningState value.
+     */
+    ProvisioningStates provisioningState();
+
+    /**
      * Gets the name of the resource group.
      *
      * @return the name of the resource group.
@@ -115,7 +129,7 @@ public interface Volume {
          * The stage of the Volume definition which contains all the minimum required properties for the resource to be
          * created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithCreationData {
+        interface WithCreate extends DefinitionStages.WithCreationData, DefinitionStages.WithManagedBy {
             /**
              * Executes the create request.
              *
@@ -141,6 +155,17 @@ public interface Volume {
              * @return the next definition stage.
              */
             WithCreate withCreationData(SourceCreationData creationData);
+        }
+
+        /** The stage of the Volume definition allowing to specify managedBy. */
+        interface WithManagedBy {
+            /**
+             * Specifies the managedBy property: Parent resource information..
+             *
+             * @param managedBy Parent resource information.
+             * @return the next definition stage.
+             */
+            WithCreate withManagedBy(ManagedByInfo managedBy);
         }
     }
 
