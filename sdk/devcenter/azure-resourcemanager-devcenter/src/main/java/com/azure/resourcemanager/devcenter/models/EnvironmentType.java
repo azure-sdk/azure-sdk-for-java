@@ -71,11 +71,13 @@ public interface EnvironmentType {
     interface Definition
         extends DefinitionStages.Blank, DefinitionStages.WithParentResource, DefinitionStages.WithCreate {
     }
+
     /** The EnvironmentType definition stages. */
     interface DefinitionStages {
         /** The first stage of the EnvironmentType definition. */
         interface Blank extends WithParentResource {
         }
+
         /** The stage of the EnvironmentType definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -87,6 +89,7 @@ public interface EnvironmentType {
              */
             WithCreate withExistingDevcenter(String resourceGroupName, String devCenterName);
         }
+
         /**
          * The stage of the EnvironmentType definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
@@ -107,6 +110,7 @@ public interface EnvironmentType {
              */
             EnvironmentType create(Context context);
         }
+
         /** The stage of the EnvironmentType definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -118,6 +122,7 @@ public interface EnvironmentType {
             WithCreate withTags(Map<String, String> tags);
         }
     }
+
     /**
      * Begins update for the EnvironmentType resource.
      *
@@ -142,6 +147,7 @@ public interface EnvironmentType {
          */
         EnvironmentType apply(Context context);
     }
+
     /** The EnvironmentType update stages. */
     interface UpdateStages {
         /** The stage of the EnvironmentType update allowing to specify tags. */
@@ -155,6 +161,7 @@ public interface EnvironmentType {
             Update withTags(Map<String, String> tags);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

@@ -110,11 +110,13 @@ public interface DevCenter {
             DefinitionStages.WithResourceGroup,
             DefinitionStages.WithCreate {
     }
+
     /** The DevCenter definition stages. */
     interface DefinitionStages {
         /** The first stage of the DevCenter definition. */
         interface Blank extends WithLocation {
         }
+
         /** The stage of the DevCenter definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -133,6 +135,7 @@ public interface DevCenter {
              */
             WithResourceGroup withRegion(String location);
         }
+
         /** The stage of the DevCenter definition allowing to specify parent resource. */
         interface WithResourceGroup {
             /**
@@ -143,6 +146,7 @@ public interface DevCenter {
              */
             WithCreate withExistingResourceGroup(String resourceGroupName);
         }
+
         /**
          * The stage of the DevCenter definition which contains all the minimum required properties for the resource to
          * be created, but also allows for any other optional properties to be specified.
@@ -163,6 +167,7 @@ public interface DevCenter {
              */
             DevCenter create(Context context);
         }
+
         /** The stage of the DevCenter definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -173,6 +178,7 @@ public interface DevCenter {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
         /** The stage of the DevCenter definition allowing to specify identity. */
         interface WithIdentity {
             /**
@@ -184,6 +190,7 @@ public interface DevCenter {
             WithCreate withIdentity(ManagedServiceIdentity identity);
         }
     }
+
     /**
      * Begins update for the DevCenter resource.
      *
@@ -208,6 +215,7 @@ public interface DevCenter {
          */
         DevCenter apply(Context context);
     }
+
     /** The DevCenter update stages. */
     interface UpdateStages {
         /** The stage of the DevCenter update allowing to specify tags. */
@@ -220,6 +228,7 @@ public interface DevCenter {
              */
             Update withTags(Map<String, String> tags);
         }
+
         /** The stage of the DevCenter update allowing to specify identity. */
         interface WithIdentity {
             /**
@@ -231,6 +240,7 @@ public interface DevCenter {
             Update withIdentity(ManagedServiceIdentity identity);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *
