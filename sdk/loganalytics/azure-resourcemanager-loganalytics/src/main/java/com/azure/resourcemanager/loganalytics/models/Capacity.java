@@ -7,7 +7,7 @@ package com.azure.resourcemanager.loganalytics.models;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-/** Defines values for Capacity. */
+/** The capacity value. */
 public enum Capacity {
     /** Enum value 500. */
     FIVE_ZERO_ZERO(500L),
@@ -19,7 +19,16 @@ public enum Capacity {
     TWO_ZERO_ZERO_ZERO(2000L),
 
     /** Enum value 5000. */
-    FIVE_ZERO_ZERO_ZERO(5000L);
+    FIVE_ZERO_ZERO_ZERO(5000L),
+
+    /** Enum value 10000. */
+    ONE_ZERO_ZERO_ZERO_ZERO(10000L),
+
+    /** Enum value 25000. */
+    TWO_FIVE_ZERO_ZERO_ZERO(25000L),
+
+    /** Enum value 50000. */
+    FIVE_ZERO_ZERO_ZERO_ZERO(50000L);
 
     /** The actual serialized value for a Capacity instance. */
     private final long value;
