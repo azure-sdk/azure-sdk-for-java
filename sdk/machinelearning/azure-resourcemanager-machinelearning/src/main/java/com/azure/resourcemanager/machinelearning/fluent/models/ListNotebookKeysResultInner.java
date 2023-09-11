@@ -11,13 +11,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Immutable
 public final class ListNotebookKeysResultInner {
     /*
-     * The primaryAccessKey property.
+     * The primary access key of the Notebook
      */
     @JsonProperty(value = "primaryAccessKey", access = JsonProperty.Access.WRITE_ONLY)
     private String primaryAccessKey;
 
     /*
-     * The secondaryAccessKey property.
+     * The secondary access key of the Notebook
      */
     @JsonProperty(value = "secondaryAccessKey", access = JsonProperty.Access.WRITE_ONLY)
     private String secondaryAccessKey;
@@ -27,7 +27,7 @@ public final class ListNotebookKeysResultInner {
     }
 
     /**
-     * Get the primaryAccessKey property: The primaryAccessKey property.
+     * Get the primaryAccessKey property: The primary access key of the Notebook.
      *
      * @return the primaryAccessKey value.
      */
@@ -36,7 +36,7 @@ public final class ListNotebookKeysResultInner {
     }
 
     /**
-     * Get the secondaryAccessKey property: The secondaryAccessKey property.
+     * Get the secondaryAccessKey property: The secondary access key of the Notebook.
      *
      * @return the secondaryAccessKey value.
      */
