@@ -68,6 +68,18 @@ public final class HealthReportsClientImpl implements HealthReportsClient {
             Context context);
 
         @Headers({"Content-Type: application/json"})
+        @Get("/{resourceId}/providers/Microsoft.Security/healthReports/{healthReportName}")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<HealthReportInner>> get(
+            @HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion,
+            @PathParam(value = "resourceId", encoded = true) String resourceId,
+            @PathParam("healthReportName") String healthReportName,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
         @Get("{nextLink}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
@@ -101,7 +113,7 @@ public final class HealthReportsClientImpl implements HealthReportsClient {
         if (scope == null) {
             return Mono.error(new IllegalArgumentException("Parameter scope is required and cannot be null."));
         }
-        final String apiVersion = "2023-02-01-preview";
+        final String apiVersion = "2023-05-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.list(this.client.getEndpoint(), apiVersion, scope, accept, context))
@@ -141,7 +153,7 @@ public final class HealthReportsClientImpl implements HealthReportsClient {
         if (scope == null) {
             return Mono.error(new IllegalArgumentException("Parameter scope is required and cannot be null."));
         }
-        final String apiVersion = "2023-02-01-preview";
+        final String apiVersion = "2023-05-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -222,6 +234,119 @@ public final class HealthReportsClientImpl implements HealthReportsClient {
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<HealthReportInner> list(String scope, Context context) {
         return new PagedIterable<>(listAsync(scope, context));
+    }
+
+    /**
+     * Get health report of resource.
+     *
+     * @param resourceId The identifier of the resource.
+     * @param healthReportName The health report Key - Unique key for the health report type.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return health report of resource along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<HealthReportInner>> getWithResponseAsync(String resourceId, String healthReportName) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (resourceId == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resourceId is required and cannot be null."));
+        }
+        if (healthReportName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter healthReportName is required and cannot be null."));
+        }
+        final String apiVersion = "2023-05-01-preview";
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service.get(this.client.getEndpoint(), apiVersion, resourceId, healthReportName, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Get health report of resource.
+     *
+     * @param resourceId The identifier of the resource.
+     * @param healthReportName The health report Key - Unique key for the health report type.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return health report of resource along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<HealthReportInner>> getWithResponseAsync(
+        String resourceId, String healthReportName, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (resourceId == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resourceId is required and cannot be null."));
+        }
+        if (healthReportName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter healthReportName is required and cannot be null."));
+        }
+        final String apiVersion = "2023-05-01-preview";
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.get(this.client.getEndpoint(), apiVersion, resourceId, healthReportName, accept, context);
+    }
+
+    /**
+     * Get health report of resource.
+     *
+     * @param resourceId The identifier of the resource.
+     * @param healthReportName The health report Key - Unique key for the health report type.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return health report of resource on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<HealthReportInner> getAsync(String resourceId, String healthReportName) {
+        return getWithResponseAsync(resourceId, healthReportName).flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Get health report of resource.
+     *
+     * @param resourceId The identifier of the resource.
+     * @param healthReportName The health report Key - Unique key for the health report type.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return health report of resource along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<HealthReportInner> getWithResponse(String resourceId, String healthReportName, Context context) {
+        return getWithResponseAsync(resourceId, healthReportName, context).block();
+    }
+
+    /**
+     * Get health report of resource.
+     *
+     * @param resourceId The identifier of the resource.
+     * @param healthReportName The health report Key - Unique key for the health report type.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return health report of resource.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public HealthReportInner get(String resourceId, String healthReportName) {
+        return getWithResponse(resourceId, healthReportName, Context.NONE).getValue();
     }
 
     /**
