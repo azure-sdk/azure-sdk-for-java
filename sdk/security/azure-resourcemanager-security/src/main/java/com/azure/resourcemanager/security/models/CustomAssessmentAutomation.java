@@ -102,11 +102,13 @@ public interface CustomAssessmentAutomation {
     interface Definition
         extends DefinitionStages.Blank, DefinitionStages.WithResourceGroup, DefinitionStages.WithCreate {
     }
+
     /** The CustomAssessmentAutomation definition stages. */
     interface DefinitionStages {
         /** The first stage of the CustomAssessmentAutomation definition. */
         interface Blank extends WithResourceGroup {
         }
+
         /** The stage of the CustomAssessmentAutomation definition allowing to specify parent resource. */
         interface WithResourceGroup {
             /**
@@ -118,6 +120,7 @@ public interface CustomAssessmentAutomation {
              */
             WithCreate withExistingResourceGroup(String resourceGroupName);
         }
+
         /**
          * The stage of the CustomAssessmentAutomation definition which contains all the minimum required properties for
          * the resource to be created, but also allows for any other optional properties to be specified.
@@ -144,6 +147,7 @@ public interface CustomAssessmentAutomation {
              */
             CustomAssessmentAutomation create(Context context);
         }
+
         /** The stage of the CustomAssessmentAutomation definition allowing to specify compressedQuery. */
         interface WithCompressedQuery {
             /**
@@ -155,6 +159,7 @@ public interface CustomAssessmentAutomation {
              */
             WithCreate withCompressedQuery(String compressedQuery);
         }
+
         /** The stage of the CustomAssessmentAutomation definition allowing to specify supportedCloud. */
         interface WithSupportedCloud {
             /**
@@ -165,6 +170,7 @@ public interface CustomAssessmentAutomation {
              */
             WithCreate withSupportedCloud(SupportedCloudEnum supportedCloud);
         }
+
         /** The stage of the CustomAssessmentAutomation definition allowing to specify severity. */
         interface WithSeverity {
             /**
@@ -176,6 +182,7 @@ public interface CustomAssessmentAutomation {
              */
             WithCreate withSeverity(SeverityEnum severity);
         }
+
         /** The stage of the CustomAssessmentAutomation definition allowing to specify displayName. */
         interface WithDisplayName {
             /**
@@ -187,6 +194,7 @@ public interface CustomAssessmentAutomation {
              */
             WithCreate withDisplayName(String displayName);
         }
+
         /** The stage of the CustomAssessmentAutomation definition allowing to specify description. */
         interface WithDescription {
             /**
@@ -198,6 +206,7 @@ public interface CustomAssessmentAutomation {
              */
             WithCreate withDescription(String description);
         }
+
         /** The stage of the CustomAssessmentAutomation definition allowing to specify remediationDescription. */
         interface WithRemediationDescription {
             /**
@@ -211,6 +220,7 @@ public interface CustomAssessmentAutomation {
             WithCreate withRemediationDescription(String remediationDescription);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *
