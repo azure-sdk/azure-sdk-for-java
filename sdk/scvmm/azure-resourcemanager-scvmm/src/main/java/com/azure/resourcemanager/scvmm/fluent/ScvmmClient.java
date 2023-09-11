@@ -99,4 +99,46 @@ public interface ScvmmClient {
      * @return the InventoryItemsClient object.
      */
     InventoryItemsClient getInventoryItems();
+
+    /**
+     * Gets the HybridIdentityMetadatasClient object to access its operations.
+     *
+     * @return the HybridIdentityMetadatasClient object.
+     */
+    HybridIdentityMetadatasClient getHybridIdentityMetadatas();
+
+    /**
+     * Gets the MachineExtensionsClient object to access its operations.
+     *
+     * @return the MachineExtensionsClient object.
+     */
+    MachineExtensionsClient getMachineExtensions();
+
+    /**
+     * Gets the GuestAgentsClient object to access its operations.
+     *
+     * @return the GuestAgentsClient object.
+     */
+    GuestAgentsClient getGuestAgents();
+
+    /**
+     * Gets the VirtualMachineInstancesClient object to access its operations.
+     *
+     * @return the VirtualMachineInstancesClient object.
+     */
+    VirtualMachineInstancesClient getVirtualMachineInstances();
+
+    /**
+     * Gets the VirtualMachineInstanceHybridIdentityMetadatasClient object to access its operations.
+     *
+     * @return the VirtualMachineInstanceHybridIdentityMetadatasClient object.
+     */
+    VirtualMachineInstanceHybridIdentityMetadatasClient getVirtualMachineInstanceHybridIdentityMetadatas();
+
+    /**
+     * Gets the VMInstanceGuestAgentsClient object to access its operations.
+     *
+     * @return the VMInstanceGuestAgentsClient object.
+     */
+    VMInstanceGuestAgentsClient getVMInstanceGuestAgents();
 }

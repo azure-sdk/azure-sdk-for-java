@@ -15,6 +15,7 @@ import com.azure.core.management.exception.ManagementException;
 import com.azure.core.management.polling.PollResult;
 import com.azure.core.management.polling.PollerFactory;
 import com.azure.core.util.Context;
+import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.core.util.polling.AsyncPollResponse;
 import com.azure.core.util.polling.LongRunningOperationStatus;
@@ -23,9 +24,15 @@ import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.scvmm.fluent.AvailabilitySetsClient;
 import com.azure.resourcemanager.scvmm.fluent.CloudsClient;
+import com.azure.resourcemanager.scvmm.fluent.GuestAgentsClient;
+import com.azure.resourcemanager.scvmm.fluent.HybridIdentityMetadatasClient;
 import com.azure.resourcemanager.scvmm.fluent.InventoryItemsClient;
+import com.azure.resourcemanager.scvmm.fluent.MachineExtensionsClient;
 import com.azure.resourcemanager.scvmm.fluent.OperationsClient;
 import com.azure.resourcemanager.scvmm.fluent.ScvmmClient;
+import com.azure.resourcemanager.scvmm.fluent.VMInstanceGuestAgentsClient;
+import com.azure.resourcemanager.scvmm.fluent.VirtualMachineInstanceHybridIdentityMetadatasClient;
+import com.azure.resourcemanager.scvmm.fluent.VirtualMachineInstancesClient;
 import com.azure.resourcemanager.scvmm.fluent.VirtualMachineTemplatesClient;
 import com.azure.resourcemanager.scvmm.fluent.VirtualMachinesClient;
 import com.azure.resourcemanager.scvmm.fluent.VirtualNetworksClient;
@@ -36,7 +43,6 @@ import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.time.Duration;
-import java.util.Map;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -211,6 +217,78 @@ public final class ScvmmClientImpl implements ScvmmClient {
         return this.inventoryItems;
     }
 
+    /** The HybridIdentityMetadatasClient object to access its operations. */
+    private final HybridIdentityMetadatasClient hybridIdentityMetadatas;
+
+    /**
+     * Gets the HybridIdentityMetadatasClient object to access its operations.
+     *
+     * @return the HybridIdentityMetadatasClient object.
+     */
+    public HybridIdentityMetadatasClient getHybridIdentityMetadatas() {
+        return this.hybridIdentityMetadatas;
+    }
+
+    /** The MachineExtensionsClient object to access its operations. */
+    private final MachineExtensionsClient machineExtensions;
+
+    /**
+     * Gets the MachineExtensionsClient object to access its operations.
+     *
+     * @return the MachineExtensionsClient object.
+     */
+    public MachineExtensionsClient getMachineExtensions() {
+        return this.machineExtensions;
+    }
+
+    /** The GuestAgentsClient object to access its operations. */
+    private final GuestAgentsClient guestAgents;
+
+    /**
+     * Gets the GuestAgentsClient object to access its operations.
+     *
+     * @return the GuestAgentsClient object.
+     */
+    public GuestAgentsClient getGuestAgents() {
+        return this.guestAgents;
+    }
+
+    /** The VirtualMachineInstancesClient object to access its operations. */
+    private final VirtualMachineInstancesClient virtualMachineInstances;
+
+    /**
+     * Gets the VirtualMachineInstancesClient object to access its operations.
+     *
+     * @return the VirtualMachineInstancesClient object.
+     */
+    public VirtualMachineInstancesClient getVirtualMachineInstances() {
+        return this.virtualMachineInstances;
+    }
+
+    /** The VirtualMachineInstanceHybridIdentityMetadatasClient object to access its operations. */
+    private final VirtualMachineInstanceHybridIdentityMetadatasClient virtualMachineInstanceHybridIdentityMetadatas;
+
+    /**
+     * Gets the VirtualMachineInstanceHybridIdentityMetadatasClient object to access its operations.
+     *
+     * @return the VirtualMachineInstanceHybridIdentityMetadatasClient object.
+     */
+    public VirtualMachineInstanceHybridIdentityMetadatasClient getVirtualMachineInstanceHybridIdentityMetadatas() {
+        return this.virtualMachineInstanceHybridIdentityMetadatas;
+    }
+
+    /** The VMInstanceGuestAgentsClient object to access its operations. */
+    private final VMInstanceGuestAgentsClient vMInstanceGuestAgents;
+
+    /**
+     * Gets the VMInstanceGuestAgentsClient object to access its operations.
+     *
+     * @return the VMInstanceGuestAgentsClient object.
+     */
+    public VMInstanceGuestAgentsClient getVMInstanceGuestAgents() {
+        return this.vMInstanceGuestAgents;
+    }
+
     /**
      * Initializes an instance of ScvmmClient client.
      *
@@ -234,7 +312,7 @@ public final class ScvmmClientImpl implements ScvmmClient {
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2020-06-05-preview";
+        this.apiVersion = "2023-04-01-preview";
         this.vmmServers = new VmmServersClientImpl(this);
         this.operations = new OperationsClientImpl(this);
         this.clouds = new CloudsClientImpl(this);
@@ -243,6 +321,13 @@ public final class ScvmmClientImpl implements ScvmmClient {
         this.virtualMachineTemplates = new VirtualMachineTemplatesClientImpl(this);
         this.availabilitySets = new AvailabilitySetsClientImpl(this);
         this.inventoryItems = new InventoryItemsClientImpl(this);
+        this.hybridIdentityMetadatas = new HybridIdentityMetadatasClientImpl(this);
+        this.machineExtensions = new MachineExtensionsClientImpl(this);
+        this.guestAgents = new GuestAgentsClientImpl(this);
+        this.virtualMachineInstances = new VirtualMachineInstancesClientImpl(this);
+        this.virtualMachineInstanceHybridIdentityMetadatas =
+            new VirtualMachineInstanceHybridIdentityMetadatasClientImpl(this);
+        this.vMInstanceGuestAgents = new VMInstanceGuestAgentsClientImpl(this);
     }
 
     /**
@@ -261,10 +346,7 @@ public final class ScvmmClientImpl implements ScvmmClient {
      * @return the merged context.
      */
     public Context mergeContext(Context context) {
-        for (Map.Entry<Object, Object> entry : this.getContext().getValues().entrySet()) {
-            context = context.addData(entry.getKey(), entry.getValue());
-        }
-        return context;
+        return CoreUtils.mergeContexts(this.getContext(), context);
     }
 
     /**

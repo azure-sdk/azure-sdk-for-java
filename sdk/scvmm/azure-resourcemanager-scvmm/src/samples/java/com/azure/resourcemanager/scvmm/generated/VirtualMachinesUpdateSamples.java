@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.scvmm.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.scvmm.models.AllocationMethod;
 import com.azure.resourcemanager.scvmm.models.HardwareProfileUpdate;
 import com.azure.resourcemanager.scvmm.models.NetworkInterfacesUpdate;
@@ -20,7 +19,7 @@ import java.util.Map;
 /** Samples for VirtualMachines Update. */
 public final class VirtualMachinesUpdateSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/preview/2020-06-05-preview/examples/UpdateVirtualMachine.json
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/preview/2023-04-01-preview/examples/UpdateVirtualMachine.json
      */
     /**
      * Sample code: UpdateVirtualMachine.
@@ -29,7 +28,10 @@ public final class VirtualMachinesUpdateSamples {
      */
     public static void updateVirtualMachine(com.azure.resourcemanager.scvmm.ScvmmManager manager) {
         VirtualMachine resource =
-            manager.virtualMachines().getByResourceGroupWithResponse("testrg", "DemoVM", Context.NONE).getValue();
+            manager
+                .virtualMachines()
+                .getByResourceGroupWithResponse("testrg", "DemoVM", com.azure.core.util.Context.NONE)
+                .getValue();
         resource
             .update()
             .withTags(mapOf("tag1", "value1", "tag2", "value2"))
@@ -52,6 +54,7 @@ public final class VirtualMachinesUpdateSamples {
             .apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

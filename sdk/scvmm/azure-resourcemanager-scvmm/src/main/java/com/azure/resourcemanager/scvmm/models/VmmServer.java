@@ -132,6 +132,13 @@ public interface VmmServer {
     String regionName();
 
     /**
+     * Gets the name of the resource group.
+     *
+     * @return the name of the resource group.
+     */
+    String resourceGroupName();
+
+    /**
      * Gets the inner com.azure.resourcemanager.scvmm.fluent.models.VmmServerInner object.
      *
      * @return the inner object.
@@ -147,11 +154,13 @@ public interface VmmServer {
             DefinitionStages.WithFqdn,
             DefinitionStages.WithCreate {
     }
+
     /** The VmmServer definition stages. */
     interface DefinitionStages {
         /** The first stage of the VmmServer definition. */
         interface Blank extends WithLocation {
         }
+
         /** The stage of the VmmServer definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -170,6 +179,7 @@ public interface VmmServer {
              */
             WithResourceGroup withRegion(String location);
         }
+
         /** The stage of the VmmServer definition allowing to specify parent resource. */
         interface WithResourceGroup {
             /**
@@ -180,6 +190,7 @@ public interface VmmServer {
              */
             WithExtendedLocation withExistingResourceGroup(String resourceGroupName);
         }
+
         /** The stage of the VmmServer definition allowing to specify extendedLocation. */
         interface WithExtendedLocation {
             /**
@@ -190,6 +201,7 @@ public interface VmmServer {
              */
             WithFqdn withExtendedLocation(ExtendedLocation extendedLocation);
         }
+
         /** The stage of the VmmServer definition allowing to specify fqdn. */
         interface WithFqdn {
             /**
@@ -200,6 +212,7 @@ public interface VmmServer {
              */
             WithCreate withFqdn(String fqdn);
         }
+
         /**
          * The stage of the VmmServer definition which contains all the minimum required properties for the resource to
          * be created, but also allows for any other optional properties to be specified.
@@ -221,6 +234,7 @@ public interface VmmServer {
              */
             VmmServer create(Context context);
         }
+
         /** The stage of the VmmServer definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -231,6 +245,7 @@ public interface VmmServer {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
         /** The stage of the VmmServer definition allowing to specify credentials. */
         interface WithCredentials {
             /**
@@ -241,6 +256,7 @@ public interface VmmServer {
              */
             WithCreate withCredentials(VmmServerPropertiesCredentials credentials);
         }
+
         /** The stage of the VmmServer definition allowing to specify port. */
         interface WithPort {
             /**
@@ -252,6 +268,7 @@ public interface VmmServer {
             WithCreate withPort(Integer port);
         }
     }
+
     /**
      * Begins update for the VmmServer resource.
      *
@@ -276,6 +293,7 @@ public interface VmmServer {
          */
         VmmServer apply(Context context);
     }
+
     /** The VmmServer update stages. */
     interface UpdateStages {
         /** The stage of the VmmServer update allowing to specify tags. */
@@ -289,6 +307,7 @@ public interface VmmServer {
             Update withTags(Map<String, String> tags);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

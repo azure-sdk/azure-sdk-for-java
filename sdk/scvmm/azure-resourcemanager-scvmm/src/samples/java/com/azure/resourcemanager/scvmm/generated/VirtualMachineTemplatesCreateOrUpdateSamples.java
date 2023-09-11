@@ -9,7 +9,7 @@ import com.azure.resourcemanager.scvmm.models.ExtendedLocation;
 /** Samples for VirtualMachineTemplates CreateOrUpdate. */
 public final class VirtualMachineTemplatesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/preview/2020-06-05-preview/examples/CreateVirtualMachineTemplate.json
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/preview/2023-04-01-preview/examples/CreateVirtualMachineTemplate.json
      */
     /**
      * Sample code: CreateVirtualMachineTemplate.

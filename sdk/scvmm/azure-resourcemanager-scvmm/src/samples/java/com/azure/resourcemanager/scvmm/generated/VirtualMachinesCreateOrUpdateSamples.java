@@ -10,7 +10,7 @@ import com.azure.resourcemanager.scvmm.models.HardwareProfile;
 /** Samples for VirtualMachines CreateOrUpdate. */
 public final class VirtualMachinesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/preview/2020-06-05-preview/examples/CreateVirtualMachine.json
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/preview/2023-04-01-preview/examples/CreateVirtualMachine.json
      */
     /**
      * Sample code: CreateVirtualMachine.

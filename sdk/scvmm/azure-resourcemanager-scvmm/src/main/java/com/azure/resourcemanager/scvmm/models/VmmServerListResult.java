@@ -24,6 +24,10 @@ public final class VmmServerListResult {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
+    /** Creates an instance of VmmServerListResult class. */
+    public VmmServerListResult() {
+    }
+
     /**
      * Get the value property: List of VmmServers.
      *
