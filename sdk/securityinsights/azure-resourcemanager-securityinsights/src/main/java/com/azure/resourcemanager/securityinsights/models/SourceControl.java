@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.securityinsights.models;
 
+import com.azure.core.http.rest.Response;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.securityinsights.fluent.models.SourceControlInner;
@@ -96,6 +97,21 @@ public interface SourceControl {
     Repository repository();
 
     /**
+     * Gets the servicePrincipal property: Service principal metadata.
+     *
+     * @return the servicePrincipal value.
+     */
+    ServicePrincipal servicePrincipal();
+
+    /**
+     * Gets the repositoryAccess property: Repository access credentials. This is write-only object and it never returns
+     * back to a user.
+     *
+     * @return the repositoryAccess value.
+     */
+    RepositoryAccess repositoryAccess();
+
+    /**
      * Gets the repositoryResourceInfo property: Information regarding the resources created in user's repository.
      *
      * @return the repositoryResourceInfo value.
@@ -110,6 +126,13 @@ public interface SourceControl {
     DeploymentInfo lastDeploymentInfo();
 
     /**
+     * Gets the pullRequest property: Information regarding the pull request of the source control.
+     *
+     * @return the pullRequest value.
+     */
+    PullRequest pullRequest();
+
+    /**
      * Gets the inner com.azure.resourcemanager.securityinsights.fluent.models.SourceControlInner object.
      *
      * @return the inner object.
@@ -120,11 +143,13 @@ public interface SourceControl {
     interface Definition
         extends DefinitionStages.Blank, DefinitionStages.WithParentResource, DefinitionStages.WithCreate {
     }
+
     /** The SourceControl definition stages. */
     interface DefinitionStages {
         /** The first stage of the SourceControl definition. */
         interface Blank extends WithParentResource {
         }
+
         /** The stage of the SourceControl definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -136,21 +161,20 @@ public interface SourceControl {
              */
             WithCreate withExistingWorkspace(String resourceGroupName, String workspaceName);
         }
+
         /**
          * The stage of the SourceControl definition which contains all the minimum required properties for the resource
          * to be created, but also allows for any other optional properties to be specified.
          */
         interface WithCreate
             extends DefinitionStages.WithEtag,
-                DefinitionStages.WithIdPropertiesId,
-                DefinitionStages.WithVersion,
                 DefinitionStages.WithDisplayName,
                 DefinitionStages.WithDescription,
                 DefinitionStages.WithRepoType,
                 DefinitionStages.WithContentTypes,
                 DefinitionStages.WithRepository,
-                DefinitionStages.WithRepositoryResourceInfo,
-                DefinitionStages.WithLastDeploymentInfo {
+                DefinitionStages.WithRepositoryAccess,
+                DefinitionStages.WithRepositoryResourceInfo {
             /**
              * Executes the create request.
              *
@@ -166,6 +190,7 @@ public interface SourceControl {
              */
             SourceControl create(Context context);
         }
+
         /** The stage of the SourceControl definition allowing to specify etag. */
         interface WithEtag {
             /**
@@ -176,26 +201,7 @@ public interface SourceControl {
              */
             WithCreate withEtag(String etag);
         }
-        /** The stage of the SourceControl definition allowing to specify idPropertiesId. */
-        interface WithIdPropertiesId {
-            /**
-             * Specifies the idPropertiesId property: The id (a Guid) of the source control.
-             *
-             * @param idPropertiesId The id (a Guid) of the source control.
-             * @return the next definition stage.
-             */
-            WithCreate withIdPropertiesId(String idPropertiesId);
-        }
-        /** The stage of the SourceControl definition allowing to specify version. */
-        interface WithVersion {
-            /**
-             * Specifies the version property: The version number associated with the source control.
-             *
-             * @param version The version number associated with the source control.
-             * @return the next definition stage.
-             */
-            WithCreate withVersion(Version version);
-        }
+
         /** The stage of the SourceControl definition allowing to specify displayName. */
         interface WithDisplayName {
             /**
@@ -206,6 +212,7 @@ public interface SourceControl {
              */
             WithCreate withDisplayName(String displayName);
         }
+
         /** The stage of the SourceControl definition allowing to specify description. */
         interface WithDescription {
             /**
@@ -216,6 +223,7 @@ public interface SourceControl {
              */
             WithCreate withDescription(String description);
         }
+
         /** The stage of the SourceControl definition allowing to specify repoType. */
         interface WithRepoType {
             /**
@@ -226,6 +234,7 @@ public interface SourceControl {
              */
             WithCreate withRepoType(RepoType repoType);
         }
+
         /** The stage of the SourceControl definition allowing to specify contentTypes. */
         interface WithContentTypes {
             /**
@@ -236,6 +245,7 @@ public interface SourceControl {
              */
             WithCreate withContentTypes(List<ContentType> contentTypes);
         }
+
         /** The stage of the SourceControl definition allowing to specify repository. */
         interface WithRepository {
             /**
@@ -246,6 +256,20 @@ public interface SourceControl {
              */
             WithCreate withRepository(Repository repository);
         }
+
+        /** The stage of the SourceControl definition allowing to specify repositoryAccess. */
+        interface WithRepositoryAccess {
+            /**
+             * Specifies the repositoryAccess property: Repository access credentials. This is write-only object and it
+             * never returns back to a user..
+             *
+             * @param repositoryAccess Repository access credentials. This is write-only object and it never returns
+             *     back to a user.
+             * @return the next definition stage.
+             */
+            WithCreate withRepositoryAccess(RepositoryAccess repositoryAccess);
+        }
+
         /** The stage of the SourceControl definition allowing to specify repositoryResourceInfo. */
         interface WithRepositoryResourceInfo {
             /**
@@ -257,18 +281,8 @@ public interface SourceControl {
              */
             WithCreate withRepositoryResourceInfo(RepositoryResourceInfo repositoryResourceInfo);
         }
-        /** The stage of the SourceControl definition allowing to specify lastDeploymentInfo. */
-        interface WithLastDeploymentInfo {
-            /**
-             * Specifies the lastDeploymentInfo property: Information regarding the latest deployment for the source
-             * control..
-             *
-             * @param lastDeploymentInfo Information regarding the latest deployment for the source control.
-             * @return the next definition stage.
-             */
-            WithCreate withLastDeploymentInfo(DeploymentInfo lastDeploymentInfo);
-        }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *
@@ -283,4 +297,27 @@ public interface SourceControl {
      * @return the refreshed resource.
      */
     SourceControl refresh(Context context);
+
+    /**
+     * Delete a source control.
+     *
+     * @param repositoryAccess The repository access credentials.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return warning response structure along with {@link Response}.
+     */
+    Response<Warning> deleteWithResponse(SourceControlsDeleteRequestBody repositoryAccess, Context context);
+
+    /**
+     * Delete a source control.
+     *
+     * @param repositoryAccess The repository access credentials.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return warning response structure.
+     */
+    Warning delete(SourceControlsDeleteRequestBody repositoryAccess);
 }
