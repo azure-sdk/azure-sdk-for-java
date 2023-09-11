@@ -44,19 +44,20 @@ public interface Workspaces {
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
-    void deleteByResourceGroup(String resourceGroupName, String workspaceName);
+    void delete(String resourceGroupName, String workspaceName);
 
     /**
      * Deletes a machine learning workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param forceToPurge Flag to indicate delete is a purge request.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
-    void delete(String resourceGroupName, String workspaceName, Context context);
+    void delete(String resourceGroupName, String workspaceName, Boolean forceToPurge, Context context);
 
     /**
      * Lists all the available machine learning workspaces under the specified resource group.
@@ -353,12 +354,13 @@ public interface Workspaces {
      * Deletes a machine learning workspace.
      *
      * @param id the resource ID.
+     * @param forceToPurge Flag to indicate delete is a purge request.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
-    void deleteByIdWithResponse(String id, Context context);
+    void deleteByIdWithResponse(String id, Boolean forceToPurge, Context context);
 
     /**
      * Begins definition for a new Workspace resource.

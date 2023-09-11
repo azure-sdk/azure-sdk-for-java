@@ -44,21 +44,21 @@ public final class DatastoresClientImpl implements DatastoresClient {
     private final DatastoresService service;
 
     /** The service client containing this operation class. */
-    private final AzureMachineLearningWorkspacesImpl client;
+    private final AzureMachineLearningServicesImpl client;
 
     /**
      * Initializes an instance of DatastoresClientImpl.
      *
      * @param client the instance of the service client containing this operation class.
      */
-    DatastoresClientImpl(AzureMachineLearningWorkspacesImpl client) {
+    DatastoresClientImpl(AzureMachineLearningServicesImpl client) {
         this.service =
             RestProxy.create(DatastoresService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for AzureMachineLearningWorkspacesDatastores to be used by the proxy
+     * The interface defining all the services for AzureMachineLearningServicesDatastores to be used by the proxy
      * service to perform REST calls.
      */
     @Host("{$host}")
@@ -66,8 +66,7 @@ public final class DatastoresClientImpl implements DatastoresClient {
     public interface DatastoresService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/datastores")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/datastores")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<DatastoreResourceArmPaginatedResult>> list(
@@ -88,8 +87,7 @@ public final class DatastoresClientImpl implements DatastoresClient {
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/datastores/{name}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/datastores/{name}")
         @ExpectedResponses({200, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Void>> delete(
@@ -104,8 +102,7 @@ public final class DatastoresClientImpl implements DatastoresClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/datastores/{name}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/datastores/{name}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<DatastoreInner>> get(
@@ -120,8 +117,7 @@ public final class DatastoresClientImpl implements DatastoresClient {
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/datastores/{name}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/datastores/{name}")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<DatastoreInner>> createOrUpdate(
@@ -138,8 +134,7 @@ public final class DatastoresClientImpl implements DatastoresClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/datastores/{name}/listSecrets")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/datastores/{name}/listSecrets")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<DatastoreSecretsInner>> listSecrets(
@@ -215,7 +210,10 @@ public final class DatastoresClientImpl implements DatastoresClient {
         String namesConverted =
             (names == null)
                 ? null
-                : names.stream().map(value -> Objects.toString(value, "")).collect(Collectors.joining(","));
+                : names
+                    .stream()
+                    .map(paramItemValue -> Objects.toString(paramItemValue, ""))
+                    .collect(Collectors.joining(","));
         return FluxUtil
             .withContext(
                 context ->
@@ -301,7 +299,10 @@ public final class DatastoresClientImpl implements DatastoresClient {
         String namesConverted =
             (names == null)
                 ? null
-                : names.stream().map(value -> Objects.toString(value, "")).collect(Collectors.joining(","));
+                : names
+                    .stream()
+                    .map(paramItemValue -> Objects.toString(paramItemValue, ""))
+                    .collect(Collectors.joining(","));
         context = this.client.mergeContext(context);
         return service
             .list(

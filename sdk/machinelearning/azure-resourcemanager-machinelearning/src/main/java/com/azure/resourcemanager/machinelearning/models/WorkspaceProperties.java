@@ -196,6 +196,13 @@ public interface WorkspaceProperties {
     Boolean v1LegacyMode();
 
     /**
+     * Gets the managedNetwork property: Managed Network settings for a machine learning workspace.
+     *
+     * @return the managedNetwork value.
+     */
+    ManagedNetworkSettings managedNetwork();
+
+    /**
      * Gets the inner com.azure.resourcemanager.machinelearning.fluent.models.WorkspacePropertiesInner object.
      *
      * @return the inner object.

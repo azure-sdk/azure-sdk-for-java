@@ -40,9 +40,12 @@ public final class JobsImpl implements Jobs {
         String jobType,
         String tag,
         ListViewType listViewType,
+        String properties,
         Context context) {
         PagedIterable<JobBaseInner> inner =
-            this.serviceClient().list(resourceGroupName, workspaceName, skip, jobType, tag, listViewType, context);
+            this
+                .serviceClient()
+                .list(resourceGroupName, workspaceName, skip, jobType, tag, listViewType, properties, context);
         return Utils.mapPage(inner, inner1 -> new JobBaseImpl(inner1, this.manager()));
     }
 
