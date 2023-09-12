@@ -62,7 +62,7 @@ public interface DataControllerResource {
     DataControllerProperties properties();
 
     /**
-     * Gets the systemData property: Read only system data.
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      *
      * @return the systemData value.
      */
@@ -104,11 +104,13 @@ public interface DataControllerResource {
             DefinitionStages.WithProperties,
             DefinitionStages.WithCreate {
     }
+
     /** The DataControllerResource definition stages. */
     interface DefinitionStages {
         /** The first stage of the DataControllerResource definition. */
         interface Blank extends WithLocation {
         }
+
         /** The stage of the DataControllerResource definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -127,6 +129,7 @@ public interface DataControllerResource {
              */
             WithResourceGroup withRegion(String location);
         }
+
         /** The stage of the DataControllerResource definition allowing to specify parent resource. */
         interface WithResourceGroup {
             /**
@@ -137,6 +140,7 @@ public interface DataControllerResource {
              */
             WithProperties withExistingResourceGroup(String resourceGroupName);
         }
+
         /** The stage of the DataControllerResource definition allowing to specify properties. */
         interface WithProperties {
             /**
@@ -147,6 +151,7 @@ public interface DataControllerResource {
              */
             WithCreate withProperties(DataControllerProperties properties);
         }
+
         /**
          * The stage of the DataControllerResource definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
@@ -167,6 +172,7 @@ public interface DataControllerResource {
              */
             DataControllerResource create(Context context);
         }
+
         /** The stage of the DataControllerResource definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -177,6 +183,7 @@ public interface DataControllerResource {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
         /** The stage of the DataControllerResource definition allowing to specify extendedLocation. */
         interface WithExtendedLocation {
             /**
@@ -188,6 +195,7 @@ public interface DataControllerResource {
             WithCreate withExtendedLocation(ExtendedLocation extendedLocation);
         }
     }
+
     /**
      * Begins update for the DataControllerResource resource.
      *
@@ -196,7 +204,7 @@ public interface DataControllerResource {
     DataControllerResource.Update update();
 
     /** The template for DataControllerResource update. */
-    interface Update extends UpdateStages.WithTags {
+    interface Update extends UpdateStages.WithTags, UpdateStages.WithProperties {
         /**
          * Executes the update request.
          *
@@ -212,6 +220,7 @@ public interface DataControllerResource {
          */
         DataControllerResource apply(Context context);
     }
+
     /** The DataControllerResource update stages. */
     interface UpdateStages {
         /** The stage of the DataControllerResource update allowing to specify tags. */
@@ -224,7 +233,19 @@ public interface DataControllerResource {
              */
             Update withTags(Map<String, String> tags);
         }
+
+        /** The stage of the DataControllerResource update allowing to specify properties. */
+        interface WithProperties {
+            /**
+             * Specifies the properties property: The data controller's properties.
+             *
+             * @param properties The data controller's properties.
+             * @return the next definition stage.
+             */
+            Update withProperties(DataControllerProperties properties);
+        }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *
