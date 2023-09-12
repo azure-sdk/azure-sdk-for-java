@@ -35,10 +35,28 @@ public final class ComputeInstanceProperties {
     private ApplicationSharingPolicy applicationSharingPolicy;
 
     /*
+     * Specifies settings for autologger.
+     */
+    @JsonProperty(value = "autologgerSettings")
+    private ComputeInstanceAutologgerSettings autologgerSettings;
+
+    /*
      * Specifies policy and settings for SSH access.
      */
     @JsonProperty(value = "sshSettings")
     private ComputeInstanceSshSettings sshSettings;
+
+    /*
+     * List of Custom Services added to the compute.
+     */
+    @JsonProperty(value = "customServices")
+    private List<CustomService> customServices;
+
+    /*
+     * Returns metadata about the operating system image for this compute instance.
+     */
+    @JsonProperty(value = "osImageMetadata", access = JsonProperty.Access.WRITE_ONLY)
+    private ImageMetadata osImageMetadata;
 
     /*
      * Describes all connectivity endpoints available for this ComputeInstance.
@@ -81,6 +99,39 @@ public final class ComputeInstanceProperties {
     private ComputeInstanceAuthorizationType computeInstanceAuthorizationType;
 
     /*
+     * Enable Auto OS Patching.
+     *
+     * Enable Auto OS Patching. Possible values are: true, false.
+     */
+    @JsonProperty(value = "enableOSPatching")
+    private Boolean enableOSPatching;
+
+    /*
+     * Enable root access.
+     *
+     * Enable root access. Possible values are: true, false.
+     */
+    @JsonProperty(value = "enableRootAccess")
+    private Boolean enableRootAccess;
+
+    /*
+     * Enable SSO (single sign on).
+     *
+     * Enable SSO (single sign on). Possible values are: true, false.
+     */
+    @JsonProperty(value = "enableSSO")
+    private Boolean enableSso;
+
+    /*
+     * Release quota if compute instance stopped.
+     *
+     * Release quota if compute instance stopped. Possible values are: true - release quota if compute instance
+     * stopped. false - don't release quota when compute instance stopped.
+     */
+    @JsonProperty(value = "releaseQuotaOnStop")
+    private Boolean releaseQuotaOnStop;
+
+    /*
      * Settings for a personal compute instance.
      */
     @JsonProperty(value = "personalComputeInstanceSettings")
@@ -101,8 +152,15 @@ public final class ComputeInstanceProperties {
     /*
      * The list of schedules to be applied on the computes.
      */
-    @JsonProperty(value = "schedules", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "schedules")
     private ComputeSchedules schedules;
+
+    /*
+     * Stops compute instance after user defined period of inactivity. Time is defined in ISO8601 format. Minimum is 15
+     * min, maximum is 3 days.
+     */
+    @JsonProperty(value = "idleTimeBeforeShutdown")
+    private String idleTimeBeforeShutdown;
 
     /*
      * Enable node public IP.
@@ -211,6 +269,26 @@ public final class ComputeInstanceProperties {
     }
 
     /**
+     * Get the autologgerSettings property: Specifies settings for autologger.
+     *
+     * @return the autologgerSettings value.
+     */
+    public ComputeInstanceAutologgerSettings autologgerSettings() {
+        return this.autologgerSettings;
+    }
+
+    /**
+     * Set the autologgerSettings property: Specifies settings for autologger.
+     *
+     * @param autologgerSettings the autologgerSettings value to set.
+     * @return the ComputeInstanceProperties object itself.
+     */
+    public ComputeInstanceProperties withAutologgerSettings(ComputeInstanceAutologgerSettings autologgerSettings) {
+        this.autologgerSettings = autologgerSettings;
+        return this;
+    }
+
+    /**
      * Get the sshSettings property: Specifies policy and settings for SSH access.
      *
      * @return the sshSettings value.
@@ -228,6 +306,35 @@ public final class ComputeInstanceProperties {
     public ComputeInstanceProperties withSshSettings(ComputeInstanceSshSettings sshSettings) {
         this.sshSettings = sshSettings;
         return this;
+    }
+
+    /**
+     * Get the customServices property: List of Custom Services added to the compute.
+     *
+     * @return the customServices value.
+     */
+    public List<CustomService> customServices() {
+        return this.customServices;
+    }
+
+    /**
+     * Set the customServices property: List of Custom Services added to the compute.
+     *
+     * @param customServices the customServices value to set.
+     * @return the ComputeInstanceProperties object itself.
+     */
+    public ComputeInstanceProperties withCustomServices(List<CustomService> customServices) {
+        this.customServices = customServices;
+        return this;
+    }
+
+    /**
+     * Get the osImageMetadata property: Returns metadata about the operating system image for this compute instance.
+     *
+     * @return the osImageMetadata value.
+     */
+    public ImageMetadata osImageMetadata() {
+        return this.osImageMetadata;
     }
 
     /**
@@ -303,6 +410,104 @@ public final class ComputeInstanceProperties {
     }
 
     /**
+     * Get the enableOSPatching property: Enable Auto OS Patching.
+     *
+     * <p>Enable Auto OS Patching. Possible values are: true, false.
+     *
+     * @return the enableOSPatching value.
+     */
+    public Boolean enableOSPatching() {
+        return this.enableOSPatching;
+    }
+
+    /**
+     * Set the enableOSPatching property: Enable Auto OS Patching.
+     *
+     * <p>Enable Auto OS Patching. Possible values are: true, false.
+     *
+     * @param enableOSPatching the enableOSPatching value to set.
+     * @return the ComputeInstanceProperties object itself.
+     */
+    public ComputeInstanceProperties withEnableOSPatching(Boolean enableOSPatching) {
+        this.enableOSPatching = enableOSPatching;
+        return this;
+    }
+
+    /**
+     * Get the enableRootAccess property: Enable root access.
+     *
+     * <p>Enable root access. Possible values are: true, false.
+     *
+     * @return the enableRootAccess value.
+     */
+    public Boolean enableRootAccess() {
+        return this.enableRootAccess;
+    }
+
+    /**
+     * Set the enableRootAccess property: Enable root access.
+     *
+     * <p>Enable root access. Possible values are: true, false.
+     *
+     * @param enableRootAccess the enableRootAccess value to set.
+     * @return the ComputeInstanceProperties object itself.
+     */
+    public ComputeInstanceProperties withEnableRootAccess(Boolean enableRootAccess) {
+        this.enableRootAccess = enableRootAccess;
+        return this;
+    }
+
+    /**
+     * Get the enableSso property: Enable SSO (single sign on).
+     *
+     * <p>Enable SSO (single sign on). Possible values are: true, false.
+     *
+     * @return the enableSso value.
+     */
+    public Boolean enableSso() {
+        return this.enableSso;
+    }
+
+    /**
+     * Set the enableSso property: Enable SSO (single sign on).
+     *
+     * <p>Enable SSO (single sign on). Possible values are: true, false.
+     *
+     * @param enableSso the enableSso value to set.
+     * @return the ComputeInstanceProperties object itself.
+     */
+    public ComputeInstanceProperties withEnableSso(Boolean enableSso) {
+        this.enableSso = enableSso;
+        return this;
+    }
+
+    /**
+     * Get the releaseQuotaOnStop property: Release quota if compute instance stopped.
+     *
+     * <p>Release quota if compute instance stopped. Possible values are: true - release quota if compute instance
+     * stopped. false - don't release quota when compute instance stopped.
+     *
+     * @return the releaseQuotaOnStop value.
+     */
+    public Boolean releaseQuotaOnStop() {
+        return this.releaseQuotaOnStop;
+    }
+
+    /**
+     * Set the releaseQuotaOnStop property: Release quota if compute instance stopped.
+     *
+     * <p>Release quota if compute instance stopped. Possible values are: true - release quota if compute instance
+     * stopped. false - don't release quota when compute instance stopped.
+     *
+     * @param releaseQuotaOnStop the releaseQuotaOnStop value to set.
+     * @return the ComputeInstanceProperties object itself.
+     */
+    public ComputeInstanceProperties withReleaseQuotaOnStop(Boolean releaseQuotaOnStop) {
+        this.releaseQuotaOnStop = releaseQuotaOnStop;
+        return this;
+    }
+
+    /**
      * Get the personalComputeInstanceSettings property: Settings for a personal compute instance.
      *
      * @return the personalComputeInstanceSettings value.
@@ -359,6 +564,39 @@ public final class ComputeInstanceProperties {
      */
     public ComputeSchedules schedules() {
         return this.schedules;
+    }
+
+    /**
+     * Set the schedules property: The list of schedules to be applied on the computes.
+     *
+     * @param schedules the schedules value to set.
+     * @return the ComputeInstanceProperties object itself.
+     */
+    public ComputeInstanceProperties withSchedules(ComputeSchedules schedules) {
+        this.schedules = schedules;
+        return this;
+    }
+
+    /**
+     * Get the idleTimeBeforeShutdown property: Stops compute instance after user defined period of inactivity. Time is
+     * defined in ISO8601 format. Minimum is 15 min, maximum is 3 days.
+     *
+     * @return the idleTimeBeforeShutdown value.
+     */
+    public String idleTimeBeforeShutdown() {
+        return this.idleTimeBeforeShutdown;
+    }
+
+    /**
+     * Set the idleTimeBeforeShutdown property: Stops compute instance after user defined period of inactivity. Time is
+     * defined in ISO8601 format. Minimum is 15 min, maximum is 3 days.
+     *
+     * @param idleTimeBeforeShutdown the idleTimeBeforeShutdown value to set.
+     * @return the ComputeInstanceProperties object itself.
+     */
+    public ComputeInstanceProperties withIdleTimeBeforeShutdown(String idleTimeBeforeShutdown) {
+        this.idleTimeBeforeShutdown = idleTimeBeforeShutdown;
+        return this;
     }
 
     /**
@@ -434,8 +672,17 @@ public final class ComputeInstanceProperties {
         if (subnet() != null) {
             subnet().validate();
         }
+        if (autologgerSettings() != null) {
+            autologgerSettings().validate();
+        }
         if (sshSettings() != null) {
             sshSettings().validate();
+        }
+        if (customServices() != null) {
+            customServices().forEach(e -> e.validate());
+        }
+        if (osImageMetadata() != null) {
+            osImageMetadata().validate();
         }
         if (connectivityEndpoints() != null) {
             connectivityEndpoints().validate();
