@@ -55,7 +55,7 @@ public interface SqlServerInstance {
     SqlServerInstanceProperties properties();
 
     /**
-     * Gets the systemData property: Read only system data.
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      *
      * @return the systemData value.
      */
@@ -96,11 +96,13 @@ public interface SqlServerInstance {
             DefinitionStages.WithResourceGroup,
             DefinitionStages.WithCreate {
     }
+
     /** The SqlServerInstance definition stages. */
     interface DefinitionStages {
         /** The first stage of the SqlServerInstance definition. */
         interface Blank extends WithLocation {
         }
+
         /** The stage of the SqlServerInstance definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -119,6 +121,7 @@ public interface SqlServerInstance {
              */
             WithResourceGroup withRegion(String location);
         }
+
         /** The stage of the SqlServerInstance definition allowing to specify parent resource. */
         interface WithResourceGroup {
             /**
@@ -129,6 +132,7 @@ public interface SqlServerInstance {
              */
             WithCreate withExistingResourceGroup(String resourceGroupName);
         }
+
         /**
          * The stage of the SqlServerInstance definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
@@ -149,6 +153,7 @@ public interface SqlServerInstance {
              */
             SqlServerInstance create(Context context);
         }
+
         /** The stage of the SqlServerInstance definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -159,6 +164,7 @@ public interface SqlServerInstance {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
         /** The stage of the SqlServerInstance definition allowing to specify properties. */
         interface WithProperties {
             /**
@@ -170,6 +176,7 @@ public interface SqlServerInstance {
             WithCreate withProperties(SqlServerInstanceProperties properties);
         }
     }
+
     /**
      * Begins update for the SqlServerInstance resource.
      *
@@ -194,6 +201,7 @@ public interface SqlServerInstance {
          */
         SqlServerInstance apply(Context context);
     }
+
     /** The SqlServerInstance update stages. */
     interface UpdateStages {
         /** The stage of the SqlServerInstance update allowing to specify tags. */
@@ -207,6 +215,7 @@ public interface SqlServerInstance {
             Update withTags(Map<String, String> tags);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

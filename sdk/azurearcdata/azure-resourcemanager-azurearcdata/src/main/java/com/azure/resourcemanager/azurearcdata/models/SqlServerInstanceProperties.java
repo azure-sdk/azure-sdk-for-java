@@ -43,6 +43,12 @@ public final class SqlServerInstanceProperties {
     private String vCore;
 
     /*
+     * The number of total cores of the Operating System Environment (OSE) hosting the SQL Server instance.
+     */
+    @JsonProperty(value = "cores")
+    private String cores;
+
+    /*
      * The cloud connectivity status.
      */
     @JsonProperty(value = "status", required = true)
@@ -109,10 +115,40 @@ public final class SqlServerInstanceProperties {
     private DefenderStatus azureDefenderStatus;
 
     /*
-     * The provisioningState property.
+     * The provisioning state of the Arc-enabled SQL Server resource.
      */
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private String provisioningState;
+
+    /*
+     * Type of host for Azure Arc SQL Server
+     */
+    @JsonProperty(value = "hostType")
+    private HostType hostType;
+
+    /*
+     * The role of the SQL Server, based on availability.
+     */
+    @JsonProperty(value = "alwaysOnRole")
+    private AlwaysOnRole alwaysOnRole;
+
+    /*
+     * Failover Cluster Instance properties.
+     */
+    @JsonProperty(value = "failoverCluster")
+    private FailoverCluster failoverCluster;
+
+    /*
+     * The backup profile for the SQL server.
+     */
+    @JsonProperty(value = "backupPolicy")
+    private BackupPolicy backupPolicy;
+
+    /*
+     * The monitoring configuration.
+     */
+    @JsonProperty(value = "monitoring")
+    private Monitoring monitoring;
 
     /** Creates an instance of SqlServerInstanceProperties class. */
     public SqlServerInstanceProperties() {
@@ -204,6 +240,28 @@ public final class SqlServerInstanceProperties {
      */
     public SqlServerInstanceProperties withVCore(String vCore) {
         this.vCore = vCore;
+        return this;
+    }
+
+    /**
+     * Get the cores property: The number of total cores of the Operating System Environment (OSE) hosting the SQL
+     * Server instance.
+     *
+     * @return the cores value.
+     */
+    public String cores() {
+        return this.cores;
+    }
+
+    /**
+     * Set the cores property: The number of total cores of the Operating System Environment (OSE) hosting the SQL
+     * Server instance.
+     *
+     * @param cores the cores value to set.
+     * @return the SqlServerInstanceProperties object itself.
+     */
+    public SqlServerInstanceProperties withCores(String cores) {
+        this.cores = cores;
         return this;
     }
 
@@ -429,12 +487,112 @@ public final class SqlServerInstanceProperties {
     }
 
     /**
-     * Get the provisioningState property: The provisioningState property.
+     * Get the provisioningState property: The provisioning state of the Arc-enabled SQL Server resource.
      *
      * @return the provisioningState value.
      */
     public String provisioningState() {
         return this.provisioningState;
+    }
+
+    /**
+     * Get the hostType property: Type of host for Azure Arc SQL Server.
+     *
+     * @return the hostType value.
+     */
+    public HostType hostType() {
+        return this.hostType;
+    }
+
+    /**
+     * Set the hostType property: Type of host for Azure Arc SQL Server.
+     *
+     * @param hostType the hostType value to set.
+     * @return the SqlServerInstanceProperties object itself.
+     */
+    public SqlServerInstanceProperties withHostType(HostType hostType) {
+        this.hostType = hostType;
+        return this;
+    }
+
+    /**
+     * Get the alwaysOnRole property: The role of the SQL Server, based on availability.
+     *
+     * @return the alwaysOnRole value.
+     */
+    public AlwaysOnRole alwaysOnRole() {
+        return this.alwaysOnRole;
+    }
+
+    /**
+     * Set the alwaysOnRole property: The role of the SQL Server, based on availability.
+     *
+     * @param alwaysOnRole the alwaysOnRole value to set.
+     * @return the SqlServerInstanceProperties object itself.
+     */
+    public SqlServerInstanceProperties withAlwaysOnRole(AlwaysOnRole alwaysOnRole) {
+        this.alwaysOnRole = alwaysOnRole;
+        return this;
+    }
+
+    /**
+     * Get the failoverCluster property: Failover Cluster Instance properties.
+     *
+     * @return the failoverCluster value.
+     */
+    public FailoverCluster failoverCluster() {
+        return this.failoverCluster;
+    }
+
+    /**
+     * Set the failoverCluster property: Failover Cluster Instance properties.
+     *
+     * @param failoverCluster the failoverCluster value to set.
+     * @return the SqlServerInstanceProperties object itself.
+     */
+    public SqlServerInstanceProperties withFailoverCluster(FailoverCluster failoverCluster) {
+        this.failoverCluster = failoverCluster;
+        return this;
+    }
+
+    /**
+     * Get the backupPolicy property: The backup profile for the SQL server.
+     *
+     * @return the backupPolicy value.
+     */
+    public BackupPolicy backupPolicy() {
+        return this.backupPolicy;
+    }
+
+    /**
+     * Set the backupPolicy property: The backup profile for the SQL server.
+     *
+     * @param backupPolicy the backupPolicy value to set.
+     * @return the SqlServerInstanceProperties object itself.
+     */
+    public SqlServerInstanceProperties withBackupPolicy(BackupPolicy backupPolicy) {
+        this.backupPolicy = backupPolicy;
+        return this;
+    }
+
+    /**
+     * Get the monitoring property: The monitoring configuration.
+     *
+     * @return the monitoring value.
+     */
+    public Monitoring monitoring() {
+        return this.monitoring;
+    }
+
+    /**
+     * Set the monitoring property: The monitoring configuration.
+     *
+     * @param monitoring the monitoring value to set.
+     * @return the SqlServerInstanceProperties object itself.
+     */
+    public SqlServerInstanceProperties withMonitoring(Monitoring monitoring) {
+        this.monitoring = monitoring;
+        return this;
     }
 
     /**
@@ -454,6 +612,15 @@ public final class SqlServerInstanceProperties {
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property status in model SqlServerInstanceProperties"));
+        }
+        if (failoverCluster() != null) {
+            failoverCluster().validate();
+        }
+        if (backupPolicy() != null) {
+            backupPolicy().validate();
+        }
+        if (monitoring() != null) {
+            monitoring().validate();
         }
     }
 
