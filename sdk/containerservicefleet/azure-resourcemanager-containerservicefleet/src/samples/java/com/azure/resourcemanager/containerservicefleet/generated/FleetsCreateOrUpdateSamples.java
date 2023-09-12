@@ -11,7 +11,7 @@ import java.util.Map;
 /** Samples for Fleets CreateOrUpdate. */
 public final class FleetsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/containerservice/resource-manager/Microsoft.ContainerService/fleet/preview/2023-03-15-preview/examples/Fleets_CreateOrUpdate.json
+     * x-ms-original-file: specification/containerservice/resource-manager/Microsoft.ContainerService/fleet/preview/2023-08-15-preview/examples/Fleets_CreateOrUpdate.json
      */
     /**
      * Sample code: Creates a Fleet resource with a long running operation.
@@ -26,10 +26,11 @@ public final class FleetsCreateOrUpdateSamples {
             .withRegion("East US")
             .withExistingResourceGroup("rg1")
             .withTags(mapOf("archv2", "", "tier", "production"))
-            .withHubProfile(new FleetHubProfile().withDnsPrefix("dnsprefix1"))
+            .withHubProfile(new FleetHubProfile().withDnsPrefix("dnsprefix1").withVmSize("Standard_DS1"))
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
