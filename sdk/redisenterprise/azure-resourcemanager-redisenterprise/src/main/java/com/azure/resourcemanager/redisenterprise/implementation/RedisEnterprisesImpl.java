@@ -11,6 +11,7 @@ import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.redisenterprise.fluent.RedisEnterprisesClient;
 import com.azure.resourcemanager.redisenterprise.fluent.models.ClusterInner;
+import com.azure.resourcemanager.redisenterprise.models.CheckNameAvailabilityParameters;
 import com.azure.resourcemanager.redisenterprise.models.Cluster;
 import com.azure.resourcemanager.redisenterprise.models.RedisEnterprises;
 
@@ -78,6 +79,15 @@ public final class RedisEnterprisesImpl implements RedisEnterprises {
     public PagedIterable<Cluster> list(Context context) {
         PagedIterable<ClusterInner> inner = this.serviceClient().list(context);
         return Utils.mapPage(inner, inner1 -> new ClusterImpl(inner1, this.manager()));
+    }
+
+    public Response<Void> checkNameAvailabilityWithResponse(
+        CheckNameAvailabilityParameters parameters, Context context) {
+        return this.serviceClient().checkNameAvailabilityWithResponse(parameters, context);
+    }
+
+    public void checkNameAvailability(CheckNameAvailabilityParameters parameters) {
+        this.serviceClient().checkNameAvailability(parameters);
     }
 
     public Cluster getById(String id) {
