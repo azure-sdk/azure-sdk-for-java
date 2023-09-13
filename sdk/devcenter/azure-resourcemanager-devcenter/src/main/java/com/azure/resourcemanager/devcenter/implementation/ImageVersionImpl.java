@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.devcenter.implementation;
 
-import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.devcenter.fluent.models.ImageVersionInner;
 import com.azure.resourcemanager.devcenter.models.ImageVersion;
 import com.azure.resourcemanager.devcenter.models.ProvisioningState;
@@ -31,10 +30,6 @@ public final class ImageVersionImpl implements ImageVersion {
 
     public String type() {
         return this.innerModel().type();
-    }
-
-    public SystemData systemData() {
-        return this.innerModel().systemData();
     }
 
     public String namePropertiesName() {

@@ -5,9 +5,11 @@
 package com.azure.resourcemanager.devcenter.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.resourcemanager.devcenter.models.CatalogConnectionState;
 import com.azure.resourcemanager.devcenter.models.CatalogSyncState;
 import com.azure.resourcemanager.devcenter.models.GitCatalog;
 import com.azure.resourcemanager.devcenter.models.ProvisioningState;
+import com.azure.resourcemanager.devcenter.models.SyncStats;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
@@ -25,6 +27,24 @@ public final class CatalogProperties extends CatalogUpdateProperties {
      */
     @JsonProperty(value = "syncState", access = JsonProperty.Access.WRITE_ONLY)
     private CatalogSyncState syncState;
+
+    /*
+     * Stats of the latest synchronization.
+     */
+    @JsonProperty(value = "lastSyncStats", access = JsonProperty.Access.WRITE_ONLY)
+    private SyncStats lastSyncStats;
+
+    /*
+     * The connection state of the catalog.
+     */
+    @JsonProperty(value = "connectionState", access = JsonProperty.Access.WRITE_ONLY)
+    private CatalogConnectionState connectionState;
+
+    /*
+     * When the catalog was last connected.
+     */
+    @JsonProperty(value = "lastConnectionTime", access = JsonProperty.Access.WRITE_ONLY)
+    private OffsetDateTime lastConnectionTime;
 
     /*
      * When the catalog was last synced.
@@ -52,6 +72,33 @@ public final class CatalogProperties extends CatalogUpdateProperties {
      */
     public CatalogSyncState syncState() {
         return this.syncState;
+    }
+
+    /**
+     * Get the lastSyncStats property: Stats of the latest synchronization.
+     *
+     * @return the lastSyncStats value.
+     */
+    public SyncStats lastSyncStats() {
+        return this.lastSyncStats;
+    }
+
+    /**
+     * Get the connectionState property: The connection state of the catalog.
+     *
+     * @return the connectionState value.
+     */
+    public CatalogConnectionState connectionState() {
+        return this.connectionState;
+    }
+
+    /**
+     * Get the lastConnectionTime property: When the catalog was last connected.
+     *
+     * @return the lastConnectionTime value.
+     */
+    public OffsetDateTime lastConnectionTime() {
+        return this.lastConnectionTime;
     }
 
     /**
@@ -85,5 +132,8 @@ public final class CatalogProperties extends CatalogUpdateProperties {
     @Override
     public void validate() {
         super.validate();
+        if (lastSyncStats() != null) {
+            lastSyncStats().validate();
+        }
     }
 }

@@ -10,7 +10,7 @@ import java.util.Map;
 /** Samples for Projects CreateOrUpdate. */
 public final class ProjectsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2023-04-01/examples/Projects_PutWithMaxDevBoxPerUser.json
+     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2023-08-01-preview/examples/Projects_PutWithMaxDevBoxPerUser.json
      */
     /**
      * Sample code: Projects_CreateOrUpdateWithLimitsPerDev.
@@ -33,7 +33,7 @@ public final class ProjectsCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2023-04-01/examples/Projects_Put.json
+     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2023-08-01-preview/examples/Projects_Put.json
      */
     /**
      * Sample code: Projects_CreateOrUpdate.
@@ -53,6 +53,7 @@ public final class ProjectsCreateOrUpdateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

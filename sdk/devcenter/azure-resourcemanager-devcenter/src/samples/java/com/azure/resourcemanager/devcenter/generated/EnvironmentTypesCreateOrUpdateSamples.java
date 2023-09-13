@@ -10,7 +10,7 @@ import java.util.Map;
 /** Samples for EnvironmentTypes CreateOrUpdate. */
 public final class EnvironmentTypesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2023-04-01/examples/EnvironmentTypes_Put.json
+     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2023-08-01-preview/examples/EnvironmentTypes_Put.json
      */
     /**
      * Sample code: EnvironmentTypes_CreateOrUpdate.
@@ -26,6 +26,7 @@ public final class EnvironmentTypesCreateOrUpdateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

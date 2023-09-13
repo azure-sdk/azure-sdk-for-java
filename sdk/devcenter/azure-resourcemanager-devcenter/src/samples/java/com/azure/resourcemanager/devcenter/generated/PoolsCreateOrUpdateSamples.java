@@ -6,13 +6,14 @@ package com.azure.resourcemanager.devcenter.generated;
 
 import com.azure.resourcemanager.devcenter.models.LicenseType;
 import com.azure.resourcemanager.devcenter.models.LocalAdminStatus;
+import com.azure.resourcemanager.devcenter.models.SingleSignOnStatus;
 import com.azure.resourcemanager.devcenter.models.StopOnDisconnectConfiguration;
 import com.azure.resourcemanager.devcenter.models.StopOnDisconnectEnableStatus;
 
 /** Samples for Pools CreateOrUpdate. */
 public final class PoolsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2023-04-01/examples/Pools_Put.json
+     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2023-08-01-preview/examples/Pools_Put.json
      */
     /**
      * Sample code: Pools_CreateOrUpdate.
@@ -33,6 +34,7 @@ public final class PoolsCreateOrUpdateSamples {
                 new StopOnDisconnectConfiguration()
                     .withStatus(StopOnDisconnectEnableStatus.ENABLED)
                     .withGracePeriodMinutes(60))
+            .withSingleSignOnStatus(SingleSignOnStatus.DISABLED)
             .create();
     }
 }
