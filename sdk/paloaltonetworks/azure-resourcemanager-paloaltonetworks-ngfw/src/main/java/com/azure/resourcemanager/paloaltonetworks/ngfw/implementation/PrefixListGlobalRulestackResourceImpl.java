@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.paloaltonetworks.ngfw.implementation;
 
-import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.fluent.models.PrefixListGlobalRulestackResourceInner;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.models.PrefixListGlobalRulestackResource;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.models.ProvisioningState;
@@ -33,10 +32,6 @@ public final class PrefixListGlobalRulestackResourceImpl implements PrefixListGl
 
     public String type() {
         return this.innerModel().type();
-    }
-
-    public SystemData systemData() {
-        return this.innerModel().systemData();
     }
 
     public String description() {

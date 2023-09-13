@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.paloaltonetworks.ngfw.implementation;
 
-import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.fluent.models.FirewallStatusResourceInner;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.models.BooleanEnum;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.models.FirewallStatusResource;
@@ -34,10 +33,6 @@ public final class FirewallStatusResourceImpl implements FirewallStatusResource 
 
     public String type() {
         return this.innerModel().type();
-    }
-
-    public SystemData systemData() {
-        return this.innerModel().systemData();
     }
 
     public BooleanEnum isPanoramaManaged() {

@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.paloaltonetworks.ngfw.models;
 
-import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.fluent.models.FqdnListLocalRulestackResourceInner;
 import java.util.List;
@@ -31,13 +30,6 @@ public interface FqdnListLocalRulestackResource {
      * @return the type value.
      */
     String type();
-
-    /**
-     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
-     * @return the systemData value.
-     */
-    SystemData systemData();
 
     /**
      * Gets the description property: fqdn object description.
@@ -96,11 +88,13 @@ public interface FqdnListLocalRulestackResource {
             DefinitionStages.WithFqdnList,
             DefinitionStages.WithCreate {
     }
+
     /** The FqdnListLocalRulestackResource definition stages. */
     interface DefinitionStages {
         /** The first stage of the FqdnListLocalRulestackResource definition. */
         interface Blank extends WithParentResource {
         }
+
         /** The stage of the FqdnListLocalRulestackResource definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -112,6 +106,7 @@ public interface FqdnListLocalRulestackResource {
              */
             WithFqdnList withExistingLocalRulestack(String resourceGroupName, String localRulestackName);
         }
+
         /** The stage of the FqdnListLocalRulestackResource definition allowing to specify fqdnList. */
         interface WithFqdnList {
             /**
@@ -122,6 +117,7 @@ public interface FqdnListLocalRulestackResource {
              */
             WithCreate withFqdnList(List<String> fqdnList);
         }
+
         /**
          * The stage of the FqdnListLocalRulestackResource definition which contains all the minimum required properties
          * for the resource to be created, but also allows for any other optional properties to be specified.
@@ -143,6 +139,7 @@ public interface FqdnListLocalRulestackResource {
              */
             FqdnListLocalRulestackResource create(Context context);
         }
+
         /** The stage of the FqdnListLocalRulestackResource definition allowing to specify description. */
         interface WithDescription {
             /**
@@ -153,6 +150,7 @@ public interface FqdnListLocalRulestackResource {
              */
             WithCreate withDescription(String description);
         }
+
         /** The stage of the FqdnListLocalRulestackResource definition allowing to specify etag. */
         interface WithEtag {
             /**
@@ -163,6 +161,7 @@ public interface FqdnListLocalRulestackResource {
              */
             WithCreate withEtag(String etag);
         }
+
         /** The stage of the FqdnListLocalRulestackResource definition allowing to specify auditComment. */
         interface WithAuditComment {
             /**
@@ -174,6 +173,7 @@ public interface FqdnListLocalRulestackResource {
             WithCreate withAuditComment(String auditComment);
         }
     }
+
     /**
      * Begins update for the FqdnListLocalRulestackResource resource.
      *
@@ -202,6 +202,7 @@ public interface FqdnListLocalRulestackResource {
          */
         FqdnListLocalRulestackResource apply(Context context);
     }
+
     /** The FqdnListLocalRulestackResource update stages. */
     interface UpdateStages {
         /** The stage of the FqdnListLocalRulestackResource update allowing to specify description. */
@@ -214,6 +215,7 @@ public interface FqdnListLocalRulestackResource {
              */
             Update withDescription(String description);
         }
+
         /** The stage of the FqdnListLocalRulestackResource update allowing to specify fqdnList. */
         interface WithFqdnList {
             /**
@@ -224,6 +226,7 @@ public interface FqdnListLocalRulestackResource {
              */
             Update withFqdnList(List<String> fqdnList);
         }
+
         /** The stage of the FqdnListLocalRulestackResource update allowing to specify etag. */
         interface WithEtag {
             /**
@@ -234,6 +237,7 @@ public interface FqdnListLocalRulestackResource {
              */
             Update withEtag(String etag);
         }
+
         /** The stage of the FqdnListLocalRulestackResource update allowing to specify auditComment. */
         interface WithAuditComment {
             /**
@@ -245,6 +249,7 @@ public interface FqdnListLocalRulestackResource {
             Update withAuditComment(String auditComment);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

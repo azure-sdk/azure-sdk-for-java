@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.paloaltonetworks.ngfw.models;
 
-import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.fluent.models.PreRulesResourceInner;
 import java.util.List;
 
@@ -30,13 +29,6 @@ public interface PreRulesResource {
      * @return the type value.
      */
     String type();
-
-    /**
-     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
-     * @return the systemData value.
-     */
-    SystemData systemData();
 
     /**
      * Gets the etag property: etag info.
