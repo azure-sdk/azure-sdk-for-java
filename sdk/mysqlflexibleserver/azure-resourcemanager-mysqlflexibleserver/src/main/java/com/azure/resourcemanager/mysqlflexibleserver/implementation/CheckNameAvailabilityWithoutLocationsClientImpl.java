@@ -106,7 +106,6 @@ public final class CheckNameAvailabilityWithoutLocationsClientImpl
         } else {
             nameAvailabilityRequest.validate();
         }
-        final String apiVersion = "2021-12-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -114,7 +113,7 @@ public final class CheckNameAvailabilityWithoutLocationsClientImpl
                     service
                         .execute(
                             this.client.getEndpoint(),
-                            apiVersion,
+                            this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
                             nameAvailabilityRequest,
                             accept,
@@ -155,13 +154,12 @@ public final class CheckNameAvailabilityWithoutLocationsClientImpl
         } else {
             nameAvailabilityRequest.validate();
         }
-        final String apiVersion = "2021-12-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .execute(
                 this.client.getEndpoint(),
-                apiVersion,
+                this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
                 nameAvailabilityRequest,
                 accept,

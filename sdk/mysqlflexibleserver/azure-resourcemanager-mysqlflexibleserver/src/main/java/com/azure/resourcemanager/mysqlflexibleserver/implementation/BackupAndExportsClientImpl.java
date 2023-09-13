@@ -128,7 +128,6 @@ public final class BackupAndExportsClientImpl implements BackupAndExportsClient 
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2022-09-30-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -136,7 +135,7 @@ public final class BackupAndExportsClientImpl implements BackupAndExportsClient 
                     service
                         .create(
                             this.client.getEndpoint(),
-                            apiVersion,
+                            this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             serverName,
@@ -186,13 +185,12 @@ public final class BackupAndExportsClientImpl implements BackupAndExportsClient 
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2022-09-30-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .create(
                 this.client.getEndpoint(),
-                apiVersion,
+                this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 serverName,
@@ -396,7 +394,6 @@ public final class BackupAndExportsClientImpl implements BackupAndExportsClient 
         if (serverName == null) {
             return Mono.error(new IllegalArgumentException("Parameter serverName is required and cannot be null."));
         }
-        final String apiVersion = "2022-09-30-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -404,7 +401,7 @@ public final class BackupAndExportsClientImpl implements BackupAndExportsClient 
                     service
                         .validateBackup(
                             this.client.getEndpoint(),
-                            apiVersion,
+                            this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             serverName,
@@ -447,13 +444,12 @@ public final class BackupAndExportsClientImpl implements BackupAndExportsClient 
         if (serverName == null) {
             return Mono.error(new IllegalArgumentException("Parameter serverName is required and cannot be null."));
         }
-        final String apiVersion = "2022-09-30-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .validateBackup(
                 this.client.getEndpoint(),
-                apiVersion,
+                this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 serverName,

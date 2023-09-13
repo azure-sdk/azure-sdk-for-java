@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.mysqlflexibleserver.implementation;
 
-import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.mysqlflexibleserver.fluent.models.ConfigurationInner;
 import com.azure.resourcemanager.mysqlflexibleserver.models.Configuration;
@@ -28,10 +27,6 @@ public final class ConfigurationImpl implements Configuration, Configuration.Def
 
     public String type() {
         return this.innerModel().type();
-    }
-
-    public SystemData systemData() {
-        return this.innerModel().systemData();
     }
 
     public String value() {

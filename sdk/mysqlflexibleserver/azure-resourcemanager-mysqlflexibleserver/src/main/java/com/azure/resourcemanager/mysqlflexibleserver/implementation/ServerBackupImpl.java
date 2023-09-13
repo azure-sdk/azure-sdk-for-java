@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.mysqlflexibleserver.implementation;
 
-import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.mysqlflexibleserver.fluent.models.ServerBackupInner;
 import com.azure.resourcemanager.mysqlflexibleserver.models.ServerBackup;
 import java.time.OffsetDateTime;
@@ -30,10 +29,6 @@ public final class ServerBackupImpl implements ServerBackup {
 
     public String type() {
         return this.innerModel().type();
-    }
-
-    public SystemData systemData() {
-        return this.innerModel().systemData();
     }
 
     public String backupType() {

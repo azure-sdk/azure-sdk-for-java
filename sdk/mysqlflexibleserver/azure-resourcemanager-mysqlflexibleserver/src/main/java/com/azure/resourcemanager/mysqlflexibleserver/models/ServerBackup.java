@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.mysqlflexibleserver.models;
 
-import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.mysqlflexibleserver.fluent.models.ServerBackupInner;
 import java.time.OffsetDateTime;
 
@@ -30,13 +29,6 @@ public interface ServerBackup {
      * @return the type value.
      */
     String type();
-
-    /**
-     * Gets the systemData property: The system metadata relating to this resource.
-     *
-     * @return the systemData value.
-     */
-    SystemData systemData();
 
     /**
      * Gets the backupType property: Backup type.

@@ -35,11 +35,14 @@ import com.azure.resourcemanager.mysqlflexibleserver.implementation.DatabasesImp
 import com.azure.resourcemanager.mysqlflexibleserver.implementation.FirewallRulesImpl;
 import com.azure.resourcemanager.mysqlflexibleserver.implementation.GetPrivateDnsZoneSuffixesImpl;
 import com.azure.resourcemanager.mysqlflexibleserver.implementation.LocationBasedCapabilitiesImpl;
+import com.azure.resourcemanager.mysqlflexibleserver.implementation.LocationBasedCapabilitySetsImpl;
 import com.azure.resourcemanager.mysqlflexibleserver.implementation.LogFilesImpl;
 import com.azure.resourcemanager.mysqlflexibleserver.implementation.MySqlManagementClientBuilder;
+import com.azure.resourcemanager.mysqlflexibleserver.implementation.OperationResultsImpl;
 import com.azure.resourcemanager.mysqlflexibleserver.implementation.OperationsImpl;
 import com.azure.resourcemanager.mysqlflexibleserver.implementation.ReplicasImpl;
 import com.azure.resourcemanager.mysqlflexibleserver.implementation.ServersImpl;
+import com.azure.resourcemanager.mysqlflexibleserver.implementation.ServersMigrationsImpl;
 import com.azure.resourcemanager.mysqlflexibleserver.models.AzureADAdministrators;
 import com.azure.resourcemanager.mysqlflexibleserver.models.BackupAndExports;
 import com.azure.resourcemanager.mysqlflexibleserver.models.Backups;
@@ -51,10 +54,13 @@ import com.azure.resourcemanager.mysqlflexibleserver.models.Databases;
 import com.azure.resourcemanager.mysqlflexibleserver.models.FirewallRules;
 import com.azure.resourcemanager.mysqlflexibleserver.models.GetPrivateDnsZoneSuffixes;
 import com.azure.resourcemanager.mysqlflexibleserver.models.LocationBasedCapabilities;
+import com.azure.resourcemanager.mysqlflexibleserver.models.LocationBasedCapabilitySets;
 import com.azure.resourcemanager.mysqlflexibleserver.models.LogFiles;
+import com.azure.resourcemanager.mysqlflexibleserver.models.OperationResults;
 import com.azure.resourcemanager.mysqlflexibleserver.models.Operations;
 import com.azure.resourcemanager.mysqlflexibleserver.models.Replicas;
 import com.azure.resourcemanager.mysqlflexibleserver.models.Servers;
+import com.azure.resourcemanager.mysqlflexibleserver.models.ServersMigrations;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -84,15 +90,21 @@ public final class MySqlManager {
 
     private Replicas replicas;
 
+    private ServersMigrations serversMigrations;
+
     private LogFiles logFiles;
 
     private LocationBasedCapabilities locationBasedCapabilities;
+
+    private LocationBasedCapabilitySets locationBasedCapabilitySets;
 
     private CheckVirtualNetworkSubnetUsages checkVirtualNetworkSubnetUsages;
 
     private CheckNameAvailabilities checkNameAvailabilities;
 
     private CheckNameAvailabilityWithoutLocations checkNameAvailabilityWithoutLocations;
+
+    private OperationResults operationResults;
 
     private GetPrivateDnsZoneSuffixes getPrivateDnsZoneSuffixes;
 
@@ -263,7 +275,7 @@ public final class MySqlManager {
                 .append("-")
                 .append("com.azure.resourcemanager.mysqlflexibleserver")
                 .append("/")
-                .append("1.0.0-beta.4");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -417,6 +429,18 @@ public final class MySqlManager {
     }
 
     /**
+     * Gets the resource collection API of ServersMigrations.
+     *
+     * @return Resource collection API of ServersMigrations.
+     */
+    public ServersMigrations serversMigrations() {
+        if (this.serversMigrations == null) {
+            this.serversMigrations = new ServersMigrationsImpl(clientObject.getServersMigrations(), this);
+        }
+        return serversMigrations;
+    }
+
+    /**
      * Gets the resource collection API of LogFiles.
      *
      * @return Resource collection API of LogFiles.
@@ -439,6 +463,19 @@ public final class MySqlManager {
                 new LocationBasedCapabilitiesImpl(clientObject.getLocationBasedCapabilities(), this);
         }
         return locationBasedCapabilities;
+    }
+
+    /**
+     * Gets the resource collection API of LocationBasedCapabilitySets.
+     *
+     * @return Resource collection API of LocationBasedCapabilitySets.
+     */
+    public LocationBasedCapabilitySets locationBasedCapabilitySets() {
+        if (this.locationBasedCapabilitySets == null) {
+            this.locationBasedCapabilitySets =
+                new LocationBasedCapabilitySetsImpl(clientObject.getLocationBasedCapabilitySets(), this);
+        }
+        return locationBasedCapabilitySets;
     }
 
     /**
@@ -482,6 +519,18 @@ public final class MySqlManager {
     }
 
     /**
+     * Gets the resource collection API of OperationResults.
+     *
+     * @return Resource collection API of OperationResults.
+     */
+    public OperationResults operationResults() {
+        if (this.operationResults == null) {
+            this.operationResults = new OperationResultsImpl(clientObject.getOperationResults(), this);
+        }
+        return operationResults;
+    }
+
+    /**
      * Gets the resource collection API of GetPrivateDnsZoneSuffixes.
      *
      * @return Resource collection API of GetPrivateDnsZoneSuffixes.
@@ -507,8 +556,10 @@ public final class MySqlManager {
     }
 
     /**
-     * @return Wrapped service client MySqlManagementClient providing direct access to the underlying auto-generated API
-     *     implementation, based on Azure REST API.
+     * Gets wrapped service client MySqlManagementClient providing direct access to the underlying auto-generated API
+     * implementation, based on Azure REST API.
+     *
+     * @return Wrapped service client MySqlManagementClient.
      */
     public MySqlManagementClient serviceClient() {
         return this.clientObject;

@@ -17,13 +17,13 @@ public final class ServerForUpdate {
      * The cmk identity for the server.
      */
     @JsonProperty(value = "identity")
-    private Identity identity;
+    private MySqlServerIdentity identity;
 
     /*
      * The SKU (pricing tier) of the server.
      */
     @JsonProperty(value = "sku")
-    private Sku sku;
+    private MySqlServerSku sku;
 
     /*
      * The properties that can be updated for a server.
@@ -47,7 +47,7 @@ public final class ServerForUpdate {
      *
      * @return the identity value.
      */
-    public Identity identity() {
+    public MySqlServerIdentity identity() {
         return this.identity;
     }
 
@@ -57,7 +57,7 @@ public final class ServerForUpdate {
      * @param identity the identity value to set.
      * @return the ServerForUpdate object itself.
      */
-    public ServerForUpdate withIdentity(Identity identity) {
+    public ServerForUpdate withIdentity(MySqlServerIdentity identity) {
         this.identity = identity;
         return this;
     }
@@ -67,7 +67,7 @@ public final class ServerForUpdate {
      *
      * @return the sku value.
      */
-    public Sku sku() {
+    public MySqlServerSku sku() {
         return this.sku;
     }
 
@@ -77,7 +77,7 @@ public final class ServerForUpdate {
      * @param sku the sku value to set.
      * @return the ServerForUpdate object itself.
      */
-    public ServerForUpdate withSku(Sku sku) {
+    public ServerForUpdate withSku(MySqlServerSku sku) {
         this.sku = sku;
         return this;
     }

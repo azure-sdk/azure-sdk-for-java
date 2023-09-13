@@ -10,11 +10,11 @@ import java.util.Collection;
 
 /** Backup Format for the current backup. (CollatedFormat is INTERNAL – DO NOT USE). */
 public final class BackupFormat extends ExpandableStringEnum<BackupFormat> {
-    /** Static value None for BackupFormat. */
-    public static final BackupFormat NONE = fromString("None");
-
     /** Static value CollatedFormat for BackupFormat. */
     public static final BackupFormat COLLATED_FORMAT = fromString("CollatedFormat");
+
+    /** Static value Raw for BackupFormat. */
+    public static final BackupFormat RAW = fromString("Raw");
 
     /**
      * Creates a new instance of BackupFormat value.

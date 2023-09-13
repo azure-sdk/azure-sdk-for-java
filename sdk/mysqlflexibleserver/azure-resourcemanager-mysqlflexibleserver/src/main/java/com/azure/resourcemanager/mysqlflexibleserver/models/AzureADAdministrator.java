@@ -32,7 +32,7 @@ public interface AzureADAdministrator {
     String type();
 
     /**
-     * Gets the systemData property: The system metadata relating to this resource.
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      *
      * @return the systemData value.
      */
@@ -91,11 +91,13 @@ public interface AzureADAdministrator {
     interface Definition
         extends DefinitionStages.Blank, DefinitionStages.WithParentResource, DefinitionStages.WithCreate {
     }
+
     /** The AzureADAdministrator definition stages. */
     interface DefinitionStages {
         /** The first stage of the AzureADAdministrator definition. */
         interface Blank extends WithParentResource {
         }
+
         /** The stage of the AzureADAdministrator definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -107,6 +109,7 @@ public interface AzureADAdministrator {
              */
             WithCreate withExistingFlexibleServer(String resourceGroupName, String serverName);
         }
+
         /**
          * The stage of the AzureADAdministrator definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
@@ -132,6 +135,7 @@ public interface AzureADAdministrator {
              */
             AzureADAdministrator create(Context context);
         }
+
         /** The stage of the AzureADAdministrator definition allowing to specify administratorType. */
         interface WithAdministratorType {
             /**
@@ -142,6 +146,7 @@ public interface AzureADAdministrator {
              */
             WithCreate withAdministratorType(AdministratorType administratorType);
         }
+
         /** The stage of the AzureADAdministrator definition allowing to specify login. */
         interface WithLogin {
             /**
@@ -152,6 +157,7 @@ public interface AzureADAdministrator {
              */
             WithCreate withLogin(String login);
         }
+
         /** The stage of the AzureADAdministrator definition allowing to specify sid. */
         interface WithSid {
             /**
@@ -162,6 +168,7 @@ public interface AzureADAdministrator {
              */
             WithCreate withSid(String sid);
         }
+
         /** The stage of the AzureADAdministrator definition allowing to specify tenantId. */
         interface WithTenantId {
             /**
@@ -172,6 +179,7 @@ public interface AzureADAdministrator {
              */
             WithCreate withTenantId(String tenantId);
         }
+
         /** The stage of the AzureADAdministrator definition allowing to specify identityResourceId. */
         interface WithIdentityResourceId {
             /**
@@ -183,6 +191,7 @@ public interface AzureADAdministrator {
             WithCreate withIdentityResourceId(String identityResourceId);
         }
     }
+
     /**
      * Begins update for the AzureADAdministrator resource.
      *
@@ -212,6 +221,7 @@ public interface AzureADAdministrator {
          */
         AzureADAdministrator apply(Context context);
     }
+
     /** The AzureADAdministrator update stages. */
     interface UpdateStages {
         /** The stage of the AzureADAdministrator update allowing to specify administratorType. */
@@ -224,6 +234,7 @@ public interface AzureADAdministrator {
              */
             Update withAdministratorType(AdministratorType administratorType);
         }
+
         /** The stage of the AzureADAdministrator update allowing to specify login. */
         interface WithLogin {
             /**
@@ -234,6 +245,7 @@ public interface AzureADAdministrator {
              */
             Update withLogin(String login);
         }
+
         /** The stage of the AzureADAdministrator update allowing to specify sid. */
         interface WithSid {
             /**
@@ -244,6 +256,7 @@ public interface AzureADAdministrator {
              */
             Update withSid(String sid);
         }
+
         /** The stage of the AzureADAdministrator update allowing to specify tenantId. */
         interface WithTenantId {
             /**
@@ -254,6 +267,7 @@ public interface AzureADAdministrator {
              */
             Update withTenantId(String tenantId);
         }
+
         /** The stage of the AzureADAdministrator update allowing to specify identityResourceId. */
         interface WithIdentityResourceId {
             /**
@@ -265,6 +279,7 @@ public interface AzureADAdministrator {
             Update withIdentityResourceId(String identityResourceId);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

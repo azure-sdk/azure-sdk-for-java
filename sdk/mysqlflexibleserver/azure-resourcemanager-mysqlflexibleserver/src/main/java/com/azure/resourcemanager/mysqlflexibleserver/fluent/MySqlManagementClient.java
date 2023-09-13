@@ -10,7 +10,7 @@ import java.time.Duration;
 /** The interface for MySqlManagementClient class. */
 public interface MySqlManagementClient {
     /**
-     * Gets The ID of the target subscription.
+     * Gets The ID of the target subscription. The value must be an UUID.
      *
      * @return the subscriptionId value.
      */
@@ -22,6 +22,13 @@ public interface MySqlManagementClient {
      * @return the endpoint value.
      */
     String getEndpoint();
+
+    /**
+     * Gets Api Version.
+     *
+     * @return the apiVersion value.
+     */
+    String getApiVersion();
 
     /**
      * Gets The HTTP pipeline to send requests through.
@@ -94,6 +101,13 @@ public interface MySqlManagementClient {
     ReplicasClient getReplicas();
 
     /**
+     * Gets the ServersMigrationsClient object to access its operations.
+     *
+     * @return the ServersMigrationsClient object.
+     */
+    ServersMigrationsClient getServersMigrations();
+
+    /**
      * Gets the LogFilesClient object to access its operations.
      *
      * @return the LogFilesClient object.
@@ -106,6 +120,13 @@ public interface MySqlManagementClient {
      * @return the LocationBasedCapabilitiesClient object.
      */
     LocationBasedCapabilitiesClient getLocationBasedCapabilities();
+
+    /**
+     * Gets the LocationBasedCapabilitySetsClient object to access its operations.
+     *
+     * @return the LocationBasedCapabilitySetsClient object.
+     */
+    LocationBasedCapabilitySetsClient getLocationBasedCapabilitySets();
 
     /**
      * Gets the CheckVirtualNetworkSubnetUsagesClient object to access its operations.
@@ -127,6 +148,13 @@ public interface MySqlManagementClient {
      * @return the CheckNameAvailabilityWithoutLocationsClient object.
      */
     CheckNameAvailabilityWithoutLocationsClient getCheckNameAvailabilityWithoutLocations();
+
+    /**
+     * Gets the OperationResultsClient object to access its operations.
+     *
+     * @return the OperationResultsClient object.
+     */
+    OperationResultsClient getOperationResults();
 
     /**
      * Gets the GetPrivateDnsZoneSuffixesClient object to access its operations.
