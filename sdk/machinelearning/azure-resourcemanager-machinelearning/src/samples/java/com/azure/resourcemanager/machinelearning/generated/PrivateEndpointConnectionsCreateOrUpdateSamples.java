@@ -10,7 +10,7 @@ import com.azure.resourcemanager.machinelearning.models.PrivateLinkServiceConnec
 /** Samples for PrivateEndpointConnections CreateOrUpdate. */
 public final class PrivateEndpointConnectionsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/PrivateEndpointConnection/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-10-01/examples/PrivateEndpointConnection/createOrUpdate.json
      */
     /**
      * Sample code: WorkspacePutPrivateEndpointConnection.

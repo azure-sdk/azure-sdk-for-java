@@ -18,8 +18,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     defaultImpl = TriggerBase.class)
 @JsonTypeName("TriggerBase")
 @JsonSubTypes({
-    @JsonSubTypes.Type(name = "Recurrence", value = RecurrenceTrigger.class),
-    @JsonSubTypes.Type(name = "Cron", value = CronTrigger.class)
+    @JsonSubTypes.Type(name = "Cron", value = CronTrigger.class),
+    @JsonSubTypes.Type(name = "Recurrence", value = RecurrenceTrigger.class)
 })
 @Fluent
 public class TriggerBase {

@@ -75,6 +75,12 @@ public final class CommandJob extends JobBaseProperties {
     private Object parameters;
 
     /*
+     * Queue settings for the job
+     */
+    @JsonProperty(value = "queueSettings")
+    private QueueSettings queueSettings;
+
+    /*
      * Compute Resource configuration for the job.
      */
     @JsonProperty(value = "resources")
@@ -256,6 +262,26 @@ public final class CommandJob extends JobBaseProperties {
     }
 
     /**
+     * Get the queueSettings property: Queue settings for the job.
+     *
+     * @return the queueSettings value.
+     */
+    public QueueSettings queueSettings() {
+        return this.queueSettings;
+    }
+
+    /**
+     * Set the queueSettings property: Queue settings for the job.
+     *
+     * @param queueSettings the queueSettings value to set.
+     * @return the CommandJob object itself.
+     */
+    public CommandJob withQueueSettings(QueueSettings queueSettings) {
+        this.queueSettings = queueSettings;
+        return this;
+    }
+
+    /**
      * Get the resources property: Compute Resource configuration for the job.
      *
      * @return the resources value.
@@ -388,6 +414,9 @@ public final class CommandJob extends JobBaseProperties {
                             e.validate();
                         }
                     });
+        }
+        if (queueSettings() != null) {
+            queueSettings().validate();
         }
         if (resources() != null) {
             resources().validate();
