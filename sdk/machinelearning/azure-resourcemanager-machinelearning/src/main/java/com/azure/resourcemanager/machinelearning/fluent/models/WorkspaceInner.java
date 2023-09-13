@@ -630,6 +630,29 @@ public final class WorkspaceInner extends ProxyResource {
     }
 
     /**
+     * Get the managedNetwork property: Managed Network settings for a machine learning workspace.
+     *
+     * @return the managedNetwork value.
+     */
+    public ManagedNetworkSettingsInner managedNetwork() {
+        return this.innerProperties() == null ? null : this.innerProperties().managedNetwork();
+    }
+
+    /**
+     * Set the managedNetwork property: Managed Network settings for a machine learning workspace.
+     *
+     * @param managedNetwork the managedNetwork value to set.
+     * @return the WorkspaceInner object itself.
+     */
+    public WorkspaceInner withManagedNetwork(ManagedNetworkSettingsInner managedNetwork) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new WorkspacePropertiesInner();
+        }
+        this.innerProperties().withManagedNetwork(managedNetwork);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.

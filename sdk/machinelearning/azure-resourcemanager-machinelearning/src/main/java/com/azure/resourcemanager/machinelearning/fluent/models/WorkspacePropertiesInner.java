@@ -170,6 +170,12 @@ public final class WorkspacePropertiesInner {
     @JsonProperty(value = "v1LegacyMode")
     private Boolean v1LegacyMode;
 
+    /*
+     * Managed Network settings for a machine learning workspace.
+     */
+    @JsonProperty(value = "managedNetwork")
+    private ManagedNetworkSettingsInner managedNetwork;
+
     /** Creates an instance of WorkspacePropertiesInner class. */
     public WorkspacePropertiesInner() {
     }
@@ -596,6 +602,26 @@ public final class WorkspacePropertiesInner {
     }
 
     /**
+     * Get the managedNetwork property: Managed Network settings for a machine learning workspace.
+     *
+     * @return the managedNetwork value.
+     */
+    public ManagedNetworkSettingsInner managedNetwork() {
+        return this.managedNetwork;
+    }
+
+    /**
+     * Set the managedNetwork property: Managed Network settings for a machine learning workspace.
+     *
+     * @param managedNetwork the managedNetwork value to set.
+     * @return the WorkspacePropertiesInner object itself.
+     */
+    public WorkspacePropertiesInner withManagedNetwork(ManagedNetworkSettingsInner managedNetwork) {
+        this.managedNetwork = managedNetwork;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -615,6 +641,9 @@ public final class WorkspacePropertiesInner {
         }
         if (serviceManagedResourcesSettings() != null) {
             serviceManagedResourcesSettings().validate();
+        }
+        if (managedNetwork() != null) {
+            managedNetwork().validate();
         }
     }
 }
