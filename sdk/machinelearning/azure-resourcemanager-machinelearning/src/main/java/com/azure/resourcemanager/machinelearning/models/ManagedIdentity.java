@@ -14,7 +14,7 @@ import java.util.UUID;
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "identityType")
 @JsonTypeName("Managed")
 @Fluent
-public class ManagedIdentity extends IdentityConfiguration {
+public final class ManagedIdentity extends IdentityConfiguration {
     /*
      * Specifies a user-assigned identity by client ID. For system-assigned, do not set this field.
      */

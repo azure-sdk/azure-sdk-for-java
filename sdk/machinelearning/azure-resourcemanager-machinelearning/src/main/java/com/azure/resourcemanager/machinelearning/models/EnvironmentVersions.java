@@ -7,6 +7,7 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
+import com.azure.resourcemanager.machinelearning.fluent.models.EnvironmentVersionInner;
 
 /** Resource collection API of EnvironmentVersions. */
 public interface EnvironmentVersions {
@@ -109,55 +110,40 @@ public interface EnvironmentVersions {
     EnvironmentVersion get(String resourceGroupName, String workspaceName, String name, String version);
 
     /**
-     * Get version.
+     * Creates or updates an EnvironmentVersion.
      *
-     * @param id the resource ID.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return version along with {@link Response}.
-     */
-    EnvironmentVersion getById(String id);
-
-    /**
-     * Get version.
-     *
-     * @param id the resource ID.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param name Name of EnvironmentVersion. This is case-sensitive.
+     * @param version Version of EnvironmentVersion.
+     * @param body Definition of EnvironmentVersion.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return version along with {@link Response}.
+     * @return azure Resource Manager resource envelope along with {@link Response}.
      */
-    Response<EnvironmentVersion> getByIdWithResponse(String id, Context context);
+    Response<EnvironmentVersion> createOrUpdateWithResponse(
+        String resourceGroupName,
+        String workspaceName,
+        String name,
+        String version,
+        EnvironmentVersionInner body,
+        Context context);
 
     /**
-     * Delete version.
+     * Creates or updates an EnvironmentVersion.
      *
-     * @param id the resource ID.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param name Name of EnvironmentVersion. This is case-sensitive.
+     * @param version Version of EnvironmentVersion.
+     * @param body Definition of EnvironmentVersion.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return azure Resource Manager resource envelope.
      */
-    void deleteById(String id);
-
-    /**
-     * Delete version.
-     *
-     * @param id the resource ID.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
-     */
-    Response<Void> deleteByIdWithResponse(String id, Context context);
-
-    /**
-     * Begins definition for a new EnvironmentVersion resource.
-     *
-     * @param name resource name.
-     * @return the first stage of the new EnvironmentVersion definition.
-     */
-    EnvironmentVersion.DefinitionStages.Blank define(String name);
+    EnvironmentVersion createOrUpdate(
+        String resourceGroupName, String workspaceName, String name, String version, EnvironmentVersionInner body);
 }
