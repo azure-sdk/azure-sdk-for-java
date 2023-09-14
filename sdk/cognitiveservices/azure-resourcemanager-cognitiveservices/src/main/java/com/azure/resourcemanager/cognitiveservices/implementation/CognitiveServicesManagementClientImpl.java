@@ -32,6 +32,12 @@ import com.azure.resourcemanager.cognitiveservices.fluent.ModelsClient;
 import com.azure.resourcemanager.cognitiveservices.fluent.OperationsClient;
 import com.azure.resourcemanager.cognitiveservices.fluent.PrivateEndpointConnectionsClient;
 import com.azure.resourcemanager.cognitiveservices.fluent.PrivateLinkResourcesClient;
+import com.azure.resourcemanager.cognitiveservices.fluent.RaiBlocklistItemOperationsClient;
+import com.azure.resourcemanager.cognitiveservices.fluent.RaiBlocklistItemsClient;
+import com.azure.resourcemanager.cognitiveservices.fluent.RaiBlocklistOperationsClient;
+import com.azure.resourcemanager.cognitiveservices.fluent.RaiBlocklistsClient;
+import com.azure.resourcemanager.cognitiveservices.fluent.RaiContentFiltersClient;
+import com.azure.resourcemanager.cognitiveservices.fluent.RaiPoliciesClient;
 import com.azure.resourcemanager.cognitiveservices.fluent.ResourceProvidersClient;
 import com.azure.resourcemanager.cognitiveservices.fluent.ResourceSkusClient;
 import com.azure.resourcemanager.cognitiveservices.fluent.UsagesClient;
@@ -263,6 +269,78 @@ public final class CognitiveServicesManagementClientImpl implements CognitiveSer
         return this.commitmentPlans;
     }
 
+    /** The RaiPoliciesClient object to access its operations. */
+    private final RaiPoliciesClient raiPolicies;
+
+    /**
+     * Gets the RaiPoliciesClient object to access its operations.
+     *
+     * @return the RaiPoliciesClient object.
+     */
+    public RaiPoliciesClient getRaiPolicies() {
+        return this.raiPolicies;
+    }
+
+    /** The RaiBlocklistsClient object to access its operations. */
+    private final RaiBlocklistsClient raiBlocklists;
+
+    /**
+     * Gets the RaiBlocklistsClient object to access its operations.
+     *
+     * @return the RaiBlocklistsClient object.
+     */
+    public RaiBlocklistsClient getRaiBlocklists() {
+        return this.raiBlocklists;
+    }
+
+    /** The RaiBlocklistItemsClient object to access its operations. */
+    private final RaiBlocklistItemsClient raiBlocklistItems;
+
+    /**
+     * Gets the RaiBlocklistItemsClient object to access its operations.
+     *
+     * @return the RaiBlocklistItemsClient object.
+     */
+    public RaiBlocklistItemsClient getRaiBlocklistItems() {
+        return this.raiBlocklistItems;
+    }
+
+    /** The RaiBlocklistOperationsClient object to access its operations. */
+    private final RaiBlocklistOperationsClient raiBlocklistOperations;
+
+    /**
+     * Gets the RaiBlocklistOperationsClient object to access its operations.
+     *
+     * @return the RaiBlocklistOperationsClient object.
+     */
+    public RaiBlocklistOperationsClient getRaiBlocklistOperations() {
+        return this.raiBlocklistOperations;
+    }
+
+    /** The RaiBlocklistItemOperationsClient object to access its operations. */
+    private final RaiBlocklistItemOperationsClient raiBlocklistItemOperations;
+
+    /**
+     * Gets the RaiBlocklistItemOperationsClient object to access its operations.
+     *
+     * @return the RaiBlocklistItemOperationsClient object.
+     */
+    public RaiBlocklistItemOperationsClient getRaiBlocklistItemOperations() {
+        return this.raiBlocklistItemOperations;
+    }
+
+    /** The RaiContentFiltersClient object to access its operations. */
+    private final RaiContentFiltersClient raiContentFilters;
+
+    /**
+     * Gets the RaiContentFiltersClient object to access its operations.
+     *
+     * @return the RaiContentFiltersClient object.
+     */
+    public RaiContentFiltersClient getRaiContentFilters() {
+        return this.raiContentFilters;
+    }
+
     /**
      * Initializes an instance of CognitiveServicesManagementClient client.
      *
@@ -285,7 +363,7 @@ public final class CognitiveServicesManagementClientImpl implements CognitiveSer
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2023-05-01";
+        this.apiVersion = "2023-10-01-preview";
         this.accounts = new AccountsClientImpl(this);
         this.deletedAccounts = new DeletedAccountsClientImpl(this);
         this.resourceSkus = new ResourceSkusClientImpl(this);
@@ -298,6 +376,12 @@ public final class CognitiveServicesManagementClientImpl implements CognitiveSer
         this.privateLinkResources = new PrivateLinkResourcesClientImpl(this);
         this.deployments = new DeploymentsClientImpl(this);
         this.commitmentPlans = new CommitmentPlansClientImpl(this);
+        this.raiPolicies = new RaiPoliciesClientImpl(this);
+        this.raiBlocklists = new RaiBlocklistsClientImpl(this);
+        this.raiBlocklistItems = new RaiBlocklistItemsClientImpl(this);
+        this.raiBlocklistOperations = new RaiBlocklistOperationsClientImpl(this);
+        this.raiBlocklistItemOperations = new RaiBlocklistItemOperationsClientImpl(this);
+        this.raiContentFilters = new RaiContentFiltersClientImpl(this);
     }
 
     /**

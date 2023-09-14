@@ -127,4 +127,46 @@ public interface CognitiveServicesManagementClient {
      * @return the CommitmentPlansClient object.
      */
     CommitmentPlansClient getCommitmentPlans();
+
+    /**
+     * Gets the RaiPoliciesClient object to access its operations.
+     *
+     * @return the RaiPoliciesClient object.
+     */
+    RaiPoliciesClient getRaiPolicies();
+
+    /**
+     * Gets the RaiBlocklistsClient object to access its operations.
+     *
+     * @return the RaiBlocklistsClient object.
+     */
+    RaiBlocklistsClient getRaiBlocklists();
+
+    /**
+     * Gets the RaiBlocklistItemsClient object to access its operations.
+     *
+     * @return the RaiBlocklistItemsClient object.
+     */
+    RaiBlocklistItemsClient getRaiBlocklistItems();
+
+    /**
+     * Gets the RaiBlocklistOperationsClient object to access its operations.
+     *
+     * @return the RaiBlocklistOperationsClient object.
+     */
+    RaiBlocklistOperationsClient getRaiBlocklistOperations();
+
+    /**
+     * Gets the RaiBlocklistItemOperationsClient object to access its operations.
+     *
+     * @return the RaiBlocklistItemOperationsClient object.
+     */
+    RaiBlocklistItemOperationsClient getRaiBlocklistItemOperations();
+
+    /**
+     * Gets the RaiContentFiltersClient object to access its operations.
+     *
+     * @return the RaiContentFiltersClient object.
+     */
+    RaiContentFiltersClient getRaiContentFilters();
 }

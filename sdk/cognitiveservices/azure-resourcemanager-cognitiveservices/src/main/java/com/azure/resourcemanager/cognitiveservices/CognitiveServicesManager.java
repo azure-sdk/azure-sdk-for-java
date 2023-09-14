@@ -34,6 +34,12 @@ import com.azure.resourcemanager.cognitiveservices.implementation.ModelsImpl;
 import com.azure.resourcemanager.cognitiveservices.implementation.OperationsImpl;
 import com.azure.resourcemanager.cognitiveservices.implementation.PrivateEndpointConnectionsImpl;
 import com.azure.resourcemanager.cognitiveservices.implementation.PrivateLinkResourcesImpl;
+import com.azure.resourcemanager.cognitiveservices.implementation.RaiBlocklistItemOperationsImpl;
+import com.azure.resourcemanager.cognitiveservices.implementation.RaiBlocklistItemsImpl;
+import com.azure.resourcemanager.cognitiveservices.implementation.RaiBlocklistOperationsImpl;
+import com.azure.resourcemanager.cognitiveservices.implementation.RaiBlocklistsImpl;
+import com.azure.resourcemanager.cognitiveservices.implementation.RaiContentFiltersImpl;
+import com.azure.resourcemanager.cognitiveservices.implementation.RaiPoliciesImpl;
 import com.azure.resourcemanager.cognitiveservices.implementation.ResourceProvidersImpl;
 import com.azure.resourcemanager.cognitiveservices.implementation.ResourceSkusImpl;
 import com.azure.resourcemanager.cognitiveservices.implementation.UsagesImpl;
@@ -46,6 +52,12 @@ import com.azure.resourcemanager.cognitiveservices.models.Models;
 import com.azure.resourcemanager.cognitiveservices.models.Operations;
 import com.azure.resourcemanager.cognitiveservices.models.PrivateEndpointConnections;
 import com.azure.resourcemanager.cognitiveservices.models.PrivateLinkResources;
+import com.azure.resourcemanager.cognitiveservices.models.RaiBlocklistItemOperations;
+import com.azure.resourcemanager.cognitiveservices.models.RaiBlocklistItems;
+import com.azure.resourcemanager.cognitiveservices.models.RaiBlocklistOperations;
+import com.azure.resourcemanager.cognitiveservices.models.RaiBlocklists;
+import com.azure.resourcemanager.cognitiveservices.models.RaiContentFilters;
+import com.azure.resourcemanager.cognitiveservices.models.RaiPolicies;
 import com.azure.resourcemanager.cognitiveservices.models.ResourceProviders;
 import com.azure.resourcemanager.cognitiveservices.models.ResourceSkus;
 import com.azure.resourcemanager.cognitiveservices.models.Usages;
@@ -81,6 +93,18 @@ public final class CognitiveServicesManager {
     private Deployments deployments;
 
     private CommitmentPlans commitmentPlans;
+
+    private RaiPolicies raiPolicies;
+
+    private RaiBlocklists raiBlocklists;
+
+    private RaiBlocklistItems raiBlocklistItems;
+
+    private RaiBlocklistOperations raiBlocklistOperations;
+
+    private RaiBlocklistItemOperations raiBlocklistItemOperations;
+
+    private RaiContentFilters raiContentFilters;
 
     private final CognitiveServicesManagementClient clientObject;
 
@@ -247,7 +271,7 @@ public final class CognitiveServicesManager {
                 .append("-")
                 .append("com.azure.resourcemanager.cognitiveservices")
                 .append("/")
-                .append("1.1.0-beta.1");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -450,8 +474,84 @@ public final class CognitiveServicesManager {
     }
 
     /**
-     * @return Wrapped service client CognitiveServicesManagementClient providing direct access to the underlying
-     *     auto-generated API implementation, based on Azure REST API.
+     * Gets the resource collection API of RaiPolicies. It manages RaiPolicy.
+     *
+     * @return Resource collection API of RaiPolicies.
+     */
+    public RaiPolicies raiPolicies() {
+        if (this.raiPolicies == null) {
+            this.raiPolicies = new RaiPoliciesImpl(clientObject.getRaiPolicies(), this);
+        }
+        return raiPolicies;
+    }
+
+    /**
+     * Gets the resource collection API of RaiBlocklists.
+     *
+     * @return Resource collection API of RaiBlocklists.
+     */
+    public RaiBlocklists raiBlocklists() {
+        if (this.raiBlocklists == null) {
+            this.raiBlocklists = new RaiBlocklistsImpl(clientObject.getRaiBlocklists(), this);
+        }
+        return raiBlocklists;
+    }
+
+    /**
+     * Gets the resource collection API of RaiBlocklistItems.
+     *
+     * @return Resource collection API of RaiBlocklistItems.
+     */
+    public RaiBlocklistItems raiBlocklistItems() {
+        if (this.raiBlocklistItems == null) {
+            this.raiBlocklistItems = new RaiBlocklistItemsImpl(clientObject.getRaiBlocklistItems(), this);
+        }
+        return raiBlocklistItems;
+    }
+
+    /**
+     * Gets the resource collection API of RaiBlocklistOperations. It manages RaiBlocklist.
+     *
+     * @return Resource collection API of RaiBlocklistOperations.
+     */
+    public RaiBlocklistOperations raiBlocklistOperations() {
+        if (this.raiBlocklistOperations == null) {
+            this.raiBlocklistOperations =
+                new RaiBlocklistOperationsImpl(clientObject.getRaiBlocklistOperations(), this);
+        }
+        return raiBlocklistOperations;
+    }
+
+    /**
+     * Gets the resource collection API of RaiBlocklistItemOperations. It manages RaiBlocklistItem.
+     *
+     * @return Resource collection API of RaiBlocklistItemOperations.
+     */
+    public RaiBlocklistItemOperations raiBlocklistItemOperations() {
+        if (this.raiBlocklistItemOperations == null) {
+            this.raiBlocklistItemOperations =
+                new RaiBlocklistItemOperationsImpl(clientObject.getRaiBlocklistItemOperations(), this);
+        }
+        return raiBlocklistItemOperations;
+    }
+
+    /**
+     * Gets the resource collection API of RaiContentFilters.
+     *
+     * @return Resource collection API of RaiContentFilters.
+     */
+    public RaiContentFilters raiContentFilters() {
+        if (this.raiContentFilters == null) {
+            this.raiContentFilters = new RaiContentFiltersImpl(clientObject.getRaiContentFilters(), this);
+        }
+        return raiContentFilters;
+    }
+
+    /**
+     * Gets wrapped service client CognitiveServicesManagementClient providing direct access to the underlying
+     * auto-generated API implementation, based on Azure REST API.
+     *
+     * @return Wrapped service client CognitiveServicesManagementClient.
      */
     public CognitiveServicesManagementClient serviceClient() {
         return this.clientObject;
