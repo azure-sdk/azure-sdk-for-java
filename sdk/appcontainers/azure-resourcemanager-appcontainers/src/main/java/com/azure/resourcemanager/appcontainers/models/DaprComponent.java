@@ -89,6 +89,13 @@ public interface DaprComponent {
     List<String> scopes();
 
     /**
+     * Gets the serviceComponentBind property: List of container app services that are bound to the Dapr component.
+     *
+     * @return the serviceComponentBind value.
+     */
+    List<DaprComponentServiceBinding> serviceComponentBind();
+
+    /**
      * Gets the name of the resource group.
      *
      * @return the name of the resource group.
@@ -137,7 +144,8 @@ public interface DaprComponent {
                 DefinitionStages.WithSecrets,
                 DefinitionStages.WithSecretStoreComponent,
                 DefinitionStages.WithMetadata,
-                DefinitionStages.WithScopes {
+                DefinitionStages.WithScopes,
+                DefinitionStages.WithServiceComponentBind {
             /**
              * Executes the create request.
              *
@@ -241,6 +249,18 @@ public interface DaprComponent {
              */
             WithCreate withScopes(List<String> scopes);
         }
+
+        /** The stage of the DaprComponent definition allowing to specify serviceComponentBind. */
+        interface WithServiceComponentBind {
+            /**
+             * Specifies the serviceComponentBind property: List of container app services that are bound to the Dapr
+             * component.
+             *
+             * @param serviceComponentBind List of container app services that are bound to the Dapr component.
+             * @return the next definition stage.
+             */
+            WithCreate withServiceComponentBind(List<DaprComponentServiceBinding> serviceComponentBind);
+        }
     }
 
     /**
@@ -259,7 +279,8 @@ public interface DaprComponent {
             UpdateStages.WithSecrets,
             UpdateStages.WithSecretStoreComponent,
             UpdateStages.WithMetadata,
-            UpdateStages.WithScopes {
+            UpdateStages.WithScopes,
+            UpdateStages.WithServiceComponentBind {
         /**
          * Executes the update request.
          *
@@ -364,6 +385,18 @@ public interface DaprComponent {
              * @return the next definition stage.
              */
             Update withScopes(List<String> scopes);
+        }
+
+        /** The stage of the DaprComponent update allowing to specify serviceComponentBind. */
+        interface WithServiceComponentBind {
+            /**
+             * Specifies the serviceComponentBind property: List of container app services that are bound to the Dapr
+             * component.
+             *
+             * @param serviceComponentBind List of container app services that are bound to the Dapr component.
+             * @return the next definition stage.
+             */
+            Update withServiceComponentBind(List<DaprComponentServiceBinding> serviceComponentBind);
         }
     }
 

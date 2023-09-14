@@ -6,6 +6,7 @@ package com.azure.resourcemanager.appcontainers.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
+import com.azure.resourcemanager.appcontainers.models.DaprComponentServiceBinding;
 import com.azure.resourcemanager.appcontainers.models.DaprMetadata;
 import com.azure.resourcemanager.appcontainers.models.Secret;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -214,6 +215,29 @@ public final class DaprComponentInner extends ProxyResource {
             this.innerProperties = new DaprComponentProperties();
         }
         this.innerProperties().withScopes(scopes);
+        return this;
+    }
+
+    /**
+     * Get the serviceComponentBind property: List of container app services that are bound to the Dapr component.
+     *
+     * @return the serviceComponentBind value.
+     */
+    public List<DaprComponentServiceBinding> serviceComponentBind() {
+        return this.innerProperties() == null ? null : this.innerProperties().serviceComponentBind();
+    }
+
+    /**
+     * Set the serviceComponentBind property: List of container app services that are bound to the Dapr component.
+     *
+     * @param serviceComponentBind the serviceComponentBind value to set.
+     * @return the DaprComponentInner object itself.
+     */
+    public DaprComponentInner withServiceComponentBind(List<DaprComponentServiceBinding> serviceComponentBind) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new DaprComponentProperties();
+        }
+        this.innerProperties().withServiceComponentBind(serviceComponentBind);
         return this;
     }
 
