@@ -10,7 +10,10 @@ import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.apicenter.fluent.ServicesClient;
+import com.azure.resourcemanager.apicenter.fluent.models.MetadataSchemaExportResultInner;
 import com.azure.resourcemanager.apicenter.fluent.models.ServiceInner;
+import com.azure.resourcemanager.apicenter.models.MetadataAssignmentEntity;
+import com.azure.resourcemanager.apicenter.models.MetadataSchemaExportResult;
 import com.azure.resourcemanager.apicenter.models.Service;
 import com.azure.resourcemanager.apicenter.models.Services;
 
@@ -78,6 +81,32 @@ public final class ServicesImpl implements Services {
 
     public void deleteByResourceGroup(String resourceGroupName, String serviceName) {
         this.serviceClient().delete(resourceGroupName, serviceName);
+    }
+
+    public Response<MetadataSchemaExportResult> exportMetadataSchemaWithResponse(
+        String resourceGroupName, String serviceName, MetadataAssignmentEntity assignedTo, Context context) {
+        Response<MetadataSchemaExportResultInner> inner =
+            this.serviceClient().exportMetadataSchemaWithResponse(resourceGroupName, serviceName, assignedTo, context);
+        if (inner != null) {
+            return new SimpleResponse<>(
+                inner.getRequest(),
+                inner.getStatusCode(),
+                inner.getHeaders(),
+                new MetadataSchemaExportResultImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public MetadataSchemaExportResult exportMetadataSchema(
+        String resourceGroupName, String serviceName, MetadataAssignmentEntity assignedTo) {
+        MetadataSchemaExportResultInner inner =
+            this.serviceClient().exportMetadataSchema(resourceGroupName, serviceName, assignedTo);
+        if (inner != null) {
+            return new MetadataSchemaExportResultImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public Service getById(String id) {
