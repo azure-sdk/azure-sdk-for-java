@@ -10,6 +10,8 @@ import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.machinelearning.fluent.models.CodeVersionInner;
+import com.azure.resourcemanager.machinelearning.fluent.models.PendingUploadResponseDtoInner;
+import com.azure.resourcemanager.machinelearning.models.PendingUploadRequestDto;
 
 /** An instance of this class provides access to all the operations defined in CodeVersionsClient. */
 public interface CodeVersionsClient {
@@ -36,6 +38,8 @@ public interface CodeVersionsClient {
      * @param orderBy Ordering of list.
      * @param top Maximum number of records to return.
      * @param skip Continuation token for pagination.
+     * @param hash If specified, return CodeVersion assets with specified content hash value, regardless of name.
+     * @param hashVersion Hash algorithm version when listing by hash.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -50,6 +54,8 @@ public interface CodeVersionsClient {
         String orderBy,
         Integer top,
         String skip,
+        String hash,
+        String hashVersion,
         Context context);
 
     /**
@@ -154,4 +160,44 @@ public interface CodeVersionsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     CodeVersionInner createOrUpdate(
         String resourceGroupName, String workspaceName, String name, String version, CodeVersionInner body);
+
+    /**
+     * Generate a storage location and credential for the client to upload a code asset to.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param name Container name. This is case-sensitive.
+     * @param version Version identifier. This is case-sensitive.
+     * @param body Pending upload request object.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<PendingUploadResponseDtoInner> createOrGetStartPendingUploadWithResponse(
+        String resourceGroupName,
+        String workspaceName,
+        String name,
+        String version,
+        PendingUploadRequestDto body,
+        Context context);
+
+    /**
+     * Generate a storage location and credential for the client to upload a code asset to.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param name Container name. This is case-sensitive.
+     * @param version Version identifier. This is case-sensitive.
+     * @param body Pending upload request object.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    PendingUploadResponseDtoInner createOrGetStartPendingUpload(
+        String resourceGroupName, String workspaceName, String name, String version, PendingUploadRequestDto body);
 }

@@ -50,16 +50,17 @@ public final class EnvironmentVersionImpl
 
     private String resourceGroupName;
 
-    private String workspaceName;
+    private String registryName;
 
-    private String name;
+    private String environmentName;
 
     private String version;
 
-    public EnvironmentVersionImpl withExistingEnvironment(String resourceGroupName, String workspaceName, String name) {
+    public EnvironmentVersionImpl withExistingEnvironment(
+        String resourceGroupName, String registryName, String environmentName) {
         this.resourceGroupName = resourceGroupName;
-        this.workspaceName = workspaceName;
-        this.name = name;
+        this.registryName = registryName;
+        this.environmentName = environmentName;
         return this;
     }
 
@@ -67,10 +68,9 @@ public final class EnvironmentVersionImpl
         this.innerObject =
             serviceManager
                 .serviceClient()
-                .getEnvironmentVersions()
-                .createOrUpdateWithResponse(
-                    resourceGroupName, workspaceName, name, version, this.innerModel(), Context.NONE)
-                .getValue();
+                .getRegistryEnvironmentVersions()
+                .createOrUpdate(
+                    resourceGroupName, registryName, environmentName, version, this.innerModel(), Context.NONE);
         return this;
     }
 
@@ -78,9 +78,8 @@ public final class EnvironmentVersionImpl
         this.innerObject =
             serviceManager
                 .serviceClient()
-                .getEnvironmentVersions()
-                .createOrUpdateWithResponse(resourceGroupName, workspaceName, name, version, this.innerModel(), context)
-                .getValue();
+                .getRegistryEnvironmentVersions()
+                .createOrUpdate(resourceGroupName, registryName, environmentName, version, this.innerModel(), context);
         return this;
     }
 
@@ -99,10 +98,9 @@ public final class EnvironmentVersionImpl
         this.innerObject =
             serviceManager
                 .serviceClient()
-                .getEnvironmentVersions()
-                .createOrUpdateWithResponse(
-                    resourceGroupName, workspaceName, name, version, this.innerModel(), Context.NONE)
-                .getValue();
+                .getRegistryEnvironmentVersions()
+                .createOrUpdate(
+                    resourceGroupName, registryName, environmentName, version, this.innerModel(), Context.NONE);
         return this;
     }
 
@@ -110,9 +108,8 @@ public final class EnvironmentVersionImpl
         this.innerObject =
             serviceManager
                 .serviceClient()
-                .getEnvironmentVersions()
-                .createOrUpdateWithResponse(resourceGroupName, workspaceName, name, version, this.innerModel(), context)
-                .getValue();
+                .getRegistryEnvironmentVersions()
+                .createOrUpdate(resourceGroupName, registryName, environmentName, version, this.innerModel(), context);
         return this;
     }
 
@@ -122,8 +119,8 @@ public final class EnvironmentVersionImpl
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
         this.resourceGroupName = Utils.getValueFromIdByName(innerObject.id(), "resourceGroups");
-        this.workspaceName = Utils.getValueFromIdByName(innerObject.id(), "workspaces");
-        this.name = Utils.getValueFromIdByName(innerObject.id(), "environments");
+        this.registryName = Utils.getValueFromIdByName(innerObject.id(), "registries");
+        this.environmentName = Utils.getValueFromIdByName(innerObject.id(), "environments");
         this.version = Utils.getValueFromIdByName(innerObject.id(), "versions");
     }
 
@@ -131,8 +128,8 @@ public final class EnvironmentVersionImpl
         this.innerObject =
             serviceManager
                 .serviceClient()
-                .getEnvironmentVersions()
-                .getWithResponse(resourceGroupName, workspaceName, name, version, Context.NONE)
+                .getRegistryEnvironmentVersions()
+                .getWithResponse(resourceGroupName, registryName, environmentName, version, Context.NONE)
                 .getValue();
         return this;
     }
@@ -141,8 +138,8 @@ public final class EnvironmentVersionImpl
         this.innerObject =
             serviceManager
                 .serviceClient()
-                .getEnvironmentVersions()
-                .getWithResponse(resourceGroupName, workspaceName, name, version, context)
+                .getRegistryEnvironmentVersions()
+                .getWithResponse(resourceGroupName, registryName, environmentName, version, context)
                 .getValue();
         return this;
     }
