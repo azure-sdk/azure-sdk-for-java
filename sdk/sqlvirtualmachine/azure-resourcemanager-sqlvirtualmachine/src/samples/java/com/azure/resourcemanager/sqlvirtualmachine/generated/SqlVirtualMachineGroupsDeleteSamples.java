@@ -7,7 +7,7 @@ package com.azure.resourcemanager.sqlvirtualmachine.generated;
 /** Samples for SqlVirtualMachineGroups Delete. */
 public final class SqlVirtualMachineGroupsDeleteSamples {
     /*
-     * x-ms-original-file: specification/sqlvirtualmachine/resource-manager/Microsoft.SqlVirtualMachine/preview/2022-08-01-preview/examples/DeleteSqlVirtualMachineGroup.json
+     * x-ms-original-file: specification/sqlvirtualmachine/resource-manager/Microsoft.SqlVirtualMachine/preview/2023-01-01-preview/examples/DeleteSqlVirtualMachineGroup.json
      */
     /**
      * Sample code: Deletes a SQL virtual machine group.

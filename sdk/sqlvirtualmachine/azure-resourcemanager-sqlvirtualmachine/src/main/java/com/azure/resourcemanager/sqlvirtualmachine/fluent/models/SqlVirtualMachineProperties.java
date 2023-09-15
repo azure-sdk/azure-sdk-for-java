@@ -47,7 +47,8 @@ public final class SqlVirtualMachineProperties {
     private SqlServerLicenseType sqlServerLicenseType;
 
     /*
-     * SQL Server Management type.
+     * SQL Server Management type. NOTE: This parameter is not used anymore. API will automatically detect the Sql
+     * Management, refrain from using it.
      */
     @JsonProperty(value = "sqlManagement")
     private SqlManagementMode sqlManagement;
@@ -206,7 +207,8 @@ public final class SqlVirtualMachineProperties {
     }
 
     /**
-     * Get the sqlManagement property: SQL Server Management type.
+     * Get the sqlManagement property: SQL Server Management type. NOTE: This parameter is not used anymore. API will
+     * automatically detect the Sql Management, refrain from using it.
      *
      * @return the sqlManagement value.
      */
@@ -215,7 +217,8 @@ public final class SqlVirtualMachineProperties {
     }
 
     /**
-     * Set the sqlManagement property: SQL Server Management type.
+     * Set the sqlManagement property: SQL Server Management type. NOTE: This parameter is not used anymore. API will
+     * automatically detect the Sql Management, refrain from using it.
      *
      * @param sqlManagement the sqlManagement value to set.
      * @return the SqlVirtualMachineProperties object itself.
