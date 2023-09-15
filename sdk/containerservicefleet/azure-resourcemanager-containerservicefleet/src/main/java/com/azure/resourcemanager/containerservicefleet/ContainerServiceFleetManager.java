@@ -216,7 +216,7 @@ public final class ContainerServiceFleetManager {
                 .append("-")
                 .append("com.azure.resourcemanager.containerservicefleet")
                 .append("/")
-                .append("1.0.0-beta.2");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
