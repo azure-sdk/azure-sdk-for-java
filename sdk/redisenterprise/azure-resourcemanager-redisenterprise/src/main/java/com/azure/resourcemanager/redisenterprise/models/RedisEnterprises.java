@@ -104,6 +104,30 @@ public interface RedisEnterprises {
     PagedIterable<Cluster> list(Context context);
 
     /**
+     * Checks that the Redis Enterprise cache name is valid and is not already in use.
+     *
+     * @param parameters Parameters supplied to the CheckNameAvailability Redis operation. The only supported resource
+     *     type is 'Microsoft.Cache/redisenterprise'.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    Response<Void> checkNameAvailabilityWithResponse(CheckNameAvailabilityParameters parameters, Context context);
+
+    /**
+     * Checks that the Redis Enterprise cache name is valid and is not already in use.
+     *
+     * @param parameters Parameters supplied to the CheckNameAvailability Redis operation. The only supported resource
+     *     type is 'Microsoft.Cache/redisenterprise'.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void checkNameAvailability(CheckNameAvailabilityParameters parameters);
+
+    /**
      * Gets information about a RedisEnterprise cluster.
      *
      * @param id the resource ID.
