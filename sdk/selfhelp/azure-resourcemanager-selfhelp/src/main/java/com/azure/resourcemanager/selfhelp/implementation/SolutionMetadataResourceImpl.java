@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.selfhelp.implementation;
 
-import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.selfhelp.fluent.models.SolutionMetadataResourceInner;
 import com.azure.resourcemanager.selfhelp.models.SolutionMetadataResource;
 import java.util.Collections;
@@ -31,10 +30,6 @@ public final class SolutionMetadataResourceImpl implements SolutionMetadataResou
 
     public String type() {
         return this.innerModel().type();
-    }
-
-    public SystemData systemData() {
-        return this.innerModel().systemData();
     }
 
     public String solutionId() {

@@ -62,6 +62,11 @@ public final class DiagnosticsCheckNameAvailabilitySamples {
 ### Diagnostics_Create
 
 ```java
+import com.azure.resourcemanager.selfhelp.models.DiagnosticInvocation;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
 /** Samples for Diagnostics Create. */
 public final class DiagnosticsCreateSamples {
     /*
@@ -79,7 +84,26 @@ public final class DiagnosticsCreateSamples {
             .define("VMNotWorkingInsight")
             .withExistingScope(
                 "subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read")
+            .withGlobalParameters(mapOf("startTime", "2020-07-01"))
+            .withInsights(
+                Arrays
+                    .asList(
+                        new DiagnosticInvocation()
+                            .withSolutionId("SampleSolutionId")
+                            .withAdditionalParameters(mapOf("serverName", "testServer"))))
             .create();
+    }
+
+    // Use "Map.of" if available
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
     }
 }
 ```
