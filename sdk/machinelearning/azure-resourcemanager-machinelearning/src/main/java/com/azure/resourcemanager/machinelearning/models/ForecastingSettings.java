@@ -33,6 +33,14 @@ public final class ForecastingSettings {
     private FeatureLags featureLags;
 
     /*
+     * The feature columns that are available for training but unknown at the time of forecast/inference.
+     * If features_unknown_at_forecast_time is not set, it is assumed that all the feature columns in the dataset are
+     * known at inference time.
+     */
+    @JsonProperty(value = "featuresUnknownAtForecastTime")
+    private List<String> featuresUnknownAtForecastTime;
+
+    /*
      * The desired maximum forecast horizon in units of time-series frequency.
      */
     @JsonProperty(value = "forecastHorizon")
@@ -164,6 +172,30 @@ public final class ForecastingSettings {
      */
     public ForecastingSettings withFeatureLags(FeatureLags featureLags) {
         this.featureLags = featureLags;
+        return this;
+    }
+
+    /**
+     * Get the featuresUnknownAtForecastTime property: The feature columns that are available for training but unknown
+     * at the time of forecast/inference. If features_unknown_at_forecast_time is not set, it is assumed that all the
+     * feature columns in the dataset are known at inference time.
+     *
+     * @return the featuresUnknownAtForecastTime value.
+     */
+    public List<String> featuresUnknownAtForecastTime() {
+        return this.featuresUnknownAtForecastTime;
+    }
+
+    /**
+     * Set the featuresUnknownAtForecastTime property: The feature columns that are available for training but unknown
+     * at the time of forecast/inference. If features_unknown_at_forecast_time is not set, it is assumed that all the
+     * feature columns in the dataset are known at inference time.
+     *
+     * @param featuresUnknownAtForecastTime the featuresUnknownAtForecastTime value to set.
+     * @return the ForecastingSettings object itself.
+     */
+    public ForecastingSettings withFeaturesUnknownAtForecastTime(List<String> featuresUnknownAtForecastTime) {
+        this.featuresUnknownAtForecastTime = featuresUnknownAtForecastTime;
         return this;
     }
 

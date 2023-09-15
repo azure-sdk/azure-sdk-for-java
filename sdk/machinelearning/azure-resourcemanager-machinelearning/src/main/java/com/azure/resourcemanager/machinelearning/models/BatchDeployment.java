@@ -119,11 +119,13 @@ public interface BatchDeployment {
             DefinitionStages.WithProperties,
             DefinitionStages.WithCreate {
     }
+
     /** The BatchDeployment definition stages. */
     interface DefinitionStages {
         /** The first stage of the BatchDeployment definition. */
         interface Blank extends WithLocation {
         }
+
         /** The stage of the BatchDeployment definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -142,6 +144,7 @@ public interface BatchDeployment {
              */
             WithParentResource withRegion(String location);
         }
+
         /** The stage of the BatchDeployment definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -155,6 +158,7 @@ public interface BatchDeployment {
             WithProperties withExistingBatchEndpoint(
                 String resourceGroupName, String workspaceName, String endpointName);
         }
+
         /** The stage of the BatchDeployment definition allowing to specify properties. */
         interface WithProperties {
             /**
@@ -165,6 +169,7 @@ public interface BatchDeployment {
              */
             WithCreate withProperties(BatchDeploymentProperties properties);
         }
+
         /**
          * The stage of the BatchDeployment definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
@@ -189,6 +194,7 @@ public interface BatchDeployment {
              */
             BatchDeployment create(Context context);
         }
+
         /** The stage of the BatchDeployment definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -199,6 +205,7 @@ public interface BatchDeployment {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
         /** The stage of the BatchDeployment definition allowing to specify identity. */
         interface WithIdentity {
             /**
@@ -210,6 +217,7 @@ public interface BatchDeployment {
              */
             WithCreate withIdentity(ManagedServiceIdentity identity);
         }
+
         /** The stage of the BatchDeployment definition allowing to specify kind. */
         interface WithKind {
             /**
@@ -222,6 +230,7 @@ public interface BatchDeployment {
              */
             WithCreate withKind(String kind);
         }
+
         /** The stage of the BatchDeployment definition allowing to specify sku. */
         interface WithSku {
             /**
@@ -233,6 +242,7 @@ public interface BatchDeployment {
             WithCreate withSku(Sku sku);
         }
     }
+
     /**
      * Begins update for the BatchDeployment resource.
      *
@@ -257,6 +267,7 @@ public interface BatchDeployment {
          */
         BatchDeployment apply(Context context);
     }
+
     /** The BatchDeployment update stages. */
     interface UpdateStages {
         /** The stage of the BatchDeployment update allowing to specify tags. */
@@ -269,6 +280,7 @@ public interface BatchDeployment {
              */
             Update withTags(Map<String, String> tags);
         }
+
         /** The stage of the BatchDeployment update allowing to specify properties. */
         interface WithProperties {
             /**
@@ -280,6 +292,7 @@ public interface BatchDeployment {
             Update withProperties(PartialBatchDeployment properties);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

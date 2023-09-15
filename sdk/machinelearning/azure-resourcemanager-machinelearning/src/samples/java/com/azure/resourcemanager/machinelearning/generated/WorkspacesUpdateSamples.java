@@ -4,13 +4,13 @@
 
 package com.azure.resourcemanager.machinelearning.generated;
 
-import com.azure.resourcemanager.machinelearning.models.PublicNetworkAccess;
+import com.azure.resourcemanager.machinelearning.models.PublicNetworkAccessType;
 import com.azure.resourcemanager.machinelearning.models.Workspace;
 
 /** Samples for Workspaces Update. */
 public final class WorkspacesUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Workspace/update.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2023-08-01-preview/examples/Workspace/update.json
      */
     /**
      * Sample code: Update Workspace.
@@ -27,7 +27,7 @@ public final class WorkspacesUpdateSamples {
             .update()
             .withDescription("new description")
             .withFriendlyName("New friendly name")
-            .withPublicNetworkAccess(PublicNetworkAccess.DISABLED)
+            .withPublicNetworkAccess(PublicNetworkAccessType.DISABLED)
             .apply();
     }
 }
