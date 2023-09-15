@@ -88,18 +88,18 @@ public interface EventGridManagementClient {
     DomainTopicsClient getDomainTopics();
 
     /**
-     * Gets the TopicEventSubscriptionsClient object to access its operations.
-     *
-     * @return the TopicEventSubscriptionsClient object.
-     */
-    TopicEventSubscriptionsClient getTopicEventSubscriptions();
-
-    /**
      * Gets the DomainTopicEventSubscriptionsClient object to access its operations.
      *
      * @return the DomainTopicEventSubscriptionsClient object.
      */
     DomainTopicEventSubscriptionsClient getDomainTopicEventSubscriptions();
+
+    /**
+     * Gets the TopicEventSubscriptionsClient object to access its operations.
+     *
+     * @return the TopicEventSubscriptionsClient object.
+     */
+    TopicEventSubscriptionsClient getTopicEventSubscriptions();
 
     /**
      * Gets the DomainEventSubscriptionsClient object to access its operations.

@@ -605,8 +605,8 @@ public final class ClientGroupsListByNamespaceSamples {
 ```java
 import com.azure.core.management.serializer.SerializerFactory;
 import com.azure.core.util.serializer.SerializerEncoding;
-import com.azure.resourcemanager.eventgrid.models.ClientAuthentication;
-import com.azure.resourcemanager.eventgrid.models.ClientCertificateSubjectDistinguishedName;
+import com.azure.resourcemanager.eventgrid.models.ClientCertificateAuthentication;
+import com.azure.resourcemanager.eventgrid.models.ClientCertificateValidationScheme;
 import com.azure.resourcemanager.eventgrid.models.ClientState;
 import java.io.IOException;
 import java.util.HashMap;
@@ -629,14 +629,9 @@ public final class ClientsCreateOrUpdateSamples {
             .define("exampleClientName1")
             .withExistingNamespace("examplerg", "exampleNamespaceName1")
             .withDescription("This is a test client")
-            .withAuthentication(
-                new ClientAuthentication()
-                    .withCertificateSubject(
-                        new ClientCertificateSubjectDistinguishedName()
-                            .withCommonName("CertificateCommonName")
-                            .withOrganization("Microsoft")
-                            .withOrganizationUnit("Azure")
-                            .withCountryCode("fakeTokenPlaceholder")))
+            .withClientCertificateAuthentication(
+                new ClientCertificateAuthentication()
+                    .withValidationScheme(ClientCertificateValidationScheme.SUBJECT_MATCHES_AUTHENTICATION_NAME))
             .withState(ClientState.ENABLED)
             .withAttributes(
                 mapOf(
@@ -651,6 +646,7 @@ public final class ClientsCreateOrUpdateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -915,7 +911,6 @@ public final class DomainEventSubscriptionsUpdateSamples {
 ### DomainTopicEventSubscriptions_CreateOrUpdate
 
 ```java
-import com.azure.resourcemanager.eventgrid.fluent.models.EventSubscriptionInner;
 import com.azure.resourcemanager.eventgrid.models.EventSubscriptionFilter;
 import com.azure.resourcemanager.eventgrid.models.WebhookEventSubscriptionDestination;
 
@@ -933,20 +928,15 @@ public final class DomainTopicEventSubscriptionsCreateOrUpdateSamples {
         com.azure.resourcemanager.eventgrid.EventGridManager manager) {
         manager
             .domainTopicEventSubscriptions()
-            .createOrUpdate(
-                "examplerg",
-                "exampleDomain1",
-                "exampleDomainTopic1",
-                "exampleEventSubscriptionName1",
-                new EventSubscriptionInner()
-                    .withDestination(
-                        new WebhookEventSubscriptionDestination().withEndpointUrl("https://requestb.in/15ksip71"))
-                    .withFilter(
-                        new EventSubscriptionFilter()
-                            .withSubjectBeginsWith("ExamplePrefix")
-                            .withSubjectEndsWith("ExampleSuffix")
-                            .withIsSubjectCaseSensitive(false)),
-                com.azure.core.util.Context.NONE);
+            .define("exampleEventSubscriptionName1")
+            .withExistingTopic("examplerg", "exampleDomain1", "exampleDomainTopic1")
+            .withDestination(new WebhookEventSubscriptionDestination().withEndpointUrl("https://requestb.in/15ksip71"))
+            .withFilter(
+                new EventSubscriptionFilter()
+                    .withSubjectBeginsWith("ExamplePrefix")
+                    .withSubjectEndsWith("ExampleSuffix")
+                    .withIsSubjectCaseSensitive(false))
+            .create();
     }
 }
 ```
@@ -1082,8 +1072,8 @@ public final class DomainTopicEventSubscriptionsListSamples {
 ### DomainTopicEventSubscriptions_Update
 
 ```java
+import com.azure.resourcemanager.eventgrid.models.EventSubscription;
 import com.azure.resourcemanager.eventgrid.models.EventSubscriptionFilter;
-import com.azure.resourcemanager.eventgrid.models.EventSubscriptionUpdateParameters;
 import com.azure.resourcemanager.eventgrid.models.WebhookEventSubscriptionDestination;
 import java.util.Arrays;
 
@@ -1099,23 +1089,26 @@ public final class DomainTopicEventSubscriptionsUpdateSamples {
      */
     public static void domainTopicEventSubscriptionsUpdate(
         com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        manager
-            .domainTopicEventSubscriptions()
-            .update(
-                "examplerg",
-                "exampleDomain1",
-                "exampleDomainTopic1",
-                "exampleEventSubscriptionName1",
-                new EventSubscriptionUpdateParameters()
-                    .withDestination(
-                        new WebhookEventSubscriptionDestination().withEndpointUrl("https://requestb.in/15ksip71"))
-                    .withFilter(
-                        new EventSubscriptionFilter()
-                            .withSubjectBeginsWith("existingPrefix")
-                            .withSubjectEndsWith("newSuffix")
-                            .withIsSubjectCaseSensitive(true))
-                    .withLabels(Arrays.asList("label1", "label2")),
-                com.azure.core.util.Context.NONE);
+        EventSubscription resource =
+            manager
+                .domainTopicEventSubscriptions()
+                .getWithResponse(
+                    "examplerg",
+                    "exampleDomain1",
+                    "exampleDomainTopic1",
+                    "exampleEventSubscriptionName1",
+                    com.azure.core.util.Context.NONE)
+                .getValue();
+        resource
+            .update()
+            .withDestination(new WebhookEventSubscriptionDestination().withEndpointUrl("https://requestb.in/15ksip71"))
+            .withFilter(
+                new EventSubscriptionFilter()
+                    .withSubjectBeginsWith("existingPrefix")
+                    .withSubjectEndsWith("newSuffix")
+                    .withIsSubjectCaseSensitive(true))
+            .withLabels(Arrays.asList("label1", "label2"))
+            .apply();
     }
 }
 ```
@@ -1240,6 +1233,7 @@ public final class DomainsCreateOrUpdateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -1418,6 +1412,7 @@ public final class DomainsUpdateSamples {
             .apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -3135,6 +3130,7 @@ public final class NamespacesCreateOrUpdateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -3300,6 +3296,7 @@ public final class NamespacesUpdateSamples {
         resource.update().withTags(mapOf("tag1", "value1Updated")).apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -3552,6 +3549,7 @@ public final class PartnerConfigurationsUpdateSamples {
                 com.azure.core.util.Context.NONE);
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -3728,6 +3726,7 @@ public final class PartnerDestinationsUpdateSamples {
         resource.update().withTags(mapOf("tag1", "value1", "tag2", "value2")).apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -3769,6 +3768,7 @@ public final class PartnerNamespacesCreateOrUpdateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -3942,6 +3942,7 @@ public final class PartnerNamespacesUpdateSamples {
         resource.update().withTags(mapOf("tag1", "value1")).apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -3978,10 +3979,12 @@ public final class PartnerRegistrationsCreateOrUpdateSamples {
             .define("examplePartnerRegistrationName1")
             .withRegion("global")
             .withExistingResourceGroup("examplerg")
-            .withTags(mapOf("key1", "value1", "key2", "Value2", "key3", "Value3"))
+            .withTags(
+                mapOf("key1", "fakeTokenPlaceholder", "key2", "fakeTokenPlaceholder", "key3", "fakeTokenPlaceholder"))
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -4102,9 +4105,10 @@ public final class PartnerRegistrationsUpdateSamples {
                 .getByResourceGroupWithResponse(
                     "examplerg", "examplePartnerRegistrationName1", com.azure.core.util.Context.NONE)
                 .getValue();
-        resource.update().withTags(mapOf("NewKey", "NewValue")).apply();
+        resource.update().withTags(mapOf("NewKey", "fakeTokenPlaceholder")).apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -4487,6 +4491,7 @@ public final class PartnerTopicsUpdateSamples {
         resource.update().withTags(mapOf("tag1", "value1", "tag2", "value2")).apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -4984,6 +4989,7 @@ public final class SystemTopicsCreateOrUpdateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -5101,6 +5107,7 @@ public final class SystemTopicsUpdateSamples {
         resource.update().withTags(mapOf("tag1", "value1", "tag2", "value2")).apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -5117,6 +5124,7 @@ public final class SystemTopicsUpdateSamples {
 ### TopicEventSubscriptions_CreateOrUpdate
 
 ```java
+import com.azure.resourcemanager.eventgrid.fluent.models.EventSubscriptionInner;
 import com.azure.resourcemanager.eventgrid.models.EventSubscriptionFilter;
 import com.azure.resourcemanager.eventgrid.models.WebhookEventSubscriptionDestination;
 
@@ -5134,15 +5142,19 @@ public final class TopicEventSubscriptionsCreateOrUpdateSamples {
         com.azure.resourcemanager.eventgrid.EventGridManager manager) {
         manager
             .topicEventSubscriptions()
-            .define("exampleEventSubscriptionName1")
-            .withExistingTopic("examplerg", "exampleTopic1")
-            .withDestination(new WebhookEventSubscriptionDestination().withEndpointUrl("https://requestb.in/15ksip71"))
-            .withFilter(
-                new EventSubscriptionFilter()
-                    .withSubjectBeginsWith("ExamplePrefix")
-                    .withSubjectEndsWith("ExampleSuffix")
-                    .withIsSubjectCaseSensitive(false))
-            .create();
+            .createOrUpdate(
+                "examplerg",
+                "exampleTopic1",
+                "exampleEventSubscriptionName1",
+                new EventSubscriptionInner()
+                    .withDestination(
+                        new WebhookEventSubscriptionDestination().withEndpointUrl("https://requestb.in/15ksip71"))
+                    .withFilter(
+                        new EventSubscriptionFilter()
+                            .withSubjectBeginsWith("ExamplePrefix")
+                            .withSubjectEndsWith("ExampleSuffix")
+                            .withIsSubjectCaseSensitive(false)),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -5258,8 +5270,8 @@ public final class TopicEventSubscriptionsListSamples {
 ### TopicEventSubscriptions_Update
 
 ```java
-import com.azure.resourcemanager.eventgrid.models.EventSubscription;
 import com.azure.resourcemanager.eventgrid.models.EventSubscriptionFilter;
+import com.azure.resourcemanager.eventgrid.models.EventSubscriptionUpdateParameters;
 import com.azure.resourcemanager.eventgrid.models.WebhookEventSubscriptionDestination;
 import java.util.Arrays;
 
@@ -5274,22 +5286,22 @@ public final class TopicEventSubscriptionsUpdateSamples {
      * @param manager Entry point to EventGridManager.
      */
     public static void topicEventSubscriptionsUpdate(com.azure.resourcemanager.eventgrid.EventGridManager manager) {
-        EventSubscription resource =
-            manager
-                .topicEventSubscriptions()
-                .getWithResponse(
-                    "examplerg", "exampleTopic1", "exampleEventSubscriptionName1", com.azure.core.util.Context.NONE)
-                .getValue();
-        resource
-            .update()
-            .withDestination(new WebhookEventSubscriptionDestination().withEndpointUrl("https://requestb.in/15ksip71"))
-            .withFilter(
-                new EventSubscriptionFilter()
-                    .withSubjectBeginsWith("existingPrefix")
-                    .withSubjectEndsWith("newSuffix")
-                    .withIsSubjectCaseSensitive(true))
-            .withLabels(Arrays.asList("label1", "label2"))
-            .apply();
+        manager
+            .topicEventSubscriptions()
+            .update(
+                "examplerg",
+                "exampleTopic1",
+                "exampleEventSubscriptionName1",
+                new EventSubscriptionUpdateParameters()
+                    .withDestination(
+                        new WebhookEventSubscriptionDestination().withEndpointUrl("https://requestb.in/15ksip71"))
+                    .withFilter(
+                        new EventSubscriptionFilter()
+                            .withSubjectBeginsWith("existingPrefix")
+                            .withSubjectEndsWith("newSuffix")
+                            .withIsSubjectCaseSensitive(true))
+                    .withLabels(Arrays.asList("label1", "label2")),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -5505,6 +5517,7 @@ public final class TopicsCreateOrUpdateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -5707,6 +5720,7 @@ public final class TopicsUpdateSamples {
             .apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

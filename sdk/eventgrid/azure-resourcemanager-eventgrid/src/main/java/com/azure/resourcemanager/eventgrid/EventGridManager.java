@@ -106,9 +106,9 @@ public final class EventGridManager {
 
     private DomainTopics domainTopics;
 
-    private TopicEventSubscriptions topicEventSubscriptions;
-
     private DomainTopicEventSubscriptions domainTopicEventSubscriptions;
+
+    private TopicEventSubscriptions topicEventSubscriptions;
 
     private DomainEventSubscriptions domainEventSubscriptions;
 
@@ -319,7 +319,7 @@ public final class EventGridManager {
                 .append("-")
                 .append("com.azure.resourcemanager.eventgrid")
                 .append("/")
-                .append("1.2.0-beta.4");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -449,20 +449,7 @@ public final class EventGridManager {
     }
 
     /**
-     * Gets the resource collection API of TopicEventSubscriptions. It manages EventSubscription.
-     *
-     * @return Resource collection API of TopicEventSubscriptions.
-     */
-    public TopicEventSubscriptions topicEventSubscriptions() {
-        if (this.topicEventSubscriptions == null) {
-            this.topicEventSubscriptions =
-                new TopicEventSubscriptionsImpl(clientObject.getTopicEventSubscriptions(), this);
-        }
-        return topicEventSubscriptions;
-    }
-
-    /**
-     * Gets the resource collection API of DomainTopicEventSubscriptions.
+     * Gets the resource collection API of DomainTopicEventSubscriptions. It manages EventSubscription.
      *
      * @return Resource collection API of DomainTopicEventSubscriptions.
      */
@@ -472,6 +459,19 @@ public final class EventGridManager {
                 new DomainTopicEventSubscriptionsImpl(clientObject.getDomainTopicEventSubscriptions(), this);
         }
         return domainTopicEventSubscriptions;
+    }
+
+    /**
+     * Gets the resource collection API of TopicEventSubscriptions.
+     *
+     * @return Resource collection API of TopicEventSubscriptions.
+     */
+    public TopicEventSubscriptions topicEventSubscriptions() {
+        if (this.topicEventSubscriptions == null) {
+            this.topicEventSubscriptions =
+                new TopicEventSubscriptionsImpl(clientObject.getTopicEventSubscriptions(), this);
+        }
+        return topicEventSubscriptions;
     }
 
     /**
@@ -744,8 +744,10 @@ public final class EventGridManager {
     }
 
     /**
-     * @return Wrapped service client EventGridManagementClient providing direct access to the underlying auto-generated
-     *     API implementation, based on Azure REST API.
+     * Gets wrapped service client EventGridManagementClient providing direct access to the underlying auto-generated
+     * API implementation, based on Azure REST API.
+     *
+     * @return Wrapped service client EventGridManagementClient.
      */
     public EventGridManagementClient serviceClient() {
         return this.clientObject;
