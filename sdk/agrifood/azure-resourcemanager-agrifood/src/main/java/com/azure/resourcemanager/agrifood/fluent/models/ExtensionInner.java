@@ -4,12 +4,14 @@
 
 package com.azure.resourcemanager.agrifood.fluent.models;
 
-import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.Immutable;
 import com.azure.core.management.ProxyResource;
+import com.azure.resourcemanager.agrifood.models.ApiProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.Map;
 
 /** Extension resource. */
-@Fluent
+@Immutable
 public final class ExtensionInner extends ProxyResource {
     /*
      * Extension resource properties.
@@ -22,6 +24,10 @@ public final class ExtensionInner extends ProxyResource {
      */
     @JsonProperty(value = "eTag", access = JsonProperty.Access.WRITE_ONLY)
     private String etag;
+
+    /** Creates an instance of ExtensionInner class. */
+    public ExtensionInner() {
+    }
 
     /**
      * Get the innerProperties property: Extension resource properties.
@@ -84,6 +90,15 @@ public final class ExtensionInner extends ProxyResource {
      */
     public String extensionApiDocsLink() {
         return this.innerProperties() == null ? null : this.innerProperties().extensionApiDocsLink();
+    }
+
+    /**
+     * Get the additionalApiProperties property: Additional Api Properties.
+     *
+     * @return the additionalApiProperties value.
+     */
+    public Map<String, ApiProperties> additionalApiProperties() {
+        return this.innerProperties() == null ? null : this.innerProperties().additionalApiProperties();
     }
 
     /**
