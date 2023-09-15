@@ -9,7 +9,7 @@ import com.azure.resourcemanager.managementgroups.models.ManagementGroupExpandTy
 /** Samples for ManagementGroups Get. */
 public final class ManagementGroupsGetSamples {
     /*
-     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2021-04-01/examples/GetManagementGroupWithPath.json
+     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2023-04-01/examples/GetManagementGroupWithPath.json
      */
     /**
      * Sample code: GetManagementGroupWithPath.
@@ -30,7 +30,7 @@ public final class ManagementGroupsGetSamples {
     }
 
     /*
-     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2021-04-01/examples/GetManagementGroupWithAncestors.json
+     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2023-04-01/examples/GetManagementGroupWithAncestors.json
      */
     /**
      * Sample code: GetManagementGroupWithAncestors.
@@ -51,7 +51,7 @@ public final class ManagementGroupsGetSamples {
     }
 
     /*
-     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2021-04-01/examples/GetManagementGroupWithExpand.json
+     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2023-04-01/examples/GetManagementGroupWithExpand.json
      */
     /**
      * Sample code: GetManagementGroupWithExpand.
@@ -72,7 +72,7 @@ public final class ManagementGroupsGetSamples {
     }
 
     /*
-     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2021-04-01/examples/GetManagementGroup.json
+     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2023-04-01/examples/GetManagementGroup.json
      */
     /**
      * Sample code: GetManagementGroup.
@@ -87,7 +87,7 @@ public final class ManagementGroupsGetSamples {
     }
 
     /*
-     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2021-04-01/examples/GetManagementGroupWithExpandAndRecurse.json
+     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2023-04-01/examples/GetManagementGroupWithExpandAndRecurse.json
      */
     /**
      * Sample code: GetManagementGroupsWithExpandAndRecurse.
