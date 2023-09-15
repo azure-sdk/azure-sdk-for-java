@@ -29,6 +29,10 @@ public final class LinuxParameters {
     @JsonProperty(value = "packageNameMasksToExclude")
     private List<String> packageNameMasksToExclude;
 
+    /** Creates an instance of LinuxParameters class. */
+    public LinuxParameters() {
+    }
+
     /**
      * Get the classificationsToInclude property: The update classifications to select when installing patches for
      * Linux.

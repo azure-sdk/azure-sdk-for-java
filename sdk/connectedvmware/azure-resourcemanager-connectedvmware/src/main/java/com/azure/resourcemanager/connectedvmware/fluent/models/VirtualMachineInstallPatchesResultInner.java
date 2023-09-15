@@ -5,7 +5,7 @@
 package com.azure.resourcemanager.connectedvmware.fluent.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.resourcemanager.connectedvmware.models.ErrorDetail;
+import com.azure.core.management.exception.ManagementError;
 import com.azure.resourcemanager.connectedvmware.models.OsTypeUM;
 import com.azure.resourcemanager.connectedvmware.models.PatchOperationStartedBy;
 import com.azure.resourcemanager.connectedvmware.models.PatchOperationStatus;
@@ -104,12 +104,14 @@ public final class VirtualMachineInstallPatchesResultInner {
     private OsTypeUM osType;
 
     /*
-     * Error details.
-     *
      * The errors that were encountered during execution of the operation. The details array contains the list of them.
      */
     @JsonProperty(value = "errorDetails", access = JsonProperty.Access.WRITE_ONLY)
-    private ErrorDetail errorDetails;
+    private ManagementError errorDetails;
+
+    /** Creates an instance of VirtualMachineInstallPatchesResultInner class. */
+    public VirtualMachineInstallPatchesResultInner() {
+    }
 
     /**
      * Get the status property: The overall success or failure status of the operation. It remains "InProgress" until
@@ -245,14 +247,12 @@ public final class VirtualMachineInstallPatchesResultInner {
     }
 
     /**
-     * Get the errorDetails property: Error details.
-     *
-     * <p>The errors that were encountered during execution of the operation. The details array contains the list of
-     * them.
+     * Get the errorDetails property: The errors that were encountered during execution of the operation. The details
+     * array contains the list of them.
      *
      * @return the errorDetails value.
      */
-    public ErrorDetail errorDetails() {
+    public ManagementError errorDetails() {
         return this.errorDetails;
     }
 
@@ -262,8 +262,5 @@ public final class VirtualMachineInstallPatchesResultInner {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (errorDetails() != null) {
-            errorDetails().validate();
-        }
     }
 }

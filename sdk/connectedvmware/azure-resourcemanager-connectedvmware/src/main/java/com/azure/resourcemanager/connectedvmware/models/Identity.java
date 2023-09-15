@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Managed service identity. */
 @Fluent
-public class Identity {
+public final class Identity {
     /*
      * The principal id of managed service identity.
      */
@@ -28,6 +28,10 @@ public class Identity {
      */
     @JsonProperty(value = "type", required = true)
     private IdentityType type;
+
+    /** Creates an instance of Identity class. */
+    public Identity() {
+    }
 
     /**
      * Get the principalId property: The principal id of managed service identity.

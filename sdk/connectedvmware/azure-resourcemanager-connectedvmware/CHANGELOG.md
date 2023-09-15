@@ -1,6 +1,8 @@
 # Release History
 
-## 1.0.0-beta.2 (Unreleased)
+## 1.0.0-beta.1 (2023-09-15)
+
+- Azure Resource Manager ConnectedVMware client library for Java. This package contains Microsoft Azure SDK for ConnectedVMware Management SDK. Connected VMware Client. Package tag package-preview-2023-03. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Features Added
 

@@ -32,6 +32,10 @@ public final class VirtualMachineUpdate {
     @JsonProperty(value = "identity")
     private Identity identity;
 
+    /** Creates an instance of VirtualMachineUpdate class. */
+    public VirtualMachineUpdate() {
+    }
+
     /**
      * Get the innerProperties property: Resource properties.
      *
@@ -82,7 +86,7 @@ public final class VirtualMachineUpdate {
     }
 
     /**
-     * Get the hardwareProfile property: Defines the resource properties.
+     * Get the hardwareProfile property: Specifies the hardware settings for the virtual machine.
      *
      * @return the hardwareProfile value.
      */
@@ -91,7 +95,7 @@ public final class VirtualMachineUpdate {
     }
 
     /**
-     * Set the hardwareProfile property: Defines the resource properties.
+     * Set the hardwareProfile property: Specifies the hardware settings for the virtual machine.
      *
      * @param hardwareProfile the hardwareProfile value to set.
      * @return the VirtualMachineUpdate object itself.
@@ -128,7 +132,7 @@ public final class VirtualMachineUpdate {
     }
 
     /**
-     * Get the storageProfile property: Defines the resource update properties.
+     * Get the storageProfile property: Specifies the storage settings for the virtual machine disks.
      *
      * @return the storageProfile value.
      */
@@ -137,7 +141,7 @@ public final class VirtualMachineUpdate {
     }
 
     /**
-     * Set the storageProfile property: Defines the resource update properties.
+     * Set the storageProfile property: Specifies the storage settings for the virtual machine disks.
      *
      * @param storageProfile the storageProfile value to set.
      * @return the VirtualMachineUpdate object itself.
@@ -151,7 +155,7 @@ public final class VirtualMachineUpdate {
     }
 
     /**
-     * Get the networkProfile property: Defines the update resource properties.
+     * Get the networkProfile property: Specifies the network interfaces of the virtual machine.
      *
      * @return the networkProfile value.
      */
@@ -160,7 +164,7 @@ public final class VirtualMachineUpdate {
     }
 
     /**
-     * Set the networkProfile property: Defines the update resource properties.
+     * Set the networkProfile property: Specifies the network interfaces of the virtual machine.
      *
      * @param networkProfile the networkProfile value to set.
      * @return the VirtualMachineUpdate object itself.
@@ -170,6 +174,29 @@ public final class VirtualMachineUpdate {
             this.innerProperties = new VirtualMachineUpdateProperties();
         }
         this.innerProperties().withNetworkProfile(networkProfile);
+        return this;
+    }
+
+    /**
+     * Get the guestAgentProfile property: Specifies the guest agent settings for the virtual machine.
+     *
+     * @return the guestAgentProfile value.
+     */
+    public GuestAgentProfileUpdate guestAgentProfile() {
+        return this.innerProperties() == null ? null : this.innerProperties().guestAgentProfile();
+    }
+
+    /**
+     * Set the guestAgentProfile property: Specifies the guest agent settings for the virtual machine.
+     *
+     * @param guestAgentProfile the guestAgentProfile value to set.
+     * @return the VirtualMachineUpdate object itself.
+     */
+    public VirtualMachineUpdate withGuestAgentProfile(GuestAgentProfileUpdate guestAgentProfile) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new VirtualMachineUpdateProperties();
+        }
+        this.innerProperties().withGuestAgentProfile(guestAgentProfile);
         return this;
     }
 

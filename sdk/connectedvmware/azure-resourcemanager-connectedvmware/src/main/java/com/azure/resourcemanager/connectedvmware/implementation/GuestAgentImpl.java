@@ -4,13 +4,13 @@
 
 package com.azure.resourcemanager.connectedvmware.implementation;
 
-import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.connectedvmware.fluent.models.GuestAgentInner;
 import com.azure.resourcemanager.connectedvmware.models.GuestAgent;
 import com.azure.resourcemanager.connectedvmware.models.GuestCredential;
 import com.azure.resourcemanager.connectedvmware.models.HttpProxyConfiguration;
 import com.azure.resourcemanager.connectedvmware.models.ProvisioningAction;
+import com.azure.resourcemanager.connectedvmware.models.ProvisioningState;
 import com.azure.resourcemanager.connectedvmware.models.ResourceStatus;
 import java.util.Collections;
 import java.util.List;
@@ -38,16 +38,16 @@ public final class GuestAgentImpl implements GuestAgent, GuestAgent.Definition {
         return this.innerModel().type();
     }
 
-    public SystemData systemData() {
-        return this.innerModel().systemData();
-    }
-
     public String uuid() {
         return this.innerModel().uuid();
     }
 
     public GuestCredential credentials() {
         return this.innerModel().credentials();
+    }
+
+    public String privateLinkScopeResourceId() {
+        return this.innerModel().privateLinkScopeResourceId();
     }
 
     public HttpProxyConfiguration httpProxyConfig() {
@@ -75,7 +75,7 @@ public final class GuestAgentImpl implements GuestAgent, GuestAgent.Definition {
         }
     }
 
-    public String provisioningState() {
+    public ProvisioningState provisioningState() {
         return this.innerModel().provisioningState();
     }
 
@@ -145,6 +145,11 @@ public final class GuestAgentImpl implements GuestAgent, GuestAgent.Definition {
 
     public GuestAgentImpl withCredentials(GuestCredential credentials) {
         this.innerModel().withCredentials(credentials);
+        return this;
+    }
+
+    public GuestAgentImpl withPrivateLinkScopeResourceId(String privateLinkScopeResourceId) {
+        this.innerModel().withPrivateLinkScopeResourceId(privateLinkScopeResourceId);
         return this;
     }
 

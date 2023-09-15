@@ -7,7 +7,7 @@ package com.azure.resourcemanager.connectedvmware.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Defines the resource properties. */
+/** Specifies the operating system settings for the virtual machine. */
 @Fluent
 public final class OsProfile {
     /*
@@ -81,6 +81,10 @@ public final class OsProfile {
      */
     @JsonProperty(value = "linuxConfiguration")
     private OsProfileLinuxConfiguration linuxConfiguration;
+
+    /** Creates an instance of OsProfile class. */
+    public OsProfile() {
+    }
 
     /**
      * Get the computerName property: Gets or sets computer name.

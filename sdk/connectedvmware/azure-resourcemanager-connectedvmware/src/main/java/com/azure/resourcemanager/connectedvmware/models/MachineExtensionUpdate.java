@@ -18,6 +18,10 @@ public final class MachineExtensionUpdate extends ResourcePatch {
     @JsonProperty(value = "properties")
     private MachineExtensionUpdateProperties innerProperties;
 
+    /** Creates an instance of MachineExtensionUpdate class. */
+    public MachineExtensionUpdate() {
+    }
+
     /**
      * Get the innerProperties property: Describes Machine Extension Update Properties.
      *
