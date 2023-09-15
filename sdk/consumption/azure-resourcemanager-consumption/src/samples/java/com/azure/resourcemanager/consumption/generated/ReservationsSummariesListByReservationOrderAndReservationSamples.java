@@ -4,13 +4,12 @@
 
 package com.azure.resourcemanager.consumption.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.consumption.models.Datagrain;
 
 /** Samples for ReservationsSummaries ListByReservationOrderAndReservation. */
 public final class ReservationsSummariesListByReservationOrderAndReservationSamples {
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/ReservationSummariesDailyWithReservationId.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2023-11-01/examples/ReservationSummariesDailyWithReservationId.json
      */
     /**
      * Sample code: ReservationSummariesDailyWithReservationId.
@@ -26,11 +25,11 @@ public final class ReservationsSummariesListByReservationOrderAndReservationSamp
                 "00000000-0000-0000-0000-000000000000",
                 Datagrain.DAILY,
                 "properties/usageDate ge 2017-10-01 AND properties/usageDate le 2017-11-20",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/ReservationSummariesMonthlyWithReservationId.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2023-11-01/examples/ReservationSummariesMonthlyWithReservationId.json
      */
     /**
      * Sample code: ReservationSummariesMonthlyWithReservationId.
@@ -46,6 +45,6 @@ public final class ReservationsSummariesListByReservationOrderAndReservationSamp
                 "00000000-0000-0000-0000-000000000000",
                 Datagrain.MONTHLY,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

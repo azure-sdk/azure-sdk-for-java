@@ -5,25 +5,19 @@
 package com.azure.resourcemanager.consumption.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Details of estimated savings. */
+/** Details of estimated savings. The costs and savings are estimated for the term. */
 @Fluent
 public final class ReservationRecommendationDetailsCalculatedSavingsProperties {
-    @JsonIgnore
-    private final ClientLogger logger =
-        new ClientLogger(ReservationRecommendationDetailsCalculatedSavingsProperties.class);
-
     /*
-     * The cost without reservation.
+     * The cost without reservation. Includes hardware and software cost.
      */
     @JsonProperty(value = "onDemandCost", access = JsonProperty.Access.WRITE_ONLY)
     private Float onDemandCost;
 
     /*
-     * The difference between total reservation cost and reservation cost.
+     * Hardware and software cost of the resources not covered by the reservation.
      */
     @JsonProperty(value = "overageCost", access = JsonProperty.Access.WRITE_ONLY)
     private Float overageCost;
@@ -35,32 +29,36 @@ public final class ReservationRecommendationDetailsCalculatedSavingsProperties {
     private Float quantity;
 
     /*
-     * The exact cost of the estimated usage using reservation.
+     * Hardware cost of the resources covered by the reservation.
      */
     @JsonProperty(value = "reservationCost", access = JsonProperty.Access.WRITE_ONLY)
     private Float reservationCost;
 
     /*
-     * The cost of the suggested quantity.
+     * Reservation cost + software cost of the resources covered by the reservation + overage cost.
      */
     @JsonProperty(value = "totalReservationCost", access = JsonProperty.Access.WRITE_ONLY)
     private Float totalReservationCost;
 
     /*
-     * The number of reserved units used to calculate savings. Always 1 for
-     * virtual machines.
+     * The number of reserved units used to calculate savings. Always 1 for virtual machines.
      */
     @JsonProperty(value = "reservedUnitCount")
     private Float reservedUnitCount;
 
     /*
-     * The amount saved by purchasing the recommended quantity of reservation.
+     * The amount saved by purchasing the recommended quantity of reservation. This is equal to onDemandCost -
+     * totalReservationCost.
      */
     @JsonProperty(value = "savings", access = JsonProperty.Access.WRITE_ONLY)
     private Float savings;
 
+    /** Creates an instance of ReservationRecommendationDetailsCalculatedSavingsProperties class. */
+    public ReservationRecommendationDetailsCalculatedSavingsProperties() {
+    }
+
     /**
-     * Get the onDemandCost property: The cost without reservation.
+     * Get the onDemandCost property: The cost without reservation. Includes hardware and software cost.
      *
      * @return the onDemandCost value.
      */
@@ -69,7 +67,7 @@ public final class ReservationRecommendationDetailsCalculatedSavingsProperties {
     }
 
     /**
-     * Get the overageCost property: The difference between total reservation cost and reservation cost.
+     * Get the overageCost property: Hardware and software cost of the resources not covered by the reservation.
      *
      * @return the overageCost value.
      */
@@ -87,7 +85,7 @@ public final class ReservationRecommendationDetailsCalculatedSavingsProperties {
     }
 
     /**
-     * Get the reservationCost property: The exact cost of the estimated usage using reservation.
+     * Get the reservationCost property: Hardware cost of the resources covered by the reservation.
      *
      * @return the reservationCost value.
      */
@@ -96,7 +94,8 @@ public final class ReservationRecommendationDetailsCalculatedSavingsProperties {
     }
 
     /**
-     * Get the totalReservationCost property: The cost of the suggested quantity.
+     * Get the totalReservationCost property: Reservation cost + software cost of the resources covered by the
+     * reservation + overage cost.
      *
      * @return the totalReservationCost value.
      */
@@ -127,7 +126,8 @@ public final class ReservationRecommendationDetailsCalculatedSavingsProperties {
     }
 
     /**
-     * Get the savings property: The amount saved by purchasing the recommended quantity of reservation.
+     * Get the savings property: The amount saved by purchasing the recommended quantity of reservation. This is equal
+     * to onDemandCost - totalReservationCost.
      *
      * @return the savings value.
      */

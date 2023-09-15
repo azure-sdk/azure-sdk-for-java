@@ -6,17 +6,13 @@ package com.azure.resourcemanager.consumption.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.consumption.models.Tag;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** A resource listing all tags. */
 @Fluent
 public final class TagsResultInner extends ProxyResource {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(TagsResultInner.class);
-
     /*
      * The properties of the tag.
      */
@@ -24,12 +20,15 @@ public final class TagsResultInner extends ProxyResource {
     private TagProperties innerProperties;
 
     /*
-     * eTag of the resource. To handle concurrent update scenario, this field
-     * will be used to determine whether the user is updating the latest
-     * version or not.
+     * eTag of the resource. To handle concurrent update scenario, this field will be used to determine whether the
+     * user is updating the latest version or not.
      */
     @JsonProperty(value = "eTag")
     private String etag;
+
+    /** Creates an instance of TagsResultInner class. */
+    public TagsResultInner() {
+    }
 
     /**
      * Get the innerProperties property: The properties of the tag.

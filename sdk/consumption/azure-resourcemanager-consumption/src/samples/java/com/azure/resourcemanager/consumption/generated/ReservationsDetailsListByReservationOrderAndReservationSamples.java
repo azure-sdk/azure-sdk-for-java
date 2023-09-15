@@ -4,12 +4,10 @@
 
 package com.azure.resourcemanager.consumption.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for ReservationsDetails ListByReservationOrderAndReservation. */
 public final class ReservationsDetailsListByReservationOrderAndReservationSamples {
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/ReservationDetailsWithReservationId.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2023-11-01/examples/ReservationDetailsWithReservationId.json
      */
     /**
      * Sample code: ReservationDetailsWithReservationId.
@@ -24,6 +22,6 @@ public final class ReservationsDetailsListByReservationOrderAndReservationSample
                 "00000000-0000-0000-0000-000000000000",
                 "00000000-0000-0000-0000-000000000000",
                 "properties/usageDate ge 2017-10-01 AND properties/usageDate le 2017-12-05",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
