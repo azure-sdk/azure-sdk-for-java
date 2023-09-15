@@ -10,7 +10,7 @@ import java.time.Duration;
 /** The interface for MicrosoftElastic class. */
 public interface MicrosoftElastic {
     /**
-     * Gets The Azure subscription ID. This is a GUID-formatted string (e.g. 00000000-0000-0000-0000-000000000000).
+     * Gets The ID of the target subscription. The value must be an UUID.
      *
      * @return the subscriptionId value.
      */
@@ -85,6 +85,20 @@ public interface MicrosoftElastic {
      * @return the ExternalUsersClient object.
      */
     ExternalUsersClient getExternalUsers();
+
+    /**
+     * Gets the BillingInfoesClient object to access its operations.
+     *
+     * @return the BillingInfoesClient object.
+     */
+    BillingInfoesClient getBillingInfoes();
+
+    /**
+     * Gets the ConnectedPartnerResourcesClient object to access its operations.
+     *
+     * @return the ConnectedPartnerResourcesClient object.
+     */
+    ConnectedPartnerResourcesClient getConnectedPartnerResources();
 
     /**
      * Gets the TagRulesClient object to access its operations.
