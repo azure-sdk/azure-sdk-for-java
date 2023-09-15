@@ -12,7 +12,7 @@ import java.util.List;
 @Fluent
 public final class NetworkTapRuleMatchCondition extends CommonMatchConditions {
     /*
-     * Encapsulation Type.
+     * Encapsulation Type that needs to be matched.
      */
     @JsonProperty(value = "encapsulationType")
     private EncapsulationType encapsulationType;
@@ -28,7 +28,7 @@ public final class NetworkTapRuleMatchCondition extends CommonMatchConditions {
     }
 
     /**
-     * Get the encapsulationType property: Encapsulation Type.
+     * Get the encapsulationType property: Encapsulation Type that needs to be matched.
      *
      * @return the encapsulationType value.
      */
@@ -37,7 +37,7 @@ public final class NetworkTapRuleMatchCondition extends CommonMatchConditions {
     }
 
     /**
-     * Set the encapsulationType property: Encapsulation Type.
+     * Set the encapsulationType property: Encapsulation Type that needs to be matched.
      *
      * @param encapsulationType the encapsulationType value to set.
      * @return the NetworkTapRuleMatchCondition object itself.

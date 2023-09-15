@@ -92,6 +92,14 @@ public interface RoutePolicy {
     AdministrativeState administrativeState();
 
     /**
+     * Gets the defaultAction property: Default action that needs to be applied when no condition is matched. Example:
+     * Permit | Deny.
+     *
+     * @return the defaultAction value.
+     */
+    CommunityActionTypes defaultAction();
+
+    /**
      * Gets the statements property: Route Policy statements.
      *
      * @return the statements value.
@@ -196,6 +204,7 @@ public interface RoutePolicy {
         interface WithCreate
             extends DefinitionStages.WithTags,
                 DefinitionStages.WithAddressFamilyType,
+                DefinitionStages.WithDefaultAction,
                 DefinitionStages.WithStatements,
                 DefinitionStages.WithAnnotation {
             /**
@@ -238,6 +247,19 @@ public interface RoutePolicy {
             WithCreate withAddressFamilyType(AddressFamilyType addressFamilyType);
         }
 
+        /** The stage of the RoutePolicy definition allowing to specify defaultAction. */
+        interface WithDefaultAction {
+            /**
+             * Specifies the defaultAction property: Default action that needs to be applied when no condition is
+             * matched. Example: Permit | Deny..
+             *
+             * @param defaultAction Default action that needs to be applied when no condition is matched. Example:
+             *     Permit | Deny.
+             * @return the next definition stage.
+             */
+            WithCreate withDefaultAction(CommunityActionTypes defaultAction);
+        }
+
         /** The stage of the RoutePolicy definition allowing to specify statements. */
         interface WithStatements {
             /**
@@ -269,7 +291,7 @@ public interface RoutePolicy {
     RoutePolicy.Update update();
 
     /** The template for RoutePolicy update. */
-    interface Update extends UpdateStages.WithTags, UpdateStages.WithStatements {
+    interface Update extends UpdateStages.WithTags, UpdateStages.WithDefaultAction, UpdateStages.WithStatements {
         /**
          * Executes the update request.
          *
@@ -297,6 +319,19 @@ public interface RoutePolicy {
              * @return the next definition stage.
              */
             Update withTags(Map<String, String> tags);
+        }
+
+        /** The stage of the RoutePolicy update allowing to specify defaultAction. */
+        interface WithDefaultAction {
+            /**
+             * Specifies the defaultAction property: Default action that needs to be applied when no condition is
+             * matched. Example: Permit | Deny..
+             *
+             * @param defaultAction Default action that needs to be applied when no condition is matched. Example:
+             *     Permit | Deny.
+             * @return the next definition stage.
+             */
+            Update withDefaultAction(CommunityActionTypes defaultAction);
         }
 
         /** The stage of the RoutePolicy update allowing to specify statements. */
