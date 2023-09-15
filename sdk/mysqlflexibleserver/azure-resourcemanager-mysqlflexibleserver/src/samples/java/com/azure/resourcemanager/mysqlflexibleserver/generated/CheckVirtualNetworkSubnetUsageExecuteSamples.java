@@ -9,7 +9,7 @@ import com.azure.resourcemanager.mysqlflexibleserver.models.VirtualNetworkSubnet
 /** Samples for CheckVirtualNetworkSubnetUsage Execute. */
 public final class CheckVirtualNetworkSubnetUsageExecuteSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/ServiceOperations/preview/2021-12-01-preview/examples/CheckVirtualNetworkSubnetUsage.json
+     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/ServiceOperations/preview/2023-06-01-preview/examples/CheckVirtualNetworkSubnetUsage.json
      */
     /**
      * Sample code: CheckVirtualNetworkSubnetUsage.

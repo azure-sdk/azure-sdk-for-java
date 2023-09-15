@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.mysqlflexibleserver.implementation;
 
-import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.mysqlflexibleserver.fluent.models.LogFileInner;
 import com.azure.resourcemanager.mysqlflexibleserver.models.LogFile;
 import java.time.OffsetDateTime;
@@ -29,10 +28,6 @@ public final class LogFileImpl implements LogFile {
 
     public String type() {
         return this.innerModel().type();
-    }
-
-    public SystemData systemData() {
-        return this.innerModel().systemData();
     }
 
     public Long sizeInKB() {
