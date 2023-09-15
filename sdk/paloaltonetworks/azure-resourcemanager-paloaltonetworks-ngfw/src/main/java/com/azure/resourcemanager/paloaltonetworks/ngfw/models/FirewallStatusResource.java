@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.paloaltonetworks.ngfw.models;
 
-import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.fluent.models.FirewallStatusResourceInner;
 
 /** An immutable client-side representation of FirewallStatusResource. */
@@ -29,13 +28,6 @@ public interface FirewallStatusResource {
      * @return the type value.
      */
     String type();
-
-    /**
-     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
-     * @return the systemData value.
-     */
-    SystemData systemData();
 
     /**
      * Gets the isPanoramaManaged property: Panorama Managed: Default is False. Default will be CloudSec managed.

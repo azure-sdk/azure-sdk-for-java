@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.paloaltonetworks.ngfw.models;
 
 import com.azure.core.http.rest.Response;
-import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.fluent.models.LocalRulesResourceInner;
 import java.util.List;
@@ -32,13 +31,6 @@ public interface LocalRulesResource {
      * @return the type value.
      */
     String type();
-
-    /**
-     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
-     * @return the systemData value.
-     */
-    SystemData systemData();
 
     /**
      * Gets the etag property: etag info.
@@ -201,11 +193,13 @@ public interface LocalRulesResource {
             DefinitionStages.WithRuleName,
             DefinitionStages.WithCreate {
     }
+
     /** The LocalRulesResource definition stages. */
     interface DefinitionStages {
         /** The first stage of the LocalRulesResource definition. */
         interface Blank extends WithParentResource {
         }
+
         /** The stage of the LocalRulesResource definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -217,6 +211,7 @@ public interface LocalRulesResource {
              */
             WithRuleName withExistingLocalRulestack(String resourceGroupName, String localRulestackName);
         }
+
         /** The stage of the LocalRulesResource definition allowing to specify ruleName. */
         interface WithRuleName {
             /**
@@ -227,6 +222,7 @@ public interface LocalRulesResource {
              */
             WithCreate withRuleName(String ruleName);
         }
+
         /**
          * The stage of the LocalRulesResource definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
@@ -264,6 +260,7 @@ public interface LocalRulesResource {
              */
             LocalRulesResource create(Context context);
         }
+
         /** The stage of the LocalRulesResource definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -274,6 +271,7 @@ public interface LocalRulesResource {
              */
             WithCreate withTags(List<TagInfo> tags);
         }
+
         /** The stage of the LocalRulesResource definition allowing to specify etag. */
         interface WithEtag {
             /**
@@ -284,6 +282,7 @@ public interface LocalRulesResource {
              */
             WithCreate withEtag(String etag);
         }
+
         /** The stage of the LocalRulesResource definition allowing to specify description. */
         interface WithDescription {
             /**
@@ -294,6 +293,7 @@ public interface LocalRulesResource {
              */
             WithCreate withDescription(String description);
         }
+
         /** The stage of the LocalRulesResource definition allowing to specify ruleState. */
         interface WithRuleState {
             /**
@@ -304,6 +304,7 @@ public interface LocalRulesResource {
              */
             WithCreate withRuleState(StateEnum ruleState);
         }
+
         /** The stage of the LocalRulesResource definition allowing to specify source. */
         interface WithSource {
             /**
@@ -314,6 +315,7 @@ public interface LocalRulesResource {
              */
             WithCreate withSource(SourceAddr source);
         }
+
         /** The stage of the LocalRulesResource definition allowing to specify negateSource. */
         interface WithNegateSource {
             /**
@@ -324,6 +326,7 @@ public interface LocalRulesResource {
              */
             WithCreate withNegateSource(BooleanEnum negateSource);
         }
+
         /** The stage of the LocalRulesResource definition allowing to specify destination. */
         interface WithDestination {
             /**
@@ -334,6 +337,7 @@ public interface LocalRulesResource {
              */
             WithCreate withDestination(DestinationAddr destination);
         }
+
         /** The stage of the LocalRulesResource definition allowing to specify negateDestination. */
         interface WithNegateDestination {
             /**
@@ -344,6 +348,7 @@ public interface LocalRulesResource {
              */
             WithCreate withNegateDestination(BooleanEnum negateDestination);
         }
+
         /** The stage of the LocalRulesResource definition allowing to specify applications. */
         interface WithApplications {
             /**
@@ -354,6 +359,7 @@ public interface LocalRulesResource {
              */
             WithCreate withApplications(List<String> applications);
         }
+
         /** The stage of the LocalRulesResource definition allowing to specify category. */
         interface WithCategory {
             /**
@@ -364,6 +370,7 @@ public interface LocalRulesResource {
              */
             WithCreate withCategory(Category category);
         }
+
         /** The stage of the LocalRulesResource definition allowing to specify protocol. */
         interface WithProtocol {
             /**
@@ -374,6 +381,7 @@ public interface LocalRulesResource {
              */
             WithCreate withProtocol(String protocol);
         }
+
         /** The stage of the LocalRulesResource definition allowing to specify protocolPortList. */
         interface WithProtocolPortList {
             /**
@@ -384,6 +392,7 @@ public interface LocalRulesResource {
              */
             WithCreate withProtocolPortList(List<String> protocolPortList);
         }
+
         /** The stage of the LocalRulesResource definition allowing to specify inboundInspectionCertificate. */
         interface WithInboundInspectionCertificate {
             /**
@@ -394,6 +403,7 @@ public interface LocalRulesResource {
              */
             WithCreate withInboundInspectionCertificate(String inboundInspectionCertificate);
         }
+
         /** The stage of the LocalRulesResource definition allowing to specify auditComment. */
         interface WithAuditComment {
             /**
@@ -404,6 +414,7 @@ public interface LocalRulesResource {
              */
             WithCreate withAuditComment(String auditComment);
         }
+
         /** The stage of the LocalRulesResource definition allowing to specify actionType. */
         interface WithActionType {
             /**
@@ -414,6 +425,7 @@ public interface LocalRulesResource {
              */
             WithCreate withActionType(ActionEnum actionType);
         }
+
         /** The stage of the LocalRulesResource definition allowing to specify enableLogging. */
         interface WithEnableLogging {
             /**
@@ -424,6 +436,7 @@ public interface LocalRulesResource {
              */
             WithCreate withEnableLogging(StateEnum enableLogging);
         }
+
         /** The stage of the LocalRulesResource definition allowing to specify decryptionRuleType. */
         interface WithDecryptionRuleType {
             /**
@@ -435,6 +448,7 @@ public interface LocalRulesResource {
             WithCreate withDecryptionRuleType(DecryptionRuleTypeEnum decryptionRuleType);
         }
     }
+
     /**
      * Begins update for the LocalRulesResource resource.
      *
@@ -477,6 +491,7 @@ public interface LocalRulesResource {
          */
         LocalRulesResource apply(Context context);
     }
+
     /** The LocalRulesResource update stages. */
     interface UpdateStages {
         /** The stage of the LocalRulesResource update allowing to specify tags. */
@@ -489,6 +504,7 @@ public interface LocalRulesResource {
              */
             Update withTags(List<TagInfo> tags);
         }
+
         /** The stage of the LocalRulesResource update allowing to specify etag. */
         interface WithEtag {
             /**
@@ -499,6 +515,7 @@ public interface LocalRulesResource {
              */
             Update withEtag(String etag);
         }
+
         /** The stage of the LocalRulesResource update allowing to specify ruleName. */
         interface WithRuleName {
             /**
@@ -509,6 +526,7 @@ public interface LocalRulesResource {
              */
             Update withRuleName(String ruleName);
         }
+
         /** The stage of the LocalRulesResource update allowing to specify description. */
         interface WithDescription {
             /**
@@ -519,6 +537,7 @@ public interface LocalRulesResource {
              */
             Update withDescription(String description);
         }
+
         /** The stage of the LocalRulesResource update allowing to specify ruleState. */
         interface WithRuleState {
             /**
@@ -529,6 +548,7 @@ public interface LocalRulesResource {
              */
             Update withRuleState(StateEnum ruleState);
         }
+
         /** The stage of the LocalRulesResource update allowing to specify source. */
         interface WithSource {
             /**
@@ -539,6 +559,7 @@ public interface LocalRulesResource {
              */
             Update withSource(SourceAddr source);
         }
+
         /** The stage of the LocalRulesResource update allowing to specify negateSource. */
         interface WithNegateSource {
             /**
@@ -549,6 +570,7 @@ public interface LocalRulesResource {
              */
             Update withNegateSource(BooleanEnum negateSource);
         }
+
         /** The stage of the LocalRulesResource update allowing to specify destination. */
         interface WithDestination {
             /**
@@ -559,6 +581,7 @@ public interface LocalRulesResource {
              */
             Update withDestination(DestinationAddr destination);
         }
+
         /** The stage of the LocalRulesResource update allowing to specify negateDestination. */
         interface WithNegateDestination {
             /**
@@ -569,6 +592,7 @@ public interface LocalRulesResource {
              */
             Update withNegateDestination(BooleanEnum negateDestination);
         }
+
         /** The stage of the LocalRulesResource update allowing to specify applications. */
         interface WithApplications {
             /**
@@ -579,6 +603,7 @@ public interface LocalRulesResource {
              */
             Update withApplications(List<String> applications);
         }
+
         /** The stage of the LocalRulesResource update allowing to specify category. */
         interface WithCategory {
             /**
@@ -589,6 +614,7 @@ public interface LocalRulesResource {
              */
             Update withCategory(Category category);
         }
+
         /** The stage of the LocalRulesResource update allowing to specify protocol. */
         interface WithProtocol {
             /**
@@ -599,6 +625,7 @@ public interface LocalRulesResource {
              */
             Update withProtocol(String protocol);
         }
+
         /** The stage of the LocalRulesResource update allowing to specify protocolPortList. */
         interface WithProtocolPortList {
             /**
@@ -609,6 +636,7 @@ public interface LocalRulesResource {
              */
             Update withProtocolPortList(List<String> protocolPortList);
         }
+
         /** The stage of the LocalRulesResource update allowing to specify inboundInspectionCertificate. */
         interface WithInboundInspectionCertificate {
             /**
@@ -619,6 +647,7 @@ public interface LocalRulesResource {
              */
             Update withInboundInspectionCertificate(String inboundInspectionCertificate);
         }
+
         /** The stage of the LocalRulesResource update allowing to specify auditComment. */
         interface WithAuditComment {
             /**
@@ -629,6 +658,7 @@ public interface LocalRulesResource {
              */
             Update withAuditComment(String auditComment);
         }
+
         /** The stage of the LocalRulesResource update allowing to specify actionType. */
         interface WithActionType {
             /**
@@ -639,6 +669,7 @@ public interface LocalRulesResource {
              */
             Update withActionType(ActionEnum actionType);
         }
+
         /** The stage of the LocalRulesResource update allowing to specify enableLogging. */
         interface WithEnableLogging {
             /**
@@ -649,6 +680,7 @@ public interface LocalRulesResource {
              */
             Update withEnableLogging(StateEnum enableLogging);
         }
+
         /** The stage of the LocalRulesResource update allowing to specify decryptionRuleType. */
         interface WithDecryptionRuleType {
             /**
@@ -660,6 +692,7 @@ public interface LocalRulesResource {
             Update withDecryptionRuleType(DecryptionRuleTypeEnum decryptionRuleType);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *
