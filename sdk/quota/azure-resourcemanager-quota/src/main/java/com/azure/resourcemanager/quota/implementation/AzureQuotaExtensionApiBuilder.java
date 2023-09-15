@@ -18,6 +18,38 @@ import java.time.Duration;
 @ServiceClientBuilder(serviceClients = {AzureQuotaExtensionApiImpl.class})
 public final class AzureQuotaExtensionApiBuilder {
     /*
+     * The ID of the target subscription. The value must be an UUID.
+     */
+    private String subscriptionId;
+
+    /**
+     * Sets The ID of the target subscription. The value must be an UUID.
+     *
+     * @param subscriptionId the subscriptionId value.
+     * @return the AzureQuotaExtensionApiBuilder.
+     */
+    public AzureQuotaExtensionApiBuilder subscriptionId(String subscriptionId) {
+        this.subscriptionId = subscriptionId;
+        return this;
+    }
+
+    /*
+     * server parameter
+     */
+    private String endpoint;
+
+    /**
+     * Sets server parameter.
+     *
+     * @param endpoint the endpoint value.
+     * @return the AzureQuotaExtensionApiBuilder.
+     */
+    public AzureQuotaExtensionApiBuilder endpoint(String endpoint) {
+        this.endpoint = endpoint;
+        return this;
+    }
+
+    /*
      * server parameter
      */
     private String endpoint;
@@ -103,6 +135,7 @@ public final class AzureQuotaExtensionApiBuilder {
      * @return an instance of AzureQuotaExtensionApiImpl.
      */
     public AzureQuotaExtensionApiImpl buildClient() {
+        String localEndpoint = (endpoint != null) ? endpoint : "";
         String localEndpoint = (endpoint != null) ? endpoint : "https://management.azure.com";
         AzureEnvironment localEnvironment = (environment != null) ? environment : AzureEnvironment.AZURE;
         HttpPipeline localPipeline =
@@ -117,7 +150,13 @@ public final class AzureQuotaExtensionApiBuilder {
                 : SerializerFactory.createDefaultManagementSerializerAdapter();
         AzureQuotaExtensionApiImpl client =
             new AzureQuotaExtensionApiImpl(
-                localPipeline, localSerializerAdapter, localDefaultPollInterval, localEnvironment, localEndpoint);
+                localPipeline,
+                localSerializerAdapter,
+                localDefaultPollInterval,
+                localEnvironment,
+                this.subscriptionId,
+                localEndpoint,
+                localEndpoint);
         return client;
     }
 }
