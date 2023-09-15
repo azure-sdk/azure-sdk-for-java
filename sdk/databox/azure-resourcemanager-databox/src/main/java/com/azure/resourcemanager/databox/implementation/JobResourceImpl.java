@@ -106,6 +106,10 @@ public final class JobResourceImpl implements JobResource, JobResource.Definitio
         return this.innerModel().status();
     }
 
+    public StageName delayedStage() {
+        return this.innerModel().delayedStage();
+    }
+
     public OffsetDateTime startTime() {
         return this.innerModel().startTime();
     }
