@@ -18,7 +18,7 @@ public final class SasDatastoreCredentials extends DatastoreCredentials {
     /*
      * [Required] Storage container secrets.
      */
-    @JsonProperty(value = "secrets", required = true)
+    @JsonProperty(value = "secrets")
     private SasDatastoreSecrets secrets;
 
     /** Creates an instance of SasDatastoreCredentials class. */

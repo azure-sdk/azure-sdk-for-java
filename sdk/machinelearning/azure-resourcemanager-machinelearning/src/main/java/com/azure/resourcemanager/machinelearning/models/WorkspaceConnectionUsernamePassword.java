@@ -11,39 +11,19 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class WorkspaceConnectionUsernamePassword {
     /*
-     * The username property.
-     */
-    @JsonProperty(value = "username")
-    private String username;
-
-    /*
      * The password property.
      */
     @JsonProperty(value = "password")
     private String password;
 
+    /*
+     * The username property.
+     */
+    @JsonProperty(value = "username")
+    private String username;
+
     /** Creates an instance of WorkspaceConnectionUsernamePassword class. */
     public WorkspaceConnectionUsernamePassword() {
-    }
-
-    /**
-     * Get the username property: The username property.
-     *
-     * @return the username value.
-     */
-    public String username() {
-        return this.username;
-    }
-
-    /**
-     * Set the username property: The username property.
-     *
-     * @param username the username value to set.
-     * @return the WorkspaceConnectionUsernamePassword object itself.
-     */
-    public WorkspaceConnectionUsernamePassword withUsername(String username) {
-        this.username = username;
-        return this;
     }
 
     /**
@@ -63,6 +43,26 @@ public final class WorkspaceConnectionUsernamePassword {
      */
     public WorkspaceConnectionUsernamePassword withPassword(String password) {
         this.password = password;
+        return this;
+    }
+
+    /**
+     * Get the username property: The username property.
+     *
+     * @return the username value.
+     */
+    public String username() {
+        return this.username;
+    }
+
+    /**
+     * Set the username property: The username property.
+     *
+     * @param username the username value to set.
+     * @return the WorkspaceConnectionUsernamePassword object itself.
+     */
+    public WorkspaceConnectionUsernamePassword withUsername(String username) {
+        this.username = username;
         return this;
     }
 
