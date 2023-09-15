@@ -271,7 +271,7 @@ public final class DataProtectionManager {
                 .append("-")
                 .append("com.azure.resourcemanager.dataprotection")
                 .append("/")
-                .append("1.1.0");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -553,8 +553,10 @@ public final class DataProtectionManager {
     }
 
     /**
-     * @return Wrapped service client DataProtectionClient providing direct access to the underlying auto-generated API
-     *     implementation, based on Azure REST API.
+     * Gets wrapped service client DataProtectionClient providing direct access to the underlying auto-generated API
+     * implementation, based on Azure REST API.
+     *
+     * @return Wrapped service client DataProtectionClient.
      */
     public DataProtectionClient serviceClient() {
         return this.clientObject;
