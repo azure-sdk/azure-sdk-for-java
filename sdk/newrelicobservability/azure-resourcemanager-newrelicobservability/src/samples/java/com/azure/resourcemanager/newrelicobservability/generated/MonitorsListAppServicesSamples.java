@@ -25,7 +25,10 @@ public final class MonitorsListAppServicesSamples {
                 "rgNewRelic",
                 "fhcjxnxumkdlgpwanewtkdnyuz",
                 new AppServicesGetRequest()
-                    .withAzureResourceIds(Arrays.asList("pvzrksrmzowobuhxpwiotnpcvjbu"))
+                    .withAzureResourceIds(
+                        Arrays
+                            .asList(
+                                "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rgNewRelic/providers/NewRelic.Observability/monitors/fhcjxnxumkdlgpwanewtkdnyuz"))
                     .withUserEmail("ruxvg@xqkmdhrnoo.hlmbpm"),
                 com.azure.core.util.Context.NONE);
     }
@@ -45,7 +48,12 @@ public final class MonitorsListAppServicesSamples {
             .listAppServices(
                 "rgNewRelic",
                 "fhcjxnxumkdlgpwanewtkdnyuz",
-                new AppServicesGetRequest().withUserEmail("ruxvg@xqkmdhrnoo.hlmbpm"),
+                new AppServicesGetRequest()
+                    .withAzureResourceIds(
+                        Arrays
+                            .asList(
+                                "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rgNewRelic/providers/NewRelic.Observability/monitors/fhcjxnxumkdlgpwanewtkdnyuz"))
+                    .withUserEmail("ruxvg@xqkmdhrnoo.hlmbpm"),
                 com.azure.core.util.Context.NONE);
     }
 }

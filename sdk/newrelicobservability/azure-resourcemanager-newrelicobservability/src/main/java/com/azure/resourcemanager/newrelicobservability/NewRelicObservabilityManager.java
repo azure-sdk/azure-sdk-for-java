@@ -224,7 +224,7 @@ public final class NewRelicObservabilityManager {
                 .append("-")
                 .append("com.azure.resourcemanager.newrelicobservability")
                 .append("/")
-                .append("1.0.0");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -354,8 +354,10 @@ public final class NewRelicObservabilityManager {
     }
 
     /**
-     * @return Wrapped service client NewRelicObservability providing direct access to the underlying auto-generated API
-     *     implementation, based on Azure REST API.
+     * Gets wrapped service client NewRelicObservability providing direct access to the underlying auto-generated API
+     * implementation, based on Azure REST API.
+     *
+     * @return Wrapped service client NewRelicObservability.
      */
     public NewRelicObservability serviceClient() {
         return this.clientObject;

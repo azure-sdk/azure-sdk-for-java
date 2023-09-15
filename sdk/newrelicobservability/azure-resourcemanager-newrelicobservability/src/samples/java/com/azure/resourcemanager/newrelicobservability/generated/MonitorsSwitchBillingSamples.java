@@ -47,7 +47,8 @@ public final class MonitorsSwitchBillingSamples {
                 "rgNewRelic",
                 "fhcjxnxumkdlgpwanewtkdnyuz",
                 new SwitchBillingRequest()
-                    .withAzureResourceId("enfghpfw")
+                    .withAzureResourceId(
+                        "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rgNewRelic/providers/NewRelic.Observability/monitors/fhcjxnxumkdlgpwanewtkdnyuz")
                     .withOrganizationId("k")
                     .withPlanData(
                         new PlanData()

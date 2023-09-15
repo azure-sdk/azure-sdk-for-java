@@ -37,7 +37,7 @@ public final class MonitorsCreateOrUpdateSamples {
             .define("cdlymktqw")
             .withRegion("k")
             .withExistingResourceGroup("rgNewRelic")
-            .withTags(mapOf("key6976", "oaxfhf"))
+            .withTags(mapOf("key6976", "fakeTokenPlaceholder"))
             .withNewRelicAccountProperties(
                 new NewRelicAccountProperties()
                     .withUserId("vcscxlncofcuduadesd")
@@ -71,6 +71,7 @@ public final class MonitorsCreateOrUpdateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

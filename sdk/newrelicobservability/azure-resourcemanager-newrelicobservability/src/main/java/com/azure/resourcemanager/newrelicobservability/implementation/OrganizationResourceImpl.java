@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.newrelicobservability.implementation;
 
-import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.newrelicobservability.fluent.models.OrganizationResourceInner;
 import com.azure.resourcemanager.newrelicobservability.models.BillingSource;
 import com.azure.resourcemanager.newrelicobservability.models.OrganizationResource;
@@ -31,10 +30,6 @@ public final class OrganizationResourceImpl implements OrganizationResource {
 
     public String type() {
         return this.innerModel().type();
-    }
-
-    public SystemData systemData() {
-        return this.innerModel().systemData();
     }
 
     public String organizationId() {
