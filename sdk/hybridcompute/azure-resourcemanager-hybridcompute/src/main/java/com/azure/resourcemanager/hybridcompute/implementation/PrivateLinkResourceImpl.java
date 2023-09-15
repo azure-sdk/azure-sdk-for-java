@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.hybridcompute.implementation;
 
-import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.hybridcompute.fluent.models.PrivateLinkResourceInner;
 import com.azure.resourcemanager.hybridcompute.models.PrivateLinkResource;
 import com.azure.resourcemanager.hybridcompute.models.PrivateLinkResourceProperties;
@@ -35,10 +34,6 @@ public final class PrivateLinkResourceImpl implements PrivateLinkResource {
 
     public PrivateLinkResourceProperties properties() {
         return this.innerModel().properties();
-    }
-
-    public SystemData systemData() {
-        return this.innerModel().systemData();
     }
 
     public PrivateLinkResourceInner innerModel() {

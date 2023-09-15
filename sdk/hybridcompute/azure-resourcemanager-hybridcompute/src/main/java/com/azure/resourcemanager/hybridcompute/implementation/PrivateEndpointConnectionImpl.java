@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.hybridcompute.implementation;
 
-import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.hybridcompute.fluent.models.PrivateEndpointConnectionInner;
 import com.azure.resourcemanager.hybridcompute.models.PrivateEndpointConnection;
@@ -30,10 +29,6 @@ public final class PrivateEndpointConnectionImpl
 
     public PrivateEndpointConnectionProperties properties() {
         return this.innerModel().properties();
-    }
-
-    public SystemData systemData() {
-        return this.innerModel().systemData();
     }
 
     public String resourceGroupName() {

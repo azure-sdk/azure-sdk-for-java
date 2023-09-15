@@ -6,7 +6,6 @@ package com.azure.resourcemanager.hybridcompute.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
-import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.hybridcompute.models.PrivateLinkResourceProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -18,12 +17,6 @@ public final class PrivateLinkResourceInner extends ProxyResource {
      */
     @JsonProperty(value = "properties")
     private PrivateLinkResourceProperties properties;
-
-    /*
-     * The system meta data relating to this resource.
-     */
-    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
-    private SystemData systemData;
 
     /** Creates an instance of PrivateLinkResourceInner class. */
     public PrivateLinkResourceInner() {
@@ -47,15 +40,6 @@ public final class PrivateLinkResourceInner extends ProxyResource {
     public PrivateLinkResourceInner withProperties(PrivateLinkResourceProperties properties) {
         this.properties = properties;
         return this;
-    }
-
-    /**
-     * Get the systemData property: The system meta data relating to this resource.
-     *
-     * @return the systemData value.
-     */
-    public SystemData systemData() {
-        return this.systemData;
     }
 
     /**

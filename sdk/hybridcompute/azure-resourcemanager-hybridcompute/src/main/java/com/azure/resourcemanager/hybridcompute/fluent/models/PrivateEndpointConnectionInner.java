@@ -6,7 +6,6 @@ package com.azure.resourcemanager.hybridcompute.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
-import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.hybridcompute.models.PrivateEndpointConnectionProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -18,12 +17,6 @@ public final class PrivateEndpointConnectionInner extends ProxyResource {
      */
     @JsonProperty(value = "properties")
     private PrivateEndpointConnectionProperties properties;
-
-    /*
-     * The system meta data relating to this resource.
-     */
-    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
-    private SystemData systemData;
 
     /** Creates an instance of PrivateEndpointConnectionInner class. */
     public PrivateEndpointConnectionInner() {
@@ -47,15 +40,6 @@ public final class PrivateEndpointConnectionInner extends ProxyResource {
     public PrivateEndpointConnectionInner withProperties(PrivateEndpointConnectionProperties properties) {
         this.properties = properties;
         return this;
-    }
-
-    /**
-     * Get the systemData property: The system meta data relating to this resource.
-     *
-     * @return the systemData value.
-     */
-    public SystemData systemData() {
-        return this.systemData;
     }
 
     /**
