@@ -28,19 +28,6 @@ public final class DataConnectorsCheckRequirementsOperationsImpl implements Data
         this.serviceManager = serviceManager;
     }
 
-    public DataConnectorRequirementsState post(
-        String resourceGroupName,
-        String workspaceName,
-        DataConnectorsCheckRequirements dataConnectorsCheckRequirements) {
-        DataConnectorRequirementsStateInner inner =
-            this.serviceClient().post(resourceGroupName, workspaceName, dataConnectorsCheckRequirements);
-        if (inner != null) {
-            return new DataConnectorRequirementsStateImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<DataConnectorRequirementsState> postWithResponse(
         String resourceGroupName,
         String workspaceName,
@@ -56,6 +43,19 @@ public final class DataConnectorsCheckRequirementsOperationsImpl implements Data
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new DataConnectorRequirementsStateImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public DataConnectorRequirementsState post(
+        String resourceGroupName,
+        String workspaceName,
+        DataConnectorsCheckRequirements dataConnectorsCheckRequirements) {
+        DataConnectorRequirementsStateInner inner =
+            this.serviceClient().post(resourceGroupName, workspaceName, dataConnectorsCheckRequirements);
+        if (inner != null) {
+            return new DataConnectorRequirementsStateImpl(inner, this.manager());
         } else {
             return null;
         }

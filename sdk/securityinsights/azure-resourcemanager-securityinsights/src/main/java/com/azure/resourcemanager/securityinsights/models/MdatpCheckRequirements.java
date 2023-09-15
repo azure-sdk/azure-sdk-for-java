@@ -21,6 +21,10 @@ public final class MdatpCheckRequirements extends DataConnectorsCheckRequirement
     @JsonProperty(value = "properties")
     private MdatpCheckRequirementsProperties innerProperties;
 
+    /** Creates an instance of MdatpCheckRequirements class. */
+    public MdatpCheckRequirements() {
+    }
+
     /**
      * Get the innerProperties property: MDATP (Microsoft Defender Advanced Threat Protection) requirements check
      * properties.
@@ -29,6 +33,29 @@ public final class MdatpCheckRequirements extends DataConnectorsCheckRequirement
      */
     private MdatpCheckRequirementsProperties innerProperties() {
         return this.innerProperties;
+    }
+
+    /**
+     * Get the tenantId property: The tenant id to connect to, and get the data from.
+     *
+     * @return the tenantId value.
+     */
+    public String tenantId() {
+        return this.innerProperties() == null ? null : this.innerProperties().tenantId();
+    }
+
+    /**
+     * Set the tenantId property: The tenant id to connect to, and get the data from.
+     *
+     * @param tenantId the tenantId value to set.
+     * @return the MdatpCheckRequirements object itself.
+     */
+    public MdatpCheckRequirements withTenantId(String tenantId) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new MdatpCheckRequirementsProperties();
+        }
+        this.innerProperties().withTenantId(tenantId);
+        return this;
     }
 
     /**

@@ -22,6 +22,10 @@ public final class OfficeAtpDataConnector extends DataConnectorInner {
     @JsonProperty(value = "properties")
     private OfficeAtpDataConnectorProperties innerProperties;
 
+    /** Creates an instance of OfficeAtpDataConnector class. */
+    public OfficeAtpDataConnector() {
+    }
+
     /**
      * Get the innerProperties property: OfficeATP (Office 365 Advanced Threat Protection) data connector properties.
      *

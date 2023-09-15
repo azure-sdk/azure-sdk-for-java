@@ -18,6 +18,10 @@ public final class AatpDataConnectorProperties extends DataConnectorTenantId {
     @JsonProperty(value = "dataTypes")
     private AlertsDataTypeOfDataConnector dataTypes;
 
+    /** Creates an instance of AatpDataConnectorProperties class. */
+    public AatpDataConnectorProperties() {
+    }
+
     /**
      * Get the dataTypes property: The available data types for the connector.
      *

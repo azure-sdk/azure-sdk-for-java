@@ -9,6 +9,10 @@ import com.azure.core.annotation.Fluent;
 /** The CodelessUiConnectorConfigPropertiesDataTypesItem model. */
 @Fluent
 public final class CodelessUiConnectorConfigPropertiesDataTypesItem extends LastDataReceivedDataType {
+    /** Creates an instance of CodelessUiConnectorConfigPropertiesDataTypesItem class. */
+    public CodelessUiConnectorConfigPropertiesDataTypesItem() {
+    }
+
     /** {@inheritDoc} */
     @Override
     public CodelessUiConnectorConfigPropertiesDataTypesItem withName(String name) {

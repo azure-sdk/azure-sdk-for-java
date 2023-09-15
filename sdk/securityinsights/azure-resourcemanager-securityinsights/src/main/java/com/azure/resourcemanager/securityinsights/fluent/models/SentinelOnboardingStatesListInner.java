@@ -18,6 +18,10 @@ public final class SentinelOnboardingStatesListInner {
     @JsonProperty(value = "value", required = true)
     private List<SentinelOnboardingStateInner> value;
 
+    /** Creates an instance of SentinelOnboardingStatesListInner class. */
+    public SentinelOnboardingStatesListInner() {
+    }
+
     /**
      * Get the value property: Array of Sentinel onboarding states.
      *

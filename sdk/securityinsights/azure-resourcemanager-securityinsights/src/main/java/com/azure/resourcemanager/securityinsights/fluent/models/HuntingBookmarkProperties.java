@@ -82,6 +82,10 @@ public final class HuntingBookmarkProperties extends EntityCommonProperties {
     @JsonProperty(value = "incidentInfo")
     private IncidentInfo incidentInfo;
 
+    /** Creates an instance of HuntingBookmarkProperties class. */
+    public HuntingBookmarkProperties() {
+    }
+
     /**
      * Get the created property: The time the bookmark was created.
      *

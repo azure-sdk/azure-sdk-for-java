@@ -17,6 +17,15 @@ public final class DataTypeState extends ExpandableStringEnum<DataTypeState> {
     public static final DataTypeState DISABLED = fromString("Disabled");
 
     /**
+     * Creates a new instance of DataTypeState value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public DataTypeState() {
+    }
+
+    /**
      * Creates or finds a DataTypeState from its string representation.
      *
      * @param name a name to look for.

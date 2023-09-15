@@ -51,21 +51,6 @@ public interface ActionsClient {
      * @param workspaceName The name of the workspace.
      * @param ruleId Alert rule ID.
      * @param actionId Action ID.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the action of alert rule.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    ActionResponseInner get(String resourceGroupName, String workspaceName, String ruleId, String actionId);
-
-    /**
-     * Gets the action of alert rule.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param ruleId Alert rule ID.
-     * @param actionId Action ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -77,21 +62,19 @@ public interface ActionsClient {
         String resourceGroupName, String workspaceName, String ruleId, String actionId, Context context);
 
     /**
-     * Creates or updates the action of alert rule.
+     * Gets the action of alert rule.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param ruleId Alert rule ID.
      * @param actionId Action ID.
-     * @param action The action.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return action for alert rule.
+     * @return the action of alert rule.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    ActionResponseInner createOrUpdate(
-        String resourceGroupName, String workspaceName, String ruleId, String actionId, ActionRequest action);
+    ActionResponseInner get(String resourceGroupName, String workspaceName, String ruleId, String actionId);
 
     /**
      * Creates or updates the action of alert rule.
@@ -117,18 +100,21 @@ public interface ActionsClient {
         Context context);
 
     /**
-     * Delete the action of alert rule.
+     * Creates or updates the action of alert rule.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param ruleId Alert rule ID.
      * @param actionId Action ID.
+     * @param action The action.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return action for alert rule.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    void delete(String resourceGroupName, String workspaceName, String ruleId, String actionId);
+    ActionResponseInner createOrUpdate(
+        String resourceGroupName, String workspaceName, String ruleId, String actionId, ActionRequest action);
 
     /**
      * Delete the action of alert rule.
@@ -146,4 +132,18 @@ public interface ActionsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deleteWithResponse(
         String resourceGroupName, String workspaceName, String ruleId, String actionId, Context context);
+
+    /**
+     * Delete the action of alert rule.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param ruleId Alert rule ID.
+     * @param actionId Action ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    void delete(String resourceGroupName, String workspaceName, String ruleId, String actionId);
 }

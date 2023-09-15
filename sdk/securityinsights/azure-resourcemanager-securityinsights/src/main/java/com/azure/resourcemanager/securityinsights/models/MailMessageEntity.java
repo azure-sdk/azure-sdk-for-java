@@ -26,6 +26,10 @@ public final class MailMessageEntity extends EntityInner {
     @JsonProperty(value = "properties")
     private MailMessageEntityProperties innerProperties;
 
+    /** Creates an instance of MailMessageEntity class. */
+    public MailMessageEntity() {
+    }
+
     /**
      * Get the innerProperties property: Mail message entity properties.
      *

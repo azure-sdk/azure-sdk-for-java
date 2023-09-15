@@ -21,6 +21,10 @@ public final class TiTaxiiCheckRequirements extends DataConnectorsCheckRequireme
     @JsonProperty(value = "properties")
     private TiTaxiiCheckRequirementsProperties innerProperties;
 
+    /** Creates an instance of TiTaxiiCheckRequirements class. */
+    public TiTaxiiCheckRequirements() {
+    }
+
     /**
      * Get the innerProperties property: Threat Intelligence TAXII check required properties.
      *
@@ -28,6 +32,29 @@ public final class TiTaxiiCheckRequirements extends DataConnectorsCheckRequireme
      */
     private TiTaxiiCheckRequirementsProperties innerProperties() {
         return this.innerProperties;
+    }
+
+    /**
+     * Get the tenantId property: The tenant id to connect to, and get the data from.
+     *
+     * @return the tenantId value.
+     */
+    public String tenantId() {
+        return this.innerProperties() == null ? null : this.innerProperties().tenantId();
+    }
+
+    /**
+     * Set the tenantId property: The tenant id to connect to, and get the data from.
+     *
+     * @param tenantId the tenantId value to set.
+     * @return the TiTaxiiCheckRequirements object itself.
+     */
+    public TiTaxiiCheckRequirements withTenantId(String tenantId) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new TiTaxiiCheckRequirementsProperties();
+        }
+        this.innerProperties().withTenantId(tenantId);
+        return this;
     }
 
     /**

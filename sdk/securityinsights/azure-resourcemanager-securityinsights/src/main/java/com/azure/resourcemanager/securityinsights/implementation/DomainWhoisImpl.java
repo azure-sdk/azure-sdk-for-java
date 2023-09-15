@@ -27,15 +27,6 @@ public final class DomainWhoisImpl implements DomainWhois {
         this.serviceManager = serviceManager;
     }
 
-    public EnrichmentDomainWhois get(String resourceGroupName, String domain) {
-        EnrichmentDomainWhoisInner inner = this.serviceClient().get(resourceGroupName, domain);
-        if (inner != null) {
-            return new EnrichmentDomainWhoisImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<EnrichmentDomainWhois> getWithResponse(String resourceGroupName, String domain, Context context) {
         Response<EnrichmentDomainWhoisInner> inner =
             this.serviceClient().getWithResponse(resourceGroupName, domain, context);
@@ -45,6 +36,15 @@ public final class DomainWhoisImpl implements DomainWhois {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new EnrichmentDomainWhoisImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public EnrichmentDomainWhois get(String resourceGroupName, String domain) {
+        EnrichmentDomainWhoisInner inner = this.serviceClient().get(resourceGroupName, domain);
+        if (inner != null) {
+            return new EnrichmentDomainWhoisImpl(inner, this.manager());
         } else {
             return null;
         }

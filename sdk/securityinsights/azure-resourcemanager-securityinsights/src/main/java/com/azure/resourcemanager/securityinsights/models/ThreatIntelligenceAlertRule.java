@@ -24,6 +24,10 @@ public final class ThreatIntelligenceAlertRule extends AlertRuleInner {
     @JsonProperty(value = "properties")
     private ThreatIntelligenceAlertRuleProperties innerProperties;
 
+    /** Creates an instance of ThreatIntelligenceAlertRule class. */
+    public ThreatIntelligenceAlertRule() {
+    }
+
     /**
      * Get the innerProperties property: Threat Intelligence alert rule properties.
      *

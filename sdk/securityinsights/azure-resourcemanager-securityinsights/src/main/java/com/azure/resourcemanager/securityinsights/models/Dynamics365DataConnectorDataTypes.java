@@ -17,6 +17,10 @@ public final class Dynamics365DataConnectorDataTypes {
     @JsonProperty(value = "dynamics365CdsActivities", required = true)
     private Dynamics365DataConnectorDataTypesDynamics365CdsActivities dynamics365CdsActivities;
 
+    /** Creates an instance of Dynamics365DataConnectorDataTypes class. */
+    public Dynamics365DataConnectorDataTypes() {
+    }
+
     /**
      * Get the dynamics365CdsActivities property: Common Data Service data type connection.
      *
