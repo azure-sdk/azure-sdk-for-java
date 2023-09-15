@@ -43,6 +43,12 @@ public final class AutoMLJob extends JobBaseProperties {
     private Map<String, JobOutput> outputs;
 
     /*
+     * Queue settings for the job
+     */
+    @JsonProperty(value = "queueSettings")
+    private QueueSettings queueSettings;
+
+    /*
      * Compute Resource configuration for the job.
      */
     @JsonProperty(value = "resources")
@@ -119,6 +125,26 @@ public final class AutoMLJob extends JobBaseProperties {
      */
     public AutoMLJob withOutputs(Map<String, JobOutput> outputs) {
         this.outputs = outputs;
+        return this;
+    }
+
+    /**
+     * Get the queueSettings property: Queue settings for the job.
+     *
+     * @return the queueSettings value.
+     */
+    public QueueSettings queueSettings() {
+        return this.queueSettings;
+    }
+
+    /**
+     * Set the queueSettings property: Queue settings for the job.
+     *
+     * @param queueSettings the queueSettings value to set.
+     * @return the AutoMLJob object itself.
+     */
+    public AutoMLJob withQueueSettings(QueueSettings queueSettings) {
+        this.queueSettings = queueSettings;
         return this;
     }
 
@@ -206,6 +232,20 @@ public final class AutoMLJob extends JobBaseProperties {
 
     /** {@inheritDoc} */
     @Override
+    public AutoMLJob withNotificationSetting(NotificationSetting notificationSetting) {
+        super.withNotificationSetting(notificationSetting);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public AutoMLJob withSecretsConfiguration(Map<String, SecretConfiguration> secretsConfiguration) {
+        super.withSecretsConfiguration(secretsConfiguration);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public AutoMLJob withServices(Map<String, JobService> services) {
         super.withServices(services);
         return this;
@@ -249,6 +289,9 @@ public final class AutoMLJob extends JobBaseProperties {
                             e.validate();
                         }
                     });
+        }
+        if (queueSettings() != null) {
+            queueSettings().validate();
         }
         if (resources() != null) {
             resources().validate();

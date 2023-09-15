@@ -40,7 +40,7 @@ public interface EndpointPropertiesBase {
     Map<String, String> properties();
 
     /**
-     * Gets the scoringUri property: Endpoint URI.
+     * Gets the scoringUri property: Endpoint URI for the inference endpoint.
      *
      * @return the scoringUri value.
      */

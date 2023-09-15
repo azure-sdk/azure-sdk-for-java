@@ -41,6 +41,7 @@ public interface DataVersionsClient {
      * @param tags Comma-separated list of tag names (and optionally values). Example: tag1,tag2=value2.
      * @param listViewType [ListViewType.ActiveOnly, ListViewType.ArchivedOnly, ListViewType.All]View type for
      *     including/excluding (for example) archived entities.
+     * @param stage data stage.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -57,6 +58,7 @@ public interface DataVersionsClient {
         String skip,
         String tags,
         ListViewType listViewType,
+        String stage,
         Context context);
 
     /**

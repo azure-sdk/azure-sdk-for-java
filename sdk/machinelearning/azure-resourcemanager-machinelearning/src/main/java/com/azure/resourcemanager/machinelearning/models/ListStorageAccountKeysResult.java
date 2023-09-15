@@ -9,7 +9,7 @@ import com.azure.resourcemanager.machinelearning.fluent.models.ListStorageAccoun
 /** An immutable client-side representation of ListStorageAccountKeysResult. */
 public interface ListStorageAccountKeysResult {
     /**
-     * Gets the userStorageKey property: The userStorageKey property.
+     * Gets the userStorageKey property: The access key of the storage.
      *
      * @return the userStorageKey value.
      */

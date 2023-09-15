@@ -42,7 +42,7 @@ public class EndpointPropertiesBaseInner {
     private Map<String, String> properties;
 
     /*
-     * Endpoint URI.
+     * Endpoint URI for the inference endpoint.
      */
     @JsonProperty(value = "scoringUri", access = JsonProperty.Access.WRITE_ONLY)
     private String scoringUri;
@@ -142,7 +142,7 @@ public class EndpointPropertiesBaseInner {
     }
 
     /**
-     * Get the scoringUri property: Endpoint URI.
+     * Get the scoringUri property: Endpoint URI for the inference endpoint.
      *
      * @return the scoringUri value.
      */
