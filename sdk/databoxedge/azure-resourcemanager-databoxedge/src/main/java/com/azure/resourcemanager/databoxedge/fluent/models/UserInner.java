@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.databoxedge.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.databoxedge.models.ArmBaseModel;
 import com.azure.resourcemanager.databoxedge.models.AsymmetricEncryptedSecret;
@@ -22,6 +23,12 @@ public final class UserInner extends ArmBaseModel {
     @JsonProperty(value = "properties", required = true)
     private UserProperties innerProperties = new UserProperties();
 
+    /*
+     * Metadata pertaining to creation and last modification of User
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
+
     /** Creates an instance of UserInner class. */
     public UserInner() {
     }
@@ -33,6 +40,15 @@ public final class UserInner extends ArmBaseModel {
      */
     private UserProperties innerProperties() {
         return this.innerProperties;
+    }
+
+    /**
+     * Get the systemData property: Metadata pertaining to creation and last modification of User.
+     *
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**
@@ -66,21 +82,6 @@ public final class UserInner extends ArmBaseModel {
      */
     public List<ShareAccessRight> shareAccessRights() {
         return this.innerProperties() == null ? null : this.innerProperties().shareAccessRights();
-    }
-
-    /**
-     * Set the shareAccessRights property: List of shares that the user has rights on. This field should not be
-     * specified during user creation.
-     *
-     * @param shareAccessRights the shareAccessRights value to set.
-     * @return the UserInner object itself.
-     */
-    public UserInner withShareAccessRights(List<ShareAccessRight> shareAccessRights) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new UserProperties();
-        }
-        this.innerProperties().withShareAccessRights(shareAccessRights);
-        return this;
     }
 
     /**
