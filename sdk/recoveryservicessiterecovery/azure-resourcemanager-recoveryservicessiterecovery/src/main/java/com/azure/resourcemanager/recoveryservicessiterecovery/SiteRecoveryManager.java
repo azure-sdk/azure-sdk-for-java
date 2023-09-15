@@ -728,8 +728,10 @@ public final class SiteRecoveryManager {
     }
 
     /**
-     * @return Wrapped service client SiteRecoveryManagementClient providing direct access to the underlying
-     *     auto-generated API implementation, based on Azure REST API.
+     * Gets wrapped service client SiteRecoveryManagementClient providing direct access to the underlying auto-generated
+     * API implementation, based on Azure REST API.
+     *
+     * @return Wrapped service client SiteRecoveryManagementClient.
      */
     public SiteRecoveryManagementClient serviceClient() {
         return this.clientObject;
