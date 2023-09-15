@@ -65,11 +65,10 @@ public final class SchedulesClientImpl implements SchedulesClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "LabServicesClientSch")
-    private interface SchedulesService {
+    public interface SchedulesService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs"
-                + "/{labName}/schedules")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs/{labName}/schedules")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<PagedSchedules>> listByLab(
@@ -84,8 +83,7 @@ public final class SchedulesClientImpl implements SchedulesClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs"
-                + "/{labName}/schedules/{scheduleName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs/{labName}/schedules/{scheduleName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ScheduleInner>> get(
@@ -100,8 +98,7 @@ public final class SchedulesClientImpl implements SchedulesClient {
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs"
-                + "/{labName}/schedules/{scheduleName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs/{labName}/schedules/{scheduleName}")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ScheduleInner>> createOrUpdate(
@@ -117,8 +114,7 @@ public final class SchedulesClientImpl implements SchedulesClient {
 
         @Headers({"Content-Type: application/json"})
         @Patch(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs"
-                + "/{labName}/schedules/{scheduleName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs/{labName}/schedules/{scheduleName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ScheduleInner>> update(
@@ -134,8 +130,7 @@ public final class SchedulesClientImpl implements SchedulesClient {
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs"
-                + "/{labName}/schedules/{scheduleName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs/{labName}/schedules/{scheduleName}")
         @ExpectedResponses({200, 202, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(
@@ -521,25 +516,6 @@ public final class SchedulesClientImpl implements SchedulesClient {
      * @param labName The name of the lab that uniquely identifies it within containing lab plan. Used in resource URIs.
      * @param scheduleName The name of the schedule that uniquely identifies it within containing lab. Used in resource
      *     URIs.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return schedule for automatically turning virtual machines in a lab on and off at specified times.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ScheduleInner get(String resourceGroupName, String labName, String scheduleName) {
-        return getAsync(resourceGroupName, labName, scheduleName).block();
-    }
-
-    /**
-     * Get a lab Schedule.
-     *
-     * <p>Returns the properties of a lab Schedule.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param labName The name of the lab that uniquely identifies it within containing lab plan. Used in resource URIs.
-     * @param scheduleName The name of the schedule that uniquely identifies it within containing lab. Used in resource
-     *     URIs.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -551,6 +527,25 @@ public final class SchedulesClientImpl implements SchedulesClient {
     public Response<ScheduleInner> getWithResponse(
         String resourceGroupName, String labName, String scheduleName, Context context) {
         return getWithResponseAsync(resourceGroupName, labName, scheduleName, context).block();
+    }
+
+    /**
+     * Get a lab Schedule.
+     *
+     * <p>Returns the properties of a lab Schedule.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param labName The name of the lab that uniquely identifies it within containing lab plan. Used in resource URIs.
+     * @param scheduleName The name of the schedule that uniquely identifies it within containing lab. Used in resource
+     *     URIs.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return schedule for automatically turning virtual machines in a lab on and off at specified times.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ScheduleInner get(String resourceGroupName, String labName, String scheduleName) {
+        return getWithResponse(resourceGroupName, labName, scheduleName, Context.NONE).getValue();
     }
 
     /**
@@ -712,15 +707,17 @@ public final class SchedulesClientImpl implements SchedulesClient {
      * @param scheduleName The name of the schedule that uniquely identifies it within containing lab. Used in resource
      *     URIs.
      * @param body The request body.
+     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return schedule for automatically turning virtual machines in a lab on and off at specified times.
+     * @return schedule for automatically turning virtual machines in a lab on and off at specified times along with
+     *     {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ScheduleInner createOrUpdate(
-        String resourceGroupName, String labName, String scheduleName, ScheduleInner body) {
-        return createOrUpdateAsync(resourceGroupName, labName, scheduleName, body).block();
+    public Response<ScheduleInner> createOrUpdateWithResponse(
+        String resourceGroupName, String labName, String scheduleName, ScheduleInner body, Context context) {
+        return createOrUpdateWithResponseAsync(resourceGroupName, labName, scheduleName, body, context).block();
     }
 
     /**
@@ -733,17 +730,15 @@ public final class SchedulesClientImpl implements SchedulesClient {
      * @param scheduleName The name of the schedule that uniquely identifies it within containing lab. Used in resource
      *     URIs.
      * @param body The request body.
-     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return schedule for automatically turning virtual machines in a lab on and off at specified times along with
-     *     {@link Response}.
+     * @return schedule for automatically turning virtual machines in a lab on and off at specified times.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ScheduleInner> createOrUpdateWithResponse(
-        String resourceGroupName, String labName, String scheduleName, ScheduleInner body, Context context) {
-        return createOrUpdateWithResponseAsync(resourceGroupName, labName, scheduleName, body, context).block();
+    public ScheduleInner createOrUpdate(
+        String resourceGroupName, String labName, String scheduleName, ScheduleInner body) {
+        return createOrUpdateWithResponse(resourceGroupName, labName, scheduleName, body, Context.NONE).getValue();
     }
 
     /**
@@ -905,14 +900,17 @@ public final class SchedulesClientImpl implements SchedulesClient {
      * @param scheduleName The name of the schedule that uniquely identifies it within containing lab. Used in resource
      *     URIs.
      * @param body The request body.
+     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return schedule for automatically turning virtual machines in a lab on and off at specified times.
+     * @return schedule for automatically turning virtual machines in a lab on and off at specified times along with
+     *     {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ScheduleInner update(String resourceGroupName, String labName, String scheduleName, ScheduleUpdate body) {
-        return updateAsync(resourceGroupName, labName, scheduleName, body).block();
+    public Response<ScheduleInner> updateWithResponse(
+        String resourceGroupName, String labName, String scheduleName, ScheduleUpdate body, Context context) {
+        return updateWithResponseAsync(resourceGroupName, labName, scheduleName, body, context).block();
     }
 
     /**
@@ -925,17 +923,14 @@ public final class SchedulesClientImpl implements SchedulesClient {
      * @param scheduleName The name of the schedule that uniquely identifies it within containing lab. Used in resource
      *     URIs.
      * @param body The request body.
-     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return schedule for automatically turning virtual machines in a lab on and off at specified times along with
-     *     {@link Response}.
+     * @return schedule for automatically turning virtual machines in a lab on and off at specified times.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ScheduleInner> updateWithResponse(
-        String resourceGroupName, String labName, String scheduleName, ScheduleUpdate body, Context context) {
-        return updateWithResponseAsync(resourceGroupName, labName, scheduleName, body, context).block();
+    public ScheduleInner update(String resourceGroupName, String labName, String scheduleName, ScheduleUpdate body) {
+        return updateWithResponse(resourceGroupName, labName, scheduleName, body, Context.NONE).getValue();
     }
 
     /**
@@ -1115,7 +1110,7 @@ public final class SchedulesClientImpl implements SchedulesClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String labName, String scheduleName) {
-        return beginDeleteAsync(resourceGroupName, labName, scheduleName).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, labName, scheduleName).getSyncPoller();
     }
 
     /**
@@ -1136,7 +1131,7 @@ public final class SchedulesClientImpl implements SchedulesClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String labName, String scheduleName, Context context) {
-        return beginDeleteAsync(resourceGroupName, labName, scheduleName, context).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, labName, scheduleName, context).getSyncPoller();
     }
 
     /**

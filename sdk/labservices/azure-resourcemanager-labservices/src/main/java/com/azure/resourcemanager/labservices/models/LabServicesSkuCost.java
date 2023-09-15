@@ -28,6 +28,10 @@ public final class LabServicesSkuCost {
     @JsonProperty(value = "extendedUnit", access = JsonProperty.Access.WRITE_ONLY)
     private String extendedUnit;
 
+    /** Creates an instance of LabServicesSkuCost class. */
+    public LabServicesSkuCost() {
+    }
+
     /**
      * Get the meterId property: The meter id.
      *

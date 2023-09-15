@@ -47,6 +47,13 @@ public interface Schedule {
     ProvisioningState provisioningState();
 
     /**
+     * Gets the resourceOperationError property: Error details of last operation done on schedule.
+     *
+     * @return the resourceOperationError value.
+     */
+    ResourceOperationError resourceOperationError();
+
+    /**
      * Gets the startAt property: When lab user virtual machines will be started. Timestamp offsets will be ignored and
      * timeZoneId is used instead.
      *
@@ -101,11 +108,13 @@ public interface Schedule {
     interface Definition
         extends DefinitionStages.Blank, DefinitionStages.WithParentResource, DefinitionStages.WithCreate {
     }
+
     /** The Schedule definition stages. */
     interface DefinitionStages {
         /** The first stage of the Schedule definition. */
         interface Blank extends WithParentResource {
         }
+
         /** The stage of the Schedule definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -118,6 +127,7 @@ public interface Schedule {
              */
             WithCreate withExistingLab(String resourceGroupName, String labName);
         }
+
         /**
          * The stage of the Schedule definition which contains all the minimum required properties for the resource to
          * be created, but also allows for any other optional properties to be specified.
@@ -143,6 +153,7 @@ public interface Schedule {
              */
             Schedule create(Context context);
         }
+
         /** The stage of the Schedule definition allowing to specify startAt. */
         interface WithStartAt {
             /**
@@ -155,6 +166,7 @@ public interface Schedule {
              */
             WithCreate withStartAt(OffsetDateTime startAt);
         }
+
         /** The stage of the Schedule definition allowing to specify stopAt. */
         interface WithStopAt {
             /**
@@ -167,6 +179,7 @@ public interface Schedule {
              */
             WithCreate withStopAt(OffsetDateTime stopAt);
         }
+
         /** The stage of the Schedule definition allowing to specify recurrencePattern. */
         interface WithRecurrencePattern {
             /**
@@ -177,6 +190,7 @@ public interface Schedule {
              */
             WithCreate withRecurrencePattern(RecurrencePattern recurrencePattern);
         }
+
         /** The stage of the Schedule definition allowing to specify timeZoneId. */
         interface WithTimeZoneId {
             /**
@@ -187,6 +201,7 @@ public interface Schedule {
              */
             WithCreate withTimeZoneId(String timeZoneId);
         }
+
         /** The stage of the Schedule definition allowing to specify notes. */
         interface WithNotes {
             /**
@@ -198,6 +213,7 @@ public interface Schedule {
             WithCreate withNotes(String notes);
         }
     }
+
     /**
      * Begins update for the Schedule resource.
      *
@@ -227,6 +243,7 @@ public interface Schedule {
          */
         Schedule apply(Context context);
     }
+
     /** The Schedule update stages. */
     interface UpdateStages {
         /** The stage of the Schedule update allowing to specify startAt. */
@@ -241,6 +258,7 @@ public interface Schedule {
              */
             Update withStartAt(OffsetDateTime startAt);
         }
+
         /** The stage of the Schedule update allowing to specify stopAt. */
         interface WithStopAt {
             /**
@@ -253,6 +271,7 @@ public interface Schedule {
              */
             Update withStopAt(OffsetDateTime stopAt);
         }
+
         /** The stage of the Schedule update allowing to specify recurrencePattern. */
         interface WithRecurrencePattern {
             /**
@@ -263,6 +282,7 @@ public interface Schedule {
              */
             Update withRecurrencePattern(RecurrencePattern recurrencePattern);
         }
+
         /** The stage of the Schedule update allowing to specify timeZoneId. */
         interface WithTimeZoneId {
             /**
@@ -273,6 +293,7 @@ public interface Schedule {
              */
             Update withTimeZoneId(String timeZoneId);
         }
+
         /** The stage of the Schedule update allowing to specify notes. */
         interface WithNotes {
             /**
@@ -284,6 +305,7 @@ public interface Schedule {
             Update withNotes(String notes);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

@@ -105,6 +105,10 @@ public final class ImageProperties extends ImageUpdateProperties {
     @JsonProperty(value = "osState", access = JsonProperty.Access.WRITE_ONLY)
     private OsState osState;
 
+    /** Creates an instance of ImageProperties class. */
+    public ImageProperties() {
+    }
+
     /**
      * Get the provisioningState property: Current provisioning state of the image.
      *

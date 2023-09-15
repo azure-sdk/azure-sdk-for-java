@@ -9,6 +9,7 @@ import com.azure.resourcemanager.labservices.models.AutoShutdownProfile;
 import com.azure.resourcemanager.labservices.models.ConnectionProfile;
 import com.azure.resourcemanager.labservices.models.LabPlanNetworkProfile;
 import com.azure.resourcemanager.labservices.models.ProvisioningState;
+import com.azure.resourcemanager.labservices.models.ResourceOperationError;
 import com.azure.resourcemanager.labservices.models.SupportInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
@@ -22,6 +23,16 @@ public final class LabPlanProperties extends LabPlanUpdateProperties {
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ProvisioningState provisioningState;
 
+    /*
+     * Error details of last operation done on lab plan.
+     */
+    @JsonProperty(value = "resourceOperationError", access = JsonProperty.Access.WRITE_ONLY)
+    private ResourceOperationError resourceOperationError;
+
+    /** Creates an instance of LabPlanProperties class. */
+    public LabPlanProperties() {
+    }
+
     /**
      * Get the provisioningState property: Current provisioning state of the lab plan.
      *
@@ -29,6 +40,15 @@ public final class LabPlanProperties extends LabPlanUpdateProperties {
      */
     public ProvisioningState provisioningState() {
         return this.provisioningState;
+    }
+
+    /**
+     * Get the resourceOperationError property: Error details of last operation done on lab plan.
+     *
+     * @return the resourceOperationError value.
+     */
+    public ResourceOperationError resourceOperationError() {
+        return this.resourceOperationError;
     }
 
     /** {@inheritDoc} */
@@ -88,5 +108,8 @@ public final class LabPlanProperties extends LabPlanUpdateProperties {
     @Override
     public void validate() {
         super.validate();
+        if (resourceOperationError() != null) {
+            resourceOperationError().validate();
+        }
     }
 }

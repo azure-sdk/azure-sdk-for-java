@@ -48,12 +48,13 @@ public interface Users {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab plan. Used in resource URIs.
      * @param username The name of the user that uniquely identifies it within containing lab. Used in resource URIs.
+     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return user of a lab that can register for and use virtual machines within the lab.
+     * @return user of a lab that can register for and use virtual machines within the lab along with {@link Response}.
      */
-    User get(String resourceGroupName, String labName, String username);
+    Response<User> getWithResponse(String resourceGroupName, String labName, String username, Context context);
 
     /**
      * Get a lab user.
@@ -63,13 +64,12 @@ public interface Users {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab plan. Used in resource URIs.
      * @param username The name of the user that uniquely identifies it within containing lab. Used in resource URIs.
-     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return user of a lab that can register for and use virtual machines within the lab along with {@link Response}.
+     * @return user of a lab that can register for and use virtual machines within the lab.
      */
-    Response<User> getWithResponse(String resourceGroupName, String labName, String username, Context context);
+    User get(String resourceGroupName, String labName, String username);
 
     /**
      * Deletes a user resource.

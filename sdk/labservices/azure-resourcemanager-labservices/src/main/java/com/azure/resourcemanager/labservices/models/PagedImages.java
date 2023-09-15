@@ -24,6 +24,10 @@ public final class PagedImages {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
+    /** Creates an instance of PagedImages class. */
+    public PagedImages() {
+    }
+
     /**
      * Get the value property: The array page of virtual machine images.
      *

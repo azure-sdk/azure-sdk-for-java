@@ -22,6 +22,10 @@ public final class SecurityProfile {
     @JsonProperty(value = "openAccess")
     private EnableState openAccess;
 
+    /** Creates an instance of SecurityProfile class. */
+    public SecurityProfile() {
+    }
+
     /**
      * Get the registrationCode property: The registration code for the lab.
      *

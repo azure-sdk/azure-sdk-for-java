@@ -48,6 +48,13 @@ public interface User {
     ProvisioningState provisioningState();
 
     /**
+     * Gets the resourceOperationError property: Error details of last operation done on lab plan.
+     *
+     * @return the resourceOperationError value.
+     */
+    ResourceOperationError resourceOperationError();
+
+    /**
      * Gets the displayName property: Display name of the user, for example user's full name.
      *
      * @return the displayName value.
@@ -118,11 +125,13 @@ public interface User {
             DefinitionStages.WithEmail,
             DefinitionStages.WithCreate {
     }
+
     /** The User definition stages. */
     interface DefinitionStages {
         /** The first stage of the User definition. */
         interface Blank extends WithParentResource {
         }
+
         /** The stage of the User definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -135,6 +144,7 @@ public interface User {
              */
             WithEmail withExistingLab(String resourceGroupName, String labName);
         }
+
         /** The stage of the User definition allowing to specify email. */
         interface WithEmail {
             /**
@@ -145,6 +155,7 @@ public interface User {
              */
             WithCreate withEmail(String email);
         }
+
         /**
          * The stage of the User definition which contains all the minimum required properties for the resource to be
          * created, but also allows for any other optional properties to be specified.
@@ -165,6 +176,7 @@ public interface User {
              */
             User create(Context context);
         }
+
         /** The stage of the User definition allowing to specify additionalUsageQuota. */
         interface WithAdditionalUsageQuota {
             /**
@@ -178,6 +190,7 @@ public interface User {
             WithCreate withAdditionalUsageQuota(Duration additionalUsageQuota);
         }
     }
+
     /**
      * Begins update for the User resource.
      *
@@ -202,6 +215,7 @@ public interface User {
          */
         User apply(Context context);
     }
+
     /** The User update stages. */
     interface UpdateStages {
         /** The stage of the User update allowing to specify additionalUsageQuota. */
@@ -217,6 +231,7 @@ public interface User {
             Update withAdditionalUsageQuota(Duration additionalUsageQuota);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

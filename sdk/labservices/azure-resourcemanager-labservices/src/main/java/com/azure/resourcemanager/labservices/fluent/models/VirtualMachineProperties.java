@@ -6,6 +6,7 @@ package com.azure.resourcemanager.labservices.fluent.models;
 
 import com.azure.core.annotation.Immutable;
 import com.azure.resourcemanager.labservices.models.ProvisioningState;
+import com.azure.resourcemanager.labservices.models.ResourceOperationError;
 import com.azure.resourcemanager.labservices.models.VirtualMachineConnectionProfile;
 import com.azure.resourcemanager.labservices.models.VirtualMachineState;
 import com.azure.resourcemanager.labservices.models.VirtualMachineType;
@@ -27,6 +28,12 @@ public final class VirtualMachineProperties {
     private VirtualMachineState state;
 
     /*
+     * Error details of last operation done on lab plan.
+     */
+    @JsonProperty(value = "resourceOperationError", access = JsonProperty.Access.WRITE_ONLY)
+    private ResourceOperationError resourceOperationError;
+
+    /*
      * Profile for information about connecting to the virtual machine.
      */
     @JsonProperty(value = "connectionProfile", access = JsonProperty.Access.WRITE_ONLY)
@@ -44,6 +51,10 @@ public final class VirtualMachineProperties {
     @JsonProperty(value = "vmType", access = JsonProperty.Access.WRITE_ONLY)
     private VirtualMachineType vmType;
 
+    /** Creates an instance of VirtualMachineProperties class. */
+    public VirtualMachineProperties() {
+    }
+
     /**
      * Get the provisioningState property: Current provisioning state of the virtual machine.
      *
@@ -60,6 +71,15 @@ public final class VirtualMachineProperties {
      */
     public VirtualMachineState state() {
         return this.state;
+    }
+
+    /**
+     * Get the resourceOperationError property: Error details of last operation done on lab plan.
+     *
+     * @return the resourceOperationError value.
+     */
+    public ResourceOperationError resourceOperationError() {
+        return this.resourceOperationError;
     }
 
     /**
@@ -95,6 +115,9 @@ public final class VirtualMachineProperties {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (resourceOperationError() != null) {
+            resourceOperationError().validate();
+        }
         if (connectionProfile() != null) {
             connectionProfile().validate();
         }

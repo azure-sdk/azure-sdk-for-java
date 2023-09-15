@@ -4,18 +4,19 @@
 
 package com.azure.resourcemanager.labservices.fluent.models;
 
-import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.Immutable;
 import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.labservices.models.ProvisioningState;
+import com.azure.resourcemanager.labservices.models.ResourceOperationError;
 import com.azure.resourcemanager.labservices.models.VirtualMachineConnectionProfile;
 import com.azure.resourcemanager.labservices.models.VirtualMachineState;
 import com.azure.resourcemanager.labservices.models.VirtualMachineType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** A lab virtual machine resource. */
-@Fluent
+@Immutable
 public final class VirtualMachineInner extends ProxyResource {
     /*
      * System data of the Lab virtual machine.
@@ -28,6 +29,10 @@ public final class VirtualMachineInner extends ProxyResource {
      */
     @JsonProperty(value = "properties", required = true)
     private VirtualMachineProperties innerProperties = new VirtualMachineProperties();
+
+    /** Creates an instance of VirtualMachineInner class. */
+    public VirtualMachineInner() {
+    }
 
     /**
      * Get the systemData property: System data of the Lab virtual machine.
@@ -63,6 +68,15 @@ public final class VirtualMachineInner extends ProxyResource {
      */
     public VirtualMachineState state() {
         return this.innerProperties() == null ? null : this.innerProperties().state();
+    }
+
+    /**
+     * Get the resourceOperationError property: Error details of last operation done on lab plan.
+     *
+     * @return the resourceOperationError value.
+     */
+    public ResourceOperationError resourceOperationError() {
+        return this.innerProperties() == null ? null : this.innerProperties().resourceOperationError();
     }
 
     /**

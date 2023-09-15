@@ -18,6 +18,15 @@ public final class RestrictionReasonCode extends ExpandableStringEnum<Restrictio
         fromString("NotAvailableForSubscription");
 
     /**
+     * Creates a new instance of RestrictionReasonCode value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public RestrictionReasonCode() {
+    }
+
+    /**
      * Creates or finds a RestrictionReasonCode from its string representation.
      *
      * @param name a name to look for.

@@ -4,12 +4,10 @@
 
 package com.azure.resourcemanager.labservices.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for VirtualMachines Redeploy. */
 public final class VirtualMachinesRedeploySamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/VirtualMachines/redeployVirtualMachine.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/VirtualMachines/redeployVirtualMachine.json
      */
     /**
      * Sample code: redeployVirtualMachine.
@@ -17,6 +15,6 @@ public final class VirtualMachinesRedeploySamples {
      * @param manager Entry point to LabServicesManager.
      */
     public static void redeployVirtualMachine(com.azure.resourcemanager.labservices.LabServicesManager manager) {
-        manager.virtualMachines().redeploy("testrg123", "testlab", "template", Context.NONE);
+        manager.virtualMachines().redeploy("testrg123", "testlab", "template", com.azure.core.util.Context.NONE);
     }
 }
