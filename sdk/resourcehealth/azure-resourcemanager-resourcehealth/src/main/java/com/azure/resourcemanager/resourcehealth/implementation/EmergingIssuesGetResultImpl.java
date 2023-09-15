@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.resourcehealth.implementation;
 
-import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.resourcehealth.fluent.models.EmergingIssuesGetResultInner;
 import com.azure.resourcemanager.resourcehealth.models.EmergingIssuesGetResult;
 import com.azure.resourcemanager.resourcehealth.models.StatusActiveEvent;
@@ -35,10 +34,6 @@ public final class EmergingIssuesGetResultImpl implements EmergingIssuesGetResul
 
     public String type() {
         return this.innerModel().type();
-    }
-
-    public SystemData systemData() {
-        return this.innerModel().systemData();
     }
 
     public OffsetDateTime refreshTimestamp() {

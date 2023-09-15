@@ -6,7 +6,6 @@ package com.azure.resourcemanager.resourcehealth.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
-import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.resourcehealth.models.KeyValueItem;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
@@ -20,12 +19,6 @@ public final class EventImpactedResourceInner extends ProxyResource {
     @JsonProperty(value = "properties")
     private EventImpactedResourceProperties innerProperties;
 
-    /*
-     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     */
-    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
-    private SystemData systemData;
-
     /** Creates an instance of EventImpactedResourceInner class. */
     public EventImpactedResourceInner() {
     }
@@ -37,15 +30,6 @@ public final class EventImpactedResourceInner extends ProxyResource {
      */
     private EventImpactedResourceProperties innerProperties() {
         return this.innerProperties;
-    }
-
-    /**
-     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
-     * @return the systemData value.
-     */
-    public SystemData systemData() {
-        return this.systemData;
     }
 
     /**
@@ -73,6 +57,51 @@ public final class EventImpactedResourceInner extends ProxyResource {
      */
     public String targetRegion() {
         return this.innerProperties() == null ? null : this.innerProperties().targetRegion();
+    }
+
+    /**
+     * Get the resourceName property: Resource name of the impacted resource.
+     *
+     * @return the resourceName value.
+     */
+    public String resourceName() {
+        return this.innerProperties() == null ? null : this.innerProperties().resourceName();
+    }
+
+    /**
+     * Get the resourceGroup property: Resource group name of the impacted resource.
+     *
+     * @return the resourceGroup value.
+     */
+    public String resourceGroup() {
+        return this.innerProperties() == null ? null : this.innerProperties().resourceGroup();
+    }
+
+    /**
+     * Get the status property: Status of the impacted resource.
+     *
+     * @return the status value.
+     */
+    public String status() {
+        return this.innerProperties() == null ? null : this.innerProperties().status();
+    }
+
+    /**
+     * Get the maintenanceStartTime property: Start time of maintenance for the impacted resource.
+     *
+     * @return the maintenanceStartTime value.
+     */
+    public String maintenanceStartTime() {
+        return this.innerProperties() == null ? null : this.innerProperties().maintenanceStartTime();
+    }
+
+    /**
+     * Get the maintenanceEndTime property: End time of maintenance for the impacted resource.
+     *
+     * @return the maintenanceEndTime value.
+     */
+    public String maintenanceEndTime() {
+        return this.innerProperties() == null ? null : this.innerProperties().maintenanceEndTime();
     }
 
     /**
