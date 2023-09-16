@@ -8,22 +8,22 @@ import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 
-/** Resource collection API of UpdateRuns. */
-public interface UpdateRuns {
+/** Resource collection API of FleetUpdateStrategies. */
+public interface FleetUpdateStrategies {
     /**
-     * List UpdateRun resources by Fleet.
+     * List FleetUpdateStrategy resources by Fleet.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fleetName The name of the Fleet resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a UpdateRun list operation as paginated response with {@link PagedIterable}.
+     * @return the response of a FleetUpdateStrategy list operation as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<UpdateRun> listByFleet(String resourceGroupName, String fleetName);
+    PagedIterable<FleetUpdateStrategy> listByFleet(String resourceGroupName, String fleetName);
 
     /**
-     * List UpdateRun resources by Fleet.
+     * List FleetUpdateStrategy resources by Fleet.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fleetName The name of the Fleet resource.
@@ -31,145 +31,89 @@ public interface UpdateRuns {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a UpdateRun list operation as paginated response with {@link PagedIterable}.
+     * @return the response of a FleetUpdateStrategy list operation as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<UpdateRun> listByFleet(String resourceGroupName, String fleetName, Context context);
+    PagedIterable<FleetUpdateStrategy> listByFleet(String resourceGroupName, String fleetName, Context context);
 
     /**
-     * Get a UpdateRun.
+     * Get a FleetUpdateStrategy.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fleetName The name of the Fleet resource.
-     * @param updateRunName The name of the UpdateRun resource.
+     * @param updateStrategyName The name of the UpdateStrategy resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a UpdateRun along with {@link Response}.
+     * @return a FleetUpdateStrategy along with {@link Response}.
      */
-    Response<UpdateRun> getWithResponse(
-        String resourceGroupName, String fleetName, String updateRunName, Context context);
+    Response<FleetUpdateStrategy> getWithResponse(
+        String resourceGroupName, String fleetName, String updateStrategyName, Context context);
 
     /**
-     * Get a UpdateRun.
+     * Get a FleetUpdateStrategy.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fleetName The name of the Fleet resource.
-     * @param updateRunName The name of the UpdateRun resource.
+     * @param updateStrategyName The name of the UpdateStrategy resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a UpdateRun.
+     * @return a FleetUpdateStrategy.
      */
-    UpdateRun get(String resourceGroupName, String fleetName, String updateRunName);
+    FleetUpdateStrategy get(String resourceGroupName, String fleetName, String updateStrategyName);
 
     /**
-     * Delete a UpdateRun.
+     * Delete a FleetUpdateStrategy.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fleetName The name of the Fleet resource.
-     * @param updateRunName The name of the UpdateRun resource.
+     * @param updateStrategyName The name of the UpdateStrategy resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
-    void delete(String resourceGroupName, String fleetName, String updateRunName);
+    void delete(String resourceGroupName, String fleetName, String updateStrategyName);
 
     /**
-     * Delete a UpdateRun.
+     * Delete a FleetUpdateStrategy.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fleetName The name of the Fleet resource.
-     * @param updateRunName The name of the UpdateRun resource.
+     * @param updateStrategyName The name of the UpdateStrategy resource.
      * @param ifMatch The request should only proceed if an entity matches this string.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
-    void delete(String resourceGroupName, String fleetName, String updateRunName, String ifMatch, Context context);
+    void delete(String resourceGroupName, String fleetName, String updateStrategyName, String ifMatch, Context context);
 
     /**
-     * Starts an UpdateRun.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param fleetName The name of the Fleet resource.
-     * @param updateRunName The name of the UpdateRun resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a multi-stage process to perform update operations across members of a Fleet.
-     */
-    UpdateRun start(String resourceGroupName, String fleetName, String updateRunName);
-
-    /**
-     * Starts an UpdateRun.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param fleetName The name of the Fleet resource.
-     * @param updateRunName The name of the UpdateRun resource.
-     * @param ifMatch The request should only proceed if an entity matches this string.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a multi-stage process to perform update operations across members of a Fleet.
-     */
-    UpdateRun start(String resourceGroupName, String fleetName, String updateRunName, String ifMatch, Context context);
-
-    /**
-     * Stops an UpdateRun.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param fleetName The name of the Fleet resource.
-     * @param updateRunName The name of the UpdateRun resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a multi-stage process to perform update operations across members of a Fleet.
-     */
-    UpdateRun stop(String resourceGroupName, String fleetName, String updateRunName);
-
-    /**
-     * Stops an UpdateRun.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param fleetName The name of the Fleet resource.
-     * @param updateRunName The name of the UpdateRun resource.
-     * @param ifMatch The request should only proceed if an entity matches this string.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a multi-stage process to perform update operations across members of a Fleet.
-     */
-    UpdateRun stop(String resourceGroupName, String fleetName, String updateRunName, String ifMatch, Context context);
-
-    /**
-     * Get a UpdateRun.
+     * Get a FleetUpdateStrategy.
      *
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a UpdateRun along with {@link Response}.
+     * @return a FleetUpdateStrategy along with {@link Response}.
      */
-    UpdateRun getById(String id);
+    FleetUpdateStrategy getById(String id);
 
     /**
-     * Get a UpdateRun.
+     * Get a FleetUpdateStrategy.
      *
      * @param id the resource ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a UpdateRun along with {@link Response}.
+     * @return a FleetUpdateStrategy along with {@link Response}.
      */
-    Response<UpdateRun> getByIdWithResponse(String id, Context context);
+    Response<FleetUpdateStrategy> getByIdWithResponse(String id, Context context);
 
     /**
-     * Delete a UpdateRun.
+     * Delete a FleetUpdateStrategy.
      *
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -179,7 +123,7 @@ public interface UpdateRuns {
     void deleteById(String id);
 
     /**
-     * Delete a UpdateRun.
+     * Delete a FleetUpdateStrategy.
      *
      * @param id the resource ID.
      * @param ifMatch The request should only proceed if an entity matches this string.
@@ -191,10 +135,10 @@ public interface UpdateRuns {
     void deleteByIdWithResponse(String id, String ifMatch, Context context);
 
     /**
-     * Begins definition for a new UpdateRun resource.
+     * Begins definition for a new FleetUpdateStrategy resource.
      *
      * @param name resource name.
-     * @return the first stage of the new UpdateRun definition.
+     * @return the first stage of the new FleetUpdateStrategy definition.
      */
-    UpdateRun.DefinitionStages.Blank define(String name);
+    FleetUpdateStrategy.DefinitionStages.Blank define(String name);
 }
