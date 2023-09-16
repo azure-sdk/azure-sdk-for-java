@@ -37,6 +37,18 @@ public final class ModelVersionProperties extends AssetBase {
     @JsonProperty(value = "modelUri")
     private String modelUri;
 
+    /*
+     * Provisioning state for the model version.
+     */
+    @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
+    private AssetProvisioningState provisioningState;
+
+    /*
+     * Stage in the model lifecycle assigned to this model
+     */
+    @JsonProperty(value = "stage")
+    private String stage;
+
     /** Creates an instance of ModelVersionProperties class. */
     public ModelVersionProperties() {
     }
@@ -118,6 +130,35 @@ public final class ModelVersionProperties extends AssetBase {
      */
     public ModelVersionProperties withModelUri(String modelUri) {
         this.modelUri = modelUri;
+        return this;
+    }
+
+    /**
+     * Get the provisioningState property: Provisioning state for the model version.
+     *
+     * @return the provisioningState value.
+     */
+    public AssetProvisioningState provisioningState() {
+        return this.provisioningState;
+    }
+
+    /**
+     * Get the stage property: Stage in the model lifecycle assigned to this model.
+     *
+     * @return the stage value.
+     */
+    public String stage() {
+        return this.stage;
+    }
+
+    /**
+     * Set the stage property: Stage in the model lifecycle assigned to this model.
+     *
+     * @param stage the stage value to set.
+     * @return the ModelVersionProperties object itself.
+     */
+    public ModelVersionProperties withStage(String stage) {
+        this.stage = stage;
         return this;
     }
 
