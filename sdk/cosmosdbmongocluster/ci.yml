@@ -1,0 +1,47 @@
+# NOTE: Please refer to https://aka.ms/azsdk/engsys/ci-yaml before editing this file.
+
+trigger:
+  branches:
+    include:
+      - main
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/cosmosdbmongocluster/ci.yml
+      - sdk/cosmosdbmongocluster/azure-resourcemanager-cosmosdbmongocluster/
+    exclude:
+      - sdk/cosmosdbmongocluster/pom.xml
+      - sdk/cosmosdbmongocluster/azure-resourcemanager-cosmosdbmongocluster/pom.xml
+
+pr:
+  branches:
+    include:
+      - main
+      - feature/*
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/cosmosdbmongocluster/ci.yml
+      - sdk/cosmosdbmongocluster/azure-resourcemanager-cosmosdbmongocluster/
+    exclude:
+      - sdk/cosmosdbmongocluster/pom.xml
+      - sdk/cosmosdbmongocluster/azure-resourcemanager-cosmosdbmongocluster/pom.xml
+
+parameters:
+  - name: release_azureresourcemanagercosmosdbmongocluster
+    displayName: azure-resourcemanager-cosmosdbmongocluster
+    type: boolean
+    default: false
+
+extends:
+  template: ../../eng/pipelines/templates/stages/archetype-sdk-client.yml
+  parameters:
+    ServiceDirectory: cosmosdbmongocluster
+    EnableBatchRelease: true
+    Artifacts:
+      - name: azure-resourcemanager-cosmosdbmongocluster
+        groupId: com.azure.resourcemanager
+        safeName: azureresourcemanagercosmosdbmongocluster
+        releaseInBatch: ${{ parameters.release_azureresourcemanagercosmosdbmongocluster }}
