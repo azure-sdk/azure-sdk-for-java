@@ -23,6 +23,10 @@ public class ConnectivityCriteria {
     @JsonProperty(value = "value")
     private List<String> value;
 
+    /** Creates an instance of ConnectivityCriteria class. */
+    public ConnectivityCriteria() {
+    }
+
     /**
      * Get the type property: type of connectivity.
      *

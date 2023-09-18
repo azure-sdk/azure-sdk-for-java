@@ -34,6 +34,10 @@ public final class EnrichmentDomainWhoisContacts {
     @JsonProperty(value = "tech")
     private EnrichmentDomainWhoisContact tech;
 
+    /** Creates an instance of EnrichmentDomainWhoisContacts class. */
+    public EnrichmentDomainWhoisContacts() {
+    }
+
     /**
      * Get the admin property: The admin contact for this whois record.
      *

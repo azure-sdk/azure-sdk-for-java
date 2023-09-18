@@ -25,6 +25,10 @@ public final class HuntingBookmark extends EntityInner {
     @JsonProperty(value = "properties")
     private HuntingBookmarkProperties innerProperties;
 
+    /** Creates an instance of HuntingBookmark class. */
+    public HuntingBookmark() {
+    }
+
     /**
      * Get the innerProperties property: HuntingBookmark entity properties.
      *

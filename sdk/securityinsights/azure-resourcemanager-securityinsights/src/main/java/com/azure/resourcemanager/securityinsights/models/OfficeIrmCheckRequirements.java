@@ -21,6 +21,10 @@ public final class OfficeIrmCheckRequirements extends DataConnectorsCheckRequire
     @JsonProperty(value = "properties")
     private OfficeIrmCheckRequirementsProperties innerProperties;
 
+    /** Creates an instance of OfficeIrmCheckRequirements class. */
+    public OfficeIrmCheckRequirements() {
+    }
+
     /**
      * Get the innerProperties property: OfficeIRM (Microsoft Insider Risk Management) requirements check properties.
      *
@@ -28,6 +32,29 @@ public final class OfficeIrmCheckRequirements extends DataConnectorsCheckRequire
      */
     private OfficeIrmCheckRequirementsProperties innerProperties() {
         return this.innerProperties;
+    }
+
+    /**
+     * Get the tenantId property: The tenant id to connect to, and get the data from.
+     *
+     * @return the tenantId value.
+     */
+    public String tenantId() {
+        return this.innerProperties() == null ? null : this.innerProperties().tenantId();
+    }
+
+    /**
+     * Set the tenantId property: The tenant id to connect to, and get the data from.
+     *
+     * @param tenantId the tenantId value to set.
+     * @return the OfficeIrmCheckRequirements object itself.
+     */
+    public OfficeIrmCheckRequirements withTenantId(String tenantId) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new OfficeIrmCheckRequirementsProperties();
+        }
+        this.innerProperties().withTenantId(tenantId);
+        return this;
     }
 
     /**

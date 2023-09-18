@@ -24,6 +24,15 @@ public final class AutomationRulePropertyChangedConditionSupportedPropertyType
         fromString("IncidentOwner");
 
     /**
+     * Creates a new instance of AutomationRulePropertyChangedConditionSupportedPropertyType value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public AutomationRulePropertyChangedConditionSupportedPropertyType() {
+    }
+
+    /**
      * Creates or finds a AutomationRulePropertyChangedConditionSupportedPropertyType from its string representation.
      *
      * @param name a name to look for.

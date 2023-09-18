@@ -36,6 +36,10 @@ public final class FusionSourceSubTypeSetting {
     @JsonProperty(value = "severityFilters", required = true)
     private FusionSubTypeSeverityFilter severityFilters;
 
+    /** Creates an instance of FusionSourceSubTypeSetting class. */
+    public FusionSourceSubTypeSetting() {
+    }
+
     /**
      * Get the enabled property: Determines whether this source subtype under source signal is enabled or disabled in
      * Fusion detection.

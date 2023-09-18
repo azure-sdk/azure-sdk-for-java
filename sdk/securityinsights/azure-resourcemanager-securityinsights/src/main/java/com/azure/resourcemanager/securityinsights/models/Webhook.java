@@ -6,6 +6,7 @@ package com.azure.resourcemanager.securityinsights.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.time.OffsetDateTime;
 
 /** Detail about the webhook object. */
 @Fluent
@@ -13,26 +14,30 @@ public final class Webhook {
     /*
      * Unique identifier for the webhook.
      */
-    @JsonProperty(value = "webhookId")
+    @JsonProperty(value = "webhookId", access = JsonProperty.Access.WRITE_ONLY)
     private String webhookId;
 
     /*
      * URL that gets invoked by the webhook.
      */
-    @JsonProperty(value = "webhookUrl")
+    @JsonProperty(value = "webhookUrl", access = JsonProperty.Access.WRITE_ONLY)
     private String webhookUrl;
 
     /*
      * Time when the webhook secret was updated.
      */
-    @JsonProperty(value = "webhookSecretUpdateTime")
-    private String webhookSecretUpdateTime;
+    @JsonProperty(value = "webhookSecretUpdateTime", access = JsonProperty.Access.WRITE_ONLY)
+    private OffsetDateTime webhookSecretUpdateTime;
 
     /*
      * A flag to instruct the backend service to rotate webhook secret.
      */
     @JsonProperty(value = "rotateWebhookSecret")
     private Boolean rotateWebhookSecret;
+
+    /** Creates an instance of Webhook class. */
+    public Webhook() {
+    }
 
     /**
      * Get the webhookId property: Unique identifier for the webhook.
@@ -41,17 +46,6 @@ public final class Webhook {
      */
     public String webhookId() {
         return this.webhookId;
-    }
-
-    /**
-     * Set the webhookId property: Unique identifier for the webhook.
-     *
-     * @param webhookId the webhookId value to set.
-     * @return the Webhook object itself.
-     */
-    public Webhook withWebhookId(String webhookId) {
-        this.webhookId = webhookId;
-        return this;
     }
 
     /**
@@ -64,34 +58,12 @@ public final class Webhook {
     }
 
     /**
-     * Set the webhookUrl property: URL that gets invoked by the webhook.
-     *
-     * @param webhookUrl the webhookUrl value to set.
-     * @return the Webhook object itself.
-     */
-    public Webhook withWebhookUrl(String webhookUrl) {
-        this.webhookUrl = webhookUrl;
-        return this;
-    }
-
-    /**
      * Get the webhookSecretUpdateTime property: Time when the webhook secret was updated.
      *
      * @return the webhookSecretUpdateTime value.
      */
-    public String webhookSecretUpdateTime() {
+    public OffsetDateTime webhookSecretUpdateTime() {
         return this.webhookSecretUpdateTime;
-    }
-
-    /**
-     * Set the webhookSecretUpdateTime property: Time when the webhook secret was updated.
-     *
-     * @param webhookSecretUpdateTime the webhookSecretUpdateTime value to set.
-     * @return the Webhook object itself.
-     */
-    public Webhook withWebhookSecretUpdateTime(String webhookSecretUpdateTime) {
-        this.webhookSecretUpdateTime = webhookSecretUpdateTime;
-        return this;
     }
 
     /**

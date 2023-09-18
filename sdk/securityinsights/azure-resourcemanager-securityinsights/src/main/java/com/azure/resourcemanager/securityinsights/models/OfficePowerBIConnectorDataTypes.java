@@ -17,6 +17,10 @@ public final class OfficePowerBIConnectorDataTypes {
     @JsonProperty(value = "logs", required = true)
     private OfficePowerBIConnectorDataTypesLogs logs;
 
+    /** Creates an instance of OfficePowerBIConnectorDataTypes class. */
+    public OfficePowerBIConnectorDataTypes() {
+    }
+
     /**
      * Get the logs property: Logs data type.
      *
