@@ -13,28 +13,19 @@ import java.util.List;
 @Immutable
 public final class AgreementListResult {
     /*
-     * The list of agreements.
-     */
-    @JsonProperty(value = "value", access = JsonProperty.Access.WRITE_ONLY)
-    private List<AgreementInner> value;
-
-    /*
      * The link (url) to the next page of results.
      */
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
+    /*
+     * The list of agreements.
+     */
+    @JsonProperty(value = "value", access = JsonProperty.Access.WRITE_ONLY)
+    private List<AgreementInner> value;
+
     /** Creates an instance of AgreementListResult class. */
     public AgreementListResult() {
-    }
-
-    /**
-     * Get the value property: The list of agreements.
-     *
-     * @return the value value.
-     */
-    public List<AgreementInner> value() {
-        return this.value;
     }
 
     /**
@@ -44,6 +35,15 @@ public final class AgreementListResult {
      */
     public String nextLink() {
         return this.nextLink;
+    }
+
+    /**
+     * Get the value property: The list of agreements.
+     *
+     * @return the value value.
+     */
+    public List<AgreementInner> value() {
+        return this.value;
     }
 
     /**

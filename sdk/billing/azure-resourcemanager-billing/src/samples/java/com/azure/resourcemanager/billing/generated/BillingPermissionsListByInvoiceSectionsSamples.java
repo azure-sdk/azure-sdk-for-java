@@ -7,14 +7,15 @@ package com.azure.resourcemanager.billing.generated;
 /** Samples for BillingPermissions ListByInvoiceSections. */
 public final class BillingPermissionsListByInvoiceSectionsSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/InvoiceSectionPermissionsList.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/billingPermissionsListByInvoiceSection.json
      */
     /**
-     * Sample code: InvoiceSectionPermissionsList.
+     * Sample code: billingPermissionsListByInvoiceSection.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void invoiceSectionPermissionsList(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void billingPermissionsListByInvoiceSection(
+        com.azure.resourcemanager.billing.BillingManager manager) {
         manager
             .billingPermissions()
             .listByInvoiceSections(

@@ -5,12 +5,12 @@
 package com.azure.resourcemanager.billing.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.management.ProxyResource;
+import com.azure.resourcemanager.billing.models.ArmResource;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** The role assignment. */
 @Fluent
-public final class BillingRoleAssignmentInner extends ProxyResource {
+public final class BillingRoleAssignmentInner extends ArmResource {
     /*
      * The properties of the role assignment.
      */
@@ -31,12 +31,12 @@ public final class BillingRoleAssignmentInner extends ProxyResource {
     }
 
     /**
-     * Get the createdOn property: The date the role assignment was created.
+     * Get the createdByPrincipalId property: The principal Id of the user who created the role assignment.
      *
-     * @return the createdOn value.
+     * @return the createdByPrincipalId value.
      */
-    public String createdOn() {
-        return this.innerProperties() == null ? null : this.innerProperties().createdOn();
+    public String createdByPrincipalId() {
+        return this.innerProperties() == null ? null : this.innerProperties().createdByPrincipalId();
     }
 
     /**
@@ -49,21 +49,21 @@ public final class BillingRoleAssignmentInner extends ProxyResource {
     }
 
     /**
-     * Get the createdByPrincipalId property: The principal Id of the user who created the role assignment.
-     *
-     * @return the createdByPrincipalId value.
-     */
-    public String createdByPrincipalId() {
-        return this.innerProperties() == null ? null : this.innerProperties().createdByPrincipalId();
-    }
-
-    /**
      * Get the createdByUserEmailAddress property: The email address of the user who created the role assignment.
      *
      * @return the createdByUserEmailAddress value.
      */
     public String createdByUserEmailAddress() {
         return this.innerProperties() == null ? null : this.innerProperties().createdByUserEmailAddress();
+    }
+
+    /**
+     * Get the createdOn property: The date the role assignment was created.
+     *
+     * @return the createdOn value.
+     */
+    public String createdOn() {
+        return this.innerProperties() == null ? null : this.innerProperties().createdOn();
     }
 
     /**
@@ -195,7 +195,9 @@ public final class BillingRoleAssignmentInner extends ProxyResource {
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
+    @Override
     public void validate() {
+        super.validate();
         if (innerProperties() != null) {
             innerProperties().validate();
         }

@@ -7,14 +7,15 @@ package com.azure.resourcemanager.billing.generated;
 /** Samples for BillingRoleAssignments GetByBillingAccount. */
 public final class BillingRoleAssignmentsGetByBillingAccountSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/BillingAccountRoleAssignment.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/billingRoleAssignmentsGetByBillingAccount.json
      */
     /**
-     * Sample code: BillingAccountRoleAssignment.
+     * Sample code: billingRoleAssignmentsGetByBillingAccount.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void billingAccountRoleAssignment(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void billingRoleAssignmentsGetByBillingAccount(
+        com.azure.resourcemanager.billing.BillingManager manager) {
         manager
             .billingRoleAssignments()
             .getByBillingAccountWithResponse(

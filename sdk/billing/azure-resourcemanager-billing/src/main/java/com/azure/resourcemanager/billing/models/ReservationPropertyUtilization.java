@@ -12,28 +12,19 @@ import java.util.List;
 @Fluent
 public final class ReservationPropertyUtilization {
     /*
-     * The number of days trend for a reservation
-     */
-    @JsonProperty(value = "trend", access = JsonProperty.Access.WRITE_ONLY)
-    private String trend;
-
-    /*
      * The array of aggregates of a reservation's utilization
      */
     @JsonProperty(value = "aggregates")
     private List<ReservationUtilizationAggregates> aggregates;
 
+    /*
+     * The number of days trend for a reservation
+     */
+    @JsonProperty(value = "trend", access = JsonProperty.Access.WRITE_ONLY)
+    private String trend;
+
     /** Creates an instance of ReservationPropertyUtilization class. */
     public ReservationPropertyUtilization() {
-    }
-
-    /**
-     * Get the trend property: The number of days trend for a reservation.
-     *
-     * @return the trend value.
-     */
-    public String trend() {
-        return this.trend;
     }
 
     /**
@@ -54,6 +45,15 @@ public final class ReservationPropertyUtilization {
     public ReservationPropertyUtilization withAggregates(List<ReservationUtilizationAggregates> aggregates) {
         this.aggregates = aggregates;
         return this;
+    }
+
+    /**
+     * Get the trend property: The number of days trend for a reservation.
+     *
+     * @return the trend value.
+     */
+    public String trend() {
+        return this.trend;
     }
 
     /**

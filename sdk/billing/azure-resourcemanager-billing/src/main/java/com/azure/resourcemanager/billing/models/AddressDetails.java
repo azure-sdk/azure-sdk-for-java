@@ -12,30 +12,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class AddressDetails {
     /*
-     * First name.
-     */
-    @JsonProperty(value = "firstName")
-    private String firstName;
-
-    /*
-     * Middle name.
-     */
-    @JsonProperty(value = "middleName")
-    private String middleName;
-
-    /*
-     * Last name.
-     */
-    @JsonProperty(value = "lastName")
-    private String lastName;
-
-    /*
-     * Company name.
-     */
-    @JsonProperty(value = "companyName")
-    private String companyName;
-
-    /*
      * Address line 1.
      */
     @JsonProperty(value = "addressLine1", required = true)
@@ -60,28 +36,22 @@ public final class AddressDetails {
     private String city;
 
     /*
-     * Address district.
+     * Company name.
      */
-    @JsonProperty(value = "district")
-    private String district;
+    @JsonProperty(value = "companyName")
+    private String companyName;
 
     /*
-     * Address region.
-     */
-    @JsonProperty(value = "region")
-    private String region;
-
-    /*
-     * Country code uses ISO2, 2-digit format.
+     * Country code uses IS02, 2-digit format.
      */
     @JsonProperty(value = "country", required = true)
     private String country;
 
     /*
-     * Postal code.
+     * Address district.
      */
-    @JsonProperty(value = "postalCode")
-    private String postalCode;
+    @JsonProperty(value = "district")
+    private String district;
 
     /*
      * Email address.
@@ -90,93 +60,49 @@ public final class AddressDetails {
     private String email;
 
     /*
+     * First name.
+     */
+    @JsonProperty(value = "firstName")
+    private String firstName;
+
+    /*
+     * Last name.
+     */
+    @JsonProperty(value = "lastName")
+    private String lastName;
+
+    /*
+     * Middle name.
+     */
+    @JsonProperty(value = "middleName")
+    private String middleName;
+
+    /*
      * Phone number.
      */
     @JsonProperty(value = "phoneNumber")
     private String phoneNumber;
 
+    /*
+     * Postal code.
+     */
+    @JsonProperty(value = "postalCode")
+    private String postalCode;
+
+    /*
+     * Address region.
+     */
+    @JsonProperty(value = "region")
+    private String region;
+
+    /*
+     * Indicates if the address is incomplete.
+     */
+    @JsonProperty(value = "isValidAddress")
+    private Boolean isValidAddress;
+
     /** Creates an instance of AddressDetails class. */
     public AddressDetails() {
-    }
-
-    /**
-     * Get the firstName property: First name.
-     *
-     * @return the firstName value.
-     */
-    public String firstName() {
-        return this.firstName;
-    }
-
-    /**
-     * Set the firstName property: First name.
-     *
-     * @param firstName the firstName value to set.
-     * @return the AddressDetails object itself.
-     */
-    public AddressDetails withFirstName(String firstName) {
-        this.firstName = firstName;
-        return this;
-    }
-
-    /**
-     * Get the middleName property: Middle name.
-     *
-     * @return the middleName value.
-     */
-    public String middleName() {
-        return this.middleName;
-    }
-
-    /**
-     * Set the middleName property: Middle name.
-     *
-     * @param middleName the middleName value to set.
-     * @return the AddressDetails object itself.
-     */
-    public AddressDetails withMiddleName(String middleName) {
-        this.middleName = middleName;
-        return this;
-    }
-
-    /**
-     * Get the lastName property: Last name.
-     *
-     * @return the lastName value.
-     */
-    public String lastName() {
-        return this.lastName;
-    }
-
-    /**
-     * Set the lastName property: Last name.
-     *
-     * @param lastName the lastName value to set.
-     * @return the AddressDetails object itself.
-     */
-    public AddressDetails withLastName(String lastName) {
-        this.lastName = lastName;
-        return this;
-    }
-
-    /**
-     * Get the companyName property: Company name.
-     *
-     * @return the companyName value.
-     */
-    public String companyName() {
-        return this.companyName;
-    }
-
-    /**
-     * Set the companyName property: Company name.
-     *
-     * @param companyName the companyName value to set.
-     * @return the AddressDetails object itself.
-     */
-    public AddressDetails withCompanyName(String companyName) {
-        this.companyName = companyName;
-        return this;
     }
 
     /**
@@ -260,6 +186,46 @@ public final class AddressDetails {
     }
 
     /**
+     * Get the companyName property: Company name.
+     *
+     * @return the companyName value.
+     */
+    public String companyName() {
+        return this.companyName;
+    }
+
+    /**
+     * Set the companyName property: Company name.
+     *
+     * @param companyName the companyName value to set.
+     * @return the AddressDetails object itself.
+     */
+    public AddressDetails withCompanyName(String companyName) {
+        this.companyName = companyName;
+        return this;
+    }
+
+    /**
+     * Get the country property: Country code uses IS02, 2-digit format.
+     *
+     * @return the country value.
+     */
+    public String country() {
+        return this.country;
+    }
+
+    /**
+     * Set the country property: Country code uses IS02, 2-digit format.
+     *
+     * @param country the country value to set.
+     * @return the AddressDetails object itself.
+     */
+    public AddressDetails withCountry(String country) {
+        this.country = country;
+        return this;
+    }
+
+    /**
      * Get the district property: Address district.
      *
      * @return the district value.
@@ -276,66 +242,6 @@ public final class AddressDetails {
      */
     public AddressDetails withDistrict(String district) {
         this.district = district;
-        return this;
-    }
-
-    /**
-     * Get the region property: Address region.
-     *
-     * @return the region value.
-     */
-    public String region() {
-        return this.region;
-    }
-
-    /**
-     * Set the region property: Address region.
-     *
-     * @param region the region value to set.
-     * @return the AddressDetails object itself.
-     */
-    public AddressDetails withRegion(String region) {
-        this.region = region;
-        return this;
-    }
-
-    /**
-     * Get the country property: Country code uses ISO2, 2-digit format.
-     *
-     * @return the country value.
-     */
-    public String country() {
-        return this.country;
-    }
-
-    /**
-     * Set the country property: Country code uses ISO2, 2-digit format.
-     *
-     * @param country the country value to set.
-     * @return the AddressDetails object itself.
-     */
-    public AddressDetails withCountry(String country) {
-        this.country = country;
-        return this;
-    }
-
-    /**
-     * Get the postalCode property: Postal code.
-     *
-     * @return the postalCode value.
-     */
-    public String postalCode() {
-        return this.postalCode;
-    }
-
-    /**
-     * Set the postalCode property: Postal code.
-     *
-     * @param postalCode the postalCode value to set.
-     * @return the AddressDetails object itself.
-     */
-    public AddressDetails withPostalCode(String postalCode) {
-        this.postalCode = postalCode;
         return this;
     }
 
@@ -360,6 +266,66 @@ public final class AddressDetails {
     }
 
     /**
+     * Get the firstName property: First name.
+     *
+     * @return the firstName value.
+     */
+    public String firstName() {
+        return this.firstName;
+    }
+
+    /**
+     * Set the firstName property: First name.
+     *
+     * @param firstName the firstName value to set.
+     * @return the AddressDetails object itself.
+     */
+    public AddressDetails withFirstName(String firstName) {
+        this.firstName = firstName;
+        return this;
+    }
+
+    /**
+     * Get the lastName property: Last name.
+     *
+     * @return the lastName value.
+     */
+    public String lastName() {
+        return this.lastName;
+    }
+
+    /**
+     * Set the lastName property: Last name.
+     *
+     * @param lastName the lastName value to set.
+     * @return the AddressDetails object itself.
+     */
+    public AddressDetails withLastName(String lastName) {
+        this.lastName = lastName;
+        return this;
+    }
+
+    /**
+     * Get the middleName property: Middle name.
+     *
+     * @return the middleName value.
+     */
+    public String middleName() {
+        return this.middleName;
+    }
+
+    /**
+     * Set the middleName property: Middle name.
+     *
+     * @param middleName the middleName value to set.
+     * @return the AddressDetails object itself.
+     */
+    public AddressDetails withMiddleName(String middleName) {
+        this.middleName = middleName;
+        return this;
+    }
+
+    /**
      * Get the phoneNumber property: Phone number.
      *
      * @return the phoneNumber value.
@@ -376,6 +342,66 @@ public final class AddressDetails {
      */
     public AddressDetails withPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+        return this;
+    }
+
+    /**
+     * Get the postalCode property: Postal code.
+     *
+     * @return the postalCode value.
+     */
+    public String postalCode() {
+        return this.postalCode;
+    }
+
+    /**
+     * Set the postalCode property: Postal code.
+     *
+     * @param postalCode the postalCode value to set.
+     * @return the AddressDetails object itself.
+     */
+    public AddressDetails withPostalCode(String postalCode) {
+        this.postalCode = postalCode;
+        return this;
+    }
+
+    /**
+     * Get the region property: Address region.
+     *
+     * @return the region value.
+     */
+    public String region() {
+        return this.region;
+    }
+
+    /**
+     * Set the region property: Address region.
+     *
+     * @param region the region value to set.
+     * @return the AddressDetails object itself.
+     */
+    public AddressDetails withRegion(String region) {
+        this.region = region;
+        return this;
+    }
+
+    /**
+     * Get the isValidAddress property: Indicates if the address is incomplete.
+     *
+     * @return the isValidAddress value.
+     */
+    public Boolean isValidAddress() {
+        return this.isValidAddress;
+    }
+
+    /**
+     * Set the isValidAddress property: Indicates if the address is incomplete.
+     *
+     * @param isValidAddress the isValidAddress value to set.
+     * @return the AddressDetails object itself.
+     */
+    public AddressDetails withIsValidAddress(Boolean isValidAddress) {
+        this.isValidAddress = isValidAddress;
         return this;
     }
 

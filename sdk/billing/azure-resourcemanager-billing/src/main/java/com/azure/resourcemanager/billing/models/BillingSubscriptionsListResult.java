@@ -13,10 +13,10 @@ import java.util.List;
 @Immutable
 public final class BillingSubscriptionsListResult {
     /*
-     * The list of billing subscriptions.
+     * The link (url) to the next page of results.
      */
-    @JsonProperty(value = "value", access = JsonProperty.Access.WRITE_ONLY)
-    private List<BillingSubscriptionInner> value;
+    @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
+    private String nextLink;
 
     /*
      * Total number of records.
@@ -25,22 +25,22 @@ public final class BillingSubscriptionsListResult {
     private Integer totalCount;
 
     /*
-     * The link (url) to the next page of results.
+     * The list of billing subscriptions.
      */
-    @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
-    private String nextLink;
+    @JsonProperty(value = "value", access = JsonProperty.Access.WRITE_ONLY)
+    private List<BillingSubscriptionInner> value;
 
     /** Creates an instance of BillingSubscriptionsListResult class. */
     public BillingSubscriptionsListResult() {
     }
 
     /**
-     * Get the value property: The list of billing subscriptions.
+     * Get the nextLink property: The link (url) to the next page of results.
      *
-     * @return the value value.
+     * @return the nextLink value.
      */
-    public List<BillingSubscriptionInner> value() {
-        return this.value;
+    public String nextLink() {
+        return this.nextLink;
     }
 
     /**
@@ -53,12 +53,12 @@ public final class BillingSubscriptionsListResult {
     }
 
     /**
-     * Get the nextLink property: The link (url) to the next page of results.
+     * Get the value property: The list of billing subscriptions.
      *
-     * @return the nextLink value.
+     * @return the value value.
      */
-    public String nextLink() {
-        return this.nextLink;
+    public List<BillingSubscriptionInner> value() {
+        return this.value;
     }
 
     /**

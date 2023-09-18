@@ -13,28 +13,19 @@ import java.util.List;
 @Immutable
 public final class BillingPermissionsListResult {
     /*
-     * The list of billingPermissions a caller has on a billing account.
-     */
-    @JsonProperty(value = "value", access = JsonProperty.Access.WRITE_ONLY)
-    private List<BillingPermissionsPropertiesInner> value;
-
-    /*
      * The link (url) to the next page of results.
      */
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
+    /*
+     * The list of billingPermissions a caller has on a billing account.
+     */
+    @JsonProperty(value = "value", access = JsonProperty.Access.WRITE_ONLY)
+    private List<BillingPermissionsPropertiesInner> value;
+
     /** Creates an instance of BillingPermissionsListResult class. */
     public BillingPermissionsListResult() {
-    }
-
-    /**
-     * Get the value property: The list of billingPermissions a caller has on a billing account.
-     *
-     * @return the value value.
-     */
-    public List<BillingPermissionsPropertiesInner> value() {
-        return this.value;
     }
 
     /**
@@ -44,6 +35,15 @@ public final class BillingPermissionsListResult {
      */
     public String nextLink() {
         return this.nextLink;
+    }
+
+    /**
+     * Get the value property: The list of billingPermissions a caller has on a billing account.
+     *
+     * @return the value value.
+     */
+    public List<BillingPermissionsPropertiesInner> value() {
+        return this.value;
     }
 
     /**

@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.billing.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.billing.fluent.models.AgreementInner;
 import com.azure.resourcemanager.billing.models.AcceptanceMode;
 import com.azure.resourcemanager.billing.models.Agreement;
@@ -36,20 +37,24 @@ public final class AgreementImpl implements Agreement {
         return this.innerModel().type();
     }
 
-    public String agreementLink() {
-        return this.innerModel().agreementLink();
-    }
-
-    public Category category() {
-        return this.innerModel().category();
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public AcceptanceMode acceptanceMode() {
         return this.innerModel().acceptanceMode();
     }
 
+    public String agreementLink() {
+        return this.innerModel().agreementLink();
+    }
+
     public BillingProfileInfo billingProfileInfo() {
         return this.innerModel().billingProfileInfo();
+    }
+
+    public Category category() {
+        return this.innerModel().category();
     }
 
     public OffsetDateTime effectiveDate() {

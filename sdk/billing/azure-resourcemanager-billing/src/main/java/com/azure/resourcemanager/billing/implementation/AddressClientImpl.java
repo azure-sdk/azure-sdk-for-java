@@ -85,10 +85,11 @@ public final class AddressClientImpl implements AddressClient {
         } else {
             address.validate();
         }
-        final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.validate(this.client.getEndpoint(), apiVersion, address, accept, context))
+            .withContext(
+                context ->
+                    service.validate(this.client.getEndpoint(), this.client.getApiVersion(), address, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -116,10 +117,9 @@ public final class AddressClientImpl implements AddressClient {
         } else {
             address.validate();
         }
-        final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.validate(this.client.getEndpoint(), apiVersion, address, accept, context);
+        return service.validate(this.client.getEndpoint(), this.client.getApiVersion(), address, accept, context);
     }
 
     /**

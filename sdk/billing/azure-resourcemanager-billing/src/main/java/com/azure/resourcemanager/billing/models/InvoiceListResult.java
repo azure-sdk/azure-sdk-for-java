@@ -13,12 +13,6 @@ import java.util.List;
 @Immutable
 public final class InvoiceListResult {
     /*
-     * The list of invoices.
-     */
-    @JsonProperty(value = "value", access = JsonProperty.Access.WRITE_ONLY)
-    private List<InvoiceInner> value;
-
-    /*
      * The link (url) to the next page of results.
      */
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
@@ -30,17 +24,14 @@ public final class InvoiceListResult {
     @JsonProperty(value = "totalCount", access = JsonProperty.Access.WRITE_ONLY)
     private Integer totalCount;
 
+    /*
+     * The list of invoices.
+     */
+    @JsonProperty(value = "value", access = JsonProperty.Access.WRITE_ONLY)
+    private List<InvoiceInner> value;
+
     /** Creates an instance of InvoiceListResult class. */
     public InvoiceListResult() {
-    }
-
-    /**
-     * Get the value property: The list of invoices.
-     *
-     * @return the value value.
-     */
-    public List<InvoiceInner> value() {
-        return this.value;
     }
 
     /**
@@ -59,6 +50,15 @@ public final class InvoiceListResult {
      */
     public Integer totalCount() {
         return this.totalCount;
+    }
+
+    /**
+     * Get the value property: The list of invoices.
+     *
+     * @return the value value.
+     */
+    public List<InvoiceInner> value() {
+        return this.value;
     }
 
     /**

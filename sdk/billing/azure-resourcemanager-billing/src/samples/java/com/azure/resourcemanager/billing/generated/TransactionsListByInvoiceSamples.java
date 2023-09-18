@@ -7,10 +7,10 @@ package com.azure.resourcemanager.billing.generated;
 /** Samples for Transactions ListByInvoice. */
 public final class TransactionsListByInvoiceSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/TransactionsListByInvoice.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/transactionsListByInvoice.json
      */
     /**
-     * Sample code: TransactionsListByInvoice.
+     * Sample code: transactionsListByInvoice.
      *
      * @param manager Entry point to BillingManager.
      */

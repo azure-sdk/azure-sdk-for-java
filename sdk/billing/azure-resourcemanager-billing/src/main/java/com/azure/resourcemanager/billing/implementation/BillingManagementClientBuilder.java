@@ -18,22 +18,6 @@ import java.time.Duration;
 @ServiceClientBuilder(serviceClients = {BillingManagementClientImpl.class})
 public final class BillingManagementClientBuilder {
     /*
-     * The ID that uniquely identifies an Azure subscription.
-     */
-    private String subscriptionId;
-
-    /**
-     * Sets The ID that uniquely identifies an Azure subscription.
-     *
-     * @param subscriptionId the subscriptionId value.
-     * @return the BillingManagementClientBuilder.
-     */
-    public BillingManagementClientBuilder subscriptionId(String subscriptionId) {
-        this.subscriptionId = subscriptionId;
-        return this;
-    }
-
-    /*
      * server parameter
      */
     private String endpoint;
@@ -133,12 +117,7 @@ public final class BillingManagementClientBuilder {
                 : SerializerFactory.createDefaultManagementSerializerAdapter();
         BillingManagementClientImpl client =
             new BillingManagementClientImpl(
-                localPipeline,
-                localSerializerAdapter,
-                localDefaultPollInterval,
-                localEnvironment,
-                subscriptionId,
-                localEndpoint);
+                localPipeline, localSerializerAdapter, localDefaultPollInterval, localEnvironment, localEndpoint);
         return client;
     }
 }

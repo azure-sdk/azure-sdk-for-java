@@ -7,14 +7,16 @@ package com.azure.resourcemanager.billing.generated;
 /** Samples for BillingSubscriptions Get. */
 public final class BillingSubscriptionsGetSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/BillingSubscription.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/billingSubscriptionsGet.json
      */
     /**
-     * Sample code: BillingSubscription.
+     * Sample code: billingSubscriptionsGet.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void billingSubscription(com.azure.resourcemanager.billing.BillingManager manager) {
-        manager.billingSubscriptions().getWithResponse("{billingAccountName}", com.azure.core.util.Context.NONE);
+    public static void billingSubscriptionsGet(com.azure.resourcemanager.billing.BillingManager manager) {
+        manager
+            .billingSubscriptions()
+            .getWithResponse("{billingAccountName}", "{subscriptionId}", com.azure.core.util.Context.NONE);
     }
 }

@@ -4,162 +4,304 @@
 
 package com.azure.resourcemanager.billing.models;
 
-import com.azure.resourcemanager.billing.fluent.models.BillingProfileInner;
+import com.azure.core.annotation.Fluent;
+import com.azure.resourcemanager.billing.fluent.models.BillingProfileProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
 
-/** An immutable client-side representation of BillingProfile. */
-public interface BillingProfile {
-    /**
-     * Gets the id property: Fully qualified resource Id for the resource.
-     *
-     * @return the id value.
+/** A billing profile. */
+@Fluent
+public final class BillingProfile extends ArmResource {
+    /*
+     * The properties of the billing profile.
      */
-    String id();
+    @JsonProperty(value = "properties")
+    private BillingProfileProperties innerProperties;
+
+    /** Creates an instance of BillingProfile class. */
+    public BillingProfile() {
+    }
 
     /**
-     * Gets the name property: The name of the resource.
+     * Get the innerProperties property: The properties of the billing profile.
      *
-     * @return the name value.
+     * @return the innerProperties value.
      */
-    String name();
+    private BillingProfileProperties innerProperties() {
+        return this.innerProperties;
+    }
 
     /**
-     * Gets the type property: The type of the resource.
-     *
-     * @return the type value.
-     */
-    String type();
-
-    /**
-     * Gets the displayName property: The name of the billing profile.
-     *
-     * @return the displayName value.
-     */
-    String displayName();
-
-    /**
-     * Gets the poNumber property: The purchase order name that will appear on the invoices generated for the billing
-     * profile.
-     *
-     * @return the poNumber value.
-     */
-    String poNumber();
-
-    /**
-     * Gets the billingRelationshipType property: Identifies which services and purchases are paid by a billing profile.
+     * Get the billingRelationshipType property: Identifies which services and purchases are paid by a billing profile.
      *
      * @return the billingRelationshipType value.
      */
-    BillingRelationshipType billingRelationshipType();
+    public BillingRelationshipType billingRelationshipType() {
+        return this.innerProperties() == null ? null : this.innerProperties().billingRelationshipType();
+    }
 
     /**
-     * Gets the billTo property: Billing address.
+     * Get the billTo property: Billing address.
      *
      * @return the billTo value.
      */
-    AddressDetails billTo();
+    public AddressDetails billTo() {
+        return this.innerProperties() == null ? null : this.innerProperties().billTo();
+    }
 
     /**
-     * Gets the indirectRelationshipInfo property: Identifies the billing profile that is linked to another billing
+     * Set the billTo property: Billing address.
+     *
+     * @param billTo the billTo value to set.
+     * @return the BillingProfile object itself.
+     */
+    public BillingProfile withBillTo(AddressDetails billTo) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new BillingProfileProperties();
+        }
+        this.innerProperties().withBillTo(billTo);
+        return this;
+    }
+
+    /**
+     * Get the currency property: The currency in which the charges for the billing profile are billed.
+     *
+     * @return the currency value.
+     */
+    public String currency() {
+        return this.innerProperties() == null ? null : this.innerProperties().currency();
+    }
+
+    /**
+     * Get the displayName property: The name of the billing profile.
+     *
+     * @return the displayName value.
+     */
+    public String displayName() {
+        return this.innerProperties() == null ? null : this.innerProperties().displayName();
+    }
+
+    /**
+     * Set the displayName property: The name of the billing profile.
+     *
+     * @param displayName the displayName value to set.
+     * @return the BillingProfile object itself.
+     */
+    public BillingProfile withDisplayName(String displayName) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new BillingProfileProperties();
+        }
+        this.innerProperties().withDisplayName(displayName);
+        return this;
+    }
+
+    /**
+     * Get the enabledAzurePlans property: Information about the enabled azure plans.
+     *
+     * @return the enabledAzurePlans value.
+     */
+    public List<AzurePlan> enabledAzurePlans() {
+        return this.innerProperties() == null ? null : this.innerProperties().enabledAzurePlans();
+    }
+
+    /**
+     * Set the enabledAzurePlans property: Information about the enabled azure plans.
+     *
+     * @param enabledAzurePlans the enabledAzurePlans value to set.
+     * @return the BillingProfile object itself.
+     */
+    public BillingProfile withEnabledAzurePlans(List<AzurePlan> enabledAzurePlans) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new BillingProfileProperties();
+        }
+        this.innerProperties().withEnabledAzurePlans(enabledAzurePlans);
+        return this;
+    }
+
+    /**
+     * Get the hasReadAccess property: Indicates whether user has read access to the billing profile.
+     *
+     * @return the hasReadAccess value.
+     */
+    public Boolean hasReadAccess() {
+        return this.innerProperties() == null ? null : this.innerProperties().hasReadAccess();
+    }
+
+    /**
+     * Get the indirectRelationshipInfo property: Identifies the billing profile that is linked to another billing
      * profile in indirect purchase motion.
      *
      * @return the indirectRelationshipInfo value.
      */
-    IndirectRelationshipInfo indirectRelationshipInfo();
+    public IndirectRelationshipInfo indirectRelationshipInfo() {
+        return this.innerProperties() == null ? null : this.innerProperties().indirectRelationshipInfo();
+    }
 
     /**
-     * Gets the invoiceEmailOptIn property: Flag controlling whether the invoices for the billing profile are sent
+     * Get the invoiceDay property: The day of the month when the invoice for the billing profile is generated.
+     *
+     * @return the invoiceDay value.
+     */
+    public Integer invoiceDay() {
+        return this.innerProperties() == null ? null : this.innerProperties().invoiceDay();
+    }
+
+    /**
+     * Get the invoiceEmailOptIn property: Flag controlling whether the invoices for the billing profile are sent
      * through email.
      *
      * @return the invoiceEmailOptIn value.
      */
-    Boolean invoiceEmailOptIn();
+    public Boolean invoiceEmailOptIn() {
+        return this.innerProperties() == null ? null : this.innerProperties().invoiceEmailOptIn();
+    }
 
     /**
-     * Gets the invoiceDay property: The day of the month when the invoice for the billing profile is generated.
+     * Set the invoiceEmailOptIn property: Flag controlling whether the invoices for the billing profile are sent
+     * through email.
      *
-     * @return the invoiceDay value.
+     * @param invoiceEmailOptIn the invoiceEmailOptIn value to set.
+     * @return the BillingProfile object itself.
      */
-    Integer invoiceDay();
+    public BillingProfile withInvoiceEmailOptIn(Boolean invoiceEmailOptIn) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new BillingProfileProperties();
+        }
+        this.innerProperties().withInvoiceEmailOptIn(invoiceEmailOptIn);
+        return this;
+    }
 
     /**
-     * Gets the currency property: The currency in which the charges for the billing profile are billed.
-     *
-     * @return the currency value.
-     */
-    String currency();
-
-    /**
-     * Gets the enabledAzurePlans property: Information about the enabled azure plans.
-     *
-     * @return the enabledAzurePlans value.
-     */
-    List<AzurePlan> enabledAzurePlans();
-
-    /**
-     * Gets the invoiceSections property: The invoice sections associated to the billing profile. By default this is not
+     * Get the invoiceSections property: The invoice sections associated to the billing profile. By default this is not
      * populated, unless it's specified in $expand.
      *
      * @return the invoiceSections value.
      */
-    InvoiceSectionsOnExpand invoiceSections();
+    public InvoiceSectionsOnExpand invoiceSections() {
+        return this.innerProperties() == null ? null : this.innerProperties().invoiceSections();
+    }
 
     /**
-     * Gets the hasReadAccess property: Indicates whether user has read access to the billing profile.
+     * Set the invoiceSections property: The invoice sections associated to the billing profile. By default this is not
+     * populated, unless it's specified in $expand.
      *
-     * @return the hasReadAccess value.
+     * @param invoiceSections the invoiceSections value to set.
+     * @return the BillingProfile object itself.
      */
-    Boolean hasReadAccess();
+    public BillingProfile withInvoiceSections(InvoiceSectionsOnExpand invoiceSections) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new BillingProfileProperties();
+        }
+        this.innerProperties().withInvoiceSections(invoiceSections);
+        return this;
+    }
 
     /**
-     * Gets the systemId property: The system generated unique identifier for a billing profile.
+     * Get the poNumber property: The purchase order name that will appear on the invoices generated for the billing
+     * profile.
      *
-     * @return the systemId value.
+     * @return the poNumber value.
      */
-    String systemId();
+    public String poNumber() {
+        return this.innerProperties() == null ? null : this.innerProperties().poNumber();
+    }
 
     /**
-     * Gets the status property: The status of the billing profile.
+     * Set the poNumber property: The purchase order name that will appear on the invoices generated for the billing
+     * profile.
      *
-     * @return the status value.
+     * @param poNumber the poNumber value to set.
+     * @return the BillingProfile object itself.
      */
-    BillingProfileStatus status();
+    public BillingProfile withPoNumber(String poNumber) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new BillingProfileProperties();
+        }
+        this.innerProperties().withPoNumber(poNumber);
+        return this;
+    }
 
     /**
-     * Gets the statusReasonCode property: Reason for the specified billing profile status.
-     *
-     * @return the statusReasonCode value.
-     */
-    StatusReasonCode statusReasonCode();
-
-    /**
-     * Gets the spendingLimit property: The billing profile spending limit.
+     * Get the spendingLimit property: The billing profile spending limit.
      *
      * @return the spendingLimit value.
      */
-    SpendingLimit spendingLimit();
+    public SpendingLimit spendingLimit() {
+        return this.innerProperties() == null ? null : this.innerProperties().spendingLimit();
+    }
 
     /**
-     * Gets the targetClouds property: Identifies the cloud environments that are associated with a billing profile.
-     * This is a system managed optional field and gets updated as the billing profile gets associated with accounts in
+     * Get the status property: The status of the billing profile.
+     *
+     * @return the status value.
+     */
+    public BillingProfileStatus status() {
+        return this.innerProperties() == null ? null : this.innerProperties().status();
+    }
+
+    /**
+     * Get the statusReasonCode property: Reason for the specified billing profile status.
+     *
+     * @return the statusReasonCode value.
+     */
+    public StatusReasonCode statusReasonCode() {
+        return this.innerProperties() == null ? null : this.innerProperties().statusReasonCode();
+    }
+
+    /**
+     * Get the systemId property: The system generated unique identifier for a billing profile.
+     *
+     * @return the systemId value.
+     */
+    public String systemId() {
+        return this.innerProperties() == null ? null : this.innerProperties().systemId();
+    }
+
+    /**
+     * Get the tags property: Tags of billing profiles.
+     *
+     * @return the tags value.
+     */
+    public Map<String, String> tags() {
+        return this.innerProperties() == null ? null : this.innerProperties().tags();
+    }
+
+    /**
+     * Set the tags property: Tags of billing profiles.
+     *
+     * @param tags the tags value to set.
+     * @return the BillingProfile object itself.
+     */
+    public BillingProfile withTags(Map<String, String> tags) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new BillingProfileProperties();
+        }
+        this.innerProperties().withTags(tags);
+        return this;
+    }
+
+    /**
+     * Get the targetClouds property: Identifies the cloud environments that are associated with a billing profile. This
+     * is a system managed optional field and gets updated as the billing profile gets associated with accounts in
      * various clouds.
      *
      * @return the targetClouds value.
      */
-    List<TargetCloud> targetClouds();
+    public List<TargetCloud> targetClouds() {
+        return this.innerProperties() == null ? null : this.innerProperties().targetClouds();
+    }
 
     /**
-     * Gets the tags property: Tags of billing profiles.
+     * Validates the instance.
      *
-     * @return the tags value.
+     * @throws IllegalArgumentException thrown if the instance is not valid.
      */
-    Map<String, String> tags();
-
-    /**
-     * Gets the inner com.azure.resourcemanager.billing.fluent.models.BillingProfileInner object.
-     *
-     * @return the inner object.
-     */
-    BillingProfileInner innerModel();
+    @Override
+    public void validate() {
+        super.validate();
+        if (innerProperties() != null) {
+            innerProperties().validate();
+        }
+    }
 }
