@@ -11,7 +11,7 @@ import java.util.List;
 /** An immutable client-side representation of ValidateOperationResult. */
 public interface ValidateOperationResult {
     /**
-     * Gets the resourceId property: Validated linker id.
+     * Gets the resourceId property: Validated Linker id.
      *
      * @return the resourceId value.
      */
@@ -53,7 +53,7 @@ public interface ValidateOperationResult {
     OffsetDateTime reportEndTimeUtc();
 
     /**
-     * Gets the sourceId property: The resource id of the linker source application.
+     * Gets the sourceId property: The resource id of the Linker source application.
      *
      * @return the sourceId value.
      */
