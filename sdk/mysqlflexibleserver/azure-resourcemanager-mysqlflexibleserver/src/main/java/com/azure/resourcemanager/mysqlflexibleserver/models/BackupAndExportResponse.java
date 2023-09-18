@@ -60,9 +60,7 @@ public interface BackupAndExportResponse {
     Double percentComplete();
 
     /**
-     * Gets the error property: Error Response
-     *
-     * <p>The BackupAndExport operation error response.
+     * Gets the error property: The error object.
      *
      * @return the error value.
      */

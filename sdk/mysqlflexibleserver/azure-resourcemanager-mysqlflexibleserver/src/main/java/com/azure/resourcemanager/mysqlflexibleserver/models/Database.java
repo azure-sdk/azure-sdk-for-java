@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.mysqlflexibleserver.models;
 
-import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.mysqlflexibleserver.fluent.models.DatabaseInner;
 
@@ -30,13 +29,6 @@ public interface Database {
      * @return the type value.
      */
     String type();
-
-    /**
-     * Gets the systemData property: The system metadata relating to this resource.
-     *
-     * @return the systemData value.
-     */
-    SystemData systemData();
 
     /**
      * Gets the charset property: The charset of the database.
@@ -70,11 +62,13 @@ public interface Database {
     interface Definition
         extends DefinitionStages.Blank, DefinitionStages.WithParentResource, DefinitionStages.WithCreate {
     }
+
     /** The Database definition stages. */
     interface DefinitionStages {
         /** The first stage of the Database definition. */
         interface Blank extends WithParentResource {
         }
+
         /** The stage of the Database definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -86,6 +80,7 @@ public interface Database {
              */
             WithCreate withExistingFlexibleServer(String resourceGroupName, String serverName);
         }
+
         /**
          * The stage of the Database definition which contains all the minimum required properties for the resource to
          * be created, but also allows for any other optional properties to be specified.
@@ -106,6 +101,7 @@ public interface Database {
              */
             Database create(Context context);
         }
+
         /** The stage of the Database definition allowing to specify charset. */
         interface WithCharset {
             /**
@@ -116,6 +112,7 @@ public interface Database {
              */
             WithCreate withCharset(String charset);
         }
+
         /** The stage of the Database definition allowing to specify collation. */
         interface WithCollation {
             /**
@@ -127,6 +124,7 @@ public interface Database {
             WithCreate withCollation(String collation);
         }
     }
+
     /**
      * Begins update for the Database resource.
      *
@@ -151,6 +149,7 @@ public interface Database {
          */
         Database apply(Context context);
     }
+
     /** The Database update stages. */
     interface UpdateStages {
         /** The stage of the Database update allowing to specify charset. */
@@ -163,6 +162,7 @@ public interface Database {
              */
             Update withCharset(String charset);
         }
+
         /** The stage of the Database update allowing to specify collation. */
         interface WithCollation {
             /**
@@ -174,6 +174,7 @@ public interface Database {
             Update withCollation(String collation);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *
