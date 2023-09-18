@@ -7,7 +7,7 @@ package com.azure.resourcemanager.chaos.generated;
 /** Samples for TargetTypes List. */
 public final class TargetTypesListSamples {
     /*
-     * x-ms-original-file: specification/chaos/resource-manager/Microsoft.Chaos/preview/2023-04-15-preview/examples/ListTargetTypes.json
+     * x-ms-original-file: specification/chaos/resource-manager/Microsoft.Chaos/preview/2023-10-27-preview/examples/ListTargetTypes.json
      */
     /**
      * Sample code: List all Target Types for westus2 location.

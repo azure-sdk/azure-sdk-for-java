@@ -7,7 +7,7 @@ package com.azure.resourcemanager.chaos.generated;
 /** Samples for Experiments GetStatus. */
 public final class ExperimentsGetStatusSamples {
     /*
-     * x-ms-original-file: specification/chaos/resource-manager/Microsoft.Chaos/preview/2023-04-15-preview/examples/GetAExperimentStatus.json
+     * x-ms-original-file: specification/chaos/resource-manager/Microsoft.Chaos/preview/2023-10-27-preview/examples/GetAExperimentStatus.json
      */
     /**
      * Sample code: Get the status of a Experiment.

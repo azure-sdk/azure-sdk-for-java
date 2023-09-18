@@ -353,8 +353,10 @@ public final class ChaosManager {
     }
 
     /**
-     * @return Wrapped service client ChaosManagementClient providing direct access to the underlying auto-generated API
-     *     implementation, based on Azure REST API.
+     * Gets wrapped service client ChaosManagementClient providing direct access to the underlying auto-generated API
+     * implementation, based on Azure REST API.
+     *
+     * @return Wrapped service client ChaosManagementClient.
      */
     public ChaosManagementClient serviceClient() {
         return this.clientObject;

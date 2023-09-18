@@ -207,7 +207,7 @@ public final class ChaosManagementClientImpl implements ChaosManagementClient {
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2023-04-15-preview";
+        this.apiVersion = "2023-10-27-preview";
         this.capabilities = new CapabilitiesClientImpl(this);
         this.capabilityTypes = new CapabilityTypesClientImpl(this);
         this.experiments = new ExperimentsClientImpl(this);

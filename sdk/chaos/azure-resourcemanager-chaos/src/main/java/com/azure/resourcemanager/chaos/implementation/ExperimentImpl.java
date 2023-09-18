@@ -9,6 +9,7 @@ import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.chaos.fluent.models.ExperimentInner;
+import com.azure.resourcemanager.chaos.models.CustomerDataStorageProperties;
 import com.azure.resourcemanager.chaos.models.Experiment;
 import com.azure.resourcemanager.chaos.models.ExperimentCancelOperationResult;
 import com.azure.resourcemanager.chaos.models.ExperimentStartOperationResult;
@@ -78,6 +79,10 @@ public final class ExperimentImpl implements Experiment, Experiment.Definition, 
 
     public Boolean startOnCreation() {
         return this.innerModel().startOnCreation();
+    }
+
+    public CustomerDataStorageProperties customerDataStorage() {
+        return this.innerModel().customerDataStorage();
     }
 
     public Region region() {
@@ -242,6 +247,11 @@ public final class ExperimentImpl implements Experiment, Experiment.Definition, 
 
     public ExperimentImpl withStartOnCreation(Boolean startOnCreation) {
         this.innerModel().withStartOnCreation(startOnCreation);
+        return this;
+    }
+
+    public ExperimentImpl withCustomerDataStorage(CustomerDataStorageProperties customerDataStorage) {
+        this.innerModel().withCustomerDataStorage(customerDataStorage);
         return this;
     }
 

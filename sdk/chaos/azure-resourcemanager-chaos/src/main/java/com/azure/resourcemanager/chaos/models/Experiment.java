@@ -86,6 +86,14 @@ public interface Experiment {
     Boolean startOnCreation();
 
     /**
+     * Gets the customerDataStorage property: Optional customer-managed Storage account where Experiment schema will be
+     * stored.
+     *
+     * @return the customerDataStorage value.
+     */
+    CustomerDataStorageProperties customerDataStorage();
+
+    /**
      * Gets the region of the resource.
      *
      * @return the region of the resource.
@@ -186,7 +194,10 @@ public interface Experiment {
          * be created, but also allows for any other optional properties to be specified.
          */
         interface WithCreate
-            extends DefinitionStages.WithTags, DefinitionStages.WithIdentity, DefinitionStages.WithStartOnCreation {
+            extends DefinitionStages.WithTags,
+                DefinitionStages.WithIdentity,
+                DefinitionStages.WithStartOnCreation,
+                DefinitionStages.WithCustomerDataStorage {
             /**
              * Executes the create request.
              *
@@ -235,6 +246,19 @@ public interface Experiment {
              * @return the next definition stage.
              */
             WithCreate withStartOnCreation(Boolean startOnCreation);
+        }
+
+        /** The stage of the Experiment definition allowing to specify customerDataStorage. */
+        interface WithCustomerDataStorage {
+            /**
+             * Specifies the customerDataStorage property: Optional customer-managed Storage account where Experiment
+             * schema will be stored..
+             *
+             * @param customerDataStorage Optional customer-managed Storage account where Experiment schema will be
+             *     stored.
+             * @return the next definition stage.
+             */
+            WithCreate withCustomerDataStorage(CustomerDataStorageProperties customerDataStorage);
         }
     }
 

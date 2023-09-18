@@ -6,6 +6,7 @@ package com.azure.resourcemanager.chaos.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.azure.resourcemanager.chaos.models.CustomerDataStorageProperties;
 import com.azure.resourcemanager.chaos.models.Selector;
 import com.azure.resourcemanager.chaos.models.Step;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -31,6 +32,12 @@ public final class ExperimentProperties {
      */
     @JsonProperty(value = "startOnCreation")
     private Boolean startOnCreation;
+
+    /*
+     * Optional customer-managed Storage account where Experiment schema will be stored.
+     */
+    @JsonProperty(value = "customerDataStorage")
+    private CustomerDataStorageProperties customerDataStorage;
 
     /** Creates an instance of ExperimentProperties class. */
     public ExperimentProperties() {
@@ -99,6 +106,28 @@ public final class ExperimentProperties {
     }
 
     /**
+     * Get the customerDataStorage property: Optional customer-managed Storage account where Experiment schema will be
+     * stored.
+     *
+     * @return the customerDataStorage value.
+     */
+    public CustomerDataStorageProperties customerDataStorage() {
+        return this.customerDataStorage;
+    }
+
+    /**
+     * Set the customerDataStorage property: Optional customer-managed Storage account where Experiment schema will be
+     * stored.
+     *
+     * @param customerDataStorage the customerDataStorage value to set.
+     * @return the ExperimentProperties object itself.
+     */
+    public ExperimentProperties withCustomerDataStorage(CustomerDataStorageProperties customerDataStorage) {
+        this.customerDataStorage = customerDataStorage;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -117,6 +146,9 @@ public final class ExperimentProperties {
                     new IllegalArgumentException("Missing required property selectors in model ExperimentProperties"));
         } else {
             selectors().forEach(e -> e.validate());
+        }
+        if (customerDataStorage() != null) {
+            customerDataStorage().validate();
         }
     }
 
