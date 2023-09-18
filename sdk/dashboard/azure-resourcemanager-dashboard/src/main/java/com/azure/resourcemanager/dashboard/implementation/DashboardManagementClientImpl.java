@@ -23,7 +23,9 @@ import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.dashboard.fluent.DashboardManagementClient;
+import com.azure.resourcemanager.dashboard.fluent.EnterpriseDetailsOperationsClient;
 import com.azure.resourcemanager.dashboard.fluent.GrafanasClient;
+import com.azure.resourcemanager.dashboard.fluent.ManagedPrivateEndpointsClient;
 import com.azure.resourcemanager.dashboard.fluent.OperationsClient;
 import com.azure.resourcemanager.dashboard.fluent.PrivateEndpointConnectionsClient;
 import com.azure.resourcemanager.dashboard.fluent.PrivateLinkResourcesClient;
@@ -159,6 +161,30 @@ public final class DashboardManagementClientImpl implements DashboardManagementC
         return this.privateLinkResources;
     }
 
+    /** The EnterpriseDetailsOperationsClient object to access its operations. */
+    private final EnterpriseDetailsOperationsClient enterpriseDetailsOperations;
+
+    /**
+     * Gets the EnterpriseDetailsOperationsClient object to access its operations.
+     *
+     * @return the EnterpriseDetailsOperationsClient object.
+     */
+    public EnterpriseDetailsOperationsClient getEnterpriseDetailsOperations() {
+        return this.enterpriseDetailsOperations;
+    }
+
+    /** The ManagedPrivateEndpointsClient object to access its operations. */
+    private final ManagedPrivateEndpointsClient managedPrivateEndpoints;
+
+    /**
+     * Gets the ManagedPrivateEndpointsClient object to access its operations.
+     *
+     * @return the ManagedPrivateEndpointsClient object.
+     */
+    public ManagedPrivateEndpointsClient getManagedPrivateEndpoints() {
+        return this.managedPrivateEndpoints;
+    }
+
     /**
      * Initializes an instance of DashboardManagementClient client.
      *
@@ -181,11 +207,13 @@ public final class DashboardManagementClientImpl implements DashboardManagementC
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2022-08-01";
+        this.apiVersion = "2022-10-01-preview";
         this.operations = new OperationsClientImpl(this);
         this.grafanas = new GrafanasClientImpl(this);
         this.privateEndpointConnections = new PrivateEndpointConnectionsClientImpl(this);
         this.privateLinkResources = new PrivateLinkResourcesClientImpl(this);
+        this.enterpriseDetailsOperations = new EnterpriseDetailsOperationsClientImpl(this);
+        this.managedPrivateEndpoints = new ManagedPrivateEndpointsClientImpl(this);
     }
 
     /**
