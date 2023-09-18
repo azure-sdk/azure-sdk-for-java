@@ -52,6 +52,10 @@ public final class MetadataDependencies {
     @JsonProperty(value = "criteria")
     private List<MetadataDependencies> criteria;
 
+    /** Creates an instance of MetadataDependencies class. */
+    public MetadataDependencies() {
+    }
+
     /**
      * Get the contentId property: Id of the content item we depend on.
      *

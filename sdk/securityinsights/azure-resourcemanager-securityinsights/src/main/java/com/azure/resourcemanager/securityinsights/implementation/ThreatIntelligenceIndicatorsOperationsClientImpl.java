@@ -63,11 +63,10 @@ public final class ThreatIntelligenceIndicatorsOperationsClientImpl
      */
     @Host("{$host}")
     @ServiceInterface(name = "SecurityInsightsThre")
-    private interface ThreatIntelligenceIndicatorsOperationsService {
+    public interface ThreatIntelligenceIndicatorsOperationsService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights"
-                + "/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/threatIntelligence/main/indicators")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/threatIntelligence/main/indicators")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ThreatIntelligenceInformationList>> list(

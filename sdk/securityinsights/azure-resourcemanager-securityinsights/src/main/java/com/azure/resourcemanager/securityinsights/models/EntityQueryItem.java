@@ -38,6 +38,10 @@ public class EntityQueryItem {
     @JsonProperty(value = "type")
     private String type;
 
+    /** Creates an instance of EntityQueryItem class. */
+    public EntityQueryItem() {
+    }
+
     /**
      * Get the id property: Query Template ARM ID.
      *

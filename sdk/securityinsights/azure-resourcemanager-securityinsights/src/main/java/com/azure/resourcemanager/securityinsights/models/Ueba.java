@@ -23,6 +23,10 @@ public final class Ueba extends SettingsInner {
     @JsonProperty(value = "properties")
     private UebaProperties innerProperties;
 
+    /** Creates an instance of Ueba class. */
+    public Ueba() {
+    }
+
     /**
      * Get the innerProperties property: Ueba properties.
      *

@@ -44,19 +44,6 @@ public interface Watchlists {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param watchlistAlias Watchlist Alias.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a watchlist, without its watchlist items.
-     */
-    Watchlist get(String resourceGroupName, String workspaceName, String watchlistAlias);
-
-    /**
-     * Gets a watchlist, without its watchlist items.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param watchlistAlias Watchlist Alias.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -67,7 +54,7 @@ public interface Watchlists {
         String resourceGroupName, String workspaceName, String watchlistAlias, Context context);
 
     /**
-     * Delete a watchlist.
+     * Gets a watchlist, without its watchlist items.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -75,8 +62,9 @@ public interface Watchlists {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a watchlist, without its watchlist items.
      */
-    void delete(String resourceGroupName, String workspaceName, String watchlistAlias);
+    Watchlist get(String resourceGroupName, String workspaceName, String watchlistAlias);
 
     /**
      * Delete a watchlist.
@@ -92,6 +80,18 @@ public interface Watchlists {
      */
     WatchlistsDeleteResponse deleteWithResponse(
         String resourceGroupName, String workspaceName, String watchlistAlias, Context context);
+
+    /**
+     * Delete a watchlist.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param watchlistAlias Watchlist Alias.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void delete(String resourceGroupName, String workspaceName, String watchlistAlias);
 
     /**
      * Gets a watchlist, without its watchlist items.

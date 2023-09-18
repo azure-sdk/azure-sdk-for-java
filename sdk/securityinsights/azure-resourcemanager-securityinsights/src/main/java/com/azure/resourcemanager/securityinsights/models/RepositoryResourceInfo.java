@@ -19,14 +19,18 @@ public final class RepositoryResourceInfo {
     /*
      * Resources created in GitHub for this source-control.
      */
-    @JsonProperty(value = "gitHubResourceInfo")
+    @JsonProperty(value = "gitHubResourceInfo", access = JsonProperty.Access.WRITE_ONLY)
     private GitHubResourceInfo gitHubResourceInfo;
 
     /*
      * Resources created in Azure DevOps for this source-control.
      */
-    @JsonProperty(value = "azureDevOpsResourceInfo")
+    @JsonProperty(value = "azureDevOpsResourceInfo", access = JsonProperty.Access.WRITE_ONLY)
     private AzureDevOpsResourceInfo azureDevOpsResourceInfo;
+
+    /** Creates an instance of RepositoryResourceInfo class. */
+    public RepositoryResourceInfo() {
+    }
 
     /**
      * Get the webhook property: The webhook object created for the source-control.
@@ -58,34 +62,12 @@ public final class RepositoryResourceInfo {
     }
 
     /**
-     * Set the gitHubResourceInfo property: Resources created in GitHub for this source-control.
-     *
-     * @param gitHubResourceInfo the gitHubResourceInfo value to set.
-     * @return the RepositoryResourceInfo object itself.
-     */
-    public RepositoryResourceInfo withGitHubResourceInfo(GitHubResourceInfo gitHubResourceInfo) {
-        this.gitHubResourceInfo = gitHubResourceInfo;
-        return this;
-    }
-
-    /**
      * Get the azureDevOpsResourceInfo property: Resources created in Azure DevOps for this source-control.
      *
      * @return the azureDevOpsResourceInfo value.
      */
     public AzureDevOpsResourceInfo azureDevOpsResourceInfo() {
         return this.azureDevOpsResourceInfo;
-    }
-
-    /**
-     * Set the azureDevOpsResourceInfo property: Resources created in Azure DevOps for this source-control.
-     *
-     * @param azureDevOpsResourceInfo the azureDevOpsResourceInfo value to set.
-     * @return the RepositoryResourceInfo object itself.
-     */
-    public RepositoryResourceInfo withAzureDevOpsResourceInfo(AzureDevOpsResourceInfo azureDevOpsResourceInfo) {
-        this.azureDevOpsResourceInfo = azureDevOpsResourceInfo;
-        return this;
     }
 
     /**

@@ -23,6 +23,10 @@ public final class EntityMapping {
     @JsonProperty(value = "fieldMappings")
     private List<FieldMapping> fieldMappings;
 
+    /** Creates an instance of EntityMapping class. */
+    public EntityMapping() {
+    }
+
     /**
      * Get the entityType property: The V3 type of the mapped entity.
      *

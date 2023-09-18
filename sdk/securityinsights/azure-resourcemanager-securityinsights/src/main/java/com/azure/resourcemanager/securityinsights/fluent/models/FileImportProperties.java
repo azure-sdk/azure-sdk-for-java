@@ -96,6 +96,10 @@ public final class FileImportProperties {
     @JsonProperty(value = "importValidUntilTimeUTC", access = JsonProperty.Access.WRITE_ONLY)
     private OffsetDateTime importValidUntilTimeUtc;
 
+    /** Creates an instance of FileImportProperties class. */
+    public FileImportProperties() {
+    }
+
     /**
      * Get the ingestionMode property: Describes how to ingest the records in the file.
      *
