@@ -7,7 +7,7 @@ package com.azure.resourcemanager.hdinsight.generated;
 /** Samples for Applications ListByCluster. */
 public final class ApplicationsListByClusterSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2023-04-15-preview/examples/GetAllApplications.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2023-08-15-preview/examples/GetAllApplications.json
      */
     /**
      * Sample code: Get All Applications for an HDInsight cluster.

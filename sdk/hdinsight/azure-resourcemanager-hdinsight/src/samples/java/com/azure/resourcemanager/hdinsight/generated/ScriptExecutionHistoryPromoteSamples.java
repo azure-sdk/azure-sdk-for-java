@@ -7,7 +7,7 @@ package com.azure.resourcemanager.hdinsight.generated;
 /** Samples for ScriptExecutionHistory Promote. */
 public final class ScriptExecutionHistoryPromoteSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2023-04-15-preview/examples/PromoteLinuxHadoopScriptAction.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2023-08-15-preview/examples/PromoteLinuxHadoopScriptAction.json
      */
     /**
      * Sample code: Promote a script action on HDInsight cluster.
