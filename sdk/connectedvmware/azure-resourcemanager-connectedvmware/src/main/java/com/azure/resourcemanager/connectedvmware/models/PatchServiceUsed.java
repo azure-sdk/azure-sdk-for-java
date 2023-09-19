@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for PatchServiceUsed. */
+/** Specifies the patch service used for the operation. */
 public final class PatchServiceUsed extends ExpandableStringEnum<PatchServiceUsed> {
     /** Static value Unknown for PatchServiceUsed. */
     public static final PatchServiceUsed UNKNOWN = fromString("Unknown");
@@ -27,6 +27,15 @@ public final class PatchServiceUsed extends ExpandableStringEnum<PatchServiceUse
 
     /** Static value Zypper for PatchServiceUsed. */
     public static final PatchServiceUsed ZYPPER = fromString("Zypper");
+
+    /**
+     * Creates a new instance of PatchServiceUsed value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public PatchServiceUsed() {
+    }
 
     /**
      * Creates or finds a PatchServiceUsed from its string representation.

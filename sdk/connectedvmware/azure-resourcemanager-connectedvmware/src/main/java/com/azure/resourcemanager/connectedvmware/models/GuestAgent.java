@@ -33,7 +33,7 @@ public interface GuestAgent {
     String type();
 
     /**
-     * Gets the systemData property: The system data.
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      *
      * @return the systemData value.
      */
@@ -52,6 +52,14 @@ public interface GuestAgent {
      * @return the credentials value.
      */
     GuestCredential credentials();
+
+    /**
+     * Gets the privateLinkScopeResourceId property: The resource id of the private link scope this machine is assigned
+     * to, if any.
+     *
+     * @return the privateLinkScopeResourceId value.
+     */
+    String privateLinkScopeResourceId();
 
     /**
      * Gets the httpProxyConfig property: HTTP Proxy configuration for the VM.
@@ -89,11 +97,11 @@ public interface GuestAgent {
     List<ResourceStatus> statuses();
 
     /**
-     * Gets the provisioningState property: Gets or sets the provisioning state.
+     * Gets the provisioningState property: Gets the provisioning state.
      *
      * @return the provisioningState value.
      */
-    String provisioningState();
+    ProvisioningState provisioningState();
 
     /**
      * Gets the inner com.azure.resourcemanager.connectedvmware.fluent.models.GuestAgentInner object.
@@ -106,11 +114,13 @@ public interface GuestAgent {
     interface Definition
         extends DefinitionStages.Blank, DefinitionStages.WithParentResource, DefinitionStages.WithCreate {
     }
+
     /** The GuestAgent definition stages. */
     interface DefinitionStages {
         /** The first stage of the GuestAgent definition. */
         interface Blank extends WithParentResource {
         }
+
         /** The stage of the GuestAgent definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -122,12 +132,14 @@ public interface GuestAgent {
              */
             WithCreate withExistingVirtualMachine(String resourceGroupName, String virtualMachineName);
         }
+
         /**
          * The stage of the GuestAgent definition which contains all the minimum required properties for the resource to
          * be created, but also allows for any other optional properties to be specified.
          */
         interface WithCreate
             extends DefinitionStages.WithCredentials,
+                DefinitionStages.WithPrivateLinkScopeResourceId,
                 DefinitionStages.WithHttpProxyConfig,
                 DefinitionStages.WithProvisioningAction {
             /**
@@ -145,6 +157,7 @@ public interface GuestAgent {
              */
             GuestAgent create(Context context);
         }
+
         /** The stage of the GuestAgent definition allowing to specify credentials. */
         interface WithCredentials {
             /**
@@ -155,6 +168,20 @@ public interface GuestAgent {
              */
             WithCreate withCredentials(GuestCredential credentials);
         }
+
+        /** The stage of the GuestAgent definition allowing to specify privateLinkScopeResourceId. */
+        interface WithPrivateLinkScopeResourceId {
+            /**
+             * Specifies the privateLinkScopeResourceId property: The resource id of the private link scope this machine
+             * is assigned to, if any..
+             *
+             * @param privateLinkScopeResourceId The resource id of the private link scope this machine is assigned to,
+             *     if any.
+             * @return the next definition stage.
+             */
+            WithCreate withPrivateLinkScopeResourceId(String privateLinkScopeResourceId);
+        }
+
         /** The stage of the GuestAgent definition allowing to specify httpProxyConfig. */
         interface WithHttpProxyConfig {
             /**
@@ -165,6 +192,7 @@ public interface GuestAgent {
              */
             WithCreate withHttpProxyConfig(HttpProxyConfiguration httpProxyConfig);
         }
+
         /** The stage of the GuestAgent definition allowing to specify provisioningAction. */
         interface WithProvisioningAction {
             /**
@@ -176,6 +204,7 @@ public interface GuestAgent {
             WithCreate withProvisioningAction(ProvisioningAction provisioningAction);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

@@ -9,6 +9,7 @@ import com.azure.core.util.Context;
 import com.azure.resourcemanager.connectedvmware.fluent.models.HybridIdentityMetadataInner;
 import com.azure.resourcemanager.connectedvmware.models.HybridIdentityMetadata;
 import com.azure.resourcemanager.connectedvmware.models.Identity;
+import com.azure.resourcemanager.connectedvmware.models.ProvisioningState;
 
 public final class HybridIdentityMetadataImpl implements HybridIdentityMetadata, HybridIdentityMetadata.Definition {
     private HybridIdentityMetadataInner innerObject;
@@ -50,7 +51,7 @@ public final class HybridIdentityMetadataImpl implements HybridIdentityMetadata,
         return this.innerModel().identity();
     }
 
-    public String provisioningState() {
+    public ProvisioningState provisioningState() {
         return this.innerModel().provisioningState();
     }
 

@@ -11,7 +11,7 @@ import java.io.IOException;
 /** Samples for MachineExtensions CreateOrUpdate. */
 public final class MachineExtensionsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/PUTExtension.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2023-03-01-preview/examples/PUTExtension.json
      */
     /**
      * Sample code: Create or Update a Machine Extension (PUT).

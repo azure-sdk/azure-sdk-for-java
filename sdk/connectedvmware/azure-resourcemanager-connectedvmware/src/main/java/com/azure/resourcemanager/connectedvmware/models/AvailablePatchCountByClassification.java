@@ -64,6 +64,10 @@ public final class AvailablePatchCountByClassification {
     @JsonProperty(value = "other", access = JsonProperty.Access.WRITE_ONLY)
     private Integer other;
 
+    /** Creates an instance of AvailablePatchCountByClassification class. */
+    public AvailablePatchCountByClassification() {
+    }
+
     /**
      * Get the security property: Number of security patches available for installation.
      *

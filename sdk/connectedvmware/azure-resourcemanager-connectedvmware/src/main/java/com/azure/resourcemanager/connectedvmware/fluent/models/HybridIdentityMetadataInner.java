@@ -9,6 +9,7 @@ import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.connectedvmware.models.Identity;
+import com.azure.resourcemanager.connectedvmware.models.ProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Defines the HybridIdentityMetadata. */
@@ -21,10 +22,14 @@ public final class HybridIdentityMetadataInner extends ProxyResource {
     private HybridIdentityMetadataProperties innerProperties = new HybridIdentityMetadataProperties();
 
     /*
-     * The system data.
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
      */
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
+
+    /** Creates an instance of HybridIdentityMetadataInner class. */
+    public HybridIdentityMetadataInner() {
+    }
 
     /**
      * Get the innerProperties property: Resource properties.
@@ -36,7 +41,7 @@ public final class HybridIdentityMetadataInner extends ProxyResource {
     }
 
     /**
-     * Get the systemData property: The system data.
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      *
      * @return the systemData value.
      */
@@ -100,11 +105,11 @@ public final class HybridIdentityMetadataInner extends ProxyResource {
     }
 
     /**
-     * Get the provisioningState property: Gets or sets the provisioning state.
+     * Get the provisioningState property: Gets the provisioning state.
      *
      * @return the provisioningState value.
      */
-    public String provisioningState() {
+    public ProvisioningState provisioningState() {
         return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
     }
 

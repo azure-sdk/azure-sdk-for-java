@@ -129,9 +129,37 @@ public interface ConnectedVMwareClient {
     MachineExtensionsClient getMachineExtensions();
 
     /**
+     * Gets the ResourceProvidersClient object to access its operations.
+     *
+     * @return the ResourceProvidersClient object.
+     */
+    ResourceProvidersClient getResourceProviders();
+
+    /**
      * Gets the GuestAgentsClient object to access its operations.
      *
      * @return the GuestAgentsClient object.
      */
     GuestAgentsClient getGuestAgents();
+
+    /**
+     * Gets the VirtualMachineInstancesClient object to access its operations.
+     *
+     * @return the VirtualMachineInstancesClient object.
+     */
+    VirtualMachineInstancesClient getVirtualMachineInstances();
+
+    /**
+     * Gets the VmInstanceHybridIdentityMetadatasClient object to access its operations.
+     *
+     * @return the VmInstanceHybridIdentityMetadatasClient object.
+     */
+    VmInstanceHybridIdentityMetadatasClient getVmInstanceHybridIdentityMetadatas();
+
+    /**
+     * Gets the VMInstanceGuestAgentsClient object to access its operations.
+     *
+     * @return the VMInstanceGuestAgentsClient object.
+     */
+    VMInstanceGuestAgentsClient getVMInstanceGuestAgents();
 }

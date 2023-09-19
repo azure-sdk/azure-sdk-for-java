@@ -16,6 +16,7 @@ import com.azure.resourcemanager.connectedvmware.models.Identity;
 import com.azure.resourcemanager.connectedvmware.models.NetworkProfile;
 import com.azure.resourcemanager.connectedvmware.models.OsProfile;
 import com.azure.resourcemanager.connectedvmware.models.PlacementProfile;
+import com.azure.resourcemanager.connectedvmware.models.ProvisioningState;
 import com.azure.resourcemanager.connectedvmware.models.ResourceStatus;
 import com.azure.resourcemanager.connectedvmware.models.SecurityProfile;
 import com.azure.resourcemanager.connectedvmware.models.StorageProfile;
@@ -57,6 +58,10 @@ public final class VirtualMachineInner extends Resource {
      */
     @JsonProperty(value = "identity")
     private Identity identity;
+
+    /** Creates an instance of VirtualMachineInner class. */
+    public VirtualMachineInner() {
+    }
 
     /**
      * Get the innerProperties property: Resource properties.
@@ -542,11 +547,11 @@ public final class VirtualMachineInner extends Resource {
     }
 
     /**
-     * Get the provisioningState property: Gets or sets the provisioning state.
+     * Get the provisioningState property: Gets the provisioning state.
      *
      * @return the provisioningState value.
      */
-    public String provisioningState() {
+    public ProvisioningState provisioningState() {
         return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
     }
 

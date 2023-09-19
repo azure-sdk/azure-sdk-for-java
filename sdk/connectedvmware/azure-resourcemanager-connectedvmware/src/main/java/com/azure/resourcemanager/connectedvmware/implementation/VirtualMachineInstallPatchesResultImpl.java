@@ -4,8 +4,8 @@
 
 package com.azure.resourcemanager.connectedvmware.implementation;
 
+import com.azure.core.management.exception.ManagementError;
 import com.azure.resourcemanager.connectedvmware.fluent.models.VirtualMachineInstallPatchesResultInner;
-import com.azure.resourcemanager.connectedvmware.models.ErrorDetail;
 import com.azure.resourcemanager.connectedvmware.models.OsTypeUM;
 import com.azure.resourcemanager.connectedvmware.models.PatchOperationStartedBy;
 import com.azure.resourcemanager.connectedvmware.models.PatchOperationStatus;
@@ -82,7 +82,7 @@ public final class VirtualMachineInstallPatchesResultImpl implements VirtualMach
         return this.innerModel().osType();
     }
 
-    public ErrorDetail errorDetails() {
+    public ManagementError errorDetails() {
         return this.innerModel().errorDetails();
     }
 

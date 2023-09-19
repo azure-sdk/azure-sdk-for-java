@@ -34,6 +34,10 @@ public class MachineExtensionInstanceView {
     @JsonProperty(value = "status")
     private MachineExtensionInstanceViewStatus status;
 
+    /** Creates an instance of MachineExtensionInstanceView class. */
+    public MachineExtensionInstanceView() {
+    }
+
     /**
      * Get the name property: The machine extension name.
      *

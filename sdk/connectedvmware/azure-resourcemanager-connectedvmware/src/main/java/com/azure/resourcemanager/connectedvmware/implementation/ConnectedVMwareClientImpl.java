@@ -32,10 +32,14 @@ import com.azure.resourcemanager.connectedvmware.fluent.InventoryItemsClient;
 import com.azure.resourcemanager.connectedvmware.fluent.MachineExtensionsClient;
 import com.azure.resourcemanager.connectedvmware.fluent.OperationsClient;
 import com.azure.resourcemanager.connectedvmware.fluent.ResourcePoolsClient;
+import com.azure.resourcemanager.connectedvmware.fluent.ResourceProvidersClient;
 import com.azure.resourcemanager.connectedvmware.fluent.VCentersClient;
+import com.azure.resourcemanager.connectedvmware.fluent.VMInstanceGuestAgentsClient;
+import com.azure.resourcemanager.connectedvmware.fluent.VirtualMachineInstancesClient;
 import com.azure.resourcemanager.connectedvmware.fluent.VirtualMachineTemplatesClient;
 import com.azure.resourcemanager.connectedvmware.fluent.VirtualMachinesClient;
 import com.azure.resourcemanager.connectedvmware.fluent.VirtualNetworksClient;
+import com.azure.resourcemanager.connectedvmware.fluent.VmInstanceHybridIdentityMetadatasClient;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.nio.ByteBuffer;
@@ -264,6 +268,18 @@ public final class ConnectedVMwareClientImpl implements ConnectedVMwareClient {
         return this.machineExtensions;
     }
 
+    /** The ResourceProvidersClient object to access its operations. */
+    private final ResourceProvidersClient resourceProviders;
+
+    /**
+     * Gets the ResourceProvidersClient object to access its operations.
+     *
+     * @return the ResourceProvidersClient object.
+     */
+    public ResourceProvidersClient getResourceProviders() {
+        return this.resourceProviders;
+    }
+
     /** The GuestAgentsClient object to access its operations. */
     private final GuestAgentsClient guestAgents;
 
@@ -274,6 +290,42 @@ public final class ConnectedVMwareClientImpl implements ConnectedVMwareClient {
      */
     public GuestAgentsClient getGuestAgents() {
         return this.guestAgents;
+    }
+
+    /** The VirtualMachineInstancesClient object to access its operations. */
+    private final VirtualMachineInstancesClient virtualMachineInstances;
+
+    /**
+     * Gets the VirtualMachineInstancesClient object to access its operations.
+     *
+     * @return the VirtualMachineInstancesClient object.
+     */
+    public VirtualMachineInstancesClient getVirtualMachineInstances() {
+        return this.virtualMachineInstances;
+    }
+
+    /** The VmInstanceHybridIdentityMetadatasClient object to access its operations. */
+    private final VmInstanceHybridIdentityMetadatasClient vmInstanceHybridIdentityMetadatas;
+
+    /**
+     * Gets the VmInstanceHybridIdentityMetadatasClient object to access its operations.
+     *
+     * @return the VmInstanceHybridIdentityMetadatasClient object.
+     */
+    public VmInstanceHybridIdentityMetadatasClient getVmInstanceHybridIdentityMetadatas() {
+        return this.vmInstanceHybridIdentityMetadatas;
+    }
+
+    /** The VMInstanceGuestAgentsClient object to access its operations. */
+    private final VMInstanceGuestAgentsClient vMInstanceGuestAgents;
+
+    /**
+     * Gets the VMInstanceGuestAgentsClient object to access its operations.
+     *
+     * @return the VMInstanceGuestAgentsClient object.
+     */
+    public VMInstanceGuestAgentsClient getVMInstanceGuestAgents() {
+        return this.vMInstanceGuestAgents;
     }
 
     /**
@@ -298,7 +350,7 @@ public final class ConnectedVMwareClientImpl implements ConnectedVMwareClient {
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2022-01-10-preview";
+        this.apiVersion = "2023-03-01-preview";
         this.operations = new OperationsClientImpl(this);
         this.virtualMachines = new VirtualMachinesClientImpl(this);
         this.resourcePools = new ResourcePoolsClientImpl(this);
@@ -311,7 +363,11 @@ public final class ConnectedVMwareClientImpl implements ConnectedVMwareClient {
         this.inventoryItems = new InventoryItemsClientImpl(this);
         this.hybridIdentityMetadatas = new HybridIdentityMetadatasClientImpl(this);
         this.machineExtensions = new MachineExtensionsClientImpl(this);
+        this.resourceProviders = new ResourceProvidersClientImpl(this);
         this.guestAgents = new GuestAgentsClientImpl(this);
+        this.virtualMachineInstances = new VirtualMachineInstancesClientImpl(this);
+        this.vmInstanceHybridIdentityMetadatas = new VmInstanceHybridIdentityMetadatasClientImpl(this);
+        this.vMInstanceGuestAgents = new VMInstanceGuestAgentsClientImpl(this);
     }
 
     /**

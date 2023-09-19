@@ -17,6 +17,10 @@ public final class OsProfileUpdateWindowsConfiguration {
     @JsonProperty(value = "patchSettings")
     private PatchSettings innerPatchSettings;
 
+    /** Creates an instance of OsProfileUpdateWindowsConfiguration class. */
+    public OsProfileUpdateWindowsConfiguration() {
+    }
+
     /**
      * Get the innerPatchSettings property: Specifies the patch settings.
      *
