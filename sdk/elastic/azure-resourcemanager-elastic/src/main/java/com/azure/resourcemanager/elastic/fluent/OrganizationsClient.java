@@ -8,6 +8,7 @@ import com.azure.core.annotation.ReturnType;
 import com.azure.core.annotation.ServiceMethod;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
+import com.azure.resourcemanager.elastic.fluent.models.ElasticOrganizationToAzureSubscriptionMappingResponseInner;
 import com.azure.resourcemanager.elastic.fluent.models.UserApiKeyResponseInner;
 import com.azure.resourcemanager.elastic.models.UserEmailId;
 
@@ -39,4 +40,28 @@ public interface OrganizationsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     UserApiKeyResponseInner getApiKey();
+
+    /**
+     * Get Elastic Organization To Azure Subscription Mapping details for the logged-in user.
+     *
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return elastic Organization To Azure Subscription Mapping details for the logged-in user along with {@link
+     *     Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<ElasticOrganizationToAzureSubscriptionMappingResponseInner>
+        getElasticToAzureSubscriptionMappingWithResponse(Context context);
+
+    /**
+     * Get Elastic Organization To Azure Subscription Mapping details for the logged-in user.
+     *
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return elastic Organization To Azure Subscription Mapping details for the logged-in user.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    ElasticOrganizationToAzureSubscriptionMappingResponseInner getElasticToAzureSubscriptionMapping();
 }
