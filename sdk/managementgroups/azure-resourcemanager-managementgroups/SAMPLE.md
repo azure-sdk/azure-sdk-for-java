@@ -44,7 +44,7 @@
 /** Samples for Entities List. */
 public final class EntitiesListSamples {
     /*
-     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2021-04-01/examples/GetEntities.json
+     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2023-04-01/examples/GetEntities.json
      */
     /**
      * Sample code: GetEntities.
@@ -65,7 +65,7 @@ import com.azure.resourcemanager.managementgroups.models.CreateOrUpdateSettingsR
 /** Samples for HierarchySettingsOperation CreateOrUpdate. */
 public final class HierarchySettingsOperationCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2021-04-01/examples/PutHierarchySettings.json
+     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2023-04-01/examples/PutHierarchySettings.json
      */
     /**
      * Sample code: GetGroupSettings.
@@ -91,7 +91,7 @@ public final class HierarchySettingsOperationCreateOrUpdateSamples {
 /** Samples for HierarchySettingsOperation Delete. */
 public final class HierarchySettingsOperationDeleteSamples {
     /*
-     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2021-04-01/examples/DeleteHierarchySettings.json
+     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2023-04-01/examples/DeleteHierarchySettings.json
      */
     /**
      * Sample code: GetGroupSettings.
@@ -110,7 +110,7 @@ public final class HierarchySettingsOperationDeleteSamples {
 /** Samples for HierarchySettingsOperation Get. */
 public final class HierarchySettingsOperationGetSamples {
     /*
-     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2021-04-01/examples/GetHierarchySettings.json
+     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2023-04-01/examples/GetHierarchySettings.json
      */
     /**
      * Sample code: GetGroupSettings.
@@ -129,7 +129,7 @@ public final class HierarchySettingsOperationGetSamples {
 /** Samples for HierarchySettingsOperation List. */
 public final class HierarchySettingsOperationListSamples {
     /*
-     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2021-04-01/examples/ListHierarchySettings.json
+     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2023-04-01/examples/ListHierarchySettings.json
      */
     /**
      * Sample code: ListGroupSettings.
@@ -150,7 +150,7 @@ import com.azure.resourcemanager.managementgroups.models.CreateOrUpdateSettingsR
 /** Samples for HierarchySettingsOperation Update. */
 public final class HierarchySettingsOperationUpdateSamples {
     /*
-     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2021-04-01/examples/PatchHierarchySettings.json
+     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2023-04-01/examples/PatchHierarchySettings.json
      */
     /**
      * Sample code: GetGroupSettings.
@@ -176,7 +176,7 @@ public final class HierarchySettingsOperationUpdateSamples {
 /** Samples for ManagementGroupSubscriptions Create. */
 public final class ManagementGroupSubscriptionsCreateSamples {
     /*
-     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2021-04-01/examples/AddManagementGroupSubscription.json
+     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2023-04-01/examples/AddManagementGroupSubscription.json
      */
     /**
      * Sample code: AddSubscriptionToManagementGroup.
@@ -199,7 +199,7 @@ public final class ManagementGroupSubscriptionsCreateSamples {
 /** Samples for ManagementGroupSubscriptions Delete. */
 public final class ManagementGroupSubscriptionsDeleteSamples {
     /*
-     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2021-04-01/examples/RemoveManagementGroupSubscription.json
+     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2023-04-01/examples/RemoveManagementGroupSubscription.json
      */
     /**
      * Sample code: DeleteSubscriptionFromManagementGroup.
@@ -222,7 +222,7 @@ public final class ManagementGroupSubscriptionsDeleteSamples {
 /** Samples for ManagementGroupSubscriptions GetSubscription. */
 public final class ManagementGroupSubscriptionsGetSubscriptionSamples {
     /*
-     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2021-04-01/examples/GetSubscriptionFromManagementGroup.json
+     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2023-04-01/examples/GetSubscriptionFromManagementGroup.json
      */
     /**
      * Sample code: GetSubscriptionFromManagementGroup.
@@ -245,7 +245,7 @@ public final class ManagementGroupSubscriptionsGetSubscriptionSamples {
 /** Samples for ManagementGroupSubscriptions GetSubscriptionsUnderManagementGroup. */
 public final class ManagementGroupSubscriptionsGetSubscriptionsUnderManagementGroupSamples {
     /*
-     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2021-04-01/examples/GetAllSubscriptionsFromManagementGroup.json
+     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2023-04-01/examples/GetAllSubscriptionsFromManagementGroup.json
      */
     /**
      * Sample code: GetAllSubscriptionsFromManagementGroup.
@@ -271,7 +271,7 @@ import com.azure.resourcemanager.managementgroups.models.CreateParentGroupInfo;
 /** Samples for ManagementGroups CreateOrUpdate. */
 public final class ManagementGroupsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2021-04-01/examples/PutManagementGroup.json
+     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2023-04-01/examples/PutManagementGroup.json
      */
     /**
      * Sample code: PutManagementGroup.
@@ -302,7 +302,7 @@ public final class ManagementGroupsCreateOrUpdateSamples {
 /** Samples for ManagementGroups Delete. */
 public final class ManagementGroupsDeleteSamples {
     /*
-     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2021-04-01/examples/DeleteManagementGroup.json
+     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2023-04-01/examples/DeleteManagementGroup.json
      */
     /**
      * Sample code: DeleteManagementGroup.
@@ -324,7 +324,7 @@ import com.azure.resourcemanager.managementgroups.models.ManagementGroupExpandTy
 /** Samples for ManagementGroups Get. */
 public final class ManagementGroupsGetSamples {
     /*
-     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2021-04-01/examples/GetManagementGroupWithPath.json
+     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2023-04-01/examples/GetManagementGroupWithPath.json
      */
     /**
      * Sample code: GetManagementGroupWithPath.
@@ -345,7 +345,7 @@ public final class ManagementGroupsGetSamples {
     }
 
     /*
-     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2021-04-01/examples/GetManagementGroupWithAncestors.json
+     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2023-04-01/examples/GetManagementGroupWithAncestors.json
      */
     /**
      * Sample code: GetManagementGroupWithAncestors.
@@ -366,7 +366,7 @@ public final class ManagementGroupsGetSamples {
     }
 
     /*
-     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2021-04-01/examples/GetManagementGroupWithExpand.json
+     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2023-04-01/examples/GetManagementGroupWithExpand.json
      */
     /**
      * Sample code: GetManagementGroupWithExpand.
@@ -387,7 +387,7 @@ public final class ManagementGroupsGetSamples {
     }
 
     /*
-     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2021-04-01/examples/GetManagementGroup.json
+     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2023-04-01/examples/GetManagementGroup.json
      */
     /**
      * Sample code: GetManagementGroup.
@@ -402,7 +402,7 @@ public final class ManagementGroupsGetSamples {
     }
 
     /*
-     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2021-04-01/examples/GetManagementGroupWithExpandAndRecurse.json
+     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2023-04-01/examples/GetManagementGroupWithExpandAndRecurse.json
      */
     /**
      * Sample code: GetManagementGroupsWithExpandAndRecurse.
@@ -430,7 +430,7 @@ public final class ManagementGroupsGetSamples {
 /** Samples for ManagementGroups GetDescendants. */
 public final class ManagementGroupsGetDescendantsSamples {
     /*
-     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2021-04-01/examples/GetDescendants.json
+     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2023-04-01/examples/GetDescendants.json
      */
     /**
      * Sample code: GetDescendants.
@@ -451,7 +451,7 @@ public final class ManagementGroupsGetDescendantsSamples {
 /** Samples for ManagementGroups List. */
 public final class ManagementGroupsListSamples {
     /*
-     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2021-04-01/examples/ListManagementGroups.json
+     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2023-04-01/examples/ListManagementGroups.json
      */
     /**
      * Sample code: ListManagementGroups.
@@ -473,7 +473,7 @@ import com.azure.resourcemanager.managementgroups.models.PatchManagementGroupReq
 /** Samples for ManagementGroups Update. */
 public final class ManagementGroupsUpdateSamples {
     /*
-     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2021-04-01/examples/PatchManagementGroup.json
+     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2023-04-01/examples/PatchManagementGroup.json
      */
     /**
      * Sample code: PatchManagementGroup.
@@ -501,7 +501,7 @@ public final class ManagementGroupsUpdateSamples {
 /** Samples for Operations List. */
 public final class OperationsListSamples {
     /*
-     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2021-04-01/examples/ListOperations.json
+     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2023-04-01/examples/ListOperations.json
      */
     /**
      * Sample code: List Operations.
@@ -523,7 +523,7 @@ import com.azure.resourcemanager.managementgroups.models.Type;
 /** Samples for ResourceProvider CheckNameAvailability. */
 public final class ResourceProviderCheckNameAvailabilitySamples {
     /*
-     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2021-04-01/examples/CheckManagementGroupNameAvailability.json
+     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2023-04-01/examples/CheckManagementGroupNameAvailability.json
      */
     /**
      * Sample code: CheckManagementGroupNameAvailability.
@@ -549,7 +549,7 @@ public final class ResourceProviderCheckNameAvailabilitySamples {
 /** Samples for ResourceProvider StartTenantBackfill. */
 public final class ResourceProviderStartTenantBackfillSamples {
     /*
-     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2021-04-01/examples/StartTenantBackfillRequest.json
+     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2023-04-01/examples/StartTenantBackfillRequest.json
      */
     /**
      * Sample code: StartTenantBackfill.
@@ -568,7 +568,7 @@ public final class ResourceProviderStartTenantBackfillSamples {
 /** Samples for ResourceProvider TenantBackfillStatus. */
 public final class ResourceProviderTenantBackfillStatusSamples {
     /*
-     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2021-04-01/examples/TenantBackfillStatusRequest.json
+     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2023-04-01/examples/TenantBackfillStatusRequest.json
      */
     /**
      * Sample code: TenantBackfillStatus.

@@ -7,7 +7,7 @@ package com.azure.resourcemanager.managementgroups.generated;
 /** Samples for HierarchySettingsOperation List. */
 public final class HierarchySettingsOperationListSamples {
     /*
-     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2021-04-01/examples/ListHierarchySettings.json
+     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2023-04-01/examples/ListHierarchySettings.json
      */
     /**
      * Sample code: ListGroupSettings.

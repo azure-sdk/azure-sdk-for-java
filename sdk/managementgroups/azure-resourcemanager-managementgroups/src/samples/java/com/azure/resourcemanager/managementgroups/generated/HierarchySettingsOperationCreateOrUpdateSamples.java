@@ -9,7 +9,7 @@ import com.azure.resourcemanager.managementgroups.models.CreateOrUpdateSettingsR
 /** Samples for HierarchySettingsOperation CreateOrUpdate. */
 public final class HierarchySettingsOperationCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2021-04-01/examples/PutHierarchySettings.json
+     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2023-04-01/examples/PutHierarchySettings.json
      */
     /**
      * Sample code: GetGroupSettings.
