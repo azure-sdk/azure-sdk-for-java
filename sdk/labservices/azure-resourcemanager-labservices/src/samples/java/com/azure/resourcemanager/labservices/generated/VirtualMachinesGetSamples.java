@@ -4,12 +4,10 @@
 
 package com.azure.resourcemanager.labservices.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for VirtualMachines Get. */
 public final class VirtualMachinesGetSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/VirtualMachines/getVirtualMachine.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/VirtualMachines/getVirtualMachine.json
      */
     /**
      * Sample code: getVirtualMachine.
@@ -17,6 +15,6 @@ public final class VirtualMachinesGetSamples {
      * @param manager Entry point to LabServicesManager.
      */
     public static void getVirtualMachine(com.azure.resourcemanager.labservices.LabServicesManager manager) {
-        manager.virtualMachines().getWithResponse("testrg123", "testlab", "template", Context.NONE);
+        manager.virtualMachines().getWithResponse("testrg123", "testlab", "template", com.azure.core.util.Context.NONE);
     }
 }

@@ -259,7 +259,7 @@ public final class LabServicesClientImpl implements LabServicesClient {
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2022-08-01";
+        this.apiVersion = "2023-06-07";
         this.images = new ImagesClientImpl(this);
         this.labPlans = new LabPlansClientImpl(this);
         this.operations = new OperationsClientImpl(this);

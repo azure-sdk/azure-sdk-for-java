@@ -24,6 +24,10 @@ public final class PagedLabPlans {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
+    /** Creates an instance of PagedLabPlans class. */
+    public PagedLabPlans() {
+    }
+
     /**
      * Get the value property: The array page of lab plans.
      *

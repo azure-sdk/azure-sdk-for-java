@@ -16,6 +16,10 @@ public final class InviteBody {
     @JsonProperty(value = "text")
     private String text;
 
+    /** Creates an instance of InviteBody class. */
+    public InviteBody() {
+    }
+
     /**
      * Get the text property: Custom text for the invite email.
      *

@@ -4,12 +4,10 @@
 
 package com.azure.resourcemanager.labservices.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for LabPlans GetByResourceGroup. */
 public final class LabPlansGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/LabPlans/getLabPlan.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/LabPlans/getLabPlan.json
      */
     /**
      * Sample code: getLabPlan.
@@ -17,6 +15,6 @@ public final class LabPlansGetByResourceGroupSamples {
      * @param manager Entry point to LabServicesManager.
      */
     public static void getLabPlan(com.azure.resourcemanager.labservices.LabServicesManager manager) {
-        manager.labPlans().getByResourceGroupWithResponse("testrg123", "testlabplan", Context.NONE);
+        manager.labPlans().getByResourceGroupWithResponse("testrg123", "testlabplan", com.azure.core.util.Context.NONE);
     }
 }

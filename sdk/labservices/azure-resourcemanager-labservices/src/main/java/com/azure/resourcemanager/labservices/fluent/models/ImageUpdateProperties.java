@@ -17,6 +17,10 @@ public class ImageUpdateProperties {
     @JsonProperty(value = "enabledState")
     private EnableState enabledState;
 
+    /** Creates an instance of ImageUpdateProperties class. */
+    public ImageUpdateProperties() {
+    }
+
     /**
      * Get the enabledState property: Is the image enabled.
      *

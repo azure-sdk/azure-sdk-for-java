@@ -16,6 +16,10 @@ public final class VirtualMachineAdditionalCapabilities {
     @JsonProperty(value = "installGpuDrivers")
     private EnableState installGpuDrivers;
 
+    /** Creates an instance of VirtualMachineAdditionalCapabilities class. */
+    public VirtualMachineAdditionalCapabilities() {
+    }
+
     /**
      * Get the installGpuDrivers property: Flag to pre-install dedicated GPU drivers.
      *

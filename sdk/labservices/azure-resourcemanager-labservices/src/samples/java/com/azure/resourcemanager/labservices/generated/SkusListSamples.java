@@ -4,12 +4,10 @@
 
 package com.azure.resourcemanager.labservices.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Skus List. */
 public final class SkusListSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Skus/listSkus.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/Skus/listSkus.json
      */
     /**
      * Sample code: listSkus.
@@ -17,6 +15,6 @@ public final class SkusListSamples {
      * @param manager Entry point to LabServicesManager.
      */
     public static void listSkus(com.azure.resourcemanager.labservices.LabServicesManager manager) {
-        manager.skus().list(null, Context.NONE);
+        manager.skus().list(null, com.azure.core.util.Context.NONE);
     }
 }

@@ -24,6 +24,10 @@ public final class LabPlanUpdate extends TrackedResourceUpdate {
     @JsonProperty(value = "identity")
     private Identity identity;
 
+    /** Creates an instance of LabPlanUpdate class. */
+    public LabPlanUpdate() {
+    }
+
     /**
      * Get the innerProperties property: Lab plan resource update properties.
      *
