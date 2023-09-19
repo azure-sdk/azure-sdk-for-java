@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.containerservicefleet.models;
 
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.containerservicefleet.fluent.models.UpdateRunInner;
 
@@ -39,6 +40,13 @@ public interface UpdateRun {
      * @return the etag value.
      */
     String etag();
+
+    /**
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     *
+     * @return the systemData value.
+     */
+    SystemData systemData();
 
     /**
      * Gets the provisioningState property: The provisioning state of the UpdateRun resource.
