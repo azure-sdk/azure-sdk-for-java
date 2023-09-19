@@ -14,7 +14,7 @@ public interface ExternalFqdnResponse {
      *
      * @return the value value.
      */
-    List<FqdnEndpoints> value();
+    List<FqdnEndpointsPropertyBag> value();
 
     /**
      * Gets the inner com.azure.resourcemanager.machinelearning.fluent.models.ExternalFqdnResponseInner object.
