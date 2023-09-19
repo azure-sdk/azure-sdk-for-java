@@ -108,11 +108,13 @@ public interface Client {
     interface Definition
         extends DefinitionStages.Blank, DefinitionStages.WithParentResource, DefinitionStages.WithCreate {
     }
+
     /** The Client definition stages. */
     interface DefinitionStages {
         /** The first stage of the Client definition. */
         interface Blank extends WithParentResource {
         }
+
         /** The stage of the Client definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -124,6 +126,7 @@ public interface Client {
              */
             WithCreate withExistingNamespace(String resourceGroupName, String namespaceName);
         }
+
         /**
          * The stage of the Client definition which contains all the minimum required properties for the resource to be
          * created, but also allows for any other optional properties to be specified.
@@ -150,6 +153,7 @@ public interface Client {
              */
             Client create(Context context);
         }
+
         /** The stage of the Client definition allowing to specify description. */
         interface WithDescription {
             /**
@@ -160,6 +164,7 @@ public interface Client {
              */
             WithCreate withDescription(String description);
         }
+
         /** The stage of the Client definition allowing to specify authenticationName. */
         interface WithAuthenticationName {
             /**
@@ -172,6 +177,7 @@ public interface Client {
              */
             WithCreate withAuthenticationName(String authenticationName);
         }
+
         /** The stage of the Client definition allowing to specify authentication. */
         interface WithAuthentication {
             /**
@@ -182,6 +188,7 @@ public interface Client {
              */
             WithCreate withAuthentication(ClientAuthentication authentication);
         }
+
         /** The stage of the Client definition allowing to specify clientCertificateAuthentication. */
         interface WithClientCertificateAuthentication {
             /**
@@ -194,6 +201,7 @@ public interface Client {
             WithCreate withClientCertificateAuthentication(
                 ClientCertificateAuthentication clientCertificateAuthentication);
         }
+
         /** The stage of the Client definition allowing to specify state. */
         interface WithState {
             /**
@@ -204,6 +212,7 @@ public interface Client {
              */
             WithCreate withState(ClientState state);
         }
+
         /** The stage of the Client definition allowing to specify attributes. */
         interface WithAttributes {
             /**
@@ -217,6 +226,7 @@ public interface Client {
             WithCreate withAttributes(Map<String, Object> attributes);
         }
     }
+
     /**
      * Begins update for the Client resource.
      *
@@ -247,6 +257,7 @@ public interface Client {
          */
         Client apply(Context context);
     }
+
     /** The Client update stages. */
     interface UpdateStages {
         /** The stage of the Client update allowing to specify description. */
@@ -259,6 +270,7 @@ public interface Client {
              */
             Update withDescription(String description);
         }
+
         /** The stage of the Client update allowing to specify authenticationName. */
         interface WithAuthenticationName {
             /**
@@ -271,6 +283,7 @@ public interface Client {
              */
             Update withAuthenticationName(String authenticationName);
         }
+
         /** The stage of the Client update allowing to specify authentication. */
         interface WithAuthentication {
             /**
@@ -281,6 +294,7 @@ public interface Client {
              */
             Update withAuthentication(ClientAuthentication authentication);
         }
+
         /** The stage of the Client update allowing to specify clientCertificateAuthentication. */
         interface WithClientCertificateAuthentication {
             /**
@@ -292,6 +306,7 @@ public interface Client {
              */
             Update withClientCertificateAuthentication(ClientCertificateAuthentication clientCertificateAuthentication);
         }
+
         /** The stage of the Client update allowing to specify state. */
         interface WithState {
             /**
@@ -302,6 +317,7 @@ public interface Client {
              */
             Update withState(ClientState state);
         }
+
         /** The stage of the Client update allowing to specify attributes. */
         interface WithAttributes {
             /**
@@ -315,6 +331,7 @@ public interface Client {
             Update withAttributes(Map<String, Object> attributes);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

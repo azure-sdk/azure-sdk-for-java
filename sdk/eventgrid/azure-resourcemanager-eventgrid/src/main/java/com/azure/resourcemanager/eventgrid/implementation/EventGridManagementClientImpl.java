@@ -213,18 +213,6 @@ public final class EventGridManagementClientImpl implements EventGridManagementC
         return this.domainTopics;
     }
 
-    /** The TopicEventSubscriptionsClient object to access its operations. */
-    private final TopicEventSubscriptionsClient topicEventSubscriptions;
-
-    /**
-     * Gets the TopicEventSubscriptionsClient object to access its operations.
-     *
-     * @return the TopicEventSubscriptionsClient object.
-     */
-    public TopicEventSubscriptionsClient getTopicEventSubscriptions() {
-        return this.topicEventSubscriptions;
-    }
-
     /** The DomainTopicEventSubscriptionsClient object to access its operations. */
     private final DomainTopicEventSubscriptionsClient domainTopicEventSubscriptions;
 
@@ -235,6 +223,18 @@ public final class EventGridManagementClientImpl implements EventGridManagementC
      */
     public DomainTopicEventSubscriptionsClient getDomainTopicEventSubscriptions() {
         return this.domainTopicEventSubscriptions;
+    }
+
+    /** The TopicEventSubscriptionsClient object to access its operations. */
+    private final TopicEventSubscriptionsClient topicEventSubscriptions;
+
+    /**
+     * Gets the TopicEventSubscriptionsClient object to access its operations.
+     *
+     * @return the TopicEventSubscriptionsClient object.
+     */
+    public TopicEventSubscriptionsClient getTopicEventSubscriptions() {
+        return this.topicEventSubscriptions;
     }
 
     /** The DomainEventSubscriptionsClient object to access its operations. */
@@ -531,8 +531,8 @@ public final class EventGridManagementClientImpl implements EventGridManagementC
         this.clients = new ClientsClientImpl(this);
         this.domains = new DomainsClientImpl(this);
         this.domainTopics = new DomainTopicsClientImpl(this);
-        this.topicEventSubscriptions = new TopicEventSubscriptionsClientImpl(this);
         this.domainTopicEventSubscriptions = new DomainTopicEventSubscriptionsClientImpl(this);
+        this.topicEventSubscriptions = new TopicEventSubscriptionsClientImpl(this);
         this.domainEventSubscriptions = new DomainEventSubscriptionsClientImpl(this);
         this.eventSubscriptions = new EventSubscriptionsClientImpl(this);
         this.systemTopicEventSubscriptions = new SystemTopicEventSubscriptionsClientImpl(this);
