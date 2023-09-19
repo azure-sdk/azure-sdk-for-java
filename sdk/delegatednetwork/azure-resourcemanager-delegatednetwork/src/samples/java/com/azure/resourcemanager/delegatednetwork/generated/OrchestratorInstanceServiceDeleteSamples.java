@@ -7,7 +7,7 @@ package com.azure.resourcemanager.delegatednetwork.generated;
 /** Samples for OrchestratorInstanceService Delete. */
 public final class OrchestratorInstanceServiceDeleteSamples {
     /*
-     * x-ms-original-file: specification/dnc/resource-manager/Microsoft.DelegatedNetwork/stable/2021-03-15/examples/deleteOrchestrator.json
+     * x-ms-original-file: specification/dnc/resource-manager/Microsoft.DelegatedNetwork/preview/2023-06-27-preview/examples/deleteOrchestrator.json
      */
     /**
      * Sample code: Delete Orchestrator Instance.

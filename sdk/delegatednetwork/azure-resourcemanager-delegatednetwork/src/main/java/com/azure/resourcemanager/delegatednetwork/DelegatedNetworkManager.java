@@ -219,7 +219,7 @@ public final class DelegatedNetworkManager {
                 .append("-")
                 .append("com.azure.resourcemanager.delegatednetwork")
                 .append("/")
-                .append("1.0.0-beta.2");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -339,8 +339,10 @@ public final class DelegatedNetworkManager {
     }
 
     /**
-     * @return Wrapped service client Dnc providing direct access to the underlying auto-generated API implementation,
-     *     based on Azure REST API.
+     * Gets wrapped service client Dnc providing direct access to the underlying auto-generated API implementation,
+     * based on Azure REST API.
+     *
+     * @return Wrapped service client Dnc.
      */
     public Dnc serviceClient() {
         return this.clientObject;
