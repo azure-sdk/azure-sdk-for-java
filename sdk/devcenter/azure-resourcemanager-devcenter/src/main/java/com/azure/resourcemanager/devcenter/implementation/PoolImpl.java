@@ -15,6 +15,7 @@ import com.azure.resourcemanager.devcenter.models.LocalAdminStatus;
 import com.azure.resourcemanager.devcenter.models.Pool;
 import com.azure.resourcemanager.devcenter.models.PoolUpdate;
 import com.azure.resourcemanager.devcenter.models.ProvisioningState;
+import com.azure.resourcemanager.devcenter.models.SingleSignOnStatus;
 import com.azure.resourcemanager.devcenter.models.StopOnDisconnectConfiguration;
 import java.util.Collections;
 import java.util.List;
@@ -67,6 +68,10 @@ public final class PoolImpl implements Pool, Pool.Definition, Pool.Update {
         }
     }
 
+    public Integer devBoxCount() {
+        return this.innerModel().devBoxCount();
+    }
+
     public ProvisioningState provisioningState() {
         return this.innerModel().provisioningState();
     }
@@ -89,6 +94,10 @@ public final class PoolImpl implements Pool, Pool.Definition, Pool.Update {
 
     public StopOnDisconnectConfiguration stopOnDisconnect() {
         return this.innerModel().stopOnDisconnect();
+    }
+
+    public SingleSignOnStatus singleSignOnStatus() {
+        return this.innerModel().singleSignOnStatus();
     }
 
     public Region region() {
@@ -274,6 +283,16 @@ public final class PoolImpl implements Pool, Pool.Definition, Pool.Update {
             return this;
         } else {
             this.updateBody.withStopOnDisconnect(stopOnDisconnect);
+            return this;
+        }
+    }
+
+    public PoolImpl withSingleSignOnStatus(SingleSignOnStatus singleSignOnStatus) {
+        if (isInCreateMode()) {
+            this.innerModel().withSingleSignOnStatus(singleSignOnStatus);
+            return this;
+        } else {
+            this.updateBody.withSingleSignOnStatus(singleSignOnStatus);
             return this;
         }
     }

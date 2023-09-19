@@ -12,6 +12,7 @@ import com.azure.resourcemanager.devcenter.models.HealthStatusDetail;
 import com.azure.resourcemanager.devcenter.models.LicenseType;
 import com.azure.resourcemanager.devcenter.models.LocalAdminStatus;
 import com.azure.resourcemanager.devcenter.models.ProvisioningState;
+import com.azure.resourcemanager.devcenter.models.SingleSignOnStatus;
 import com.azure.resourcemanager.devcenter.models.StopOnDisconnectConfiguration;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
@@ -86,6 +87,15 @@ public final class PoolInner extends Resource {
      */
     public List<HealthStatusDetail> healthStatusDetails() {
         return this.innerProperties() == null ? null : this.innerProperties().healthStatusDetails();
+    }
+
+    /**
+     * Get the devBoxCount property: Indicates the number of provisioned Dev Boxes in this pool.
+     *
+     * @return the devBoxCount value.
+     */
+    public Integer devBoxCount() {
+        return this.innerProperties() == null ? null : this.innerProperties().devBoxCount();
     }
 
     /**
@@ -213,6 +223,31 @@ public final class PoolInner extends Resource {
             this.innerProperties = new PoolProperties();
         }
         this.innerProperties().withStopOnDisconnect(stopOnDisconnect);
+        return this;
+    }
+
+    /**
+     * Get the singleSignOnStatus property: Indicates whether Dev Boxes in this pool are created with single sign on
+     * enabled. The also requires that single sign on be enabled on the tenant.
+     *
+     * @return the singleSignOnStatus value.
+     */
+    public SingleSignOnStatus singleSignOnStatus() {
+        return this.innerProperties() == null ? null : this.innerProperties().singleSignOnStatus();
+    }
+
+    /**
+     * Set the singleSignOnStatus property: Indicates whether Dev Boxes in this pool are created with single sign on
+     * enabled. The also requires that single sign on be enabled on the tenant.
+     *
+     * @param singleSignOnStatus the singleSignOnStatus value to set.
+     * @return the PoolInner object itself.
+     */
+    public PoolInner withSingleSignOnStatus(SingleSignOnStatus singleSignOnStatus) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new PoolProperties();
+        }
+        this.innerProperties().withSingleSignOnStatus(singleSignOnStatus);
         return this;
     }
 
