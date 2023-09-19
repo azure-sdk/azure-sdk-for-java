@@ -66,22 +66,25 @@ public interface EnvironmentContainer {
             DefinitionStages.WithProperties,
             DefinitionStages.WithCreate {
     }
+
     /** The EnvironmentContainer definition stages. */
     interface DefinitionStages {
         /** The first stage of the EnvironmentContainer definition. */
         interface Blank extends WithParentResource {
         }
+
         /** The stage of the EnvironmentContainer definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
-             * Specifies resourceGroupName, workspaceName.
+             * Specifies resourceGroupName, registryName.
              *
              * @param resourceGroupName The name of the resource group. The name is case insensitive.
-             * @param workspaceName Name of Azure Machine Learning workspace.
+             * @param registryName Name of Azure Machine Learning registry. This is case-insensitive.
              * @return the next definition stage.
              */
-            WithProperties withExistingWorkspace(String resourceGroupName, String workspaceName);
+            WithProperties withExistingRegistry(String resourceGroupName, String registryName);
         }
+
         /** The stage of the EnvironmentContainer definition allowing to specify properties. */
         interface WithProperties {
             /**
@@ -92,6 +95,7 @@ public interface EnvironmentContainer {
              */
             WithCreate withProperties(EnvironmentContainerProperties properties);
         }
+
         /**
          * The stage of the EnvironmentContainer definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
@@ -113,6 +117,7 @@ public interface EnvironmentContainer {
             EnvironmentContainer create(Context context);
         }
     }
+
     /**
      * Begins update for the EnvironmentContainer resource.
      *
@@ -137,6 +142,7 @@ public interface EnvironmentContainer {
          */
         EnvironmentContainer apply(Context context);
     }
+
     /** The EnvironmentContainer update stages. */
     interface UpdateStages {
         /** The stage of the EnvironmentContainer update allowing to specify properties. */
@@ -150,6 +156,7 @@ public interface EnvironmentContainer {
             Update withProperties(EnvironmentContainerProperties properties);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

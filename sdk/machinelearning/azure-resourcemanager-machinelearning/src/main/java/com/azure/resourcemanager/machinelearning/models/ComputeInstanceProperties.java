@@ -41,6 +41,18 @@ public final class ComputeInstanceProperties {
     private ComputeInstanceSshSettings sshSettings;
 
     /*
+     * List of Custom Services added to the compute.
+     */
+    @JsonProperty(value = "customServices")
+    private List<CustomService> customServices;
+
+    /*
+     * Returns metadata about the operating system image for this compute instance.
+     */
+    @JsonProperty(value = "osImageMetadata", access = JsonProperty.Access.WRITE_ONLY)
+    private ImageMetadata osImageMetadata;
+
+    /*
      * Describes all connectivity endpoints available for this ComputeInstance.
      */
     @JsonProperty(value = "connectivityEndpoints", access = JsonProperty.Access.WRITE_ONLY)
@@ -101,7 +113,7 @@ public final class ComputeInstanceProperties {
     /*
      * The list of schedules to be applied on the computes.
      */
-    @JsonProperty(value = "schedules", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "schedules")
     private ComputeSchedules schedules;
 
     /*
@@ -228,6 +240,35 @@ public final class ComputeInstanceProperties {
     public ComputeInstanceProperties withSshSettings(ComputeInstanceSshSettings sshSettings) {
         this.sshSettings = sshSettings;
         return this;
+    }
+
+    /**
+     * Get the customServices property: List of Custom Services added to the compute.
+     *
+     * @return the customServices value.
+     */
+    public List<CustomService> customServices() {
+        return this.customServices;
+    }
+
+    /**
+     * Set the customServices property: List of Custom Services added to the compute.
+     *
+     * @param customServices the customServices value to set.
+     * @return the ComputeInstanceProperties object itself.
+     */
+    public ComputeInstanceProperties withCustomServices(List<CustomService> customServices) {
+        this.customServices = customServices;
+        return this;
+    }
+
+    /**
+     * Get the osImageMetadata property: Returns metadata about the operating system image for this compute instance.
+     *
+     * @return the osImageMetadata value.
+     */
+    public ImageMetadata osImageMetadata() {
+        return this.osImageMetadata;
     }
 
     /**
@@ -362,6 +403,17 @@ public final class ComputeInstanceProperties {
     }
 
     /**
+     * Set the schedules property: The list of schedules to be applied on the computes.
+     *
+     * @param schedules the schedules value to set.
+     * @return the ComputeInstanceProperties object itself.
+     */
+    public ComputeInstanceProperties withSchedules(ComputeSchedules schedules) {
+        this.schedules = schedules;
+        return this;
+    }
+
+    /**
      * Get the enableNodePublicIp property: Enable node public IP.
      *
      * <p>Enable or disable node public IP address provisioning. Possible values are: Possible values are: true -
@@ -436,6 +488,12 @@ public final class ComputeInstanceProperties {
         }
         if (sshSettings() != null) {
             sshSettings().validate();
+        }
+        if (customServices() != null) {
+            customServices().forEach(e -> e.validate());
+        }
+        if (osImageMetadata() != null) {
+            osImageMetadata().validate();
         }
         if (connectivityEndpoints() != null) {
             connectivityEndpoints().validate();

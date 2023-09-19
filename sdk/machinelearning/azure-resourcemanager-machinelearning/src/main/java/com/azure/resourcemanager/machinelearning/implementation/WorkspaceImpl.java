@@ -8,6 +8,7 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
+import com.azure.resourcemanager.machinelearning.fluent.models.ManagedNetworkSettingsInner;
 import com.azure.resourcemanager.machinelearning.fluent.models.NotebookResourceInfoInner;
 import com.azure.resourcemanager.machinelearning.fluent.models.PrivateEndpointConnectionInner;
 import com.azure.resourcemanager.machinelearning.fluent.models.WorkspaceInner;
@@ -17,6 +18,7 @@ import com.azure.resourcemanager.machinelearning.models.EncryptionProperty;
 import com.azure.resourcemanager.machinelearning.models.ListNotebookKeysResult;
 import com.azure.resourcemanager.machinelearning.models.ListStorageAccountKeysResult;
 import com.azure.resourcemanager.machinelearning.models.ListWorkspaceKeysResult;
+import com.azure.resourcemanager.machinelearning.models.ManagedNetworkSettings;
 import com.azure.resourcemanager.machinelearning.models.ManagedServiceIdentity;
 import com.azure.resourcemanager.machinelearning.models.NotebookAccessTokenResult;
 import com.azure.resourcemanager.machinelearning.models.NotebookResourceInfo;
@@ -193,6 +195,15 @@ public final class WorkspaceImpl implements Workspace, Workspace.Definition, Wor
 
     public Boolean v1LegacyMode() {
         return this.innerModel().v1LegacyMode();
+    }
+
+    public ManagedNetworkSettings managedNetwork() {
+        ManagedNetworkSettingsInner inner = this.innerModel().managedNetwork();
+        if (inner != null) {
+            return new ManagedNetworkSettingsImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public Region region() {
@@ -519,6 +530,11 @@ public final class WorkspaceImpl implements Workspace, Workspace.Definition, Wor
 
     public WorkspaceImpl withV1LegacyMode(Boolean v1LegacyMode) {
         this.innerModel().withV1LegacyMode(v1LegacyMode);
+        return this;
+    }
+
+    public WorkspaceImpl withManagedNetwork(ManagedNetworkSettingsInner managedNetwork) {
+        this.innerModel().withManagedNetwork(managedNetwork);
         return this;
     }
 

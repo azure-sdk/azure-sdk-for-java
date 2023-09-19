@@ -7,7 +7,7 @@ package com.azure.resourcemanager.machinelearning.generated;
 /** Samples for Jobs Delete. */
 public final class JobsDeleteSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Job/delete.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2023-10-01/examples/Job/delete.json
      */
     /**
      * Sample code: Delete Job.
@@ -15,6 +15,12 @@ public final class JobsDeleteSamples {
      * @param manager Entry point to MachineLearningManager.
      */
     public static void deleteJob(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
-        manager.jobs().delete("test-rg", "my-aml-workspace", "string", com.azure.core.util.Context.NONE);
+        manager
+            .jobs()
+            .delete(
+                "test-rg",
+                "my-aml-workspace",
+                "http://subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/jobs/my-favorite-aml-job",
+                com.azure.core.util.Context.NONE);
     }
 }

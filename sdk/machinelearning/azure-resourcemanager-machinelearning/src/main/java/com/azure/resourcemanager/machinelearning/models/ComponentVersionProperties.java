@@ -18,6 +18,12 @@ public final class ComponentVersionProperties extends AssetBase {
     @JsonProperty(value = "componentSpec")
     private Object componentSpec;
 
+    /*
+     * Provisioning state for the component version.
+     */
+    @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
+    private AssetProvisioningState provisioningState;
+
     /** Creates an instance of ComponentVersionProperties class. */
     public ComponentVersionProperties() {
     }
@@ -42,6 +48,15 @@ public final class ComponentVersionProperties extends AssetBase {
     public ComponentVersionProperties withComponentSpec(Object componentSpec) {
         this.componentSpec = componentSpec;
         return this;
+    }
+
+    /**
+     * Get the provisioningState property: Provisioning state for the component version.
+     *
+     * @return the provisioningState value.
+     */
+    public AssetProvisioningState provisioningState() {
+        return this.provisioningState;
     }
 
     /** {@inheritDoc} */
