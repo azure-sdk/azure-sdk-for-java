@@ -4,12 +4,10 @@
 
 package com.azure.resourcemanager.consumption.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Tags Get. */
 public final class TagsGetSamples {
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/Tags.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2023-11-01/examples/Tags.json
      */
     /**
      * Sample code: Tags_Get.
@@ -17,6 +15,9 @@ public final class TagsGetSamples {
      * @param manager Entry point to ConsumptionManager.
      */
     public static void tagsGet(com.azure.resourcemanager.consumption.ConsumptionManager manager) {
-        manager.tags().getWithResponse("providers/Microsoft.CostManagement/billingAccounts/1234", Context.NONE);
+        manager
+            .tags()
+            .getWithResponse(
+                "providers/Microsoft.CostManagement/billingAccounts/1234", com.azure.core.util.Context.NONE);
     }
 }

@@ -21,15 +21,12 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.consumption.fluent.TagsClient;
 import com.azure.resourcemanager.consumption.fluent.models.TagsResultInner;
 import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in TagsClient. */
 public final class TagsClientImpl implements TagsClient {
-    private final ClientLogger logger = new ClientLogger(TagsClientImpl.class);
-
     /** The proxy service used to perform REST calls. */
     private final TagsService service;
 
@@ -52,7 +49,7 @@ public final class TagsClientImpl implements TagsClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "ConsumptionManagemen")
-    private interface TagsService {
+    public interface TagsService {
         @Headers({"Content-Type: application/json"})
         @Get("/{scope}/providers/Microsoft.Consumption/tags")
         @ExpectedResponses({200, 204})
@@ -79,7 +76,8 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all available tag keys for the defined scope.
+     * @return all available tag keys for the defined scope along with {@link Response} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<TagsResultInner>> getWithResponseAsync(String scope) {
@@ -114,7 +112,8 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all available tag keys for the defined scope.
+     * @return all available tag keys for the defined scope along with {@link Response} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<TagsResultInner>> getWithResponseAsync(String scope, Context context) {
@@ -146,19 +145,33 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all available tag keys for the defined scope.
+     * @return all available tag keys for the defined scope on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<TagsResultInner> getAsync(String scope) {
-        return getWithResponseAsync(scope)
-            .flatMap(
-                (Response<TagsResultInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+        return getWithResponseAsync(scope).flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Get all available tag keys for the defined scope.
+     *
+     * @param scope The scope associated with tags operations. This includes '/subscriptions/{subscriptionId}/' for
+     *     subscription scope, '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}' for resourceGroup
+     *     scope, '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}' for Billing Account scope,
+     *     '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/departments/{departmentId}' for Department
+     *     scope,
+     *     '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/enrollmentAccounts/{enrollmentAccountId}'
+     *     for EnrollmentAccount scope and '/providers/Microsoft.Management/managementGroups/{managementGroupId}' for
+     *     Management Group scope..
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return all available tag keys for the defined scope along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<TagsResultInner> getWithResponse(String scope, Context context) {
+        return getWithResponseAsync(scope, context).block();
     }
 
     /**
@@ -179,28 +192,6 @@ public final class TagsClientImpl implements TagsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public TagsResultInner get(String scope) {
-        return getAsync(scope).block();
-    }
-
-    /**
-     * Get all available tag keys for the defined scope.
-     *
-     * @param scope The scope associated with tags operations. This includes '/subscriptions/{subscriptionId}/' for
-     *     subscription scope, '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}' for resourceGroup
-     *     scope, '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}' for Billing Account scope,
-     *     '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/departments/{departmentId}' for Department
-     *     scope,
-     *     '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/enrollmentAccounts/{enrollmentAccountId}'
-     *     for EnrollmentAccount scope and '/providers/Microsoft.Management/managementGroups/{managementGroupId}' for
-     *     Management Group scope..
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all available tag keys for the defined scope.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<TagsResultInner> getWithResponse(String scope, Context context) {
-        return getWithResponseAsync(scope, context).block();
+        return getWithResponse(scope, Context.NONE).getValue();
     }
 }

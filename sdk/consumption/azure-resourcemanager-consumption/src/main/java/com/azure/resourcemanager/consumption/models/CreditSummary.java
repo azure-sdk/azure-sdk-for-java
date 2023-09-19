@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.consumption.models;
 
 import com.azure.resourcemanager.consumption.fluent.models.CreditSummaryInner;
-import java.util.Map;
 
 /** An immutable client-side representation of CreditSummary. */
 public interface CreditSummary {
@@ -31,18 +30,12 @@ public interface CreditSummary {
     String type();
 
     /**
-     * Gets the etag property: The etag for the resource.
+     * Gets the etag property: eTag of the resource. To handle concurrent update scenario, this field will be used to
+     * determine whether the user is updating the latest version or not.
      *
      * @return the etag value.
      */
     String etag();
-
-    /**
-     * Gets the tags property: Resource tags.
-     *
-     * @return the tags value.
-     */
-    Map<String, String> tags();
 
     /**
      * Gets the balanceSummary property: Summary of balances associated with this credit summary.
@@ -92,6 +85,14 @@ public interface CreditSummary {
      * @return the reseller value.
      */
     Reseller reseller();
+
+    /**
+     * Gets the isEstimatedBalance property: If true, the listed details are based on an estimation and it will be
+     * subjected to change.
+     *
+     * @return the isEstimatedBalance value.
+     */
+    Boolean isEstimatedBalance();
 
     /**
      * Gets the etagPropertiesEtag property: The eTag for the resource.

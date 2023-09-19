@@ -9,8 +9,6 @@ import com.azure.resourcemanager.consumption.models.Amount;
 import com.azure.resourcemanager.consumption.models.CreditBalanceSummary;
 import com.azure.resourcemanager.consumption.models.CreditSummary;
 import com.azure.resourcemanager.consumption.models.Reseller;
-import java.util.Collections;
-import java.util.Map;
 
 public final class CreditSummaryImpl implements CreditSummary {
     private CreditSummaryInner innerObject;
@@ -39,15 +37,6 @@ public final class CreditSummaryImpl implements CreditSummary {
         return this.innerModel().etag();
     }
 
-    public Map<String, String> tags() {
-        Map<String, String> inner = this.innerModel().tags();
-        if (inner != null) {
-            return Collections.unmodifiableMap(inner);
-        } else {
-            return Collections.emptyMap();
-        }
-    }
-
     public CreditBalanceSummary balanceSummary() {
         return this.innerModel().balanceSummary();
     }
@@ -74,6 +63,10 @@ public final class CreditSummaryImpl implements CreditSummary {
 
     public Reseller reseller() {
         return this.innerModel().reseller();
+    }
+
+    public Boolean isEstimatedBalance() {
+        return this.innerModel().isEstimatedBalance();
     }
 
     public String etagPropertiesEtag() {
