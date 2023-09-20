@@ -14,6 +14,7 @@ import com.azure.ai.openai.implementation.OpenAIServerSentEvents;
 import com.azure.ai.openai.models.AudioTranscription;
 import com.azure.ai.openai.models.AudioTranscriptionFormat;
 import com.azure.ai.openai.models.AudioTranscriptionOptions;
+import com.azure.ai.openai.models.AudioTranslation;
 import com.azure.ai.openai.models.AudioTranslationOptions;
 import com.azure.ai.openai.models.ChatCompletions;
 import com.azure.ai.openai.models.ChatCompletionsOptions;
@@ -915,7 +916,7 @@ public final class OpenAIAsyncClient {
      *             }
      *         }
      *     ]
-     *     prompt_annotations (Optional): [
+     *     prompt_filter_results (Optional): [
      *          (Optional){
      *             prompt_index: int (Required)
      *             content_filter_results (Optional): (recursive schema, see content_filter_results above)
@@ -1488,14 +1489,14 @@ public final class OpenAIAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<AudioTranscription> getAudioTranslationAsResponseObject(
+    public Mono<AudioTranslation> getAudioTranslationAsResponseObject(
             String deploymentOrModelName, AudioTranslationOptions audioTranslationOptions) {
         // Generated convenience method for getAudioTranslationAsResponseObjectWithResponse
         RequestOptions requestOptions = new RequestOptions();
         return getAudioTranslationAsResponseObjectWithResponse(
                         deploymentOrModelName, BinaryData.fromObject(audioTranslationOptions), requestOptions)
                 .flatMap(FluxUtil::toMono)
-                .map(protocolMethodData -> protocolMethodData.toObject(AudioTranscription.class));
+                .map(protocolMethodData -> protocolMethodData.toObject(AudioTranslation.class));
     }
 
     /**
