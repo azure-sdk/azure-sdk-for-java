@@ -7,7 +7,7 @@ package com.azure.resourcemanager.redisenterprise.generated;
 /** Samples for RedisEnterprise List. */
 public final class RedisEnterpriseListSamples {
     /*
-     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2023-03-01-preview/examples/RedisEnterpriseList.json
+     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2023-08-01-preview/examples/RedisEnterpriseList.json
      */
     /**
      * Sample code: RedisEnterpriseList.
