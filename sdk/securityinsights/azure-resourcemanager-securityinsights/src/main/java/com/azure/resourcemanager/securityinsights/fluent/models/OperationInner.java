@@ -35,6 +35,10 @@ public final class OperationInner {
     @JsonProperty(value = "isDataAction")
     private Boolean isDataAction;
 
+    /** Creates an instance of OperationInner class. */
+    public OperationInner() {
+    }
+
     /**
      * Get the display property: Properties of the operation.
      *

@@ -25,6 +25,10 @@ public final class EntityQueryList {
     @JsonProperty(value = "value", required = true)
     private List<EntityQueryInner> value;
 
+    /** Creates an instance of EntityQueryList class. */
+    public EntityQueryList() {
+    }
+
     /**
      * Get the nextLink property: URL to fetch the next set of entity queries.
      *

@@ -35,20 +35,7 @@ public interface EntityQueryTemplates {
      * @return all entity query templates as paginated response with {@link PagedIterable}.
      */
     PagedIterable<EntityQueryTemplate> list(
-        String resourceGroupName, String workspaceName, Constant88 kind, Context context);
-
-    /**
-     * Gets an entity query.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param entityQueryTemplateId entity query template ID.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an entity query.
-     */
-    EntityQueryTemplate get(String resourceGroupName, String workspaceName, String entityQueryTemplateId);
+        String resourceGroupName, String workspaceName, Constant106 kind, Context context);
 
     /**
      * Gets an entity query.
@@ -64,4 +51,17 @@ public interface EntityQueryTemplates {
      */
     Response<EntityQueryTemplate> getWithResponse(
         String resourceGroupName, String workspaceName, String entityQueryTemplateId, Context context);
+
+    /**
+     * Gets an entity query.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param entityQueryTemplateId entity query template ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return an entity query.
+     */
+    EntityQueryTemplate get(String resourceGroupName, String workspaceName, String entityQueryTemplateId);
 }

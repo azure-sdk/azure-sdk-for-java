@@ -47,6 +47,13 @@ public interface IncidentComment {
     SystemData systemData();
 
     /**
+     * Gets the message property: The comment message.
+     *
+     * @return the message value.
+     */
+    String message();
+
+    /**
      * Gets the createdTimeUtc property: The time the comment was created.
      *
      * @return the createdTimeUtc value.
@@ -59,13 +66,6 @@ public interface IncidentComment {
      * @return the lastModifiedTimeUtc value.
      */
     OffsetDateTime lastModifiedTimeUtc();
-
-    /**
-     * Gets the message property: The comment message.
-     *
-     * @return the message value.
-     */
-    String message();
 
     /**
      * Gets the author property: Describes the client that created the comment.
@@ -92,11 +92,13 @@ public interface IncidentComment {
     interface Definition
         extends DefinitionStages.Blank, DefinitionStages.WithParentResource, DefinitionStages.WithCreate {
     }
+
     /** The IncidentComment definition stages. */
     interface DefinitionStages {
         /** The first stage of the IncidentComment definition. */
         interface Blank extends WithParentResource {
         }
+
         /** The stage of the IncidentComment definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -109,6 +111,7 @@ public interface IncidentComment {
              */
             WithCreate withExistingIncident(String resourceGroupName, String workspaceName, String incidentId);
         }
+
         /**
          * The stage of the IncidentComment definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
@@ -129,6 +132,7 @@ public interface IncidentComment {
              */
             IncidentComment create(Context context);
         }
+
         /** The stage of the IncidentComment definition allowing to specify etag. */
         interface WithEtag {
             /**
@@ -139,6 +143,7 @@ public interface IncidentComment {
              */
             WithCreate withEtag(String etag);
         }
+
         /** The stage of the IncidentComment definition allowing to specify message. */
         interface WithMessage {
             /**
@@ -150,6 +155,7 @@ public interface IncidentComment {
             WithCreate withMessage(String message);
         }
     }
+
     /**
      * Begins update for the IncidentComment resource.
      *
@@ -174,6 +180,7 @@ public interface IncidentComment {
          */
         IncidentComment apply(Context context);
     }
+
     /** The IncidentComment update stages. */
     interface UpdateStages {
         /** The stage of the IncidentComment update allowing to specify etag. */
@@ -186,6 +193,7 @@ public interface IncidentComment {
              */
             Update withEtag(String etag);
         }
+
         /** The stage of the IncidentComment update allowing to specify message. */
         interface WithMessage {
             /**
@@ -197,6 +205,7 @@ public interface IncidentComment {
             Update withMessage(String message);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

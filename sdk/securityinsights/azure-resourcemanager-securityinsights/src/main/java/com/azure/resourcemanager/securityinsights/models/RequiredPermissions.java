@@ -34,6 +34,10 @@ public final class RequiredPermissions {
     @JsonProperty(value = "delete")
     private Boolean delete;
 
+    /** Creates an instance of RequiredPermissions class. */
+    public RequiredPermissions() {
+    }
+
     /**
      * Get the action property: action permission.
      *

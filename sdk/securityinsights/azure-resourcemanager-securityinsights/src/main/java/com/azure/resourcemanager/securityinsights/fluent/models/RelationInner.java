@@ -17,6 +17,10 @@ public final class RelationInner extends ResourceWithEtag {
     @JsonProperty(value = "properties")
     private RelationProperties innerProperties;
 
+    /** Creates an instance of RelationInner class. */
+    public RelationInner() {
+    }
+
     /**
      * Get the innerProperties property: Relation properties.
      *

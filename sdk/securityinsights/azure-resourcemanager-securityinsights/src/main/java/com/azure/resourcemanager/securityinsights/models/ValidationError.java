@@ -23,6 +23,10 @@ public final class ValidationError {
     @JsonProperty(value = "errorMessages", access = JsonProperty.Access.WRITE_ONLY)
     private List<String> errorMessages;
 
+    /** Creates an instance of ValidationError class. */
+    public ValidationError() {
+    }
+
     /**
      * Get the recordIndex property: The number of the record that has the error.
      *

@@ -14,6 +14,15 @@ public final class EntityItemQueryKind extends ExpandableStringEnum<EntityItemQu
     public static final EntityItemQueryKind INSIGHT = fromString("Insight");
 
     /**
+     * Creates a new instance of EntityItemQueryKind value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public EntityItemQueryKind() {
+    }
+
+    /**
      * Creates or finds a EntityItemQueryKind from its string representation.
      *
      * @param name a name to look for.

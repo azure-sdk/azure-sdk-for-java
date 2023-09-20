@@ -58,20 +58,6 @@ public interface BookmarkRelations {
      * @param workspaceName The name of the workspace.
      * @param bookmarkId Bookmark ID.
      * @param relationName Relation Name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a bookmark relation.
-     */
-    Relation get(String resourceGroupName, String workspaceName, String bookmarkId, String relationName);
-
-    /**
-     * Gets a bookmark relation.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param bookmarkId Bookmark ID.
-     * @param relationName Relation Name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -82,7 +68,7 @@ public interface BookmarkRelations {
         String resourceGroupName, String workspaceName, String bookmarkId, String relationName, Context context);
 
     /**
-     * Delete the bookmark relation.
+     * Gets a bookmark relation.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -91,8 +77,9 @@ public interface BookmarkRelations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a bookmark relation.
      */
-    void delete(String resourceGroupName, String workspaceName, String bookmarkId, String relationName);
+    Relation get(String resourceGroupName, String workspaceName, String bookmarkId, String relationName);
 
     /**
      * Delete the bookmark relation.
@@ -109,6 +96,19 @@ public interface BookmarkRelations {
      */
     Response<Void> deleteWithResponse(
         String resourceGroupName, String workspaceName, String bookmarkId, String relationName, Context context);
+
+    /**
+     * Delete the bookmark relation.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param bookmarkId Bookmark ID.
+     * @param relationName Relation Name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void delete(String resourceGroupName, String workspaceName, String bookmarkId, String relationName);
 
     /**
      * Gets a bookmark relation.
