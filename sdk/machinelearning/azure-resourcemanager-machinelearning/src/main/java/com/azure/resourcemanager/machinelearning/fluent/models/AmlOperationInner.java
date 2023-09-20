@@ -5,23 +5,17 @@
 package com.azure.resourcemanager.machinelearning.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.resourcemanager.machinelearning.models.AmlOperationDisplay;
+import com.azure.resourcemanager.machinelearning.models.OperationDisplay;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Azure Machine Learning workspace REST API operation. */
+/** Azure Machine Learning team account REST API operation. */
 @Fluent
 public final class AmlOperationInner {
     /*
-     * Operation name: {provider}/{resource}/{operation}
-     */
-    @JsonProperty(value = "name")
-    private String name;
-
-    /*
-     * Display name of operation
+     * Gets or sets display name of operation
      */
     @JsonProperty(value = "display")
-    private AmlOperationDisplay display;
+    private OperationDisplay display;
 
     /*
      * Indicates whether the operation applies to data-plane
@@ -29,46 +23,38 @@ public final class AmlOperationInner {
     @JsonProperty(value = "isDataAction")
     private Boolean isDataAction;
 
+    /*
+     * Gets or sets operation name: {provider}/{resource}/{operation}
+     */
+    @JsonProperty(value = "name")
+    private String name;
+
+    /*
+     * The intended executor of the operation: user/system
+     */
+    @JsonProperty(value = "origin")
+    private String origin;
+
     /** Creates an instance of AmlOperationInner class. */
     public AmlOperationInner() {
     }
 
     /**
-     * Get the name property: Operation name: {provider}/{resource}/{operation}.
-     *
-     * @return the name value.
-     */
-    public String name() {
-        return this.name;
-    }
-
-    /**
-     * Set the name property: Operation name: {provider}/{resource}/{operation}.
-     *
-     * @param name the name value to set.
-     * @return the AmlOperationInner object itself.
-     */
-    public AmlOperationInner withName(String name) {
-        this.name = name;
-        return this;
-    }
-
-    /**
-     * Get the display property: Display name of operation.
+     * Get the display property: Gets or sets display name of operation.
      *
      * @return the display value.
      */
-    public AmlOperationDisplay display() {
+    public OperationDisplay display() {
         return this.display;
     }
 
     /**
-     * Set the display property: Display name of operation.
+     * Set the display property: Gets or sets display name of operation.
      *
      * @param display the display value to set.
      * @return the AmlOperationInner object itself.
      */
-    public AmlOperationInner withDisplay(AmlOperationDisplay display) {
+    public AmlOperationInner withDisplay(OperationDisplay display) {
         this.display = display;
         return this;
     }
@@ -90,6 +76,46 @@ public final class AmlOperationInner {
      */
     public AmlOperationInner withIsDataAction(Boolean isDataAction) {
         this.isDataAction = isDataAction;
+        return this;
+    }
+
+    /**
+     * Get the name property: Gets or sets operation name: {provider}/{resource}/{operation}.
+     *
+     * @return the name value.
+     */
+    public String name() {
+        return this.name;
+    }
+
+    /**
+     * Set the name property: Gets or sets operation name: {provider}/{resource}/{operation}.
+     *
+     * @param name the name value to set.
+     * @return the AmlOperationInner object itself.
+     */
+    public AmlOperationInner withName(String name) {
+        this.name = name;
+        return this;
+    }
+
+    /**
+     * Get the origin property: The intended executor of the operation: user/system.
+     *
+     * @return the origin value.
+     */
+    public String origin() {
+        return this.origin;
+    }
+
+    /**
+     * Set the origin property: The intended executor of the operation: user/system.
+     *
+     * @param origin the origin value to set.
+     * @return the AmlOperationInner object itself.
+     */
+    public AmlOperationInner withOrigin(String origin) {
+        this.origin = origin;
         return this;
     }
 
