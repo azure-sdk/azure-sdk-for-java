@@ -120,11 +120,13 @@ public interface BatchEndpoint {
             DefinitionStages.WithProperties,
             DefinitionStages.WithCreate {
     }
+
     /** The BatchEndpoint definition stages. */
     interface DefinitionStages {
         /** The first stage of the BatchEndpoint definition. */
         interface Blank extends WithLocation {
         }
+
         /** The stage of the BatchEndpoint definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -143,6 +145,7 @@ public interface BatchEndpoint {
              */
             WithParentResource withRegion(String location);
         }
+
         /** The stage of the BatchEndpoint definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -154,6 +157,7 @@ public interface BatchEndpoint {
              */
             WithProperties withExistingWorkspace(String resourceGroupName, String workspaceName);
         }
+
         /** The stage of the BatchEndpoint definition allowing to specify properties. */
         interface WithProperties {
             /**
@@ -164,6 +168,7 @@ public interface BatchEndpoint {
              */
             WithCreate withProperties(BatchEndpointProperties properties);
         }
+
         /**
          * The stage of the BatchEndpoint definition which contains all the minimum required properties for the resource
          * to be created, but also allows for any other optional properties to be specified.
@@ -188,6 +193,7 @@ public interface BatchEndpoint {
              */
             BatchEndpoint create(Context context);
         }
+
         /** The stage of the BatchEndpoint definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -198,6 +204,7 @@ public interface BatchEndpoint {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
         /** The stage of the BatchEndpoint definition allowing to specify identity. */
         interface WithIdentity {
             /**
@@ -209,6 +216,7 @@ public interface BatchEndpoint {
              */
             WithCreate withIdentity(ManagedServiceIdentity identity);
         }
+
         /** The stage of the BatchEndpoint definition allowing to specify kind. */
         interface WithKind {
             /**
@@ -221,6 +229,7 @@ public interface BatchEndpoint {
              */
             WithCreate withKind(String kind);
         }
+
         /** The stage of the BatchEndpoint definition allowing to specify sku. */
         interface WithSku {
             /**
@@ -232,6 +241,7 @@ public interface BatchEndpoint {
             WithCreate withSku(Sku sku);
         }
     }
+
     /**
      * Begins update for the BatchEndpoint resource.
      *
@@ -256,6 +266,7 @@ public interface BatchEndpoint {
          */
         BatchEndpoint apply(Context context);
     }
+
     /** The BatchEndpoint update stages. */
     interface UpdateStages {
         /** The stage of the BatchEndpoint update allowing to specify tags. */
@@ -268,6 +279,7 @@ public interface BatchEndpoint {
              */
             Update withTags(Map<String, String> tags);
         }
+
         /** The stage of the BatchEndpoint update allowing to specify identity. */
         interface WithIdentity {
             /**
@@ -280,6 +292,7 @@ public interface BatchEndpoint {
             Update withIdentity(PartialManagedServiceIdentity identity);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *
