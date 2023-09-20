@@ -35,6 +35,16 @@ public final class VirtualMachineUpdateProperties {
     @JsonProperty(value = "availabilitySets")
     private List<AvailabilitySetListItem> availabilitySets;
 
+    /*
+     * Type of checkpoint supported for the vm.
+     */
+    @JsonProperty(value = "checkpointType")
+    private String checkpointType;
+
+    /** Creates an instance of VirtualMachineUpdateProperties class. */
+    public VirtualMachineUpdateProperties() {
+    }
+
     /**
      * Get the hardwareProfile property: Defines the resource properties.
      *
@@ -112,6 +122,26 @@ public final class VirtualMachineUpdateProperties {
      */
     public VirtualMachineUpdateProperties withAvailabilitySets(List<AvailabilitySetListItem> availabilitySets) {
         this.availabilitySets = availabilitySets;
+        return this;
+    }
+
+    /**
+     * Get the checkpointType property: Type of checkpoint supported for the vm.
+     *
+     * @return the checkpointType value.
+     */
+    public String checkpointType() {
+        return this.checkpointType;
+    }
+
+    /**
+     * Set the checkpointType property: Type of checkpoint supported for the vm.
+     *
+     * @param checkpointType the checkpointType value to set.
+     * @return the VirtualMachineUpdateProperties object itself.
+     */
+    public VirtualMachineUpdateProperties withCheckpointType(String checkpointType) {
+        this.checkpointType = checkpointType;
         return this;
     }
 

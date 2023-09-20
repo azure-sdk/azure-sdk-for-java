@@ -4,13 +4,12 @@
 
 package com.azure.resourcemanager.scvmm.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.scvmm.models.VirtualMachineCreateCheckpoint;
 
 /** Samples for VirtualMachines CreateCheckpoint. */
 public final class VirtualMachinesCreateCheckpointSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/preview/2020-06-05-preview/examples/CreateCheckpointVirtualMachine.json
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/preview/2023-04-01-preview/examples/CreateCheckpointVirtualMachine.json
      */
     /**
      * Sample code: CreateCheckpointVirtualMachine.
@@ -26,6 +25,6 @@ public final class VirtualMachinesCreateCheckpointSamples {
                 new VirtualMachineCreateCheckpoint()
                     .withName("Demo Checkpoint name")
                     .withDescription("Demo Checkpoint description"),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
