@@ -23,6 +23,12 @@ public final class WebhookActivity extends ControlActivity {
     @JsonProperty(value = "typeProperties", required = true)
     private WebhookActivityTypeProperties innerTypeProperties = new WebhookActivityTypeProperties();
 
+    /*
+     * Activity policy.
+     */
+    @JsonProperty(value = "policy")
+    private SecureInputOutputPolicy policy;
+
     /** Creates an instance of WebhookActivity class. */
     public WebhookActivity() {
     }
@@ -36,6 +42,26 @@ public final class WebhookActivity extends ControlActivity {
         return this.innerTypeProperties;
     }
 
+    /**
+     * Get the policy property: Activity policy.
+     *
+     * @return the policy value.
+     */
+    public SecureInputOutputPolicy policy() {
+        return this.policy;
+    }
+
+    /**
+     * Set the policy property: Activity policy.
+     *
+     * @param policy the policy value to set.
+     * @return the WebhookActivity object itself.
+     */
+    public WebhookActivity withPolicy(SecureInputOutputPolicy policy) {
+        this.policy = policy;
+        return this;
+    }
+
     /** {@inheritDoc} */
     @Override
     public WebhookActivity withName(String name) {
@@ -47,6 +73,20 @@ public final class WebhookActivity extends ControlActivity {
     @Override
     public WebhookActivity withDescription(String description) {
         super.withDescription(description);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public WebhookActivity withState(ActivityState state) {
+        super.withState(state);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public WebhookActivity withOnInactiveMarkAs(ActivityOnInactiveMarkAs onInactiveMarkAs) {
+        super.withOnInactiveMarkAs(onInactiveMarkAs);
         return this;
     }
 
@@ -256,6 +296,9 @@ public final class WebhookActivity extends ControlActivity {
                         "Missing required property innerTypeProperties in model WebhookActivity"));
         } else {
             innerTypeProperties().validate();
+        }
+        if (policy() != null) {
+            policy().validate();
         }
     }
 
