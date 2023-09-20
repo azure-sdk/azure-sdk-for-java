@@ -7,14 +7,14 @@ package com.azure.resourcemanager.billing.generated;
 /** Samples for Policies GetByBillingProfile. */
 public final class PoliciesGetByBillingProfileSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/Policy.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/policiesGetByBillingProfile.json
      */
     /**
-     * Sample code: PolicyByBillingProfile.
+     * Sample code: policiesGetByBillingProfile.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void policyByBillingProfile(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void policiesGetByBillingProfile(com.azure.resourcemanager.billing.BillingManager manager) {
         manager
             .policies()
             .getByBillingProfileWithResponse(

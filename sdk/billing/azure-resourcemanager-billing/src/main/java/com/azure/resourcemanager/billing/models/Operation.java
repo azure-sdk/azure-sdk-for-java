@@ -9,11 +9,11 @@ import com.azure.resourcemanager.billing.fluent.models.OperationInner;
 /** An immutable client-side representation of Operation. */
 public interface Operation {
     /**
-     * Gets the name property: Operation name: {provider}/{resource}/{operation}.
+     * Gets the display property: The object that represents the operation.
      *
-     * @return the name value.
+     * @return the display value.
      */
-    String name();
+    OperationDisplay display();
 
     /**
      * Gets the isDataAction property: Identifies if the operation is a data operation.
@@ -23,11 +23,11 @@ public interface Operation {
     Boolean isDataAction();
 
     /**
-     * Gets the display property: The object that represents the operation.
+     * Gets the name property: Operation name: {provider}/{resource}/{operation}.
      *
-     * @return the display value.
+     * @return the name value.
      */
-    OperationDisplay display();
+    String name();
 
     /**
      * Gets the inner com.azure.resourcemanager.billing.fluent.models.OperationInner object.

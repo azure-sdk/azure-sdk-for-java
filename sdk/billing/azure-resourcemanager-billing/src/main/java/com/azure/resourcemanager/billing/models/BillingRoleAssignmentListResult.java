@@ -13,28 +13,19 @@ import java.util.List;
 @Immutable
 public final class BillingRoleAssignmentListResult {
     /*
-     * The list of role assignments.
-     */
-    @JsonProperty(value = "value", access = JsonProperty.Access.WRITE_ONLY)
-    private List<BillingRoleAssignmentInner> value;
-
-    /*
      * The link (url) to the next page of results.
      */
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
+    /*
+     * The list of role assignments.
+     */
+    @JsonProperty(value = "value", access = JsonProperty.Access.WRITE_ONLY)
+    private List<BillingRoleAssignmentInner> value;
+
     /** Creates an instance of BillingRoleAssignmentListResult class. */
     public BillingRoleAssignmentListResult() {
-    }
-
-    /**
-     * Get the value property: The list of role assignments.
-     *
-     * @return the value value.
-     */
-    public List<BillingRoleAssignmentInner> value() {
-        return this.value;
     }
 
     /**
@@ -44,6 +35,15 @@ public final class BillingRoleAssignmentListResult {
      */
     public String nextLink() {
         return this.nextLink;
+    }
+
+    /**
+     * Get the value property: The list of role assignments.
+     *
+     * @return the value value.
+     */
+    public List<BillingRoleAssignmentInner> value() {
+        return this.value;
     }
 
     /**

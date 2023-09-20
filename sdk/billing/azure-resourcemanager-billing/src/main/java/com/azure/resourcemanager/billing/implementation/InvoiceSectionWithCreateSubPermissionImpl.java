@@ -25,24 +25,16 @@ public final class InvoiceSectionWithCreateSubPermissionImpl implements InvoiceS
         this.serviceManager = serviceManager;
     }
 
-    public String invoiceSectionId() {
-        return this.innerModel().invoiceSectionId();
-    }
-
-    public String invoiceSectionDisplayName() {
-        return this.innerModel().invoiceSectionDisplayName();
-    }
-
-    public String invoiceSectionSystemId() {
-        return this.innerModel().invoiceSectionSystemId();
+    public String billingProfileDisplayName() {
+        return this.innerModel().billingProfileDisplayName();
     }
 
     public String billingProfileId() {
         return this.innerModel().billingProfileId();
     }
 
-    public String billingProfileDisplayName() {
-        return this.innerModel().billingProfileDisplayName();
+    public SpendingLimitForBillingProfile billingProfileSpendingLimit() {
+        return this.innerModel().billingProfileSpendingLimit();
     }
 
     public BillingProfileStatus billingProfileStatus() {
@@ -51,10 +43,6 @@ public final class InvoiceSectionWithCreateSubPermissionImpl implements InvoiceS
 
     public StatusReasonCodeForBillingProfile billingProfileStatusReasonCode() {
         return this.innerModel().billingProfileStatusReasonCode();
-    }
-
-    public SpendingLimitForBillingProfile billingProfileSpendingLimit() {
-        return this.innerModel().billingProfileSpendingLimit();
     }
 
     public String billingProfileSystemId() {
@@ -68,6 +56,18 @@ public final class InvoiceSectionWithCreateSubPermissionImpl implements InvoiceS
         } else {
             return Collections.emptyList();
         }
+    }
+
+    public String invoiceSectionDisplayName() {
+        return this.innerModel().invoiceSectionDisplayName();
+    }
+
+    public String invoiceSectionId() {
+        return this.innerModel().invoiceSectionId();
+    }
+
+    public String invoiceSectionSystemId() {
+        return this.innerModel().invoiceSectionSystemId();
     }
 
     public InvoiceSectionWithCreateSubPermissionInner innerModel() {

@@ -13,28 +13,19 @@ import java.util.List;
 @Immutable
 public final class OperationListResult {
     /*
-     * The list of billing operations supported by the Microsoft.Billing resource provider.
-     */
-    @JsonProperty(value = "value", access = JsonProperty.Access.WRITE_ONLY)
-    private List<OperationInner> value;
-
-    /*
      * URL to get the next set of operation list results if there are any.
      */
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
+    /*
+     * The list of billing operations supported by the Microsoft.Billing resource provider.
+     */
+    @JsonProperty(value = "value", access = JsonProperty.Access.WRITE_ONLY)
+    private List<OperationInner> value;
+
     /** Creates an instance of OperationListResult class. */
     public OperationListResult() {
-    }
-
-    /**
-     * Get the value property: The list of billing operations supported by the Microsoft.Billing resource provider.
-     *
-     * @return the value value.
-     */
-    public List<OperationInner> value() {
-        return this.value;
     }
 
     /**
@@ -44,6 +35,15 @@ public final class OperationListResult {
      */
     public String nextLink() {
         return this.nextLink;
+    }
+
+    /**
+     * Get the value property: The list of billing operations supported by the Microsoft.Billing resource provider.
+     *
+     * @return the value value.
+     */
+    public List<OperationInner> value() {
+        return this.value;
     }
 
     /**

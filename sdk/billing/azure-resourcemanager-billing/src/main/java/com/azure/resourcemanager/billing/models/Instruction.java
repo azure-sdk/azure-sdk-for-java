@@ -4,13 +4,15 @@
 
 package com.azure.resourcemanager.billing.models;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.billing.fluent.models.InstructionInner;
 import java.time.OffsetDateTime;
 
 /** An immutable client-side representation of Instruction. */
 public interface Instruction {
     /**
-     * Gets the id property: Fully qualified resource Id for the resource.
+     * Gets the id property: Fully qualified resource ID for the resource. Ex -
+     * /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
      *
      * @return the id value.
      */
@@ -24,11 +26,18 @@ public interface Instruction {
     String name();
 
     /**
-     * Gets the type property: The type of the resource.
+     * Gets the type property: Resource type.
      *
      * @return the type value.
      */
     String type();
+
+    /**
+     * Gets the systemData property: Metadata pertaining to creation and last modification of the resource.
+     *
+     * @return the systemData value.
+     */
+    SystemData systemData();
 
     /**
      * Gets the amount property: The amount budgeted for this billing instruction.
@@ -38,11 +47,11 @@ public interface Instruction {
     float amount();
 
     /**
-     * Gets the startDate property: The date this billing instruction goes into effect.
+     * Gets the creationDate property: The date this billing instruction was created.
      *
-     * @return the startDate value.
+     * @return the creationDate value.
      */
-    OffsetDateTime startDate();
+    OffsetDateTime creationDate();
 
     /**
      * Gets the endDate property: The date this billing instruction is no longer in effect.
@@ -52,11 +61,11 @@ public interface Instruction {
     OffsetDateTime endDate();
 
     /**
-     * Gets the creationDate property: The date this billing instruction was created.
+     * Gets the startDate property: The date this billing instruction goes into effect.
      *
-     * @return the creationDate value.
+     * @return the startDate value.
      */
-    OffsetDateTime creationDate();
+    OffsetDateTime startDate();
 
     /**
      * Gets the inner com.azure.resourcemanager.billing.fluent.models.InstructionInner object.

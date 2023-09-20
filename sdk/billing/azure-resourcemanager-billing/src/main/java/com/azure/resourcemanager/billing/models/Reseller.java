@@ -11,28 +11,19 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Immutable
 public final class Reseller {
     /*
-     * The MPN ID of the reseller.
-     */
-    @JsonProperty(value = "resellerId", access = JsonProperty.Access.WRITE_ONLY)
-    private String resellerId;
-
-    /*
      * The name of the reseller.
      */
     @JsonProperty(value = "description", access = JsonProperty.Access.WRITE_ONLY)
     private String description;
 
+    /*
+     * The MPN ID of the reseller.
+     */
+    @JsonProperty(value = "resellerId", access = JsonProperty.Access.WRITE_ONLY)
+    private String resellerId;
+
     /** Creates an instance of Reseller class. */
     public Reseller() {
-    }
-
-    /**
-     * Get the resellerId property: The MPN ID of the reseller.
-     *
-     * @return the resellerId value.
-     */
-    public String resellerId() {
-        return this.resellerId;
     }
 
     /**
@@ -42,6 +33,15 @@ public final class Reseller {
      */
     public String description() {
         return this.description;
+    }
+
+    /**
+     * Get the resellerId property: The MPN ID of the reseller.
+     *
+     * @return the resellerId value.
+     */
+    public String resellerId() {
+        return this.resellerId;
     }
 
     /**

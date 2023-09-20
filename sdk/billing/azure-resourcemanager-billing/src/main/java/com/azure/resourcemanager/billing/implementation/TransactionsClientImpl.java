@@ -105,14 +105,18 @@ public final class TransactionsClientImpl implements TransactionsClient {
         if (invoiceName == null) {
             return Mono.error(new IllegalArgumentException("Parameter invoiceName is required and cannot be null."));
         }
-        final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
                 context ->
                     service
                         .listByInvoice(
-                            this.client.getEndpoint(), billingAccountName, invoiceName, apiVersion, accept, context))
+                            this.client.getEndpoint(),
+                            billingAccountName,
+                            invoiceName,
+                            this.client.getApiVersion(),
+                            accept,
+                            context))
             .<PagedResponse<TransactionInner>>map(
                 res ->
                     new PagedResponseBase<>(
@@ -152,11 +156,16 @@ public final class TransactionsClientImpl implements TransactionsClient {
         if (invoiceName == null) {
             return Mono.error(new IllegalArgumentException("Parameter invoiceName is required and cannot be null."));
         }
-        final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByInvoice(this.client.getEndpoint(), billingAccountName, invoiceName, apiVersion, accept, context)
+            .listByInvoice(
+                this.client.getEndpoint(),
+                billingAccountName,
+                invoiceName,
+                this.client.getApiVersion(),
+                accept,
+                context)
             .map(
                 res ->
                     new PagedResponseBase<>(

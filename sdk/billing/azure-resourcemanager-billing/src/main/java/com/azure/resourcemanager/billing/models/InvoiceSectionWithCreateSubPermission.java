@@ -10,25 +10,11 @@ import java.util.List;
 /** An immutable client-side representation of InvoiceSectionWithCreateSubPermission. */
 public interface InvoiceSectionWithCreateSubPermission {
     /**
-     * Gets the invoiceSectionId property: The ID of the invoice section.
+     * Gets the billingProfileDisplayName property: The name of the billing profile for the invoice section.
      *
-     * @return the invoiceSectionId value.
+     * @return the billingProfileDisplayName value.
      */
-    String invoiceSectionId();
-
-    /**
-     * Gets the invoiceSectionDisplayName property: The name of the invoice section.
-     *
-     * @return the invoiceSectionDisplayName value.
-     */
-    String invoiceSectionDisplayName();
-
-    /**
-     * Gets the invoiceSectionSystemId property: The system generated unique identifier for an invoice section.
-     *
-     * @return the invoiceSectionSystemId value.
-     */
-    String invoiceSectionSystemId();
+    String billingProfileDisplayName();
 
     /**
      * Gets the billingProfileId property: The ID of the billing profile for the invoice section.
@@ -38,11 +24,11 @@ public interface InvoiceSectionWithCreateSubPermission {
     String billingProfileId();
 
     /**
-     * Gets the billingProfileDisplayName property: The name of the billing profile for the invoice section.
+     * Gets the billingProfileSpendingLimit property: The billing profile spending limit.
      *
-     * @return the billingProfileDisplayName value.
+     * @return the billingProfileSpendingLimit value.
      */
-    String billingProfileDisplayName();
+    SpendingLimitForBillingProfile billingProfileSpendingLimit();
 
     /**
      * Gets the billingProfileStatus property: The status of the billing profile.
@@ -59,13 +45,6 @@ public interface InvoiceSectionWithCreateSubPermission {
     StatusReasonCodeForBillingProfile billingProfileStatusReasonCode();
 
     /**
-     * Gets the billingProfileSpendingLimit property: The billing profile spending limit.
-     *
-     * @return the billingProfileSpendingLimit value.
-     */
-    SpendingLimitForBillingProfile billingProfileSpendingLimit();
-
-    /**
      * Gets the billingProfileSystemId property: The system generated unique identifier for a billing profile.
      *
      * @return the billingProfileSystemId value.
@@ -78,6 +57,27 @@ public interface InvoiceSectionWithCreateSubPermission {
      * @return the enabledAzurePlans value.
      */
     List<AzurePlan> enabledAzurePlans();
+
+    /**
+     * Gets the invoiceSectionDisplayName property: The name of the invoice section.
+     *
+     * @return the invoiceSectionDisplayName value.
+     */
+    String invoiceSectionDisplayName();
+
+    /**
+     * Gets the invoiceSectionId property: The ID of the invoice section.
+     *
+     * @return the invoiceSectionId value.
+     */
+    String invoiceSectionId();
+
+    /**
+     * Gets the invoiceSectionSystemId property: The system generated unique identifier for an invoice section.
+     *
+     * @return the invoiceSectionSystemId value.
+     */
+    String invoiceSectionSystemId();
 
     /**
      * Gets the inner com.azure.resourcemanager.billing.fluent.models.InvoiceSectionWithCreateSubPermissionInner object.

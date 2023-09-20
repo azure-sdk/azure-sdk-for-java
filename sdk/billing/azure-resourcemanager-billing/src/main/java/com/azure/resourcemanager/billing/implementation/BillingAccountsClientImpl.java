@@ -104,8 +104,7 @@ public final class BillingAccountsClientImpl implements BillingAccountsClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}"
-                + "/listInvoiceSectionsWithCreateSubscriptionPermission")
+            "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/listInvoiceSectionsWithCreateSubscriptionPermission")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<InvoiceSectionListWithCreateSubPermissionResult>>
@@ -155,10 +154,11 @@ public final class BillingAccountsClientImpl implements BillingAccountsClient {
                     new IllegalArgumentException(
                         "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.list(this.client.getEndpoint(), apiVersion, expand, accept, context))
+            .withContext(
+                context ->
+                    service.list(this.client.getEndpoint(), this.client.getApiVersion(), expand, accept, context))
             .<PagedResponse<BillingAccountInner>>map(
                 res ->
                     new PagedResponseBase<>(
@@ -189,11 +189,10 @@ public final class BillingAccountsClientImpl implements BillingAccountsClient {
                     new IllegalArgumentException(
                         "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .list(this.client.getEndpoint(), apiVersion, expand, accept, context)
+            .list(this.client.getEndpoint(), this.client.getApiVersion(), expand, accept, context)
             .map(
                 res ->
                     new PagedResponseBase<>(
@@ -298,12 +297,18 @@ public final class BillingAccountsClientImpl implements BillingAccountsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
         }
-        final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
                 context ->
-                    service.get(this.client.getEndpoint(), apiVersion, billingAccountName, expand, accept, context))
+                    service
+                        .get(
+                            this.client.getEndpoint(),
+                            this.client.getApiVersion(),
+                            billingAccountName,
+                            expand,
+                            accept,
+                            context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -331,10 +336,10 @@ public final class BillingAccountsClientImpl implements BillingAccountsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
         }
-        final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), apiVersion, billingAccountName, expand, accept, context);
+        return service
+            .get(this.client.getEndpoint(), this.client.getApiVersion(), billingAccountName, expand, accept, context);
     }
 
     /**
@@ -412,13 +417,18 @@ public final class BillingAccountsClientImpl implements BillingAccountsClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
                 context ->
                     service
-                        .update(this.client.getEndpoint(), apiVersion, billingAccountName, parameters, accept, context))
+                        .update(
+                            this.client.getEndpoint(),
+                            this.client.getApiVersion(),
+                            billingAccountName,
+                            parameters,
+                            accept,
+                            context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -452,10 +462,16 @@ public final class BillingAccountsClientImpl implements BillingAccountsClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.update(this.client.getEndpoint(), apiVersion, billingAccountName, parameters, accept, context);
+        return service
+            .update(
+                this.client.getEndpoint(),
+                this.client.getApiVersion(),
+                billingAccountName,
+                parameters,
+                accept,
+                context);
     }
 
     /**
@@ -635,14 +651,17 @@ public final class BillingAccountsClientImpl implements BillingAccountsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
         }
-        final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
                 context ->
                     service
                         .listInvoiceSectionsByCreateSubscriptionPermission(
-                            this.client.getEndpoint(), apiVersion, billingAccountName, accept, context))
+                            this.client.getEndpoint(),
+                            this.client.getApiVersion(),
+                            billingAccountName,
+                            accept,
+                            context))
             .<PagedResponse<InvoiceSectionWithCreateSubPermissionInner>>map(
                 res ->
                     new PagedResponseBase<>(
@@ -680,12 +699,11 @@ public final class BillingAccountsClientImpl implements BillingAccountsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
         }
-        final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listInvoiceSectionsByCreateSubscriptionPermission(
-                this.client.getEndpoint(), apiVersion, billingAccountName, accept, context)
+                this.client.getEndpoint(), this.client.getApiVersion(), billingAccountName, accept, context)
             .map(
                 res ->
                     new PagedResponseBase<>(

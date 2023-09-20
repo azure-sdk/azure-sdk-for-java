@@ -60,52 +60,62 @@ public final class BillingRoleAssignmentsClientImpl implements BillingRoleAssign
     public interface BillingRoleAssignmentsService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingRoleAssignments"
-                + "/{billingRoleAssignmentName}")
+            "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}/billingRoleAssignments")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<BillingRoleAssignmentInner>> getByBillingAccount(
+        Mono<Response<BillingRoleAssignmentListResult>> listByBillingProfile(
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
             @PathParam("billingAccountName") String billingAccountName,
-            @PathParam("billingRoleAssignmentName") String billingRoleAssignmentName,
+            @PathParam("billingProfileName") String billingProfileName,
             @HeaderParam("Accept") String accept,
             Context context);
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingRoleAssignments"
-                + "/{billingRoleAssignmentName}")
+            "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}/billingRoleAssignments/{billingRoleAssignmentName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<BillingRoleAssignmentInner>> deleteByBillingAccount(
+        Mono<Response<BillingRoleAssignmentInner>> deleteByBillingProfile(
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
             @PathParam("billingAccountName") String billingAccountName,
+            @PathParam("billingProfileName") String billingProfileName,
             @PathParam("billingRoleAssignmentName") String billingRoleAssignmentName,
             @HeaderParam("Accept") String accept,
             Context context);
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}"
-                + "/invoiceSections/{invoiceSectionName}/billingRoleAssignments/{billingRoleAssignmentName}")
+            "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}/billingRoleAssignments/{billingRoleAssignmentName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<BillingRoleAssignmentInner>> getByInvoiceSection(
+        Mono<Response<BillingRoleAssignmentInner>> getByBillingProfile(
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
             @PathParam("billingAccountName") String billingAccountName,
             @PathParam("billingProfileName") String billingProfileName,
-            @PathParam("invoiceSectionName") String invoiceSectionName,
             @PathParam("billingRoleAssignmentName") String billingRoleAssignmentName,
             @HeaderParam("Accept") String accept,
             Context context);
 
         @Headers({"Content-Type: application/json"})
+        @Get(
+            "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}/invoiceSections/{invoiceSectionName}/billingRoleAssignments")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<BillingRoleAssignmentListResult>> listByInvoiceSection(
+            @HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion,
+            @PathParam("billingAccountName") String billingAccountName,
+            @PathParam("billingProfileName") String billingProfileName,
+            @PathParam("invoiceSectionName") String invoiceSectionName,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
         @Delete(
-            "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}"
-                + "/invoiceSections/{invoiceSectionName}/billingRoleAssignments/{billingRoleAssignmentName}")
+            "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}/invoiceSections/{invoiceSectionName}/billingRoleAssignments/{billingRoleAssignmentName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<BillingRoleAssignmentInner>> deleteByInvoiceSection(
@@ -120,30 +130,15 @@ public final class BillingRoleAssignmentsClientImpl implements BillingRoleAssign
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}"
-                + "/billingRoleAssignments/{billingRoleAssignmentName}")
+            "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}/invoiceSections/{invoiceSectionName}/billingRoleAssignments/{billingRoleAssignmentName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<BillingRoleAssignmentInner>> getByBillingProfile(
+        Mono<Response<BillingRoleAssignmentInner>> getByInvoiceSection(
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
             @PathParam("billingAccountName") String billingAccountName,
             @PathParam("billingProfileName") String billingProfileName,
-            @PathParam("billingRoleAssignmentName") String billingRoleAssignmentName,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Content-Type: application/json"})
-        @Delete(
-            "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}"
-                + "/billingRoleAssignments/{billingRoleAssignmentName}")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<BillingRoleAssignmentInner>> deleteByBillingProfile(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("billingAccountName") String billingAccountName,
-            @PathParam("billingProfileName") String billingProfileName,
+            @PathParam("invoiceSectionName") String invoiceSectionName,
             @PathParam("billingRoleAssignmentName") String billingRoleAssignmentName,
             @HeaderParam("Accept") String accept,
             Context context);
@@ -160,31 +155,28 @@ public final class BillingRoleAssignmentsClientImpl implements BillingRoleAssign
             Context context);
 
         @Headers({"Content-Type: application/json"})
-        @Get(
-            "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}"
-                + "/invoiceSections/{invoiceSectionName}/billingRoleAssignments")
+        @Delete(
+            "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingRoleAssignments/{billingRoleAssignmentName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<BillingRoleAssignmentListResult>> listByInvoiceSection(
+        Mono<Response<BillingRoleAssignmentInner>> deleteByBillingAccount(
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
             @PathParam("billingAccountName") String billingAccountName,
-            @PathParam("billingProfileName") String billingProfileName,
-            @PathParam("invoiceSectionName") String invoiceSectionName,
+            @PathParam("billingRoleAssignmentName") String billingRoleAssignmentName,
             @HeaderParam("Accept") String accept,
             Context context);
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}"
-                + "/billingRoleAssignments")
+            "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingRoleAssignments/{billingRoleAssignmentName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<BillingRoleAssignmentListResult>> listByBillingProfile(
+        Mono<Response<BillingRoleAssignmentInner>> getByBillingAccount(
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
             @PathParam("billingAccountName") String billingAccountName,
-            @PathParam("billingProfileName") String billingProfileName,
+            @PathParam("billingRoleAssignmentName") String billingRoleAssignmentName,
             @HeaderParam("Accept") String accept,
             Context context);
 
@@ -192,7 +184,7 @@ public final class BillingRoleAssignmentsClientImpl implements BillingRoleAssign
         @Get("{nextLink}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<BillingRoleAssignmentListResult>> listByBillingAccountNext(
+        Mono<Response<BillingRoleAssignmentListResult>> listByBillingProfileNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink,
             @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept,
@@ -212,7 +204,7 @@ public final class BillingRoleAssignmentsClientImpl implements BillingRoleAssign
         @Get("{nextLink}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<BillingRoleAssignmentListResult>> listByBillingProfileNext(
+        Mono<Response<BillingRoleAssignmentListResult>> listByBillingAccountNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink,
             @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept,
@@ -220,303 +212,19 @@ public final class BillingRoleAssignmentsClientImpl implements BillingRoleAssign
     }
 
     /**
-     * Gets a role assignment for the caller on a billing account. The operation is supported for billing accounts with
-     * agreement type Microsoft Partner Agreement or Microsoft Customer Agreement.
-     *
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param billingRoleAssignmentName The ID that uniquely identifies a role assignment.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a role assignment for the caller on a billing account along with {@link Response} on successful
-     *     completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<BillingRoleAssignmentInner>> getByBillingAccountWithResponseAsync(
-        String billingAccountName, String billingRoleAssignmentName) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (billingAccountName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
-        }
-        if (billingRoleAssignmentName == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter billingRoleAssignmentName is required and cannot be null."));
-        }
-        final String apiVersion = "2020-05-01";
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .getByBillingAccount(
-                            this.client.getEndpoint(),
-                            apiVersion,
-                            billingAccountName,
-                            billingRoleAssignmentName,
-                            accept,
-                            context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Gets a role assignment for the caller on a billing account. The operation is supported for billing accounts with
-     * agreement type Microsoft Partner Agreement or Microsoft Customer Agreement.
-     *
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param billingRoleAssignmentName The ID that uniquely identifies a role assignment.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a role assignment for the caller on a billing account along with {@link Response} on successful
-     *     completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<BillingRoleAssignmentInner>> getByBillingAccountWithResponseAsync(
-        String billingAccountName, String billingRoleAssignmentName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (billingAccountName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
-        }
-        if (billingRoleAssignmentName == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter billingRoleAssignmentName is required and cannot be null."));
-        }
-        final String apiVersion = "2020-05-01";
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .getByBillingAccount(
-                this.client.getEndpoint(), apiVersion, billingAccountName, billingRoleAssignmentName, accept, context);
-    }
-
-    /**
-     * Gets a role assignment for the caller on a billing account. The operation is supported for billing accounts with
-     * agreement type Microsoft Partner Agreement or Microsoft Customer Agreement.
-     *
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param billingRoleAssignmentName The ID that uniquely identifies a role assignment.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a role assignment for the caller on a billing account on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<BillingRoleAssignmentInner> getByBillingAccountAsync(
-        String billingAccountName, String billingRoleAssignmentName) {
-        return getByBillingAccountWithResponseAsync(billingAccountName, billingRoleAssignmentName)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Gets a role assignment for the caller on a billing account. The operation is supported for billing accounts with
-     * agreement type Microsoft Partner Agreement or Microsoft Customer Agreement.
-     *
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param billingRoleAssignmentName The ID that uniquely identifies a role assignment.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a role assignment for the caller on a billing account along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BillingRoleAssignmentInner> getByBillingAccountWithResponse(
-        String billingAccountName, String billingRoleAssignmentName, Context context) {
-        return getByBillingAccountWithResponseAsync(billingAccountName, billingRoleAssignmentName, context).block();
-    }
-
-    /**
-     * Gets a role assignment for the caller on a billing account. The operation is supported for billing accounts with
-     * agreement type Microsoft Partner Agreement or Microsoft Customer Agreement.
-     *
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param billingRoleAssignmentName The ID that uniquely identifies a role assignment.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a role assignment for the caller on a billing account.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public BillingRoleAssignmentInner getByBillingAccount(String billingAccountName, String billingRoleAssignmentName) {
-        return getByBillingAccountWithResponse(billingAccountName, billingRoleAssignmentName, Context.NONE).getValue();
-    }
-
-    /**
-     * Deletes a role assignment for the caller on a billing account. The operation is supported for billing accounts
-     * with agreement type Microsoft Partner Agreement or Microsoft Customer Agreement.
-     *
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param billingRoleAssignmentName The ID that uniquely identifies a role assignment.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the role assignment along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<BillingRoleAssignmentInner>> deleteByBillingAccountWithResponseAsync(
-        String billingAccountName, String billingRoleAssignmentName) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (billingAccountName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
-        }
-        if (billingRoleAssignmentName == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter billingRoleAssignmentName is required and cannot be null."));
-        }
-        final String apiVersion = "2020-05-01";
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .deleteByBillingAccount(
-                            this.client.getEndpoint(),
-                            apiVersion,
-                            billingAccountName,
-                            billingRoleAssignmentName,
-                            accept,
-                            context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Deletes a role assignment for the caller on a billing account. The operation is supported for billing accounts
-     * with agreement type Microsoft Partner Agreement or Microsoft Customer Agreement.
-     *
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param billingRoleAssignmentName The ID that uniquely identifies a role assignment.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the role assignment along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<BillingRoleAssignmentInner>> deleteByBillingAccountWithResponseAsync(
-        String billingAccountName, String billingRoleAssignmentName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (billingAccountName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
-        }
-        if (billingRoleAssignmentName == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter billingRoleAssignmentName is required and cannot be null."));
-        }
-        final String apiVersion = "2020-05-01";
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .deleteByBillingAccount(
-                this.client.getEndpoint(), apiVersion, billingAccountName, billingRoleAssignmentName, accept, context);
-    }
-
-    /**
-     * Deletes a role assignment for the caller on a billing account. The operation is supported for billing accounts
-     * with agreement type Microsoft Partner Agreement or Microsoft Customer Agreement.
-     *
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param billingRoleAssignmentName The ID that uniquely identifies a role assignment.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the role assignment on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<BillingRoleAssignmentInner> deleteByBillingAccountAsync(
-        String billingAccountName, String billingRoleAssignmentName) {
-        return deleteByBillingAccountWithResponseAsync(billingAccountName, billingRoleAssignmentName)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Deletes a role assignment for the caller on a billing account. The operation is supported for billing accounts
-     * with agreement type Microsoft Partner Agreement or Microsoft Customer Agreement.
-     *
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param billingRoleAssignmentName The ID that uniquely identifies a role assignment.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the role assignment along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BillingRoleAssignmentInner> deleteByBillingAccountWithResponse(
-        String billingAccountName, String billingRoleAssignmentName, Context context) {
-        return deleteByBillingAccountWithResponseAsync(billingAccountName, billingRoleAssignmentName, context).block();
-    }
-
-    /**
-     * Deletes a role assignment for the caller on a billing account. The operation is supported for billing accounts
-     * with agreement type Microsoft Partner Agreement or Microsoft Customer Agreement.
-     *
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param billingRoleAssignmentName The ID that uniquely identifies a role assignment.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the role assignment.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public BillingRoleAssignmentInner deleteByBillingAccount(
-        String billingAccountName, String billingRoleAssignmentName) {
-        return deleteByBillingAccountWithResponse(billingAccountName, billingRoleAssignmentName, Context.NONE)
-            .getValue();
-    }
-
-    /**
-     * Gets a role assignment for the caller on an invoice section. The operation is supported for billing accounts with
-     * agreement type Microsoft Customer Agreement.
+     * Lists the role assignments for the caller on a billing profile. The operation is supported for billing accounts
+     * with agreement type Microsoft Customer Agreement.
      *
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
-     * @param invoiceSectionName The ID that uniquely identifies an invoice section.
-     * @param billingRoleAssignmentName The ID that uniquely identifies a role assignment.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a role assignment for the caller on an invoice section along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * @return the list of role assignments along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<BillingRoleAssignmentInner>> getByInvoiceSectionWithResponseAsync(
-        String billingAccountName,
-        String billingProfileName,
-        String invoiceSectionName,
-        String billingRoleAssignmentName) {
+    private Mono<PagedResponse<BillingRoleAssignmentInner>> listByBillingProfileSinglePageAsync(
+        String billingAccountName, String billingProfileName) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -531,56 +239,45 @@ public final class BillingRoleAssignmentsClientImpl implements BillingRoleAssign
             return Mono
                 .error(new IllegalArgumentException("Parameter billingProfileName is required and cannot be null."));
         }
-        if (invoiceSectionName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter invoiceSectionName is required and cannot be null."));
-        }
-        if (billingRoleAssignmentName == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter billingRoleAssignmentName is required and cannot be null."));
-        }
-        final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
                 context ->
                     service
-                        .getByInvoiceSection(
+                        .listByBillingProfile(
                             this.client.getEndpoint(),
-                            apiVersion,
+                            this.client.getApiVersion(),
                             billingAccountName,
                             billingProfileName,
-                            invoiceSectionName,
-                            billingRoleAssignmentName,
                             accept,
                             context))
+            .<PagedResponse<BillingRoleAssignmentInner>>map(
+                res ->
+                    new PagedResponseBase<>(
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink(),
+                        null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Gets a role assignment for the caller on an invoice section. The operation is supported for billing accounts with
-     * agreement type Microsoft Customer Agreement.
+     * Lists the role assignments for the caller on a billing profile. The operation is supported for billing accounts
+     * with agreement type Microsoft Customer Agreement.
      *
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
-     * @param invoiceSectionName The ID that uniquely identifies an invoice section.
-     * @param billingRoleAssignmentName The ID that uniquely identifies a role assignment.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a role assignment for the caller on an invoice section along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * @return the list of role assignments along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<BillingRoleAssignmentInner>> getByInvoiceSectionWithResponseAsync(
-        String billingAccountName,
-        String billingProfileName,
-        String invoiceSectionName,
-        String billingRoleAssignmentName,
-        Context context) {
+    private Mono<PagedResponse<BillingRoleAssignmentInner>> listByBillingProfileSinglePageAsync(
+        String billingAccountName, String billingProfileName, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -595,462 +292,99 @@ public final class BillingRoleAssignmentsClientImpl implements BillingRoleAssign
             return Mono
                 .error(new IllegalArgumentException("Parameter billingProfileName is required and cannot be null."));
         }
-        if (invoiceSectionName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter invoiceSectionName is required and cannot be null."));
-        }
-        if (billingRoleAssignmentName == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter billingRoleAssignmentName is required and cannot be null."));
-        }
-        final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .getByInvoiceSection(
+            .listByBillingProfile(
                 this.client.getEndpoint(),
-                apiVersion,
+                this.client.getApiVersion(),
                 billingAccountName,
                 billingProfileName,
-                invoiceSectionName,
-                billingRoleAssignmentName,
                 accept,
-                context);
+                context)
+            .map(
+                res ->
+                    new PagedResponseBase<>(
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink(),
+                        null));
     }
 
     /**
-     * Gets a role assignment for the caller on an invoice section. The operation is supported for billing accounts with
-     * agreement type Microsoft Customer Agreement.
-     *
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param billingProfileName The ID that uniquely identifies a billing profile.
-     * @param invoiceSectionName The ID that uniquely identifies an invoice section.
-     * @param billingRoleAssignmentName The ID that uniquely identifies a role assignment.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a role assignment for the caller on an invoice section on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<BillingRoleAssignmentInner> getByInvoiceSectionAsync(
-        String billingAccountName,
-        String billingProfileName,
-        String invoiceSectionName,
-        String billingRoleAssignmentName) {
-        return getByInvoiceSectionWithResponseAsync(
-                billingAccountName, billingProfileName, invoiceSectionName, billingRoleAssignmentName)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Gets a role assignment for the caller on an invoice section. The operation is supported for billing accounts with
-     * agreement type Microsoft Customer Agreement.
-     *
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param billingProfileName The ID that uniquely identifies a billing profile.
-     * @param invoiceSectionName The ID that uniquely identifies an invoice section.
-     * @param billingRoleAssignmentName The ID that uniquely identifies a role assignment.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a role assignment for the caller on an invoice section along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BillingRoleAssignmentInner> getByInvoiceSectionWithResponse(
-        String billingAccountName,
-        String billingProfileName,
-        String invoiceSectionName,
-        String billingRoleAssignmentName,
-        Context context) {
-        return getByInvoiceSectionWithResponseAsync(
-                billingAccountName, billingProfileName, invoiceSectionName, billingRoleAssignmentName, context)
-            .block();
-    }
-
-    /**
-     * Gets a role assignment for the caller on an invoice section. The operation is supported for billing accounts with
-     * agreement type Microsoft Customer Agreement.
-     *
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param billingProfileName The ID that uniquely identifies a billing profile.
-     * @param invoiceSectionName The ID that uniquely identifies an invoice section.
-     * @param billingRoleAssignmentName The ID that uniquely identifies a role assignment.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a role assignment for the caller on an invoice section.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public BillingRoleAssignmentInner getByInvoiceSection(
-        String billingAccountName,
-        String billingProfileName,
-        String invoiceSectionName,
-        String billingRoleAssignmentName) {
-        return getByInvoiceSectionWithResponse(
-                billingAccountName, billingProfileName, invoiceSectionName, billingRoleAssignmentName, Context.NONE)
-            .getValue();
-    }
-
-    /**
-     * Deletes a role assignment for the caller on an invoice section. The operation is supported for billing accounts
+     * Lists the role assignments for the caller on a billing profile. The operation is supported for billing accounts
      * with agreement type Microsoft Customer Agreement.
      *
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
-     * @param invoiceSectionName The ID that uniquely identifies an invoice section.
-     * @param billingRoleAssignmentName The ID that uniquely identifies a role assignment.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the role assignment along with {@link Response} on successful completion of {@link Mono}.
+     * @return the list of role assignments as paginated response with {@link PagedFlux}.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<BillingRoleAssignmentInner>> deleteByInvoiceSectionWithResponseAsync(
-        String billingAccountName,
-        String billingProfileName,
-        String invoiceSectionName,
-        String billingRoleAssignmentName) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (billingAccountName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
-        }
-        if (billingProfileName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingProfileName is required and cannot be null."));
-        }
-        if (invoiceSectionName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter invoiceSectionName is required and cannot be null."));
-        }
-        if (billingRoleAssignmentName == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter billingRoleAssignmentName is required and cannot be null."));
-        }
-        final String apiVersion = "2020-05-01";
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .deleteByInvoiceSection(
-                            this.client.getEndpoint(),
-                            apiVersion,
-                            billingAccountName,
-                            billingProfileName,
-                            invoiceSectionName,
-                            billingRoleAssignmentName,
-                            accept,
-                            context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<BillingRoleAssignmentInner> listByBillingProfileAsync(
+        String billingAccountName, String billingProfileName) {
+        return new PagedFlux<>(
+            () -> listByBillingProfileSinglePageAsync(billingAccountName, billingProfileName),
+            nextLink -> listByBillingProfileNextSinglePageAsync(nextLink));
     }
 
     /**
-     * Deletes a role assignment for the caller on an invoice section. The operation is supported for billing accounts
+     * Lists the role assignments for the caller on a billing profile. The operation is supported for billing accounts
      * with agreement type Microsoft Customer Agreement.
      *
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
-     * @param invoiceSectionName The ID that uniquely identifies an invoice section.
-     * @param billingRoleAssignmentName The ID that uniquely identifies a role assignment.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the role assignment along with {@link Response} on successful completion of {@link Mono}.
+     * @return the list of role assignments as paginated response with {@link PagedFlux}.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<BillingRoleAssignmentInner>> deleteByInvoiceSectionWithResponseAsync(
-        String billingAccountName,
-        String billingProfileName,
-        String invoiceSectionName,
-        String billingRoleAssignmentName,
-        Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (billingAccountName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
-        }
-        if (billingProfileName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingProfileName is required and cannot be null."));
-        }
-        if (invoiceSectionName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter invoiceSectionName is required and cannot be null."));
-        }
-        if (billingRoleAssignmentName == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter billingRoleAssignmentName is required and cannot be null."));
-        }
-        final String apiVersion = "2020-05-01";
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .deleteByInvoiceSection(
-                this.client.getEndpoint(),
-                apiVersion,
-                billingAccountName,
-                billingProfileName,
-                invoiceSectionName,
-                billingRoleAssignmentName,
-                accept,
-                context);
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<BillingRoleAssignmentInner> listByBillingProfileAsync(
+        String billingAccountName, String billingProfileName, Context context) {
+        return new PagedFlux<>(
+            () -> listByBillingProfileSinglePageAsync(billingAccountName, billingProfileName, context),
+            nextLink -> listByBillingProfileNextSinglePageAsync(nextLink, context));
     }
 
     /**
-     * Deletes a role assignment for the caller on an invoice section. The operation is supported for billing accounts
+     * Lists the role assignments for the caller on a billing profile. The operation is supported for billing accounts
      * with agreement type Microsoft Customer Agreement.
      *
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
-     * @param invoiceSectionName The ID that uniquely identifies an invoice section.
-     * @param billingRoleAssignmentName The ID that uniquely identifies a role assignment.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the role assignment on successful completion of {@link Mono}.
+     * @return the list of role assignments as paginated response with {@link PagedIterable}.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<BillingRoleAssignmentInner> deleteByInvoiceSectionAsync(
-        String billingAccountName,
-        String billingProfileName,
-        String invoiceSectionName,
-        String billingRoleAssignmentName) {
-        return deleteByInvoiceSectionWithResponseAsync(
-                billingAccountName, billingProfileName, invoiceSectionName, billingRoleAssignmentName)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<BillingRoleAssignmentInner> listByBillingProfile(
+        String billingAccountName, String billingProfileName) {
+        return new PagedIterable<>(listByBillingProfileAsync(billingAccountName, billingProfileName));
     }
 
     /**
-     * Deletes a role assignment for the caller on an invoice section. The operation is supported for billing accounts
+     * Lists the role assignments for the caller on a billing profile. The operation is supported for billing accounts
      * with agreement type Microsoft Customer Agreement.
      *
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
-     * @param invoiceSectionName The ID that uniquely identifies an invoice section.
-     * @param billingRoleAssignmentName The ID that uniquely identifies a role assignment.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the role assignment along with {@link Response}.
+     * @return the list of role assignments as paginated response with {@link PagedIterable}.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BillingRoleAssignmentInner> deleteByInvoiceSectionWithResponse(
-        String billingAccountName,
-        String billingProfileName,
-        String invoiceSectionName,
-        String billingRoleAssignmentName,
-        Context context) {
-        return deleteByInvoiceSectionWithResponseAsync(
-                billingAccountName, billingProfileName, invoiceSectionName, billingRoleAssignmentName, context)
-            .block();
-    }
-
-    /**
-     * Deletes a role assignment for the caller on an invoice section. The operation is supported for billing accounts
-     * with agreement type Microsoft Customer Agreement.
-     *
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param billingProfileName The ID that uniquely identifies a billing profile.
-     * @param invoiceSectionName The ID that uniquely identifies an invoice section.
-     * @param billingRoleAssignmentName The ID that uniquely identifies a role assignment.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the role assignment.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public BillingRoleAssignmentInner deleteByInvoiceSection(
-        String billingAccountName,
-        String billingProfileName,
-        String invoiceSectionName,
-        String billingRoleAssignmentName) {
-        return deleteByInvoiceSectionWithResponse(
-                billingAccountName, billingProfileName, invoiceSectionName, billingRoleAssignmentName, Context.NONE)
-            .getValue();
-    }
-
-    /**
-     * Gets a role assignment for the caller on a billing profile. The operation is supported for billing accounts with
-     * agreement type Microsoft Partner Agreement or Microsoft Customer Agreement.
-     *
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param billingProfileName The ID that uniquely identifies a billing profile.
-     * @param billingRoleAssignmentName The ID that uniquely identifies a role assignment.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a role assignment for the caller on a billing profile along with {@link Response} on successful
-     *     completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<BillingRoleAssignmentInner>> getByBillingProfileWithResponseAsync(
-        String billingAccountName, String billingProfileName, String billingRoleAssignmentName) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (billingAccountName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
-        }
-        if (billingProfileName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingProfileName is required and cannot be null."));
-        }
-        if (billingRoleAssignmentName == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter billingRoleAssignmentName is required and cannot be null."));
-        }
-        final String apiVersion = "2020-05-01";
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .getByBillingProfile(
-                            this.client.getEndpoint(),
-                            apiVersion,
-                            billingAccountName,
-                            billingProfileName,
-                            billingRoleAssignmentName,
-                            accept,
-                            context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Gets a role assignment for the caller on a billing profile. The operation is supported for billing accounts with
-     * agreement type Microsoft Partner Agreement or Microsoft Customer Agreement.
-     *
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param billingProfileName The ID that uniquely identifies a billing profile.
-     * @param billingRoleAssignmentName The ID that uniquely identifies a role assignment.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a role assignment for the caller on a billing profile along with {@link Response} on successful
-     *     completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<BillingRoleAssignmentInner>> getByBillingProfileWithResponseAsync(
-        String billingAccountName, String billingProfileName, String billingRoleAssignmentName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (billingAccountName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
-        }
-        if (billingProfileName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingProfileName is required and cannot be null."));
-        }
-        if (billingRoleAssignmentName == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter billingRoleAssignmentName is required and cannot be null."));
-        }
-        final String apiVersion = "2020-05-01";
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .getByBillingProfile(
-                this.client.getEndpoint(),
-                apiVersion,
-                billingAccountName,
-                billingProfileName,
-                billingRoleAssignmentName,
-                accept,
-                context);
-    }
-
-    /**
-     * Gets a role assignment for the caller on a billing profile. The operation is supported for billing accounts with
-     * agreement type Microsoft Partner Agreement or Microsoft Customer Agreement.
-     *
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param billingProfileName The ID that uniquely identifies a billing profile.
-     * @param billingRoleAssignmentName The ID that uniquely identifies a role assignment.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a role assignment for the caller on a billing profile on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<BillingRoleAssignmentInner> getByBillingProfileAsync(
-        String billingAccountName, String billingProfileName, String billingRoleAssignmentName) {
-        return getByBillingProfileWithResponseAsync(billingAccountName, billingProfileName, billingRoleAssignmentName)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Gets a role assignment for the caller on a billing profile. The operation is supported for billing accounts with
-     * agreement type Microsoft Partner Agreement or Microsoft Customer Agreement.
-     *
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param billingProfileName The ID that uniquely identifies a billing profile.
-     * @param billingRoleAssignmentName The ID that uniquely identifies a role assignment.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a role assignment for the caller on a billing profile along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BillingRoleAssignmentInner> getByBillingProfileWithResponse(
-        String billingAccountName, String billingProfileName, String billingRoleAssignmentName, Context context) {
-        return getByBillingProfileWithResponseAsync(
-                billingAccountName, billingProfileName, billingRoleAssignmentName, context)
-            .block();
-    }
-
-    /**
-     * Gets a role assignment for the caller on a billing profile. The operation is supported for billing accounts with
-     * agreement type Microsoft Partner Agreement or Microsoft Customer Agreement.
-     *
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param billingProfileName The ID that uniquely identifies a billing profile.
-     * @param billingRoleAssignmentName The ID that uniquely identifies a role assignment.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a role assignment for the caller on a billing profile.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public BillingRoleAssignmentInner getByBillingProfile(
-        String billingAccountName, String billingProfileName, String billingRoleAssignmentName) {
-        return getByBillingProfileWithResponse(
-                billingAccountName, billingProfileName, billingRoleAssignmentName, Context.NONE)
-            .getValue();
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<BillingRoleAssignmentInner> listByBillingProfile(
+        String billingAccountName, String billingProfileName, Context context) {
+        return new PagedIterable<>(listByBillingProfileAsync(billingAccountName, billingProfileName, context));
     }
 
     /**
@@ -1088,7 +422,6 @@ public final class BillingRoleAssignmentsClientImpl implements BillingRoleAssign
                     new IllegalArgumentException(
                         "Parameter billingRoleAssignmentName is required and cannot be null."));
         }
-        final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -1096,7 +429,7 @@ public final class BillingRoleAssignmentsClientImpl implements BillingRoleAssign
                     service
                         .deleteByBillingProfile(
                             this.client.getEndpoint(),
-                            apiVersion,
+                            this.client.getApiVersion(),
                             billingAccountName,
                             billingProfileName,
                             billingRoleAssignmentName,
@@ -1141,13 +474,12 @@ public final class BillingRoleAssignmentsClientImpl implements BillingRoleAssign
                     new IllegalArgumentException(
                         "Parameter billingRoleAssignmentName is required and cannot be null."));
         }
-        final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .deleteByBillingProfile(
                 this.client.getEndpoint(),
-                apiVersion,
+                this.client.getApiVersion(),
                 billingAccountName,
                 billingProfileName,
                 billingRoleAssignmentName,
@@ -1217,18 +549,21 @@ public final class BillingRoleAssignmentsClientImpl implements BillingRoleAssign
     }
 
     /**
-     * Lists the role assignments for the caller on a billing account. The operation is supported for billing accounts
-     * with agreement type Microsoft Partner Agreement or Microsoft Customer Agreement.
+     * Gets a role assignment for the caller on a billing profile. The operation is supported for billing accounts with
+     * agreement type Microsoft Partner Agreement or Microsoft Customer Agreement.
      *
      * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
+     * @param billingRoleAssignmentName The ID that uniquely identifies a role assignment.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of role assignments along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return a role assignment for the caller on a billing profile along with {@link Response} on successful
+     *     completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<BillingRoleAssignmentInner>> listByBillingAccountSinglePageAsync(
-        String billingAccountName) {
+    private Mono<Response<BillingRoleAssignmentInner>> getByBillingProfileWithResponseAsync(
+        String billingAccountName, String billingProfileName, String billingRoleAssignmentName) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -1239,40 +574,49 @@ public final class BillingRoleAssignmentsClientImpl implements BillingRoleAssign
             return Mono
                 .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
         }
-        final String apiVersion = "2020-05-01";
+        if (billingProfileName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter billingProfileName is required and cannot be null."));
+        }
+        if (billingRoleAssignmentName == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter billingRoleAssignmentName is required and cannot be null."));
+        }
         final String accept = "application/json";
         return FluxUtil
             .withContext(
                 context ->
                     service
-                        .listByBillingAccount(
-                            this.client.getEndpoint(), apiVersion, billingAccountName, accept, context))
-            .<PagedResponse<BillingRoleAssignmentInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+                        .getByBillingProfile(
+                            this.client.getEndpoint(),
+                            this.client.getApiVersion(),
+                            billingAccountName,
+                            billingProfileName,
+                            billingRoleAssignmentName,
+                            accept,
+                            context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Lists the role assignments for the caller on a billing account. The operation is supported for billing accounts
-     * with agreement type Microsoft Partner Agreement or Microsoft Customer Agreement.
+     * Gets a role assignment for the caller on a billing profile. The operation is supported for billing accounts with
+     * agreement type Microsoft Partner Agreement or Microsoft Customer Agreement.
      *
      * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
+     * @param billingRoleAssignmentName The ID that uniquely identifies a role assignment.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of role assignments along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return a role assignment for the caller on a billing profile along with {@link Response} on successful
+     *     completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<BillingRoleAssignmentInner>> listByBillingAccountSinglePageAsync(
-        String billingAccountName, Context context) {
+    private Mono<Response<BillingRoleAssignmentInner>> getByBillingProfileWithResponseAsync(
+        String billingAccountName, String billingProfileName, String billingRoleAssignmentName, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -1283,87 +627,87 @@ public final class BillingRoleAssignmentsClientImpl implements BillingRoleAssign
             return Mono
                 .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
         }
-        final String apiVersion = "2020-05-01";
+        if (billingProfileName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter billingProfileName is required and cannot be null."));
+        }
+        if (billingRoleAssignmentName == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter billingRoleAssignmentName is required and cannot be null."));
+        }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByBillingAccount(this.client.getEndpoint(), apiVersion, billingAccountName, accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+            .getByBillingProfile(
+                this.client.getEndpoint(),
+                this.client.getApiVersion(),
+                billingAccountName,
+                billingProfileName,
+                billingRoleAssignmentName,
+                accept,
+                context);
     }
 
     /**
-     * Lists the role assignments for the caller on a billing account. The operation is supported for billing accounts
-     * with agreement type Microsoft Partner Agreement or Microsoft Customer Agreement.
+     * Gets a role assignment for the caller on a billing profile. The operation is supported for billing accounts with
+     * agreement type Microsoft Partner Agreement or Microsoft Customer Agreement.
      *
      * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
+     * @param billingRoleAssignmentName The ID that uniquely identifies a role assignment.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of role assignments as paginated response with {@link PagedFlux}.
+     * @return a role assignment for the caller on a billing profile on successful completion of {@link Mono}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<BillingRoleAssignmentInner> listByBillingAccountAsync(String billingAccountName) {
-        return new PagedFlux<>(
-            () -> listByBillingAccountSinglePageAsync(billingAccountName),
-            nextLink -> listByBillingAccountNextSinglePageAsync(nextLink));
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<BillingRoleAssignmentInner> getByBillingProfileAsync(
+        String billingAccountName, String billingProfileName, String billingRoleAssignmentName) {
+        return getByBillingProfileWithResponseAsync(billingAccountName, billingProfileName, billingRoleAssignmentName)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Lists the role assignments for the caller on a billing account. The operation is supported for billing accounts
-     * with agreement type Microsoft Partner Agreement or Microsoft Customer Agreement.
+     * Gets a role assignment for the caller on a billing profile. The operation is supported for billing accounts with
+     * agreement type Microsoft Partner Agreement or Microsoft Customer Agreement.
      *
      * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
+     * @param billingRoleAssignmentName The ID that uniquely identifies a role assignment.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of role assignments as paginated response with {@link PagedFlux}.
+     * @return a role assignment for the caller on a billing profile along with {@link Response}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<BillingRoleAssignmentInner> listByBillingAccountAsync(
-        String billingAccountName, Context context) {
-        return new PagedFlux<>(
-            () -> listByBillingAccountSinglePageAsync(billingAccountName, context),
-            nextLink -> listByBillingAccountNextSinglePageAsync(nextLink, context));
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<BillingRoleAssignmentInner> getByBillingProfileWithResponse(
+        String billingAccountName, String billingProfileName, String billingRoleAssignmentName, Context context) {
+        return getByBillingProfileWithResponseAsync(
+                billingAccountName, billingProfileName, billingRoleAssignmentName, context)
+            .block();
     }
 
     /**
-     * Lists the role assignments for the caller on a billing account. The operation is supported for billing accounts
-     * with agreement type Microsoft Partner Agreement or Microsoft Customer Agreement.
+     * Gets a role assignment for the caller on a billing profile. The operation is supported for billing accounts with
+     * agreement type Microsoft Partner Agreement or Microsoft Customer Agreement.
      *
      * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
+     * @param billingRoleAssignmentName The ID that uniquely identifies a role assignment.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of role assignments as paginated response with {@link PagedIterable}.
+     * @return a role assignment for the caller on a billing profile.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BillingRoleAssignmentInner> listByBillingAccount(String billingAccountName) {
-        return new PagedIterable<>(listByBillingAccountAsync(billingAccountName));
-    }
-
-    /**
-     * Lists the role assignments for the caller on a billing account. The operation is supported for billing accounts
-     * with agreement type Microsoft Partner Agreement or Microsoft Customer Agreement.
-     *
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of role assignments as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BillingRoleAssignmentInner> listByBillingAccount(String billingAccountName, Context context) {
-        return new PagedIterable<>(listByBillingAccountAsync(billingAccountName, context));
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public BillingRoleAssignmentInner getByBillingProfile(
+        String billingAccountName, String billingProfileName, String billingRoleAssignmentName) {
+        return getByBillingProfileWithResponse(
+                billingAccountName, billingProfileName, billingRoleAssignmentName, Context.NONE)
+            .getValue();
     }
 
     /**
@@ -1399,7 +743,6 @@ public final class BillingRoleAssignmentsClientImpl implements BillingRoleAssign
             return Mono
                 .error(new IllegalArgumentException("Parameter invoiceSectionName is required and cannot be null."));
         }
-        final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -1407,7 +750,7 @@ public final class BillingRoleAssignmentsClientImpl implements BillingRoleAssign
                     service
                         .listByInvoiceSection(
                             this.client.getEndpoint(),
-                            apiVersion,
+                            this.client.getApiVersion(),
                             billingAccountName,
                             billingProfileName,
                             invoiceSectionName,
@@ -1459,13 +802,12 @@ public final class BillingRoleAssignmentsClientImpl implements BillingRoleAssign
             return Mono
                 .error(new IllegalArgumentException("Parameter invoiceSectionName is required and cannot be null."));
         }
-        final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listByInvoiceSection(
                 this.client.getEndpoint(),
-                apiVersion,
+                this.client.getApiVersion(),
                 billingAccountName,
                 billingProfileName,
                 invoiceSectionName,
@@ -1565,19 +907,24 @@ public final class BillingRoleAssignmentsClientImpl implements BillingRoleAssign
     }
 
     /**
-     * Lists the role assignments for the caller on a billing profile. The operation is supported for billing accounts
+     * Deletes a role assignment for the caller on an invoice section. The operation is supported for billing accounts
      * with agreement type Microsoft Customer Agreement.
      *
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
+     * @param invoiceSectionName The ID that uniquely identifies an invoice section.
+     * @param billingRoleAssignmentName The ID that uniquely identifies a role assignment.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of role assignments along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return the role assignment along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<BillingRoleAssignmentInner>> listByBillingProfileSinglePageAsync(
-        String billingAccountName, String billingProfileName) {
+    private Mono<Response<BillingRoleAssignmentInner>> deleteByInvoiceSectionWithResponseAsync(
+        String billingAccountName,
+        String billingProfileName,
+        String invoiceSectionName,
+        String billingRoleAssignmentName) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -1592,17 +939,393 @@ public final class BillingRoleAssignmentsClientImpl implements BillingRoleAssign
             return Mono
                 .error(new IllegalArgumentException("Parameter billingProfileName is required and cannot be null."));
         }
-        final String apiVersion = "2020-05-01";
+        if (invoiceSectionName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter invoiceSectionName is required and cannot be null."));
+        }
+        if (billingRoleAssignmentName == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter billingRoleAssignmentName is required and cannot be null."));
+        }
         final String accept = "application/json";
         return FluxUtil
             .withContext(
                 context ->
                     service
-                        .listByBillingProfile(
+                        .deleteByInvoiceSection(
                             this.client.getEndpoint(),
-                            apiVersion,
+                            this.client.getApiVersion(),
                             billingAccountName,
                             billingProfileName,
+                            invoiceSectionName,
+                            billingRoleAssignmentName,
+                            accept,
+                            context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Deletes a role assignment for the caller on an invoice section. The operation is supported for billing accounts
+     * with agreement type Microsoft Customer Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
+     * @param invoiceSectionName The ID that uniquely identifies an invoice section.
+     * @param billingRoleAssignmentName The ID that uniquely identifies a role assignment.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the role assignment along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<BillingRoleAssignmentInner>> deleteByInvoiceSectionWithResponseAsync(
+        String billingAccountName,
+        String billingProfileName,
+        String invoiceSectionName,
+        String billingRoleAssignmentName,
+        Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        if (billingProfileName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter billingProfileName is required and cannot be null."));
+        }
+        if (invoiceSectionName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter invoiceSectionName is required and cannot be null."));
+        }
+        if (billingRoleAssignmentName == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter billingRoleAssignmentName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .deleteByInvoiceSection(
+                this.client.getEndpoint(),
+                this.client.getApiVersion(),
+                billingAccountName,
+                billingProfileName,
+                invoiceSectionName,
+                billingRoleAssignmentName,
+                accept,
+                context);
+    }
+
+    /**
+     * Deletes a role assignment for the caller on an invoice section. The operation is supported for billing accounts
+     * with agreement type Microsoft Customer Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
+     * @param invoiceSectionName The ID that uniquely identifies an invoice section.
+     * @param billingRoleAssignmentName The ID that uniquely identifies a role assignment.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the role assignment on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<BillingRoleAssignmentInner> deleteByInvoiceSectionAsync(
+        String billingAccountName,
+        String billingProfileName,
+        String invoiceSectionName,
+        String billingRoleAssignmentName) {
+        return deleteByInvoiceSectionWithResponseAsync(
+                billingAccountName, billingProfileName, invoiceSectionName, billingRoleAssignmentName)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Deletes a role assignment for the caller on an invoice section. The operation is supported for billing accounts
+     * with agreement type Microsoft Customer Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
+     * @param invoiceSectionName The ID that uniquely identifies an invoice section.
+     * @param billingRoleAssignmentName The ID that uniquely identifies a role assignment.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the role assignment along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<BillingRoleAssignmentInner> deleteByInvoiceSectionWithResponse(
+        String billingAccountName,
+        String billingProfileName,
+        String invoiceSectionName,
+        String billingRoleAssignmentName,
+        Context context) {
+        return deleteByInvoiceSectionWithResponseAsync(
+                billingAccountName, billingProfileName, invoiceSectionName, billingRoleAssignmentName, context)
+            .block();
+    }
+
+    /**
+     * Deletes a role assignment for the caller on an invoice section. The operation is supported for billing accounts
+     * with agreement type Microsoft Customer Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
+     * @param invoiceSectionName The ID that uniquely identifies an invoice section.
+     * @param billingRoleAssignmentName The ID that uniquely identifies a role assignment.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the role assignment.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public BillingRoleAssignmentInner deleteByInvoiceSection(
+        String billingAccountName,
+        String billingProfileName,
+        String invoiceSectionName,
+        String billingRoleAssignmentName) {
+        return deleteByInvoiceSectionWithResponse(
+                billingAccountName, billingProfileName, invoiceSectionName, billingRoleAssignmentName, Context.NONE)
+            .getValue();
+    }
+
+    /**
+     * Gets a role assignment for the caller on an invoice section. The operation is supported for billing accounts with
+     * agreement type Microsoft Customer Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
+     * @param invoiceSectionName The ID that uniquely identifies an invoice section.
+     * @param billingRoleAssignmentName The ID that uniquely identifies a role assignment.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a role assignment for the caller on an invoice section along with {@link Response} on successful
+     *     completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<BillingRoleAssignmentInner>> getByInvoiceSectionWithResponseAsync(
+        String billingAccountName,
+        String billingProfileName,
+        String invoiceSectionName,
+        String billingRoleAssignmentName) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        if (billingProfileName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter billingProfileName is required and cannot be null."));
+        }
+        if (invoiceSectionName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter invoiceSectionName is required and cannot be null."));
+        }
+        if (billingRoleAssignmentName == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter billingRoleAssignmentName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service
+                        .getByInvoiceSection(
+                            this.client.getEndpoint(),
+                            this.client.getApiVersion(),
+                            billingAccountName,
+                            billingProfileName,
+                            invoiceSectionName,
+                            billingRoleAssignmentName,
+                            accept,
+                            context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Gets a role assignment for the caller on an invoice section. The operation is supported for billing accounts with
+     * agreement type Microsoft Customer Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
+     * @param invoiceSectionName The ID that uniquely identifies an invoice section.
+     * @param billingRoleAssignmentName The ID that uniquely identifies a role assignment.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a role assignment for the caller on an invoice section along with {@link Response} on successful
+     *     completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<BillingRoleAssignmentInner>> getByInvoiceSectionWithResponseAsync(
+        String billingAccountName,
+        String billingProfileName,
+        String invoiceSectionName,
+        String billingRoleAssignmentName,
+        Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        if (billingProfileName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter billingProfileName is required and cannot be null."));
+        }
+        if (invoiceSectionName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter invoiceSectionName is required and cannot be null."));
+        }
+        if (billingRoleAssignmentName == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter billingRoleAssignmentName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .getByInvoiceSection(
+                this.client.getEndpoint(),
+                this.client.getApiVersion(),
+                billingAccountName,
+                billingProfileName,
+                invoiceSectionName,
+                billingRoleAssignmentName,
+                accept,
+                context);
+    }
+
+    /**
+     * Gets a role assignment for the caller on an invoice section. The operation is supported for billing accounts with
+     * agreement type Microsoft Customer Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
+     * @param invoiceSectionName The ID that uniquely identifies an invoice section.
+     * @param billingRoleAssignmentName The ID that uniquely identifies a role assignment.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a role assignment for the caller on an invoice section on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<BillingRoleAssignmentInner> getByInvoiceSectionAsync(
+        String billingAccountName,
+        String billingProfileName,
+        String invoiceSectionName,
+        String billingRoleAssignmentName) {
+        return getByInvoiceSectionWithResponseAsync(
+                billingAccountName, billingProfileName, invoiceSectionName, billingRoleAssignmentName)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Gets a role assignment for the caller on an invoice section. The operation is supported for billing accounts with
+     * agreement type Microsoft Customer Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
+     * @param invoiceSectionName The ID that uniquely identifies an invoice section.
+     * @param billingRoleAssignmentName The ID that uniquely identifies a role assignment.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a role assignment for the caller on an invoice section along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<BillingRoleAssignmentInner> getByInvoiceSectionWithResponse(
+        String billingAccountName,
+        String billingProfileName,
+        String invoiceSectionName,
+        String billingRoleAssignmentName,
+        Context context) {
+        return getByInvoiceSectionWithResponseAsync(
+                billingAccountName, billingProfileName, invoiceSectionName, billingRoleAssignmentName, context)
+            .block();
+    }
+
+    /**
+     * Gets a role assignment for the caller on an invoice section. The operation is supported for billing accounts with
+     * agreement type Microsoft Customer Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
+     * @param invoiceSectionName The ID that uniquely identifies an invoice section.
+     * @param billingRoleAssignmentName The ID that uniquely identifies a role assignment.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a role assignment for the caller on an invoice section.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public BillingRoleAssignmentInner getByInvoiceSection(
+        String billingAccountName,
+        String billingProfileName,
+        String invoiceSectionName,
+        String billingRoleAssignmentName) {
+        return getByInvoiceSectionWithResponse(
+                billingAccountName, billingProfileName, invoiceSectionName, billingRoleAssignmentName, Context.NONE)
+            .getValue();
+    }
+
+    /**
+     * Lists the role assignments for the caller on a billing account. The operation is supported for billing accounts
+     * with agreement type Microsoft Partner Agreement or Microsoft Customer Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of role assignments along with {@link PagedResponse} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<BillingRoleAssignmentInner>> listByBillingAccountSinglePageAsync(
+        String billingAccountName) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service
+                        .listByBillingAccount(
+                            this.client.getEndpoint(),
+                            this.client.getApiVersion(),
+                            billingAccountName,
                             accept,
                             context))
             .<PagedResponse<BillingRoleAssignmentInner>>map(
@@ -1618,11 +1341,10 @@ public final class BillingRoleAssignmentsClientImpl implements BillingRoleAssign
     }
 
     /**
-     * Lists the role assignments for the caller on a billing profile. The operation is supported for billing accounts
-     * with agreement type Microsoft Customer Agreement.
+     * Lists the role assignments for the caller on a billing account. The operation is supported for billing accounts
+     * with agreement type Microsoft Partner Agreement or Microsoft Customer Agreement.
      *
      * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1630,8 +1352,8 @@ public final class BillingRoleAssignmentsClientImpl implements BillingRoleAssign
      * @return the list of role assignments along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<BillingRoleAssignmentInner>> listByBillingProfileSinglePageAsync(
-        String billingAccountName, String billingProfileName, Context context) {
+    private Mono<PagedResponse<BillingRoleAssignmentInner>> listByBillingAccountSinglePageAsync(
+        String billingAccountName, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -1642,16 +1364,11 @@ public final class BillingRoleAssignmentsClientImpl implements BillingRoleAssign
             return Mono
                 .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
         }
-        if (billingProfileName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingProfileName is required and cannot be null."));
-        }
-        final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByBillingProfile(
-                this.client.getEndpoint(), apiVersion, billingAccountName, billingProfileName, accept, context)
+            .listByBillingAccount(
+                this.client.getEndpoint(), this.client.getApiVersion(), billingAccountName, accept, context)
             .map(
                 res ->
                     new PagedResponseBase<>(
@@ -1664,30 +1381,27 @@ public final class BillingRoleAssignmentsClientImpl implements BillingRoleAssign
     }
 
     /**
-     * Lists the role assignments for the caller on a billing profile. The operation is supported for billing accounts
-     * with agreement type Microsoft Customer Agreement.
+     * Lists the role assignments for the caller on a billing account. The operation is supported for billing accounts
+     * with agreement type Microsoft Partner Agreement or Microsoft Customer Agreement.
      *
      * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the list of role assignments as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<BillingRoleAssignmentInner> listByBillingProfileAsync(
-        String billingAccountName, String billingProfileName) {
+    private PagedFlux<BillingRoleAssignmentInner> listByBillingAccountAsync(String billingAccountName) {
         return new PagedFlux<>(
-            () -> listByBillingProfileSinglePageAsync(billingAccountName, billingProfileName),
-            nextLink -> listByBillingProfileNextSinglePageAsync(nextLink));
+            () -> listByBillingAccountSinglePageAsync(billingAccountName),
+            nextLink -> listByBillingAccountNextSinglePageAsync(nextLink));
     }
 
     /**
-     * Lists the role assignments for the caller on a billing profile. The operation is supported for billing accounts
-     * with agreement type Microsoft Customer Agreement.
+     * Lists the role assignments for the caller on a billing account. The operation is supported for billing accounts
+     * with agreement type Microsoft Partner Agreement or Microsoft Customer Agreement.
      *
      * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1695,36 +1409,33 @@ public final class BillingRoleAssignmentsClientImpl implements BillingRoleAssign
      * @return the list of role assignments as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<BillingRoleAssignmentInner> listByBillingProfileAsync(
-        String billingAccountName, String billingProfileName, Context context) {
+    private PagedFlux<BillingRoleAssignmentInner> listByBillingAccountAsync(
+        String billingAccountName, Context context) {
         return new PagedFlux<>(
-            () -> listByBillingProfileSinglePageAsync(billingAccountName, billingProfileName, context),
-            nextLink -> listByBillingProfileNextSinglePageAsync(nextLink, context));
+            () -> listByBillingAccountSinglePageAsync(billingAccountName, context),
+            nextLink -> listByBillingAccountNextSinglePageAsync(nextLink, context));
     }
 
     /**
-     * Lists the role assignments for the caller on a billing profile. The operation is supported for billing accounts
-     * with agreement type Microsoft Customer Agreement.
+     * Lists the role assignments for the caller on a billing account. The operation is supported for billing accounts
+     * with agreement type Microsoft Partner Agreement or Microsoft Customer Agreement.
      *
      * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the list of role assignments as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BillingRoleAssignmentInner> listByBillingProfile(
-        String billingAccountName, String billingProfileName) {
-        return new PagedIterable<>(listByBillingProfileAsync(billingAccountName, billingProfileName));
+    public PagedIterable<BillingRoleAssignmentInner> listByBillingAccount(String billingAccountName) {
+        return new PagedIterable<>(listByBillingAccountAsync(billingAccountName));
     }
 
     /**
-     * Lists the role assignments for the caller on a billing profile. The operation is supported for billing accounts
-     * with agreement type Microsoft Customer Agreement.
+     * Lists the role assignments for the caller on a billing account. The operation is supported for billing accounts
+     * with agreement type Microsoft Partner Agreement or Microsoft Customer Agreement.
      *
      * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1732,9 +1443,292 @@ public final class BillingRoleAssignmentsClientImpl implements BillingRoleAssign
      * @return the list of role assignments as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BillingRoleAssignmentInner> listByBillingProfile(
-        String billingAccountName, String billingProfileName, Context context) {
-        return new PagedIterable<>(listByBillingProfileAsync(billingAccountName, billingProfileName, context));
+    public PagedIterable<BillingRoleAssignmentInner> listByBillingAccount(String billingAccountName, Context context) {
+        return new PagedIterable<>(listByBillingAccountAsync(billingAccountName, context));
+    }
+
+    /**
+     * Deletes a role assignment for the caller on a billing account. The operation is supported for billing accounts
+     * with agreement type Microsoft Partner Agreement or Microsoft Customer Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingRoleAssignmentName The ID that uniquely identifies a role assignment.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the role assignment along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<BillingRoleAssignmentInner>> deleteByBillingAccountWithResponseAsync(
+        String billingAccountName, String billingRoleAssignmentName) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        if (billingRoleAssignmentName == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter billingRoleAssignmentName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service
+                        .deleteByBillingAccount(
+                            this.client.getEndpoint(),
+                            this.client.getApiVersion(),
+                            billingAccountName,
+                            billingRoleAssignmentName,
+                            accept,
+                            context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Deletes a role assignment for the caller on a billing account. The operation is supported for billing accounts
+     * with agreement type Microsoft Partner Agreement or Microsoft Customer Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingRoleAssignmentName The ID that uniquely identifies a role assignment.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the role assignment along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<BillingRoleAssignmentInner>> deleteByBillingAccountWithResponseAsync(
+        String billingAccountName, String billingRoleAssignmentName, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        if (billingRoleAssignmentName == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter billingRoleAssignmentName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .deleteByBillingAccount(
+                this.client.getEndpoint(),
+                this.client.getApiVersion(),
+                billingAccountName,
+                billingRoleAssignmentName,
+                accept,
+                context);
+    }
+
+    /**
+     * Deletes a role assignment for the caller on a billing account. The operation is supported for billing accounts
+     * with agreement type Microsoft Partner Agreement or Microsoft Customer Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingRoleAssignmentName The ID that uniquely identifies a role assignment.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the role assignment on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<BillingRoleAssignmentInner> deleteByBillingAccountAsync(
+        String billingAccountName, String billingRoleAssignmentName) {
+        return deleteByBillingAccountWithResponseAsync(billingAccountName, billingRoleAssignmentName)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Deletes a role assignment for the caller on a billing account. The operation is supported for billing accounts
+     * with agreement type Microsoft Partner Agreement or Microsoft Customer Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingRoleAssignmentName The ID that uniquely identifies a role assignment.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the role assignment along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<BillingRoleAssignmentInner> deleteByBillingAccountWithResponse(
+        String billingAccountName, String billingRoleAssignmentName, Context context) {
+        return deleteByBillingAccountWithResponseAsync(billingAccountName, billingRoleAssignmentName, context).block();
+    }
+
+    /**
+     * Deletes a role assignment for the caller on a billing account. The operation is supported for billing accounts
+     * with agreement type Microsoft Partner Agreement or Microsoft Customer Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingRoleAssignmentName The ID that uniquely identifies a role assignment.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the role assignment.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public BillingRoleAssignmentInner deleteByBillingAccount(
+        String billingAccountName, String billingRoleAssignmentName) {
+        return deleteByBillingAccountWithResponse(billingAccountName, billingRoleAssignmentName, Context.NONE)
+            .getValue();
+    }
+
+    /**
+     * Gets a role assignment for the caller on a billing account. The operation is supported for billing accounts with
+     * agreement type Microsoft Partner Agreement or Microsoft Customer Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingRoleAssignmentName The ID that uniquely identifies a role assignment.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a role assignment for the caller on a billing account along with {@link Response} on successful
+     *     completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<BillingRoleAssignmentInner>> getByBillingAccountWithResponseAsync(
+        String billingAccountName, String billingRoleAssignmentName) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        if (billingRoleAssignmentName == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter billingRoleAssignmentName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service
+                        .getByBillingAccount(
+                            this.client.getEndpoint(),
+                            this.client.getApiVersion(),
+                            billingAccountName,
+                            billingRoleAssignmentName,
+                            accept,
+                            context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Gets a role assignment for the caller on a billing account. The operation is supported for billing accounts with
+     * agreement type Microsoft Partner Agreement or Microsoft Customer Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingRoleAssignmentName The ID that uniquely identifies a role assignment.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a role assignment for the caller on a billing account along with {@link Response} on successful
+     *     completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<BillingRoleAssignmentInner>> getByBillingAccountWithResponseAsync(
+        String billingAccountName, String billingRoleAssignmentName, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        if (billingRoleAssignmentName == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter billingRoleAssignmentName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .getByBillingAccount(
+                this.client.getEndpoint(),
+                this.client.getApiVersion(),
+                billingAccountName,
+                billingRoleAssignmentName,
+                accept,
+                context);
+    }
+
+    /**
+     * Gets a role assignment for the caller on a billing account. The operation is supported for billing accounts with
+     * agreement type Microsoft Partner Agreement or Microsoft Customer Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingRoleAssignmentName The ID that uniquely identifies a role assignment.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a role assignment for the caller on a billing account on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<BillingRoleAssignmentInner> getByBillingAccountAsync(
+        String billingAccountName, String billingRoleAssignmentName) {
+        return getByBillingAccountWithResponseAsync(billingAccountName, billingRoleAssignmentName)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Gets a role assignment for the caller on a billing account. The operation is supported for billing accounts with
+     * agreement type Microsoft Partner Agreement or Microsoft Customer Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingRoleAssignmentName The ID that uniquely identifies a role assignment.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a role assignment for the caller on a billing account along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<BillingRoleAssignmentInner> getByBillingAccountWithResponse(
+        String billingAccountName, String billingRoleAssignmentName, Context context) {
+        return getByBillingAccountWithResponseAsync(billingAccountName, billingRoleAssignmentName, context).block();
+    }
+
+    /**
+     * Gets a role assignment for the caller on a billing account. The operation is supported for billing accounts with
+     * agreement type Microsoft Partner Agreement or Microsoft Customer Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingRoleAssignmentName The ID that uniquely identifies a role assignment.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a role assignment for the caller on a billing account.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public BillingRoleAssignmentInner getByBillingAccount(String billingAccountName, String billingRoleAssignmentName) {
+        return getByBillingAccountWithResponse(billingAccountName, billingRoleAssignmentName, Context.NONE).getValue();
     }
 
     /**
@@ -1748,7 +1742,7 @@ public final class BillingRoleAssignmentsClientImpl implements BillingRoleAssign
      * @return the list of role assignments along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<BillingRoleAssignmentInner>> listByBillingAccountNextSinglePageAsync(String nextLink) {
+    private Mono<PagedResponse<BillingRoleAssignmentInner>> listByBillingProfileNextSinglePageAsync(String nextLink) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
@@ -1761,7 +1755,7 @@ public final class BillingRoleAssignmentsClientImpl implements BillingRoleAssign
         final String accept = "application/json";
         return FluxUtil
             .withContext(
-                context -> service.listByBillingAccountNext(nextLink, this.client.getEndpoint(), accept, context))
+                context -> service.listByBillingProfileNext(nextLink, this.client.getEndpoint(), accept, context))
             .<PagedResponse<BillingRoleAssignmentInner>>map(
                 res ->
                     new PagedResponseBase<>(
@@ -1786,7 +1780,7 @@ public final class BillingRoleAssignmentsClientImpl implements BillingRoleAssign
      * @return the list of role assignments along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<BillingRoleAssignmentInner>> listByBillingAccountNextSinglePageAsync(
+    private Mono<PagedResponse<BillingRoleAssignmentInner>> listByBillingProfileNextSinglePageAsync(
         String nextLink, Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
@@ -1800,7 +1794,7 @@ public final class BillingRoleAssignmentsClientImpl implements BillingRoleAssign
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByBillingAccountNext(nextLink, this.client.getEndpoint(), accept, context)
+            .listByBillingProfileNext(nextLink, this.client.getEndpoint(), accept, context)
             .map(
                 res ->
                     new PagedResponseBase<>(
@@ -1898,7 +1892,7 @@ public final class BillingRoleAssignmentsClientImpl implements BillingRoleAssign
      * @return the list of role assignments along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<BillingRoleAssignmentInner>> listByBillingProfileNextSinglePageAsync(String nextLink) {
+    private Mono<PagedResponse<BillingRoleAssignmentInner>> listByBillingAccountNextSinglePageAsync(String nextLink) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
@@ -1911,7 +1905,7 @@ public final class BillingRoleAssignmentsClientImpl implements BillingRoleAssign
         final String accept = "application/json";
         return FluxUtil
             .withContext(
-                context -> service.listByBillingProfileNext(nextLink, this.client.getEndpoint(), accept, context))
+                context -> service.listByBillingAccountNext(nextLink, this.client.getEndpoint(), accept, context))
             .<PagedResponse<BillingRoleAssignmentInner>>map(
                 res ->
                     new PagedResponseBase<>(
@@ -1936,7 +1930,7 @@ public final class BillingRoleAssignmentsClientImpl implements BillingRoleAssign
      * @return the list of role assignments along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<BillingRoleAssignmentInner>> listByBillingProfileNextSinglePageAsync(
+    private Mono<PagedResponse<BillingRoleAssignmentInner>> listByBillingAccountNextSinglePageAsync(
         String nextLink, Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
@@ -1950,7 +1944,7 @@ public final class BillingRoleAssignmentsClientImpl implements BillingRoleAssign
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByBillingProfileNext(nextLink, this.client.getEndpoint(), accept, context)
+            .listByBillingAccountNext(nextLink, this.client.getEndpoint(), accept, context)
             .map(
                 res ->
                     new PagedResponseBase<>(

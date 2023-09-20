@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.billing.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.resourcemanager.billing.fluent.models.BillingProfileInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
@@ -26,7 +25,7 @@ public final class BillingProfilesOnExpand {
      * The billing profiles associated with the billing account.
      */
     @JsonProperty(value = "value")
-    private List<BillingProfileInner> value;
+    private List<BillingProfile> value;
 
     /** Creates an instance of BillingProfilesOnExpand class. */
     public BillingProfilesOnExpand() {
@@ -48,7 +47,7 @@ public final class BillingProfilesOnExpand {
      *
      * @return the value value.
      */
-    public List<BillingProfileInner> value() {
+    public List<BillingProfile> value() {
         return this.value;
     }
 
@@ -58,7 +57,7 @@ public final class BillingProfilesOnExpand {
      * @param value the value value to set.
      * @return the BillingProfilesOnExpand object itself.
      */
-    public BillingProfilesOnExpand withValue(List<BillingProfileInner> value) {
+    public BillingProfilesOnExpand withValue(List<BillingProfile> value) {
         this.value = value;
         return this;
     }
