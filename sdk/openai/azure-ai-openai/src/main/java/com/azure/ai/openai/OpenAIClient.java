@@ -12,6 +12,7 @@ import com.azure.ai.openai.implementation.OpenAIServerSentEvents;
 import com.azure.ai.openai.models.AudioTranscription;
 import com.azure.ai.openai.models.AudioTranscriptionFormat;
 import com.azure.ai.openai.models.AudioTranscriptionOptions;
+import com.azure.ai.openai.models.AudioTranslation;
 import com.azure.ai.openai.models.AudioTranslationOptions;
 import com.azure.ai.openai.models.ChatCompletions;
 import com.azure.ai.openai.models.ChatCompletionsOptions;
@@ -1242,14 +1243,14 @@ public final class OpenAIClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public AudioTranscription getAudioTranslationAsResponseObject(
+    public AudioTranslation getAudioTranslationAsResponseObject(
             String deploymentOrModelName, AudioTranslationOptions audioTranslationOptions) {
         // Generated convenience method for getAudioTranslationAsResponseObjectWithResponse
         RequestOptions requestOptions = new RequestOptions();
         return getAudioTranslationAsResponseObjectWithResponse(
                         deploymentOrModelName, BinaryData.fromObject(audioTranslationOptions), requestOptions)
                 .getValue()
-                .toObject(AudioTranscription.class);
+                .toObject(AudioTranslation.class);
     }
 
     /**
