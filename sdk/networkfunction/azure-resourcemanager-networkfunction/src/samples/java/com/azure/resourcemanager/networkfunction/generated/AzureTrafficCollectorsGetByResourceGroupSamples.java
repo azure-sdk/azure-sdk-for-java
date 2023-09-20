@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.networkfunction.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for AzureTrafficCollectors GetByResourceGroup. */
 public final class AzureTrafficCollectorsGetByResourceGroupSamples {
     /*
@@ -18,6 +16,6 @@ public final class AzureTrafficCollectorsGetByResourceGroupSamples {
      */
     public static void getTrafficCollector(
         com.azure.resourcemanager.networkfunction.AzureTrafficCollectorManager manager) {
-        manager.azureTrafficCollectors().getByResourceGroupWithResponse("rg1", "atc", Context.NONE);
+        manager.azureTrafficCollectors().getByResourceGroupWithResponse("rg1", "atc", com.azure.core.util.Context.NONE);
     }
 }
