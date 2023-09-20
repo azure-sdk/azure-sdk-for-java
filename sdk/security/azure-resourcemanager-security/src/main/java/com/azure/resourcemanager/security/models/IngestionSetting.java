@@ -48,11 +48,13 @@ public interface IngestionSetting {
     /** The entirety of the IngestionSetting definition. */
     interface Definition extends DefinitionStages.Blank, DefinitionStages.WithCreate {
     }
+
     /** The IngestionSetting definition stages. */
     interface DefinitionStages {
         /** The first stage of the IngestionSetting definition. */
         interface Blank extends WithCreate {
         }
+
         /**
          * The stage of the IngestionSetting definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
@@ -73,6 +75,7 @@ public interface IngestionSetting {
              */
             IngestionSetting create(Context context);
         }
+
         /** The stage of the IngestionSetting definition allowing to specify properties. */
         interface WithProperties {
             /**
@@ -84,6 +87,7 @@ public interface IngestionSetting {
             WithCreate withProperties(Object properties);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

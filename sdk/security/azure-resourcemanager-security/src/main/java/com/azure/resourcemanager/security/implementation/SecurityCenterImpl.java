@@ -28,8 +28,6 @@ import com.azure.resourcemanager.security.fluent.AdvancedThreatProtectionsClient
 import com.azure.resourcemanager.security.fluent.AlertsClient;
 import com.azure.resourcemanager.security.fluent.AlertsSuppressionRulesClient;
 import com.azure.resourcemanager.security.fluent.AllowedConnectionsClient;
-import com.azure.resourcemanager.security.fluent.ApiCollectionOffboardingsClient;
-import com.azure.resourcemanager.security.fluent.ApiCollectionOnboardingsClient;
 import com.azure.resourcemanager.security.fluent.ApiCollectionsClient;
 import com.azure.resourcemanager.security.fluent.ApplicationOperationsClient;
 import com.azure.resourcemanager.security.fluent.ApplicationsClient;
@@ -37,17 +35,27 @@ import com.azure.resourcemanager.security.fluent.AssessmentsClient;
 import com.azure.resourcemanager.security.fluent.AssessmentsMetadatasClient;
 import com.azure.resourcemanager.security.fluent.AutoProvisioningSettingsClient;
 import com.azure.resourcemanager.security.fluent.AutomationsClient;
+import com.azure.resourcemanager.security.fluent.AzureDevOpsOrgsClient;
+import com.azure.resourcemanager.security.fluent.AzureDevOpsProjectsClient;
+import com.azure.resourcemanager.security.fluent.AzureDevOpsReposClient;
 import com.azure.resourcemanager.security.fluent.ComplianceResultsClient;
 import com.azure.resourcemanager.security.fluent.CompliancesClient;
 import com.azure.resourcemanager.security.fluent.ConnectorsClient;
 import com.azure.resourcemanager.security.fluent.CustomAssessmentAutomationsClient;
 import com.azure.resourcemanager.security.fluent.CustomEntityStoreAssignmentsClient;
+import com.azure.resourcemanager.security.fluent.DefenderForStoragesClient;
+import com.azure.resourcemanager.security.fluent.DevOpsConfigurationsClient;
+import com.azure.resourcemanager.security.fluent.DevOpsOperationResultsClient;
 import com.azure.resourcemanager.security.fluent.DeviceSecurityGroupsClient;
 import com.azure.resourcemanager.security.fluent.DiscoveredSecuritySolutionsClient;
 import com.azure.resourcemanager.security.fluent.ExternalSecuritySolutionsClient;
+import com.azure.resourcemanager.security.fluent.GitHubOwnersClient;
+import com.azure.resourcemanager.security.fluent.GitHubReposClient;
+import com.azure.resourcemanager.security.fluent.GitLabGroupsClient;
+import com.azure.resourcemanager.security.fluent.GitLabProjectsClient;
+import com.azure.resourcemanager.security.fluent.GitLabSubgroupsClient;
 import com.azure.resourcemanager.security.fluent.GovernanceAssignmentsClient;
 import com.azure.resourcemanager.security.fluent.GovernanceRulesClient;
-import com.azure.resourcemanager.security.fluent.HealthReportOperationsClient;
 import com.azure.resourcemanager.security.fluent.HealthReportsClient;
 import com.azure.resourcemanager.security.fluent.InformationProtectionPoliciesClient;
 import com.azure.resourcemanager.security.fluent.IngestionSettingsClient;
@@ -63,6 +71,7 @@ import com.azure.resourcemanager.security.fluent.PricingsClient;
 import com.azure.resourcemanager.security.fluent.RegulatoryComplianceAssessmentsClient;
 import com.azure.resourcemanager.security.fluent.RegulatoryComplianceControlsClient;
 import com.azure.resourcemanager.security.fluent.RegulatoryComplianceStandardsClient;
+import com.azure.resourcemanager.security.fluent.ResourceProvidersClient;
 import com.azure.resourcemanager.security.fluent.SecureScoreControlDefinitionsClient;
 import com.azure.resourcemanager.security.fluent.SecureScoreControlsClient;
 import com.azure.resourcemanager.security.fluent.SecureScoresClient;
@@ -74,7 +83,9 @@ import com.azure.resourcemanager.security.fluent.SecurityContactsClient;
 import com.azure.resourcemanager.security.fluent.SecurityOperatorsClient;
 import com.azure.resourcemanager.security.fluent.SecuritySolutionsClient;
 import com.azure.resourcemanager.security.fluent.SecuritySolutionsReferenceDatasClient;
+import com.azure.resourcemanager.security.fluent.SensitivitySettingsClient;
 import com.azure.resourcemanager.security.fluent.ServerVulnerabilityAssessmentsClient;
+import com.azure.resourcemanager.security.fluent.ServerVulnerabilityAssessmentsSettingsClient;
 import com.azure.resourcemanager.security.fluent.SettingsClient;
 import com.azure.resourcemanager.security.fluent.SoftwareInventoriesClient;
 import com.azure.resourcemanager.security.fluent.SqlVulnerabilityAssessmentBaselineRulesClient;
@@ -648,6 +659,30 @@ public final class SecurityCenterImpl implements SecurityCenter {
         return this.connectors;
     }
 
+    /** The ResourceProvidersClient object to access its operations. */
+    private final ResourceProvidersClient resourceProviders;
+
+    /**
+     * Gets the ResourceProvidersClient object to access its operations.
+     *
+     * @return the ResourceProvidersClient object.
+     */
+    public ResourceProvidersClient getResourceProviders() {
+        return this.resourceProviders;
+    }
+
+    /** The SensitivitySettingsClient object to access its operations. */
+    private final SensitivitySettingsClient sensitivitySettings;
+
+    /**
+     * Gets the SensitivitySettingsClient object to access its operations.
+     *
+     * @return the SensitivitySettingsClient object.
+     */
+    public SensitivitySettingsClient getSensitivitySettings() {
+        return this.sensitivitySettings;
+    }
+
     /** The AlertsClient object to access its operations. */
     private final AlertsClient alerts;
 
@@ -780,54 +815,6 @@ public final class SecurityCenterImpl implements SecurityCenter {
         return this.apiCollections;
     }
 
-    /** The ApiCollectionOnboardingsClient object to access its operations. */
-    private final ApiCollectionOnboardingsClient apiCollectionOnboardings;
-
-    /**
-     * Gets the ApiCollectionOnboardingsClient object to access its operations.
-     *
-     * @return the ApiCollectionOnboardingsClient object.
-     */
-    public ApiCollectionOnboardingsClient getApiCollectionOnboardings() {
-        return this.apiCollectionOnboardings;
-    }
-
-    /** The ApiCollectionOffboardingsClient object to access its operations. */
-    private final ApiCollectionOffboardingsClient apiCollectionOffboardings;
-
-    /**
-     * Gets the ApiCollectionOffboardingsClient object to access its operations.
-     *
-     * @return the ApiCollectionOffboardingsClient object.
-     */
-    public ApiCollectionOffboardingsClient getApiCollectionOffboardings() {
-        return this.apiCollectionOffboardings;
-    }
-
-    /** The HealthReportsClient object to access its operations. */
-    private final HealthReportsClient healthReports;
-
-    /**
-     * Gets the HealthReportsClient object to access its operations.
-     *
-     * @return the HealthReportsClient object.
-     */
-    public HealthReportsClient getHealthReports() {
-        return this.healthReports;
-    }
-
-    /** The HealthReportOperationsClient object to access its operations. */
-    private final HealthReportOperationsClient healthReportOperations;
-
-    /**
-     * Gets the HealthReportOperationsClient object to access its operations.
-     *
-     * @return the HealthReportOperationsClient object.
-     */
-    public HealthReportOperationsClient getHealthReportOperations() {
-        return this.healthReportOperations;
-    }
-
     /** The SqlVulnerabilityAssessmentScansClient object to access its operations. */
     private final SqlVulnerabilityAssessmentScansClient sqlVulnerabilityAssessmentScans;
 
@@ -886,6 +873,162 @@ public final class SecurityCenterImpl implements SecurityCenter {
      */
     public SecurityOperatorsClient getSecurityOperators() {
         return this.securityOperators;
+    }
+
+    /** The ServerVulnerabilityAssessmentsSettingsClient object to access its operations. */
+    private final ServerVulnerabilityAssessmentsSettingsClient serverVulnerabilityAssessmentsSettings;
+
+    /**
+     * Gets the ServerVulnerabilityAssessmentsSettingsClient object to access its operations.
+     *
+     * @return the ServerVulnerabilityAssessmentsSettingsClient object.
+     */
+    public ServerVulnerabilityAssessmentsSettingsClient getServerVulnerabilityAssessmentsSettings() {
+        return this.serverVulnerabilityAssessmentsSettings;
+    }
+
+    /** The HealthReportsClient object to access its operations. */
+    private final HealthReportsClient healthReports;
+
+    /**
+     * Gets the HealthReportsClient object to access its operations.
+     *
+     * @return the HealthReportsClient object.
+     */
+    public HealthReportsClient getHealthReports() {
+        return this.healthReports;
+    }
+
+    /** The DefenderForStoragesClient object to access its operations. */
+    private final DefenderForStoragesClient defenderForStorages;
+
+    /**
+     * Gets the DefenderForStoragesClient object to access its operations.
+     *
+     * @return the DefenderForStoragesClient object.
+     */
+    public DefenderForStoragesClient getDefenderForStorages() {
+        return this.defenderForStorages;
+    }
+
+    /** The AzureDevOpsOrgsClient object to access its operations. */
+    private final AzureDevOpsOrgsClient azureDevOpsOrgs;
+
+    /**
+     * Gets the AzureDevOpsOrgsClient object to access its operations.
+     *
+     * @return the AzureDevOpsOrgsClient object.
+     */
+    public AzureDevOpsOrgsClient getAzureDevOpsOrgs() {
+        return this.azureDevOpsOrgs;
+    }
+
+    /** The AzureDevOpsProjectsClient object to access its operations. */
+    private final AzureDevOpsProjectsClient azureDevOpsProjects;
+
+    /**
+     * Gets the AzureDevOpsProjectsClient object to access its operations.
+     *
+     * @return the AzureDevOpsProjectsClient object.
+     */
+    public AzureDevOpsProjectsClient getAzureDevOpsProjects() {
+        return this.azureDevOpsProjects;
+    }
+
+    /** The AzureDevOpsReposClient object to access its operations. */
+    private final AzureDevOpsReposClient azureDevOpsRepos;
+
+    /**
+     * Gets the AzureDevOpsReposClient object to access its operations.
+     *
+     * @return the AzureDevOpsReposClient object.
+     */
+    public AzureDevOpsReposClient getAzureDevOpsRepos() {
+        return this.azureDevOpsRepos;
+    }
+
+    /** The DevOpsConfigurationsClient object to access its operations. */
+    private final DevOpsConfigurationsClient devOpsConfigurations;
+
+    /**
+     * Gets the DevOpsConfigurationsClient object to access its operations.
+     *
+     * @return the DevOpsConfigurationsClient object.
+     */
+    public DevOpsConfigurationsClient getDevOpsConfigurations() {
+        return this.devOpsConfigurations;
+    }
+
+    /** The GitHubOwnersClient object to access its operations. */
+    private final GitHubOwnersClient gitHubOwners;
+
+    /**
+     * Gets the GitHubOwnersClient object to access its operations.
+     *
+     * @return the GitHubOwnersClient object.
+     */
+    public GitHubOwnersClient getGitHubOwners() {
+        return this.gitHubOwners;
+    }
+
+    /** The GitHubReposClient object to access its operations. */
+    private final GitHubReposClient gitHubRepos;
+
+    /**
+     * Gets the GitHubReposClient object to access its operations.
+     *
+     * @return the GitHubReposClient object.
+     */
+    public GitHubReposClient getGitHubRepos() {
+        return this.gitHubRepos;
+    }
+
+    /** The GitLabGroupsClient object to access its operations. */
+    private final GitLabGroupsClient gitLabGroups;
+
+    /**
+     * Gets the GitLabGroupsClient object to access its operations.
+     *
+     * @return the GitLabGroupsClient object.
+     */
+    public GitLabGroupsClient getGitLabGroups() {
+        return this.gitLabGroups;
+    }
+
+    /** The GitLabSubgroupsClient object to access its operations. */
+    private final GitLabSubgroupsClient gitLabSubgroups;
+
+    /**
+     * Gets the GitLabSubgroupsClient object to access its operations.
+     *
+     * @return the GitLabSubgroupsClient object.
+     */
+    public GitLabSubgroupsClient getGitLabSubgroups() {
+        return this.gitLabSubgroups;
+    }
+
+    /** The GitLabProjectsClient object to access its operations. */
+    private final GitLabProjectsClient gitLabProjects;
+
+    /**
+     * Gets the GitLabProjectsClient object to access its operations.
+     *
+     * @return the GitLabProjectsClient object.
+     */
+    public GitLabProjectsClient getGitLabProjects() {
+        return this.gitLabProjects;
+    }
+
+    /** The DevOpsOperationResultsClient object to access its operations. */
+    private final DevOpsOperationResultsClient devOpsOperationResults;
+
+    /**
+     * Gets the DevOpsOperationResultsClient object to access its operations.
+     *
+     * @return the DevOpsOperationResultsClient object.
+     */
+    public DevOpsOperationResultsClient getDevOpsOperationResults() {
+        return this.devOpsOperationResults;
     }
 
     /**
@@ -953,6 +1096,8 @@ public final class SecurityCenterImpl implements SecurityCenter {
         this.secureScoreControlDefinitions = new SecureScoreControlDefinitionsClientImpl(this);
         this.securitySolutions = new SecuritySolutionsClientImpl(this);
         this.connectors = new ConnectorsClientImpl(this);
+        this.resourceProviders = new ResourceProvidersClientImpl(this);
+        this.sensitivitySettings = new SensitivitySettingsClientImpl(this);
         this.alerts = new AlertsClientImpl(this);
         this.settings = new SettingsClientImpl(this);
         this.ingestionSettings = new IngestionSettingsClientImpl(this);
@@ -964,15 +1109,24 @@ public final class SecurityCenterImpl implements SecurityCenter {
         this.securityConnectorApplications = new SecurityConnectorApplicationsClientImpl(this);
         this.securityConnectorApplicationOperations = new SecurityConnectorApplicationOperationsClientImpl(this);
         this.apiCollections = new ApiCollectionsClientImpl(this);
-        this.apiCollectionOnboardings = new ApiCollectionOnboardingsClientImpl(this);
-        this.apiCollectionOffboardings = new ApiCollectionOffboardingsClientImpl(this);
-        this.healthReports = new HealthReportsClientImpl(this);
-        this.healthReportOperations = new HealthReportOperationsClientImpl(this);
         this.sqlVulnerabilityAssessmentScans = new SqlVulnerabilityAssessmentScansClientImpl(this);
         this.sqlVulnerabilityAssessmentScanResults = new SqlVulnerabilityAssessmentScanResultsClientImpl(this);
         this.sqlVulnerabilityAssessmentBaselineRules = new SqlVulnerabilityAssessmentBaselineRulesClientImpl(this);
         this.securityConnectors = new SecurityConnectorsClientImpl(this);
         this.securityOperators = new SecurityOperatorsClientImpl(this);
+        this.serverVulnerabilityAssessmentsSettings = new ServerVulnerabilityAssessmentsSettingsClientImpl(this);
+        this.healthReports = new HealthReportsClientImpl(this);
+        this.defenderForStorages = new DefenderForStoragesClientImpl(this);
+        this.azureDevOpsOrgs = new AzureDevOpsOrgsClientImpl(this);
+        this.azureDevOpsProjects = new AzureDevOpsProjectsClientImpl(this);
+        this.azureDevOpsRepos = new AzureDevOpsReposClientImpl(this);
+        this.devOpsConfigurations = new DevOpsConfigurationsClientImpl(this);
+        this.gitHubOwners = new GitHubOwnersClientImpl(this);
+        this.gitHubRepos = new GitHubReposClientImpl(this);
+        this.gitLabGroups = new GitLabGroupsClientImpl(this);
+        this.gitLabSubgroups = new GitLabSubgroupsClientImpl(this);
+        this.gitLabProjects = new GitLabProjectsClientImpl(this);
+        this.devOpsOperationResults = new DevOpsOperationResultsClientImpl(this);
     }
 
     /**
