@@ -90,11 +90,13 @@ public interface WorkloadClassifier {
     interface Definition
         extends DefinitionStages.Blank, DefinitionStages.WithParentResource, DefinitionStages.WithCreate {
     }
+
     /** The WorkloadClassifier definition stages. */
     interface DefinitionStages {
         /** The first stage of the WorkloadClassifier definition. */
         interface Blank extends WithParentResource {
         }
+
         /** The stage of the WorkloadClassifier definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -109,6 +111,7 @@ public interface WorkloadClassifier {
             WithCreate withExistingWorkloadGroup(
                 String resourceGroupName, String workspaceName, String sqlPoolName, String workloadGroupName);
         }
+
         /**
          * The stage of the WorkloadClassifier definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
@@ -135,6 +138,7 @@ public interface WorkloadClassifier {
              */
             WorkloadClassifier create(Context context);
         }
+
         /** The stage of the WorkloadClassifier definition allowing to specify memberName. */
         interface WithMemberName {
             /**
@@ -145,6 +149,7 @@ public interface WorkloadClassifier {
              */
             WithCreate withMemberName(String memberName);
         }
+
         /** The stage of the WorkloadClassifier definition allowing to specify label. */
         interface WithLabel {
             /**
@@ -155,6 +160,7 @@ public interface WorkloadClassifier {
              */
             WithCreate withLabel(String label);
         }
+
         /** The stage of the WorkloadClassifier definition allowing to specify context. */
         interface WithContext {
             /**
@@ -165,6 +171,7 @@ public interface WorkloadClassifier {
              */
             WithCreate withContext(String context);
         }
+
         /** The stage of the WorkloadClassifier definition allowing to specify startTime. */
         interface WithStartTime {
             /**
@@ -175,6 +182,7 @@ public interface WorkloadClassifier {
              */
             WithCreate withStartTime(String startTime);
         }
+
         /** The stage of the WorkloadClassifier definition allowing to specify endTime. */
         interface WithEndTime {
             /**
@@ -185,6 +193,7 @@ public interface WorkloadClassifier {
              */
             WithCreate withEndTime(String endTime);
         }
+
         /** The stage of the WorkloadClassifier definition allowing to specify importance. */
         interface WithImportance {
             /**
@@ -196,6 +205,7 @@ public interface WorkloadClassifier {
             WithCreate withImportance(String importance);
         }
     }
+
     /**
      * Begins update for the WorkloadClassifier resource.
      *
@@ -226,6 +236,7 @@ public interface WorkloadClassifier {
          */
         WorkloadClassifier apply(Context context);
     }
+
     /** The WorkloadClassifier update stages. */
     interface UpdateStages {
         /** The stage of the WorkloadClassifier update allowing to specify memberName. */
@@ -238,6 +249,7 @@ public interface WorkloadClassifier {
              */
             Update withMemberName(String memberName);
         }
+
         /** The stage of the WorkloadClassifier update allowing to specify label. */
         interface WithLabel {
             /**
@@ -248,6 +260,7 @@ public interface WorkloadClassifier {
              */
             Update withLabel(String label);
         }
+
         /** The stage of the WorkloadClassifier update allowing to specify context. */
         interface WithContext {
             /**
@@ -258,6 +271,7 @@ public interface WorkloadClassifier {
              */
             Update withContext(String context);
         }
+
         /** The stage of the WorkloadClassifier update allowing to specify startTime. */
         interface WithStartTime {
             /**
@@ -268,6 +282,7 @@ public interface WorkloadClassifier {
              */
             Update withStartTime(String startTime);
         }
+
         /** The stage of the WorkloadClassifier update allowing to specify endTime. */
         interface WithEndTime {
             /**
@@ -278,6 +293,7 @@ public interface WorkloadClassifier {
              */
             Update withEndTime(String endTime);
         }
+
         /** The stage of the WorkloadClassifier update allowing to specify importance. */
         interface WithImportance {
             /**
@@ -289,6 +305,7 @@ public interface WorkloadClassifier {
             Update withImportance(String importance);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *
