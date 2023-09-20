@@ -43,6 +43,19 @@ public final class WorkspacePropertiesUpdateParameters {
     private String primaryUserAssignedIdentity;
 
     /*
+     * The resource ID of an existing virtual network subnet in which serverless compute nodes should be deployed
+     */
+    @JsonProperty(value = "serverlessComputeCustomSubnet")
+    private String serverlessComputeCustomSubnet;
+
+    /*
+     * The flag to signal if serverless compute nodes deployed in custom vNet would have no public IP addresses for a
+     * workspace with private endpoint
+     */
+    @JsonProperty(value = "serverlessComputeNoPublicIP")
+    private Boolean serverlessComputeNoPublicIp;
+
+    /*
      * Whether requests from Public Network are allowed.
      */
     @JsonProperty(value = "publicNetworkAccess")
@@ -164,6 +177,50 @@ public final class WorkspacePropertiesUpdateParameters {
      */
     public WorkspacePropertiesUpdateParameters withPrimaryUserAssignedIdentity(String primaryUserAssignedIdentity) {
         this.primaryUserAssignedIdentity = primaryUserAssignedIdentity;
+        return this;
+    }
+
+    /**
+     * Get the serverlessComputeCustomSubnet property: The resource ID of an existing virtual network subnet in which
+     * serverless compute nodes should be deployed.
+     *
+     * @return the serverlessComputeCustomSubnet value.
+     */
+    public String serverlessComputeCustomSubnet() {
+        return this.serverlessComputeCustomSubnet;
+    }
+
+    /**
+     * Set the serverlessComputeCustomSubnet property: The resource ID of an existing virtual network subnet in which
+     * serverless compute nodes should be deployed.
+     *
+     * @param serverlessComputeCustomSubnet the serverlessComputeCustomSubnet value to set.
+     * @return the WorkspacePropertiesUpdateParameters object itself.
+     */
+    public WorkspacePropertiesUpdateParameters withServerlessComputeCustomSubnet(String serverlessComputeCustomSubnet) {
+        this.serverlessComputeCustomSubnet = serverlessComputeCustomSubnet;
+        return this;
+    }
+
+    /**
+     * Get the serverlessComputeNoPublicIp property: The flag to signal if serverless compute nodes deployed in custom
+     * vNet would have no public IP addresses for a workspace with private endpoint.
+     *
+     * @return the serverlessComputeNoPublicIp value.
+     */
+    public Boolean serverlessComputeNoPublicIp() {
+        return this.serverlessComputeNoPublicIp;
+    }
+
+    /**
+     * Set the serverlessComputeNoPublicIp property: The flag to signal if serverless compute nodes deployed in custom
+     * vNet would have no public IP addresses for a workspace with private endpoint.
+     *
+     * @param serverlessComputeNoPublicIp the serverlessComputeNoPublicIp value to set.
+     * @return the WorkspacePropertiesUpdateParameters object itself.
+     */
+    public WorkspacePropertiesUpdateParameters withServerlessComputeNoPublicIp(Boolean serverlessComputeNoPublicIp) {
+        this.serverlessComputeNoPublicIp = serverlessComputeNoPublicIp;
         return this;
     }
 

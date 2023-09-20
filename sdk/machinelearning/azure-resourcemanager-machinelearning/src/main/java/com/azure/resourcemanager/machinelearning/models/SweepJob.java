@@ -50,6 +50,12 @@ public final class SweepJob extends JobBaseProperties {
     private Map<String, JobOutput> outputs;
 
     /*
+     * Queue settings for the job
+     */
+    @JsonProperty(value = "queueSettings")
+    private QueueSettings queueSettings;
+
+    /*
      * [Required] The hyperparameter sampling algorithm
      */
     @JsonProperty(value = "samplingAlgorithm", required = true)
@@ -171,6 +177,26 @@ public final class SweepJob extends JobBaseProperties {
      */
     public SweepJob withOutputs(Map<String, JobOutput> outputs) {
         this.outputs = outputs;
+        return this;
+    }
+
+    /**
+     * Get the queueSettings property: Queue settings for the job.
+     *
+     * @return the queueSettings value.
+     */
+    public QueueSettings queueSettings() {
+        return this.queueSettings;
+    }
+
+    /**
+     * Set the queueSettings property: Queue settings for the job.
+     *
+     * @param queueSettings the queueSettings value to set.
+     * @return the SweepJob object itself.
+     */
+    public SweepJob withQueueSettings(QueueSettings queueSettings) {
+        this.queueSettings = queueSettings;
         return this;
     }
 
@@ -346,6 +372,9 @@ public final class SweepJob extends JobBaseProperties {
                             e.validate();
                         }
                     });
+        }
+        if (queueSettings() != null) {
+            queueSettings().validate();
         }
         if (samplingAlgorithm() == null) {
             throw LOGGER
