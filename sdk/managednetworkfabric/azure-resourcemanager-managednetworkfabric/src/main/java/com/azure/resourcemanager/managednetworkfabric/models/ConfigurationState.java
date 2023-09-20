@@ -40,6 +40,12 @@ public final class ConfigurationState extends ExpandableStringEnum<Configuration
     /** Static value DeferredControl for ConfigurationState. */
     public static final ConfigurationState DEFERRED_CONTROL = fromString("DeferredControl");
 
+    /** Static value Provisioning for ConfigurationState. */
+    public static final ConfigurationState PROVISIONING = fromString("Provisioning");
+
+    /** Static value PendingCommit for ConfigurationState. */
+    public static final ConfigurationState PENDING_COMMIT = fromString("PendingCommit");
+
     /**
      * Creates a new instance of ConfigurationState value.
      *

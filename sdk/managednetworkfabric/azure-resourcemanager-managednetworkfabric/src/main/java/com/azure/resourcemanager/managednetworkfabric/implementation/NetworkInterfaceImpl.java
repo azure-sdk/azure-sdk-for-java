@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.managednetworkfabric.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.managednetworkfabric.fluent.models.NetworkInterfaceInner;
 import com.azure.resourcemanager.managednetworkfabric.models.AdministrativeState;
@@ -30,6 +31,10 @@ public final class NetworkInterfaceImpl
 
     public String type() {
         return this.innerModel().type();
+    }
+
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public String physicalIdentifier() {

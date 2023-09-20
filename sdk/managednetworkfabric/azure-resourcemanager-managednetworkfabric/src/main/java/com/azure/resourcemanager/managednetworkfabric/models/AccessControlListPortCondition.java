@@ -12,7 +12,8 @@ import java.util.List;
 @Fluent
 public final class AccessControlListPortCondition extends PortCondition {
     /*
-     * List of protocol flags that needs to be matched.
+     * List of protocol flags that need to be matched. Example: established | initial | <List-of-TCP-flags>. List of
+     * eligible TCP Flags are ack, fin, not-ack, not-fin, not-psh, not-rst, not-syn, not-urg, psh, rst, syn, urg
      */
     @JsonProperty(value = "flags")
     private List<String> flags;
@@ -22,7 +23,9 @@ public final class AccessControlListPortCondition extends PortCondition {
     }
 
     /**
-     * Get the flags property: List of protocol flags that needs to be matched.
+     * Get the flags property: List of protocol flags that need to be matched. Example: established | initial |
+     * &lt;List-of-TCP-flags&gt;. List of eligible TCP Flags are ack, fin, not-ack, not-fin, not-psh, not-rst, not-syn,
+     * not-urg, psh, rst, syn, urg.
      *
      * @return the flags value.
      */
@@ -31,7 +34,9 @@ public final class AccessControlListPortCondition extends PortCondition {
     }
 
     /**
-     * Set the flags property: List of protocol flags that needs to be matched.
+     * Set the flags property: List of protocol flags that need to be matched. Example: established | initial |
+     * &lt;List-of-TCP-flags&gt;. List of eligible TCP Flags are ack, fin, not-ack, not-fin, not-psh, not-rst, not-syn,
+     * not-urg, psh, rst, syn, urg.
      *
      * @param flags the flags value to set.
      * @return the AccessControlListPortCondition object itself.
