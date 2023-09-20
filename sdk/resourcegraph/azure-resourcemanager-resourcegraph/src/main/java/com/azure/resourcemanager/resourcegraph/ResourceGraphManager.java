@@ -25,9 +25,11 @@ import com.azure.core.util.Configuration;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.resourcegraph.fluent.ResourceGraphClient;
 import com.azure.resourcemanager.resourcegraph.implementation.OperationsImpl;
+import com.azure.resourcemanager.resourcegraph.implementation.QueriesImpl;
 import com.azure.resourcemanager.resourcegraph.implementation.ResourceGraphClientBuilder;
 import com.azure.resourcemanager.resourcegraph.implementation.ResourceProvidersImpl;
 import com.azure.resourcemanager.resourcegraph.models.Operations;
+import com.azure.resourcemanager.resourcegraph.models.Queries;
 import com.azure.resourcemanager.resourcegraph.models.ResourceProviders;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
@@ -38,6 +40,8 @@ import java.util.stream.Collectors;
 
 /** Entry point to ResourceGraphManager. Azure Resource Graph API Reference. */
 public final class ResourceGraphManager {
+    private Queries queries;
+
     private ResourceProviders resourceProviders;
 
     private Operations operations;
@@ -206,7 +210,7 @@ public final class ResourceGraphManager {
                 .append("-")
                 .append("com.azure.resourcemanager.resourcegraph")
                 .append("/")
-                .append("1.0.0");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -264,6 +268,18 @@ public final class ResourceGraphManager {
     }
 
     /**
+     * Gets the resource collection API of Queries.
+     *
+     * @return Resource collection API of Queries.
+     */
+    public Queries queries() {
+        if (this.queries == null) {
+            this.queries = new QueriesImpl(clientObject.getQueries(), this);
+        }
+        return queries;
+    }
+
+    /**
      * Gets the resource collection API of ResourceProviders.
      *
      * @return Resource collection API of ResourceProviders.
@@ -288,8 +304,10 @@ public final class ResourceGraphManager {
     }
 
     /**
-     * @return Wrapped service client ResourceGraphClient providing direct access to the underlying auto-generated API
-     *     implementation, based on Azure REST API.
+     * Gets wrapped service client ResourceGraphClient providing direct access to the underlying auto-generated API
+     * implementation, based on Azure REST API.
+     *
+     * @return Wrapped service client ResourceGraphClient.
      */
     public ResourceGraphClient serviceClient() {
         return this.clientObject;
