@@ -13,7 +13,7 @@ import java.time.OffsetDateTime;
 /** Samples for SqlVirtualMachineTroubleshoot Troubleshoot. */
 public final class SqlVirtualMachineTroubleshootTroubleshootSamples {
     /*
-     * x-ms-original-file: specification/sqlvirtualmachine/resource-manager/Microsoft.SqlVirtualMachine/preview/2022-08-01-preview/examples/TroubleshootSqlVirtualMachine.json
+     * x-ms-original-file: specification/sqlvirtualmachine/resource-manager/Microsoft.SqlVirtualMachine/preview/2023-01-01-preview/examples/TroubleshootSqlVirtualMachine.json
      */
     /**
      * Sample code: Start SQL virtual machine troubleshooting operation.
