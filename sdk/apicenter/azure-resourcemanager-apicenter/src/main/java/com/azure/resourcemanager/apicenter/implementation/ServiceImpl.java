@@ -81,7 +81,7 @@ public final class ServiceImpl implements Service, Service.Definition, Service.U
 
     private String serviceName;
 
-    private ServiceUpdate updateParameters;
+    private ServiceUpdate updatePayload;
 
     public ServiceImpl withExistingResourceGroup(String resourceGroupName) {
         this.resourceGroupName = resourceGroupName;
@@ -115,7 +115,7 @@ public final class ServiceImpl implements Service, Service.Definition, Service.U
     }
 
     public ServiceImpl update() {
-        this.updateParameters = new ServiceUpdate();
+        this.updatePayload = new ServiceUpdate();
         return this;
     }
 
@@ -124,7 +124,7 @@ public final class ServiceImpl implements Service, Service.Definition, Service.U
             serviceManager
                 .serviceClient()
                 .getServices()
-                .updateWithResponse(resourceGroupName, serviceName, updateParameters, Context.NONE)
+                .updateWithResponse(resourceGroupName, serviceName, updatePayload, Context.NONE)
                 .getValue();
         return this;
     }
@@ -134,7 +134,7 @@ public final class ServiceImpl implements Service, Service.Definition, Service.U
             serviceManager
                 .serviceClient()
                 .getServices()
-                .updateWithResponse(resourceGroupName, serviceName, updateParameters, context)
+                .updateWithResponse(resourceGroupName, serviceName, updatePayload, context)
                 .getValue();
         return this;
     }

@@ -31,7 +31,7 @@ public final class ServiceUpdate {
     }
 
     /**
-     * Get the provisioningState property: The status of the last operation.
+     * Get the provisioningState property: Provisioning state of the service.
      *
      * @return the provisioningState value.
      */
