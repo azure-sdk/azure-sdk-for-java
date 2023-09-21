@@ -123,6 +123,19 @@ public final class WorkspacePropertiesInner {
     private List<PrivateEndpointConnectionInner> privateEndpointConnections;
 
     /*
+     * The resource ID of an existing virtual network subnet in which serverless compute nodes should be deployed
+     */
+    @JsonProperty(value = "serverlessComputeCustomSubnet")
+    private String serverlessComputeCustomSubnet;
+
+    /*
+     * The flag to signal if serverless compute nodes deployed in custom vNet would have no public IP addresses for a
+     * workspace with private endpoint
+     */
+    @JsonProperty(value = "serverlessComputeNoPublicIP")
+    private Boolean serverlessComputeNoPublicIp;
+
+    /*
      * The list of shared private link resources in this workspace.
      */
     @JsonProperty(value = "sharedPrivateLinkResources")
@@ -169,6 +182,12 @@ public final class WorkspacePropertiesInner {
      */
     @JsonProperty(value = "v1LegacyMode")
     private Boolean v1LegacyMode;
+
+    /*
+     * Managed Network settings for a machine learning workspace.
+     */
+    @JsonProperty(value = "managedNetwork")
+    private ManagedNetworkSettingsInner managedNetwork;
 
     /** Creates an instance of WorkspacePropertiesInner class. */
     public WorkspacePropertiesInner() {
@@ -472,6 +491,50 @@ public final class WorkspacePropertiesInner {
     }
 
     /**
+     * Get the serverlessComputeCustomSubnet property: The resource ID of an existing virtual network subnet in which
+     * serverless compute nodes should be deployed.
+     *
+     * @return the serverlessComputeCustomSubnet value.
+     */
+    public String serverlessComputeCustomSubnet() {
+        return this.serverlessComputeCustomSubnet;
+    }
+
+    /**
+     * Set the serverlessComputeCustomSubnet property: The resource ID of an existing virtual network subnet in which
+     * serverless compute nodes should be deployed.
+     *
+     * @param serverlessComputeCustomSubnet the serverlessComputeCustomSubnet value to set.
+     * @return the WorkspacePropertiesInner object itself.
+     */
+    public WorkspacePropertiesInner withServerlessComputeCustomSubnet(String serverlessComputeCustomSubnet) {
+        this.serverlessComputeCustomSubnet = serverlessComputeCustomSubnet;
+        return this;
+    }
+
+    /**
+     * Get the serverlessComputeNoPublicIp property: The flag to signal if serverless compute nodes deployed in custom
+     * vNet would have no public IP addresses for a workspace with private endpoint.
+     *
+     * @return the serverlessComputeNoPublicIp value.
+     */
+    public Boolean serverlessComputeNoPublicIp() {
+        return this.serverlessComputeNoPublicIp;
+    }
+
+    /**
+     * Set the serverlessComputeNoPublicIp property: The flag to signal if serverless compute nodes deployed in custom
+     * vNet would have no public IP addresses for a workspace with private endpoint.
+     *
+     * @param serverlessComputeNoPublicIp the serverlessComputeNoPublicIp value to set.
+     * @return the WorkspacePropertiesInner object itself.
+     */
+    public WorkspacePropertiesInner withServerlessComputeNoPublicIp(Boolean serverlessComputeNoPublicIp) {
+        this.serverlessComputeNoPublicIp = serverlessComputeNoPublicIp;
+        return this;
+    }
+
+    /**
      * Get the sharedPrivateLinkResources property: The list of shared private link resources in this workspace.
      *
      * @return the sharedPrivateLinkResources value.
@@ -596,6 +659,26 @@ public final class WorkspacePropertiesInner {
     }
 
     /**
+     * Get the managedNetwork property: Managed Network settings for a machine learning workspace.
+     *
+     * @return the managedNetwork value.
+     */
+    public ManagedNetworkSettingsInner managedNetwork() {
+        return this.managedNetwork;
+    }
+
+    /**
+     * Set the managedNetwork property: Managed Network settings for a machine learning workspace.
+     *
+     * @param managedNetwork the managedNetwork value to set.
+     * @return the WorkspacePropertiesInner object itself.
+     */
+    public WorkspacePropertiesInner withManagedNetwork(ManagedNetworkSettingsInner managedNetwork) {
+        this.managedNetwork = managedNetwork;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -615,6 +698,9 @@ public final class WorkspacePropertiesInner {
         }
         if (serviceManagedResourcesSettings() != null) {
             serviceManagedResourcesSettings().validate();
+        }
+        if (managedNetwork() != null) {
+            managedNetwork().validate();
         }
     }
 }
