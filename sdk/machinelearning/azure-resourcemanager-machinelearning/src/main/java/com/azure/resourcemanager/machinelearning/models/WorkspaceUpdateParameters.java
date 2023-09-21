@@ -230,6 +230,56 @@ public final class WorkspaceUpdateParameters {
     }
 
     /**
+     * Get the serverlessComputeCustomSubnet property: The resource ID of an existing virtual network subnet in which
+     * serverless compute nodes should be deployed.
+     *
+     * @return the serverlessComputeCustomSubnet value.
+     */
+    public String serverlessComputeCustomSubnet() {
+        return this.innerProperties() == null ? null : this.innerProperties().serverlessComputeCustomSubnet();
+    }
+
+    /**
+     * Set the serverlessComputeCustomSubnet property: The resource ID of an existing virtual network subnet in which
+     * serverless compute nodes should be deployed.
+     *
+     * @param serverlessComputeCustomSubnet the serverlessComputeCustomSubnet value to set.
+     * @return the WorkspaceUpdateParameters object itself.
+     */
+    public WorkspaceUpdateParameters withServerlessComputeCustomSubnet(String serverlessComputeCustomSubnet) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new WorkspacePropertiesUpdateParameters();
+        }
+        this.innerProperties().withServerlessComputeCustomSubnet(serverlessComputeCustomSubnet);
+        return this;
+    }
+
+    /**
+     * Get the serverlessComputeNoPublicIp property: The flag to signal if serverless compute nodes deployed in custom
+     * vNet would have no public IP addresses for a workspace with private endpoint.
+     *
+     * @return the serverlessComputeNoPublicIp value.
+     */
+    public Boolean serverlessComputeNoPublicIp() {
+        return this.innerProperties() == null ? null : this.innerProperties().serverlessComputeNoPublicIp();
+    }
+
+    /**
+     * Set the serverlessComputeNoPublicIp property: The flag to signal if serverless compute nodes deployed in custom
+     * vNet would have no public IP addresses for a workspace with private endpoint.
+     *
+     * @param serverlessComputeNoPublicIp the serverlessComputeNoPublicIp value to set.
+     * @return the WorkspaceUpdateParameters object itself.
+     */
+    public WorkspaceUpdateParameters withServerlessComputeNoPublicIp(Boolean serverlessComputeNoPublicIp) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new WorkspacePropertiesUpdateParameters();
+        }
+        this.innerProperties().withServerlessComputeNoPublicIp(serverlessComputeNoPublicIp);
+        return this;
+    }
+
+    /**
      * Get the publicNetworkAccess property: Whether requests from Public Network are allowed.
      *
      * @return the publicNetworkAccess value.

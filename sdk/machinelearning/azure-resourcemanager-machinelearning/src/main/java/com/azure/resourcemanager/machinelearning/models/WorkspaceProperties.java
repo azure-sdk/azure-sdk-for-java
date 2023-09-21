@@ -136,6 +136,22 @@ public interface WorkspaceProperties {
     List<PrivateEndpointConnection> privateEndpointConnections();
 
     /**
+     * Gets the serverlessComputeCustomSubnet property: The resource ID of an existing virtual network subnet in which
+     * serverless compute nodes should be deployed.
+     *
+     * @return the serverlessComputeCustomSubnet value.
+     */
+    String serverlessComputeCustomSubnet();
+
+    /**
+     * Gets the serverlessComputeNoPublicIp property: The flag to signal if serverless compute nodes deployed in custom
+     * vNet would have no public IP addresses for a workspace with private endpoint.
+     *
+     * @return the serverlessComputeNoPublicIp value.
+     */
+    Boolean serverlessComputeNoPublicIp();
+
+    /**
      * Gets the sharedPrivateLinkResources property: The list of shared private link resources in this workspace.
      *
      * @return the sharedPrivateLinkResources value.
@@ -194,6 +210,13 @@ public interface WorkspaceProperties {
      * @return the v1LegacyMode value.
      */
     Boolean v1LegacyMode();
+
+    /**
+     * Gets the managedNetwork property: Managed Network settings for a machine learning workspace.
+     *
+     * @return the managedNetwork value.
+     */
+    ManagedNetworkSettings managedNetwork();
 
     /**
      * Gets the inner com.azure.resourcemanager.machinelearning.fluent.models.WorkspacePropertiesInner object.
