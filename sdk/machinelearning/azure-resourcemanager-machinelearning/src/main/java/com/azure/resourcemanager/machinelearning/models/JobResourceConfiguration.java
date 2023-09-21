@@ -6,6 +6,7 @@ package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 import java.util.Map;
 
 /** The JobResourceConfiguration model. */
@@ -88,6 +89,20 @@ public final class JobResourceConfiguration extends ResourceConfiguration {
     @Override
     public JobResourceConfiguration withInstanceType(String instanceType) {
         super.withInstanceType(instanceType);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public JobResourceConfiguration withLocations(List<String> locations) {
+        super.withLocations(locations);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public JobResourceConfiguration withMaxInstanceCount(Integer maxInstanceCount) {
+        super.withMaxInstanceCount(maxInstanceCount);
         return this;
     }
 
