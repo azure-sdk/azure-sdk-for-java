@@ -495,6 +495,56 @@ public final class WorkspaceInner extends ProxyResource {
     }
 
     /**
+     * Get the serverlessComputeCustomSubnet property: The resource ID of an existing virtual network subnet in which
+     * serverless compute nodes should be deployed.
+     *
+     * @return the serverlessComputeCustomSubnet value.
+     */
+    public String serverlessComputeCustomSubnet() {
+        return this.innerProperties() == null ? null : this.innerProperties().serverlessComputeCustomSubnet();
+    }
+
+    /**
+     * Set the serverlessComputeCustomSubnet property: The resource ID of an existing virtual network subnet in which
+     * serverless compute nodes should be deployed.
+     *
+     * @param serverlessComputeCustomSubnet the serverlessComputeCustomSubnet value to set.
+     * @return the WorkspaceInner object itself.
+     */
+    public WorkspaceInner withServerlessComputeCustomSubnet(String serverlessComputeCustomSubnet) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new WorkspacePropertiesInner();
+        }
+        this.innerProperties().withServerlessComputeCustomSubnet(serverlessComputeCustomSubnet);
+        return this;
+    }
+
+    /**
+     * Get the serverlessComputeNoPublicIp property: The flag to signal if serverless compute nodes deployed in custom
+     * vNet would have no public IP addresses for a workspace with private endpoint.
+     *
+     * @return the serverlessComputeNoPublicIp value.
+     */
+    public Boolean serverlessComputeNoPublicIp() {
+        return this.innerProperties() == null ? null : this.innerProperties().serverlessComputeNoPublicIp();
+    }
+
+    /**
+     * Set the serverlessComputeNoPublicIp property: The flag to signal if serverless compute nodes deployed in custom
+     * vNet would have no public IP addresses for a workspace with private endpoint.
+     *
+     * @param serverlessComputeNoPublicIp the serverlessComputeNoPublicIp value to set.
+     * @return the WorkspaceInner object itself.
+     */
+    public WorkspaceInner withServerlessComputeNoPublicIp(Boolean serverlessComputeNoPublicIp) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new WorkspacePropertiesInner();
+        }
+        this.innerProperties().withServerlessComputeNoPublicIp(serverlessComputeNoPublicIp);
+        return this;
+    }
+
+    /**
      * Get the sharedPrivateLinkResources property: The list of shared private link resources in this workspace.
      *
      * @return the sharedPrivateLinkResources value.
@@ -626,6 +676,29 @@ public final class WorkspaceInner extends ProxyResource {
             this.innerProperties = new WorkspacePropertiesInner();
         }
         this.innerProperties().withV1LegacyMode(v1LegacyMode);
+        return this;
+    }
+
+    /**
+     * Get the managedNetwork property: Managed Network settings for a machine learning workspace.
+     *
+     * @return the managedNetwork value.
+     */
+    public ManagedNetworkSettingsInner managedNetwork() {
+        return this.innerProperties() == null ? null : this.innerProperties().managedNetwork();
+    }
+
+    /**
+     * Set the managedNetwork property: Managed Network settings for a machine learning workspace.
+     *
+     * @param managedNetwork the managedNetwork value to set.
+     * @return the WorkspaceInner object itself.
+     */
+    public WorkspaceInner withManagedNetwork(ManagedNetworkSettingsInner managedNetwork) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new WorkspacePropertiesInner();
+        }
+        this.innerProperties().withManagedNetwork(managedNetwork);
         return this;
     }
 
