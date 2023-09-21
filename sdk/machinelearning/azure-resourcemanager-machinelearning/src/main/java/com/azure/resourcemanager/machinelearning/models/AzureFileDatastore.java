@@ -46,6 +46,18 @@ public final class AzureFileDatastore extends DatastoreProperties {
     @JsonProperty(value = "serviceDataAccessAuthIdentity")
     private ServiceDataAccessAuthIdentity serviceDataAccessAuthIdentity;
 
+    /*
+     * Azure Resource Group name
+     */
+    @JsonProperty(value = "resourceGroup")
+    private String resourceGroup;
+
+    /*
+     * Azure Subscription Id
+     */
+    @JsonProperty(value = "subscriptionId")
+    private String subscriptionId;
+
     /** Creates an instance of AzureFileDatastore class. */
     public AzureFileDatastore() {
     }
@@ -150,6 +162,46 @@ public final class AzureFileDatastore extends DatastoreProperties {
     public AzureFileDatastore withServiceDataAccessAuthIdentity(
         ServiceDataAccessAuthIdentity serviceDataAccessAuthIdentity) {
         this.serviceDataAccessAuthIdentity = serviceDataAccessAuthIdentity;
+        return this;
+    }
+
+    /**
+     * Get the resourceGroup property: Azure Resource Group name.
+     *
+     * @return the resourceGroup value.
+     */
+    public String resourceGroup() {
+        return this.resourceGroup;
+    }
+
+    /**
+     * Set the resourceGroup property: Azure Resource Group name.
+     *
+     * @param resourceGroup the resourceGroup value to set.
+     * @return the AzureFileDatastore object itself.
+     */
+    public AzureFileDatastore withResourceGroup(String resourceGroup) {
+        this.resourceGroup = resourceGroup;
+        return this;
+    }
+
+    /**
+     * Get the subscriptionId property: Azure Subscription Id.
+     *
+     * @return the subscriptionId value.
+     */
+    public String subscriptionId() {
+        return this.subscriptionId;
+    }
+
+    /**
+     * Set the subscriptionId property: Azure Subscription Id.
+     *
+     * @param subscriptionId the subscriptionId value to set.
+     * @return the AzureFileDatastore object itself.
+     */
+    public AzureFileDatastore withSubscriptionId(String subscriptionId) {
+        this.subscriptionId = subscriptionId;
         return this;
     }
 

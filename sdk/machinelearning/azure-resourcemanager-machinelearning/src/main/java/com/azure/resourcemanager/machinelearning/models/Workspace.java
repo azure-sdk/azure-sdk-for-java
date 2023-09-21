@@ -8,6 +8,7 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
+import com.azure.resourcemanager.machinelearning.fluent.models.ManagedNetworkSettingsInner;
 import com.azure.resourcemanager.machinelearning.fluent.models.WorkspaceInner;
 import java.util.List;
 import java.util.Map;
@@ -197,6 +198,22 @@ public interface Workspace {
     List<PrivateEndpointConnection> privateEndpointConnections();
 
     /**
+     * Gets the serverlessComputeCustomSubnet property: The resource ID of an existing virtual network subnet in which
+     * serverless compute nodes should be deployed.
+     *
+     * @return the serverlessComputeCustomSubnet value.
+     */
+    String serverlessComputeCustomSubnet();
+
+    /**
+     * Gets the serverlessComputeNoPublicIp property: The flag to signal if serverless compute nodes deployed in custom
+     * vNet would have no public IP addresses for a workspace with private endpoint.
+     *
+     * @return the serverlessComputeNoPublicIp value.
+     */
+    Boolean serverlessComputeNoPublicIp();
+
+    /**
      * Gets the sharedPrivateLinkResources property: The list of shared private link resources in this workspace.
      *
      * @return the sharedPrivateLinkResources value.
@@ -257,6 +274,13 @@ public interface Workspace {
     Boolean v1LegacyMode();
 
     /**
+     * Gets the managedNetwork property: Managed Network settings for a machine learning workspace.
+     *
+     * @return the managedNetwork value.
+     */
+    ManagedNetworkSettings managedNetwork();
+
+    /**
      * Gets the region of the resource.
      *
      * @return the region of the resource.
@@ -288,11 +312,13 @@ public interface Workspace {
     interface Definition
         extends DefinitionStages.Blank, DefinitionStages.WithResourceGroup, DefinitionStages.WithCreate {
     }
+
     /** The Workspace definition stages. */
     interface DefinitionStages {
         /** The first stage of the Workspace definition. */
         interface Blank extends WithResourceGroup {
         }
+
         /** The stage of the Workspace definition allowing to specify parent resource. */
         interface WithResourceGroup {
             /**
@@ -303,6 +329,7 @@ public interface Workspace {
              */
             WithCreate withExistingResourceGroup(String resourceGroupName);
         }
+
         /**
          * The stage of the Workspace definition which contains all the minimum required properties for the resource to
          * be created, but also allows for any other optional properties to be specified.
@@ -324,10 +351,13 @@ public interface Workspace {
                 DefinitionStages.WithImageBuildCompute,
                 DefinitionStages.WithAllowPublicAccessWhenBehindVnet,
                 DefinitionStages.WithPublicNetworkAccess,
+                DefinitionStages.WithServerlessComputeCustomSubnet,
+                DefinitionStages.WithServerlessComputeNoPublicIp,
                 DefinitionStages.WithSharedPrivateLinkResources,
                 DefinitionStages.WithServiceManagedResourcesSettings,
                 DefinitionStages.WithPrimaryUserAssignedIdentity,
-                DefinitionStages.WithV1LegacyMode {
+                DefinitionStages.WithV1LegacyMode,
+                DefinitionStages.WithManagedNetwork {
             /**
              * Executes the create request.
              *
@@ -343,6 +373,7 @@ public interface Workspace {
              */
             Workspace create(Context context);
         }
+
         /** The stage of the Workspace definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -361,6 +392,7 @@ public interface Workspace {
              */
             WithCreate withRegion(String location);
         }
+
         /** The stage of the Workspace definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -371,6 +403,7 @@ public interface Workspace {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
         /** The stage of the Workspace definition allowing to specify identity. */
         interface WithIdentity {
             /**
@@ -381,6 +414,7 @@ public interface Workspace {
              */
             WithCreate withIdentity(ManagedServiceIdentity identity);
         }
+
         /** The stage of the Workspace definition allowing to specify sku. */
         interface WithSku {
             /**
@@ -391,6 +425,7 @@ public interface Workspace {
              */
             WithCreate withSku(Sku sku);
         }
+
         /** The stage of the Workspace definition allowing to specify description. */
         interface WithDescription {
             /**
@@ -401,6 +436,7 @@ public interface Workspace {
              */
             WithCreate withDescription(String description);
         }
+
         /** The stage of the Workspace definition allowing to specify friendlyName. */
         interface WithFriendlyName {
             /**
@@ -411,6 +447,7 @@ public interface Workspace {
              */
             WithCreate withFriendlyName(String friendlyName);
         }
+
         /** The stage of the Workspace definition allowing to specify keyVault. */
         interface WithKeyVault {
             /**
@@ -423,6 +460,7 @@ public interface Workspace {
              */
             WithCreate withKeyVault(String keyVault);
         }
+
         /** The stage of the Workspace definition allowing to specify applicationInsights. */
         interface WithApplicationInsights {
             /**
@@ -434,6 +472,7 @@ public interface Workspace {
              */
             WithCreate withApplicationInsights(String applicationInsights);
         }
+
         /** The stage of the Workspace definition allowing to specify containerRegistry. */
         interface WithContainerRegistry {
             /**
@@ -445,6 +484,7 @@ public interface Workspace {
              */
             WithCreate withContainerRegistry(String containerRegistry);
         }
+
         /** The stage of the Workspace definition allowing to specify storageAccount. */
         interface WithStorageAccount {
             /**
@@ -457,6 +497,7 @@ public interface Workspace {
              */
             WithCreate withStorageAccount(String storageAccount);
         }
+
         /** The stage of the Workspace definition allowing to specify discoveryUrl. */
         interface WithDiscoveryUrl {
             /**
@@ -469,6 +510,7 @@ public interface Workspace {
              */
             WithCreate withDiscoveryUrl(String discoveryUrl);
         }
+
         /** The stage of the Workspace definition allowing to specify encryption. */
         interface WithEncryption {
             /**
@@ -479,6 +521,7 @@ public interface Workspace {
              */
             WithCreate withEncryption(EncryptionProperty encryption);
         }
+
         /** The stage of the Workspace definition allowing to specify hbiWorkspace. */
         interface WithHbiWorkspace {
             /**
@@ -491,6 +534,7 @@ public interface Workspace {
              */
             WithCreate withHbiWorkspace(Boolean hbiWorkspace);
         }
+
         /** The stage of the Workspace definition allowing to specify imageBuildCompute. */
         interface WithImageBuildCompute {
             /**
@@ -501,6 +545,7 @@ public interface Workspace {
              */
             WithCreate withImageBuildCompute(String imageBuildCompute);
         }
+
         /** The stage of the Workspace definition allowing to specify allowPublicAccessWhenBehindVnet. */
         interface WithAllowPublicAccessWhenBehindVnet {
             /**
@@ -513,6 +558,7 @@ public interface Workspace {
              */
             WithCreate withAllowPublicAccessWhenBehindVnet(Boolean allowPublicAccessWhenBehindVnet);
         }
+
         /** The stage of the Workspace definition allowing to specify publicNetworkAccess. */
         interface WithPublicNetworkAccess {
             /**
@@ -523,6 +569,33 @@ public interface Workspace {
              */
             WithCreate withPublicNetworkAccess(PublicNetworkAccess publicNetworkAccess);
         }
+
+        /** The stage of the Workspace definition allowing to specify serverlessComputeCustomSubnet. */
+        interface WithServerlessComputeCustomSubnet {
+            /**
+             * Specifies the serverlessComputeCustomSubnet property: The resource ID of an existing virtual network
+             * subnet in which serverless compute nodes should be deployed.
+             *
+             * @param serverlessComputeCustomSubnet The resource ID of an existing virtual network subnet in which
+             *     serverless compute nodes should be deployed.
+             * @return the next definition stage.
+             */
+            WithCreate withServerlessComputeCustomSubnet(String serverlessComputeCustomSubnet);
+        }
+
+        /** The stage of the Workspace definition allowing to specify serverlessComputeNoPublicIp. */
+        interface WithServerlessComputeNoPublicIp {
+            /**
+             * Specifies the serverlessComputeNoPublicIp property: The flag to signal if serverless compute nodes
+             * deployed in custom vNet would have no public IP addresses for a workspace with private endpoint.
+             *
+             * @param serverlessComputeNoPublicIp The flag to signal if serverless compute nodes deployed in custom vNet
+             *     would have no public IP addresses for a workspace with private endpoint.
+             * @return the next definition stage.
+             */
+            WithCreate withServerlessComputeNoPublicIp(Boolean serverlessComputeNoPublicIp);
+        }
+
         /** The stage of the Workspace definition allowing to specify sharedPrivateLinkResources. */
         interface WithSharedPrivateLinkResources {
             /**
@@ -534,6 +607,7 @@ public interface Workspace {
              */
             WithCreate withSharedPrivateLinkResources(List<SharedPrivateLinkResource> sharedPrivateLinkResources);
         }
+
         /** The stage of the Workspace definition allowing to specify serviceManagedResourcesSettings. */
         interface WithServiceManagedResourcesSettings {
             /**
@@ -545,6 +619,7 @@ public interface Workspace {
             WithCreate withServiceManagedResourcesSettings(
                 ServiceManagedResourcesSettings serviceManagedResourcesSettings);
         }
+
         /** The stage of the Workspace definition allowing to specify primaryUserAssignedIdentity. */
         interface WithPrimaryUserAssignedIdentity {
             /**
@@ -557,6 +632,7 @@ public interface Workspace {
              */
             WithCreate withPrimaryUserAssignedIdentity(String primaryUserAssignedIdentity);
         }
+
         /** The stage of the Workspace definition allowing to specify v1LegacyMode. */
         interface WithV1LegacyMode {
             /**
@@ -568,7 +644,19 @@ public interface Workspace {
              */
             WithCreate withV1LegacyMode(Boolean v1LegacyMode);
         }
+
+        /** The stage of the Workspace definition allowing to specify managedNetwork. */
+        interface WithManagedNetwork {
+            /**
+             * Specifies the managedNetwork property: Managed Network settings for a machine learning workspace..
+             *
+             * @param managedNetwork Managed Network settings for a machine learning workspace.
+             * @return the next definition stage.
+             */
+            WithCreate withManagedNetwork(ManagedNetworkSettingsInner managedNetwork);
+        }
     }
+
     /**
      * Begins update for the Workspace resource.
      *
@@ -586,6 +674,8 @@ public interface Workspace {
             UpdateStages.WithImageBuildCompute,
             UpdateStages.WithServiceManagedResourcesSettings,
             UpdateStages.WithPrimaryUserAssignedIdentity,
+            UpdateStages.WithServerlessComputeCustomSubnet,
+            UpdateStages.WithServerlessComputeNoPublicIp,
             UpdateStages.WithPublicNetworkAccess,
             UpdateStages.WithApplicationInsights,
             UpdateStages.WithContainerRegistry {
@@ -604,6 +694,7 @@ public interface Workspace {
          */
         Workspace apply(Context context);
     }
+
     /** The Workspace update stages. */
     interface UpdateStages {
         /** The stage of the Workspace update allowing to specify tags. */
@@ -616,6 +707,7 @@ public interface Workspace {
              */
             Update withTags(Map<String, String> tags);
         }
+
         /** The stage of the Workspace update allowing to specify sku. */
         interface WithSku {
             /**
@@ -626,6 +718,7 @@ public interface Workspace {
              */
             Update withSku(Sku sku);
         }
+
         /** The stage of the Workspace update allowing to specify identity. */
         interface WithIdentity {
             /**
@@ -636,6 +729,7 @@ public interface Workspace {
              */
             Update withIdentity(ManagedServiceIdentity identity);
         }
+
         /** The stage of the Workspace update allowing to specify description. */
         interface WithDescription {
             /**
@@ -646,6 +740,7 @@ public interface Workspace {
              */
             Update withDescription(String description);
         }
+
         /** The stage of the Workspace update allowing to specify friendlyName. */
         interface WithFriendlyName {
             /**
@@ -656,6 +751,7 @@ public interface Workspace {
              */
             Update withFriendlyName(String friendlyName);
         }
+
         /** The stage of the Workspace update allowing to specify imageBuildCompute. */
         interface WithImageBuildCompute {
             /**
@@ -666,6 +762,7 @@ public interface Workspace {
              */
             Update withImageBuildCompute(String imageBuildCompute);
         }
+
         /** The stage of the Workspace update allowing to specify serviceManagedResourcesSettings. */
         interface WithServiceManagedResourcesSettings {
             /**
@@ -676,6 +773,7 @@ public interface Workspace {
              */
             Update withServiceManagedResourcesSettings(ServiceManagedResourcesSettings serviceManagedResourcesSettings);
         }
+
         /** The stage of the Workspace update allowing to specify primaryUserAssignedIdentity. */
         interface WithPrimaryUserAssignedIdentity {
             /**
@@ -688,6 +786,33 @@ public interface Workspace {
              */
             Update withPrimaryUserAssignedIdentity(String primaryUserAssignedIdentity);
         }
+
+        /** The stage of the Workspace update allowing to specify serverlessComputeCustomSubnet. */
+        interface WithServerlessComputeCustomSubnet {
+            /**
+             * Specifies the serverlessComputeCustomSubnet property: The resource ID of an existing virtual network
+             * subnet in which serverless compute nodes should be deployed.
+             *
+             * @param serverlessComputeCustomSubnet The resource ID of an existing virtual network subnet in which
+             *     serverless compute nodes should be deployed.
+             * @return the next definition stage.
+             */
+            Update withServerlessComputeCustomSubnet(String serverlessComputeCustomSubnet);
+        }
+
+        /** The stage of the Workspace update allowing to specify serverlessComputeNoPublicIp. */
+        interface WithServerlessComputeNoPublicIp {
+            /**
+             * Specifies the serverlessComputeNoPublicIp property: The flag to signal if serverless compute nodes
+             * deployed in custom vNet would have no public IP addresses for a workspace with private endpoint.
+             *
+             * @param serverlessComputeNoPublicIp The flag to signal if serverless compute nodes deployed in custom vNet
+             *     would have no public IP addresses for a workspace with private endpoint.
+             * @return the next definition stage.
+             */
+            Update withServerlessComputeNoPublicIp(Boolean serverlessComputeNoPublicIp);
+        }
+
         /** The stage of the Workspace update allowing to specify publicNetworkAccess. */
         interface WithPublicNetworkAccess {
             /**
@@ -698,6 +823,7 @@ public interface Workspace {
              */
             Update withPublicNetworkAccess(PublicNetworkAccess publicNetworkAccess);
         }
+
         /** The stage of the Workspace update allowing to specify applicationInsights. */
         interface WithApplicationInsights {
             /**
@@ -709,6 +835,7 @@ public interface Workspace {
              */
             Update withApplicationInsights(String applicationInsights);
         }
+
         /** The stage of the Workspace update allowing to specify containerRegistry. */
         interface WithContainerRegistry {
             /**
@@ -721,6 +848,7 @@ public interface Workspace {
             Update withContainerRegistry(String containerRegistry);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

@@ -4,10 +4,12 @@
 
 package com.azure.resourcemanager.machinelearning.implementation;
 
+import com.azure.resourcemanager.machinelearning.fluent.models.ManagedNetworkSettingsInner;
 import com.azure.resourcemanager.machinelearning.fluent.models.NotebookResourceInfoInner;
 import com.azure.resourcemanager.machinelearning.fluent.models.PrivateEndpointConnectionInner;
 import com.azure.resourcemanager.machinelearning.fluent.models.WorkspacePropertiesInner;
 import com.azure.resourcemanager.machinelearning.models.EncryptionProperty;
+import com.azure.resourcemanager.machinelearning.models.ManagedNetworkSettings;
 import com.azure.resourcemanager.machinelearning.models.NotebookResourceInfo;
 import com.azure.resourcemanager.machinelearning.models.PrivateEndpointConnection;
 import com.azure.resourcemanager.machinelearning.models.ProvisioningState;
@@ -109,6 +111,14 @@ public final class WorkspacePropertiesImpl implements WorkspaceProperties {
         }
     }
 
+    public String serverlessComputeCustomSubnet() {
+        return this.innerModel().serverlessComputeCustomSubnet();
+    }
+
+    public Boolean serverlessComputeNoPublicIp() {
+        return this.innerModel().serverlessComputeNoPublicIp();
+    }
+
     public List<SharedPrivateLinkResource> sharedPrivateLinkResources() {
         List<SharedPrivateLinkResource> inner = this.innerModel().sharedPrivateLinkResources();
         if (inner != null) {
@@ -149,6 +159,15 @@ public final class WorkspacePropertiesImpl implements WorkspaceProperties {
 
     public Boolean v1LegacyMode() {
         return this.innerModel().v1LegacyMode();
+    }
+
+    public ManagedNetworkSettings managedNetwork() {
+        ManagedNetworkSettingsInner inner = this.innerModel().managedNetwork();
+        if (inner != null) {
+            return new ManagedNetworkSettingsImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public WorkspacePropertiesInner innerModel() {
