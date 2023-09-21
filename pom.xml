@@ -101,6 +101,7 @@
     <module>sdk/hybridkubernetes</module>
     <module>sdk/hybridnetwork</module>
     <module>sdk/identity</module>
+    <module>sdk/imageAnalysis</module>
     <module>sdk/imagebuilder</module>
     <module>sdk/iotcentral</module>
     <module>sdk/iotfirmwaredefense</module>
