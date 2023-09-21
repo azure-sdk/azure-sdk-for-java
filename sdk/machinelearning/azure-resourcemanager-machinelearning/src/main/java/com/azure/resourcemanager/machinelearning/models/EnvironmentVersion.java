@@ -66,23 +66,27 @@ public interface EnvironmentVersion {
             DefinitionStages.WithProperties,
             DefinitionStages.WithCreate {
     }
+
     /** The EnvironmentVersion definition stages. */
     interface DefinitionStages {
         /** The first stage of the EnvironmentVersion definition. */
         interface Blank extends WithParentResource {
         }
+
         /** The stage of the EnvironmentVersion definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
-             * Specifies resourceGroupName, workspaceName, name.
+             * Specifies resourceGroupName, registryName, environmentName.
              *
              * @param resourceGroupName The name of the resource group. The name is case insensitive.
-             * @param workspaceName Name of Azure Machine Learning workspace.
-             * @param name Name of EnvironmentVersion. This is case-sensitive.
+             * @param registryName Name of Azure Machine Learning registry. This is case-insensitive.
+             * @param environmentName Container name.
              * @return the next definition stage.
              */
-            WithProperties withExistingEnvironment(String resourceGroupName, String workspaceName, String name);
+            WithProperties withExistingEnvironment(
+                String resourceGroupName, String registryName, String environmentName);
         }
+
         /** The stage of the EnvironmentVersion definition allowing to specify properties. */
         interface WithProperties {
             /**
@@ -93,6 +97,7 @@ public interface EnvironmentVersion {
              */
             WithCreate withProperties(EnvironmentVersionProperties properties);
         }
+
         /**
          * The stage of the EnvironmentVersion definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
@@ -114,6 +119,7 @@ public interface EnvironmentVersion {
             EnvironmentVersion create(Context context);
         }
     }
+
     /**
      * Begins update for the EnvironmentVersion resource.
      *
@@ -138,6 +144,7 @@ public interface EnvironmentVersion {
          */
         EnvironmentVersion apply(Context context);
     }
+
     /** The EnvironmentVersion update stages. */
     interface UpdateStages {
         /** The stage of the EnvironmentVersion update allowing to specify properties. */
@@ -151,6 +158,7 @@ public interface EnvironmentVersion {
             Update withProperties(EnvironmentVersionProperties properties);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

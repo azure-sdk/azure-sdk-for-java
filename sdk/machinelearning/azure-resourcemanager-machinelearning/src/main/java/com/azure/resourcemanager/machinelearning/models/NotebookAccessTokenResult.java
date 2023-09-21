@@ -9,11 +9,18 @@ import com.azure.resourcemanager.machinelearning.fluent.models.NotebookAccessTok
 /** An immutable client-side representation of NotebookAccessTokenResult. */
 public interface NotebookAccessTokenResult {
     /**
-     * Gets the notebookResourceId property: The notebookResourceId property.
+     * Gets the accessToken property: The accessToken property.
      *
-     * @return the notebookResourceId value.
+     * @return the accessToken value.
      */
-    String notebookResourceId();
+    String accessToken();
+
+    /**
+     * Gets the expiresIn property: The expiresIn property.
+     *
+     * @return the expiresIn value.
+     */
+    Integer expiresIn();
 
     /**
      * Gets the hostname property: The hostName property.
@@ -23,32 +30,18 @@ public interface NotebookAccessTokenResult {
     String hostname();
 
     /**
+     * Gets the notebookResourceId property: The notebookResourceId property.
+     *
+     * @return the notebookResourceId value.
+     */
+    String notebookResourceId();
+
+    /**
      * Gets the publicDns property: The publicDns property.
      *
      * @return the publicDns value.
      */
     String publicDns();
-
-    /**
-     * Gets the accessToken property: The accessToken property.
-     *
-     * @return the accessToken value.
-     */
-    String accessToken();
-
-    /**
-     * Gets the tokenType property: The tokenType property.
-     *
-     * @return the tokenType value.
-     */
-    String tokenType();
-
-    /**
-     * Gets the expiresIn property: The expiresIn property.
-     *
-     * @return the expiresIn value.
-     */
-    Integer expiresIn();
 
     /**
      * Gets the refreshToken property: The refreshToken property.
@@ -63,6 +56,13 @@ public interface NotebookAccessTokenResult {
      * @return the scope value.
      */
     String scope();
+
+    /**
+     * Gets the tokenType property: The tokenType property.
+     *
+     * @return the tokenType value.
+     */
+    String tokenType();
 
     /**
      * Gets the inner com.azure.resourcemanager.machinelearning.fluent.models.NotebookAccessTokenResultInner object.
