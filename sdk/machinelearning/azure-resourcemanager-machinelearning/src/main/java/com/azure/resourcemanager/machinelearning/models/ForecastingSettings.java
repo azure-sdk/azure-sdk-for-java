@@ -61,7 +61,7 @@ public final class ForecastingSettings {
     /*
      * The function to be used to aggregate the time series target column to conform to a user specified frequency.
      * If the TargetAggregateFunction is set i.e. not 'None', but the freq parameter is not set, the error is raised.
-     * The possible target aggregation functions are: "sum", "max", "min" and "mean".
+     * The possible target aggregation functions are: "sum", "max", "min"\  and "mean".
      */
     @JsonProperty(value = "targetAggregateFunction")
     private TargetAggregationFunction targetAggregateFunction;
@@ -255,8 +255,8 @@ public final class ForecastingSettings {
     /**
      * Get the targetAggregateFunction property: The function to be used to aggregate the time series target column to
      * conform to a user specified frequency. If the TargetAggregateFunction is set i.e. not 'None', but the freq
-     * parameter is not set, the error is raised. The possible target aggregation functions are: "sum", "max", "min" and
-     * "mean".
+     * parameter is not set, the error is raised. The possible target aggregation functions are: "sum", "max", "min"\
+     * and "mean".
      *
      * @return the targetAggregateFunction value.
      */
@@ -267,8 +267,8 @@ public final class ForecastingSettings {
     /**
      * Set the targetAggregateFunction property: The function to be used to aggregate the time series target column to
      * conform to a user specified frequency. If the TargetAggregateFunction is set i.e. not 'None', but the freq
-     * parameter is not set, the error is raised. The possible target aggregation functions are: "sum", "max", "min" and
-     * "mean".
+     * parameter is not set, the error is raised. The possible target aggregation functions are: "sum", "max", "min"\
+     * and "mean".
      *
      * @param targetAggregateFunction the targetAggregateFunction value to set.
      * @return the ForecastingSettings object itself.

@@ -17,6 +17,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     defaultImpl = ScheduleActionBase.class)
 @JsonTypeName("ScheduleActionBase")
 @JsonSubTypes({
+    @JsonSubTypes.Type(name = "CreateMonitor", value = CreateMonitorAction.class),
     @JsonSubTypes.Type(name = "InvokeBatchEndpoint", value = EndpointScheduleAction.class),
     @JsonSubTypes.Type(name = "CreateJob", value = JobScheduleAction.class)
 })

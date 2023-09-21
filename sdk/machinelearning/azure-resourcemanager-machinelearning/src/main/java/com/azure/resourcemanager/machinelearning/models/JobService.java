@@ -31,6 +31,13 @@ public final class JobService {
     private String jobServiceType;
 
     /*
+     * Nodes that user would like to start the service on.
+     * If Nodes is not set or set to null, the service will only be started on leader node.
+     */
+    @JsonProperty(value = "nodes")
+    private Nodes nodes;
+
+    /*
      * Port for endpoint.
      */
     @JsonProperty(value = "port")
@@ -103,6 +110,28 @@ public final class JobService {
     }
 
     /**
+     * Get the nodes property: Nodes that user would like to start the service on. If Nodes is not set or set to null,
+     * the service will only be started on leader node.
+     *
+     * @return the nodes value.
+     */
+    public Nodes nodes() {
+        return this.nodes;
+    }
+
+    /**
+     * Set the nodes property: Nodes that user would like to start the service on. If Nodes is not set or set to null,
+     * the service will only be started on leader node.
+     *
+     * @param nodes the nodes value to set.
+     * @return the JobService object itself.
+     */
+    public JobService withNodes(Nodes nodes) {
+        this.nodes = nodes;
+        return this;
+    }
+
+    /**
      * Get the port property: Port for endpoint.
      *
      * @return the port value.
@@ -157,5 +186,8 @@ public final class JobService {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (nodes() != null) {
+            nodes().validate();
+        }
     }
 }
