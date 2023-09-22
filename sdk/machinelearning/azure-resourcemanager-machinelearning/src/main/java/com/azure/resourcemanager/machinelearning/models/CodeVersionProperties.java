@@ -17,6 +17,12 @@ public final class CodeVersionProperties extends AssetBase {
     @JsonProperty(value = "codeUri")
     private String codeUri;
 
+    /*
+     * Provisioning state for the code version.
+     */
+    @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
+    private AssetProvisioningState provisioningState;
+
     /** Creates an instance of CodeVersionProperties class. */
     public CodeVersionProperties() {
     }
@@ -38,6 +44,22 @@ public final class CodeVersionProperties extends AssetBase {
      */
     public CodeVersionProperties withCodeUri(String codeUri) {
         this.codeUri = codeUri;
+        return this;
+    }
+
+    /**
+     * Get the provisioningState property: Provisioning state for the code version.
+     *
+     * @return the provisioningState value.
+     */
+    public AssetProvisioningState provisioningState() {
+        return this.provisioningState;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public CodeVersionProperties withAutoDeleteSetting(AutoDeleteSetting autoDeleteSetting) {
+        super.withAutoDeleteSetting(autoDeleteSetting);
         return this;
     }
 
