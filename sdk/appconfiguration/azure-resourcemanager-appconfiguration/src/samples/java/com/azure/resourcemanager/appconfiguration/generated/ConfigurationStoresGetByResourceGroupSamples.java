@@ -7,7 +7,7 @@ package com.azure.resourcemanager.appconfiguration.generated;
 /** Samples for ConfigurationStores GetByResourceGroup. */
 public final class ConfigurationStoresGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2023-03-01/examples/ConfigurationStoresGet.json
+     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2023-04-01-preview/examples/ConfigurationStoresGet.json
      */
     /**
      * Sample code: ConfigurationStores_Get.

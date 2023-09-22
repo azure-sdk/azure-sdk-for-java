@@ -10,7 +10,7 @@ import java.util.Map;
 /** Samples for KeyValues CreateOrUpdate. */
 public final class KeyValuesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2023-03-01/examples/ConfigurationStoresCreateKeyValue.json
+     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2023-04-01-preview/examples/ConfigurationStoresCreateKeyValue.json
      */
     /**
      * Sample code: KeyValues_CreateOrUpdate.
@@ -28,6 +28,7 @@ public final class KeyValuesCreateOrUpdateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

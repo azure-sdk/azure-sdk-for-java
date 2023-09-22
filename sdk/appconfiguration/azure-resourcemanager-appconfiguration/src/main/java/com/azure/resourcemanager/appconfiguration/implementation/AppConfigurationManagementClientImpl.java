@@ -25,6 +25,7 @@ import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.appconfiguration.fluent.AppConfigurationManagementClient;
 import com.azure.resourcemanager.appconfiguration.fluent.ConfigurationStoresClient;
 import com.azure.resourcemanager.appconfiguration.fluent.KeyValuesClient;
+import com.azure.resourcemanager.appconfiguration.fluent.NetworkSecurityPerimeterConfigurationsClient;
 import com.azure.resourcemanager.appconfiguration.fluent.OperationsClient;
 import com.azure.resourcemanager.appconfiguration.fluent.PrivateEndpointConnectionsClient;
 import com.azure.resourcemanager.appconfiguration.fluent.PrivateLinkResourcesClient;
@@ -185,6 +186,18 @@ public final class AppConfigurationManagementClientImpl implements AppConfigurat
         return this.replicas;
     }
 
+    /** The NetworkSecurityPerimeterConfigurationsClient object to access its operations. */
+    private final NetworkSecurityPerimeterConfigurationsClient networkSecurityPerimeterConfigurations;
+
+    /**
+     * Gets the NetworkSecurityPerimeterConfigurationsClient object to access its operations.
+     *
+     * @return the NetworkSecurityPerimeterConfigurationsClient object.
+     */
+    public NetworkSecurityPerimeterConfigurationsClient getNetworkSecurityPerimeterConfigurations() {
+        return this.networkSecurityPerimeterConfigurations;
+    }
+
     /**
      * Initializes an instance of AppConfigurationManagementClient client.
      *
@@ -207,13 +220,14 @@ public final class AppConfigurationManagementClientImpl implements AppConfigurat
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2023-03-01";
+        this.apiVersion = "2023-04-01-preview";
         this.configurationStores = new ConfigurationStoresClientImpl(this);
         this.operations = new OperationsClientImpl(this);
         this.privateEndpointConnections = new PrivateEndpointConnectionsClientImpl(this);
         this.privateLinkResources = new PrivateLinkResourcesClientImpl(this);
         this.keyValues = new KeyValuesClientImpl(this);
         this.replicas = new ReplicasClientImpl(this);
+        this.networkSecurityPerimeterConfigurations = new NetworkSecurityPerimeterConfigurationsClientImpl(this);
     }
 
     /**

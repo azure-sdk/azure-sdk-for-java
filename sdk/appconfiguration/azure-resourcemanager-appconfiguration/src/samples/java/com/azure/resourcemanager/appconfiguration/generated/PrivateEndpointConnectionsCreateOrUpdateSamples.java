@@ -11,7 +11,7 @@ import com.azure.resourcemanager.appconfiguration.models.PrivateLinkServiceConne
 /** Samples for PrivateEndpointConnections CreateOrUpdate. */
 public final class PrivateEndpointConnectionsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2023-03-01/examples/ConfigurationStoresUpdatePrivateEndpointConnection.json
+     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2023-04-01-preview/examples/ConfigurationStoresUpdatePrivateEndpointConnection.json
      */
     /**
      * Sample code: PrivateEndpointConnection_Update.

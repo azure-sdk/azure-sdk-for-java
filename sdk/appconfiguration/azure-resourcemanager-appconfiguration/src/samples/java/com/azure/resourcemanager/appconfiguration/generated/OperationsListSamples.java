@@ -7,7 +7,7 @@ package com.azure.resourcemanager.appconfiguration.generated;
 /** Samples for Operations List. */
 public final class OperationsListSamples {
     /*
-     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2023-03-01/examples/OperationsList.json
+     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2023-04-01-preview/examples/OperationsList.json
      */
     /**
      * Sample code: Operations_List.

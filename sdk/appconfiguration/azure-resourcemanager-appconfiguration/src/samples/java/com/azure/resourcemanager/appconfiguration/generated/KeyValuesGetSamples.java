@@ -7,7 +7,7 @@ package com.azure.resourcemanager.appconfiguration.generated;
 /** Samples for KeyValues Get. */
 public final class KeyValuesGetSamples {
     /*
-     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2023-03-01/examples/ConfigurationStoresGetKeyValue.json
+     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2023-04-01-preview/examples/ConfigurationStoresGetKeyValue.json
      */
     /**
      * Sample code: KeyValues_Get.

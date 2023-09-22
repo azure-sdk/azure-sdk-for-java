@@ -10,7 +10,9 @@ import com.azure.core.util.Context;
 /** Resource collection API of KeyValues. */
 public interface KeyValues {
     /**
-     * Gets the properties of the specified key-value.
+     * Gets the properties of the specified key-value. NOTE: This operation is intended for use in ARM Template
+     * deployments. For all other scenarios involving App Configuration key-values the data plane API should be used
+     * instead.
      *
      * @param resourceGroupName The name of the resource group to which the container registry belongs.
      * @param configStoreName The name of the configuration store.
@@ -26,7 +28,9 @@ public interface KeyValues {
         String resourceGroupName, String configStoreName, String keyValueName, Context context);
 
     /**
-     * Gets the properties of the specified key-value.
+     * Gets the properties of the specified key-value. NOTE: This operation is intended for use in ARM Template
+     * deployments. For all other scenarios involving App Configuration key-values the data plane API should be used
+     * instead.
      *
      * @param resourceGroupName The name of the resource group to which the container registry belongs.
      * @param configStoreName The name of the configuration store.
@@ -40,7 +44,8 @@ public interface KeyValues {
     KeyValue get(String resourceGroupName, String configStoreName, String keyValueName);
 
     /**
-     * Deletes a key-value.
+     * Deletes a key-value. NOTE: This operation is intended for use in ARM Template deployments. For all other
+     * scenarios involving App Configuration key-values the data plane API should be used instead.
      *
      * @param resourceGroupName The name of the resource group to which the container registry belongs.
      * @param configStoreName The name of the configuration store.
@@ -53,7 +58,8 @@ public interface KeyValues {
     void delete(String resourceGroupName, String configStoreName, String keyValueName);
 
     /**
-     * Deletes a key-value.
+     * Deletes a key-value. NOTE: This operation is intended for use in ARM Template deployments. For all other
+     * scenarios involving App Configuration key-values the data plane API should be used instead.
      *
      * @param resourceGroupName The name of the resource group to which the container registry belongs.
      * @param configStoreName The name of the configuration store.
@@ -67,7 +73,9 @@ public interface KeyValues {
     void delete(String resourceGroupName, String configStoreName, String keyValueName, Context context);
 
     /**
-     * Gets the properties of the specified key-value.
+     * Gets the properties of the specified key-value. NOTE: This operation is intended for use in ARM Template
+     * deployments. For all other scenarios involving App Configuration key-values the data plane API should be used
+     * instead.
      *
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -78,7 +86,9 @@ public interface KeyValues {
     KeyValue getById(String id);
 
     /**
-     * Gets the properties of the specified key-value.
+     * Gets the properties of the specified key-value. NOTE: This operation is intended for use in ARM Template
+     * deployments. For all other scenarios involving App Configuration key-values the data plane API should be used
+     * instead.
      *
      * @param id the resource ID.
      * @param context The context to associate with this operation.
@@ -90,7 +100,8 @@ public interface KeyValues {
     Response<KeyValue> getByIdWithResponse(String id, Context context);
 
     /**
-     * Deletes a key-value.
+     * Deletes a key-value. NOTE: This operation is intended for use in ARM Template deployments. For all other
+     * scenarios involving App Configuration key-values the data plane API should be used instead.
      *
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -100,7 +111,8 @@ public interface KeyValues {
     void deleteById(String id);
 
     /**
-     * Deletes a key-value.
+     * Deletes a key-value. NOTE: This operation is intended for use in ARM Template deployments. For all other
+     * scenarios involving App Configuration key-values the data plane API should be used instead.
      *
      * @param id the resource ID.
      * @param context The context to associate with this operation.

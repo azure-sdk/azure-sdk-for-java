@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.appconfiguration.implementation;
 
-import com.azure.core.annotation.BodyParam;
-import com.azure.core.annotation.Delete;
 import com.azure.core.annotation.ExpectedResponses;
 import com.azure.core.annotation.Get;
 import com.azure.core.annotation.HeaderParam;
@@ -13,12 +11,16 @@ import com.azure.core.annotation.Headers;
 import com.azure.core.annotation.Host;
 import com.azure.core.annotation.HostParam;
 import com.azure.core.annotation.PathParam;
-import com.azure.core.annotation.Put;
+import com.azure.core.annotation.Post;
 import com.azure.core.annotation.QueryParam;
 import com.azure.core.annotation.ReturnType;
 import com.azure.core.annotation.ServiceInterface;
 import com.azure.core.annotation.ServiceMethod;
 import com.azure.core.annotation.UnexpectedResponseExceptionType;
+import com.azure.core.http.rest.PagedFlux;
+import com.azure.core.http.rest.PagedIterable;
+import com.azure.core.http.rest.PagedResponse;
+import com.azure.core.http.rest.PagedResponseBase;
 import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
@@ -27,103 +29,117 @@ import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
-import com.azure.resourcemanager.appconfiguration.fluent.KeyValuesClient;
-import com.azure.resourcemanager.appconfiguration.fluent.models.KeyValueInner;
+import com.azure.resourcemanager.appconfiguration.fluent.NetworkSecurityPerimeterConfigurationsClient;
+import com.azure.resourcemanager.appconfiguration.fluent.models.NetworkSecurityPerimeterConfigurationInner;
+import com.azure.resourcemanager.appconfiguration.models.NetworkSecurityPerimeterConfigurationListResult;
 import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-/** An instance of this class provides access to all the operations defined in KeyValuesClient. */
-public final class KeyValuesClientImpl implements KeyValuesClient {
+/**
+ * An instance of this class provides access to all the operations defined in
+ * NetworkSecurityPerimeterConfigurationsClient.
+ */
+public final class NetworkSecurityPerimeterConfigurationsClientImpl
+    implements NetworkSecurityPerimeterConfigurationsClient {
     /** The proxy service used to perform REST calls. */
-    private final KeyValuesService service;
+    private final NetworkSecurityPerimeterConfigurationsService service;
 
     /** The service client containing this operation class. */
     private final AppConfigurationManagementClientImpl client;
 
     /**
-     * Initializes an instance of KeyValuesClientImpl.
+     * Initializes an instance of NetworkSecurityPerimeterConfigurationsClientImpl.
      *
      * @param client the instance of the service client containing this operation class.
      */
-    KeyValuesClientImpl(AppConfigurationManagementClientImpl client) {
+    NetworkSecurityPerimeterConfigurationsClientImpl(AppConfigurationManagementClientImpl client) {
         this.service =
-            RestProxy.create(KeyValuesService.class, client.getHttpPipeline(), client.getSerializerAdapter());
+            RestProxy
+                .create(
+                    NetworkSecurityPerimeterConfigurationsService.class,
+                    client.getHttpPipeline(),
+                    client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for AppConfigurationManagementClientKeyValues to be used by the proxy
-     * service to perform REST calls.
+     * The interface defining all the services for
+     * AppConfigurationManagementClientNetworkSecurityPerimeterConfigurations to be used by the proxy service to perform
+     * REST calls.
      */
     @Host("{$host}")
     @ServiceInterface(name = "AppConfigurationMana")
-    public interface KeyValuesService {
+    public interface NetworkSecurityPerimeterConfigurationsService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppConfiguration/configurationStores/{configStoreName}/keyValues/{keyValueName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppConfiguration/configurationStores/{configStoreName}/networkSecurityPerimeterConfigurations")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<KeyValueInner>> get(
+        Mono<Response<NetworkSecurityPerimeterConfigurationListResult>> listByConfigurationStore(
             @HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("configStoreName") String configStoreName,
             @QueryParam("api-version") String apiVersion,
-            @PathParam("keyValueName") String keyValueName,
             @HeaderParam("Accept") String accept,
             Context context);
 
         @Headers({"Content-Type: application/json"})
-        @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppConfiguration/configurationStores/{configStoreName}/keyValues/{keyValueName}")
+        @Get(
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppConfiguration/configurationStores/{configStoreName}/networkSecurityPerimeterConfigurations/{nspConfigurationName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<KeyValueInner>> createOrUpdate(
+        Mono<Response<NetworkSecurityPerimeterConfigurationInner>> get(
             @HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("configStoreName") String configStoreName,
             @QueryParam("api-version") String apiVersion,
-            @PathParam("keyValueName") String keyValueName,
-            @BodyParam("application/json") KeyValueInner keyValueParameters,
+            @PathParam("nspConfigurationName") String nspConfigurationName,
             @HeaderParam("Accept") String accept,
             Context context);
 
         @Headers({"Content-Type: application/json"})
-        @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppConfiguration/configurationStores/{configStoreName}/keyValues/{keyValueName}")
-        @ExpectedResponses({200, 202, 204})
+        @Post(
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppConfiguration/configurationStores/{configStoreName}/networkSecurityPerimeterConfigurations/{nspConfigurationName}/reconcile")
+        @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> delete(
+        Mono<Response<Flux<ByteBuffer>>> reconcile(
             @HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("configStoreName") String configStoreName,
             @QueryParam("api-version") String apiVersion,
-            @PathParam("keyValueName") String keyValueName,
+            @PathParam("nspConfigurationName") String nspConfigurationName,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
+        @Get("{nextLink}")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<NetworkSecurityPerimeterConfigurationListResult>> listByConfigurationStoreNext(
+            @PathParam(value = "nextLink", encoded = true) String nextLink,
+            @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept,
             Context context);
     }
 
     /**
-     * Gets the properties of the specified key-value. NOTE: This operation is intended for use in ARM Template
-     * deployments. For all other scenarios involving App Configuration key-values the data plane API should be used
-     * instead.
+     * Lists all network security perimeter configurations for a configuration store.
      *
      * @param resourceGroupName The name of the resource group to which the container registry belongs.
      * @param configStoreName The name of the configuration store.
-     * @param keyValueName Identifier of key and label combination. Key and label are joined by $ character. Label is
-     *     optional.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the properties of the specified key-value along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return the result of a request to list network security perimeter configurations along with {@link
+     *     PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<KeyValueInner>> getWithResponseAsync(
-        String resourceGroupName, String configStoreName, String keyValueName) {
+    private Mono<PagedResponse<NetworkSecurityPerimeterConfigurationInner>> listByConfigurationStoreSinglePageAsync(
+        String resourceGroupName, String configStoreName) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -144,8 +160,200 @@ public final class KeyValuesClientImpl implements KeyValuesClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter configStoreName is required and cannot be null."));
         }
-        if (keyValueName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter keyValueName is required and cannot be null."));
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service
+                        .listByConfigurationStore(
+                            this.client.getEndpoint(),
+                            this.client.getSubscriptionId(),
+                            resourceGroupName,
+                            configStoreName,
+                            this.client.getApiVersion(),
+                            accept,
+                            context))
+            .<PagedResponse<NetworkSecurityPerimeterConfigurationInner>>map(
+                res ->
+                    new PagedResponseBase<>(
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink(),
+                        null))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Lists all network security perimeter configurations for a configuration store.
+     *
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the result of a request to list network security perimeter configurations along with {@link
+     *     PagedResponse} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<NetworkSecurityPerimeterConfigurationInner>> listByConfigurationStoreSinglePageAsync(
+        String resourceGroupName, String configStoreName, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (configStoreName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter configStoreName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .listByConfigurationStore(
+                this.client.getEndpoint(),
+                this.client.getSubscriptionId(),
+                resourceGroupName,
+                configStoreName,
+                this.client.getApiVersion(),
+                accept,
+                context)
+            .map(
+                res ->
+                    new PagedResponseBase<>(
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink(),
+                        null));
+    }
+
+    /**
+     * Lists all network security perimeter configurations for a configuration store.
+     *
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the result of a request to list network security perimeter configurations as paginated response with
+     *     {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<NetworkSecurityPerimeterConfigurationInner> listByConfigurationStoreAsync(
+        String resourceGroupName, String configStoreName) {
+        return new PagedFlux<>(
+            () -> listByConfigurationStoreSinglePageAsync(resourceGroupName, configStoreName),
+            nextLink -> listByConfigurationStoreNextSinglePageAsync(nextLink));
+    }
+
+    /**
+     * Lists all network security perimeter configurations for a configuration store.
+     *
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the result of a request to list network security perimeter configurations as paginated response with
+     *     {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<NetworkSecurityPerimeterConfigurationInner> listByConfigurationStoreAsync(
+        String resourceGroupName, String configStoreName, Context context) {
+        return new PagedFlux<>(
+            () -> listByConfigurationStoreSinglePageAsync(resourceGroupName, configStoreName, context),
+            nextLink -> listByConfigurationStoreNextSinglePageAsync(nextLink, context));
+    }
+
+    /**
+     * Lists all network security perimeter configurations for a configuration store.
+     *
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the result of a request to list network security perimeter configurations as paginated response with
+     *     {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<NetworkSecurityPerimeterConfigurationInner> listByConfigurationStore(
+        String resourceGroupName, String configStoreName) {
+        return new PagedIterable<>(listByConfigurationStoreAsync(resourceGroupName, configStoreName));
+    }
+
+    /**
+     * Lists all network security perimeter configurations for a configuration store.
+     *
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the result of a request to list network security perimeter configurations as paginated response with
+     *     {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<NetworkSecurityPerimeterConfigurationInner> listByConfigurationStore(
+        String resourceGroupName, String configStoreName, Context context) {
+        return new PagedIterable<>(listByConfigurationStoreAsync(resourceGroupName, configStoreName, context));
+    }
+
+    /**
+     * Gets the specified network security perimeter configurations associated with the configuration store.
+     *
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @param nspConfigurationName Network security perimeter configuration name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the specified network security perimeter configurations associated with the configuration store along
+     *     with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<NetworkSecurityPerimeterConfigurationInner>> getWithResponseAsync(
+        String resourceGroupName, String configStoreName, String nspConfigurationName) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (configStoreName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter configStoreName is required and cannot be null."));
+        }
+        if (nspConfigurationName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter nspConfigurationName is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
@@ -158,31 +366,28 @@ public final class KeyValuesClientImpl implements KeyValuesClient {
                             resourceGroupName,
                             configStoreName,
                             this.client.getApiVersion(),
-                            keyValueName,
+                            nspConfigurationName,
                             accept,
                             context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Gets the properties of the specified key-value. NOTE: This operation is intended for use in ARM Template
-     * deployments. For all other scenarios involving App Configuration key-values the data plane API should be used
-     * instead.
+     * Gets the specified network security perimeter configurations associated with the configuration store.
      *
      * @param resourceGroupName The name of the resource group to which the container registry belongs.
      * @param configStoreName The name of the configuration store.
-     * @param keyValueName Identifier of key and label combination. Key and label are joined by $ character. Label is
-     *     optional.
+     * @param nspConfigurationName Network security perimeter configuration name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the properties of the specified key-value along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return the specified network security perimeter configurations associated with the configuration store along
+     *     with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<KeyValueInner>> getWithResponseAsync(
-        String resourceGroupName, String configStoreName, String keyValueName, Context context) {
+    private Mono<Response<NetworkSecurityPerimeterConfigurationInner>> getWithResponseAsync(
+        String resourceGroupName, String configStoreName, String nspConfigurationName, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -203,8 +408,9 @@ public final class KeyValuesClientImpl implements KeyValuesClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter configStoreName is required and cannot be null."));
         }
-        if (keyValueName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter keyValueName is required and cannot be null."));
+        if (nspConfigurationName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter nspConfigurationName is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
@@ -215,89 +421,81 @@ public final class KeyValuesClientImpl implements KeyValuesClient {
                 resourceGroupName,
                 configStoreName,
                 this.client.getApiVersion(),
-                keyValueName,
+                nspConfigurationName,
                 accept,
                 context);
     }
 
     /**
-     * Gets the properties of the specified key-value. NOTE: This operation is intended for use in ARM Template
-     * deployments. For all other scenarios involving App Configuration key-values the data plane API should be used
-     * instead.
+     * Gets the specified network security perimeter configurations associated with the configuration store.
      *
      * @param resourceGroupName The name of the resource group to which the container registry belongs.
      * @param configStoreName The name of the configuration store.
-     * @param keyValueName Identifier of key and label combination. Key and label are joined by $ character. Label is
-     *     optional.
+     * @param nspConfigurationName Network security perimeter configuration name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the properties of the specified key-value on successful completion of {@link Mono}.
+     * @return the specified network security perimeter configurations associated with the configuration store on
+     *     successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<KeyValueInner> getAsync(String resourceGroupName, String configStoreName, String keyValueName) {
-        return getWithResponseAsync(resourceGroupName, configStoreName, keyValueName)
+    private Mono<NetworkSecurityPerimeterConfigurationInner> getAsync(
+        String resourceGroupName, String configStoreName, String nspConfigurationName) {
+        return getWithResponseAsync(resourceGroupName, configStoreName, nspConfigurationName)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Gets the properties of the specified key-value. NOTE: This operation is intended for use in ARM Template
-     * deployments. For all other scenarios involving App Configuration key-values the data plane API should be used
-     * instead.
+     * Gets the specified network security perimeter configurations associated with the configuration store.
      *
      * @param resourceGroupName The name of the resource group to which the container registry belongs.
      * @param configStoreName The name of the configuration store.
-     * @param keyValueName Identifier of key and label combination. Key and label are joined by $ character. Label is
-     *     optional.
+     * @param nspConfigurationName Network security perimeter configuration name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the properties of the specified key-value along with {@link Response}.
+     * @return the specified network security perimeter configurations associated with the configuration store along
+     *     with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<KeyValueInner> getWithResponse(
-        String resourceGroupName, String configStoreName, String keyValueName, Context context) {
-        return getWithResponseAsync(resourceGroupName, configStoreName, keyValueName, context).block();
+    public Response<NetworkSecurityPerimeterConfigurationInner> getWithResponse(
+        String resourceGroupName, String configStoreName, String nspConfigurationName, Context context) {
+        return getWithResponseAsync(resourceGroupName, configStoreName, nspConfigurationName, context).block();
     }
 
     /**
-     * Gets the properties of the specified key-value. NOTE: This operation is intended for use in ARM Template
-     * deployments. For all other scenarios involving App Configuration key-values the data plane API should be used
-     * instead.
+     * Gets the specified network security perimeter configurations associated with the configuration store.
      *
      * @param resourceGroupName The name of the resource group to which the container registry belongs.
      * @param configStoreName The name of the configuration store.
-     * @param keyValueName Identifier of key and label combination. Key and label are joined by $ character. Label is
-     *     optional.
+     * @param nspConfigurationName Network security perimeter configuration name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the properties of the specified key-value.
+     * @return the specified network security perimeter configurations associated with the configuration store.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public KeyValueInner get(String resourceGroupName, String configStoreName, String keyValueName) {
-        return getWithResponse(resourceGroupName, configStoreName, keyValueName, Context.NONE).getValue();
+    public NetworkSecurityPerimeterConfigurationInner get(
+        String resourceGroupName, String configStoreName, String nspConfigurationName) {
+        return getWithResponse(resourceGroupName, configStoreName, nspConfigurationName, Context.NONE).getValue();
     }
 
     /**
-     * Creates a key-value. NOTE: This operation is intended for use in ARM Template deployments. For all other
-     * scenarios involving App Configuration key-values the data plane API should be used instead.
+     * Reconcile network security perimeter configuration for the configuration store.
      *
      * @param resourceGroupName The name of the resource group to which the container registry belongs.
      * @param configStoreName The name of the configuration store.
-     * @param keyValueName Identifier of key and label combination. Key and label are joined by $ character. Label is
-     *     optional.
-     * @param keyValueParameters The parameters for creating a key-value.
+     * @param nspConfigurationName Network security perimeter configuration name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the key-value resource along with all resource properties along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * @return network security perimeter configuration for a configuration store along with {@link Response} on
+     *     successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<KeyValueInner>> createOrUpdateWithResponseAsync(
-        String resourceGroupName, String configStoreName, String keyValueName, KeyValueInner keyValueParameters) {
+    private Mono<Response<Flux<ByteBuffer>>> reconcileWithResponseAsync(
+        String resourceGroupName, String configStoreName, String nspConfigurationName) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -318,53 +516,43 @@ public final class KeyValuesClientImpl implements KeyValuesClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter configStoreName is required and cannot be null."));
         }
-        if (keyValueName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter keyValueName is required and cannot be null."));
-        }
-        if (keyValueParameters != null) {
-            keyValueParameters.validate();
+        if (nspConfigurationName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter nspConfigurationName is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
             .withContext(
                 context ->
                     service
-                        .createOrUpdate(
+                        .reconcile(
                             this.client.getEndpoint(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             configStoreName,
                             this.client.getApiVersion(),
-                            keyValueName,
-                            keyValueParameters,
+                            nspConfigurationName,
                             accept,
                             context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Creates a key-value. NOTE: This operation is intended for use in ARM Template deployments. For all other
-     * scenarios involving App Configuration key-values the data plane API should be used instead.
+     * Reconcile network security perimeter configuration for the configuration store.
      *
      * @param resourceGroupName The name of the resource group to which the container registry belongs.
      * @param configStoreName The name of the configuration store.
-     * @param keyValueName Identifier of key and label combination. Key and label are joined by $ character. Label is
-     *     optional.
-     * @param keyValueParameters The parameters for creating a key-value.
+     * @param nspConfigurationName Network security perimeter configuration name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the key-value resource along with all resource properties along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * @return network security perimeter configuration for a configuration store along with {@link Response} on
+     *     successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<KeyValueInner>> createOrUpdateWithResponseAsync(
-        String resourceGroupName,
-        String configStoreName,
-        String keyValueName,
-        KeyValueInner keyValueParameters,
-        Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> reconcileWithResponseAsync(
+        String resourceGroupName, String configStoreName, String nspConfigurationName, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -385,368 +573,271 @@ public final class KeyValuesClientImpl implements KeyValuesClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter configStoreName is required and cannot be null."));
         }
-        if (keyValueName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter keyValueName is required and cannot be null."));
-        }
-        if (keyValueParameters != null) {
-            keyValueParameters.validate();
+        if (nspConfigurationName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter nspConfigurationName is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .createOrUpdate(
+            .reconcile(
                 this.client.getEndpoint(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 configStoreName,
                 this.client.getApiVersion(),
-                keyValueName,
-                keyValueParameters,
+                nspConfigurationName,
                 accept,
                 context);
     }
 
     /**
-     * Creates a key-value. NOTE: This operation is intended for use in ARM Template deployments. For all other
-     * scenarios involving App Configuration key-values the data plane API should be used instead.
+     * Reconcile network security perimeter configuration for the configuration store.
      *
      * @param resourceGroupName The name of the resource group to which the container registry belongs.
      * @param configStoreName The name of the configuration store.
-     * @param keyValueName Identifier of key and label combination. Key and label are joined by $ character. Label is
-     *     optional.
+     * @param nspConfigurationName Network security perimeter configuration name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the key-value resource along with all resource properties on successful completion of {@link Mono}.
+     * @return the {@link PollerFlux} for polling of network security perimeter configuration for a configuration store.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<KeyValueInner> createOrUpdateAsync(
-        String resourceGroupName, String configStoreName, String keyValueName) {
-        final KeyValueInner keyValueParameters = null;
-        return createOrUpdateWithResponseAsync(resourceGroupName, configStoreName, keyValueName, keyValueParameters)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<
+            PollResult<NetworkSecurityPerimeterConfigurationInner>, NetworkSecurityPerimeterConfigurationInner>
+        beginReconcileAsync(String resourceGroupName, String configStoreName, String nspConfigurationName) {
+        Mono<Response<Flux<ByteBuffer>>> mono =
+            reconcileWithResponseAsync(resourceGroupName, configStoreName, nspConfigurationName);
+        return this
+            .client
+            .<NetworkSecurityPerimeterConfigurationInner, NetworkSecurityPerimeterConfigurationInner>getLroResult(
+                mono,
+                this.client.getHttpPipeline(),
+                NetworkSecurityPerimeterConfigurationInner.class,
+                NetworkSecurityPerimeterConfigurationInner.class,
+                this.client.getContext());
     }
 
     /**
-     * Creates a key-value. NOTE: This operation is intended for use in ARM Template deployments. For all other
-     * scenarios involving App Configuration key-values the data plane API should be used instead.
+     * Reconcile network security perimeter configuration for the configuration store.
      *
      * @param resourceGroupName The name of the resource group to which the container registry belongs.
      * @param configStoreName The name of the configuration store.
-     * @param keyValueName Identifier of key and label combination. Key and label are joined by $ character. Label is
-     *     optional.
-     * @param keyValueParameters The parameters for creating a key-value.
+     * @param nspConfigurationName Network security perimeter configuration name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the key-value resource along with all resource properties along with {@link Response}.
+     * @return the {@link PollerFlux} for polling of network security perimeter configuration for a configuration store.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<KeyValueInner> createOrUpdateWithResponse(
-        String resourceGroupName,
-        String configStoreName,
-        String keyValueName,
-        KeyValueInner keyValueParameters,
-        Context context) {
-        return createOrUpdateWithResponseAsync(
-                resourceGroupName, configStoreName, keyValueName, keyValueParameters, context)
-            .block();
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<
+            PollResult<NetworkSecurityPerimeterConfigurationInner>, NetworkSecurityPerimeterConfigurationInner>
+        beginReconcileAsync(
+            String resourceGroupName, String configStoreName, String nspConfigurationName, Context context) {
+        context = this.client.mergeContext(context);
+        Mono<Response<Flux<ByteBuffer>>> mono =
+            reconcileWithResponseAsync(resourceGroupName, configStoreName, nspConfigurationName, context);
+        return this
+            .client
+            .<NetworkSecurityPerimeterConfigurationInner, NetworkSecurityPerimeterConfigurationInner>getLroResult(
+                mono,
+                this.client.getHttpPipeline(),
+                NetworkSecurityPerimeterConfigurationInner.class,
+                NetworkSecurityPerimeterConfigurationInner.class,
+                context);
     }
 
     /**
-     * Creates a key-value. NOTE: This operation is intended for use in ARM Template deployments. For all other
-     * scenarios involving App Configuration key-values the data plane API should be used instead.
+     * Reconcile network security perimeter configuration for the configuration store.
      *
      * @param resourceGroupName The name of the resource group to which the container registry belongs.
      * @param configStoreName The name of the configuration store.
-     * @param keyValueName Identifier of key and label combination. Key and label are joined by $ character. Label is
-     *     optional.
+     * @param nspConfigurationName Network security perimeter configuration name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the key-value resource along with all resource properties.
+     * @return the {@link SyncPoller} for polling of network security perimeter configuration for a configuration store.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public KeyValueInner createOrUpdate(String resourceGroupName, String configStoreName, String keyValueName) {
-        final KeyValueInner keyValueParameters = null;
-        return createOrUpdateWithResponse(
-                resourceGroupName, configStoreName, keyValueName, keyValueParameters, Context.NONE)
-            .getValue();
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<
+            PollResult<NetworkSecurityPerimeterConfigurationInner>, NetworkSecurityPerimeterConfigurationInner>
+        beginReconcile(String resourceGroupName, String configStoreName, String nspConfigurationName) {
+        return this.beginReconcileAsync(resourceGroupName, configStoreName, nspConfigurationName).getSyncPoller();
     }
 
     /**
-     * Deletes a key-value. NOTE: This operation is intended for use in ARM Template deployments. For all other
-     * scenarios involving App Configuration key-values the data plane API should be used instead.
+     * Reconcile network security perimeter configuration for the configuration store.
      *
      * @param resourceGroupName The name of the resource group to which the container registry belongs.
      * @param configStoreName The name of the configuration store.
-     * @param keyValueName Identifier of key and label combination. Key and label are joined by $ character. Label is
-     *     optional.
+     * @param nspConfigurationName Network security perimeter configuration name.
+     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the {@link SyncPoller} for polling of network security perimeter configuration for a configuration store.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<
+            PollResult<NetworkSecurityPerimeterConfigurationInner>, NetworkSecurityPerimeterConfigurationInner>
+        beginReconcile(String resourceGroupName, String configStoreName, String nspConfigurationName, Context context) {
+        return this
+            .beginReconcileAsync(resourceGroupName, configStoreName, nspConfigurationName, context)
+            .getSyncPoller();
+    }
+
+    /**
+     * Reconcile network security perimeter configuration for the configuration store.
+     *
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @param nspConfigurationName Network security perimeter configuration name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return network security perimeter configuration for a configuration store on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
-        String resourceGroupName, String configStoreName, String keyValueName) {
+    private Mono<NetworkSecurityPerimeterConfigurationInner> reconcileAsync(
+        String resourceGroupName, String configStoreName, String nspConfigurationName) {
+        return beginReconcileAsync(resourceGroupName, configStoreName, nspConfigurationName)
+            .last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Reconcile network security perimeter configuration for the configuration store.
+     *
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @param nspConfigurationName Network security perimeter configuration name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return network security perimeter configuration for a configuration store on successful completion of {@link
+     *     Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<NetworkSecurityPerimeterConfigurationInner> reconcileAsync(
+        String resourceGroupName, String configStoreName, String nspConfigurationName, Context context) {
+        return beginReconcileAsync(resourceGroupName, configStoreName, nspConfigurationName, context)
+            .last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Reconcile network security perimeter configuration for the configuration store.
+     *
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @param nspConfigurationName Network security perimeter configuration name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return network security perimeter configuration for a configuration store.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public NetworkSecurityPerimeterConfigurationInner reconcile(
+        String resourceGroupName, String configStoreName, String nspConfigurationName) {
+        return reconcileAsync(resourceGroupName, configStoreName, nspConfigurationName).block();
+    }
+
+    /**
+     * Reconcile network security perimeter configuration for the configuration store.
+     *
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @param nspConfigurationName Network security perimeter configuration name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return network security perimeter configuration for a configuration store.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public NetworkSecurityPerimeterConfigurationInner reconcile(
+        String resourceGroupName, String configStoreName, String nspConfigurationName, Context context) {
+        return reconcileAsync(resourceGroupName, configStoreName, nspConfigurationName, context).block();
+    }
+
+    /**
+     * Get the next page of items.
+     *
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the result of a request to list network security perimeter configurations along with {@link
+     *     PagedResponse} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<NetworkSecurityPerimeterConfigurationInner>> listByConfigurationStoreNextSinglePageAsync(
+        String nextLink) {
+        if (nextLink == null) {
+            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
                     new IllegalArgumentException(
                         "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (configStoreName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter configStoreName is required and cannot be null."));
-        }
-        if (keyValueName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter keyValueName is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
             .withContext(
-                context ->
-                    service
-                        .delete(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            configStoreName,
-                            this.client.getApiVersion(),
-                            keyValueName,
-                            accept,
-                            context))
+                context -> service.listByConfigurationStoreNext(nextLink, this.client.getEndpoint(), accept, context))
+            .<PagedResponse<NetworkSecurityPerimeterConfigurationInner>>map(
+                res ->
+                    new PagedResponseBase<>(
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink(),
+                        null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Deletes a key-value. NOTE: This operation is intended for use in ARM Template deployments. For all other
-     * scenarios involving App Configuration key-values the data plane API should be used instead.
+     * Get the next page of items.
      *
-     * @param resourceGroupName The name of the resource group to which the container registry belongs.
-     * @param configStoreName The name of the configuration store.
-     * @param keyValueName Identifier of key and label combination. Key and label are joined by $ character. Label is
-     *     optional.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the result of a request to list network security perimeter configurations along with {@link
+     *     PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
-        String resourceGroupName, String configStoreName, String keyValueName, Context context) {
+    private Mono<PagedResponse<NetworkSecurityPerimeterConfigurationInner>> listByConfigurationStoreNextSinglePageAsync(
+        String nextLink, Context context) {
+        if (nextLink == null) {
+            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
                     new IllegalArgumentException(
                         "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (configStoreName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter configStoreName is required and cannot be null."));
-        }
-        if (keyValueName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter keyValueName is required and cannot be null."));
-        }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .delete(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                configStoreName,
-                this.client.getApiVersion(),
-                keyValueName,
-                accept,
-                context);
-    }
-
-    /**
-     * Deletes a key-value. NOTE: This operation is intended for use in ARM Template deployments. For all other
-     * scenarios involving App Configuration key-values the data plane API should be used instead.
-     *
-     * @param resourceGroupName The name of the resource group to which the container registry belongs.
-     * @param configStoreName The name of the configuration store.
-     * @param keyValueName Identifier of key and label combination. Key and label are joined by $ character. Label is
-     *     optional.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
-        String resourceGroupName, String configStoreName, String keyValueName) {
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            deleteWithResponseAsync(resourceGroupName, configStoreName, keyValueName);
-        return this
-            .client
-            .<Void, Void>getLroResult(
-                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
-    }
-
-    /**
-     * Deletes a key-value. NOTE: This operation is intended for use in ARM Template deployments. For all other
-     * scenarios involving App Configuration key-values the data plane API should be used instead.
-     *
-     * @param resourceGroupName The name of the resource group to which the container registry belongs.
-     * @param configStoreName The name of the configuration store.
-     * @param keyValueName Identifier of key and label combination. Key and label are joined by $ character. Label is
-     *     optional.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
-        String resourceGroupName, String configStoreName, String keyValueName, Context context) {
-        context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            deleteWithResponseAsync(resourceGroupName, configStoreName, keyValueName, context);
-        return this
-            .client
-            .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, context);
-    }
-
-    /**
-     * Deletes a key-value. NOTE: This operation is intended for use in ARM Template deployments. For all other
-     * scenarios involving App Configuration key-values the data plane API should be used instead.
-     *
-     * @param resourceGroupName The name of the resource group to which the container registry belongs.
-     * @param configStoreName The name of the configuration store.
-     * @param keyValueName Identifier of key and label combination. Key and label are joined by $ character. Label is
-     *     optional.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDelete(
-        String resourceGroupName, String configStoreName, String keyValueName) {
-        return this.beginDeleteAsync(resourceGroupName, configStoreName, keyValueName).getSyncPoller();
-    }
-
-    /**
-     * Deletes a key-value. NOTE: This operation is intended for use in ARM Template deployments. For all other
-     * scenarios involving App Configuration key-values the data plane API should be used instead.
-     *
-     * @param resourceGroupName The name of the resource group to which the container registry belongs.
-     * @param configStoreName The name of the configuration store.
-     * @param keyValueName Identifier of key and label combination. Key and label are joined by $ character. Label is
-     *     optional.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDelete(
-        String resourceGroupName, String configStoreName, String keyValueName, Context context) {
-        return this.beginDeleteAsync(resourceGroupName, configStoreName, keyValueName, context).getSyncPoller();
-    }
-
-    /**
-     * Deletes a key-value. NOTE: This operation is intended for use in ARM Template deployments. For all other
-     * scenarios involving App Configuration key-values the data plane API should be used instead.
-     *
-     * @param resourceGroupName The name of the resource group to which the container registry belongs.
-     * @param configStoreName The name of the configuration store.
-     * @param keyValueName Identifier of key and label combination. Key and label are joined by $ character. Label is
-     *     optional.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> deleteAsync(String resourceGroupName, String configStoreName, String keyValueName) {
-        return beginDeleteAsync(resourceGroupName, configStoreName, keyValueName)
-            .last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Deletes a key-value. NOTE: This operation is intended for use in ARM Template deployments. For all other
-     * scenarios involving App Configuration key-values the data plane API should be used instead.
-     *
-     * @param resourceGroupName The name of the resource group to which the container registry belongs.
-     * @param configStoreName The name of the configuration store.
-     * @param keyValueName Identifier of key and label combination. Key and label are joined by $ character. Label is
-     *     optional.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> deleteAsync(
-        String resourceGroupName, String configStoreName, String keyValueName, Context context) {
-        return beginDeleteAsync(resourceGroupName, configStoreName, keyValueName, context)
-            .last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Deletes a key-value. NOTE: This operation is intended for use in ARM Template deployments. For all other
-     * scenarios involving App Configuration key-values the data plane API should be used instead.
-     *
-     * @param resourceGroupName The name of the resource group to which the container registry belongs.
-     * @param configStoreName The name of the configuration store.
-     * @param keyValueName Identifier of key and label combination. Key and label are joined by $ character. Label is
-     *     optional.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceGroupName, String configStoreName, String keyValueName) {
-        deleteAsync(resourceGroupName, configStoreName, keyValueName).block();
-    }
-
-    /**
-     * Deletes a key-value. NOTE: This operation is intended for use in ARM Template deployments. For all other
-     * scenarios involving App Configuration key-values the data plane API should be used instead.
-     *
-     * @param resourceGroupName The name of the resource group to which the container registry belongs.
-     * @param configStoreName The name of the configuration store.
-     * @param keyValueName Identifier of key and label combination. Key and label are joined by $ character. Label is
-     *     optional.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceGroupName, String configStoreName, String keyValueName, Context context) {
-        deleteAsync(resourceGroupName, configStoreName, keyValueName, context).block();
+            .listByConfigurationStoreNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(
+                res ->
+                    new PagedResponseBase<>(
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink(),
+                        null));
     }
 }

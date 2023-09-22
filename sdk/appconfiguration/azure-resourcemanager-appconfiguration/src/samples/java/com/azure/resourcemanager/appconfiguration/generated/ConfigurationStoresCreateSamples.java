@@ -14,7 +14,7 @@ import java.util.Map;
 /** Samples for ConfigurationStores Create. */
 public final class ConfigurationStoresCreateSamples {
     /*
-     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2023-03-01/examples/ConfigurationStoresCreate.json
+     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2023-04-01-preview/examples/ConfigurationStoresCreate.json
      */
     /**
      * Sample code: ConfigurationStores_Create.
@@ -34,7 +34,7 @@ public final class ConfigurationStoresCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2023-03-01/examples/ConfigurationStoresCreateWithIdentity.json
+     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2023-04-01-preview/examples/ConfigurationStoresCreateWithIdentity.json
      */
     /**
      * Sample code: ConfigurationStores_Create_With_Identity.
@@ -61,7 +61,7 @@ public final class ConfigurationStoresCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2023-03-01/examples/ConfigurationStoresCreateWithLocalAuthDisabled.json
+     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2023-04-01-preview/examples/ConfigurationStoresCreateWithLocalAuthDisabled.json
      */
     /**
      * Sample code: ConfigurationStores_Create_With_Local_Auth_Disabled.
@@ -80,6 +80,7 @@ public final class ConfigurationStoresCreateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

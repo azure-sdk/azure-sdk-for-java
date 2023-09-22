@@ -27,12 +27,14 @@ import com.azure.resourcemanager.appconfiguration.fluent.AppConfigurationManagem
 import com.azure.resourcemanager.appconfiguration.implementation.AppConfigurationManagementClientBuilder;
 import com.azure.resourcemanager.appconfiguration.implementation.ConfigurationStoresImpl;
 import com.azure.resourcemanager.appconfiguration.implementation.KeyValuesImpl;
+import com.azure.resourcemanager.appconfiguration.implementation.NetworkSecurityPerimeterConfigurationsImpl;
 import com.azure.resourcemanager.appconfiguration.implementation.OperationsImpl;
 import com.azure.resourcemanager.appconfiguration.implementation.PrivateEndpointConnectionsImpl;
 import com.azure.resourcemanager.appconfiguration.implementation.PrivateLinkResourcesImpl;
 import com.azure.resourcemanager.appconfiguration.implementation.ReplicasImpl;
 import com.azure.resourcemanager.appconfiguration.models.ConfigurationStores;
 import com.azure.resourcemanager.appconfiguration.models.KeyValues;
+import com.azure.resourcemanager.appconfiguration.models.NetworkSecurityPerimeterConfigurations;
 import com.azure.resourcemanager.appconfiguration.models.Operations;
 import com.azure.resourcemanager.appconfiguration.models.PrivateEndpointConnections;
 import com.azure.resourcemanager.appconfiguration.models.PrivateLinkResources;
@@ -57,6 +59,8 @@ public final class AppConfigurationManager {
     private KeyValues keyValues;
 
     private Replicas replicas;
+
+    private NetworkSecurityPerimeterConfigurations networkSecurityPerimeterConfigurations;
 
     private final AppConfigurationManagementClient clientObject;
 
@@ -223,7 +227,7 @@ public final class AppConfigurationManager {
                 .append("-")
                 .append("com.azure.resourcemanager.appconfiguration")
                 .append("/")
-                .append("1.0.0-beta.7");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -354,8 +358,24 @@ public final class AppConfigurationManager {
     }
 
     /**
-     * @return Wrapped service client AppConfigurationManagementClient providing direct access to the underlying
-     *     auto-generated API implementation, based on Azure REST API.
+     * Gets the resource collection API of NetworkSecurityPerimeterConfigurations.
+     *
+     * @return Resource collection API of NetworkSecurityPerimeterConfigurations.
+     */
+    public NetworkSecurityPerimeterConfigurations networkSecurityPerimeterConfigurations() {
+        if (this.networkSecurityPerimeterConfigurations == null) {
+            this.networkSecurityPerimeterConfigurations =
+                new NetworkSecurityPerimeterConfigurationsImpl(
+                    clientObject.getNetworkSecurityPerimeterConfigurations(), this);
+        }
+        return networkSecurityPerimeterConfigurations;
+    }
+
+    /**
+     * Gets wrapped service client AppConfigurationManagementClient providing direct access to the underlying
+     * auto-generated API implementation, based on Azure REST API.
+     *
+     * @return Wrapped service client AppConfigurationManagementClient.
      */
     public AppConfigurationManagementClient serviceClient() {
         return this.clientObject;

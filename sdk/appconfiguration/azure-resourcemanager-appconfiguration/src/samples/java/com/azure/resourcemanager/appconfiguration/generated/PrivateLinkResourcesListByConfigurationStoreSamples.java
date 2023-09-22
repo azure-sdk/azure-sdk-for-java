@@ -7,7 +7,7 @@ package com.azure.resourcemanager.appconfiguration.generated;
 /** Samples for PrivateLinkResources ListByConfigurationStore. */
 public final class PrivateLinkResourcesListByConfigurationStoreSamples {
     /*
-     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2023-03-01/examples/PrivateLinkResourcesListByConfigurationStore.json
+     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2023-04-01-preview/examples/PrivateLinkResourcesListByConfigurationStore.json
      */
     /**
      * Sample code: PrivateLinkResources_ListGroupIds.

@@ -85,4 +85,11 @@ public interface AppConfigurationManagementClient {
      * @return the ReplicasClient object.
      */
     ReplicasClient getReplicas();
+
+    /**
+     * Gets the NetworkSecurityPerimeterConfigurationsClient object to access its operations.
+     *
+     * @return the NetworkSecurityPerimeterConfigurationsClient object.
+     */
+    NetworkSecurityPerimeterConfigurationsClient getNetworkSecurityPerimeterConfigurations();
 }

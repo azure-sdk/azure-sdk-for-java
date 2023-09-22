@@ -6,152 +6,140 @@ package com.azure.resourcemanager.appconfiguration.fluent;
 
 import com.azure.core.annotation.ReturnType;
 import com.azure.core.annotation.ServiceMethod;
+import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.polling.SyncPoller;
-import com.azure.resourcemanager.appconfiguration.fluent.models.KeyValueInner;
+import com.azure.resourcemanager.appconfiguration.fluent.models.NetworkSecurityPerimeterConfigurationInner;
 
-/** An instance of this class provides access to all the operations defined in KeyValuesClient. */
-public interface KeyValuesClient {
+/**
+ * An instance of this class provides access to all the operations defined in
+ * NetworkSecurityPerimeterConfigurationsClient.
+ */
+public interface NetworkSecurityPerimeterConfigurationsClient {
     /**
-     * Gets the properties of the specified key-value. NOTE: This operation is intended for use in ARM Template
-     * deployments. For all other scenarios involving App Configuration key-values the data plane API should be used
-     * instead.
+     * Lists all network security perimeter configurations for a configuration store.
      *
      * @param resourceGroupName The name of the resource group to which the container registry belongs.
      * @param configStoreName The name of the configuration store.
-     * @param keyValueName Identifier of key and label combination. Key and label are joined by $ character. Label is
-     *     optional.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the result of a request to list network security perimeter configurations as paginated response with
+     *     {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<NetworkSecurityPerimeterConfigurationInner> listByConfigurationStore(
+        String resourceGroupName, String configStoreName);
+
+    /**
+     * Lists all network security perimeter configurations for a configuration store.
+     *
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the properties of the specified key-value along with {@link Response}.
+     * @return the result of a request to list network security perimeter configurations as paginated response with
+     *     {@link PagedIterable}.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<KeyValueInner> getWithResponse(
-        String resourceGroupName, String configStoreName, String keyValueName, Context context);
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<NetworkSecurityPerimeterConfigurationInner> listByConfigurationStore(
+        String resourceGroupName, String configStoreName, Context context);
 
     /**
-     * Gets the properties of the specified key-value. NOTE: This operation is intended for use in ARM Template
-     * deployments. For all other scenarios involving App Configuration key-values the data plane API should be used
-     * instead.
+     * Gets the specified network security perimeter configurations associated with the configuration store.
      *
      * @param resourceGroupName The name of the resource group to which the container registry belongs.
      * @param configStoreName The name of the configuration store.
-     * @param keyValueName Identifier of key and label combination. Key and label are joined by $ character. Label is
-     *     optional.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the properties of the specified key-value.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    KeyValueInner get(String resourceGroupName, String configStoreName, String keyValueName);
-
-    /**
-     * Creates a key-value. NOTE: This operation is intended for use in ARM Template deployments. For all other
-     * scenarios involving App Configuration key-values the data plane API should be used instead.
-     *
-     * @param resourceGroupName The name of the resource group to which the container registry belongs.
-     * @param configStoreName The name of the configuration store.
-     * @param keyValueName Identifier of key and label combination. Key and label are joined by $ character. Label is
-     *     optional.
-     * @param keyValueParameters The parameters for creating a key-value.
+     * @param nspConfigurationName Network security perimeter configuration name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the key-value resource along with all resource properties along with {@link Response}.
+     * @return the specified network security perimeter configurations associated with the configuration store along
+     *     with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<KeyValueInner> createOrUpdateWithResponse(
-        String resourceGroupName,
-        String configStoreName,
-        String keyValueName,
-        KeyValueInner keyValueParameters,
-        Context context);
+    Response<NetworkSecurityPerimeterConfigurationInner> getWithResponse(
+        String resourceGroupName, String configStoreName, String nspConfigurationName, Context context);
 
     /**
-     * Creates a key-value. NOTE: This operation is intended for use in ARM Template deployments. For all other
-     * scenarios involving App Configuration key-values the data plane API should be used instead.
+     * Gets the specified network security perimeter configurations associated with the configuration store.
      *
      * @param resourceGroupName The name of the resource group to which the container registry belongs.
      * @param configStoreName The name of the configuration store.
-     * @param keyValueName Identifier of key and label combination. Key and label are joined by $ character. Label is
-     *     optional.
+     * @param nspConfigurationName Network security perimeter configuration name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the key-value resource along with all resource properties.
+     * @return the specified network security perimeter configurations associated with the configuration store.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    KeyValueInner createOrUpdate(String resourceGroupName, String configStoreName, String keyValueName);
+    NetworkSecurityPerimeterConfigurationInner get(
+        String resourceGroupName, String configStoreName, String nspConfigurationName);
 
     /**
-     * Deletes a key-value. NOTE: This operation is intended for use in ARM Template deployments. For all other
-     * scenarios involving App Configuration key-values the data plane API should be used instead.
+     * Reconcile network security perimeter configuration for the configuration store.
      *
      * @param resourceGroupName The name of the resource group to which the container registry belongs.
      * @param configStoreName The name of the configuration store.
-     * @param keyValueName Identifier of key and label combination. Key and label are joined by $ character. Label is
-     *     optional.
+     * @param nspConfigurationName Network security perimeter configuration name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the {@link SyncPoller} for polling of network security perimeter configuration for a configuration store.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginDelete(
-        String resourceGroupName, String configStoreName, String keyValueName);
+    SyncPoller<PollResult<NetworkSecurityPerimeterConfigurationInner>, NetworkSecurityPerimeterConfigurationInner>
+        beginReconcile(String resourceGroupName, String configStoreName, String nspConfigurationName);
 
     /**
-     * Deletes a key-value. NOTE: This operation is intended for use in ARM Template deployments. For all other
-     * scenarios involving App Configuration key-values the data plane API should be used instead.
+     * Reconcile network security perimeter configuration for the configuration store.
      *
      * @param resourceGroupName The name of the resource group to which the container registry belongs.
      * @param configStoreName The name of the configuration store.
-     * @param keyValueName Identifier of key and label combination. Key and label are joined by $ character. Label is
-     *     optional.
+     * @param nspConfigurationName Network security perimeter configuration name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the {@link SyncPoller} for polling of network security perimeter configuration for a configuration store.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginDelete(
-        String resourceGroupName, String configStoreName, String keyValueName, Context context);
+    SyncPoller<PollResult<NetworkSecurityPerimeterConfigurationInner>, NetworkSecurityPerimeterConfigurationInner>
+        beginReconcile(String resourceGroupName, String configStoreName, String nspConfigurationName, Context context);
 
     /**
-     * Deletes a key-value. NOTE: This operation is intended for use in ARM Template deployments. For all other
-     * scenarios involving App Configuration key-values the data plane API should be used instead.
+     * Reconcile network security perimeter configuration for the configuration store.
      *
      * @param resourceGroupName The name of the resource group to which the container registry belongs.
      * @param configStoreName The name of the configuration store.
-     * @param keyValueName Identifier of key and label combination. Key and label are joined by $ character. Label is
-     *     optional.
+     * @param nspConfigurationName Network security perimeter configuration name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return network security perimeter configuration for a configuration store.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    void delete(String resourceGroupName, String configStoreName, String keyValueName);
+    NetworkSecurityPerimeterConfigurationInner reconcile(
+        String resourceGroupName, String configStoreName, String nspConfigurationName);
 
     /**
-     * Deletes a key-value. NOTE: This operation is intended for use in ARM Template deployments. For all other
-     * scenarios involving App Configuration key-values the data plane API should be used instead.
+     * Reconcile network security perimeter configuration for the configuration store.
      *
      * @param resourceGroupName The name of the resource group to which the container registry belongs.
      * @param configStoreName The name of the configuration store.
-     * @param keyValueName Identifier of key and label combination. Key and label are joined by $ character. Label is
-     *     optional.
+     * @param nspConfigurationName Network security perimeter configuration name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return network security perimeter configuration for a configuration store.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    void delete(String resourceGroupName, String configStoreName, String keyValueName, Context context);
+    NetworkSecurityPerimeterConfigurationInner reconcile(
+        String resourceGroupName, String configStoreName, String nspConfigurationName, Context context);
 }
