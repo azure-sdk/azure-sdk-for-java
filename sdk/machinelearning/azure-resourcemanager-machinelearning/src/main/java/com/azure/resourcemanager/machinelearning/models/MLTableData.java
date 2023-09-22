@@ -55,6 +55,27 @@ public final class MLTableData extends DataVersionBaseProperties {
 
     /** {@inheritDoc} */
     @Override
+    public MLTableData withIntellectualProperty(IntellectualProperty intellectualProperty) {
+        super.withIntellectualProperty(intellectualProperty);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public MLTableData withStage(String stage) {
+        super.withStage(stage);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public MLTableData withAutoDeleteSetting(AutoDeleteSetting autoDeleteSetting) {
+        super.withAutoDeleteSetting(autoDeleteSetting);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public MLTableData withIsAnonymous(Boolean isAnonymous) {
         super.withIsAnonymous(isAnonymous);
         return this;

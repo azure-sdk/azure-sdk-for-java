@@ -13,20 +13,42 @@ import java.util.List;
 @Fluent
 public final class WorkspaceListResult {
     /*
+     * The link to the next page constructed using the continuationToken.  If null, there are no additional pages.
+     */
+    @JsonProperty(value = "nextLink")
+    private String nextLink;
+
+    /*
      * The list of machine learning workspaces. Since this list may be incomplete, the nextLink field should be used to
      * request the next list of machine learning workspaces.
      */
     @JsonProperty(value = "value")
     private List<WorkspaceInner> value;
 
-    /*
-     * The URI that can be used to request the next list of machine learning workspaces.
-     */
-    @JsonProperty(value = "nextLink")
-    private String nextLink;
-
     /** Creates an instance of WorkspaceListResult class. */
     public WorkspaceListResult() {
+    }
+
+    /**
+     * Get the nextLink property: The link to the next page constructed using the continuationToken. If null, there are
+     * no additional pages.
+     *
+     * @return the nextLink value.
+     */
+    public String nextLink() {
+        return this.nextLink;
+    }
+
+    /**
+     * Set the nextLink property: The link to the next page constructed using the continuationToken. If null, there are
+     * no additional pages.
+     *
+     * @param nextLink the nextLink value to set.
+     * @return the WorkspaceListResult object itself.
+     */
+    public WorkspaceListResult withNextLink(String nextLink) {
+        this.nextLink = nextLink;
+        return this;
     }
 
     /**
@@ -48,26 +70,6 @@ public final class WorkspaceListResult {
      */
     public WorkspaceListResult withValue(List<WorkspaceInner> value) {
         this.value = value;
-        return this;
-    }
-
-    /**
-     * Get the nextLink property: The URI that can be used to request the next list of machine learning workspaces.
-     *
-     * @return the nextLink value.
-     */
-    public String nextLink() {
-        return this.nextLink;
-    }
-
-    /**
-     * Set the nextLink property: The URI that can be used to request the next list of machine learning workspaces.
-     *
-     * @param nextLink the nextLink value to set.
-     * @return the WorkspaceListResult object itself.
-     */
-    public WorkspaceListResult withNextLink(String nextLink) {
-        this.nextLink = nextLink;
         return this;
     }
 

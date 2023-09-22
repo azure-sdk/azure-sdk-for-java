@@ -45,6 +45,18 @@ public final class AzureBlobDatastore extends DatastoreProperties {
     @JsonProperty(value = "serviceDataAccessAuthIdentity")
     private ServiceDataAccessAuthIdentity serviceDataAccessAuthIdentity;
 
+    /*
+     * Azure Resource Group name
+     */
+    @JsonProperty(value = "resourceGroup")
+    private String resourceGroup;
+
+    /*
+     * Azure Subscription Id
+     */
+    @JsonProperty(value = "subscriptionId")
+    private String subscriptionId;
+
     /** Creates an instance of AzureBlobDatastore class. */
     public AzureBlobDatastore() {
     }
@@ -152,10 +164,57 @@ public final class AzureBlobDatastore extends DatastoreProperties {
         return this;
     }
 
+    /**
+     * Get the resourceGroup property: Azure Resource Group name.
+     *
+     * @return the resourceGroup value.
+     */
+    public String resourceGroup() {
+        return this.resourceGroup;
+    }
+
+    /**
+     * Set the resourceGroup property: Azure Resource Group name.
+     *
+     * @param resourceGroup the resourceGroup value to set.
+     * @return the AzureBlobDatastore object itself.
+     */
+    public AzureBlobDatastore withResourceGroup(String resourceGroup) {
+        this.resourceGroup = resourceGroup;
+        return this;
+    }
+
+    /**
+     * Get the subscriptionId property: Azure Subscription Id.
+     *
+     * @return the subscriptionId value.
+     */
+    public String subscriptionId() {
+        return this.subscriptionId;
+    }
+
+    /**
+     * Set the subscriptionId property: Azure Subscription Id.
+     *
+     * @param subscriptionId the subscriptionId value to set.
+     * @return the AzureBlobDatastore object itself.
+     */
+    public AzureBlobDatastore withSubscriptionId(String subscriptionId) {
+        this.subscriptionId = subscriptionId;
+        return this;
+    }
+
     /** {@inheritDoc} */
     @Override
     public AzureBlobDatastore withCredentials(DatastoreCredentials credentials) {
         super.withCredentials(credentials);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public AzureBlobDatastore withIntellectualProperty(IntellectualProperty intellectualProperty) {
+        super.withIntellectualProperty(intellectualProperty);
         return this;
     }
 
