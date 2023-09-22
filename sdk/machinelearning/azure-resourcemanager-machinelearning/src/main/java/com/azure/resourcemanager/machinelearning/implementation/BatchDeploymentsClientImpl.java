@@ -46,31 +46,29 @@ public final class BatchDeploymentsClientImpl implements BatchDeploymentsClient 
     private final BatchDeploymentsService service;
 
     /** The service client containing this operation class. */
-    private final AzureMachineLearningWorkspacesImpl client;
+    private final AzureMachineLearningServicesImpl client;
 
     /**
      * Initializes an instance of BatchDeploymentsClientImpl.
      *
      * @param client the instance of the service client containing this operation class.
      */
-    BatchDeploymentsClientImpl(AzureMachineLearningWorkspacesImpl client) {
+    BatchDeploymentsClientImpl(AzureMachineLearningServicesImpl client) {
         this.service =
             RestProxy.create(BatchDeploymentsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for AzureMachineLearningWorkspacesBatchDeployments to be used by the
-     * proxy service to perform REST calls.
+     * The interface defining all the services for AzureMachineLearningServicesBatchDeployments to be used by the proxy
+     * service to perform REST calls.
      */
     @Host("{$host}")
     @ServiceInterface(name = "AzureMachineLearning")
     public interface BatchDeploymentsService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/batchEndpoints/{endpointName}"
-                + "/deployments")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/batchEndpoints/{endpointName}/deployments")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<BatchDeploymentTrackedResourceArmPaginatedResult>> list(
@@ -88,9 +86,7 @@ public final class BatchDeploymentsClientImpl implements BatchDeploymentsClient 
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/batchEndpoints/{endpointName}"
-                + "/deployments/{deploymentName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/batchEndpoints/{endpointName}/deployments/{deploymentName}")
         @ExpectedResponses({200, 202, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(
@@ -106,9 +102,7 @@ public final class BatchDeploymentsClientImpl implements BatchDeploymentsClient 
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/batchEndpoints/{endpointName}"
-                + "/deployments/{deploymentName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/batchEndpoints/{endpointName}/deployments/{deploymentName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<BatchDeploymentInner>> get(
@@ -124,9 +118,7 @@ public final class BatchDeploymentsClientImpl implements BatchDeploymentsClient 
 
         @Headers({"Content-Type: application/json"})
         @Patch(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/batchEndpoints/{endpointName}"
-                + "/deployments/{deploymentName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/batchEndpoints/{endpointName}/deployments/{deploymentName}")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> update(
@@ -143,9 +135,7 @@ public final class BatchDeploymentsClientImpl implements BatchDeploymentsClient 
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/batchEndpoints/{endpointName}"
-                + "/deployments/{deploymentName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/batchEndpoints/{endpointName}/deployments/{deploymentName}")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
