@@ -28,12 +28,14 @@ import com.azure.resourcemanager.chaos.implementation.CapabilitiesImpl;
 import com.azure.resourcemanager.chaos.implementation.CapabilityTypesImpl;
 import com.azure.resourcemanager.chaos.implementation.ChaosManagementClientBuilder;
 import com.azure.resourcemanager.chaos.implementation.ExperimentsImpl;
+import com.azure.resourcemanager.chaos.implementation.OperationStatusesImpl;
 import com.azure.resourcemanager.chaos.implementation.OperationsImpl;
 import com.azure.resourcemanager.chaos.implementation.TargetTypesImpl;
 import com.azure.resourcemanager.chaos.implementation.TargetsImpl;
 import com.azure.resourcemanager.chaos.models.Capabilities;
 import com.azure.resourcemanager.chaos.models.CapabilityTypes;
 import com.azure.resourcemanager.chaos.models.Experiments;
+import com.azure.resourcemanager.chaos.models.OperationStatuses;
 import com.azure.resourcemanager.chaos.models.Operations;
 import com.azure.resourcemanager.chaos.models.TargetTypes;
 import com.azure.resourcemanager.chaos.models.Targets;
@@ -57,6 +59,8 @@ public final class ChaosManager {
     private TargetTypes targetTypes;
 
     private Targets targets;
+
+    private OperationStatuses operationStatuses;
 
     private final ChaosManagementClient clientObject;
 
@@ -353,8 +357,22 @@ public final class ChaosManager {
     }
 
     /**
-     * @return Wrapped service client ChaosManagementClient providing direct access to the underlying auto-generated API
-     *     implementation, based on Azure REST API.
+     * Gets the resource collection API of OperationStatuses.
+     *
+     * @return Resource collection API of OperationStatuses.
+     */
+    public OperationStatuses operationStatuses() {
+        if (this.operationStatuses == null) {
+            this.operationStatuses = new OperationStatusesImpl(clientObject.getOperationStatuses(), this);
+        }
+        return operationStatuses;
+    }
+
+    /**
+     * Gets wrapped service client ChaosManagementClient providing direct access to the underlying auto-generated API
+     * implementation, based on Azure REST API.
+     *
+     * @return Wrapped service client ChaosManagementClient.
      */
     public ChaosManagementClient serviceClient() {
         return this.clientObject;
