@@ -28,7 +28,7 @@ public final class TargetRegion {
      * (Standard_LRS).
      */
     @JsonProperty(value = "storageAccountType")
-    private SharedImageStorageAccountType storageAccountType;
+    private SharedImageStorageAccountTypeBroken storageAccountType;
 
     /** Creates an instance of TargetRegion class. */
     public TargetRegion() {
@@ -82,7 +82,7 @@ public final class TargetRegion {
      *
      * @return the storageAccountType value.
      */
-    public SharedImageStorageAccountType storageAccountType() {
+    public SharedImageStorageAccountTypeBroken storageAccountType() {
         return this.storageAccountType;
     }
 
@@ -93,7 +93,7 @@ public final class TargetRegion {
      * @param storageAccountType the storageAccountType value to set.
      * @return the TargetRegion object itself.
      */
-    public TargetRegion withStorageAccountType(SharedImageStorageAccountType storageAccountType) {
+    public TargetRegion withStorageAccountType(SharedImageStorageAccountTypeBroken storageAccountType) {
         this.storageAccountType = storageAccountType;
         return this;
     }

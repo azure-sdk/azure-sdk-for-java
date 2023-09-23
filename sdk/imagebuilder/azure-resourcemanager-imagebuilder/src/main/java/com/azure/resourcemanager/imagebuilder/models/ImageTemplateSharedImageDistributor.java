@@ -43,7 +43,7 @@ public final class ImageTemplateSharedImageDistributor extends ImageTemplateDist
      * targetRegions instead.
      */
     @JsonProperty(value = "storageAccountType")
-    private SharedImageStorageAccountType storageAccountType;
+    private SharedImageStorageAccountTypeBroken storageAccountType;
 
     /*
      * The target regions where the distributed Image Version is going to be replicated to. This object supersedes
@@ -135,7 +135,7 @@ public final class ImageTemplateSharedImageDistributor extends ImageTemplateDist
      *
      * @return the storageAccountType value.
      */
-    public SharedImageStorageAccountType storageAccountType() {
+    public SharedImageStorageAccountTypeBroken storageAccountType() {
         return this.storageAccountType;
     }
 
@@ -148,7 +148,7 @@ public final class ImageTemplateSharedImageDistributor extends ImageTemplateDist
      * @return the ImageTemplateSharedImageDistributor object itself.
      */
     public ImageTemplateSharedImageDistributor withStorageAccountType(
-        SharedImageStorageAccountType storageAccountType) {
+        SharedImageStorageAccountTypeBroken storageAccountType) {
         this.storageAccountType = storageAccountType;
         return this;
     }

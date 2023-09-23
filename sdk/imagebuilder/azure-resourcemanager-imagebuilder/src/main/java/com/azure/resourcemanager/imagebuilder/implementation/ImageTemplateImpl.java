@@ -13,6 +13,7 @@ import com.azure.resourcemanager.imagebuilder.models.ImageTemplateCustomizer;
 import com.azure.resourcemanager.imagebuilder.models.ImageTemplateDistributor;
 import com.azure.resourcemanager.imagebuilder.models.ImageTemplateIdentity;
 import com.azure.resourcemanager.imagebuilder.models.ImageTemplateLastRunStatus;
+import com.azure.resourcemanager.imagebuilder.models.ImageTemplatePropertiesErrorHandling;
 import com.azure.resourcemanager.imagebuilder.models.ImageTemplatePropertiesOptimize;
 import com.azure.resourcemanager.imagebuilder.models.ImageTemplatePropertiesValidate;
 import com.azure.resourcemanager.imagebuilder.models.ImageTemplateSource;
@@ -90,6 +91,10 @@ public final class ImageTemplateImpl implements ImageTemplate, ImageTemplate.Def
         } else {
             return Collections.emptyList();
         }
+    }
+
+    public ImageTemplatePropertiesErrorHandling errorHandling() {
+        return this.innerModel().errorHandling();
     }
 
     public ProvisioningState provisioningState() {
@@ -294,6 +299,11 @@ public final class ImageTemplateImpl implements ImageTemplate, ImageTemplate.Def
 
     public ImageTemplateImpl withDistribute(List<ImageTemplateDistributor> distribute) {
         this.innerModel().withDistribute(distribute);
+        return this;
+    }
+
+    public ImageTemplateImpl withErrorHandling(ImageTemplatePropertiesErrorHandling errorHandling) {
+        this.innerModel().withErrorHandling(errorHandling);
         return this;
     }
 
