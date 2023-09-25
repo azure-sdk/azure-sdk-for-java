@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.nginx.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Deployments ListByResourceGroup. */
 public final class DeploymentsListByResourceGroupSamples {
     /*
@@ -17,6 +15,6 @@ public final class DeploymentsListByResourceGroupSamples {
      * @param manager Entry point to NginxManager.
      */
     public static void deploymentsListByResourceGroup(com.azure.resourcemanager.nginx.NginxManager manager) {
-        manager.deployments().listByResourceGroup("myResourceGroup", Context.NONE);
+        manager.deployments().listByResourceGroup("myResourceGroup", com.azure.core.util.Context.NONE);
     }
 }
