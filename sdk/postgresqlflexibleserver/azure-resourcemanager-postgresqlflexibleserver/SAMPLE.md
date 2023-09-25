@@ -88,6 +88,12 @@
 
 - [List](#servercapabilities_list)
 
+## ServerThreatProtectionSettings
+
+- [CreateOrUpdate](#serverthreatprotectionsettings_createorupdate)
+- [Get](#serverthreatprotectionsettings_get)
+- [ListByServer](#serverthreatprotectionsettings_listbyserver)
+
 ## Servers
 
 - [Create](#servers_create)
@@ -1014,6 +1020,111 @@ public final class ServerCapabilitiesListSamples {
 }
 ```
 
+### ServerThreatProtectionSettings_CreateOrUpdate
+
+```java
+import com.azure.resourcemanager.postgresqlflexibleserver.models.ServerThreatProtectionSettingsModel;
+import com.azure.resourcemanager.postgresqlflexibleserver.models.ThreatProtectionName;
+import com.azure.resourcemanager.postgresqlflexibleserver.models.ThreatProtectionState;
+
+/** Samples for ServerThreatProtectionSettings CreateOrUpdate. */
+public final class ServerThreatProtectionSettingsCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-01-preview/examples/ServerThreatProtectionSettingsCreateMax.json
+     */
+    /**
+     * Sample code: Update a database's Threat Protection settings with all parameters.
+     *
+     * @param manager Entry point to PostgreSqlManager.
+     */
+    public static void updateADatabaseSThreatProtectionSettingsWithAllParameters(
+        com.azure.resourcemanager.postgresqlflexibleserver.PostgreSqlManager manager) {
+        ServerThreatProtectionSettingsModel resource =
+            manager
+                .serverThreatProtectionSettings()
+                .getWithResponse(
+                    "threatprotection-4799",
+                    "threatprotection-6440",
+                    ThreatProtectionName.DEFAULT,
+                    com.azure.core.util.Context.NONE)
+                .getValue();
+        resource.update().withState(ThreatProtectionState.ENABLED).apply();
+    }
+
+    /*
+     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-01-preview/examples/ServerThreatProtectionSettingsCreateMin.json
+     */
+    /**
+     * Sample code: Update a server's Threat Protection settings with minimal parameters.
+     *
+     * @param manager Entry point to PostgreSqlManager.
+     */
+    public static void updateAServerSThreatProtectionSettingsWithMinimalParameters(
+        com.azure.resourcemanager.postgresqlflexibleserver.PostgreSqlManager manager) {
+        ServerThreatProtectionSettingsModel resource =
+            manager
+                .serverThreatProtectionSettings()
+                .getWithResponse(
+                    "threatprotection-4799",
+                    "threatprotection-6440",
+                    ThreatProtectionName.DEFAULT,
+                    com.azure.core.util.Context.NONE)
+                .getValue();
+        resource.update().withState(ThreatProtectionState.DISABLED).apply();
+    }
+}
+```
+
+### ServerThreatProtectionSettings_Get
+
+```java
+import com.azure.resourcemanager.postgresqlflexibleserver.models.ThreatProtectionName;
+
+/** Samples for ServerThreatProtectionSettings Get. */
+public final class ServerThreatProtectionSettingsGetSamples {
+    /*
+     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-01-preview/examples/ServerThreatProtectionSettingsGet.json
+     */
+    /**
+     * Sample code: Get a server's Threat Protection settings.
+     *
+     * @param manager Entry point to PostgreSqlManager.
+     */
+    public static void getAServerSThreatProtectionSettings(
+        com.azure.resourcemanager.postgresqlflexibleserver.PostgreSqlManager manager) {
+        manager
+            .serverThreatProtectionSettings()
+            .getWithResponse(
+                "threatprotection-6852",
+                "threatprotection-2080",
+                ThreatProtectionName.DEFAULT,
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ServerThreatProtectionSettings_ListByServer
+
+```java
+/** Samples for ServerThreatProtectionSettings ListByServer. */
+public final class ServerThreatProtectionSettingsListByServerSamples {
+    /*
+     * x-ms-original-file: specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-01-preview/examples/ServerThreatProtectionSettingsListByServer.json
+     */
+    /**
+     * Sample code: Get a server's Advanced Threat Protection settings.
+     *
+     * @param manager Entry point to PostgreSqlManager.
+     */
+    public static void getAServerSAdvancedThreatProtectionSettings(
+        com.azure.resourcemanager.postgresqlflexibleserver.PostgreSqlManager manager) {
+        manager
+            .serverThreatProtectionSettings()
+            .listByServer("threatprotection-6852", "threatprotection-2080", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
 ### Servers_Create
 
 ```java
@@ -1294,6 +1405,7 @@ public final class ServersCreateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -1650,6 +1762,7 @@ public final class ServersUpdateSamples {
             .apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

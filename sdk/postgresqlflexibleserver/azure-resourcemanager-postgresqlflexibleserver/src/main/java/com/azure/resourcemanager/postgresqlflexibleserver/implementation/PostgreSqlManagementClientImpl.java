@@ -40,6 +40,7 @@ import com.azure.resourcemanager.postgresqlflexibleserver.fluent.PostgreSqlManag
 import com.azure.resourcemanager.postgresqlflexibleserver.fluent.ReplicasClient;
 import com.azure.resourcemanager.postgresqlflexibleserver.fluent.ResourceProvidersClient;
 import com.azure.resourcemanager.postgresqlflexibleserver.fluent.ServerCapabilitiesClient;
+import com.azure.resourcemanager.postgresqlflexibleserver.fluent.ServerThreatProtectionSettingsClient;
 import com.azure.resourcemanager.postgresqlflexibleserver.fluent.ServersClient;
 import com.azure.resourcemanager.postgresqlflexibleserver.fluent.VirtualNetworkSubnetUsagesClient;
 import java.io.IOException;
@@ -354,6 +355,18 @@ public final class PostgreSqlManagementClientImpl implements PostgreSqlManagemen
         return this.ltrBackupOperations;
     }
 
+    /** The ServerThreatProtectionSettingsClient object to access its operations. */
+    private final ServerThreatProtectionSettingsClient serverThreatProtectionSettings;
+
+    /**
+     * Gets the ServerThreatProtectionSettingsClient object to access its operations.
+     *
+     * @return the ServerThreatProtectionSettingsClient object.
+     */
+    public ServerThreatProtectionSettingsClient getServerThreatProtectionSettings() {
+        return this.serverThreatProtectionSettings;
+    }
+
     /**
      * Initializes an instance of PostgreSqlManagementClient client.
      *
@@ -396,6 +409,7 @@ public final class PostgreSqlManagementClientImpl implements PostgreSqlManagemen
         this.virtualNetworkSubnetUsages = new VirtualNetworkSubnetUsagesClientImpl(this);
         this.flexibleServers = new FlexibleServersClientImpl(this);
         this.ltrBackupOperations = new LtrBackupOperationsClientImpl(this);
+        this.serverThreatProtectionSettings = new ServerThreatProtectionSettingsClientImpl(this);
     }
 
     /**

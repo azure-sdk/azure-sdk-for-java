@@ -42,6 +42,7 @@ import com.azure.resourcemanager.postgresqlflexibleserver.implementation.Postgre
 import com.azure.resourcemanager.postgresqlflexibleserver.implementation.ReplicasImpl;
 import com.azure.resourcemanager.postgresqlflexibleserver.implementation.ResourceProvidersImpl;
 import com.azure.resourcemanager.postgresqlflexibleserver.implementation.ServerCapabilitiesImpl;
+import com.azure.resourcemanager.postgresqlflexibleserver.implementation.ServerThreatProtectionSettingsImpl;
 import com.azure.resourcemanager.postgresqlflexibleserver.implementation.ServersImpl;
 import com.azure.resourcemanager.postgresqlflexibleserver.implementation.VirtualNetworkSubnetUsagesImpl;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.Administrators;
@@ -61,6 +62,7 @@ import com.azure.resourcemanager.postgresqlflexibleserver.models.Operations;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.Replicas;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.ResourceProviders;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.ServerCapabilities;
+import com.azure.resourcemanager.postgresqlflexibleserver.models.ServerThreatProtectionSettings;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.Servers;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.VirtualNetworkSubnetUsages;
 import java.time.Duration;
@@ -113,6 +115,8 @@ public final class PostgreSqlManager {
     private FlexibleServers flexibleServers;
 
     private LtrBackupOperations ltrBackupOperations;
+
+    private ServerThreatProtectionSettings serverThreatProtectionSettings;
 
     private final PostgreSqlManagementClient clientObject;
 
@@ -279,7 +283,7 @@ public final class PostgreSqlManager {
                 .append("-")
                 .append("com.azure.resourcemanager.postgresqlflexibleserver")
                 .append("/")
-                .append("1.0.0-beta.7");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -570,8 +574,24 @@ public final class PostgreSqlManager {
     }
 
     /**
-     * @return Wrapped service client PostgreSqlManagementClient providing direct access to the underlying
-     *     auto-generated API implementation, based on Azure REST API.
+     * Gets the resource collection API of ServerThreatProtectionSettings. It manages
+     * ServerThreatProtectionSettingsModel.
+     *
+     * @return Resource collection API of ServerThreatProtectionSettings.
+     */
+    public ServerThreatProtectionSettings serverThreatProtectionSettings() {
+        if (this.serverThreatProtectionSettings == null) {
+            this.serverThreatProtectionSettings =
+                new ServerThreatProtectionSettingsImpl(clientObject.getServerThreatProtectionSettings(), this);
+        }
+        return serverThreatProtectionSettings;
+    }
+
+    /**
+     * Gets wrapped service client PostgreSqlManagementClient providing direct access to the underlying auto-generated
+     * API implementation, based on Azure REST API.
+     *
+     * @return Wrapped service client PostgreSqlManagementClient.
      */
     public PostgreSqlManagementClient serviceClient() {
         return this.clientObject;

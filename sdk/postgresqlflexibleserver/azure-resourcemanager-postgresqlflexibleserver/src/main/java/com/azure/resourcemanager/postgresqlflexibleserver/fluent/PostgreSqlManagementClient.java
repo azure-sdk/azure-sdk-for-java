@@ -176,4 +176,11 @@ public interface PostgreSqlManagementClient {
      * @return the LtrBackupOperationsClient object.
      */
     LtrBackupOperationsClient getLtrBackupOperations();
+
+    /**
+     * Gets the ServerThreatProtectionSettingsClient object to access its operations.
+     *
+     * @return the ServerThreatProtectionSettingsClient object.
+     */
+    ServerThreatProtectionSettingsClient getServerThreatProtectionSettings();
 }
