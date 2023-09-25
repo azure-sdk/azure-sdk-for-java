@@ -28,6 +28,12 @@ public final class ProvisioningState extends ExpandableStringEnum<ProvisioningSt
     /** Static value Deleting for ProvisioningState. */
     public static final ProvisioningState DELETING = fromString("Deleting");
 
+    /** Static value Scaling for ProvisioningState. */
+    public static final ProvisioningState SCALING = fromString("Scaling");
+
+    /** Static value ScalingFailed for ProvisioningState. */
+    public static final ProvisioningState SCALING_FAILED = fromString("ScalingFailed");
+
     /**
      * Creates a new instance of ProvisioningState value.
      *

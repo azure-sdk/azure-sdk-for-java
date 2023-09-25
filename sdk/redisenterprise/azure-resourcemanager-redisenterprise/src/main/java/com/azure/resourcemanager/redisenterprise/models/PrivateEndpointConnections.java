@@ -75,14 +75,11 @@ public interface PrivateEndpointConnections {
      * @param clusterName The name of the RedisEnterprise cluster.
      * @param privateEndpointConnectionName The name of the private endpoint connection associated with the Azure
      *     resource.
-     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
      */
-    Response<Void> deleteWithResponse(
-        String resourceGroupName, String clusterName, String privateEndpointConnectionName, Context context);
+    void delete(String resourceGroupName, String clusterName, String privateEndpointConnectionName);
 
     /**
      * Deletes the specified private endpoint connection associated with the RedisEnterprise cluster.
@@ -91,11 +88,12 @@ public interface PrivateEndpointConnections {
      * @param clusterName The name of the RedisEnterprise cluster.
      * @param privateEndpointConnectionName The name of the private endpoint connection associated with the Azure
      *     resource.
+     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
-    void delete(String resourceGroupName, String clusterName, String privateEndpointConnectionName);
+    void delete(String resourceGroupName, String clusterName, String privateEndpointConnectionName, Context context);
 
     /**
      * Gets the specified private endpoint connection associated with the RedisEnterprise cluster.
@@ -140,9 +138,8 @@ public interface PrivateEndpointConnections {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
      */
-    Response<Void> deleteByIdWithResponse(String id, Context context);
+    void deleteByIdWithResponse(String id, Context context);
 
     /**
      * Begins definition for a new PrivateEndpointConnection resource.
