@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Grant sql control to managed identity. */
 @Fluent
-public class ManagedIdentitySqlControlSettingsModelPropertiesGrantSqlControlToManagedIdentity {
+public final class ManagedIdentitySqlControlSettingsModelPropertiesGrantSqlControlToManagedIdentity {
     /*
      * Desired state
      */

@@ -120,11 +120,13 @@ public interface SensitivityLabel {
     interface Definition
         extends DefinitionStages.Blank, DefinitionStages.WithParentResource, DefinitionStages.WithCreate {
     }
+
     /** The SensitivityLabel definition stages. */
     interface DefinitionStages {
         /** The first stage of the SensitivityLabel definition. */
         interface Blank extends WithParentResource {
         }
+
         /** The stage of the SensitivityLabel definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -146,6 +148,7 @@ public interface SensitivityLabel {
                 String tableName,
                 String columnName);
         }
+
         /**
          * The stage of the SensitivityLabel definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
@@ -171,6 +174,7 @@ public interface SensitivityLabel {
              */
             SensitivityLabel create(Context context);
         }
+
         /** The stage of the SensitivityLabel definition allowing to specify labelName. */
         interface WithLabelName {
             /**
@@ -181,6 +185,7 @@ public interface SensitivityLabel {
              */
             WithCreate withLabelName(String labelName);
         }
+
         /** The stage of the SensitivityLabel definition allowing to specify labelId. */
         interface WithLabelId {
             /**
@@ -191,6 +196,7 @@ public interface SensitivityLabel {
              */
             WithCreate withLabelId(String labelId);
         }
+
         /** The stage of the SensitivityLabel definition allowing to specify informationType. */
         interface WithInformationType {
             /**
@@ -201,6 +207,7 @@ public interface SensitivityLabel {
              */
             WithCreate withInformationType(String informationType);
         }
+
         /** The stage of the SensitivityLabel definition allowing to specify informationTypeId. */
         interface WithInformationTypeId {
             /**
@@ -211,6 +218,7 @@ public interface SensitivityLabel {
              */
             WithCreate withInformationTypeId(String informationTypeId);
         }
+
         /** The stage of the SensitivityLabel definition allowing to specify rank. */
         interface WithRank {
             /**
@@ -222,6 +230,7 @@ public interface SensitivityLabel {
             WithCreate withRank(SensitivityLabelRank rank);
         }
     }
+
     /**
      * Begins update for the SensitivityLabel resource.
      *
@@ -251,6 +260,7 @@ public interface SensitivityLabel {
          */
         SensitivityLabel apply(Context context);
     }
+
     /** The SensitivityLabel update stages. */
     interface UpdateStages {
         /** The stage of the SensitivityLabel update allowing to specify labelName. */
@@ -263,6 +273,7 @@ public interface SensitivityLabel {
              */
             Update withLabelName(String labelName);
         }
+
         /** The stage of the SensitivityLabel update allowing to specify labelId. */
         interface WithLabelId {
             /**
@@ -273,6 +284,7 @@ public interface SensitivityLabel {
              */
             Update withLabelId(String labelId);
         }
+
         /** The stage of the SensitivityLabel update allowing to specify informationType. */
         interface WithInformationType {
             /**
@@ -283,6 +295,7 @@ public interface SensitivityLabel {
              */
             Update withInformationType(String informationType);
         }
+
         /** The stage of the SensitivityLabel update allowing to specify informationTypeId. */
         interface WithInformationTypeId {
             /**
@@ -293,6 +306,7 @@ public interface SensitivityLabel {
              */
             Update withInformationTypeId(String informationTypeId);
         }
+
         /** The stage of the SensitivityLabel update allowing to specify rank. */
         interface WithRank {
             /**
@@ -304,6 +318,7 @@ public interface SensitivityLabel {
             Update withRank(SensitivityLabelRank rank);
         }
     }
+
     /**
      * Enables sensitivity recommendations on a given column (recommendations are enabled by default on all columns).
      *

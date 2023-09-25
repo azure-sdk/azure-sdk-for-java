@@ -231,6 +231,20 @@ public final class BigDataPoolResourceInfoInner extends Resource {
     }
 
     /**
+     * Set the cacheSize property: The cache size.
+     *
+     * @param cacheSize the cacheSize value to set.
+     * @return the BigDataPoolResourceInfoInner object itself.
+     */
+    public BigDataPoolResourceInfoInner withCacheSize(Integer cacheSize) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new BigDataPoolResourceProperties();
+        }
+        this.innerProperties().withCacheSize(cacheSize);
+        return this;
+    }
+
+    /**
      * Get the dynamicExecutorAllocation property: Dynamic Executor Allocation.
      *
      * @return the dynamicExecutorAllocation value.

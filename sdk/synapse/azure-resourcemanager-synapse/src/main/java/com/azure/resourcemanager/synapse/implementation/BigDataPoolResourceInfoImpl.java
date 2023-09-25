@@ -303,6 +303,11 @@ public final class BigDataPoolResourceInfoImpl
         return this;
     }
 
+    public BigDataPoolResourceInfoImpl withCacheSize(Integer cacheSize) {
+        this.innerModel().withCacheSize(cacheSize);
+        return this;
+    }
+
     public BigDataPoolResourceInfoImpl withDynamicExecutorAllocation(
         DynamicExecutorAllocation dynamicExecutorAllocation) {
         this.innerModel().withDynamicExecutorAllocation(dynamicExecutorAllocation);
