@@ -38,19 +38,19 @@ public final class ComputeStartStopSchedule {
      * [Required] The schedule trigger type.
      */
     @JsonProperty(value = "triggerType")
-    private TriggerType triggerType;
+    private ComputeTriggerType triggerType;
 
     /*
      * Required if triggerType is Recurrence.
      */
     @JsonProperty(value = "recurrence")
-    private RecurrenceTrigger recurrence;
+    private Recurrence recurrence;
 
     /*
      * Required if triggerType is Cron.
      */
     @JsonProperty(value = "cron")
-    private CronTrigger cron;
+    private Cron cron;
 
     /*
      * [Deprecated] Not used any more.
@@ -125,7 +125,7 @@ public final class ComputeStartStopSchedule {
      *
      * @return the triggerType value.
      */
-    public TriggerType triggerType() {
+    public ComputeTriggerType triggerType() {
         return this.triggerType;
     }
 
@@ -135,7 +135,7 @@ public final class ComputeStartStopSchedule {
      * @param triggerType the triggerType value to set.
      * @return the ComputeStartStopSchedule object itself.
      */
-    public ComputeStartStopSchedule withTriggerType(TriggerType triggerType) {
+    public ComputeStartStopSchedule withTriggerType(ComputeTriggerType triggerType) {
         this.triggerType = triggerType;
         return this;
     }
@@ -145,7 +145,7 @@ public final class ComputeStartStopSchedule {
      *
      * @return the recurrence value.
      */
-    public RecurrenceTrigger recurrence() {
+    public Recurrence recurrence() {
         return this.recurrence;
     }
 
@@ -155,7 +155,7 @@ public final class ComputeStartStopSchedule {
      * @param recurrence the recurrence value to set.
      * @return the ComputeStartStopSchedule object itself.
      */
-    public ComputeStartStopSchedule withRecurrence(RecurrenceTrigger recurrence) {
+    public ComputeStartStopSchedule withRecurrence(Recurrence recurrence) {
         this.recurrence = recurrence;
         return this;
     }
@@ -165,7 +165,7 @@ public final class ComputeStartStopSchedule {
      *
      * @return the cron value.
      */
-    public CronTrigger cron() {
+    public Cron cron() {
         return this.cron;
     }
 
@@ -175,7 +175,7 @@ public final class ComputeStartStopSchedule {
      * @param cron the cron value to set.
      * @return the ComputeStartStopSchedule object itself.
      */
-    public ComputeStartStopSchedule withCron(CronTrigger cron) {
+    public ComputeStartStopSchedule withCron(Cron cron) {
         this.cron = cron;
         return this;
     }

@@ -8,6 +8,7 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
+import java.time.OffsetDateTime;
 
 /** The ManagedIdentityAuthTypeWorkspaceConnectionProperties model. */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "authType")
@@ -54,22 +55,29 @@ public final class ManagedIdentityAuthTypeWorkspaceConnectionProperties extends 
 
     /** {@inheritDoc} */
     @Override
+    public ManagedIdentityAuthTypeWorkspaceConnectionProperties withExpiryTime(OffsetDateTime expiryTime) {
+        super.withExpiryTime(expiryTime);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public ManagedIdentityAuthTypeWorkspaceConnectionProperties withIsSharedToAll(Boolean isSharedToAll) {
+        super.withIsSharedToAll(isSharedToAll);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public ManagedIdentityAuthTypeWorkspaceConnectionProperties withMetadata(Object metadata) {
+        super.withMetadata(metadata);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public ManagedIdentityAuthTypeWorkspaceConnectionProperties withTarget(String target) {
         super.withTarget(target);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public ManagedIdentityAuthTypeWorkspaceConnectionProperties withValue(String value) {
-        super.withValue(value);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public ManagedIdentityAuthTypeWorkspaceConnectionProperties withValueFormat(ValueFormat valueFormat) {
-        super.withValueFormat(valueFormat);
         return this;
     }
 
