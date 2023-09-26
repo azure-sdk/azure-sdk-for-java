@@ -38,6 +38,31 @@ public final class ConfigurationsImpl implements Configurations {
         return Utils.mapPage(inner, inner1 -> new ConfigDataImpl(inner1, this.manager()));
     }
 
+    public Response<ConfigData> createInSubscriptionDurationWithResponse(
+        ConfigurationName configurationName, ConfigDataInner configContract, Context context) {
+        Response<ConfigDataInner> inner =
+            this.serviceClient().createInSubscriptionDurationWithResponse(configurationName, configContract, context);
+        if (inner != null) {
+            return new SimpleResponse<>(
+                inner.getRequest(),
+                inner.getStatusCode(),
+                inner.getHeaders(),
+                new ConfigDataImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public ConfigData createInSubscriptionDuration(
+        ConfigurationName configurationName, ConfigDataInner configContract) {
+        ConfigDataInner inner = this.serviceClient().createInSubscriptionDuration(configurationName, configContract);
+        if (inner != null) {
+            return new ConfigDataImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
     public Response<ConfigData> createInSubscriptionWithResponse(
         ConfigurationName configurationName, ConfigDataInner configContract, Context context) {
         Response<ConfigDataInner> inner =
@@ -70,6 +95,34 @@ public final class ConfigurationsImpl implements Configurations {
     public PagedIterable<ConfigData> listByResourceGroup(String resourceGroup, Context context) {
         PagedIterable<ConfigDataInner> inner = this.serviceClient().listByResourceGroup(resourceGroup, context);
         return Utils.mapPage(inner, inner1 -> new ConfigDataImpl(inner1, this.manager()));
+    }
+
+    public Response<ConfigData> createInResourceGroupWithResponse(
+        ConfigurationName configurationName, String resourceGroup, ConfigDataInner configContract, Context context) {
+        Response<ConfigDataInner> inner =
+            this
+                .serviceClient()
+                .createInResourceGroupWithResponse(configurationName, resourceGroup, configContract, context);
+        if (inner != null) {
+            return new SimpleResponse<>(
+                inner.getRequest(),
+                inner.getStatusCode(),
+                inner.getHeaders(),
+                new ConfigDataImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public ConfigData createInResourceGroup(
+        ConfigurationName configurationName, String resourceGroup, ConfigDataInner configContract) {
+        ConfigDataInner inner =
+            this.serviceClient().createInResourceGroup(configurationName, resourceGroup, configContract);
+        if (inner != null) {
+            return new ConfigDataImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     private ConfigurationsClient serviceClient() {

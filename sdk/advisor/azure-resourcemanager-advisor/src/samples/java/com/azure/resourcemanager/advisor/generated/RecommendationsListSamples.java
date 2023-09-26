@@ -7,7 +7,7 @@ package com.azure.resourcemanager.advisor.generated;
 /** Samples for Recommendations List. */
 public final class RecommendationsListSamples {
     /*
-     * x-ms-original-file: specification/advisor/resource-manager/Microsoft.Advisor/stable/2020-01-01/examples/ListRecommendations.json
+     * x-ms-original-file: specification/advisor/resource-manager/Microsoft.Advisor/stable/2023-01-01/examples/ListRecommendations.json
      */
     /**
      * Sample code: ListRecommendations.

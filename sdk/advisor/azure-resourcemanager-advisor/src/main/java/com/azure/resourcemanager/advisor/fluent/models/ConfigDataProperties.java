@@ -7,6 +7,7 @@ package com.azure.resourcemanager.advisor.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.advisor.models.CpuThreshold;
 import com.azure.resourcemanager.advisor.models.DigestConfig;
+import com.azure.resourcemanager.advisor.models.DurationModel;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
@@ -21,10 +22,17 @@ public final class ConfigDataProperties {
 
     /*
      * Minimum percentage threshold for Advisor low CPU utilization evaluation. Valid only for subscriptions. Valid
-     * values: 5 (default), 10, 15 or 20.
+     * values: 5, 10, 15, 20 or 100 (default).
      */
     @JsonProperty(value = "lowCpuThreshold")
     private CpuThreshold lowCpuThreshold;
+
+    /*
+     * Minimum duration for Advisor low CPU utilization evaluation. Valid only for subscriptions. Valid values: 7
+     * (default), 14, 21, 30, 60 or 90.
+     */
+    @JsonProperty(value = "duration")
+    private DurationModel duration;
 
     /*
      * Advisor digest configuration. Valid only for subscriptions
@@ -58,7 +66,7 @@ public final class ConfigDataProperties {
 
     /**
      * Get the lowCpuThreshold property: Minimum percentage threshold for Advisor low CPU utilization evaluation. Valid
-     * only for subscriptions. Valid values: 5 (default), 10, 15 or 20.
+     * only for subscriptions. Valid values: 5, 10, 15, 20 or 100 (default).
      *
      * @return the lowCpuThreshold value.
      */
@@ -68,13 +76,35 @@ public final class ConfigDataProperties {
 
     /**
      * Set the lowCpuThreshold property: Minimum percentage threshold for Advisor low CPU utilization evaluation. Valid
-     * only for subscriptions. Valid values: 5 (default), 10, 15 or 20.
+     * only for subscriptions. Valid values: 5, 10, 15, 20 or 100 (default).
      *
      * @param lowCpuThreshold the lowCpuThreshold value to set.
      * @return the ConfigDataProperties object itself.
      */
     public ConfigDataProperties withLowCpuThreshold(CpuThreshold lowCpuThreshold) {
         this.lowCpuThreshold = lowCpuThreshold;
+        return this;
+    }
+
+    /**
+     * Get the duration property: Minimum duration for Advisor low CPU utilization evaluation. Valid only for
+     * subscriptions. Valid values: 7 (default), 14, 21, 30, 60 or 90.
+     *
+     * @return the duration value.
+     */
+    public DurationModel duration() {
+        return this.duration;
+    }
+
+    /**
+     * Set the duration property: Minimum duration for Advisor low CPU utilization evaluation. Valid only for
+     * subscriptions. Valid values: 7 (default), 14, 21, 30, 60 or 90.
+     *
+     * @param duration the duration value to set.
+     * @return the ConfigDataProperties object itself.
+     */
+    public ConfigDataProperties withDuration(DurationModel duration) {
+        this.duration = duration;
         return this;
     }
 

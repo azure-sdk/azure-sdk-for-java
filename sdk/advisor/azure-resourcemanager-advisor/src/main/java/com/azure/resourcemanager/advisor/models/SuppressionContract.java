@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.advisor.models;
 
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.advisor.fluent.models.SuppressionContractInner;
 import java.time.OffsetDateTime;
@@ -30,6 +31,13 @@ public interface SuppressionContract {
      * @return the type value.
      */
     String type();
+
+    /**
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     *
+     * @return the systemData value.
+     */
+    SystemData systemData();
 
     /**
      * Gets the suppressionId property: The GUID of the suppression.
@@ -63,11 +71,13 @@ public interface SuppressionContract {
     interface Definition
         extends DefinitionStages.Blank, DefinitionStages.WithParentResource, DefinitionStages.WithCreate {
     }
+
     /** The SuppressionContract definition stages. */
     interface DefinitionStages {
         /** The first stage of the SuppressionContract definition. */
         interface Blank extends WithParentResource {
         }
+
         /** The stage of the SuppressionContract definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -80,6 +90,7 @@ public interface SuppressionContract {
              */
             WithCreate withExistingRecommendation(String resourceUri, String recommendationId);
         }
+
         /**
          * The stage of the SuppressionContract definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
@@ -100,6 +111,7 @@ public interface SuppressionContract {
              */
             SuppressionContract create(Context context);
         }
+
         /** The stage of the SuppressionContract definition allowing to specify suppressionId. */
         interface WithSuppressionId {
             /**
@@ -110,6 +122,7 @@ public interface SuppressionContract {
              */
             WithCreate withSuppressionId(String suppressionId);
         }
+
         /** The stage of the SuppressionContract definition allowing to specify ttl. */
         interface WithTtl {
             /**
@@ -121,6 +134,7 @@ public interface SuppressionContract {
             WithCreate withTtl(String ttl);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

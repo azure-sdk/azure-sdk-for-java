@@ -54,6 +54,38 @@ public interface ConfigurationsClient {
      * @return the Advisor configuration data structure along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<ConfigDataInner> createInSubscriptionDurationWithResponse(
+        ConfigurationName configurationName, ConfigDataInner configContract, Context context);
+
+    /**
+     * Create/Overwrite Azure Advisor configuration.
+     *
+     * <p>Create/Overwrite Azure Advisor configuration and also delete all configurations of contained resource groups.
+     *
+     * @param configurationName Advisor configuration name. Value must be 'default'.
+     * @param configContract The Azure Advisor configuration data structure.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the Advisor configuration data structure.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    ConfigDataInner createInSubscriptionDuration(ConfigurationName configurationName, ConfigDataInner configContract);
+
+    /**
+     * Create/Overwrite Azure Advisor configuration.
+     *
+     * <p>Create/Overwrite Azure Advisor configuration and also delete all configurations of contained resource groups.
+     *
+     * @param configurationName Advisor configuration name. Value must be 'default'.
+     * @param configContract The Azure Advisor configuration data structure.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the Advisor configuration data structure along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ConfigDataInner> createInSubscriptionWithResponse(
         ConfigurationName configurationName, ConfigDataInner configContract, Context context);
 
@@ -96,6 +128,37 @@ public interface ConfigurationsClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ConfigDataInner> listByResourceGroup(String resourceGroup, Context context);
+
+    /**
+     * Create/Overwrite Azure Advisor configuration.
+     *
+     * @param resourceGroup The name of the Azure resource group.
+     * @param configurationName Advisor configuration name. Value must be 'default'.
+     * @param configContract The Azure Advisor configuration data structure.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the Advisor configuration data structure along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<ConfigDataInner> createInResourceGroupDurationWithResponse(
+        String resourceGroup, ConfigurationName configurationName, ConfigDataInner configContract, Context context);
+
+    /**
+     * Create/Overwrite Azure Advisor configuration.
+     *
+     * @param resourceGroup The name of the Azure resource group.
+     * @param configurationName Advisor configuration name. Value must be 'default'.
+     * @param configContract The Azure Advisor configuration data structure.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the Advisor configuration data structure.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    ConfigDataInner createInResourceGroupDuration(
+        String resourceGroup, ConfigurationName configurationName, ConfigDataInner configContract);
 
     /**
      * Create/Overwrite Azure Advisor configuration.

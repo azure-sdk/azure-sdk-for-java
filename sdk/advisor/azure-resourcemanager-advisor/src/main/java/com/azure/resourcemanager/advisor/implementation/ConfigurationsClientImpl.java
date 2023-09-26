@@ -71,6 +71,19 @@ public final class ConfigurationsClientImpl implements ConfigurationsClient {
             Context context);
 
         @Headers({"Content-Type: application/json"})
+        @Put("/subscriptions/{subscriptionId}/providers/Microsoft.Advisor/configurations/v2/{configurationName}")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<ConfigDataInner>> createInSubscriptionDuration(
+            @HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("configurationName") ConfigurationName configurationName,
+            @BodyParam("application/json") ConfigDataInner configContract,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
         @Put("/subscriptions/{subscriptionId}/providers/Microsoft.Advisor/configurations/{configurationName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
@@ -98,8 +111,22 @@ public final class ConfigurationsClientImpl implements ConfigurationsClient {
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Advisor/configurations"
-                + "/{configurationName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Advisor/configurations/v2/{configurationName}")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<ConfigDataInner>> createInResourceGroupDuration(
+            @HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroup") String resourceGroup,
+            @PathParam("configurationName") ConfigurationName configurationName,
+            @BodyParam("application/json") ConfigDataInner configContract,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
+        @Put(
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Advisor/configurations/{configurationName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ConfigDataInner>> createInResourceGroup(
@@ -276,6 +303,166 @@ public final class ConfigurationsClientImpl implements ConfigurationsClient {
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ConfigDataInner> list(Context context) {
         return new PagedIterable<>(listAsync(context));
+    }
+
+    /**
+     * Create/Overwrite Azure Advisor configuration.
+     *
+     * <p>Create/Overwrite Azure Advisor configuration and also delete all configurations of contained resource groups.
+     *
+     * @param configurationName Advisor configuration name. Value must be 'default'.
+     * @param configContract The Azure Advisor configuration data structure.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the Advisor configuration data structure along with {@link Response} on successful completion of {@link
+     *     Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<ConfigDataInner>> createInSubscriptionDurationWithResponseAsync(
+        ConfigurationName configurationName, ConfigDataInner configContract) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (configurationName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter configurationName is required and cannot be null."));
+        }
+        if (configContract == null) {
+            return Mono.error(new IllegalArgumentException("Parameter configContract is required and cannot be null."));
+        } else {
+            configContract.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service
+                        .createInSubscriptionDuration(
+                            this.client.getEndpoint(),
+                            this.client.getApiVersion(),
+                            this.client.getSubscriptionId(),
+                            configurationName,
+                            configContract,
+                            accept,
+                            context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Create/Overwrite Azure Advisor configuration.
+     *
+     * <p>Create/Overwrite Azure Advisor configuration and also delete all configurations of contained resource groups.
+     *
+     * @param configurationName Advisor configuration name. Value must be 'default'.
+     * @param configContract The Azure Advisor configuration data structure.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the Advisor configuration data structure along with {@link Response} on successful completion of {@link
+     *     Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<ConfigDataInner>> createInSubscriptionDurationWithResponseAsync(
+        ConfigurationName configurationName, ConfigDataInner configContract, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (configurationName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter configurationName is required and cannot be null."));
+        }
+        if (configContract == null) {
+            return Mono.error(new IllegalArgumentException("Parameter configContract is required and cannot be null."));
+        } else {
+            configContract.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .createInSubscriptionDuration(
+                this.client.getEndpoint(),
+                this.client.getApiVersion(),
+                this.client.getSubscriptionId(),
+                configurationName,
+                configContract,
+                accept,
+                context);
+    }
+
+    /**
+     * Create/Overwrite Azure Advisor configuration.
+     *
+     * <p>Create/Overwrite Azure Advisor configuration and also delete all configurations of contained resource groups.
+     *
+     * @param configurationName Advisor configuration name. Value must be 'default'.
+     * @param configContract The Azure Advisor configuration data structure.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the Advisor configuration data structure on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<ConfigDataInner> createInSubscriptionDurationAsync(
+        ConfigurationName configurationName, ConfigDataInner configContract) {
+        return createInSubscriptionDurationWithResponseAsync(configurationName, configContract)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Create/Overwrite Azure Advisor configuration.
+     *
+     * <p>Create/Overwrite Azure Advisor configuration and also delete all configurations of contained resource groups.
+     *
+     * @param configurationName Advisor configuration name. Value must be 'default'.
+     * @param configContract The Azure Advisor configuration data structure.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the Advisor configuration data structure along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<ConfigDataInner> createInSubscriptionDurationWithResponse(
+        ConfigurationName configurationName, ConfigDataInner configContract, Context context) {
+        return createInSubscriptionDurationWithResponseAsync(configurationName, configContract, context).block();
+    }
+
+    /**
+     * Create/Overwrite Azure Advisor configuration.
+     *
+     * <p>Create/Overwrite Azure Advisor configuration and also delete all configurations of contained resource groups.
+     *
+     * @param configurationName Advisor configuration name. Value must be 'default'.
+     * @param configContract The Azure Advisor configuration data structure.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the Advisor configuration data structure.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ConfigDataInner createInSubscriptionDuration(
+        ConfigurationName configurationName, ConfigDataInner configContract) {
+        return createInSubscriptionDurationWithResponse(configurationName, configContract, Context.NONE).getValue();
     }
 
     /**
@@ -584,6 +771,171 @@ public final class ConfigurationsClientImpl implements ConfigurationsClient {
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ConfigDataInner> listByResourceGroup(String resourceGroup, Context context) {
         return new PagedIterable<>(listByResourceGroupAsync(resourceGroup, context));
+    }
+
+    /**
+     * Create/Overwrite Azure Advisor configuration.
+     *
+     * @param resourceGroup The name of the Azure resource group.
+     * @param configurationName Advisor configuration name. Value must be 'default'.
+     * @param configContract The Azure Advisor configuration data structure.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the Advisor configuration data structure along with {@link Response} on successful completion of {@link
+     *     Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<ConfigDataInner>> createInResourceGroupDurationWithResponseAsync(
+        String resourceGroup, ConfigurationName configurationName, ConfigDataInner configContract) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroup == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resourceGroup is required and cannot be null."));
+        }
+        if (configurationName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter configurationName is required and cannot be null."));
+        }
+        if (configContract == null) {
+            return Mono.error(new IllegalArgumentException("Parameter configContract is required and cannot be null."));
+        } else {
+            configContract.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service
+                        .createInResourceGroupDuration(
+                            this.client.getEndpoint(),
+                            this.client.getApiVersion(),
+                            this.client.getSubscriptionId(),
+                            resourceGroup,
+                            configurationName,
+                            configContract,
+                            accept,
+                            context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Create/Overwrite Azure Advisor configuration.
+     *
+     * @param resourceGroup The name of the Azure resource group.
+     * @param configurationName Advisor configuration name. Value must be 'default'.
+     * @param configContract The Azure Advisor configuration data structure.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the Advisor configuration data structure along with {@link Response} on successful completion of {@link
+     *     Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<ConfigDataInner>> createInResourceGroupDurationWithResponseAsync(
+        String resourceGroup, ConfigurationName configurationName, ConfigDataInner configContract, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroup == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resourceGroup is required and cannot be null."));
+        }
+        if (configurationName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter configurationName is required and cannot be null."));
+        }
+        if (configContract == null) {
+            return Mono.error(new IllegalArgumentException("Parameter configContract is required and cannot be null."));
+        } else {
+            configContract.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .createInResourceGroupDuration(
+                this.client.getEndpoint(),
+                this.client.getApiVersion(),
+                this.client.getSubscriptionId(),
+                resourceGroup,
+                configurationName,
+                configContract,
+                accept,
+                context);
+    }
+
+    /**
+     * Create/Overwrite Azure Advisor configuration.
+     *
+     * @param resourceGroup The name of the Azure resource group.
+     * @param configurationName Advisor configuration name. Value must be 'default'.
+     * @param configContract The Azure Advisor configuration data structure.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the Advisor configuration data structure on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<ConfigDataInner> createInResourceGroupDurationAsync(
+        String resourceGroup, ConfigurationName configurationName, ConfigDataInner configContract) {
+        return createInResourceGroupDurationWithResponseAsync(resourceGroup, configurationName, configContract)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Create/Overwrite Azure Advisor configuration.
+     *
+     * @param resourceGroup The name of the Azure resource group.
+     * @param configurationName Advisor configuration name. Value must be 'default'.
+     * @param configContract The Azure Advisor configuration data structure.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the Advisor configuration data structure along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<ConfigDataInner> createInResourceGroupDurationWithResponse(
+        String resourceGroup, ConfigurationName configurationName, ConfigDataInner configContract, Context context) {
+        return createInResourceGroupDurationWithResponseAsync(resourceGroup, configurationName, configContract, context)
+            .block();
+    }
+
+    /**
+     * Create/Overwrite Azure Advisor configuration.
+     *
+     * @param resourceGroup The name of the Azure resource group.
+     * @param configurationName Advisor configuration name. Value must be 'default'.
+     * @param configContract The Azure Advisor configuration data structure.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the Advisor configuration data structure.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ConfigDataInner createInResourceGroupDuration(
+        String resourceGroup, ConfigurationName configurationName, ConfigDataInner configContract) {
+        return createInResourceGroupDurationWithResponse(resourceGroup, configurationName, configContract, Context.NONE)
+            .getValue();
     }
 
     /**

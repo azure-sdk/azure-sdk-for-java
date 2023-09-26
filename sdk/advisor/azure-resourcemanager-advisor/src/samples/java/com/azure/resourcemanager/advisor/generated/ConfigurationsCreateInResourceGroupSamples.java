@@ -4,17 +4,19 @@
 
 package com.azure.resourcemanager.advisor.generated;
 
+import com.azure.resourcemanager.advisor.fluent.models.ConfigDataInner;
 import com.azure.resourcemanager.advisor.models.Category;
 import com.azure.resourcemanager.advisor.models.ConfigurationName;
 import com.azure.resourcemanager.advisor.models.CpuThreshold;
 import com.azure.resourcemanager.advisor.models.DigestConfig;
 import com.azure.resourcemanager.advisor.models.DigestConfigState;
+import com.azure.resourcemanager.advisor.models.DurationModel;
 import java.util.Arrays;
 
 /** Samples for Configurations CreateInResourceGroup. */
 public final class ConfigurationsCreateInResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/advisor/resource-manager/Microsoft.Advisor/stable/2020-01-01/examples/CreateConfiguration.json
+     * x-ms-original-file: specification/advisor/resource-manager/Microsoft.Advisor/stable/2023-01-01/examples/CreateConfiguration.json
      */
     /**
      * Sample code: PutConfigurations.
@@ -24,28 +26,31 @@ public final class ConfigurationsCreateInResourceGroupSamples {
     public static void putConfigurations(com.azure.resourcemanager.advisor.AdvisorManager manager) {
         manager
             .configurations()
-            .define(ConfigurationName.DEFAULT)
-            .withExistingResourceGroup("resourceGroup")
-            .withExclude(true)
-            .withLowCpuThreshold(CpuThreshold.FIVE)
-            .withDigests(
-                Arrays
-                    .asList(
-                        new DigestConfig()
-                            .withName("digestConfigName")
-                            .withActionGroupResourceId(
-                                "/subscriptions/subscriptionId/resourceGroups/resourceGroup/providers/microsoft.insights/actionGroups/actionGroupName")
-                            .withFrequency(30)
-                            .withCategories(
-                                Arrays
-                                    .asList(
-                                        Category.HIGH_AVAILABILITY,
-                                        Category.SECURITY,
-                                        Category.PERFORMANCE,
-                                        Category.COST,
-                                        Category.OPERATIONAL_EXCELLENCE))
-                            .withLanguage("en")
-                            .withState(DigestConfigState.ACTIVE)))
-            .create();
+            .createInResourceGroupWithResponse(
+                ConfigurationName.DEFAULT,
+                "resourceGroup",
+                new ConfigDataInner()
+                    .withExclude(true)
+                    .withLowCpuThreshold(CpuThreshold.FIVE)
+                    .withDuration(DurationModel.SEVEN)
+                    .withDigests(
+                        Arrays
+                            .asList(
+                                new DigestConfig()
+                                    .withName("digestConfigName")
+                                    .withActionGroupResourceId(
+                                        "/subscriptions/607D4130-212F-4B6A-A5D0-C526F91ADCE7/resourceGroups/resourceGroup/providers/microsoft.insights/actionGroups/actionGroupName")
+                                    .withFrequency(30)
+                                    .withCategories(
+                                        Arrays
+                                            .asList(
+                                                Category.HIGH_AVAILABILITY,
+                                                Category.SECURITY,
+                                                Category.PERFORMANCE,
+                                                Category.COST,
+                                                Category.OPERATIONAL_EXCELLENCE))
+                                    .withLanguage("en")
+                                    .withState(DigestConfigState.ACTIVE))),
+                com.azure.core.util.Context.NONE);
     }
 }

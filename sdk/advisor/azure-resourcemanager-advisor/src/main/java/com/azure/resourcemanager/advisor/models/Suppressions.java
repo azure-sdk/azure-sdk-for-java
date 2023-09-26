@@ -20,6 +20,8 @@ public interface Suppressions {
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server on
+     *     status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the details of the snoozed or dismissed rule; for example, the duration, name, and GUID associated with
      *     the rule along with {@link Response}.
@@ -36,6 +38,8 @@ public interface Suppressions {
      * @param name The name of the suppression.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server on
+     *     status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the details of the snoozed or dismissed rule; for example, the duration, name, and GUID associated with
      *     the rule.
@@ -102,6 +106,8 @@ public interface Suppressions {
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server on
+     *     status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the details of the snoozed or dismissed rule; for example, the duration, name, and GUID associated with
      *     the rule along with {@link Response}.
@@ -115,6 +121,8 @@ public interface Suppressions {
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server on
+     *     status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the details of the snoozed or dismissed rule; for example, the duration, name, and GUID associated with
      *     the rule along with {@link Response}.

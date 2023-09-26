@@ -7,7 +7,7 @@ package com.azure.resourcemanager.advisor.generated;
 /** Samples for Suppressions Create. */
 public final class SuppressionsCreateSamples {
     /*
-     * x-ms-original-file: specification/advisor/resource-manager/Microsoft.Advisor/stable/2020-01-01/examples/CreateSuppression.json
+     * x-ms-original-file: specification/advisor/resource-manager/Microsoft.Advisor/stable/2023-01-01/examples/CreateSuppression.json
      */
     /**
      * Sample code: CreateSuppression.
@@ -18,7 +18,7 @@ public final class SuppressionsCreateSamples {
         manager
             .suppressions()
             .define("suppressionName1")
-            .withExistingRecommendation("resourceUri", "recommendationId")
+            .withExistingRecommendation("resourceUri", "200a071c-c08f-40cf-b109-09cf7ef4d9e6")
             .withTtl("07:00:00:00")
             .create();
     }

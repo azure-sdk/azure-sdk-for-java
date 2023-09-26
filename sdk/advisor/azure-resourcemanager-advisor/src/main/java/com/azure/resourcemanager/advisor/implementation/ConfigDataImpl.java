@@ -4,12 +4,14 @@
 
 package com.azure.resourcemanager.advisor.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.advisor.fluent.models.ConfigDataInner;
 import com.azure.resourcemanager.advisor.models.ConfigData;
 import com.azure.resourcemanager.advisor.models.ConfigurationName;
 import com.azure.resourcemanager.advisor.models.CpuThreshold;
 import com.azure.resourcemanager.advisor.models.DigestConfig;
+import com.azure.resourcemanager.advisor.models.DurationModel;
 import java.util.Collections;
 import java.util.List;
 
@@ -35,12 +37,20 @@ public final class ConfigDataImpl implements ConfigData, ConfigData.Definition {
         return this.innerModel().type();
     }
 
+    public SystemData systemData() {
+        return this.innerModel().systemData();
+    }
+
     public Boolean exclude() {
         return this.innerModel().exclude();
     }
 
     public CpuThreshold lowCpuThreshold() {
         return this.innerModel().lowCpuThreshold();
+    }
+
+    public DurationModel duration() {
+        return this.innerModel().duration();
     }
 
     public List<DigestConfig> digests() {
@@ -60,9 +70,9 @@ public final class ConfigDataImpl implements ConfigData, ConfigData.Definition {
         return this.serviceManager;
     }
 
-    private ConfigurationName configurationName;
-
     private String resourceGroup;
+
+    private ConfigurationName configurationName;
 
     public ConfigDataImpl withExistingResourceGroup(String resourceGroup) {
         this.resourceGroup = resourceGroup;
@@ -74,7 +84,8 @@ public final class ConfigDataImpl implements ConfigData, ConfigData.Definition {
             serviceManager
                 .serviceClient()
                 .getConfigurations()
-                .createInResourceGroupWithResponse(configurationName, resourceGroup, this.innerModel(), Context.NONE)
+                .createInResourceGroupDurationWithResponse(
+                    resourceGroup, configurationName, this.innerModel(), Context.NONE)
                 .getValue();
         return this;
     }
@@ -84,7 +95,7 @@ public final class ConfigDataImpl implements ConfigData, ConfigData.Definition {
             serviceManager
                 .serviceClient()
                 .getConfigurations()
-                .createInResourceGroupWithResponse(configurationName, resourceGroup, this.innerModel(), context)
+                .createInResourceGroupDurationWithResponse(resourceGroup, configurationName, this.innerModel(), context)
                 .getValue();
         return this;
     }
@@ -102,6 +113,11 @@ public final class ConfigDataImpl implements ConfigData, ConfigData.Definition {
 
     public ConfigDataImpl withLowCpuThreshold(CpuThreshold lowCpuThreshold) {
         this.innerModel().withLowCpuThreshold(lowCpuThreshold);
+        return this;
+    }
+
+    public ConfigDataImpl withDuration(DurationModel duration) {
+        this.innerModel().withDuration(duration);
         return this;
     }
 

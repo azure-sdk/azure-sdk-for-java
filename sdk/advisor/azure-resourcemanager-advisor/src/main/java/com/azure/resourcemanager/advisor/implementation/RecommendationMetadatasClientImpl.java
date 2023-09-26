@@ -60,6 +60,9 @@ public final class RecommendationMetadatasClientImpl implements RecommendationMe
         @Headers({"Content-Type: application/json"})
         @Get("/providers/Microsoft.Advisor/metadata/{name}")
         @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(
+            value = ManagementException.class,
+            code = {404})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<MetadataEntityInner>> get(
             @HostParam("$host") String endpoint,
@@ -95,6 +98,7 @@ public final class RecommendationMetadatasClientImpl implements RecommendationMe
      * @param name Name of metadata entity.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server on status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the metadata entity along with {@link Response} on successful completion of {@link Mono}.
      */
@@ -123,6 +127,7 @@ public final class RecommendationMetadatasClientImpl implements RecommendationMe
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server on status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the metadata entity along with {@link Response} on successful completion of {@link Mono}.
      */
@@ -148,6 +153,7 @@ public final class RecommendationMetadatasClientImpl implements RecommendationMe
      * @param name Name of metadata entity.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server on status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the metadata entity on successful completion of {@link Mono}.
      */
@@ -163,6 +169,7 @@ public final class RecommendationMetadatasClientImpl implements RecommendationMe
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server on status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the metadata entity along with {@link Response}.
      */
@@ -177,6 +184,7 @@ public final class RecommendationMetadatasClientImpl implements RecommendationMe
      * @param name Name of metadata entity.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server on status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the metadata entity.
      */

@@ -62,6 +62,9 @@ public final class SuppressionsClientImpl implements SuppressionsClient {
         @Headers({"Content-Type: application/json"})
         @Get("/{resourceUri}/providers/Microsoft.Advisor/recommendations/{recommendationId}/suppressions/{name}")
         @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(
+            value = ManagementException.class,
+            code = {404})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<SuppressionContractInner>> get(
             @HostParam("$host") String endpoint,
@@ -75,6 +78,9 @@ public final class SuppressionsClientImpl implements SuppressionsClient {
         @Headers({"Content-Type: application/json"})
         @Put("/{resourceUri}/providers/Microsoft.Advisor/recommendations/{recommendationId}/suppressions/{name}")
         @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(
+            value = ManagementException.class,
+            code = {404})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<SuppressionContractInner>> create(
             @HostParam("$host") String endpoint,
@@ -132,6 +138,7 @@ public final class SuppressionsClientImpl implements SuppressionsClient {
      * @param name The name of the suppression.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server on status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the details of the snoozed or dismissed rule; for example, the duration, name, and GUID associated with
      *     the rule along with {@link Response} on successful completion of {@link Mono}.
@@ -181,6 +188,7 @@ public final class SuppressionsClientImpl implements SuppressionsClient {
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server on status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the details of the snoozed or dismissed rule; for example, the duration, name, and GUID associated with
      *     the rule along with {@link Response} on successful completion of {@link Mono}.
@@ -226,6 +234,7 @@ public final class SuppressionsClientImpl implements SuppressionsClient {
      * @param name The name of the suppression.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server on status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the details of the snoozed or dismissed rule; for example, the duration, name, and GUID associated with
      *     the rule on successful completion of {@link Mono}.
@@ -246,6 +255,7 @@ public final class SuppressionsClientImpl implements SuppressionsClient {
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server on status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the details of the snoozed or dismissed rule; for example, the duration, name, and GUID associated with
      *     the rule along with {@link Response}.
@@ -265,6 +275,7 @@ public final class SuppressionsClientImpl implements SuppressionsClient {
      * @param name The name of the suppression.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server on status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the details of the snoozed or dismissed rule; for example, the duration, name, and GUID associated with
      *     the rule.
@@ -285,6 +296,7 @@ public final class SuppressionsClientImpl implements SuppressionsClient {
      * @param suppressionContract The snoozed or dismissed attribute; for example, the snooze duration.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server on status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the details of the snoozed or dismissed rule; for example, the duration, name, and GUID associated with
      *     the rule along with {@link Response} on successful completion of {@link Mono}.
@@ -343,6 +355,7 @@ public final class SuppressionsClientImpl implements SuppressionsClient {
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server on status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the details of the snoozed or dismissed rule; for example, the duration, name, and GUID associated with
      *     the rule along with {@link Response} on successful completion of {@link Mono}.
@@ -401,6 +414,7 @@ public final class SuppressionsClientImpl implements SuppressionsClient {
      * @param suppressionContract The snoozed or dismissed attribute; for example, the snooze duration.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server on status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the details of the snoozed or dismissed rule; for example, the duration, name, and GUID associated with
      *     the rule on successful completion of {@link Mono}.
@@ -424,6 +438,7 @@ public final class SuppressionsClientImpl implements SuppressionsClient {
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server on status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the details of the snoozed or dismissed rule; for example, the duration, name, and GUID associated with
      *     the rule along with {@link Response}.
@@ -449,6 +464,7 @@ public final class SuppressionsClientImpl implements SuppressionsClient {
      * @param suppressionContract The snoozed or dismissed attribute; for example, the snooze duration.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server on status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the details of the snoozed or dismissed rule; for example, the duration, name, and GUID associated with
      *     the rule.
