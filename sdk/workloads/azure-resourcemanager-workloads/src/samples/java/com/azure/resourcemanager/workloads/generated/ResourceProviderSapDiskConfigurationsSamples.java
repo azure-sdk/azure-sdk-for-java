@@ -4,6 +4,12 @@
 
 package com.azure.resourcemanager.workloads.generated;
 
+import com.azure.resourcemanager.workloads.models.SapDatabaseType;
+import com.azure.resourcemanager.workloads.models.SapDeploymentType;
+import com.azure.resourcemanager.workloads.models.SapDiskConfigurationsRequest;
+import com.azure.resourcemanager.workloads.models.SapEnvironmentType;
+import com.azure.resourcemanager.workloads.models.SapProductType;
+
 /** Samples for ResourceProvider SapDiskConfigurations. */
 public final class ResourceProviderSapDiskConfigurationsSamples {
     /*
@@ -17,7 +23,16 @@ public final class ResourceProviderSapDiskConfigurationsSamples {
     public static void sAPDiskConfigurationsNonProd(com.azure.resourcemanager.workloads.WorkloadsManager manager) {
         manager
             .resourceProviders()
-            .sapDiskConfigurationsWithResponse("centralus", null, com.azure.core.util.Context.NONE);
+            .sapDiskConfigurationsWithResponse(
+                "centralus",
+                new SapDiskConfigurationsRequest()
+                    .withAppLocation("eastus")
+                    .withEnvironment(SapEnvironmentType.NON_PROD)
+                    .withSapProduct(SapProductType.S4HANA)
+                    .withDatabaseType(SapDatabaseType.HANA)
+                    .withDeploymentType(SapDeploymentType.THREE_TIER)
+                    .withDbVmSku("Standard_M32ts"),
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -31,6 +46,15 @@ public final class ResourceProviderSapDiskConfigurationsSamples {
     public static void sAPDiskConfigurationsProd(com.azure.resourcemanager.workloads.WorkloadsManager manager) {
         manager
             .resourceProviders()
-            .sapDiskConfigurationsWithResponse("centralus", null, com.azure.core.util.Context.NONE);
+            .sapDiskConfigurationsWithResponse(
+                "centralus",
+                new SapDiskConfigurationsRequest()
+                    .withAppLocation("eastus")
+                    .withEnvironment(SapEnvironmentType.PROD)
+                    .withSapProduct(SapProductType.S4HANA)
+                    .withDatabaseType(SapDatabaseType.HANA)
+                    .withDeploymentType(SapDeploymentType.THREE_TIER)
+                    .withDbVmSku("Standard_M32ts"),
+                com.azure.core.util.Context.NONE);
     }
 }
