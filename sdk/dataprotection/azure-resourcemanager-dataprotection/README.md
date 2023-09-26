@@ -2,7 +2,7 @@
 
 Azure Resource Manager DataProtection client library for Java.
 
-This package contains Microsoft Azure SDK for DataProtection Management SDK. Open API 2.0 Specs for Azure Data Protection service. Package tag package-2023-05. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
+This package contains Microsoft Azure SDK for DataProtection Management SDK. Open API 2.0 Specs for Azure Data Protection service. Package tag package-preview-2023-08. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ## We'd love to hear your feedback
 
@@ -32,7 +32,7 @@ Various documentation is available to help you get started
 <dependency>
     <groupId>com.azure.resourcemanager</groupId>
     <artifactId>azure-resourcemanager-dataprotection</artifactId>
-    <version>1.1.0</version>
+    <version>1.2.0-beta.1</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -74,6 +74,41 @@ See [API design][design] for general introduction on design and key concepts on 
 
 ## Examples
 
+```java
+resource = dataProtectionManager
+        .backupVaults()
+        .define(vaultName)
+        .withRegion(REGION)
+        .withExistingResourceGroup(resourceGroupName)
+        .withProperties(
+                new BackupVault()
+                        .withMonitoringSettings(
+                                new MonitoringSettings()
+                                        .withAzureMonitorAlertSettings(
+                                                new AzureMonitorAlertSettings()
+                                                        .withAlertsForAllJobFailures(AlertsState.ENABLED)))
+                        .withSecuritySettings(
+                                new SecuritySettings()
+                                        .withSoftDeleteSettings(
+                                                new SoftDeleteSettings()
+                                                        .withState(SoftDeleteState.ALWAYS_ON)
+                                                        .withRetentionDurationInDays(14.0D))
+                                        .withImmutabilitySettings(
+                                                new ImmutabilitySettings()
+                                                        .withState(ImmutabilityState.LOCKED)))
+                        .withStorageSettings(
+                                Collections.singletonList(
+                                        new StorageSetting()
+                                                .withDatastoreType(StorageSettingStoreTypes.VAULT_STORE)
+                                                .withType(StorageSettingTypes.LOCALLY_REDUNDANT)))
+                        .withFeatureSettings(
+                                new FeatureSettings()
+                                        .withCrossSubscriptionRestoreSettings(
+                                                new CrossSubscriptionRestoreSettings()
+                                                        .withState(CrossSubscriptionRestoreState.ENABLED))))
+        .withIdentity(new DppIdentityDetails().withType("systemAssigned"))
+        .create();
+```
 [Code snippets and samples](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/dataprotection/azure-resourcemanager-dataprotection/SAMPLE.md)
 
 
