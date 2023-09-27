@@ -41,7 +41,7 @@ import com.azure.resourcemanager.managednetworkfabric.fluent.models.ValidateConf
 import com.azure.resourcemanager.managednetworkfabric.models.NetworkFabricPatch;
 import com.azure.resourcemanager.managednetworkfabric.models.NetworkFabricsListResult;
 import com.azure.resourcemanager.managednetworkfabric.models.UpdateAdministrativeState;
-import com.azure.resourcemanager.managednetworkfabric.models.UpdateVersion;
+import com.azure.resourcemanager.managednetworkfabric.models.UpgradeNetworkFabricProperties;
 import com.azure.resourcemanager.managednetworkfabric.models.ValidateConfigurationProperties;
 import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
@@ -194,7 +194,7 @@ public final class NetworkFabricsClientImpl implements NetworkFabricsClient {
             @PathParam("resourceGroupName") String resourceGroupName,
             @QueryParam("api-version") String apiVersion,
             @PathParam("networkFabricName") String networkFabricName,
-            @BodyParam("application/json") UpdateVersion body,
+            @BodyParam("application/json") UpgradeNetworkFabricProperties body,
             @HeaderParam("Accept") String accept,
             Context context);
 
@@ -2181,7 +2181,7 @@ public final class NetworkFabricsClientImpl implements NetworkFabricsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> upgradeWithResponseAsync(
-        String resourceGroupName, String networkFabricName, UpdateVersion body) {
+        String resourceGroupName, String networkFabricName, UpgradeNetworkFabricProperties body) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -2241,7 +2241,7 @@ public final class NetworkFabricsClientImpl implements NetworkFabricsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> upgradeWithResponseAsync(
-        String resourceGroupName, String networkFabricName, UpdateVersion body, Context context) {
+        String resourceGroupName, String networkFabricName, UpgradeNetworkFabricProperties body, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -2297,7 +2297,7 @@ public final class NetworkFabricsClientImpl implements NetworkFabricsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<
             PollResult<CommonPostActionResponseForStateUpdateInner>, CommonPostActionResponseForStateUpdateInner>
-        beginUpgradeAsync(String resourceGroupName, String networkFabricName, UpdateVersion body) {
+        beginUpgradeAsync(String resourceGroupName, String networkFabricName, UpgradeNetworkFabricProperties body) {
         Mono<Response<Flux<ByteBuffer>>> mono = upgradeWithResponseAsync(resourceGroupName, networkFabricName, body);
         return this
             .client
@@ -2326,7 +2326,8 @@ public final class NetworkFabricsClientImpl implements NetworkFabricsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<
             PollResult<CommonPostActionResponseForStateUpdateInner>, CommonPostActionResponseForStateUpdateInner>
-        beginUpgradeAsync(String resourceGroupName, String networkFabricName, UpdateVersion body, Context context) {
+        beginUpgradeAsync(
+            String resourceGroupName, String networkFabricName, UpgradeNetworkFabricProperties body, Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono =
             upgradeWithResponseAsync(resourceGroupName, networkFabricName, body, context);
@@ -2356,7 +2357,7 @@ public final class NetworkFabricsClientImpl implements NetworkFabricsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<
             PollResult<CommonPostActionResponseForStateUpdateInner>, CommonPostActionResponseForStateUpdateInner>
-        beginUpgrade(String resourceGroupName, String networkFabricName, UpdateVersion body) {
+        beginUpgrade(String resourceGroupName, String networkFabricName, UpgradeNetworkFabricProperties body) {
         return this.beginUpgradeAsync(resourceGroupName, networkFabricName, body).getSyncPoller();
     }
 
@@ -2377,7 +2378,8 @@ public final class NetworkFabricsClientImpl implements NetworkFabricsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<
             PollResult<CommonPostActionResponseForStateUpdateInner>, CommonPostActionResponseForStateUpdateInner>
-        beginUpgrade(String resourceGroupName, String networkFabricName, UpdateVersion body, Context context) {
+        beginUpgrade(
+            String resourceGroupName, String networkFabricName, UpgradeNetworkFabricProperties body, Context context) {
         return this.beginUpgradeAsync(resourceGroupName, networkFabricName, body, context).getSyncPoller();
     }
 
@@ -2396,7 +2398,7 @@ public final class NetworkFabricsClientImpl implements NetworkFabricsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<CommonPostActionResponseForStateUpdateInner> upgradeAsync(
-        String resourceGroupName, String networkFabricName, UpdateVersion body) {
+        String resourceGroupName, String networkFabricName, UpgradeNetworkFabricProperties body) {
         return beginUpgradeAsync(resourceGroupName, networkFabricName, body)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
@@ -2418,7 +2420,7 @@ public final class NetworkFabricsClientImpl implements NetworkFabricsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<CommonPostActionResponseForStateUpdateInner> upgradeAsync(
-        String resourceGroupName, String networkFabricName, UpdateVersion body, Context context) {
+        String resourceGroupName, String networkFabricName, UpgradeNetworkFabricProperties body, Context context) {
         return beginUpgradeAsync(resourceGroupName, networkFabricName, body, context)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
@@ -2439,7 +2441,7 @@ public final class NetworkFabricsClientImpl implements NetworkFabricsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public CommonPostActionResponseForStateUpdateInner upgrade(
-        String resourceGroupName, String networkFabricName, UpdateVersion body) {
+        String resourceGroupName, String networkFabricName, UpgradeNetworkFabricProperties body) {
         return upgradeAsync(resourceGroupName, networkFabricName, body).block();
     }
 
@@ -2459,7 +2461,7 @@ public final class NetworkFabricsClientImpl implements NetworkFabricsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public CommonPostActionResponseForStateUpdateInner upgrade(
-        String resourceGroupName, String networkFabricName, UpdateVersion body, Context context) {
+        String resourceGroupName, String networkFabricName, UpgradeNetworkFabricProperties body, Context context) {
         return upgradeAsync(resourceGroupName, networkFabricName, body, context).block();
     }
 

@@ -6,6 +6,7 @@ package com.azure.resourcemanager.managednetworkfabric.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.managednetworkfabric.models.AdministrativeState;
 import com.azure.resourcemanager.managednetworkfabric.models.InterfaceType;
@@ -21,6 +22,12 @@ public final class NetworkInterfaceInner extends ProxyResource {
     @JsonProperty(value = "properties", required = true)
     private NetworkInterfaceProperties innerProperties = new NetworkInterfaceProperties();
 
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
+
     /** Creates an instance of NetworkInterfaceInner class. */
     public NetworkInterfaceInner() {
     }
@@ -32,6 +39,15 @@ public final class NetworkInterfaceInner extends ProxyResource {
      */
     private NetworkInterfaceProperties innerProperties() {
         return this.innerProperties;
+    }
+
+    /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     *
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**
