@@ -6,7 +6,7 @@ package com.azure.resourcemanager.machinelearning.implementation;
 
 import com.azure.resourcemanager.machinelearning.fluent.models.ExternalFqdnResponseInner;
 import com.azure.resourcemanager.machinelearning.models.ExternalFqdnResponse;
-import com.azure.resourcemanager.machinelearning.models.FqdnEndpoints;
+import com.azure.resourcemanager.machinelearning.models.FqdnEndpointsPropertyBag;
 import java.util.Collections;
 import java.util.List;
 
@@ -22,8 +22,8 @@ public final class ExternalFqdnResponseImpl implements ExternalFqdnResponse {
         this.serviceManager = serviceManager;
     }
 
-    public List<FqdnEndpoints> value() {
-        List<FqdnEndpoints> inner = this.innerModel().value();
+    public List<FqdnEndpointsPropertyBag> value() {
+        List<FqdnEndpointsPropertyBag> inner = this.innerModel().value();
         if (inner != null) {
             return Collections.unmodifiableList(inner);
         } else {
