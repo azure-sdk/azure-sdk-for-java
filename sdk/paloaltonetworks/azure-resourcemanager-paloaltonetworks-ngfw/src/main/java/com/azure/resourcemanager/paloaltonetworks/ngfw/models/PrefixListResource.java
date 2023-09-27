@@ -95,11 +95,13 @@ public interface PrefixListResource {
             DefinitionStages.WithPrefixList,
             DefinitionStages.WithCreate {
     }
+
     /** The PrefixListResource definition stages. */
     interface DefinitionStages {
         /** The first stage of the PrefixListResource definition. */
         interface Blank extends WithParentResource {
         }
+
         /** The stage of the PrefixListResource definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -111,6 +113,7 @@ public interface PrefixListResource {
              */
             WithPrefixList withExistingLocalRulestack(String resourceGroupName, String localRulestackName);
         }
+
         /** The stage of the PrefixListResource definition allowing to specify prefixList. */
         interface WithPrefixList {
             /**
@@ -121,6 +124,7 @@ public interface PrefixListResource {
              */
             WithCreate withPrefixList(List<String> prefixList);
         }
+
         /**
          * The stage of the PrefixListResource definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
@@ -142,6 +146,7 @@ public interface PrefixListResource {
              */
             PrefixListResource create(Context context);
         }
+
         /** The stage of the PrefixListResource definition allowing to specify description. */
         interface WithDescription {
             /**
@@ -152,6 +157,7 @@ public interface PrefixListResource {
              */
             WithCreate withDescription(String description);
         }
+
         /** The stage of the PrefixListResource definition allowing to specify etag. */
         interface WithEtag {
             /**
@@ -162,6 +168,7 @@ public interface PrefixListResource {
              */
             WithCreate withEtag(String etag);
         }
+
         /** The stage of the PrefixListResource definition allowing to specify auditComment. */
         interface WithAuditComment {
             /**
@@ -173,6 +180,7 @@ public interface PrefixListResource {
             WithCreate withAuditComment(String auditComment);
         }
     }
+
     /**
      * Begins update for the PrefixListResource resource.
      *
@@ -201,6 +209,7 @@ public interface PrefixListResource {
          */
         PrefixListResource apply(Context context);
     }
+
     /** The PrefixListResource update stages. */
     interface UpdateStages {
         /** The stage of the PrefixListResource update allowing to specify description. */
@@ -213,6 +222,7 @@ public interface PrefixListResource {
              */
             Update withDescription(String description);
         }
+
         /** The stage of the PrefixListResource update allowing to specify prefixList. */
         interface WithPrefixList {
             /**
@@ -223,6 +233,7 @@ public interface PrefixListResource {
              */
             Update withPrefixList(List<String> prefixList);
         }
+
         /** The stage of the PrefixListResource update allowing to specify etag. */
         interface WithEtag {
             /**
@@ -233,6 +244,7 @@ public interface PrefixListResource {
              */
             Update withEtag(String etag);
         }
+
         /** The stage of the PrefixListResource update allowing to specify auditComment. */
         interface WithAuditComment {
             /**
@@ -244,6 +256,7 @@ public interface PrefixListResource {
             Update withAuditComment(String auditComment);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *
