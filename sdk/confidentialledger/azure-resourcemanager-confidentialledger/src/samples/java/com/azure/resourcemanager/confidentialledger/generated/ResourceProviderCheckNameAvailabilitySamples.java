@@ -9,7 +9,7 @@ import com.azure.resourcemanager.confidentialledger.models.CheckNameAvailability
 /** Samples for ResourceProvider CheckNameAvailability. */
 public final class ResourceProviderCheckNameAvailabilitySamples {
     /*
-     * x-ms-original-file: specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/preview/2023-01-26-preview/examples/CheckNameAvailability.json
+     * x-ms-original-file: specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/preview/2023-06-28-preview/examples/CheckNameAvailability.json
      */
     /**
      * Sample code: CheckNameAvailability.
