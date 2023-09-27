@@ -41,6 +41,7 @@
     <module>sdk/changeanalysis</module>
     <module>sdk/chaos</module>
     <module>sdk/cognitiveservices</module>
+    <module>sdk/cognitiveservices/imageAnalysis</module>
     <module>sdk/commerce</module>
     <module>sdk/communication</module>
     <module>sdk/confidentialledger</module>
