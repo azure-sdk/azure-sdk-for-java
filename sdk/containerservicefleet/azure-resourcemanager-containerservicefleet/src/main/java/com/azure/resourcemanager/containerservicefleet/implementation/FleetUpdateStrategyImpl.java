@@ -6,15 +6,14 @@ package com.azure.resourcemanager.containerservicefleet.implementation;
 
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
-import com.azure.resourcemanager.containerservicefleet.fluent.models.UpdateRunInner;
-import com.azure.resourcemanager.containerservicefleet.models.ManagedClusterUpdate;
-import com.azure.resourcemanager.containerservicefleet.models.UpdateRun;
-import com.azure.resourcemanager.containerservicefleet.models.UpdateRunProvisioningState;
-import com.azure.resourcemanager.containerservicefleet.models.UpdateRunStatus;
+import com.azure.resourcemanager.containerservicefleet.fluent.models.FleetUpdateStrategyInner;
+import com.azure.resourcemanager.containerservicefleet.models.FleetUpdateStrategy;
+import com.azure.resourcemanager.containerservicefleet.models.FleetUpdateStrategyProvisioningState;
 import com.azure.resourcemanager.containerservicefleet.models.UpdateRunStrategy;
 
-public final class UpdateRunImpl implements UpdateRun, UpdateRun.Definition, UpdateRun.Update {
-    private UpdateRunInner innerObject;
+public final class FleetUpdateStrategyImpl
+    implements FleetUpdateStrategy, FleetUpdateStrategy.Definition, FleetUpdateStrategy.Update {
+    private FleetUpdateStrategyInner innerObject;
 
     private final com.azure.resourcemanager.containerservicefleet.ContainerServiceFleetManager serviceManager;
 
@@ -38,31 +37,19 @@ public final class UpdateRunImpl implements UpdateRun, UpdateRun.Definition, Upd
         return this.innerModel().systemData();
     }
 
-    public UpdateRunProvisioningState provisioningState() {
+    public FleetUpdateStrategyProvisioningState provisioningState() {
         return this.innerModel().provisioningState();
-    }
-
-    public String updateStrategyId() {
-        return this.innerModel().updateStrategyId();
     }
 
     public UpdateRunStrategy strategy() {
         return this.innerModel().strategy();
     }
 
-    public ManagedClusterUpdate managedClusterUpdate() {
-        return this.innerModel().managedClusterUpdate();
-    }
-
-    public UpdateRunStatus status() {
-        return this.innerModel().status();
-    }
-
     public String resourceGroupName() {
         return resourceGroupName;
     }
 
-    public UpdateRunInner innerModel() {
+    public FleetUpdateStrategyInner innerModel() {
         return this.innerObject;
     }
 
@@ -74,7 +61,7 @@ public final class UpdateRunImpl implements UpdateRun, UpdateRun.Definition, Upd
 
     private String fleetName;
 
-    private String updateRunName;
+    private String updateStrategyName;
 
     private String createIfMatch;
 
@@ -84,21 +71,21 @@ public final class UpdateRunImpl implements UpdateRun, UpdateRun.Definition, Upd
 
     private String updateIfNoneMatch;
 
-    public UpdateRunImpl withExistingFleet(String resourceGroupName, String fleetName) {
+    public FleetUpdateStrategyImpl withExistingFleet(String resourceGroupName, String fleetName) {
         this.resourceGroupName = resourceGroupName;
         this.fleetName = fleetName;
         return this;
     }
 
-    public UpdateRun create() {
+    public FleetUpdateStrategy create() {
         this.innerObject =
             serviceManager
                 .serviceClient()
-                .getUpdateRuns()
+                .getFleetUpdateStrategies()
                 .createOrUpdate(
                     resourceGroupName,
                     fleetName,
-                    updateRunName,
+                    updateStrategyName,
                     this.innerModel(),
                     createIfMatch,
                     createIfNoneMatch,
@@ -106,15 +93,15 @@ public final class UpdateRunImpl implements UpdateRun, UpdateRun.Definition, Upd
         return this;
     }
 
-    public UpdateRun create(Context context) {
+    public FleetUpdateStrategy create(Context context) {
         this.innerObject =
             serviceManager
                 .serviceClient()
-                .getUpdateRuns()
+                .getFleetUpdateStrategies()
                 .createOrUpdate(
                     resourceGroupName,
                     fleetName,
-                    updateRunName,
+                    updateStrategyName,
                     this.innerModel(),
                     createIfMatch,
                     createIfNoneMatch,
@@ -122,30 +109,30 @@ public final class UpdateRunImpl implements UpdateRun, UpdateRun.Definition, Upd
         return this;
     }
 
-    UpdateRunImpl(
+    FleetUpdateStrategyImpl(
         String name, com.azure.resourcemanager.containerservicefleet.ContainerServiceFleetManager serviceManager) {
-        this.innerObject = new UpdateRunInner();
+        this.innerObject = new FleetUpdateStrategyInner();
         this.serviceManager = serviceManager;
-        this.updateRunName = name;
+        this.updateStrategyName = name;
         this.createIfMatch = null;
         this.createIfNoneMatch = null;
     }
 
-    public UpdateRunImpl update() {
+    public FleetUpdateStrategyImpl update() {
         this.updateIfMatch = null;
         this.updateIfNoneMatch = null;
         return this;
     }
 
-    public UpdateRun apply() {
+    public FleetUpdateStrategy apply() {
         this.innerObject =
             serviceManager
                 .serviceClient()
-                .getUpdateRuns()
+                .getFleetUpdateStrategies()
                 .createOrUpdate(
                     resourceGroupName,
                     fleetName,
-                    updateRunName,
+                    updateStrategyName,
                     this.innerModel(),
                     updateIfMatch,
                     updateIfNoneMatch,
@@ -153,15 +140,15 @@ public final class UpdateRunImpl implements UpdateRun, UpdateRun.Definition, Upd
         return this;
     }
 
-    public UpdateRun apply(Context context) {
+    public FleetUpdateStrategy apply(Context context) {
         this.innerObject =
             serviceManager
                 .serviceClient()
-                .getUpdateRuns()
+                .getFleetUpdateStrategies()
                 .createOrUpdate(
                     resourceGroupName,
                     fleetName,
-                    updateRunName,
+                    updateStrategyName,
                     this.innerModel(),
                     updateIfMatch,
                     updateIfNoneMatch,
@@ -169,68 +156,42 @@ public final class UpdateRunImpl implements UpdateRun, UpdateRun.Definition, Upd
         return this;
     }
 
-    UpdateRunImpl(
-        UpdateRunInner innerObject,
+    FleetUpdateStrategyImpl(
+        FleetUpdateStrategyInner innerObject,
         com.azure.resourcemanager.containerservicefleet.ContainerServiceFleetManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
         this.resourceGroupName = Utils.getValueFromIdByName(innerObject.id(), "resourceGroups");
         this.fleetName = Utils.getValueFromIdByName(innerObject.id(), "fleets");
-        this.updateRunName = Utils.getValueFromIdByName(innerObject.id(), "updateRuns");
+        this.updateStrategyName = Utils.getValueFromIdByName(innerObject.id(), "updateStrategies");
     }
 
-    public UpdateRun refresh() {
+    public FleetUpdateStrategy refresh() {
         this.innerObject =
             serviceManager
                 .serviceClient()
-                .getUpdateRuns()
-                .getWithResponse(resourceGroupName, fleetName, updateRunName, Context.NONE)
+                .getFleetUpdateStrategies()
+                .getWithResponse(resourceGroupName, fleetName, updateStrategyName, Context.NONE)
                 .getValue();
         return this;
     }
 
-    public UpdateRun refresh(Context context) {
+    public FleetUpdateStrategy refresh(Context context) {
         this.innerObject =
             serviceManager
                 .serviceClient()
-                .getUpdateRuns()
-                .getWithResponse(resourceGroupName, fleetName, updateRunName, context)
+                .getFleetUpdateStrategies()
+                .getWithResponse(resourceGroupName, fleetName, updateStrategyName, context)
                 .getValue();
         return this;
     }
 
-    public UpdateRun start() {
-        return serviceManager.updateRuns().start(resourceGroupName, fleetName, updateRunName);
-    }
-
-    public UpdateRun start(String ifMatch, Context context) {
-        return serviceManager.updateRuns().start(resourceGroupName, fleetName, updateRunName, ifMatch, context);
-    }
-
-    public UpdateRun stop() {
-        return serviceManager.updateRuns().stop(resourceGroupName, fleetName, updateRunName);
-    }
-
-    public UpdateRun stop(String ifMatch, Context context) {
-        return serviceManager.updateRuns().stop(resourceGroupName, fleetName, updateRunName, ifMatch, context);
-    }
-
-    public UpdateRunImpl withUpdateStrategyId(String updateStrategyId) {
-        this.innerModel().withUpdateStrategyId(updateStrategyId);
-        return this;
-    }
-
-    public UpdateRunImpl withStrategy(UpdateRunStrategy strategy) {
+    public FleetUpdateStrategyImpl withStrategy(UpdateRunStrategy strategy) {
         this.innerModel().withStrategy(strategy);
         return this;
     }
 
-    public UpdateRunImpl withManagedClusterUpdate(ManagedClusterUpdate managedClusterUpdate) {
-        this.innerModel().withManagedClusterUpdate(managedClusterUpdate);
-        return this;
-    }
-
-    public UpdateRunImpl withIfMatch(String ifMatch) {
+    public FleetUpdateStrategyImpl withIfMatch(String ifMatch) {
         if (isInCreateMode()) {
             this.createIfMatch = ifMatch;
             return this;
@@ -240,7 +201,7 @@ public final class UpdateRunImpl implements UpdateRun, UpdateRun.Definition, Upd
         }
     }
 
-    public UpdateRunImpl withIfNoneMatch(String ifNoneMatch) {
+    public FleetUpdateStrategyImpl withIfNoneMatch(String ifNoneMatch) {
         if (isInCreateMode()) {
             this.createIfNoneMatch = ifNoneMatch;
             return this;
