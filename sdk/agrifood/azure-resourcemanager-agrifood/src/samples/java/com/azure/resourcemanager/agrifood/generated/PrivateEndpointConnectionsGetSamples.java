@@ -4,12 +4,10 @@
 
 package com.azure.resourcemanager.agrifood.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for PrivateEndpointConnections Get. */
 public final class PrivateEndpointConnectionsGetSamples {
     /*
-     * x-ms-original-file: specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2021-09-01-preview/examples/PrivateEndpointConnections_Get.json
+     * x-ms-original-file: specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2023-06-01-preview/examples/PrivateEndpointConnections_Get.json
      */
     /**
      * Sample code: PrivateEndpointConnections_Get.
@@ -20,6 +18,9 @@ public final class PrivateEndpointConnectionsGetSamples {
         manager
             .privateEndpointConnections()
             .getWithResponse(
-                "examples-rg", "examples-farmbeatsResourceName", "privateEndpointConnectionName", Context.NONE);
+                "examples-rg",
+                "examples-farmbeatsResourceName",
+                "privateEndpointConnectionName",
+                com.azure.core.util.Context.NONE);
     }
 }
