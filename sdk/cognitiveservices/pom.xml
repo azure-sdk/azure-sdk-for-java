@@ -10,16 +10,17 @@
   <version>1.0.0</version><!-- Need not change for every release-->
 
   <modules>
-      <module>azure-resourcemanager-cognitiveservices</module>
-      <module>ms-azure-cs-autosuggest</module>
-      <module>ms-azure-cs-computervision</module>
-      <module>ms-azure-cs-contentmoderator</module>
-      <module>ms-azure-cs-customimagesearch</module>
-      <module>ms-azure-cs-customsearch</module>
-      <module>ms-azure-cs-customvision-prediction</module>
-      <module>ms-azure-cs-customvision-training</module>
-      <module>ms-azure-cs-entitysearch</module>
-      <module>ms-azure-cs-faceapi</module>
+        <module>azure-ai-vision-imageanalysis</module>
+        <module>azure-resourcemanager-cognitiveservices</module>
+        <module>ms-azure-cs-autosuggest</module>
+        <module>ms-azure-cs-computervision</module>
+        <module>ms-azure-cs-contentmoderator</module>
+        <module>ms-azure-cs-customimagesearch</module>
+        <module>ms-azure-cs-customsearch</module>
+        <module>ms-azure-cs-customvision-prediction</module>
+        <module>ms-azure-cs-customvision-training</module>
+        <module>ms-azure-cs-entitysearch</module>
+        <module>ms-azure-cs-faceapi</module>
         <module>ms-azure-cs-imagesearch</module>
         <module>ms-azure-cs-luis-authoring</module>
         <module>ms-azure-cs-luis-runtime</module>
