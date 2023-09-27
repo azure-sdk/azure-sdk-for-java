@@ -13,6 +13,7 @@ import com.azure.core.annotation.Headers;
 import com.azure.core.annotation.Host;
 import com.azure.core.annotation.HostParam;
 import com.azure.core.annotation.PathParam;
+import com.azure.core.annotation.Post;
 import com.azure.core.annotation.Put;
 import com.azure.core.annotation.QueryParam;
 import com.azure.core.annotation.ReturnType;
@@ -26,12 +27,19 @@ import com.azure.core.http.rest.PagedResponseBase;
 import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
+import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.polling.PollerFlux;
+import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.machinelearning.fluent.ModelVersionsClient;
 import com.azure.resourcemanager.machinelearning.fluent.models.ModelVersionInner;
+import com.azure.resourcemanager.machinelearning.fluent.models.PackageResponseInner;
 import com.azure.resourcemanager.machinelearning.models.ListViewType;
 import com.azure.resourcemanager.machinelearning.models.ModelVersionResourceArmPaginatedResult;
+import com.azure.resourcemanager.machinelearning.models.PackageRequest;
+import java.nio.ByteBuffer;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in ModelVersionsClient. */
@@ -40,21 +48,21 @@ public final class ModelVersionsClientImpl implements ModelVersionsClient {
     private final ModelVersionsService service;
 
     /** The service client containing this operation class. */
-    private final AzureMachineLearningWorkspacesImpl client;
+    private final AzureMachineLearningServicesImpl client;
 
     /**
      * Initializes an instance of ModelVersionsClientImpl.
      *
      * @param client the instance of the service client containing this operation class.
      */
-    ModelVersionsClientImpl(AzureMachineLearningWorkspacesImpl client) {
+    ModelVersionsClientImpl(AzureMachineLearningServicesImpl client) {
         this.service =
             RestProxy.create(ModelVersionsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for AzureMachineLearningWorkspacesModelVersions to be used by the proxy
+     * The interface defining all the services for AzureMachineLearningServicesModelVersions to be used by the proxy
      * service to perform REST calls.
      */
     @Host("{$host}")
@@ -62,8 +70,7 @@ public final class ModelVersionsClientImpl implements ModelVersionsClient {
     public interface ModelVersionsService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/models/{name}/versions")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/models/{name}/versions")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ModelVersionResourceArmPaginatedResult>> list(
@@ -83,13 +90,13 @@ public final class ModelVersionsClientImpl implements ModelVersionsClient {
             @QueryParam("properties") String properties,
             @QueryParam("feed") String feed,
             @QueryParam("listViewType") ListViewType listViewType,
+            @QueryParam("stage") String stage,
             @HeaderParam("Accept") String accept,
             Context context);
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/models/{name}/versions/{version}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/models/{name}/versions/{version}")
         @ExpectedResponses({200, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Void>> delete(
@@ -105,8 +112,7 @@ public final class ModelVersionsClientImpl implements ModelVersionsClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/models/{name}/versions/{version}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/models/{name}/versions/{version}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ModelVersionInner>> get(
@@ -122,8 +128,7 @@ public final class ModelVersionsClientImpl implements ModelVersionsClient {
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/models/{name}/versions/{version}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/models/{name}/versions/{version}")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ModelVersionInner>> createOrUpdate(
@@ -135,6 +140,23 @@ public final class ModelVersionsClientImpl implements ModelVersionsClient {
             @PathParam("version") String version,
             @QueryParam("api-version") String apiVersion,
             @BodyParam("application/json") ModelVersionInner body,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
+        @Post(
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/models/{name}/versions/{version}/package")
+        @ExpectedResponses({200, 202})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Flux<ByteBuffer>>> packageMethod(
+            @HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("workspaceName") String workspaceName,
+            @PathParam("name") String name,
+            @PathParam("version") String version,
+            @QueryParam("api-version") String apiVersion,
+            @BodyParam("application/json") PackageRequest body,
             @HeaderParam("Accept") String accept,
             Context context);
 
@@ -165,6 +187,7 @@ public final class ModelVersionsClientImpl implements ModelVersionsClient {
      * @param properties Comma-separated list of property names (and optionally values). Example: prop1,prop2=value2.
      * @param feed Name of the feed.
      * @param listViewType View type for including/excluding (for example) archived entities.
+     * @param stage Model stage.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -185,7 +208,8 @@ public final class ModelVersionsClientImpl implements ModelVersionsClient {
         String tags,
         String properties,
         String feed,
-        ListViewType listViewType) {
+        ListViewType listViewType,
+        String stage) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -230,6 +254,7 @@ public final class ModelVersionsClientImpl implements ModelVersionsClient {
                             properties,
                             feed,
                             listViewType,
+                            stage,
                             accept,
                             context))
             .<PagedResponse<ModelVersionInner>>map(
@@ -260,6 +285,7 @@ public final class ModelVersionsClientImpl implements ModelVersionsClient {
      * @param properties Comma-separated list of property names (and optionally values). Example: prop1,prop2=value2.
      * @param feed Name of the feed.
      * @param listViewType View type for including/excluding (for example) archived entities.
+     * @param stage Model stage.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -282,6 +308,7 @@ public final class ModelVersionsClientImpl implements ModelVersionsClient {
         String properties,
         String feed,
         ListViewType listViewType,
+        String stage,
         Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -325,6 +352,7 @@ public final class ModelVersionsClientImpl implements ModelVersionsClient {
                 properties,
                 feed,
                 listViewType,
+                stage,
                 accept,
                 context)
             .map(
@@ -354,6 +382,7 @@ public final class ModelVersionsClientImpl implements ModelVersionsClient {
      * @param properties Comma-separated list of property names (and optionally values). Example: prop1,prop2=value2.
      * @param feed Name of the feed.
      * @param listViewType View type for including/excluding (for example) archived entities.
+     * @param stage Model stage.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -373,7 +402,8 @@ public final class ModelVersionsClientImpl implements ModelVersionsClient {
         String tags,
         String properties,
         String feed,
-        ListViewType listViewType) {
+        ListViewType listViewType,
+        String stage) {
         return new PagedFlux<>(
             () ->
                 listSinglePageAsync(
@@ -389,7 +419,8 @@ public final class ModelVersionsClientImpl implements ModelVersionsClient {
                     tags,
                     properties,
                     feed,
-                    listViewType),
+                    listViewType,
+                    stage),
             nextLink -> listNextSinglePageAsync(nextLink));
     }
 
@@ -416,6 +447,7 @@ public final class ModelVersionsClientImpl implements ModelVersionsClient {
         final String properties = null;
         final String feed = null;
         final ListViewType listViewType = null;
+        final String stage = null;
         return new PagedFlux<>(
             () ->
                 listSinglePageAsync(
@@ -431,7 +463,8 @@ public final class ModelVersionsClientImpl implements ModelVersionsClient {
                     tags,
                     properties,
                     feed,
-                    listViewType),
+                    listViewType,
+                    stage),
             nextLink -> listNextSinglePageAsync(nextLink));
     }
 
@@ -451,6 +484,7 @@ public final class ModelVersionsClientImpl implements ModelVersionsClient {
      * @param properties Comma-separated list of property names (and optionally values). Example: prop1,prop2=value2.
      * @param feed Name of the feed.
      * @param listViewType View type for including/excluding (for example) archived entities.
+     * @param stage Model stage.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -472,6 +506,7 @@ public final class ModelVersionsClientImpl implements ModelVersionsClient {
         String properties,
         String feed,
         ListViewType listViewType,
+        String stage,
         Context context) {
         return new PagedFlux<>(
             () ->
@@ -489,6 +524,7 @@ public final class ModelVersionsClientImpl implements ModelVersionsClient {
                     properties,
                     feed,
                     listViewType,
+                    stage,
                     context),
             nextLink -> listNextSinglePageAsync(nextLink, context));
     }
@@ -516,6 +552,7 @@ public final class ModelVersionsClientImpl implements ModelVersionsClient {
         final String properties = null;
         final String feed = null;
         final ListViewType listViewType = null;
+        final String stage = null;
         return new PagedIterable<>(
             listAsync(
                 resourceGroupName,
@@ -530,7 +567,8 @@ public final class ModelVersionsClientImpl implements ModelVersionsClient {
                 tags,
                 properties,
                 feed,
-                listViewType));
+                listViewType,
+                stage));
     }
 
     /**
@@ -549,6 +587,7 @@ public final class ModelVersionsClientImpl implements ModelVersionsClient {
      * @param properties Comma-separated list of property names (and optionally values). Example: prop1,prop2=value2.
      * @param feed Name of the feed.
      * @param listViewType View type for including/excluding (for example) archived entities.
+     * @param stage Model stage.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -570,6 +609,7 @@ public final class ModelVersionsClientImpl implements ModelVersionsClient {
         String properties,
         String feed,
         ListViewType listViewType,
+        String stage,
         Context context) {
         return new PagedIterable<>(
             listAsync(
@@ -586,6 +626,7 @@ public final class ModelVersionsClientImpl implements ModelVersionsClient {
                 properties,
                 feed,
                 listViewType,
+                stage,
                 context));
     }
 
@@ -1123,6 +1164,344 @@ public final class ModelVersionsClientImpl implements ModelVersionsClient {
         String resourceGroupName, String workspaceName, String name, String version, ModelVersionInner body) {
         return createOrUpdateWithResponse(resourceGroupName, workspaceName, name, version, body, Context.NONE)
             .getValue();
+    }
+
+    /**
+     * Model Version Package operation.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param name Container name. This is case-sensitive.
+     * @param version Version identifier. This is case-sensitive.
+     * @param body Package operation request body.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return package response returned after async package operation completes successfully along with {@link
+     *     Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> packageMethodWithResponseAsync(
+        String resourceGroupName, String workspaceName, String name, String version, PackageRequest body) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workspaceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
+        }
+        if (name == null) {
+            return Mono.error(new IllegalArgumentException("Parameter name is required and cannot be null."));
+        }
+        if (version == null) {
+            return Mono.error(new IllegalArgumentException("Parameter version is required and cannot be null."));
+        }
+        if (body == null) {
+            return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
+        } else {
+            body.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service
+                        .packageMethod(
+                            this.client.getEndpoint(),
+                            this.client.getSubscriptionId(),
+                            resourceGroupName,
+                            workspaceName,
+                            name,
+                            version,
+                            this.client.getApiVersion(),
+                            body,
+                            accept,
+                            context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Model Version Package operation.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param name Container name. This is case-sensitive.
+     * @param version Version identifier. This is case-sensitive.
+     * @param body Package operation request body.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return package response returned after async package operation completes successfully along with {@link
+     *     Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> packageMethodWithResponseAsync(
+        String resourceGroupName,
+        String workspaceName,
+        String name,
+        String version,
+        PackageRequest body,
+        Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workspaceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
+        }
+        if (name == null) {
+            return Mono.error(new IllegalArgumentException("Parameter name is required and cannot be null."));
+        }
+        if (version == null) {
+            return Mono.error(new IllegalArgumentException("Parameter version is required and cannot be null."));
+        }
+        if (body == null) {
+            return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
+        } else {
+            body.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .packageMethod(
+                this.client.getEndpoint(),
+                this.client.getSubscriptionId(),
+                resourceGroupName,
+                workspaceName,
+                name,
+                version,
+                this.client.getApiVersion(),
+                body,
+                accept,
+                context);
+    }
+
+    /**
+     * Model Version Package operation.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param name Container name. This is case-sensitive.
+     * @param version Version identifier. This is case-sensitive.
+     * @param body Package operation request body.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of package response returned after async package operation completes
+     *     successfully.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<PackageResponseInner>, PackageResponseInner> beginPackageMethodAsync(
+        String resourceGroupName, String workspaceName, String name, String version, PackageRequest body) {
+        Mono<Response<Flux<ByteBuffer>>> mono =
+            packageMethodWithResponseAsync(resourceGroupName, workspaceName, name, version, body);
+        return this
+            .client
+            .<PackageResponseInner, PackageResponseInner>getLroResult(
+                mono,
+                this.client.getHttpPipeline(),
+                PackageResponseInner.class,
+                PackageResponseInner.class,
+                this.client.getContext());
+    }
+
+    /**
+     * Model Version Package operation.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param name Container name. This is case-sensitive.
+     * @param version Version identifier. This is case-sensitive.
+     * @param body Package operation request body.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of package response returned after async package operation completes
+     *     successfully.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<PackageResponseInner>, PackageResponseInner> beginPackageMethodAsync(
+        String resourceGroupName,
+        String workspaceName,
+        String name,
+        String version,
+        PackageRequest body,
+        Context context) {
+        context = this.client.mergeContext(context);
+        Mono<Response<Flux<ByteBuffer>>> mono =
+            packageMethodWithResponseAsync(resourceGroupName, workspaceName, name, version, body, context);
+        return this
+            .client
+            .<PackageResponseInner, PackageResponseInner>getLroResult(
+                mono, this.client.getHttpPipeline(), PackageResponseInner.class, PackageResponseInner.class, context);
+    }
+
+    /**
+     * Model Version Package operation.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param name Container name. This is case-sensitive.
+     * @param version Version identifier. This is case-sensitive.
+     * @param body Package operation request body.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of package response returned after async package operation completes
+     *     successfully.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<PackageResponseInner>, PackageResponseInner> beginPackageMethod(
+        String resourceGroupName, String workspaceName, String name, String version, PackageRequest body) {
+        return this.beginPackageMethodAsync(resourceGroupName, workspaceName, name, version, body).getSyncPoller();
+    }
+
+    /**
+     * Model Version Package operation.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param name Container name. This is case-sensitive.
+     * @param version Version identifier. This is case-sensitive.
+     * @param body Package operation request body.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of package response returned after async package operation completes
+     *     successfully.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<PackageResponseInner>, PackageResponseInner> beginPackageMethod(
+        String resourceGroupName,
+        String workspaceName,
+        String name,
+        String version,
+        PackageRequest body,
+        Context context) {
+        return this
+            .beginPackageMethodAsync(resourceGroupName, workspaceName, name, version, body, context)
+            .getSyncPoller();
+    }
+
+    /**
+     * Model Version Package operation.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param name Container name. This is case-sensitive.
+     * @param version Version identifier. This is case-sensitive.
+     * @param body Package operation request body.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return package response returned after async package operation completes successfully on successful completion
+     *     of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PackageResponseInner> packageMethodAsync(
+        String resourceGroupName, String workspaceName, String name, String version, PackageRequest body) {
+        return beginPackageMethodAsync(resourceGroupName, workspaceName, name, version, body)
+            .last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Model Version Package operation.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param name Container name. This is case-sensitive.
+     * @param version Version identifier. This is case-sensitive.
+     * @param body Package operation request body.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return package response returned after async package operation completes successfully on successful completion
+     *     of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PackageResponseInner> packageMethodAsync(
+        String resourceGroupName,
+        String workspaceName,
+        String name,
+        String version,
+        PackageRequest body,
+        Context context) {
+        return beginPackageMethodAsync(resourceGroupName, workspaceName, name, version, body, context)
+            .last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Model Version Package operation.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param name Container name. This is case-sensitive.
+     * @param version Version identifier. This is case-sensitive.
+     * @param body Package operation request body.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return package response returned after async package operation completes successfully.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public PackageResponseInner packageMethod(
+        String resourceGroupName, String workspaceName, String name, String version, PackageRequest body) {
+        return packageMethodAsync(resourceGroupName, workspaceName, name, version, body).block();
+    }
+
+    /**
+     * Model Version Package operation.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param name Container name. This is case-sensitive.
+     * @param version Version identifier. This is case-sensitive.
+     * @param body Package operation request body.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return package response returned after async package operation completes successfully.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public PackageResponseInner packageMethod(
+        String resourceGroupName,
+        String workspaceName,
+        String name,
+        String version,
+        PackageRequest body,
+        Context context) {
+        return packageMethodAsync(resourceGroupName, workspaceName, name, version, body, context).block();
     }
 
     /**

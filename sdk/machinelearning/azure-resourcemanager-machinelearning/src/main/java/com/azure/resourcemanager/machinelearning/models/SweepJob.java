@@ -50,6 +50,12 @@ public final class SweepJob extends JobBaseProperties {
     private Map<String, JobOutput> outputs;
 
     /*
+     * Queue settings for the job
+     */
+    @JsonProperty(value = "queueSettings")
+    private QueueSettings queueSettings;
+
+    /*
      * [Required] The hyperparameter sampling algorithm
      */
     @JsonProperty(value = "samplingAlgorithm", required = true)
@@ -175,6 +181,26 @@ public final class SweepJob extends JobBaseProperties {
     }
 
     /**
+     * Get the queueSettings property: Queue settings for the job.
+     *
+     * @return the queueSettings value.
+     */
+    public QueueSettings queueSettings() {
+        return this.queueSettings;
+    }
+
+    /**
+     * Set the queueSettings property: Queue settings for the job.
+     *
+     * @param queueSettings the queueSettings value to set.
+     * @return the SweepJob object itself.
+     */
+    public SweepJob withQueueSettings(QueueSettings queueSettings) {
+        this.queueSettings = queueSettings;
+        return this;
+    }
+
+    /**
      * Get the samplingAlgorithm property: [Required] The hyperparameter sampling algorithm.
      *
      * @return the samplingAlgorithm value.
@@ -280,6 +306,20 @@ public final class SweepJob extends JobBaseProperties {
 
     /** {@inheritDoc} */
     @Override
+    public SweepJob withNotificationSetting(NotificationSetting notificationSetting) {
+        super.withNotificationSetting(notificationSetting);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public SweepJob withSecretsConfiguration(Map<String, SecretConfiguration> secretsConfiguration) {
+        super.withSecretsConfiguration(secretsConfiguration);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public SweepJob withServices(Map<String, JobService> services) {
         super.withServices(services);
         return this;
@@ -346,6 +386,9 @@ public final class SweepJob extends JobBaseProperties {
                             e.validate();
                         }
                     });
+        }
+        if (queueSettings() != null) {
+            queueSettings().validate();
         }
         if (samplingAlgorithm() == null) {
             throw LOGGER
