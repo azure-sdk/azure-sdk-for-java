@@ -11,16 +11,19 @@ import com.azure.resourcemanager.mysqlflexibleserver.models.Backup;
 import com.azure.resourcemanager.mysqlflexibleserver.models.CreateMode;
 import com.azure.resourcemanager.mysqlflexibleserver.models.DataEncryption;
 import com.azure.resourcemanager.mysqlflexibleserver.models.HighAvailability;
-import com.azure.resourcemanager.mysqlflexibleserver.models.Identity;
+import com.azure.resourcemanager.mysqlflexibleserver.models.ImportSourceProperties;
 import com.azure.resourcemanager.mysqlflexibleserver.models.MaintenanceWindow;
+import com.azure.resourcemanager.mysqlflexibleserver.models.MySqlServerIdentity;
+import com.azure.resourcemanager.mysqlflexibleserver.models.MySqlServerSku;
 import com.azure.resourcemanager.mysqlflexibleserver.models.Network;
+import com.azure.resourcemanager.mysqlflexibleserver.models.PrivateEndpointConnection;
 import com.azure.resourcemanager.mysqlflexibleserver.models.ReplicationRole;
 import com.azure.resourcemanager.mysqlflexibleserver.models.ServerState;
 import com.azure.resourcemanager.mysqlflexibleserver.models.ServerVersion;
-import com.azure.resourcemanager.mysqlflexibleserver.models.Sku;
 import com.azure.resourcemanager.mysqlflexibleserver.models.Storage;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
+import java.util.List;
 import java.util.Map;
 
 /** Represents a server. */
@@ -30,13 +33,13 @@ public final class ServerInner extends Resource {
      * The cmk identity for the server.
      */
     @JsonProperty(value = "identity")
-    private Identity identity;
+    private MySqlServerIdentity identity;
 
     /*
      * The SKU (pricing tier) of the server.
      */
     @JsonProperty(value = "sku")
-    private Sku sku;
+    private MySqlServerSku sku;
 
     /*
      * Properties of the server.
@@ -45,7 +48,7 @@ public final class ServerInner extends Resource {
     private ServerProperties innerProperties;
 
     /*
-     * The system metadata relating to this resource.
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
      */
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
@@ -59,7 +62,7 @@ public final class ServerInner extends Resource {
      *
      * @return the identity value.
      */
-    public Identity identity() {
+    public MySqlServerIdentity identity() {
         return this.identity;
     }
 
@@ -69,7 +72,7 @@ public final class ServerInner extends Resource {
      * @param identity the identity value to set.
      * @return the ServerInner object itself.
      */
-    public ServerInner withIdentity(Identity identity) {
+    public ServerInner withIdentity(MySqlServerIdentity identity) {
         this.identity = identity;
         return this;
     }
@@ -79,7 +82,7 @@ public final class ServerInner extends Resource {
      *
      * @return the sku value.
      */
-    public Sku sku() {
+    public MySqlServerSku sku() {
         return this.sku;
     }
 
@@ -89,7 +92,7 @@ public final class ServerInner extends Resource {
      * @param sku the sku value to set.
      * @return the ServerInner object itself.
      */
-    public ServerInner withSku(Sku sku) {
+    public ServerInner withSku(MySqlServerSku sku) {
         this.sku = sku;
         return this;
     }
@@ -104,7 +107,7 @@ public final class ServerInner extends Resource {
     }
 
     /**
-     * Get the systemData property: The system metadata relating to this resource.
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      *
      * @return the systemData value.
      */
@@ -459,6 +462,15 @@ public final class ServerInner extends Resource {
     }
 
     /**
+     * Get the privateEndpointConnections property: PrivateEndpointConnections related properties of a server.
+     *
+     * @return the privateEndpointConnections value.
+     */
+    public List<PrivateEndpointConnection> privateEndpointConnections() {
+        return this.innerProperties() == null ? null : this.innerProperties().privateEndpointConnections();
+    }
+
+    /**
      * Get the maintenanceWindow property: Maintenance window of a server.
      *
      * @return the maintenanceWindow value.
@@ -478,6 +490,29 @@ public final class ServerInner extends Resource {
             this.innerProperties = new ServerProperties();
         }
         this.innerProperties().withMaintenanceWindow(maintenanceWindow);
+        return this;
+    }
+
+    /**
+     * Get the importSourceProperties property: Source properties for import from storage.
+     *
+     * @return the importSourceProperties value.
+     */
+    public ImportSourceProperties importSourceProperties() {
+        return this.innerProperties() == null ? null : this.innerProperties().importSourceProperties();
+    }
+
+    /**
+     * Set the importSourceProperties property: Source properties for import from storage.
+     *
+     * @param importSourceProperties the importSourceProperties value to set.
+     * @return the ServerInner object itself.
+     */
+    public ServerInner withImportSourceProperties(ImportSourceProperties importSourceProperties) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ServerProperties();
+        }
+        this.innerProperties().withImportSourceProperties(importSourceProperties);
         return this;
     }
 
