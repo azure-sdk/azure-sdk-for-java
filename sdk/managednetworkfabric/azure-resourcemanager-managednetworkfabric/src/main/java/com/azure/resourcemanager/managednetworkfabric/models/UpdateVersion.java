@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Update version properties. */
 @Fluent
-public final class UpdateVersion {
+public class UpdateVersion {
     /*
      * Specify the version.
      */
