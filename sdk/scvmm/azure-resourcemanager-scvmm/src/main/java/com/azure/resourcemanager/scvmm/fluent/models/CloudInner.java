@@ -36,6 +36,10 @@ public final class CloudInner extends Resource {
     @JsonProperty(value = "extendedLocation", required = true)
     private ExtendedLocation extendedLocation;
 
+    /** Creates an instance of CloudInner class. */
+    public CloudInner() {
+    }
+
     /**
      * Get the innerProperties property: Resource properties.
      *

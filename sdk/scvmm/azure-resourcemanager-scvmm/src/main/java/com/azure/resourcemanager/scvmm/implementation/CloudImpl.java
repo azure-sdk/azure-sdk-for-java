@@ -96,6 +96,10 @@ public final class CloudImpl implements Cloud, Cloud.Definition, Cloud.Update {
         return this.location();
     }
 
+    public String resourceGroupName() {
+        return resourceGroupName;
+    }
+
     public CloudInner innerModel() {
         return this.innerObject;
     }

@@ -26,15 +26,6 @@ public final class VmmServersImpl implements VmmServers {
         this.serviceManager = serviceManager;
     }
 
-    public VmmServer getByResourceGroup(String resourceGroupName, String vmmServerName) {
-        VmmServerInner inner = this.serviceClient().getByResourceGroup(resourceGroupName, vmmServerName);
-        if (inner != null) {
-            return new VmmServerImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<VmmServer> getByResourceGroupWithResponse(
         String resourceGroupName, String vmmServerName, Context context) {
         Response<VmmServerInner> inner =
@@ -50,8 +41,13 @@ public final class VmmServersImpl implements VmmServers {
         }
     }
 
-    public void delete(String resourceGroupName, String vmmServerName, Boolean force) {
-        this.serviceClient().delete(resourceGroupName, vmmServerName, force);
+    public VmmServer getByResourceGroup(String resourceGroupName, String vmmServerName) {
+        VmmServerInner inner = this.serviceClient().getByResourceGroup(resourceGroupName, vmmServerName);
+        if (inner != null) {
+            return new VmmServerImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public void delete(String resourceGroupName, String vmmServerName) {
