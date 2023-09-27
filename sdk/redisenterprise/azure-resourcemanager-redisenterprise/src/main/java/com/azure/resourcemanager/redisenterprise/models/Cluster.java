@@ -162,11 +162,13 @@ public interface Cluster {
             DefinitionStages.WithSku,
             DefinitionStages.WithCreate {
     }
+
     /** The Cluster definition stages. */
     interface DefinitionStages {
         /** The first stage of the Cluster definition. */
         interface Blank extends WithLocation {
         }
+
         /** The stage of the Cluster definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -185,6 +187,7 @@ public interface Cluster {
              */
             WithResourceGroup withRegion(String location);
         }
+
         /** The stage of the Cluster definition allowing to specify parent resource. */
         interface WithResourceGroup {
             /**
@@ -195,6 +198,7 @@ public interface Cluster {
              */
             WithSku withExistingResourceGroup(String resourceGroupName);
         }
+
         /** The stage of the Cluster definition allowing to specify sku. */
         interface WithSku {
             /**
@@ -205,6 +209,7 @@ public interface Cluster {
              */
             WithCreate withSku(Sku sku);
         }
+
         /**
          * The stage of the Cluster definition which contains all the minimum required properties for the resource to be
          * created, but also allows for any other optional properties to be specified.
@@ -230,6 +235,7 @@ public interface Cluster {
              */
             Cluster create(Context context);
         }
+
         /** The stage of the Cluster definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -240,6 +246,7 @@ public interface Cluster {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
         /** The stage of the Cluster definition allowing to specify zones. */
         interface WithZones {
             /**
@@ -250,6 +257,7 @@ public interface Cluster {
              */
             WithCreate withZones(List<String> zones);
         }
+
         /** The stage of the Cluster definition allowing to specify identity. */
         interface WithIdentity {
             /**
@@ -260,6 +268,7 @@ public interface Cluster {
              */
             WithCreate withIdentity(ManagedServiceIdentity identity);
         }
+
         /** The stage of the Cluster definition allowing to specify minimumTlsVersion. */
         interface WithMinimumTlsVersion {
             /**
@@ -270,6 +279,7 @@ public interface Cluster {
              */
             WithCreate withMinimumTlsVersion(TlsVersion minimumTlsVersion);
         }
+
         /** The stage of the Cluster definition allowing to specify encryption. */
         interface WithEncryption {
             /**
@@ -281,6 +291,7 @@ public interface Cluster {
             WithCreate withEncryption(ClusterPropertiesEncryption encryption);
         }
     }
+
     /**
      * Begins update for the Cluster resource.
      *
@@ -310,6 +321,7 @@ public interface Cluster {
          */
         Cluster apply(Context context);
     }
+
     /** The Cluster update stages. */
     interface UpdateStages {
         /** The stage of the Cluster update allowing to specify tags. */
@@ -322,6 +334,7 @@ public interface Cluster {
              */
             Update withTags(Map<String, String> tags);
         }
+
         /** The stage of the Cluster update allowing to specify sku. */
         interface WithSku {
             /**
@@ -332,6 +345,7 @@ public interface Cluster {
              */
             Update withSku(Sku sku);
         }
+
         /** The stage of the Cluster update allowing to specify identity. */
         interface WithIdentity {
             /**
@@ -342,6 +356,7 @@ public interface Cluster {
              */
             Update withIdentity(ManagedServiceIdentity identity);
         }
+
         /** The stage of the Cluster update allowing to specify minimumTlsVersion. */
         interface WithMinimumTlsVersion {
             /**
@@ -352,6 +367,7 @@ public interface Cluster {
              */
             Update withMinimumTlsVersion(TlsVersion minimumTlsVersion);
         }
+
         /** The stage of the Cluster update allowing to specify encryption. */
         interface WithEncryption {
             /**
@@ -363,6 +379,7 @@ public interface Cluster {
             Update withEncryption(ClusterPropertiesEncryption encryption);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *
