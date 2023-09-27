@@ -6,8 +6,8 @@ package com.azure.resourcemanager.chaos.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
-import com.azure.resourcemanager.chaos.models.Selector;
-import com.azure.resourcemanager.chaos.models.Step;
+import com.azure.resourcemanager.chaos.models.ChaosExperimentStep;
+import com.azure.resourcemanager.chaos.models.ChaosTargetSelector;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
@@ -18,19 +18,13 @@ public final class ExperimentProperties {
      * List of steps.
      */
     @JsonProperty(value = "steps", required = true)
-    private List<Step> steps;
+    private List<ChaosExperimentStep> steps;
 
     /*
      * List of selectors.
      */
     @JsonProperty(value = "selectors", required = true)
-    private List<Selector> selectors;
-
-    /*
-     * A boolean value that indicates if experiment should be started on creation or not.
-     */
-    @JsonProperty(value = "startOnCreation")
-    private Boolean startOnCreation;
+    private List<ChaosTargetSelector> selectors;
 
     /** Creates an instance of ExperimentProperties class. */
     public ExperimentProperties() {
@@ -41,7 +35,7 @@ public final class ExperimentProperties {
      *
      * @return the steps value.
      */
-    public List<Step> steps() {
+    public List<ChaosExperimentStep> steps() {
         return this.steps;
     }
 
@@ -51,7 +45,7 @@ public final class ExperimentProperties {
      * @param steps the steps value to set.
      * @return the ExperimentProperties object itself.
      */
-    public ExperimentProperties withSteps(List<Step> steps) {
+    public ExperimentProperties withSteps(List<ChaosExperimentStep> steps) {
         this.steps = steps;
         return this;
     }
@@ -61,7 +55,7 @@ public final class ExperimentProperties {
      *
      * @return the selectors value.
      */
-    public List<Selector> selectors() {
+    public List<ChaosTargetSelector> selectors() {
         return this.selectors;
     }
 
@@ -71,30 +65,8 @@ public final class ExperimentProperties {
      * @param selectors the selectors value to set.
      * @return the ExperimentProperties object itself.
      */
-    public ExperimentProperties withSelectors(List<Selector> selectors) {
+    public ExperimentProperties withSelectors(List<ChaosTargetSelector> selectors) {
         this.selectors = selectors;
-        return this;
-    }
-
-    /**
-     * Get the startOnCreation property: A boolean value that indicates if experiment should be started on creation or
-     * not.
-     *
-     * @return the startOnCreation value.
-     */
-    public Boolean startOnCreation() {
-        return this.startOnCreation;
-    }
-
-    /**
-     * Set the startOnCreation property: A boolean value that indicates if experiment should be started on creation or
-     * not.
-     *
-     * @param startOnCreation the startOnCreation value to set.
-     * @return the ExperimentProperties object itself.
-     */
-    public ExperimentProperties withStartOnCreation(Boolean startOnCreation) {
-        this.startOnCreation = startOnCreation;
         return this;
     }
 
