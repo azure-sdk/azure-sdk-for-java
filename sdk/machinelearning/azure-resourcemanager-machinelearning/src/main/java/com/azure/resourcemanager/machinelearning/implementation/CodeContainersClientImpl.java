@@ -39,21 +39,21 @@ public final class CodeContainersClientImpl implements CodeContainersClient {
     private final CodeContainersService service;
 
     /** The service client containing this operation class. */
-    private final AzureMachineLearningWorkspacesImpl client;
+    private final AzureMachineLearningServicesImpl client;
 
     /**
      * Initializes an instance of CodeContainersClientImpl.
      *
      * @param client the instance of the service client containing this operation class.
      */
-    CodeContainersClientImpl(AzureMachineLearningWorkspacesImpl client) {
+    CodeContainersClientImpl(AzureMachineLearningServicesImpl client) {
         this.service =
             RestProxy.create(CodeContainersService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for AzureMachineLearningWorkspacesCodeContainers to be used by the proxy
+     * The interface defining all the services for AzureMachineLearningServicesCodeContainers to be used by the proxy
      * service to perform REST calls.
      */
     @Host("{$host}")
@@ -61,8 +61,7 @@ public final class CodeContainersClientImpl implements CodeContainersClient {
     public interface CodeContainersService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/codes")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/codes")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<CodeContainerResourceArmPaginatedResult>> list(
@@ -77,8 +76,7 @@ public final class CodeContainersClientImpl implements CodeContainersClient {
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/codes/{name}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/codes/{name}")
         @ExpectedResponses({200, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Void>> delete(
@@ -93,8 +91,7 @@ public final class CodeContainersClientImpl implements CodeContainersClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/codes/{name}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/codes/{name}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<CodeContainerInner>> get(
@@ -109,8 +106,7 @@ public final class CodeContainersClientImpl implements CodeContainersClient {
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/codes/{name}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/codes/{name}")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<CodeContainerInner>> createOrUpdate(
