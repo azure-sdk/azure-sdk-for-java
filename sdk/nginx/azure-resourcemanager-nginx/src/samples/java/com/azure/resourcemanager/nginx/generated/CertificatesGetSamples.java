@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.nginx.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Certificates Get. */
 public final class CertificatesGetSamples {
     /*
@@ -17,6 +15,8 @@ public final class CertificatesGetSamples {
      * @param manager Entry point to NginxManager.
      */
     public static void certificatesGet(com.azure.resourcemanager.nginx.NginxManager manager) {
-        manager.certificates().getWithResponse("myResourceGroup", "myDeployment", "default", Context.NONE);
+        manager
+            .certificates()
+            .getWithResponse("myResourceGroup", "myDeployment", "default", com.azure.core.util.Context.NONE);
     }
 }

@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.nginx.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.nginx.models.NginxDeployment;
 
 /** Samples for Deployments Update. */
@@ -21,7 +20,7 @@ public final class DeploymentsUpdateSamples {
         NginxDeployment resource =
             manager
                 .deployments()
-                .getByResourceGroupWithResponse("myResourceGroup", "myDeployment", Context.NONE)
+                .getByResourceGroupWithResponse("myResourceGroup", "myDeployment", com.azure.core.util.Context.NONE)
                 .getValue();
         resource.update().apply();
     }

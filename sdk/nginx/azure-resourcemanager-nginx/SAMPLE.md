@@ -54,8 +54,6 @@ public final class CertificatesCreateOrUpdateSamples {
 ### Certificates_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Certificates Delete. */
 public final class CertificatesDeleteSamples {
     /*
@@ -67,7 +65,7 @@ public final class CertificatesDeleteSamples {
      * @param manager Entry point to NginxManager.
      */
     public static void certificatesDelete(com.azure.resourcemanager.nginx.NginxManager manager) {
-        manager.certificates().delete("myResourceGroup", "myDeployment", "default", Context.NONE);
+        manager.certificates().delete("myResourceGroup", "myDeployment", "default", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -75,8 +73,6 @@ public final class CertificatesDeleteSamples {
 ### Certificates_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Certificates Get. */
 public final class CertificatesGetSamples {
     /*
@@ -88,7 +84,9 @@ public final class CertificatesGetSamples {
      * @param manager Entry point to NginxManager.
      */
     public static void certificatesGet(com.azure.resourcemanager.nginx.NginxManager manager) {
-        manager.certificates().getWithResponse("myResourceGroup", "myDeployment", "default", Context.NONE);
+        manager
+            .certificates()
+            .getWithResponse("myResourceGroup", "myDeployment", "default", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -96,8 +94,6 @@ public final class CertificatesGetSamples {
 ### Certificates_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Certificates List. */
 public final class CertificatesListSamples {
     /*
@@ -109,7 +105,7 @@ public final class CertificatesListSamples {
      * @param manager Entry point to NginxManager.
      */
     public static void certificatesList(com.azure.resourcemanager.nginx.NginxManager manager) {
-        manager.certificates().list("myResourceGroup", "myDeployment", Context.NONE);
+        manager.certificates().list("myResourceGroup", "myDeployment", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -141,8 +137,6 @@ public final class ConfigurationsCreateOrUpdateSamples {
 ### Configurations_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Configurations Delete. */
 public final class ConfigurationsDeleteSamples {
     /*
@@ -154,7 +148,7 @@ public final class ConfigurationsDeleteSamples {
      * @param manager Entry point to NginxManager.
      */
     public static void configurationsDelete(com.azure.resourcemanager.nginx.NginxManager manager) {
-        manager.configurations().delete("myResourceGroup", "myDeployment", "default", Context.NONE);
+        manager.configurations().delete("myResourceGroup", "myDeployment", "default", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -162,8 +156,6 @@ public final class ConfigurationsDeleteSamples {
 ### Configurations_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Configurations Get. */
 public final class ConfigurationsGetSamples {
     /*
@@ -175,7 +167,9 @@ public final class ConfigurationsGetSamples {
      * @param manager Entry point to NginxManager.
      */
     public static void configurationsGet(com.azure.resourcemanager.nginx.NginxManager manager) {
-        manager.configurations().getWithResponse("myResourceGroup", "myDeployment", "default", Context.NONE);
+        manager
+            .configurations()
+            .getWithResponse("myResourceGroup", "myDeployment", "default", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -183,8 +177,6 @@ public final class ConfigurationsGetSamples {
 ### Configurations_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Configurations List. */
 public final class ConfigurationsListSamples {
     /*
@@ -196,7 +188,7 @@ public final class ConfigurationsListSamples {
      * @param manager Entry point to NginxManager.
      */
     public static void configurationsList(com.azure.resourcemanager.nginx.NginxManager manager) {
-        manager.configurations().list("myResourceGroup", "myDeployment", Context.NONE);
+        manager.configurations().list("myResourceGroup", "myDeployment", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -228,8 +220,6 @@ public final class DeploymentsCreateOrUpdateSamples {
 ### Deployments_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Deployments Delete. */
 public final class DeploymentsDeleteSamples {
     /*
@@ -241,7 +231,7 @@ public final class DeploymentsDeleteSamples {
      * @param manager Entry point to NginxManager.
      */
     public static void deploymentsDelete(com.azure.resourcemanager.nginx.NginxManager manager) {
-        manager.deployments().delete("myResourceGroup", "myDeployment", Context.NONE);
+        manager.deployments().delete("myResourceGroup", "myDeployment", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -249,8 +239,6 @@ public final class DeploymentsDeleteSamples {
 ### Deployments_GetByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Deployments GetByResourceGroup. */
 public final class DeploymentsGetByResourceGroupSamples {
     /*
@@ -262,7 +250,9 @@ public final class DeploymentsGetByResourceGroupSamples {
      * @param manager Entry point to NginxManager.
      */
     public static void deploymentsGet(com.azure.resourcemanager.nginx.NginxManager manager) {
-        manager.deployments().getByResourceGroupWithResponse("myResourceGroup", "myDeployment", Context.NONE);
+        manager
+            .deployments()
+            .getByResourceGroupWithResponse("myResourceGroup", "myDeployment", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -270,8 +260,6 @@ public final class DeploymentsGetByResourceGroupSamples {
 ### Deployments_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Deployments List. */
 public final class DeploymentsListSamples {
     /*
@@ -283,7 +271,7 @@ public final class DeploymentsListSamples {
      * @param manager Entry point to NginxManager.
      */
     public static void deploymentsList(com.azure.resourcemanager.nginx.NginxManager manager) {
-        manager.deployments().list(Context.NONE);
+        manager.deployments().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -291,8 +279,6 @@ public final class DeploymentsListSamples {
 ### Deployments_ListByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Deployments ListByResourceGroup. */
 public final class DeploymentsListByResourceGroupSamples {
     /*
@@ -304,7 +290,7 @@ public final class DeploymentsListByResourceGroupSamples {
      * @param manager Entry point to NginxManager.
      */
     public static void deploymentsListByResourceGroup(com.azure.resourcemanager.nginx.NginxManager manager) {
-        manager.deployments().listByResourceGroup("myResourceGroup", Context.NONE);
+        manager.deployments().listByResourceGroup("myResourceGroup", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -312,7 +298,6 @@ public final class DeploymentsListByResourceGroupSamples {
 ### Deployments_Update
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.nginx.models.NginxDeployment;
 
 /** Samples for Deployments Update. */
@@ -329,7 +314,7 @@ public final class DeploymentsUpdateSamples {
         NginxDeployment resource =
             manager
                 .deployments()
-                .getByResourceGroupWithResponse("myResourceGroup", "myDeployment", Context.NONE)
+                .getByResourceGroupWithResponse("myResourceGroup", "myDeployment", com.azure.core.util.Context.NONE)
                 .getValue();
         resource.update().apply();
     }
@@ -339,8 +324,6 @@ public final class DeploymentsUpdateSamples {
 ### Operations_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Operations List. */
 public final class OperationsListSamples {
     /*
@@ -352,7 +335,7 @@ public final class OperationsListSamples {
      * @param manager Entry point to NginxManager.
      */
     public static void operationsList(com.azure.resourcemanager.nginx.NginxManager manager) {
-        manager.operations().list(Context.NONE);
+        manager.operations().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
