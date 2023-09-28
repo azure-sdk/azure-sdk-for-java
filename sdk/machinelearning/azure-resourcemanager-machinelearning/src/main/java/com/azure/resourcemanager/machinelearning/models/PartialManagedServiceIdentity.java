@@ -11,7 +11,7 @@ import java.util.Map;
 
 /** Managed service identity (system assigned and/or user assigned identities). */
 @Fluent
-public class PartialManagedServiceIdentity {
+public final class PartialManagedServiceIdentity {
     /*
      * Managed service identity (system assigned and/or user assigned identities)
      */

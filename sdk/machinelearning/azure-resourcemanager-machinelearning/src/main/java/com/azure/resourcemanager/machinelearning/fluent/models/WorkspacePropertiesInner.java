@@ -8,6 +8,7 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.machinelearning.models.EncryptionProperty;
 import com.azure.resourcemanager.machinelearning.models.ProvisioningState;
 import com.azure.resourcemanager.machinelearning.models.PublicNetworkAccess;
+import com.azure.resourcemanager.machinelearning.models.ServerlessComputeSettings;
 import com.azure.resourcemanager.machinelearning.models.ServiceManagedResourcesSettings;
 import com.azure.resourcemanager.machinelearning.models.SharedPrivateLinkResource;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -123,6 +124,12 @@ public final class WorkspacePropertiesInner {
     private List<PrivateEndpointConnectionInner> privateEndpointConnections;
 
     /*
+     * Settings for serverless compute created in the workspace
+     */
+    @JsonProperty(value = "serverlessComputeSettings")
+    private ServerlessComputeSettings serverlessComputeSettings;
+
+    /*
      * The list of shared private link resources in this workspace.
      */
     @JsonProperty(value = "sharedPrivateLinkResources")
@@ -169,6 +176,12 @@ public final class WorkspacePropertiesInner {
      */
     @JsonProperty(value = "v1LegacyMode")
     private Boolean v1LegacyMode;
+
+    /*
+     * Managed Network settings for a machine learning workspace.
+     */
+    @JsonProperty(value = "managedNetwork")
+    private ManagedNetworkSettingsInner managedNetwork;
 
     /** Creates an instance of WorkspacePropertiesInner class. */
     public WorkspacePropertiesInner() {
@@ -472,6 +485,26 @@ public final class WorkspacePropertiesInner {
     }
 
     /**
+     * Get the serverlessComputeSettings property: Settings for serverless compute created in the workspace.
+     *
+     * @return the serverlessComputeSettings value.
+     */
+    public ServerlessComputeSettings serverlessComputeSettings() {
+        return this.serverlessComputeSettings;
+    }
+
+    /**
+     * Set the serverlessComputeSettings property: Settings for serverless compute created in the workspace.
+     *
+     * @param serverlessComputeSettings the serverlessComputeSettings value to set.
+     * @return the WorkspacePropertiesInner object itself.
+     */
+    public WorkspacePropertiesInner withServerlessComputeSettings(ServerlessComputeSettings serverlessComputeSettings) {
+        this.serverlessComputeSettings = serverlessComputeSettings;
+        return this;
+    }
+
+    /**
      * Get the sharedPrivateLinkResources property: The list of shared private link resources in this workspace.
      *
      * @return the sharedPrivateLinkResources value.
@@ -596,6 +629,26 @@ public final class WorkspacePropertiesInner {
     }
 
     /**
+     * Get the managedNetwork property: Managed Network settings for a machine learning workspace.
+     *
+     * @return the managedNetwork value.
+     */
+    public ManagedNetworkSettingsInner managedNetwork() {
+        return this.managedNetwork;
+    }
+
+    /**
+     * Set the managedNetwork property: Managed Network settings for a machine learning workspace.
+     *
+     * @param managedNetwork the managedNetwork value to set.
+     * @return the WorkspacePropertiesInner object itself.
+     */
+    public WorkspacePropertiesInner withManagedNetwork(ManagedNetworkSettingsInner managedNetwork) {
+        this.managedNetwork = managedNetwork;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -607,6 +660,9 @@ public final class WorkspacePropertiesInner {
         if (privateEndpointConnections() != null) {
             privateEndpointConnections().forEach(e -> e.validate());
         }
+        if (serverlessComputeSettings() != null) {
+            serverlessComputeSettings().validate();
+        }
         if (sharedPrivateLinkResources() != null) {
             sharedPrivateLinkResources().forEach(e -> e.validate());
         }
@@ -615,6 +671,9 @@ public final class WorkspacePropertiesInner {
         }
         if (serviceManagedResourcesSettings() != null) {
             serviceManagedResourcesSettings().validate();
+        }
+        if (managedNetwork() != null) {
+            managedNetwork().validate();
         }
     }
 }

@@ -38,6 +38,8 @@ public interface JobsClient {
      * @param jobType Type of job to be returned.
      * @param tag Jobs returned will have this tag key.
      * @param listViewType View type for including/excluding (for example) archived entities.
+     * @param properties Comma-separated list of user property names (and optionally values). Example:
+     *     prop1,prop2=value2.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -52,6 +54,7 @@ public interface JobsClient {
         String jobType,
         String tag,
         ListViewType listViewType,
+        String properties,
         Context context);
 
     /**
@@ -141,7 +144,8 @@ public interface JobsClient {
     JobBaseInner get(String resourceGroupName, String workspaceName, String id);
 
     /**
-     * Creates and executes a Job.
+     * Creates and executes a Job. For update case, the Tags in the definition passed in will replace Tags in the
+     * existing job.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
@@ -158,7 +162,8 @@ public interface JobsClient {
         String resourceGroupName, String workspaceName, String id, JobBaseInner body, Context context);
 
     /**
-     * Creates and executes a Job.
+     * Creates and executes a Job. For update case, the Tags in the definition passed in will replace Tags in the
+     * existing job.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
