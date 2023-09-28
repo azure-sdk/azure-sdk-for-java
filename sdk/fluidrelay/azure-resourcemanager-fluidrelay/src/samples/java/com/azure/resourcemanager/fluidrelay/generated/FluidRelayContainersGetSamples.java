@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.fluidrelay.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for FluidRelayContainers Get. */
 public final class FluidRelayContainersGetSamples {
     /*
@@ -19,6 +17,7 @@ public final class FluidRelayContainersGetSamples {
     public static void getFluidRelayContainerDetails(com.azure.resourcemanager.fluidrelay.FluidRelayManager manager) {
         manager
             .fluidRelayContainers()
-            .getWithResponse("myResourceGroup", "myFluidRelayServer", "myFluidRelayContainer", Context.NONE);
+            .getWithResponse(
+                "myResourceGroup", "myFluidRelayServer", "myFluidRelayContainer", com.azure.core.util.Context.NONE);
     }
 }

@@ -26,6 +26,10 @@ public final class FluidRelayContainerInner extends ProxyResource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
+    /** Creates an instance of FluidRelayContainerInner class. */
+    public FluidRelayContainerInner() {
+    }
+
     /**
      * Get the innerProperties property: The resource-specific properties for this resource.
      *
