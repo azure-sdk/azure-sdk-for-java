@@ -24,7 +24,7 @@ public final class CommonDynamicMatchConfiguration {
     private List<VlanGroupProperties> vlanGroups;
 
     /*
-     * List of the port group.
+     * List of the port groups.
      */
     @JsonProperty(value = "portGroups")
     private List<PortGroupProperties> portGroups;
@@ -74,7 +74,7 @@ public final class CommonDynamicMatchConfiguration {
     }
 
     /**
-     * Get the portGroups property: List of the port group.
+     * Get the portGroups property: List of the port groups.
      *
      * @return the portGroups value.
      */
@@ -83,7 +83,7 @@ public final class CommonDynamicMatchConfiguration {
     }
 
     /**
-     * Set the portGroups property: List of the port group.
+     * Set the portGroups property: List of the port groups.
      *
      * @param portGroups the portGroups value to set.
      * @return the CommonDynamicMatchConfiguration object itself.

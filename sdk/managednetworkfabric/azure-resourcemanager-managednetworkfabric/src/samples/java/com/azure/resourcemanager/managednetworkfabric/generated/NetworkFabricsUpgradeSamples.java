@@ -4,7 +4,8 @@
 
 package com.azure.resourcemanager.managednetworkfabric.generated;
 
-import com.azure.resourcemanager.managednetworkfabric.models.UpdateVersion;
+import com.azure.resourcemanager.managednetworkfabric.models.NetworkFabricUpgradeAction;
+import com.azure.resourcemanager.managednetworkfabric.models.UpgradeNetworkFabricProperties;
 
 /** Samples for NetworkFabrics Upgrade. */
 public final class NetworkFabricsUpgradeSamples {
@@ -23,7 +24,7 @@ public final class NetworkFabricsUpgradeSamples {
             .upgrade(
                 "example-rg",
                 "example-fabric",
-                new UpdateVersion().withVersion("version1"),
+                new UpgradeNetworkFabricProperties().withVersion("3.x.x").withAction(NetworkFabricUpgradeAction.START),
                 com.azure.core.util.Context.NONE);
     }
 }
