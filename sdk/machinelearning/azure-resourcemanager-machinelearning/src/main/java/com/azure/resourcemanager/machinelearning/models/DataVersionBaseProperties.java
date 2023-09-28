@@ -20,6 +20,7 @@ import java.util.Map;
     defaultImpl = DataVersionBaseProperties.class)
 @JsonTypeName("DataVersionBaseProperties")
 @JsonSubTypes({
+    @JsonSubTypes.Type(name = "uri_folder", value = DataImport.class),
     @JsonSubTypes.Type(name = "mltable", value = MLTableData.class),
     @JsonSubTypes.Type(name = "uri_file", value = UriFileDataVersion.class),
     @JsonSubTypes.Type(name = "uri_folder", value = UriFolderDataVersion.class)
@@ -27,19 +28,29 @@ import java.util.Map;
 @Fluent
 public class DataVersionBaseProperties extends AssetBase {
     /*
-     * [Required] Uri of the data. Usage/meaning depends on
-     * Microsoft.MachineLearning.ManagementFrontEnd.Contracts.V20221001.Assets.DataVersionBase.DataType
+     * [Required] Uri of the data. Example: https://go.microsoft.com/fwlink/?linkid=2202330
      */
     @JsonProperty(value = "dataUri", required = true)
     private String dataUri;
+
+    /*
+     * Intellectual Property details. Used if data is an Intellectual Property.
+     */
+    @JsonProperty(value = "intellectualProperty")
+    private IntellectualProperty intellectualProperty;
+
+    /*
+     * Stage in the data lifecycle assigned to this data asset
+     */
+    @JsonProperty(value = "stage")
+    private String stage;
 
     /** Creates an instance of DataVersionBaseProperties class. */
     public DataVersionBaseProperties() {
     }
 
     /**
-     * Get the dataUri property: [Required] Uri of the data. Usage/meaning depends on
-     * Microsoft.MachineLearning.ManagementFrontEnd.Contracts.V20221001.Assets.DataVersionBase.DataType.
+     * Get the dataUri property: [Required] Uri of the data. Example: https://go.microsoft.com/fwlink/?linkid=2202330.
      *
      * @return the dataUri value.
      */
@@ -48,14 +59,60 @@ public class DataVersionBaseProperties extends AssetBase {
     }
 
     /**
-     * Set the dataUri property: [Required] Uri of the data. Usage/meaning depends on
-     * Microsoft.MachineLearning.ManagementFrontEnd.Contracts.V20221001.Assets.DataVersionBase.DataType.
+     * Set the dataUri property: [Required] Uri of the data. Example: https://go.microsoft.com/fwlink/?linkid=2202330.
      *
      * @param dataUri the dataUri value to set.
      * @return the DataVersionBaseProperties object itself.
      */
     public DataVersionBaseProperties withDataUri(String dataUri) {
         this.dataUri = dataUri;
+        return this;
+    }
+
+    /**
+     * Get the intellectualProperty property: Intellectual Property details. Used if data is an Intellectual Property.
+     *
+     * @return the intellectualProperty value.
+     */
+    public IntellectualProperty intellectualProperty() {
+        return this.intellectualProperty;
+    }
+
+    /**
+     * Set the intellectualProperty property: Intellectual Property details. Used if data is an Intellectual Property.
+     *
+     * @param intellectualProperty the intellectualProperty value to set.
+     * @return the DataVersionBaseProperties object itself.
+     */
+    public DataVersionBaseProperties withIntellectualProperty(IntellectualProperty intellectualProperty) {
+        this.intellectualProperty = intellectualProperty;
+        return this;
+    }
+
+    /**
+     * Get the stage property: Stage in the data lifecycle assigned to this data asset.
+     *
+     * @return the stage value.
+     */
+    public String stage() {
+        return this.stage;
+    }
+
+    /**
+     * Set the stage property: Stage in the data lifecycle assigned to this data asset.
+     *
+     * @param stage the stage value to set.
+     * @return the DataVersionBaseProperties object itself.
+     */
+    public DataVersionBaseProperties withStage(String stage) {
+        this.stage = stage;
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public DataVersionBaseProperties withAutoDeleteSetting(AutoDeleteSetting autoDeleteSetting) {
+        super.withAutoDeleteSetting(autoDeleteSetting);
         return this;
     }
 
@@ -107,6 +164,9 @@ public class DataVersionBaseProperties extends AssetBase {
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property dataUri in model DataVersionBaseProperties"));
+        }
+        if (intellectualProperty() != null) {
+            intellectualProperty().validate();
         }
     }
 

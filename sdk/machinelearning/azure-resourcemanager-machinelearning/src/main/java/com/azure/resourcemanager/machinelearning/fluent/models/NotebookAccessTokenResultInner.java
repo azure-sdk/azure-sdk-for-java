@@ -11,10 +11,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Immutable
 public final class NotebookAccessTokenResultInner {
     /*
-     * The notebookResourceId property.
+     * The accessToken property.
      */
-    @JsonProperty(value = "notebookResourceId", access = JsonProperty.Access.WRITE_ONLY)
-    private String notebookResourceId;
+    @JsonProperty(value = "accessToken", access = JsonProperty.Access.WRITE_ONLY)
+    private String accessToken;
+
+    /*
+     * The expiresIn property.
+     */
+    @JsonProperty(value = "expiresIn", access = JsonProperty.Access.WRITE_ONLY)
+    private Integer expiresIn;
 
     /*
      * The hostName property.
@@ -23,28 +29,16 @@ public final class NotebookAccessTokenResultInner {
     private String hostname;
 
     /*
+     * The notebookResourceId property.
+     */
+    @JsonProperty(value = "notebookResourceId", access = JsonProperty.Access.WRITE_ONLY)
+    private String notebookResourceId;
+
+    /*
      * The publicDns property.
      */
     @JsonProperty(value = "publicDns", access = JsonProperty.Access.WRITE_ONLY)
     private String publicDns;
-
-    /*
-     * The accessToken property.
-     */
-    @JsonProperty(value = "accessToken", access = JsonProperty.Access.WRITE_ONLY)
-    private String accessToken;
-
-    /*
-     * The tokenType property.
-     */
-    @JsonProperty(value = "tokenType", access = JsonProperty.Access.WRITE_ONLY)
-    private String tokenType;
-
-    /*
-     * The expiresIn property.
-     */
-    @JsonProperty(value = "expiresIn", access = JsonProperty.Access.WRITE_ONLY)
-    private Integer expiresIn;
 
     /*
      * The refreshToken property.
@@ -58,35 +52,14 @@ public final class NotebookAccessTokenResultInner {
     @JsonProperty(value = "scope", access = JsonProperty.Access.WRITE_ONLY)
     private String scope;
 
+    /*
+     * The tokenType property.
+     */
+    @JsonProperty(value = "tokenType", access = JsonProperty.Access.WRITE_ONLY)
+    private String tokenType;
+
     /** Creates an instance of NotebookAccessTokenResultInner class. */
     public NotebookAccessTokenResultInner() {
-    }
-
-    /**
-     * Get the notebookResourceId property: The notebookResourceId property.
-     *
-     * @return the notebookResourceId value.
-     */
-    public String notebookResourceId() {
-        return this.notebookResourceId;
-    }
-
-    /**
-     * Get the hostname property: The hostName property.
-     *
-     * @return the hostname value.
-     */
-    public String hostname() {
-        return this.hostname;
-    }
-
-    /**
-     * Get the publicDns property: The publicDns property.
-     *
-     * @return the publicDns value.
-     */
-    public String publicDns() {
-        return this.publicDns;
     }
 
     /**
@@ -99,21 +72,39 @@ public final class NotebookAccessTokenResultInner {
     }
 
     /**
-     * Get the tokenType property: The tokenType property.
-     *
-     * @return the tokenType value.
-     */
-    public String tokenType() {
-        return this.tokenType;
-    }
-
-    /**
      * Get the expiresIn property: The expiresIn property.
      *
      * @return the expiresIn value.
      */
     public Integer expiresIn() {
         return this.expiresIn;
+    }
+
+    /**
+     * Get the hostname property: The hostName property.
+     *
+     * @return the hostname value.
+     */
+    public String hostname() {
+        return this.hostname;
+    }
+
+    /**
+     * Get the notebookResourceId property: The notebookResourceId property.
+     *
+     * @return the notebookResourceId value.
+     */
+    public String notebookResourceId() {
+        return this.notebookResourceId;
+    }
+
+    /**
+     * Get the publicDns property: The publicDns property.
+     *
+     * @return the publicDns value.
+     */
+    public String publicDns() {
+        return this.publicDns;
     }
 
     /**
@@ -132,6 +123,15 @@ public final class NotebookAccessTokenResultInner {
      */
     public String scope() {
         return this.scope;
+    }
+
+    /**
+     * Get the tokenType property: The tokenType property.
+     *
+     * @return the tokenType value.
+     */
+    public String tokenType() {
+        return this.tokenType;
     }
 
     /**

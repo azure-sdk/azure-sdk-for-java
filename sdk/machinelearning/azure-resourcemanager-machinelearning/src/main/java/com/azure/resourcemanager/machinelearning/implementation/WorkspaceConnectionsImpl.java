@@ -28,10 +28,41 @@ public final class WorkspaceConnectionsImpl implements WorkspaceConnections {
         this.serviceManager = serviceManager;
     }
 
-    public Response<WorkspaceConnectionPropertiesV2BasicResource> getWithResponse(
+    public PagedIterable<WorkspaceConnectionPropertiesV2BasicResource> list(
+        String resourceGroupName, String workspaceName) {
+        PagedIterable<WorkspaceConnectionPropertiesV2BasicResourceInner> inner =
+            this.serviceClient().list(resourceGroupName, workspaceName);
+        return Utils
+            .mapPage(inner, inner1 -> new WorkspaceConnectionPropertiesV2BasicResourceImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<WorkspaceConnectionPropertiesV2BasicResource> list(
+        String resourceGroupName, String workspaceName, String target, String category, Context context) {
+        PagedIterable<WorkspaceConnectionPropertiesV2BasicResourceInner> inner =
+            this.serviceClient().list(resourceGroupName, workspaceName, target, category, context);
+        return Utils
+            .mapPage(inner, inner1 -> new WorkspaceConnectionPropertiesV2BasicResourceImpl(inner1, this.manager()));
+    }
+
+    public Response<Void> deleteWithResponse(
         String resourceGroupName, String workspaceName, String connectionName, Context context) {
+        return this.serviceClient().deleteWithResponse(resourceGroupName, workspaceName, connectionName, context);
+    }
+
+    public void delete(String resourceGroupName, String workspaceName, String connectionName) {
+        this.serviceClient().delete(resourceGroupName, workspaceName, connectionName);
+    }
+
+    public Response<WorkspaceConnectionPropertiesV2BasicResource> getWithResponse(
+        String resourceGroupName,
+        String workspaceName,
+        String connectionName,
+        String aoaiModelsToDeploy,
+        Context context) {
         Response<WorkspaceConnectionPropertiesV2BasicResourceInner> inner =
-            this.serviceClient().getWithResponse(resourceGroupName, workspaceName, connectionName, context);
+            this
+                .serviceClient()
+                .getWithResponse(resourceGroupName, workspaceName, connectionName, aoaiModelsToDeploy, context);
         if (inner != null) {
             return new SimpleResponse<>(
                 inner.getRequest(),
@@ -54,29 +85,49 @@ public final class WorkspaceConnectionsImpl implements WorkspaceConnections {
         }
     }
 
-    public Response<Void> deleteWithResponse(
-        String resourceGroupName, String workspaceName, String connectionName, Context context) {
-        return this.serviceClient().deleteWithResponse(resourceGroupName, workspaceName, connectionName, context);
+    public Response<WorkspaceConnectionPropertiesV2BasicResource> listSecretsWithResponse(
+        String resourceGroupName,
+        String workspaceName,
+        String connectionName,
+        String aoaiModelsToDeploy,
+        Context context) {
+        Response<WorkspaceConnectionPropertiesV2BasicResourceInner> inner =
+            this
+                .serviceClient()
+                .listSecretsWithResponse(resourceGroupName, workspaceName, connectionName, aoaiModelsToDeploy, context);
+        if (inner != null) {
+            return new SimpleResponse<>(
+                inner.getRequest(),
+                inner.getStatusCode(),
+                inner.getHeaders(),
+                new WorkspaceConnectionPropertiesV2BasicResourceImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
     }
 
-    public void delete(String resourceGroupName, String workspaceName, String connectionName) {
-        this.serviceClient().delete(resourceGroupName, workspaceName, connectionName);
+    public WorkspaceConnectionPropertiesV2BasicResource listSecrets(
+        String resourceGroupName, String workspaceName, String connectionName) {
+        WorkspaceConnectionPropertiesV2BasicResourceInner inner =
+            this.serviceClient().listSecrets(resourceGroupName, workspaceName, connectionName);
+        if (inner != null) {
+            return new WorkspaceConnectionPropertiesV2BasicResourceImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
-    public PagedIterable<WorkspaceConnectionPropertiesV2BasicResource> list(
-        String resourceGroupName, String workspaceName) {
-        PagedIterable<WorkspaceConnectionPropertiesV2BasicResourceInner> inner =
-            this.serviceClient().list(resourceGroupName, workspaceName);
-        return Utils
-            .mapPage(inner, inner1 -> new WorkspaceConnectionPropertiesV2BasicResourceImpl(inner1, this.manager()));
+    public void testConnection(String resourceGroupName, String workspaceName, String connectionName) {
+        this.serviceClient().testConnection(resourceGroupName, workspaceName, connectionName);
     }
 
-    public PagedIterable<WorkspaceConnectionPropertiesV2BasicResource> list(
-        String resourceGroupName, String workspaceName, String target, String category, Context context) {
-        PagedIterable<WorkspaceConnectionPropertiesV2BasicResourceInner> inner =
-            this.serviceClient().list(resourceGroupName, workspaceName, target, category, context);
-        return Utils
-            .mapPage(inner, inner1 -> new WorkspaceConnectionPropertiesV2BasicResourceImpl(inner1, this.manager()));
+    public void testConnection(
+        String resourceGroupName,
+        String workspaceName,
+        String connectionName,
+        WorkspaceConnectionPropertiesV2BasicResourceInner body,
+        Context context) {
+        this.serviceClient().testConnection(resourceGroupName, workspaceName, connectionName, body, context);
     }
 
     public WorkspaceConnectionPropertiesV2BasicResource getById(String id) {
@@ -102,10 +153,14 @@ public final class WorkspaceConnectionsImpl implements WorkspaceConnections {
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'connections'.", id)));
         }
-        return this.getWithResponse(resourceGroupName, workspaceName, connectionName, Context.NONE).getValue();
+        String localAoaiModelsToDeploy = null;
+        return this
+            .getWithResponse(resourceGroupName, workspaceName, connectionName, localAoaiModelsToDeploy, Context.NONE)
+            .getValue();
     }
 
-    public Response<WorkspaceConnectionPropertiesV2BasicResource> getByIdWithResponse(String id, Context context) {
+    public Response<WorkspaceConnectionPropertiesV2BasicResource> getByIdWithResponse(
+        String id, String aoaiModelsToDeploy, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
             throw LOGGER
@@ -128,7 +183,7 @@ public final class WorkspaceConnectionsImpl implements WorkspaceConnections {
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'connections'.", id)));
         }
-        return this.getWithResponse(resourceGroupName, workspaceName, connectionName, context);
+        return this.getWithResponse(resourceGroupName, workspaceName, connectionName, aoaiModelsToDeploy, context);
     }
 
     public void deleteById(String id) {

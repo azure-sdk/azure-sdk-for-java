@@ -18,6 +18,12 @@ public final class BatchDeploymentProperties extends EndpointDeploymentPropertie
     private String compute;
 
     /*
+     * Properties relevant to different deployment types.
+     */
+    @JsonProperty(value = "deploymentConfiguration")
+    private BatchDeploymentConfiguration deploymentConfiguration;
+
+    /*
      * Error threshold, if the error count for the entire input goes above this value,
      * the batch inference will be aborted. Range is [-1, int.MaxValue].
      * For FileDataset, this value is the count of file failures.
@@ -106,6 +112,26 @@ public final class BatchDeploymentProperties extends EndpointDeploymentPropertie
      */
     public BatchDeploymentProperties withCompute(String compute) {
         this.compute = compute;
+        return this;
+    }
+
+    /**
+     * Get the deploymentConfiguration property: Properties relevant to different deployment types.
+     *
+     * @return the deploymentConfiguration value.
+     */
+    public BatchDeploymentConfiguration deploymentConfiguration() {
+        return this.deploymentConfiguration;
+    }
+
+    /**
+     * Set the deploymentConfiguration property: Properties relevant to different deployment types.
+     *
+     * @param deploymentConfiguration the deploymentConfiguration value to set.
+     * @return the BatchDeploymentProperties object itself.
+     */
+    public BatchDeploymentProperties withDeploymentConfiguration(BatchDeploymentConfiguration deploymentConfiguration) {
+        this.deploymentConfiguration = deploymentConfiguration;
         return this;
     }
 
@@ -353,6 +379,9 @@ public final class BatchDeploymentProperties extends EndpointDeploymentPropertie
     @Override
     public void validate() {
         super.validate();
+        if (deploymentConfiguration() != null) {
+            deploymentConfiguration().validate();
+        }
         if (model() != null) {
             model().validate();
         }

@@ -7,7 +7,7 @@ package com.azure.resourcemanager.machinelearning.generated;
 /** Samples for Workspaces ListByResourceGroup. */
 public final class WorkspacesListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Workspace/listByResourceGroup.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2023-08-01-preview/examples/Workspace/listByResourceGroup.json
      */
     /**
      * Sample code: Get Workspaces by Resource Group.
@@ -16,6 +16,6 @@ public final class WorkspacesListByResourceGroupSamples {
      */
     public static void getWorkspacesByResourceGroup(
         com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
-        manager.workspaces().listByResourceGroup("workspace-1234", null, com.azure.core.util.Context.NONE);
+        manager.workspaces().listByResourceGroup("workspace-1234", null, null, com.azure.core.util.Context.NONE);
     }
 }

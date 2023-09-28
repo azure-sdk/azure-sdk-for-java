@@ -19,6 +19,45 @@ public final class ConnectionCategory extends ExpandableStringEnum<ConnectionCat
     /** Static value Git for ConnectionCategory. */
     public static final ConnectionCategory GIT = fromString("Git");
 
+    /** Static value S3 for ConnectionCategory. */
+    public static final ConnectionCategory S3 = fromString("S3");
+
+    /** Static value Snowflake for ConnectionCategory. */
+    public static final ConnectionCategory SNOWFLAKE = fromString("Snowflake");
+
+    /** Static value AzureSqlDb for ConnectionCategory. */
+    public static final ConnectionCategory AZURE_SQL_DB = fromString("AzureSqlDb");
+
+    /** Static value AzureSynapseAnalytics for ConnectionCategory. */
+    public static final ConnectionCategory AZURE_SYNAPSE_ANALYTICS = fromString("AzureSynapseAnalytics");
+
+    /** Static value AzureMySqlDb for ConnectionCategory. */
+    public static final ConnectionCategory AZURE_MY_SQL_DB = fromString("AzureMySqlDb");
+
+    /** Static value AzurePostgresDb for ConnectionCategory. */
+    public static final ConnectionCategory AZURE_POSTGRES_DB = fromString("AzurePostgresDb");
+
+    /** Static value ADLSGen2 for ConnectionCategory. */
+    public static final ConnectionCategory ADLSGEN2 = fromString("ADLSGen2");
+
+    /** Static value Redis for ConnectionCategory. */
+    public static final ConnectionCategory REDIS = fromString("Redis");
+
+    /** Static value ApiKey for ConnectionCategory. */
+    public static final ConnectionCategory API_KEY = fromString("ApiKey");
+
+    /** Static value AzureOpenAI for ConnectionCategory. */
+    public static final ConnectionCategory AZURE_OPEN_AI = fromString("AzureOpenAI");
+
+    /** Static value CognitiveSearch for ConnectionCategory. */
+    public static final ConnectionCategory COGNITIVE_SEARCH = fromString("CognitiveSearch");
+
+    /** Static value CognitiveService for ConnectionCategory. */
+    public static final ConnectionCategory COGNITIVE_SERVICE = fromString("CognitiveService");
+
+    /** Static value CustomKeys for ConnectionCategory. */
+    public static final ConnectionCategory CUSTOM_KEYS = fromString("CustomKeys");
+
     /**
      * Creates a new instance of ConnectionCategory value.
      *
