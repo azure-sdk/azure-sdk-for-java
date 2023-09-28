@@ -14,7 +14,7 @@ import java.util.Map;
 /** Samples for Experiments Update. */
 public final class ExperimentsUpdateSamples {
     /*
-     * x-ms-original-file: specification/chaos/resource-manager/Microsoft.Chaos/preview/2023-04-15-preview/examples/PatchExperiment.json
+     * x-ms-original-file: specification/chaos/resource-manager/Microsoft.Chaos/preview/2023-10-27-preview/examples/PatchExperiment.json
      */
     /**
      * Sample code: Patch an Experiment in a resource group.
@@ -39,6 +39,7 @@ public final class ExperimentsUpdateSamples {
             .apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

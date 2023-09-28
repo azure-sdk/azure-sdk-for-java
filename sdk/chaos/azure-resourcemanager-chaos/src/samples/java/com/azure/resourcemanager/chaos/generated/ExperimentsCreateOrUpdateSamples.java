@@ -19,7 +19,7 @@ import java.util.Arrays;
 /** Samples for Experiments CreateOrUpdate. */
 public final class ExperimentsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/chaos/resource-manager/Microsoft.Chaos/preview/2023-04-15-preview/examples/CreateOrUpdateAExperiment.json
+     * x-ms-original-file: specification/chaos/resource-manager/Microsoft.Chaos/preview/2023-10-27-preview/examples/CreateOrUpdateAExperiment.json
      */
     /**
      * Sample code: Create/update a Experiment in a resource group.
