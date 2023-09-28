@@ -22,6 +22,10 @@ public final class AutomationRulePropertyArrayChangedValuesCondition {
     @JsonProperty(value = "changeType")
     private AutomationRulePropertyArrayChangedConditionSupportedChangeType changeType;
 
+    /** Creates an instance of AutomationRulePropertyArrayChangedValuesCondition class. */
+    public AutomationRulePropertyArrayChangedValuesCondition() {
+    }
+
     /**
      * Get the arrayType property: The arrayType property.
      *

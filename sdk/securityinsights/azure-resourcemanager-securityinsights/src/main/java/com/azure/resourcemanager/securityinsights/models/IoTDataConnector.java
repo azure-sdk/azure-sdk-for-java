@@ -22,6 +22,10 @@ public final class IoTDataConnector extends DataConnectorInner {
     @JsonProperty(value = "properties")
     private IoTDataConnectorProperties innerProperties;
 
+    /** Creates an instance of IoTDataConnector class. */
+    public IoTDataConnector() {
+    }
+
     /**
      * Get the innerProperties property: IoT data connector properties.
      *

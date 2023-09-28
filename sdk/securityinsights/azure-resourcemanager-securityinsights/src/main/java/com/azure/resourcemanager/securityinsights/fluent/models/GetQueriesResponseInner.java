@@ -18,6 +18,10 @@ public final class GetQueriesResponseInner {
     @JsonProperty(value = "value")
     private List<EntityQueryItem> value;
 
+    /** Creates an instance of GetQueriesResponseInner class. */
+    public GetQueriesResponseInner() {
+    }
+
     /**
      * Get the value property: The query result values.
      *

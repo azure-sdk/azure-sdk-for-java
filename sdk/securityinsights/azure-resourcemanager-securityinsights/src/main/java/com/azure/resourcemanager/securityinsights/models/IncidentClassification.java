@@ -23,6 +23,15 @@ public final class IncidentClassification extends ExpandableStringEnum<IncidentC
     public static final IncidentClassification FALSE_POSITIVE = fromString("FalsePositive");
 
     /**
+     * Creates a new instance of IncidentClassification value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public IncidentClassification() {
+    }
+
+    /**
      * Creates or finds a IncidentClassification from its string representation.
      *
      * @param name a name to look for.

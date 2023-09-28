@@ -60,11 +60,10 @@ public final class MetadatasClientImpl implements MetadatasClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "SecurityInsightsMeta")
-    private interface MetadatasService {
+    public interface MetadatasService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights"
-                + "/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/metadata")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/metadata")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<MetadataList>> list(
@@ -82,8 +81,7 @@ public final class MetadatasClientImpl implements MetadatasClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights"
-                + "/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/metadata/{metadataName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/metadata/{metadataName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<MetadataModelInner>> get(
@@ -98,8 +96,7 @@ public final class MetadatasClientImpl implements MetadatasClient {
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights"
-                + "/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/metadata/{metadataName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/metadata/{metadataName}")
         @ExpectedResponses({200, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Void>> delete(
@@ -114,8 +111,7 @@ public final class MetadatasClientImpl implements MetadatasClient {
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights"
-                + "/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/metadata/{metadataName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/metadata/{metadataName}")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<MetadataModelInner>> create(
@@ -131,8 +127,7 @@ public final class MetadatasClientImpl implements MetadatasClient {
 
         @Headers({"Content-Type: application/json"})
         @Patch(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights"
-                + "/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/metadata/{metadataName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/metadata/{metadataName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<MetadataModelInner>> update(
@@ -541,22 +536,6 @@ public final class MetadatasClientImpl implements MetadatasClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param metadataName The Metadata name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Metadata.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public MetadataModelInner get(String resourceGroupName, String workspaceName, String metadataName) {
-        return getAsync(resourceGroupName, workspaceName, metadataName).block();
-    }
-
-    /**
-     * Get a Metadata.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param metadataName The Metadata name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -567,6 +546,22 @@ public final class MetadatasClientImpl implements MetadatasClient {
     public Response<MetadataModelInner> getWithResponse(
         String resourceGroupName, String workspaceName, String metadataName, Context context) {
         return getWithResponseAsync(resourceGroupName, workspaceName, metadataName, context).block();
+    }
+
+    /**
+     * Get a Metadata.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param metadataName The Metadata name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a Metadata.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public MetadataModelInner get(String resourceGroupName, String workspaceName, String metadataName) {
+        return getWithResponse(resourceGroupName, workspaceName, metadataName, Context.NONE).getValue();
     }
 
     /**
@@ -695,21 +690,6 @@ public final class MetadatasClientImpl implements MetadatasClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param metadataName The Metadata name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceGroupName, String workspaceName, String metadataName) {
-        deleteAsync(resourceGroupName, workspaceName, metadataName).block();
-    }
-
-    /**
-     * Delete a Metadata.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param metadataName The Metadata name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -720,6 +700,21 @@ public final class MetadatasClientImpl implements MetadatasClient {
     public Response<Void> deleteWithResponse(
         String resourceGroupName, String workspaceName, String metadataName, Context context) {
         return deleteWithResponseAsync(resourceGroupName, workspaceName, metadataName, context).block();
+    }
+
+    /**
+     * Delete a Metadata.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param metadataName The Metadata name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void delete(String resourceGroupName, String workspaceName, String metadataName) {
+        deleteWithResponse(resourceGroupName, workspaceName, metadataName, Context.NONE);
     }
 
     /**
@@ -870,24 +865,6 @@ public final class MetadatasClientImpl implements MetadatasClient {
      * @param workspaceName The name of the workspace.
      * @param metadataName The Metadata name.
      * @param metadata Metadata resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return metadata resource definition.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public MetadataModelInner create(
-        String resourceGroupName, String workspaceName, String metadataName, MetadataModelInner metadata) {
-        return createAsync(resourceGroupName, workspaceName, metadataName, metadata).block();
-    }
-
-    /**
-     * Create a Metadata.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param metadataName The Metadata name.
-     * @param metadata Metadata resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -902,6 +879,24 @@ public final class MetadatasClientImpl implements MetadatasClient {
         MetadataModelInner metadata,
         Context context) {
         return createWithResponseAsync(resourceGroupName, workspaceName, metadataName, metadata, context).block();
+    }
+
+    /**
+     * Create a Metadata.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param metadataName The Metadata name.
+     * @param metadata Metadata resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return metadata resource definition.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public MetadataModelInner create(
+        String resourceGroupName, String workspaceName, String metadataName, MetadataModelInner metadata) {
+        return createWithResponse(resourceGroupName, workspaceName, metadataName, metadata, Context.NONE).getValue();
     }
 
     /**
@@ -1052,24 +1047,6 @@ public final class MetadatasClientImpl implements MetadatasClient {
      * @param workspaceName The name of the workspace.
      * @param metadataName The Metadata name.
      * @param metadataPatch Partial metadata request.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return metadata resource definition.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public MetadataModelInner update(
-        String resourceGroupName, String workspaceName, String metadataName, MetadataPatch metadataPatch) {
-        return updateAsync(resourceGroupName, workspaceName, metadataName, metadataPatch).block();
-    }
-
-    /**
-     * Update an existing Metadata.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param metadataName The Metadata name.
-     * @param metadataPatch Partial metadata request.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1084,6 +1061,25 @@ public final class MetadatasClientImpl implements MetadatasClient {
         MetadataPatch metadataPatch,
         Context context) {
         return updateWithResponseAsync(resourceGroupName, workspaceName, metadataName, metadataPatch, context).block();
+    }
+
+    /**
+     * Update an existing Metadata.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param metadataName The Metadata name.
+     * @param metadataPatch Partial metadata request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return metadata resource definition.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public MetadataModelInner update(
+        String resourceGroupName, String workspaceName, String metadataName, MetadataPatch metadataPatch) {
+        return updateWithResponse(resourceGroupName, workspaceName, metadataName, metadataPatch, Context.NONE)
+            .getValue();
     }
 
     /**

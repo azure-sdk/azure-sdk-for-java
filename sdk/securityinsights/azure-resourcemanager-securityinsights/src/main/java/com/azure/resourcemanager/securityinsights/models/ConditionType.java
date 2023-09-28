@@ -26,6 +26,15 @@ public final class ConditionType extends ExpandableStringEnum<ConditionType> {
     public static final ConditionType BOOLEAN = fromString("Boolean");
 
     /**
+     * Creates a new instance of ConditionType value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public ConditionType() {
+    }
+
+    /**
      * Creates or finds a ConditionType from its string representation.
      *
      * @param name a name to look for.

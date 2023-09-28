@@ -23,6 +23,10 @@ public final class AutomationRuleBooleanCondition {
     @JsonProperty(value = "innerConditions")
     private List<AutomationRuleCondition> innerConditions;
 
+    /** Creates an instance of AutomationRuleBooleanCondition class. */
+    public AutomationRuleBooleanCondition() {
+    }
+
     /**
      * Get the operator property: The operator property.
      *

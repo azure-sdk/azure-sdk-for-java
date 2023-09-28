@@ -19,6 +19,10 @@ public final class IncidentBookmarkListInner {
     @JsonProperty(value = "value", required = true)
     private List<HuntingBookmark> value;
 
+    /** Creates an instance of IncidentBookmarkListInner class. */
+    public IncidentBookmarkListInner() {
+    }
+
     /**
      * Get the value property: Array of incident bookmarks.
      *

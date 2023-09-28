@@ -9,6 +9,10 @@ import com.azure.core.annotation.Fluent;
 /** The PermissionsResourceProviderItem model. */
 @Fluent
 public final class PermissionsResourceProviderItem extends ResourceProvider {
+    /** Creates an instance of PermissionsResourceProviderItem class. */
+    public PermissionsResourceProviderItem() {
+    }
+
     /** {@inheritDoc} */
     @Override
     public PermissionsResourceProviderItem withProvider(ProviderName provider) {

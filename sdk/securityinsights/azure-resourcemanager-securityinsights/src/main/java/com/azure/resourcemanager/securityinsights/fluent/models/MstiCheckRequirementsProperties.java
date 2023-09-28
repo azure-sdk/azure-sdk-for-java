@@ -10,6 +10,10 @@ import com.azure.resourcemanager.securityinsights.models.DataConnectorTenantId;
 /** Microsoft Threat Intelligence requirements check properties. */
 @Fluent
 public final class MstiCheckRequirementsProperties extends DataConnectorTenantId {
+    /** Creates an instance of MstiCheckRequirementsProperties class. */
+    public MstiCheckRequirementsProperties() {
+    }
+
     /** {@inheritDoc} */
     @Override
     public MstiCheckRequirementsProperties withTenantId(String tenantId) {

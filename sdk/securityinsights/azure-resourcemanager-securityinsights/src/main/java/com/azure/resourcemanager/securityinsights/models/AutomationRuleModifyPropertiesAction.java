@@ -20,6 +20,10 @@ public final class AutomationRuleModifyPropertiesAction extends AutomationRuleAc
     @JsonProperty(value = "actionConfiguration")
     private IncidentPropertiesAction actionConfiguration;
 
+    /** Creates an instance of AutomationRuleModifyPropertiesAction class. */
+    public AutomationRuleModifyPropertiesAction() {
+    }
+
     /**
      * Get the actionConfiguration property: The actionConfiguration property.
      *

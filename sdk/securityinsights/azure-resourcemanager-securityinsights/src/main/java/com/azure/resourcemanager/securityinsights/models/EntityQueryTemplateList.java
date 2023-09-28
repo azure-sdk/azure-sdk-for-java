@@ -25,6 +25,10 @@ public final class EntityQueryTemplateList {
     @JsonProperty(value = "value", required = true)
     private List<EntityQueryTemplateInner> value;
 
+    /** Creates an instance of EntityQueryTemplateList class. */
+    public EntityQueryTemplateList() {
+    }
+
     /**
      * Get the nextLink property: URL to fetch the next set of entity query templates.
      *

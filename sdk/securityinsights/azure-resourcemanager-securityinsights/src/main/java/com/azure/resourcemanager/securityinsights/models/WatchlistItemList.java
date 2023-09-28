@@ -25,6 +25,10 @@ public final class WatchlistItemList {
     @JsonProperty(value = "value", required = true)
     private List<WatchlistItemInner> value;
 
+    /** Creates an instance of WatchlistItemList class. */
+    public WatchlistItemList() {
+    }
+
     /**
      * Get the nextLink property: URL to fetch the next set of watchlist item.
      *

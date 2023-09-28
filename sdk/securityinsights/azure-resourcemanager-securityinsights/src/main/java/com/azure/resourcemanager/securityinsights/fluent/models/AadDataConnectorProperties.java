@@ -9,7 +9,7 @@ import com.azure.resourcemanager.securityinsights.models.AlertsDataTypeOfDataCon
 import com.azure.resourcemanager.securityinsights.models.DataConnectorTenantId;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** AAD (Azure Active Directory) data connector properties. */
+/** AADIP (Azure Active Directory Identity Protection) data connector properties. */
 @Fluent
 public final class AadDataConnectorProperties extends DataConnectorTenantId {
     /*
@@ -17,6 +17,10 @@ public final class AadDataConnectorProperties extends DataConnectorTenantId {
      */
     @JsonProperty(value = "dataTypes")
     private AlertsDataTypeOfDataConnector dataTypes;
+
+    /** Creates an instance of AadDataConnectorProperties class. */
+    public AadDataConnectorProperties() {
+    }
 
     /**
      * Get the dataTypes property: The available data types for the connector.

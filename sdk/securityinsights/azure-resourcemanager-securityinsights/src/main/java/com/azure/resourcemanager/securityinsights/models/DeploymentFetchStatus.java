@@ -20,6 +20,15 @@ public final class DeploymentFetchStatus extends ExpandableStringEnum<Deployment
     public static final DeploymentFetchStatus NOT_FOUND = fromString("NotFound");
 
     /**
+     * Creates a new instance of DeploymentFetchStatus value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public DeploymentFetchStatus() {
+    }
+
+    /**
      * Creates or finds a DeploymentFetchStatus from its string representation.
      *
      * @param name a name to look for.

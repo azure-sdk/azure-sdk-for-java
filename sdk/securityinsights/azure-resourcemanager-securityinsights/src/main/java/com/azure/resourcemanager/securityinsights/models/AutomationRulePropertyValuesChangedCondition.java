@@ -35,6 +35,10 @@ public final class AutomationRulePropertyValuesChangedCondition {
     @JsonProperty(value = "propertyValues")
     private List<String> propertyValues;
 
+    /** Creates an instance of AutomationRulePropertyValuesChangedCondition class. */
+    public AutomationRulePropertyValuesChangedCondition() {
+    }
+
     /**
      * Get the propertyName property: The propertyName property.
      *

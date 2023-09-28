@@ -28,6 +28,10 @@ public final class MetadataAuthor {
     @JsonProperty(value = "link")
     private String link;
 
+    /** Creates an instance of MetadataAuthor class. */
+    public MetadataAuthor() {
+    }
+
     /**
      * Get the name property: Name of the author. Company or person.
      *

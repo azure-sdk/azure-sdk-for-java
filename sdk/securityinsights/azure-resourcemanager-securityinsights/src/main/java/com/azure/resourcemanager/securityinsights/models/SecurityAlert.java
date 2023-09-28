@@ -25,6 +25,10 @@ public final class SecurityAlert extends EntityInner {
     @JsonProperty(value = "properties")
     private SecurityAlertProperties innerProperties;
 
+    /** Creates an instance of SecurityAlert class. */
+    public SecurityAlert() {
+    }
+
     /**
      * Get the innerProperties property: SecurityAlert entity properties.
      *

@@ -23,6 +23,10 @@ public final class MetadataCategories {
     @JsonProperty(value = "verticals")
     private List<String> verticals;
 
+    /** Creates an instance of MetadataCategories class. */
+    public MetadataCategories() {
+    }
+
     /**
      * Get the domains property: domain for the solution content item.
      *
