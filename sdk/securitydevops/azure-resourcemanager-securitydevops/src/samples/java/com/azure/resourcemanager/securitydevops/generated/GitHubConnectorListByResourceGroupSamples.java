@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.securitydevops.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for GitHubConnector ListByResourceGroup. */
 public final class GitHubConnectorListByResourceGroupSamples {
     /*
@@ -18,6 +16,6 @@ public final class GitHubConnectorListByResourceGroupSamples {
      */
     public static void gitHubConnectorListByResourceGroup(
         com.azure.resourcemanager.securitydevops.SecurityDevOpsManager manager) {
-        manager.gitHubConnectors().listByResourceGroup("westusrg", Context.NONE);
+        manager.gitHubConnectors().listByResourceGroup("westusrg", com.azure.core.util.Context.NONE);
     }
 }

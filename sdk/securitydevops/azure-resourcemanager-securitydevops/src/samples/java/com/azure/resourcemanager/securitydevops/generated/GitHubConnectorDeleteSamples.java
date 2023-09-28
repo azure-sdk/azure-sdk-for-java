@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.securitydevops.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for GitHubConnector Delete. */
 public final class GitHubConnectorDeleteSamples {
     /*
@@ -17,6 +15,6 @@ public final class GitHubConnectorDeleteSamples {
      * @param manager Entry point to SecurityDevOpsManager.
      */
     public static void gitHubConnectorDelete(com.azure.resourcemanager.securitydevops.SecurityDevOpsManager manager) {
-        manager.gitHubConnectors().delete("westusrg", "testconnector", Context.NONE);
+        manager.gitHubConnectors().delete("westusrg", "testconnector", com.azure.core.util.Context.NONE);
     }
 }

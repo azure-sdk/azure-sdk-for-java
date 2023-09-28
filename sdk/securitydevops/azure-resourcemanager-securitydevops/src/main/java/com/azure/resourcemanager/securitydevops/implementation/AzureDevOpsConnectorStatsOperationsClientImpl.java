@@ -56,11 +56,10 @@ public final class AzureDevOpsConnectorStatsOperationsClientImpl implements Azur
      */
     @Host("{$host}")
     @ServiceInterface(name = "MicrosoftSecurityDev")
-    private interface AzureDevOpsConnectorStatsOperationsService {
+    public interface AzureDevOpsConnectorStatsOperationsService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SecurityDevOps"
-                + "/azureDevOpsConnectors/{azureDevOpsConnectorName}/stats")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SecurityDevOps/azureDevOpsConnectors/{azureDevOpsConnectorName}/stats")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<AzureDevOpsConnectorStatsListResponseInner>> get(

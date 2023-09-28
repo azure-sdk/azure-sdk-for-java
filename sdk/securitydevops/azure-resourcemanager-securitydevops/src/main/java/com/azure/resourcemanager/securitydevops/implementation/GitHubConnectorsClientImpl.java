@@ -64,11 +64,10 @@ public final class GitHubConnectorsClientImpl implements GitHubConnectorsClient 
      */
     @Host("{$host}")
     @ServiceInterface(name = "MicrosoftSecurityDev")
-    private interface GitHubConnectorsService {
+    public interface GitHubConnectorsService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SecurityDevOps"
-                + "/gitHubConnectors")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SecurityDevOps/gitHubConnectors")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<GitHubConnectorListResponse>> listByResourceGroup(
@@ -81,8 +80,7 @@ public final class GitHubConnectorsClientImpl implements GitHubConnectorsClient 
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SecurityDevOps"
-                + "/gitHubConnectors/{gitHubConnectorName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SecurityDevOps/gitHubConnectors/{gitHubConnectorName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<GitHubConnectorInner>> getByResourceGroup(
@@ -96,8 +94,7 @@ public final class GitHubConnectorsClientImpl implements GitHubConnectorsClient 
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SecurityDevOps"
-                + "/gitHubConnectors/{gitHubConnectorName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SecurityDevOps/gitHubConnectors/{gitHubConnectorName}")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
@@ -112,8 +109,7 @@ public final class GitHubConnectorsClientImpl implements GitHubConnectorsClient 
 
         @Headers({"Content-Type: application/json"})
         @Patch(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SecurityDevOps"
-                + "/gitHubConnectors/{gitHubConnectorName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SecurityDevOps/gitHubConnectors/{gitHubConnectorName}")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> update(
@@ -128,8 +124,7 @@ public final class GitHubConnectorsClientImpl implements GitHubConnectorsClient 
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SecurityDevOps"
-                + "/gitHubConnectors/{gitHubConnectorName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SecurityDevOps/gitHubConnectors/{gitHubConnectorName}")
         @ExpectedResponses({200, 202, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(
@@ -672,7 +667,7 @@ public final class GitHubConnectorsClientImpl implements GitHubConnectorsClient 
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<GitHubConnectorInner>, GitHubConnectorInner> beginCreateOrUpdate(
         String resourceGroupName, String gitHubConnectorName, GitHubConnectorInner gitHubConnector) {
-        return beginCreateOrUpdateAsync(resourceGroupName, gitHubConnectorName, gitHubConnector).getSyncPoller();
+        return this.beginCreateOrUpdateAsync(resourceGroupName, gitHubConnectorName, gitHubConnector).getSyncPoller();
     }
 
     /**
@@ -691,7 +686,8 @@ public final class GitHubConnectorsClientImpl implements GitHubConnectorsClient 
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<GitHubConnectorInner>, GitHubConnectorInner> beginCreateOrUpdate(
         String resourceGroupName, String gitHubConnectorName, GitHubConnectorInner gitHubConnector, Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, gitHubConnectorName, gitHubConnector, context)
+        return this
+            .beginCreateOrUpdateAsync(resourceGroupName, gitHubConnectorName, gitHubConnector, context)
             .getSyncPoller();
     }
 
@@ -979,7 +975,7 @@ public final class GitHubConnectorsClientImpl implements GitHubConnectorsClient 
     public SyncPoller<PollResult<GitHubConnectorInner>, GitHubConnectorInner> beginUpdate(
         String resourceGroupName, String gitHubConnectorName) {
         final GitHubConnectorInner gitHubConnector = null;
-        return beginUpdateAsync(resourceGroupName, gitHubConnectorName, gitHubConnector).getSyncPoller();
+        return this.beginUpdateAsync(resourceGroupName, gitHubConnectorName, gitHubConnector).getSyncPoller();
     }
 
     /**
@@ -998,7 +994,7 @@ public final class GitHubConnectorsClientImpl implements GitHubConnectorsClient 
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<GitHubConnectorInner>, GitHubConnectorInner> beginUpdate(
         String resourceGroupName, String gitHubConnectorName, GitHubConnectorInner gitHubConnector, Context context) {
-        return beginUpdateAsync(resourceGroupName, gitHubConnectorName, gitHubConnector, context).getSyncPoller();
+        return this.beginUpdateAsync(resourceGroupName, gitHubConnectorName, gitHubConnector, context).getSyncPoller();
     }
 
     /**
@@ -1249,7 +1245,7 @@ public final class GitHubConnectorsClientImpl implements GitHubConnectorsClient 
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String gitHubConnectorName) {
-        return beginDeleteAsync(resourceGroupName, gitHubConnectorName).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, gitHubConnectorName).getSyncPoller();
     }
 
     /**
@@ -1266,7 +1262,7 @@ public final class GitHubConnectorsClientImpl implements GitHubConnectorsClient 
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String gitHubConnectorName, Context context) {
-        return beginDeleteAsync(resourceGroupName, gitHubConnectorName, context).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, gitHubConnectorName, context).getSyncPoller();
     }
 
     /**

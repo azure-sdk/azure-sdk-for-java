@@ -17,6 +17,15 @@ public final class AutoDiscovery extends ExpandableStringEnum<AutoDiscovery> {
     public static final AutoDiscovery ENABLED = fromString("Enabled");
 
     /**
+     * Creates a new instance of AutoDiscovery value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public AutoDiscovery() {
+    }
+
+    /**
      * Creates or finds a AutoDiscovery from its string representation.
      *
      * @param name a name to look for.

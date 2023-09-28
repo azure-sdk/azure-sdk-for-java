@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.securitydevops.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.securitydevops.models.AzureDevOpsRepo;
 
 /** Samples for AzureDevOpsRepo Update. */
@@ -21,7 +20,8 @@ public final class AzureDevOpsRepoUpdateSamples {
         AzureDevOpsRepo resource =
             manager
                 .azureDevOpsRepoes()
-                .getWithResponse("westusrg", "testconnector", "myOrg", "myProject", "myRepo", Context.NONE)
+                .getWithResponse(
+                    "westusrg", "testconnector", "myOrg", "myProject", "myRepo", com.azure.core.util.Context.NONE)
                 .getValue();
         resource.update().apply();
     }

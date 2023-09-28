@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.securitydevops.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for AzureDevOpsProject List. */
 public final class AzureDevOpsProjectListSamples {
     /*
@@ -17,6 +15,6 @@ public final class AzureDevOpsProjectListSamples {
      * @param manager Entry point to SecurityDevOpsManager.
      */
     public static void azureDevOpsProjectList(com.azure.resourcemanager.securitydevops.SecurityDevOpsManager manager) {
-        manager.azureDevOpsProjects().list("westusrg", "testconnector", "myOrg", Context.NONE);
+        manager.azureDevOpsProjects().list("westusrg", "testconnector", "myOrg", com.azure.core.util.Context.NONE);
     }
 }
