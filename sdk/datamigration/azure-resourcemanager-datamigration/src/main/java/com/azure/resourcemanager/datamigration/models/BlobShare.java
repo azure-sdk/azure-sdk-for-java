@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.datamigration.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Blob container storage information. */
@@ -14,7 +13,7 @@ public final class BlobShare {
     /*
      * SAS URI of Azure Storage Account Container.
      */
-    @JsonProperty(value = "sasUri", required = true)
+    @JsonProperty(value = "sasUri")
     private String sasUri;
 
     /** Creates an instance of BlobShare class. */
@@ -47,12 +46,5 @@ public final class BlobShare {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (sasUri() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property sasUri in model BlobShare"));
-        }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(BlobShare.class);
 }
