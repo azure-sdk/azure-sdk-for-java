@@ -26,10 +26,12 @@ import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.dashboard.fluent.DashboardManagementClient;
 import com.azure.resourcemanager.dashboard.implementation.DashboardManagementClientBuilder;
 import com.azure.resourcemanager.dashboard.implementation.GrafanasImpl;
+import com.azure.resourcemanager.dashboard.implementation.ManagedPrivateEndpointsImpl;
 import com.azure.resourcemanager.dashboard.implementation.OperationsImpl;
 import com.azure.resourcemanager.dashboard.implementation.PrivateEndpointConnectionsImpl;
 import com.azure.resourcemanager.dashboard.implementation.PrivateLinkResourcesImpl;
 import com.azure.resourcemanager.dashboard.models.Grafanas;
+import com.azure.resourcemanager.dashboard.models.ManagedPrivateEndpoints;
 import com.azure.resourcemanager.dashboard.models.Operations;
 import com.azure.resourcemanager.dashboard.models.PrivateEndpointConnections;
 import com.azure.resourcemanager.dashboard.models.PrivateLinkResources;
@@ -49,6 +51,8 @@ public final class DashboardManager {
     private PrivateEndpointConnections privateEndpointConnections;
 
     private PrivateLinkResources privateLinkResources;
+
+    private ManagedPrivateEndpoints managedPrivateEndpoints;
 
     private final DashboardManagementClient clientObject;
 
@@ -215,7 +219,7 @@ public final class DashboardManager {
                 .append("-")
                 .append("com.azure.resourcemanager.dashboard")
                 .append("/")
-                .append("1.0.0-beta.2");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -322,8 +326,23 @@ public final class DashboardManager {
     }
 
     /**
-     * @return Wrapped service client DashboardManagementClient providing direct access to the underlying auto-generated
-     *     API implementation, based on Azure REST API.
+     * Gets the resource collection API of ManagedPrivateEndpoints. It manages ManagedPrivateEndpointModel.
+     *
+     * @return Resource collection API of ManagedPrivateEndpoints.
+     */
+    public ManagedPrivateEndpoints managedPrivateEndpoints() {
+        if (this.managedPrivateEndpoints == null) {
+            this.managedPrivateEndpoints =
+                new ManagedPrivateEndpointsImpl(clientObject.getManagedPrivateEndpoints(), this);
+        }
+        return managedPrivateEndpoints;
+    }
+
+    /**
+     * Gets wrapped service client DashboardManagementClient providing direct access to the underlying auto-generated
+     * API implementation, based on Azure REST API.
+     *
+     * @return Wrapped service client DashboardManagementClient.
      */
     public DashboardManagementClient serviceClient() {
         return this.clientObject;

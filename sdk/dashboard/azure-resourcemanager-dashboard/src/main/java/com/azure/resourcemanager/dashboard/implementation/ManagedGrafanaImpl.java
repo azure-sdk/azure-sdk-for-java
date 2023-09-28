@@ -4,10 +4,13 @@
 
 package com.azure.resourcemanager.dashboard.implementation;
 
+import com.azure.core.http.rest.Response;
 import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.dashboard.fluent.models.ManagedGrafanaInner;
+import com.azure.resourcemanager.dashboard.models.EnterpriseDetails;
+import com.azure.resourcemanager.dashboard.models.GrafanaAvailablePluginListResponse;
 import com.azure.resourcemanager.dashboard.models.ManagedGrafana;
 import com.azure.resourcemanager.dashboard.models.ManagedGrafanaProperties;
 import com.azure.resourcemanager.dashboard.models.ManagedGrafanaPropertiesUpdateParameters;
@@ -171,6 +174,22 @@ public final class ManagedGrafanaImpl implements ManagedGrafana, ManagedGrafana.
         return this;
     }
 
+    public Response<EnterpriseDetails> checkEnterpriseDetailsWithResponse(Context context) {
+        return serviceManager.grafanas().checkEnterpriseDetailsWithResponse(resourceGroupName, workspaceName, context);
+    }
+
+    public EnterpriseDetails checkEnterpriseDetails() {
+        return serviceManager.grafanas().checkEnterpriseDetails(resourceGroupName, workspaceName);
+    }
+
+    public Response<GrafanaAvailablePluginListResponse> fetchAvailablePluginsWithResponse(Context context) {
+        return serviceManager.grafanas().fetchAvailablePluginsWithResponse(resourceGroupName, workspaceName, context);
+    }
+
+    public GrafanaAvailablePluginListResponse fetchAvailablePlugins() {
+        return serviceManager.grafanas().fetchAvailablePlugins(resourceGroupName, workspaceName);
+    }
+
     public ManagedGrafanaImpl withRegion(Region location) {
         this.innerModel().withLocation(location.toString());
         return this;
@@ -192,8 +211,13 @@ public final class ManagedGrafanaImpl implements ManagedGrafana, ManagedGrafana.
     }
 
     public ManagedGrafanaImpl withSku(ResourceSku sku) {
-        this.innerModel().withSku(sku);
-        return this;
+        if (isInCreateMode()) {
+            this.innerModel().withSku(sku);
+            return this;
+        } else {
+            this.updateRequestBodyParameters.withSku(sku);
+            return this;
+        }
     }
 
     public ManagedGrafanaImpl withProperties(ManagedGrafanaProperties properties) {
