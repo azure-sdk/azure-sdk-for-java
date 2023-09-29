@@ -6,10 +6,10 @@ package com.azure.resourcemanager.agrifood.fluent;
 
 import com.azure.core.annotation.ReturnType;
 import com.azure.core.annotation.ServiceMethod;
-import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.agrifood.fluent.models.PrivateLinkResourceInner;
+import com.azure.resourcemanager.agrifood.fluent.models.PrivateLinkResourceListResultInner;
 
 /** An instance of this class provides access to all the operations defined in PrivateLinkResourcesClient. */
 public interface PrivateLinkResourcesClient {
@@ -17,57 +17,66 @@ public interface PrivateLinkResourcesClient {
      * Get list of Private link resources.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
+     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of Private link resources as paginated response with {@link PagedIterable}.
+     * @return list of Private link resources along with {@link Response}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<PrivateLinkResourceInner> listByResource(String resourceGroupName, String farmBeatsResourceName);
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<PrivateLinkResourceListResultInner> listByResourceWithResponse(
+        String resourceGroupName, String dataManagerForAgricultureResourceName, Context context);
 
     /**
      * Get list of Private link resources.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
-     * @param context The context to associate with this operation.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of Private link resources as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<PrivateLinkResourceInner> listByResource(
-        String resourceGroupName, String farmBeatsResourceName, Context context);
-
-    /**
-     * Get Private link resource object.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
-     * @param subResourceName Sub resource name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return private link resource object.
+     * @return list of Private link resources.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    PrivateLinkResourceInner get(String resourceGroupName, String farmBeatsResourceName, String subResourceName);
+    PrivateLinkResourceListResultInner listByResource(
+        String resourceGroupName, String dataManagerForAgricultureResourceName);
 
     /**
      * Get Private link resource object.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
      * @param subResourceName Sub resource name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server on
+     *     status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return private link resource object along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<PrivateLinkResourceInner> getWithResponse(
-        String resourceGroupName, String farmBeatsResourceName, String subResourceName, Context context);
+        String resourceGroupName,
+        String dataManagerForAgricultureResourceName,
+        String subResourceName,
+        Context context);
+
+    /**
+     * Get Private link resource object.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
+     * @param subResourceName Sub resource name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server on
+     *     status code 404.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return private link resource object.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    PrivateLinkResourceInner get(
+        String resourceGroupName, String dataManagerForAgricultureResourceName, String subResourceName);
 }
