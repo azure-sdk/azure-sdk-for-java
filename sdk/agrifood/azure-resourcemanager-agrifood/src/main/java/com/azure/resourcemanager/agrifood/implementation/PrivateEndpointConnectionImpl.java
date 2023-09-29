@@ -11,6 +11,8 @@ import com.azure.resourcemanager.agrifood.models.PrivateEndpoint;
 import com.azure.resourcemanager.agrifood.models.PrivateEndpointConnection;
 import com.azure.resourcemanager.agrifood.models.PrivateEndpointConnectionProvisioningState;
 import com.azure.resourcemanager.agrifood.models.PrivateLinkServiceConnectionState;
+import java.util.Collections;
+import java.util.List;
 
 public final class PrivateEndpointConnectionImpl
     implements PrivateEndpointConnection, PrivateEndpointConnection.Definition, PrivateEndpointConnection.Update {
@@ -32,6 +34,15 @@ public final class PrivateEndpointConnectionImpl
 
     public SystemData systemData() {
         return this.innerModel().systemData();
+    }
+
+    public List<String> groupIds() {
+        List<String> inner = this.innerModel().groupIds();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
     }
 
     public PrivateEndpoint privateEndpoint() {
@@ -60,13 +71,14 @@ public final class PrivateEndpointConnectionImpl
 
     private String resourceGroupName;
 
-    private String farmBeatsResourceName;
+    private String dataManagerForAgricultureResourceName;
 
     private String privateEndpointConnectionName;
 
-    public PrivateEndpointConnectionImpl withExistingFarmBeat(String resourceGroupName, String farmBeatsResourceName) {
+    public PrivateEndpointConnectionImpl withExistingFarmBeat(
+        String resourceGroupName, String dataManagerForAgricultureResourceName) {
         this.resourceGroupName = resourceGroupName;
-        this.farmBeatsResourceName = farmBeatsResourceName;
+        this.dataManagerForAgricultureResourceName = dataManagerForAgricultureResourceName;
         return this;
     }
 
@@ -77,7 +89,7 @@ public final class PrivateEndpointConnectionImpl
                 .getPrivateEndpointConnections()
                 .createOrUpdateWithResponse(
                     resourceGroupName,
-                    farmBeatsResourceName,
+                    dataManagerForAgricultureResourceName,
                     privateEndpointConnectionName,
                     this.innerModel(),
                     Context.NONE)
@@ -91,7 +103,11 @@ public final class PrivateEndpointConnectionImpl
                 .serviceClient()
                 .getPrivateEndpointConnections()
                 .createOrUpdateWithResponse(
-                    resourceGroupName, farmBeatsResourceName, privateEndpointConnectionName, this.innerModel(), context)
+                    resourceGroupName,
+                    dataManagerForAgricultureResourceName,
+                    privateEndpointConnectionName,
+                    this.innerModel(),
+                    context)
                 .getValue();
         return this;
     }
@@ -113,7 +129,7 @@ public final class PrivateEndpointConnectionImpl
                 .getPrivateEndpointConnections()
                 .createOrUpdateWithResponse(
                     resourceGroupName,
-                    farmBeatsResourceName,
+                    dataManagerForAgricultureResourceName,
                     privateEndpointConnectionName,
                     this.innerModel(),
                     Context.NONE)
@@ -127,7 +143,11 @@ public final class PrivateEndpointConnectionImpl
                 .serviceClient()
                 .getPrivateEndpointConnections()
                 .createOrUpdateWithResponse(
-                    resourceGroupName, farmBeatsResourceName, privateEndpointConnectionName, this.innerModel(), context)
+                    resourceGroupName,
+                    dataManagerForAgricultureResourceName,
+                    privateEndpointConnectionName,
+                    this.innerModel(),
+                    context)
                 .getValue();
         return this;
     }
@@ -137,7 +157,7 @@ public final class PrivateEndpointConnectionImpl
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
         this.resourceGroupName = Utils.getValueFromIdByName(innerObject.id(), "resourceGroups");
-        this.farmBeatsResourceName = Utils.getValueFromIdByName(innerObject.id(), "farmBeats");
+        this.dataManagerForAgricultureResourceName = Utils.getValueFromIdByName(innerObject.id(), "farmBeats");
         this.privateEndpointConnectionName = Utils.getValueFromIdByName(innerObject.id(), "privateEndpointConnections");
     }
 
@@ -146,7 +166,11 @@ public final class PrivateEndpointConnectionImpl
             serviceManager
                 .serviceClient()
                 .getPrivateEndpointConnections()
-                .getWithResponse(resourceGroupName, farmBeatsResourceName, privateEndpointConnectionName, Context.NONE)
+                .getWithResponse(
+                    resourceGroupName,
+                    dataManagerForAgricultureResourceName,
+                    privateEndpointConnectionName,
+                    Context.NONE)
                 .getValue();
         return this;
     }
@@ -156,7 +180,8 @@ public final class PrivateEndpointConnectionImpl
             serviceManager
                 .serviceClient()
                 .getPrivateEndpointConnections()
-                .getWithResponse(resourceGroupName, farmBeatsResourceName, privateEndpointConnectionName, context)
+                .getWithResponse(
+                    resourceGroupName, dataManagerForAgricultureResourceName, privateEndpointConnectionName, context)
                 .getValue();
         return this;
     }
