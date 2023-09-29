@@ -63,11 +63,10 @@ public final class CertificatesClientImpl implements CertificatesClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "NginxManagementClien")
-    private interface CertificatesService {
+    public interface CertificatesService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Nginx.NginxPlus"
-                + "/nginxDeployments/{deploymentName}/certificates/{certificateName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Nginx.NginxPlus/nginxDeployments/{deploymentName}/certificates/{certificateName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<NginxCertificateInner>> get(
@@ -82,8 +81,7 @@ public final class CertificatesClientImpl implements CertificatesClient {
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Nginx.NginxPlus"
-                + "/nginxDeployments/{deploymentName}/certificates/{certificateName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Nginx.NginxPlus/nginxDeployments/{deploymentName}/certificates/{certificateName}")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
@@ -99,8 +97,7 @@ public final class CertificatesClientImpl implements CertificatesClient {
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Nginx.NginxPlus"
-                + "/nginxDeployments/{deploymentName}/certificates/{certificateName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Nginx.NginxPlus/nginxDeployments/{deploymentName}/certificates/{certificateName}")
         @ExpectedResponses({200, 202, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(
@@ -115,8 +112,7 @@ public final class CertificatesClientImpl implements CertificatesClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Nginx.NginxPlus"
-                + "/nginxDeployments/{deploymentName}/certificates")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Nginx.NginxPlus/nginxDeployments/{deploymentName}/certificates")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<NginxCertificateListResponse>> list(
@@ -517,7 +513,7 @@ public final class CertificatesClientImpl implements CertificatesClient {
     public SyncPoller<PollResult<NginxCertificateInner>, NginxCertificateInner> beginCreateOrUpdate(
         String resourceGroupName, String deploymentName, String certificateName) {
         final NginxCertificateInner body = null;
-        return beginCreateOrUpdateAsync(resourceGroupName, deploymentName, certificateName, body).getSyncPoller();
+        return this.beginCreateOrUpdateAsync(resourceGroupName, deploymentName, certificateName, body).getSyncPoller();
     }
 
     /**
@@ -540,7 +536,8 @@ public final class CertificatesClientImpl implements CertificatesClient {
         String certificateName,
         NginxCertificateInner body,
         Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, deploymentName, certificateName, body, context)
+        return this
+            .beginCreateOrUpdateAsync(resourceGroupName, deploymentName, certificateName, body, context)
             .getSyncPoller();
     }
 
@@ -815,7 +812,7 @@ public final class CertificatesClientImpl implements CertificatesClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String deploymentName, String certificateName) {
-        return beginDeleteAsync(resourceGroupName, deploymentName, certificateName).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, deploymentName, certificateName).getSyncPoller();
     }
 
     /**
@@ -833,7 +830,7 @@ public final class CertificatesClientImpl implements CertificatesClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String deploymentName, String certificateName, Context context) {
-        return beginDeleteAsync(resourceGroupName, deploymentName, certificateName, context).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, deploymentName, certificateName, context).getSyncPoller();
     }
 
     /**
