@@ -4,48 +4,22 @@
 
 package com.azure.resourcemanager.agrifood.models;
 
-import com.azure.core.annotation.Fluent;
-import com.azure.resourcemanager.agrifood.fluent.models.PrivateEndpointConnectionInner;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.resourcemanager.agrifood.fluent.models.PrivateEndpointConnectionListResultInner;
 import java.util.List;
 
-/** List of private endpoint connection associated with the specified storage account. */
-@Fluent
-public final class PrivateEndpointConnectionListResult {
-    /*
-     * Array of private endpoint connections
-     */
-    @JsonProperty(value = "value")
-    private List<PrivateEndpointConnectionInner> value;
-
+/** An immutable client-side representation of PrivateEndpointConnectionListResult. */
+public interface PrivateEndpointConnectionListResult {
     /**
-     * Get the value property: Array of private endpoint connections.
+     * Gets the value property: Array of private endpoint connections.
      *
      * @return the value value.
      */
-    public List<PrivateEndpointConnectionInner> value() {
-        return this.value;
-    }
+    List<PrivateEndpointConnection> value();
 
     /**
-     * Set the value property: Array of private endpoint connections.
+     * Gets the inner com.azure.resourcemanager.agrifood.fluent.models.PrivateEndpointConnectionListResultInner object.
      *
-     * @param value the value value to set.
-     * @return the PrivateEndpointConnectionListResult object itself.
+     * @return the inner object.
      */
-    public PrivateEndpointConnectionListResult withValue(List<PrivateEndpointConnectionInner> value) {
-        this.value = value;
-        return this;
-    }
-
-    /**
-     * Validates the instance.
-     *
-     * @throws IllegalArgumentException thrown if the instance is not valid.
-     */
-    public void validate() {
-        if (value() != null) {
-            value().forEach(e -> e.validate());
-        }
-    }
+    PrivateEndpointConnectionListResultInner innerModel();
 }
