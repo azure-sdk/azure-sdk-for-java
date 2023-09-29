@@ -4,12 +4,10 @@
 
 package com.azure.resourcemanager.agrifood.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Extensions Get. */
 public final class ExtensionsGetSamples {
     /*
-     * x-ms-original-file: specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2021-09-01-preview/examples/Extensions_Get.json
+     * x-ms-original-file: specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2023-06-01-preview/examples/Extensions_Get.json
      */
     /**
      * Sample code: Extensions_Get.
@@ -19,6 +17,10 @@ public final class ExtensionsGetSamples {
     public static void extensionsGet(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
         manager
             .extensions()
-            .getWithResponse("examples-rg", "examples-farmbeatsResourceName", "provider.extension", Context.NONE);
+            .getWithResponse(
+                "examples-rg",
+                "examples-farmbeatsResourceName",
+                "provider.extension",
+                com.azure.core.util.Context.NONE);
     }
 }
