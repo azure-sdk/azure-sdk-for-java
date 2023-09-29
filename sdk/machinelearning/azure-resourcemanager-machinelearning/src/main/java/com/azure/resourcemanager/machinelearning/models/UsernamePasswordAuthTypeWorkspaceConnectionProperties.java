@@ -8,6 +8,7 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
+import java.time.OffsetDateTime;
 
 /** The UsernamePasswordAuthTypeWorkspaceConnectionProperties model. */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "authType")
@@ -54,22 +55,29 @@ public final class UsernamePasswordAuthTypeWorkspaceConnectionProperties extends
 
     /** {@inheritDoc} */
     @Override
+    public UsernamePasswordAuthTypeWorkspaceConnectionProperties withExpiryTime(OffsetDateTime expiryTime) {
+        super.withExpiryTime(expiryTime);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public UsernamePasswordAuthTypeWorkspaceConnectionProperties withIsSharedToAll(Boolean isSharedToAll) {
+        super.withIsSharedToAll(isSharedToAll);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public UsernamePasswordAuthTypeWorkspaceConnectionProperties withMetadata(Object metadata) {
+        super.withMetadata(metadata);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public UsernamePasswordAuthTypeWorkspaceConnectionProperties withTarget(String target) {
         super.withTarget(target);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public UsernamePasswordAuthTypeWorkspaceConnectionProperties withValue(String value) {
-        super.withValue(value);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public UsernamePasswordAuthTypeWorkspaceConnectionProperties withValueFormat(ValueFormat valueFormat) {
-        super.withValueFormat(valueFormat);
         return this;
     }
 

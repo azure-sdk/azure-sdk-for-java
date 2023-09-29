@@ -40,29 +40,28 @@ public final class QuotasClientImpl implements QuotasClient {
     private final QuotasService service;
 
     /** The service client containing this operation class. */
-    private final AzureMachineLearningWorkspacesImpl client;
+    private final AzureMachineLearningServicesImpl client;
 
     /**
      * Initializes an instance of QuotasClientImpl.
      *
      * @param client the instance of the service client containing this operation class.
      */
-    QuotasClientImpl(AzureMachineLearningWorkspacesImpl client) {
+    QuotasClientImpl(AzureMachineLearningServicesImpl client) {
         this.service = RestProxy.create(QuotasService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for AzureMachineLearningWorkspacesQuotas to be used by the proxy service
-     * to perform REST calls.
+     * The interface defining all the services for AzureMachineLearningServicesQuotas to be used by the proxy service to
+     * perform REST calls.
      */
     @Host("{$host}")
     @ServiceInterface(name = "AzureMachineLearning")
     public interface QuotasService {
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/providers/Microsoft.MachineLearningServices/locations/{location}"
-                + "/updateQuotas")
+            "/subscriptions/{subscriptionId}/providers/Microsoft.MachineLearningServices/locations/{location}/updateQuotas")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<UpdateWorkspaceQuotasResultInner>> update(
