@@ -10,7 +10,7 @@ import java.time.Duration;
 /** The interface for AgriFoodManagementClient class. */
 public interface AgriFoodManagementClient {
     /**
-     * Gets The ID of the target subscription.
+     * Gets The ID of the target subscription. The value must be an UUID.
      *
      * @return the subscriptionId value.
      */
@@ -45,32 +45,46 @@ public interface AgriFoodManagementClient {
     Duration getDefaultPollInterval();
 
     /**
+     * Gets the CheckNameAvailabilitiesClient object to access its operations.
+     *
+     * @return the CheckNameAvailabilitiesClient object.
+     */
+    CheckNameAvailabilitiesClient getCheckNameAvailabilities();
+
+    /**
+     * Gets the DataConnectorsClient object to access its operations.
+     *
+     * @return the DataConnectorsClient object.
+     */
+    DataConnectorsClient getDataConnectors();
+
+    /**
+     * Gets the DataManagerForAgricultureExtensionsClient object to access its operations.
+     *
+     * @return the DataManagerForAgricultureExtensionsClient object.
+     */
+    DataManagerForAgricultureExtensionsClient getDataManagerForAgricultureExtensions();
+
+    /**
+     * Gets the DataManagerForAgricultureResourcesClient object to access its operations.
+     *
+     * @return the DataManagerForAgricultureResourcesClient object.
+     */
+    DataManagerForAgricultureResourcesClient getDataManagerForAgricultureResources();
+
+    /**
+     * Gets the OperationResultsClient object to access its operations.
+     *
+     * @return the OperationResultsClient object.
+     */
+    OperationResultsClient getOperationResults();
+
+    /**
      * Gets the ExtensionsClient object to access its operations.
      *
      * @return the ExtensionsClient object.
      */
     ExtensionsClient getExtensions();
-
-    /**
-     * Gets the FarmBeatsExtensionsClient object to access its operations.
-     *
-     * @return the FarmBeatsExtensionsClient object.
-     */
-    FarmBeatsExtensionsClient getFarmBeatsExtensions();
-
-    /**
-     * Gets the FarmBeatsModelsClient object to access its operations.
-     *
-     * @return the FarmBeatsModelsClient object.
-     */
-    FarmBeatsModelsClient getFarmBeatsModels();
-
-    /**
-     * Gets the LocationsClient object to access its operations.
-     *
-     * @return the LocationsClient object.
-     */
-    LocationsClient getLocations();
 
     /**
      * Gets the OperationsClient object to access its operations.
@@ -92,4 +106,18 @@ public interface AgriFoodManagementClient {
      * @return the PrivateLinkResourcesClient object.
      */
     PrivateLinkResourcesClient getPrivateLinkResources();
+
+    /**
+     * Gets the SolutionsClient object to access its operations.
+     *
+     * @return the SolutionsClient object.
+     */
+    SolutionsClient getSolutions();
+
+    /**
+     * Gets the SolutionsDiscoverabilitiesClient object to access its operations.
+     *
+     * @return the SolutionsDiscoverabilitiesClient object.
+     */
+    SolutionsDiscoverabilitiesClient getSolutionsDiscoverabilities();
 }
