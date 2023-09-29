@@ -22,6 +22,9 @@ public final class OperationName extends ExpandableStringEnum<OperationName> {
     /** Static value Restart for OperationName. */
     public static final OperationName RESTART = fromString("Restart");
 
+    /** Static value Resize for OperationName. */
+    public static final OperationName RESIZE = fromString("Resize");
+
     /** Static value Reimage for OperationName. */
     public static final OperationName REIMAGE = fromString("Reimage");
 

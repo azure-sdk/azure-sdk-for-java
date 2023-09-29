@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.machinelearning.models;
 
+import com.azure.core.http.rest.Response;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.machinelearning.fluent.models.WorkspaceConnectionPropertiesV2BasicResourceInner;
@@ -46,6 +47,13 @@ public interface WorkspaceConnectionPropertiesV2BasicResource {
     SystemData systemData();
 
     /**
+     * Gets the name of the resource group.
+     *
+     * @return the name of the resource group.
+     */
+    String resourceGroupName();
+
+    /**
      * Gets the inner
      * com.azure.resourcemanager.machinelearning.fluent.models.WorkspaceConnectionPropertiesV2BasicResourceInner object.
      *
@@ -60,11 +68,13 @@ public interface WorkspaceConnectionPropertiesV2BasicResource {
             DefinitionStages.WithProperties,
             DefinitionStages.WithCreate {
     }
+
     /** The WorkspaceConnectionPropertiesV2BasicResource definition stages. */
     interface DefinitionStages {
         /** The first stage of the WorkspaceConnectionPropertiesV2BasicResource definition. */
         interface Blank extends WithParentResource {
         }
+
         /**
          * The stage of the WorkspaceConnectionPropertiesV2BasicResource definition allowing to specify parent resource.
          */
@@ -73,11 +83,12 @@ public interface WorkspaceConnectionPropertiesV2BasicResource {
              * Specifies resourceGroupName, workspaceName.
              *
              * @param resourceGroupName The name of the resource group. The name is case insensitive.
-             * @param workspaceName Name of Azure Machine Learning workspace.
+             * @param workspaceName Azure Machine Learning Workspace Name.
              * @return the next definition stage.
              */
             WithProperties withExistingWorkspace(String resourceGroupName, String workspaceName);
         }
+
         /** The stage of the WorkspaceConnectionPropertiesV2BasicResource definition allowing to specify properties. */
         interface WithProperties {
             /**
@@ -88,6 +99,7 @@ public interface WorkspaceConnectionPropertiesV2BasicResource {
              */
             WithCreate withProperties(WorkspaceConnectionPropertiesV2 properties);
         }
+
         /**
          * The stage of the WorkspaceConnectionPropertiesV2BasicResource definition which contains all the minimum
          * required properties for the resource to be created, but also allows for any other optional properties to be
@@ -110,6 +122,47 @@ public interface WorkspaceConnectionPropertiesV2BasicResource {
             WorkspaceConnectionPropertiesV2BasicResource create(Context context);
         }
     }
+
+    /**
+     * Begins update for the WorkspaceConnectionPropertiesV2BasicResource resource.
+     *
+     * @return the stage of resource update.
+     */
+    WorkspaceConnectionPropertiesV2BasicResource.Update update();
+
+    /** The template for WorkspaceConnectionPropertiesV2BasicResource update. */
+    interface Update extends UpdateStages.WithProperties {
+        /**
+         * Executes the update request.
+         *
+         * @return the updated resource.
+         */
+        WorkspaceConnectionPropertiesV2BasicResource apply();
+
+        /**
+         * Executes the update request.
+         *
+         * @param context The context to associate with this operation.
+         * @return the updated resource.
+         */
+        WorkspaceConnectionPropertiesV2BasicResource apply(Context context);
+    }
+
+    /** The WorkspaceConnectionPropertiesV2BasicResource update stages. */
+    interface UpdateStages {
+        /** The stage of the WorkspaceConnectionPropertiesV2BasicResource update allowing to specify properties. */
+        interface WithProperties {
+            /**
+             * Specifies the properties property: The properties that the machine learning workspace connection will be
+             * updated with..
+             *
+             * @param properties The properties that the machine learning workspace connection will be updated with.
+             * @return the next definition stage.
+             */
+            Update withProperties(WorkspaceConnectionPropertiesV2 properties);
+        }
+    }
+
     /**
      * Refreshes the resource to sync with Azure.
      *
@@ -124,4 +177,45 @@ public interface WorkspaceConnectionPropertiesV2BasicResource {
      * @return the refreshed resource.
      */
     WorkspaceConnectionPropertiesV2BasicResource refresh(Context context);
+
+    /**
+     * List all the secrets of a machine learning workspaces connections.
+     *
+     * @param aoaiModelsToDeploy query parameter for which AOAI mode should be deployed.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response}.
+     */
+    Response<WorkspaceConnectionPropertiesV2BasicResource> listSecretsWithResponse(
+        String aoaiModelsToDeploy, Context context);
+
+    /**
+     * List all the secrets of a machine learning workspaces connections.
+     *
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    WorkspaceConnectionPropertiesV2BasicResource listSecrets();
+
+    /**
+     * Test machine learning workspaces connections under the specified workspace.
+     *
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void testConnection();
+
+    /**
+     * Test machine learning workspaces connections under the specified workspace.
+     *
+     * @param body Workspace Connection object.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void testConnection(WorkspaceConnectionPropertiesV2BasicResourceInner body, Context context);
 }
