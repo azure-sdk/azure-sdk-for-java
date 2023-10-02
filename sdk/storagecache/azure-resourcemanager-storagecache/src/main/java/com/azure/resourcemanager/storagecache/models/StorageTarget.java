@@ -143,11 +143,13 @@ public interface StorageTarget {
     interface Definition
         extends DefinitionStages.Blank, DefinitionStages.WithParentResource, DefinitionStages.WithCreate {
     }
+
     /** The StorageTarget definition stages. */
     interface DefinitionStages {
         /** The first stage of the StorageTarget definition. */
         interface Blank extends WithParentResource {
         }
+
         /** The stage of the StorageTarget definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -160,6 +162,7 @@ public interface StorageTarget {
              */
             WithCreate withExistingCache(String resourceGroupName, String cacheName);
         }
+
         /**
          * The stage of the StorageTarget definition which contains all the minimum required properties for the resource
          * to be created, but also allows for any other optional properties to be specified.
@@ -187,6 +190,7 @@ public interface StorageTarget {
              */
             StorageTarget create(Context context);
         }
+
         /** The stage of the StorageTarget definition allowing to specify junctions. */
         interface WithJunctions {
             /**
@@ -198,6 +202,7 @@ public interface StorageTarget {
              */
             WithCreate withJunctions(List<NamespaceJunction> junctions);
         }
+
         /** The stage of the StorageTarget definition allowing to specify targetType. */
         interface WithTargetType {
             /**
@@ -208,6 +213,7 @@ public interface StorageTarget {
              */
             WithCreate withTargetType(StorageTargetType targetType);
         }
+
         /** The stage of the StorageTarget definition allowing to specify state. */
         interface WithState {
             /**
@@ -218,6 +224,7 @@ public interface StorageTarget {
              */
             WithCreate withState(OperationalStateType state);
         }
+
         /** The stage of the StorageTarget definition allowing to specify nfs3. */
         interface WithNfs3 {
             /**
@@ -228,6 +235,7 @@ public interface StorageTarget {
              */
             WithCreate withNfs3(Nfs3Target nfs3);
         }
+
         /** The stage of the StorageTarget definition allowing to specify clfs. */
         interface WithClfs {
             /**
@@ -238,6 +246,7 @@ public interface StorageTarget {
              */
             WithCreate withClfs(ClfsTarget clfs);
         }
+
         /** The stage of the StorageTarget definition allowing to specify unknown. */
         interface WithUnknown {
             /**
@@ -248,6 +257,7 @@ public interface StorageTarget {
              */
             WithCreate withUnknown(UnknownTarget unknown);
         }
+
         /** The stage of the StorageTarget definition allowing to specify blobNfs. */
         interface WithBlobNfs {
             /**
@@ -259,6 +269,7 @@ public interface StorageTarget {
             WithCreate withBlobNfs(BlobNfsTarget blobNfs);
         }
     }
+
     /**
      * Begins update for the StorageTarget resource.
      *
@@ -289,6 +300,7 @@ public interface StorageTarget {
          */
         StorageTarget apply(Context context);
     }
+
     /** The StorageTarget update stages. */
     interface UpdateStages {
         /** The stage of the StorageTarget update allowing to specify junctions. */
@@ -302,6 +314,7 @@ public interface StorageTarget {
              */
             Update withJunctions(List<NamespaceJunction> junctions);
         }
+
         /** The stage of the StorageTarget update allowing to specify state. */
         interface WithState {
             /**
@@ -312,6 +325,7 @@ public interface StorageTarget {
              */
             Update withState(OperationalStateType state);
         }
+
         /** The stage of the StorageTarget update allowing to specify nfs3. */
         interface WithNfs3 {
             /**
@@ -322,6 +336,7 @@ public interface StorageTarget {
              */
             Update withNfs3(Nfs3Target nfs3);
         }
+
         /** The stage of the StorageTarget update allowing to specify clfs. */
         interface WithClfs {
             /**
@@ -332,6 +347,7 @@ public interface StorageTarget {
              */
             Update withClfs(ClfsTarget clfs);
         }
+
         /** The stage of the StorageTarget update allowing to specify unknown. */
         interface WithUnknown {
             /**
@@ -342,6 +358,7 @@ public interface StorageTarget {
              */
             Update withUnknown(UnknownTarget unknown);
         }
+
         /** The stage of the StorageTarget update allowing to specify blobNfs. */
         interface WithBlobNfs {
             /**
@@ -353,6 +370,7 @@ public interface StorageTarget {
             Update withBlobNfs(BlobNfsTarget blobNfs);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

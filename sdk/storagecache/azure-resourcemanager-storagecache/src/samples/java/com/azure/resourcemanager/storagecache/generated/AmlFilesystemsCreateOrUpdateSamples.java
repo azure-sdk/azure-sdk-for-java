@@ -22,7 +22,7 @@ import java.util.Map;
 /** Samples for AmlFilesystems CreateOrUpdate. */
 public final class AmlFilesystemsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2023-05-01/examples/amlFilesystems_CreateOrUpdate.json
+     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/preview/2023-11-01-preview/examples/amlFilesystems_CreateOrUpdate.json
      */
     /**
      * Sample code: amlFilesystems_CreateOrUpdate.
@@ -74,6 +74,7 @@ public final class AmlFilesystemsCreateOrUpdateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

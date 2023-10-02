@@ -178,11 +178,13 @@ public interface AmlFilesystem {
             DefinitionStages.WithResourceGroup,
             DefinitionStages.WithCreate {
     }
+
     /** The AmlFilesystem definition stages. */
     interface DefinitionStages {
         /** The first stage of the AmlFilesystem definition. */
         interface Blank extends WithLocation {
         }
+
         /** The stage of the AmlFilesystem definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -201,6 +203,7 @@ public interface AmlFilesystem {
              */
             WithResourceGroup withRegion(String location);
         }
+
         /** The stage of the AmlFilesystem definition allowing to specify parent resource. */
         interface WithResourceGroup {
             /**
@@ -211,6 +214,7 @@ public interface AmlFilesystem {
              */
             WithCreate withExistingResourceGroup(String resourceGroupName);
         }
+
         /**
          * The stage of the AmlFilesystem definition which contains all the minimum required properties for the resource
          * to be created, but also allows for any other optional properties to be specified.
@@ -240,6 +244,7 @@ public interface AmlFilesystem {
              */
             AmlFilesystem create(Context context);
         }
+
         /** The stage of the AmlFilesystem definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -250,6 +255,7 @@ public interface AmlFilesystem {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
         /** The stage of the AmlFilesystem definition allowing to specify identity. */
         interface WithIdentity {
             /**
@@ -260,6 +266,7 @@ public interface AmlFilesystem {
              */
             WithCreate withIdentity(AmlFilesystemIdentity identity);
         }
+
         /** The stage of the AmlFilesystem definition allowing to specify sku. */
         interface WithSku {
             /**
@@ -270,6 +277,7 @@ public interface AmlFilesystem {
              */
             WithCreate withSku(SkuName sku);
         }
+
         /** The stage of the AmlFilesystem definition allowing to specify zones. */
         interface WithZones {
             /**
@@ -282,6 +290,7 @@ public interface AmlFilesystem {
              */
             WithCreate withZones(List<String> zones);
         }
+
         /** The stage of the AmlFilesystem definition allowing to specify storageCapacityTiB. */
         interface WithStorageCapacityTiB {
             /**
@@ -293,6 +302,7 @@ public interface AmlFilesystem {
              */
             WithCreate withStorageCapacityTiB(float storageCapacityTiB);
         }
+
         /** The stage of the AmlFilesystem definition allowing to specify filesystemSubnet. */
         interface WithFilesystemSubnet {
             /**
@@ -306,6 +316,7 @@ public interface AmlFilesystem {
              */
             WithCreate withFilesystemSubnet(String filesystemSubnet);
         }
+
         /** The stage of the AmlFilesystem definition allowing to specify encryptionSettings. */
         interface WithEncryptionSettings {
             /**
@@ -316,6 +327,7 @@ public interface AmlFilesystem {
              */
             WithCreate withEncryptionSettings(AmlFilesystemEncryptionSettings encryptionSettings);
         }
+
         /** The stage of the AmlFilesystem definition allowing to specify maintenanceWindow. */
         interface WithMaintenanceWindow {
             /**
@@ -326,6 +338,7 @@ public interface AmlFilesystem {
              */
             WithCreate withMaintenanceWindow(AmlFilesystemPropertiesMaintenanceWindow maintenanceWindow);
         }
+
         /** The stage of the AmlFilesystem definition allowing to specify hsm. */
         interface WithHsm {
             /**
@@ -337,6 +350,7 @@ public interface AmlFilesystem {
             WithCreate withHsm(AmlFilesystemPropertiesHsm hsm);
         }
     }
+
     /**
      * Begins update for the AmlFilesystem resource.
      *
@@ -362,6 +376,7 @@ public interface AmlFilesystem {
          */
         AmlFilesystem apply(Context context);
     }
+
     /** The AmlFilesystem update stages. */
     interface UpdateStages {
         /** The stage of the AmlFilesystem update allowing to specify tags. */
@@ -374,6 +389,7 @@ public interface AmlFilesystem {
              */
             Update withTags(Map<String, String> tags);
         }
+
         /** The stage of the AmlFilesystem update allowing to specify encryptionSettings. */
         interface WithEncryptionSettings {
             /**
@@ -384,6 +400,7 @@ public interface AmlFilesystem {
              */
             Update withEncryptionSettings(AmlFilesystemEncryptionSettings encryptionSettings);
         }
+
         /** The stage of the AmlFilesystem update allowing to specify maintenanceWindow. */
         interface WithMaintenanceWindow {
             /**
@@ -395,6 +412,7 @@ public interface AmlFilesystem {
             Update withMaintenanceWindow(AmlFilesystemUpdatePropertiesMaintenanceWindow maintenanceWindow);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

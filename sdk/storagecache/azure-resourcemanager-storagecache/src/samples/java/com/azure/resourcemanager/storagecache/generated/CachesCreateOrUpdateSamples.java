@@ -31,7 +31,7 @@ import java.util.Map;
 /** Samples for Caches CreateOrUpdate. */
 public final class CachesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2023-05-01/examples/Caches_CreateOrUpdate_ldap_only.json
+     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/preview/2023-11-01-preview/examples/Caches_CreateOrUpdate_ldap_only.json
      */
     /**
      * Sample code: Caches_CreateOrUpdate_ldap_only.
@@ -95,7 +95,7 @@ public final class CachesCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2023-05-01/examples/Caches_CreateOrUpdate.json
+     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/preview/2023-11-01-preview/examples/Caches_CreateOrUpdate.json
      */
     /**
      * Sample code: Caches_CreateOrUpdate.
@@ -175,6 +175,7 @@ public final class CachesCreateOrUpdateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

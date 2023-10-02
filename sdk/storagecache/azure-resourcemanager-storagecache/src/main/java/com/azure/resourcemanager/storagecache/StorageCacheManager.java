@@ -242,7 +242,7 @@ public final class StorageCacheManager {
                 .append("-")
                 .append("com.azure.resourcemanager.storagecache")
                 .append("/")
-                .append("1.0.0-beta.9");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -421,8 +421,10 @@ public final class StorageCacheManager {
     }
 
     /**
-     * @return Wrapped service client StorageCacheManagementClient providing direct access to the underlying
-     *     auto-generated API implementation, based on Azure REST API.
+     * Gets wrapped service client StorageCacheManagementClient providing direct access to the underlying auto-generated
+     * API implementation, based on Azure REST API.
+     *
+     * @return Wrapped service client StorageCacheManagementClient.
      */
     public StorageCacheManagementClient serviceClient() {
         return this.clientObject;

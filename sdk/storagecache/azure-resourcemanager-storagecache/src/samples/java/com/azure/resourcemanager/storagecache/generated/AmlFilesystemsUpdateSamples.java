@@ -16,7 +16,7 @@ import java.util.Map;
 /** Samples for AmlFilesystems Update. */
 public final class AmlFilesystemsUpdateSamples {
     /*
-     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2023-05-01/examples/amlFilesystems_Update.json
+     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/preview/2023-11-01-preview/examples/amlFilesystems_Update.json
      */
     /**
      * Sample code: amlFilesystems_Update.
@@ -48,6 +48,7 @@ public final class AmlFilesystemsUpdateSamples {
             .apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
