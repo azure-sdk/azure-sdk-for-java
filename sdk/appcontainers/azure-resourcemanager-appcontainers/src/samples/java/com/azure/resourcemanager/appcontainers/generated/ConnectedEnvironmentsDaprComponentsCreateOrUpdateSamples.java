@@ -4,14 +4,16 @@
 
 package com.azure.resourcemanager.appcontainers.generated;
 
+import com.azure.resourcemanager.appcontainers.models.DaprComponentServiceBinding;
 import com.azure.resourcemanager.appcontainers.models.DaprMetadata;
+import com.azure.resourcemanager.appcontainers.models.DaprServiceBindMetadata;
 import com.azure.resourcemanager.appcontainers.models.Secret;
 import java.util.Arrays;
 
 /** Samples for ConnectedEnvironmentsDaprComponents CreateOrUpdate. */
 public final class ConnectedEnvironmentsDaprComponentsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2023-05-01/examples/ConnectedEnvironmentsDaprComponents_CreateOrUpdate.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2023-08-01-preview/examples/ConnectedEnvironmentsDaprComponents_CreateOrUpdate.json
      */
     /**
      * Sample code: Create or update dapr component.
@@ -37,6 +39,15 @@ public final class ConnectedEnvironmentsDaprComponentsCreateOrUpdateSamples {
                         new DaprMetadata().withName("collection").withValue("items"),
                         new DaprMetadata().withName("masterkey").withSecretRef("fakeTokenPlaceholder")))
             .withScopes(Arrays.asList("container-app-1", "container-app-2"))
+            .withServiceComponentBind(
+                Arrays
+                    .asList(
+                        new DaprComponentServiceBinding()
+                            .withName("statestore")
+                            .withServiceId(
+                                "/subscriptions/9f7371f1-b593-4c3c-84e2-9167806ad358/resourceGroups/ca-syn2-group/providers/Microsoft.App/containerapps/cappredis")
+                            .withMetadata(
+                                new DaprServiceBindMetadata().withName("daprcomponentBind").withValue("redis-bind"))))
             .create();
     }
 }

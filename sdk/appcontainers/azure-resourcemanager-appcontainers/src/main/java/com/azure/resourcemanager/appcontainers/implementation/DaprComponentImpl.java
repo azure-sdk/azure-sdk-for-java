@@ -5,9 +5,11 @@
 package com.azure.resourcemanager.appcontainers.implementation;
 
 import com.azure.core.http.rest.Response;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.appcontainers.fluent.models.DaprComponentInner;
 import com.azure.resourcemanager.appcontainers.models.DaprComponent;
+import com.azure.resourcemanager.appcontainers.models.DaprComponentServiceBinding;
 import com.azure.resourcemanager.appcontainers.models.DaprMetadata;
 import com.azure.resourcemanager.appcontainers.models.DaprSecretsCollection;
 import com.azure.resourcemanager.appcontainers.models.Secret;
@@ -29,6 +31,10 @@ public final class DaprComponentImpl implements DaprComponent, DaprComponent.Def
 
     public String type() {
         return this.innerModel().type();
+    }
+
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public String componentType() {
@@ -71,6 +77,15 @@ public final class DaprComponentImpl implements DaprComponent, DaprComponent.Def
 
     public List<String> scopes() {
         List<String> inner = this.innerModel().scopes();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
+    public List<DaprComponentServiceBinding> serviceComponentBind() {
+        List<DaprComponentServiceBinding> inner = this.innerModel().serviceComponentBind();
         if (inner != null) {
             return Collections.unmodifiableList(inner);
         } else {
@@ -236,6 +251,11 @@ public final class DaprComponentImpl implements DaprComponent, DaprComponent.Def
 
     public DaprComponentImpl withScopes(List<String> scopes) {
         this.innerModel().withScopes(scopes);
+        return this;
+    }
+
+    public DaprComponentImpl withServiceComponentBind(List<DaprComponentServiceBinding> serviceComponentBind) {
+        this.innerModel().withServiceComponentBind(serviceComponentBind);
         return this;
     }
 }
