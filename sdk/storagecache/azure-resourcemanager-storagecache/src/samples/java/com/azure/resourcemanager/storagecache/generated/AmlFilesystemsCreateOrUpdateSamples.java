@@ -10,6 +10,7 @@ import com.azure.resourcemanager.storagecache.models.AmlFilesystemIdentity;
 import com.azure.resourcemanager.storagecache.models.AmlFilesystemIdentityType;
 import com.azure.resourcemanager.storagecache.models.AmlFilesystemPropertiesHsm;
 import com.azure.resourcemanager.storagecache.models.AmlFilesystemPropertiesMaintenanceWindow;
+import com.azure.resourcemanager.storagecache.models.AmlFilesystemRootSquashSettings;
 import com.azure.resourcemanager.storagecache.models.KeyVaultKeyReference;
 import com.azure.resourcemanager.storagecache.models.KeyVaultKeyReferenceSourceVault;
 import com.azure.resourcemanager.storagecache.models.MaintenanceDayOfWeekType;
@@ -22,7 +23,7 @@ import java.util.Map;
 /** Samples for AmlFilesystems CreateOrUpdate. */
 public final class AmlFilesystemsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2023-05-01/examples/amlFilesystems_CreateOrUpdate.json
+     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/preview/2023-11-01-preview/examples/amlFilesystems_CreateOrUpdate.json
      */
     /**
      * Sample code: amlFilesystems_CreateOrUpdate.
@@ -71,9 +72,15 @@ public final class AmlFilesystemsCreateOrUpdateSamples {
                             .withLoggingContainer(
                                 "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/scgroup/providers/Microsoft.Storage/storageAccounts/storageaccountname/blobServices/default/containers/loggingcontainername")
                             .withImportPrefix("/")))
+            .withRootSquashSettings(
+                new AmlFilesystemRootSquashSettings()
+                    .withNoSquashNidLists("10.0.0.[5-6]@tcp;10.0.1.2@tcp")
+                    .withSquashUid(99L)
+                    .withSquashGid(99L))
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

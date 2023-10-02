@@ -7,13 +7,13 @@ package com.azure.resourcemanager.storagecache.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
 import com.azure.core.management.SystemData;
-import com.azure.resourcemanager.storagecache.models.AmlFilesystemClientInfo;
 import com.azure.resourcemanager.storagecache.models.AmlFilesystemEncryptionSettings;
 import com.azure.resourcemanager.storagecache.models.AmlFilesystemHealth;
 import com.azure.resourcemanager.storagecache.models.AmlFilesystemIdentity;
 import com.azure.resourcemanager.storagecache.models.AmlFilesystemPropertiesHsm;
 import com.azure.resourcemanager.storagecache.models.AmlFilesystemPropertiesMaintenanceWindow;
 import com.azure.resourcemanager.storagecache.models.AmlFilesystemProvisioningStateType;
+import com.azure.resourcemanager.storagecache.models.AmlFilesystemRootSquashSettings;
 import com.azure.resourcemanager.storagecache.models.SkuName;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
@@ -220,12 +220,31 @@ public final class AmlFilesystemInner extends Resource {
     }
 
     /**
-     * Get the clientInfo property: Client information for the AML file system.
+     * Get the mgsAddress property: The IPv4 address used by clients to mount the AML file system's Lustre Management
+     * Service (MGS).
      *
-     * @return the clientInfo value.
+     * @return the mgsAddress value.
      */
-    public AmlFilesystemClientInfo clientInfo() {
-        return this.innerProperties() == null ? null : this.innerProperties().clientInfo();
+    public String mgsAddress() {
+        return this.innerProperties() == null ? null : this.innerProperties().mgsAddress();
+    }
+
+    /**
+     * Get the mountCommand property: Recommended command to mount the AML file system.
+     *
+     * @return the mountCommand value.
+     */
+    public String mountCommand() {
+        return this.innerProperties() == null ? null : this.innerProperties().mountCommand();
+    }
+
+    /**
+     * Get the lustreVersion property: The version of Lustre running in the AML file system.
+     *
+     * @return the lustreVersion value.
+     */
+    public String lustreVersion() {
+        return this.innerProperties() == null ? null : this.innerProperties().lustreVersion();
     }
 
     /**
@@ -304,6 +323,29 @@ public final class AmlFilesystemInner extends Resource {
             this.innerProperties = new AmlFilesystemProperties();
         }
         this.innerProperties().withHsm(hsm);
+        return this;
+    }
+
+    /**
+     * Get the rootSquashSettings property: Specifies root squash settings of the AML file system.
+     *
+     * @return the rootSquashSettings value.
+     */
+    public AmlFilesystemRootSquashSettings rootSquashSettings() {
+        return this.innerProperties() == null ? null : this.innerProperties().rootSquashSettings();
+    }
+
+    /**
+     * Set the rootSquashSettings property: Specifies root squash settings of the AML file system.
+     *
+     * @param rootSquashSettings the rootSquashSettings value to set.
+     * @return the AmlFilesystemInner object itself.
+     */
+    public AmlFilesystemInner withRootSquashSettings(AmlFilesystemRootSquashSettings rootSquashSettings) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new AmlFilesystemProperties();
+        }
+        this.innerProperties().withRootSquashSettings(rootSquashSettings);
         return this;
     }
 

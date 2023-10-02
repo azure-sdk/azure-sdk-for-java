@@ -11,13 +11,13 @@ import com.azure.core.util.Context;
 import com.azure.resourcemanager.storagecache.fluent.models.AmlFilesystemInner;
 import com.azure.resourcemanager.storagecache.models.AmlFilesystem;
 import com.azure.resourcemanager.storagecache.models.AmlFilesystemArchiveInfo;
-import com.azure.resourcemanager.storagecache.models.AmlFilesystemClientInfo;
 import com.azure.resourcemanager.storagecache.models.AmlFilesystemEncryptionSettings;
 import com.azure.resourcemanager.storagecache.models.AmlFilesystemHealth;
 import com.azure.resourcemanager.storagecache.models.AmlFilesystemIdentity;
 import com.azure.resourcemanager.storagecache.models.AmlFilesystemPropertiesHsm;
 import com.azure.resourcemanager.storagecache.models.AmlFilesystemPropertiesMaintenanceWindow;
 import com.azure.resourcemanager.storagecache.models.AmlFilesystemProvisioningStateType;
+import com.azure.resourcemanager.storagecache.models.AmlFilesystemRootSquashSettings;
 import com.azure.resourcemanager.storagecache.models.AmlFilesystemUpdate;
 import com.azure.resourcemanager.storagecache.models.AmlFilesystemUpdatePropertiesMaintenanceWindow;
 import com.azure.resourcemanager.storagecache.models.SkuName;
@@ -92,8 +92,16 @@ public final class AmlFilesystemImpl implements AmlFilesystem, AmlFilesystem.Def
         return this.innerModel().filesystemSubnet();
     }
 
-    public AmlFilesystemClientInfo clientInfo() {
-        return this.innerModel().clientInfo();
+    public String mgsAddress() {
+        return this.innerModel().mgsAddress();
+    }
+
+    public String mountCommand() {
+        return this.innerModel().mountCommand();
+    }
+
+    public String lustreVersion() {
+        return this.innerModel().lustreVersion();
     }
 
     public Integer throughputProvisionedMBps() {
@@ -110,6 +118,10 @@ public final class AmlFilesystemImpl implements AmlFilesystem, AmlFilesystem.Def
 
     public AmlFilesystemPropertiesHsm hsm() {
         return this.innerModel().hsm();
+    }
+
+    public AmlFilesystemRootSquashSettings rootSquashSettings() {
+        return this.innerModel().rootSquashSettings();
     }
 
     public Region region() {
@@ -299,6 +311,16 @@ public final class AmlFilesystemImpl implements AmlFilesystem, AmlFilesystem.Def
     public AmlFilesystemImpl withHsm(AmlFilesystemPropertiesHsm hsm) {
         this.innerModel().withHsm(hsm);
         return this;
+    }
+
+    public AmlFilesystemImpl withRootSquashSettings(AmlFilesystemRootSquashSettings rootSquashSettings) {
+        if (isInCreateMode()) {
+            this.innerModel().withRootSquashSettings(rootSquashSettings);
+            return this;
+        } else {
+            this.updateAmlFilesystem.withRootSquashSettings(rootSquashSettings);
+            return this;
+        }
     }
 
     public AmlFilesystemImpl withMaintenanceWindow(AmlFilesystemUpdatePropertiesMaintenanceWindow maintenanceWindow) {

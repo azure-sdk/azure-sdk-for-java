@@ -6,12 +6,12 @@ package com.azure.resourcemanager.storagecache.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
-import com.azure.resourcemanager.storagecache.models.AmlFilesystemClientInfo;
 import com.azure.resourcemanager.storagecache.models.AmlFilesystemEncryptionSettings;
 import com.azure.resourcemanager.storagecache.models.AmlFilesystemHealth;
 import com.azure.resourcemanager.storagecache.models.AmlFilesystemPropertiesHsm;
 import com.azure.resourcemanager.storagecache.models.AmlFilesystemPropertiesMaintenanceWindow;
 import com.azure.resourcemanager.storagecache.models.AmlFilesystemProvisioningStateType;
+import com.azure.resourcemanager.storagecache.models.AmlFilesystemRootSquashSettings;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Properties of the AML file system. */
@@ -43,10 +43,22 @@ public final class AmlFilesystemProperties {
     private String filesystemSubnet;
 
     /*
-     * Client information for the AML file system.
+     * The IPv4 address used by clients to mount the AML file system's Lustre Management Service (MGS).
      */
-    @JsonProperty(value = "clientInfo", access = JsonProperty.Access.WRITE_ONLY)
-    private AmlFilesystemClientInfo clientInfo;
+    @JsonProperty(value = "mgsAddress", access = JsonProperty.Access.WRITE_ONLY)
+    private String mgsAddress;
+
+    /*
+     * Recommended command to mount the AML file system
+     */
+    @JsonProperty(value = "mountCommand", access = JsonProperty.Access.WRITE_ONLY)
+    private String mountCommand;
+
+    /*
+     * The version of Lustre running in the AML file system
+     */
+    @JsonProperty(value = "lustreVersion", access = JsonProperty.Access.WRITE_ONLY)
+    private String lustreVersion;
 
     /*
      * Throughput provisioned in MB per sec, calculated as storageCapacityTiB * per-unit storage throughput
@@ -71,6 +83,12 @@ public final class AmlFilesystemProperties {
      */
     @JsonProperty(value = "hsm")
     private AmlFilesystemPropertiesHsm hsm;
+
+    /*
+     * Specifies root squash settings of the AML file system.
+     */
+    @JsonProperty(value = "rootSquashSettings")
+    private AmlFilesystemRootSquashSettings rootSquashSettings;
 
     /** Creates an instance of AmlFilesystemProperties class. */
     public AmlFilesystemProperties() {
@@ -137,12 +155,31 @@ public final class AmlFilesystemProperties {
     }
 
     /**
-     * Get the clientInfo property: Client information for the AML file system.
+     * Get the mgsAddress property: The IPv4 address used by clients to mount the AML file system's Lustre Management
+     * Service (MGS).
      *
-     * @return the clientInfo value.
+     * @return the mgsAddress value.
      */
-    public AmlFilesystemClientInfo clientInfo() {
-        return this.clientInfo;
+    public String mgsAddress() {
+        return this.mgsAddress;
+    }
+
+    /**
+     * Get the mountCommand property: Recommended command to mount the AML file system.
+     *
+     * @return the mountCommand value.
+     */
+    public String mountCommand() {
+        return this.mountCommand;
+    }
+
+    /**
+     * Get the lustreVersion property: The version of Lustre running in the AML file system.
+     *
+     * @return the lustreVersion value.
+     */
+    public String lustreVersion() {
+        return this.lustreVersion;
     }
 
     /**
@@ -216,6 +253,26 @@ public final class AmlFilesystemProperties {
     }
 
     /**
+     * Get the rootSquashSettings property: Specifies root squash settings of the AML file system.
+     *
+     * @return the rootSquashSettings value.
+     */
+    public AmlFilesystemRootSquashSettings rootSquashSettings() {
+        return this.rootSquashSettings;
+    }
+
+    /**
+     * Set the rootSquashSettings property: Specifies root squash settings of the AML file system.
+     *
+     * @param rootSquashSettings the rootSquashSettings value to set.
+     * @return the AmlFilesystemProperties object itself.
+     */
+    public AmlFilesystemProperties withRootSquashSettings(AmlFilesystemRootSquashSettings rootSquashSettings) {
+        this.rootSquashSettings = rootSquashSettings;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -230,9 +287,6 @@ public final class AmlFilesystemProperties {
                     new IllegalArgumentException(
                         "Missing required property filesystemSubnet in model AmlFilesystemProperties"));
         }
-        if (clientInfo() != null) {
-            clientInfo().validate();
-        }
         if (encryptionSettings() != null) {
             encryptionSettings().validate();
         }
@@ -246,6 +300,9 @@ public final class AmlFilesystemProperties {
         }
         if (hsm() != null) {
             hsm().validate();
+        }
+        if (rootSquashSettings() != null) {
+            rootSquashSettings().validate();
         }
     }
 

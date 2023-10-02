@@ -106,6 +106,29 @@ public final class AmlFilesystemUpdate {
     }
 
     /**
+     * Get the rootSquashSettings property: Specifies root squash settings of the AML file system.
+     *
+     * @return the rootSquashSettings value.
+     */
+    public AmlFilesystemRootSquashSettings rootSquashSettings() {
+        return this.innerProperties() == null ? null : this.innerProperties().rootSquashSettings();
+    }
+
+    /**
+     * Set the rootSquashSettings property: Specifies root squash settings of the AML file system.
+     *
+     * @param rootSquashSettings the rootSquashSettings value to set.
+     * @return the AmlFilesystemUpdate object itself.
+     */
+    public AmlFilesystemUpdate withRootSquashSettings(AmlFilesystemRootSquashSettings rootSquashSettings) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new AmlFilesystemUpdateProperties();
+        }
+        this.innerProperties().withRootSquashSettings(rootSquashSettings);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.

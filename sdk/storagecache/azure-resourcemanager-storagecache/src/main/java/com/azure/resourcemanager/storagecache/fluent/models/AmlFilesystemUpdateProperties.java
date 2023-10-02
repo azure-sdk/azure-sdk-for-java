@@ -6,6 +6,7 @@ package com.azure.resourcemanager.storagecache.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.storagecache.models.AmlFilesystemEncryptionSettings;
+import com.azure.resourcemanager.storagecache.models.AmlFilesystemRootSquashSettings;
 import com.azure.resourcemanager.storagecache.models.AmlFilesystemUpdatePropertiesMaintenanceWindow;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -23,6 +24,12 @@ public final class AmlFilesystemUpdateProperties {
      */
     @JsonProperty(value = "maintenanceWindow")
     private AmlFilesystemUpdatePropertiesMaintenanceWindow maintenanceWindow;
+
+    /*
+     * Specifies root squash settings of the AML file system.
+     */
+    @JsonProperty(value = "rootSquashSettings")
+    private AmlFilesystemRootSquashSettings rootSquashSettings;
 
     /** Creates an instance of AmlFilesystemUpdateProperties class. */
     public AmlFilesystemUpdateProperties() {
@@ -70,6 +77,26 @@ public final class AmlFilesystemUpdateProperties {
     }
 
     /**
+     * Get the rootSquashSettings property: Specifies root squash settings of the AML file system.
+     *
+     * @return the rootSquashSettings value.
+     */
+    public AmlFilesystemRootSquashSettings rootSquashSettings() {
+        return this.rootSquashSettings;
+    }
+
+    /**
+     * Set the rootSquashSettings property: Specifies root squash settings of the AML file system.
+     *
+     * @param rootSquashSettings the rootSquashSettings value to set.
+     * @return the AmlFilesystemUpdateProperties object itself.
+     */
+    public AmlFilesystemUpdateProperties withRootSquashSettings(AmlFilesystemRootSquashSettings rootSquashSettings) {
+        this.rootSquashSettings = rootSquashSettings;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -80,6 +107,9 @@ public final class AmlFilesystemUpdateProperties {
         }
         if (maintenanceWindow() != null) {
             maintenanceWindow().validate();
+        }
+        if (rootSquashSettings() != null) {
+            rootSquashSettings().validate();
         }
     }
 }

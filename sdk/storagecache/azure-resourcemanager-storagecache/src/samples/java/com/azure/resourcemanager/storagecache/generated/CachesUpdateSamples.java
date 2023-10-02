@@ -25,7 +25,7 @@ import java.util.Map;
 /** Samples for Caches Update. */
 public final class CachesUpdateSamples {
     /*
-     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2023-05-01/examples/Caches_Update_ldap_only.json
+     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/preview/2023-11-01-preview/examples/Caches_Update_ldap_only.json
      */
     /**
      * Sample code: Caches_Update_ldap_only.
@@ -41,6 +41,7 @@ public final class CachesUpdateSamples {
         resource
             .update()
             .withTags(mapOf("Dept", "Contoso"))
+            .withScalingFactor(1.0D)
             .withUpgradeSettings(
                 new CacheUpgradeSettings()
                     .withUpgradeScheduleEnabled(true)
@@ -110,7 +111,7 @@ public final class CachesUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2023-05-01/examples/Caches_Update.json
+     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/preview/2023-11-01-preview/examples/Caches_Update.json
      */
     /**
      * Sample code: Caches_Update.
@@ -126,6 +127,7 @@ public final class CachesUpdateSamples {
         resource
             .update()
             .withTags(mapOf("Dept", "Contoso"))
+            .withScalingFactor(2.0D)
             .withUpgradeSettings(
                 new CacheUpgradeSettings()
                     .withUpgradeScheduleEnabled(true)
@@ -195,6 +197,7 @@ public final class CachesUpdateSamples {
             .apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

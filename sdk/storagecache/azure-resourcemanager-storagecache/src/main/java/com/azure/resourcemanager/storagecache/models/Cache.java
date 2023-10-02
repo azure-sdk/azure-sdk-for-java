@@ -70,11 +70,24 @@ public interface Cache {
     CacheSku sku();
 
     /**
-     * Gets the cacheSizeGB property: The size of this Cache, in GB.
+     * Gets the cacheSizeGB property: The size of this cache, in GB, when scalingFactor is 1.0. Values depend on the
+     * cache SKU - &lt;a href="https://learn.microsoft.com/en-us/rest/api/storagecache/skus/list?tabs=HTTP"&gt;List
+     * SKUs&lt;/a&gt;.
      *
      * @return the cacheSizeGB value.
      */
     Integer cacheSizeGB();
+
+    /**
+     * Gets the scalingFactor property: Multiplier that sets the current storage and throughput capacity of the cache.
+     * Values depend on the cache SKU - &lt;a
+     * href="https://learn.microsoft.com/en-us/rest/api/storagecache/skus/list?tabs=HTTP"&gt;List SKUs&lt;/a&gt;. Values
+     * above 1.0 increase the cache size and throughput - for example, the scaling factor 1.33 gives a cache that's 33%
+     * larger than its base size.
+     *
+     * @return the scalingFactor value.
+     */
+    Double scalingFactor();
 
     /**
      * Gets the health property: Health of the cache.
@@ -205,11 +218,13 @@ public interface Cache {
             DefinitionStages.WithResourceGroup,
             DefinitionStages.WithCreate {
     }
+
     /** The Cache definition stages. */
     interface DefinitionStages {
         /** The first stage of the Cache definition. */
         interface Blank extends WithLocation {
         }
+
         /** The stage of the Cache definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -228,6 +243,7 @@ public interface Cache {
              */
             WithResourceGroup withRegion(String location);
         }
+
         /** The stage of the Cache definition allowing to specify parent resource. */
         interface WithResourceGroup {
             /**
@@ -238,6 +254,7 @@ public interface Cache {
              */
             WithCreate withExistingResourceGroup(String resourceGroupName);
         }
+
         /**
          * The stage of the Cache definition which contains all the minimum required properties for the resource to be
          * created, but also allows for any other optional properties to be specified.
@@ -247,6 +264,7 @@ public interface Cache {
                 DefinitionStages.WithIdentity,
                 DefinitionStages.WithSku,
                 DefinitionStages.WithCacheSizeGB,
+                DefinitionStages.WithScalingFactor,
                 DefinitionStages.WithSubnet,
                 DefinitionStages.WithUpgradeSettings,
                 DefinitionStages.WithNetworkSettings,
@@ -269,6 +287,7 @@ public interface Cache {
              */
             Cache create(Context context);
         }
+
         /** The stage of the Cache definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -279,6 +298,7 @@ public interface Cache {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
         /** The stage of the Cache definition allowing to specify identity. */
         interface WithIdentity {
             /**
@@ -289,6 +309,7 @@ public interface Cache {
              */
             WithCreate withIdentity(CacheIdentity identity);
         }
+
         /** The stage of the Cache definition allowing to specify sku. */
         interface WithSku {
             /**
@@ -299,16 +320,43 @@ public interface Cache {
              */
             WithCreate withSku(CacheSku sku);
         }
+
         /** The stage of the Cache definition allowing to specify cacheSizeGB. */
         interface WithCacheSizeGB {
             /**
-             * Specifies the cacheSizeGB property: The size of this Cache, in GB..
+             * Specifies the cacheSizeGB property: The size of this cache, in GB, when scalingFactor is 1.0. Values
+             * depend on the cache SKU - &lt;a
+             * href="https://learn.microsoft.com/en-us/rest/api/storagecache/skus/list?tabs=HTTP"&gt;List
+             * SKUs&lt;/a&gt;..
              *
-             * @param cacheSizeGB The size of this Cache, in GB.
+             * @param cacheSizeGB The size of this cache, in GB, when scalingFactor is 1.0. Values depend on the cache
+             *     SKU - &lt;a
+             *     href="https://learn.microsoft.com/en-us/rest/api/storagecache/skus/list?tabs=HTTP"&gt;List
+             *     SKUs&lt;/a&gt;.
              * @return the next definition stage.
              */
             WithCreate withCacheSizeGB(Integer cacheSizeGB);
         }
+
+        /** The stage of the Cache definition allowing to specify scalingFactor. */
+        interface WithScalingFactor {
+            /**
+             * Specifies the scalingFactor property: Multiplier that sets the current storage and throughput capacity of
+             * the cache. Values depend on the cache SKU - &lt;a
+             * href="https://learn.microsoft.com/en-us/rest/api/storagecache/skus/list?tabs=HTTP"&gt;List
+             * SKUs&lt;/a&gt;. Values above 1.0 increase the cache size and throughput - for example, the scaling factor
+             * 1.33 gives a cache that's 33% larger than its base size..
+             *
+             * @param scalingFactor Multiplier that sets the current storage and throughput capacity of the cache.
+             *     Values depend on the cache SKU - &lt;a
+             *     href="https://learn.microsoft.com/en-us/rest/api/storagecache/skus/list?tabs=HTTP"&gt;List
+             *     SKUs&lt;/a&gt;. Values above 1.0 increase the cache size and throughput - for example, the scaling
+             *     factor 1.33 gives a cache that's 33% larger than its base size.
+             * @return the next definition stage.
+             */
+            WithCreate withScalingFactor(Double scalingFactor);
+        }
+
         /** The stage of the Cache definition allowing to specify subnet. */
         interface WithSubnet {
             /**
@@ -319,6 +367,7 @@ public interface Cache {
              */
             WithCreate withSubnet(String subnet);
         }
+
         /** The stage of the Cache definition allowing to specify upgradeSettings. */
         interface WithUpgradeSettings {
             /**
@@ -329,6 +378,7 @@ public interface Cache {
              */
             WithCreate withUpgradeSettings(CacheUpgradeSettings upgradeSettings);
         }
+
         /** The stage of the Cache definition allowing to specify networkSettings. */
         interface WithNetworkSettings {
             /**
@@ -339,6 +389,7 @@ public interface Cache {
              */
             WithCreate withNetworkSettings(CacheNetworkSettings networkSettings);
         }
+
         /** The stage of the Cache definition allowing to specify encryptionSettings. */
         interface WithEncryptionSettings {
             /**
@@ -349,6 +400,7 @@ public interface Cache {
              */
             WithCreate withEncryptionSettings(CacheEncryptionSettings encryptionSettings);
         }
+
         /** The stage of the Cache definition allowing to specify securitySettings. */
         interface WithSecuritySettings {
             /**
@@ -359,6 +411,7 @@ public interface Cache {
              */
             WithCreate withSecuritySettings(CacheSecuritySettings securitySettings);
         }
+
         /** The stage of the Cache definition allowing to specify directoryServicesSettings. */
         interface WithDirectoryServicesSettings {
             /**
@@ -369,6 +422,7 @@ public interface Cache {
              */
             WithCreate withDirectoryServicesSettings(CacheDirectorySettings directoryServicesSettings);
         }
+
         /** The stage of the Cache definition allowing to specify zones. */
         interface WithZones {
             /**
@@ -382,6 +436,7 @@ public interface Cache {
             WithCreate withZones(List<String> zones);
         }
     }
+
     /**
      * Begins update for the Cache resource.
      *
@@ -393,6 +448,7 @@ public interface Cache {
     interface Update
         extends UpdateStages.WithTags,
             UpdateStages.WithIdentity,
+            UpdateStages.WithScalingFactor,
             UpdateStages.WithUpgradeSettings,
             UpdateStages.WithNetworkSettings,
             UpdateStages.WithEncryptionSettings,
@@ -413,6 +469,7 @@ public interface Cache {
          */
         Cache apply(Context context);
     }
+
     /** The Cache update stages. */
     interface UpdateStages {
         /** The stage of the Cache update allowing to specify tags. */
@@ -425,6 +482,7 @@ public interface Cache {
              */
             Update withTags(Map<String, String> tags);
         }
+
         /** The stage of the Cache update allowing to specify identity. */
         interface WithIdentity {
             /**
@@ -435,6 +493,26 @@ public interface Cache {
              */
             Update withIdentity(CacheIdentity identity);
         }
+
+        /** The stage of the Cache update allowing to specify scalingFactor. */
+        interface WithScalingFactor {
+            /**
+             * Specifies the scalingFactor property: Multiplier that sets the current storage and throughput capacity of
+             * the cache. Values depend on the cache SKU - &lt;a
+             * href="https://learn.microsoft.com/en-us/rest/api/storagecache/skus/list?tabs=HTTP"&gt;List
+             * SKUs&lt;/a&gt;. Values above 1.0 increase the cache size and throughput - for example, the scaling factor
+             * 1.33 gives a cache that's 33% larger than its base size..
+             *
+             * @param scalingFactor Multiplier that sets the current storage and throughput capacity of the cache.
+             *     Values depend on the cache SKU - &lt;a
+             *     href="https://learn.microsoft.com/en-us/rest/api/storagecache/skus/list?tabs=HTTP"&gt;List
+             *     SKUs&lt;/a&gt;. Values above 1.0 increase the cache size and throughput - for example, the scaling
+             *     factor 1.33 gives a cache that's 33% larger than its base size.
+             * @return the next definition stage.
+             */
+            Update withScalingFactor(Double scalingFactor);
+        }
+
         /** The stage of the Cache update allowing to specify upgradeSettings. */
         interface WithUpgradeSettings {
             /**
@@ -445,6 +523,7 @@ public interface Cache {
              */
             Update withUpgradeSettings(CacheUpgradeSettings upgradeSettings);
         }
+
         /** The stage of the Cache update allowing to specify networkSettings. */
         interface WithNetworkSettings {
             /**
@@ -455,6 +534,7 @@ public interface Cache {
              */
             Update withNetworkSettings(CacheNetworkSettings networkSettings);
         }
+
         /** The stage of the Cache update allowing to specify encryptionSettings. */
         interface WithEncryptionSettings {
             /**
@@ -465,6 +545,7 @@ public interface Cache {
              */
             Update withEncryptionSettings(CacheEncryptionSettings encryptionSettings);
         }
+
         /** The stage of the Cache update allowing to specify securitySettings. */
         interface WithSecuritySettings {
             /**
@@ -475,6 +556,7 @@ public interface Cache {
              */
             Update withSecuritySettings(CacheSecuritySettings securitySettings);
         }
+
         /** The stage of the Cache update allowing to specify directoryServicesSettings. */
         interface WithDirectoryServicesSettings {
             /**
@@ -486,6 +568,7 @@ public interface Cache {
             Update withDirectoryServicesSettings(CacheDirectorySettings directoryServicesSettings);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *
