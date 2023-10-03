@@ -238,11 +238,13 @@ public interface MigrationResource {
             DefinitionStages.WithParentResource,
             DefinitionStages.WithCreate {
     }
+
     /** The MigrationResource definition stages. */
     interface DefinitionStages {
         /** The first stage of the MigrationResource definition. */
         interface Blank extends WithLocation {
         }
+
         /** The stage of the MigrationResource definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -261,6 +263,7 @@ public interface MigrationResource {
              */
             WithParentResource withRegion(String location);
         }
+
         /** The stage of the MigrationResource definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -274,6 +277,7 @@ public interface MigrationResource {
             WithCreate withExistingFlexibleServer(
                 String subscriptionId, String resourceGroupName, String targetDbServerName);
         }
+
         /**
          * The stage of the MigrationResource definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
@@ -310,6 +314,7 @@ public interface MigrationResource {
              */
             MigrationResource create(Context context);
         }
+
         /** The stage of the MigrationResource definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -320,6 +325,7 @@ public interface MigrationResource {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
         /** The stage of the MigrationResource definition allowing to specify migrationMode. */
         interface WithMigrationMode {
             /**
@@ -330,6 +336,7 @@ public interface MigrationResource {
              */
             WithCreate withMigrationMode(MigrationMode migrationMode);
         }
+
         /** The stage of the MigrationResource definition allowing to specify sourceDbServerResourceId. */
         interface WithSourceDbServerResourceId {
             /**
@@ -340,6 +347,7 @@ public interface MigrationResource {
              */
             WithCreate withSourceDbServerResourceId(String sourceDbServerResourceId);
         }
+
         /** The stage of the MigrationResource definition allowing to specify sourceDbServerFullyQualifiedDomainName. */
         interface WithSourceDbServerFullyQualifiedDomainName {
             /**
@@ -352,6 +360,7 @@ public interface MigrationResource {
              */
             WithCreate withSourceDbServerFullyQualifiedDomainName(String sourceDbServerFullyQualifiedDomainName);
         }
+
         /** The stage of the MigrationResource definition allowing to specify targetDbServerFullyQualifiedDomainName. */
         interface WithTargetDbServerFullyQualifiedDomainName {
             /**
@@ -364,6 +373,7 @@ public interface MigrationResource {
              */
             WithCreate withTargetDbServerFullyQualifiedDomainName(String targetDbServerFullyQualifiedDomainName);
         }
+
         /** The stage of the MigrationResource definition allowing to specify secretParameters. */
         interface WithSecretParameters {
             /**
@@ -374,6 +384,7 @@ public interface MigrationResource {
              */
             WithCreate withSecretParameters(MigrationSecretParameters secretParameters);
         }
+
         /** The stage of the MigrationResource definition allowing to specify dbsToMigrate. */
         interface WithDbsToMigrate {
             /**
@@ -384,6 +395,7 @@ public interface MigrationResource {
              */
             WithCreate withDbsToMigrate(List<String> dbsToMigrate);
         }
+
         /**
          * The stage of the MigrationResource definition allowing to specify setupLogicalReplicationOnSourceDbIfNeeded.
          */
@@ -399,6 +411,7 @@ public interface MigrationResource {
             WithCreate withSetupLogicalReplicationOnSourceDbIfNeeded(
                 LogicalReplicationOnSourceDbEnum setupLogicalReplicationOnSourceDbIfNeeded);
         }
+
         /** The stage of the MigrationResource definition allowing to specify overwriteDbsInTarget. */
         interface WithOverwriteDbsInTarget {
             /**
@@ -413,6 +426,7 @@ public interface MigrationResource {
              */
             WithCreate withOverwriteDbsInTarget(OverwriteDbsInTargetEnum overwriteDbsInTarget);
         }
+
         /** The stage of the MigrationResource definition allowing to specify migrationWindowStartTimeInUtc. */
         interface WithMigrationWindowStartTimeInUtc {
             /**
@@ -423,6 +437,7 @@ public interface MigrationResource {
              */
             WithCreate withMigrationWindowStartTimeInUtc(OffsetDateTime migrationWindowStartTimeInUtc);
         }
+
         /** The stage of the MigrationResource definition allowing to specify migrationWindowEndTimeInUtc. */
         interface WithMigrationWindowEndTimeInUtc {
             /**
@@ -433,6 +448,7 @@ public interface MigrationResource {
              */
             WithCreate withMigrationWindowEndTimeInUtc(OffsetDateTime migrationWindowEndTimeInUtc);
         }
+
         /** The stage of the MigrationResource definition allowing to specify startDataMigration. */
         interface WithStartDataMigration {
             /**
@@ -443,6 +459,7 @@ public interface MigrationResource {
              */
             WithCreate withStartDataMigration(StartDataMigrationEnum startDataMigration);
         }
+
         /** The stage of the MigrationResource definition allowing to specify triggerCutover. */
         interface WithTriggerCutover {
             /**
@@ -454,6 +471,7 @@ public interface MigrationResource {
              */
             WithCreate withTriggerCutover(TriggerCutoverEnum triggerCutover);
         }
+
         /** The stage of the MigrationResource definition allowing to specify dbsToTriggerCutoverOn. */
         interface WithDbsToTriggerCutoverOn {
             /**
@@ -466,6 +484,7 @@ public interface MigrationResource {
              */
             WithCreate withDbsToTriggerCutoverOn(List<String> dbsToTriggerCutoverOn);
         }
+
         /** The stage of the MigrationResource definition allowing to specify cancel. */
         interface WithCancel {
             /**
@@ -476,6 +495,7 @@ public interface MigrationResource {
              */
             WithCreate withCancel(CancelEnum cancel);
         }
+
         /** The stage of the MigrationResource definition allowing to specify dbsToCancelMigrationOn. */
         interface WithDbsToCancelMigrationOn {
             /**
@@ -489,6 +509,7 @@ public interface MigrationResource {
             WithCreate withDbsToCancelMigrationOn(List<String> dbsToCancelMigrationOn);
         }
     }
+
     /**
      * Begins update for the MigrationResource resource.
      *
@@ -528,6 +549,7 @@ public interface MigrationResource {
          */
         MigrationResource apply(Context context);
     }
+
     /** The MigrationResource update stages. */
     interface UpdateStages {
         /** The stage of the MigrationResource update allowing to specify tags. */
@@ -540,6 +562,7 @@ public interface MigrationResource {
              */
             Update withTags(Map<String, String> tags);
         }
+
         /** The stage of the MigrationResource update allowing to specify sourceDbServerResourceId. */
         interface WithSourceDbServerResourceId {
             /**
@@ -550,6 +573,7 @@ public interface MigrationResource {
              */
             Update withSourceDbServerResourceId(String sourceDbServerResourceId);
         }
+
         /** The stage of the MigrationResource update allowing to specify sourceDbServerFullyQualifiedDomainName. */
         interface WithSourceDbServerFullyQualifiedDomainName {
             /**
@@ -562,6 +586,7 @@ public interface MigrationResource {
              */
             Update withSourceDbServerFullyQualifiedDomainName(String sourceDbServerFullyQualifiedDomainName);
         }
+
         /** The stage of the MigrationResource update allowing to specify targetDbServerFullyQualifiedDomainName. */
         interface WithTargetDbServerFullyQualifiedDomainName {
             /**
@@ -574,6 +599,7 @@ public interface MigrationResource {
              */
             Update withTargetDbServerFullyQualifiedDomainName(String targetDbServerFullyQualifiedDomainName);
         }
+
         /** The stage of the MigrationResource update allowing to specify secretParameters. */
         interface WithSecretParameters {
             /**
@@ -584,6 +610,7 @@ public interface MigrationResource {
              */
             Update withSecretParameters(MigrationSecretParameters secretParameters);
         }
+
         /** The stage of the MigrationResource update allowing to specify dbsToMigrate. */
         interface WithDbsToMigrate {
             /**
@@ -594,6 +621,7 @@ public interface MigrationResource {
              */
             Update withDbsToMigrate(List<String> dbsToMigrate);
         }
+
         /** The stage of the MigrationResource update allowing to specify setupLogicalReplicationOnSourceDbIfNeeded. */
         interface WithSetupLogicalReplicationOnSourceDbIfNeeded {
             /**
@@ -607,6 +635,7 @@ public interface MigrationResource {
             Update withSetupLogicalReplicationOnSourceDbIfNeeded(
                 LogicalReplicationOnSourceDbEnum setupLogicalReplicationOnSourceDbIfNeeded);
         }
+
         /** The stage of the MigrationResource update allowing to specify overwriteDbsInTarget. */
         interface WithOverwriteDbsInTarget {
             /**
@@ -621,6 +650,7 @@ public interface MigrationResource {
              */
             Update withOverwriteDbsInTarget(OverwriteDbsInTargetEnum overwriteDbsInTarget);
         }
+
         /** The stage of the MigrationResource update allowing to specify migrationWindowStartTimeInUtc. */
         interface WithMigrationWindowStartTimeInUtc {
             /**
@@ -631,6 +661,7 @@ public interface MigrationResource {
              */
             Update withMigrationWindowStartTimeInUtc(OffsetDateTime migrationWindowStartTimeInUtc);
         }
+
         /** The stage of the MigrationResource update allowing to specify startDataMigration. */
         interface WithStartDataMigration {
             /**
@@ -641,6 +672,7 @@ public interface MigrationResource {
              */
             Update withStartDataMigration(StartDataMigrationEnum startDataMigration);
         }
+
         /** The stage of the MigrationResource update allowing to specify triggerCutover. */
         interface WithTriggerCutover {
             /**
@@ -652,6 +684,7 @@ public interface MigrationResource {
              */
             Update withTriggerCutover(TriggerCutoverEnum triggerCutover);
         }
+
         /** The stage of the MigrationResource update allowing to specify dbsToTriggerCutoverOn. */
         interface WithDbsToTriggerCutoverOn {
             /**
@@ -664,6 +697,7 @@ public interface MigrationResource {
              */
             Update withDbsToTriggerCutoverOn(List<String> dbsToTriggerCutoverOn);
         }
+
         /** The stage of the MigrationResource update allowing to specify cancel. */
         interface WithCancel {
             /**
@@ -674,6 +708,7 @@ public interface MigrationResource {
              */
             Update withCancel(CancelEnum cancel);
         }
+
         /** The stage of the MigrationResource update allowing to specify dbsToCancelMigrationOn. */
         interface WithDbsToCancelMigrationOn {
             /**
@@ -686,6 +721,7 @@ public interface MigrationResource {
              */
             Update withDbsToCancelMigrationOn(List<String> dbsToCancelMigrationOn);
         }
+
         /** The stage of the MigrationResource update allowing to specify migrationMode. */
         interface WithMigrationMode {
             /**
@@ -697,6 +733,7 @@ public interface MigrationResource {
             Update withMigrationMode(MigrationMode migrationMode);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *
