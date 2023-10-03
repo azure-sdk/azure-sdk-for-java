@@ -6,6 +6,7 @@ package com.azure.resourcemanager.chaos.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.azure.resourcemanager.chaos.models.CustomerDataStorageProperties;
 import com.azure.resourcemanager.chaos.models.Selector;
 import com.azure.resourcemanager.chaos.models.Step;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -27,10 +28,10 @@ public final class ExperimentProperties {
     private List<Selector> selectors;
 
     /*
-     * A boolean value that indicates if experiment should be started on creation or not.
+     * Optional customer-managed Storage account where Experiment schema will be stored.
      */
-    @JsonProperty(value = "startOnCreation")
-    private Boolean startOnCreation;
+    @JsonProperty(value = "customerDataStorage")
+    private CustomerDataStorageProperties customerDataStorage;
 
     /** Creates an instance of ExperimentProperties class. */
     public ExperimentProperties() {
@@ -77,24 +78,24 @@ public final class ExperimentProperties {
     }
 
     /**
-     * Get the startOnCreation property: A boolean value that indicates if experiment should be started on creation or
-     * not.
+     * Get the customerDataStorage property: Optional customer-managed Storage account where Experiment schema will be
+     * stored.
      *
-     * @return the startOnCreation value.
+     * @return the customerDataStorage value.
      */
-    public Boolean startOnCreation() {
-        return this.startOnCreation;
+    public CustomerDataStorageProperties customerDataStorage() {
+        return this.customerDataStorage;
     }
 
     /**
-     * Set the startOnCreation property: A boolean value that indicates if experiment should be started on creation or
-     * not.
+     * Set the customerDataStorage property: Optional customer-managed Storage account where Experiment schema will be
+     * stored.
      *
-     * @param startOnCreation the startOnCreation value to set.
+     * @param customerDataStorage the customerDataStorage value to set.
      * @return the ExperimentProperties object itself.
      */
-    public ExperimentProperties withStartOnCreation(Boolean startOnCreation) {
-        this.startOnCreation = startOnCreation;
+    public ExperimentProperties withCustomerDataStorage(CustomerDataStorageProperties customerDataStorage) {
+        this.customerDataStorage = customerDataStorage;
         return this;
     }
 
@@ -117,6 +118,9 @@ public final class ExperimentProperties {
                     new IllegalArgumentException("Missing required property selectors in model ExperimentProperties"));
         } else {
             selectors().forEach(e -> e.validate());
+        }
+        if (customerDataStorage() != null) {
+            customerDataStorage().validate();
         }
     }
 

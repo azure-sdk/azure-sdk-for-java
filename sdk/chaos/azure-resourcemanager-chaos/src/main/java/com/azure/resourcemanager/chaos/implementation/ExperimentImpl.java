@@ -4,15 +4,14 @@
 
 package com.azure.resourcemanager.chaos.implementation;
 
-import com.azure.core.http.rest.Response;
 import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.chaos.fluent.models.ExperimentInner;
+import com.azure.resourcemanager.chaos.models.CustomerDataStorageProperties;
 import com.azure.resourcemanager.chaos.models.Experiment;
-import com.azure.resourcemanager.chaos.models.ExperimentCancelOperationResult;
-import com.azure.resourcemanager.chaos.models.ExperimentStartOperationResult;
 import com.azure.resourcemanager.chaos.models.ExperimentUpdate;
+import com.azure.resourcemanager.chaos.models.ProvisioningState;
 import com.azure.resourcemanager.chaos.models.ResourceIdentity;
 import com.azure.resourcemanager.chaos.models.Selector;
 import com.azure.resourcemanager.chaos.models.Step;
@@ -58,6 +57,10 @@ public final class ExperimentImpl implements Experiment, Experiment.Definition, 
         return this.innerModel().identity();
     }
 
+    public ProvisioningState provisioningState() {
+        return this.innerModel().provisioningState();
+    }
+
     public List<Step> steps() {
         List<Step> inner = this.innerModel().steps();
         if (inner != null) {
@@ -76,8 +79,8 @@ public final class ExperimentImpl implements Experiment, Experiment.Definition, 
         }
     }
 
-    public Boolean startOnCreation() {
-        return this.innerModel().startOnCreation();
+    public CustomerDataStorageProperties customerDataStorage() {
+        return this.innerModel().customerDataStorage();
     }
 
     public Region region() {
@@ -116,8 +119,7 @@ public final class ExperimentImpl implements Experiment, Experiment.Definition, 
             serviceManager
                 .serviceClient()
                 .getExperiments()
-                .createOrUpdateWithResponse(resourceGroupName, experimentName, this.innerModel(), Context.NONE)
-                .getValue();
+                .createOrUpdate(resourceGroupName, experimentName, this.innerModel(), Context.NONE);
         return this;
     }
 
@@ -126,8 +128,7 @@ public final class ExperimentImpl implements Experiment, Experiment.Definition, 
             serviceManager
                 .serviceClient()
                 .getExperiments()
-                .createOrUpdateWithResponse(resourceGroupName, experimentName, this.innerModel(), context)
-                .getValue();
+                .createOrUpdate(resourceGroupName, experimentName, this.innerModel(), context);
         return this;
     }
 
@@ -147,8 +148,7 @@ public final class ExperimentImpl implements Experiment, Experiment.Definition, 
             serviceManager
                 .serviceClient()
                 .getExperiments()
-                .updateWithResponse(resourceGroupName, experimentName, updateExperiment, Context.NONE)
-                .getValue();
+                .update(resourceGroupName, experimentName, updateExperiment, Context.NONE);
         return this;
     }
 
@@ -157,8 +157,7 @@ public final class ExperimentImpl implements Experiment, Experiment.Definition, 
             serviceManager
                 .serviceClient()
                 .getExperiments()
-                .updateWithResponse(resourceGroupName, experimentName, updateExperiment, context)
-                .getValue();
+                .update(resourceGroupName, experimentName, updateExperiment, context);
         return this;
     }
 
@@ -189,20 +188,20 @@ public final class ExperimentImpl implements Experiment, Experiment.Definition, 
         return this;
     }
 
-    public Response<ExperimentCancelOperationResult> cancelWithResponse(Context context) {
-        return serviceManager.experiments().cancelWithResponse(resourceGroupName, experimentName, context);
+    public void cancel() {
+        serviceManager.experiments().cancel(resourceGroupName, experimentName);
     }
 
-    public ExperimentCancelOperationResult cancel() {
-        return serviceManager.experiments().cancel(resourceGroupName, experimentName);
+    public void cancel(Context context) {
+        serviceManager.experiments().cancel(resourceGroupName, experimentName, context);
     }
 
-    public Response<ExperimentStartOperationResult> startWithResponse(Context context) {
-        return serviceManager.experiments().startWithResponse(resourceGroupName, experimentName, context);
+    public void start() {
+        serviceManager.experiments().start(resourceGroupName, experimentName);
     }
 
-    public ExperimentStartOperationResult start() {
-        return serviceManager.experiments().start(resourceGroupName, experimentName);
+    public void start(Context context) {
+        serviceManager.experiments().start(resourceGroupName, experimentName, context);
     }
 
     public ExperimentImpl withRegion(Region location) {
@@ -240,8 +239,8 @@ public final class ExperimentImpl implements Experiment, Experiment.Definition, 
         }
     }
 
-    public ExperimentImpl withStartOnCreation(Boolean startOnCreation) {
-        this.innerModel().withStartOnCreation(startOnCreation);
+    public ExperimentImpl withCustomerDataStorage(CustomerDataStorageProperties customerDataStorage) {
+        this.innerModel().withCustomerDataStorage(customerDataStorage);
         return this;
     }
 

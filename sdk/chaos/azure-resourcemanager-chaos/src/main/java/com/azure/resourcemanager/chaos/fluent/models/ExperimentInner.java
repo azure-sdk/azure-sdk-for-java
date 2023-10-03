@@ -8,6 +8,8 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
+import com.azure.resourcemanager.chaos.models.CustomerDataStorageProperties;
+import com.azure.resourcemanager.chaos.models.ProvisioningState;
 import com.azure.resourcemanager.chaos.models.ResourceIdentity;
 import com.azure.resourcemanager.chaos.models.Selector;
 import com.azure.resourcemanager.chaos.models.Step;
@@ -29,6 +31,12 @@ public final class ExperimentInner extends Resource {
      */
     @JsonProperty(value = "identity")
     private ResourceIdentity identity;
+
+    /*
+     * Most recent provisioning state for the given experiment resource.
+     */
+    @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
+    private ProvisioningState provisioningState;
 
     /*
      * The properties of the experiment resource.
@@ -67,6 +75,15 @@ public final class ExperimentInner extends Resource {
     public ExperimentInner withIdentity(ResourceIdentity identity) {
         this.identity = identity;
         return this;
+    }
+
+    /**
+     * Get the provisioningState property: Most recent provisioning state for the given experiment resource.
+     *
+     * @return the provisioningState value.
+     */
+    public ProvisioningState provisioningState() {
+        return this.provisioningState;
     }
 
     /**
@@ -139,27 +156,27 @@ public final class ExperimentInner extends Resource {
     }
 
     /**
-     * Get the startOnCreation property: A boolean value that indicates if experiment should be started on creation or
-     * not.
+     * Get the customerDataStorage property: Optional customer-managed Storage account where Experiment schema will be
+     * stored.
      *
-     * @return the startOnCreation value.
+     * @return the customerDataStorage value.
      */
-    public Boolean startOnCreation() {
-        return this.innerProperties() == null ? null : this.innerProperties().startOnCreation();
+    public CustomerDataStorageProperties customerDataStorage() {
+        return this.innerProperties() == null ? null : this.innerProperties().customerDataStorage();
     }
 
     /**
-     * Set the startOnCreation property: A boolean value that indicates if experiment should be started on creation or
-     * not.
+     * Set the customerDataStorage property: Optional customer-managed Storage account where Experiment schema will be
+     * stored.
      *
-     * @param startOnCreation the startOnCreation value to set.
+     * @param customerDataStorage the customerDataStorage value to set.
      * @return the ExperimentInner object itself.
      */
-    public ExperimentInner withStartOnCreation(Boolean startOnCreation) {
+    public ExperimentInner withCustomerDataStorage(CustomerDataStorageProperties customerDataStorage) {
         if (this.innerProperties() == null) {
             this.innerProperties = new ExperimentProperties();
         }
-        this.innerProperties().withStartOnCreation(startOnCreation);
+        this.innerProperties().withCustomerDataStorage(customerDataStorage);
         return this;
     }
 
