@@ -7,7 +7,7 @@ package com.azure.resourcemanager.confidentialledger.generated;
 /** Samples for ManagedCcf GetByResourceGroup. */
 public final class ManagedCcfGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/preview/2023-01-26-preview/examples/ManagedCCF_Get.json
+     * x-ms-original-file: specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/preview/2023-06-28-preview/examples/ManagedCCF_Get.json
      */
     /**
      * Sample code: ManagedCCFGet.

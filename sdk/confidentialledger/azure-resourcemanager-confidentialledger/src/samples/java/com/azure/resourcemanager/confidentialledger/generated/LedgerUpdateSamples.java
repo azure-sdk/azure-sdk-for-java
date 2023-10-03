@@ -17,7 +17,7 @@ import java.util.Map;
 /** Samples for Ledger Update. */
 public final class LedgerUpdateSamples {
     /*
-     * x-ms-original-file: specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/preview/2023-01-26-preview/examples/ConfidentialLedger_Update.json
+     * x-ms-original-file: specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/preview/2023-06-28-preview/examples/ConfidentialLedger_Update.json
      */
     /**
      * Sample code: ConfidentialLedgerUpdate.
@@ -57,6 +57,7 @@ public final class LedgerUpdateSamples {
             .apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
