@@ -10,6 +10,9 @@ import java.util.Collection;
 
 /** Defines values for SkuName. */
 public final class SkuName extends ExpandableStringEnum<SkuName> {
+    /** Static value Enterprise_E5 for SkuName. */
+    public static final SkuName ENTERPRISE_E5 = fromString("Enterprise_E5");
+
     /** Static value Enterprise_E10 for SkuName. */
     public static final SkuName ENTERPRISE_E10 = fromString("Enterprise_E10");
 
@@ -21,6 +24,12 @@ public final class SkuName extends ExpandableStringEnum<SkuName> {
 
     /** Static value Enterprise_E100 for SkuName. */
     public static final SkuName ENTERPRISE_E100 = fromString("Enterprise_E100");
+
+    /** Static value Enterprise_E200 for SkuName. */
+    public static final SkuName ENTERPRISE_E200 = fromString("Enterprise_E200");
+
+    /** Static value Enterprise_E400 for SkuName. */
+    public static final SkuName ENTERPRISE_E400 = fromString("Enterprise_E400");
 
     /** Static value EnterpriseFlash_F300 for SkuName. */
     public static final SkuName ENTERPRISE_FLASH_F300 = fromString("EnterpriseFlash_F300");
