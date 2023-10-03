@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.machinelearning.models;
 
+import com.azure.core.http.rest.Response;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.machinelearning.fluent.models.CodeVersionInner;
@@ -66,23 +67,26 @@ public interface CodeVersion {
             DefinitionStages.WithProperties,
             DefinitionStages.WithCreate {
     }
+
     /** The CodeVersion definition stages. */
     interface DefinitionStages {
         /** The first stage of the CodeVersion definition. */
         interface Blank extends WithParentResource {
         }
+
         /** The stage of the CodeVersion definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
-             * Specifies resourceGroupName, workspaceName, name.
+             * Specifies resourceGroupName, registryName, codeName.
              *
              * @param resourceGroupName The name of the resource group. The name is case insensitive.
-             * @param workspaceName Name of Azure Machine Learning workspace.
-             * @param name Container name. This is case-sensitive.
+             * @param registryName Name of Azure Machine Learning registry. This is case-insensitive.
+             * @param codeName Container name.
              * @return the next definition stage.
              */
-            WithProperties withExistingCode(String resourceGroupName, String workspaceName, String name);
+            WithProperties withExistingCode(String resourceGroupName, String registryName, String codeName);
         }
+
         /** The stage of the CodeVersion definition allowing to specify properties. */
         interface WithProperties {
             /**
@@ -93,6 +97,7 @@ public interface CodeVersion {
              */
             WithCreate withProperties(CodeVersionProperties properties);
         }
+
         /**
          * The stage of the CodeVersion definition which contains all the minimum required properties for the resource
          * to be created, but also allows for any other optional properties to be specified.
@@ -114,6 +119,7 @@ public interface CodeVersion {
             CodeVersion create(Context context);
         }
     }
+
     /**
      * Begins update for the CodeVersion resource.
      *
@@ -138,6 +144,7 @@ public interface CodeVersion {
          */
         CodeVersion apply(Context context);
     }
+
     /** The CodeVersion update stages. */
     interface UpdateStages {
         /** The stage of the CodeVersion update allowing to specify properties. */
@@ -151,6 +158,7 @@ public interface CodeVersion {
             Update withProperties(CodeVersionProperties properties);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *
@@ -165,4 +173,28 @@ public interface CodeVersion {
      * @return the refreshed resource.
      */
     CodeVersion refresh(Context context);
+
+    /**
+     * Generate a storage location and credential for the client to upload a code asset to.
+     *
+     * @param body Pending upload request object.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response}.
+     */
+    Response<PendingUploadResponseDto> createOrGetStartPendingUploadWithResponse(
+        PendingUploadRequestDto body, Context context);
+
+    /**
+     * Generate a storage location and credential for the client to upload a code asset to.
+     *
+     * @param body Pending upload request object.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    PendingUploadResponseDto createOrGetStartPendingUpload(PendingUploadRequestDto body);
 }

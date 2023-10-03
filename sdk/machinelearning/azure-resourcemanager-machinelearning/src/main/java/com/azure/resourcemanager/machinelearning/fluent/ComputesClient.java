@@ -13,9 +13,14 @@ import com.azure.core.util.Context;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.machinelearning.fluent.models.ComputeResourceInner;
 import com.azure.resourcemanager.machinelearning.fluent.models.ComputeSecretsInner;
+import com.azure.resourcemanager.machinelearning.fluent.models.VirtualMachineSizeListResultInner;
 import com.azure.resourcemanager.machinelearning.models.AmlComputeNodeInformation;
 import com.azure.resourcemanager.machinelearning.models.ClusterUpdateParameters;
+import com.azure.resourcemanager.machinelearning.models.CustomService;
+import com.azure.resourcemanager.machinelearning.models.IdleShutdownSetting;
+import com.azure.resourcemanager.machinelearning.models.ResizeSchema;
 import com.azure.resourcemanager.machinelearning.models.UnderlyingResourceAction;
+import java.util.List;
 
 /** An instance of this class provides access to all the operations defined in ComputesClient. */
 public interface ComputesClient {
@@ -319,6 +324,42 @@ public interface ComputesClient {
         Context context);
 
     /**
+     * Updates the custom services list. The list of custom services provided shall be overwritten.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param computeName Name of the Azure Machine Learning compute.
+     * @param customServices New list of Custom Services.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<Void> updateCustomServicesWithResponse(
+        String resourceGroupName,
+        String workspaceName,
+        String computeName,
+        List<CustomService> customServices,
+        Context context);
+
+    /**
+     * Updates the custom services list. The list of custom services provided shall be overwritten.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param computeName Name of the Azure Machine Learning compute.
+     * @param customServices New list of Custom Services.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    void updateCustomServices(
+        String resourceGroupName, String workspaceName, String computeName, List<CustomService> customServices);
+
+    /**
      * Get the details (e.g IP address, port etc) of all the compute nodes in the compute.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -552,4 +593,134 @@ public interface ComputesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     void restart(String resourceGroupName, String workspaceName, String computeName, Context context);
+
+    /**
+     * Updates the idle shutdown setting of a compute instance.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param computeName Name of the Azure Machine Learning compute.
+     * @param parameters The object for updating idle shutdown setting of specified ComputeInstance.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<Void> updateIdleShutdownSettingWithResponse(
+        String resourceGroupName,
+        String workspaceName,
+        String computeName,
+        IdleShutdownSetting parameters,
+        Context context);
+
+    /**
+     * Updates the idle shutdown setting of a compute instance.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param computeName Name of the Azure Machine Learning compute.
+     * @param parameters The object for updating idle shutdown setting of specified ComputeInstance.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    void updateIdleShutdownSetting(
+        String resourceGroupName, String workspaceName, String computeName, IdleShutdownSetting parameters);
+
+    /**
+     * Returns supported virtual machine sizes for resize.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param computeName Name of the Azure Machine Learning compute.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the List Virtual Machine size operation response along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<VirtualMachineSizeListResultInner> getAllowedResizeSizesWithResponse(
+        String resourceGroupName, String workspaceName, String computeName, Context context);
+
+    /**
+     * Returns supported virtual machine sizes for resize.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param computeName Name of the Azure Machine Learning compute.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the List Virtual Machine size operation response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    VirtualMachineSizeListResultInner getAllowedResizeSizes(
+        String resourceGroupName, String workspaceName, String computeName);
+
+    /**
+     * Updates the size of a Compute Instance.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param computeName Name of the Azure Machine Learning compute.
+     * @param parameters The object for updating VM size setting of specified Compute Instance.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<Void>, Void> beginResize(
+        String resourceGroupName, String workspaceName, String computeName, ResizeSchema parameters);
+
+    /**
+     * Updates the size of a Compute Instance.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param computeName Name of the Azure Machine Learning compute.
+     * @param parameters The object for updating VM size setting of specified Compute Instance.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<Void>, Void> beginResize(
+        String resourceGroupName, String workspaceName, String computeName, ResizeSchema parameters, Context context);
+
+    /**
+     * Updates the size of a Compute Instance.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param computeName Name of the Azure Machine Learning compute.
+     * @param parameters The object for updating VM size setting of specified Compute Instance.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    void resize(String resourceGroupName, String workspaceName, String computeName, ResizeSchema parameters);
+
+    /**
+     * Updates the size of a Compute Instance.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param computeName Name of the Azure Machine Learning compute.
+     * @param parameters The object for updating VM size setting of specified Compute Instance.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    void resize(
+        String resourceGroupName, String workspaceName, String computeName, ResizeSchema parameters, Context context);
 }

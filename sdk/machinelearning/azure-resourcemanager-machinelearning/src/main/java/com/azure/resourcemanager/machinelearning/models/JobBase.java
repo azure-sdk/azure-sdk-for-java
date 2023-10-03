@@ -66,11 +66,13 @@ public interface JobBase {
             DefinitionStages.WithProperties,
             DefinitionStages.WithCreate {
     }
+
     /** The JobBase definition stages. */
     interface DefinitionStages {
         /** The first stage of the JobBase definition. */
         interface Blank extends WithParentResource {
         }
+
         /** The stage of the JobBase definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -82,6 +84,7 @@ public interface JobBase {
              */
             WithProperties withExistingWorkspace(String resourceGroupName, String workspaceName);
         }
+
         /** The stage of the JobBase definition allowing to specify properties. */
         interface WithProperties {
             /**
@@ -92,6 +95,7 @@ public interface JobBase {
              */
             WithCreate withProperties(JobBaseProperties properties);
         }
+
         /**
          * The stage of the JobBase definition which contains all the minimum required properties for the resource to be
          * created, but also allows for any other optional properties to be specified.
@@ -113,6 +117,7 @@ public interface JobBase {
             JobBase create(Context context);
         }
     }
+
     /**
      * Begins update for the JobBase resource.
      *
@@ -137,19 +142,21 @@ public interface JobBase {
          */
         JobBase apply(Context context);
     }
+
     /** The JobBase update stages. */
     interface UpdateStages {
         /** The stage of the JobBase update allowing to specify properties. */
         interface WithProperties {
             /**
-             * Specifies the properties property: [Required] Additional attributes of the entity..
+             * Specifies the properties property: Additional attributes of the entity..
              *
-             * @param properties [Required] Additional attributes of the entity.
+             * @param properties Additional attributes of the entity.
              * @return the next definition stage.
              */
-            Update withProperties(JobBaseProperties properties);
+            Update withProperties(PartialJobBase properties);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

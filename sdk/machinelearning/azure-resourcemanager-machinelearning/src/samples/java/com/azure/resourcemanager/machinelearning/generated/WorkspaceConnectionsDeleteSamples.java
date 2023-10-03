@@ -7,7 +7,7 @@ package com.azure.resourcemanager.machinelearning.generated;
 /** Samples for WorkspaceConnections Delete. */
 public final class WorkspaceConnectionsDeleteSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/WorkspaceConnection/delete.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2023-08-01-preview/examples/WorkspaceConnection/delete.json
      */
     /**
      * Sample code: DeleteWorkspaceConnection.
