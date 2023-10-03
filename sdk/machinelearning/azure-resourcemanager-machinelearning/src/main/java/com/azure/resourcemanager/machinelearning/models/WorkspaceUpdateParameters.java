@@ -230,6 +230,30 @@ public final class WorkspaceUpdateParameters {
     }
 
     /**
+     * Get the serverlessComputeSettings property: Settings for serverless compute created in the workspace.
+     *
+     * @return the serverlessComputeSettings value.
+     */
+    public ServerlessComputeSettings serverlessComputeSettings() {
+        return this.innerProperties() == null ? null : this.innerProperties().serverlessComputeSettings();
+    }
+
+    /**
+     * Set the serverlessComputeSettings property: Settings for serverless compute created in the workspace.
+     *
+     * @param serverlessComputeSettings the serverlessComputeSettings value to set.
+     * @return the WorkspaceUpdateParameters object itself.
+     */
+    public WorkspaceUpdateParameters withServerlessComputeSettings(
+        ServerlessComputeSettings serverlessComputeSettings) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new WorkspacePropertiesUpdateParameters();
+        }
+        this.innerProperties().withServerlessComputeSettings(serverlessComputeSettings);
+        return this;
+    }
+
+    /**
      * Get the publicNetworkAccess property: Whether requests from Public Network are allowed.
      *
      * @return the publicNetworkAccess value.

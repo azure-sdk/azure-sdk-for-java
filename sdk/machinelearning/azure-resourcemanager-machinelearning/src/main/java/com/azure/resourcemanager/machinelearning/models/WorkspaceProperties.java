@@ -136,6 +136,13 @@ public interface WorkspaceProperties {
     List<PrivateEndpointConnection> privateEndpointConnections();
 
     /**
+     * Gets the serverlessComputeSettings property: Settings for serverless compute created in the workspace.
+     *
+     * @return the serverlessComputeSettings value.
+     */
+    ServerlessComputeSettings serverlessComputeSettings();
+
+    /**
      * Gets the sharedPrivateLinkResources property: The list of shared private link resources in this workspace.
      *
      * @return the sharedPrivateLinkResources value.
@@ -194,6 +201,13 @@ public interface WorkspaceProperties {
      * @return the v1LegacyMode value.
      */
     Boolean v1LegacyMode();
+
+    /**
+     * Gets the managedNetwork property: Managed Network settings for a machine learning workspace.
+     *
+     * @return the managedNetwork value.
+     */
+    ManagedNetworkSettings managedNetwork();
 
     /**
      * Gets the inner com.azure.resourcemanager.machinelearning.fluent.models.WorkspacePropertiesInner object.

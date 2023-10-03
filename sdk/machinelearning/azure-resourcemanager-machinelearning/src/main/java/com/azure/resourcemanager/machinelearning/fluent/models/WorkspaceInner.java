@@ -11,6 +11,7 @@ import com.azure.resourcemanager.machinelearning.models.EncryptionProperty;
 import com.azure.resourcemanager.machinelearning.models.ManagedServiceIdentity;
 import com.azure.resourcemanager.machinelearning.models.ProvisioningState;
 import com.azure.resourcemanager.machinelearning.models.PublicNetworkAccess;
+import com.azure.resourcemanager.machinelearning.models.ServerlessComputeSettings;
 import com.azure.resourcemanager.machinelearning.models.ServiceManagedResourcesSettings;
 import com.azure.resourcemanager.machinelearning.models.SharedPrivateLinkResource;
 import com.azure.resourcemanager.machinelearning.models.Sku;
@@ -495,6 +496,29 @@ public final class WorkspaceInner extends ProxyResource {
     }
 
     /**
+     * Get the serverlessComputeSettings property: Settings for serverless compute created in the workspace.
+     *
+     * @return the serverlessComputeSettings value.
+     */
+    public ServerlessComputeSettings serverlessComputeSettings() {
+        return this.innerProperties() == null ? null : this.innerProperties().serverlessComputeSettings();
+    }
+
+    /**
+     * Set the serverlessComputeSettings property: Settings for serverless compute created in the workspace.
+     *
+     * @param serverlessComputeSettings the serverlessComputeSettings value to set.
+     * @return the WorkspaceInner object itself.
+     */
+    public WorkspaceInner withServerlessComputeSettings(ServerlessComputeSettings serverlessComputeSettings) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new WorkspacePropertiesInner();
+        }
+        this.innerProperties().withServerlessComputeSettings(serverlessComputeSettings);
+        return this;
+    }
+
+    /**
      * Get the sharedPrivateLinkResources property: The list of shared private link resources in this workspace.
      *
      * @return the sharedPrivateLinkResources value.
@@ -626,6 +650,29 @@ public final class WorkspaceInner extends ProxyResource {
             this.innerProperties = new WorkspacePropertiesInner();
         }
         this.innerProperties().withV1LegacyMode(v1LegacyMode);
+        return this;
+    }
+
+    /**
+     * Get the managedNetwork property: Managed Network settings for a machine learning workspace.
+     *
+     * @return the managedNetwork value.
+     */
+    public ManagedNetworkSettingsInner managedNetwork() {
+        return this.innerProperties() == null ? null : this.innerProperties().managedNetwork();
+    }
+
+    /**
+     * Set the managedNetwork property: Managed Network settings for a machine learning workspace.
+     *
+     * @param managedNetwork the managedNetwork value to set.
+     * @return the WorkspaceInner object itself.
+     */
+    public WorkspaceInner withManagedNetwork(ManagedNetworkSettingsInner managedNetwork) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new WorkspacePropertiesInner();
+        }
+        this.innerProperties().withManagedNetwork(managedNetwork);
         return this;
     }
 

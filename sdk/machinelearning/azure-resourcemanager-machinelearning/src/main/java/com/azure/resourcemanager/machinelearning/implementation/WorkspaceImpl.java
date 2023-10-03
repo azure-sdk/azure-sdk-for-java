@@ -8,6 +8,7 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
+import com.azure.resourcemanager.machinelearning.fluent.models.ManagedNetworkSettingsInner;
 import com.azure.resourcemanager.machinelearning.fluent.models.NotebookResourceInfoInner;
 import com.azure.resourcemanager.machinelearning.fluent.models.PrivateEndpointConnectionInner;
 import com.azure.resourcemanager.machinelearning.fluent.models.WorkspaceInner;
@@ -17,12 +18,14 @@ import com.azure.resourcemanager.machinelearning.models.EncryptionProperty;
 import com.azure.resourcemanager.machinelearning.models.ListNotebookKeysResult;
 import com.azure.resourcemanager.machinelearning.models.ListStorageAccountKeysResult;
 import com.azure.resourcemanager.machinelearning.models.ListWorkspaceKeysResult;
+import com.azure.resourcemanager.machinelearning.models.ManagedNetworkSettings;
 import com.azure.resourcemanager.machinelearning.models.ManagedServiceIdentity;
 import com.azure.resourcemanager.machinelearning.models.NotebookAccessTokenResult;
 import com.azure.resourcemanager.machinelearning.models.NotebookResourceInfo;
 import com.azure.resourcemanager.machinelearning.models.PrivateEndpointConnection;
 import com.azure.resourcemanager.machinelearning.models.ProvisioningState;
 import com.azure.resourcemanager.machinelearning.models.PublicNetworkAccess;
+import com.azure.resourcemanager.machinelearning.models.ServerlessComputeSettings;
 import com.azure.resourcemanager.machinelearning.models.ServiceManagedResourcesSettings;
 import com.azure.resourcemanager.machinelearning.models.SharedPrivateLinkResource;
 import com.azure.resourcemanager.machinelearning.models.Sku;
@@ -153,6 +156,10 @@ public final class WorkspaceImpl implements Workspace, Workspace.Definition, Wor
         }
     }
 
+    public ServerlessComputeSettings serverlessComputeSettings() {
+        return this.innerModel().serverlessComputeSettings();
+    }
+
     public List<SharedPrivateLinkResource> sharedPrivateLinkResources() {
         List<SharedPrivateLinkResource> inner = this.innerModel().sharedPrivateLinkResources();
         if (inner != null) {
@@ -193,6 +200,15 @@ public final class WorkspaceImpl implements Workspace, Workspace.Definition, Wor
 
     public Boolean v1LegacyMode() {
         return this.innerModel().v1LegacyMode();
+    }
+
+    public ManagedNetworkSettings managedNetwork() {
+        ManagedNetworkSettingsInner inner = this.innerModel().managedNetwork();
+        if (inner != null) {
+            return new ManagedNetworkSettingsImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public Region region() {
@@ -491,6 +507,16 @@ public final class WorkspaceImpl implements Workspace, Workspace.Definition, Wor
         }
     }
 
+    public WorkspaceImpl withServerlessComputeSettings(ServerlessComputeSettings serverlessComputeSettings) {
+        if (isInCreateMode()) {
+            this.innerModel().withServerlessComputeSettings(serverlessComputeSettings);
+            return this;
+        } else {
+            this.updateParameters.withServerlessComputeSettings(serverlessComputeSettings);
+            return this;
+        }
+    }
+
     public WorkspaceImpl withSharedPrivateLinkResources(List<SharedPrivateLinkResource> sharedPrivateLinkResources) {
         this.innerModel().withSharedPrivateLinkResources(sharedPrivateLinkResources);
         return this;
@@ -519,6 +545,11 @@ public final class WorkspaceImpl implements Workspace, Workspace.Definition, Wor
 
     public WorkspaceImpl withV1LegacyMode(Boolean v1LegacyMode) {
         this.innerModel().withV1LegacyMode(v1LegacyMode);
+        return this;
+    }
+
+    public WorkspaceImpl withManagedNetwork(ManagedNetworkSettingsInner managedNetwork) {
+        this.innerModel().withManagedNetwork(managedNetwork);
         return this;
     }
 

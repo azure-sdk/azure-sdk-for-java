@@ -6,6 +6,7 @@ package com.azure.resourcemanager.machinelearning.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.machinelearning.models.PublicNetworkAccess;
+import com.azure.resourcemanager.machinelearning.models.ServerlessComputeSettings;
 import com.azure.resourcemanager.machinelearning.models.ServiceManagedResourcesSettings;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -41,6 +42,12 @@ public final class WorkspacePropertiesUpdateParameters {
      */
     @JsonProperty(value = "primaryUserAssignedIdentity")
     private String primaryUserAssignedIdentity;
+
+    /*
+     * Settings for serverless compute created in the workspace
+     */
+    @JsonProperty(value = "serverlessComputeSettings")
+    private ServerlessComputeSettings serverlessComputeSettings;
 
     /*
      * Whether requests from Public Network are allowed.
@@ -168,6 +175,27 @@ public final class WorkspacePropertiesUpdateParameters {
     }
 
     /**
+     * Get the serverlessComputeSettings property: Settings for serverless compute created in the workspace.
+     *
+     * @return the serverlessComputeSettings value.
+     */
+    public ServerlessComputeSettings serverlessComputeSettings() {
+        return this.serverlessComputeSettings;
+    }
+
+    /**
+     * Set the serverlessComputeSettings property: Settings for serverless compute created in the workspace.
+     *
+     * @param serverlessComputeSettings the serverlessComputeSettings value to set.
+     * @return the WorkspacePropertiesUpdateParameters object itself.
+     */
+    public WorkspacePropertiesUpdateParameters withServerlessComputeSettings(
+        ServerlessComputeSettings serverlessComputeSettings) {
+        this.serverlessComputeSettings = serverlessComputeSettings;
+        return this;
+    }
+
+    /**
      * Get the publicNetworkAccess property: Whether requests from Public Network are allowed.
      *
      * @return the publicNetworkAccess value.
@@ -235,6 +263,9 @@ public final class WorkspacePropertiesUpdateParameters {
     public void validate() {
         if (serviceManagedResourcesSettings() != null) {
             serviceManagedResourcesSettings().validate();
+        }
+        if (serverlessComputeSettings() != null) {
+            serverlessComputeSettings().validate();
         }
     }
 }
