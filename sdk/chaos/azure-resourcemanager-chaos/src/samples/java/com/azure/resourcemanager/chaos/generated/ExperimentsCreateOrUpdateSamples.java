@@ -4,13 +4,14 @@
 
 package com.azure.resourcemanager.chaos.generated;
 
-import com.azure.resourcemanager.chaos.models.Branch;
+import com.azure.resourcemanager.chaos.models.ChaosExperimentBranch;
+import com.azure.resourcemanager.chaos.models.ChaosExperimentStep;
+import com.azure.resourcemanager.chaos.models.ChaosTargetListSelector;
 import com.azure.resourcemanager.chaos.models.ContinuousAction;
+import com.azure.resourcemanager.chaos.models.CustomerDataStorageProperties;
 import com.azure.resourcemanager.chaos.models.KeyValuePair;
-import com.azure.resourcemanager.chaos.models.ListSelector;
 import com.azure.resourcemanager.chaos.models.ResourceIdentity;
 import com.azure.resourcemanager.chaos.models.ResourceIdentityType;
-import com.azure.resourcemanager.chaos.models.Step;
 import com.azure.resourcemanager.chaos.models.TargetReference;
 import com.azure.resourcemanager.chaos.models.TargetReferenceType;
 import java.time.Duration;
@@ -19,7 +20,7 @@ import java.util.Arrays;
 /** Samples for Experiments CreateOrUpdate. */
 public final class ExperimentsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/chaos/resource-manager/Microsoft.Chaos/preview/2023-04-15-preview/examples/CreateOrUpdateAExperiment.json
+     * x-ms-original-file: specification/chaos/resource-manager/Microsoft.Chaos/preview/2023-10-27-preview/examples/CreateUpdateExperiment.json
      */
     /**
      * Sample code: Create/update a Experiment in a resource group.
@@ -35,12 +36,12 @@ public final class ExperimentsCreateOrUpdateSamples {
             .withSteps(
                 Arrays
                     .asList(
-                        new Step()
+                        new ChaosExperimentStep()
                             .withName("step1")
                             .withBranches(
                                 Arrays
                                     .asList(
-                                        new Branch()
+                                        new ChaosExperimentBranch()
                                             .withName("branch1")
                                             .withActions(
                                                 Arrays
@@ -58,7 +59,7 @@ public final class ExperimentsCreateOrUpdateSamples {
             .withSelectors(
                 Arrays
                     .asList(
-                        new ListSelector()
+                        new ChaosTargetListSelector()
                             .withId("selector1")
                             .withTargets(
                                 Arrays
@@ -68,6 +69,11 @@ public final class ExperimentsCreateOrUpdateSamples {
                                             .withId(
                                                 "/subscriptions/6b052e15-03d3-4f17-b2e1-be7f07588291/resourceGroups/exampleRG/providers/Microsoft.Compute/virtualMachines/exampleVM/providers/Microsoft.Chaos/targets/Microsoft-VirtualMachine")))))
             .withIdentity(new ResourceIdentity().withType(ResourceIdentityType.SYSTEM_ASSIGNED))
+            .withCustomerDataStorage(
+                new CustomerDataStorageProperties()
+                    .withStorageAccountResourceId(
+                        "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/exampleRG/providers/Microsoft.Storage/storageAccounts/exampleStorage")
+                    .withBlobContainerName("azurechaosstudioexperiments"))
             .create();
     }
 }
