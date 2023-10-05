@@ -10,15 +10,11 @@ import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.chaos.fluent.ExperimentsClient;
-import com.azure.resourcemanager.chaos.fluent.models.ExperimentCancelOperationResultInner;
 import com.azure.resourcemanager.chaos.fluent.models.ExperimentExecutionDetailsInner;
 import com.azure.resourcemanager.chaos.fluent.models.ExperimentInner;
-import com.azure.resourcemanager.chaos.fluent.models.ExperimentStartOperationResultInner;
 import com.azure.resourcemanager.chaos.fluent.models.ExperimentStatusInner;
 import com.azure.resourcemanager.chaos.models.Experiment;
-import com.azure.resourcemanager.chaos.models.ExperimentCancelOperationResult;
 import com.azure.resourcemanager.chaos.models.ExperimentExecutionDetails;
-import com.azure.resourcemanager.chaos.models.ExperimentStartOperationResult;
 import com.azure.resourcemanager.chaos.models.ExperimentStatus;
 import com.azure.resourcemanager.chaos.models.Experiments;
 
@@ -56,13 +52,12 @@ public final class ExperimentsImpl implements Experiments {
         return Utils.mapPage(inner, inner1 -> new ExperimentImpl(inner1, this.manager()));
     }
 
-    public Response<Void> deleteByResourceGroupWithResponse(
-        String resourceGroupName, String experimentName, Context context) {
-        return this.serviceClient().deleteWithResponse(resourceGroupName, experimentName, context);
-    }
-
     public void deleteByResourceGroup(String resourceGroupName, String experimentName) {
         this.serviceClient().delete(resourceGroupName, experimentName);
+    }
+
+    public void delete(String resourceGroupName, String experimentName, Context context) {
+        this.serviceClient().delete(resourceGroupName, experimentName, context);
     }
 
     public Response<Experiment> getByResourceGroupWithResponse(
@@ -89,52 +84,20 @@ public final class ExperimentsImpl implements Experiments {
         }
     }
 
-    public Response<ExperimentCancelOperationResult> cancelWithResponse(
-        String resourceGroupName, String experimentName, Context context) {
-        Response<ExperimentCancelOperationResultInner> inner =
-            this.serviceClient().cancelWithResponse(resourceGroupName, experimentName, context);
-        if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
-                new ExperimentCancelOperationResultImpl(inner.getValue(), this.manager()));
-        } else {
-            return null;
-        }
+    public void cancel(String resourceGroupName, String experimentName) {
+        this.serviceClient().cancel(resourceGroupName, experimentName);
     }
 
-    public ExperimentCancelOperationResult cancel(String resourceGroupName, String experimentName) {
-        ExperimentCancelOperationResultInner inner = this.serviceClient().cancel(resourceGroupName, experimentName);
-        if (inner != null) {
-            return new ExperimentCancelOperationResultImpl(inner, this.manager());
-        } else {
-            return null;
-        }
+    public void cancel(String resourceGroupName, String experimentName, Context context) {
+        this.serviceClient().cancel(resourceGroupName, experimentName, context);
     }
 
-    public Response<ExperimentStartOperationResult> startWithResponse(
-        String resourceGroupName, String experimentName, Context context) {
-        Response<ExperimentStartOperationResultInner> inner =
-            this.serviceClient().startWithResponse(resourceGroupName, experimentName, context);
-        if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
-                new ExperimentStartOperationResultImpl(inner.getValue(), this.manager()));
-        } else {
-            return null;
-        }
+    public void start(String resourceGroupName, String experimentName) {
+        this.serviceClient().start(resourceGroupName, experimentName);
     }
 
-    public ExperimentStartOperationResult start(String resourceGroupName, String experimentName) {
-        ExperimentStartOperationResultInner inner = this.serviceClient().start(resourceGroupName, experimentName);
-        if (inner != null) {
-            return new ExperimentStartOperationResultImpl(inner, this.manager());
-        } else {
-            return null;
-        }
+    public void start(String resourceGroupName, String experimentName, Context context) {
+        this.serviceClient().start(resourceGroupName, experimentName, context);
     }
 
     public PagedIterable<ExperimentStatus> listAllStatuses(String resourceGroupName, String experimentName) {
@@ -270,10 +233,10 @@ public final class ExperimentsImpl implements Experiments {
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'experiments'.", id)));
         }
-        this.deleteByResourceGroupWithResponse(resourceGroupName, experimentName, Context.NONE);
+        this.delete(resourceGroupName, experimentName, Context.NONE);
     }
 
-    public Response<Void> deleteByIdWithResponse(String id, Context context) {
+    public void deleteByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
             throw LOGGER
@@ -289,7 +252,7 @@ public final class ExperimentsImpl implements Experiments {
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'experiments'.", id)));
         }
-        return this.deleteByResourceGroupWithResponse(resourceGroupName, experimentName, context);
+        this.delete(resourceGroupName, experimentName, context);
     }
 
     private ExperimentsClient serviceClient() {
