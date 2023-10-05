@@ -1,0 +1,47 @@
+# NOTE: Please refer to https://aka.ms/azsdk/engsys/ci-yaml before editing this file.
+
+trigger:
+  branches:
+    include:
+      - main
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/containerinstance/ci.yml
+      - sdk/containerinstance/azure-resourcemanager-containerinstance-generated/
+    exclude:
+      - sdk/containerinstance/pom.xml
+      - sdk/containerinstance/azure-resourcemanager-containerinstance-generated/pom.xml
+
+pr:
+  branches:
+    include:
+      - main
+      - feature/*
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/containerinstance/ci.yml
+      - sdk/containerinstance/azure-resourcemanager-containerinstance-generated/
+    exclude:
+      - sdk/containerinstance/pom.xml
+      - sdk/containerinstance/azure-resourcemanager-containerinstance-generated/pom.xml
+
+parameters:
+  - name: release_azureresourcemanagercontainerinstancegenerated
+    displayName: azure-resourcemanager-containerinstance-generated
+    type: boolean
+    default: false
+
+extends:
+  template: ../../eng/pipelines/templates/stages/archetype-sdk-client.yml
+  parameters:
+    ServiceDirectory: containerinstance
+    EnableBatchRelease: true
+    Artifacts:
+      - name: azure-resourcemanager-containerinstance-generated
+        groupId: com.azure.resourcemanager
+        safeName: azureresourcemanagercontainerinstancegenerated
+        releaseInBatch: ${{ parameters.release_azureresourcemanagercontainerinstancegenerated }}
