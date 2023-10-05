@@ -65,24 +65,23 @@ public interface Experiments {
      *
      * @param resourceGroupName String that represents an Azure resource group.
      * @param experimentName String that represents a Experiment resource name.
-     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
      */
-    Response<Void> deleteByResourceGroupWithResponse(String resourceGroupName, String experimentName, Context context);
+    void deleteByResourceGroup(String resourceGroupName, String experimentName);
 
     /**
      * Delete a Experiment resource.
      *
      * @param resourceGroupName String that represents an Azure resource group.
      * @param experimentName String that represents a Experiment resource name.
+     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
-    void deleteByResourceGroup(String resourceGroupName, String experimentName);
+    void delete(String resourceGroupName, String experimentName, Context context);
 
     /**
      * Get a Experiment resource.
@@ -115,26 +114,34 @@ public interface Experiments {
      *
      * @param resourceGroupName String that represents an Azure resource group.
      * @param experimentName String that represents a Experiment resource name.
-     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return model that represents the result of a cancel Experiment operation along with {@link Response}.
      */
-    Response<ExperimentCancelOperationResult> cancelWithResponse(
-        String resourceGroupName, String experimentName, Context context);
+    void cancel(String resourceGroupName, String experimentName);
 
     /**
      * Cancel a running Experiment resource.
      *
      * @param resourceGroupName String that represents an Azure resource group.
      * @param experimentName String that represents a Experiment resource name.
+     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return model that represents the result of a cancel Experiment operation.
      */
-    ExperimentCancelOperationResult cancel(String resourceGroupName, String experimentName);
+    void cancel(String resourceGroupName, String experimentName, Context context);
+
+    /**
+     * Start a Experiment resource.
+     *
+     * @param resourceGroupName String that represents an Azure resource group.
+     * @param experimentName String that represents a Experiment resource name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void start(String resourceGroupName, String experimentName);
 
     /**
      * Start a Experiment resource.
@@ -145,22 +152,8 @@ public interface Experiments {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return model that represents the result of a start Experiment operation along with {@link Response}.
      */
-    Response<ExperimentStartOperationResult> startWithResponse(
-        String resourceGroupName, String experimentName, Context context);
-
-    /**
-     * Start a Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
-     * @param experimentName String that represents a Experiment resource name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return model that represents the result of a start Experiment operation.
-     */
-    ExperimentStartOperationResult start(String resourceGroupName, String experimentName);
+    void start(String resourceGroupName, String experimentName, Context context);
 
     /**
      * Get a list of statuses of a Experiment resource.
@@ -311,9 +304,8 @@ public interface Experiments {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
      */
-    Response<Void> deleteByIdWithResponse(String id, Context context);
+    void deleteByIdWithResponse(String id, Context context);
 
     /**
      * Begins definition for a new Experiment resource.
