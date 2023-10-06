@@ -6,6 +6,7 @@ package com.azure.resourcemanager.defendereasm.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.defendereasm.models.ResourceState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -18,6 +19,12 @@ public final class TaskResourceInner extends ProxyResource {
     @JsonProperty(value = "properties")
     private TaskResourceProperties innerProperties;
 
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
+
     /** Creates an instance of TaskResourceInner class. */
     public TaskResourceInner() {
     }
@@ -29,6 +36,15 @@ public final class TaskResourceInner extends ProxyResource {
      */
     private TaskResourceProperties innerProperties() {
         return this.innerProperties;
+    }
+
+    /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     *
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**
