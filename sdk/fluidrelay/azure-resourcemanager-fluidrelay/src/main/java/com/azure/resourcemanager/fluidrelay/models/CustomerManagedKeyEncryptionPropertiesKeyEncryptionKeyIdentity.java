@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * Vault.
  */
 @Fluent
-public class CustomerManagedKeyEncryptionPropertiesKeyEncryptionKeyIdentity {
+public final class CustomerManagedKeyEncryptionPropertiesKeyEncryptionKeyIdentity {
     /*
      * Values can be SystemAssigned or UserAssigned
      */
@@ -27,6 +27,10 @@ public class CustomerManagedKeyEncryptionPropertiesKeyEncryptionKeyIdentity {
      */
     @JsonProperty(value = "userAssignedIdentityResourceId")
     private String userAssignedIdentityResourceId;
+
+    /** Creates an instance of CustomerManagedKeyEncryptionPropertiesKeyEncryptionKeyIdentity class. */
+    public CustomerManagedKeyEncryptionPropertiesKeyEncryptionKeyIdentity() {
+    }
 
     /**
      * Get the identityType property: Values can be SystemAssigned or UserAssigned.
