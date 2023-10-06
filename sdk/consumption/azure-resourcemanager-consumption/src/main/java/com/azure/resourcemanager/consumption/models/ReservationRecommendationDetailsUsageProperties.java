@@ -5,27 +5,20 @@
 package com.azure.resourcemanager.consumption.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Details about historical usage data that has been used for computing the recommendation. */
 @Immutable
 public final class ReservationRecommendationDetailsUsageProperties {
-    @JsonIgnore
-    private final ClientLogger logger = new ClientLogger(ReservationRecommendationDetailsUsageProperties.class);
-
     /*
-     * The first usage date used for looking back for computing the
-     * recommendation.
+     * The first usage date used for looking back for computing the recommendation.
      */
     @JsonProperty(value = "firstConsumptionDate", access = JsonProperty.Access.WRITE_ONLY)
     private String firstConsumptionDate;
 
     /*
-     * The last usage date used for looking back for computing the
-     * recommendation.
+     * The last usage date used for looking back for computing the recommendation.
      */
     @JsonProperty(value = "lastConsumptionDate", access = JsonProperty.Access.WRITE_ONLY)
     private String lastConsumptionDate;
@@ -37,8 +30,8 @@ public final class ReservationRecommendationDetailsUsageProperties {
     private String lookBackUnitType;
 
     /*
-     * The breakdown of historical resource usage.  The values are in the order
-     * of usage between the firstConsumptionDate and the lastConsumptionDate.
+     * The breakdown of historical resource usage.  The values are in the order of usage between the
+     * firstConsumptionDate and the lastConsumptionDate.
      */
     @JsonProperty(value = "usageData", access = JsonProperty.Access.WRITE_ONLY)
     private List<Float> usageData;
@@ -48,6 +41,10 @@ public final class ReservationRecommendationDetailsUsageProperties {
      */
     @JsonProperty(value = "usageGrain", access = JsonProperty.Access.WRITE_ONLY)
     private String usageGrain;
+
+    /** Creates an instance of ReservationRecommendationDetailsUsageProperties class. */
+    public ReservationRecommendationDetailsUsageProperties() {
+    }
 
     /**
      * Get the firstConsumptionDate property: The first usage date used for looking back for computing the

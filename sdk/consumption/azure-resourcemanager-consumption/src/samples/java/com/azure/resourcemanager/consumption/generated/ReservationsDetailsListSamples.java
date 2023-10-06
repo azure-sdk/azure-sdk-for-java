@@ -4,12 +4,10 @@
 
 package com.azure.resourcemanager.consumption.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for ReservationsDetails List. */
 public final class ReservationsDetailsListSamples {
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/ReservationDetailsByBillingProfileIdReservationId.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2023-11-01/examples/ReservationDetailsByBillingProfileIdReservationId.json
      */
     /**
      * Sample code: ReservationDetailsByBillingProfileIdReservationId.
@@ -27,11 +25,11 @@ public final class ReservationsDetailsListSamples {
                 null,
                 "1c6b6358-709f-484c-85f1-72e862a0cf3b",
                 "9f39ba10-794f-4dcb-8f4b-8d0cb47c27dc",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/ReservationDetailsByBillingAccountId.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2023-11-01/examples/ReservationDetailsByBillingAccountId.json
      */
     /**
      * Sample code: ReservationDetailsByBillingAccountId.
@@ -49,11 +47,11 @@ public final class ReservationsDetailsListSamples {
                 "properties/usageDate ge 2017-10-01 AND properties/usageDate le 2017-12-05",
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/ReservationDetailsByBillingProfileId.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2023-11-01/examples/ReservationDetailsByBillingProfileId.json
      */
     /**
      * Sample code: ReservationDetailsByBillingProfileId.
@@ -71,6 +69,6 @@ public final class ReservationsDetailsListSamples {
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

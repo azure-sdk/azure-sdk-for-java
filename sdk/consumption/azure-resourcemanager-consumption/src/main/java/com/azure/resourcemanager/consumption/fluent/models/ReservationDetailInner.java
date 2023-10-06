@@ -4,10 +4,8 @@
 
 package com.azure.resourcemanager.consumption.fluent.models;
 
-import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.Immutable;
 import com.azure.core.management.ProxyResource;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.math.BigDecimal;
@@ -15,10 +13,8 @@ import java.time.OffsetDateTime;
 import java.util.Map;
 
 /** reservation detail resource. */
-@Fluent
+@Immutable
 public final class ReservationDetailInner extends ProxyResource {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ReservationDetailInner.class);
-
     /*
      * The properties of the reservation detail.
      */
@@ -37,6 +33,10 @@ public final class ReservationDetailInner extends ProxyResource {
     @JsonProperty(value = "tags", access = JsonProperty.Access.WRITE_ONLY)
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> tags;
+
+    /** Creates an instance of ReservationDetailInner class. */
+    public ReservationDetailInner() {
+    }
 
     /**
      * Get the innerProperties property: The properties of the reservation detail.
