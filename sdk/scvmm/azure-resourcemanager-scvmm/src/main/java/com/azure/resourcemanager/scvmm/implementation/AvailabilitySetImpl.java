@@ -72,6 +72,10 @@ public final class AvailabilitySetImpl implements AvailabilitySet, AvailabilityS
         return this.location();
     }
 
+    public String resourceGroupName() {
+        return resourceGroupName;
+    }
+
     public AvailabilitySetInner innerModel() {
         return this.innerObject;
     }

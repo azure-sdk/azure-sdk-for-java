@@ -65,11 +65,10 @@ public final class VirtualNetworksClientImpl implements VirtualNetworksClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "ScvmmClientVirtualNe")
-    private interface VirtualNetworksService {
+    public interface VirtualNetworksService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm"
-                + "/virtualNetworks/{virtualNetworkName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm/virtualNetworks/{virtualNetworkName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<VirtualNetworkInner>> getByResourceGroup(
@@ -83,8 +82,7 @@ public final class VirtualNetworksClientImpl implements VirtualNetworksClient {
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm"
-                + "/virtualNetworks/{virtualNetworkName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm/virtualNetworks/{virtualNetworkName}")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
@@ -99,8 +97,7 @@ public final class VirtualNetworksClientImpl implements VirtualNetworksClient {
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm"
-                + "/virtualNetworks/{virtualNetworkName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm/virtualNetworks/{virtualNetworkName}")
         @ExpectedResponses({200, 202, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(
@@ -115,8 +112,7 @@ public final class VirtualNetworksClientImpl implements VirtualNetworksClient {
 
         @Headers({"Content-Type: application/json"})
         @Patch(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm"
-                + "/virtualNetworks/{virtualNetworkName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm/virtualNetworks/{virtualNetworkName}")
         @ExpectedResponses({200, 201, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> update(
@@ -131,8 +127,7 @@ public final class VirtualNetworksClientImpl implements VirtualNetworksClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm"
-                + "/virtualNetworks")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm/virtualNetworks")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<VirtualNetworkListResult>> listByResourceGroup(
@@ -176,7 +171,9 @@ public final class VirtualNetworksClientImpl implements VirtualNetworksClient {
     }
 
     /**
-     * Implements VirtualNetwork GET method.
+     * Gets a VirtualNetwork.
+     *
+     * <p>Implements VirtualNetwork GET method.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualNetworkName Name of the VirtualNetwork.
@@ -226,7 +223,9 @@ public final class VirtualNetworksClientImpl implements VirtualNetworksClient {
     }
 
     /**
-     * Implements VirtualNetwork GET method.
+     * Gets a VirtualNetwork.
+     *
+     * <p>Implements VirtualNetwork GET method.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualNetworkName Name of the VirtualNetwork.
@@ -274,7 +273,9 @@ public final class VirtualNetworksClientImpl implements VirtualNetworksClient {
     }
 
     /**
-     * Implements VirtualNetwork GET method.
+     * Gets a VirtualNetwork.
+     *
+     * <p>Implements VirtualNetwork GET method.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualNetworkName Name of the VirtualNetwork.
@@ -286,33 +287,13 @@ public final class VirtualNetworksClientImpl implements VirtualNetworksClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<VirtualNetworkInner> getByResourceGroupAsync(String resourceGroupName, String virtualNetworkName) {
         return getByResourceGroupWithResponseAsync(resourceGroupName, virtualNetworkName)
-            .flatMap(
-                (Response<VirtualNetworkInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Implements VirtualNetwork GET method.
+     * Gets a VirtualNetwork.
      *
-     * @param resourceGroupName The name of the resource group.
-     * @param virtualNetworkName Name of the VirtualNetwork.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the VirtualNetworks resource definition.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public VirtualNetworkInner getByResourceGroup(String resourceGroupName, String virtualNetworkName) {
-        return getByResourceGroupAsync(resourceGroupName, virtualNetworkName).block();
-    }
-
-    /**
-     * Implements VirtualNetwork GET method.
+     * <p>Implements VirtualNetwork GET method.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualNetworkName Name of the VirtualNetwork.
@@ -329,7 +310,26 @@ public final class VirtualNetworksClientImpl implements VirtualNetworksClient {
     }
 
     /**
-     * Onboards the ScVmm virtual network as an Azure virtual network resource.
+     * Gets a VirtualNetwork.
+     *
+     * <p>Implements VirtualNetwork GET method.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param virtualNetworkName Name of the VirtualNetwork.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the VirtualNetworks resource definition.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public VirtualNetworkInner getByResourceGroup(String resourceGroupName, String virtualNetworkName) {
+        return getByResourceGroupWithResponse(resourceGroupName, virtualNetworkName, Context.NONE).getValue();
+    }
+
+    /**
+     * Implements VirtualNetworks PUT method.
+     *
+     * <p>Onboards the ScVmm virtual network as an Azure virtual network resource.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualNetworkName Name of the VirtualNetwork.
@@ -386,7 +386,9 @@ public final class VirtualNetworksClientImpl implements VirtualNetworksClient {
     }
 
     /**
-     * Onboards the ScVmm virtual network as an Azure virtual network resource.
+     * Implements VirtualNetworks PUT method.
+     *
+     * <p>Onboards the ScVmm virtual network as an Azure virtual network resource.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualNetworkName Name of the VirtualNetwork.
@@ -441,7 +443,9 @@ public final class VirtualNetworksClientImpl implements VirtualNetworksClient {
     }
 
     /**
-     * Onboards the ScVmm virtual network as an Azure virtual network resource.
+     * Implements VirtualNetworks PUT method.
+     *
+     * <p>Onboards the ScVmm virtual network as an Azure virtual network resource.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualNetworkName Name of the VirtualNetwork.
@@ -467,7 +471,9 @@ public final class VirtualNetworksClientImpl implements VirtualNetworksClient {
     }
 
     /**
-     * Onboards the ScVmm virtual network as an Azure virtual network resource.
+     * Implements VirtualNetworks PUT method.
+     *
+     * <p>Onboards the ScVmm virtual network as an Azure virtual network resource.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualNetworkName Name of the VirtualNetwork.
@@ -491,7 +497,9 @@ public final class VirtualNetworksClientImpl implements VirtualNetworksClient {
     }
 
     /**
-     * Onboards the ScVmm virtual network as an Azure virtual network resource.
+     * Implements VirtualNetworks PUT method.
+     *
+     * <p>Onboards the ScVmm virtual network as an Azure virtual network resource.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualNetworkName Name of the VirtualNetwork.
@@ -504,11 +512,13 @@ public final class VirtualNetworksClientImpl implements VirtualNetworksClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<VirtualNetworkInner>, VirtualNetworkInner> beginCreateOrUpdate(
         String resourceGroupName, String virtualNetworkName, VirtualNetworkInner body) {
-        return beginCreateOrUpdateAsync(resourceGroupName, virtualNetworkName, body).getSyncPoller();
+        return this.beginCreateOrUpdateAsync(resourceGroupName, virtualNetworkName, body).getSyncPoller();
     }
 
     /**
-     * Onboards the ScVmm virtual network as an Azure virtual network resource.
+     * Implements VirtualNetworks PUT method.
+     *
+     * <p>Onboards the ScVmm virtual network as an Azure virtual network resource.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualNetworkName Name of the VirtualNetwork.
@@ -522,11 +532,13 @@ public final class VirtualNetworksClientImpl implements VirtualNetworksClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<VirtualNetworkInner>, VirtualNetworkInner> beginCreateOrUpdate(
         String resourceGroupName, String virtualNetworkName, VirtualNetworkInner body, Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, virtualNetworkName, body, context).getSyncPoller();
+        return this.beginCreateOrUpdateAsync(resourceGroupName, virtualNetworkName, body, context).getSyncPoller();
     }
 
     /**
-     * Onboards the ScVmm virtual network as an Azure virtual network resource.
+     * Implements VirtualNetworks PUT method.
+     *
+     * <p>Onboards the ScVmm virtual network as an Azure virtual network resource.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualNetworkName Name of the VirtualNetwork.
@@ -545,7 +557,9 @@ public final class VirtualNetworksClientImpl implements VirtualNetworksClient {
     }
 
     /**
-     * Onboards the ScVmm virtual network as an Azure virtual network resource.
+     * Implements VirtualNetworks PUT method.
+     *
+     * <p>Onboards the ScVmm virtual network as an Azure virtual network resource.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualNetworkName Name of the VirtualNetwork.
@@ -565,7 +579,9 @@ public final class VirtualNetworksClientImpl implements VirtualNetworksClient {
     }
 
     /**
-     * Onboards the ScVmm virtual network as an Azure virtual network resource.
+     * Implements VirtualNetworks PUT method.
+     *
+     * <p>Onboards the ScVmm virtual network as an Azure virtual network resource.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualNetworkName Name of the VirtualNetwork.
@@ -582,7 +598,9 @@ public final class VirtualNetworksClientImpl implements VirtualNetworksClient {
     }
 
     /**
-     * Onboards the ScVmm virtual network as an Azure virtual network resource.
+     * Implements VirtualNetworks PUT method.
+     *
+     * <p>Onboards the ScVmm virtual network as an Azure virtual network resource.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualNetworkName Name of the VirtualNetwork.
@@ -600,7 +618,9 @@ public final class VirtualNetworksClientImpl implements VirtualNetworksClient {
     }
 
     /**
-     * Deregisters the ScVmm virtual network from Azure.
+     * Implements VirtualNetwork DELETE method.
+     *
+     * <p>Deregisters the ScVmm virtual network from Azure.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualNetworkName Name of the VirtualNetwork.
@@ -652,7 +672,9 @@ public final class VirtualNetworksClientImpl implements VirtualNetworksClient {
     }
 
     /**
-     * Deregisters the ScVmm virtual network from Azure.
+     * Implements VirtualNetwork DELETE method.
+     *
+     * <p>Deregisters the ScVmm virtual network from Azure.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualNetworkName Name of the VirtualNetwork.
@@ -702,7 +724,9 @@ public final class VirtualNetworksClientImpl implements VirtualNetworksClient {
     }
 
     /**
-     * Deregisters the ScVmm virtual network from Azure.
+     * Implements VirtualNetwork DELETE method.
+     *
+     * <p>Deregisters the ScVmm virtual network from Azure.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualNetworkName Name of the VirtualNetwork.
@@ -724,7 +748,31 @@ public final class VirtualNetworksClientImpl implements VirtualNetworksClient {
     }
 
     /**
-     * Deregisters the ScVmm virtual network from Azure.
+     * Implements VirtualNetwork DELETE method.
+     *
+     * <p>Deregisters the ScVmm virtual network from Azure.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param virtualNetworkName Name of the VirtualNetwork.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String virtualNetworkName) {
+        final Boolean force = null;
+        Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceGroupName, virtualNetworkName, force);
+        return this
+            .client
+            .<Void, Void>getLroResult(
+                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+    }
+
+    /**
+     * Implements VirtualNetwork DELETE method.
+     *
+     * <p>Deregisters the ScVmm virtual network from Azure.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualNetworkName Name of the VirtualNetwork.
@@ -748,25 +796,27 @@ public final class VirtualNetworksClientImpl implements VirtualNetworksClient {
     }
 
     /**
-     * Deregisters the ScVmm virtual network from Azure.
+     * Implements VirtualNetwork DELETE method.
+     *
+     * <p>Deregisters the ScVmm virtual network from Azure.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualNetworkName Name of the VirtualNetwork.
-     * @param force Forces the resource to be deleted from azure. The corresponding CR would be attempted to be deleted
-     *     too.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDelete(
-        String resourceGroupName, String virtualNetworkName, Boolean force) {
-        return beginDeleteAsync(resourceGroupName, virtualNetworkName, force).getSyncPoller();
+    public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String virtualNetworkName) {
+        final Boolean force = null;
+        return this.beginDeleteAsync(resourceGroupName, virtualNetworkName, force).getSyncPoller();
     }
 
     /**
-     * Deregisters the ScVmm virtual network from Azure.
+     * Implements VirtualNetwork DELETE method.
+     *
+     * <p>Deregisters the ScVmm virtual network from Azure.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualNetworkName Name of the VirtualNetwork.
@@ -781,11 +831,13 @@ public final class VirtualNetworksClientImpl implements VirtualNetworksClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String virtualNetworkName, Boolean force, Context context) {
-        return beginDeleteAsync(resourceGroupName, virtualNetworkName, force, context).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, virtualNetworkName, force, context).getSyncPoller();
     }
 
     /**
-     * Deregisters the ScVmm virtual network from Azure.
+     * Implements VirtualNetwork DELETE method.
+     *
+     * <p>Deregisters the ScVmm virtual network from Azure.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualNetworkName Name of the VirtualNetwork.
@@ -804,7 +856,9 @@ public final class VirtualNetworksClientImpl implements VirtualNetworksClient {
     }
 
     /**
-     * Deregisters the ScVmm virtual network from Azure.
+     * Implements VirtualNetwork DELETE method.
+     *
+     * <p>Deregisters the ScVmm virtual network from Azure.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualNetworkName Name of the VirtualNetwork.
@@ -822,7 +876,9 @@ public final class VirtualNetworksClientImpl implements VirtualNetworksClient {
     }
 
     /**
-     * Deregisters the ScVmm virtual network from Azure.
+     * Implements VirtualNetwork DELETE method.
+     *
+     * <p>Deregisters the ScVmm virtual network from Azure.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualNetworkName Name of the VirtualNetwork.
@@ -843,23 +899,9 @@ public final class VirtualNetworksClientImpl implements VirtualNetworksClient {
     }
 
     /**
-     * Deregisters the ScVmm virtual network from Azure.
+     * Implements VirtualNetwork DELETE method.
      *
-     * @param resourceGroupName The name of the resource group.
-     * @param virtualNetworkName Name of the VirtualNetwork.
-     * @param force Forces the resource to be deleted from azure. The corresponding CR would be attempted to be deleted
-     *     too.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceGroupName, String virtualNetworkName, Boolean force) {
-        deleteAsync(resourceGroupName, virtualNetworkName, force).block();
-    }
-
-    /**
-     * Deregisters the ScVmm virtual network from Azure.
+     * <p>Deregisters the ScVmm virtual network from Azure.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualNetworkName Name of the VirtualNetwork.
@@ -874,7 +916,9 @@ public final class VirtualNetworksClientImpl implements VirtualNetworksClient {
     }
 
     /**
-     * Deregisters the ScVmm virtual network from Azure.
+     * Implements VirtualNetwork DELETE method.
+     *
+     * <p>Deregisters the ScVmm virtual network from Azure.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualNetworkName Name of the VirtualNetwork.
@@ -891,7 +935,9 @@ public final class VirtualNetworksClientImpl implements VirtualNetworksClient {
     }
 
     /**
-     * Updates the VirtualNetworks resource.
+     * Implements the VirtualNetworks PATCH method.
+     *
+     * <p>Updates the VirtualNetworks resource.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualNetworkName Name of the VirtualNetwork.
@@ -948,7 +994,9 @@ public final class VirtualNetworksClientImpl implements VirtualNetworksClient {
     }
 
     /**
-     * Updates the VirtualNetworks resource.
+     * Implements the VirtualNetworks PATCH method.
+     *
+     * <p>Updates the VirtualNetworks resource.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualNetworkName Name of the VirtualNetwork.
@@ -1003,7 +1051,9 @@ public final class VirtualNetworksClientImpl implements VirtualNetworksClient {
     }
 
     /**
-     * Updates the VirtualNetworks resource.
+     * Implements the VirtualNetworks PATCH method.
+     *
+     * <p>Updates the VirtualNetworks resource.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualNetworkName Name of the VirtualNetwork.
@@ -1028,7 +1078,9 @@ public final class VirtualNetworksClientImpl implements VirtualNetworksClient {
     }
 
     /**
-     * Updates the VirtualNetworks resource.
+     * Implements the VirtualNetworks PATCH method.
+     *
+     * <p>Updates the VirtualNetworks resource.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualNetworkName Name of the VirtualNetwork.
@@ -1052,7 +1104,9 @@ public final class VirtualNetworksClientImpl implements VirtualNetworksClient {
     }
 
     /**
-     * Updates the VirtualNetworks resource.
+     * Implements the VirtualNetworks PATCH method.
+     *
+     * <p>Updates the VirtualNetworks resource.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualNetworkName Name of the VirtualNetwork.
@@ -1065,11 +1119,13 @@ public final class VirtualNetworksClientImpl implements VirtualNetworksClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<VirtualNetworkInner>, VirtualNetworkInner> beginUpdate(
         String resourceGroupName, String virtualNetworkName, ResourcePatch body) {
-        return beginUpdateAsync(resourceGroupName, virtualNetworkName, body).getSyncPoller();
+        return this.beginUpdateAsync(resourceGroupName, virtualNetworkName, body).getSyncPoller();
     }
 
     /**
-     * Updates the VirtualNetworks resource.
+     * Implements the VirtualNetworks PATCH method.
+     *
+     * <p>Updates the VirtualNetworks resource.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualNetworkName Name of the VirtualNetwork.
@@ -1083,11 +1139,13 @@ public final class VirtualNetworksClientImpl implements VirtualNetworksClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<VirtualNetworkInner>, VirtualNetworkInner> beginUpdate(
         String resourceGroupName, String virtualNetworkName, ResourcePatch body, Context context) {
-        return beginUpdateAsync(resourceGroupName, virtualNetworkName, body, context).getSyncPoller();
+        return this.beginUpdateAsync(resourceGroupName, virtualNetworkName, body, context).getSyncPoller();
     }
 
     /**
-     * Updates the VirtualNetworks resource.
+     * Implements the VirtualNetworks PATCH method.
+     *
+     * <p>Updates the VirtualNetworks resource.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualNetworkName Name of the VirtualNetwork.
@@ -1106,7 +1164,9 @@ public final class VirtualNetworksClientImpl implements VirtualNetworksClient {
     }
 
     /**
-     * Updates the VirtualNetworks resource.
+     * Implements the VirtualNetworks PATCH method.
+     *
+     * <p>Updates the VirtualNetworks resource.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualNetworkName Name of the VirtualNetwork.
@@ -1126,7 +1186,9 @@ public final class VirtualNetworksClientImpl implements VirtualNetworksClient {
     }
 
     /**
-     * Updates the VirtualNetworks resource.
+     * Implements the VirtualNetworks PATCH method.
+     *
+     * <p>Updates the VirtualNetworks resource.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualNetworkName Name of the VirtualNetwork.
@@ -1142,7 +1204,9 @@ public final class VirtualNetworksClientImpl implements VirtualNetworksClient {
     }
 
     /**
-     * Updates the VirtualNetworks resource.
+     * Implements the VirtualNetworks PATCH method.
+     *
+     * <p>Updates the VirtualNetworks resource.
      *
      * @param resourceGroupName The name of the resource group.
      * @param virtualNetworkName Name of the VirtualNetwork.
@@ -1160,7 +1224,9 @@ public final class VirtualNetworksClientImpl implements VirtualNetworksClient {
     }
 
     /**
-     * List of VirtualNetworks in a resource group.
+     * Implements GET VirtualNetworks in a resource group.
+     *
+     * <p>List of VirtualNetworks in a resource group.
      *
      * @param resourceGroupName The name of the resource group.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1211,7 +1277,9 @@ public final class VirtualNetworksClientImpl implements VirtualNetworksClient {
     }
 
     /**
-     * List of VirtualNetworks in a resource group.
+     * Implements GET VirtualNetworks in a resource group.
+     *
+     * <p>List of VirtualNetworks in a resource group.
      *
      * @param resourceGroupName The name of the resource group.
      * @param context The context to associate with this operation.
@@ -1261,7 +1329,9 @@ public final class VirtualNetworksClientImpl implements VirtualNetworksClient {
     }
 
     /**
-     * List of VirtualNetworks in a resource group.
+     * Implements GET VirtualNetworks in a resource group.
+     *
+     * <p>List of VirtualNetworks in a resource group.
      *
      * @param resourceGroupName The name of the resource group.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1277,7 +1347,9 @@ public final class VirtualNetworksClientImpl implements VirtualNetworksClient {
     }
 
     /**
-     * List of VirtualNetworks in a resource group.
+     * Implements GET VirtualNetworks in a resource group.
+     *
+     * <p>List of VirtualNetworks in a resource group.
      *
      * @param resourceGroupName The name of the resource group.
      * @param context The context to associate with this operation.
@@ -1294,7 +1366,9 @@ public final class VirtualNetworksClientImpl implements VirtualNetworksClient {
     }
 
     /**
-     * List of VirtualNetworks in a resource group.
+     * Implements GET VirtualNetworks in a resource group.
+     *
+     * <p>List of VirtualNetworks in a resource group.
      *
      * @param resourceGroupName The name of the resource group.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1308,7 +1382,9 @@ public final class VirtualNetworksClientImpl implements VirtualNetworksClient {
     }
 
     /**
-     * List of VirtualNetworks in a resource group.
+     * Implements GET VirtualNetworks in a resource group.
+     *
+     * <p>List of VirtualNetworks in a resource group.
      *
      * @param resourceGroupName The name of the resource group.
      * @param context The context to associate with this operation.
@@ -1323,7 +1399,9 @@ public final class VirtualNetworksClientImpl implements VirtualNetworksClient {
     }
 
     /**
-     * List of VirtualNetworks in a subscription.
+     * Implements GET VirtualNetworks in a subscription.
+     *
+     * <p>List of VirtualNetworks in a subscription.
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1367,7 +1445,9 @@ public final class VirtualNetworksClientImpl implements VirtualNetworksClient {
     }
 
     /**
-     * List of VirtualNetworks in a subscription.
+     * Implements GET VirtualNetworks in a subscription.
+     *
+     * <p>List of VirtualNetworks in a subscription.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1410,7 +1490,9 @@ public final class VirtualNetworksClientImpl implements VirtualNetworksClient {
     }
 
     /**
-     * List of VirtualNetworks in a subscription.
+     * Implements GET VirtualNetworks in a subscription.
+     *
+     * <p>List of VirtualNetworks in a subscription.
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1423,7 +1505,9 @@ public final class VirtualNetworksClientImpl implements VirtualNetworksClient {
     }
 
     /**
-     * List of VirtualNetworks in a subscription.
+     * Implements GET VirtualNetworks in a subscription.
+     *
+     * <p>List of VirtualNetworks in a subscription.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1438,7 +1522,9 @@ public final class VirtualNetworksClientImpl implements VirtualNetworksClient {
     }
 
     /**
-     * List of VirtualNetworks in a subscription.
+     * Implements GET VirtualNetworks in a subscription.
+     *
+     * <p>List of VirtualNetworks in a subscription.
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1450,7 +1536,9 @@ public final class VirtualNetworksClientImpl implements VirtualNetworksClient {
     }
 
     /**
-     * List of VirtualNetworks in a subscription.
+     * Implements GET VirtualNetworks in a subscription.
+     *
+     * <p>List of VirtualNetworks in a subscription.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1466,7 +1554,8 @@ public final class VirtualNetworksClientImpl implements VirtualNetworksClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1502,7 +1591,8 @@ public final class VirtualNetworksClientImpl implements VirtualNetworksClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1539,7 +1629,8 @@ public final class VirtualNetworksClientImpl implements VirtualNetworksClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1575,7 +1666,8 @@ public final class VirtualNetworksClientImpl implements VirtualNetworksClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

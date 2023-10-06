@@ -34,6 +34,10 @@ public final class VmmServerInner extends Resource {
     @JsonProperty(value = "extendedLocation", required = true)
     private ExtendedLocation extendedLocation;
 
+    /** Creates an instance of VmmServerInner class. */
+    public VmmServerInner() {
+    }
+
     /**
      * Get the innerProperties property: Resource properties.
      *
