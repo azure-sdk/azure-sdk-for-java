@@ -22,6 +22,12 @@ public final class SecuritySettings {
     @JsonProperty(value = "immutabilitySettings")
     private ImmutabilitySettings immutabilitySettings;
 
+    /*
+     * Customer Managed Key details of the resource.
+     */
+    @JsonProperty(value = "encryptionSettings")
+    private EncryptionSettings encryptionSettings;
+
     /** Creates an instance of SecuritySettings class. */
     public SecuritySettings() {
     }
@@ -67,6 +73,26 @@ public final class SecuritySettings {
     }
 
     /**
+     * Get the encryptionSettings property: Customer Managed Key details of the resource.
+     *
+     * @return the encryptionSettings value.
+     */
+    public EncryptionSettings encryptionSettings() {
+        return this.encryptionSettings;
+    }
+
+    /**
+     * Set the encryptionSettings property: Customer Managed Key details of the resource.
+     *
+     * @param encryptionSettings the encryptionSettings value to set.
+     * @return the SecuritySettings object itself.
+     */
+    public SecuritySettings withEncryptionSettings(EncryptionSettings encryptionSettings) {
+        this.encryptionSettings = encryptionSettings;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -77,6 +103,9 @@ public final class SecuritySettings {
         }
         if (immutabilitySettings() != null) {
             immutabilitySettings().validate();
+        }
+        if (encryptionSettings() != null) {
+            encryptionSettings().validate();
         }
     }
 }
