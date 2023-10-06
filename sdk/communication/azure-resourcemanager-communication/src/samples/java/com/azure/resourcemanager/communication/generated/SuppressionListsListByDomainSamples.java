@@ -4,21 +4,21 @@
 
 package com.azure.resourcemanager.communication.generated;
 
-/** Samples for SenderUsernames ListByDomains. */
-public final class SenderUsernamesListByDomainsSamples {
+/** Samples for SuppressionLists ListByDomain. */
+public final class SuppressionListsListByDomainSamples {
     /*
-     * x-ms-original-file: specification/communication/resource-manager/Microsoft.Communication/preview/2023-06-01-preview/examples/senderUsernames/listByDomain.json
+     * x-ms-original-file: specification/communication/resource-manager/Microsoft.Communication/preview/2023-06-01-preview/examples/suppressionLists/getSuppressionLists.json
      */
     /**
-     * Sample code: Get all SenderUsernames resources for a Domain.
+     * Sample code: Get all SuppressionLists resources.
      *
      * @param manager Entry point to CommunicationManager.
      */
-    public static void getAllSenderUsernamesResourcesForADomain(
+    public static void getAllSuppressionListsResources(
         com.azure.resourcemanager.communication.CommunicationManager manager) {
         manager
-            .senderUsernames()
-            .listByDomains(
+            .suppressionLists()
+            .listByDomain(
                 "contosoResourceGroup", "contosoEmailService", "contoso.com", com.azure.core.util.Context.NONE);
     }
 }

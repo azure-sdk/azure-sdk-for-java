@@ -4,25 +4,25 @@
 
 package com.azure.resourcemanager.communication.generated;
 
-/** Samples for SenderUsernames Get. */
-public final class SenderUsernamesGetSamples {
+/** Samples for SuppressionLists Get. */
+public final class SuppressionListsGetSamples {
     /*
-     * x-ms-original-file: specification/communication/resource-manager/Microsoft.Communication/preview/2023-06-01-preview/examples/senderUsernames/get.json
+     * x-ms-original-file: specification/communication/resource-manager/Microsoft.Communication/preview/2023-06-01-preview/examples/suppressionLists/getSuppressionList.json
      */
     /**
-     * Sample code: Get SenderUsernames resource.
+     * Sample code: Get a SuppressionList resource.
      *
      * @param manager Entry point to CommunicationManager.
      */
-    public static void getSenderUsernamesResource(
+    public static void getASuppressionListResource(
         com.azure.resourcemanager.communication.CommunicationManager manager) {
         manager
-            .senderUsernames()
+            .suppressionLists()
             .getWithResponse(
                 "contosoResourceGroup",
                 "contosoEmailService",
                 "contoso.com",
-                "contosoNewsAlerts",
+                "aaaa1111-bbbb-2222-3333-aaaa11112222",
                 com.azure.core.util.Context.NONE);
     }
 }
