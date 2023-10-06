@@ -29,6 +29,15 @@ public final class RuleCategory extends ExpandableStringEnum<RuleCategory> {
     public static final RuleCategory CONTAINERS = fromString("Containers");
 
     /**
+     * Creates a new instance of RuleCategory value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public RuleCategory() {
+    }
+
+    /**
      * Creates or finds a RuleCategory from its string representation.
      *
      * @param name a name to look for.

@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.securitydevops.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for GitHubOwner List. */
 public final class GitHubOwnerListSamples {
     /*
@@ -17,6 +15,6 @@ public final class GitHubOwnerListSamples {
      * @param manager Entry point to SecurityDevOpsManager.
      */
     public static void gitHubOwnerList(com.azure.resourcemanager.securitydevops.SecurityDevOpsManager manager) {
-        manager.gitHubOwners().list("westusrg", "testconnector", Context.NONE);
+        manager.gitHubOwners().list("westusrg", "testconnector", com.azure.core.util.Context.NONE);
     }
 }
