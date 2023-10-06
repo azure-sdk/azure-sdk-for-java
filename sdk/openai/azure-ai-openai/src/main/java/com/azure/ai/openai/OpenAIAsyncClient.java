@@ -861,7 +861,7 @@ public final class OpenAIAsyncClient {
      *     model: String (Optional)
      *     dataSources (Optional): [
      *          (Optional){
-     *             type: String(AzureCognitiveSearch) (Required)
+     *             type: String(AzureCognitiveSearch/AzureMLIndex/AzureCosmosDB/Elasticsearch) (Required)
      *             parameters: Object (Required)
      *         }
      *     ]

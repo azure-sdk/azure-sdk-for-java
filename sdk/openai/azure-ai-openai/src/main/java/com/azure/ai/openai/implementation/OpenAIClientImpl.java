@@ -960,7 +960,7 @@ public final class OpenAIClientImpl {
      *     model: String (Optional)
      *     dataSources (Optional): [
      *          (Optional){
-     *             type: String(AzureCognitiveSearch) (Required)
+     *             type: String(AzureCognitiveSearch/AzureMLIndex/AzureCosmosDB/Elasticsearch) (Required)
      *             parameters: Object (Required)
      *         }
      *     ]
@@ -1107,7 +1107,7 @@ public final class OpenAIClientImpl {
      *     model: String (Optional)
      *     dataSources (Optional): [
      *          (Optional){
-     *             type: String(AzureCognitiveSearch) (Required)
+     *             type: String(AzureCognitiveSearch/AzureMLIndex/AzureCosmosDB/Elasticsearch) (Required)
      *             parameters: Object (Required)
      *         }
      *     ]
@@ -1252,7 +1252,7 @@ public final class OpenAIClientImpl {
      *     model: String (Optional)
      *     dataSources (Optional): [
      *          (Optional){
-     *             type: String(AzureCognitiveSearch) (Required)
+     *             type: String(AzureCognitiveSearch/AzureMLIndex/AzureCosmosDB/Elasticsearch) (Required)
      *             parameters: Object (Required)
      *         }
      *     ]
@@ -1400,7 +1400,7 @@ public final class OpenAIClientImpl {
      *     model: String (Optional)
      *     dataSources (Optional): [
      *          (Optional){
-     *             type: String(AzureCognitiveSearch) (Required)
+     *             type: String(AzureCognitiveSearch/AzureMLIndex/AzureCosmosDB/Elasticsearch) (Required)
      *             parameters: Object (Required)
      *         }
      *     ]
