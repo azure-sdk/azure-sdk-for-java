@@ -29,6 +29,12 @@ public final class ConnectToSourceMySqlTaskInput {
     @JsonProperty(value = "checkPermissionsGroup")
     private ServerLevelPermissionsGroup checkPermissionsGroup;
 
+    /*
+     * Flag for whether or not the migration is offline
+     */
+    @JsonProperty(value = "isOfflineMigration")
+    private Boolean isOfflineMigration;
+
     /** Creates an instance of ConnectToSourceMySqlTaskInput class. */
     public ConnectToSourceMySqlTaskInput() {
     }
@@ -90,6 +96,26 @@ public final class ConnectToSourceMySqlTaskInput {
      */
     public ConnectToSourceMySqlTaskInput withCheckPermissionsGroup(ServerLevelPermissionsGroup checkPermissionsGroup) {
         this.checkPermissionsGroup = checkPermissionsGroup;
+        return this;
+    }
+
+    /**
+     * Get the isOfflineMigration property: Flag for whether or not the migration is offline.
+     *
+     * @return the isOfflineMigration value.
+     */
+    public Boolean isOfflineMigration() {
+        return this.isOfflineMigration;
+    }
+
+    /**
+     * Set the isOfflineMigration property: Flag for whether or not the migration is offline.
+     *
+     * @param isOfflineMigration the isOfflineMigration value to set.
+     * @return the ConnectToSourceMySqlTaskInput object itself.
+     */
+    public ConnectToSourceMySqlTaskInput withIsOfflineMigration(Boolean isOfflineMigration) {
+        this.isOfflineMigration = isOfflineMigration;
         return this;
     }
 

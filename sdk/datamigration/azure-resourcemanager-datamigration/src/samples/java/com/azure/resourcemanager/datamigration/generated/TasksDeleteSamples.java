@@ -7,7 +7,7 @@ package com.azure.resourcemanager.datamigration.generated;
 /** Samples for Tasks Delete. */
 public final class TasksDeleteSamples {
     /*
-     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/stable/2018-04-19/examples/Tasks_Delete.json
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/Tasks_Delete.json
      */
     /**
      * Sample code: Tasks_Delete.

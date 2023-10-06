@@ -72,8 +72,7 @@ public final class ServicesClientImpl implements ServicesClient {
     public interface ServicesService {
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.DataMigration/services"
-                + "/{serviceName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.DataMigration/services/{serviceName}")
         @ExpectedResponses({200, 201, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
@@ -88,8 +87,7 @@ public final class ServicesClientImpl implements ServicesClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.DataMigration/services"
-                + "/{serviceName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.DataMigration/services/{serviceName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<DataMigrationServiceInner>> getByResourceGroup(
@@ -103,8 +101,7 @@ public final class ServicesClientImpl implements ServicesClient {
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.DataMigration/services"
-                + "/{serviceName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.DataMigration/services/{serviceName}")
         @ExpectedResponses({200, 202, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(
@@ -119,8 +116,7 @@ public final class ServicesClientImpl implements ServicesClient {
 
         @Headers({"Content-Type: application/json"})
         @Patch(
-            "/subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.DataMigration/services"
-                + "/{serviceName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.DataMigration/services/{serviceName}")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> update(
@@ -135,8 +131,7 @@ public final class ServicesClientImpl implements ServicesClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.DataMigration/services"
-                + "/{serviceName}/checkStatus")
+            "/subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.DataMigration/services/{serviceName}/checkStatus")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<DataMigrationServiceStatusResponseInner>> checkStatus(
@@ -150,8 +145,7 @@ public final class ServicesClientImpl implements ServicesClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.DataMigration/services"
-                + "/{serviceName}/start")
+            "/subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.DataMigration/services/{serviceName}/start")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> start(
@@ -165,8 +159,7 @@ public final class ServicesClientImpl implements ServicesClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.DataMigration/services"
-                + "/{serviceName}/stop")
+            "/subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.DataMigration/services/{serviceName}/stop")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> stop(
@@ -180,8 +173,7 @@ public final class ServicesClientImpl implements ServicesClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.DataMigration/services"
-                + "/{serviceName}/skus")
+            "/subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.DataMigration/services/{serviceName}/skus")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ServiceSkuList>> listSkus(
@@ -195,11 +187,10 @@ public final class ServicesClientImpl implements ServicesClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.DataMigration/services"
-                + "/{serviceName}/checkNameAvailability")
+            "/subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.DataMigration/services/{serviceName}/checkNameAvailability")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<NameAvailabilityResponseInner>> nestedCheckNameAvailability(
+        Mono<Response<NameAvailabilityResponseInner>> checkChildrenNameAvailability(
             @HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("groupName") String groupName,
@@ -234,15 +225,14 @@ public final class ServicesClientImpl implements ServicesClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/providers/Microsoft.DataMigration/locations/{location}"
-                + "/checkNameAvailability")
+            "/subscriptions/{subscriptionId}/providers/Microsoft.DataMigration/locations/{location}/checkNameAvailability")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<NameAvailabilityResponseInner>> checkNameAvailability(
             @HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
-            @QueryParam("api-version") String apiVersion,
             @PathParam("location") String location,
+            @QueryParam("api-version") String apiVersion,
             @BodyParam("application/json") NameAvailabilityRequest parameters,
             @HeaderParam("Accept") String accept,
             Context context);
@@ -279,15 +269,15 @@ public final class ServicesClientImpl implements ServicesClient {
     }
 
     /**
-     * Create or update DMS Instance
+     * Create or update DMS (classic) Instance
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The PUT method
-     * creates a new service or updates an existing one. When a service is updated, existing child resources (i.e.
-     * tasks) are unaffected. Services currently support a single kind, "vm", which refers to a VM-based service,
-     * although other kinds may be added in the future. This method can change the kind, SKU, and network of the
-     * service, but if tasks are currently running (i.e. the service is busy), this will fail with 400 Bad Request
-     * ("ServiceIsBusy"). The provider will reply when successful with 200 OK or 201 Created. Long-running operations
-     * use the provisioningState property.
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). The PUT method creates a new service or updates an existing one. When a service is updated, existing
+     * child resources (i.e. tasks) are unaffected. Services currently support a single kind, "vm", which refers to a
+     * VM-based service, although other kinds may be added in the future. This method can change the kind, SKU, and
+     * network of the service, but if tasks are currently running (i.e. the service is busy), this will fail with 400
+     * Bad Request ("ServiceIsBusy"). The provider will reply when successful with 200 OK or 201 Created. Long-running
+     * operations use the provisioningState property.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -295,8 +285,8 @@ public final class ServicesClientImpl implements ServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Database Migration Service resource along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return an Azure Database Migration Service (classic) resource along with {@link Response} on successful
+     *     completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
@@ -342,15 +332,15 @@ public final class ServicesClientImpl implements ServicesClient {
     }
 
     /**
-     * Create or update DMS Instance
+     * Create or update DMS (classic) Instance
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The PUT method
-     * creates a new service or updates an existing one. When a service is updated, existing child resources (i.e.
-     * tasks) are unaffected. Services currently support a single kind, "vm", which refers to a VM-based service,
-     * although other kinds may be added in the future. This method can change the kind, SKU, and network of the
-     * service, but if tasks are currently running (i.e. the service is busy), this will fail with 400 Bad Request
-     * ("ServiceIsBusy"). The provider will reply when successful with 200 OK or 201 Created. Long-running operations
-     * use the provisioningState property.
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). The PUT method creates a new service or updates an existing one. When a service is updated, existing
+     * child resources (i.e. tasks) are unaffected. Services currently support a single kind, "vm", which refers to a
+     * VM-based service, although other kinds may be added in the future. This method can change the kind, SKU, and
+     * network of the service, but if tasks are currently running (i.e. the service is busy), this will fail with 400
+     * Bad Request ("ServiceIsBusy"). The provider will reply when successful with 200 OK or 201 Created. Long-running
+     * operations use the provisioningState property.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -359,8 +349,8 @@ public final class ServicesClientImpl implements ServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Database Migration Service resource along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return an Azure Database Migration Service (classic) resource along with {@link Response} on successful
+     *     completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
@@ -403,15 +393,15 @@ public final class ServicesClientImpl implements ServicesClient {
     }
 
     /**
-     * Create or update DMS Instance
+     * Create or update DMS (classic) Instance
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The PUT method
-     * creates a new service or updates an existing one. When a service is updated, existing child resources (i.e.
-     * tasks) are unaffected. Services currently support a single kind, "vm", which refers to a VM-based service,
-     * although other kinds may be added in the future. This method can change the kind, SKU, and network of the
-     * service, but if tasks are currently running (i.e. the service is busy), this will fail with 400 Bad Request
-     * ("ServiceIsBusy"). The provider will reply when successful with 200 OK or 201 Created. Long-running operations
-     * use the provisioningState property.
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). The PUT method creates a new service or updates an existing one. When a service is updated, existing
+     * child resources (i.e. tasks) are unaffected. Services currently support a single kind, "vm", which refers to a
+     * VM-based service, although other kinds may be added in the future. This method can change the kind, SKU, and
+     * network of the service, but if tasks are currently running (i.e. the service is busy), this will fail with 400
+     * Bad Request ("ServiceIsBusy"). The provider will reply when successful with 200 OK or 201 Created. Long-running
+     * operations use the provisioningState property.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -419,7 +409,7 @@ public final class ServicesClientImpl implements ServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of a Database Migration Service resource.
+     * @return the {@link PollerFlux} for polling of an Azure Database Migration Service (classic) resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<DataMigrationServiceInner>, DataMigrationServiceInner> beginCreateOrUpdateAsync(
@@ -436,15 +426,15 @@ public final class ServicesClientImpl implements ServicesClient {
     }
 
     /**
-     * Create or update DMS Instance
+     * Create or update DMS (classic) Instance
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The PUT method
-     * creates a new service or updates an existing one. When a service is updated, existing child resources (i.e.
-     * tasks) are unaffected. Services currently support a single kind, "vm", which refers to a VM-based service,
-     * although other kinds may be added in the future. This method can change the kind, SKU, and network of the
-     * service, but if tasks are currently running (i.e. the service is busy), this will fail with 400 Bad Request
-     * ("ServiceIsBusy"). The provider will reply when successful with 200 OK or 201 Created. Long-running operations
-     * use the provisioningState property.
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). The PUT method creates a new service or updates an existing one. When a service is updated, existing
+     * child resources (i.e. tasks) are unaffected. Services currently support a single kind, "vm", which refers to a
+     * VM-based service, although other kinds may be added in the future. This method can change the kind, SKU, and
+     * network of the service, but if tasks are currently running (i.e. the service is busy), this will fail with 400
+     * Bad Request ("ServiceIsBusy"). The provider will reply when successful with 200 OK or 201 Created. Long-running
+     * operations use the provisioningState property.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -453,7 +443,7 @@ public final class ServicesClientImpl implements ServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of a Database Migration Service resource.
+     * @return the {@link PollerFlux} for polling of an Azure Database Migration Service (classic) resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<DataMigrationServiceInner>, DataMigrationServiceInner> beginCreateOrUpdateAsync(
@@ -472,15 +462,15 @@ public final class ServicesClientImpl implements ServicesClient {
     }
 
     /**
-     * Create or update DMS Instance
+     * Create or update DMS (classic) Instance
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The PUT method
-     * creates a new service or updates an existing one. When a service is updated, existing child resources (i.e.
-     * tasks) are unaffected. Services currently support a single kind, "vm", which refers to a VM-based service,
-     * although other kinds may be added in the future. This method can change the kind, SKU, and network of the
-     * service, but if tasks are currently running (i.e. the service is busy), this will fail with 400 Bad Request
-     * ("ServiceIsBusy"). The provider will reply when successful with 200 OK or 201 Created. Long-running operations
-     * use the provisioningState property.
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). The PUT method creates a new service or updates an existing one. When a service is updated, existing
+     * child resources (i.e. tasks) are unaffected. Services currently support a single kind, "vm", which refers to a
+     * VM-based service, although other kinds may be added in the future. This method can change the kind, SKU, and
+     * network of the service, but if tasks are currently running (i.e. the service is busy), this will fail with 400
+     * Bad Request ("ServiceIsBusy"). The provider will reply when successful with 200 OK or 201 Created. Long-running
+     * operations use the provisioningState property.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -488,7 +478,7 @@ public final class ServicesClientImpl implements ServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of a Database Migration Service resource.
+     * @return the {@link SyncPoller} for polling of an Azure Database Migration Service (classic) resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<DataMigrationServiceInner>, DataMigrationServiceInner> beginCreateOrUpdate(
@@ -497,15 +487,15 @@ public final class ServicesClientImpl implements ServicesClient {
     }
 
     /**
-     * Create or update DMS Instance
+     * Create or update DMS (classic) Instance
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The PUT method
-     * creates a new service or updates an existing one. When a service is updated, existing child resources (i.e.
-     * tasks) are unaffected. Services currently support a single kind, "vm", which refers to a VM-based service,
-     * although other kinds may be added in the future. This method can change the kind, SKU, and network of the
-     * service, but if tasks are currently running (i.e. the service is busy), this will fail with 400 Bad Request
-     * ("ServiceIsBusy"). The provider will reply when successful with 200 OK or 201 Created. Long-running operations
-     * use the provisioningState property.
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). The PUT method creates a new service or updates an existing one. When a service is updated, existing
+     * child resources (i.e. tasks) are unaffected. Services currently support a single kind, "vm", which refers to a
+     * VM-based service, although other kinds may be added in the future. This method can change the kind, SKU, and
+     * network of the service, but if tasks are currently running (i.e. the service is busy), this will fail with 400
+     * Bad Request ("ServiceIsBusy"). The provider will reply when successful with 200 OK or 201 Created. Long-running
+     * operations use the provisioningState property.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -514,7 +504,7 @@ public final class ServicesClientImpl implements ServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of a Database Migration Service resource.
+     * @return the {@link SyncPoller} for polling of an Azure Database Migration Service (classic) resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<DataMigrationServiceInner>, DataMigrationServiceInner> beginCreateOrUpdate(
@@ -523,15 +513,15 @@ public final class ServicesClientImpl implements ServicesClient {
     }
 
     /**
-     * Create or update DMS Instance
+     * Create or update DMS (classic) Instance
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The PUT method
-     * creates a new service or updates an existing one. When a service is updated, existing child resources (i.e.
-     * tasks) are unaffected. Services currently support a single kind, "vm", which refers to a VM-based service,
-     * although other kinds may be added in the future. This method can change the kind, SKU, and network of the
-     * service, but if tasks are currently running (i.e. the service is busy), this will fail with 400 Bad Request
-     * ("ServiceIsBusy"). The provider will reply when successful with 200 OK or 201 Created. Long-running operations
-     * use the provisioningState property.
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). The PUT method creates a new service or updates an existing one. When a service is updated, existing
+     * child resources (i.e. tasks) are unaffected. Services currently support a single kind, "vm", which refers to a
+     * VM-based service, although other kinds may be added in the future. This method can change the kind, SKU, and
+     * network of the service, but if tasks are currently running (i.e. the service is busy), this will fail with 400
+     * Bad Request ("ServiceIsBusy"). The provider will reply when successful with 200 OK or 201 Created. Long-running
+     * operations use the provisioningState property.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -539,7 +529,7 @@ public final class ServicesClientImpl implements ServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Database Migration Service resource on successful completion of {@link Mono}.
+     * @return an Azure Database Migration Service (classic) resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<DataMigrationServiceInner> createOrUpdateAsync(
@@ -550,15 +540,15 @@ public final class ServicesClientImpl implements ServicesClient {
     }
 
     /**
-     * Create or update DMS Instance
+     * Create or update DMS (classic) Instance
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The PUT method
-     * creates a new service or updates an existing one. When a service is updated, existing child resources (i.e.
-     * tasks) are unaffected. Services currently support a single kind, "vm", which refers to a VM-based service,
-     * although other kinds may be added in the future. This method can change the kind, SKU, and network of the
-     * service, but if tasks are currently running (i.e. the service is busy), this will fail with 400 Bad Request
-     * ("ServiceIsBusy"). The provider will reply when successful with 200 OK or 201 Created. Long-running operations
-     * use the provisioningState property.
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). The PUT method creates a new service or updates an existing one. When a service is updated, existing
+     * child resources (i.e. tasks) are unaffected. Services currently support a single kind, "vm", which refers to a
+     * VM-based service, although other kinds may be added in the future. This method can change the kind, SKU, and
+     * network of the service, but if tasks are currently running (i.e. the service is busy), this will fail with 400
+     * Bad Request ("ServiceIsBusy"). The provider will reply when successful with 200 OK or 201 Created. Long-running
+     * operations use the provisioningState property.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -567,7 +557,7 @@ public final class ServicesClientImpl implements ServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Database Migration Service resource on successful completion of {@link Mono}.
+     * @return an Azure Database Migration Service (classic) resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<DataMigrationServiceInner> createOrUpdateAsync(
@@ -578,15 +568,15 @@ public final class ServicesClientImpl implements ServicesClient {
     }
 
     /**
-     * Create or update DMS Instance
+     * Create or update DMS (classic) Instance
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The PUT method
-     * creates a new service or updates an existing one. When a service is updated, existing child resources (i.e.
-     * tasks) are unaffected. Services currently support a single kind, "vm", which refers to a VM-based service,
-     * although other kinds may be added in the future. This method can change the kind, SKU, and network of the
-     * service, but if tasks are currently running (i.e. the service is busy), this will fail with 400 Bad Request
-     * ("ServiceIsBusy"). The provider will reply when successful with 200 OK or 201 Created. Long-running operations
-     * use the provisioningState property.
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). The PUT method creates a new service or updates an existing one. When a service is updated, existing
+     * child resources (i.e. tasks) are unaffected. Services currently support a single kind, "vm", which refers to a
+     * VM-based service, although other kinds may be added in the future. This method can change the kind, SKU, and
+     * network of the service, but if tasks are currently running (i.e. the service is busy), this will fail with 400
+     * Bad Request ("ServiceIsBusy"). The provider will reply when successful with 200 OK or 201 Created. Long-running
+     * operations use the provisioningState property.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -594,7 +584,7 @@ public final class ServicesClientImpl implements ServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Database Migration Service resource.
+     * @return an Azure Database Migration Service (classic) resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public DataMigrationServiceInner createOrUpdate(
@@ -603,15 +593,15 @@ public final class ServicesClientImpl implements ServicesClient {
     }
 
     /**
-     * Create or update DMS Instance
+     * Create or update DMS (classic) Instance
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The PUT method
-     * creates a new service or updates an existing one. When a service is updated, existing child resources (i.e.
-     * tasks) are unaffected. Services currently support a single kind, "vm", which refers to a VM-based service,
-     * although other kinds may be added in the future. This method can change the kind, SKU, and network of the
-     * service, but if tasks are currently running (i.e. the service is busy), this will fail with 400 Bad Request
-     * ("ServiceIsBusy"). The provider will reply when successful with 200 OK or 201 Created. Long-running operations
-     * use the provisioningState property.
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). The PUT method creates a new service or updates an existing one. When a service is updated, existing
+     * child resources (i.e. tasks) are unaffected. Services currently support a single kind, "vm", which refers to a
+     * VM-based service, although other kinds may be added in the future. This method can change the kind, SKU, and
+     * network of the service, but if tasks are currently running (i.e. the service is busy), this will fail with 400
+     * Bad Request ("ServiceIsBusy"). The provider will reply when successful with 200 OK or 201 Created. Long-running
+     * operations use the provisioningState property.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -620,7 +610,7 @@ public final class ServicesClientImpl implements ServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Database Migration Service resource.
+     * @return an Azure Database Migration Service (classic) resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public DataMigrationServiceInner createOrUpdate(
@@ -629,18 +619,18 @@ public final class ServicesClientImpl implements ServicesClient {
     }
 
     /**
-     * Get DMS Service Instance
+     * Get DMS (classic) Service Instance
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The GET method
-     * retrieves information about a service instance.
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). The GET method retrieves information about a service instance.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Database Migration Service resource along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return an Azure Database Migration Service (classic) resource along with {@link Response} on successful
+     *     completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<DataMigrationServiceInner>> getByResourceGroupWithResponseAsync(
@@ -680,10 +670,10 @@ public final class ServicesClientImpl implements ServicesClient {
     }
 
     /**
-     * Get DMS Service Instance
+     * Get DMS (classic) Service Instance
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The GET method
-     * retrieves information about a service instance.
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). The GET method retrieves information about a service instance.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -691,8 +681,8 @@ public final class ServicesClientImpl implements ServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Database Migration Service resource along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return an Azure Database Migration Service (classic) resource along with {@link Response} on successful
+     *     completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<DataMigrationServiceInner>> getByResourceGroupWithResponseAsync(
@@ -729,17 +719,17 @@ public final class ServicesClientImpl implements ServicesClient {
     }
 
     /**
-     * Get DMS Service Instance
+     * Get DMS (classic) Service Instance
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The GET method
-     * retrieves information about a service instance.
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). The GET method retrieves information about a service instance.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Database Migration Service resource on successful completion of {@link Mono}.
+     * @return an Azure Database Migration Service (classic) resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<DataMigrationServiceInner> getByResourceGroupAsync(String groupName, String serviceName) {
@@ -748,10 +738,10 @@ public final class ServicesClientImpl implements ServicesClient {
     }
 
     /**
-     * Get DMS Service Instance
+     * Get DMS (classic) Service Instance
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The GET method
-     * retrieves information about a service instance.
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). The GET method retrieves information about a service instance.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -759,7 +749,7 @@ public final class ServicesClientImpl implements ServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Database Migration Service resource along with {@link Response}.
+     * @return an Azure Database Migration Service (classic) resource along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<DataMigrationServiceInner> getByResourceGroupWithResponse(
@@ -768,17 +758,17 @@ public final class ServicesClientImpl implements ServicesClient {
     }
 
     /**
-     * Get DMS Service Instance
+     * Get DMS (classic) Service Instance
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The GET method
-     * retrieves information about a service instance.
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). The GET method retrieves information about a service instance.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Database Migration Service resource.
+     * @return an Azure Database Migration Service (classic) resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public DataMigrationServiceInner getByResourceGroup(String groupName, String serviceName) {
@@ -786,10 +776,10 @@ public final class ServicesClientImpl implements ServicesClient {
     }
 
     /**
-     * Delete DMS Service Instance
+     * Delete DMS (classic) Service Instance
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The DELETE
-     * method deletes a service. Any running tasks will be canceled.
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). The DELETE method deletes a service. Any running tasks will be canceled.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -838,10 +828,10 @@ public final class ServicesClientImpl implements ServicesClient {
     }
 
     /**
-     * Delete DMS Service Instance
+     * Delete DMS (classic) Service Instance
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The DELETE
-     * method deletes a service. Any running tasks will be canceled.
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). The DELETE method deletes a service. Any running tasks will be canceled.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -888,10 +878,10 @@ public final class ServicesClientImpl implements ServicesClient {
     }
 
     /**
-     * Delete DMS Service Instance
+     * Delete DMS (classic) Service Instance
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The DELETE
-     * method deletes a service. Any running tasks will be canceled.
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). The DELETE method deletes a service. Any running tasks will be canceled.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -912,10 +902,10 @@ public final class ServicesClientImpl implements ServicesClient {
     }
 
     /**
-     * Delete DMS Service Instance
+     * Delete DMS (classic) Service Instance
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The DELETE
-     * method deletes a service. Any running tasks will be canceled.
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). The DELETE method deletes a service. Any running tasks will be canceled.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -935,10 +925,10 @@ public final class ServicesClientImpl implements ServicesClient {
     }
 
     /**
-     * Delete DMS Service Instance
+     * Delete DMS (classic) Service Instance
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The DELETE
-     * method deletes a service. Any running tasks will be canceled.
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). The DELETE method deletes a service. Any running tasks will be canceled.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -961,10 +951,10 @@ public final class ServicesClientImpl implements ServicesClient {
     }
 
     /**
-     * Delete DMS Service Instance
+     * Delete DMS (classic) Service Instance
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The DELETE
-     * method deletes a service. Any running tasks will be canceled.
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). The DELETE method deletes a service. Any running tasks will be canceled.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -980,10 +970,10 @@ public final class ServicesClientImpl implements ServicesClient {
     }
 
     /**
-     * Delete DMS Service Instance
+     * Delete DMS (classic) Service Instance
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The DELETE
-     * method deletes a service. Any running tasks will be canceled.
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). The DELETE method deletes a service. Any running tasks will be canceled.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -1001,10 +991,10 @@ public final class ServicesClientImpl implements ServicesClient {
     }
 
     /**
-     * Delete DMS Service Instance
+     * Delete DMS (classic) Service Instance
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The DELETE
-     * method deletes a service. Any running tasks will be canceled.
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). The DELETE method deletes a service. Any running tasks will be canceled.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -1022,10 +1012,10 @@ public final class ServicesClientImpl implements ServicesClient {
     }
 
     /**
-     * Delete DMS Service Instance
+     * Delete DMS (classic) Service Instance
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The DELETE
-     * method deletes a service. Any running tasks will be canceled.
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). The DELETE method deletes a service. Any running tasks will be canceled.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -1043,10 +1033,10 @@ public final class ServicesClientImpl implements ServicesClient {
     }
 
     /**
-     * Delete DMS Service Instance
+     * Delete DMS (classic) Service Instance
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The DELETE
-     * method deletes a service. Any running tasks will be canceled.
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). The DELETE method deletes a service. Any running tasks will be canceled.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -1065,10 +1055,10 @@ public final class ServicesClientImpl implements ServicesClient {
     }
 
     /**
-     * Delete DMS Service Instance
+     * Delete DMS (classic) Service Instance
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The DELETE
-     * method deletes a service. Any running tasks will be canceled.
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). The DELETE method deletes a service. Any running tasks will be canceled.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -1083,10 +1073,10 @@ public final class ServicesClientImpl implements ServicesClient {
     }
 
     /**
-     * Delete DMS Service Instance
+     * Delete DMS (classic) Service Instance
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The DELETE
-     * method deletes a service. Any running tasks will be canceled.
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). The DELETE method deletes a service. Any running tasks will be canceled.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -1102,11 +1092,12 @@ public final class ServicesClientImpl implements ServicesClient {
     }
 
     /**
-     * Create or update DMS Service Instance
+     * Create or update DMS (classic) Service Instance
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The PATCH
-     * method updates an existing service. This method can change the kind, SKU, and network of the service, but if
-     * tasks are currently running (i.e. the service is busy), this will fail with 400 Bad Request ("ServiceIsBusy").
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). The PATCH method updates an existing service. This method can change the kind, SKU, and network of the
+     * service, but if tasks are currently running (i.e. the service is busy), this will fail with 400 Bad Request
+     * ("ServiceIsBusy").
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -1114,8 +1105,8 @@ public final class ServicesClientImpl implements ServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Database Migration Service resource along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return an Azure Database Migration Service (classic) resource along with {@link Response} on successful
+     *     completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
@@ -1161,11 +1152,12 @@ public final class ServicesClientImpl implements ServicesClient {
     }
 
     /**
-     * Create or update DMS Service Instance
+     * Create or update DMS (classic) Service Instance
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The PATCH
-     * method updates an existing service. This method can change the kind, SKU, and network of the service, but if
-     * tasks are currently running (i.e. the service is busy), this will fail with 400 Bad Request ("ServiceIsBusy").
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). The PATCH method updates an existing service. This method can change the kind, SKU, and network of the
+     * service, but if tasks are currently running (i.e. the service is busy), this will fail with 400 Bad Request
+     * ("ServiceIsBusy").
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -1174,8 +1166,8 @@ public final class ServicesClientImpl implements ServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Database Migration Service resource along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return an Azure Database Migration Service (classic) resource along with {@link Response} on successful
+     *     completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
@@ -1218,11 +1210,12 @@ public final class ServicesClientImpl implements ServicesClient {
     }
 
     /**
-     * Create or update DMS Service Instance
+     * Create or update DMS (classic) Service Instance
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The PATCH
-     * method updates an existing service. This method can change the kind, SKU, and network of the service, but if
-     * tasks are currently running (i.e. the service is busy), this will fail with 400 Bad Request ("ServiceIsBusy").
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). The PATCH method updates an existing service. This method can change the kind, SKU, and network of the
+     * service, but if tasks are currently running (i.e. the service is busy), this will fail with 400 Bad Request
+     * ("ServiceIsBusy").
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -1230,7 +1223,7 @@ public final class ServicesClientImpl implements ServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of a Database Migration Service resource.
+     * @return the {@link PollerFlux} for polling of an Azure Database Migration Service (classic) resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<DataMigrationServiceInner>, DataMigrationServiceInner> beginUpdateAsync(
@@ -1247,11 +1240,12 @@ public final class ServicesClientImpl implements ServicesClient {
     }
 
     /**
-     * Create or update DMS Service Instance
+     * Create or update DMS (classic) Service Instance
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The PATCH
-     * method updates an existing service. This method can change the kind, SKU, and network of the service, but if
-     * tasks are currently running (i.e. the service is busy), this will fail with 400 Bad Request ("ServiceIsBusy").
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). The PATCH method updates an existing service. This method can change the kind, SKU, and network of the
+     * service, but if tasks are currently running (i.e. the service is busy), this will fail with 400 Bad Request
+     * ("ServiceIsBusy").
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -1260,7 +1254,7 @@ public final class ServicesClientImpl implements ServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of a Database Migration Service resource.
+     * @return the {@link PollerFlux} for polling of an Azure Database Migration Service (classic) resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<DataMigrationServiceInner>, DataMigrationServiceInner> beginUpdateAsync(
@@ -1278,11 +1272,12 @@ public final class ServicesClientImpl implements ServicesClient {
     }
 
     /**
-     * Create or update DMS Service Instance
+     * Create or update DMS (classic) Service Instance
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The PATCH
-     * method updates an existing service. This method can change the kind, SKU, and network of the service, but if
-     * tasks are currently running (i.e. the service is busy), this will fail with 400 Bad Request ("ServiceIsBusy").
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). The PATCH method updates an existing service. This method can change the kind, SKU, and network of the
+     * service, but if tasks are currently running (i.e. the service is busy), this will fail with 400 Bad Request
+     * ("ServiceIsBusy").
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -1290,7 +1285,7 @@ public final class ServicesClientImpl implements ServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of a Database Migration Service resource.
+     * @return the {@link SyncPoller} for polling of an Azure Database Migration Service (classic) resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<DataMigrationServiceInner>, DataMigrationServiceInner> beginUpdate(
@@ -1299,11 +1294,12 @@ public final class ServicesClientImpl implements ServicesClient {
     }
 
     /**
-     * Create or update DMS Service Instance
+     * Create or update DMS (classic) Service Instance
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The PATCH
-     * method updates an existing service. This method can change the kind, SKU, and network of the service, but if
-     * tasks are currently running (i.e. the service is busy), this will fail with 400 Bad Request ("ServiceIsBusy").
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). The PATCH method updates an existing service. This method can change the kind, SKU, and network of the
+     * service, but if tasks are currently running (i.e. the service is busy), this will fail with 400 Bad Request
+     * ("ServiceIsBusy").
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -1312,7 +1308,7 @@ public final class ServicesClientImpl implements ServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of a Database Migration Service resource.
+     * @return the {@link SyncPoller} for polling of an Azure Database Migration Service (classic) resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<DataMigrationServiceInner>, DataMigrationServiceInner> beginUpdate(
@@ -1321,11 +1317,12 @@ public final class ServicesClientImpl implements ServicesClient {
     }
 
     /**
-     * Create or update DMS Service Instance
+     * Create or update DMS (classic) Service Instance
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The PATCH
-     * method updates an existing service. This method can change the kind, SKU, and network of the service, but if
-     * tasks are currently running (i.e. the service is busy), this will fail with 400 Bad Request ("ServiceIsBusy").
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). The PATCH method updates an existing service. This method can change the kind, SKU, and network of the
+     * service, but if tasks are currently running (i.e. the service is busy), this will fail with 400 Bad Request
+     * ("ServiceIsBusy").
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -1333,7 +1330,7 @@ public final class ServicesClientImpl implements ServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Database Migration Service resource on successful completion of {@link Mono}.
+     * @return an Azure Database Migration Service (classic) resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<DataMigrationServiceInner> updateAsync(
@@ -1344,11 +1341,12 @@ public final class ServicesClientImpl implements ServicesClient {
     }
 
     /**
-     * Create or update DMS Service Instance
+     * Create or update DMS (classic) Service Instance
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The PATCH
-     * method updates an existing service. This method can change the kind, SKU, and network of the service, but if
-     * tasks are currently running (i.e. the service is busy), this will fail with 400 Bad Request ("ServiceIsBusy").
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). The PATCH method updates an existing service. This method can change the kind, SKU, and network of the
+     * service, but if tasks are currently running (i.e. the service is busy), this will fail with 400 Bad Request
+     * ("ServiceIsBusy").
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -1357,7 +1355,7 @@ public final class ServicesClientImpl implements ServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Database Migration Service resource on successful completion of {@link Mono}.
+     * @return an Azure Database Migration Service (classic) resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<DataMigrationServiceInner> updateAsync(
@@ -1368,11 +1366,12 @@ public final class ServicesClientImpl implements ServicesClient {
     }
 
     /**
-     * Create or update DMS Service Instance
+     * Create or update DMS (classic) Service Instance
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The PATCH
-     * method updates an existing service. This method can change the kind, SKU, and network of the service, but if
-     * tasks are currently running (i.e. the service is busy), this will fail with 400 Bad Request ("ServiceIsBusy").
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). The PATCH method updates an existing service. This method can change the kind, SKU, and network of the
+     * service, but if tasks are currently running (i.e. the service is busy), this will fail with 400 Bad Request
+     * ("ServiceIsBusy").
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -1380,7 +1379,7 @@ public final class ServicesClientImpl implements ServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Database Migration Service resource.
+     * @return an Azure Database Migration Service (classic) resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public DataMigrationServiceInner update(
@@ -1389,11 +1388,12 @@ public final class ServicesClientImpl implements ServicesClient {
     }
 
     /**
-     * Create or update DMS Service Instance
+     * Create or update DMS (classic) Service Instance
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The PATCH
-     * method updates an existing service. This method can change the kind, SKU, and network of the service, but if
-     * tasks are currently running (i.e. the service is busy), this will fail with 400 Bad Request ("ServiceIsBusy").
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). The PATCH method updates an existing service. This method can change the kind, SKU, and network of the
+     * service, but if tasks are currently running (i.e. the service is busy), this will fail with 400 Bad Request
+     * ("ServiceIsBusy").
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -1402,7 +1402,7 @@ public final class ServicesClientImpl implements ServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Database Migration Service resource.
+     * @return an Azure Database Migration Service (classic) resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public DataMigrationServiceInner update(
@@ -1413,8 +1413,8 @@ public final class ServicesClientImpl implements ServicesClient {
     /**
      * Check service health status
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. This action
-     * performs a health check and returns the status of the service and virtual machine size.
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). This action performs a health check and returns the status of the service and virtual machine size.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -1463,8 +1463,8 @@ public final class ServicesClientImpl implements ServicesClient {
     /**
      * Check service health status
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. This action
-     * performs a health check and returns the status of the service and virtual machine size.
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). This action performs a health check and returns the status of the service and virtual machine size.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -1511,8 +1511,8 @@ public final class ServicesClientImpl implements ServicesClient {
     /**
      * Check service health status
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. This action
-     * performs a health check and returns the status of the service and virtual machine size.
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). This action performs a health check and returns the status of the service and virtual machine size.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -1529,8 +1529,8 @@ public final class ServicesClientImpl implements ServicesClient {
     /**
      * Check service health status
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. This action
-     * performs a health check and returns the status of the service and virtual machine size.
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). This action performs a health check and returns the status of the service and virtual machine size.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -1549,8 +1549,8 @@ public final class ServicesClientImpl implements ServicesClient {
     /**
      * Check service health status
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. This action
-     * performs a health check and returns the status of the service and virtual machine size.
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). This action performs a health check and returns the status of the service and virtual machine size.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -1567,8 +1567,8 @@ public final class ServicesClientImpl implements ServicesClient {
     /**
      * Start service
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. This action
-     * starts the service and the service can be used for data migration.
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). This action starts the service and the service can be used for data migration.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -1616,8 +1616,8 @@ public final class ServicesClientImpl implements ServicesClient {
     /**
      * Start service
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. This action
-     * starts the service and the service can be used for data migration.
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). This action starts the service and the service can be used for data migration.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -1664,8 +1664,8 @@ public final class ServicesClientImpl implements ServicesClient {
     /**
      * Start service
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. This action
-     * starts the service and the service can be used for data migration.
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). This action starts the service and the service can be used for data migration.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -1686,8 +1686,8 @@ public final class ServicesClientImpl implements ServicesClient {
     /**
      * Start service
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. This action
-     * starts the service and the service can be used for data migration.
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). This action starts the service and the service can be used for data migration.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -1709,8 +1709,8 @@ public final class ServicesClientImpl implements ServicesClient {
     /**
      * Start service
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. This action
-     * starts the service and the service can be used for data migration.
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). This action starts the service and the service can be used for data migration.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -1727,8 +1727,8 @@ public final class ServicesClientImpl implements ServicesClient {
     /**
      * Start service
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. This action
-     * starts the service and the service can be used for data migration.
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). This action starts the service and the service can be used for data migration.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -1746,8 +1746,8 @@ public final class ServicesClientImpl implements ServicesClient {
     /**
      * Start service
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. This action
-     * starts the service and the service can be used for data migration.
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). This action starts the service and the service can be used for data migration.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -1764,8 +1764,8 @@ public final class ServicesClientImpl implements ServicesClient {
     /**
      * Start service
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. This action
-     * starts the service and the service can be used for data migration.
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). This action starts the service and the service can be used for data migration.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -1783,8 +1783,8 @@ public final class ServicesClientImpl implements ServicesClient {
     /**
      * Start service
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. This action
-     * starts the service and the service can be used for data migration.
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). This action starts the service and the service can be used for data migration.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -1800,8 +1800,8 @@ public final class ServicesClientImpl implements ServicesClient {
     /**
      * Start service
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. This action
-     * starts the service and the service can be used for data migration.
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). This action starts the service and the service can be used for data migration.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -1818,9 +1818,9 @@ public final class ServicesClientImpl implements ServicesClient {
     /**
      * Stop service
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. This action
-     * stops the service and the service cannot be used for data migration. The service owner won't be billed when the
-     * service is stopped.
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). This action stops the service and the service cannot be used for data migration. The service owner
+     * won't be billed when the service is stopped.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -1868,9 +1868,9 @@ public final class ServicesClientImpl implements ServicesClient {
     /**
      * Stop service
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. This action
-     * stops the service and the service cannot be used for data migration. The service owner won't be billed when the
-     * service is stopped.
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). This action stops the service and the service cannot be used for data migration. The service owner
+     * won't be billed when the service is stopped.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -1917,9 +1917,9 @@ public final class ServicesClientImpl implements ServicesClient {
     /**
      * Stop service
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. This action
-     * stops the service and the service cannot be used for data migration. The service owner won't be billed when the
-     * service is stopped.
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). This action stops the service and the service cannot be used for data migration. The service owner
+     * won't be billed when the service is stopped.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -1940,9 +1940,9 @@ public final class ServicesClientImpl implements ServicesClient {
     /**
      * Stop service
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. This action
-     * stops the service and the service cannot be used for data migration. The service owner won't be billed when the
-     * service is stopped.
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). This action stops the service and the service cannot be used for data migration. The service owner
+     * won't be billed when the service is stopped.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -1964,9 +1964,9 @@ public final class ServicesClientImpl implements ServicesClient {
     /**
      * Stop service
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. This action
-     * stops the service and the service cannot be used for data migration. The service owner won't be billed when the
-     * service is stopped.
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). This action stops the service and the service cannot be used for data migration. The service owner
+     * won't be billed when the service is stopped.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -1983,9 +1983,9 @@ public final class ServicesClientImpl implements ServicesClient {
     /**
      * Stop service
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. This action
-     * stops the service and the service cannot be used for data migration. The service owner won't be billed when the
-     * service is stopped.
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). This action stops the service and the service cannot be used for data migration. The service owner
+     * won't be billed when the service is stopped.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -2003,9 +2003,9 @@ public final class ServicesClientImpl implements ServicesClient {
     /**
      * Stop service
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. This action
-     * stops the service and the service cannot be used for data migration. The service owner won't be billed when the
-     * service is stopped.
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). This action stops the service and the service cannot be used for data migration. The service owner
+     * won't be billed when the service is stopped.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -2022,9 +2022,9 @@ public final class ServicesClientImpl implements ServicesClient {
     /**
      * Stop service
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. This action
-     * stops the service and the service cannot be used for data migration. The service owner won't be billed when the
-     * service is stopped.
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). This action stops the service and the service cannot be used for data migration. The service owner
+     * won't be billed when the service is stopped.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -2042,9 +2042,9 @@ public final class ServicesClientImpl implements ServicesClient {
     /**
      * Stop service
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. This action
-     * stops the service and the service cannot be used for data migration. The service owner won't be billed when the
-     * service is stopped.
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). This action stops the service and the service cannot be used for data migration. The service owner
+     * won't be billed when the service is stopped.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -2060,9 +2060,9 @@ public final class ServicesClientImpl implements ServicesClient {
     /**
      * Stop service
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. This action
-     * stops the service and the service cannot be used for data migration. The service owner won't be billed when the
-     * service is stopped.
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). This action stops the service and the service cannot be used for data migration. The service owner
+     * won't be billed when the service is stopped.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -2079,8 +2079,8 @@ public final class ServicesClientImpl implements ServicesClient {
     /**
      * Get compatible SKUs
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The skus
-     * action returns the list of SKUs that a service resource can be updated to.
+     * <p>The services resource is the top-level resource that represents the Database Migration Service (classic). The
+     * skus action returns the list of SKUs that a service resource can be updated to.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -2138,8 +2138,8 @@ public final class ServicesClientImpl implements ServicesClient {
     /**
      * Get compatible SKUs
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The skus
-     * action returns the list of SKUs that a service resource can be updated to.
+     * <p>The services resource is the top-level resource that represents the Database Migration Service (classic). The
+     * skus action returns the list of SKUs that a service resource can be updated to.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -2195,8 +2195,8 @@ public final class ServicesClientImpl implements ServicesClient {
     /**
      * Get compatible SKUs
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The skus
-     * action returns the list of SKUs that a service resource can be updated to.
+     * <p>The services resource is the top-level resource that represents the Database Migration Service (classic). The
+     * skus action returns the list of SKUs that a service resource can be updated to.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -2214,8 +2214,8 @@ public final class ServicesClientImpl implements ServicesClient {
     /**
      * Get compatible SKUs
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The skus
-     * action returns the list of SKUs that a service resource can be updated to.
+     * <p>The services resource is the top-level resource that represents the Database Migration Service (classic). The
+     * skus action returns the list of SKUs that a service resource can be updated to.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -2235,8 +2235,8 @@ public final class ServicesClientImpl implements ServicesClient {
     /**
      * Get compatible SKUs
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The skus
-     * action returns the list of SKUs that a service resource can be updated to.
+     * <p>The services resource is the top-level resource that represents the Database Migration Service (classic). The
+     * skus action returns the list of SKUs that a service resource can be updated to.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -2253,8 +2253,8 @@ public final class ServicesClientImpl implements ServicesClient {
     /**
      * Get compatible SKUs
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. The skus
-     * action returns the list of SKUs that a service resource can be updated to.
+     * <p>The services resource is the top-level resource that represents the Database Migration Service (classic). The
+     * skus action returns the list of SKUs that a service resource can be updated to.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -2284,7 +2284,7 @@ public final class ServicesClientImpl implements ServicesClient {
      *     completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<NameAvailabilityResponseInner>> nestedCheckNameAvailabilityWithResponseAsync(
+    private Mono<Response<NameAvailabilityResponseInner>> checkChildrenNameAvailabilityWithResponseAsync(
         String groupName, String serviceName, NameAvailabilityRequest parameters) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -2314,7 +2314,7 @@ public final class ServicesClientImpl implements ServicesClient {
             .withContext(
                 context ->
                     service
-                        .nestedCheckNameAvailability(
+                        .checkChildrenNameAvailability(
                             this.client.getEndpoint(),
                             this.client.getSubscriptionId(),
                             groupName,
@@ -2342,7 +2342,7 @@ public final class ServicesClientImpl implements ServicesClient {
      *     completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<NameAvailabilityResponseInner>> nestedCheckNameAvailabilityWithResponseAsync(
+    private Mono<Response<NameAvailabilityResponseInner>> checkChildrenNameAvailabilityWithResponseAsync(
         String groupName, String serviceName, NameAvailabilityRequest parameters, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -2370,7 +2370,7 @@ public final class ServicesClientImpl implements ServicesClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .nestedCheckNameAvailability(
+            .checkChildrenNameAvailability(
                 this.client.getEndpoint(),
                 this.client.getSubscriptionId(),
                 groupName,
@@ -2395,9 +2395,9 @@ public final class ServicesClientImpl implements ServicesClient {
      * @return indicates whether a proposed resource name is available on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<NameAvailabilityResponseInner> nestedCheckNameAvailabilityAsync(
+    private Mono<NameAvailabilityResponseInner> checkChildrenNameAvailabilityAsync(
         String groupName, String serviceName, NameAvailabilityRequest parameters) {
-        return nestedCheckNameAvailabilityWithResponseAsync(groupName, serviceName, parameters)
+        return checkChildrenNameAvailabilityWithResponseAsync(groupName, serviceName, parameters)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
@@ -2416,9 +2416,9 @@ public final class ServicesClientImpl implements ServicesClient {
      * @return indicates whether a proposed resource name is available along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<NameAvailabilityResponseInner> nestedCheckNameAvailabilityWithResponse(
+    public Response<NameAvailabilityResponseInner> checkChildrenNameAvailabilityWithResponse(
         String groupName, String serviceName, NameAvailabilityRequest parameters, Context context) {
-        return nestedCheckNameAvailabilityWithResponseAsync(groupName, serviceName, parameters, context).block();
+        return checkChildrenNameAvailabilityWithResponseAsync(groupName, serviceName, parameters, context).block();
     }
 
     /**
@@ -2435,16 +2435,16 @@ public final class ServicesClientImpl implements ServicesClient {
      * @return indicates whether a proposed resource name is available.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public NameAvailabilityResponseInner nestedCheckNameAvailability(
+    public NameAvailabilityResponseInner checkChildrenNameAvailability(
         String groupName, String serviceName, NameAvailabilityRequest parameters) {
-        return nestedCheckNameAvailabilityWithResponse(groupName, serviceName, parameters, Context.NONE).getValue();
+        return checkChildrenNameAvailabilityWithResponse(groupName, serviceName, parameters, Context.NONE).getValue();
     }
 
     /**
      * Get services in resource group
      *
-     * <p>The Services resource is the top-level resource that represents the Database Migration Service. This method
-     * returns a list of service resources in a resource group.
+     * <p>The Services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). This method returns a list of service resources in a resource group.
      *
      * @param groupName Name of the resource group.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2496,8 +2496,8 @@ public final class ServicesClientImpl implements ServicesClient {
     /**
      * Get services in resource group
      *
-     * <p>The Services resource is the top-level resource that represents the Database Migration Service. This method
-     * returns a list of service resources in a resource group.
+     * <p>The Services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). This method returns a list of service resources in a resource group.
      *
      * @param groupName Name of the resource group.
      * @param context The context to associate with this operation.
@@ -2548,8 +2548,8 @@ public final class ServicesClientImpl implements ServicesClient {
     /**
      * Get services in resource group
      *
-     * <p>The Services resource is the top-level resource that represents the Database Migration Service. This method
-     * returns a list of service resources in a resource group.
+     * <p>The Services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). This method returns a list of service resources in a resource group.
      *
      * @param groupName Name of the resource group.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2567,8 +2567,8 @@ public final class ServicesClientImpl implements ServicesClient {
     /**
      * Get services in resource group
      *
-     * <p>The Services resource is the top-level resource that represents the Database Migration Service. This method
-     * returns a list of service resources in a resource group.
+     * <p>The Services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). This method returns a list of service resources in a resource group.
      *
      * @param groupName Name of the resource group.
      * @param context The context to associate with this operation.
@@ -2587,8 +2587,8 @@ public final class ServicesClientImpl implements ServicesClient {
     /**
      * Get services in resource group
      *
-     * <p>The Services resource is the top-level resource that represents the Database Migration Service. This method
-     * returns a list of service resources in a resource group.
+     * <p>The Services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). This method returns a list of service resources in a resource group.
      *
      * @param groupName Name of the resource group.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2604,8 +2604,8 @@ public final class ServicesClientImpl implements ServicesClient {
     /**
      * Get services in resource group
      *
-     * <p>The Services resource is the top-level resource that represents the Database Migration Service. This method
-     * returns a list of service resources in a resource group.
+     * <p>The Services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). This method returns a list of service resources in a resource group.
      *
      * @param groupName Name of the resource group.
      * @param context The context to associate with this operation.
@@ -2622,8 +2622,8 @@ public final class ServicesClientImpl implements ServicesClient {
     /**
      * Get services in subscription
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. This method
-     * returns a list of service resources in a subscription.
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). This method returns a list of service resources in a subscription.
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -2669,8 +2669,8 @@ public final class ServicesClientImpl implements ServicesClient {
     /**
      * Get services in subscription
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. This method
-     * returns a list of service resources in a subscription.
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). This method returns a list of service resources in a subscription.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2715,8 +2715,8 @@ public final class ServicesClientImpl implements ServicesClient {
     /**
      * Get services in subscription
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. This method
-     * returns a list of service resources in a subscription.
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). This method returns a list of service resources in a subscription.
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -2730,8 +2730,8 @@ public final class ServicesClientImpl implements ServicesClient {
     /**
      * Get services in subscription
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. This method
-     * returns a list of service resources in a subscription.
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). This method returns a list of service resources in a subscription.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2748,8 +2748,8 @@ public final class ServicesClientImpl implements ServicesClient {
     /**
      * Get services in subscription
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. This method
-     * returns a list of service resources in a subscription.
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). This method returns a list of service resources in a subscription.
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -2763,8 +2763,8 @@ public final class ServicesClientImpl implements ServicesClient {
     /**
      * Get services in subscription
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. This method
-     * returns a list of service resources in a subscription.
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). This method returns a list of service resources in a subscription.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2821,8 +2821,8 @@ public final class ServicesClientImpl implements ServicesClient {
                         .checkNameAvailability(
                             this.client.getEndpoint(),
                             this.client.getSubscriptionId(),
-                            this.client.getApiVersion(),
                             location,
+                            this.client.getApiVersion(),
                             parameters,
                             accept,
                             context))
@@ -2872,8 +2872,8 @@ public final class ServicesClientImpl implements ServicesClient {
             .checkNameAvailability(
                 this.client.getEndpoint(),
                 this.client.getSubscriptionId(),
-                this.client.getApiVersion(),
                 location,
+                this.client.getApiVersion(),
                 parameters,
                 accept,
                 context);

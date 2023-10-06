@@ -7,6 +7,7 @@ package com.azure.resourcemanager.datamigration.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.time.OffsetDateTime;
 import java.util.List;
 
 /** Input for the task that migrates PostgreSQL databases to Azure Database for PostgreSQL for online migrations. */
@@ -29,6 +30,18 @@ public final class MigratePostgreSqlAzureDbForPostgreSqlSyncTaskInput {
      */
     @JsonProperty(value = "sourceConnectionInfo", required = true)
     private PostgreSqlConnectionInfo sourceConnectionInfo;
+
+    /*
+     * encrypted key for secure fields
+     */
+    @JsonProperty(value = "encryptedKeyForSecureFields")
+    private String encryptedKeyForSecureFields;
+
+    /*
+     * Migration start time
+     */
+    @JsonProperty(value = "startedOn", access = JsonProperty.Access.WRITE_ONLY)
+    private OffsetDateTime startedOn;
 
     /** Creates an instance of MigratePostgreSqlAzureDbForPostgreSqlSyncTaskInput class. */
     public MigratePostgreSqlAzureDbForPostgreSqlSyncTaskInput() {
@@ -95,6 +108,36 @@ public final class MigratePostgreSqlAzureDbForPostgreSqlSyncTaskInput {
         PostgreSqlConnectionInfo sourceConnectionInfo) {
         this.sourceConnectionInfo = sourceConnectionInfo;
         return this;
+    }
+
+    /**
+     * Get the encryptedKeyForSecureFields property: encrypted key for secure fields.
+     *
+     * @return the encryptedKeyForSecureFields value.
+     */
+    public String encryptedKeyForSecureFields() {
+        return this.encryptedKeyForSecureFields;
+    }
+
+    /**
+     * Set the encryptedKeyForSecureFields property: encrypted key for secure fields.
+     *
+     * @param encryptedKeyForSecureFields the encryptedKeyForSecureFields value to set.
+     * @return the MigratePostgreSqlAzureDbForPostgreSqlSyncTaskInput object itself.
+     */
+    public MigratePostgreSqlAzureDbForPostgreSqlSyncTaskInput withEncryptedKeyForSecureFields(
+        String encryptedKeyForSecureFields) {
+        this.encryptedKeyForSecureFields = encryptedKeyForSecureFields;
+        return this;
+    }
+
+    /**
+     * Get the startedOn property: Migration start time.
+     *
+     * @return the startedOn value.
+     */
+    public OffsetDateTime startedOn() {
+        return this.startedOn;
     }
 
     /**
