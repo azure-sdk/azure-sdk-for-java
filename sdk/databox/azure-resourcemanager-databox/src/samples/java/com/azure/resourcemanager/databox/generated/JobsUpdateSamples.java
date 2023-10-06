@@ -22,7 +22,7 @@ import java.util.Map;
 /** Samples for Jobs Update. */
 public final class JobsUpdateSamples {
     /*
-     * x-ms-original-file: specification/databox/resource-manager/Microsoft.DataBox/stable/2022-12-01/examples/JobsPatchCmk.json
+     * x-ms-original-file: specification/databox/resource-manager/Microsoft.DataBox/stable/2023-03-01/examples/JobsPatchCmk.json
      */
     /**
      * Sample code: JobsPatchCmk.
@@ -50,7 +50,7 @@ public final class JobsUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/databox/resource-manager/Microsoft.DataBox/stable/2022-12-01/examples/JobsPatchSystemAssignedToUserAssigned.json
+     * x-ms-original-file: specification/databox/resource-manager/Microsoft.DataBox/stable/2023-03-01/examples/JobsPatchSystemAssignedToUserAssigned.json
      */
     /**
      * Sample code: JobsPatchSystemAssignedToUserAssigned.
@@ -92,7 +92,7 @@ public final class JobsUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/databox/resource-manager/Microsoft.DataBox/stable/2022-12-01/examples/JobsPatch.json
+     * x-ms-original-file: specification/databox/resource-manager/Microsoft.DataBox/stable/2023-03-01/examples/JobsPatch.json
      */
     /**
      * Sample code: JobsPatch.
@@ -129,6 +129,7 @@ public final class JobsUpdateSamples {
             .apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

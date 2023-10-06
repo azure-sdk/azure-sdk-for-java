@@ -7,7 +7,7 @@ package com.azure.resourcemanager.databox.generated;
 /** Samples for Jobs GetByResourceGroup. */
 public final class JobsGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/databox/resource-manager/Microsoft.DataBox/stable/2022-12-01/examples/JobsGet.json
+     * x-ms-original-file: specification/databox/resource-manager/Microsoft.DataBox/stable/2023-03-01/examples/JobsGet.json
      */
     /**
      * Sample code: JobsGet.
@@ -22,7 +22,7 @@ public final class JobsGetByResourceGroupSamples {
     }
 
     /*
-     * x-ms-original-file: specification/databox/resource-manager/Microsoft.DataBox/stable/2022-12-01/examples/JobsGetCmk.json
+     * x-ms-original-file: specification/databox/resource-manager/Microsoft.DataBox/stable/2023-03-01/examples/JobsGetCmk.json
      */
     /**
      * Sample code: JobsGetCmk.
@@ -37,7 +37,7 @@ public final class JobsGetByResourceGroupSamples {
     }
 
     /*
-     * x-ms-original-file: specification/databox/resource-manager/Microsoft.DataBox/stable/2022-12-01/examples/JobsGetExport.json
+     * x-ms-original-file: specification/databox/resource-manager/Microsoft.DataBox/stable/2023-03-01/examples/JobsGetExport.json
      */
     /**
      * Sample code: JobsGetExport.
@@ -52,7 +52,7 @@ public final class JobsGetByResourceGroupSamples {
     }
 
     /*
-     * x-ms-original-file: specification/databox/resource-manager/Microsoft.DataBox/stable/2022-12-01/examples/JobsGetCopyStuck.json
+     * x-ms-original-file: specification/databox/resource-manager/Microsoft.DataBox/stable/2023-03-01/examples/JobsGetCopyStuck.json
      */
     /**
      * Sample code: JobsGetCopyStuck.
@@ -67,7 +67,7 @@ public final class JobsGetByResourceGroupSamples {
     }
 
     /*
-     * x-ms-original-file: specification/databox/resource-manager/Microsoft.DataBox/stable/2022-12-01/examples/JobsGetWaitingForAction.json
+     * x-ms-original-file: specification/databox/resource-manager/Microsoft.DataBox/stable/2023-03-01/examples/JobsGetWaitingForAction.json
      */
     /**
      * Sample code: JobsGetWaitingForAction.

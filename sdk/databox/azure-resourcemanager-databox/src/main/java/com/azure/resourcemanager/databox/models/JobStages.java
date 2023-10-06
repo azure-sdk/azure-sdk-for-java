@@ -7,6 +7,7 @@ package com.azure.resourcemanager.databox.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
+import java.util.List;
 
 /** Job stages. */
 @Immutable
@@ -40,6 +41,12 @@ public final class JobStages {
      */
     @JsonProperty(value = "jobStageDetails", access = JsonProperty.Access.WRITE_ONLY)
     private Object jobStageDetails;
+
+    /*
+     * Delay information for the job stages.
+     */
+    @JsonProperty(value = "delayInformation", access = JsonProperty.Access.WRITE_ONLY)
+    private List<JobDelayDetails> delayInformation;
 
     /** Creates an instance of JobStages class. */
     public JobStages() {
@@ -91,10 +98,22 @@ public final class JobStages {
     }
 
     /**
+     * Get the delayInformation property: Delay information for the job stages.
+     *
+     * @return the delayInformation value.
+     */
+    public List<JobDelayDetails> delayInformation() {
+        return this.delayInformation;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (delayInformation() != null) {
+            delayInformation().forEach(e -> e.validate());
+        }
     }
 }
