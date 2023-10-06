@@ -7,7 +7,7 @@ package com.azure.resourcemanager.hdinsight.generated;
 /** Samples for Extensions Delete. */
 public final class ExtensionsDeleteSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2023-04-15-preview/examples/DeleteExtension.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2023-08-15-preview/examples/DeleteExtension.json
      */
     /**
      * Sample code: Delete an extension.

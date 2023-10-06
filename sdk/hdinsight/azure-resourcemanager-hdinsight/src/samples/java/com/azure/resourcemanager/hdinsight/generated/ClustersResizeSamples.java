@@ -10,7 +10,7 @@ import com.azure.resourcemanager.hdinsight.models.RoleName;
 /** Samples for Clusters Resize. */
 public final class ClustersResizeSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2023-04-15-preview/examples/ResizeLinuxHadoopCluster.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2023-08-15-preview/examples/ResizeLinuxHadoopCluster.json
      */
     /**
      * Sample code: Resize the worker nodes for a Hadoop on Linux cluster.

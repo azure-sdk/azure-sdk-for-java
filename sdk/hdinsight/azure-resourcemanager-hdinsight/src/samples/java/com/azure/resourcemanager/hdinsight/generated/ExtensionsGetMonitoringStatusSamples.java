@@ -7,7 +7,7 @@ package com.azure.resourcemanager.hdinsight.generated;
 /** Samples for Extensions GetMonitoringStatus. */
 public final class ExtensionsGetMonitoringStatusSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2023-04-15-preview/examples/GetLinuxClusterMonitoringStatus.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2023-08-15-preview/examples/GetLinuxClusterMonitoringStatus.json
      */
     /**
      * Sample code: Enable cluster monitoring.
