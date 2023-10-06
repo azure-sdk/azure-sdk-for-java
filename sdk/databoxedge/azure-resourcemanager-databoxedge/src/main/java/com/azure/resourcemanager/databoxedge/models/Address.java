@@ -14,7 +14,7 @@ public final class Address {
     /*
      * The address line1.
      */
-    @JsonProperty(value = "addressLine1", required = true)
+    @JsonProperty(value = "addressLine1")
     private String addressLine1;
 
     /*
@@ -32,19 +32,19 @@ public final class Address {
     /*
      * The postal code.
      */
-    @JsonProperty(value = "postalCode", required = true)
+    @JsonProperty(value = "postalCode")
     private String postalCode;
 
     /*
      * The city name.
      */
-    @JsonProperty(value = "city", required = true)
+    @JsonProperty(value = "city")
     private String city;
 
     /*
      * The state name.
      */
-    @JsonProperty(value = "state", required = true)
+    @JsonProperty(value = "state")
     private String state;
 
     /*
@@ -203,24 +203,6 @@ public final class Address {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (addressLine1() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property addressLine1 in model Address"));
-        }
-        if (postalCode() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property postalCode in model Address"));
-        }
-        if (city() == null) {
-            throw LOGGER
-                .logExceptionAsError(new IllegalArgumentException("Missing required property city in model Address"));
-        }
-        if (state() == null) {
-            throw LOGGER
-                .logExceptionAsError(new IllegalArgumentException("Missing required property state in model Address"));
-        }
         if (country() == null) {
             throw LOGGER
                 .logExceptionAsError(

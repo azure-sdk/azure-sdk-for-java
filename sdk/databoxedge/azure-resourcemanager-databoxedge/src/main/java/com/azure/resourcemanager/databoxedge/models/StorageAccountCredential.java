@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.databoxedge.models;
 
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.databoxedge.fluent.models.StorageAccountCredentialInner;
 
@@ -29,6 +30,13 @@ public interface StorageAccountCredential {
      * @return the type value.
      */
     String type();
+
+    /**
+     * Gets the systemData property: Metadata pertaining to creation and last modification of StorageAccountCredential.
+     *
+     * @return the systemData value.
+     */
+    SystemData systemData();
 
     /**
      * Gets the alias property: Alias for the storage account.
@@ -110,11 +118,13 @@ public interface StorageAccountCredential {
             DefinitionStages.WithAccountType,
             DefinitionStages.WithCreate {
     }
+
     /** The StorageAccountCredential definition stages. */
     interface DefinitionStages {
         /** The first stage of the StorageAccountCredential definition. */
         interface Blank extends WithParentResource {
         }
+
         /** The stage of the StorageAccountCredential definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -126,6 +136,7 @@ public interface StorageAccountCredential {
              */
             WithAlias withExistingDataBoxEdgeDevice(String deviceName, String resourceGroupName);
         }
+
         /** The stage of the StorageAccountCredential definition allowing to specify alias. */
         interface WithAlias {
             /**
@@ -136,6 +147,7 @@ public interface StorageAccountCredential {
              */
             WithSslStatus withAlias(String alias);
         }
+
         /** The stage of the StorageAccountCredential definition allowing to specify sslStatus. */
         interface WithSslStatus {
             /**
@@ -146,6 +158,7 @@ public interface StorageAccountCredential {
              */
             WithAccountType withSslStatus(SslStatus sslStatus);
         }
+
         /** The stage of the StorageAccountCredential definition allowing to specify accountType. */
         interface WithAccountType {
             /**
@@ -156,6 +169,7 @@ public interface StorageAccountCredential {
              */
             WithCreate withAccountType(AccountType accountType);
         }
+
         /**
          * The stage of the StorageAccountCredential definition which contains all the minimum required properties for
          * the resource to be created, but also allows for any other optional properties to be specified.
@@ -181,6 +195,7 @@ public interface StorageAccountCredential {
              */
             StorageAccountCredential create(Context context);
         }
+
         /** The stage of the StorageAccountCredential definition allowing to specify username. */
         interface WithUsername {
             /**
@@ -191,6 +206,7 @@ public interface StorageAccountCredential {
              */
             WithCreate withUsername(String username);
         }
+
         /** The stage of the StorageAccountCredential definition allowing to specify accountKey. */
         interface WithAccountKey {
             /**
@@ -201,6 +217,7 @@ public interface StorageAccountCredential {
              */
             WithCreate withAccountKey(AsymmetricEncryptedSecret accountKey);
         }
+
         /** The stage of the StorageAccountCredential definition allowing to specify connectionString. */
         interface WithConnectionString {
             /**
@@ -213,6 +230,7 @@ public interface StorageAccountCredential {
              */
             WithCreate withConnectionString(String connectionString);
         }
+
         /** The stage of the StorageAccountCredential definition allowing to specify blobDomainName. */
         interface WithBlobDomainName {
             /**
@@ -223,6 +241,7 @@ public interface StorageAccountCredential {
              */
             WithCreate withBlobDomainName(String blobDomainName);
         }
+
         /** The stage of the StorageAccountCredential definition allowing to specify storageAccountId. */
         interface WithStorageAccountId {
             /**
@@ -234,6 +253,7 @@ public interface StorageAccountCredential {
             WithCreate withStorageAccountId(String storageAccountId);
         }
     }
+
     /**
      * Begins update for the StorageAccountCredential resource.
      *
@@ -266,6 +286,7 @@ public interface StorageAccountCredential {
          */
         StorageAccountCredential apply(Context context);
     }
+
     /** The StorageAccountCredential update stages. */
     interface UpdateStages {
         /** The stage of the StorageAccountCredential update allowing to specify alias. */
@@ -278,6 +299,7 @@ public interface StorageAccountCredential {
              */
             Update withAlias(String alias);
         }
+
         /** The stage of the StorageAccountCredential update allowing to specify username. */
         interface WithUsername {
             /**
@@ -288,6 +310,7 @@ public interface StorageAccountCredential {
              */
             Update withUsername(String username);
         }
+
         /** The stage of the StorageAccountCredential update allowing to specify accountKey. */
         interface WithAccountKey {
             /**
@@ -298,6 +321,7 @@ public interface StorageAccountCredential {
              */
             Update withAccountKey(AsymmetricEncryptedSecret accountKey);
         }
+
         /** The stage of the StorageAccountCredential update allowing to specify connectionString. */
         interface WithConnectionString {
             /**
@@ -310,6 +334,7 @@ public interface StorageAccountCredential {
              */
             Update withConnectionString(String connectionString);
         }
+
         /** The stage of the StorageAccountCredential update allowing to specify sslStatus. */
         interface WithSslStatus {
             /**
@@ -320,6 +345,7 @@ public interface StorageAccountCredential {
              */
             Update withSslStatus(SslStatus sslStatus);
         }
+
         /** The stage of the StorageAccountCredential update allowing to specify blobDomainName. */
         interface WithBlobDomainName {
             /**
@@ -330,6 +356,7 @@ public interface StorageAccountCredential {
              */
             Update withBlobDomainName(String blobDomainName);
         }
+
         /** The stage of the StorageAccountCredential update allowing to specify accountType. */
         interface WithAccountType {
             /**
@@ -340,6 +367,7 @@ public interface StorageAccountCredential {
              */
             Update withAccountType(AccountType accountType);
         }
+
         /** The stage of the StorageAccountCredential update allowing to specify storageAccountId. */
         interface WithStorageAccountId {
             /**
@@ -351,6 +379,7 @@ public interface StorageAccountCredential {
             Update withStorageAccountId(String storageAccountId);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

@@ -6,6 +6,8 @@ package com.azure.resourcemanager.databoxedge.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.databoxedge.models.InstallRebootBehavior;
+import com.azure.resourcemanager.databoxedge.models.JobStatus;
+import com.azure.resourcemanager.databoxedge.models.UpdateDetails;
 import com.azure.resourcemanager.databoxedge.models.UpdateOperation;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
@@ -39,16 +41,52 @@ public final class UpdateSummaryProperties {
     private OffsetDateTime lastCompletedScanJobDateTime;
 
     /*
+     * Time when the last scan job is successfully completed.
+     */
+    @JsonProperty(value = "lastSuccessfulScanJobTime")
+    private OffsetDateTime lastSuccessfulScanJobTime;
+
+    /*
      * The time when the last Download job was completed (success/cancelled/failed) on the appliance.
      */
     @JsonProperty(value = "lastCompletedDownloadJobDateTime", access = JsonProperty.Access.WRITE_ONLY)
     private OffsetDateTime lastCompletedDownloadJobDateTime;
 
     /*
+     * JobId of the last ran download job.(Can be success/cancelled/failed)
+     */
+    @JsonProperty(value = "lastCompletedDownloadJobId", access = JsonProperty.Access.WRITE_ONLY)
+    private String lastCompletedDownloadJobId;
+
+    /*
+     * JobStatus of the last ran download job.
+     */
+    @JsonProperty(value = "lastDownloadJobStatus", access = JsonProperty.Access.WRITE_ONLY)
+    private JobStatus lastDownloadJobStatus;
+
+    /*
+     * The time when the Last Install job was completed successfully on the appliance
+     */
+    @JsonProperty(value = "lastSuccessfulInstallJobDateTime")
+    private OffsetDateTime lastSuccessfulInstallJobDateTime;
+
+    /*
      * The time when the last Install job was completed (success/cancelled/failed) on the appliance.
      */
     @JsonProperty(value = "lastCompletedInstallJobDateTime", access = JsonProperty.Access.WRITE_ONLY)
     private OffsetDateTime lastCompletedInstallJobDateTime;
+
+    /*
+     * JobId of the last ran install job.(Can be success/cancelled/failed)
+     */
+    @JsonProperty(value = "lastCompletedInstallJobId", access = JsonProperty.Access.WRITE_ONLY)
+    private String lastCompletedInstallJobId;
+
+    /*
+     * JobStatus of the last ran install job.
+     */
+    @JsonProperty(value = "lastInstallJobStatus", access = JsonProperty.Access.WRITE_ONLY)
+    private JobStatus lastInstallJobStatus;
 
     /*
      * The number of updates available for the current device version as per the last device scan.
@@ -111,10 +149,22 @@ public final class UpdateSummaryProperties {
     private List<String> updateTitles;
 
     /*
+     * The list of updates available for install.
+     */
+    @JsonProperty(value = "updates", access = JsonProperty.Access.WRITE_ONLY)
+    private List<UpdateDetails> updates;
+
+    /*
      * The total size of updates available for download in bytes.
      */
     @JsonProperty(value = "totalUpdateSizeInBytes", access = JsonProperty.Access.WRITE_ONLY)
     private Double totalUpdateSizeInBytes;
+
+    /*
+     * The total time in Minutes
+     */
+    @JsonProperty(value = "totalTimeInMinutes", access = JsonProperty.Access.WRITE_ONLY)
+    private Integer totalTimeInMinutes;
 
     /** Creates an instance of UpdateSummaryProperties class. */
     public UpdateSummaryProperties() {
@@ -203,6 +253,26 @@ public final class UpdateSummaryProperties {
     }
 
     /**
+     * Get the lastSuccessfulScanJobTime property: Time when the last scan job is successfully completed.
+     *
+     * @return the lastSuccessfulScanJobTime value.
+     */
+    public OffsetDateTime lastSuccessfulScanJobTime() {
+        return this.lastSuccessfulScanJobTime;
+    }
+
+    /**
+     * Set the lastSuccessfulScanJobTime property: Time when the last scan job is successfully completed.
+     *
+     * @param lastSuccessfulScanJobTime the lastSuccessfulScanJobTime value to set.
+     * @return the UpdateSummaryProperties object itself.
+     */
+    public UpdateSummaryProperties withLastSuccessfulScanJobTime(OffsetDateTime lastSuccessfulScanJobTime) {
+        this.lastSuccessfulScanJobTime = lastSuccessfulScanJobTime;
+        return this;
+    }
+
+    /**
      * Get the lastCompletedDownloadJobDateTime property: The time when the last Download job was completed
      * (success/cancelled/failed) on the appliance.
      *
@@ -213,6 +283,48 @@ public final class UpdateSummaryProperties {
     }
 
     /**
+     * Get the lastCompletedDownloadJobId property: JobId of the last ran download job.(Can be
+     * success/cancelled/failed).
+     *
+     * @return the lastCompletedDownloadJobId value.
+     */
+    public String lastCompletedDownloadJobId() {
+        return this.lastCompletedDownloadJobId;
+    }
+
+    /**
+     * Get the lastDownloadJobStatus property: JobStatus of the last ran download job.
+     *
+     * @return the lastDownloadJobStatus value.
+     */
+    public JobStatus lastDownloadJobStatus() {
+        return this.lastDownloadJobStatus;
+    }
+
+    /**
+     * Get the lastSuccessfulInstallJobDateTime property: The time when the Last Install job was completed successfully
+     * on the appliance.
+     *
+     * @return the lastSuccessfulInstallJobDateTime value.
+     */
+    public OffsetDateTime lastSuccessfulInstallJobDateTime() {
+        return this.lastSuccessfulInstallJobDateTime;
+    }
+
+    /**
+     * Set the lastSuccessfulInstallJobDateTime property: The time when the Last Install job was completed successfully
+     * on the appliance.
+     *
+     * @param lastSuccessfulInstallJobDateTime the lastSuccessfulInstallJobDateTime value to set.
+     * @return the UpdateSummaryProperties object itself.
+     */
+    public UpdateSummaryProperties withLastSuccessfulInstallJobDateTime(
+        OffsetDateTime lastSuccessfulInstallJobDateTime) {
+        this.lastSuccessfulInstallJobDateTime = lastSuccessfulInstallJobDateTime;
+        return this;
+    }
+
+    /**
      * Get the lastCompletedInstallJobDateTime property: The time when the last Install job was completed
      * (success/cancelled/failed) on the appliance.
      *
@@ -220,6 +332,24 @@ public final class UpdateSummaryProperties {
      */
     public OffsetDateTime lastCompletedInstallJobDateTime() {
         return this.lastCompletedInstallJobDateTime;
+    }
+
+    /**
+     * Get the lastCompletedInstallJobId property: JobId of the last ran install job.(Can be success/cancelled/failed).
+     *
+     * @return the lastCompletedInstallJobId value.
+     */
+    public String lastCompletedInstallJobId() {
+        return this.lastCompletedInstallJobId;
+    }
+
+    /**
+     * Get the lastInstallJobStatus property: JobStatus of the last ran install job.
+     *
+     * @return the lastInstallJobStatus value.
+     */
+    public JobStatus lastInstallJobStatus() {
+        return this.lastInstallJobStatus;
     }
 
     /**
@@ -317,6 +447,15 @@ public final class UpdateSummaryProperties {
     }
 
     /**
+     * Get the updates property: The list of updates available for install.
+     *
+     * @return the updates value.
+     */
+    public List<UpdateDetails> updates() {
+        return this.updates;
+    }
+
+    /**
      * Get the totalUpdateSizeInBytes property: The total size of updates available for download in bytes.
      *
      * @return the totalUpdateSizeInBytes value.
@@ -326,10 +465,22 @@ public final class UpdateSummaryProperties {
     }
 
     /**
+     * Get the totalTimeInMinutes property: The total time in Minutes.
+     *
+     * @return the totalTimeInMinutes value.
+     */
+    public Integer totalTimeInMinutes() {
+        return this.totalTimeInMinutes;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (updates() != null) {
+            updates().forEach(e -> e.validate());
+        }
     }
 }

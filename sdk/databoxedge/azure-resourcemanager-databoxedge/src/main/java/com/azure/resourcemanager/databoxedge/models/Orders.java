@@ -110,4 +110,29 @@ public interface Orders {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     void delete(String deviceName, String resourceGroupName, Context context);
+
+    /**
+     * Gets the DCAccess Code.
+     *
+     * @param deviceName The device name.
+     * @param resourceGroupName The resource group name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the DCAccess Code along with {@link Response}.
+     */
+    Response<DCAccessCode> listDCAccessCodeWithResponse(String deviceName, String resourceGroupName, Context context);
+
+    /**
+     * Gets the DCAccess Code.
+     *
+     * @param deviceName The device name.
+     * @param resourceGroupName The resource group name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the DCAccess Code.
+     */
+    DCAccessCode listDCAccessCode(String deviceName, String resourceGroupName);
 }

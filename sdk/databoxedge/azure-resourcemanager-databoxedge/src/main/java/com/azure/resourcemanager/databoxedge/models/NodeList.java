@@ -18,6 +18,12 @@ public final class NodeList {
     @JsonProperty(value = "value", access = JsonProperty.Access.WRITE_ONLY)
     private List<NodeInner> value;
 
+    /*
+     * Link to the next set of results.
+     */
+    @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
+    private String nextLink;
+
     /** Creates an instance of NodeList class. */
     public NodeList() {
     }
@@ -29,6 +35,15 @@ public final class NodeList {
      */
     public List<NodeInner> value() {
         return this.value;
+    }
+
+    /**
+     * Get the nextLink property: Link to the next set of results.
+     *
+     * @return the nextLink value.
+     */
+    public String nextLink() {
+        return this.nextLink;
     }
 
     /**
