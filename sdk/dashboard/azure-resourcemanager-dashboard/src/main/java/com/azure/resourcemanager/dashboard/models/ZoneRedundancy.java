@@ -17,6 +17,15 @@ public final class ZoneRedundancy extends ExpandableStringEnum<ZoneRedundancy> {
     public static final ZoneRedundancy ENABLED = fromString("Enabled");
 
     /**
+     * Creates a new instance of ZoneRedundancy value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public ZoneRedundancy() {
+    }
+
+    /**
      * Creates or finds a ZoneRedundancy from its string representation.
      *
      * @param name a name to look for.
