@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.nginx.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Deployments Delete. */
 public final class DeploymentsDeleteSamples {
     /*
@@ -17,6 +15,6 @@ public final class DeploymentsDeleteSamples {
      * @param manager Entry point to NginxManager.
      */
     public static void deploymentsDelete(com.azure.resourcemanager.nginx.NginxManager manager) {
-        manager.deployments().delete("myResourceGroup", "myDeployment", Context.NONE);
+        manager.deployments().delete("myResourceGroup", "myDeployment", com.azure.core.util.Context.NONE);
     }
 }

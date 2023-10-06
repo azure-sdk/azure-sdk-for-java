@@ -96,11 +96,13 @@ public interface NginxConfiguration {
             DefinitionStages.WithParentResource,
             DefinitionStages.WithCreate {
     }
+
     /** The NginxConfiguration definition stages. */
     interface DefinitionStages {
         /** The first stage of the NginxConfiguration definition. */
         interface Blank extends WithLocation {
         }
+
         /** The stage of the NginxConfiguration definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -119,6 +121,7 @@ public interface NginxConfiguration {
              */
             WithParentResource withRegion(String location);
         }
+
         /** The stage of the NginxConfiguration definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -130,6 +133,7 @@ public interface NginxConfiguration {
              */
             WithCreate withExistingNginxDeployment(String resourceGroupName, String deploymentName);
         }
+
         /**
          * The stage of the NginxConfiguration definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
@@ -150,6 +154,7 @@ public interface NginxConfiguration {
              */
             NginxConfiguration create(Context context);
         }
+
         /** The stage of the NginxConfiguration definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -160,6 +165,7 @@ public interface NginxConfiguration {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
         /** The stage of the NginxConfiguration definition allowing to specify properties. */
         interface WithProperties {
             /**
@@ -171,6 +177,7 @@ public interface NginxConfiguration {
             WithCreate withProperties(NginxConfigurationProperties properties);
         }
     }
+
     /**
      * Begins update for the NginxConfiguration resource.
      *
@@ -195,6 +202,7 @@ public interface NginxConfiguration {
          */
         NginxConfiguration apply(Context context);
     }
+
     /** The NginxConfiguration update stages. */
     interface UpdateStages {
         /** The stage of the NginxConfiguration update allowing to specify tags. */
@@ -207,6 +215,7 @@ public interface NginxConfiguration {
              */
             Update withTags(Map<String, String> tags);
         }
+
         /** The stage of the NginxConfiguration update allowing to specify properties. */
         interface WithProperties {
             /**
@@ -218,6 +227,7 @@ public interface NginxConfiguration {
             Update withProperties(NginxConfigurationProperties properties);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *
