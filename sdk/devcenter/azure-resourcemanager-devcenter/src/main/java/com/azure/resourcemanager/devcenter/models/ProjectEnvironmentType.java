@@ -131,11 +131,13 @@ public interface ProjectEnvironmentType {
     interface Definition
         extends DefinitionStages.Blank, DefinitionStages.WithParentResource, DefinitionStages.WithCreate {
     }
+
     /** The ProjectEnvironmentType definition stages. */
     interface DefinitionStages {
         /** The first stage of the ProjectEnvironmentType definition. */
         interface Blank extends WithParentResource {
         }
+
         /** The stage of the ProjectEnvironmentType definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -147,6 +149,7 @@ public interface ProjectEnvironmentType {
              */
             WithCreate withExistingProject(String resourceGroupName, String projectName);
         }
+
         /**
          * The stage of the ProjectEnvironmentType definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
@@ -174,6 +177,7 @@ public interface ProjectEnvironmentType {
              */
             ProjectEnvironmentType create(Context context);
         }
+
         /** The stage of the ProjectEnvironmentType definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -192,6 +196,7 @@ public interface ProjectEnvironmentType {
              */
             WithCreate withRegion(String location);
         }
+
         /** The stage of the ProjectEnvironmentType definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -202,6 +207,7 @@ public interface ProjectEnvironmentType {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
         /** The stage of the ProjectEnvironmentType definition allowing to specify identity. */
         interface WithIdentity {
             /**
@@ -212,6 +218,7 @@ public interface ProjectEnvironmentType {
              */
             WithCreate withIdentity(ManagedServiceIdentity identity);
         }
+
         /** The stage of the ProjectEnvironmentType definition allowing to specify deploymentTargetId. */
         interface WithDeploymentTargetId {
             /**
@@ -224,6 +231,7 @@ public interface ProjectEnvironmentType {
              */
             WithCreate withDeploymentTargetId(String deploymentTargetId);
         }
+
         /** The stage of the ProjectEnvironmentType definition allowing to specify status. */
         interface WithStatus {
             /**
@@ -234,6 +242,7 @@ public interface ProjectEnvironmentType {
              */
             WithCreate withStatus(EnvironmentTypeEnableStatus status);
         }
+
         /** The stage of the ProjectEnvironmentType definition allowing to specify creatorRoleAssignment. */
         interface WithCreatorRoleAssignment {
             /**
@@ -247,6 +256,7 @@ public interface ProjectEnvironmentType {
             WithCreate withCreatorRoleAssignment(
                 ProjectEnvironmentTypeUpdatePropertiesCreatorRoleAssignment creatorRoleAssignment);
         }
+
         /** The stage of the ProjectEnvironmentType definition allowing to specify userRoleAssignments. */
         interface WithUserRoleAssignments {
             /**
@@ -260,6 +270,7 @@ public interface ProjectEnvironmentType {
             WithCreate withUserRoleAssignments(Map<String, UserRoleAssignmentValue> userRoleAssignments);
         }
     }
+
     /**
      * Begins update for the ProjectEnvironmentType resource.
      *
@@ -290,6 +301,7 @@ public interface ProjectEnvironmentType {
          */
         ProjectEnvironmentType apply(Context context);
     }
+
     /** The ProjectEnvironmentType update stages. */
     interface UpdateStages {
         /** The stage of the ProjectEnvironmentType update allowing to specify tags. */
@@ -302,6 +314,7 @@ public interface ProjectEnvironmentType {
              */
             Update withTags(Map<String, String> tags);
         }
+
         /** The stage of the ProjectEnvironmentType update allowing to specify identity. */
         interface WithIdentity {
             /**
@@ -312,6 +325,7 @@ public interface ProjectEnvironmentType {
              */
             Update withIdentity(ManagedServiceIdentity identity);
         }
+
         /** The stage of the ProjectEnvironmentType update allowing to specify deploymentTargetId. */
         interface WithDeploymentTargetId {
             /**
@@ -324,6 +338,7 @@ public interface ProjectEnvironmentType {
              */
             Update withDeploymentTargetId(String deploymentTargetId);
         }
+
         /** The stage of the ProjectEnvironmentType update allowing to specify status. */
         interface WithStatus {
             /**
@@ -334,6 +349,7 @@ public interface ProjectEnvironmentType {
              */
             Update withStatus(EnvironmentTypeEnableStatus status);
         }
+
         /** The stage of the ProjectEnvironmentType update allowing to specify creatorRoleAssignment. */
         interface WithCreatorRoleAssignment {
             /**
@@ -347,6 +363,7 @@ public interface ProjectEnvironmentType {
             Update withCreatorRoleAssignment(
                 ProjectEnvironmentTypeUpdatePropertiesCreatorRoleAssignment creatorRoleAssignment);
         }
+
         /** The stage of the ProjectEnvironmentType update allowing to specify userRoleAssignments. */
         interface WithUserRoleAssignments {
             /**
@@ -360,6 +377,7 @@ public interface ProjectEnvironmentType {
             Update withUserRoleAssignments(Map<String, UserRoleAssignmentValue> userRoleAssignments);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *
