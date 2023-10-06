@@ -7,7 +7,7 @@ package com.azure.resourcemanager.managementgroups.generated;
 /** Samples for ResourceProvider StartTenantBackfill. */
 public final class ResourceProviderStartTenantBackfillSamples {
     /*
-     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2021-04-01/examples/StartTenantBackfillRequest.json
+     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2023-04-01/examples/StartTenantBackfillRequest.json
      */
     /**
      * Sample code: StartTenantBackfill.
