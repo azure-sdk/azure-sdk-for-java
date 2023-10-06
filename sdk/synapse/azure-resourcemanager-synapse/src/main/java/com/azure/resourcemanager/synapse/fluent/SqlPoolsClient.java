@@ -12,7 +12,6 @@ import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.synapse.fluent.models.SqlPoolInner;
-import com.azure.resourcemanager.synapse.models.ResourceMoveDefinition;
 import com.azure.resourcemanager.synapse.models.SqlPoolPatchInfo;
 
 /** An instance of this class provides access to all the operations defined in SqlPoolsClient. */
@@ -144,6 +143,8 @@ public interface SqlPoolsClient {
      * @param sqlPoolInfo The SQL pool to create.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server on
+     *     status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of sQL pool.
      */
@@ -163,6 +164,8 @@ public interface SqlPoolsClient {
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server on
+     *     status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of sQL pool.
      */
@@ -181,6 +184,8 @@ public interface SqlPoolsClient {
      * @param sqlPoolInfo The SQL pool to create.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server on
+     *     status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return sQL pool.
      */
@@ -199,6 +204,8 @@ public interface SqlPoolsClient {
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server on
+     *     status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return sQL pool.
      */
@@ -440,43 +447,4 @@ public interface SqlPoolsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     SqlPoolInner resume(String resourceGroupName, String workspaceName, String sqlPoolName, Context context);
-
-    /**
-     * Rename a SQL pool
-     *
-     * <p>Rename a SQL pool.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param sqlPoolName SQL pool name.
-     * @param parameters The resource move definition for renaming this Sql pool.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<Void> renameWithResponse(
-        String resourceGroupName,
-        String workspaceName,
-        String sqlPoolName,
-        ResourceMoveDefinition parameters,
-        Context context);
-
-    /**
-     * Rename a SQL pool
-     *
-     * <p>Rename a SQL pool.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param sqlPoolName SQL pool name.
-     * @param parameters The resource move definition for renaming this Sql pool.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    void rename(String resourceGroupName, String workspaceName, String sqlPoolName, ResourceMoveDefinition parameters);
 }

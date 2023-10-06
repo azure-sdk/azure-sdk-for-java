@@ -23,10 +23,11 @@ public final class PrivateLinkHubsCreateOrUpdateSamples {
             .define("privateLinkHub1")
             .withRegion("East US")
             .withExistingResourceGroup("resourceGroup1")
-            .withTags(mapOf("key", "value"))
+            .withTags(mapOf("key", "fakeTokenPlaceholder"))
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
