@@ -12,13 +12,17 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class MstiDataConnectorDataTypesMicrosoftEmergingThreatFeed extends DataConnectorDataTypeCommon {
     /*
-     * lookback period
+     * The lookback period for the feed to be imported.
      */
     @JsonProperty(value = "lookbackPeriod", required = true)
     private String lookbackPeriod;
 
+    /** Creates an instance of MstiDataConnectorDataTypesMicrosoftEmergingThreatFeed class. */
+    public MstiDataConnectorDataTypesMicrosoftEmergingThreatFeed() {
+    }
+
     /**
-     * Get the lookbackPeriod property: lookback period.
+     * Get the lookbackPeriod property: The lookback period for the feed to be imported.
      *
      * @return the lookbackPeriod value.
      */
@@ -27,7 +31,7 @@ public final class MstiDataConnectorDataTypesMicrosoftEmergingThreatFeed extends
     }
 
     /**
-     * Set the lookbackPeriod property: lookback period.
+     * Set the lookbackPeriod property: The lookback period for the feed to be imported.
      *
      * @param lookbackPeriod the lookbackPeriod value to set.
      * @return the MstiDataConnectorDataTypesMicrosoftEmergingThreatFeed object itself.

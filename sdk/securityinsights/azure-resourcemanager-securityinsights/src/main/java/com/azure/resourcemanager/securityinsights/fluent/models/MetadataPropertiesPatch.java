@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.securityinsights.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.resourcemanager.securityinsights.models.Kind;
 import com.azure.resourcemanager.securityinsights.models.MetadataAuthor;
 import com.azure.resourcemanager.securityinsights.models.MetadataCategories;
 import com.azure.resourcemanager.securityinsights.models.MetadataDependencies;
@@ -43,7 +42,7 @@ public final class MetadataPropertiesPatch {
      * The kind of content the metadata is for.
      */
     @JsonProperty(value = "kind")
-    private Kind kind;
+    private String kind;
 
     /*
      * Source of the content.  This is where/how it was created.
@@ -137,6 +136,10 @@ public final class MetadataPropertiesPatch {
     @JsonProperty(value = "previewImagesDark")
     private List<String> previewImagesDark;
 
+    /** Creates an instance of MetadataPropertiesPatch class. */
+    public MetadataPropertiesPatch() {
+    }
+
     /**
      * Get the contentId property: Static ID for the content. Used to identify dependencies and content from solutions
      * or community. Hard-coded/static for out of the box content and solutions. Dynamic for user-created. This is the
@@ -212,7 +215,7 @@ public final class MetadataPropertiesPatch {
      *
      * @return the kind value.
      */
-    public Kind kind() {
+    public String kind() {
         return this.kind;
     }
 
@@ -222,7 +225,7 @@ public final class MetadataPropertiesPatch {
      * @param kind the kind value to set.
      * @return the MetadataPropertiesPatch object itself.
      */
-    public MetadataPropertiesPatch withKind(Kind kind) {
+    public MetadataPropertiesPatch withKind(String kind) {
         this.kind = kind;
         return this;
     }

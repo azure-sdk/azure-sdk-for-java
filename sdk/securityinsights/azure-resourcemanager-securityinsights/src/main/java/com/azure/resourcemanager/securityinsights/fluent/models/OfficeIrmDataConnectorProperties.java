@@ -18,6 +18,10 @@ public final class OfficeIrmDataConnectorProperties extends DataConnectorTenantI
     @JsonProperty(value = "dataTypes")
     private AlertsDataTypeOfDataConnector dataTypes;
 
+    /** Creates an instance of OfficeIrmDataConnectorProperties class. */
+    public OfficeIrmDataConnectorProperties() {
+    }
+
     /**
      * Get the dataTypes property: The available data types for the connector.
      *

@@ -22,6 +22,10 @@ public final class CodelessUiDataConnector extends DataConnectorInner {
     @JsonProperty(value = "properties")
     private CodelessParameters innerProperties;
 
+    /** Creates an instance of CodelessUiDataConnector class. */
+    public CodelessUiDataConnector() {
+    }
+
     /**
      * Get the innerProperties property: Codeless UI data connector properties.
      *

@@ -20,7 +20,11 @@ public final class ThreatIntelligenceSortingCriteria {
      * Sorting order (ascending/descending/unsorted).
      */
     @JsonProperty(value = "sortOrder")
-    private ThreatIntelligenceSortingCriteriaEnum sortOrder;
+    private ThreatIntelligenceSortingOrder sortOrder;
+
+    /** Creates an instance of ThreatIntelligenceSortingCriteria class. */
+    public ThreatIntelligenceSortingCriteria() {
+    }
 
     /**
      * Get the itemKey property: Column name.
@@ -47,7 +51,7 @@ public final class ThreatIntelligenceSortingCriteria {
      *
      * @return the sortOrder value.
      */
-    public ThreatIntelligenceSortingCriteriaEnum sortOrder() {
+    public ThreatIntelligenceSortingOrder sortOrder() {
         return this.sortOrder;
     }
 
@@ -57,7 +61,7 @@ public final class ThreatIntelligenceSortingCriteria {
      * @param sortOrder the sortOrder value to set.
      * @return the ThreatIntelligenceSortingCriteria object itself.
      */
-    public ThreatIntelligenceSortingCriteria withSortOrder(ThreatIntelligenceSortingCriteriaEnum sortOrder) {
+    public ThreatIntelligenceSortingCriteria withSortOrder(ThreatIntelligenceSortingOrder sortOrder) {
         this.sortOrder = sortOrder;
         return this;
     }

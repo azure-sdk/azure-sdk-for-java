@@ -16,6 +16,10 @@ public final class ActivityEntityQueriesPropertiesQueryDefinitions {
     @JsonProperty(value = "query")
     private String query;
 
+    /** Creates an instance of ActivityEntityQueriesPropertiesQueryDefinitions class. */
+    public ActivityEntityQueriesPropertiesQueryDefinitions() {
+    }
+
     /**
      * Get the query property: The Activity query to run on a given entity.
      *

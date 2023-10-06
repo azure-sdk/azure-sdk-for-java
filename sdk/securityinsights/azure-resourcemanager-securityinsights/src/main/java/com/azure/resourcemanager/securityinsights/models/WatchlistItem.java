@@ -135,11 +135,13 @@ public interface WatchlistItem {
     interface Definition
         extends DefinitionStages.Blank, DefinitionStages.WithParentResource, DefinitionStages.WithCreate {
     }
+
     /** The WatchlistItem definition stages. */
     interface DefinitionStages {
         /** The first stage of the WatchlistItem definition. */
         interface Blank extends WithParentResource {
         }
+
         /** The stage of the WatchlistItem definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -152,6 +154,7 @@ public interface WatchlistItem {
              */
             WithCreate withExistingWatchlist(String resourceGroupName, String workspaceName, String watchlistAlias);
         }
+
         /**
          * The stage of the WatchlistItem definition which contains all the minimum required properties for the resource
          * to be created, but also allows for any other optional properties to be specified.
@@ -183,6 +186,7 @@ public interface WatchlistItem {
              */
             WatchlistItem create(Context context);
         }
+
         /** The stage of the WatchlistItem definition allowing to specify etag. */
         interface WithEtag {
             /**
@@ -193,6 +197,7 @@ public interface WatchlistItem {
              */
             WithCreate withEtag(String etag);
         }
+
         /** The stage of the WatchlistItem definition allowing to specify watchlistItemType. */
         interface WithWatchlistItemType {
             /**
@@ -203,6 +208,7 @@ public interface WatchlistItem {
              */
             WithCreate withWatchlistItemType(String watchlistItemType);
         }
+
         /** The stage of the WatchlistItem definition allowing to specify watchlistItemId. */
         interface WithWatchlistItemId {
             /**
@@ -213,6 +219,7 @@ public interface WatchlistItem {
              */
             WithCreate withWatchlistItemId(String watchlistItemId);
         }
+
         /** The stage of the WatchlistItem definition allowing to specify tenantId. */
         interface WithTenantId {
             /**
@@ -223,6 +230,7 @@ public interface WatchlistItem {
              */
             WithCreate withTenantId(String tenantId);
         }
+
         /** The stage of the WatchlistItem definition allowing to specify isDeleted. */
         interface WithIsDeleted {
             /**
@@ -233,6 +241,7 @@ public interface WatchlistItem {
              */
             WithCreate withIsDeleted(Boolean isDeleted);
         }
+
         /** The stage of the WatchlistItem definition allowing to specify created. */
         interface WithCreated {
             /**
@@ -243,6 +252,7 @@ public interface WatchlistItem {
              */
             WithCreate withCreated(OffsetDateTime created);
         }
+
         /** The stage of the WatchlistItem definition allowing to specify updated. */
         interface WithUpdated {
             /**
@@ -253,6 +263,7 @@ public interface WatchlistItem {
              */
             WithCreate withUpdated(OffsetDateTime updated);
         }
+
         /** The stage of the WatchlistItem definition allowing to specify createdBy. */
         interface WithCreatedBy {
             /**
@@ -263,6 +274,7 @@ public interface WatchlistItem {
              */
             WithCreate withCreatedBy(UserInfo createdBy);
         }
+
         /** The stage of the WatchlistItem definition allowing to specify updatedBy. */
         interface WithUpdatedBy {
             /**
@@ -273,6 +285,7 @@ public interface WatchlistItem {
              */
             WithCreate withUpdatedBy(UserInfo updatedBy);
         }
+
         /** The stage of the WatchlistItem definition allowing to specify itemsKeyValue. */
         interface WithItemsKeyValue {
             /**
@@ -283,6 +296,7 @@ public interface WatchlistItem {
              */
             WithCreate withItemsKeyValue(Map<String, Object> itemsKeyValue);
         }
+
         /** The stage of the WatchlistItem definition allowing to specify entityMapping. */
         interface WithEntityMapping {
             /**
@@ -294,6 +308,7 @@ public interface WatchlistItem {
             WithCreate withEntityMapping(Map<String, Object> entityMapping);
         }
     }
+
     /**
      * Begins update for the WatchlistItem resource.
      *
@@ -329,6 +344,7 @@ public interface WatchlistItem {
          */
         WatchlistItem apply(Context context);
     }
+
     /** The WatchlistItem update stages. */
     interface UpdateStages {
         /** The stage of the WatchlistItem update allowing to specify etag. */
@@ -341,6 +357,7 @@ public interface WatchlistItem {
              */
             Update withEtag(String etag);
         }
+
         /** The stage of the WatchlistItem update allowing to specify watchlistItemType. */
         interface WithWatchlistItemType {
             /**
@@ -351,6 +368,7 @@ public interface WatchlistItem {
              */
             Update withWatchlistItemType(String watchlistItemType);
         }
+
         /** The stage of the WatchlistItem update allowing to specify watchlistItemId. */
         interface WithWatchlistItemId {
             /**
@@ -361,6 +379,7 @@ public interface WatchlistItem {
              */
             Update withWatchlistItemId(String watchlistItemId);
         }
+
         /** The stage of the WatchlistItem update allowing to specify tenantId. */
         interface WithTenantId {
             /**
@@ -371,6 +390,7 @@ public interface WatchlistItem {
              */
             Update withTenantId(String tenantId);
         }
+
         /** The stage of the WatchlistItem update allowing to specify isDeleted. */
         interface WithIsDeleted {
             /**
@@ -381,6 +401,7 @@ public interface WatchlistItem {
              */
             Update withIsDeleted(Boolean isDeleted);
         }
+
         /** The stage of the WatchlistItem update allowing to specify created. */
         interface WithCreated {
             /**
@@ -391,6 +412,7 @@ public interface WatchlistItem {
              */
             Update withCreated(OffsetDateTime created);
         }
+
         /** The stage of the WatchlistItem update allowing to specify updated. */
         interface WithUpdated {
             /**
@@ -401,6 +423,7 @@ public interface WatchlistItem {
              */
             Update withUpdated(OffsetDateTime updated);
         }
+
         /** The stage of the WatchlistItem update allowing to specify createdBy. */
         interface WithCreatedBy {
             /**
@@ -411,6 +434,7 @@ public interface WatchlistItem {
              */
             Update withCreatedBy(UserInfo createdBy);
         }
+
         /** The stage of the WatchlistItem update allowing to specify updatedBy. */
         interface WithUpdatedBy {
             /**
@@ -421,6 +445,7 @@ public interface WatchlistItem {
              */
             Update withUpdatedBy(UserInfo updatedBy);
         }
+
         /** The stage of the WatchlistItem update allowing to specify itemsKeyValue. */
         interface WithItemsKeyValue {
             /**
@@ -431,6 +456,7 @@ public interface WatchlistItem {
              */
             Update withItemsKeyValue(Map<String, Object> itemsKeyValue);
         }
+
         /** The stage of the WatchlistItem update allowing to specify entityMapping. */
         interface WithEntityMapping {
             /**
@@ -442,6 +468,7 @@ public interface WatchlistItem {
             Update withEntityMapping(Map<String, Object> entityMapping);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

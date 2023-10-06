@@ -22,6 +22,10 @@ public final class InsightQueryItemPropertiesTableQueryQueriesDefinitionsPropert
     @JsonProperty(value = "Query")
     private String query;
 
+    /** Creates an instance of InsightQueryItemPropertiesTableQueryQueriesDefinitionsPropertiesItemsItem class. */
+    public InsightQueryItemPropertiesTableQueryQueriesDefinitionsPropertiesItemsItem() {
+    }
+
     /**
      * Get the projectedName property: Insight Link Definition Projected Name.
      *

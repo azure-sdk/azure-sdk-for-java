@@ -29,6 +29,10 @@ public final class TimelineError {
     @JsonProperty(value = "errorMessage", required = true)
     private String errorMessage;
 
+    /** Creates an instance of TimelineError class. */
+    public TimelineError() {
+    }
+
     /**
      * Get the kind property: the query kind.
      *

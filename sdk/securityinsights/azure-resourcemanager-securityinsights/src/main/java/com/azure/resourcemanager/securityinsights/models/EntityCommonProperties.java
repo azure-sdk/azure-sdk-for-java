@@ -26,6 +26,10 @@ public class EntityCommonProperties {
     @JsonProperty(value = "friendlyName", access = JsonProperty.Access.WRITE_ONLY)
     private String friendlyName;
 
+    /** Creates an instance of EntityCommonProperties class. */
+    public EntityCommonProperties() {
+    }
+
     /**
      * Get the additionalData property: A bag of custom fields that should be part of the entity and will be presented
      * to the user.

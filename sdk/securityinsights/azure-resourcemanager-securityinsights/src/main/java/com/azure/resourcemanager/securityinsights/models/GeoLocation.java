@@ -35,17 +35,15 @@ public final class GeoLocation {
     private String countryName;
 
     /*
-     * The longitude of the identified location, expressed as a floating point number with range of -180 to 180, with
-     * positive numbers representing East and negative numbers representing West. Latitude and longitude are derived
-     * from the city or postal code.
+     * The latitude of the identified location, expressed as a floating point number with range of - 90 to 90. Latitude
+     * and longitude are derived from the city or postal code.
      */
     @JsonProperty(value = "latitude", access = JsonProperty.Access.WRITE_ONLY)
     private Double latitude;
 
     /*
-     * The latitude of the identified location, expressed as a floating point number with range of - 90 to 90, with
-     * positive numbers representing North and negative numbers representing South. Latitude and longitude are derived
-     * from the city or postal code.
+     * The longitude of the identified location, expressed as a floating point number with range of -180 to 180.
+     * Latitude and longitude are derived from the city or postal code.
      */
     @JsonProperty(value = "longitude", access = JsonProperty.Access.WRITE_ONLY)
     private Double longitude;
@@ -55,6 +53,10 @@ public final class GeoLocation {
      */
     @JsonProperty(value = "state", access = JsonProperty.Access.WRITE_ONLY)
     private String state;
+
+    /** Creates an instance of GeoLocation class. */
+    public GeoLocation() {
+    }
 
     /**
      * Get the asn property: Autonomous System Number.
@@ -94,9 +96,8 @@ public final class GeoLocation {
     }
 
     /**
-     * Get the latitude property: The longitude of the identified location, expressed as a floating point number with
-     * range of -180 to 180, with positive numbers representing East and negative numbers representing West. Latitude
-     * and longitude are derived from the city or postal code.
+     * Get the latitude property: The latitude of the identified location, expressed as a floating point number with
+     * range of - 90 to 90. Latitude and longitude are derived from the city or postal code.
      *
      * @return the latitude value.
      */
@@ -105,9 +106,8 @@ public final class GeoLocation {
     }
 
     /**
-     * Get the longitude property: The latitude of the identified location, expressed as a floating point number with
-     * range of - 90 to 90, with positive numbers representing North and negative numbers representing South. Latitude
-     * and longitude are derived from the city or postal code.
+     * Get the longitude property: The longitude of the identified location, expressed as a floating point number with
+     * range of -180 to 180. Latitude and longitude are derived from the city or postal code.
      *
      * @return the longitude value.
      */
