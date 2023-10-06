@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.hdinsight.containers.models;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.hdinsight.containers.fluent.models.ClusterPoolVersionInner;
 
 /** An immutable client-side representation of ClusterPoolVersion. */
@@ -28,6 +29,13 @@ public interface ClusterPoolVersion {
      * @return the type value.
      */
     String type();
+
+    /**
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     *
+     * @return the systemData value.
+     */
+    SystemData systemData();
 
     /**
      * Gets the clusterPoolVersion property: Cluster pool version is a 2-part version.
