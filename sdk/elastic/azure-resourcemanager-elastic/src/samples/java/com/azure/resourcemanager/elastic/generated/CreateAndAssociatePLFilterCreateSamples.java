@@ -7,7 +7,7 @@ package com.azure.resourcemanager.elastic.generated;
 /** Samples for CreateAndAssociatePLFilter Create. */
 public final class CreateAndAssociatePLFilterCreateSamples {
     /*
-     * x-ms-original-file: specification/elastic/resource-manager/Microsoft.Elastic/preview/2023-02-01-preview/examples/PrivateLinkTrafficFilters_Create.json
+     * x-ms-original-file: specification/elastic/resource-manager/Microsoft.Elastic/preview/2023-10-01-preview/examples/PrivateLinkTrafficFilters_Create.json
      */
     /**
      * Sample code: createAndAssociatePLFilter_Create.
