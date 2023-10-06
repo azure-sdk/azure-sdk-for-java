@@ -50,10 +50,11 @@ public final class AzureTrafficCollectorsCreateOrUpdateSamples {
             .define("atc")
             .withRegion("West US")
             .withExistingResourceGroup("rg1")
-            .withTags(mapOf("key1", "value1"))
+            .withTags(mapOf("key1", "fakeTokenPlaceholder"))
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -70,8 +71,6 @@ public final class AzureTrafficCollectorsCreateOrUpdateSamples {
 ### AzureTrafficCollectors_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for AzureTrafficCollectors Delete. */
 public final class AzureTrafficCollectorsDeleteSamples {
     /*
@@ -84,7 +83,7 @@ public final class AzureTrafficCollectorsDeleteSamples {
      */
     public static void deleteTrafficCollector(
         com.azure.resourcemanager.networkfunction.AzureTrafficCollectorManager manager) {
-        manager.azureTrafficCollectors().delete("rg1", "atc", Context.NONE);
+        manager.azureTrafficCollectors().delete("rg1", "atc", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -92,8 +91,6 @@ public final class AzureTrafficCollectorsDeleteSamples {
 ### AzureTrafficCollectors_GetByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for AzureTrafficCollectors GetByResourceGroup. */
 public final class AzureTrafficCollectorsGetByResourceGroupSamples {
     /*
@@ -106,7 +103,7 @@ public final class AzureTrafficCollectorsGetByResourceGroupSamples {
      */
     public static void getTrafficCollector(
         com.azure.resourcemanager.networkfunction.AzureTrafficCollectorManager manager) {
-        manager.azureTrafficCollectors().getByResourceGroupWithResponse("rg1", "atc", Context.NONE);
+        manager.azureTrafficCollectors().getByResourceGroupWithResponse("rg1", "atc", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -114,7 +111,6 @@ public final class AzureTrafficCollectorsGetByResourceGroupSamples {
 ### AzureTrafficCollectors_UpdateTags
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.networkfunction.models.AzureTrafficCollector;
 import java.util.HashMap;
 import java.util.Map;
@@ -132,10 +128,14 @@ public final class AzureTrafficCollectorsUpdateTagsSamples {
     public static void updateTrafficCollectorTags(
         com.azure.resourcemanager.networkfunction.AzureTrafficCollectorManager manager) {
         AzureTrafficCollector resource =
-            manager.azureTrafficCollectors().getByResourceGroupWithResponse("rg1", "atc", Context.NONE).getValue();
-        resource.update().withTags(mapOf("key1", "value1", "key2", "value2")).apply();
+            manager
+                .azureTrafficCollectors()
+                .getByResourceGroupWithResponse("rg1", "atc", com.azure.core.util.Context.NONE)
+                .getValue();
+        resource.update().withTags(mapOf("key1", "fakeTokenPlaceholder", "key2", "fakeTokenPlaceholder")).apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -152,8 +152,6 @@ public final class AzureTrafficCollectorsUpdateTagsSamples {
 ### AzureTrafficCollectorsByResourceGroup_ListByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for AzureTrafficCollectorsByResourceGroup ListByResourceGroup. */
 public final class AzureTrafficCollectorsByResourceGroupListByResourceGroupSamples {
     /*
@@ -166,7 +164,7 @@ public final class AzureTrafficCollectorsByResourceGroupListByResourceGroupSampl
      */
     public static void listOfTrafficCollectorsByResourceGroup(
         com.azure.resourcemanager.networkfunction.AzureTrafficCollectorManager manager) {
-        manager.azureTrafficCollectorsByResourceGroups().listByResourceGroup("rg1", Context.NONE);
+        manager.azureTrafficCollectorsByResourceGroups().listByResourceGroup("rg1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -174,8 +172,6 @@ public final class AzureTrafficCollectorsByResourceGroupListByResourceGroupSampl
 ### AzureTrafficCollectorsBySubscription_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for AzureTrafficCollectorsBySubscription List. */
 public final class AzureTrafficCollectorsBySubscriptionListSamples {
     /*
@@ -188,7 +184,7 @@ public final class AzureTrafficCollectorsBySubscriptionListSamples {
      */
     public static void listOfTrafficCollectorsBySubscription(
         com.azure.resourcemanager.networkfunction.AzureTrafficCollectorManager manager) {
-        manager.azureTrafficCollectorsBySubscriptions().list(Context.NONE);
+        manager.azureTrafficCollectorsBySubscriptions().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -251,8 +247,6 @@ public final class CollectorPoliciesCreateOrUpdateSamples {
 ### CollectorPolicies_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for CollectorPolicies Delete. */
 public final class CollectorPoliciesDeleteSamples {
     /*
@@ -265,7 +259,7 @@ public final class CollectorPoliciesDeleteSamples {
      */
     public static void deleteCollectionPolicy(
         com.azure.resourcemanager.networkfunction.AzureTrafficCollectorManager manager) {
-        manager.collectorPolicies().delete("rg1", "atc", "cp1", Context.NONE);
+        manager.collectorPolicies().delete("rg1", "atc", "cp1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -273,8 +267,6 @@ public final class CollectorPoliciesDeleteSamples {
 ### CollectorPolicies_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for CollectorPolicies Get. */
 public final class CollectorPoliciesGetSamples {
     /*
@@ -287,7 +279,7 @@ public final class CollectorPoliciesGetSamples {
      */
     public static void getCollectionPolicy(
         com.azure.resourcemanager.networkfunction.AzureTrafficCollectorManager manager) {
-        manager.collectorPolicies().getWithResponse("rg1", "atc", "cp1", Context.NONE);
+        manager.collectorPolicies().getWithResponse("rg1", "atc", "cp1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -295,8 +287,6 @@ public final class CollectorPoliciesGetSamples {
 ### CollectorPolicies_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for CollectorPolicies List. */
 public final class CollectorPoliciesListSamples {
     /*
@@ -309,7 +299,7 @@ public final class CollectorPoliciesListSamples {
      */
     public static void listOfCollectionPolicies(
         com.azure.resourcemanager.networkfunction.AzureTrafficCollectorManager manager) {
-        manager.collectorPolicies().list("rg1", "atc", Context.NONE);
+        manager.collectorPolicies().list("rg1", "atc", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -317,7 +307,6 @@ public final class CollectorPoliciesListSamples {
 ### CollectorPolicies_UpdateTags
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.networkfunction.models.CollectorPolicy;
 import java.util.HashMap;
 import java.util.Map;
@@ -335,10 +324,14 @@ public final class CollectorPoliciesUpdateTagsSamples {
     public static void updateCollectorPolicyTags(
         com.azure.resourcemanager.networkfunction.AzureTrafficCollectorManager manager) {
         CollectorPolicy resource =
-            manager.collectorPolicies().getWithResponse("rg1", "atc", "cp1", Context.NONE).getValue();
-        resource.update().withTags(mapOf("key1", "value1", "key2", "value2")).apply();
+            manager
+                .collectorPolicies()
+                .getWithResponse("rg1", "atc", "cp1", com.azure.core.util.Context.NONE)
+                .getValue();
+        resource.update().withTags(mapOf("key1", "fakeTokenPlaceholder", "key2", "fakeTokenPlaceholder")).apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -355,8 +348,6 @@ public final class CollectorPoliciesUpdateTagsSamples {
 ### NetworkFunction_ListOperations
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for NetworkFunction ListOperations. */
 public final class NetworkFunctionListOperationsSamples {
     /*
@@ -368,7 +359,7 @@ public final class NetworkFunctionListOperationsSamples {
      * @param manager Entry point to AzureTrafficCollectorManager.
      */
     public static void operationsList(com.azure.resourcemanager.networkfunction.AzureTrafficCollectorManager manager) {
-        manager.networkFunctions().listOperations(Context.NONE);
+        manager.networkFunctions().listOperations(com.azure.core.util.Context.NONE);
     }
 }
 ```

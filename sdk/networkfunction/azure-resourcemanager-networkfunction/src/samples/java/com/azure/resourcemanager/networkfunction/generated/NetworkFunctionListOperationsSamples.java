@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.networkfunction.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for NetworkFunction ListOperations. */
 public final class NetworkFunctionListOperationsSamples {
     /*
@@ -17,6 +15,6 @@ public final class NetworkFunctionListOperationsSamples {
      * @param manager Entry point to AzureTrafficCollectorManager.
      */
     public static void operationsList(com.azure.resourcemanager.networkfunction.AzureTrafficCollectorManager manager) {
-        manager.networkFunctions().listOperations(Context.NONE);
+        manager.networkFunctions().listOperations(com.azure.core.util.Context.NONE);
     }
 }

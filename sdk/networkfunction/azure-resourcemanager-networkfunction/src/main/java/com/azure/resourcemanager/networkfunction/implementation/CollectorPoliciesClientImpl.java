@@ -68,8 +68,7 @@ public final class CollectorPoliciesClientImpl implements CollectorPoliciesClien
     public interface CollectorPoliciesService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkFunction"
-                + "/azureTrafficCollectors/{azureTrafficCollectorName}/collectorPolicies")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkFunction/azureTrafficCollectors/{azureTrafficCollectorName}/collectorPolicies")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<CollectorPolicyListResult>> list(
@@ -83,8 +82,7 @@ public final class CollectorPoliciesClientImpl implements CollectorPoliciesClien
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkFunction"
-                + "/azureTrafficCollectors/{azureTrafficCollectorName}/collectorPolicies/{collectorPolicyName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkFunction/azureTrafficCollectors/{azureTrafficCollectorName}/collectorPolicies/{collectorPolicyName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<CollectorPolicyInner>> get(
@@ -99,8 +97,7 @@ public final class CollectorPoliciesClientImpl implements CollectorPoliciesClien
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkFunction"
-                + "/azureTrafficCollectors/{azureTrafficCollectorName}/collectorPolicies/{collectorPolicyName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkFunction/azureTrafficCollectors/{azureTrafficCollectorName}/collectorPolicies/{collectorPolicyName}")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
@@ -116,8 +113,7 @@ public final class CollectorPoliciesClientImpl implements CollectorPoliciesClien
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkFunction"
-                + "/azureTrafficCollectors/{azureTrafficCollectorName}/collectorPolicies/{collectorPolicyName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkFunction/azureTrafficCollectors/{azureTrafficCollectorName}/collectorPolicies/{collectorPolicyName}")
         @ExpectedResponses({200, 202, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(
@@ -132,8 +128,7 @@ public final class CollectorPoliciesClientImpl implements CollectorPoliciesClien
 
         @Headers({"Content-Type: application/json"})
         @Patch(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkFunction"
-                + "/azureTrafficCollectors/{azureTrafficCollectorName}/collectorPolicies/{collectorPolicyName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkFunction/azureTrafficCollectors/{azureTrafficCollectorName}/collectorPolicies/{collectorPolicyName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<CollectorPolicyInner>> updateTags(
@@ -726,7 +721,8 @@ public final class CollectorPoliciesClientImpl implements CollectorPoliciesClien
         String azureTrafficCollectorName,
         String collectorPolicyName,
         CollectorPolicyInner parameters) {
-        return beginCreateOrUpdateAsync(resourceGroupName, azureTrafficCollectorName, collectorPolicyName, parameters)
+        return this
+            .beginCreateOrUpdateAsync(resourceGroupName, azureTrafficCollectorName, collectorPolicyName, parameters)
             .getSyncPoller();
     }
 
@@ -750,7 +746,8 @@ public final class CollectorPoliciesClientImpl implements CollectorPoliciesClien
         String collectorPolicyName,
         CollectorPolicyInner parameters,
         Context context) {
-        return beginCreateOrUpdateAsync(
+        return this
+            .beginCreateOrUpdateAsync(
                 resourceGroupName, azureTrafficCollectorName, collectorPolicyName, parameters, context)
             .getSyncPoller();
     }
@@ -1022,7 +1019,7 @@ public final class CollectorPoliciesClientImpl implements CollectorPoliciesClien
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String azureTrafficCollectorName, String collectorPolicyName) {
-        return beginDeleteAsync(resourceGroupName, azureTrafficCollectorName, collectorPolicyName).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, azureTrafficCollectorName, collectorPolicyName).getSyncPoller();
     }
 
     /**
@@ -1040,7 +1037,8 @@ public final class CollectorPoliciesClientImpl implements CollectorPoliciesClien
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String azureTrafficCollectorName, String collectorPolicyName, Context context) {
-        return beginDeleteAsync(resourceGroupName, azureTrafficCollectorName, collectorPolicyName, context)
+        return this
+            .beginDeleteAsync(resourceGroupName, azureTrafficCollectorName, collectorPolicyName, context)
             .getSyncPoller();
     }
 

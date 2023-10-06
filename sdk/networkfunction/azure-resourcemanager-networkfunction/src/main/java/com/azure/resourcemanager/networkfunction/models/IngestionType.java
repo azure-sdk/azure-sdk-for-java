@@ -14,6 +14,15 @@ public final class IngestionType extends ExpandableStringEnum<IngestionType> {
     public static final IngestionType IPFIX = fromString("IPFIX");
 
     /**
+     * Creates a new instance of IngestionType value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public IngestionType() {
+    }
+
+    /**
      * Creates or finds a IngestionType from its string representation.
      *
      * @param name a name to look for.
