@@ -66,7 +66,7 @@ public final class LabPlansClientImpl implements LabPlansClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "LabServicesClientLab")
-    private interface LabPlansService {
+    public interface LabPlansService {
         @Headers({"Content-Type: application/json"})
         @Get("/subscriptions/{subscriptionId}/providers/Microsoft.LabServices/labPlans")
         @ExpectedResponses({200})
@@ -81,8 +81,7 @@ public final class LabPlansClientImpl implements LabPlansClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices"
-                + "/labPlans")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labPlans")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<PagedLabPlans>> listByResourceGroup(
@@ -95,8 +94,7 @@ public final class LabPlansClientImpl implements LabPlansClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices"
-                + "/labPlans/{labPlanName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labPlans/{labPlanName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<LabPlanInner>> getByResourceGroup(
@@ -110,8 +108,7 @@ public final class LabPlansClientImpl implements LabPlansClient {
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices"
-                + "/labPlans/{labPlanName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labPlans/{labPlanName}")
         @ExpectedResponses({200, 201, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
@@ -126,8 +123,7 @@ public final class LabPlansClientImpl implements LabPlansClient {
 
         @Headers({"Content-Type: application/json"})
         @Patch(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices"
-                + "/labPlans/{labPlanName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labPlans/{labPlanName}")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> update(
@@ -142,8 +138,7 @@ public final class LabPlansClientImpl implements LabPlansClient {
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices"
-                + "/labPlans/{labPlanName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labPlans/{labPlanName}")
         @ExpectedResponses({200, 202, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(
@@ -157,8 +152,7 @@ public final class LabPlansClientImpl implements LabPlansClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices"
-                + "/labPlans/{labPlanName}/saveImage")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labPlans/{labPlanName}/saveImage")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> saveImage(
@@ -677,24 +671,6 @@ public final class LabPlansClientImpl implements LabPlansClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labPlanName The name of the lab plan that uniquely identifies it within containing resource group. Used in
      *     resource URIs and in UI.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return lab Plans act as a permission container for creating labs via labs.azure.com.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public LabPlanInner getByResourceGroup(String resourceGroupName, String labPlanName) {
-        return getByResourceGroupAsync(resourceGroupName, labPlanName).block();
-    }
-
-    /**
-     * Retrieves a Lab Plan resource.
-     *
-     * <p>Retrieves the properties of a Lab Plan.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param labPlanName The name of the lab plan that uniquely identifies it within containing resource group. Used in
-     *     resource URIs and in UI.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -705,6 +681,24 @@ public final class LabPlansClientImpl implements LabPlansClient {
     public Response<LabPlanInner> getByResourceGroupWithResponse(
         String resourceGroupName, String labPlanName, Context context) {
         return getByResourceGroupWithResponseAsync(resourceGroupName, labPlanName, context).block();
+    }
+
+    /**
+     * Retrieves a Lab Plan resource.
+     *
+     * <p>Retrieves the properties of a Lab Plan.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param labPlanName The name of the lab plan that uniquely identifies it within containing resource group. Used in
+     *     resource URIs and in UI.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return lab Plans act as a permission container for creating labs via labs.azure.com.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public LabPlanInner getByResourceGroup(String resourceGroupName, String labPlanName) {
+        return getByResourceGroupWithResponse(resourceGroupName, labPlanName, Context.NONE).getValue();
     }
 
     /**
@@ -894,7 +888,7 @@ public final class LabPlansClientImpl implements LabPlansClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<LabPlanInner>, LabPlanInner> beginCreateOrUpdate(
         String resourceGroupName, String labPlanName, LabPlanInner body) {
-        return beginCreateOrUpdateAsync(resourceGroupName, labPlanName, body).getSyncPoller();
+        return this.beginCreateOrUpdateAsync(resourceGroupName, labPlanName, body).getSyncPoller();
     }
 
     /**
@@ -916,7 +910,7 @@ public final class LabPlansClientImpl implements LabPlansClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<LabPlanInner>, LabPlanInner> beginCreateOrUpdate(
         String resourceGroupName, String labPlanName, LabPlanInner body, Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, labPlanName, body, context).getSyncPoller();
+        return this.beginCreateOrUpdateAsync(resourceGroupName, labPlanName, body, context).getSyncPoller();
     }
 
     /**
@@ -1191,7 +1185,7 @@ public final class LabPlansClientImpl implements LabPlansClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<LabPlanInner>, LabPlanInner> beginUpdate(
         String resourceGroupName, String labPlanName, LabPlanUpdate body) {
-        return beginUpdateAsync(resourceGroupName, labPlanName, body).getSyncPoller();
+        return this.beginUpdateAsync(resourceGroupName, labPlanName, body).getSyncPoller();
     }
 
     /**
@@ -1213,7 +1207,7 @@ public final class LabPlansClientImpl implements LabPlansClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<LabPlanInner>, LabPlanInner> beginUpdate(
         String resourceGroupName, String labPlanName, LabPlanUpdate body, Context context) {
-        return beginUpdateAsync(resourceGroupName, labPlanName, body, context).getSyncPoller();
+        return this.beginUpdateAsync(resourceGroupName, labPlanName, body, context).getSyncPoller();
     }
 
     /**
@@ -1466,7 +1460,7 @@ public final class LabPlansClientImpl implements LabPlansClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String labPlanName) {
-        return beginDeleteAsync(resourceGroupName, labPlanName).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, labPlanName).getSyncPoller();
     }
 
     /**
@@ -1487,7 +1481,7 @@ public final class LabPlansClientImpl implements LabPlansClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String labPlanName, Context context) {
-        return beginDeleteAsync(resourceGroupName, labPlanName, context).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, labPlanName, context).getSyncPoller();
     }
 
     /**
@@ -1749,7 +1743,7 @@ public final class LabPlansClientImpl implements LabPlansClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginSaveImage(
         String resourceGroupName, String labPlanName, SaveImageBody body) {
-        return beginSaveImageAsync(resourceGroupName, labPlanName, body).getSyncPoller();
+        return this.beginSaveImageAsync(resourceGroupName, labPlanName, body).getSyncPoller();
     }
 
     /**
@@ -1770,7 +1764,7 @@ public final class LabPlansClientImpl implements LabPlansClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginSaveImage(
         String resourceGroupName, String labPlanName, SaveImageBody body, Context context) {
-        return beginSaveImageAsync(resourceGroupName, labPlanName, body, context).getSyncPoller();
+        return this.beginSaveImageAsync(resourceGroupName, labPlanName, body, context).getSyncPoller();
     }
 
     /**

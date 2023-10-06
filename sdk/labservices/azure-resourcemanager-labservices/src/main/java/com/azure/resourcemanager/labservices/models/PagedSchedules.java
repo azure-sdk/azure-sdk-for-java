@@ -24,6 +24,10 @@ public final class PagedSchedules {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
+    /** Creates an instance of PagedSchedules class. */
+    public PagedSchedules() {
+    }
+
     /**
      * Get the value property: The array page of schedule results.
      *

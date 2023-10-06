@@ -4,12 +4,10 @@
 
 package com.azure.resourcemanager.labservices.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Users ListByLab. */
 public final class UsersListByLabSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Users/listUser.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/Users/listUser.json
      */
     /**
      * Sample code: listUser.
@@ -17,6 +15,6 @@ public final class UsersListByLabSamples {
      * @param manager Entry point to LabServicesManager.
      */
     public static void listUser(com.azure.resourcemanager.labservices.LabServicesManager manager) {
-        manager.users().listByLab("testrg123", "testlab", null, Context.NONE);
+        manager.users().listByLab("testrg123", "testlab", null, com.azure.core.util.Context.NONE);
     }
 }

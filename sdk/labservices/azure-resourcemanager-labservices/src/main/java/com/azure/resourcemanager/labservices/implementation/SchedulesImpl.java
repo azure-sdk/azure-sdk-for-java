@@ -38,15 +38,6 @@ public final class SchedulesImpl implements Schedules {
         return Utils.mapPage(inner, inner1 -> new ScheduleImpl(inner1, this.manager()));
     }
 
-    public Schedule get(String resourceGroupName, String labName, String scheduleName) {
-        ScheduleInner inner = this.serviceClient().get(resourceGroupName, labName, scheduleName);
-        if (inner != null) {
-            return new ScheduleImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<Schedule> getWithResponse(
         String resourceGroupName, String labName, String scheduleName, Context context) {
         Response<ScheduleInner> inner =
@@ -57,6 +48,15 @@ public final class SchedulesImpl implements Schedules {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new ScheduleImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public Schedule get(String resourceGroupName, String labName, String scheduleName) {
+        ScheduleInner inner = this.serviceClient().get(resourceGroupName, labName, scheduleName);
+        if (inner != null) {
+            return new ScheduleImpl(inner, this.manager());
         } else {
             return null;
         }

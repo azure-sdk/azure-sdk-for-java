@@ -58,13 +58,15 @@ public interface VirtualMachinesClient {
      * @param labName The name of the lab that uniquely identifies it within containing lab plan. Used in resource URIs.
      * @param virtualMachineName The ID of the virtual machine that uniquely identifies it within the containing lab.
      *     Used in resource URIs.
+     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a lab virtual machine resource.
+     * @return a lab virtual machine resource along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    VirtualMachineInner get(String resourceGroupName, String labName, String virtualMachineName);
+    Response<VirtualMachineInner> getWithResponse(
+        String resourceGroupName, String labName, String virtualMachineName, Context context);
 
     /**
      * Get a lab virtual machine.
@@ -75,15 +77,13 @@ public interface VirtualMachinesClient {
      * @param labName The name of the lab that uniquely identifies it within containing lab plan. Used in resource URIs.
      * @param virtualMachineName The ID of the virtual machine that uniquely identifies it within the containing lab.
      *     Used in resource URIs.
-     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a lab virtual machine resource along with {@link Response}.
+     * @return a lab virtual machine resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<VirtualMachineInner> getWithResponse(
-        String resourceGroupName, String labName, String virtualMachineName, Context context);
+    VirtualMachineInner get(String resourceGroupName, String labName, String virtualMachineName);
 
     /**
      * Start a lab virtual machine.

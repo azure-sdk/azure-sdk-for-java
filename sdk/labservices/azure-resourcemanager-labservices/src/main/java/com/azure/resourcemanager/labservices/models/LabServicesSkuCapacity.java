@@ -34,6 +34,10 @@ public final class LabServicesSkuCapacity {
     @JsonProperty(value = "scaleType", access = JsonProperty.Access.WRITE_ONLY)
     private ScaleType scaleType;
 
+    /** Creates an instance of LabServicesSkuCapacity class. */
+    public LabServicesSkuCapacity() {
+    }
+
     /**
      * Get the defaultProperty property: The default capacity for this resource.
      *

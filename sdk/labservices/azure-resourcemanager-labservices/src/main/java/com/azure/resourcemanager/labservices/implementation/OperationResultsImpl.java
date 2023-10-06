@@ -26,15 +26,6 @@ public final class OperationResultsImpl implements OperationResults {
         this.serviceManager = serviceManager;
     }
 
-    public OperationResult get(String operationResultId) {
-        OperationResultInner inner = this.serviceClient().get(operationResultId);
-        if (inner != null) {
-            return new OperationResultImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<OperationResult> getWithResponse(String operationResultId, Context context) {
         Response<OperationResultInner> inner = this.serviceClient().getWithResponse(operationResultId, context);
         if (inner != null) {
@@ -43,6 +34,15 @@ public final class OperationResultsImpl implements OperationResults {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new OperationResultImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public OperationResult get(String operationResultId) {
+        OperationResultInner inner = this.serviceClient().get(operationResultId);
+        if (inner != null) {
+            return new OperationResultImpl(inner, this.manager());
         } else {
             return null;
         }
