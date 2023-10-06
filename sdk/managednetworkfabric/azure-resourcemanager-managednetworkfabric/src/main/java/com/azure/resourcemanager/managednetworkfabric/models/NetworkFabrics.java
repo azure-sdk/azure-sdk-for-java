@@ -192,7 +192,7 @@ public interface NetworkFabrics {
      * @return common response for the state updates.
      */
     CommonPostActionResponseForStateUpdate upgrade(
-        String resourceGroupName, String networkFabricName, UpdateVersion body);
+        String resourceGroupName, String networkFabricName, UpgradeNetworkFabricProperties body);
 
     /**
      * Implements the operation to the underlying resources.
@@ -209,7 +209,7 @@ public interface NetworkFabrics {
      * @return common response for the state updates.
      */
     CommonPostActionResponseForStateUpdate upgrade(
-        String resourceGroupName, String networkFabricName, UpdateVersion body, Context context);
+        String resourceGroupName, String networkFabricName, UpgradeNetworkFabricProperties body, Context context);
 
     /**
      * Implements the operation to the underlying resources.

@@ -17,7 +17,7 @@ import com.azure.resourcemanager.managednetworkfabric.fluent.models.NetworkFabri
 import com.azure.resourcemanager.managednetworkfabric.fluent.models.ValidateConfigurationResponseInner;
 import com.azure.resourcemanager.managednetworkfabric.models.NetworkFabricPatch;
 import com.azure.resourcemanager.managednetworkfabric.models.UpdateAdministrativeState;
-import com.azure.resourcemanager.managednetworkfabric.models.UpdateVersion;
+import com.azure.resourcemanager.managednetworkfabric.models.UpgradeNetworkFabricProperties;
 import com.azure.resourcemanager.managednetworkfabric.models.ValidateConfigurationProperties;
 
 /** An instance of this class provides access to all the operations defined in NetworkFabricsClient. */
@@ -452,7 +452,7 @@ public interface NetworkFabricsClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<CommonPostActionResponseForStateUpdateInner>, CommonPostActionResponseForStateUpdateInner>
-        beginUpgrade(String resourceGroupName, String networkFabricName, UpdateVersion body);
+        beginUpgrade(String resourceGroupName, String networkFabricName, UpgradeNetworkFabricProperties body);
 
     /**
      * Implements the operation to the underlying resources.
@@ -470,7 +470,8 @@ public interface NetworkFabricsClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<CommonPostActionResponseForStateUpdateInner>, CommonPostActionResponseForStateUpdateInner>
-        beginUpgrade(String resourceGroupName, String networkFabricName, UpdateVersion body, Context context);
+        beginUpgrade(
+            String resourceGroupName, String networkFabricName, UpgradeNetworkFabricProperties body, Context context);
 
     /**
      * Implements the operation to the underlying resources.
@@ -487,7 +488,7 @@ public interface NetworkFabricsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     CommonPostActionResponseForStateUpdateInner upgrade(
-        String resourceGroupName, String networkFabricName, UpdateVersion body);
+        String resourceGroupName, String networkFabricName, UpgradeNetworkFabricProperties body);
 
     /**
      * Implements the operation to the underlying resources.
@@ -505,7 +506,7 @@ public interface NetworkFabricsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     CommonPostActionResponseForStateUpdateInner upgrade(
-        String resourceGroupName, String networkFabricName, UpdateVersion body, Context context);
+        String resourceGroupName, String networkFabricName, UpgradeNetworkFabricProperties body, Context context);
 
     /**
      * Implements the operation to the underlying resources.

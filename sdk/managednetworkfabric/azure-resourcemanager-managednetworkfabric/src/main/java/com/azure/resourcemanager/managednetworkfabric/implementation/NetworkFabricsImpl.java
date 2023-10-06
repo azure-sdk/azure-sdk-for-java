@@ -19,7 +19,7 @@ import com.azure.resourcemanager.managednetworkfabric.models.CommonPostActionRes
 import com.azure.resourcemanager.managednetworkfabric.models.NetworkFabric;
 import com.azure.resourcemanager.managednetworkfabric.models.NetworkFabrics;
 import com.azure.resourcemanager.managednetworkfabric.models.UpdateAdministrativeState;
-import com.azure.resourcemanager.managednetworkfabric.models.UpdateVersion;
+import com.azure.resourcemanager.managednetworkfabric.models.UpgradeNetworkFabricProperties;
 import com.azure.resourcemanager.managednetworkfabric.models.ValidateConfigurationProperties;
 import com.azure.resourcemanager.managednetworkfabric.models.ValidateConfigurationResponse;
 
@@ -132,7 +132,7 @@ public final class NetworkFabricsImpl implements NetworkFabrics {
     }
 
     public CommonPostActionResponseForStateUpdate upgrade(
-        String resourceGroupName, String networkFabricName, UpdateVersion body) {
+        String resourceGroupName, String networkFabricName, UpgradeNetworkFabricProperties body) {
         CommonPostActionResponseForStateUpdateInner inner =
             this.serviceClient().upgrade(resourceGroupName, networkFabricName, body);
         if (inner != null) {
@@ -143,7 +143,7 @@ public final class NetworkFabricsImpl implements NetworkFabrics {
     }
 
     public CommonPostActionResponseForStateUpdate upgrade(
-        String resourceGroupName, String networkFabricName, UpdateVersion body, Context context) {
+        String resourceGroupName, String networkFabricName, UpgradeNetworkFabricProperties body, Context context) {
         CommonPostActionResponseForStateUpdateInner inner =
             this.serviceClient().upgrade(resourceGroupName, networkFabricName, body, context);
         if (inner != null) {

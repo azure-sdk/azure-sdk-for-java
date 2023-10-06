@@ -18,7 +18,7 @@ public final class PortGroupProperties {
     private String name;
 
     /*
-     * List of the ports that needs to be matched.
+     * List of the ports that need to be matched.
      */
     @JsonProperty(value = "ports")
     private List<String> ports;
@@ -48,7 +48,7 @@ public final class PortGroupProperties {
     }
 
     /**
-     * Get the ports property: List of the ports that needs to be matched.
+     * Get the ports property: List of the ports that need to be matched.
      *
      * @return the ports value.
      */
@@ -57,7 +57,7 @@ public final class PortGroupProperties {
     }
 
     /**
-     * Set the ports property: List of the ports that needs to be matched.
+     * Set the ports property: List of the ports that need to be matched.
      *
      * @param ports the ports value to set.
      * @return the PortGroupProperties object itself.
