@@ -24,10 +24,12 @@ public final class PartnerRegistrationsCreateOrUpdateSamples {
             .define("examplePartnerRegistrationName1")
             .withRegion("global")
             .withExistingResourceGroup("examplerg")
-            .withTags(mapOf("key1", "value1", "key2", "Value2", "key3", "Value3"))
+            .withTags(
+                mapOf("key1", "fakeTokenPlaceholder", "key2", "fakeTokenPlaceholder", "key3", "fakeTokenPlaceholder"))
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
