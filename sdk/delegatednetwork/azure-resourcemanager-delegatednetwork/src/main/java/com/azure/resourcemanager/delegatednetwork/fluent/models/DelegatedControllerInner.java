@@ -16,7 +16,7 @@ public final class DelegatedControllerInner extends ControllerResource {
     /*
      * Properties of the provision operation request.
      */
-    @JsonProperty(value = "properties", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "properties")
     private DelegatedControllerProperties properties;
 
     /** Creates an instance of DelegatedControllerInner class. */
@@ -30,6 +30,17 @@ public final class DelegatedControllerInner extends ControllerResource {
      */
     public DelegatedControllerProperties properties() {
         return this.properties;
+    }
+
+    /**
+     * Set the properties property: Properties of the provision operation request.
+     *
+     * @param properties the properties value to set.
+     * @return the DelegatedControllerInner object itself.
+     */
+    public DelegatedControllerInner withProperties(DelegatedControllerProperties properties) {
+        this.properties = properties;
+        return this;
     }
 
     /** {@inheritDoc} */

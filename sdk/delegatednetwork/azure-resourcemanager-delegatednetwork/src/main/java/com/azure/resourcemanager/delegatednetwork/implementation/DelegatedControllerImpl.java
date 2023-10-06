@@ -178,6 +178,11 @@ public final class DelegatedControllerImpl
         }
     }
 
+    public DelegatedControllerImpl withProperties(DelegatedControllerProperties properties) {
+        this.innerModel().withProperties(properties);
+        return this;
+    }
+
     private boolean isInCreateMode() {
         return this.innerModel().id() == null;
     }
