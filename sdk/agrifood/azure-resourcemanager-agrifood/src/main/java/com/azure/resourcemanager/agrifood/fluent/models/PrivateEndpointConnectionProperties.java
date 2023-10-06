@@ -10,12 +10,19 @@ import com.azure.resourcemanager.agrifood.models.PrivateEndpoint;
 import com.azure.resourcemanager.agrifood.models.PrivateEndpointConnectionProvisioningState;
 import com.azure.resourcemanager.agrifood.models.PrivateLinkServiceConnectionState;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 
-/** Properties of the PrivateEndpointConnectProperties. */
+/** Properties of the private endpoint connection. */
 @Fluent
 public final class PrivateEndpointConnectionProperties {
     /*
-     * The resource of private end point.
+     * The group ids for the private endpoint resource.
+     */
+    @JsonProperty(value = "groupIds", access = JsonProperty.Access.WRITE_ONLY)
+    private List<String> groupIds;
+
+    /*
+     * The private endpoint resource.
      */
     @JsonProperty(value = "privateEndpoint")
     private PrivateEndpoint privateEndpoint;
@@ -32,8 +39,21 @@ public final class PrivateEndpointConnectionProperties {
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private PrivateEndpointConnectionProvisioningState provisioningState;
 
+    /** Creates an instance of PrivateEndpointConnectionProperties class. */
+    public PrivateEndpointConnectionProperties() {
+    }
+
     /**
-     * Get the privateEndpoint property: The resource of private end point.
+     * Get the groupIds property: The group ids for the private endpoint resource.
+     *
+     * @return the groupIds value.
+     */
+    public List<String> groupIds() {
+        return this.groupIds;
+    }
+
+    /**
+     * Get the privateEndpoint property: The private endpoint resource.
      *
      * @return the privateEndpoint value.
      */
@@ -42,7 +62,7 @@ public final class PrivateEndpointConnectionProperties {
     }
 
     /**
-     * Set the privateEndpoint property: The resource of private end point.
+     * Set the privateEndpoint property: The private endpoint resource.
      *
      * @param privateEndpoint the privateEndpoint value to set.
      * @return the PrivateEndpointConnectionProperties object itself.
