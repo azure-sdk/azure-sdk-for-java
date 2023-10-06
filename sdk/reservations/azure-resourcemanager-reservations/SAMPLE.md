@@ -473,7 +473,7 @@ public final class QuotaRequestStatusGetSamples {
             .getWithResponse(
                 "00000000-0000-0000-0000-000000000000",
                 "Microsoft.Compute",
-                "eastus",
+                "westus",
                 "2B5C8515-37D8-4B6A-879B-CD641A2CF605",
                 com.azure.core.util.Context.NONE);
     }
