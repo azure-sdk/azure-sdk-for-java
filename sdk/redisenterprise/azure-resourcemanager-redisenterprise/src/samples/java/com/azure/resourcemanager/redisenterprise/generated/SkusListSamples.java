@@ -7,7 +7,7 @@ package com.azure.resourcemanager.redisenterprise.generated;
 /** Samples for Skus List. */
 public final class SkusListSamples {
     /*
-     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2023-03-01-preview/examples/RedisEnterpriseSkusList.json
+     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2023-08-01-preview/examples/RedisEnterpriseSkusList.json
      */
     /**
      * Sample code: SkusList.
