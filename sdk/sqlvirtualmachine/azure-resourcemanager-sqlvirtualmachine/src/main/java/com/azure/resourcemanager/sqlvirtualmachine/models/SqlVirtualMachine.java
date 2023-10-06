@@ -48,7 +48,8 @@ public interface SqlVirtualMachine {
     Map<String, String> tags();
 
     /**
-     * Gets the identity property: Azure Active Directory identity of the server.
+     * Gets the identity property: DO NOT USE. This value will be deprecated. Azure Active Directory identity of the
+     * server.
      *
      * @return the identity value.
      */
@@ -91,7 +92,8 @@ public interface SqlVirtualMachine {
     SqlServerLicenseType sqlServerLicenseType();
 
     /**
-     * Gets the sqlManagement property: SQL Server Management type.
+     * Gets the sqlManagement property: SQL Server Management type. NOTE: This parameter is not used anymore. API will
+     * automatically detect the Sql Management, refrain from using it.
      *
      * @return the sqlManagement value.
      */
@@ -227,11 +229,13 @@ public interface SqlVirtualMachine {
             DefinitionStages.WithResourceGroup,
             DefinitionStages.WithCreate {
     }
+
     /** The SqlVirtualMachine definition stages. */
     interface DefinitionStages {
         /** The first stage of the SqlVirtualMachine definition. */
         interface Blank extends WithLocation {
         }
+
         /** The stage of the SqlVirtualMachine definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -250,6 +254,7 @@ public interface SqlVirtualMachine {
              */
             WithResourceGroup withRegion(String location);
         }
+
         /** The stage of the SqlVirtualMachine definition allowing to specify parent resource. */
         interface WithResourceGroup {
             /**
@@ -261,6 +266,7 @@ public interface SqlVirtualMachine {
              */
             WithCreate withExistingResourceGroup(String resourceGroupName);
         }
+
         /**
          * The stage of the SqlVirtualMachine definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
@@ -298,6 +304,7 @@ public interface SqlVirtualMachine {
              */
             SqlVirtualMachine create(Context context);
         }
+
         /** The stage of the SqlVirtualMachine definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -308,16 +315,19 @@ public interface SqlVirtualMachine {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
         /** The stage of the SqlVirtualMachine definition allowing to specify identity. */
         interface WithIdentity {
             /**
-             * Specifies the identity property: Azure Active Directory identity of the server..
+             * Specifies the identity property: DO NOT USE. This value will be deprecated. Azure Active Directory
+             * identity of the server..
              *
-             * @param identity Azure Active Directory identity of the server.
+             * @param identity DO NOT USE. This value will be deprecated. Azure Active Directory identity of the server.
              * @return the next definition stage.
              */
             WithCreate withIdentity(ResourceIdentity identity);
         }
+
         /** The stage of the SqlVirtualMachine definition allowing to specify virtualMachineResourceId. */
         interface WithVirtualMachineResourceId {
             /**
@@ -330,6 +340,7 @@ public interface SqlVirtualMachine {
              */
             WithCreate withVirtualMachineResourceId(String virtualMachineResourceId);
         }
+
         /** The stage of the SqlVirtualMachine definition allowing to specify sqlImageOffer. */
         interface WithSqlImageOffer {
             /**
@@ -340,6 +351,7 @@ public interface SqlVirtualMachine {
              */
             WithCreate withSqlImageOffer(String sqlImageOffer);
         }
+
         /** The stage of the SqlVirtualMachine definition allowing to specify sqlServerLicenseType. */
         interface WithSqlServerLicenseType {
             /**
@@ -350,16 +362,20 @@ public interface SqlVirtualMachine {
              */
             WithCreate withSqlServerLicenseType(SqlServerLicenseType sqlServerLicenseType);
         }
+
         /** The stage of the SqlVirtualMachine definition allowing to specify sqlManagement. */
         interface WithSqlManagement {
             /**
-             * Specifies the sqlManagement property: SQL Server Management type..
+             * Specifies the sqlManagement property: SQL Server Management type. NOTE: This parameter is not used
+             * anymore. API will automatically detect the Sql Management, refrain from using it..
              *
-             * @param sqlManagement SQL Server Management type.
+             * @param sqlManagement SQL Server Management type. NOTE: This parameter is not used anymore. API will
+             *     automatically detect the Sql Management, refrain from using it.
              * @return the next definition stage.
              */
             WithCreate withSqlManagement(SqlManagementMode sqlManagement);
         }
+
         /** The stage of the SqlVirtualMachine definition allowing to specify leastPrivilegeMode. */
         interface WithLeastPrivilegeMode {
             /**
@@ -370,6 +386,7 @@ public interface SqlVirtualMachine {
              */
             WithCreate withLeastPrivilegeMode(LeastPrivilegeMode leastPrivilegeMode);
         }
+
         /** The stage of the SqlVirtualMachine definition allowing to specify sqlImageSku. */
         interface WithSqlImageSku {
             /**
@@ -380,6 +397,7 @@ public interface SqlVirtualMachine {
              */
             WithCreate withSqlImageSku(SqlImageSku sqlImageSku);
         }
+
         /** The stage of the SqlVirtualMachine definition allowing to specify wsfcDomainCredentials. */
         interface WithWsfcDomainCredentials {
             /**
@@ -392,6 +410,7 @@ public interface SqlVirtualMachine {
              */
             WithCreate withWsfcDomainCredentials(WsfcDomainCredentials wsfcDomainCredentials);
         }
+
         /** The stage of the SqlVirtualMachine definition allowing to specify wsfcStaticIp. */
         interface WithWsfcStaticIp {
             /**
@@ -404,6 +423,7 @@ public interface SqlVirtualMachine {
              */
             WithCreate withWsfcStaticIp(String wsfcStaticIp);
         }
+
         /** The stage of the SqlVirtualMachine definition allowing to specify autoPatchingSettings. */
         interface WithAutoPatchingSettings {
             /**
@@ -416,6 +436,7 @@ public interface SqlVirtualMachine {
              */
             WithCreate withAutoPatchingSettings(AutoPatchingSettings autoPatchingSettings);
         }
+
         /** The stage of the SqlVirtualMachine definition allowing to specify autoBackupSettings. */
         interface WithAutoBackupSettings {
             /**
@@ -426,6 +447,7 @@ public interface SqlVirtualMachine {
              */
             WithCreate withAutoBackupSettings(AutoBackupSettings autoBackupSettings);
         }
+
         /** The stage of the SqlVirtualMachine definition allowing to specify keyVaultCredentialSettings. */
         interface WithKeyVaultCredentialSettings {
             /**
@@ -436,6 +458,7 @@ public interface SqlVirtualMachine {
              */
             WithCreate withKeyVaultCredentialSettings(KeyVaultCredentialSettings keyVaultCredentialSettings);
         }
+
         /** The stage of the SqlVirtualMachine definition allowing to specify serverConfigurationsManagementSettings. */
         interface WithServerConfigurationsManagementSettings {
             /**
@@ -448,6 +471,7 @@ public interface SqlVirtualMachine {
             WithCreate withServerConfigurationsManagementSettings(
                 ServerConfigurationsManagementSettings serverConfigurationsManagementSettings);
         }
+
         /** The stage of the SqlVirtualMachine definition allowing to specify storageConfigurationSettings. */
         interface WithStorageConfigurationSettings {
             /**
@@ -458,6 +482,7 @@ public interface SqlVirtualMachine {
              */
             WithCreate withStorageConfigurationSettings(StorageConfigurationSettings storageConfigurationSettings);
         }
+
         /** The stage of the SqlVirtualMachine definition allowing to specify assessmentSettings. */
         interface WithAssessmentSettings {
             /**
@@ -468,6 +493,7 @@ public interface SqlVirtualMachine {
              */
             WithCreate withAssessmentSettings(AssessmentSettings assessmentSettings);
         }
+
         /** The stage of the SqlVirtualMachine definition allowing to specify enableAutomaticUpgrade. */
         interface WithEnableAutomaticUpgrade {
             /**
@@ -479,6 +505,7 @@ public interface SqlVirtualMachine {
             WithCreate withEnableAutomaticUpgrade(Boolean enableAutomaticUpgrade);
         }
     }
+
     /**
      * Begins update for the SqlVirtualMachine resource.
      *
@@ -503,6 +530,7 @@ public interface SqlVirtualMachine {
          */
         SqlVirtualMachine apply(Context context);
     }
+
     /** The SqlVirtualMachine update stages. */
     interface UpdateStages {
         /** The stage of the SqlVirtualMachine update allowing to specify tags. */
@@ -516,6 +544,7 @@ public interface SqlVirtualMachine {
             Update withTags(Map<String, String> tags);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *
