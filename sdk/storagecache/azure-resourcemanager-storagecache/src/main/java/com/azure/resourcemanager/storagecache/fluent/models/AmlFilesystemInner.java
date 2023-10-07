@@ -14,6 +14,7 @@ import com.azure.resourcemanager.storagecache.models.AmlFilesystemIdentity;
 import com.azure.resourcemanager.storagecache.models.AmlFilesystemPropertiesHsm;
 import com.azure.resourcemanager.storagecache.models.AmlFilesystemPropertiesMaintenanceWindow;
 import com.azure.resourcemanager.storagecache.models.AmlFilesystemProvisioningStateType;
+import com.azure.resourcemanager.storagecache.models.AmlFilesystemRootSquashSettings;
 import com.azure.resourcemanager.storagecache.models.SkuName;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
@@ -304,6 +305,29 @@ public final class AmlFilesystemInner extends Resource {
             this.innerProperties = new AmlFilesystemProperties();
         }
         this.innerProperties().withHsm(hsm);
+        return this;
+    }
+
+    /**
+     * Get the rootSquashSettings property: Specifies root squash settings of the AML file system.
+     *
+     * @return the rootSquashSettings value.
+     */
+    public AmlFilesystemRootSquashSettings rootSquashSettings() {
+        return this.innerProperties() == null ? null : this.innerProperties().rootSquashSettings();
+    }
+
+    /**
+     * Set the rootSquashSettings property: Specifies root squash settings of the AML file system.
+     *
+     * @param rootSquashSettings the rootSquashSettings value to set.
+     * @return the AmlFilesystemInner object itself.
+     */
+    public AmlFilesystemInner withRootSquashSettings(AmlFilesystemRootSquashSettings rootSquashSettings) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new AmlFilesystemProperties();
+        }
+        this.innerProperties().withRootSquashSettings(rootSquashSettings);
         return this;
     }
 

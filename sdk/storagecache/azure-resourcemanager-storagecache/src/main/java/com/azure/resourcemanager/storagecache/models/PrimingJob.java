@@ -22,7 +22,7 @@ public final class PrimingJob {
      * is in Azure blob storage the URL should include a Shared Access Signature (SAS) granting read permissions on the
      * blob.
      */
-    @JsonProperty(value = "primingManifestUrl", required = true)
+    @JsonProperty(value = "primingManifestUrl")
     private String primingManifestUrl;
 
     /*

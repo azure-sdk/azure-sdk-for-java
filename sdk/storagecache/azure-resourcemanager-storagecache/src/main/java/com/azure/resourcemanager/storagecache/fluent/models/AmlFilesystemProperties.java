@@ -12,6 +12,7 @@ import com.azure.resourcemanager.storagecache.models.AmlFilesystemHealth;
 import com.azure.resourcemanager.storagecache.models.AmlFilesystemPropertiesHsm;
 import com.azure.resourcemanager.storagecache.models.AmlFilesystemPropertiesMaintenanceWindow;
 import com.azure.resourcemanager.storagecache.models.AmlFilesystemProvisioningStateType;
+import com.azure.resourcemanager.storagecache.models.AmlFilesystemRootSquashSettings;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Properties of the AML file system. */
@@ -71,6 +72,12 @@ public final class AmlFilesystemProperties {
      */
     @JsonProperty(value = "hsm")
     private AmlFilesystemPropertiesHsm hsm;
+
+    /*
+     * Specifies root squash settings of the AML file system.
+     */
+    @JsonProperty(value = "rootSquashSettings")
+    private AmlFilesystemRootSquashSettings rootSquashSettings;
 
     /** Creates an instance of AmlFilesystemProperties class. */
     public AmlFilesystemProperties() {
@@ -216,6 +223,26 @@ public final class AmlFilesystemProperties {
     }
 
     /**
+     * Get the rootSquashSettings property: Specifies root squash settings of the AML file system.
+     *
+     * @return the rootSquashSettings value.
+     */
+    public AmlFilesystemRootSquashSettings rootSquashSettings() {
+        return this.rootSquashSettings;
+    }
+
+    /**
+     * Set the rootSquashSettings property: Specifies root squash settings of the AML file system.
+     *
+     * @param rootSquashSettings the rootSquashSettings value to set.
+     * @return the AmlFilesystemProperties object itself.
+     */
+    public AmlFilesystemProperties withRootSquashSettings(AmlFilesystemRootSquashSettings rootSquashSettings) {
+        this.rootSquashSettings = rootSquashSettings;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -246,6 +273,9 @@ public final class AmlFilesystemProperties {
         }
         if (hsm() != null) {
             hsm().validate();
+        }
+        if (rootSquashSettings() != null) {
+            rootSquashSettings().validate();
         }
     }
 
