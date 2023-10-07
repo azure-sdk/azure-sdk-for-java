@@ -4,12 +4,10 @@
 
 package com.azure.resourcemanager.loganalytics.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Clusters List. */
 public final class ClustersListSamples {
     /*
-     * x-ms-original-file: specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/stable/2021-06-01/examples/ClustersSubscriptionList.json
+     * x-ms-original-file: specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/stable/2022-10-01/examples/ClustersSubscriptionList.json
      */
     /**
      * Sample code: ClustersSubscriptionList.
@@ -17,6 +15,6 @@ public final class ClustersListSamples {
      * @param manager Entry point to LogAnalyticsManager.
      */
     public static void clustersSubscriptionList(com.azure.resourcemanager.loganalytics.LogAnalyticsManager manager) {
-        manager.clusters().list(Context.NONE);
+        manager.clusters().list(com.azure.core.util.Context.NONE);
     }
 }
