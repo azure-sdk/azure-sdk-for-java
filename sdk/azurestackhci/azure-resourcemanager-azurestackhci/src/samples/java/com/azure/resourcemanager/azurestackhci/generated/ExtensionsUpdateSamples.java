@@ -5,15 +5,15 @@
 package com.azure.resourcemanager.azurestackhci.generated;
 
 import com.azure.core.management.serializer.SerializerFactory;
-import com.azure.core.util.Context;
 import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.azurestackhci.models.Extension;
+import com.azure.resourcemanager.azurestackhci.models.ExtensionPatchParameters;
 import java.io.IOException;
 
 /** Samples for Extensions Update. */
 public final class ExtensionsUpdateSamples {
     /*
-     * x-ms-original-file: specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/stable/2022-05-01/examples/PatchExtension.json
+     * x-ms-original-file: specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/stable/2023-08-01/examples/PatchExtension.json
      */
     /**
      * Sample code: Update Arc Extension.
@@ -25,17 +25,23 @@ public final class ExtensionsUpdateSamples {
         Extension resource =
             manager
                 .extensions()
-                .getWithResponse("test-rg", "myCluster", "default", "MicrosoftMonitoringAgent", Context.NONE)
+                .getWithResponse(
+                    "test-rg", "myCluster", "default", "MicrosoftMonitoringAgent", com.azure.core.util.Context.NONE)
                 .getValue();
         resource
             .update()
-            .withPublisher("Microsoft.Compute")
-            .withTypePropertiesType("MicrosoftMonitoringAgent")
-            .withTypeHandlerVersion("1.10")
-            .withSettings(
-                SerializerFactory
-                    .createDefaultManagementSerializerAdapter()
-                    .deserialize("{\"workspaceId\":\"xx\"}", Object.class, SerializerEncoding.JSON))
+            .withExtensionParameters(
+                new ExtensionPatchParameters()
+                    .withTypeHandlerVersion("1.10")
+                    .withEnableAutomaticUpgrade(false)
+                    .withSettings(
+                        SerializerFactory
+                            .createDefaultManagementSerializerAdapter()
+                            .deserialize("{\"workspaceId\":\"xx\"}", Object.class, SerializerEncoding.JSON))
+                    .withProtectedSettings(
+                        SerializerFactory
+                            .createDefaultManagementSerializerAdapter()
+                            .deserialize("{\"workspaceKey\":\"xx\"}", Object.class, SerializerEncoding.JSON)))
             .apply();
     }
 }

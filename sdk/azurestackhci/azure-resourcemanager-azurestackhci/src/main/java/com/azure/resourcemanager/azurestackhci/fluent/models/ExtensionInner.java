@@ -8,6 +8,7 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.azurestackhci.models.ExtensionAggregateState;
+import com.azure.resourcemanager.azurestackhci.models.ExtensionManagedBy;
 import com.azure.resourcemanager.azurestackhci.models.PerNodeExtensionState;
 import com.azure.resourcemanager.azurestackhci.models.ProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -17,24 +18,19 @@ import java.util.List;
 @Fluent
 public final class ExtensionInner extends ProxyResource {
     /*
-     * System data of Extension resource.
-     */
-    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
-    private SystemData systemData;
-
-    /*
      * Describes Machine Extension Properties.
      */
     @JsonProperty(value = "properties")
     private ExtensionProperties innerProperties;
 
-    /**
-     * Get the systemData property: System data of Extension resource.
-     *
-     * @return the systemData value.
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
      */
-    public SystemData systemData() {
-        return this.systemData;
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
+
+    /** Creates an instance of ExtensionInner class. */
+    public ExtensionInner() {
     }
 
     /**
@@ -44,6 +40,15 @@ public final class ExtensionInner extends ProxyResource {
      */
     private ExtensionProperties innerProperties() {
         return this.innerProperties;
+    }
+
+    /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     *
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**
@@ -71,6 +76,15 @@ public final class ExtensionInner extends ProxyResource {
      */
     public List<PerNodeExtensionState> perNodeExtensionDetails() {
         return this.innerProperties() == null ? null : this.innerProperties().perNodeExtensionDetails();
+    }
+
+    /**
+     * Get the managedBy property: Indicates if the extension is managed by azure or the user.
+     *
+     * @return the managedBy value.
+     */
+    public ExtensionManagedBy managedBy() {
+        return this.innerProperties() == null ? null : this.innerProperties().managedBy();
     }
 
     /**
@@ -145,7 +159,8 @@ public final class ExtensionInner extends ProxyResource {
     }
 
     /**
-     * Get the typeHandlerVersion property: Specifies the version of the script handler.
+     * Get the typeHandlerVersion property: Specifies the version of the script handler. Latest version would be used if
+     * not specified.
      *
      * @return the typeHandlerVersion value.
      */
@@ -154,7 +169,8 @@ public final class ExtensionInner extends ProxyResource {
     }
 
     /**
-     * Set the typeHandlerVersion property: Specifies the version of the script handler.
+     * Set the typeHandlerVersion property: Specifies the version of the script handler. Latest version would be used if
+     * not specified.
      *
      * @param typeHandlerVersion the typeHandlerVersion value to set.
      * @return the ExtensionInner object itself.
@@ -237,6 +253,31 @@ public final class ExtensionInner extends ProxyResource {
             this.innerProperties = new ExtensionProperties();
         }
         this.innerProperties().withProtectedSettings(protectedSettings);
+        return this;
+    }
+
+    /**
+     * Get the enableAutomaticUpgrade property: Indicates whether the extension should be automatically upgraded by the
+     * platform if there is a newer version available.
+     *
+     * @return the enableAutomaticUpgrade value.
+     */
+    public Boolean enableAutomaticUpgrade() {
+        return this.innerProperties() == null ? null : this.innerProperties().enableAutomaticUpgrade();
+    }
+
+    /**
+     * Set the enableAutomaticUpgrade property: Indicates whether the extension should be automatically upgraded by the
+     * platform if there is a newer version available.
+     *
+     * @param enableAutomaticUpgrade the enableAutomaticUpgrade value to set.
+     * @return the ExtensionInner object itself.
+     */
+    public ExtensionInner withEnableAutomaticUpgrade(Boolean enableAutomaticUpgrade) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ExtensionProperties();
+        }
+        this.innerProperties().withEnableAutomaticUpgrade(enableAutomaticUpgrade);
         return this;
     }
 
