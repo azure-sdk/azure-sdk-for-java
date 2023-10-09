@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.hdinsight.containers.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.hdinsight.containers.fluent.models.ClusterPoolVersionInner;
 import com.azure.resourcemanager.hdinsight.containers.models.ClusterPoolVersion;
 
@@ -29,6 +30,10 @@ public final class ClusterPoolVersionImpl implements ClusterPoolVersion {
 
     public String type() {
         return this.innerModel().type();
+    }
+
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public String clusterPoolVersion() {
