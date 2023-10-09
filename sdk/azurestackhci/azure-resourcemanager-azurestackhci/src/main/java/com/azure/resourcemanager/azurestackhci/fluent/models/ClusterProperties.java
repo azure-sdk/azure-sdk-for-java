@@ -7,7 +7,10 @@ package com.azure.resourcemanager.azurestackhci.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.azurestackhci.models.ClusterDesiredProperties;
 import com.azure.resourcemanager.azurestackhci.models.ClusterReportedProperties;
+import com.azure.resourcemanager.azurestackhci.models.ConnectivityStatus;
+import com.azure.resourcemanager.azurestackhci.models.IsolatedVmAttestationConfiguration;
 import com.azure.resourcemanager.azurestackhci.models.ProvisioningState;
+import com.azure.resourcemanager.azurestackhci.models.SoftwareAssuranceProperties;
 import com.azure.resourcemanager.azurestackhci.models.Status;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
@@ -26,6 +29,12 @@ public final class ClusterProperties {
      */
     @JsonProperty(value = "status", access = JsonProperty.Access.WRITE_ONLY)
     private Status status;
+
+    /*
+     * Overall connectivity status for the cluster resource.
+     */
+    @JsonProperty(value = "connectivityStatus", access = JsonProperty.Access.WRITE_ONLY)
+    private ConnectivityStatus connectivityStatus;
 
     /*
      * Unique, immutable resource id.
@@ -64,6 +73,12 @@ public final class ClusterProperties {
     private String aadServicePrincipalObjectId;
 
     /*
+     * Software Assurance properties of the cluster.
+     */
+    @JsonProperty(value = "softwareAssuranceProperties")
+    private SoftwareAssuranceProperties softwareAssuranceProperties;
+
+    /*
      * Desired properties of the cluster.
      */
     @JsonProperty(value = "desiredProperties")
@@ -74,6 +89,12 @@ public final class ClusterProperties {
      */
     @JsonProperty(value = "reportedProperties", access = JsonProperty.Access.WRITE_ONLY)
     private ClusterReportedProperties reportedProperties;
+
+    /*
+     * Attestation configurations for isolated VM (e.g. TVM, CVM) of the cluster.
+     */
+    @JsonProperty(value = "isolatedVmAttestationConfiguration", access = JsonProperty.Access.WRITE_ONLY)
+    private IsolatedVmAttestationConfiguration isolatedVmAttestationConfiguration;
 
     /*
      * Number of days remaining in the trial period.
@@ -111,6 +132,16 @@ public final class ClusterProperties {
     @JsonProperty(value = "serviceEndpoint", access = JsonProperty.Access.WRITE_ONLY)
     private String serviceEndpoint;
 
+    /*
+     * Object id of RP Service Principal
+     */
+    @JsonProperty(value = "resourceProviderObjectId", access = JsonProperty.Access.WRITE_ONLY)
+    private String resourceProviderObjectId;
+
+    /** Creates an instance of ClusterProperties class. */
+    public ClusterProperties() {
+    }
+
     /**
      * Get the provisioningState property: Provisioning state.
      *
@@ -127,6 +158,15 @@ public final class ClusterProperties {
      */
     public Status status() {
         return this.status;
+    }
+
+    /**
+     * Get the connectivityStatus property: Overall connectivity status for the cluster resource.
+     *
+     * @return the connectivityStatus value.
+     */
+    public ConnectivityStatus connectivityStatus() {
+        return this.connectivityStatus;
     }
 
     /**
@@ -239,6 +279,26 @@ public final class ClusterProperties {
     }
 
     /**
+     * Get the softwareAssuranceProperties property: Software Assurance properties of the cluster.
+     *
+     * @return the softwareAssuranceProperties value.
+     */
+    public SoftwareAssuranceProperties softwareAssuranceProperties() {
+        return this.softwareAssuranceProperties;
+    }
+
+    /**
+     * Set the softwareAssuranceProperties property: Software Assurance properties of the cluster.
+     *
+     * @param softwareAssuranceProperties the softwareAssuranceProperties value to set.
+     * @return the ClusterProperties object itself.
+     */
+    public ClusterProperties withSoftwareAssuranceProperties(SoftwareAssuranceProperties softwareAssuranceProperties) {
+        this.softwareAssuranceProperties = softwareAssuranceProperties;
+        return this;
+    }
+
+    /**
      * Get the desiredProperties property: Desired properties of the cluster.
      *
      * @return the desiredProperties value.
@@ -265,6 +325,16 @@ public final class ClusterProperties {
      */
     public ClusterReportedProperties reportedProperties() {
         return this.reportedProperties;
+    }
+
+    /**
+     * Get the isolatedVmAttestationConfiguration property: Attestation configurations for isolated VM (e.g. TVM, CVM)
+     * of the cluster.
+     *
+     * @return the isolatedVmAttestationConfiguration value.
+     */
+    public IsolatedVmAttestationConfiguration isolatedVmAttestationConfiguration() {
+        return this.isolatedVmAttestationConfiguration;
     }
 
     /**
@@ -322,16 +392,31 @@ public final class ClusterProperties {
     }
 
     /**
+     * Get the resourceProviderObjectId property: Object id of RP Service Principal.
+     *
+     * @return the resourceProviderObjectId value.
+     */
+    public String resourceProviderObjectId() {
+        return this.resourceProviderObjectId;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (softwareAssuranceProperties() != null) {
+            softwareAssuranceProperties().validate();
+        }
         if (desiredProperties() != null) {
             desiredProperties().validate();
         }
         if (reportedProperties() != null) {
             reportedProperties().validate();
+        }
+        if (isolatedVmAttestationConfiguration() != null) {
+            isolatedVmAttestationConfiguration().validate();
         }
     }
 }
