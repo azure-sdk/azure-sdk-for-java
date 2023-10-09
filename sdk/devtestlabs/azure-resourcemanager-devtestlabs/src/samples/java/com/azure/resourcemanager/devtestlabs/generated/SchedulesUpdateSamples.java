@@ -11,7 +11,7 @@ import java.util.Map;
 /** Samples for Schedules Update. */
 public final class SchedulesUpdateSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/Schedules_Update.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/Schedules_Update.json
      */
     /**
      * Sample code: Schedules_Update.
@@ -23,12 +23,13 @@ public final class SchedulesUpdateSamples {
             .schedules()
             .updateWithResponse(
                 "resourceGroupName",
-                "{labName}",
+                "myLabName",
                 "{scheduleName}",
                 new ScheduleFragment().withTags(mapOf("tagName1", "tagValue1")),
                 com.azure.core.util.Context.NONE);
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

@@ -13,31 +13,31 @@ public interface Artifacts {
     /**
      * List artifacts in a given artifact source.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param artifactSourceName The name of the artifact source.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedIterable}.
+     * @return contains a list of artifacts and their properties as paginated response with {@link PagedIterable}.
      */
     PagedIterable<Artifact> list(String resourceGroupName, String labName, String artifactSourceName);
 
     /**
      * List artifacts in a given artifact source.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param artifactSourceName The name of the artifact source.
      * @param expand Specify the $expand query. Example: 'properties($select=title)'.
-     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName').
+     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName')'.
      * @param top The maximum number of resources to return from the operation. Example: '$top=10'.
      * @param orderby The ordering expression for the results, using OData notation. Example: '$orderby=name desc'.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedIterable}.
+     * @return contains a list of artifacts and their properties as paginated response with {@link PagedIterable}.
      */
     PagedIterable<Artifact> list(
         String resourceGroupName,
@@ -52,7 +52,7 @@ public interface Artifacts {
     /**
      * Get artifact.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param artifactSourceName The name of the artifact source.
      * @param name The name of the artifact.
@@ -74,7 +74,7 @@ public interface Artifacts {
     /**
      * Get artifact.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param artifactSourceName The name of the artifact source.
      * @param name The name of the artifact.
@@ -89,7 +89,7 @@ public interface Artifacts {
      * Generates an ARM template for the given artifact, uploads the required files to a storage account, and validates
      * the generated artifact.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param artifactSourceName The name of the artifact source.
      * @param name The name of the artifact.
@@ -112,7 +112,7 @@ public interface Artifacts {
      * Generates an ARM template for the given artifact, uploads the required files to a storage account, and validates
      * the generated artifact.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param artifactSourceName The name of the artifact source.
      * @param name The name of the artifact.

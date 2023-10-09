@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.devtestlabs.generated;
 
-import com.azure.resourcemanager.devtestlabs.models.CustomImagePropertiesFromVm;
-import com.azure.resourcemanager.devtestlabs.models.LinuxOsInfo;
 import com.azure.resourcemanager.devtestlabs.models.LinuxOsState;
 import java.util.HashMap;
 import java.util.Map;
@@ -13,7 +11,7 @@ import java.util.Map;
 /** Samples for CustomImages CreateOrUpdate. */
 public final class CustomImagesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/CustomImages_CreateOrUpdate.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/CustomImages_CreateOrUpdate.json
      */
     /**
      * Sample code: CustomImages_CreateOrUpdate.
@@ -24,18 +22,17 @@ public final class CustomImagesCreateOrUpdateSamples {
         manager
             .customImages()
             .define("{customImageName}")
-            .withRegion((String) null)
-            .withExistingLab("resourceGroupName", "{labName}")
+            .withRegion("{location}")
+            .withExistingLab("resourceGroupName", "myLabName")
             .withTags(mapOf("tagName1", "tagValue1"))
-            .withVm(
-                new CustomImagePropertiesFromVm()
-                    .withSourceVmId(
-                        "/subscriptions/{subscriptionId}/resourcegroups/resourceGroupName/providers/microsoft.devtestlab/labs/{labName}/virtualmachines/{vmName}")
-                    .withLinuxOsInfo(new LinuxOsInfo().withLinuxOsState(LinuxOsState.NON_DEPROVISIONED)))
             .withDescription("My Custom Image")
+            .withSourceVmId(
+                "/subscriptions/{subscriptionId}/resourcegroups/resourceGroupName/providers/microsoft.devtestlab/labs/myLabName/virtualmachines/{vmName}")
+            .withLinuxOsState(LinuxOsState.NON_DEPROVISIONED)
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

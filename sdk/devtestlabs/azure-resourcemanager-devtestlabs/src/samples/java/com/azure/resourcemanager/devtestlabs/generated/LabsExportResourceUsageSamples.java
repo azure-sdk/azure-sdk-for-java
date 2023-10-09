@@ -10,7 +10,7 @@ import java.time.OffsetDateTime;
 /** Samples for Labs ExportResourceUsage. */
 public final class LabsExportResourceUsageSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/Labs_ExportResourceUsage.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/Labs_ExportResourceUsage.json
      */
     /**
      * Sample code: Labs_ExportResourceUsage.
@@ -22,7 +22,7 @@ public final class LabsExportResourceUsageSamples {
             .labs()
             .exportResourceUsage(
                 "resourceGroupName",
-                "{labName}",
+                "myLabName",
                 new ExportResourceUsageParameters()
                     .withBlobStorageAbsoluteSasUri(
                         "https://invalid.blob.core.windows.net/export.blob?sv=2015-07-08&sig={sas}&sp=rcw")

@@ -5,9 +5,10 @@
 package com.azure.resourcemanager.devtestlabs.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.resourcemanager.devtestlabs.fluent.models.IdentityProperties;
 import java.util.Map;
 
-/** A notification. */
+/** Patch. */
 @Fluent
 public final class NotificationChannelFragment extends UpdateResource {
     /** Creates an instance of NotificationChannelFragment class. */
@@ -18,6 +19,13 @@ public final class NotificationChannelFragment extends UpdateResource {
     @Override
     public NotificationChannelFragment withTags(Map<String, String> tags) {
         super.withTags(tags);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public NotificationChannelFragment withIdentity(IdentityProperties identity) {
+        super.withIdentity(identity);
         return this;
     }
 

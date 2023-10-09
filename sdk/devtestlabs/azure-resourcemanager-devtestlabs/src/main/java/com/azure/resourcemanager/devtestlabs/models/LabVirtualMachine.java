@@ -6,7 +6,9 @@ package com.azure.resourcemanager.devtestlabs.models;
 
 import com.azure.core.http.rest.Response;
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
+import com.azure.resourcemanager.devtestlabs.fluent.models.IdentityProperties;
 import com.azure.resourcemanager.devtestlabs.fluent.models.LabVirtualMachineInner;
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -48,6 +50,13 @@ public interface LabVirtualMachine {
      * @return the tags value.
      */
     Map<String, String> tags();
+
+    /**
+     * Gets the systemData property: The system metadata relating to this resource.
+     *
+     * @return the systemData value.
+     */
+    SystemData systemData();
 
     /**
      * Gets the notes property: The notes of the virtual machine.
@@ -104,6 +113,29 @@ public interface LabVirtualMachine {
      * @return the customImageId value.
      */
     String customImageId();
+
+    /**
+     * Gets the galleryImageVersionId property: The shared gallery image version resource identifier of the virtual
+     * machine.
+     *
+     * @return the galleryImageVersionId value.
+     */
+    String galleryImageVersionId();
+
+    /**
+     * Gets the sharedImageId property: The shared image resource identifier of the virtual machine.
+     *
+     * @return the sharedImageId value.
+     */
+    String sharedImageId();
+
+    /**
+     * Gets the sharedImageVersion property: The shared image version for the specified shared image Id. Will use latest
+     * if not specified.
+     *
+     * @return the sharedImageVersion value.
+     */
+    String sharedImageVersion();
 
     /**
      * Gets the osType property: The OS type of the virtual machine.
@@ -185,20 +217,6 @@ public interface LabVirtualMachine {
     List<ArtifactInstallProperties> artifacts();
 
     /**
-     * Gets the artifactDeploymentStatus property: The artifact deployment status for the virtual machine.
-     *
-     * @return the artifactDeploymentStatus value.
-     */
-    ArtifactDeploymentStatusProperties artifactDeploymentStatus();
-
-    /**
-     * Gets the galleryImageReference property: The Microsoft Azure Marketplace image reference of the virtual machine.
-     *
-     * @return the galleryImageReference value.
-     */
-    GalleryImageReference galleryImageReference();
-
-    /**
      * Gets the planId property: The id of the plan associated with the virtual machine image.
      *
      * @return the planId value.
@@ -206,25 +224,12 @@ public interface LabVirtualMachine {
     String planId();
 
     /**
-     * Gets the computeVm property: The compute virtual machine properties.
+     * Gets the osDiskSizeGb property: Specifies the size of an empty data disk in gigabytes. This element can be used
+     * to overwrite the size of the disk in a virtual machine image.
      *
-     * @return the computeVm value.
+     * @return the osDiskSizeGb value.
      */
-    ComputeVmProperties computeVm();
-
-    /**
-     * Gets the networkInterface property: The network interface properties.
-     *
-     * @return the networkInterface value.
-     */
-    NetworkInterfaceProperties networkInterface();
-
-    /**
-     * Gets the applicableSchedule property: The applicable schedule for the virtual machine.
-     *
-     * @return the applicableSchedule value.
-     */
-    ApplicableSchedule applicableSchedule();
+    Integer osDiskSizeGb();
 
     /**
      * Gets the expirationDate property: The expiration date for VM.
@@ -241,11 +246,11 @@ public interface LabVirtualMachine {
     Boolean allowClaim();
 
     /**
-     * Gets the storageType property: Storage type to use for virtual machine (i.e. Standard, Premium).
+     * Gets the storageType property: Storage type to use for virtual machine (i.e. Standard, Premium, StandardSSD).
      *
      * @return the storageType value.
      */
-    String storageType();
+    StorageTypes storageType();
 
     /**
      * Gets the virtualMachineCreationSource property: Tells source of creation of lab virtual machine. Output property
@@ -284,6 +289,21 @@ public interface LabVirtualMachine {
     String lastKnownPowerState();
 
     /**
+     * Gets the canApplyArtifacts property: Flag to determine if apply artifacts can be triggered at the time of
+     * fetching the document.
+     *
+     * @return the canApplyArtifacts value.
+     */
+    Boolean canApplyArtifacts();
+
+    /**
+     * Gets the securityProfile property: Option to apply more security protection for VMs.
+     *
+     * @return the securityProfile value.
+     */
+    SecurityProfile securityProfile();
+
+    /**
      * Gets the provisioningState property: The provisioning status of the resource.
      *
      * @return the provisioningState value.
@@ -296,6 +316,501 @@ public interface LabVirtualMachine {
      * @return the uniqueIdentifier value.
      */
     String uniqueIdentifier();
+
+    /**
+     * Gets the deploymentStatus property: The deployment status of the artifact.
+     *
+     * @return the deploymentStatus value.
+     */
+    String deploymentStatus();
+
+    /**
+     * Gets the artifactsApplied property: The total count of the artifacts that were successfully applied.
+     *
+     * @return the artifactsApplied value.
+     */
+    Integer artifactsApplied();
+
+    /**
+     * Gets the totalArtifacts property: The total count of the artifacts that were tentatively applied.
+     *
+     * @return the totalArtifacts value.
+     */
+    Integer totalArtifacts();
+
+    /**
+     * Gets the offer property: The offer of the gallery image.
+     *
+     * @return the offer value.
+     */
+    String offer();
+
+    /**
+     * Gets the publisher property: The publisher of the gallery image.
+     *
+     * @return the publisher value.
+     */
+    String publisher();
+
+    /**
+     * Gets the sku property: The SKU of the gallery image.
+     *
+     * @return the sku value.
+     */
+    String sku();
+
+    /**
+     * Gets the osTypeGalleryImageReferenceOsType property: The OS type of the gallery image.
+     *
+     * @return the osTypeGalleryImageReferenceOsType value.
+     */
+    String osTypeGalleryImageReferenceOsType();
+
+    /**
+     * Gets the version property: The version of the gallery image.
+     *
+     * @return the version value.
+     */
+    String version();
+
+    /**
+     * Gets the statuses property: Gets the statuses of the virtual machine.
+     *
+     * @return the statuses value.
+     */
+    List<ComputeVmInstanceViewStatus> statuses();
+
+    /**
+     * Gets the osTypeComputeVmOsType property: Gets the OS type of the virtual machine.
+     *
+     * @return the osTypeComputeVmOsType value.
+     */
+    String osTypeComputeVmOsType();
+
+    /**
+     * Gets the vmSize property: Gets the size of the virtual machine.
+     *
+     * @return the vmSize value.
+     */
+    String vmSize();
+
+    /**
+     * Gets the networkInterfaceId property: Gets the network interface ID of the virtual machine.
+     *
+     * @return the networkInterfaceId value.
+     */
+    String networkInterfaceId();
+
+    /**
+     * Gets the osDiskId property: Gets OS disk blob uri for the virtual machine.
+     *
+     * @return the osDiskId value.
+     */
+    String osDiskId();
+
+    /**
+     * Gets the dataDiskIds property: Gets data disks blob uri for the virtual machine.
+     *
+     * @return the dataDiskIds value.
+     */
+    List<String> dataDiskIds();
+
+    /**
+     * Gets the dataDisks property: Gets all data disks attached to the virtual machine.
+     *
+     * @return the dataDisks value.
+     */
+    List<ComputeDataDisk> dataDisks();
+
+    /**
+     * Gets the virtualNetworkId property: The resource ID of the virtual network.
+     *
+     * @return the virtualNetworkId value.
+     */
+    String virtualNetworkId();
+
+    /**
+     * Gets the subnetId property: The resource ID of the sub net.
+     *
+     * @return the subnetId value.
+     */
+    String subnetId();
+
+    /**
+     * Gets the publicIpAddressId property: The resource ID of the public IP address.
+     *
+     * @return the publicIpAddressId value.
+     */
+    String publicIpAddressId();
+
+    /**
+     * Gets the publicIpAddress property: The public IP address.
+     *
+     * @return the publicIpAddress value.
+     */
+    String publicIpAddress();
+
+    /**
+     * Gets the privateIpAddress property: The private IP address.
+     *
+     * @return the privateIpAddress value.
+     */
+    String privateIpAddress();
+
+    /**
+     * Gets the dnsName property: The DNS name.
+     *
+     * @return the dnsName value.
+     */
+    String dnsName();
+
+    /**
+     * Gets the rdpAuthority property: The RdpAuthority property is a server DNS host name or IP address followed by the
+     * service port number for RDP (Remote Desktop Protocol).
+     *
+     * @return the rdpAuthority value.
+     */
+    String rdpAuthority();
+
+    /**
+     * Gets the sshAuthority property: The SshAuthority property is a server DNS host name or IP address followed by the
+     * service port number for SSH.
+     *
+     * @return the sshAuthority value.
+     */
+    String sshAuthority();
+
+    /**
+     * Gets the inboundNatRules property: The incoming NAT rules.
+     *
+     * @return the inboundNatRules value.
+     */
+    List<InboundNatRule> inboundNatRules();
+
+    /**
+     * Gets the systemDataPropertiesSystemData property: The system metadata relating to this resource.
+     *
+     * @return the systemDataPropertiesSystemData value.
+     */
+    SystemData systemDataPropertiesSystemData();
+
+    /**
+     * Gets the status property: The status of the schedule (i.e. Enabled, Disabled).
+     *
+     * @return the status value.
+     */
+    EnableStatus status();
+
+    /**
+     * Gets the taskType property: The task type of the schedule (e.g. LabVmsShutdownTask, LabVmAutoStart).
+     *
+     * @return the taskType value.
+     */
+    String taskType();
+
+    /**
+     * Gets the timeZoneId property: The time zone ID (e.g. Pacific Standard time).
+     *
+     * @return the timeZoneId value.
+     */
+    String timeZoneId();
+
+    /**
+     * Gets the createdDateApplicableScheduleCreatedDate property: The creation date of the schedule.
+     *
+     * @return the createdDateApplicableScheduleCreatedDate value.
+     */
+    OffsetDateTime createdDateApplicableScheduleCreatedDate();
+
+    /**
+     * Gets the targetResourceId property: The resource ID to which the schedule belongs.
+     *
+     * @return the targetResourceId value.
+     */
+    String targetResourceId();
+
+    /**
+     * Gets the provisioningStateApplicableScheduleProvisioningState property: The provisioning status of the resource.
+     *
+     * @return the provisioningStateApplicableScheduleProvisioningState value.
+     */
+    String provisioningStateApplicableScheduleProvisioningState();
+
+    /**
+     * Gets the uniqueIdentifierApplicableScheduleUniqueIdentifier property: The unique immutable identifier of a
+     * resource (Guid).
+     *
+     * @return the uniqueIdentifierApplicableScheduleUniqueIdentifier value.
+     */
+    String uniqueIdentifierApplicableScheduleUniqueIdentifier();
+
+    /**
+     * Gets the weekdays property: The days of the week for which the schedule is set (e.g. Sunday, Monday, Tuesday,
+     * etc.).
+     *
+     * @return the weekdays value.
+     */
+    List<String> weekdays();
+
+    /**
+     * Gets the time property: The time of the day the schedule will occur.
+     *
+     * @return the time value.
+     */
+    String time();
+
+    /**
+     * Gets the timeDailyRecurrenceTime property: The time of day the schedule will occur.
+     *
+     * @return the timeDailyRecurrenceTime value.
+     */
+    String timeDailyRecurrenceTime();
+
+    /**
+     * Gets the minute property: Minutes of the hour the schedule will run.
+     *
+     * @return the minute value.
+     */
+    Integer minute();
+
+    /**
+     * Gets the statusNotificationSettingsStatus property: If notifications are enabled for this schedule (i.e. Enabled,
+     * Disabled).
+     *
+     * @return the statusNotificationSettingsStatus value.
+     */
+    EnableStatus statusNotificationSettingsStatus();
+
+    /**
+     * Gets the timeInMinutes property: Time in minutes before event at which notification will be sent.
+     *
+     * @return the timeInMinutes value.
+     */
+    Integer timeInMinutes();
+
+    /**
+     * Gets the webhookUrl property: The webhook URL to which the notification will be sent.
+     *
+     * @return the webhookUrl value.
+     */
+    String webhookUrl();
+
+    /**
+     * Gets the emailRecipient property: The email recipient to send notifications to (can be a list of semi-colon
+     * separated email addresses).
+     *
+     * @return the emailRecipient value.
+     */
+    String emailRecipient();
+
+    /**
+     * Gets the notificationLocale property: The locale to use when sending a notification (fallback for unsupported
+     * languages is EN).
+     *
+     * @return the notificationLocale value.
+     */
+    String notificationLocale();
+
+    /**
+     * Gets the idPropertiesId property: Fully qualified resource ID for the resource. E.g.
+     * "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}".
+     *
+     * @return the idPropertiesId value.
+     */
+    String idPropertiesId();
+
+    /**
+     * Gets the namePropertiesName property: The name of the resource.
+     *
+     * @return the namePropertiesName value.
+     */
+    String namePropertiesName();
+
+    /**
+     * Gets the typePropertiesType property: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
+     * "Microsoft.Storage/storageAccounts".
+     *
+     * @return the typePropertiesType value.
+     */
+    String typePropertiesType();
+
+    /**
+     * Gets the tagsPropertiesTags property: Resource tags.
+     *
+     * @return the tagsPropertiesTags value.
+     */
+    Map<String, String> tagsPropertiesTags();
+
+    /**
+     * Gets the locationPropertiesLocation property: The geo-location where the resource lives.
+     *
+     * @return the locationPropertiesLocation value.
+     */
+    String locationPropertiesLocation();
+
+    /**
+     * Gets the systemDataLabVmsStartupSystemData property: The system metadata relating to this resource.
+     *
+     * @return the systemDataLabVmsStartupSystemData value.
+     */
+    SystemData systemDataLabVmsStartupSystemData();
+
+    /**
+     * Gets the statusLabVmsStartupStatus property: The status of the schedule (i.e. Enabled, Disabled).
+     *
+     * @return the statusLabVmsStartupStatus value.
+     */
+    EnableStatus statusLabVmsStartupStatus();
+
+    /**
+     * Gets the taskTypeLabVmsStartupTaskType property: The task type of the schedule (e.g. LabVmsShutdownTask,
+     * LabVmAutoStart).
+     *
+     * @return the taskTypeLabVmsStartupTaskType value.
+     */
+    String taskTypeLabVmsStartupTaskType();
+
+    /**
+     * Gets the timeZoneIdLabVmsStartupTimeZoneId property: The time zone ID (e.g. Pacific Standard time).
+     *
+     * @return the timeZoneIdLabVmsStartupTimeZoneId value.
+     */
+    String timeZoneIdLabVmsStartupTimeZoneId();
+
+    /**
+     * Gets the createdDateLabVmsStartupCreatedDate property: The creation date of the schedule.
+     *
+     * @return the createdDateLabVmsStartupCreatedDate value.
+     */
+    OffsetDateTime createdDateLabVmsStartupCreatedDate();
+
+    /**
+     * Gets the targetResourceIdLabVmsStartupTargetResourceId property: The resource ID to which the schedule belongs.
+     *
+     * @return the targetResourceIdLabVmsStartupTargetResourceId value.
+     */
+    String targetResourceIdLabVmsStartupTargetResourceId();
+
+    /**
+     * Gets the provisioningStateLabVmsStartupProvisioningState property: The provisioning status of the resource.
+     *
+     * @return the provisioningStateLabVmsStartupProvisioningState value.
+     */
+    String provisioningStateLabVmsStartupProvisioningState();
+
+    /**
+     * Gets the uniqueIdentifierLabVmsStartupUniqueIdentifier property: The unique immutable identifier of a resource
+     * (Guid).
+     *
+     * @return the uniqueIdentifierLabVmsStartupUniqueIdentifier value.
+     */
+    String uniqueIdentifierLabVmsStartupUniqueIdentifier();
+
+    /**
+     * Gets the weekdaysLabVmsStartupWeekdays property: The days of the week for which the schedule is set (e.g. Sunday,
+     * Monday, Tuesday, etc.).
+     *
+     * @return the weekdaysLabVmsStartupWeekdays value.
+     */
+    List<String> weekdaysLabVmsStartupWeekdays();
+
+    /**
+     * Gets the timeLabVmsStartupTime property: The time of the day the schedule will occur.
+     *
+     * @return the timeLabVmsStartupTime value.
+     */
+    String timeLabVmsStartupTime();
+
+    /**
+     * Gets the timeDailyRecurrenceTimeLabVmsStartupTimeDailyRecurrenceTime property: The time of day the schedule will
+     * occur.
+     *
+     * @return the timeDailyRecurrenceTimeLabVmsStartupTimeDailyRecurrenceTime value.
+     */
+    String timeDailyRecurrenceTimeLabVmsStartupTimeDailyRecurrenceTime();
+
+    /**
+     * Gets the minuteLabVmsStartupMinute property: Minutes of the hour the schedule will run.
+     *
+     * @return the minuteLabVmsStartupMinute value.
+     */
+    Integer minuteLabVmsStartupMinute();
+
+    /**
+     * Gets the statusNotificationSettingsStatusLabVmsStartupStatusNotificationSettingsStatus property: If notifications
+     * are enabled for this schedule (i.e. Enabled, Disabled).
+     *
+     * @return the statusNotificationSettingsStatusLabVmsStartupStatusNotificationSettingsStatus value.
+     */
+    EnableStatus statusNotificationSettingsStatusLabVmsStartupStatusNotificationSettingsStatus();
+
+    /**
+     * Gets the timeInMinutesLabVmsStartupTimeInMinutes property: Time in minutes before event at which notification
+     * will be sent.
+     *
+     * @return the timeInMinutesLabVmsStartupTimeInMinutes value.
+     */
+    Integer timeInMinutesLabVmsStartupTimeInMinutes();
+
+    /**
+     * Gets the webhookUrlLabVmsStartupWebhookUrl property: The webhook URL to which the notification will be sent.
+     *
+     * @return the webhookUrlLabVmsStartupWebhookUrl value.
+     */
+    String webhookUrlLabVmsStartupWebhookUrl();
+
+    /**
+     * Gets the emailRecipientLabVmsStartupEmailRecipient property: The email recipient to send notifications to (can be
+     * a list of semi-colon separated email addresses).
+     *
+     * @return the emailRecipientLabVmsStartupEmailRecipient value.
+     */
+    String emailRecipientLabVmsStartupEmailRecipient();
+
+    /**
+     * Gets the notificationLocaleLabVmsStartupNotificationLocale property: The locale to use when sending a
+     * notification (fallback for unsupported languages is EN).
+     *
+     * @return the notificationLocaleLabVmsStartupNotificationLocale value.
+     */
+    String notificationLocaleLabVmsStartupNotificationLocale();
+
+    /**
+     * Gets the idLabVmsStartupId property: Fully qualified resource ID for the resource. E.g.
+     * "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}".
+     *
+     * @return the idLabVmsStartupId value.
+     */
+    String idLabVmsStartupId();
+
+    /**
+     * Gets the nameLabVmsStartupName property: The name of the resource.
+     *
+     * @return the nameLabVmsStartupName value.
+     */
+    String nameLabVmsStartupName();
+
+    /**
+     * Gets the typeLabVmsStartupType property: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
+     * "Microsoft.Storage/storageAccounts".
+     *
+     * @return the typeLabVmsStartupType value.
+     */
+    String typeLabVmsStartupType();
+
+    /**
+     * Gets the tagsLabVmsStartupTags property: Resource tags.
+     *
+     * @return the tagsLabVmsStartupTags value.
+     */
+    Map<String, String> tagsLabVmsStartupTags();
+
+    /**
+     * Gets the locationLabVmsStartupLocation property: The geo-location where the resource lives.
+     *
+     * @return the locationLabVmsStartupLocation value.
+     */
+    String locationLabVmsStartupLocation();
 
     /**
      * Gets the region of the resource.
@@ -332,11 +847,13 @@ public interface LabVirtualMachine {
             DefinitionStages.WithParentResource,
             DefinitionStages.WithCreate {
     }
+
     /** The LabVirtualMachine definition stages. */
     interface DefinitionStages {
         /** The first stage of the LabVirtualMachine definition. */
         interface Blank extends WithLocation {
         }
+
         /** The stage of the LabVirtualMachine definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -355,17 +872,19 @@ public interface LabVirtualMachine {
              */
             WithParentResource withRegion(String location);
         }
+
         /** The stage of the LabVirtualMachine definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
              * Specifies resourceGroupName, labName.
              *
-             * @param resourceGroupName The name of the resource group.
+             * @param resourceGroupName The name of the resource group. The name is case insensitive.
              * @param labName The name of the lab.
              * @return the next definition stage.
              */
             WithCreate withExistingLab(String resourceGroupName, String labName);
         }
+
         /**
          * The stage of the LabVirtualMachine definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
@@ -377,6 +896,9 @@ public interface LabVirtualMachine {
                 DefinitionStages.WithOwnerUserPrincipalName,
                 DefinitionStages.WithCreatedDate,
                 DefinitionStages.WithCustomImageId,
+                DefinitionStages.WithGalleryImageVersionId,
+                DefinitionStages.WithSharedImageId,
+                DefinitionStages.WithSharedImageVersion,
                 DefinitionStages.WithSize,
                 DefinitionStages.WithUsername,
                 DefinitionStages.WithPassword,
@@ -386,15 +908,29 @@ public interface LabVirtualMachine {
                 DefinitionStages.WithLabVirtualNetworkId,
                 DefinitionStages.WithDisallowPublicIpAddress,
                 DefinitionStages.WithArtifacts,
-                DefinitionStages.WithGalleryImageReference,
                 DefinitionStages.WithPlanId,
-                DefinitionStages.WithNetworkInterface,
+                DefinitionStages.WithOsDiskSizeGb,
                 DefinitionStages.WithExpirationDate,
                 DefinitionStages.WithAllowClaim,
                 DefinitionStages.WithStorageType,
                 DefinitionStages.WithEnvironmentId,
                 DefinitionStages.WithDataDiskParameters,
-                DefinitionStages.WithScheduleParameters {
+                DefinitionStages.WithScheduleParameters,
+                DefinitionStages.WithSecurityProfile,
+                DefinitionStages.WithOffer,
+                DefinitionStages.WithPublisher,
+                DefinitionStages.WithSku,
+                DefinitionStages.WithOsTypeGalleryImageReferenceOsType,
+                DefinitionStages.WithVersion,
+                DefinitionStages.WithVirtualNetworkId,
+                DefinitionStages.WithSubnetId,
+                DefinitionStages.WithPublicIpAddressId,
+                DefinitionStages.WithPublicIpAddress,
+                DefinitionStages.WithPrivateIpAddress,
+                DefinitionStages.WithDnsName,
+                DefinitionStages.WithRdpAuthority,
+                DefinitionStages.WithSshAuthority,
+                DefinitionStages.WithInboundNatRules {
             /**
              * Executes the create request.
              *
@@ -410,6 +946,7 @@ public interface LabVirtualMachine {
              */
             LabVirtualMachine create(Context context);
         }
+
         /** The stage of the LabVirtualMachine definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -420,6 +957,7 @@ public interface LabVirtualMachine {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
         /** The stage of the LabVirtualMachine definition allowing to specify notes. */
         interface WithNotes {
             /**
@@ -430,6 +968,7 @@ public interface LabVirtualMachine {
              */
             WithCreate withNotes(String notes);
         }
+
         /** The stage of the LabVirtualMachine definition allowing to specify ownerObjectId. */
         interface WithOwnerObjectId {
             /**
@@ -440,6 +979,7 @@ public interface LabVirtualMachine {
              */
             WithCreate withOwnerObjectId(String ownerObjectId);
         }
+
         /** The stage of the LabVirtualMachine definition allowing to specify ownerUserPrincipalName. */
         interface WithOwnerUserPrincipalName {
             /**
@@ -450,6 +990,7 @@ public interface LabVirtualMachine {
              */
             WithCreate withOwnerUserPrincipalName(String ownerUserPrincipalName);
         }
+
         /** The stage of the LabVirtualMachine definition allowing to specify createdDate. */
         interface WithCreatedDate {
             /**
@@ -460,6 +1001,7 @@ public interface LabVirtualMachine {
              */
             WithCreate withCreatedDate(OffsetDateTime createdDate);
         }
+
         /** The stage of the LabVirtualMachine definition allowing to specify customImageId. */
         interface WithCustomImageId {
             /**
@@ -470,6 +1012,43 @@ public interface LabVirtualMachine {
              */
             WithCreate withCustomImageId(String customImageId);
         }
+
+        /** The stage of the LabVirtualMachine definition allowing to specify galleryImageVersionId. */
+        interface WithGalleryImageVersionId {
+            /**
+             * Specifies the galleryImageVersionId property: The shared gallery image version resource identifier of the
+             * virtual machine..
+             *
+             * @param galleryImageVersionId The shared gallery image version resource identifier of the virtual machine.
+             * @return the next definition stage.
+             */
+            WithCreate withGalleryImageVersionId(String galleryImageVersionId);
+        }
+
+        /** The stage of the LabVirtualMachine definition allowing to specify sharedImageId. */
+        interface WithSharedImageId {
+            /**
+             * Specifies the sharedImageId property: The shared image resource identifier of the virtual machine..
+             *
+             * @param sharedImageId The shared image resource identifier of the virtual machine.
+             * @return the next definition stage.
+             */
+            WithCreate withSharedImageId(String sharedImageId);
+        }
+
+        /** The stage of the LabVirtualMachine definition allowing to specify sharedImageVersion. */
+        interface WithSharedImageVersion {
+            /**
+             * Specifies the sharedImageVersion property: The shared image version for the specified shared image Id.
+             * Will use latest if not specified..
+             *
+             * @param sharedImageVersion The shared image version for the specified shared image Id. Will use latest if
+             *     not specified.
+             * @return the next definition stage.
+             */
+            WithCreate withSharedImageVersion(String sharedImageVersion);
+        }
+
         /** The stage of the LabVirtualMachine definition allowing to specify size. */
         interface WithSize {
             /**
@@ -480,6 +1059,7 @@ public interface LabVirtualMachine {
              */
             WithCreate withSize(String size);
         }
+
         /** The stage of the LabVirtualMachine definition allowing to specify username. */
         interface WithUsername {
             /**
@@ -490,6 +1070,7 @@ public interface LabVirtualMachine {
              */
             WithCreate withUsername(String username);
         }
+
         /** The stage of the LabVirtualMachine definition allowing to specify password. */
         interface WithPassword {
             /**
@@ -500,6 +1081,7 @@ public interface LabVirtualMachine {
              */
             WithCreate withPassword(String password);
         }
+
         /** The stage of the LabVirtualMachine definition allowing to specify sshKey. */
         interface WithSshKey {
             /**
@@ -510,6 +1092,7 @@ public interface LabVirtualMachine {
              */
             WithCreate withSshKey(String sshKey);
         }
+
         /** The stage of the LabVirtualMachine definition allowing to specify isAuthenticationWithSshKey. */
         interface WithIsAuthenticationWithSshKey {
             /**
@@ -522,6 +1105,7 @@ public interface LabVirtualMachine {
              */
             WithCreate withIsAuthenticationWithSshKey(Boolean isAuthenticationWithSshKey);
         }
+
         /** The stage of the LabVirtualMachine definition allowing to specify labSubnetName. */
         interface WithLabSubnetName {
             /**
@@ -532,6 +1116,7 @@ public interface LabVirtualMachine {
              */
             WithCreate withLabSubnetName(String labSubnetName);
         }
+
         /** The stage of the LabVirtualMachine definition allowing to specify labVirtualNetworkId. */
         interface WithLabVirtualNetworkId {
             /**
@@ -542,6 +1127,7 @@ public interface LabVirtualMachine {
              */
             WithCreate withLabVirtualNetworkId(String labVirtualNetworkId);
         }
+
         /** The stage of the LabVirtualMachine definition allowing to specify disallowPublicIpAddress. */
         interface WithDisallowPublicIpAddress {
             /**
@@ -554,6 +1140,7 @@ public interface LabVirtualMachine {
              */
             WithCreate withDisallowPublicIpAddress(Boolean disallowPublicIpAddress);
         }
+
         /** The stage of the LabVirtualMachine definition allowing to specify artifacts. */
         interface WithArtifacts {
             /**
@@ -564,17 +1151,7 @@ public interface LabVirtualMachine {
              */
             WithCreate withArtifacts(List<ArtifactInstallProperties> artifacts);
         }
-        /** The stage of the LabVirtualMachine definition allowing to specify galleryImageReference. */
-        interface WithGalleryImageReference {
-            /**
-             * Specifies the galleryImageReference property: The Microsoft Azure Marketplace image reference of the
-             * virtual machine..
-             *
-             * @param galleryImageReference The Microsoft Azure Marketplace image reference of the virtual machine.
-             * @return the next definition stage.
-             */
-            WithCreate withGalleryImageReference(GalleryImageReference galleryImageReference);
-        }
+
         /** The stage of the LabVirtualMachine definition allowing to specify planId. */
         interface WithPlanId {
             /**
@@ -585,16 +1162,20 @@ public interface LabVirtualMachine {
              */
             WithCreate withPlanId(String planId);
         }
-        /** The stage of the LabVirtualMachine definition allowing to specify networkInterface. */
-        interface WithNetworkInterface {
+
+        /** The stage of the LabVirtualMachine definition allowing to specify osDiskSizeGb. */
+        interface WithOsDiskSizeGb {
             /**
-             * Specifies the networkInterface property: The network interface properties..
+             * Specifies the osDiskSizeGb property: Specifies the size of an empty data disk in gigabytes. This element
+             * can be used to overwrite the size of the disk in a virtual machine image..
              *
-             * @param networkInterface The network interface properties.
+             * @param osDiskSizeGb Specifies the size of an empty data disk in gigabytes. This element can be used to
+             *     overwrite the size of the disk in a virtual machine image.
              * @return the next definition stage.
              */
-            WithCreate withNetworkInterface(NetworkInterfaceProperties networkInterface);
+            WithCreate withOsDiskSizeGb(Integer osDiskSizeGb);
         }
+
         /** The stage of the LabVirtualMachine definition allowing to specify expirationDate. */
         interface WithExpirationDate {
             /**
@@ -605,6 +1186,7 @@ public interface LabVirtualMachine {
              */
             WithCreate withExpirationDate(OffsetDateTime expirationDate);
         }
+
         /** The stage of the LabVirtualMachine definition allowing to specify allowClaim. */
         interface WithAllowClaim {
             /**
@@ -616,16 +1198,19 @@ public interface LabVirtualMachine {
              */
             WithCreate withAllowClaim(Boolean allowClaim);
         }
+
         /** The stage of the LabVirtualMachine definition allowing to specify storageType. */
         interface WithStorageType {
             /**
-             * Specifies the storageType property: Storage type to use for virtual machine (i.e. Standard, Premium)..
+             * Specifies the storageType property: Storage type to use for virtual machine (i.e. Standard, Premium,
+             * StandardSSD)..
              *
-             * @param storageType Storage type to use for virtual machine (i.e. Standard, Premium).
+             * @param storageType Storage type to use for virtual machine (i.e. Standard, Premium, StandardSSD).
              * @return the next definition stage.
              */
-            WithCreate withStorageType(String storageType);
+            WithCreate withStorageType(StorageTypes storageType);
         }
+
         /** The stage of the LabVirtualMachine definition allowing to specify environmentId. */
         interface WithEnvironmentId {
             /**
@@ -637,6 +1222,7 @@ public interface LabVirtualMachine {
              */
             WithCreate withEnvironmentId(String environmentId);
         }
+
         /** The stage of the LabVirtualMachine definition allowing to specify dataDiskParameters. */
         interface WithDataDiskParameters {
             /**
@@ -648,6 +1234,7 @@ public interface LabVirtualMachine {
              */
             WithCreate withDataDiskParameters(List<DataDiskProperties> dataDiskParameters);
         }
+
         /** The stage of the LabVirtualMachine definition allowing to specify scheduleParameters. */
         interface WithScheduleParameters {
             /**
@@ -658,7 +1245,177 @@ public interface LabVirtualMachine {
              */
             WithCreate withScheduleParameters(List<ScheduleCreationParameter> scheduleParameters);
         }
+
+        /** The stage of the LabVirtualMachine definition allowing to specify securityProfile. */
+        interface WithSecurityProfile {
+            /**
+             * Specifies the securityProfile property: Option to apply more security protection for VMs..
+             *
+             * @param securityProfile Option to apply more security protection for VMs.
+             * @return the next definition stage.
+             */
+            WithCreate withSecurityProfile(SecurityProfile securityProfile);
+        }
+
+        /** The stage of the LabVirtualMachine definition allowing to specify offer. */
+        interface WithOffer {
+            /**
+             * Specifies the offer property: The offer of the gallery image..
+             *
+             * @param offer The offer of the gallery image.
+             * @return the next definition stage.
+             */
+            WithCreate withOffer(String offer);
+        }
+
+        /** The stage of the LabVirtualMachine definition allowing to specify publisher. */
+        interface WithPublisher {
+            /**
+             * Specifies the publisher property: The publisher of the gallery image..
+             *
+             * @param publisher The publisher of the gallery image.
+             * @return the next definition stage.
+             */
+            WithCreate withPublisher(String publisher);
+        }
+
+        /** The stage of the LabVirtualMachine definition allowing to specify sku. */
+        interface WithSku {
+            /**
+             * Specifies the sku property: The SKU of the gallery image..
+             *
+             * @param sku The SKU of the gallery image.
+             * @return the next definition stage.
+             */
+            WithCreate withSku(String sku);
+        }
+
+        /** The stage of the LabVirtualMachine definition allowing to specify osTypeGalleryImageReferenceOsType. */
+        interface WithOsTypeGalleryImageReferenceOsType {
+            /**
+             * Specifies the osTypeGalleryImageReferenceOsType property: The OS type of the gallery image..
+             *
+             * @param osTypeGalleryImageReferenceOsType The OS type of the gallery image.
+             * @return the next definition stage.
+             */
+            WithCreate withOsTypeGalleryImageReferenceOsType(String osTypeGalleryImageReferenceOsType);
+        }
+
+        /** The stage of the LabVirtualMachine definition allowing to specify version. */
+        interface WithVersion {
+            /**
+             * Specifies the version property: The version of the gallery image..
+             *
+             * @param version The version of the gallery image.
+             * @return the next definition stage.
+             */
+            WithCreate withVersion(String version);
+        }
+
+        /** The stage of the LabVirtualMachine definition allowing to specify virtualNetworkId. */
+        interface WithVirtualNetworkId {
+            /**
+             * Specifies the virtualNetworkId property: The resource ID of the virtual network..
+             *
+             * @param virtualNetworkId The resource ID of the virtual network.
+             * @return the next definition stage.
+             */
+            WithCreate withVirtualNetworkId(String virtualNetworkId);
+        }
+
+        /** The stage of the LabVirtualMachine definition allowing to specify subnetId. */
+        interface WithSubnetId {
+            /**
+             * Specifies the subnetId property: The resource ID of the sub net..
+             *
+             * @param subnetId The resource ID of the sub net.
+             * @return the next definition stage.
+             */
+            WithCreate withSubnetId(String subnetId);
+        }
+
+        /** The stage of the LabVirtualMachine definition allowing to specify publicIpAddressId. */
+        interface WithPublicIpAddressId {
+            /**
+             * Specifies the publicIpAddressId property: The resource ID of the public IP address..
+             *
+             * @param publicIpAddressId The resource ID of the public IP address.
+             * @return the next definition stage.
+             */
+            WithCreate withPublicIpAddressId(String publicIpAddressId);
+        }
+
+        /** The stage of the LabVirtualMachine definition allowing to specify publicIpAddress. */
+        interface WithPublicIpAddress {
+            /**
+             * Specifies the publicIpAddress property: The public IP address..
+             *
+             * @param publicIpAddress The public IP address.
+             * @return the next definition stage.
+             */
+            WithCreate withPublicIpAddress(String publicIpAddress);
+        }
+
+        /** The stage of the LabVirtualMachine definition allowing to specify privateIpAddress. */
+        interface WithPrivateIpAddress {
+            /**
+             * Specifies the privateIpAddress property: The private IP address..
+             *
+             * @param privateIpAddress The private IP address.
+             * @return the next definition stage.
+             */
+            WithCreate withPrivateIpAddress(String privateIpAddress);
+        }
+
+        /** The stage of the LabVirtualMachine definition allowing to specify dnsName. */
+        interface WithDnsName {
+            /**
+             * Specifies the dnsName property: The DNS name..
+             *
+             * @param dnsName The DNS name.
+             * @return the next definition stage.
+             */
+            WithCreate withDnsName(String dnsName);
+        }
+
+        /** The stage of the LabVirtualMachine definition allowing to specify rdpAuthority. */
+        interface WithRdpAuthority {
+            /**
+             * Specifies the rdpAuthority property: The RdpAuthority property is a server DNS host name or IP address
+             * followed by the service port number for RDP (Remote Desktop Protocol)..
+             *
+             * @param rdpAuthority The RdpAuthority property is a server DNS host name or IP address followed by the
+             *     service port number for RDP (Remote Desktop Protocol).
+             * @return the next definition stage.
+             */
+            WithCreate withRdpAuthority(String rdpAuthority);
+        }
+
+        /** The stage of the LabVirtualMachine definition allowing to specify sshAuthority. */
+        interface WithSshAuthority {
+            /**
+             * Specifies the sshAuthority property: The SshAuthority property is a server DNS host name or IP address
+             * followed by the service port number for SSH..
+             *
+             * @param sshAuthority The SshAuthority property is a server DNS host name or IP address followed by the
+             *     service port number for SSH.
+             * @return the next definition stage.
+             */
+            WithCreate withSshAuthority(String sshAuthority);
+        }
+
+        /** The stage of the LabVirtualMachine definition allowing to specify inboundNatRules. */
+        interface WithInboundNatRules {
+            /**
+             * Specifies the inboundNatRules property: The incoming NAT rules.
+             *
+             * @param inboundNatRules The incoming NAT rules.
+             * @return the next definition stage.
+             */
+            WithCreate withInboundNatRules(List<InboundNatRule> inboundNatRules);
+        }
     }
+
     /**
      * Begins update for the LabVirtualMachine resource.
      *
@@ -667,7 +1424,7 @@ public interface LabVirtualMachine {
     LabVirtualMachine.Update update();
 
     /** The template for LabVirtualMachine update. */
-    interface Update extends UpdateStages.WithTags {
+    interface Update extends UpdateStages.WithTags, UpdateStages.WithIdentity {
         /**
          * Executes the update request.
          *
@@ -683,6 +1440,7 @@ public interface LabVirtualMachine {
          */
         LabVirtualMachine apply(Context context);
     }
+
     /** The LabVirtualMachine update stages. */
     interface UpdateStages {
         /** The stage of the LabVirtualMachine update allowing to specify tags. */
@@ -695,7 +1453,19 @@ public interface LabVirtualMachine {
              */
             Update withTags(Map<String, String> tags);
         }
+
+        /** The stage of the LabVirtualMachine update allowing to specify identity. */
+        interface WithIdentity {
+            /**
+             * Specifies the identity property: The identity of the resource..
+             *
+             * @param identity The identity of the resource.
+             * @return the next definition stage.
+             */
+            Update withIdentity(IdentityProperties identity);
+        }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *
@@ -770,6 +1540,25 @@ public interface LabVirtualMachine {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     void claim(Context context);
+
+    /**
+     * Clears the artifact results of the virtual machine.
+     *
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    Response<Void> clearArtifactResultsWithResponse(Context context);
+
+    /**
+     * Clears the artifact results of the virtual machine.
+     *
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void clearArtifactResults();
 
     /**
      * Detach the specified disk from the virtual machine. This operation can take a while to complete.

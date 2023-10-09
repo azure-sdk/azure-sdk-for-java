@@ -13,30 +13,30 @@ public interface VirtualMachines {
     /**
      * List virtual machines in a given lab.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedIterable}.
+     * @return contains a list of virtualMachines and their properties as paginated response with {@link PagedIterable}.
      */
     PagedIterable<LabVirtualMachine> list(String resourceGroupName, String labName);
 
     /**
      * List virtual machines in a given lab.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param expand Specify the $expand query. Example:
      *     'properties($expand=artifacts,computeVm,networkInterface,applicableSchedule)'.
-     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName').
+     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName')'.
      * @param top The maximum number of resources to return from the operation. Example: '$top=10'.
      * @param orderby The ordering expression for the results, using OData notation. Example: '$orderby=name desc'.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedIterable}.
+     * @return contains a list of virtualMachines and their properties as paginated response with {@link PagedIterable}.
      */
     PagedIterable<LabVirtualMachine> list(
         String resourceGroupName,
@@ -50,7 +50,7 @@ public interface VirtualMachines {
     /**
      * Get virtual machine.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the virtual machine.
      * @param expand Specify the $expand query. Example:
@@ -67,7 +67,7 @@ public interface VirtualMachines {
     /**
      * Get virtual machine.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the virtual machine.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -80,7 +80,7 @@ public interface VirtualMachines {
     /**
      * Delete virtual machine. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the virtual machine.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -92,7 +92,7 @@ public interface VirtualMachines {
     /**
      * Delete virtual machine. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the virtual machine.
      * @param context The context to associate with this operation.
@@ -105,7 +105,7 @@ public interface VirtualMachines {
     /**
      * Attach a new or existing data disk to virtual machine. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the virtual machine.
      * @param dataDiskProperties Request body for adding a new or existing data disk to a virtual machine.
@@ -118,7 +118,7 @@ public interface VirtualMachines {
     /**
      * Attach a new or existing data disk to virtual machine. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the virtual machine.
      * @param dataDiskProperties Request body for adding a new or existing data disk to a virtual machine.
@@ -133,7 +133,7 @@ public interface VirtualMachines {
     /**
      * Apply artifacts to virtual machine. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the virtual machine.
      * @param applyArtifactsRequest Request body for applying artifacts to a virtual machine.
@@ -147,7 +147,7 @@ public interface VirtualMachines {
     /**
      * Apply artifacts to virtual machine. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the virtual machine.
      * @param applyArtifactsRequest Request body for applying artifacts to a virtual machine.
@@ -166,7 +166,7 @@ public interface VirtualMachines {
     /**
      * Take ownership of an existing virtual machine This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the virtual machine.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -178,7 +178,7 @@ public interface VirtualMachines {
     /**
      * Take ownership of an existing virtual machine This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the virtual machine.
      * @param context The context to associate with this operation.
@@ -189,9 +189,36 @@ public interface VirtualMachines {
     void claim(String resourceGroupName, String labName, String name, Context context);
 
     /**
+     * Clears the artifact results of the virtual machine.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param labName The name of the lab.
+     * @param name The name of the virtual machine.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    Response<Void> clearArtifactResultsWithResponse(
+        String resourceGroupName, String labName, String name, Context context);
+
+    /**
+     * Clears the artifact results of the virtual machine.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param labName The name of the lab.
+     * @param name The name of the virtual machine.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void clearArtifactResults(String resourceGroupName, String labName, String name);
+
+    /**
      * Detach the specified disk from the virtual machine. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the virtual machine.
      * @param detachDataDiskProperties Request body for detaching data disk from a virtual machine.
@@ -205,7 +232,7 @@ public interface VirtualMachines {
     /**
      * Detach the specified disk from the virtual machine. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the virtual machine.
      * @param detachDataDiskProperties Request body for detaching data disk from a virtual machine.
@@ -224,7 +251,7 @@ public interface VirtualMachines {
     /**
      * Gets a string that represents the contents of the RDP file for the virtual machine.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the virtual machine.
      * @param context The context to associate with this operation.
@@ -240,7 +267,7 @@ public interface VirtualMachines {
     /**
      * Gets a string that represents the contents of the RDP file for the virtual machine.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the virtual machine.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -253,7 +280,7 @@ public interface VirtualMachines {
     /**
      * Lists the applicable start/stop schedules, if any.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the virtual machine.
      * @param context The context to associate with this operation.
@@ -268,7 +295,7 @@ public interface VirtualMachines {
     /**
      * Lists the applicable start/stop schedules, if any.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the virtual machine.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -281,7 +308,7 @@ public interface VirtualMachines {
     /**
      * Redeploy a virtual machine This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the virtual machine.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -293,7 +320,7 @@ public interface VirtualMachines {
     /**
      * Redeploy a virtual machine This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the virtual machine.
      * @param context The context to associate with this operation.
@@ -306,7 +333,7 @@ public interface VirtualMachines {
     /**
      * Resize Virtual Machine. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the virtual machine.
      * @param resizeLabVirtualMachineProperties Request body for resizing a virtual machine.
@@ -323,7 +350,7 @@ public interface VirtualMachines {
     /**
      * Resize Virtual Machine. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the virtual machine.
      * @param resizeLabVirtualMachineProperties Request body for resizing a virtual machine.
@@ -342,7 +369,7 @@ public interface VirtualMachines {
     /**
      * Restart a virtual machine. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the virtual machine.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -354,7 +381,7 @@ public interface VirtualMachines {
     /**
      * Restart a virtual machine. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the virtual machine.
      * @param context The context to associate with this operation.
@@ -367,7 +394,7 @@ public interface VirtualMachines {
     /**
      * Start a virtual machine. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the virtual machine.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -379,7 +406,7 @@ public interface VirtualMachines {
     /**
      * Start a virtual machine. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the virtual machine.
      * @param context The context to associate with this operation.
@@ -392,7 +419,7 @@ public interface VirtualMachines {
     /**
      * Stop a virtual machine This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the virtual machine.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -404,7 +431,7 @@ public interface VirtualMachines {
     /**
      * Stop a virtual machine This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the virtual machine.
      * @param context The context to associate with this operation.
@@ -418,7 +445,7 @@ public interface VirtualMachines {
      * Transfers all data disks attached to the virtual machine to be owned by the current user. This operation can take
      * a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the virtual machine.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -431,7 +458,7 @@ public interface VirtualMachines {
      * Transfers all data disks attached to the virtual machine to be owned by the current user. This operation can take
      * a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the virtual machine.
      * @param context The context to associate with this operation.
@@ -444,7 +471,7 @@ public interface VirtualMachines {
     /**
      * Release ownership of an existing virtual machine This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the virtual machine.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -456,7 +483,7 @@ public interface VirtualMachines {
     /**
      * Release ownership of an existing virtual machine This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the virtual machine.
      * @param context The context to associate with this operation.

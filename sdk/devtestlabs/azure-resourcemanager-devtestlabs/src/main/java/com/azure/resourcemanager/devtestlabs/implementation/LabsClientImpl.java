@@ -37,13 +37,13 @@ import com.azure.resourcemanager.devtestlabs.fluent.LabsClient;
 import com.azure.resourcemanager.devtestlabs.fluent.models.GenerateUploadUriResponseInner;
 import com.azure.resourcemanager.devtestlabs.fluent.models.LabInner;
 import com.azure.resourcemanager.devtestlabs.fluent.models.LabVhdInner;
+import com.azure.resourcemanager.devtestlabs.fluent.models.LabVirtualMachineCreationParameterInner;
 import com.azure.resourcemanager.devtestlabs.models.ExportResourceUsageParameters;
 import com.azure.resourcemanager.devtestlabs.models.GenerateUploadUriParameter;
 import com.azure.resourcemanager.devtestlabs.models.ImportLabVirtualMachineRequest;
 import com.azure.resourcemanager.devtestlabs.models.LabFragment;
 import com.azure.resourcemanager.devtestlabs.models.LabList;
 import com.azure.resourcemanager.devtestlabs.models.LabVhdList;
-import com.azure.resourcemanager.devtestlabs.models.LabVirtualMachineCreationParameter;
 import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -106,8 +106,7 @@ public final class LabsClientImpl implements LabsClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs"
-                + "/{name}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs/{name}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<LabInner>> getByResourceGroup(
@@ -122,8 +121,7 @@ public final class LabsClientImpl implements LabsClient {
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs"
-                + "/{name}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs/{name}")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
@@ -138,8 +136,7 @@ public final class LabsClientImpl implements LabsClient {
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs"
-                + "/{name}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs/{name}")
         @ExpectedResponses({200, 202, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(
@@ -153,8 +150,7 @@ public final class LabsClientImpl implements LabsClient {
 
         @Headers({"Content-Type: application/json"})
         @Patch(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs"
-                + "/{name}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs/{name}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<LabInner>> update(
@@ -169,8 +165,7 @@ public final class LabsClientImpl implements LabsClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs"
-                + "/{name}/claimAnyVm")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs/{name}/claimAnyVm")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> claimAnyVm(
@@ -184,8 +179,7 @@ public final class LabsClientImpl implements LabsClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs"
-                + "/{name}/createEnvironment")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs/{name}/createEnvironment")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> createEnvironment(
@@ -194,14 +188,27 @@ public final class LabsClientImpl implements LabsClient {
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("name") String name,
             @QueryParam("api-version") String apiVersion,
-            @BodyParam("application/json") LabVirtualMachineCreationParameter labVirtualMachineCreationParameter,
+            @BodyParam("application/json") LabVirtualMachineCreationParameterInner labVirtualMachineCreationParameter,
             @HeaderParam("Accept") String accept,
             Context context);
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs"
-                + "/{name}/exportResourceUsage")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs/{name}/ensureCurrentUserProfile")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Void>> ensureCurrentUserProfile(
+            @HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("name") String name,
+            @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
+        @Post(
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs/{name}/exportResourceUsage")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> exportResourceUsage(
@@ -216,8 +223,7 @@ public final class LabsClientImpl implements LabsClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs"
-                + "/{name}/generateUploadUri")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs/{name}/generateUploadUri")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<GenerateUploadUriResponseInner>> generateUploadUri(
@@ -232,8 +238,7 @@ public final class LabsClientImpl implements LabsClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs"
-                + "/{name}/importVirtualMachine")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs/{name}/importVirtualMachine")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> importVirtualMachine(
@@ -248,8 +253,7 @@ public final class LabsClientImpl implements LabsClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs"
-                + "/{name}/listVhds")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs/{name}/listVhds")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<LabVhdList>> listVhds(
@@ -296,14 +300,14 @@ public final class LabsClientImpl implements LabsClient {
      * List labs in a subscription.
      *
      * @param expand Specify the $expand query. Example: 'properties($select=defaultStorageAccount)'.
-     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName').
+     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName')'.
      * @param top The maximum number of resources to return from the operation. Example: '$top=10'.
      * @param orderby The ordering expression for the results, using OData notation. Example: '$orderby=name desc'.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return contains a list of labs and their properties along with {@link PagedResponse} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<LabInner>> listSinglePageAsync(
@@ -351,15 +355,15 @@ public final class LabsClientImpl implements LabsClient {
      * List labs in a subscription.
      *
      * @param expand Specify the $expand query. Example: 'properties($select=defaultStorageAccount)'.
-     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName').
+     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName')'.
      * @param top The maximum number of resources to return from the operation. Example: '$top=10'.
      * @param orderby The ordering expression for the results, using OData notation. Example: '$orderby=name desc'.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return contains a list of labs and their properties along with {@link PagedResponse} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<LabInner>> listSinglePageAsync(
@@ -404,13 +408,13 @@ public final class LabsClientImpl implements LabsClient {
      * List labs in a subscription.
      *
      * @param expand Specify the $expand query. Example: 'properties($select=defaultStorageAccount)'.
-     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName').
+     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName')'.
      * @param top The maximum number of resources to return from the operation. Example: '$top=10'.
      * @param orderby The ordering expression for the results, using OData notation. Example: '$orderby=name desc'.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedFlux}.
+     * @return contains a list of labs and their properties as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<LabInner> listAsync(String expand, String filter, Integer top, String orderby) {
@@ -424,7 +428,7 @@ public final class LabsClientImpl implements LabsClient {
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedFlux}.
+     * @return contains a list of labs and their properties as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<LabInner> listAsync() {
@@ -441,14 +445,14 @@ public final class LabsClientImpl implements LabsClient {
      * List labs in a subscription.
      *
      * @param expand Specify the $expand query. Example: 'properties($select=defaultStorageAccount)'.
-     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName').
+     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName')'.
      * @param top The maximum number of resources to return from the operation. Example: '$top=10'.
      * @param orderby The ordering expression for the results, using OData notation. Example: '$orderby=name desc'.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedFlux}.
+     * @return contains a list of labs and their properties as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<LabInner> listAsync(String expand, String filter, Integer top, String orderby, Context context) {
@@ -462,7 +466,7 @@ public final class LabsClientImpl implements LabsClient {
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedIterable}.
+     * @return contains a list of labs and their properties as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<LabInner> list() {
@@ -477,14 +481,14 @@ public final class LabsClientImpl implements LabsClient {
      * List labs in a subscription.
      *
      * @param expand Specify the $expand query. Example: 'properties($select=defaultStorageAccount)'.
-     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName').
+     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName')'.
      * @param top The maximum number of resources to return from the operation. Example: '$top=10'.
      * @param orderby The ordering expression for the results, using OData notation. Example: '$orderby=name desc'.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedIterable}.
+     * @return contains a list of labs and their properties as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<LabInner> list(String expand, String filter, Integer top, String orderby, Context context) {
@@ -494,16 +498,16 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * List labs in a resource group.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param expand Specify the $expand query. Example: 'properties($select=defaultStorageAccount)'.
-     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName').
+     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName')'.
      * @param top The maximum number of resources to return from the operation. Example: '$top=10'.
      * @param orderby The ordering expression for the results, using OData notation. Example: '$orderby=name desc'.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return contains a list of labs and their properties along with {@link PagedResponse} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<LabInner>> listByResourceGroupSinglePageAsync(
@@ -555,17 +559,17 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * List labs in a resource group.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param expand Specify the $expand query. Example: 'properties($select=defaultStorageAccount)'.
-     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName').
+     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName')'.
      * @param top The maximum number of resources to return from the operation. Example: '$top=10'.
      * @param orderby The ordering expression for the results, using OData notation. Example: '$orderby=name desc'.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return contains a list of labs and their properties along with {@link PagedResponse} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<LabInner>> listByResourceGroupSinglePageAsync(
@@ -614,15 +618,15 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * List labs in a resource group.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param expand Specify the $expand query. Example: 'properties($select=defaultStorageAccount)'.
-     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName').
+     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName')'.
      * @param top The maximum number of resources to return from the operation. Example: '$top=10'.
      * @param orderby The ordering expression for the results, using OData notation. Example: '$orderby=name desc'.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedFlux}.
+     * @return contains a list of labs and their properties as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<LabInner> listByResourceGroupAsync(
@@ -635,11 +639,11 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * List labs in a resource group.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedFlux}.
+     * @return contains a list of labs and their properties as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<LabInner> listByResourceGroupAsync(String resourceGroupName) {
@@ -655,16 +659,16 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * List labs in a resource group.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param expand Specify the $expand query. Example: 'properties($select=defaultStorageAccount)'.
-     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName').
+     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName')'.
      * @param top The maximum number of resources to return from the operation. Example: '$top=10'.
      * @param orderby The ordering expression for the results, using OData notation. Example: '$orderby=name desc'.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedFlux}.
+     * @return contains a list of labs and their properties as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<LabInner> listByResourceGroupAsync(
@@ -677,11 +681,11 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * List labs in a resource group.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedIterable}.
+     * @return contains a list of labs and their properties as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<LabInner> listByResourceGroup(String resourceGroupName) {
@@ -695,16 +699,16 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * List labs in a resource group.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param expand Specify the $expand query. Example: 'properties($select=defaultStorageAccount)'.
-     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName').
+     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName')'.
      * @param top The maximum number of resources to return from the operation. Example: '$top=10'.
      * @param orderby The ordering expression for the results, using OData notation. Example: '$orderby=name desc'.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedIterable}.
+     * @return contains a list of labs and their properties as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<LabInner> listByResourceGroup(
@@ -715,7 +719,7 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Get lab.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param expand Specify the $expand query. Example: 'properties($select=defaultStorageAccount)'.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -765,7 +769,7 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Get lab.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param expand Specify the $expand query. Example: 'properties($select=defaultStorageAccount)'.
      * @param context The context to associate with this operation.
@@ -813,7 +817,7 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Get lab.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -830,7 +834,7 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Get lab.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param expand Specify the $expand query. Example: 'properties($select=defaultStorageAccount)'.
      * @param context The context to associate with this operation.
@@ -848,7 +852,7 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Get lab.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -864,7 +868,7 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Create or replace an existing lab. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param lab A lab.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -919,7 +923,7 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Create or replace an existing lab. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param lab A lab.
      * @param context The context to associate with this operation.
@@ -972,7 +976,7 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Create or replace an existing lab. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param lab A lab.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -993,7 +997,7 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Create or replace an existing lab. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param lab A lab.
      * @param context The context to associate with this operation.
@@ -1016,7 +1020,7 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Create or replace an existing lab. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param lab A lab.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1033,7 +1037,7 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Create or replace an existing lab. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param lab A lab.
      * @param context The context to associate with this operation.
@@ -1051,7 +1055,7 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Create or replace an existing lab. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param lab A lab.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1069,7 +1073,7 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Create or replace an existing lab. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param lab A lab.
      * @param context The context to associate with this operation.
@@ -1088,7 +1092,7 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Create or replace an existing lab. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param lab A lab.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1104,7 +1108,7 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Create or replace an existing lab. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param lab A lab.
      * @param context The context to associate with this operation.
@@ -1121,7 +1125,7 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Delete lab. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1168,7 +1172,7 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Delete lab. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1214,7 +1218,7 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Delete lab. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1233,7 +1237,7 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Delete lab. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1254,7 +1258,7 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Delete lab. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1269,7 +1273,7 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Delete lab. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1285,7 +1289,7 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Delete lab. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1300,7 +1304,7 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Delete lab. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1316,7 +1320,7 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Delete lab. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1330,7 +1334,7 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Delete lab. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1345,9 +1349,9 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Allows modifying tags of labs. All other properties will be ignored.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
-     * @param lab A lab.
+     * @param lab Allows modifying tags of labs. All other properties will be ignored.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1399,9 +1403,9 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Allows modifying tags of labs. All other properties will be ignored.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
-     * @param lab A lab.
+     * @param lab Allows modifying tags of labs. All other properties will be ignored.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1452,9 +1456,9 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Allows modifying tags of labs. All other properties will be ignored.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
-     * @param lab A lab.
+     * @param lab Allows modifying tags of labs. All other properties will be ignored.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1468,9 +1472,9 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Allows modifying tags of labs. All other properties will be ignored.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
-     * @param lab A lab.
+     * @param lab Allows modifying tags of labs. All other properties will be ignored.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1486,9 +1490,9 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Allows modifying tags of labs. All other properties will be ignored.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
-     * @param lab A lab.
+     * @param lab Allows modifying tags of labs. All other properties will be ignored.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1502,7 +1506,7 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Claim a random claimable virtual machine in the lab. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1549,7 +1553,7 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Claim a random claimable virtual machine in the lab. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1595,7 +1599,7 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Claim a random claimable virtual machine in the lab. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1614,7 +1618,7 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Claim a random claimable virtual machine in the lab. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1635,7 +1639,7 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Claim a random claimable virtual machine in the lab. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1650,7 +1654,7 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Claim a random claimable virtual machine in the lab. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1666,7 +1670,7 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Claim a random claimable virtual machine in the lab. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1681,7 +1685,7 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Claim a random claimable virtual machine in the lab. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1699,7 +1703,7 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Claim a random claimable virtual machine in the lab. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1713,7 +1717,7 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Claim a random claimable virtual machine in the lab. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1728,7 +1732,7 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Create virtual machines in a lab. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param labVirtualMachineCreationParameter Properties for creating a virtual machine.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1738,7 +1742,9 @@ public final class LabsClientImpl implements LabsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createEnvironmentWithResponseAsync(
-        String resourceGroupName, String name, LabVirtualMachineCreationParameter labVirtualMachineCreationParameter) {
+        String resourceGroupName,
+        String name,
+        LabVirtualMachineCreationParameterInner labVirtualMachineCreationParameter) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -1786,7 +1792,7 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Create virtual machines in a lab. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param labVirtualMachineCreationParameter Properties for creating a virtual machine.
      * @param context The context to associate with this operation.
@@ -1799,7 +1805,7 @@ public final class LabsClientImpl implements LabsClient {
     private Mono<Response<Flux<ByteBuffer>>> createEnvironmentWithResponseAsync(
         String resourceGroupName,
         String name,
-        LabVirtualMachineCreationParameter labVirtualMachineCreationParameter,
+        LabVirtualMachineCreationParameterInner labVirtualMachineCreationParameter,
         Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -1845,7 +1851,7 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Create virtual machines in a lab. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param labVirtualMachineCreationParameter Properties for creating a virtual machine.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1855,7 +1861,9 @@ public final class LabsClientImpl implements LabsClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginCreateEnvironmentAsync(
-        String resourceGroupName, String name, LabVirtualMachineCreationParameter labVirtualMachineCreationParameter) {
+        String resourceGroupName,
+        String name,
+        LabVirtualMachineCreationParameterInner labVirtualMachineCreationParameter) {
         Mono<Response<Flux<ByteBuffer>>> mono =
             createEnvironmentWithResponseAsync(resourceGroupName, name, labVirtualMachineCreationParameter);
         return this
@@ -1867,7 +1875,7 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Create virtual machines in a lab. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param labVirtualMachineCreationParameter Properties for creating a virtual machine.
      * @param context The context to associate with this operation.
@@ -1880,7 +1888,7 @@ public final class LabsClientImpl implements LabsClient {
     private PollerFlux<PollResult<Void>, Void> beginCreateEnvironmentAsync(
         String resourceGroupName,
         String name,
-        LabVirtualMachineCreationParameter labVirtualMachineCreationParameter,
+        LabVirtualMachineCreationParameterInner labVirtualMachineCreationParameter,
         Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono =
@@ -1893,7 +1901,7 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Create virtual machines in a lab. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param labVirtualMachineCreationParameter Properties for creating a virtual machine.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1903,7 +1911,9 @@ public final class LabsClientImpl implements LabsClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginCreateEnvironment(
-        String resourceGroupName, String name, LabVirtualMachineCreationParameter labVirtualMachineCreationParameter) {
+        String resourceGroupName,
+        String name,
+        LabVirtualMachineCreationParameterInner labVirtualMachineCreationParameter) {
         return this
             .beginCreateEnvironmentAsync(resourceGroupName, name, labVirtualMachineCreationParameter)
             .getSyncPoller();
@@ -1912,7 +1922,7 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Create virtual machines in a lab. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param labVirtualMachineCreationParameter Properties for creating a virtual machine.
      * @param context The context to associate with this operation.
@@ -1925,7 +1935,7 @@ public final class LabsClientImpl implements LabsClient {
     public SyncPoller<PollResult<Void>, Void> beginCreateEnvironment(
         String resourceGroupName,
         String name,
-        LabVirtualMachineCreationParameter labVirtualMachineCreationParameter,
+        LabVirtualMachineCreationParameterInner labVirtualMachineCreationParameter,
         Context context) {
         return this
             .beginCreateEnvironmentAsync(resourceGroupName, name, labVirtualMachineCreationParameter, context)
@@ -1935,7 +1945,7 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Create virtual machines in a lab. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param labVirtualMachineCreationParameter Properties for creating a virtual machine.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1945,7 +1955,9 @@ public final class LabsClientImpl implements LabsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> createEnvironmentAsync(
-        String resourceGroupName, String name, LabVirtualMachineCreationParameter labVirtualMachineCreationParameter) {
+        String resourceGroupName,
+        String name,
+        LabVirtualMachineCreationParameterInner labVirtualMachineCreationParameter) {
         return beginCreateEnvironmentAsync(resourceGroupName, name, labVirtualMachineCreationParameter)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
@@ -1954,7 +1966,7 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Create virtual machines in a lab. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param labVirtualMachineCreationParameter Properties for creating a virtual machine.
      * @param context The context to associate with this operation.
@@ -1967,7 +1979,7 @@ public final class LabsClientImpl implements LabsClient {
     private Mono<Void> createEnvironmentAsync(
         String resourceGroupName,
         String name,
-        LabVirtualMachineCreationParameter labVirtualMachineCreationParameter,
+        LabVirtualMachineCreationParameterInner labVirtualMachineCreationParameter,
         Context context) {
         return beginCreateEnvironmentAsync(resourceGroupName, name, labVirtualMachineCreationParameter, context)
             .last()
@@ -1977,7 +1989,7 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Create virtual machines in a lab. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param labVirtualMachineCreationParameter Properties for creating a virtual machine.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1986,14 +1998,16 @@ public final class LabsClientImpl implements LabsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public void createEnvironment(
-        String resourceGroupName, String name, LabVirtualMachineCreationParameter labVirtualMachineCreationParameter) {
+        String resourceGroupName,
+        String name,
+        LabVirtualMachineCreationParameterInner labVirtualMachineCreationParameter) {
         createEnvironmentAsync(resourceGroupName, name, labVirtualMachineCreationParameter).block();
     }
 
     /**
      * Create virtual machines in a lab. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param labVirtualMachineCreationParameter Properties for creating a virtual machine.
      * @param context The context to associate with this operation.
@@ -2005,15 +2019,153 @@ public final class LabsClientImpl implements LabsClient {
     public void createEnvironment(
         String resourceGroupName,
         String name,
-        LabVirtualMachineCreationParameter labVirtualMachineCreationParameter,
+        LabVirtualMachineCreationParameterInner labVirtualMachineCreationParameter,
         Context context) {
         createEnvironmentAsync(resourceGroupName, name, labVirtualMachineCreationParameter, context).block();
     }
 
     /**
+     * Ensure the current user has a valid profile in the lab.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param name The name of the lab.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Void>> ensureCurrentUserProfileWithResponseAsync(String resourceGroupName, String name) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (name == null) {
+            return Mono.error(new IllegalArgumentException("Parameter name is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service
+                        .ensureCurrentUserProfile(
+                            this.client.getEndpoint(),
+                            this.client.getSubscriptionId(),
+                            resourceGroupName,
+                            name,
+                            this.client.getApiVersion(),
+                            accept,
+                            context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Ensure the current user has a valid profile in the lab.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param name The name of the lab.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Void>> ensureCurrentUserProfileWithResponseAsync(
+        String resourceGroupName, String name, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (name == null) {
+            return Mono.error(new IllegalArgumentException("Parameter name is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .ensureCurrentUserProfile(
+                this.client.getEndpoint(),
+                this.client.getSubscriptionId(),
+                resourceGroupName,
+                name,
+                this.client.getApiVersion(),
+                accept,
+                context);
+    }
+
+    /**
+     * Ensure the current user has a valid profile in the lab.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param name The name of the lab.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Void> ensureCurrentUserProfileAsync(String resourceGroupName, String name) {
+        return ensureCurrentUserProfileWithResponseAsync(resourceGroupName, name).flatMap(ignored -> Mono.empty());
+    }
+
+    /**
+     * Ensure the current user has a valid profile in the lab.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param name The name of the lab.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<Void> ensureCurrentUserProfileWithResponse(String resourceGroupName, String name, Context context) {
+        return ensureCurrentUserProfileWithResponseAsync(resourceGroupName, name, context).block();
+    }
+
+    /**
+     * Ensure the current user has a valid profile in the lab.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param name The name of the lab.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void ensureCurrentUserProfile(String resourceGroupName, String name) {
+        ensureCurrentUserProfileWithResponse(resourceGroupName, name, Context.NONE);
+    }
+
+    /**
      * Exports the lab resource usage into a storage account This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param exportResourceUsageParameters The parameters of the export operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2071,7 +2223,7 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Exports the lab resource usage into a storage account This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param exportResourceUsageParameters The parameters of the export operation.
      * @param context The context to associate with this operation.
@@ -2130,7 +2282,7 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Exports the lab resource usage into a storage account This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param exportResourceUsageParameters The parameters of the export operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2152,7 +2304,7 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Exports the lab resource usage into a storage account This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param exportResourceUsageParameters The parameters of the export operation.
      * @param context The context to associate with this operation.
@@ -2178,7 +2330,7 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Exports the lab resource usage into a storage account This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param exportResourceUsageParameters The parameters of the export operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2197,7 +2349,7 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Exports the lab resource usage into a storage account This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param exportResourceUsageParameters The parameters of the export operation.
      * @param context The context to associate with this operation.
@@ -2220,7 +2372,7 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Exports the lab resource usage into a storage account This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param exportResourceUsageParameters The parameters of the export operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2239,7 +2391,7 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Exports the lab resource usage into a storage account This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param exportResourceUsageParameters The parameters of the export operation.
      * @param context The context to associate with this operation.
@@ -2262,7 +2414,7 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Exports the lab resource usage into a storage account This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param exportResourceUsageParameters The parameters of the export operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2278,7 +2430,7 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Exports the lab resource usage into a storage account This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param exportResourceUsageParameters The parameters of the export operation.
      * @param context The context to associate with this operation.
@@ -2298,7 +2450,7 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Generate a URI for uploading custom disk images to a Lab.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param generateUploadUriParameter Properties for generating an upload URI.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2357,7 +2509,7 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Generate a URI for uploading custom disk images to a Lab.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param generateUploadUriParameter Properties for generating an upload URI.
      * @param context The context to associate with this operation.
@@ -2414,7 +2566,7 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Generate a URI for uploading custom disk images to a Lab.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param generateUploadUriParameter Properties for generating an upload URI.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2432,7 +2584,7 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Generate a URI for uploading custom disk images to a Lab.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param generateUploadUriParameter Properties for generating an upload URI.
      * @param context The context to associate with this operation.
@@ -2450,7 +2602,7 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Generate a URI for uploading custom disk images to a Lab.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param generateUploadUriParameter Properties for generating an upload URI.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2468,7 +2620,7 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Import a virtual machine into a different lab. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param importLabVirtualMachineRequest This represents the payload required to import a virtual machine from a
      *     different lab into the current one.
@@ -2527,7 +2679,7 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Import a virtual machine into a different lab. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param importLabVirtualMachineRequest This represents the payload required to import a virtual machine from a
      *     different lab into the current one.
@@ -2587,7 +2739,7 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Import a virtual machine into a different lab. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param importLabVirtualMachineRequest This represents the payload required to import a virtual machine from a
      *     different lab into the current one.
@@ -2610,7 +2762,7 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Import a virtual machine into a different lab. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param importLabVirtualMachineRequest This represents the payload required to import a virtual machine from a
      *     different lab into the current one.
@@ -2637,7 +2789,7 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Import a virtual machine into a different lab. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param importLabVirtualMachineRequest This represents the payload required to import a virtual machine from a
      *     different lab into the current one.
@@ -2657,7 +2809,7 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Import a virtual machine into a different lab. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param importLabVirtualMachineRequest This represents the payload required to import a virtual machine from a
      *     different lab into the current one.
@@ -2681,7 +2833,7 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Import a virtual machine into a different lab. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param importLabVirtualMachineRequest This represents the payload required to import a virtual machine from a
      *     different lab into the current one.
@@ -2701,7 +2853,7 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Import a virtual machine into a different lab. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param importLabVirtualMachineRequest This represents the payload required to import a virtual machine from a
      *     different lab into the current one.
@@ -2725,7 +2877,7 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Import a virtual machine into a different lab. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param importLabVirtualMachineRequest This represents the payload required to import a virtual machine from a
      *     different lab into the current one.
@@ -2742,7 +2894,7 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Import a virtual machine into a different lab. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param importLabVirtualMachineRequest This represents the payload required to import a virtual machine from a
      *     different lab into the current one.
@@ -2763,13 +2915,13 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * List disk images available for custom image creation.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return contains a list of Lab Vhd and their properties along with {@link PagedResponse} on successful completion
+     *     of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<LabVhdInner>> listVhdsSinglePageAsync(String resourceGroupName, String name) {
@@ -2820,14 +2972,14 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * List disk images available for custom image creation.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return contains a list of Lab Vhd and their properties along with {@link PagedResponse} on successful completion
+     *     of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<LabVhdInner>> listVhdsSinglePageAsync(
@@ -2876,12 +3028,12 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * List disk images available for custom image creation.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedFlux}.
+     * @return contains a list of Lab Vhd and their properties as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<LabVhdInner> listVhdsAsync(String resourceGroupName, String name) {
@@ -2892,13 +3044,13 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * List disk images available for custom image creation.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedFlux}.
+     * @return contains a list of Lab Vhd and their properties as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<LabVhdInner> listVhdsAsync(String resourceGroupName, String name, Context context) {
@@ -2910,12 +3062,12 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * List disk images available for custom image creation.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedIterable}.
+     * @return contains a list of Lab Vhd and their properties as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<LabVhdInner> listVhds(String resourceGroupName, String name) {
@@ -2925,13 +3077,13 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * List disk images available for custom image creation.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedIterable}.
+     * @return contains a list of Lab Vhd and their properties as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<LabVhdInner> listVhds(String resourceGroupName, String name, Context context) {
@@ -2946,8 +3098,8 @@ public final class LabsClientImpl implements LabsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return contains a list of labs and their properties along with {@link PagedResponse} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<LabInner>> listBySubscriptionNextSinglePageAsync(String nextLink) {
@@ -2985,8 +3137,8 @@ public final class LabsClientImpl implements LabsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return contains a list of labs and their properties along with {@link PagedResponse} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<LabInner>> listBySubscriptionNextSinglePageAsync(String nextLink, Context context) {
@@ -3022,8 +3174,8 @@ public final class LabsClientImpl implements LabsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return contains a list of labs and their properties along with {@link PagedResponse} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<LabInner>> listByResourceGroupNextSinglePageAsync(String nextLink) {
@@ -3061,8 +3213,8 @@ public final class LabsClientImpl implements LabsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return contains a list of labs and their properties along with {@link PagedResponse} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<LabInner>> listByResourceGroupNextSinglePageAsync(String nextLink, Context context) {
@@ -3098,8 +3250,8 @@ public final class LabsClientImpl implements LabsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return contains a list of Lab Vhd and their properties along with {@link PagedResponse} on successful completion
+     *     of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<LabVhdInner>> listVhdsNextSinglePageAsync(String nextLink) {
@@ -3136,8 +3288,8 @@ public final class LabsClientImpl implements LabsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return contains a list of Lab Vhd and their properties along with {@link PagedResponse} on successful completion
+     *     of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<LabVhdInner>> listVhdsNextSinglePageAsync(String nextLink, Context context) {

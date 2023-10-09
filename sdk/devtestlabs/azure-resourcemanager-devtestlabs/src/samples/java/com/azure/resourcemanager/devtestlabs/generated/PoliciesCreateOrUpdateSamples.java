@@ -13,7 +13,7 @@ import java.util.Map;
 /** Samples for Policies CreateOrUpdate. */
 public final class PoliciesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/Policies_CreateOrUpdate.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/Policies_CreateOrUpdate.json
      */
     /**
      * Sample code: Policies_CreateOrUpdate.
@@ -25,7 +25,7 @@ public final class PoliciesCreateOrUpdateSamples {
             .policies()
             .define("{policyName}")
             .withRegion("{location}")
-            .withExistingPolicyset("resourceGroupName", "{labName}", "{policySetName}")
+            .withExistingPolicyset("resourceGroupName", "myLabName", "{policySetName}")
             .withTags(mapOf("tagName1", "tagValue1"))
             .withDescription("{policyDescription}")
             .withStatus(PolicyStatus.fromString("{policyStatus}"))
@@ -36,6 +36,7 @@ public final class PoliciesCreateOrUpdateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

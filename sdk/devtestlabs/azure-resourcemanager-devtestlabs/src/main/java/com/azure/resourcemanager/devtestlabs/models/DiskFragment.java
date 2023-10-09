@@ -5,9 +5,10 @@
 package com.azure.resourcemanager.devtestlabs.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.resourcemanager.devtestlabs.fluent.models.IdentityProperties;
 import java.util.Map;
 
-/** A Disk. */
+/** Patch. */
 @Fluent
 public final class DiskFragment extends UpdateResource {
     /** Creates an instance of DiskFragment class. */
@@ -18,6 +19,13 @@ public final class DiskFragment extends UpdateResource {
     @Override
     public DiskFragment withTags(Map<String, String> tags) {
         super.withTags(tags);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public DiskFragment withIdentity(IdentityProperties identity) {
+        super.withIdentity(identity);
         return this;
     }
 

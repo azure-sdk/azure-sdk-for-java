@@ -7,7 +7,7 @@ package com.azure.resourcemanager.devtestlabs.generated;
 /** Samples for ServiceFabricSchedules List. */
 public final class ServiceFabricSchedulesListSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/ServiceFabricSchedules_List.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/ServiceFabricSchedules_List.json
      */
     /**
      * Sample code: ServiceFabricSchedules_List.
@@ -19,7 +19,7 @@ public final class ServiceFabricSchedulesListSamples {
             .serviceFabricSchedules()
             .list(
                 "resourceGroupName",
-                "{labName}",
+                "myLabName",
                 "@me",
                 "{serviceFrabicName}",
                 null,

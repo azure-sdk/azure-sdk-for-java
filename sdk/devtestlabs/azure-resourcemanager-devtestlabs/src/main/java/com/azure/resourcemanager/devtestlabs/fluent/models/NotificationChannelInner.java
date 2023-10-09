@@ -6,7 +6,7 @@ package com.azure.resourcemanager.devtestlabs.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
-import com.azure.core.util.logging.ClientLogger;
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.devtestlabs.models.Event;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
@@ -19,8 +19,14 @@ public final class NotificationChannelInner extends Resource {
     /*
      * The properties of the resource.
      */
-    @JsonProperty(value = "properties", required = true)
-    private NotificationChannelProperties innerProperties = new NotificationChannelProperties();
+    @JsonProperty(value = "properties")
+    private NotificationChannelProperties innerProperties;
+
+    /*
+     * The system metadata relating to this resource
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
 
     /** Creates an instance of NotificationChannelInner class. */
     public NotificationChannelInner() {
@@ -33,6 +39,15 @@ public final class NotificationChannelInner extends Resource {
      */
     private NotificationChannelProperties innerProperties() {
         return this.innerProperties;
+    }
+
+    /**
+     * Get the systemData property: The system metadata relating to this resource.
+     *
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /** {@inheritDoc} */
@@ -201,15 +216,8 @@ public final class NotificationChannelInner extends Resource {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (innerProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property innerProperties in model NotificationChannelInner"));
-        } else {
+        if (innerProperties() != null) {
             innerProperties().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(NotificationChannelInner.class);
 }

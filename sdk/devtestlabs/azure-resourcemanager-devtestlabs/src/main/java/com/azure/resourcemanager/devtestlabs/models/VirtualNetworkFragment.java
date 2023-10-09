@@ -5,9 +5,10 @@
 package com.azure.resourcemanager.devtestlabs.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.resourcemanager.devtestlabs.fluent.models.IdentityProperties;
 import java.util.Map;
 
-/** A virtual network. */
+/** Patch. */
 @Fluent
 public final class VirtualNetworkFragment extends UpdateResource {
     /** Creates an instance of VirtualNetworkFragment class. */
@@ -18,6 +19,13 @@ public final class VirtualNetworkFragment extends UpdateResource {
     @Override
     public VirtualNetworkFragment withTags(Map<String, String> tags) {
         super.withTags(tags);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public VirtualNetworkFragment withIdentity(IdentityProperties identity) {
+        super.withIdentity(identity);
         return this;
     }
 

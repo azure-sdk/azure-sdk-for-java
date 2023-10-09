@@ -7,7 +7,7 @@ package com.azure.resourcemanager.devtestlabs.generated;
 /** Samples for Policies Delete. */
 public final class PoliciesDeleteSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/Policies_Delete.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/Policies_Delete.json
      */
     /**
      * Sample code: Policies_Delete.
@@ -18,6 +18,6 @@ public final class PoliciesDeleteSamples {
         manager
             .policies()
             .deleteWithResponse(
-                "resourceGroupName", "{labName}", "{policySetName}", "{policyName}", com.azure.core.util.Context.NONE);
+                "resourceGroupName", "myLabName", "{policySetName}", "{policyName}", com.azure.core.util.Context.NONE);
     }
 }

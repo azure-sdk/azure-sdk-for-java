@@ -5,7 +5,9 @@
 package com.azure.resourcemanager.devtestlabs.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.resourcemanager.devtestlabs.fluent.models.SubnetSharedPublicIpAddressConfiguration;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 
 /** Property overrides on a subnet of a virtual network. */
 @Fluent
@@ -38,7 +40,7 @@ public final class SubnetOverride {
      * Properties that virtual machines on this subnet will share.
      */
     @JsonProperty(value = "sharedPublicIpAddressConfiguration")
-    private SubnetSharedPublicIpAddressConfiguration sharedPublicIpAddressConfiguration;
+    private SubnetSharedPublicIpAddressConfiguration innerSharedPublicIpAddressConfiguration;
 
     /*
      * The virtual network pool associated with this subnet.
@@ -135,24 +137,13 @@ public final class SubnetOverride {
     }
 
     /**
-     * Get the sharedPublicIpAddressConfiguration property: Properties that virtual machines on this subnet will share.
+     * Get the innerSharedPublicIpAddressConfiguration property: Properties that virtual machines on this subnet will
+     * share.
      *
-     * @return the sharedPublicIpAddressConfiguration value.
+     * @return the innerSharedPublicIpAddressConfiguration value.
      */
-    public SubnetSharedPublicIpAddressConfiguration sharedPublicIpAddressConfiguration() {
-        return this.sharedPublicIpAddressConfiguration;
-    }
-
-    /**
-     * Set the sharedPublicIpAddressConfiguration property: Properties that virtual machines on this subnet will share.
-     *
-     * @param sharedPublicIpAddressConfiguration the sharedPublicIpAddressConfiguration value to set.
-     * @return the SubnetOverride object itself.
-     */
-    public SubnetOverride withSharedPublicIpAddressConfiguration(
-        SubnetSharedPublicIpAddressConfiguration sharedPublicIpAddressConfiguration) {
-        this.sharedPublicIpAddressConfiguration = sharedPublicIpAddressConfiguration;
-        return this;
+    private SubnetSharedPublicIpAddressConfiguration innerSharedPublicIpAddressConfiguration() {
+        return this.innerSharedPublicIpAddressConfiguration;
     }
 
     /**
@@ -176,13 +167,38 @@ public final class SubnetOverride {
     }
 
     /**
+     * Get the allowedPorts property: Backend ports that virtual machines on this subnet are allowed to expose.
+     *
+     * @return the allowedPorts value.
+     */
+    public List<Port> allowedPorts() {
+        return this.innerSharedPublicIpAddressConfiguration() == null
+            ? null
+            : this.innerSharedPublicIpAddressConfiguration().allowedPorts();
+    }
+
+    /**
+     * Set the allowedPorts property: Backend ports that virtual machines on this subnet are allowed to expose.
+     *
+     * @param allowedPorts the allowedPorts value to set.
+     * @return the SubnetOverride object itself.
+     */
+    public SubnetOverride withAllowedPorts(List<Port> allowedPorts) {
+        if (this.innerSharedPublicIpAddressConfiguration() == null) {
+            this.innerSharedPublicIpAddressConfiguration = new SubnetSharedPublicIpAddressConfiguration();
+        }
+        this.innerSharedPublicIpAddressConfiguration().withAllowedPorts(allowedPorts);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (sharedPublicIpAddressConfiguration() != null) {
-            sharedPublicIpAddressConfiguration().validate();
+        if (innerSharedPublicIpAddressConfiguration() != null) {
+            innerSharedPublicIpAddressConfiguration().validate();
         }
     }
 }

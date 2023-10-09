@@ -4,9 +4,9 @@
 
 package com.azure.resourcemanager.devtestlabs.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.devtestlabs.fluent.models.GalleryImageInner;
 import com.azure.resourcemanager.devtestlabs.models.GalleryImage;
-import com.azure.resourcemanager.devtestlabs.models.GalleryImageReference;
 import java.time.OffsetDateTime;
 import java.util.Collections;
 import java.util.Map;
@@ -47,6 +47,10 @@ public final class GalleryImageImpl implements GalleryImage {
         }
     }
 
+    public SystemData systemData() {
+        return this.innerModel().systemData();
+    }
+
     public String author() {
         return this.innerModel().author();
     }
@@ -57,10 +61,6 @@ public final class GalleryImageImpl implements GalleryImage {
 
     public String description() {
         return this.innerModel().description();
-    }
-
-    public GalleryImageReference imageReference() {
-        return this.innerModel().imageReference();
     }
 
     public String icon() {
@@ -77,6 +77,26 @@ public final class GalleryImageImpl implements GalleryImage {
 
     public Boolean isPlanAuthorized() {
         return this.innerModel().isPlanAuthorized();
+    }
+
+    public String offer() {
+        return this.innerModel().offer();
+    }
+
+    public String publisher() {
+        return this.innerModel().publisher();
+    }
+
+    public String sku() {
+        return this.innerModel().sku();
+    }
+
+    public String osType() {
+        return this.innerModel().osType();
+    }
+
+    public String version() {
+        return this.innerModel().version();
     }
 
     public GalleryImageInner innerModel() {

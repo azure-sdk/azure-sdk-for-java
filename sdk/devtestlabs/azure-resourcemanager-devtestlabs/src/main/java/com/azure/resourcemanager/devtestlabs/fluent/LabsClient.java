@@ -14,11 +14,11 @@ import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.devtestlabs.fluent.models.GenerateUploadUriResponseInner;
 import com.azure.resourcemanager.devtestlabs.fluent.models.LabInner;
 import com.azure.resourcemanager.devtestlabs.fluent.models.LabVhdInner;
+import com.azure.resourcemanager.devtestlabs.fluent.models.LabVirtualMachineCreationParameterInner;
 import com.azure.resourcemanager.devtestlabs.models.ExportResourceUsageParameters;
 import com.azure.resourcemanager.devtestlabs.models.GenerateUploadUriParameter;
 import com.azure.resourcemanager.devtestlabs.models.ImportLabVirtualMachineRequest;
 import com.azure.resourcemanager.devtestlabs.models.LabFragment;
-import com.azure.resourcemanager.devtestlabs.models.LabVirtualMachineCreationParameter;
 
 /** An instance of this class provides access to all the operations defined in LabsClient. */
 public interface LabsClient {
@@ -27,7 +27,7 @@ public interface LabsClient {
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedIterable}.
+     * @return contains a list of labs and their properties as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<LabInner> list();
@@ -36,14 +36,14 @@ public interface LabsClient {
      * List labs in a subscription.
      *
      * @param expand Specify the $expand query. Example: 'properties($select=defaultStorageAccount)'.
-     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName').
+     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName')'.
      * @param top The maximum number of resources to return from the operation. Example: '$top=10'.
      * @param orderby The ordering expression for the results, using OData notation. Example: '$orderby=name desc'.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedIterable}.
+     * @return contains a list of labs and their properties as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<LabInner> list(String expand, String filter, Integer top, String orderby, Context context);
@@ -51,11 +51,11 @@ public interface LabsClient {
     /**
      * List labs in a resource group.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedIterable}.
+     * @return contains a list of labs and their properties as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<LabInner> listByResourceGroup(String resourceGroupName);
@@ -63,16 +63,16 @@ public interface LabsClient {
     /**
      * List labs in a resource group.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param expand Specify the $expand query. Example: 'properties($select=defaultStorageAccount)'.
-     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName').
+     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName')'.
      * @param top The maximum number of resources to return from the operation. Example: '$top=10'.
      * @param orderby The ordering expression for the results, using OData notation. Example: '$orderby=name desc'.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedIterable}.
+     * @return contains a list of labs and their properties as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<LabInner> listByResourceGroup(
@@ -81,7 +81,7 @@ public interface LabsClient {
     /**
      * Get lab.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param expand Specify the $expand query. Example: 'properties($select=defaultStorageAccount)'.
      * @param context The context to associate with this operation.
@@ -97,7 +97,7 @@ public interface LabsClient {
     /**
      * Get lab.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -110,7 +110,7 @@ public interface LabsClient {
     /**
      * Create or replace an existing lab. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param lab A lab.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -124,7 +124,7 @@ public interface LabsClient {
     /**
      * Create or replace an existing lab. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param lab A lab.
      * @param context The context to associate with this operation.
@@ -140,7 +140,7 @@ public interface LabsClient {
     /**
      * Create or replace an existing lab. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param lab A lab.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -154,7 +154,7 @@ public interface LabsClient {
     /**
      * Create or replace an existing lab. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param lab A lab.
      * @param context The context to associate with this operation.
@@ -169,7 +169,7 @@ public interface LabsClient {
     /**
      * Delete lab. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -182,7 +182,7 @@ public interface LabsClient {
     /**
      * Delete lab. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -196,7 +196,7 @@ public interface LabsClient {
     /**
      * Delete lab. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -208,7 +208,7 @@ public interface LabsClient {
     /**
      * Delete lab. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -221,9 +221,9 @@ public interface LabsClient {
     /**
      * Allows modifying tags of labs. All other properties will be ignored.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
-     * @param lab A lab.
+     * @param lab Allows modifying tags of labs. All other properties will be ignored.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -236,9 +236,9 @@ public interface LabsClient {
     /**
      * Allows modifying tags of labs. All other properties will be ignored.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
-     * @param lab A lab.
+     * @param lab Allows modifying tags of labs. All other properties will be ignored.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -250,7 +250,7 @@ public interface LabsClient {
     /**
      * Claim a random claimable virtual machine in the lab. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -263,7 +263,7 @@ public interface LabsClient {
     /**
      * Claim a random claimable virtual machine in the lab. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -277,7 +277,7 @@ public interface LabsClient {
     /**
      * Claim a random claimable virtual machine in the lab. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -289,7 +289,7 @@ public interface LabsClient {
     /**
      * Claim a random claimable virtual machine in the lab. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -302,7 +302,7 @@ public interface LabsClient {
     /**
      * Create virtual machines in a lab. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param labVirtualMachineCreationParameter Properties for creating a virtual machine.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -312,12 +312,14 @@ public interface LabsClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginCreateEnvironment(
-        String resourceGroupName, String name, LabVirtualMachineCreationParameter labVirtualMachineCreationParameter);
+        String resourceGroupName,
+        String name,
+        LabVirtualMachineCreationParameterInner labVirtualMachineCreationParameter);
 
     /**
      * Create virtual machines in a lab. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param labVirtualMachineCreationParameter Properties for creating a virtual machine.
      * @param context The context to associate with this operation.
@@ -330,13 +332,13 @@ public interface LabsClient {
     SyncPoller<PollResult<Void>, Void> beginCreateEnvironment(
         String resourceGroupName,
         String name,
-        LabVirtualMachineCreationParameter labVirtualMachineCreationParameter,
+        LabVirtualMachineCreationParameterInner labVirtualMachineCreationParameter,
         Context context);
 
     /**
      * Create virtual machines in a lab. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param labVirtualMachineCreationParameter Properties for creating a virtual machine.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -345,12 +347,14 @@ public interface LabsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     void createEnvironment(
-        String resourceGroupName, String name, LabVirtualMachineCreationParameter labVirtualMachineCreationParameter);
+        String resourceGroupName,
+        String name,
+        LabVirtualMachineCreationParameterInner labVirtualMachineCreationParameter);
 
     /**
      * Create virtual machines in a lab. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param labVirtualMachineCreationParameter Properties for creating a virtual machine.
      * @param context The context to associate with this operation.
@@ -362,13 +366,39 @@ public interface LabsClient {
     void createEnvironment(
         String resourceGroupName,
         String name,
-        LabVirtualMachineCreationParameter labVirtualMachineCreationParameter,
+        LabVirtualMachineCreationParameterInner labVirtualMachineCreationParameter,
         Context context);
+
+    /**
+     * Ensure the current user has a valid profile in the lab.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param name The name of the lab.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<Void> ensureCurrentUserProfileWithResponse(String resourceGroupName, String name, Context context);
+
+    /**
+     * Ensure the current user has a valid profile in the lab.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param name The name of the lab.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    void ensureCurrentUserProfile(String resourceGroupName, String name);
 
     /**
      * Exports the lab resource usage into a storage account This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param exportResourceUsageParameters The parameters of the export operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -383,7 +413,7 @@ public interface LabsClient {
     /**
      * Exports the lab resource usage into a storage account This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param exportResourceUsageParameters The parameters of the export operation.
      * @param context The context to associate with this operation.
@@ -402,7 +432,7 @@ public interface LabsClient {
     /**
      * Exports the lab resource usage into a storage account This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param exportResourceUsageParameters The parameters of the export operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -416,7 +446,7 @@ public interface LabsClient {
     /**
      * Exports the lab resource usage into a storage account This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param exportResourceUsageParameters The parameters of the export operation.
      * @param context The context to associate with this operation.
@@ -434,7 +464,7 @@ public interface LabsClient {
     /**
      * Generate a URI for uploading custom disk images to a Lab.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param generateUploadUriParameter Properties for generating an upload URI.
      * @param context The context to associate with this operation.
@@ -450,7 +480,7 @@ public interface LabsClient {
     /**
      * Generate a URI for uploading custom disk images to a Lab.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param generateUploadUriParameter Properties for generating an upload URI.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -465,7 +495,7 @@ public interface LabsClient {
     /**
      * Import a virtual machine into a different lab. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param importLabVirtualMachineRequest This represents the payload required to import a virtual machine from a
      *     different lab into the current one.
@@ -481,7 +511,7 @@ public interface LabsClient {
     /**
      * Import a virtual machine into a different lab. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param importLabVirtualMachineRequest This represents the payload required to import a virtual machine from a
      *     different lab into the current one.
@@ -501,7 +531,7 @@ public interface LabsClient {
     /**
      * Import a virtual machine into a different lab. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param importLabVirtualMachineRequest This represents the payload required to import a virtual machine from a
      *     different lab into the current one.
@@ -516,7 +546,7 @@ public interface LabsClient {
     /**
      * Import a virtual machine into a different lab. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param importLabVirtualMachineRequest This represents the payload required to import a virtual machine from a
      *     different lab into the current one.
@@ -535,12 +565,12 @@ public interface LabsClient {
     /**
      * List disk images available for custom image creation.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedIterable}.
+     * @return contains a list of Lab Vhd and their properties as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<LabVhdInner> listVhds(String resourceGroupName, String name);
@@ -548,13 +578,13 @@ public interface LabsClient {
     /**
      * List disk images available for custom image creation.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param name The name of the lab.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedIterable}.
+     * @return contains a list of Lab Vhd and their properties as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<LabVhdInner> listVhds(String resourceGroupName, String name, Context context);

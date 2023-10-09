@@ -5,8 +5,10 @@
 package com.azure.resourcemanager.devtestlabs.models;
 
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.devtestlabs.fluent.models.ArtifactSourceInner;
+import com.azure.resourcemanager.devtestlabs.fluent.models.IdentityProperties;
 import java.time.OffsetDateTime;
 import java.util.Map;
 
@@ -46,6 +48,13 @@ public interface ArtifactSource {
      * @return the tags value.
      */
     Map<String, String> tags();
+
+    /**
+     * Gets the systemData property: The system metadata relating to this resource.
+     *
+     * @return the systemData value.
+     */
+    SystemData systemData();
 
     /**
      * Gets the displayName property: The artifact source's display name.
@@ -159,11 +168,13 @@ public interface ArtifactSource {
             DefinitionStages.WithParentResource,
             DefinitionStages.WithCreate {
     }
+
     /** The ArtifactSource definition stages. */
     interface DefinitionStages {
         /** The first stage of the ArtifactSource definition. */
         interface Blank extends WithLocation {
         }
+
         /** The stage of the ArtifactSource definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -182,17 +193,19 @@ public interface ArtifactSource {
              */
             WithParentResource withRegion(String location);
         }
+
         /** The stage of the ArtifactSource definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
              * Specifies resourceGroupName, labName.
              *
-             * @param resourceGroupName The name of the resource group.
+             * @param resourceGroupName The name of the resource group. The name is case insensitive.
              * @param labName The name of the lab.
              * @return the next definition stage.
              */
             WithCreate withExistingLab(String resourceGroupName, String labName);
         }
+
         /**
          * The stage of the ArtifactSource definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
@@ -222,6 +235,7 @@ public interface ArtifactSource {
              */
             ArtifactSource create(Context context);
         }
+
         /** The stage of the ArtifactSource definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -232,6 +246,7 @@ public interface ArtifactSource {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
         /** The stage of the ArtifactSource definition allowing to specify displayName. */
         interface WithDisplayName {
             /**
@@ -242,6 +257,7 @@ public interface ArtifactSource {
              */
             WithCreate withDisplayName(String displayName);
         }
+
         /** The stage of the ArtifactSource definition allowing to specify uri. */
         interface WithUri {
             /**
@@ -252,6 +268,7 @@ public interface ArtifactSource {
              */
             WithCreate withUri(String uri);
         }
+
         /** The stage of the ArtifactSource definition allowing to specify sourceType. */
         interface WithSourceType {
             /**
@@ -262,6 +279,7 @@ public interface ArtifactSource {
              */
             WithCreate withSourceType(SourceControlType sourceType);
         }
+
         /** The stage of the ArtifactSource definition allowing to specify folderPath. */
         interface WithFolderPath {
             /**
@@ -272,6 +290,7 @@ public interface ArtifactSource {
              */
             WithCreate withFolderPath(String folderPath);
         }
+
         /** The stage of the ArtifactSource definition allowing to specify armTemplateFolderPath. */
         interface WithArmTemplateFolderPath {
             /**
@@ -282,6 +301,7 @@ public interface ArtifactSource {
              */
             WithCreate withArmTemplateFolderPath(String armTemplateFolderPath);
         }
+
         /** The stage of the ArtifactSource definition allowing to specify branchRef. */
         interface WithBranchRef {
             /**
@@ -292,6 +312,7 @@ public interface ArtifactSource {
              */
             WithCreate withBranchRef(String branchRef);
         }
+
         /** The stage of the ArtifactSource definition allowing to specify securityToken. */
         interface WithSecurityToken {
             /**
@@ -302,6 +323,7 @@ public interface ArtifactSource {
              */
             WithCreate withSecurityToken(String securityToken);
         }
+
         /** The stage of the ArtifactSource definition allowing to specify status. */
         interface WithStatus {
             /**
@@ -313,6 +335,7 @@ public interface ArtifactSource {
             WithCreate withStatus(EnableStatus status);
         }
     }
+
     /**
      * Begins update for the ArtifactSource resource.
      *
@@ -321,7 +344,7 @@ public interface ArtifactSource {
     ArtifactSource.Update update();
 
     /** The template for ArtifactSource update. */
-    interface Update extends UpdateStages.WithTags {
+    interface Update extends UpdateStages.WithTags, UpdateStages.WithIdentity {
         /**
          * Executes the update request.
          *
@@ -337,6 +360,7 @@ public interface ArtifactSource {
          */
         ArtifactSource apply(Context context);
     }
+
     /** The ArtifactSource update stages. */
     interface UpdateStages {
         /** The stage of the ArtifactSource update allowing to specify tags. */
@@ -349,7 +373,19 @@ public interface ArtifactSource {
              */
             Update withTags(Map<String, String> tags);
         }
+
+        /** The stage of the ArtifactSource update allowing to specify identity. */
+        interface WithIdentity {
+            /**
+             * Specifies the identity property: The identity of the resource..
+             *
+             * @param identity The identity of the resource.
+             * @return the next definition stage.
+             */
+            Update withIdentity(IdentityProperties identity);
+        }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

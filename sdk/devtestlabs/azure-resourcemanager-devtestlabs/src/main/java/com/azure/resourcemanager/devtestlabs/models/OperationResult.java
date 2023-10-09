@@ -23,11 +23,18 @@ public interface OperationResult {
     HttpStatusCode statusCode();
 
     /**
-     * Gets the error property: Error details for the operation in case of a failure.
+     * Gets the code property: The error code of the operation error.
      *
-     * @return the error value.
+     * @return the code value.
      */
-    OperationError error();
+    String code();
+
+    /**
+     * Gets the message property: The error message of the operation error.
+     *
+     * @return the message value.
+     */
+    String message();
 
     /**
      * Gets the inner com.azure.resourcemanager.devtestlabs.fluent.models.OperationResultInner object.

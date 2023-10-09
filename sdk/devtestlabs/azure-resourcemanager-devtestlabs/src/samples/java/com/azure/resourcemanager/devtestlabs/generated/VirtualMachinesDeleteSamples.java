@@ -7,7 +7,7 @@ package com.azure.resourcemanager.devtestlabs.generated;
 /** Samples for VirtualMachines Delete. */
 public final class VirtualMachinesDeleteSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/VirtualMachines_Delete.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/VirtualMachines_Delete.json
      */
     /**
      * Sample code: VirtualMachines_Delete.
@@ -17,6 +17,6 @@ public final class VirtualMachinesDeleteSamples {
     public static void virtualMachinesDelete(com.azure.resourcemanager.devtestlabs.DevTestLabsManager manager) {
         manager
             .virtualMachines()
-            .delete("resourceGroupName", "{labName}", "{vmName}", com.azure.core.util.Context.NONE);
+            .delete("resourceGroupName", "myLabName", "{vmName}", com.azure.core.util.Context.NONE);
     }
 }

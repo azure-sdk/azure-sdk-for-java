@@ -14,29 +14,29 @@ public interface Schedules {
     /**
      * List schedules in a given lab.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedIterable}.
+     * @return contains a list of schedules and their properties as paginated response with {@link PagedIterable}.
      */
     PagedIterable<Schedule> list(String resourceGroupName, String labName);
 
     /**
      * List schedules in a given lab.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param expand Specify the $expand query. Example: 'properties($select=status)'.
-     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName').
+     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName')'.
      * @param top The maximum number of resources to return from the operation. Example: '$top=10'.
      * @param orderby The ordering expression for the results, using OData notation. Example: '$orderby=name desc'.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedIterable}.
+     * @return contains a list of schedules and their properties as paginated response with {@link PagedIterable}.
      */
     PagedIterable<Schedule> list(
         String resourceGroupName,
@@ -50,7 +50,7 @@ public interface Schedules {
     /**
      * Get schedule.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the schedule.
      * @param expand Specify the $expand query. Example: 'properties($select=status)'.
@@ -66,7 +66,7 @@ public interface Schedules {
     /**
      * Get schedule.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the schedule.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -79,7 +79,7 @@ public interface Schedules {
     /**
      * Create or replace an existing schedule.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the schedule.
      * @param schedule A schedule.
@@ -95,7 +95,7 @@ public interface Schedules {
     /**
      * Create or replace an existing schedule.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the schedule.
      * @param schedule A schedule.
@@ -109,7 +109,7 @@ public interface Schedules {
     /**
      * Delete schedule.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the schedule.
      * @param context The context to associate with this operation.
@@ -123,7 +123,7 @@ public interface Schedules {
     /**
      * Delete schedule.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the schedule.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -135,10 +135,10 @@ public interface Schedules {
     /**
      * Allows modifying tags of schedules. All other properties will be ignored.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the schedule.
-     * @param schedule A schedule.
+     * @param schedule Allows modifying tags of schedules. All other properties will be ignored.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -151,10 +151,10 @@ public interface Schedules {
     /**
      * Allows modifying tags of schedules. All other properties will be ignored.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the schedule.
-     * @param schedule A schedule.
+     * @param schedule Allows modifying tags of schedules. All other properties will be ignored.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -165,7 +165,7 @@ public interface Schedules {
     /**
      * Execute a schedule. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the schedule.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -177,7 +177,7 @@ public interface Schedules {
     /**
      * Execute a schedule. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the schedule.
      * @param context The context to associate with this operation.
@@ -190,27 +190,27 @@ public interface Schedules {
     /**
      * Lists all applicable schedules.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the schedule.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedIterable}.
+     * @return contains a list of schedules and their properties as paginated response with {@link PagedIterable}.
      */
     PagedIterable<Schedule> listApplicable(String resourceGroupName, String labName, String name);
 
     /**
      * Lists all applicable schedules.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the schedule.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedIterable}.
+     * @return contains a list of schedules and their properties as paginated response with {@link PagedIterable}.
      */
     PagedIterable<Schedule> listApplicable(String resourceGroupName, String labName, String name, Context context);
 }

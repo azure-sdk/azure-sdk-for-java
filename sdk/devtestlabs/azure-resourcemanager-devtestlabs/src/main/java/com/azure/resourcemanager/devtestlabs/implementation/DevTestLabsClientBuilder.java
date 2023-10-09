@@ -18,12 +18,12 @@ import java.time.Duration;
 @ServiceClientBuilder(serviceClients = {DevTestLabsClientImpl.class})
 public final class DevTestLabsClientBuilder {
     /*
-     * The subscription ID.
+     * The ID of the target subscription. The value must be an UUID.
      */
     private String subscriptionId;
 
     /**
-     * Sets The subscription ID.
+     * Sets The ID of the target subscription. The value must be an UUID.
      *
      * @param subscriptionId the subscriptionId value.
      * @return the DevTestLabsClientBuilder.
@@ -137,7 +137,7 @@ public final class DevTestLabsClientBuilder {
                 localSerializerAdapter,
                 localDefaultPollInterval,
                 localEnvironment,
-                subscriptionId,
+                this.subscriptionId,
                 localEndpoint);
         return client;
     }

@@ -19,12 +19,12 @@ public interface UsersClient {
     /**
      * List user profiles in a given lab.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedIterable}.
+     * @return contains a list of users and their properties as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<UserInner> list(String resourceGroupName, String labName);
@@ -32,17 +32,17 @@ public interface UsersClient {
     /**
      * List user profiles in a given lab.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param expand Specify the $expand query. Example: 'properties($select=identity)'.
-     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName').
+     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName')'.
      * @param top The maximum number of resources to return from the operation. Example: '$top=10'.
      * @param orderby The ordering expression for the results, using OData notation. Example: '$orderby=name desc'.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedIterable}.
+     * @return contains a list of users and their properties as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<UserInner> list(
@@ -57,7 +57,7 @@ public interface UsersClient {
     /**
      * Get user profile.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the user profile.
      * @param expand Specify the $expand query. Example: 'properties($select=identity)'.
@@ -74,7 +74,7 @@ public interface UsersClient {
     /**
      * Get user profile.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the user profile.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -88,10 +88,9 @@ public interface UsersClient {
     /**
      * Create or replace an existing user profile. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the user profile.
-     * @param user Profile of a lab user.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -99,12 +98,12 @@ public interface UsersClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<UserInner>, UserInner> beginCreateOrUpdate(
-        String resourceGroupName, String labName, String name, UserInner user);
+        String resourceGroupName, String labName, String name);
 
     /**
      * Create or replace an existing user profile. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the user profile.
      * @param user Profile of a lab user.
@@ -121,22 +120,21 @@ public interface UsersClient {
     /**
      * Create or replace an existing user profile. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the user profile.
-     * @param user Profile of a lab user.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return profile of a lab user.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    UserInner createOrUpdate(String resourceGroupName, String labName, String name, UserInner user);
+    UserInner createOrUpdate(String resourceGroupName, String labName, String name);
 
     /**
      * Create or replace an existing user profile. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the user profile.
      * @param user Profile of a lab user.
@@ -152,7 +150,7 @@ public interface UsersClient {
     /**
      * Delete user profile. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the user profile.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -166,7 +164,7 @@ public interface UsersClient {
     /**
      * Delete user profile. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the user profile.
      * @param context The context to associate with this operation.
@@ -182,7 +180,7 @@ public interface UsersClient {
     /**
      * Delete user profile. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the user profile.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -195,7 +193,7 @@ public interface UsersClient {
     /**
      * Delete user profile. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the user profile.
      * @param context The context to associate with this operation.
@@ -209,10 +207,10 @@ public interface UsersClient {
     /**
      * Allows modifying tags of user profiles. All other properties will be ignored.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the user profile.
-     * @param user Profile of a lab user.
+     * @param user Allows modifying tags of user profiles. All other properties will be ignored.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -226,10 +224,10 @@ public interface UsersClient {
     /**
      * Allows modifying tags of user profiles. All other properties will be ignored.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the user profile.
-     * @param user Profile of a lab user.
+     * @param user Allows modifying tags of user profiles. All other properties will be ignored.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.

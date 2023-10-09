@@ -11,7 +11,7 @@ import java.util.Arrays;
 /** Samples for VirtualMachines ApplyArtifacts. */
 public final class VirtualMachinesApplyArtifactsSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/VirtualMachines_ApplyArtifacts.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/VirtualMachines_ApplyArtifacts.json
      */
     /**
      * Sample code: VirtualMachines_ApplyArtifacts.
@@ -23,7 +23,7 @@ public final class VirtualMachinesApplyArtifactsSamples {
             .virtualMachines()
             .applyArtifacts(
                 "resourceGroupName",
-                "{labName}",
+                "myLabName",
                 "{vmName}",
                 new ApplyArtifactsRequest()
                     .withArtifacts(
@@ -31,7 +31,7 @@ public final class VirtualMachinesApplyArtifactsSamples {
                             .asList(
                                 new ArtifactInstallProperties()
                                     .withArtifactId(
-                                        "/subscriptions/{subscriptionId}/resourceGroups/resourceGroupName/providers/Microsoft.DevTestLab/labs/{labName}/artifactSources/public"
+                                        "/subscriptions/{subscriptionId}/resourceGroups/resourceGroupName/providers/Microsoft.DevTestLab/labs/myLabName/artifactSources/public"
                                             + " repo/artifacts/windows-restart"))),
                 com.azure.core.util.Context.NONE);
     }

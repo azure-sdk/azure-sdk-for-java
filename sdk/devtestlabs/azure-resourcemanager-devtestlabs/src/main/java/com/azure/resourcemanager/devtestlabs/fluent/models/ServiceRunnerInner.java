@@ -6,7 +6,7 @@ package com.azure.resourcemanager.devtestlabs.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
-import com.azure.resourcemanager.devtestlabs.models.IdentityProperties;
+import com.azure.core.management.SystemData;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
@@ -14,13 +14,34 @@ import java.util.Map;
 @Fluent
 public final class ServiceRunnerInner extends Resource {
     /*
+     * The properties of the resource.
+     */
+    @JsonProperty(value = "properties")
+    private ServiceRunnerProperties innerProperties;
+
+    /*
      * The identity of the resource.
      */
     @JsonProperty(value = "identity")
     private IdentityProperties identity;
 
+    /*
+     * The system metadata relating to this resource
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
+
     /** Creates an instance of ServiceRunnerInner class. */
     public ServiceRunnerInner() {
+    }
+
+    /**
+     * Get the innerProperties property: The properties of the resource.
+     *
+     * @return the innerProperties value.
+     */
+    private ServiceRunnerProperties innerProperties() {
+        return this.innerProperties;
     }
 
     /**
@@ -43,6 +64,15 @@ public final class ServiceRunnerInner extends Resource {
         return this;
     }
 
+    /**
+     * Get the systemData property: The system metadata relating to this resource.
+     *
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
+    }
+
     /** {@inheritDoc} */
     @Override
     public ServiceRunnerInner withLocation(String location) {
@@ -58,11 +88,57 @@ public final class ServiceRunnerInner extends Resource {
     }
 
     /**
+     * Get the identityUsageType property: The purpose of bringing the identity to the lab. Ex: To use during
+     * Environment creation or to deploy on the VMs.
+     *
+     * @return the identityUsageType value.
+     */
+    public String identityUsageType() {
+        return this.innerProperties() == null ? null : this.innerProperties().identityUsageType();
+    }
+
+    /**
+     * Set the identityUsageType property: The purpose of bringing the identity to the lab. Ex: To use during
+     * Environment creation or to deploy on the VMs.
+     *
+     * @param identityUsageType the identityUsageType value to set.
+     * @return the ServiceRunnerInner object itself.
+     */
+    public ServiceRunnerInner withIdentityUsageType(String identityUsageType) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ServiceRunnerProperties();
+        }
+        this.innerProperties().withIdentityUsageType(identityUsageType);
+        return this;
+    }
+
+    /**
+     * Get the provisioningState property: The provisioning status of the resource.
+     *
+     * @return the provisioningState value.
+     */
+    public String provisioningState() {
+        return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
+    }
+
+    /**
+     * Get the uniqueIdentifier property: The unique immutable identifier of a resource (Guid).
+     *
+     * @return the uniqueIdentifier value.
+     */
+    public String uniqueIdentifier() {
+        return this.innerProperties() == null ? null : this.innerProperties().uniqueIdentifier();
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (innerProperties() != null) {
+            innerProperties().validate();
+        }
         if (identity() != null) {
             identity().validate();
         }

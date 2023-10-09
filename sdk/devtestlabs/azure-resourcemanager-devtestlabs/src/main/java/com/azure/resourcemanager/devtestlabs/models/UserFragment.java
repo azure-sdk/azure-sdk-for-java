@@ -5,9 +5,10 @@
 package com.azure.resourcemanager.devtestlabs.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.resourcemanager.devtestlabs.fluent.models.IdentityProperties;
 import java.util.Map;
 
-/** Profile of a lab user. */
+/** Patch. */
 @Fluent
 public final class UserFragment extends UpdateResource {
     /** Creates an instance of UserFragment class. */
@@ -18,6 +19,13 @@ public final class UserFragment extends UpdateResource {
     @Override
     public UserFragment withTags(Map<String, String> tags) {
         super.withTags(tags);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public UserFragment withIdentity(IdentityProperties identity) {
+        super.withIdentity(identity);
         return this;
     }
 

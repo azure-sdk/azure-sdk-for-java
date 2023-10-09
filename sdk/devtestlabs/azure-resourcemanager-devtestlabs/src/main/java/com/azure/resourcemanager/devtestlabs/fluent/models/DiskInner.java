@@ -6,6 +6,7 @@ package com.azure.resourcemanager.devtestlabs.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.devtestlabs.models.StorageType;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -21,6 +22,12 @@ public final class DiskInner extends Resource {
     @JsonProperty(value = "properties", required = true)
     private DiskProperties innerProperties = new DiskProperties();
 
+    /*
+     * The system metadata relating to this resource
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
+
     /** Creates an instance of DiskInner class. */
     public DiskInner() {
     }
@@ -32,6 +39,15 @@ public final class DiskInner extends Resource {
      */
     private DiskProperties innerProperties() {
         return this.innerProperties;
+    }
+
+    /**
+     * Get the systemData property: The system metadata relating to this resource.
+     *
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /** {@inheritDoc} */

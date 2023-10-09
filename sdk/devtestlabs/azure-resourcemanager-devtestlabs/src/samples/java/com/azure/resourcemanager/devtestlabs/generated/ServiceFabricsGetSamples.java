@@ -7,7 +7,7 @@ package com.azure.resourcemanager.devtestlabs.generated;
 /** Samples for ServiceFabrics Get. */
 public final class ServiceFabricsGetSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/ServiceFabrics_Get.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/ServiceFabrics_Get.json
      */
     /**
      * Sample code: ServiceFabrics_Get.
@@ -19,7 +19,7 @@ public final class ServiceFabricsGetSamples {
             .serviceFabrics()
             .getWithResponse(
                 "resourceGroupName",
-                "{labName}",
+                "myLabName",
                 "{userName}",
                 "{serviceFabricName}",
                 null,

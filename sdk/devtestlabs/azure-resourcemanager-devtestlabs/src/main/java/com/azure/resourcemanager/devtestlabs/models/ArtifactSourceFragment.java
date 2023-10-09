@@ -5,9 +5,10 @@
 package com.azure.resourcemanager.devtestlabs.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.resourcemanager.devtestlabs.fluent.models.IdentityProperties;
 import java.util.Map;
 
-/** Properties of an artifact source. */
+/** Patch. */
 @Fluent
 public final class ArtifactSourceFragment extends UpdateResource {
     /** Creates an instance of ArtifactSourceFragment class. */
@@ -18,6 +19,13 @@ public final class ArtifactSourceFragment extends UpdateResource {
     @Override
     public ArtifactSourceFragment withTags(Map<String, String> tags) {
         super.withTags(tags);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public ArtifactSourceFragment withIdentity(IdentityProperties identity) {
+        super.withIdentity(identity);
         return this;
     }
 

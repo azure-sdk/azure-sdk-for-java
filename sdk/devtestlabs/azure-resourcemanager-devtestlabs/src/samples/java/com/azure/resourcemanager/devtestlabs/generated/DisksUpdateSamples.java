@@ -11,7 +11,7 @@ import java.util.Map;
 /** Samples for Disks Update. */
 public final class DisksUpdateSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/Disks_Update.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/Disks_Update.json
      */
     /**
      * Sample code: Disks_Update.
@@ -23,11 +23,12 @@ public final class DisksUpdateSamples {
             manager
                 .disks()
                 .getWithResponse(
-                    "resourceGroupName", "{labName}", "@me", "diskName", null, com.azure.core.util.Context.NONE)
+                    "resourceGroupName", "myLabName", "@me", "diskName", null, com.azure.core.util.Context.NONE)
                 .getValue();
         resource.update().withTags(mapOf("tagName1", "tagValue1")).apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

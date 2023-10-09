@@ -6,7 +6,7 @@ package com.azure.resourcemanager.devtestlabs.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
-import com.azure.core.util.logging.ClientLogger;
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.devtestlabs.models.PolicyEvaluatorType;
 import com.azure.resourcemanager.devtestlabs.models.PolicyFactName;
 import com.azure.resourcemanager.devtestlabs.models.PolicyStatus;
@@ -20,8 +20,14 @@ public final class PolicyInner extends Resource {
     /*
      * The properties of the resource.
      */
-    @JsonProperty(value = "properties", required = true)
-    private PolicyProperties innerProperties = new PolicyProperties();
+    @JsonProperty(value = "properties")
+    private PolicyProperties innerProperties;
+
+    /*
+     * The system metadata relating to this resource
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
 
     /** Creates an instance of PolicyInner class. */
     public PolicyInner() {
@@ -34,6 +40,15 @@ public final class PolicyInner extends Resource {
      */
     private PolicyProperties innerProperties() {
         return this.innerProperties;
+    }
+
+    /**
+     * Get the systemData property: The system metadata relating to this resource.
+     *
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /** {@inheritDoc} */
@@ -223,14 +238,8 @@ public final class PolicyInner extends Resource {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (innerProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property innerProperties in model PolicyInner"));
-        } else {
+        if (innerProperties() != null) {
             innerProperties().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(PolicyInner.class);
 }

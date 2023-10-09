@@ -5,7 +5,9 @@
 package com.azure.resourcemanager.devtestlabs.models;
 
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
+import com.azure.resourcemanager.devtestlabs.fluent.models.IdentityProperties;
 import com.azure.resourcemanager.devtestlabs.fluent.models.ServiceRunnerInner;
 import java.util.Map;
 
@@ -54,6 +56,35 @@ public interface ServiceRunner {
     IdentityProperties identity();
 
     /**
+     * Gets the systemData property: The system metadata relating to this resource.
+     *
+     * @return the systemData value.
+     */
+    SystemData systemData();
+
+    /**
+     * Gets the identityUsageType property: The purpose of bringing the identity to the lab. Ex: To use during
+     * Environment creation or to deploy on the VMs.
+     *
+     * @return the identityUsageType value.
+     */
+    String identityUsageType();
+
+    /**
+     * Gets the provisioningState property: The provisioning status of the resource.
+     *
+     * @return the provisioningState value.
+     */
+    String provisioningState();
+
+    /**
+     * Gets the uniqueIdentifier property: The unique immutable identifier of a resource (Guid).
+     *
+     * @return the uniqueIdentifier value.
+     */
+    String uniqueIdentifier();
+
+    /**
      * Gets the region of the resource.
      *
      * @return the region of the resource.
@@ -88,11 +119,13 @@ public interface ServiceRunner {
             DefinitionStages.WithParentResource,
             DefinitionStages.WithCreate {
     }
+
     /** The ServiceRunner definition stages. */
     interface DefinitionStages {
         /** The first stage of the ServiceRunner definition. */
         interface Blank extends WithLocation {
         }
+
         /** The stage of the ServiceRunner definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -111,22 +144,25 @@ public interface ServiceRunner {
              */
             WithParentResource withRegion(String location);
         }
+
         /** The stage of the ServiceRunner definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
              * Specifies resourceGroupName, labName.
              *
-             * @param resourceGroupName The name of the resource group.
+             * @param resourceGroupName The name of the resource group. The name is case insensitive.
              * @param labName The name of the lab.
              * @return the next definition stage.
              */
             WithCreate withExistingLab(String resourceGroupName, String labName);
         }
+
         /**
          * The stage of the ServiceRunner definition which contains all the minimum required properties for the resource
          * to be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithIdentity {
+        interface WithCreate
+            extends DefinitionStages.WithTags, DefinitionStages.WithIdentity, DefinitionStages.WithIdentityUsageType {
             /**
              * Executes the create request.
              *
@@ -142,6 +178,7 @@ public interface ServiceRunner {
              */
             ServiceRunner create(Context context);
         }
+
         /** The stage of the ServiceRunner definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -152,6 +189,7 @@ public interface ServiceRunner {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
         /** The stage of the ServiceRunner definition allowing to specify identity. */
         interface WithIdentity {
             /**
@@ -162,7 +200,21 @@ public interface ServiceRunner {
              */
             WithCreate withIdentity(IdentityProperties identity);
         }
+
+        /** The stage of the ServiceRunner definition allowing to specify identityUsageType. */
+        interface WithIdentityUsageType {
+            /**
+             * Specifies the identityUsageType property: The purpose of bringing the identity to the lab. Ex: To use
+             * during Environment creation or to deploy on the VMs..
+             *
+             * @param identityUsageType The purpose of bringing the identity to the lab. Ex: To use during Environment
+             *     creation or to deploy on the VMs.
+             * @return the next definition stage.
+             */
+            WithCreate withIdentityUsageType(String identityUsageType);
+        }
     }
+
     /**
      * Begins update for the ServiceRunner resource.
      *
@@ -171,7 +223,7 @@ public interface ServiceRunner {
     ServiceRunner.Update update();
 
     /** The template for ServiceRunner update. */
-    interface Update extends UpdateStages.WithTags, UpdateStages.WithIdentity {
+    interface Update extends UpdateStages.WithTags, UpdateStages.WithIdentity, UpdateStages.WithIdentityUsageType {
         /**
          * Executes the update request.
          *
@@ -187,6 +239,7 @@ public interface ServiceRunner {
          */
         ServiceRunner apply(Context context);
     }
+
     /** The ServiceRunner update stages. */
     interface UpdateStages {
         /** The stage of the ServiceRunner update allowing to specify tags. */
@@ -199,6 +252,7 @@ public interface ServiceRunner {
              */
             Update withTags(Map<String, String> tags);
         }
+
         /** The stage of the ServiceRunner update allowing to specify identity. */
         interface WithIdentity {
             /**
@@ -209,7 +263,21 @@ public interface ServiceRunner {
              */
             Update withIdentity(IdentityProperties identity);
         }
+
+        /** The stage of the ServiceRunner update allowing to specify identityUsageType. */
+        interface WithIdentityUsageType {
+            /**
+             * Specifies the identityUsageType property: The purpose of bringing the identity to the lab. Ex: To use
+             * during Environment creation or to deploy on the VMs..
+             *
+             * @param identityUsageType The purpose of bringing the identity to the lab. Ex: To use during Environment
+             *     creation or to deploy on the VMs.
+             * @return the next definition stage.
+             */
+            Update withIdentityUsageType(String identityUsageType);
+        }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

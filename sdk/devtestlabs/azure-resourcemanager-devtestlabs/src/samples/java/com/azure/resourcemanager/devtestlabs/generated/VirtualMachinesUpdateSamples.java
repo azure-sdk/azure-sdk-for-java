@@ -9,7 +9,7 @@ import com.azure.resourcemanager.devtestlabs.models.LabVirtualMachine;
 /** Samples for VirtualMachines Update. */
 public final class VirtualMachinesUpdateSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/VirtualMachines_Update.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/VirtualMachines_Update.json
      */
     /**
      * Sample code: VirtualMachines_Update.
@@ -20,7 +20,7 @@ public final class VirtualMachinesUpdateSamples {
         LabVirtualMachine resource =
             manager
                 .virtualMachines()
-                .getWithResponse("resourceGroupName", "{labName}", "{vmName}", null, com.azure.core.util.Context.NONE)
+                .getWithResponse("resourceGroupName", "myLabName", "{vmName}", null, com.azure.core.util.Context.NONE)
                 .getValue();
         resource.update().apply();
     }

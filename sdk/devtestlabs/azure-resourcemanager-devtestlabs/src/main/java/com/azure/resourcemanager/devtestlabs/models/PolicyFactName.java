@@ -31,9 +31,6 @@ public final class PolicyFactName extends ExpandableStringEnum<PolicyFactName> {
     /** Static value UserOwnedLabVmCountInSubnet for PolicyFactName. */
     public static final PolicyFactName USER_OWNED_LAB_VM_COUNT_IN_SUBNET = fromString("UserOwnedLabVmCountInSubnet");
 
-    /** Static value LabTargetCost for PolicyFactName. */
-    public static final PolicyFactName LAB_TARGET_COST = fromString("LabTargetCost");
-
     /** Static value EnvironmentTemplate for PolicyFactName. */
     public static final PolicyFactName ENVIRONMENT_TEMPLATE = fromString("EnvironmentTemplate");
 

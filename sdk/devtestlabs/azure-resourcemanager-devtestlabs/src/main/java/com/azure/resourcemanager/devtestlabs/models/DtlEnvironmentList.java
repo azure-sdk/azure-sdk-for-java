@@ -9,17 +9,17 @@ import com.azure.resourcemanager.devtestlabs.fluent.models.DtlEnvironmentInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The response of a list operation. */
+/** Contains a list of environments and their properties. */
 @Fluent
 public final class DtlEnvironmentList {
     /*
-     * Results of the list operation.
+     * List of environments and their properties
      */
     @JsonProperty(value = "value")
     private List<DtlEnvironmentInner> value;
 
     /*
-     * Link for next set of results.
+     * URL to get the next set of operation list results if there are any
      */
     @JsonProperty(value = "nextLink")
     private String nextLink;
@@ -29,7 +29,7 @@ public final class DtlEnvironmentList {
     }
 
     /**
-     * Get the value property: Results of the list operation.
+     * Get the value property: List of environments and their properties.
      *
      * @return the value value.
      */
@@ -38,7 +38,7 @@ public final class DtlEnvironmentList {
     }
 
     /**
-     * Set the value property: Results of the list operation.
+     * Set the value property: List of environments and their properties.
      *
      * @param value the value value to set.
      * @return the DtlEnvironmentList object itself.
@@ -49,7 +49,7 @@ public final class DtlEnvironmentList {
     }
 
     /**
-     * Get the nextLink property: Link for next set of results.
+     * Get the nextLink property: URL to get the next set of operation list results if there are any.
      *
      * @return the nextLink value.
      */
@@ -58,7 +58,7 @@ public final class DtlEnvironmentList {
     }
 
     /**
-     * Set the nextLink property: Link for next set of results.
+     * Set the nextLink property: URL to get the next set of operation list results if there are any.
      *
      * @param nextLink the nextLink value to set.
      * @return the DtlEnvironmentList object itself.

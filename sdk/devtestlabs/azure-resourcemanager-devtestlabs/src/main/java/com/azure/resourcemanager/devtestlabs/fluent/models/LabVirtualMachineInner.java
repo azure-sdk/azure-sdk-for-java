@@ -6,14 +6,16 @@ package com.azure.resourcemanager.devtestlabs.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
-import com.azure.core.util.logging.ClientLogger;
-import com.azure.resourcemanager.devtestlabs.models.ArtifactDeploymentStatusProperties;
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.devtestlabs.models.ArtifactInstallProperties;
-import com.azure.resourcemanager.devtestlabs.models.ComputeVmProperties;
+import com.azure.resourcemanager.devtestlabs.models.ComputeDataDisk;
+import com.azure.resourcemanager.devtestlabs.models.ComputeVmInstanceViewStatus;
 import com.azure.resourcemanager.devtestlabs.models.DataDiskProperties;
-import com.azure.resourcemanager.devtestlabs.models.GalleryImageReference;
-import com.azure.resourcemanager.devtestlabs.models.NetworkInterfaceProperties;
+import com.azure.resourcemanager.devtestlabs.models.EnableStatus;
+import com.azure.resourcemanager.devtestlabs.models.InboundNatRule;
 import com.azure.resourcemanager.devtestlabs.models.ScheduleCreationParameter;
+import com.azure.resourcemanager.devtestlabs.models.SecurityProfile;
+import com.azure.resourcemanager.devtestlabs.models.StorageTypes;
 import com.azure.resourcemanager.devtestlabs.models.VirtualMachineCreationSource;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
@@ -26,8 +28,14 @@ public final class LabVirtualMachineInner extends Resource {
     /*
      * The properties of the resource.
      */
-    @JsonProperty(value = "properties", required = true)
-    private LabVirtualMachinePropertiesInner innerProperties = new LabVirtualMachinePropertiesInner();
+    @JsonProperty(value = "properties")
+    private LabVirtualMachinePropertiesInner innerProperties;
+
+    /*
+     * The system metadata relating to this resource
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
 
     /** Creates an instance of LabVirtualMachineInner class. */
     public LabVirtualMachineInner() {
@@ -40,6 +48,15 @@ public final class LabVirtualMachineInner extends Resource {
      */
     private LabVirtualMachinePropertiesInner innerProperties() {
         return this.innerProperties;
+    }
+
+    /**
+     * Get the systemData property: The system metadata relating to this resource.
+     *
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /** {@inheritDoc} */
@@ -195,6 +212,79 @@ public final class LabVirtualMachineInner extends Resource {
             this.innerProperties = new LabVirtualMachinePropertiesInner();
         }
         this.innerProperties().withCustomImageId(customImageId);
+        return this;
+    }
+
+    /**
+     * Get the galleryImageVersionId property: The shared gallery image version resource identifier of the virtual
+     * machine.
+     *
+     * @return the galleryImageVersionId value.
+     */
+    public String galleryImageVersionId() {
+        return this.innerProperties() == null ? null : this.innerProperties().galleryImageVersionId();
+    }
+
+    /**
+     * Set the galleryImageVersionId property: The shared gallery image version resource identifier of the virtual
+     * machine.
+     *
+     * @param galleryImageVersionId the galleryImageVersionId value to set.
+     * @return the LabVirtualMachineInner object itself.
+     */
+    public LabVirtualMachineInner withGalleryImageVersionId(String galleryImageVersionId) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new LabVirtualMachinePropertiesInner();
+        }
+        this.innerProperties().withGalleryImageVersionId(galleryImageVersionId);
+        return this;
+    }
+
+    /**
+     * Get the sharedImageId property: The shared image resource identifier of the virtual machine.
+     *
+     * @return the sharedImageId value.
+     */
+    public String sharedImageId() {
+        return this.innerProperties() == null ? null : this.innerProperties().sharedImageId();
+    }
+
+    /**
+     * Set the sharedImageId property: The shared image resource identifier of the virtual machine.
+     *
+     * @param sharedImageId the sharedImageId value to set.
+     * @return the LabVirtualMachineInner object itself.
+     */
+    public LabVirtualMachineInner withSharedImageId(String sharedImageId) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new LabVirtualMachinePropertiesInner();
+        }
+        this.innerProperties().withSharedImageId(sharedImageId);
+        return this;
+    }
+
+    /**
+     * Get the sharedImageVersion property: The shared image version for the specified shared image Id. Will use latest
+     * if not specified.
+     *
+     * @return the sharedImageVersion value.
+     */
+    public String sharedImageVersion() {
+        return this.innerProperties() == null ? null : this.innerProperties().sharedImageVersion();
+    }
+
+    /**
+     * Set the sharedImageVersion property: The shared image version for the specified shared image Id. Will use latest
+     * if not specified.
+     *
+     * @param sharedImageVersion the sharedImageVersion value to set.
+     * @return the LabVirtualMachineInner object itself.
+     */
+    public LabVirtualMachineInner withSharedImageVersion(String sharedImageVersion) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new LabVirtualMachinePropertiesInner();
+        }
+        this.innerProperties().withSharedImageVersion(sharedImageVersion);
         return this;
     }
 
@@ -428,38 +518,6 @@ public final class LabVirtualMachineInner extends Resource {
     }
 
     /**
-     * Get the artifactDeploymentStatus property: The artifact deployment status for the virtual machine.
-     *
-     * @return the artifactDeploymentStatus value.
-     */
-    public ArtifactDeploymentStatusProperties artifactDeploymentStatus() {
-        return this.innerProperties() == null ? null : this.innerProperties().artifactDeploymentStatus();
-    }
-
-    /**
-     * Get the galleryImageReference property: The Microsoft Azure Marketplace image reference of the virtual machine.
-     *
-     * @return the galleryImageReference value.
-     */
-    public GalleryImageReference galleryImageReference() {
-        return this.innerProperties() == null ? null : this.innerProperties().galleryImageReference();
-    }
-
-    /**
-     * Set the galleryImageReference property: The Microsoft Azure Marketplace image reference of the virtual machine.
-     *
-     * @param galleryImageReference the galleryImageReference value to set.
-     * @return the LabVirtualMachineInner object itself.
-     */
-    public LabVirtualMachineInner withGalleryImageReference(GalleryImageReference galleryImageReference) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new LabVirtualMachinePropertiesInner();
-        }
-        this.innerProperties().withGalleryImageReference(galleryImageReference);
-        return this;
-    }
-
-    /**
      * Get the planId property: The id of the plan associated with the virtual machine image.
      *
      * @return the planId value.
@@ -483,44 +541,28 @@ public final class LabVirtualMachineInner extends Resource {
     }
 
     /**
-     * Get the computeVm property: The compute virtual machine properties.
+     * Get the osDiskSizeGb property: Specifies the size of an empty data disk in gigabytes. This element can be used to
+     * overwrite the size of the disk in a virtual machine image.
      *
-     * @return the computeVm value.
+     * @return the osDiskSizeGb value.
      */
-    public ComputeVmProperties computeVm() {
-        return this.innerProperties() == null ? null : this.innerProperties().computeVm();
+    public Integer osDiskSizeGb() {
+        return this.innerProperties() == null ? null : this.innerProperties().osDiskSizeGb();
     }
 
     /**
-     * Get the networkInterface property: The network interface properties.
+     * Set the osDiskSizeGb property: Specifies the size of an empty data disk in gigabytes. This element can be used to
+     * overwrite the size of the disk in a virtual machine image.
      *
-     * @return the networkInterface value.
-     */
-    public NetworkInterfaceProperties networkInterface() {
-        return this.innerProperties() == null ? null : this.innerProperties().networkInterface();
-    }
-
-    /**
-     * Set the networkInterface property: The network interface properties.
-     *
-     * @param networkInterface the networkInterface value to set.
+     * @param osDiskSizeGb the osDiskSizeGb value to set.
      * @return the LabVirtualMachineInner object itself.
      */
-    public LabVirtualMachineInner withNetworkInterface(NetworkInterfaceProperties networkInterface) {
+    public LabVirtualMachineInner withOsDiskSizeGb(Integer osDiskSizeGb) {
         if (this.innerProperties() == null) {
             this.innerProperties = new LabVirtualMachinePropertiesInner();
         }
-        this.innerProperties().withNetworkInterface(networkInterface);
+        this.innerProperties().withOsDiskSizeGb(osDiskSizeGb);
         return this;
-    }
-
-    /**
-     * Get the applicableSchedule property: The applicable schedule for the virtual machine.
-     *
-     * @return the applicableSchedule value.
-     */
-    public ApplicableScheduleInner applicableSchedule() {
-        return this.innerProperties() == null ? null : this.innerProperties().applicableSchedule();
     }
 
     /**
@@ -570,21 +612,21 @@ public final class LabVirtualMachineInner extends Resource {
     }
 
     /**
-     * Get the storageType property: Storage type to use for virtual machine (i.e. Standard, Premium).
+     * Get the storageType property: Storage type to use for virtual machine (i.e. Standard, Premium, StandardSSD).
      *
      * @return the storageType value.
      */
-    public String storageType() {
+    public StorageTypes storageType() {
         return this.innerProperties() == null ? null : this.innerProperties().storageType();
     }
 
     /**
-     * Set the storageType property: Storage type to use for virtual machine (i.e. Standard, Premium).
+     * Set the storageType property: Storage type to use for virtual machine (i.e. Standard, Premium, StandardSSD).
      *
      * @param storageType the storageType value to set.
      * @return the LabVirtualMachineInner object itself.
      */
-    public LabVirtualMachineInner withStorageType(String storageType) {
+    public LabVirtualMachineInner withStorageType(StorageTypes storageType) {
         if (this.innerProperties() == null) {
             this.innerProperties = new LabVirtualMachinePropertiesInner();
         }
@@ -681,6 +723,39 @@ public final class LabVirtualMachineInner extends Resource {
     }
 
     /**
+     * Get the canApplyArtifacts property: Flag to determine if apply artifacts can be triggered at the time of fetching
+     * the document.
+     *
+     * @return the canApplyArtifacts value.
+     */
+    public Boolean canApplyArtifacts() {
+        return this.innerProperties() == null ? null : this.innerProperties().canApplyArtifacts();
+    }
+
+    /**
+     * Get the securityProfile property: Option to apply more security protection for VMs.
+     *
+     * @return the securityProfile value.
+     */
+    public SecurityProfile securityProfile() {
+        return this.innerProperties() == null ? null : this.innerProperties().securityProfile();
+    }
+
+    /**
+     * Set the securityProfile property: Option to apply more security protection for VMs.
+     *
+     * @param securityProfile the securityProfile value to set.
+     * @return the LabVirtualMachineInner object itself.
+     */
+    public LabVirtualMachineInner withSecurityProfile(SecurityProfile securityProfile) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new LabVirtualMachinePropertiesInner();
+        }
+        this.innerProperties().withSecurityProfile(securityProfile);
+        return this;
+    }
+
+    /**
      * Get the provisioningState property: The provisioning status of the resource.
      *
      * @return the provisioningState value.
@@ -699,20 +774,862 @@ public final class LabVirtualMachineInner extends Resource {
     }
 
     /**
+     * Get the deploymentStatus property: The deployment status of the artifact.
+     *
+     * @return the deploymentStatus value.
+     */
+    public String deploymentStatus() {
+        return this.innerProperties() == null ? null : this.innerProperties().deploymentStatus();
+    }
+
+    /**
+     * Get the artifactsApplied property: The total count of the artifacts that were successfully applied.
+     *
+     * @return the artifactsApplied value.
+     */
+    public Integer artifactsApplied() {
+        return this.innerProperties() == null ? null : this.innerProperties().artifactsApplied();
+    }
+
+    /**
+     * Get the totalArtifacts property: The total count of the artifacts that were tentatively applied.
+     *
+     * @return the totalArtifacts value.
+     */
+    public Integer totalArtifacts() {
+        return this.innerProperties() == null ? null : this.innerProperties().totalArtifacts();
+    }
+
+    /**
+     * Get the offer property: The offer of the gallery image.
+     *
+     * @return the offer value.
+     */
+    public String offer() {
+        return this.innerProperties() == null ? null : this.innerProperties().offer();
+    }
+
+    /**
+     * Set the offer property: The offer of the gallery image.
+     *
+     * @param offer the offer value to set.
+     * @return the LabVirtualMachineInner object itself.
+     */
+    public LabVirtualMachineInner withOffer(String offer) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new LabVirtualMachinePropertiesInner();
+        }
+        this.innerProperties().withOffer(offer);
+        return this;
+    }
+
+    /**
+     * Get the publisher property: The publisher of the gallery image.
+     *
+     * @return the publisher value.
+     */
+    public String publisher() {
+        return this.innerProperties() == null ? null : this.innerProperties().publisher();
+    }
+
+    /**
+     * Set the publisher property: The publisher of the gallery image.
+     *
+     * @param publisher the publisher value to set.
+     * @return the LabVirtualMachineInner object itself.
+     */
+    public LabVirtualMachineInner withPublisher(String publisher) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new LabVirtualMachinePropertiesInner();
+        }
+        this.innerProperties().withPublisher(publisher);
+        return this;
+    }
+
+    /**
+     * Get the sku property: The SKU of the gallery image.
+     *
+     * @return the sku value.
+     */
+    public String sku() {
+        return this.innerProperties() == null ? null : this.innerProperties().sku();
+    }
+
+    /**
+     * Set the sku property: The SKU of the gallery image.
+     *
+     * @param sku the sku value to set.
+     * @return the LabVirtualMachineInner object itself.
+     */
+    public LabVirtualMachineInner withSku(String sku) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new LabVirtualMachinePropertiesInner();
+        }
+        this.innerProperties().withSku(sku);
+        return this;
+    }
+
+    /**
+     * Get the osTypeGalleryImageReferenceOsType property: The OS type of the gallery image.
+     *
+     * @return the osTypeGalleryImageReferenceOsType value.
+     */
+    public String osTypeGalleryImageReferenceOsType() {
+        return this.innerProperties() == null ? null : this.innerProperties().osTypeGalleryImageReferenceOsType();
+    }
+
+    /**
+     * Set the osTypeGalleryImageReferenceOsType property: The OS type of the gallery image.
+     *
+     * @param osTypeGalleryImageReferenceOsType the osTypeGalleryImageReferenceOsType value to set.
+     * @return the LabVirtualMachineInner object itself.
+     */
+    public LabVirtualMachineInner withOsTypeGalleryImageReferenceOsType(String osTypeGalleryImageReferenceOsType) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new LabVirtualMachinePropertiesInner();
+        }
+        this.innerProperties().withOsTypeGalleryImageReferenceOsType(osTypeGalleryImageReferenceOsType);
+        return this;
+    }
+
+    /**
+     * Get the version property: The version of the gallery image.
+     *
+     * @return the version value.
+     */
+    public String version() {
+        return this.innerProperties() == null ? null : this.innerProperties().version();
+    }
+
+    /**
+     * Set the version property: The version of the gallery image.
+     *
+     * @param version the version value to set.
+     * @return the LabVirtualMachineInner object itself.
+     */
+    public LabVirtualMachineInner withVersion(String version) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new LabVirtualMachinePropertiesInner();
+        }
+        this.innerProperties().withVersion(version);
+        return this;
+    }
+
+    /**
+     * Get the statuses property: Gets the statuses of the virtual machine.
+     *
+     * @return the statuses value.
+     */
+    public List<ComputeVmInstanceViewStatus> statuses() {
+        return this.innerProperties() == null ? null : this.innerProperties().statuses();
+    }
+
+    /**
+     * Get the osTypeComputeVmOsType property: Gets the OS type of the virtual machine.
+     *
+     * @return the osTypeComputeVmOsType value.
+     */
+    public String osTypeComputeVmOsType() {
+        return this.innerProperties() == null ? null : this.innerProperties().osTypeComputeVmOsType();
+    }
+
+    /**
+     * Get the vmSize property: Gets the size of the virtual machine.
+     *
+     * @return the vmSize value.
+     */
+    public String vmSize() {
+        return this.innerProperties() == null ? null : this.innerProperties().vmSize();
+    }
+
+    /**
+     * Get the networkInterfaceId property: Gets the network interface ID of the virtual machine.
+     *
+     * @return the networkInterfaceId value.
+     */
+    public String networkInterfaceId() {
+        return this.innerProperties() == null ? null : this.innerProperties().networkInterfaceId();
+    }
+
+    /**
+     * Get the osDiskId property: Gets OS disk blob uri for the virtual machine.
+     *
+     * @return the osDiskId value.
+     */
+    public String osDiskId() {
+        return this.innerProperties() == null ? null : this.innerProperties().osDiskId();
+    }
+
+    /**
+     * Get the dataDiskIds property: Gets data disks blob uri for the virtual machine.
+     *
+     * @return the dataDiskIds value.
+     */
+    public List<String> dataDiskIds() {
+        return this.innerProperties() == null ? null : this.innerProperties().dataDiskIds();
+    }
+
+    /**
+     * Get the dataDisks property: Gets all data disks attached to the virtual machine.
+     *
+     * @return the dataDisks value.
+     */
+    public List<ComputeDataDisk> dataDisks() {
+        return this.innerProperties() == null ? null : this.innerProperties().dataDisks();
+    }
+
+    /**
+     * Get the virtualNetworkId property: The resource ID of the virtual network.
+     *
+     * @return the virtualNetworkId value.
+     */
+    public String virtualNetworkId() {
+        return this.innerProperties() == null ? null : this.innerProperties().virtualNetworkId();
+    }
+
+    /**
+     * Set the virtualNetworkId property: The resource ID of the virtual network.
+     *
+     * @param virtualNetworkId the virtualNetworkId value to set.
+     * @return the LabVirtualMachineInner object itself.
+     */
+    public LabVirtualMachineInner withVirtualNetworkId(String virtualNetworkId) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new LabVirtualMachinePropertiesInner();
+        }
+        this.innerProperties().withVirtualNetworkId(virtualNetworkId);
+        return this;
+    }
+
+    /**
+     * Get the subnetId property: The resource ID of the sub net.
+     *
+     * @return the subnetId value.
+     */
+    public String subnetId() {
+        return this.innerProperties() == null ? null : this.innerProperties().subnetId();
+    }
+
+    /**
+     * Set the subnetId property: The resource ID of the sub net.
+     *
+     * @param subnetId the subnetId value to set.
+     * @return the LabVirtualMachineInner object itself.
+     */
+    public LabVirtualMachineInner withSubnetId(String subnetId) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new LabVirtualMachinePropertiesInner();
+        }
+        this.innerProperties().withSubnetId(subnetId);
+        return this;
+    }
+
+    /**
+     * Get the publicIpAddressId property: The resource ID of the public IP address.
+     *
+     * @return the publicIpAddressId value.
+     */
+    public String publicIpAddressId() {
+        return this.innerProperties() == null ? null : this.innerProperties().publicIpAddressId();
+    }
+
+    /**
+     * Set the publicIpAddressId property: The resource ID of the public IP address.
+     *
+     * @param publicIpAddressId the publicIpAddressId value to set.
+     * @return the LabVirtualMachineInner object itself.
+     */
+    public LabVirtualMachineInner withPublicIpAddressId(String publicIpAddressId) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new LabVirtualMachinePropertiesInner();
+        }
+        this.innerProperties().withPublicIpAddressId(publicIpAddressId);
+        return this;
+    }
+
+    /**
+     * Get the publicIpAddress property: The public IP address.
+     *
+     * @return the publicIpAddress value.
+     */
+    public String publicIpAddress() {
+        return this.innerProperties() == null ? null : this.innerProperties().publicIpAddress();
+    }
+
+    /**
+     * Set the publicIpAddress property: The public IP address.
+     *
+     * @param publicIpAddress the publicIpAddress value to set.
+     * @return the LabVirtualMachineInner object itself.
+     */
+    public LabVirtualMachineInner withPublicIpAddress(String publicIpAddress) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new LabVirtualMachinePropertiesInner();
+        }
+        this.innerProperties().withPublicIpAddress(publicIpAddress);
+        return this;
+    }
+
+    /**
+     * Get the privateIpAddress property: The private IP address.
+     *
+     * @return the privateIpAddress value.
+     */
+    public String privateIpAddress() {
+        return this.innerProperties() == null ? null : this.innerProperties().privateIpAddress();
+    }
+
+    /**
+     * Set the privateIpAddress property: The private IP address.
+     *
+     * @param privateIpAddress the privateIpAddress value to set.
+     * @return the LabVirtualMachineInner object itself.
+     */
+    public LabVirtualMachineInner withPrivateIpAddress(String privateIpAddress) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new LabVirtualMachinePropertiesInner();
+        }
+        this.innerProperties().withPrivateIpAddress(privateIpAddress);
+        return this;
+    }
+
+    /**
+     * Get the dnsName property: The DNS name.
+     *
+     * @return the dnsName value.
+     */
+    public String dnsName() {
+        return this.innerProperties() == null ? null : this.innerProperties().dnsName();
+    }
+
+    /**
+     * Set the dnsName property: The DNS name.
+     *
+     * @param dnsName the dnsName value to set.
+     * @return the LabVirtualMachineInner object itself.
+     */
+    public LabVirtualMachineInner withDnsName(String dnsName) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new LabVirtualMachinePropertiesInner();
+        }
+        this.innerProperties().withDnsName(dnsName);
+        return this;
+    }
+
+    /**
+     * Get the rdpAuthority property: The RdpAuthority property is a server DNS host name or IP address followed by the
+     * service port number for RDP (Remote Desktop Protocol).
+     *
+     * @return the rdpAuthority value.
+     */
+    public String rdpAuthority() {
+        return this.innerProperties() == null ? null : this.innerProperties().rdpAuthority();
+    }
+
+    /**
+     * Set the rdpAuthority property: The RdpAuthority property is a server DNS host name or IP address followed by the
+     * service port number for RDP (Remote Desktop Protocol).
+     *
+     * @param rdpAuthority the rdpAuthority value to set.
+     * @return the LabVirtualMachineInner object itself.
+     */
+    public LabVirtualMachineInner withRdpAuthority(String rdpAuthority) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new LabVirtualMachinePropertiesInner();
+        }
+        this.innerProperties().withRdpAuthority(rdpAuthority);
+        return this;
+    }
+
+    /**
+     * Get the sshAuthority property: The SshAuthority property is a server DNS host name or IP address followed by the
+     * service port number for SSH.
+     *
+     * @return the sshAuthority value.
+     */
+    public String sshAuthority() {
+        return this.innerProperties() == null ? null : this.innerProperties().sshAuthority();
+    }
+
+    /**
+     * Set the sshAuthority property: The SshAuthority property is a server DNS host name or IP address followed by the
+     * service port number for SSH.
+     *
+     * @param sshAuthority the sshAuthority value to set.
+     * @return the LabVirtualMachineInner object itself.
+     */
+    public LabVirtualMachineInner withSshAuthority(String sshAuthority) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new LabVirtualMachinePropertiesInner();
+        }
+        this.innerProperties().withSshAuthority(sshAuthority);
+        return this;
+    }
+
+    /**
+     * Get the inboundNatRules property: The incoming NAT rules.
+     *
+     * @return the inboundNatRules value.
+     */
+    public List<InboundNatRule> inboundNatRules() {
+        return this.innerProperties() == null ? null : this.innerProperties().inboundNatRules();
+    }
+
+    /**
+     * Set the inboundNatRules property: The incoming NAT rules.
+     *
+     * @param inboundNatRules the inboundNatRules value to set.
+     * @return the LabVirtualMachineInner object itself.
+     */
+    public LabVirtualMachineInner withInboundNatRules(List<InboundNatRule> inboundNatRules) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new LabVirtualMachinePropertiesInner();
+        }
+        this.innerProperties().withInboundNatRules(inboundNatRules);
+        return this;
+    }
+
+    /**
+     * Get the systemData property: The system metadata relating to this resource.
+     *
+     * @return the systemData value.
+     */
+    public SystemData systemDataPropertiesSystemData() {
+        return this.innerProperties() == null ? null : this.innerProperties().systemData();
+    }
+
+    /**
+     * Get the status property: The status of the schedule (i.e. Enabled, Disabled).
+     *
+     * @return the status value.
+     */
+    public EnableStatus status() {
+        return this.innerProperties() == null ? null : this.innerProperties().status();
+    }
+
+    /**
+     * Get the taskType property: The task type of the schedule (e.g. LabVmsShutdownTask, LabVmAutoStart).
+     *
+     * @return the taskType value.
+     */
+    public String taskType() {
+        return this.innerProperties() == null ? null : this.innerProperties().taskType();
+    }
+
+    /**
+     * Get the timeZoneId property: The time zone ID (e.g. Pacific Standard time).
+     *
+     * @return the timeZoneId value.
+     */
+    public String timeZoneId() {
+        return this.innerProperties() == null ? null : this.innerProperties().timeZoneId();
+    }
+
+    /**
+     * Get the createdDateApplicableScheduleCreatedDate property: The creation date of the schedule.
+     *
+     * @return the createdDateApplicableScheduleCreatedDate value.
+     */
+    public OffsetDateTime createdDateApplicableScheduleCreatedDate() {
+        return this.innerProperties() == null
+            ? null
+            : this.innerProperties().createdDateApplicableScheduleCreatedDate();
+    }
+
+    /**
+     * Get the targetResourceId property: The resource ID to which the schedule belongs.
+     *
+     * @return the targetResourceId value.
+     */
+    public String targetResourceId() {
+        return this.innerProperties() == null ? null : this.innerProperties().targetResourceId();
+    }
+
+    /**
+     * Get the provisioningStateApplicableScheduleProvisioningState property: The provisioning status of the resource.
+     *
+     * @return the provisioningStateApplicableScheduleProvisioningState value.
+     */
+    public String provisioningStateApplicableScheduleProvisioningState() {
+        return this.innerProperties() == null
+            ? null
+            : this.innerProperties().provisioningStateApplicableScheduleProvisioningState();
+    }
+
+    /**
+     * Get the uniqueIdentifierApplicableScheduleUniqueIdentifier property: The unique immutable identifier of a
+     * resource (Guid).
+     *
+     * @return the uniqueIdentifierApplicableScheduleUniqueIdentifier value.
+     */
+    public String uniqueIdentifierApplicableScheduleUniqueIdentifier() {
+        return this.innerProperties() == null
+            ? null
+            : this.innerProperties().uniqueIdentifierApplicableScheduleUniqueIdentifier();
+    }
+
+    /**
+     * Get the weekdays property: The days of the week for which the schedule is set (e.g. Sunday, Monday, Tuesday,
+     * etc.).
+     *
+     * @return the weekdays value.
+     */
+    public List<String> weekdays() {
+        return this.innerProperties() == null ? null : this.innerProperties().weekdays();
+    }
+
+    /**
+     * Get the time property: The time of the day the schedule will occur.
+     *
+     * @return the time value.
+     */
+    public String time() {
+        return this.innerProperties() == null ? null : this.innerProperties().time();
+    }
+
+    /**
+     * Get the timeDailyRecurrenceTime property: The time of day the schedule will occur.
+     *
+     * @return the timeDailyRecurrenceTime value.
+     */
+    public String timeDailyRecurrenceTime() {
+        return this.innerProperties() == null ? null : this.innerProperties().timeDailyRecurrenceTime();
+    }
+
+    /**
+     * Get the minute property: Minutes of the hour the schedule will run.
+     *
+     * @return the minute value.
+     */
+    public Integer minute() {
+        return this.innerProperties() == null ? null : this.innerProperties().minute();
+    }
+
+    /**
+     * Get the statusNotificationSettingsStatus property: If notifications are enabled for this schedule (i.e. Enabled,
+     * Disabled).
+     *
+     * @return the statusNotificationSettingsStatus value.
+     */
+    public EnableStatus statusNotificationSettingsStatus() {
+        return this.innerProperties() == null ? null : this.innerProperties().statusNotificationSettingsStatus();
+    }
+
+    /**
+     * Get the timeInMinutes property: Time in minutes before event at which notification will be sent.
+     *
+     * @return the timeInMinutes value.
+     */
+    public Integer timeInMinutes() {
+        return this.innerProperties() == null ? null : this.innerProperties().timeInMinutes();
+    }
+
+    /**
+     * Get the webhookUrl property: The webhook URL to which the notification will be sent.
+     *
+     * @return the webhookUrl value.
+     */
+    public String webhookUrl() {
+        return this.innerProperties() == null ? null : this.innerProperties().webhookUrl();
+    }
+
+    /**
+     * Get the emailRecipient property: The email recipient to send notifications to (can be a list of semi-colon
+     * separated email addresses).
+     *
+     * @return the emailRecipient value.
+     */
+    public String emailRecipient() {
+        return this.innerProperties() == null ? null : this.innerProperties().emailRecipient();
+    }
+
+    /**
+     * Get the notificationLocale property: The locale to use when sending a notification (fallback for unsupported
+     * languages is EN).
+     *
+     * @return the notificationLocale value.
+     */
+    public String notificationLocale() {
+        return this.innerProperties() == null ? null : this.innerProperties().notificationLocale();
+    }
+
+    /**
+     * Get the idPropertiesId property: Fully qualified resource ID for the resource. E.g.
+     * "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}".
+     *
+     * @return the idPropertiesId value.
+     */
+    public String idPropertiesId() {
+        return this.innerProperties() == null ? null : this.innerProperties().idPropertiesId();
+    }
+
+    /**
+     * Get the namePropertiesName property: The name of the resource.
+     *
+     * @return the namePropertiesName value.
+     */
+    public String namePropertiesName() {
+        return this.innerProperties() == null ? null : this.innerProperties().namePropertiesName();
+    }
+
+    /**
+     * Get the typePropertiesType property: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
+     * "Microsoft.Storage/storageAccounts".
+     *
+     * @return the typePropertiesType value.
+     */
+    public String typePropertiesType() {
+        return this.innerProperties() == null ? null : this.innerProperties().typePropertiesType();
+    }
+
+    /**
+     * Get the tagsPropertiesTags property: Resource tags.
+     *
+     * @return the tagsPropertiesTags value.
+     */
+    public Map<String, String> tagsPropertiesTags() {
+        return this.innerProperties() == null ? null : this.innerProperties().tagsPropertiesTags();
+    }
+
+    /**
+     * Get the locationPropertiesLocation property: The geo-location where the resource lives.
+     *
+     * @return the locationPropertiesLocation value.
+     */
+    public String locationPropertiesLocation() {
+        return this.innerProperties() == null ? null : this.innerProperties().locationPropertiesLocation();
+    }
+
+    /**
+     * Get the systemDataLabVmsStartupSystemData property: The system metadata relating to this resource.
+     *
+     * @return the systemDataLabVmsStartupSystemData value.
+     */
+    public SystemData systemDataLabVmsStartupSystemData() {
+        return this.innerProperties() == null ? null : this.innerProperties().systemDataLabVmsStartupSystemData();
+    }
+
+    /**
+     * Get the statusLabVmsStartupStatus property: The status of the schedule (i.e. Enabled, Disabled).
+     *
+     * @return the statusLabVmsStartupStatus value.
+     */
+    public EnableStatus statusLabVmsStartupStatus() {
+        return this.innerProperties() == null ? null : this.innerProperties().statusLabVmsStartupStatus();
+    }
+
+    /**
+     * Get the taskTypeLabVmsStartupTaskType property: The task type of the schedule (e.g. LabVmsShutdownTask,
+     * LabVmAutoStart).
+     *
+     * @return the taskTypeLabVmsStartupTaskType value.
+     */
+    public String taskTypeLabVmsStartupTaskType() {
+        return this.innerProperties() == null ? null : this.innerProperties().taskTypeLabVmsStartupTaskType();
+    }
+
+    /**
+     * Get the timeZoneIdLabVmsStartupTimeZoneId property: The time zone ID (e.g. Pacific Standard time).
+     *
+     * @return the timeZoneIdLabVmsStartupTimeZoneId value.
+     */
+    public String timeZoneIdLabVmsStartupTimeZoneId() {
+        return this.innerProperties() == null ? null : this.innerProperties().timeZoneIdLabVmsStartupTimeZoneId();
+    }
+
+    /**
+     * Get the createdDateLabVmsStartupCreatedDate property: The creation date of the schedule.
+     *
+     * @return the createdDateLabVmsStartupCreatedDate value.
+     */
+    public OffsetDateTime createdDateLabVmsStartupCreatedDate() {
+        return this.innerProperties() == null ? null : this.innerProperties().createdDateLabVmsStartupCreatedDate();
+    }
+
+    /**
+     * Get the targetResourceIdLabVmsStartupTargetResourceId property: The resource ID to which the schedule belongs.
+     *
+     * @return the targetResourceIdLabVmsStartupTargetResourceId value.
+     */
+    public String targetResourceIdLabVmsStartupTargetResourceId() {
+        return this.innerProperties() == null
+            ? null
+            : this.innerProperties().targetResourceIdLabVmsStartupTargetResourceId();
+    }
+
+    /**
+     * Get the provisioningStateLabVmsStartupProvisioningState property: The provisioning status of the resource.
+     *
+     * @return the provisioningStateLabVmsStartupProvisioningState value.
+     */
+    public String provisioningStateLabVmsStartupProvisioningState() {
+        return this.innerProperties() == null
+            ? null
+            : this.innerProperties().provisioningStateLabVmsStartupProvisioningState();
+    }
+
+    /**
+     * Get the uniqueIdentifierLabVmsStartupUniqueIdentifier property: The unique immutable identifier of a resource
+     * (Guid).
+     *
+     * @return the uniqueIdentifierLabVmsStartupUniqueIdentifier value.
+     */
+    public String uniqueIdentifierLabVmsStartupUniqueIdentifier() {
+        return this.innerProperties() == null
+            ? null
+            : this.innerProperties().uniqueIdentifierLabVmsStartupUniqueIdentifier();
+    }
+
+    /**
+     * Get the weekdaysLabVmsStartupWeekdays property: The days of the week for which the schedule is set (e.g. Sunday,
+     * Monday, Tuesday, etc.).
+     *
+     * @return the weekdaysLabVmsStartupWeekdays value.
+     */
+    public List<String> weekdaysLabVmsStartupWeekdays() {
+        return this.innerProperties() == null ? null : this.innerProperties().weekdaysLabVmsStartupWeekdays();
+    }
+
+    /**
+     * Get the timeLabVmsStartupTime property: The time of the day the schedule will occur.
+     *
+     * @return the timeLabVmsStartupTime value.
+     */
+    public String timeLabVmsStartupTime() {
+        return this.innerProperties() == null ? null : this.innerProperties().timeLabVmsStartupTime();
+    }
+
+    /**
+     * Get the timeDailyRecurrenceTimeLabVmsStartupTimeDailyRecurrenceTime property: The time of day the schedule will
+     * occur.
+     *
+     * @return the timeDailyRecurrenceTimeLabVmsStartupTimeDailyRecurrenceTime value.
+     */
+    public String timeDailyRecurrenceTimeLabVmsStartupTimeDailyRecurrenceTime() {
+        return this.innerProperties() == null
+            ? null
+            : this.innerProperties().timeDailyRecurrenceTimeLabVmsStartupTimeDailyRecurrenceTime();
+    }
+
+    /**
+     * Get the minuteLabVmsStartupMinute property: Minutes of the hour the schedule will run.
+     *
+     * @return the minuteLabVmsStartupMinute value.
+     */
+    public Integer minuteLabVmsStartupMinute() {
+        return this.innerProperties() == null ? null : this.innerProperties().minuteLabVmsStartupMinute();
+    }
+
+    /**
+     * Get the statusNotificationSettingsStatusLabVmsStartupStatusNotificationSettingsStatus property: If notifications
+     * are enabled for this schedule (i.e. Enabled, Disabled).
+     *
+     * @return the statusNotificationSettingsStatusLabVmsStartupStatusNotificationSettingsStatus value.
+     */
+    public EnableStatus statusNotificationSettingsStatusLabVmsStartupStatusNotificationSettingsStatus() {
+        return this.innerProperties() == null
+            ? null
+            : this.innerProperties().statusNotificationSettingsStatusLabVmsStartupStatusNotificationSettingsStatus();
+    }
+
+    /**
+     * Get the timeInMinutesLabVmsStartupTimeInMinutes property: Time in minutes before event at which notification will
+     * be sent.
+     *
+     * @return the timeInMinutesLabVmsStartupTimeInMinutes value.
+     */
+    public Integer timeInMinutesLabVmsStartupTimeInMinutes() {
+        return this.innerProperties() == null ? null : this.innerProperties().timeInMinutesLabVmsStartupTimeInMinutes();
+    }
+
+    /**
+     * Get the webhookUrlLabVmsStartupWebhookUrl property: The webhook URL to which the notification will be sent.
+     *
+     * @return the webhookUrlLabVmsStartupWebhookUrl value.
+     */
+    public String webhookUrlLabVmsStartupWebhookUrl() {
+        return this.innerProperties() == null ? null : this.innerProperties().webhookUrlLabVmsStartupWebhookUrl();
+    }
+
+    /**
+     * Get the emailRecipientLabVmsStartupEmailRecipient property: The email recipient to send notifications to (can be
+     * a list of semi-colon separated email addresses).
+     *
+     * @return the emailRecipientLabVmsStartupEmailRecipient value.
+     */
+    public String emailRecipientLabVmsStartupEmailRecipient() {
+        return this.innerProperties() == null
+            ? null
+            : this.innerProperties().emailRecipientLabVmsStartupEmailRecipient();
+    }
+
+    /**
+     * Get the notificationLocaleLabVmsStartupNotificationLocale property: The locale to use when sending a notification
+     * (fallback for unsupported languages is EN).
+     *
+     * @return the notificationLocaleLabVmsStartupNotificationLocale value.
+     */
+    public String notificationLocaleLabVmsStartupNotificationLocale() {
+        return this.innerProperties() == null
+            ? null
+            : this.innerProperties().notificationLocaleLabVmsStartupNotificationLocale();
+    }
+
+    /**
+     * Get the idLabVmsStartupId property: Fully qualified resource ID for the resource. E.g.
+     * "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}".
+     *
+     * @return the idLabVmsStartupId value.
+     */
+    public String idLabVmsStartupId() {
+        return this.innerProperties() == null ? null : this.innerProperties().idLabVmsStartupId();
+    }
+
+    /**
+     * Get the nameLabVmsStartupName property: The name of the resource.
+     *
+     * @return the nameLabVmsStartupName value.
+     */
+    public String nameLabVmsStartupName() {
+        return this.innerProperties() == null ? null : this.innerProperties().nameLabVmsStartupName();
+    }
+
+    /**
+     * Get the typeLabVmsStartupType property: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
+     * "Microsoft.Storage/storageAccounts".
+     *
+     * @return the typeLabVmsStartupType value.
+     */
+    public String typeLabVmsStartupType() {
+        return this.innerProperties() == null ? null : this.innerProperties().typeLabVmsStartupType();
+    }
+
+    /**
+     * Get the tagsLabVmsStartupTags property: Resource tags.
+     *
+     * @return the tagsLabVmsStartupTags value.
+     */
+    public Map<String, String> tagsLabVmsStartupTags() {
+        return this.innerProperties() == null ? null : this.innerProperties().tagsLabVmsStartupTags();
+    }
+
+    /**
+     * Get the locationLabVmsStartupLocation property: The geo-location where the resource lives.
+     *
+     * @return the locationLabVmsStartupLocation value.
+     */
+    public String locationLabVmsStartupLocation() {
+        return this.innerProperties() == null ? null : this.innerProperties().locationLabVmsStartupLocation();
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (innerProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property innerProperties in model LabVirtualMachineInner"));
-        } else {
+        if (innerProperties() != null) {
             innerProperties().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(LabVirtualMachineInner.class);
 }

@@ -7,7 +7,7 @@ package com.azure.resourcemanager.devtestlabs.generated;
 /** Samples for Environments Get. */
 public final class EnvironmentsGetSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/Environments_Get.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/Environments_Get.json
      */
     /**
      * Sample code: Environments_Get.
@@ -18,6 +18,6 @@ public final class EnvironmentsGetSamples {
         manager
             .environments()
             .getWithResponse(
-                "resourceGroupName", "{labName}", "@me", "{environmentName}", null, com.azure.core.util.Context.NONE);
+                "resourceGroupName", "myLabName", "@me", "{environmentName}", null, com.azure.core.util.Context.NONE);
     }
 }

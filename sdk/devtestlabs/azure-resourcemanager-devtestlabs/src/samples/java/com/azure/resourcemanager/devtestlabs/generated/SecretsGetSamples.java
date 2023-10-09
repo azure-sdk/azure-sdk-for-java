@@ -7,7 +7,7 @@ package com.azure.resourcemanager.devtestlabs.generated;
 /** Samples for Secrets Get. */
 public final class SecretsGetSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/Secrets_Get.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/Secrets_Get.json
      */
     /**
      * Sample code: Secrets_Get.
@@ -18,6 +18,6 @@ public final class SecretsGetSamples {
         manager
             .secrets()
             .getWithResponse(
-                "resourceGroupName", "{labName}", "{userName}", "{secretName}", null, com.azure.core.util.Context.NONE);
+                "resourceGroupName", "myLabName", "{userName}", "{secretName}", null, com.azure.core.util.Context.NONE);
     }
 }

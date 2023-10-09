@@ -4,14 +4,13 @@
 
 package com.azure.resourcemanager.devtestlabs.generated;
 
-import com.azure.resourcemanager.devtestlabs.models.AttachNewDataDiskOptions;
 import com.azure.resourcemanager.devtestlabs.models.DataDiskProperties;
 import com.azure.resourcemanager.devtestlabs.models.StorageType;
 
 /** Samples for VirtualMachines AddDataDisk. */
 public final class VirtualMachinesAddDataDiskSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/VirtualMachines_AddDataDisk.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/VirtualMachines_AddDataDisk.json
      */
     /**
      * Sample code: VirtualMachines_AddDataDisk.
@@ -23,14 +22,12 @@ public final class VirtualMachinesAddDataDiskSamples {
             .virtualMachines()
             .addDataDisk(
                 "resourceGroupName",
-                "{labName}",
+                "myLabName",
                 "{virtualMachineName}",
                 new DataDiskProperties()
-                    .withAttachNewDataDiskOptions(
-                        new AttachNewDataDiskOptions()
-                            .withDiskSizeGiB(127)
-                            .withDiskName("{diskName}")
-                            .withDiskType(StorageType.fromString("{diskType}"))),
+                    .withDiskSizeGiB(127)
+                    .withDiskName("{diskName}")
+                    .withDiskType(StorageType.fromString("{diskType}")),
                 com.azure.core.util.Context.NONE);
     }
 }

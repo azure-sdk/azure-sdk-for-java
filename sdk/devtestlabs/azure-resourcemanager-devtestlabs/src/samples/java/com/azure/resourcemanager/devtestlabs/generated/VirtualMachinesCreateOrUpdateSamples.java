@@ -4,14 +4,14 @@
 
 package com.azure.resourcemanager.devtestlabs.generated;
 
-import com.azure.resourcemanager.devtestlabs.models.GalleryImageReference;
+import com.azure.resourcemanager.devtestlabs.models.StorageTypes;
 import java.util.HashMap;
 import java.util.Map;
 
 /** Samples for VirtualMachines CreateOrUpdate. */
 public final class VirtualMachinesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/VirtualMachines_CreateOrUpdate.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/VirtualMachines_CreateOrUpdate.json
      */
     /**
      * Sample code: VirtualMachines_CreateOrUpdate.
@@ -23,27 +23,26 @@ public final class VirtualMachinesCreateOrUpdateSamples {
             .virtualMachines()
             .define("{vmName}")
             .withRegion("{location}")
-            .withExistingLab("resourceGroupName", "{labName}")
+            .withExistingLab("resourceGroupName", "myLabName")
             .withTags(mapOf("tagName1", "tagValue1"))
             .withSize("Standard_A2_v2")
             .withUsername("{userName}")
             .withPassword("{userPassword}")
             .withLabSubnetName("{virtualNetworkName}Subnet")
             .withLabVirtualNetworkId(
-                "/subscriptions/{subscriptionId}/resourcegroups/resourceGroupName/providers/microsoft.devtestlab/labs/{labName}/virtualnetworks/{virtualNetworkName}")
+                "/subscriptions/{subscriptionId}/resourcegroups/resourceGroupName/providers/microsoft.devtestlab/labs/myLabName/virtualnetworks/{virtualNetworkName}")
             .withDisallowPublicIpAddress(true)
-            .withGalleryImageReference(
-                new GalleryImageReference()
-                    .withOffer("UbuntuServer")
-                    .withPublisher("Canonical")
-                    .withSku("16.04-LTS")
-                    .withOsType("Linux")
-                    .withVersion("Latest"))
             .withAllowClaim(true)
-            .withStorageType("Standard")
+            .withStorageType(StorageTypes.STANDARD)
+            .withOffer("UbuntuServer")
+            .withPublisher("Canonical")
+            .withSku("18.04-LTS")
+            .withOsTypeGalleryImageReferenceOsType("Linux")
+            .withVersion("Latest")
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

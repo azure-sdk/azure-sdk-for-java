@@ -7,7 +7,7 @@ package com.azure.resourcemanager.devtestlabs.generated;
 /** Samples for Secrets Delete. */
 public final class SecretsDeleteSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/Secrets_Delete.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/Secrets_Delete.json
      */
     /**
      * Sample code: Secrets_Delete.
@@ -18,6 +18,6 @@ public final class SecretsDeleteSamples {
         manager
             .secrets()
             .deleteWithResponse(
-                "resourceGroupName", "{labName}", "{userName}", "{secretName}", com.azure.core.util.Context.NONE);
+                "resourceGroupName", "myLabName", "{userName}", "{secretName}", com.azure.core.util.Context.NONE);
     }
 }

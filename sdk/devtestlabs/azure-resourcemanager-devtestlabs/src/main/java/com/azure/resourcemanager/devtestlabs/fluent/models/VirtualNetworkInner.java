@@ -6,6 +6,7 @@ package com.azure.resourcemanager.devtestlabs.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.devtestlabs.models.ExternalSubnet;
 import com.azure.resourcemanager.devtestlabs.models.Subnet;
 import com.azure.resourcemanager.devtestlabs.models.SubnetOverride;
@@ -23,6 +24,12 @@ public final class VirtualNetworkInner extends Resource {
     @JsonProperty(value = "properties")
     private VirtualNetworkProperties innerProperties;
 
+    /*
+     * The system metadata relating to this resource
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
+
     /** Creates an instance of VirtualNetworkInner class. */
     public VirtualNetworkInner() {
     }
@@ -34,6 +41,15 @@ public final class VirtualNetworkInner extends Resource {
      */
     private VirtualNetworkProperties innerProperties() {
         return this.innerProperties;
+    }
+
+    /**
+     * Get the systemData property: The system metadata relating to this resource.
+     *
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /** {@inheritDoc} */

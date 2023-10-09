@@ -7,7 +7,7 @@ package com.azure.resourcemanager.devtestlabs.generated;
 /** Samples for VirtualMachines Redeploy. */
 public final class VirtualMachinesRedeploySamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/VirtualMachines_Redeploy.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/VirtualMachines_Redeploy.json
      */
     /**
      * Sample code: VirtualMachines_Redeploy.
@@ -17,6 +17,6 @@ public final class VirtualMachinesRedeploySamples {
     public static void virtualMachinesRedeploy(com.azure.resourcemanager.devtestlabs.DevTestLabsManager manager) {
         manager
             .virtualMachines()
-            .redeploy("resourceGroupName", "{labName}", "{vmName}", com.azure.core.util.Context.NONE);
+            .redeploy("resourceGroupName", "myLabName", "{vmName}", com.azure.core.util.Context.NONE);
     }
 }

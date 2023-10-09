@@ -6,9 +6,11 @@ package com.azure.resourcemanager.devtestlabs.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
+import com.azure.core.management.SystemData;
+import com.azure.resourcemanager.devtestlabs.models.EnableStatus;
+import com.azure.resourcemanager.devtestlabs.models.EncryptionType;
 import com.azure.resourcemanager.devtestlabs.models.EnvironmentPermission;
-import com.azure.resourcemanager.devtestlabs.models.LabAnnouncementProperties;
-import com.azure.resourcemanager.devtestlabs.models.LabSupportProperties;
+import com.azure.resourcemanager.devtestlabs.models.ManagedIdentityType;
 import com.azure.resourcemanager.devtestlabs.models.PremiumDataDisk;
 import com.azure.resourcemanager.devtestlabs.models.StorageType;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -25,6 +27,18 @@ public final class LabInner extends Resource {
     @JsonProperty(value = "properties")
     private LabProperties innerProperties;
 
+    /*
+     * The identity of the resource.
+     */
+    @JsonProperty(value = "identity")
+    private IdentityProperties innerIdentity;
+
+    /*
+     * The system metadata relating to this resource
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
+
     /** Creates an instance of LabInner class. */
     public LabInner() {
     }
@@ -36,6 +50,24 @@ public final class LabInner extends Resource {
      */
     private LabProperties innerProperties() {
         return this.innerProperties;
+    }
+
+    /**
+     * Get the innerIdentity property: The identity of the resource.
+     *
+     * @return the innerIdentity value.
+     */
+    private IdentityProperties innerIdentity() {
+        return this.innerIdentity;
+    }
+
+    /**
+     * Get the systemData property: The system metadata relating to this resource.
+     *
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /** {@inheritDoc} */
@@ -234,54 +266,9 @@ public final class LabInner extends Resource {
     }
 
     /**
-     * Get the announcement property: The properties of any lab announcement associated with this lab.
-     *
-     * @return the announcement value.
-     */
-    public LabAnnouncementProperties announcement() {
-        return this.innerProperties() == null ? null : this.innerProperties().announcement();
-    }
-
-    /**
-     * Set the announcement property: The properties of any lab announcement associated with this lab.
-     *
-     * @param announcement the announcement value to set.
-     * @return the LabInner object itself.
-     */
-    public LabInner withAnnouncement(LabAnnouncementProperties announcement) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new LabProperties();
-        }
-        this.innerProperties().withAnnouncement(announcement);
-        return this;
-    }
-
-    /**
-     * Get the support property: The properties of any lab support message associated with this lab.
-     *
-     * @return the support value.
-     */
-    public LabSupportProperties support() {
-        return this.innerProperties() == null ? null : this.innerProperties().support();
-    }
-
-    /**
-     * Set the support property: The properties of any lab support message associated with this lab.
-     *
-     * @param support the support value to set.
-     * @return the LabInner object itself.
-     */
-    public LabInner withSupport(LabSupportProperties support) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new LabProperties();
-        }
-        this.innerProperties().withSupport(support);
-        return this;
-    }
-
-    /**
-     * Get the vmCreationResourceGroup property: The resource group in which all new lab virtual machines will be
-     * created. To let DevTest Labs manage resource group creation, set this value to null.
+     * Get the vmCreationResourceGroup property: The resource group ID in which all new lab virtual machines will be
+     * created. Ex: /subscriptions/subId/resourceGroups/rgName To let DevTest Labs manage resource group creation, set
+     * this value to null.
      *
      * @return the vmCreationResourceGroup value.
      */
@@ -341,6 +328,123 @@ public final class LabInner extends Resource {
     }
 
     /**
+     * Get the browserConnect property: Is browser connect enabled for the lab.
+     *
+     * @return the browserConnect value.
+     */
+    public EnableStatus browserConnect() {
+        return this.innerProperties() == null ? null : this.innerProperties().browserConnect();
+    }
+
+    /**
+     * Set the browserConnect property: Is browser connect enabled for the lab.
+     *
+     * @param browserConnect the browserConnect value to set.
+     * @return the LabInner object itself.
+     */
+    public LabInner withBrowserConnect(EnableStatus browserConnect) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new LabProperties();
+        }
+        this.innerProperties().withBrowserConnect(browserConnect);
+        return this;
+    }
+
+    /**
+     * Get the disableAutoUpgradeCseMinorVersion property: Is auto upgrade of CSE disabled for the lab?.
+     *
+     * @return the disableAutoUpgradeCseMinorVersion value.
+     */
+    public Boolean disableAutoUpgradeCseMinorVersion() {
+        return this.innerProperties() == null ? null : this.innerProperties().disableAutoUpgradeCseMinorVersion();
+    }
+
+    /**
+     * Set the disableAutoUpgradeCseMinorVersion property: Is auto upgrade of CSE disabled for the lab?.
+     *
+     * @param disableAutoUpgradeCseMinorVersion the disableAutoUpgradeCseMinorVersion value to set.
+     * @return the LabInner object itself.
+     */
+    public LabInner withDisableAutoUpgradeCseMinorVersion(Boolean disableAutoUpgradeCseMinorVersion) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new LabProperties();
+        }
+        this.innerProperties().withDisableAutoUpgradeCseMinorVersion(disableAutoUpgradeCseMinorVersion);
+        return this;
+    }
+
+    /**
+     * Get the managementIdentities property: List of identities which can be used for management of resources.
+     *
+     * @return the managementIdentities value.
+     */
+    public Map<String, Object> managementIdentities() {
+        return this.innerProperties() == null ? null : this.innerProperties().managementIdentities();
+    }
+
+    /**
+     * Set the managementIdentities property: List of identities which can be used for management of resources.
+     *
+     * @param managementIdentities the managementIdentities value to set.
+     * @return the LabInner object itself.
+     */
+    public LabInner withManagementIdentities(Map<String, Object> managementIdentities) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new LabProperties();
+        }
+        this.innerProperties().withManagementIdentities(managementIdentities);
+        return this;
+    }
+
+    /**
+     * Get the isolateLabResources property: Indicates whether to create Lab resources (e.g. Storage accounts and Key
+     * Vaults) in network isolation.
+     *
+     * @return the isolateLabResources value.
+     */
+    public EnableStatus isolateLabResources() {
+        return this.innerProperties() == null ? null : this.innerProperties().isolateLabResources();
+    }
+
+    /**
+     * Set the isolateLabResources property: Indicates whether to create Lab resources (e.g. Storage accounts and Key
+     * Vaults) in network isolation.
+     *
+     * @param isolateLabResources the isolateLabResources value to set.
+     * @return the LabInner object itself.
+     */
+    public LabInner withIsolateLabResources(EnableStatus isolateLabResources) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new LabProperties();
+        }
+        this.innerProperties().withIsolateLabResources(isolateLabResources);
+        return this;
+    }
+
+    /**
+     * Get the defaultSecretName property: Default secret for creating virtual machines.
+     *
+     * @return the defaultSecretName value.
+     */
+    public String defaultSecretName() {
+        return this.innerProperties() == null ? null : this.innerProperties().defaultSecretName();
+    }
+
+    /**
+     * Set the defaultSecretName property: Default secret for creating virtual machines.
+     *
+     * @param defaultSecretName the defaultSecretName value to set.
+     * @return the LabInner object itself.
+     */
+    public LabInner withDefaultSecretName(String defaultSecretName) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new LabProperties();
+        }
+        this.innerProperties().withDefaultSecretName(defaultSecretName);
+        return this;
+    }
+
+    /**
      * Get the provisioningState property: The provisioning status of the resource.
      *
      * @return the provisioningState value.
@@ -359,6 +463,359 @@ public final class LabInner extends Resource {
     }
 
     /**
+     * Get the title property: The plain text title for the lab announcement.
+     *
+     * @return the title value.
+     */
+    public String title() {
+        return this.innerProperties() == null ? null : this.innerProperties().title();
+    }
+
+    /**
+     * Set the title property: The plain text title for the lab announcement.
+     *
+     * @param title the title value to set.
+     * @return the LabInner object itself.
+     */
+    public LabInner withTitle(String title) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new LabProperties();
+        }
+        this.innerProperties().withTitle(title);
+        return this;
+    }
+
+    /**
+     * Get the markdown property: The markdown text (if any) that this lab displays in the UI. If left empty/null,
+     * nothing will be shown.
+     *
+     * @return the markdown value.
+     */
+    public String markdown() {
+        return this.innerProperties() == null ? null : this.innerProperties().markdown();
+    }
+
+    /**
+     * Set the markdown property: The markdown text (if any) that this lab displays in the UI. If left empty/null,
+     * nothing will be shown.
+     *
+     * @param markdown the markdown value to set.
+     * @return the LabInner object itself.
+     */
+    public LabInner withMarkdown(String markdown) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new LabProperties();
+        }
+        this.innerProperties().withMarkdown(markdown);
+        return this;
+    }
+
+    /**
+     * Get the enabled property: Is the lab announcement active/enabled at this time?.
+     *
+     * @return the enabled value.
+     */
+    public EnableStatus enabled() {
+        return this.innerProperties() == null ? null : this.innerProperties().enabled();
+    }
+
+    /**
+     * Set the enabled property: Is the lab announcement active/enabled at this time?.
+     *
+     * @param enabled the enabled value to set.
+     * @return the LabInner object itself.
+     */
+    public LabInner withEnabled(EnableStatus enabled) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new LabProperties();
+        }
+        this.innerProperties().withEnabled(enabled);
+        return this;
+    }
+
+    /**
+     * Get the expirationDate property: The time at which the announcement expires (null for never).
+     *
+     * @return the expirationDate value.
+     */
+    public OffsetDateTime expirationDate() {
+        return this.innerProperties() == null ? null : this.innerProperties().expirationDate();
+    }
+
+    /**
+     * Set the expirationDate property: The time at which the announcement expires (null for never).
+     *
+     * @param expirationDate the expirationDate value to set.
+     * @return the LabInner object itself.
+     */
+    public LabInner withExpirationDate(OffsetDateTime expirationDate) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new LabProperties();
+        }
+        this.innerProperties().withExpirationDate(expirationDate);
+        return this;
+    }
+
+    /**
+     * Get the expired property: Has this announcement expired?.
+     *
+     * @return the expired value.
+     */
+    public Boolean expired() {
+        return this.innerProperties() == null ? null : this.innerProperties().expired();
+    }
+
+    /**
+     * Set the expired property: Has this announcement expired?.
+     *
+     * @param expired the expired value to set.
+     * @return the LabInner object itself.
+     */
+    public LabInner withExpired(Boolean expired) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new LabProperties();
+        }
+        this.innerProperties().withExpired(expired);
+        return this;
+    }
+
+    /**
+     * Get the provisioningStateAnnouncementProvisioningState property: The provisioning status of the resource.
+     *
+     * @return the provisioningStateAnnouncementProvisioningState value.
+     */
+    public String provisioningStateAnnouncementProvisioningState() {
+        return this.innerProperties() == null
+            ? null
+            : this.innerProperties().provisioningStateAnnouncementProvisioningState();
+    }
+
+    /**
+     * Get the uniqueIdentifierAnnouncementUniqueIdentifier property: The unique immutable identifier of a resource
+     * (Guid).
+     *
+     * @return the uniqueIdentifierAnnouncementUniqueIdentifier value.
+     */
+    public String uniqueIdentifierAnnouncementUniqueIdentifier() {
+        return this.innerProperties() == null
+            ? null
+            : this.innerProperties().uniqueIdentifierAnnouncementUniqueIdentifier();
+    }
+
+    /**
+     * Get the enabledSupportEnabled property: Is the lab support banner active/enabled at this time?.
+     *
+     * @return the enabledSupportEnabled value.
+     */
+    public EnableStatus enabledSupportEnabled() {
+        return this.innerProperties() == null ? null : this.innerProperties().enabledSupportEnabled();
+    }
+
+    /**
+     * Set the enabledSupportEnabled property: Is the lab support banner active/enabled at this time?.
+     *
+     * @param enabledSupportEnabled the enabledSupportEnabled value to set.
+     * @return the LabInner object itself.
+     */
+    public LabInner withEnabledSupportEnabled(EnableStatus enabledSupportEnabled) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new LabProperties();
+        }
+        this.innerProperties().withEnabledSupportEnabled(enabledSupportEnabled);
+        return this;
+    }
+
+    /**
+     * Get the markdownSupportMarkdown property: The markdown text (if any) that this lab displays in the UI. If left
+     * empty/null, nothing will be shown.
+     *
+     * @return the markdownSupportMarkdown value.
+     */
+    public String markdownSupportMarkdown() {
+        return this.innerProperties() == null ? null : this.innerProperties().markdownSupportMarkdown();
+    }
+
+    /**
+     * Set the markdownSupportMarkdown property: The markdown text (if any) that this lab displays in the UI. If left
+     * empty/null, nothing will be shown.
+     *
+     * @param markdownSupportMarkdown the markdownSupportMarkdown value to set.
+     * @return the LabInner object itself.
+     */
+    public LabInner withMarkdownSupportMarkdown(String markdownSupportMarkdown) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new LabProperties();
+        }
+        this.innerProperties().withMarkdownSupportMarkdown(markdownSupportMarkdown);
+        return this;
+    }
+
+    /**
+     * Get the diskEncryptionSetId property: Gets or sets resourceId of the disk encryption set to use for enabling
+     * encryption at rest.
+     *
+     * @return the diskEncryptionSetId value.
+     */
+    public String diskEncryptionSetId() {
+        return this.innerProperties() == null ? null : this.innerProperties().diskEncryptionSetId();
+    }
+
+    /**
+     * Set the diskEncryptionSetId property: Gets or sets resourceId of the disk encryption set to use for enabling
+     * encryption at rest.
+     *
+     * @param diskEncryptionSetId the diskEncryptionSetId value to set.
+     * @return the LabInner object itself.
+     */
+    public LabInner withDiskEncryptionSetId(String diskEncryptionSetId) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new LabProperties();
+        }
+        this.innerProperties().withDiskEncryptionSetId(diskEncryptionSetId);
+        return this;
+    }
+
+    /**
+     * Get the type property: Gets or sets the type of key used to encrypt the data of the disk. Possible values
+     * include: 'EncryptionAtRestWithPlatformKey', 'EncryptionAtRestWithCustomerKey'.
+     *
+     * @return the type value.
+     */
+    public EncryptionType typePropertiesType() {
+        return this.innerProperties() == null ? null : this.innerProperties().type();
+    }
+
+    /**
+     * Set the type property: Gets or sets the type of key used to encrypt the data of the disk. Possible values
+     * include: 'EncryptionAtRestWithPlatformKey', 'EncryptionAtRestWithCustomerKey'.
+     *
+     * @param type the type value to set.
+     * @return the LabInner object itself.
+     */
+    public LabInner withTypePropertiesType(EncryptionType type) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new LabProperties();
+        }
+        this.innerProperties().withType(type);
+        return this;
+    }
+
+    /**
+     * Get the type property: Type of identity (SystemAssigned, UserAssigned, None).
+     *
+     * @return the type value.
+     */
+    public ManagedIdentityType typeIdentityType() {
+        return this.innerIdentity() == null ? null : this.innerIdentity().type();
+    }
+
+    /**
+     * Set the type property: Type of identity (SystemAssigned, UserAssigned, None).
+     *
+     * @param type the type value to set.
+     * @return the LabInner object itself.
+     */
+    public LabInner withTypeIdentityType(ManagedIdentityType type) {
+        if (this.innerIdentity() == null) {
+            this.innerIdentity = new IdentityProperties();
+        }
+        this.innerIdentity().withType(type);
+        return this;
+    }
+
+    /**
+     * Get the principalId property: The principal id of resource identity.
+     *
+     * @return the principalId value.
+     */
+    public String principalId() {
+        return this.innerIdentity() == null ? null : this.innerIdentity().principalId();
+    }
+
+    /**
+     * Set the principalId property: The principal id of resource identity.
+     *
+     * @param principalId the principalId value to set.
+     * @return the LabInner object itself.
+     */
+    public LabInner withPrincipalId(String principalId) {
+        if (this.innerIdentity() == null) {
+            this.innerIdentity = new IdentityProperties();
+        }
+        this.innerIdentity().withPrincipalId(principalId);
+        return this;
+    }
+
+    /**
+     * Get the tenantId property: The tenant identifier of resource.
+     *
+     * @return the tenantId value.
+     */
+    public String tenantId() {
+        return this.innerIdentity() == null ? null : this.innerIdentity().tenantId();
+    }
+
+    /**
+     * Set the tenantId property: The tenant identifier of resource.
+     *
+     * @param tenantId the tenantId value to set.
+     * @return the LabInner object itself.
+     */
+    public LabInner withTenantId(String tenantId) {
+        if (this.innerIdentity() == null) {
+            this.innerIdentity = new IdentityProperties();
+        }
+        this.innerIdentity().withTenantId(tenantId);
+        return this;
+    }
+
+    /**
+     * Get the clientSecretUrl property: The client secret URL of the identity.
+     *
+     * @return the clientSecretUrl value.
+     */
+    public String clientSecretUrl() {
+        return this.innerIdentity() == null ? null : this.innerIdentity().clientSecretUrl();
+    }
+
+    /**
+     * Set the clientSecretUrl property: The client secret URL of the identity.
+     *
+     * @param clientSecretUrl the clientSecretUrl value to set.
+     * @return the LabInner object itself.
+     */
+    public LabInner withClientSecretUrl(String clientSecretUrl) {
+        if (this.innerIdentity() == null) {
+            this.innerIdentity = new IdentityProperties();
+        }
+        this.innerIdentity().withClientSecretUrl(clientSecretUrl);
+        return this;
+    }
+
+    /**
+     * Get the userAssignedIdentities property: If Type is 'UserAssigned': List of user assigned identities.
+     *
+     * @return the userAssignedIdentities value.
+     */
+    public Map<String, Object> userAssignedIdentities() {
+        return this.innerIdentity() == null ? null : this.innerIdentity().userAssignedIdentities();
+    }
+
+    /**
+     * Set the userAssignedIdentities property: If Type is 'UserAssigned': List of user assigned identities.
+     *
+     * @param userAssignedIdentities the userAssignedIdentities value to set.
+     * @return the LabInner object itself.
+     */
+    public LabInner withUserAssignedIdentities(Map<String, Object> userAssignedIdentities) {
+        if (this.innerIdentity() == null) {
+            this.innerIdentity = new IdentityProperties();
+        }
+        this.innerIdentity().withUserAssignedIdentities(userAssignedIdentities);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -366,6 +823,9 @@ public final class LabInner extends Resource {
     public void validate() {
         if (innerProperties() != null) {
             innerProperties().validate();
+        }
+        if (innerIdentity() != null) {
+            innerIdentity().validate();
         }
     }
 }

@@ -5,9 +5,10 @@
 package com.azure.resourcemanager.devtestlabs.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.resourcemanager.devtestlabs.fluent.models.IdentityProperties;
 import java.util.Map;
 
-/** A custom image. */
+/** Patch. */
 @Fluent
 public final class CustomImageFragment extends UpdateResource {
     /** Creates an instance of CustomImageFragment class. */
@@ -18,6 +19,13 @@ public final class CustomImageFragment extends UpdateResource {
     @Override
     public CustomImageFragment withTags(Map<String, String> tags) {
         super.withTags(tags);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public CustomImageFragment withIdentity(IdentityProperties identity) {
+        super.withIdentity(identity);
         return this;
     }
 

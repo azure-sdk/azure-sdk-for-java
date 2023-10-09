@@ -7,7 +7,7 @@ package com.azure.resourcemanager.devtestlabs.generated;
 /** Samples for Environments Delete. */
 public final class EnvironmentsDeleteSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/Environments_Delete.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/Environments_Delete.json
      */
     /**
      * Sample code: Environments_Delete.
@@ -17,6 +17,6 @@ public final class EnvironmentsDeleteSamples {
     public static void environmentsDelete(com.azure.resourcemanager.devtestlabs.DevTestLabsManager manager) {
         manager
             .environments()
-            .delete("resourceGroupName", "{labName}", "@me", "{environmentName}", com.azure.core.util.Context.NONE);
+            .delete("resourceGroupName", "myLabName", "@me", "{environmentName}", com.azure.core.util.Context.NONE);
     }
 }

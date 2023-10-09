@@ -7,7 +7,7 @@ package com.azure.resourcemanager.devtestlabs.generated;
 /** Samples for Secrets CreateOrUpdate. */
 public final class SecretsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/Secrets_CreateOrUpdate.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/Secrets_CreateOrUpdate.json
      */
     /**
      * Sample code: Secrets_CreateOrUpdate.
@@ -18,8 +18,8 @@ public final class SecretsCreateOrUpdateSamples {
         manager
             .secrets()
             .define("{secretName}")
-            .withRegion((String) null)
-            .withExistingUser("resourceGroupName", "{labName}", "{userName}")
+            .withRegion("{location}")
+            .withExistingUser("resourceGroupName", "myLabName", "{userName}")
             .withValue("{secret}")
             .create();
     }

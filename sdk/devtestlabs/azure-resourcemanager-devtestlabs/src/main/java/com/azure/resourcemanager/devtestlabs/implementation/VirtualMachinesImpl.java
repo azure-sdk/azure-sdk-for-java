@@ -117,6 +117,15 @@ public final class VirtualMachinesImpl implements VirtualMachines {
         this.serviceClient().claim(resourceGroupName, labName, name, context);
     }
 
+    public Response<Void> clearArtifactResultsWithResponse(
+        String resourceGroupName, String labName, String name, Context context) {
+        return this.serviceClient().clearArtifactResultsWithResponse(resourceGroupName, labName, name, context);
+    }
+
+    public void clearArtifactResults(String resourceGroupName, String labName, String name) {
+        this.serviceClient().clearArtifactResults(resourceGroupName, labName, name);
+    }
+
     public void detachDataDisk(
         String resourceGroupName, String labName, String name, DetachDataDiskProperties detachDataDiskProperties) {
         this.serviceClient().detachDataDisk(resourceGroupName, labName, name, detachDataDiskProperties);

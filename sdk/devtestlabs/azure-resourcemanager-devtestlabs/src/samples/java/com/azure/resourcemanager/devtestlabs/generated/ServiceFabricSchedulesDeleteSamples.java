@@ -7,7 +7,7 @@ package com.azure.resourcemanager.devtestlabs.generated;
 /** Samples for ServiceFabricSchedules Delete. */
 public final class ServiceFabricSchedulesDeleteSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/ServiceFabricSchedules_Delete.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/ServiceFabricSchedules_Delete.json
      */
     /**
      * Sample code: ServiceFabricSchedules_Delete.
@@ -19,7 +19,7 @@ public final class ServiceFabricSchedulesDeleteSamples {
             .serviceFabricSchedules()
             .deleteWithResponse(
                 "resourceGroupName",
-                "{labName}",
+                "myLabName",
                 "@me",
                 "{serviceFrabicName}",
                 "{scheduleName}",

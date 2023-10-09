@@ -7,7 +7,7 @@ package com.azure.resourcemanager.devtestlabs.generated;
 /** Samples for VirtualMachines Stop. */
 public final class VirtualMachinesStopSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/VirtualMachines_Stop.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/VirtualMachines_Stop.json
      */
     /**
      * Sample code: VirtualMachines_Stop.
@@ -15,6 +15,6 @@ public final class VirtualMachinesStopSamples {
      * @param manager Entry point to DevTestLabsManager.
      */
     public static void virtualMachinesStop(com.azure.resourcemanager.devtestlabs.DevTestLabsManager manager) {
-        manager.virtualMachines().stop("resourceGroupName", "{labName}", "{vmName}", com.azure.core.util.Context.NONE);
+        manager.virtualMachines().stop("resourceGroupName", "myLabName", "{vmName}", com.azure.core.util.Context.NONE);
     }
 }

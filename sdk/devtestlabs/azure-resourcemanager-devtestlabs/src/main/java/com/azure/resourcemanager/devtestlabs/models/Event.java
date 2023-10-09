@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class Event {
     /*
-     * The event type for which this notification is enabled (i.e. AutoShutdown, Cost)
+     * The event type for which this notification is enabled (i.e. AutoShutdown)
      */
     @JsonProperty(value = "eventName")
     private NotificationChannelEventType eventName;
@@ -21,7 +21,7 @@ public final class Event {
     }
 
     /**
-     * Get the eventName property: The event type for which this notification is enabled (i.e. AutoShutdown, Cost).
+     * Get the eventName property: The event type for which this notification is enabled (i.e. AutoShutdown).
      *
      * @return the eventName value.
      */
@@ -30,7 +30,7 @@ public final class Event {
     }
 
     /**
-     * Set the eventName property: The event type for which this notification is enabled (i.e. AutoShutdown, Cost).
+     * Set the eventName property: The event type for which this notification is enabled (i.e. AutoShutdown).
      *
      * @param eventName the eventName value to set.
      * @return the Event object itself.

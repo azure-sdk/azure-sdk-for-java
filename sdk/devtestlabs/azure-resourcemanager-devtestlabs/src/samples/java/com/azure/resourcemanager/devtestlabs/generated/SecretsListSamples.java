@@ -7,7 +7,7 @@ package com.azure.resourcemanager.devtestlabs.generated;
 /** Samples for Secrets List. */
 public final class SecretsListSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/Secrets_List.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/Secrets_List.json
      */
     /**
      * Sample code: Secrets_List.
@@ -19,7 +19,7 @@ public final class SecretsListSamples {
             .secrets()
             .list(
                 "resourceGroupName",
-                "{labName}",
+                "myLabName",
                 "{userName}",
                 null,
                 null,

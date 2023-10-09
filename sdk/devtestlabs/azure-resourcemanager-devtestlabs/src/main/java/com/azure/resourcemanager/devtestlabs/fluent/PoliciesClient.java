@@ -17,13 +17,13 @@ public interface PoliciesClient {
     /**
      * List policies in a given policy set.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param policySetName The name of the policy set.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedIterable}.
+     * @return contains a list of policies and their properties as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<PolicyInner> list(String resourceGroupName, String labName, String policySetName);
@@ -31,18 +31,18 @@ public interface PoliciesClient {
     /**
      * List policies in a given policy set.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param policySetName The name of the policy set.
      * @param expand Specify the $expand query. Example: 'properties($select=description)'.
-     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName').
+     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName')'.
      * @param top The maximum number of resources to return from the operation. Example: '$top=10'.
      * @param orderby The ordering expression for the results, using OData notation. Example: '$orderby=name desc'.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedIterable}.
+     * @return contains a list of policies and their properties as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<PolicyInner> list(
@@ -58,7 +58,7 @@ public interface PoliciesClient {
     /**
      * Get policy.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param policySetName The name of the policy set.
      * @param name The name of the policy.
@@ -76,7 +76,7 @@ public interface PoliciesClient {
     /**
      * Get policy.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param policySetName The name of the policy set.
      * @param name The name of the policy.
@@ -91,7 +91,7 @@ public interface PoliciesClient {
     /**
      * Create or replace an existing policy.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param policySetName The name of the policy set.
      * @param name The name of the policy.
@@ -114,7 +114,7 @@ public interface PoliciesClient {
     /**
      * Create or replace an existing policy.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param policySetName The name of the policy set.
      * @param name The name of the policy.
@@ -131,7 +131,7 @@ public interface PoliciesClient {
     /**
      * Delete policy.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param policySetName The name of the policy set.
      * @param name The name of the policy.
@@ -148,7 +148,7 @@ public interface PoliciesClient {
     /**
      * Delete policy.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param policySetName The name of the policy set.
      * @param name The name of the policy.
@@ -162,11 +162,11 @@ public interface PoliciesClient {
     /**
      * Allows modifying tags of policies. All other properties will be ignored.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param policySetName The name of the policy set.
      * @param name The name of the policy.
-     * @param policy A Policy.
+     * @param policy Allows modifying tags of policies. All other properties will be ignored.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -185,11 +185,11 @@ public interface PoliciesClient {
     /**
      * Allows modifying tags of policies. All other properties will be ignored.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param policySetName The name of the policy set.
      * @param name The name of the policy.
-     * @param policy A Policy.
+     * @param policy Allows modifying tags of policies. All other properties will be ignored.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.

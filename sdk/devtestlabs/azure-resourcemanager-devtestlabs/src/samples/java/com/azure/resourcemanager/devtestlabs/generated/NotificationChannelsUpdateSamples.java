@@ -9,7 +9,7 @@ import com.azure.resourcemanager.devtestlabs.models.NotificationChannel;
 /** Samples for NotificationChannels Update. */
 public final class NotificationChannelsUpdateSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/NotificationChannels_Update.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/NotificationChannels_Update.json
      */
     /**
      * Sample code: NotificationChannels_Update.
@@ -22,7 +22,7 @@ public final class NotificationChannelsUpdateSamples {
                 .notificationChannels()
                 .getWithResponse(
                     "resourceGroupName",
-                    "{labName}",
+                    "myLabName",
                     "{notificationChannelName}",
                     null,
                     com.azure.core.util.Context.NONE)

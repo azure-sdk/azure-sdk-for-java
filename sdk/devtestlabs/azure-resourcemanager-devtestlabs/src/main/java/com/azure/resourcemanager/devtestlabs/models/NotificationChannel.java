@@ -6,7 +6,9 @@ package com.azure.resourcemanager.devtestlabs.models;
 
 import com.azure.core.http.rest.Response;
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
+import com.azure.resourcemanager.devtestlabs.fluent.models.IdentityProperties;
 import com.azure.resourcemanager.devtestlabs.fluent.models.NotificationChannelInner;
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -48,6 +50,13 @@ public interface NotificationChannel {
      * @return the tags value.
      */
     Map<String, String> tags();
+
+    /**
+     * Gets the systemData property: The system metadata relating to this resource.
+     *
+     * @return the systemData value.
+     */
+    SystemData systemData();
 
     /**
      * Gets the webhookUrl property: The webhook URL to send notifications to.
@@ -142,11 +151,13 @@ public interface NotificationChannel {
             DefinitionStages.WithParentResource,
             DefinitionStages.WithCreate {
     }
+
     /** The NotificationChannel definition stages. */
     interface DefinitionStages {
         /** The first stage of the NotificationChannel definition. */
         interface Blank extends WithLocation {
         }
+
         /** The stage of the NotificationChannel definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -165,17 +176,19 @@ public interface NotificationChannel {
              */
             WithParentResource withRegion(String location);
         }
+
         /** The stage of the NotificationChannel definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
              * Specifies resourceGroupName, labName.
              *
-             * @param resourceGroupName The name of the resource group.
+             * @param resourceGroupName The name of the resource group. The name is case insensitive.
              * @param labName The name of the lab.
              * @return the next definition stage.
              */
             WithCreate withExistingLab(String resourceGroupName, String labName);
         }
+
         /**
          * The stage of the NotificationChannel definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
@@ -202,6 +215,7 @@ public interface NotificationChannel {
              */
             NotificationChannel create(Context context);
         }
+
         /** The stage of the NotificationChannel definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -212,6 +226,7 @@ public interface NotificationChannel {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
         /** The stage of the NotificationChannel definition allowing to specify webhookUrl. */
         interface WithWebhookUrl {
             /**
@@ -222,6 +237,7 @@ public interface NotificationChannel {
              */
             WithCreate withWebhookUrl(String webhookUrl);
         }
+
         /** The stage of the NotificationChannel definition allowing to specify emailRecipient. */
         interface WithEmailRecipient {
             /**
@@ -234,6 +250,7 @@ public interface NotificationChannel {
              */
             WithCreate withEmailRecipient(String emailRecipient);
         }
+
         /** The stage of the NotificationChannel definition allowing to specify notificationLocale. */
         interface WithNotificationLocale {
             /**
@@ -246,6 +263,7 @@ public interface NotificationChannel {
              */
             WithCreate withNotificationLocale(String notificationLocale);
         }
+
         /** The stage of the NotificationChannel definition allowing to specify description. */
         interface WithDescription {
             /**
@@ -256,6 +274,7 @@ public interface NotificationChannel {
              */
             WithCreate withDescription(String description);
         }
+
         /** The stage of the NotificationChannel definition allowing to specify events. */
         interface WithEvents {
             /**
@@ -267,6 +286,7 @@ public interface NotificationChannel {
             WithCreate withEvents(List<Event> events);
         }
     }
+
     /**
      * Begins update for the NotificationChannel resource.
      *
@@ -275,7 +295,7 @@ public interface NotificationChannel {
     NotificationChannel.Update update();
 
     /** The template for NotificationChannel update. */
-    interface Update extends UpdateStages.WithTags {
+    interface Update extends UpdateStages.WithTags, UpdateStages.WithIdentity {
         /**
          * Executes the update request.
          *
@@ -291,6 +311,7 @@ public interface NotificationChannel {
          */
         NotificationChannel apply(Context context);
     }
+
     /** The NotificationChannel update stages. */
     interface UpdateStages {
         /** The stage of the NotificationChannel update allowing to specify tags. */
@@ -303,7 +324,19 @@ public interface NotificationChannel {
              */
             Update withTags(Map<String, String> tags);
         }
+
+        /** The stage of the NotificationChannel update allowing to specify identity. */
+        interface WithIdentity {
+            /**
+             * Specifies the identity property: The identity of the resource..
+             *
+             * @param identity The identity of the resource.
+             * @return the next definition stage.
+             */
+            Update withIdentity(IdentityProperties identity);
+        }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

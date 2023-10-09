@@ -7,7 +7,7 @@ package com.azure.resourcemanager.devtestlabs.generated;
 /** Samples for GalleryImages List. */
 public final class GalleryImagesListSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/GalleryImages_List.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/GalleryImages_List.json
      */
     /**
      * Sample code: GalleryImages_List.
@@ -17,6 +17,6 @@ public final class GalleryImagesListSamples {
     public static void galleryImagesList(com.azure.resourcemanager.devtestlabs.DevTestLabsManager manager) {
         manager
             .galleryImages()
-            .list("resourceGroupName", "{labName}", null, null, null, null, com.azure.core.util.Context.NONE);
+            .list("resourceGroupName", "myLabName", null, null, null, null, com.azure.core.util.Context.NONE);
     }
 }

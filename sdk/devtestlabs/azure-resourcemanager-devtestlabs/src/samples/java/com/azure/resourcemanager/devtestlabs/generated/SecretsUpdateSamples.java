@@ -11,7 +11,7 @@ import java.util.Map;
 /** Samples for Secrets Update. */
 public final class SecretsUpdateSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/Secrets_Update.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/Secrets_Update.json
      */
     /**
      * Sample code: Secrets_Update.
@@ -24,7 +24,7 @@ public final class SecretsUpdateSamples {
                 .secrets()
                 .getWithResponse(
                     "resourceGroupName",
-                    "{labName}",
+                    "myLabName",
                     "{userName}",
                     "{secretName}",
                     null,
@@ -33,6 +33,7 @@ public final class SecretsUpdateSamples {
         resource.update().withTags(mapOf("tagName1", "tagValue1")).apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

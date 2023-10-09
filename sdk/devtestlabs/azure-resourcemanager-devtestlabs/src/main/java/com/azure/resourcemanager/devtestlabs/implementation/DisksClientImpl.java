@@ -70,8 +70,7 @@ public final class DisksClientImpl implements DisksClient {
     public interface DisksService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs"
-                + "/{labName}/users/{userName}/disks")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs/{labName}/users/{userName}/disks")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<DiskList>> list(
@@ -90,8 +89,7 @@ public final class DisksClientImpl implements DisksClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs"
-                + "/{labName}/users/{userName}/disks/{name}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs/{labName}/users/{userName}/disks/{name}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<DiskInner>> get(
@@ -108,8 +106,7 @@ public final class DisksClientImpl implements DisksClient {
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs"
-                + "/{labName}/users/{userName}/disks/{name}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs/{labName}/users/{userName}/disks/{name}")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
@@ -126,8 +123,7 @@ public final class DisksClientImpl implements DisksClient {
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs"
-                + "/{labName}/users/{userName}/disks/{name}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs/{labName}/users/{userName}/disks/{name}")
         @ExpectedResponses({200, 202, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(
@@ -143,8 +139,7 @@ public final class DisksClientImpl implements DisksClient {
 
         @Headers({"Content-Type: application/json"})
         @Patch(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs"
-                + "/{labName}/users/{userName}/disks/{name}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs/{labName}/users/{userName}/disks/{name}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<DiskInner>> update(
@@ -161,8 +156,7 @@ public final class DisksClientImpl implements DisksClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs"
-                + "/{labName}/users/{userName}/disks/{name}/attach")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs/{labName}/users/{userName}/disks/{name}/attach")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> attach(
@@ -179,8 +173,7 @@ public final class DisksClientImpl implements DisksClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs"
-                + "/{labName}/users/{userName}/disks/{name}/detach")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs/{labName}/users/{userName}/disks/{name}/detach")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> detach(
@@ -209,18 +202,18 @@ public final class DisksClientImpl implements DisksClient {
     /**
      * List disks in a given user profile.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
      * @param expand Specify the $expand query. Example: 'properties($select=diskType)'.
-     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName').
+     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName')'.
      * @param top The maximum number of resources to return from the operation. Example: '$top=10'.
      * @param orderby The ordering expression for the results, using OData notation. Example: '$orderby=name desc'.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return contains a list of disks and their properties along with {@link PagedResponse} on successful completion
+     *     of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<DiskInner>> listSinglePageAsync(
@@ -286,19 +279,19 @@ public final class DisksClientImpl implements DisksClient {
     /**
      * List disks in a given user profile.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
      * @param expand Specify the $expand query. Example: 'properties($select=diskType)'.
-     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName').
+     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName')'.
      * @param top The maximum number of resources to return from the operation. Example: '$top=10'.
      * @param orderby The ordering expression for the results, using OData notation. Example: '$orderby=name desc'.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return contains a list of disks and their properties along with {@link PagedResponse} on successful completion
+     *     of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<DiskInner>> listSinglePageAsync(
@@ -362,17 +355,17 @@ public final class DisksClientImpl implements DisksClient {
     /**
      * List disks in a given user profile.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
      * @param expand Specify the $expand query. Example: 'properties($select=diskType)'.
-     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName').
+     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName')'.
      * @param top The maximum number of resources to return from the operation. Example: '$top=10'.
      * @param orderby The ordering expression for the results, using OData notation. Example: '$orderby=name desc'.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedFlux}.
+     * @return contains a list of disks and their properties as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<DiskInner> listAsync(
@@ -391,13 +384,13 @@ public final class DisksClientImpl implements DisksClient {
     /**
      * List disks in a given user profile.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedFlux}.
+     * @return contains a list of disks and their properties as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<DiskInner> listAsync(String resourceGroupName, String labName, String username) {
@@ -413,18 +406,18 @@ public final class DisksClientImpl implements DisksClient {
     /**
      * List disks in a given user profile.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
      * @param expand Specify the $expand query. Example: 'properties($select=diskType)'.
-     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName').
+     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName')'.
      * @param top The maximum number of resources to return from the operation. Example: '$top=10'.
      * @param orderby The ordering expression for the results, using OData notation. Example: '$orderby=name desc'.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedFlux}.
+     * @return contains a list of disks and their properties as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<DiskInner> listAsync(
@@ -444,13 +437,13 @@ public final class DisksClientImpl implements DisksClient {
     /**
      * List disks in a given user profile.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedIterable}.
+     * @return contains a list of disks and their properties as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<DiskInner> list(String resourceGroupName, String labName, String username) {
@@ -464,18 +457,18 @@ public final class DisksClientImpl implements DisksClient {
     /**
      * List disks in a given user profile.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
      * @param expand Specify the $expand query. Example: 'properties($select=diskType)'.
-     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName').
+     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName')'.
      * @param top The maximum number of resources to return from the operation. Example: '$top=10'.
      * @param orderby The ordering expression for the results, using OData notation. Example: '$orderby=name desc'.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedIterable}.
+     * @return contains a list of disks and their properties as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<DiskInner> list(
@@ -494,7 +487,7 @@ public final class DisksClientImpl implements DisksClient {
     /**
      * Get disk.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
      * @param name The name of the disk.
@@ -554,7 +547,7 @@ public final class DisksClientImpl implements DisksClient {
     /**
      * Get disk.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
      * @param name The name of the disk.
@@ -612,7 +605,7 @@ public final class DisksClientImpl implements DisksClient {
     /**
      * Get disk.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
      * @param name The name of the disk.
@@ -631,7 +624,7 @@ public final class DisksClientImpl implements DisksClient {
     /**
      * Get disk.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
      * @param name The name of the disk.
@@ -651,7 +644,7 @@ public final class DisksClientImpl implements DisksClient {
     /**
      * Get disk.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
      * @param name The name of the disk.
@@ -669,7 +662,7 @@ public final class DisksClientImpl implements DisksClient {
     /**
      * Create or replace an existing disk. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
      * @param name The name of the disk.
@@ -734,7 +727,7 @@ public final class DisksClientImpl implements DisksClient {
     /**
      * Create or replace an existing disk. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
      * @param name The name of the disk.
@@ -797,7 +790,7 @@ public final class DisksClientImpl implements DisksClient {
     /**
      * Create or replace an existing disk. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
      * @param name The name of the disk.
@@ -821,7 +814,7 @@ public final class DisksClientImpl implements DisksClient {
     /**
      * Create or replace an existing disk. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
      * @param name The name of the disk.
@@ -847,7 +840,7 @@ public final class DisksClientImpl implements DisksClient {
     /**
      * Create or replace an existing disk. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
      * @param name The name of the disk.
@@ -866,7 +859,7 @@ public final class DisksClientImpl implements DisksClient {
     /**
      * Create or replace an existing disk. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
      * @param name The name of the disk.
@@ -886,7 +879,7 @@ public final class DisksClientImpl implements DisksClient {
     /**
      * Create or replace an existing disk. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
      * @param name The name of the disk.
@@ -907,7 +900,7 @@ public final class DisksClientImpl implements DisksClient {
     /**
      * Create or replace an existing disk. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
      * @param name The name of the disk.
@@ -929,7 +922,7 @@ public final class DisksClientImpl implements DisksClient {
     /**
      * Create or replace an existing disk. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
      * @param name The name of the disk.
@@ -948,7 +941,7 @@ public final class DisksClientImpl implements DisksClient {
     /**
      * Create or replace an existing disk. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
      * @param name The name of the disk.
@@ -968,7 +961,7 @@ public final class DisksClientImpl implements DisksClient {
     /**
      * Delete disk. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
      * @param name The name of the disk.
@@ -1026,7 +1019,7 @@ public final class DisksClientImpl implements DisksClient {
     /**
      * Delete disk. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
      * @param name The name of the disk.
@@ -1082,7 +1075,7 @@ public final class DisksClientImpl implements DisksClient {
     /**
      * Delete disk. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
      * @param name The name of the disk.
@@ -1104,7 +1097,7 @@ public final class DisksClientImpl implements DisksClient {
     /**
      * Delete disk. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
      * @param name The name of the disk.
@@ -1128,7 +1121,7 @@ public final class DisksClientImpl implements DisksClient {
     /**
      * Delete disk. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
      * @param name The name of the disk.
@@ -1146,7 +1139,7 @@ public final class DisksClientImpl implements DisksClient {
     /**
      * Delete disk. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
      * @param name The name of the disk.
@@ -1165,7 +1158,7 @@ public final class DisksClientImpl implements DisksClient {
     /**
      * Delete disk. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
      * @param name The name of the disk.
@@ -1184,7 +1177,7 @@ public final class DisksClientImpl implements DisksClient {
     /**
      * Delete disk. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
      * @param name The name of the disk.
@@ -1205,7 +1198,7 @@ public final class DisksClientImpl implements DisksClient {
     /**
      * Delete disk. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
      * @param name The name of the disk.
@@ -1221,7 +1214,7 @@ public final class DisksClientImpl implements DisksClient {
     /**
      * Delete disk. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
      * @param name The name of the disk.
@@ -1238,11 +1231,11 @@ public final class DisksClientImpl implements DisksClient {
     /**
      * Allows modifying tags of disks. All other properties will be ignored.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
      * @param name The name of the disk.
-     * @param disk A Disk.
+     * @param disk Allows modifying tags of disks. All other properties will be ignored.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1303,11 +1296,11 @@ public final class DisksClientImpl implements DisksClient {
     /**
      * Allows modifying tags of disks. All other properties will be ignored.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
      * @param name The name of the disk.
-     * @param disk A Disk.
+     * @param disk Allows modifying tags of disks. All other properties will be ignored.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1366,11 +1359,11 @@ public final class DisksClientImpl implements DisksClient {
     /**
      * Allows modifying tags of disks. All other properties will be ignored.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
      * @param name The name of the disk.
-     * @param disk A Disk.
+     * @param disk Allows modifying tags of disks. All other properties will be ignored.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1386,11 +1379,11 @@ public final class DisksClientImpl implements DisksClient {
     /**
      * Allows modifying tags of disks. All other properties will be ignored.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
      * @param name The name of the disk.
-     * @param disk A Disk.
+     * @param disk Allows modifying tags of disks. All other properties will be ignored.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1406,11 +1399,11 @@ public final class DisksClientImpl implements DisksClient {
     /**
      * Allows modifying tags of disks. All other properties will be ignored.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
      * @param name The name of the disk.
-     * @param disk A Disk.
+     * @param disk Allows modifying tags of disks. All other properties will be ignored.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1424,7 +1417,7 @@ public final class DisksClientImpl implements DisksClient {
     /**
      * Attach and create the lease of the disk to the virtual machine. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
      * @param name The name of the disk.
@@ -1494,7 +1487,7 @@ public final class DisksClientImpl implements DisksClient {
     /**
      * Attach and create the lease of the disk to the virtual machine. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
      * @param name The name of the disk.
@@ -1563,7 +1556,7 @@ public final class DisksClientImpl implements DisksClient {
     /**
      * Attach and create the lease of the disk to the virtual machine. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
      * @param name The name of the disk.
@@ -1591,7 +1584,7 @@ public final class DisksClientImpl implements DisksClient {
     /**
      * Attach and create the lease of the disk to the virtual machine. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
      * @param name The name of the disk.
@@ -1621,7 +1614,7 @@ public final class DisksClientImpl implements DisksClient {
     /**
      * Attach and create the lease of the disk to the virtual machine. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
      * @param name The name of the disk.
@@ -1644,7 +1637,7 @@ public final class DisksClientImpl implements DisksClient {
     /**
      * Attach and create the lease of the disk to the virtual machine. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
      * @param name The name of the disk.
@@ -1671,7 +1664,7 @@ public final class DisksClientImpl implements DisksClient {
     /**
      * Attach and create the lease of the disk to the virtual machine. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
      * @param name The name of the disk.
@@ -1696,7 +1689,7 @@ public final class DisksClientImpl implements DisksClient {
     /**
      * Attach and create the lease of the disk to the virtual machine. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
      * @param name The name of the disk.
@@ -1723,7 +1716,7 @@ public final class DisksClientImpl implements DisksClient {
     /**
      * Attach and create the lease of the disk to the virtual machine. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
      * @param name The name of the disk.
@@ -1745,7 +1738,7 @@ public final class DisksClientImpl implements DisksClient {
     /**
      * Attach and create the lease of the disk to the virtual machine. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
      * @param name The name of the disk.
@@ -1770,7 +1763,7 @@ public final class DisksClientImpl implements DisksClient {
      * Detach and break the lease of the disk attached to the virtual machine. This operation can take a while to
      * complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
      * @param name The name of the disk.
@@ -1841,7 +1834,7 @@ public final class DisksClientImpl implements DisksClient {
      * Detach and break the lease of the disk attached to the virtual machine. This operation can take a while to
      * complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
      * @param name The name of the disk.
@@ -1911,7 +1904,7 @@ public final class DisksClientImpl implements DisksClient {
      * Detach and break the lease of the disk attached to the virtual machine. This operation can take a while to
      * complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
      * @param name The name of the disk.
@@ -1940,7 +1933,7 @@ public final class DisksClientImpl implements DisksClient {
      * Detach and break the lease of the disk attached to the virtual machine. This operation can take a while to
      * complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
      * @param name The name of the disk.
@@ -1971,7 +1964,7 @@ public final class DisksClientImpl implements DisksClient {
      * Detach and break the lease of the disk attached to the virtual machine. This operation can take a while to
      * complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
      * @param name The name of the disk.
@@ -1995,7 +1988,7 @@ public final class DisksClientImpl implements DisksClient {
      * Detach and break the lease of the disk attached to the virtual machine. This operation can take a while to
      * complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
      * @param name The name of the disk.
@@ -2023,7 +2016,7 @@ public final class DisksClientImpl implements DisksClient {
      * Detach and break the lease of the disk attached to the virtual machine. This operation can take a while to
      * complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
      * @param name The name of the disk.
@@ -2049,7 +2042,7 @@ public final class DisksClientImpl implements DisksClient {
      * Detach and break the lease of the disk attached to the virtual machine. This operation can take a while to
      * complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
      * @param name The name of the disk.
@@ -2077,7 +2070,7 @@ public final class DisksClientImpl implements DisksClient {
      * Detach and break the lease of the disk attached to the virtual machine. This operation can take a while to
      * complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
      * @param name The name of the disk.
@@ -2100,7 +2093,7 @@ public final class DisksClientImpl implements DisksClient {
      * Detach and break the lease of the disk attached to the virtual machine. This operation can take a while to
      * complete.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param username The name of the user profile.
      * @param name The name of the disk.
@@ -2129,8 +2122,8 @@ public final class DisksClientImpl implements DisksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return contains a list of disks and their properties along with {@link PagedResponse} on successful completion
+     *     of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<DiskInner>> listNextSinglePageAsync(String nextLink) {
@@ -2167,8 +2160,8 @@ public final class DisksClientImpl implements DisksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return contains a list of disks and their properties along with {@link PagedResponse} on successful completion
+     *     of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<DiskInner>> listNextSinglePageAsync(String nextLink, Context context) {

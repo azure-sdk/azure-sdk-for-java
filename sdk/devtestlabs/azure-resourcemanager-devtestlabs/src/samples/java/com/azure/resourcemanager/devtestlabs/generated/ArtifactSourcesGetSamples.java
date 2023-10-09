@@ -7,7 +7,7 @@ package com.azure.resourcemanager.devtestlabs.generated;
 /** Samples for ArtifactSources Get. */
 public final class ArtifactSourcesGetSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/ArtifactSources_Get.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/ArtifactSources_Get.json
      */
     /**
      * Sample code: ArtifactSources_Get.
@@ -18,6 +18,6 @@ public final class ArtifactSourcesGetSamples {
         manager
             .artifactSources()
             .getWithResponse(
-                "resourceGroupName", "{labName}", "{artifactSourceName}", null, com.azure.core.util.Context.NONE);
+                "resourceGroupName", "myLabName", "myArtifactSource", null, com.azure.core.util.Context.NONE);
     }
 }

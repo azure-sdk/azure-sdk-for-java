@@ -7,7 +7,7 @@ package com.azure.resourcemanager.devtestlabs.generated;
 /** Samples for NotificationChannels Get. */
 public final class NotificationChannelsGetSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/NotificationChannels_Get.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/NotificationChannels_Get.json
      */
     /**
      * Sample code: NotificationChannels_Get.
@@ -18,6 +18,6 @@ public final class NotificationChannelsGetSamples {
         manager
             .notificationChannels()
             .getWithResponse(
-                "resourceGroupName", "{labName}", "{notificationChannelName}", null, com.azure.core.util.Context.NONE);
+                "resourceGroupName", "myLabName", "{notificationChannelName}", null, com.azure.core.util.Context.NONE);
     }
 }

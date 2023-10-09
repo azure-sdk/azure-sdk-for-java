@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.devtestlabs.models;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.devtestlabs.fluent.models.GalleryImageInner;
 import java.time.OffsetDateTime;
 import java.util.Map;
@@ -46,6 +47,13 @@ public interface GalleryImage {
     Map<String, String> tags();
 
     /**
+     * Gets the systemData property: The system metadata relating to this resource.
+     *
+     * @return the systemData value.
+     */
+    SystemData systemData();
+
+    /**
      * Gets the author property: The author of the gallery image.
      *
      * @return the author value.
@@ -65,13 +73,6 @@ public interface GalleryImage {
      * @return the description value.
      */
     String description();
-
-    /**
-     * Gets the imageReference property: The image reference of the gallery image.
-     *
-     * @return the imageReference value.
-     */
-    GalleryImageReference imageReference();
 
     /**
      * Gets the icon property: The icon of the gallery image.
@@ -100,6 +101,41 @@ public interface GalleryImage {
      * @return the isPlanAuthorized value.
      */
     Boolean isPlanAuthorized();
+
+    /**
+     * Gets the offer property: The offer of the gallery image.
+     *
+     * @return the offer value.
+     */
+    String offer();
+
+    /**
+     * Gets the publisher property: The publisher of the gallery image.
+     *
+     * @return the publisher value.
+     */
+    String publisher();
+
+    /**
+     * Gets the sku property: The SKU of the gallery image.
+     *
+     * @return the sku value.
+     */
+    String sku();
+
+    /**
+     * Gets the osType property: The OS type of the gallery image.
+     *
+     * @return the osType value.
+     */
+    String osType();
+
+    /**
+     * Gets the version property: The version of the gallery image.
+     *
+     * @return the version value.
+     */
+    String version();
 
     /**
      * Gets the inner com.azure.resourcemanager.devtestlabs.fluent.models.GalleryImageInner object.

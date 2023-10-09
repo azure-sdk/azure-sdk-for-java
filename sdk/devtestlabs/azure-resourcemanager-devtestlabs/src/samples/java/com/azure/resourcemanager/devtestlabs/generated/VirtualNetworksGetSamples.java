@@ -7,7 +7,7 @@ package com.azure.resourcemanager.devtestlabs.generated;
 /** Samples for VirtualNetworks Get. */
 public final class VirtualNetworksGetSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/VirtualNetworks_Get.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/VirtualNetworks_Get.json
      */
     /**
      * Sample code: VirtualNetworks_Get.
@@ -18,6 +18,6 @@ public final class VirtualNetworksGetSamples {
         manager
             .virtualNetworks()
             .getWithResponse(
-                "resourceGroupName", "{labName}", "{virtualNetworkName}", null, com.azure.core.util.Context.NONE);
+                "resourceGroupName", "myLabName", "labVirtualNetwork", null, com.azure.core.util.Context.NONE);
     }
 }

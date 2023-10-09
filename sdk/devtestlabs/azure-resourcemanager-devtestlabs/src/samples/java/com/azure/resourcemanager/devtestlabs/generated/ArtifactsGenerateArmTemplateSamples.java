@@ -10,7 +10,7 @@ import com.azure.resourcemanager.devtestlabs.models.GenerateArmTemplateRequest;
 /** Samples for Artifacts GenerateArmTemplate. */
 public final class ArtifactsGenerateArmTemplateSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/Artifacts_GenerateArmTemplate.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/Artifacts_GenerateArmTemplate.json
      */
     /**
      * Sample code: Artifacts_GenerateArmTemplate.
@@ -22,8 +22,8 @@ public final class ArtifactsGenerateArmTemplateSamples {
             .artifacts()
             .generateArmTemplateWithResponse(
                 "resourceGroupName",
-                "{labName}",
-                "{artifactSourceName}",
+                "myLabName",
+                "myArtifactSource",
                 "{artifactName}",
                 new GenerateArmTemplateRequest()
                     .withVirtualMachineName("{vmName}")

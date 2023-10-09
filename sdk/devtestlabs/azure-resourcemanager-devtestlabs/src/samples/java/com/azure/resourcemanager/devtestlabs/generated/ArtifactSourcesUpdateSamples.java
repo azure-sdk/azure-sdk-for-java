@@ -11,7 +11,7 @@ import java.util.Map;
 /** Samples for ArtifactSources Update. */
 public final class ArtifactSourcesUpdateSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/ArtifactSources_Update.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/ArtifactSources_Update.json
      */
     /**
      * Sample code: ArtifactSources_Update.
@@ -23,11 +23,12 @@ public final class ArtifactSourcesUpdateSamples {
             manager
                 .artifactSources()
                 .getWithResponse(
-                    "resourceGroupName", "{labName}", "{artifactSourceName}", null, com.azure.core.util.Context.NONE)
+                    "resourceGroupName", "myLabName", "myArtifactSource", null, com.azure.core.util.Context.NONE)
                 .getValue();
         resource.update().withTags(mapOf("tagName1", "tagValue1")).apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

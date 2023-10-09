@@ -6,8 +6,8 @@ package com.azure.resourcemanager.devtestlabs.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
-import com.azure.resourcemanager.devtestlabs.models.GalleryImageReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.Map;
@@ -21,6 +21,12 @@ public final class GalleryImageInner extends Resource {
     @JsonProperty(value = "properties", required = true)
     private GalleryImageProperties innerProperties = new GalleryImageProperties();
 
+    /*
+     * The system metadata relating to this resource
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
+
     /** Creates an instance of GalleryImageInner class. */
     public GalleryImageInner() {
     }
@@ -32,6 +38,15 @@ public final class GalleryImageInner extends Resource {
      */
     private GalleryImageProperties innerProperties() {
         return this.innerProperties;
+    }
+
+    /**
+     * Get the systemData property: The system metadata relating to this resource.
+     *
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /** {@inheritDoc} */
@@ -100,29 +115,6 @@ public final class GalleryImageInner extends Resource {
             this.innerProperties = new GalleryImageProperties();
         }
         this.innerProperties().withDescription(description);
-        return this;
-    }
-
-    /**
-     * Get the imageReference property: The image reference of the gallery image.
-     *
-     * @return the imageReference value.
-     */
-    public GalleryImageReference imageReference() {
-        return this.innerProperties() == null ? null : this.innerProperties().imageReference();
-    }
-
-    /**
-     * Set the imageReference property: The image reference of the gallery image.
-     *
-     * @param imageReference the imageReference value to set.
-     * @return the GalleryImageInner object itself.
-     */
-    public GalleryImageInner withImageReference(GalleryImageReference imageReference) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new GalleryImageProperties();
-        }
-        this.innerProperties().withImageReference(imageReference);
         return this;
     }
 
@@ -215,6 +207,121 @@ public final class GalleryImageInner extends Resource {
             this.innerProperties = new GalleryImageProperties();
         }
         this.innerProperties().withIsPlanAuthorized(isPlanAuthorized);
+        return this;
+    }
+
+    /**
+     * Get the offer property: The offer of the gallery image.
+     *
+     * @return the offer value.
+     */
+    public String offer() {
+        return this.innerProperties() == null ? null : this.innerProperties().offer();
+    }
+
+    /**
+     * Set the offer property: The offer of the gallery image.
+     *
+     * @param offer the offer value to set.
+     * @return the GalleryImageInner object itself.
+     */
+    public GalleryImageInner withOffer(String offer) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new GalleryImageProperties();
+        }
+        this.innerProperties().withOffer(offer);
+        return this;
+    }
+
+    /**
+     * Get the publisher property: The publisher of the gallery image.
+     *
+     * @return the publisher value.
+     */
+    public String publisher() {
+        return this.innerProperties() == null ? null : this.innerProperties().publisher();
+    }
+
+    /**
+     * Set the publisher property: The publisher of the gallery image.
+     *
+     * @param publisher the publisher value to set.
+     * @return the GalleryImageInner object itself.
+     */
+    public GalleryImageInner withPublisher(String publisher) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new GalleryImageProperties();
+        }
+        this.innerProperties().withPublisher(publisher);
+        return this;
+    }
+
+    /**
+     * Get the sku property: The SKU of the gallery image.
+     *
+     * @return the sku value.
+     */
+    public String sku() {
+        return this.innerProperties() == null ? null : this.innerProperties().sku();
+    }
+
+    /**
+     * Set the sku property: The SKU of the gallery image.
+     *
+     * @param sku the sku value to set.
+     * @return the GalleryImageInner object itself.
+     */
+    public GalleryImageInner withSku(String sku) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new GalleryImageProperties();
+        }
+        this.innerProperties().withSku(sku);
+        return this;
+    }
+
+    /**
+     * Get the osType property: The OS type of the gallery image.
+     *
+     * @return the osType value.
+     */
+    public String osType() {
+        return this.innerProperties() == null ? null : this.innerProperties().osType();
+    }
+
+    /**
+     * Set the osType property: The OS type of the gallery image.
+     *
+     * @param osType the osType value to set.
+     * @return the GalleryImageInner object itself.
+     */
+    public GalleryImageInner withOsType(String osType) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new GalleryImageProperties();
+        }
+        this.innerProperties().withOsType(osType);
+        return this;
+    }
+
+    /**
+     * Get the version property: The version of the gallery image.
+     *
+     * @return the version value.
+     */
+    public String version() {
+        return this.innerProperties() == null ? null : this.innerProperties().version();
+    }
+
+    /**
+     * Set the version property: The version of the gallery image.
+     *
+     * @param version the version value to set.
+     * @return the GalleryImageInner object itself.
+     */
+    public GalleryImageInner withVersion(String version) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new GalleryImageProperties();
+        }
+        this.innerProperties().withVersion(version);
         return this;
     }
 

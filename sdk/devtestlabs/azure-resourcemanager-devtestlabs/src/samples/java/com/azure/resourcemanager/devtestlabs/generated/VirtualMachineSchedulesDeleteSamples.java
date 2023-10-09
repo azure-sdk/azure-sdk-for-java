@@ -7,7 +7,7 @@ package com.azure.resourcemanager.devtestlabs.generated;
 /** Samples for VirtualMachineSchedules Delete. */
 public final class VirtualMachineSchedulesDeleteSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/VirtualMachineSchedules_Delete.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/VirtualMachineSchedules_Delete.json
      */
     /**
      * Sample code: VirtualMachineSchedules_Delete.
@@ -18,6 +18,6 @@ public final class VirtualMachineSchedulesDeleteSamples {
         manager
             .virtualMachineSchedules()
             .deleteWithResponse(
-                "resourceGroupName", "{labName}", "{vmName}", "LabVmsShutdown", com.azure.core.util.Context.NONE);
+                "resourceGroupName", "myLabName", "vmName", "LabVmsShutdown", com.azure.core.util.Context.NONE);
     }
 }

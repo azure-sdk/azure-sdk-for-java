@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.devtestlabs.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.devtestlabs.fluent.models.ArtifactInner;
 import com.azure.resourcemanager.devtestlabs.models.Artifact;
 import java.time.OffsetDateTime;
@@ -43,6 +44,10 @@ public final class ArtifactImpl implements Artifact {
         } else {
             return Collections.emptyMap();
         }
+    }
+
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public String title() {

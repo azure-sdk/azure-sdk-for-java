@@ -63,8 +63,7 @@ public final class ArtifactSourcesClientImpl implements ArtifactSourcesClient {
     public interface ArtifactSourcesService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs"
-                + "/{labName}/artifactsources")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs/{labName}/artifactsources")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ArtifactSourceList>> list(
@@ -82,8 +81,7 @@ public final class ArtifactSourcesClientImpl implements ArtifactSourcesClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs"
-                + "/{labName}/artifactsources/{name}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs/{labName}/artifactsources/{name}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ArtifactSourceInner>> get(
@@ -99,8 +97,7 @@ public final class ArtifactSourcesClientImpl implements ArtifactSourcesClient {
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs"
-                + "/{labName}/artifactsources/{name}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs/{labName}/artifactsources/{name}")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ArtifactSourceInner>> createOrUpdate(
@@ -116,8 +113,7 @@ public final class ArtifactSourcesClientImpl implements ArtifactSourcesClient {
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs"
-                + "/{labName}/artifactsources/{name}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs/{labName}/artifactsources/{name}")
         @ExpectedResponses({200, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Void>> delete(
@@ -132,8 +128,7 @@ public final class ArtifactSourcesClientImpl implements ArtifactSourcesClient {
 
         @Headers({"Content-Type: application/json"})
         @Patch(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs"
-                + "/{labName}/artifactsources/{name}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs/{labName}/artifactsources/{name}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ArtifactSourceInner>> update(
@@ -161,17 +156,17 @@ public final class ArtifactSourcesClientImpl implements ArtifactSourcesClient {
     /**
      * List artifact sources in a given lab.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param expand Specify the $expand query. Example: 'properties($select=displayName)'.
-     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName').
+     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName')'.
      * @param top The maximum number of resources to return from the operation. Example: '$top=10'.
      * @param orderby The ordering expression for the results, using OData notation. Example: '$orderby=name desc'.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return contains a list of artifactSources and their properties along with {@link PagedResponse} on successful
+     *     completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ArtifactSourceInner>> listSinglePageAsync(
@@ -227,18 +222,18 @@ public final class ArtifactSourcesClientImpl implements ArtifactSourcesClient {
     /**
      * List artifact sources in a given lab.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param expand Specify the $expand query. Example: 'properties($select=displayName)'.
-     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName').
+     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName')'.
      * @param top The maximum number of resources to return from the operation. Example: '$top=10'.
      * @param orderby The ordering expression for the results, using OData notation. Example: '$orderby=name desc'.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return contains a list of artifactSources and their properties along with {@link PagedResponse} on successful
+     *     completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ArtifactSourceInner>> listSinglePageAsync(
@@ -297,16 +292,16 @@ public final class ArtifactSourcesClientImpl implements ArtifactSourcesClient {
     /**
      * List artifact sources in a given lab.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param expand Specify the $expand query. Example: 'properties($select=displayName)'.
-     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName').
+     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName')'.
      * @param top The maximum number of resources to return from the operation. Example: '$top=10'.
      * @param orderby The ordering expression for the results, using OData notation. Example: '$orderby=name desc'.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedFlux}.
+     * @return contains a list of artifactSources and their properties as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ArtifactSourceInner> listAsync(
@@ -319,12 +314,12 @@ public final class ArtifactSourcesClientImpl implements ArtifactSourcesClient {
     /**
      * List artifact sources in a given lab.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedFlux}.
+     * @return contains a list of artifactSources and their properties as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ArtifactSourceInner> listAsync(String resourceGroupName, String labName) {
@@ -340,17 +335,17 @@ public final class ArtifactSourcesClientImpl implements ArtifactSourcesClient {
     /**
      * List artifact sources in a given lab.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param expand Specify the $expand query. Example: 'properties($select=displayName)'.
-     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName').
+     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName')'.
      * @param top The maximum number of resources to return from the operation. Example: '$top=10'.
      * @param orderby The ordering expression for the results, using OData notation. Example: '$orderby=name desc'.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedFlux}.
+     * @return contains a list of artifactSources and their properties as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ArtifactSourceInner> listAsync(
@@ -369,12 +364,12 @@ public final class ArtifactSourcesClientImpl implements ArtifactSourcesClient {
     /**
      * List artifact sources in a given lab.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedIterable}.
+     * @return contains a list of artifactSources and their properties as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ArtifactSourceInner> list(String resourceGroupName, String labName) {
@@ -388,17 +383,17 @@ public final class ArtifactSourcesClientImpl implements ArtifactSourcesClient {
     /**
      * List artifact sources in a given lab.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param expand Specify the $expand query. Example: 'properties($select=displayName)'.
-     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName').
+     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName')'.
      * @param top The maximum number of resources to return from the operation. Example: '$top=10'.
      * @param orderby The ordering expression for the results, using OData notation. Example: '$orderby=name desc'.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedIterable}.
+     * @return contains a list of artifactSources and their properties as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ArtifactSourceInner> list(
@@ -415,7 +410,7 @@ public final class ArtifactSourcesClientImpl implements ArtifactSourcesClient {
     /**
      * Get artifact source.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the artifact source.
      * @param expand Specify the $expand query. Example: 'properties($select=displayName)'.
@@ -470,7 +465,7 @@ public final class ArtifactSourcesClientImpl implements ArtifactSourcesClient {
     /**
      * Get artifact source.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the artifact source.
      * @param expand Specify the $expand query. Example: 'properties($select=displayName)'.
@@ -523,7 +518,7 @@ public final class ArtifactSourcesClientImpl implements ArtifactSourcesClient {
     /**
      * Get artifact source.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the artifact source.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -541,7 +536,7 @@ public final class ArtifactSourcesClientImpl implements ArtifactSourcesClient {
     /**
      * Get artifact source.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the artifact source.
      * @param expand Specify the $expand query. Example: 'properties($select=displayName)'.
@@ -560,7 +555,7 @@ public final class ArtifactSourcesClientImpl implements ArtifactSourcesClient {
     /**
      * Get artifact source.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the artifact source.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -577,7 +572,7 @@ public final class ArtifactSourcesClientImpl implements ArtifactSourcesClient {
     /**
      * Create or replace an existing artifact source.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the artifact source.
      * @param artifactSource Properties of an artifact source.
@@ -637,7 +632,7 @@ public final class ArtifactSourcesClientImpl implements ArtifactSourcesClient {
     /**
      * Create or replace an existing artifact source.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the artifact source.
      * @param artifactSource Properties of an artifact source.
@@ -695,7 +690,7 @@ public final class ArtifactSourcesClientImpl implements ArtifactSourcesClient {
     /**
      * Create or replace an existing artifact source.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the artifact source.
      * @param artifactSource Properties of an artifact source.
@@ -714,7 +709,7 @@ public final class ArtifactSourcesClientImpl implements ArtifactSourcesClient {
     /**
      * Create or replace an existing artifact source.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the artifact source.
      * @param artifactSource Properties of an artifact source.
@@ -733,7 +728,7 @@ public final class ArtifactSourcesClientImpl implements ArtifactSourcesClient {
     /**
      * Create or replace an existing artifact source.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the artifact source.
      * @param artifactSource Properties of an artifact source.
@@ -751,7 +746,7 @@ public final class ArtifactSourcesClientImpl implements ArtifactSourcesClient {
     /**
      * Delete artifact source.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the artifact source.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -803,7 +798,7 @@ public final class ArtifactSourcesClientImpl implements ArtifactSourcesClient {
     /**
      * Delete artifact source.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the artifact source.
      * @param context The context to associate with this operation.
@@ -854,7 +849,7 @@ public final class ArtifactSourcesClientImpl implements ArtifactSourcesClient {
     /**
      * Delete artifact source.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the artifact source.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -870,7 +865,7 @@ public final class ArtifactSourcesClientImpl implements ArtifactSourcesClient {
     /**
      * Delete artifact source.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the artifact source.
      * @param context The context to associate with this operation.
@@ -887,7 +882,7 @@ public final class ArtifactSourcesClientImpl implements ArtifactSourcesClient {
     /**
      * Delete artifact source.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the artifact source.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -902,10 +897,10 @@ public final class ArtifactSourcesClientImpl implements ArtifactSourcesClient {
     /**
      * Allows modifying tags of artifact sources. All other properties will be ignored.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the artifact source.
-     * @param artifactSource Properties of an artifact source.
+     * @param artifactSource Allows modifying tags of artifact sources. All other properties will be ignored.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -962,10 +957,10 @@ public final class ArtifactSourcesClientImpl implements ArtifactSourcesClient {
     /**
      * Allows modifying tags of artifact sources. All other properties will be ignored.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the artifact source.
-     * @param artifactSource Properties of an artifact source.
+     * @param artifactSource Allows modifying tags of artifact sources. All other properties will be ignored.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1020,10 +1015,10 @@ public final class ArtifactSourcesClientImpl implements ArtifactSourcesClient {
     /**
      * Allows modifying tags of artifact sources. All other properties will be ignored.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the artifact source.
-     * @param artifactSource Properties of an artifact source.
+     * @param artifactSource Allows modifying tags of artifact sources. All other properties will be ignored.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1039,10 +1034,10 @@ public final class ArtifactSourcesClientImpl implements ArtifactSourcesClient {
     /**
      * Allows modifying tags of artifact sources. All other properties will be ignored.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the artifact source.
-     * @param artifactSource Properties of an artifact source.
+     * @param artifactSource Allows modifying tags of artifact sources. All other properties will be ignored.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1058,10 +1053,10 @@ public final class ArtifactSourcesClientImpl implements ArtifactSourcesClient {
     /**
      * Allows modifying tags of artifact sources. All other properties will be ignored.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the artifact source.
-     * @param artifactSource Properties of an artifact source.
+     * @param artifactSource Allows modifying tags of artifact sources. All other properties will be ignored.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1081,8 +1076,8 @@ public final class ArtifactSourcesClientImpl implements ArtifactSourcesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return contains a list of artifactSources and their properties along with {@link PagedResponse} on successful
+     *     completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ArtifactSourceInner>> listNextSinglePageAsync(String nextLink) {
@@ -1119,8 +1114,8 @@ public final class ArtifactSourcesClientImpl implements ArtifactSourcesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return contains a list of artifactSources and their properties along with {@link PagedResponse} on successful
+     *     completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ArtifactSourceInner>> listNextSinglePageAsync(String nextLink, Context context) {

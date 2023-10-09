@@ -13,29 +13,29 @@ public interface Formulas {
     /**
      * List formulas in a given lab.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedIterable}.
+     * @return contains a list of formulas and their properties as paginated response with {@link PagedIterable}.
      */
     PagedIterable<Formula> list(String resourceGroupName, String labName);
 
     /**
      * List formulas in a given lab.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param expand Specify the $expand query. Example: 'properties($select=description)'.
-     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName').
+     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName')'.
      * @param top The maximum number of resources to return from the operation. Example: '$top=10'.
      * @param orderby The ordering expression for the results, using OData notation. Example: '$orderby=name desc'.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation as paginated response with {@link PagedIterable}.
+     * @return contains a list of formulas and their properties as paginated response with {@link PagedIterable}.
      */
     PagedIterable<Formula> list(
         String resourceGroupName,
@@ -49,7 +49,7 @@ public interface Formulas {
     /**
      * Get formula.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the formula.
      * @param expand Specify the $expand query. Example: 'properties($select=description)'.
@@ -65,7 +65,7 @@ public interface Formulas {
     /**
      * Get formula.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the formula.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -78,7 +78,7 @@ public interface Formulas {
     /**
      * Delete formula.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the formula.
      * @param context The context to associate with this operation.
@@ -92,7 +92,7 @@ public interface Formulas {
     /**
      * Delete formula.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the formula.
      * @throws IllegalArgumentException thrown if parameters fail the validation.

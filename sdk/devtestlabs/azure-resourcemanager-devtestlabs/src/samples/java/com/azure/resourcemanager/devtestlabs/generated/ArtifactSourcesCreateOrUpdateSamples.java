@@ -12,7 +12,7 @@ import java.util.Map;
 /** Samples for ArtifactSources CreateOrUpdate. */
 public final class ArtifactSourcesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/ArtifactSources_CreateOrUpdate.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/ArtifactSources_CreateOrUpdate.json
      */
     /**
      * Sample code: ArtifactSources_CreateOrUpdate.
@@ -22,21 +22,22 @@ public final class ArtifactSourcesCreateOrUpdateSamples {
     public static void artifactSourcesCreateOrUpdate(com.azure.resourcemanager.devtestlabs.DevTestLabsManager manager) {
         manager
             .artifactSources()
-            .define("{artifactSourceName}")
-            .withRegion((String) null)
-            .withExistingLab("resourceGroupName", "{labName}")
+            .define("myArtifactSource")
+            .withRegion("{location}")
+            .withExistingLab("resourceGroupName", "myLabName")
             .withTags(mapOf("tagName1", "tagValue1"))
             .withDisplayName("{displayName}")
             .withUri("{artifactSourceUri}")
-            .withSourceType(SourceControlType.fromString("{VsoGit|GitHub|StorageAccount}"))
+            .withSourceType(SourceControlType.fromString("{sourceType}"))
             .withFolderPath("{folderPath}")
             .withArmTemplateFolderPath("{armTemplateFolderPath}")
             .withBranchRef("{branchRef}")
             .withSecurityToken("{securityToken}")
-            .withStatus(EnableStatus.fromString("{Enabled|Disabled}"))
+            .withStatus(EnableStatus.fromString("{status}"))
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

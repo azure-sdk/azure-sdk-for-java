@@ -7,7 +7,7 @@ package com.azure.resourcemanager.devtestlabs.generated;
 /** Samples for VirtualMachineSchedules Get. */
 public final class VirtualMachineSchedulesGetSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/VirtualMachineSchedules_Get.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/VirtualMachineSchedules_Get.json
      */
     /**
      * Sample code: VirtualMachineSchedules_Get.
@@ -18,6 +18,6 @@ public final class VirtualMachineSchedulesGetSamples {
         manager
             .virtualMachineSchedules()
             .getWithResponse(
-                "resourceGroupName", "{labName}", "{vmName}", "LabVmsShutdown", null, com.azure.core.util.Context.NONE);
+                "resourceGroupName", "myLabName", "vmName", "LabVmsShutdown", null, com.azure.core.util.Context.NONE);
     }
 }

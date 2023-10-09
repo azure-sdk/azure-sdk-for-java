@@ -4,15 +4,15 @@
 
 package com.azure.resourcemanager.devtestlabs.generated;
 
-import com.azure.resourcemanager.devtestlabs.models.GalleryImageReference;
-import com.azure.resourcemanager.devtestlabs.models.LabVirtualMachineCreationParameter;
+import com.azure.resourcemanager.devtestlabs.fluent.models.LabVirtualMachineCreationParameterInner;
+import com.azure.resourcemanager.devtestlabs.models.StorageType;
 import java.util.HashMap;
 import java.util.Map;
 
 /** Samples for Labs CreateEnvironment. */
 public final class LabsCreateEnvironmentSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/Labs_CreateEnvironment.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/Labs_CreateEnvironment.json
      */
     /**
      * Sample code: Labs_CreateEnvironment.
@@ -24,8 +24,8 @@ public final class LabsCreateEnvironmentSamples {
             .labs()
             .createEnvironment(
                 "resourceGroupName",
-                "{labName}",
-                new LabVirtualMachineCreationParameter()
+                "myLabName",
+                new LabVirtualMachineCreationParameterInner()
                     .withName("{vmName}")
                     .withLocation("{location}")
                     .withTags(mapOf("tagName1", "tagValue1"))
@@ -34,20 +34,19 @@ public final class LabsCreateEnvironmentSamples {
                     .withPassword("fakeTokenPlaceholder")
                     .withLabSubnetName("{virtualnetwork-subnet-name}")
                     .withLabVirtualNetworkId(
-                        "/subscriptions/{subscriptionId}/resourcegroups/resourceGroupName/providers/microsoft.devtestlab/labs/{labName}/virtualnetworks/{virtualNetworkName}")
+                        "/subscriptions/{subscriptionId}/resourcegroups/resourceGroupName/providers/microsoft.devtestlab/labs/myLabName/virtualnetworks/{virtualNetworkName}")
                     .withDisallowPublicIpAddress(true)
-                    .withGalleryImageReference(
-                        new GalleryImageReference()
-                            .withOffer("UbuntuServer")
-                            .withPublisher("Canonical")
-                            .withSku("16.04-LTS")
-                            .withOsType("Linux")
-                            .withVersion("Latest"))
                     .withAllowClaim(true)
-                    .withStorageType("Standard"),
+                    .withStorageType(StorageType.STANDARD)
+                    .withOffer("UbuntuServer")
+                    .withPublisher("Canonical")
+                    .withSku("16.04-LTS")
+                    .withOsTypeGalleryImageReferenceOsType("Linux")
+                    .withVersion("Latest"),
                 com.azure.core.util.Context.NONE);
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

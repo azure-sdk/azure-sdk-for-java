@@ -25,7 +25,7 @@ import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.devtestlabs.fluent.ArmTemplatesClient;
 import com.azure.resourcemanager.devtestlabs.fluent.ArtifactSourcesClient;
 import com.azure.resourcemanager.devtestlabs.fluent.ArtifactsClient;
-import com.azure.resourcemanager.devtestlabs.fluent.CostsClient;
+import com.azure.resourcemanager.devtestlabs.fluent.BastionHostsClient;
 import com.azure.resourcemanager.devtestlabs.fluent.CustomImagesClient;
 import com.azure.resourcemanager.devtestlabs.fluent.DevTestLabsClient;
 import com.azure.resourcemanager.devtestlabs.fluent.DisksClient;
@@ -33,6 +33,7 @@ import com.azure.resourcemanager.devtestlabs.fluent.EnvironmentsClient;
 import com.azure.resourcemanager.devtestlabs.fluent.FormulasClient;
 import com.azure.resourcemanager.devtestlabs.fluent.GalleryImagesClient;
 import com.azure.resourcemanager.devtestlabs.fluent.GlobalSchedulesClient;
+import com.azure.resourcemanager.devtestlabs.fluent.LabSecretsClient;
 import com.azure.resourcemanager.devtestlabs.fluent.LabsClient;
 import com.azure.resourcemanager.devtestlabs.fluent.NotificationChannelsClient;
 import com.azure.resourcemanager.devtestlabs.fluent.OperationsClient;
@@ -44,6 +45,8 @@ import com.azure.resourcemanager.devtestlabs.fluent.SecretsClient;
 import com.azure.resourcemanager.devtestlabs.fluent.ServiceFabricSchedulesClient;
 import com.azure.resourcemanager.devtestlabs.fluent.ServiceFabricsClient;
 import com.azure.resourcemanager.devtestlabs.fluent.ServiceRunnersClient;
+import com.azure.resourcemanager.devtestlabs.fluent.SharedGalleriesClient;
+import com.azure.resourcemanager.devtestlabs.fluent.SharedImagesClient;
 import com.azure.resourcemanager.devtestlabs.fluent.UsersClient;
 import com.azure.resourcemanager.devtestlabs.fluent.VirtualMachineSchedulesClient;
 import com.azure.resourcemanager.devtestlabs.fluent.VirtualMachinesClient;
@@ -60,11 +63,11 @@ import reactor.core.publisher.Mono;
 /** Initializes a new instance of the DevTestLabsClientImpl type. */
 @ServiceClient(builder = DevTestLabsClientBuilder.class)
 public final class DevTestLabsClientImpl implements DevTestLabsClient {
-    /** The subscription ID. */
+    /** The ID of the target subscription. The value must be an UUID. */
     private final String subscriptionId;
 
     /**
-     * Gets The subscription ID.
+     * Gets The ID of the target subscription. The value must be an UUID.
      *
      * @return the subscriptionId value.
      */
@@ -216,18 +219,6 @@ public final class DevTestLabsClientImpl implements DevTestLabsClient {
         return this.artifacts;
     }
 
-    /** The CostsClient object to access its operations. */
-    private final CostsClient costs;
-
-    /**
-     * Gets the CostsClient object to access its operations.
-     *
-     * @return the CostsClient object.
-     */
-    public CostsClient getCosts() {
-        return this.costs;
-    }
-
     /** The CustomImagesClient object to access its operations. */
     private final CustomImagesClient customImages;
 
@@ -312,6 +303,18 @@ public final class DevTestLabsClientImpl implements DevTestLabsClient {
         return this.schedules;
     }
 
+    /** The LabSecretsClient object to access its operations. */
+    private final LabSecretsClient labSecrets;
+
+    /**
+     * Gets the LabSecretsClient object to access its operations.
+     *
+     * @return the LabSecretsClient object.
+     */
+    public LabSecretsClient getLabSecrets() {
+        return this.labSecrets;
+    }
+
     /** The ServiceRunnersClient object to access its operations. */
     private final ServiceRunnersClient serviceRunners;
 
@@ -322,6 +325,30 @@ public final class DevTestLabsClientImpl implements DevTestLabsClient {
      */
     public ServiceRunnersClient getServiceRunners() {
         return this.serviceRunners;
+    }
+
+    /** The SharedGalleriesClient object to access its operations. */
+    private final SharedGalleriesClient sharedGalleries;
+
+    /**
+     * Gets the SharedGalleriesClient object to access its operations.
+     *
+     * @return the SharedGalleriesClient object.
+     */
+    public SharedGalleriesClient getSharedGalleries() {
+        return this.sharedGalleries;
+    }
+
+    /** The SharedImagesClient object to access its operations. */
+    private final SharedImagesClient sharedImages;
+
+    /**
+     * Gets the SharedImagesClient object to access its operations.
+     *
+     * @return the SharedImagesClient object.
+     */
+    public SharedImagesClient getSharedImages() {
+        return this.sharedImages;
     }
 
     /** The UsersClient object to access its operations. */
@@ -432,6 +459,18 @@ public final class DevTestLabsClientImpl implements DevTestLabsClient {
         return this.virtualNetworks;
     }
 
+    /** The BastionHostsClient object to access its operations. */
+    private final BastionHostsClient bastionHosts;
+
+    /**
+     * Gets the BastionHostsClient object to access its operations.
+     *
+     * @return the BastionHostsClient object.
+     */
+    public BastionHostsClient getBastionHosts() {
+        return this.bastionHosts;
+    }
+
     /**
      * Initializes an instance of DevTestLabsClient client.
      *
@@ -439,7 +478,7 @@ public final class DevTestLabsClientImpl implements DevTestLabsClient {
      * @param serializerAdapter The serializer to serialize an object into a string.
      * @param defaultPollInterval The default poll interval for long-running operation.
      * @param environment The Azure environment.
-     * @param subscriptionId The subscription ID.
+     * @param subscriptionId The ID of the target subscription. The value must be an UUID.
      * @param endpoint server parameter.
      */
     DevTestLabsClientImpl(
@@ -454,7 +493,7 @@ public final class DevTestLabsClientImpl implements DevTestLabsClient {
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2018-09-15";
+        this.apiVersion = "2021-09-01";
         this.providerOperations = new ProviderOperationsClientImpl(this);
         this.labs = new LabsClientImpl(this);
         this.operations = new OperationsClientImpl(this);
@@ -462,7 +501,6 @@ public final class DevTestLabsClientImpl implements DevTestLabsClient {
         this.artifactSources = new ArtifactSourcesClientImpl(this);
         this.armTemplates = new ArmTemplatesClientImpl(this);
         this.artifacts = new ArtifactsClientImpl(this);
-        this.costs = new CostsClientImpl(this);
         this.customImages = new CustomImagesClientImpl(this);
         this.formulas = new FormulasClientImpl(this);
         this.galleryImages = new GalleryImagesClientImpl(this);
@@ -470,7 +508,10 @@ public final class DevTestLabsClientImpl implements DevTestLabsClient {
         this.policySets = new PolicySetsClientImpl(this);
         this.policies = new PoliciesClientImpl(this);
         this.schedules = new SchedulesClientImpl(this);
+        this.labSecrets = new LabSecretsClientImpl(this);
         this.serviceRunners = new ServiceRunnersClientImpl(this);
+        this.sharedGalleries = new SharedGalleriesClientImpl(this);
+        this.sharedImages = new SharedImagesClientImpl(this);
         this.users = new UsersClientImpl(this);
         this.disks = new DisksClientImpl(this);
         this.environments = new EnvironmentsClientImpl(this);
@@ -480,6 +521,7 @@ public final class DevTestLabsClientImpl implements DevTestLabsClient {
         this.virtualMachines = new VirtualMachinesClientImpl(this);
         this.virtualMachineSchedules = new VirtualMachineSchedulesClientImpl(this);
         this.virtualNetworks = new VirtualNetworksClientImpl(this);
+        this.bastionHosts = new BastionHostsClientImpl(this);
     }
 
     /**

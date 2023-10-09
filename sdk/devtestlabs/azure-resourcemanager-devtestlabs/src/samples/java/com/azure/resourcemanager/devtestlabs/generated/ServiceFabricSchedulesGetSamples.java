@@ -7,7 +7,7 @@ package com.azure.resourcemanager.devtestlabs.generated;
 /** Samples for ServiceFabricSchedules Get. */
 public final class ServiceFabricSchedulesGetSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/ServiceFabricSchedules_Get.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/ServiceFabricSchedules_Get.json
      */
     /**
      * Sample code: ServiceFabricSchedules_Get.
@@ -19,7 +19,7 @@ public final class ServiceFabricSchedulesGetSamples {
             .serviceFabricSchedules()
             .getWithResponse(
                 "resourceGroupName",
-                "{labName}",
+                "myLabName",
                 "@me",
                 "{serviceFrabicName}",
                 "{scheduleName}",

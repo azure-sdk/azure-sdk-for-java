@@ -7,7 +7,7 @@ package com.azure.resourcemanager.devtestlabs.generated;
 /** Samples for VirtualMachines UnClaim. */
 public final class VirtualMachinesUnClaimSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/VirtualMachines_UnClaim.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/VirtualMachines_UnClaim.json
      */
     /**
      * Sample code: VirtualMachines_UnClaim.
@@ -17,6 +17,6 @@ public final class VirtualMachinesUnClaimSamples {
     public static void virtualMachinesUnClaim(com.azure.resourcemanager.devtestlabs.DevTestLabsManager manager) {
         manager
             .virtualMachines()
-            .unClaim("resourceGroupName", "{labName}", "{vmName}", com.azure.core.util.Context.NONE);
+            .unClaim("resourceGroupName", "myLabName", "{vmName}", com.azure.core.util.Context.NONE);
     }
 }

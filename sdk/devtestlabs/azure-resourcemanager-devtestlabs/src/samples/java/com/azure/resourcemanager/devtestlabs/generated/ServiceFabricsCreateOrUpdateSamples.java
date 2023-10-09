@@ -10,7 +10,7 @@ import java.util.Map;
 /** Samples for ServiceFabrics CreateOrUpdate. */
 public final class ServiceFabricsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/ServiceFabrics_CreateOrUpdate.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/ServiceFabrics_CreateOrUpdate.json
      */
     /**
      * Sample code: ServiceFabrics_CreateOrUpdate.
@@ -22,13 +22,14 @@ public final class ServiceFabricsCreateOrUpdateSamples {
             .serviceFabrics()
             .define("{serviceFabricName}")
             .withRegion("{location}")
-            .withExistingUser("resourceGroupName", "{labName}", "{userName}")
+            .withExistingUser("resourceGroupName", "myLabName", "{userName}")
             .withTags(mapOf("tagName1", "tagValue1"))
             .withExternalServiceFabricId("{serviceFabricId}")
             .withEnvironmentId("{environmentId}")
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

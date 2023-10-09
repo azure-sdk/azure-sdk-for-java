@@ -10,7 +10,7 @@ import java.time.Duration;
 /** The interface for DevTestLabsClient class. */
 public interface DevTestLabsClient {
     /**
-     * Gets The subscription ID.
+     * Gets The ID of the target subscription. The value must be an UUID.
      *
      * @return the subscriptionId value.
      */
@@ -94,13 +94,6 @@ public interface DevTestLabsClient {
     ArtifactsClient getArtifacts();
 
     /**
-     * Gets the CostsClient object to access its operations.
-     *
-     * @return the CostsClient object.
-     */
-    CostsClient getCosts();
-
-    /**
      * Gets the CustomImagesClient object to access its operations.
      *
      * @return the CustomImagesClient object.
@@ -150,11 +143,32 @@ public interface DevTestLabsClient {
     SchedulesClient getSchedules();
 
     /**
+     * Gets the LabSecretsClient object to access its operations.
+     *
+     * @return the LabSecretsClient object.
+     */
+    LabSecretsClient getLabSecrets();
+
+    /**
      * Gets the ServiceRunnersClient object to access its operations.
      *
      * @return the ServiceRunnersClient object.
      */
     ServiceRunnersClient getServiceRunners();
+
+    /**
+     * Gets the SharedGalleriesClient object to access its operations.
+     *
+     * @return the SharedGalleriesClient object.
+     */
+    SharedGalleriesClient getSharedGalleries();
+
+    /**
+     * Gets the SharedImagesClient object to access its operations.
+     *
+     * @return the SharedImagesClient object.
+     */
+    SharedImagesClient getSharedImages();
 
     /**
      * Gets the UsersClient object to access its operations.
@@ -218,4 +232,11 @@ public interface DevTestLabsClient {
      * @return the VirtualNetworksClient object.
      */
     VirtualNetworksClient getVirtualNetworks();
+
+    /**
+     * Gets the BastionHostsClient object to access its operations.
+     *
+     * @return the BastionHostsClient object.
+     */
+    BastionHostsClient getBastionHosts();
 }

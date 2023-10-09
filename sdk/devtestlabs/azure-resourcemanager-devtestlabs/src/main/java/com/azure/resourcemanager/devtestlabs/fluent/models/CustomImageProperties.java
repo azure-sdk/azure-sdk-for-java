@@ -5,10 +5,10 @@
 package com.azure.resourcemanager.devtestlabs.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.resourcemanager.devtestlabs.models.CustomImagePropertiesCustom;
-import com.azure.resourcemanager.devtestlabs.models.CustomImagePropertiesFromPlan;
-import com.azure.resourcemanager.devtestlabs.models.CustomImagePropertiesFromVm;
+import com.azure.resourcemanager.devtestlabs.models.CustomImageOsType;
 import com.azure.resourcemanager.devtestlabs.models.DataDiskStorageTypeInfo;
+import com.azure.resourcemanager.devtestlabs.models.LinuxOsState;
+import com.azure.resourcemanager.devtestlabs.models.WindowsOsState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -20,13 +20,13 @@ public final class CustomImageProperties {
      * The virtual machine from which the image is to be created.
      */
     @JsonProperty(value = "vm")
-    private CustomImagePropertiesFromVm vm;
+    private CustomImagePropertiesFromVm innerVm;
 
     /*
      * The VHD from which the image is to be created.
      */
     @JsonProperty(value = "vhd")
-    private CustomImagePropertiesCustom vhd;
+    private CustomImagePropertiesCustom innerVhd;
 
     /*
      * The description of the custom image.
@@ -68,7 +68,7 @@ public final class CustomImageProperties {
      * Storage information about the plan related to this custom image
      */
     @JsonProperty(value = "customImagePlan")
-    private CustomImagePropertiesFromPlan customImagePlan;
+    private CustomImagePropertiesFromPlan innerCustomImagePlan;
 
     /*
      * Whether or not the custom images underlying offer/plan has been enabled for programmatic deployment
@@ -93,43 +93,21 @@ public final class CustomImageProperties {
     }
 
     /**
-     * Get the vm property: The virtual machine from which the image is to be created.
+     * Get the innerVm property: The virtual machine from which the image is to be created.
      *
-     * @return the vm value.
+     * @return the innerVm value.
      */
-    public CustomImagePropertiesFromVm vm() {
-        return this.vm;
+    private CustomImagePropertiesFromVm innerVm() {
+        return this.innerVm;
     }
 
     /**
-     * Set the vm property: The virtual machine from which the image is to be created.
+     * Get the innerVhd property: The VHD from which the image is to be created.
      *
-     * @param vm the vm value to set.
-     * @return the CustomImageProperties object itself.
+     * @return the innerVhd value.
      */
-    public CustomImageProperties withVm(CustomImagePropertiesFromVm vm) {
-        this.vm = vm;
-        return this;
-    }
-
-    /**
-     * Get the vhd property: The VHD from which the image is to be created.
-     *
-     * @return the vhd value.
-     */
-    public CustomImagePropertiesCustom vhd() {
-        return this.vhd;
-    }
-
-    /**
-     * Set the vhd property: The VHD from which the image is to be created.
-     *
-     * @param vhd the vhd value to set.
-     * @return the CustomImageProperties object itself.
-     */
-    public CustomImageProperties withVhd(CustomImagePropertiesCustom vhd) {
-        this.vhd = vhd;
-        return this;
+    private CustomImagePropertiesCustom innerVhd() {
+        return this.innerVhd;
     }
 
     /**
@@ -242,23 +220,12 @@ public final class CustomImageProperties {
     }
 
     /**
-     * Get the customImagePlan property: Storage information about the plan related to this custom image.
+     * Get the innerCustomImagePlan property: Storage information about the plan related to this custom image.
      *
-     * @return the customImagePlan value.
+     * @return the innerCustomImagePlan value.
      */
-    public CustomImagePropertiesFromPlan customImagePlan() {
-        return this.customImagePlan;
-    }
-
-    /**
-     * Set the customImagePlan property: Storage information about the plan related to this custom image.
-     *
-     * @param customImagePlan the customImagePlan value to set.
-     * @return the CustomImageProperties object itself.
-     */
-    public CustomImageProperties withCustomImagePlan(CustomImagePropertiesFromPlan customImagePlan) {
-        this.customImagePlan = customImagePlan;
-        return this;
+    private CustomImagePropertiesFromPlan innerCustomImagePlan() {
+        return this.innerCustomImagePlan;
     }
 
     /**
@@ -302,22 +269,235 @@ public final class CustomImageProperties {
     }
 
     /**
+     * Get the sourceVmId property: The source vm identifier.
+     *
+     * @return the sourceVmId value.
+     */
+    public String sourceVmId() {
+        return this.innerVm() == null ? null : this.innerVm().sourceVmId();
+    }
+
+    /**
+     * Set the sourceVmId property: The source vm identifier.
+     *
+     * @param sourceVmId the sourceVmId value to set.
+     * @return the CustomImageProperties object itself.
+     */
+    public CustomImageProperties withSourceVmId(String sourceVmId) {
+        if (this.innerVm() == null) {
+            this.innerVm = new CustomImagePropertiesFromVm();
+        }
+        this.innerVm().withSourceVmId(sourceVmId);
+        return this;
+    }
+
+    /**
+     * Get the windowsOsState property: The state of the Windows OS (i.e. NonSysprepped, SysprepRequested,
+     * SysprepApplied).
+     *
+     * @return the windowsOsState value.
+     */
+    public WindowsOsState windowsOsState() {
+        return this.innerVm() == null ? null : this.innerVm().windowsOsState();
+    }
+
+    /**
+     * Set the windowsOsState property: The state of the Windows OS (i.e. NonSysprepped, SysprepRequested,
+     * SysprepApplied).
+     *
+     * @param windowsOsState the windowsOsState value to set.
+     * @return the CustomImageProperties object itself.
+     */
+    public CustomImageProperties withWindowsOsState(WindowsOsState windowsOsState) {
+        if (this.innerVm() == null) {
+            this.innerVm = new CustomImagePropertiesFromVm();
+        }
+        this.innerVm().withWindowsOsState(windowsOsState);
+        return this;
+    }
+
+    /**
+     * Get the linuxOsState property: The state of the Linux OS (i.e. NonDeprovisioned, DeprovisionRequested,
+     * DeprovisionApplied).
+     *
+     * @return the linuxOsState value.
+     */
+    public LinuxOsState linuxOsState() {
+        return this.innerVm() == null ? null : this.innerVm().linuxOsState();
+    }
+
+    /**
+     * Set the linuxOsState property: The state of the Linux OS (i.e. NonDeprovisioned, DeprovisionRequested,
+     * DeprovisionApplied).
+     *
+     * @param linuxOsState the linuxOsState value to set.
+     * @return the CustomImageProperties object itself.
+     */
+    public CustomImageProperties withLinuxOsState(LinuxOsState linuxOsState) {
+        if (this.innerVm() == null) {
+            this.innerVm = new CustomImagePropertiesFromVm();
+        }
+        this.innerVm().withLinuxOsState(linuxOsState);
+        return this;
+    }
+
+    /**
+     * Get the imageName property: The image name.
+     *
+     * @return the imageName value.
+     */
+    public String imageName() {
+        return this.innerVhd() == null ? null : this.innerVhd().imageName();
+    }
+
+    /**
+     * Set the imageName property: The image name.
+     *
+     * @param imageName the imageName value to set.
+     * @return the CustomImageProperties object itself.
+     */
+    public CustomImageProperties withImageName(String imageName) {
+        if (this.innerVhd() == null) {
+            this.innerVhd = new CustomImagePropertiesCustom();
+        }
+        this.innerVhd().withImageName(imageName);
+        return this;
+    }
+
+    /**
+     * Get the sysPrep property: Indicates whether sysprep has been run on the VHD.
+     *
+     * @return the sysPrep value.
+     */
+    public Boolean sysPrep() {
+        return this.innerVhd() == null ? null : this.innerVhd().sysPrep();
+    }
+
+    /**
+     * Set the sysPrep property: Indicates whether sysprep has been run on the VHD.
+     *
+     * @param sysPrep the sysPrep value to set.
+     * @return the CustomImageProperties object itself.
+     */
+    public CustomImageProperties withSysPrep(Boolean sysPrep) {
+        if (this.innerVhd() == null) {
+            this.innerVhd = new CustomImagePropertiesCustom();
+        }
+        this.innerVhd().withSysPrep(sysPrep);
+        return this;
+    }
+
+    /**
+     * Get the osType property: The OS type of the custom image (i.e. Windows, Linux).
+     *
+     * @return the osType value.
+     */
+    public CustomImageOsType osType() {
+        return this.innerVhd() == null ? null : this.innerVhd().osType();
+    }
+
+    /**
+     * Set the osType property: The OS type of the custom image (i.e. Windows, Linux).
+     *
+     * @param osType the osType value to set.
+     * @return the CustomImageProperties object itself.
+     */
+    public CustomImageProperties withOsType(CustomImageOsType osType) {
+        if (this.innerVhd() == null) {
+            this.innerVhd = new CustomImagePropertiesCustom();
+        }
+        this.innerVhd().withOsType(osType);
+        return this;
+    }
+
+    /**
+     * Get the id property: The id of the plan, equivalent to name of the plan.
+     *
+     * @return the id value.
+     */
+    public String id() {
+        return this.innerCustomImagePlan() == null ? null : this.innerCustomImagePlan().id();
+    }
+
+    /**
+     * Set the id property: The id of the plan, equivalent to name of the plan.
+     *
+     * @param id the id value to set.
+     * @return the CustomImageProperties object itself.
+     */
+    public CustomImageProperties withId(String id) {
+        if (this.innerCustomImagePlan() == null) {
+            this.innerCustomImagePlan = new CustomImagePropertiesFromPlan();
+        }
+        this.innerCustomImagePlan().withId(id);
+        return this;
+    }
+
+    /**
+     * Get the publisher property: The publisher for the plan from the marketplace image the custom image is derived
+     * from.
+     *
+     * @return the publisher value.
+     */
+    public String publisher() {
+        return this.innerCustomImagePlan() == null ? null : this.innerCustomImagePlan().publisher();
+    }
+
+    /**
+     * Set the publisher property: The publisher for the plan from the marketplace image the custom image is derived
+     * from.
+     *
+     * @param publisher the publisher value to set.
+     * @return the CustomImageProperties object itself.
+     */
+    public CustomImageProperties withPublisher(String publisher) {
+        if (this.innerCustomImagePlan() == null) {
+            this.innerCustomImagePlan = new CustomImagePropertiesFromPlan();
+        }
+        this.innerCustomImagePlan().withPublisher(publisher);
+        return this;
+    }
+
+    /**
+     * Get the offer property: The offer for the plan from the marketplace image the custom image is derived from.
+     *
+     * @return the offer value.
+     */
+    public String offer() {
+        return this.innerCustomImagePlan() == null ? null : this.innerCustomImagePlan().offer();
+    }
+
+    /**
+     * Set the offer property: The offer for the plan from the marketplace image the custom image is derived from.
+     *
+     * @param offer the offer value to set.
+     * @return the CustomImageProperties object itself.
+     */
+    public CustomImageProperties withOffer(String offer) {
+        if (this.innerCustomImagePlan() == null) {
+            this.innerCustomImagePlan = new CustomImagePropertiesFromPlan();
+        }
+        this.innerCustomImagePlan().withOffer(offer);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (vm() != null) {
-            vm().validate();
+        if (innerVm() != null) {
+            innerVm().validate();
         }
-        if (vhd() != null) {
-            vhd().validate();
+        if (innerVhd() != null) {
+            innerVhd().validate();
         }
         if (dataDiskStorageInfo() != null) {
             dataDiskStorageInfo().forEach(e -> e.validate());
         }
-        if (customImagePlan() != null) {
-            customImagePlan().validate();
+        if (innerCustomImagePlan() != null) {
+            innerCustomImagePlan().validate();
         }
     }
 }

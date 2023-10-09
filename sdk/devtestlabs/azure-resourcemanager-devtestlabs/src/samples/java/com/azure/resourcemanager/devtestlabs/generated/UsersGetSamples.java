@@ -7,7 +7,7 @@ package com.azure.resourcemanager.devtestlabs.generated;
 /** Samples for Users Get. */
 public final class UsersGetSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/Users_Get.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/Users_Get.json
      */
     /**
      * Sample code: Users_Get.
@@ -17,7 +17,6 @@ public final class UsersGetSamples {
     public static void usersGet(com.azure.resourcemanager.devtestlabs.DevTestLabsManager manager) {
         manager
             .users()
-            .getWithResponse(
-                "resourceGroupName", "{devtestlabName}", "{userName}", null, com.azure.core.util.Context.NONE);
+            .getWithResponse("resourceGroupName", "myLabName", "{userName}", null, com.azure.core.util.Context.NONE);
     }
 }

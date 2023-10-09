@@ -7,7 +7,7 @@ package com.azure.resourcemanager.devtestlabs.generated;
 /** Samples for ArtifactSources List. */
 public final class ArtifactSourcesListSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/ArtifactSources_List.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/ArtifactSources_List.json
      */
     /**
      * Sample code: ArtifactSources_List.
@@ -17,6 +17,6 @@ public final class ArtifactSourcesListSamples {
     public static void artifactSourcesList(com.azure.resourcemanager.devtestlabs.DevTestLabsManager manager) {
         manager
             .artifactSources()
-            .list("resourceGroupName", "{labName}", null, null, null, null, com.azure.core.util.Context.NONE);
+            .list("resourceGroupName", "myLabName", null, null, null, null, com.azure.core.util.Context.NONE);
     }
 }

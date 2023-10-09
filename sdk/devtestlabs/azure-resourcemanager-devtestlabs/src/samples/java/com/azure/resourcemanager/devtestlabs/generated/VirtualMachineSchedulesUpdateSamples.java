@@ -11,7 +11,7 @@ import java.util.Map;
 /** Samples for VirtualMachineSchedules Update. */
 public final class VirtualMachineSchedulesUpdateSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/VirtualMachineSchedules_Update.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/VirtualMachineSchedules_Update.json
      */
     /**
      * Sample code: VirtualMachineSchedules_Update.
@@ -23,13 +23,14 @@ public final class VirtualMachineSchedulesUpdateSamples {
             .virtualMachineSchedules()
             .updateWithResponse(
                 "resourceGroupName",
-                "{labName}",
-                "{vmName}",
+                "myLabName",
+                "vmName",
                 "LabVmsShutdown",
                 new ScheduleFragment().withTags(mapOf("tagName1", "tagValue1")),
                 com.azure.core.util.Context.NONE);
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

@@ -7,7 +7,7 @@ package com.azure.resourcemanager.devtestlabs.generated;
 /** Samples for VirtualMachines Claim. */
 public final class VirtualMachinesClaimSamples {
     /*
-     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2018-09-15/examples/VirtualMachines_Claim.json
+     * x-ms-original-file: specification/devtestlabs/resource-manager/Microsoft.DevTestLab/stable/2021-09-01/examples/VirtualMachines_Claim.json
      */
     /**
      * Sample code: VirtualMachines_Claim.
@@ -15,6 +15,6 @@ public final class VirtualMachinesClaimSamples {
      * @param manager Entry point to DevTestLabsManager.
      */
     public static void virtualMachinesClaim(com.azure.resourcemanager.devtestlabs.DevTestLabsManager manager) {
-        manager.virtualMachines().claim("resourceGroupName", "{labName}", "{vmName}", com.azure.core.util.Context.NONE);
+        manager.virtualMachines().claim("resourceGroupName", "myLabName", "{vmName}", com.azure.core.util.Context.NONE);
     }
 }

@@ -6,17 +6,50 @@ package com.azure.resourcemanager.devtestlabs.fluent;
 
 import com.azure.core.annotation.ReturnType;
 import com.azure.core.annotation.ServiceMethod;
+import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.devtestlabs.fluent.models.EvaluatePoliciesResponseInner;
+import com.azure.resourcemanager.devtestlabs.fluent.models.PolicySetInner;
 import com.azure.resourcemanager.devtestlabs.models.EvaluatePoliciesRequest;
 
 /** An instance of this class provides access to all the operations defined in PolicySetsClient. */
 public interface PolicySetsClient {
     /**
+     * List policy sets in a given lab.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param labName The name of the lab.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return contains a list of policySets and their properties as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<PolicySetInner> list(String resourceGroupName, String labName);
+
+    /**
+     * List policy sets in a given lab.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param labName The name of the lab.
+     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName')'.
+     * @param top The maximum number of resources to return from the operation. Example: '$top=10'.
+     * @param orderby The ordering expression for the results, using OData notation. Example: '$orderby=name desc'.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return contains a list of policySets and their properties as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<PolicySetInner> list(
+        String resourceGroupName, String labName, String filter, Integer top, String orderby, Context context);
+
+    /**
      * Evaluates lab policy.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the policy set.
      * @param evaluatePoliciesRequest Request body for evaluating a policy set.
@@ -37,7 +70,7 @@ public interface PolicySetsClient {
     /**
      * Evaluates lab policy.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab.
      * @param name The name of the policy set.
      * @param evaluatePoliciesRequest Request body for evaluating a policy set.
