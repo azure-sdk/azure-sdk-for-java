@@ -500,7 +500,7 @@ public final class SynapseManager {
                 .append("-")
                 .append("com.azure.resourcemanager.synapse")
                 .append("/")
-                .append("1.0.0-beta.7");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -1535,8 +1535,10 @@ public final class SynapseManager {
     }
 
     /**
-     * @return Wrapped service client SynapseManagementClient providing direct access to the underlying auto-generated
-     *     API implementation, based on Azure REST API.
+     * Gets wrapped service client SynapseManagementClient providing direct access to the underlying auto-generated API
+     * implementation, based on Azure REST API.
+     *
+     * @return Wrapped service client SynapseManagementClient.
      */
     public SynapseManagementClient serviceClient() {
         return this.clientObject;

@@ -168,11 +168,13 @@ public interface SqlPoolBlobAuditingPolicy {
     interface Definition
         extends DefinitionStages.Blank, DefinitionStages.WithParentResource, DefinitionStages.WithCreate {
     }
+
     /** The SqlPoolBlobAuditingPolicy definition stages. */
     interface DefinitionStages {
         /** The first stage of the SqlPoolBlobAuditingPolicy definition. */
         interface Blank extends WithParentResource {
         }
+
         /** The stage of the SqlPoolBlobAuditingPolicy definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -185,6 +187,7 @@ public interface SqlPoolBlobAuditingPolicy {
              */
             WithCreate withExistingSqlPool(String resourceGroupName, String workspaceName, String sqlPoolName);
         }
+
         /**
          * The stage of the SqlPoolBlobAuditingPolicy definition which contains all the minimum required properties for
          * the resource to be created, but also allows for any other optional properties to be specified.
@@ -213,6 +216,7 @@ public interface SqlPoolBlobAuditingPolicy {
              */
             SqlPoolBlobAuditingPolicy create(Context context);
         }
+
         /** The stage of the SqlPoolBlobAuditingPolicy definition allowing to specify state. */
         interface WithState {
             /**
@@ -225,6 +229,7 @@ public interface SqlPoolBlobAuditingPolicy {
              */
             WithCreate withState(BlobAuditingPolicyState state);
         }
+
         /** The stage of the SqlPoolBlobAuditingPolicy definition allowing to specify storageEndpoint. */
         interface WithStorageEndpoint {
             /**
@@ -237,6 +242,7 @@ public interface SqlPoolBlobAuditingPolicy {
              */
             WithCreate withStorageEndpoint(String storageEndpoint);
         }
+
         /** The stage of the SqlPoolBlobAuditingPolicy definition allowing to specify storageAccountAccessKey. */
         interface WithStorageAccountAccessKey {
             /**
@@ -249,6 +255,7 @@ public interface SqlPoolBlobAuditingPolicy {
              */
             WithCreate withStorageAccountAccessKey(String storageAccountAccessKey);
         }
+
         /** The stage of the SqlPoolBlobAuditingPolicy definition allowing to specify retentionDays. */
         interface WithRetentionDays {
             /**
@@ -260,6 +267,7 @@ public interface SqlPoolBlobAuditingPolicy {
              */
             WithCreate withRetentionDays(Integer retentionDays);
         }
+
         /** The stage of the SqlPoolBlobAuditingPolicy definition allowing to specify auditActionsAndGroups. */
         interface WithAuditActionsAndGroups {
             /**
@@ -344,6 +352,7 @@ public interface SqlPoolBlobAuditingPolicy {
              */
             WithCreate withAuditActionsAndGroups(List<String> auditActionsAndGroups);
         }
+
         /** The stage of the SqlPoolBlobAuditingPolicy definition allowing to specify storageAccountSubscriptionId. */
         interface WithStorageAccountSubscriptionId {
             /**
@@ -354,6 +363,7 @@ public interface SqlPoolBlobAuditingPolicy {
              */
             WithCreate withStorageAccountSubscriptionId(UUID storageAccountSubscriptionId);
         }
+
         /** The stage of the SqlPoolBlobAuditingPolicy definition allowing to specify isStorageSecondaryKeyInUse. */
         interface WithIsStorageSecondaryKeyInUse {
             /**
@@ -366,6 +376,7 @@ public interface SqlPoolBlobAuditingPolicy {
              */
             WithCreate withIsStorageSecondaryKeyInUse(Boolean isStorageSecondaryKeyInUse);
         }
+
         /** The stage of the SqlPoolBlobAuditingPolicy definition allowing to specify isAzureMonitorTargetEnabled. */
         interface WithIsAzureMonitorTargetEnabled {
             /**
@@ -400,6 +411,7 @@ public interface SqlPoolBlobAuditingPolicy {
             WithCreate withIsAzureMonitorTargetEnabled(Boolean isAzureMonitorTargetEnabled);
         }
     }
+
     /**
      * Begins update for the SqlPoolBlobAuditingPolicy resource.
      *
@@ -430,6 +442,7 @@ public interface SqlPoolBlobAuditingPolicy {
          */
         SqlPoolBlobAuditingPolicy apply(Context context);
     }
+
     /** The SqlPoolBlobAuditingPolicy update stages. */
     interface UpdateStages {
         /** The stage of the SqlPoolBlobAuditingPolicy update allowing to specify state. */
@@ -444,6 +457,7 @@ public interface SqlPoolBlobAuditingPolicy {
              */
             Update withState(BlobAuditingPolicyState state);
         }
+
         /** The stage of the SqlPoolBlobAuditingPolicy update allowing to specify storageEndpoint. */
         interface WithStorageEndpoint {
             /**
@@ -456,6 +470,7 @@ public interface SqlPoolBlobAuditingPolicy {
              */
             Update withStorageEndpoint(String storageEndpoint);
         }
+
         /** The stage of the SqlPoolBlobAuditingPolicy update allowing to specify storageAccountAccessKey. */
         interface WithStorageAccountAccessKey {
             /**
@@ -468,6 +483,7 @@ public interface SqlPoolBlobAuditingPolicy {
              */
             Update withStorageAccountAccessKey(String storageAccountAccessKey);
         }
+
         /** The stage of the SqlPoolBlobAuditingPolicy update allowing to specify auditActionsAndGroups. */
         interface WithAuditActionsAndGroups {
             /**
@@ -552,6 +568,7 @@ public interface SqlPoolBlobAuditingPolicy {
              */
             Update withAuditActionsAndGroups(List<String> auditActionsAndGroups);
         }
+
         /** The stage of the SqlPoolBlobAuditingPolicy update allowing to specify isStorageSecondaryKeyInUse. */
         interface WithIsStorageSecondaryKeyInUse {
             /**
@@ -564,6 +581,7 @@ public interface SqlPoolBlobAuditingPolicy {
              */
             Update withIsStorageSecondaryKeyInUse(Boolean isStorageSecondaryKeyInUse);
         }
+
         /** The stage of the SqlPoolBlobAuditingPolicy update allowing to specify isAzureMonitorTargetEnabled. */
         interface WithIsAzureMonitorTargetEnabled {
             /**
@@ -598,6 +616,7 @@ public interface SqlPoolBlobAuditingPolicy {
             Update withIsAzureMonitorTargetEnabled(Boolean isAzureMonitorTargetEnabled);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

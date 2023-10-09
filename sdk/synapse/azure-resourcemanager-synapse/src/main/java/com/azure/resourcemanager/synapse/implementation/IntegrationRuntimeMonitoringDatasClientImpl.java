@@ -59,8 +59,7 @@ public final class IntegrationRuntimeMonitoringDatasClientImpl implements Integr
     public interface IntegrationRuntimeMonitoringDatasService {
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces"
-                + "/{workspaceName}/integrationRuntimes/{integrationRuntimeName}/monitoringData")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces/{workspaceName}/integrationRuntimes/{integrationRuntimeName}/monitoringData")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<IntegrationRuntimeMonitoringDataInner>> list(
