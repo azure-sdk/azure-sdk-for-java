@@ -8,9 +8,11 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.securityinsights.models.ContentType;
 import com.azure.resourcemanager.securityinsights.models.DeploymentInfo;
+import com.azure.resourcemanager.securityinsights.models.PullRequest;
 import com.azure.resourcemanager.securityinsights.models.RepoType;
 import com.azure.resourcemanager.securityinsights.models.Repository;
 import com.azure.resourcemanager.securityinsights.models.RepositoryResourceInfo;
+import com.azure.resourcemanager.securityinsights.models.ServicePrincipal;
 import com.azure.resourcemanager.securityinsights.models.Version;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
@@ -21,13 +23,13 @@ public final class SourceControlProperties {
     /*
      * The id (a Guid) of the source control
      */
-    @JsonProperty(value = "id")
+    @JsonProperty(value = "id", access = JsonProperty.Access.WRITE_ONLY)
     private String id;
 
     /*
      * The version number associated with the source control
      */
-    @JsonProperty(value = "version")
+    @JsonProperty(value = "version", access = JsonProperty.Access.WRITE_ONLY)
     private Version version;
 
     /*
@@ -61,6 +63,18 @@ public final class SourceControlProperties {
     private Repository repository;
 
     /*
+     * Service principal metadata.
+     */
+    @JsonProperty(value = "servicePrincipal")
+    private ServicePrincipal servicePrincipal;
+
+    /*
+     * Repository access credentials. This is write-only object and it never returns back to a user.
+     */
+    @JsonProperty(value = "repositoryAccess")
+    private RepositoryAccess repositoryAccess;
+
+    /*
      * Information regarding the resources created in user's repository.
      */
     @JsonProperty(value = "repositoryResourceInfo")
@@ -69,8 +83,18 @@ public final class SourceControlProperties {
     /*
      * Information regarding the latest deployment for the source control.
      */
-    @JsonProperty(value = "lastDeploymentInfo")
+    @JsonProperty(value = "lastDeploymentInfo", access = JsonProperty.Access.WRITE_ONLY)
     private DeploymentInfo lastDeploymentInfo;
+
+    /*
+     * Information regarding the pull request of the source control.
+     */
+    @JsonProperty(value = "pullRequest", access = JsonProperty.Access.WRITE_ONLY)
+    private PullRequest pullRequest;
+
+    /** Creates an instance of SourceControlProperties class. */
+    public SourceControlProperties() {
+    }
 
     /**
      * Get the id property: The id (a Guid) of the source control.
@@ -82,34 +106,12 @@ public final class SourceControlProperties {
     }
 
     /**
-     * Set the id property: The id (a Guid) of the source control.
-     *
-     * @param id the id value to set.
-     * @return the SourceControlProperties object itself.
-     */
-    public SourceControlProperties withId(String id) {
-        this.id = id;
-        return this;
-    }
-
-    /**
      * Get the version property: The version number associated with the source control.
      *
      * @return the version value.
      */
     public Version version() {
         return this.version;
-    }
-
-    /**
-     * Set the version property: The version number associated with the source control.
-     *
-     * @param version the version value to set.
-     * @return the SourceControlProperties object itself.
-     */
-    public SourceControlProperties withVersion(Version version) {
-        this.version = version;
-        return this;
     }
 
     /**
@@ -213,6 +215,48 @@ public final class SourceControlProperties {
     }
 
     /**
+     * Get the servicePrincipal property: Service principal metadata.
+     *
+     * @return the servicePrincipal value.
+     */
+    public ServicePrincipal servicePrincipal() {
+        return this.servicePrincipal;
+    }
+
+    /**
+     * Set the servicePrincipal property: Service principal metadata.
+     *
+     * @param servicePrincipal the servicePrincipal value to set.
+     * @return the SourceControlProperties object itself.
+     */
+    public SourceControlProperties withServicePrincipal(ServicePrincipal servicePrincipal) {
+        this.servicePrincipal = servicePrincipal;
+        return this;
+    }
+
+    /**
+     * Get the repositoryAccess property: Repository access credentials. This is write-only object and it never returns
+     * back to a user.
+     *
+     * @return the repositoryAccess value.
+     */
+    public RepositoryAccess repositoryAccess() {
+        return this.repositoryAccess;
+    }
+
+    /**
+     * Set the repositoryAccess property: Repository access credentials. This is write-only object and it never returns
+     * back to a user.
+     *
+     * @param repositoryAccess the repositoryAccess value to set.
+     * @return the SourceControlProperties object itself.
+     */
+    public SourceControlProperties withRepositoryAccess(RepositoryAccess repositoryAccess) {
+        this.repositoryAccess = repositoryAccess;
+        return this;
+    }
+
+    /**
      * Get the repositoryResourceInfo property: Information regarding the resources created in user's repository.
      *
      * @return the repositoryResourceInfo value.
@@ -242,14 +286,12 @@ public final class SourceControlProperties {
     }
 
     /**
-     * Set the lastDeploymentInfo property: Information regarding the latest deployment for the source control.
+     * Get the pullRequest property: Information regarding the pull request of the source control.
      *
-     * @param lastDeploymentInfo the lastDeploymentInfo value to set.
-     * @return the SourceControlProperties object itself.
+     * @return the pullRequest value.
      */
-    public SourceControlProperties withLastDeploymentInfo(DeploymentInfo lastDeploymentInfo) {
-        this.lastDeploymentInfo = lastDeploymentInfo;
-        return this;
+    public PullRequest pullRequest() {
+        return this.pullRequest;
     }
 
     /**
@@ -284,11 +326,20 @@ public final class SourceControlProperties {
         } else {
             repository().validate();
         }
+        if (servicePrincipal() != null) {
+            servicePrincipal().validate();
+        }
+        if (repositoryAccess() != null) {
+            repositoryAccess().validate();
+        }
         if (repositoryResourceInfo() != null) {
             repositoryResourceInfo().validate();
         }
         if (lastDeploymentInfo() != null) {
             lastDeploymentInfo().validate();
+        }
+        if (pullRequest() != null) {
+            pullRequest().validate();
         }
     }
 

@@ -16,6 +16,10 @@ public final class DataTypeDefinitions {
     @JsonProperty(value = "dataType")
     private String dataType;
 
+    /** Creates an instance of DataTypeDefinitions class. */
+    public DataTypeDefinitions() {
+    }
+
     /**
      * Get the dataType property: The data type name.
      *

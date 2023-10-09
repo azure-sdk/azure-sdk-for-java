@@ -4,12 +4,10 @@
 
 package com.azure.resourcemanager.securityinsights.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for ProductSettings List. */
 public final class ProductSettingsListSamples {
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/settings/GetAllSettings.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2023-10-01-preview/examples/settings/GetAllSettings.json
      */
     /**
      * Sample code: Get all settings.
@@ -17,6 +15,6 @@ public final class ProductSettingsListSamples {
      * @param manager Entry point to SecurityInsightsManager.
      */
     public static void getAllSettings(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
-        manager.productSettings().listWithResponse("myRg", "myWorkspace", Context.NONE);
+        manager.productSettings().listWithResponse("myRg", "myWorkspace", com.azure.core.util.Context.NONE);
     }
 }

@@ -4,22 +4,21 @@
 
 package com.azure.resourcemanager.securityinsights.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Incidents ListEntities. */
 public final class IncidentsListEntitiesSamples {
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/incidents/entities/GetAllIncidentEntities.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2023-10-01-preview/examples/incidents/IncidentEntities/Incidents_ListEntities.json
      */
     /**
-     * Sample code: Gets all incident related entities.
+     * Sample code: Incidents_ListEntities.
      *
      * @param manager Entry point to SecurityInsightsManager.
      */
-    public static void getsAllIncidentRelatedEntities(
+    public static void incidentsListEntities(
         com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
         manager
             .incidents()
-            .listEntitiesWithResponse("myRg", "myWorkspace", "afbd324f-6c48-459c-8710-8d1e1cd03812", Context.NONE);
+            .listEntitiesWithResponse(
+                "myRg", "myWorkspace", "69a30280-6a4c-4aa7-9af0-5d63f335d600", com.azure.core.util.Context.NONE);
     }
 }

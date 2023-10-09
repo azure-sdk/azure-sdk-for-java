@@ -64,12 +64,10 @@ public final class ThreatIntelligenceIndicatorsClientImpl implements ThreatIntel
      */
     @Host("{$host}")
     @ServiceInterface(name = "SecurityInsightsThre")
-    private interface ThreatIntelligenceIndicatorsService {
+    public interface ThreatIntelligenceIndicatorsService {
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights"
-                + "/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/threatIntelligence/main"
-                + "/createIndicator")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/threatIntelligence/main/createIndicator")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ThreatIntelligenceInformationInner>> createIndicator(
@@ -84,9 +82,7 @@ public final class ThreatIntelligenceIndicatorsClientImpl implements ThreatIntel
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights"
-                + "/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/threatIntelligence/main/indicators"
-                + "/{name}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/threatIntelligence/main/indicators/{name}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ThreatIntelligenceInformationInner>> get(
@@ -101,9 +97,7 @@ public final class ThreatIntelligenceIndicatorsClientImpl implements ThreatIntel
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights"
-                + "/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/threatIntelligence/main/indicators"
-                + "/{name}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/threatIntelligence/main/indicators/{name}")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ThreatIntelligenceInformationInner>> create(
@@ -119,9 +113,7 @@ public final class ThreatIntelligenceIndicatorsClientImpl implements ThreatIntel
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights"
-                + "/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/threatIntelligence/main/indicators"
-                + "/{name}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/threatIntelligence/main/indicators/{name}")
         @ExpectedResponses({200, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Void>> delete(
@@ -136,9 +128,7 @@ public final class ThreatIntelligenceIndicatorsClientImpl implements ThreatIntel
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights"
-                + "/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/threatIntelligence/main"
-                + "/queryIndicators")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/threatIntelligence/main/queryIndicators")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ThreatIntelligenceInformationList>> queryIndicators(
@@ -153,9 +143,7 @@ public final class ThreatIntelligenceIndicatorsClientImpl implements ThreatIntel
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights"
-                + "/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/threatIntelligence/main/indicators"
-                + "/{name}/appendTags")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/threatIntelligence/main/indicators/{name}/appendTags")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Void>> appendTags(
@@ -171,9 +159,7 @@ public final class ThreatIntelligenceIndicatorsClientImpl implements ThreatIntel
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights"
-                + "/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/threatIntelligence/main/indicators"
-                + "/{name}/replaceTags")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/threatIntelligence/main/indicators/{name}/replaceTags")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ThreatIntelligenceInformationInner>> replaceTags(
@@ -341,23 +327,6 @@ public final class ThreatIntelligenceIndicatorsClientImpl implements ThreatIntel
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param threatIntelligenceProperties Properties of threat intelligence indicators to create and update.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return threat intelligence information object.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ThreatIntelligenceInformationInner createIndicator(
-        String resourceGroupName, String workspaceName, ThreatIntelligenceIndicatorModel threatIntelligenceProperties) {
-        return createIndicatorAsync(resourceGroupName, workspaceName, threatIntelligenceProperties).block();
-    }
-
-    /**
-     * Create a new threat intelligence indicator.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param threatIntelligenceProperties Properties of threat intelligence indicators to create and update.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -372,6 +341,24 @@ public final class ThreatIntelligenceIndicatorsClientImpl implements ThreatIntel
         Context context) {
         return createIndicatorWithResponseAsync(resourceGroupName, workspaceName, threatIntelligenceProperties, context)
             .block();
+    }
+
+    /**
+     * Create a new threat intelligence indicator.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param threatIntelligenceProperties Properties of threat intelligence indicators to create and update.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return threat intelligence information object.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ThreatIntelligenceInformationInner createIndicator(
+        String resourceGroupName, String workspaceName, ThreatIntelligenceIndicatorModel threatIntelligenceProperties) {
+        return createIndicatorWithResponse(resourceGroupName, workspaceName, threatIntelligenceProperties, Context.NONE)
+            .getValue();
     }
 
     /**
@@ -504,22 +491,6 @@ public final class ThreatIntelligenceIndicatorsClientImpl implements ThreatIntel
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param name Threat intelligence indicator name field.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return threat intelligence information object.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ThreatIntelligenceInformationInner get(String resourceGroupName, String workspaceName, String name) {
-        return getAsync(resourceGroupName, workspaceName, name).block();
-    }
-
-    /**
-     * View a threat intelligence indicator by name.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param name Threat intelligence indicator name field.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -530,6 +501,22 @@ public final class ThreatIntelligenceIndicatorsClientImpl implements ThreatIntel
     public Response<ThreatIntelligenceInformationInner> getWithResponse(
         String resourceGroupName, String workspaceName, String name, Context context) {
         return getWithResponseAsync(resourceGroupName, workspaceName, name, context).block();
+    }
+
+    /**
+     * View a threat intelligence indicator by name.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param name Threat intelligence indicator name field.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return threat intelligence information object.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ThreatIntelligenceInformationInner get(String resourceGroupName, String workspaceName, String name) {
+        return getWithResponse(resourceGroupName, workspaceName, name, Context.NONE).getValue();
     }
 
     /**
@@ -694,27 +681,6 @@ public final class ThreatIntelligenceIndicatorsClientImpl implements ThreatIntel
      * @param workspaceName The name of the workspace.
      * @param name Threat intelligence indicator name field.
      * @param threatIntelligenceProperties Properties of threat intelligence indicators to create and update.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return threat intelligence information object.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ThreatIntelligenceInformationInner create(
-        String resourceGroupName,
-        String workspaceName,
-        String name,
-        ThreatIntelligenceIndicatorModel threatIntelligenceProperties) {
-        return createAsync(resourceGroupName, workspaceName, name, threatIntelligenceProperties).block();
-    }
-
-    /**
-     * Update a threat Intelligence indicator.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param name Threat intelligence indicator name field.
-     * @param threatIntelligenceProperties Properties of threat intelligence indicators to create and update.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -730,6 +696,28 @@ public final class ThreatIntelligenceIndicatorsClientImpl implements ThreatIntel
         Context context) {
         return createWithResponseAsync(resourceGroupName, workspaceName, name, threatIntelligenceProperties, context)
             .block();
+    }
+
+    /**
+     * Update a threat Intelligence indicator.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param name Threat intelligence indicator name field.
+     * @param threatIntelligenceProperties Properties of threat intelligence indicators to create and update.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return threat intelligence information object.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ThreatIntelligenceInformationInner create(
+        String resourceGroupName,
+        String workspaceName,
+        String name,
+        ThreatIntelligenceIndicatorModel threatIntelligenceProperties) {
+        return createWithResponse(resourceGroupName, workspaceName, name, threatIntelligenceProperties, Context.NONE)
+            .getValue();
     }
 
     /**
@@ -857,21 +845,6 @@ public final class ThreatIntelligenceIndicatorsClientImpl implements ThreatIntel
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param name Threat intelligence indicator name field.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceGroupName, String workspaceName, String name) {
-        deleteAsync(resourceGroupName, workspaceName, name).block();
-    }
-
-    /**
-     * Delete a threat intelligence indicator.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param name Threat intelligence indicator name field.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -882,6 +855,21 @@ public final class ThreatIntelligenceIndicatorsClientImpl implements ThreatIntel
     public Response<Void> deleteWithResponse(
         String resourceGroupName, String workspaceName, String name, Context context) {
         return deleteWithResponseAsync(resourceGroupName, workspaceName, name, context).block();
+    }
+
+    /**
+     * Delete a threat intelligence indicator.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param name Threat intelligence indicator name field.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void delete(String resourceGroupName, String workspaceName, String name) {
+        deleteWithResponse(resourceGroupName, workspaceName, name, Context.NONE);
     }
 
     /**
@@ -1271,26 +1259,6 @@ public final class ThreatIntelligenceIndicatorsClientImpl implements ThreatIntel
      * @param workspaceName The name of the workspace.
      * @param name Threat intelligence indicator name field.
      * @param threatIntelligenceAppendTags The threat intelligence append tags request body.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void appendTags(
-        String resourceGroupName,
-        String workspaceName,
-        String name,
-        ThreatIntelligenceAppendTags threatIntelligenceAppendTags) {
-        appendTagsAsync(resourceGroupName, workspaceName, name, threatIntelligenceAppendTags).block();
-    }
-
-    /**
-     * Append tags to a threat intelligence indicator.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param name Threat intelligence indicator name field.
-     * @param threatIntelligenceAppendTags The threat intelligence append tags request body.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1307,6 +1275,26 @@ public final class ThreatIntelligenceIndicatorsClientImpl implements ThreatIntel
         return appendTagsWithResponseAsync(
                 resourceGroupName, workspaceName, name, threatIntelligenceAppendTags, context)
             .block();
+    }
+
+    /**
+     * Append tags to a threat intelligence indicator.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param name Threat intelligence indicator name field.
+     * @param threatIntelligenceAppendTags The threat intelligence append tags request body.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void appendTags(
+        String resourceGroupName,
+        String workspaceName,
+        String name,
+        ThreatIntelligenceAppendTags threatIntelligenceAppendTags) {
+        appendTagsWithResponse(resourceGroupName, workspaceName, name, threatIntelligenceAppendTags, Context.NONE);
     }
 
     /**
@@ -1471,27 +1459,6 @@ public final class ThreatIntelligenceIndicatorsClientImpl implements ThreatIntel
      * @param workspaceName The name of the workspace.
      * @param name Threat intelligence indicator name field.
      * @param threatIntelligenceReplaceTags Tags in the threat intelligence indicator to be replaced.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return threat intelligence information object.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ThreatIntelligenceInformationInner replaceTags(
-        String resourceGroupName,
-        String workspaceName,
-        String name,
-        ThreatIntelligenceIndicatorModel threatIntelligenceReplaceTags) {
-        return replaceTagsAsync(resourceGroupName, workspaceName, name, threatIntelligenceReplaceTags).block();
-    }
-
-    /**
-     * Replace tags added to a threat intelligence indicator.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param name Threat intelligence indicator name field.
-     * @param threatIntelligenceReplaceTags Tags in the threat intelligence indicator to be replaced.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1508,6 +1475,29 @@ public final class ThreatIntelligenceIndicatorsClientImpl implements ThreatIntel
         return replaceTagsWithResponseAsync(
                 resourceGroupName, workspaceName, name, threatIntelligenceReplaceTags, context)
             .block();
+    }
+
+    /**
+     * Replace tags added to a threat intelligence indicator.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param name Threat intelligence indicator name field.
+     * @param threatIntelligenceReplaceTags Tags in the threat intelligence indicator to be replaced.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return threat intelligence information object.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ThreatIntelligenceInformationInner replaceTags(
+        String resourceGroupName,
+        String workspaceName,
+        String name,
+        ThreatIntelligenceIndicatorModel threatIntelligenceReplaceTags) {
+        return replaceTagsWithResponse(
+                resourceGroupName, workspaceName, name, threatIntelligenceReplaceTags, Context.NONE)
+            .getValue();
     }
 
     /**

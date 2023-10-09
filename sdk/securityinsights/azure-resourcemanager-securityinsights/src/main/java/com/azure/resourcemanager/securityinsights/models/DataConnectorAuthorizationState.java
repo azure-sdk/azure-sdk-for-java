@@ -17,6 +17,15 @@ public final class DataConnectorAuthorizationState extends ExpandableStringEnum<
     public static final DataConnectorAuthorizationState INVALID = fromString("Invalid");
 
     /**
+     * Creates a new instance of DataConnectorAuthorizationState value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public DataConnectorAuthorizationState() {
+    }
+
+    /**
      * Creates or finds a DataConnectorAuthorizationState from its string representation.
      *
      * @param name a name to look for.

@@ -77,6 +77,15 @@ public final class EntityType extends ExpandableStringEnum<EntityType> {
     public static final EntityType NIC = fromString("Nic");
 
     /**
+     * Creates a new instance of EntityType value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public EntityType() {
+    }
+
+    /**
      * Creates or finds a EntityType from its string representation.
      *
      * @param name a name to look for.

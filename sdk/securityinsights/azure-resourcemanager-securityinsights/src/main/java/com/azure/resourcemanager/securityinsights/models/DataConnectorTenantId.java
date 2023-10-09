@@ -17,6 +17,10 @@ public class DataConnectorTenantId {
     @JsonProperty(value = "tenantId", required = true)
     private String tenantId;
 
+    /** Creates an instance of DataConnectorTenantId class. */
+    public DataConnectorTenantId() {
+    }
+
     /**
      * Get the tenantId property: The tenant id to connect to, and get the data from.
      *

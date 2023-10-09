@@ -41,19 +41,6 @@ public interface OfficeConsents {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param consentId consent ID.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an office365 consent.
-     */
-    OfficeConsent get(String resourceGroupName, String workspaceName, String consentId);
-
-    /**
-     * Gets an office365 consent.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param consentId consent ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -64,7 +51,7 @@ public interface OfficeConsents {
         String resourceGroupName, String workspaceName, String consentId, Context context);
 
     /**
-     * Delete the office365 consent.
+     * Gets an office365 consent.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -72,8 +59,9 @@ public interface OfficeConsents {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return an office365 consent.
      */
-    void delete(String resourceGroupName, String workspaceName, String consentId);
+    OfficeConsent get(String resourceGroupName, String workspaceName, String consentId);
 
     /**
      * Delete the office365 consent.
@@ -89,4 +77,16 @@ public interface OfficeConsents {
      */
     Response<Void> deleteWithResponse(
         String resourceGroupName, String workspaceName, String consentId, Context context);
+
+    /**
+     * Delete the office365 consent.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param consentId consent ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void delete(String resourceGroupName, String workspaceName, String consentId);
 }

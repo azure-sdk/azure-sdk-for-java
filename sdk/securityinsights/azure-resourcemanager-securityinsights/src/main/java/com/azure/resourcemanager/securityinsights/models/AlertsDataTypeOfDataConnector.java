@@ -17,6 +17,10 @@ public class AlertsDataTypeOfDataConnector {
     @JsonProperty(value = "alerts", required = true)
     private DataConnectorDataTypeCommon alerts;
 
+    /** Creates an instance of AlertsDataTypeOfDataConnector class. */
+    public AlertsDataTypeOfDataConnector() {
+    }
+
     /**
      * Get the alerts property: Alerts data type connection.
      *

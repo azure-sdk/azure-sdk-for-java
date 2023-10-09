@@ -4,12 +4,10 @@
 
 package com.azure.resourcemanager.securityinsights.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for EntitiesRelations List. */
 public final class EntitiesRelationsListSamples {
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/entities/relations/GetAllEntityRelations.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2023-10-01-preview/examples/entities/relations/GetAllEntityRelations.json
      */
     /**
      * Sample code: Get all relations of an entity.
@@ -20,6 +18,14 @@ public final class EntitiesRelationsListSamples {
         com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
         manager
             .entitiesRelations()
-            .list("myRg", "myWorkspace", "afbd324f-6c48-459c-8710-8d1e1cd03812", null, null, null, null, Context.NONE);
+            .list(
+                "myRg",
+                "myWorkspace",
+                "afbd324f-6c48-459c-8710-8d1e1cd03812",
+                null,
+                null,
+                null,
+                null,
+                com.azure.core.util.Context.NONE);
     }
 }

@@ -63,11 +63,10 @@ public final class FileImportsClientImpl implements FileImportsClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "SecurityInsightsFile")
-    private interface FileImportsService {
+    public interface FileImportsService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights"
-                + "/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/fileImports")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/fileImports")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<FileImportList>> list(
@@ -85,8 +84,7 @@ public final class FileImportsClientImpl implements FileImportsClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights"
-                + "/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/fileImports/{fileImportId}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/fileImports/{fileImportId}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<FileImportInner>> get(
@@ -101,8 +99,7 @@ public final class FileImportsClientImpl implements FileImportsClient {
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights"
-                + "/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/fileImports/{fileImportId}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/fileImports/{fileImportId}")
         @ExpectedResponses({201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<FileImportInner>> create(
@@ -118,8 +115,7 @@ public final class FileImportsClientImpl implements FileImportsClient {
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights"
-                + "/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/fileImports/{fileImportId}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/fileImports/{fileImportId}")
         @ExpectedResponses({202, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(
@@ -533,22 +529,6 @@ public final class FileImportsClientImpl implements FileImportsClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param fileImportId File import ID.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a file import.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public FileImportInner get(String resourceGroupName, String workspaceName, String fileImportId) {
-        return getAsync(resourceGroupName, workspaceName, fileImportId).block();
-    }
-
-    /**
-     * Gets a file import.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param fileImportId File import ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -559,6 +539,22 @@ public final class FileImportsClientImpl implements FileImportsClient {
     public Response<FileImportInner> getWithResponse(
         String resourceGroupName, String workspaceName, String fileImportId, Context context) {
         return getWithResponseAsync(resourceGroupName, workspaceName, fileImportId, context).block();
+    }
+
+    /**
+     * Gets a file import.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param fileImportId File import ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a file import.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public FileImportInner get(String resourceGroupName, String workspaceName, String fileImportId) {
+        return getWithResponse(resourceGroupName, workspaceName, fileImportId, Context.NONE).getValue();
     }
 
     /**
@@ -711,24 +707,6 @@ public final class FileImportsClientImpl implements FileImportsClient {
      * @param workspaceName The name of the workspace.
      * @param fileImportId File import ID.
      * @param fileImport The file import.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a file import in Azure Security Insights.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public FileImportInner create(
-        String resourceGroupName, String workspaceName, String fileImportId, FileImportInner fileImport) {
-        return createAsync(resourceGroupName, workspaceName, fileImportId, fileImport).block();
-    }
-
-    /**
-     * Creates the file import.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param fileImportId File import ID.
-     * @param fileImport The file import.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -743,6 +721,24 @@ public final class FileImportsClientImpl implements FileImportsClient {
         FileImportInner fileImport,
         Context context) {
         return createWithResponseAsync(resourceGroupName, workspaceName, fileImportId, fileImport, context).block();
+    }
+
+    /**
+     * Creates the file import.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param fileImportId File import ID.
+     * @param fileImport The file import.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return represents a file import in Azure Security Insights.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public FileImportInner create(
+        String resourceGroupName, String workspaceName, String fileImportId, FileImportInner fileImport) {
+        return createWithResponse(resourceGroupName, workspaceName, fileImportId, fileImport, Context.NONE).getValue();
     }
 
     /**
@@ -914,7 +910,7 @@ public final class FileImportsClientImpl implements FileImportsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<FileImportInner>, FileImportInner> beginDelete(
         String resourceGroupName, String workspaceName, String fileImportId) {
-        return beginDeleteAsync(resourceGroupName, workspaceName, fileImportId).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, workspaceName, fileImportId).getSyncPoller();
     }
 
     /**
@@ -932,7 +928,7 @@ public final class FileImportsClientImpl implements FileImportsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<FileImportInner>, FileImportInner> beginDelete(
         String resourceGroupName, String workspaceName, String fileImportId, Context context) {
-        return beginDeleteAsync(resourceGroupName, workspaceName, fileImportId, context).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, workspaceName, fileImportId, context).getSyncPoller();
     }
 
     /**

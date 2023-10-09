@@ -29,6 +29,10 @@ public final class MetadataSource {
     @JsonProperty(value = "sourceId")
     private String sourceId;
 
+    /** Creates an instance of MetadataSource class. */
+    public MetadataSource() {
+    }
+
     /**
      * Get the kind property: Source type of the content.
      *

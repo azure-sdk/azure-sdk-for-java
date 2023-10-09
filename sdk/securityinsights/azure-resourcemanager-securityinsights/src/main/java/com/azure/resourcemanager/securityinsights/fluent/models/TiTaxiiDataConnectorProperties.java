@@ -69,6 +69,10 @@ public final class TiTaxiiDataConnectorProperties extends DataConnectorTenantId 
     @JsonProperty(value = "dataTypes", required = true)
     private TiTaxiiDataConnectorDataTypes dataTypes;
 
+    /** Creates an instance of TiTaxiiDataConnectorProperties class. */
+    public TiTaxiiDataConnectorProperties() {
+    }
+
     /**
      * Get the workspaceId property: The workspace id.
      *

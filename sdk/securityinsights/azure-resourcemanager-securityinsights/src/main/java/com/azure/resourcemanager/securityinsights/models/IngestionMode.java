@@ -20,6 +20,15 @@ public final class IngestionMode extends ExpandableStringEnum<IngestionMode> {
     public static final IngestionMode UNSPECIFIED = fromString("Unspecified");
 
     /**
+     * Creates a new instance of IngestionMode value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public IngestionMode() {
+    }
+
+    /**
      * Creates or finds a IngestionMode from its string representation.
      *
      * @param name a name to look for.

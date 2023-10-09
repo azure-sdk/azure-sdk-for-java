@@ -53,6 +53,10 @@ public final class IncidentPropertiesAction {
     @JsonProperty(value = "labels")
     private List<IncidentLabel> labels;
 
+    /** Creates an instance of IncidentPropertiesAction class. */
+    public IncidentPropertiesAction() {
+    }
+
     /**
      * Get the severity property: The severity of the incident.
      *

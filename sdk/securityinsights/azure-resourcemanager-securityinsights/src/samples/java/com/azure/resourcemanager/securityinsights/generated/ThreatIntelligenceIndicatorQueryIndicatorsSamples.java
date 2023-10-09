@@ -4,16 +4,15 @@
 
 package com.azure.resourcemanager.securityinsights.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.securityinsights.models.ThreatIntelligenceFilteringCriteria;
 import com.azure.resourcemanager.securityinsights.models.ThreatIntelligenceSortingCriteria;
-import com.azure.resourcemanager.securityinsights.models.ThreatIntelligenceSortingCriteriaEnum;
+import com.azure.resourcemanager.securityinsights.models.ThreatIntelligenceSortingOrder;
 import java.util.Arrays;
 
 /** Samples for ThreatIntelligenceIndicator QueryIndicators. */
 public final class ThreatIntelligenceIndicatorQueryIndicatorsSamples {
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/threatintelligence/QueryThreatIntelligence.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2023-10-01-preview/examples/threatintelligence/QueryThreatIntelligence.json
      */
     /**
      * Sample code: Query threat intelligence indicators as per filtering criteria.
@@ -37,9 +36,9 @@ public final class ThreatIntelligenceIndicatorQueryIndicatorsSamples {
                         Arrays
                             .asList(
                                 new ThreatIntelligenceSortingCriteria()
-                                    .withItemKey("lastUpdatedTimeUtc")
-                                    .withSortOrder(ThreatIntelligenceSortingCriteriaEnum.DESCENDING)))
+                                    .withItemKey("fakeTokenPlaceholder")
+                                    .withSortOrder(ThreatIntelligenceSortingOrder.DESCENDING)))
                     .withSources(Arrays.asList("Azure Sentinel")),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

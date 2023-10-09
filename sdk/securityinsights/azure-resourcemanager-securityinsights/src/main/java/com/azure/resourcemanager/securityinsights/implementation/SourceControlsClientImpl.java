@@ -30,7 +30,7 @@ import com.azure.core.util.FluxUtil;
 import com.azure.resourcemanager.securityinsights.fluent.SourceControlsClient;
 import com.azure.resourcemanager.securityinsights.fluent.models.RepoInner;
 import com.azure.resourcemanager.securityinsights.models.RepoList;
-import com.azure.resourcemanager.securityinsights.models.RepoType;
+import com.azure.resourcemanager.securityinsights.models.RepositoryAccessProperties;
 import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in SourceControlsClient. */
@@ -58,11 +58,10 @@ public final class SourceControlsClientImpl implements SourceControlsClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "SecurityInsightsSour")
-    private interface SourceControlsService {
+    public interface SourceControlsService {
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights"
-                + "/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/listRepositories")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/listRepositories")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<RepoList>> listRepositories(
@@ -71,7 +70,7 @@ public final class SourceControlsClientImpl implements SourceControlsClient {
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("workspaceName") String workspaceName,
-            @BodyParam("application/json") RepoType repoType,
+            @BodyParam("application/json") RepositoryAccessProperties repositoryAccess,
             @HeaderParam("Accept") String accept,
             Context context);
 
@@ -91,7 +90,7 @@ public final class SourceControlsClientImpl implements SourceControlsClient {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
-     * @param repoType The repo type.
+     * @param repositoryAccess The repository access credentials.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -100,7 +99,7 @@ public final class SourceControlsClientImpl implements SourceControlsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<RepoInner>> listRepositoriesSinglePageAsync(
-        String resourceGroupName, String workspaceName, RepoType repoType) {
+        String resourceGroupName, String workspaceName, RepositoryAccessProperties repositoryAccess) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -120,8 +119,11 @@ public final class SourceControlsClientImpl implements SourceControlsClient {
         if (workspaceName == null) {
             return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
         }
-        if (repoType == null) {
-            return Mono.error(new IllegalArgumentException("Parameter repoType is required and cannot be null."));
+        if (repositoryAccess == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter repositoryAccess is required and cannot be null."));
+        } else {
+            repositoryAccess.validate();
         }
         final String accept = "application/json";
         return FluxUtil
@@ -134,7 +136,7 @@ public final class SourceControlsClientImpl implements SourceControlsClient {
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
-                            repoType,
+                            repositoryAccess,
                             accept,
                             context))
             .<PagedResponse<RepoInner>>map(
@@ -154,7 +156,7 @@ public final class SourceControlsClientImpl implements SourceControlsClient {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
-     * @param repoType The repo type.
+     * @param repositoryAccess The repository access credentials.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -164,7 +166,7 @@ public final class SourceControlsClientImpl implements SourceControlsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<RepoInner>> listRepositoriesSinglePageAsync(
-        String resourceGroupName, String workspaceName, RepoType repoType, Context context) {
+        String resourceGroupName, String workspaceName, RepositoryAccessProperties repositoryAccess, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -184,8 +186,11 @@ public final class SourceControlsClientImpl implements SourceControlsClient {
         if (workspaceName == null) {
             return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
         }
-        if (repoType == null) {
-            return Mono.error(new IllegalArgumentException("Parameter repoType is required and cannot be null."));
+        if (repositoryAccess == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter repositoryAccess is required and cannot be null."));
+        } else {
+            repositoryAccess.validate();
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
@@ -196,7 +201,7 @@ public final class SourceControlsClientImpl implements SourceControlsClient {
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,
-                repoType,
+                repositoryAccess,
                 accept,
                 context)
             .map(
@@ -215,7 +220,7 @@ public final class SourceControlsClientImpl implements SourceControlsClient {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
-     * @param repoType The repo type.
+     * @param repositoryAccess The repository access credentials.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -223,9 +228,9 @@ public final class SourceControlsClientImpl implements SourceControlsClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<RepoInner> listRepositoriesAsync(
-        String resourceGroupName, String workspaceName, RepoType repoType) {
+        String resourceGroupName, String workspaceName, RepositoryAccessProperties repositoryAccess) {
         return new PagedFlux<>(
-            () -> listRepositoriesSinglePageAsync(resourceGroupName, workspaceName, repoType),
+            () -> listRepositoriesSinglePageAsync(resourceGroupName, workspaceName, repositoryAccess),
             nextLink -> listRepositoriesNextSinglePageAsync(nextLink));
     }
 
@@ -234,7 +239,7 @@ public final class SourceControlsClientImpl implements SourceControlsClient {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
-     * @param repoType The repo type.
+     * @param repositoryAccess The repository access credentials.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -243,9 +248,9 @@ public final class SourceControlsClientImpl implements SourceControlsClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<RepoInner> listRepositoriesAsync(
-        String resourceGroupName, String workspaceName, RepoType repoType, Context context) {
+        String resourceGroupName, String workspaceName, RepositoryAccessProperties repositoryAccess, Context context) {
         return new PagedFlux<>(
-            () -> listRepositoriesSinglePageAsync(resourceGroupName, workspaceName, repoType, context),
+            () -> listRepositoriesSinglePageAsync(resourceGroupName, workspaceName, repositoryAccess, context),
             nextLink -> listRepositoriesNextSinglePageAsync(nextLink, context));
     }
 
@@ -254,7 +259,7 @@ public final class SourceControlsClientImpl implements SourceControlsClient {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
-     * @param repoType The repo type.
+     * @param repositoryAccess The repository access credentials.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -262,8 +267,8 @@ public final class SourceControlsClientImpl implements SourceControlsClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<RepoInner> listRepositories(
-        String resourceGroupName, String workspaceName, RepoType repoType) {
-        return new PagedIterable<>(listRepositoriesAsync(resourceGroupName, workspaceName, repoType));
+        String resourceGroupName, String workspaceName, RepositoryAccessProperties repositoryAccess) {
+        return new PagedIterable<>(listRepositoriesAsync(resourceGroupName, workspaceName, repositoryAccess));
     }
 
     /**
@@ -271,7 +276,7 @@ public final class SourceControlsClientImpl implements SourceControlsClient {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
-     * @param repoType The repo type.
+     * @param repositoryAccess The repository access credentials.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -280,8 +285,8 @@ public final class SourceControlsClientImpl implements SourceControlsClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<RepoInner> listRepositories(
-        String resourceGroupName, String workspaceName, RepoType repoType, Context context) {
-        return new PagedIterable<>(listRepositoriesAsync(resourceGroupName, workspaceName, repoType, context));
+        String resourceGroupName, String workspaceName, RepositoryAccessProperties repositoryAccess, Context context) {
+        return new PagedIterable<>(listRepositoriesAsync(resourceGroupName, workspaceName, repositoryAccess, context));
     }
 
     /**

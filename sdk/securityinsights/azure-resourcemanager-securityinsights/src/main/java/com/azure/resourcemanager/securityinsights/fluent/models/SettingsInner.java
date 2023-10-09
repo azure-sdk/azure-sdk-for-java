@@ -29,6 +29,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 })
 @Fluent
 public class SettingsInner extends ResourceWithEtag {
+    /** Creates an instance of SettingsInner class. */
+    public SettingsInner() {
+    }
+
     /** {@inheritDoc} */
     @Override
     public SettingsInner withEtag(String etag) {

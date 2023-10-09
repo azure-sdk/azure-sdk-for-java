@@ -4,16 +4,22 @@
 
 package com.azure.resourcemanager.securityinsights.implementation;
 
+import com.azure.core.http.rest.Response;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
+import com.azure.resourcemanager.securityinsights.fluent.models.RepositoryAccess;
 import com.azure.resourcemanager.securityinsights.fluent.models.SourceControlInner;
 import com.azure.resourcemanager.securityinsights.models.ContentType;
 import com.azure.resourcemanager.securityinsights.models.DeploymentInfo;
+import com.azure.resourcemanager.securityinsights.models.PullRequest;
 import com.azure.resourcemanager.securityinsights.models.RepoType;
 import com.azure.resourcemanager.securityinsights.models.Repository;
+import com.azure.resourcemanager.securityinsights.models.RepositoryAccessProperties;
 import com.azure.resourcemanager.securityinsights.models.RepositoryResourceInfo;
+import com.azure.resourcemanager.securityinsights.models.ServicePrincipal;
 import com.azure.resourcemanager.securityinsights.models.SourceControl;
 import com.azure.resourcemanager.securityinsights.models.Version;
+import com.azure.resourcemanager.securityinsights.models.Warning;
 import java.util.Collections;
 import java.util.List;
 
@@ -82,12 +88,24 @@ public final class SourceControlImpl implements SourceControl, SourceControl.Def
         return this.innerModel().repository();
     }
 
+    public ServicePrincipal servicePrincipal() {
+        return this.innerModel().servicePrincipal();
+    }
+
+    public RepositoryAccess repositoryAccess() {
+        return this.innerModel().repositoryAccess();
+    }
+
     public RepositoryResourceInfo repositoryResourceInfo() {
         return this.innerModel().repositoryResourceInfo();
     }
 
     public DeploymentInfo lastDeploymentInfo() {
         return this.innerModel().lastDeploymentInfo();
+    }
+
+    public PullRequest pullRequest() {
+        return this.innerModel().pullRequest();
     }
 
     public SourceControlInner innerModel() {
@@ -156,28 +174,20 @@ public final class SourceControlImpl implements SourceControl, SourceControl.Def
         return this;
     }
 
-    public SourceControlImpl withEtag(String etag) {
-        this.innerModel().withEtag(etag);
-        return this;
+    public Response<Warning> deleteWithResponse(RepositoryAccessProperties repositoryAccess, Context context) {
+        return serviceManager
+            .sourceControlsOperations()
+            .deleteWithResponse(resourceGroupName, workspaceName, sourceControlId, repositoryAccess, context);
     }
 
-    public SourceControlImpl withIdPropertiesId(String idPropertiesId) {
-        this.innerModel().withIdPropertiesId(idPropertiesId);
-        return this;
-    }
-
-    public SourceControlImpl withVersion(Version version) {
-        this.innerModel().withVersion(version);
-        return this;
+    public Warning delete(RepositoryAccessProperties repositoryAccess) {
+        return serviceManager
+            .sourceControlsOperations()
+            .delete(resourceGroupName, workspaceName, sourceControlId, repositoryAccess);
     }
 
     public SourceControlImpl withDisplayName(String displayName) {
         this.innerModel().withDisplayName(displayName);
-        return this;
-    }
-
-    public SourceControlImpl withDescription(String description) {
-        this.innerModel().withDescription(description);
         return this;
     }
 
@@ -196,13 +206,28 @@ public final class SourceControlImpl implements SourceControl, SourceControl.Def
         return this;
     }
 
-    public SourceControlImpl withRepositoryResourceInfo(RepositoryResourceInfo repositoryResourceInfo) {
-        this.innerModel().withRepositoryResourceInfo(repositoryResourceInfo);
+    public SourceControlImpl withEtag(String etag) {
+        this.innerModel().withEtag(etag);
         return this;
     }
 
-    public SourceControlImpl withLastDeploymentInfo(DeploymentInfo lastDeploymentInfo) {
-        this.innerModel().withLastDeploymentInfo(lastDeploymentInfo);
+    public SourceControlImpl withDescription(String description) {
+        this.innerModel().withDescription(description);
+        return this;
+    }
+
+    public SourceControlImpl withServicePrincipal(ServicePrincipal servicePrincipal) {
+        this.innerModel().withServicePrincipal(servicePrincipal);
+        return this;
+    }
+
+    public SourceControlImpl withRepositoryAccess(RepositoryAccess repositoryAccess) {
+        this.innerModel().withRepositoryAccess(repositoryAccess);
+        return this;
+    }
+
+    public SourceControlImpl withRepositoryResourceInfo(RepositoryResourceInfo repositoryResourceInfo) {
+        this.innerModel().withRepositoryResourceInfo(repositoryResourceInfo);
         return this;
     }
 }

@@ -58,6 +58,10 @@ public final class ActivityTimelineItem extends EntityTimelineItem {
     @JsonProperty(value = "title", required = true)
     private String title;
 
+    /** Creates an instance of ActivityTimelineItem class. */
+    public ActivityTimelineItem() {
+    }
+
     /**
      * Get the queryId property: The activity query id.
      *

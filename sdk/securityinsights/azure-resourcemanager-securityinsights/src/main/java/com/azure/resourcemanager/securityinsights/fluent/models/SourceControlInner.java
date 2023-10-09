@@ -5,12 +5,15 @@
 package com.azure.resourcemanager.securityinsights.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.securityinsights.models.ContentType;
 import com.azure.resourcemanager.securityinsights.models.DeploymentInfo;
+import com.azure.resourcemanager.securityinsights.models.PullRequest;
 import com.azure.resourcemanager.securityinsights.models.RepoType;
 import com.azure.resourcemanager.securityinsights.models.Repository;
 import com.azure.resourcemanager.securityinsights.models.RepositoryResourceInfo;
 import com.azure.resourcemanager.securityinsights.models.ResourceWithEtag;
+import com.azure.resourcemanager.securityinsights.models.ServicePrincipal;
 import com.azure.resourcemanager.securityinsights.models.Version;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
@@ -21,8 +24,12 @@ public final class SourceControlInner extends ResourceWithEtag {
     /*
      * source control properties
      */
-    @JsonProperty(value = "properties")
-    private SourceControlProperties innerProperties;
+    @JsonProperty(value = "properties", required = true)
+    private SourceControlProperties innerProperties = new SourceControlProperties();
+
+    /** Creates an instance of SourceControlInner class. */
+    public SourceControlInner() {
+    }
 
     /**
      * Get the innerProperties property: source control properties.
@@ -50,40 +57,12 @@ public final class SourceControlInner extends ResourceWithEtag {
     }
 
     /**
-     * Set the id property: The id (a Guid) of the source control.
-     *
-     * @param id the id value to set.
-     * @return the SourceControlInner object itself.
-     */
-    public SourceControlInner withIdPropertiesId(String id) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new SourceControlProperties();
-        }
-        this.innerProperties().withId(id);
-        return this;
-    }
-
-    /**
      * Get the version property: The version number associated with the source control.
      *
      * @return the version value.
      */
     public Version version() {
         return this.innerProperties() == null ? null : this.innerProperties().version();
-    }
-
-    /**
-     * Set the version property: The version number associated with the source control.
-     *
-     * @param version the version value to set.
-     * @return the SourceControlInner object itself.
-     */
-    public SourceControlInner withVersion(Version version) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new SourceControlProperties();
-        }
-        this.innerProperties().withVersion(version);
-        return this;
     }
 
     /**
@@ -202,6 +181,54 @@ public final class SourceControlInner extends ResourceWithEtag {
     }
 
     /**
+     * Get the servicePrincipal property: Service principal metadata.
+     *
+     * @return the servicePrincipal value.
+     */
+    public ServicePrincipal servicePrincipal() {
+        return this.innerProperties() == null ? null : this.innerProperties().servicePrincipal();
+    }
+
+    /**
+     * Set the servicePrincipal property: Service principal metadata.
+     *
+     * @param servicePrincipal the servicePrincipal value to set.
+     * @return the SourceControlInner object itself.
+     */
+    public SourceControlInner withServicePrincipal(ServicePrincipal servicePrincipal) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new SourceControlProperties();
+        }
+        this.innerProperties().withServicePrincipal(servicePrincipal);
+        return this;
+    }
+
+    /**
+     * Get the repositoryAccess property: Repository access credentials. This is write-only object and it never returns
+     * back to a user.
+     *
+     * @return the repositoryAccess value.
+     */
+    public RepositoryAccess repositoryAccess() {
+        return this.innerProperties() == null ? null : this.innerProperties().repositoryAccess();
+    }
+
+    /**
+     * Set the repositoryAccess property: Repository access credentials. This is write-only object and it never returns
+     * back to a user.
+     *
+     * @param repositoryAccess the repositoryAccess value to set.
+     * @return the SourceControlInner object itself.
+     */
+    public SourceControlInner withRepositoryAccess(RepositoryAccess repositoryAccess) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new SourceControlProperties();
+        }
+        this.innerProperties().withRepositoryAccess(repositoryAccess);
+        return this;
+    }
+
+    /**
      * Get the repositoryResourceInfo property: Information regarding the resources created in user's repository.
      *
      * @return the repositoryResourceInfo value.
@@ -234,17 +261,12 @@ public final class SourceControlInner extends ResourceWithEtag {
     }
 
     /**
-     * Set the lastDeploymentInfo property: Information regarding the latest deployment for the source control.
+     * Get the pullRequest property: Information regarding the pull request of the source control.
      *
-     * @param lastDeploymentInfo the lastDeploymentInfo value to set.
-     * @return the SourceControlInner object itself.
+     * @return the pullRequest value.
      */
-    public SourceControlInner withLastDeploymentInfo(DeploymentInfo lastDeploymentInfo) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new SourceControlProperties();
-        }
-        this.innerProperties().withLastDeploymentInfo(lastDeploymentInfo);
-        return this;
+    public PullRequest pullRequest() {
+        return this.innerProperties() == null ? null : this.innerProperties().pullRequest();
     }
 
     /**
@@ -255,8 +277,15 @@ public final class SourceControlInner extends ResourceWithEtag {
     @Override
     public void validate() {
         super.validate();
-        if (innerProperties() != null) {
+        if (innerProperties() == null) {
+            throw LOGGER
+                .logExceptionAsError(
+                    new IllegalArgumentException(
+                        "Missing required property innerProperties in model SourceControlInner"));
+        } else {
             innerProperties().validate();
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(SourceControlInner.class);
 }

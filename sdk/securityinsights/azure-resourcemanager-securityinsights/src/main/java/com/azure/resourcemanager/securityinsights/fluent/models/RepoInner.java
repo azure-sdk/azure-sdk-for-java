@@ -24,10 +24,20 @@ public final class RepoInner {
     private String fullName;
 
     /*
+     * The installation id of the repository.
+     */
+    @JsonProperty(value = "installationId")
+    private Long installationId;
+
+    /*
      * Array of branches.
      */
     @JsonProperty(value = "branches")
     private List<String> branches;
+
+    /** Creates an instance of RepoInner class. */
+    public RepoInner() {
+    }
 
     /**
      * Get the url property: The url to access the repository.
@@ -66,6 +76,26 @@ public final class RepoInner {
      */
     public RepoInner withFullName(String fullName) {
         this.fullName = fullName;
+        return this;
+    }
+
+    /**
+     * Get the installationId property: The installation id of the repository.
+     *
+     * @return the installationId value.
+     */
+    public Long installationId() {
+        return this.installationId;
+    }
+
+    /**
+     * Set the installationId property: The installation id of the repository.
+     *
+     * @param installationId the installationId value to set.
+     * @return the RepoInner object itself.
+     */
+    public RepoInner withInstallationId(Long installationId) {
+        this.installationId = installationId;
         return this;
     }
 

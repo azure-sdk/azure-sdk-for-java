@@ -4,12 +4,13 @@
 
 package com.azure.resourcemanager.securityinsights.generated;
 
-import com.azure.core.util.Context;
+import com.azure.resourcemanager.securityinsights.models.RepositoryAccessKind;
+import com.azure.resourcemanager.securityinsights.models.RepositoryAccessProperties;
 
 /** Samples for SourceControlsOperation Delete. */
 public final class SourceControlsOperationDeleteSamples {
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/sourcecontrols/DeleteSourceControl.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2023-10-01-preview/examples/sourcecontrols/DeleteSourceControl.json
      */
     /**
      * Sample code: Delete a source control.
@@ -20,6 +21,15 @@ public final class SourceControlsOperationDeleteSamples {
         com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
         manager
             .sourceControlsOperations()
-            .deleteWithResponse("myRg", "myWorkspace", "789e0c1f-4a3d-43ad-809c-e713b677b04a", Context.NONE);
+            .deleteWithResponse(
+                "myRg",
+                "myWorkspace",
+                "789e0c1f-4a3d-43ad-809c-e713b677b04a",
+                new RepositoryAccessProperties()
+                    .withKind(RepositoryAccessKind.OAUTH)
+                    .withCode("fakeTokenPlaceholder")
+                    .withState("state")
+                    .withClientId("54b3c2c0-1f48-4a1c-af9f-6399c3240b73"),
+                com.azure.core.util.Context.NONE);
     }
 }

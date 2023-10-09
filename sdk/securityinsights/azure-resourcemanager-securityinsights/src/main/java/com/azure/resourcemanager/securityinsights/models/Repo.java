@@ -24,6 +24,13 @@ public interface Repo {
     String fullName();
 
     /**
+     * Gets the installationId property: The installation id of the repository.
+     *
+     * @return the installationId value.
+     */
+    Long installationId();
+
+    /**
      * Gets the branches property: Array of branches.
      *
      * @return the branches value.

@@ -24,6 +24,10 @@ public final class BookmarkExpandResponseInner {
     @JsonProperty(value = "value")
     private BookmarkExpandResponseValue value;
 
+    /** Creates an instance of BookmarkExpandResponseInner class. */
+    public BookmarkExpandResponseInner() {
+    }
+
     /**
      * Get the metadata property: The metadata from the expansion operation results.
      *

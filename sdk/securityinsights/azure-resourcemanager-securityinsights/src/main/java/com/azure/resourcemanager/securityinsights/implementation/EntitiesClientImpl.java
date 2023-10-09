@@ -36,6 +36,7 @@ import com.azure.resourcemanager.securityinsights.models.EntityExpandParameters;
 import com.azure.resourcemanager.securityinsights.models.EntityGetInsightsParameters;
 import com.azure.resourcemanager.securityinsights.models.EntityItemQueryKind;
 import com.azure.resourcemanager.securityinsights.models.EntityList;
+import com.azure.resourcemanager.securityinsights.models.EntityManualTriggerRequestBody;
 import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in EntitiesClient. */
@@ -62,11 +63,26 @@ public final class EntitiesClientImpl implements EntitiesClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "SecurityInsightsEnti")
-    private interface EntitiesService {
+    public interface EntitiesService {
+        @Headers({"Content-Type: application/json"})
+        @Post(
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/entities/{entityIdentifier}/runPlaybook")
+        @ExpectedResponses({204})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Void>> runPlaybook(
+            @HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("workspaceName") String workspaceName,
+            @PathParam("entityIdentifier") String entityIdentifier,
+            @BodyParam("application/json") EntityManualTriggerRequestBody requestBody,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights"
-                + "/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/entities")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/entities")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<EntityList>> list(
@@ -80,8 +96,7 @@ public final class EntitiesClientImpl implements EntitiesClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights"
-                + "/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/entities/{entityId}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/entities/{entityId}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<EntityInner>> get(
@@ -96,8 +111,7 @@ public final class EntitiesClientImpl implements EntitiesClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights"
-                + "/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/entities/{entityId}/expand")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/entities/{entityId}/expand")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<EntityExpandResponseInner>> expand(
@@ -113,8 +127,7 @@ public final class EntitiesClientImpl implements EntitiesClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights"
-                + "/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/entities/{entityId}/queries")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/entities/{entityId}/queries")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<GetQueriesResponseInner>> queries(
@@ -130,8 +143,7 @@ public final class EntitiesClientImpl implements EntitiesClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights"
-                + "/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/entities/{entityId}/getInsights")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/entities/{entityId}/getInsights")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<EntityGetInsightsResponseInner>> getInsights(
@@ -154,6 +166,187 @@ public final class EntitiesClientImpl implements EntitiesClient {
             @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept,
             Context context);
+    }
+
+    /**
+     * Triggers playbook on a specific entity.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param entityIdentifier Entity identifier.
+     * @param requestBody Describes the request body for triggering a playbook on an entity.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Void>> runPlaybookWithResponseAsync(
+        String resourceGroupName,
+        String workspaceName,
+        String entityIdentifier,
+        EntityManualTriggerRequestBody requestBody) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workspaceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
+        }
+        if (entityIdentifier == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter entityIdentifier is required and cannot be null."));
+        }
+        if (requestBody != null) {
+            requestBody.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service
+                        .runPlaybook(
+                            this.client.getEndpoint(),
+                            this.client.getApiVersion(),
+                            this.client.getSubscriptionId(),
+                            resourceGroupName,
+                            workspaceName,
+                            entityIdentifier,
+                            requestBody,
+                            accept,
+                            context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Triggers playbook on a specific entity.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param entityIdentifier Entity identifier.
+     * @param requestBody Describes the request body for triggering a playbook on an entity.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Void>> runPlaybookWithResponseAsync(
+        String resourceGroupName,
+        String workspaceName,
+        String entityIdentifier,
+        EntityManualTriggerRequestBody requestBody,
+        Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workspaceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
+        }
+        if (entityIdentifier == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter entityIdentifier is required and cannot be null."));
+        }
+        if (requestBody != null) {
+            requestBody.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .runPlaybook(
+                this.client.getEndpoint(),
+                this.client.getApiVersion(),
+                this.client.getSubscriptionId(),
+                resourceGroupName,
+                workspaceName,
+                entityIdentifier,
+                requestBody,
+                accept,
+                context);
+    }
+
+    /**
+     * Triggers playbook on a specific entity.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param entityIdentifier Entity identifier.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Void> runPlaybookAsync(String resourceGroupName, String workspaceName, String entityIdentifier) {
+        final EntityManualTriggerRequestBody requestBody = null;
+        return runPlaybookWithResponseAsync(resourceGroupName, workspaceName, entityIdentifier, requestBody)
+            .flatMap(ignored -> Mono.empty());
+    }
+
+    /**
+     * Triggers playbook on a specific entity.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param entityIdentifier Entity identifier.
+     * @param requestBody Describes the request body for triggering a playbook on an entity.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<Void> runPlaybookWithResponse(
+        String resourceGroupName,
+        String workspaceName,
+        String entityIdentifier,
+        EntityManualTriggerRequestBody requestBody,
+        Context context) {
+        return runPlaybookWithResponseAsync(resourceGroupName, workspaceName, entityIdentifier, requestBody, context)
+            .block();
+    }
+
+    /**
+     * Triggers playbook on a specific entity.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param entityIdentifier Entity identifier.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void runPlaybook(String resourceGroupName, String workspaceName, String entityIdentifier) {
+        final EntityManualTriggerRequestBody requestBody = null;
+        runPlaybookWithResponse(resourceGroupName, workspaceName, entityIdentifier, requestBody, Context.NONE);
     }
 
     /**
@@ -459,22 +652,6 @@ public final class EntitiesClientImpl implements EntitiesClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param entityId entity ID.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an entity.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public EntityInner get(String resourceGroupName, String workspaceName, String entityId) {
-        return getAsync(resourceGroupName, workspaceName, entityId).block();
-    }
-
-    /**
-     * Gets an entity.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param entityId entity ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -485,6 +662,22 @@ public final class EntitiesClientImpl implements EntitiesClient {
     public Response<EntityInner> getWithResponse(
         String resourceGroupName, String workspaceName, String entityId, Context context) {
         return getWithResponseAsync(resourceGroupName, workspaceName, entityId, context).block();
+    }
+
+    /**
+     * Gets an entity.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param entityId entity ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return an entity.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public EntityInner get(String resourceGroupName, String workspaceName, String entityId) {
+        return getWithResponse(resourceGroupName, workspaceName, entityId, Context.NONE).getValue();
     }
 
     /**
@@ -637,24 +830,6 @@ public final class EntitiesClientImpl implements EntitiesClient {
      * @param workspaceName The name of the workspace.
      * @param entityId entity ID.
      * @param parameters The parameters required to execute an expand operation on the given entity.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the entity expansion result operation response.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public EntityExpandResponseInner expand(
-        String resourceGroupName, String workspaceName, String entityId, EntityExpandParameters parameters) {
-        return expandAsync(resourceGroupName, workspaceName, entityId, parameters).block();
-    }
-
-    /**
-     * Expands an entity.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param entityId entity ID.
-     * @param parameters The parameters required to execute an expand operation on the given entity.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -669,6 +844,24 @@ public final class EntitiesClientImpl implements EntitiesClient {
         EntityExpandParameters parameters,
         Context context) {
         return expandWithResponseAsync(resourceGroupName, workspaceName, entityId, parameters, context).block();
+    }
+
+    /**
+     * Expands an entity.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param entityId entity ID.
+     * @param parameters The parameters required to execute an expand operation on the given entity.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the entity expansion result operation response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public EntityExpandResponseInner expand(
+        String resourceGroupName, String workspaceName, String entityId, EntityExpandParameters parameters) {
+        return expandWithResponse(resourceGroupName, workspaceName, entityId, parameters, Context.NONE).getValue();
     }
 
     /**
@@ -813,24 +1006,6 @@ public final class EntitiesClientImpl implements EntitiesClient {
      * @param workspaceName The name of the workspace.
      * @param entityId entity ID.
      * @param kind The Kind parameter for queries.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return insights and Activities for an entity.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public GetQueriesResponseInner queries(
-        String resourceGroupName, String workspaceName, String entityId, EntityItemQueryKind kind) {
-        return queriesAsync(resourceGroupName, workspaceName, entityId, kind).block();
-    }
-
-    /**
-     * Get Insights and Activities for an entity.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param entityId entity ID.
-     * @param kind The Kind parameter for queries.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -841,6 +1016,24 @@ public final class EntitiesClientImpl implements EntitiesClient {
     public Response<GetQueriesResponseInner> queriesWithResponse(
         String resourceGroupName, String workspaceName, String entityId, EntityItemQueryKind kind, Context context) {
         return queriesWithResponseAsync(resourceGroupName, workspaceName, entityId, kind, context).block();
+    }
+
+    /**
+     * Get Insights and Activities for an entity.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param entityId entity ID.
+     * @param kind The Kind parameter for queries.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return insights and Activities for an entity.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public GetQueriesResponseInner queries(
+        String resourceGroupName, String workspaceName, String entityId, EntityItemQueryKind kind) {
+        return queriesWithResponse(resourceGroupName, workspaceName, entityId, kind, Context.NONE).getValue();
     }
 
     /**
@@ -993,24 +1186,6 @@ public final class EntitiesClientImpl implements EntitiesClient {
      * @param workspaceName The name of the workspace.
      * @param entityId entity ID.
      * @param parameters The parameters required to execute insights on the given entity.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Get Insights result operation response.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public EntityGetInsightsResponseInner getInsights(
-        String resourceGroupName, String workspaceName, String entityId, EntityGetInsightsParameters parameters) {
-        return getInsightsAsync(resourceGroupName, workspaceName, entityId, parameters).block();
-    }
-
-    /**
-     * Execute Insights for an entity.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param entityId entity ID.
-     * @param parameters The parameters required to execute insights on the given entity.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1025,6 +1200,24 @@ public final class EntitiesClientImpl implements EntitiesClient {
         EntityGetInsightsParameters parameters,
         Context context) {
         return getInsightsWithResponseAsync(resourceGroupName, workspaceName, entityId, parameters, context).block();
+    }
+
+    /**
+     * Execute Insights for an entity.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param entityId entity ID.
+     * @param parameters The parameters required to execute insights on the given entity.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the Get Insights result operation response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public EntityGetInsightsResponseInner getInsights(
+        String resourceGroupName, String workspaceName, String entityId, EntityGetInsightsParameters parameters) {
+        return getInsightsWithResponse(resourceGroupName, workspaceName, entityId, parameters, Context.NONE).getValue();
     }
 
     /**

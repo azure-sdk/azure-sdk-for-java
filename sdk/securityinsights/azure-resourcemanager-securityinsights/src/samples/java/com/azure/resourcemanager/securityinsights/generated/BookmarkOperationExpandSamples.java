@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.securityinsights.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.securityinsights.models.BookmarkExpandParameters;
 import java.time.OffsetDateTime;
 import java.util.UUID;
@@ -12,7 +11,7 @@ import java.util.UUID;
 /** Samples for BookmarkOperation Expand. */
 public final class BookmarkOperationExpandSamples {
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/bookmarks/expand/PostExpandBookmark.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2023-10-01-preview/examples/bookmarks/expand/PostExpandBookmark.json
      */
     /**
      * Sample code: Expand an bookmark.
@@ -30,6 +29,6 @@ public final class BookmarkOperationExpandSamples {
                     .withEndTime(OffsetDateTime.parse("2020-01-24T17:21:00.000Z"))
                     .withExpansionId(UUID.fromString("27f76e63-c41b-480f-bb18-12ad2e011d49"))
                     .withStartTime(OffsetDateTime.parse("2019-12-25T17:21:00.000Z")),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

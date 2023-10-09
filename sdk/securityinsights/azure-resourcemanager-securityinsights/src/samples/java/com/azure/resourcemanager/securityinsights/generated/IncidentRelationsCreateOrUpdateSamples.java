@@ -4,13 +4,12 @@
 
 package com.azure.resourcemanager.securityinsights.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.securityinsights.fluent.models.RelationInner;
 
 /** Samples for IncidentRelations CreateOrUpdate. */
 public final class IncidentRelationsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/incidents/relations/CreateIncidentRelation.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2023-10-01-preview/examples/incidents/relations/CreateIncidentRelation.json
      */
     /**
      * Sample code: Creates or updates an incident relation.
@@ -29,6 +28,6 @@ public final class IncidentRelationsCreateOrUpdateSamples {
                 new RelationInner()
                     .withRelatedResourceId(
                         "/subscriptions/d0cfe6b2-9ac0-4464-9919-dccaee2e48c0/resourceGroups/myRg/providers/Microsoft.OperationalIinsights/workspaces/myWorkspace/providers/Microsoft.SecurityInsights/bookmarks/2216d0e1-91e3-4902-89fd-d2df8c535096"),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

@@ -60,11 +60,10 @@ public final class EntityQueriesClientImpl implements EntityQueriesClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "SecurityInsightsEnti")
-    private interface EntityQueriesService {
+    public interface EntityQueriesService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights"
-                + "/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/entityQueries")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/entityQueries")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<EntityQueryList>> list(
@@ -79,8 +78,7 @@ public final class EntityQueriesClientImpl implements EntityQueriesClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights"
-                + "/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/entityQueries/{entityQueryId}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/entityQueries/{entityQueryId}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<EntityQueryInner>> get(
@@ -95,8 +93,7 @@ public final class EntityQueriesClientImpl implements EntityQueriesClient {
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights"
-                + "/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/entityQueries/{entityQueryId}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/entityQueries/{entityQueryId}")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<EntityQueryInner>> createOrUpdate(
@@ -112,8 +109,7 @@ public final class EntityQueriesClientImpl implements EntityQueriesClient {
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights"
-                + "/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/entityQueries/{entityQueryId}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/entityQueries/{entityQueryId}")
         @ExpectedResponses({200, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Void>> delete(
@@ -471,22 +467,6 @@ public final class EntityQueriesClientImpl implements EntityQueriesClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param entityQueryId entity query ID.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an entity query.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public EntityQueryInner get(String resourceGroupName, String workspaceName, String entityQueryId) {
-        return getAsync(resourceGroupName, workspaceName, entityQueryId).block();
-    }
-
-    /**
-     * Gets an entity query.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param entityQueryId entity query ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -497,6 +477,22 @@ public final class EntityQueriesClientImpl implements EntityQueriesClient {
     public Response<EntityQueryInner> getWithResponse(
         String resourceGroupName, String workspaceName, String entityQueryId, Context context) {
         return getWithResponseAsync(resourceGroupName, workspaceName, entityQueryId, context).block();
+    }
+
+    /**
+     * Gets an entity query.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param entityQueryId entity query ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return an entity query.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public EntityQueryInner get(String resourceGroupName, String workspaceName, String entityQueryId) {
+        return getWithResponse(resourceGroupName, workspaceName, entityQueryId, Context.NONE).getValue();
     }
 
     /**
@@ -647,24 +643,6 @@ public final class EntityQueriesClientImpl implements EntityQueriesClient {
      * @param workspaceName The name of the workspace.
      * @param entityQueryId entity query ID.
      * @param entityQuery The entity query we want to create or update.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return specific entity query.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public EntityQueryInner createOrUpdate(
-        String resourceGroupName, String workspaceName, String entityQueryId, CustomEntityQuery entityQuery) {
-        return createOrUpdateAsync(resourceGroupName, workspaceName, entityQueryId, entityQuery).block();
-    }
-
-    /**
-     * Creates or updates the entity query.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param entityQueryId entity query ID.
-     * @param entityQuery The entity query we want to create or update.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -680,6 +658,25 @@ public final class EntityQueriesClientImpl implements EntityQueriesClient {
         Context context) {
         return createOrUpdateWithResponseAsync(resourceGroupName, workspaceName, entityQueryId, entityQuery, context)
             .block();
+    }
+
+    /**
+     * Creates or updates the entity query.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param entityQueryId entity query ID.
+     * @param entityQuery The entity query we want to create or update.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return specific entity query.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public EntityQueryInner createOrUpdate(
+        String resourceGroupName, String workspaceName, String entityQueryId, CustomEntityQuery entityQuery) {
+        return createOrUpdateWithResponse(resourceGroupName, workspaceName, entityQueryId, entityQuery, Context.NONE)
+            .getValue();
     }
 
     /**
@@ -809,21 +806,6 @@ public final class EntityQueriesClientImpl implements EntityQueriesClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param entityQueryId entity query ID.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceGroupName, String workspaceName, String entityQueryId) {
-        deleteAsync(resourceGroupName, workspaceName, entityQueryId).block();
-    }
-
-    /**
-     * Delete the entity query.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param entityQueryId entity query ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -834,6 +816,21 @@ public final class EntityQueriesClientImpl implements EntityQueriesClient {
     public Response<Void> deleteWithResponse(
         String resourceGroupName, String workspaceName, String entityQueryId, Context context) {
         return deleteWithResponseAsync(resourceGroupName, workspaceName, entityQueryId, context).block();
+    }
+
+    /**
+     * Delete the entity query.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param entityQueryId entity query ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void delete(String resourceGroupName, String workspaceName, String entityQueryId) {
+        deleteWithResponse(resourceGroupName, workspaceName, entityQueryId, Context.NONE);
     }
 
     /**

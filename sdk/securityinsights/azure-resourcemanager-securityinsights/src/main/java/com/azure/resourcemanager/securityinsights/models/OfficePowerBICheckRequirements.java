@@ -21,6 +21,10 @@ public final class OfficePowerBICheckRequirements extends DataConnectorsCheckReq
     @JsonProperty(value = "properties")
     private OfficePowerBICheckRequirementsProperties innerProperties;
 
+    /** Creates an instance of OfficePowerBICheckRequirements class. */
+    public OfficePowerBICheckRequirements() {
+    }
+
     /**
      * Get the innerProperties property: Office Power BI requirements check properties.
      *
@@ -28,6 +32,29 @@ public final class OfficePowerBICheckRequirements extends DataConnectorsCheckReq
      */
     private OfficePowerBICheckRequirementsProperties innerProperties() {
         return this.innerProperties;
+    }
+
+    /**
+     * Get the tenantId property: The tenant id to connect to, and get the data from.
+     *
+     * @return the tenantId value.
+     */
+    public String tenantId() {
+        return this.innerProperties() == null ? null : this.innerProperties().tenantId();
+    }
+
+    /**
+     * Set the tenantId property: The tenant id to connect to, and get the data from.
+     *
+     * @param tenantId the tenantId value to set.
+     * @return the OfficePowerBICheckRequirements object itself.
+     */
+    public OfficePowerBICheckRequirements withTenantId(String tenantId) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new OfficePowerBICheckRequirementsProperties();
+        }
+        this.innerProperties().withTenantId(tenantId);
+        return this;
     }
 
     /**
