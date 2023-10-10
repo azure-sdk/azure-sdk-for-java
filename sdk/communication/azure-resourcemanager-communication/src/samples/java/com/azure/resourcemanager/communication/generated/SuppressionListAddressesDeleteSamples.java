@@ -4,25 +4,26 @@
 
 package com.azure.resourcemanager.communication.generated;
 
-/** Samples for SenderUsernames Delete. */
-public final class SenderUsernamesDeleteSamples {
+/** Samples for SuppressionListAddresses Delete. */
+public final class SuppressionListAddressesDeleteSamples {
     /*
-     * x-ms-original-file: specification/communication/resource-manager/Microsoft.Communication/preview/2023-06-01-preview/examples/senderUsernames/delete.json
+     * x-ms-original-file: specification/communication/resource-manager/Microsoft.Communication/preview/2023-06-01-preview/examples/suppressionLists/deleteAddress.json
      */
     /**
-     * Sample code: Delete SenderUsernames resource.
+     * Sample code: Delete a SuppressionListAddress resource.
      *
      * @param manager Entry point to CommunicationManager.
      */
-    public static void deleteSenderUsernamesResource(
+    public static void deleteASuppressionListAddressResource(
         com.azure.resourcemanager.communication.CommunicationManager manager) {
         manager
-            .senderUsernames()
+            .suppressionListAddresses()
             .deleteWithResponse(
                 "MyResourceGroup",
                 "MyEmailServiceResource",
                 "mydomain.com",
-                "contosoNewsAlerts",
+                "aaaa1111-bbbb-2222-3333-aaaa11112222",
+                "11112222-3333-4444-5555-999999999999",
                 com.azure.core.util.Context.NONE);
     }
 }
