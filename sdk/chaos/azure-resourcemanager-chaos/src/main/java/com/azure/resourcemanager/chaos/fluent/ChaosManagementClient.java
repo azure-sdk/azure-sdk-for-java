@@ -85,4 +85,11 @@ public interface ChaosManagementClient {
      * @return the TargetsClient object.
      */
     TargetsClient getTargets();
+
+    /**
+     * Gets the OperationStatusesClient object to access its operations.
+     *
+     * @return the OperationStatusesClient object.
+     */
+    OperationStatusesClient getOperationStatuses();
 }
