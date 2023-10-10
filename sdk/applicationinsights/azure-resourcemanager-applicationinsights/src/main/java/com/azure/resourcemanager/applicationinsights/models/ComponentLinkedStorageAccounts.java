@@ -56,11 +56,13 @@ public interface ComponentLinkedStorageAccounts {
     interface Definition
         extends DefinitionStages.Blank, DefinitionStages.WithParentResource, DefinitionStages.WithCreate {
     }
+
     /** The ComponentLinkedStorageAccounts definition stages. */
     interface DefinitionStages {
         /** The first stage of the ComponentLinkedStorageAccounts definition. */
         interface Blank extends WithParentResource {
         }
+
         /** The stage of the ComponentLinkedStorageAccounts definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -72,6 +74,7 @@ public interface ComponentLinkedStorageAccounts {
              */
             WithCreate withExistingComponent(String resourceGroupName, String resourceName);
         }
+
         /**
          * The stage of the ComponentLinkedStorageAccounts definition which contains all the minimum required properties
          * for the resource to be created, but also allows for any other optional properties to be specified.
@@ -92,6 +95,7 @@ public interface ComponentLinkedStorageAccounts {
              */
             ComponentLinkedStorageAccounts create(Context context);
         }
+
         /** The stage of the ComponentLinkedStorageAccounts definition allowing to specify linkedStorageAccount. */
         interface WithLinkedStorageAccount {
             /**
@@ -103,6 +107,7 @@ public interface ComponentLinkedStorageAccounts {
             WithCreate withLinkedStorageAccount(String linkedStorageAccount);
         }
     }
+
     /**
      * Begins update for the ComponentLinkedStorageAccounts resource.
      *
@@ -127,6 +132,7 @@ public interface ComponentLinkedStorageAccounts {
          */
         ComponentLinkedStorageAccounts apply(Context context);
     }
+
     /** The ComponentLinkedStorageAccounts update stages. */
     interface UpdateStages {
         /** The stage of the ComponentLinkedStorageAccounts update allowing to specify linkedStorageAccount. */
@@ -140,6 +146,7 @@ public interface ComponentLinkedStorageAccounts {
             Update withLinkedStorageAccount(String linkedStorageAccount);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *
