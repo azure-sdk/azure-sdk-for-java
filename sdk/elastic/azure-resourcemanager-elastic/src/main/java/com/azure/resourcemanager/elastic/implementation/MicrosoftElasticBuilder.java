@@ -18,12 +18,12 @@ import java.time.Duration;
 @ServiceClientBuilder(serviceClients = {MicrosoftElasticImpl.class})
 public final class MicrosoftElasticBuilder {
     /*
-     * The Azure subscription ID. This is a GUID-formatted string (e.g. 00000000-0000-0000-0000-000000000000)
+     * The ID of the target subscription. The value must be an UUID.
      */
     private String subscriptionId;
 
     /**
-     * Sets The Azure subscription ID. This is a GUID-formatted string (e.g. 00000000-0000-0000-0000-000000000000).
+     * Sets The ID of the target subscription. The value must be an UUID.
      *
      * @param subscriptionId the subscriptionId value.
      * @return the MicrosoftElasticBuilder.
@@ -137,7 +137,7 @@ public final class MicrosoftElasticBuilder {
                 localSerializerAdapter,
                 localDefaultPollInterval,
                 localEnvironment,
-                subscriptionId,
+                this.subscriptionId,
                 localEndpoint);
         return client;
     }
