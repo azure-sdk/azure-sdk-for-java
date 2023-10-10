@@ -4,6 +4,10 @@
 
 package com.azure.resourcemanager.workloads.generated;
 
+import com.azure.resourcemanager.workloads.models.SapAvailabilityZoneDetailsRequest;
+import com.azure.resourcemanager.workloads.models.SapDatabaseType;
+import com.azure.resourcemanager.workloads.models.SapProductType;
+
 /** Samples for ResourceProvider SapAvailabilityZoneDetails. */
 public final class ResourceProviderSapAvailabilityZoneDetailsSamples {
     /*
@@ -18,7 +22,13 @@ public final class ResourceProviderSapAvailabilityZoneDetailsSamples {
         com.azure.resourcemanager.workloads.WorkloadsManager manager) {
         manager
             .resourceProviders()
-            .sapAvailabilityZoneDetailsWithResponse("centralus", null, com.azure.core.util.Context.NONE);
+            .sapAvailabilityZoneDetailsWithResponse(
+                "centralus",
+                new SapAvailabilityZoneDetailsRequest()
+                    .withAppLocation("northeurope")
+                    .withSapProduct(SapProductType.S4HANA)
+                    .withDatabaseType(SapDatabaseType.HANA),
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -32,6 +42,12 @@ public final class ResourceProviderSapAvailabilityZoneDetailsSamples {
     public static void sAPAvailabilityZoneDetailsEastus(com.azure.resourcemanager.workloads.WorkloadsManager manager) {
         manager
             .resourceProviders()
-            .sapAvailabilityZoneDetailsWithResponse("centralus", null, com.azure.core.util.Context.NONE);
+            .sapAvailabilityZoneDetailsWithResponse(
+                "centralus",
+                new SapAvailabilityZoneDetailsRequest()
+                    .withAppLocation("eastus")
+                    .withSapProduct(SapProductType.S4HANA)
+                    .withDatabaseType(SapDatabaseType.HANA),
+                com.azure.core.util.Context.NONE);
     }
 }
