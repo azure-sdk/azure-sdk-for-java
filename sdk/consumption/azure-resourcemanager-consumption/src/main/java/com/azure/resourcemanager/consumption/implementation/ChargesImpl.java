@@ -12,10 +12,9 @@ import com.azure.resourcemanager.consumption.fluent.ChargesClient;
 import com.azure.resourcemanager.consumption.fluent.models.ChargesListResultInner;
 import com.azure.resourcemanager.consumption.models.Charges;
 import com.azure.resourcemanager.consumption.models.ChargesListResult;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class ChargesImpl implements Charges {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ChargesImpl.class);
+    private static final ClientLogger LOGGER = new ClientLogger(ChargesImpl.class);
 
     private final ChargesClient innerClient;
 
@@ -25,15 +24,6 @@ public final class ChargesImpl implements Charges {
         ChargesClient innerClient, com.azure.resourcemanager.consumption.ConsumptionManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
-    }
-
-    public ChargesListResult list(String scope) {
-        ChargesListResultInner inner = this.serviceClient().list(scope);
-        if (inner != null) {
-            return new ChargesListResultImpl(inner, this.manager());
-        } else {
-            return null;
-        }
     }
 
     public Response<ChargesListResult> listWithResponse(
@@ -46,6 +36,15 @@ public final class ChargesImpl implements Charges {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new ChargesListResultImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public ChargesListResult list(String scope) {
+        ChargesListResultInner inner = this.serviceClient().list(scope);
+        if (inner != null) {
+            return new ChargesListResultImpl(inner, this.manager());
         } else {
             return null;
         }

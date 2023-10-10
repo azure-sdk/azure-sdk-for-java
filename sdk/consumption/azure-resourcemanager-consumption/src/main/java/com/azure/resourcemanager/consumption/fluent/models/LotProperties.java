@@ -5,23 +5,21 @@
 package com.azure.resourcemanager.consumption.fluent.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.consumption.models.Amount;
 import com.azure.resourcemanager.consumption.models.AmountWithExchangeRate;
 import com.azure.resourcemanager.consumption.models.LotSource;
+import com.azure.resourcemanager.consumption.models.OrganizationType;
 import com.azure.resourcemanager.consumption.models.Reseller;
 import com.azure.resourcemanager.consumption.models.Status;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
 /** The lot properties. */
 @Immutable
 public final class LotProperties {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(LotProperties.class);
-
     /*
-     * The original amount of a lot.
+     * The original amount of a lot, Note: This will not be returned for Contributor Organization Type in Multi-Entity
+     * consumption commitment
      */
     @JsonProperty(value = "originalAmount", access = JsonProperty.Access.WRITE_ONLY)
     private Amount originalAmount;
@@ -51,8 +49,8 @@ public final class LotProperties {
     private OffsetDateTime expirationDate;
 
     /*
-     * The po number of the invoice on which the lot was added. This property
-     * is not available for ConsumptionCommitment lots.
+     * The po number of the invoice on which the lot was added. This property is not available for
+     * ConsumptionCommitment lots.
      */
     @JsonProperty(value = "poNumber", access = JsonProperty.Access.WRITE_ONLY)
     private String poNumber;
@@ -82,7 +80,8 @@ public final class LotProperties {
     private String billingCurrency;
 
     /*
-     * The original amount of a lot in billing currency.
+     * The original amount of a lot in billing currency,  Note: This will not be returned for Contributor Organization
+     * Type in Multi-Entity consumption commitment
      */
     @JsonProperty(value = "originalAmountInBillingCurrency", access = JsonProperty.Access.WRITE_ONLY)
     private AmountWithExchangeRate originalAmountInBillingCurrency;
@@ -100,13 +99,36 @@ public final class LotProperties {
     private Reseller reseller;
 
     /*
+     * If true, the listed details are based on an estimation and it will be subjected to change.
+     */
+    @JsonProperty(value = "isEstimatedBalance", access = JsonProperty.Access.WRITE_ONLY)
+    private Boolean isEstimatedBalance;
+
+    /*
      * The eTag for the resource.
      */
     @JsonProperty(value = "eTag", access = JsonProperty.Access.WRITE_ONLY)
     private String etag;
 
+    /*
+     * The organization type of the lot.
+     */
+    @JsonProperty(value = "OrganizationType", access = JsonProperty.Access.WRITE_ONLY)
+    private OrganizationType organizationType;
+
+    /*
+     * Amount consumed from the commitment.
+     */
+    @JsonProperty(value = "usedAmount", access = JsonProperty.Access.WRITE_ONLY)
+    private Amount usedAmount;
+
+    /** Creates an instance of LotProperties class. */
+    public LotProperties() {
+    }
+
     /**
-     * Get the originalAmount property: The original amount of a lot.
+     * Get the originalAmount property: The original amount of a lot, Note: This will not be returned for Contributor
+     * Organization Type in Multi-Entity consumption commitment.
      *
      * @return the originalAmount value.
      */
@@ -197,7 +219,8 @@ public final class LotProperties {
     }
 
     /**
-     * Get the originalAmountInBillingCurrency property: The original amount of a lot in billing currency.
+     * Get the originalAmountInBillingCurrency property: The original amount of a lot in billing currency, Note: This
+     * will not be returned for Contributor Organization Type in Multi-Entity consumption commitment.
      *
      * @return the originalAmountInBillingCurrency value.
      */
@@ -224,12 +247,40 @@ public final class LotProperties {
     }
 
     /**
+     * Get the isEstimatedBalance property: If true, the listed details are based on an estimation and it will be
+     * subjected to change.
+     *
+     * @return the isEstimatedBalance value.
+     */
+    public Boolean isEstimatedBalance() {
+        return this.isEstimatedBalance;
+    }
+
+    /**
      * Get the etag property: The eTag for the resource.
      *
      * @return the etag value.
      */
     public String etag() {
         return this.etag;
+    }
+
+    /**
+     * Get the organizationType property: The organization type of the lot.
+     *
+     * @return the organizationType value.
+     */
+    public OrganizationType organizationType() {
+        return this.organizationType;
+    }
+
+    /**
+     * Get the usedAmount property: Amount consumed from the commitment.
+     *
+     * @return the usedAmount value.
+     */
+    public Amount usedAmount() {
+        return this.usedAmount;
     }
 
     /**
@@ -252,6 +303,9 @@ public final class LotProperties {
         }
         if (reseller() != null) {
             reseller().validate();
+        }
+        if (usedAmount() != null) {
+            usedAmount().validate();
         }
     }
 }

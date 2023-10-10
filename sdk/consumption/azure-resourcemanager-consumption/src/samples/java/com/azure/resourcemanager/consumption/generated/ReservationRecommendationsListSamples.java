@@ -4,12 +4,10 @@
 
 package com.azure.resourcemanager.consumption.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for ReservationRecommendations List. */
 public final class ReservationRecommendationsListSamples {
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/ReservationRecommendationsBySubscription.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2023-11-01/examples/ReservationRecommendationsBySubscription.json
      */
     /**
      * Sample code: ReservationRecommendationsBySubscription-Legacy.
@@ -20,11 +18,11 @@ public final class ReservationRecommendationsListSamples {
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .reservationRecommendations()
-            .list("subscriptions/00000000-0000-0000-0000-000000000000", null, Context.NONE);
+            .list("subscriptions/00000000-0000-0000-0000-000000000000", null, com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/ReservationRecommendationsByBillingProfile.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2023-11-01/examples/ReservationRecommendationsByBillingProfile.json
      */
     /**
      * Sample code: ReservationRecommendationsByBillingProfile-Modern.
@@ -35,11 +33,14 @@ public final class ReservationRecommendationsListSamples {
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .reservationRecommendations()
-            .list("providers/Microsoft.Billing/billingAccounts/123456/billingProfiles/6420", null, Context.NONE);
+            .list(
+                "providers/Microsoft.Billing/billingAccounts/123456/billingProfiles/6420",
+                null,
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/ReservationRecommendationsByResourceGroup.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2023-11-01/examples/ReservationRecommendationsByResourceGroup.json
      */
     /**
      * Sample code: ReservationRecommendationsByResourceGroup-Legacy.
@@ -50,11 +51,14 @@ public final class ReservationRecommendationsListSamples {
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .reservationRecommendations()
-            .list("subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/testGroup", null, Context.NONE);
+            .list(
+                "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/testGroup",
+                null,
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/ReservationRecommendationsFilterBySubscriptionForScopeLookBackPeriod.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2023-11-01/examples/ReservationRecommendationsFilterBySubscriptionForScopeLookBackPeriod.json
      */
     /**
      * Sample code: ReservationRecommendationsFilterBySubscriptionForScopeLookBackPeriod-Legacy.
@@ -68,11 +72,11 @@ public final class ReservationRecommendationsListSamples {
             .list(
                 "subscriptions/00000000-0000-0000-0000-000000000000",
                 "properties/scope eq 'Single' AND properties/lookBackPeriod eq 'Last7Days'",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/ReservationRecommendationsByBillingAccount.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2023-11-01/examples/ReservationRecommendationsByBillingAccount.json
      */
     /**
      * Sample code: ReservationRecommendationsByBillingAccount-Legacy.
@@ -83,6 +87,6 @@ public final class ReservationRecommendationsListSamples {
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .reservationRecommendations()
-            .list("providers/Microsoft.Billing/billingAccounts/123456", null, Context.NONE);
+            .list("providers/Microsoft.Billing/billingAccounts/123456", null, com.azure.core.util.Context.NONE);
     }
 }

@@ -12,10 +12,9 @@ import com.azure.resourcemanager.consumption.fluent.models.ReservationSummaryInn
 import com.azure.resourcemanager.consumption.models.Datagrain;
 import com.azure.resourcemanager.consumption.models.ReservationSummary;
 import com.azure.resourcemanager.consumption.models.ReservationsSummaries;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class ReservationsSummariesImpl implements ReservationsSummaries {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ReservationsSummariesImpl.class);
+    private static final ClientLogger LOGGER = new ClientLogger(ReservationsSummariesImpl.class);
 
     private final ReservationsSummariesClient innerClient;
 
@@ -57,13 +56,13 @@ public final class ReservationsSummariesImpl implements ReservationsSummaries {
         return Utils.mapPage(inner, inner1 -> new ReservationSummaryImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<ReservationSummary> list(String scope, Datagrain grain) {
-        PagedIterable<ReservationSummaryInner> inner = this.serviceClient().list(scope, grain);
+    public PagedIterable<ReservationSummary> list(String resourceScope, Datagrain grain) {
+        PagedIterable<ReservationSummaryInner> inner = this.serviceClient().list(resourceScope, grain);
         return Utils.mapPage(inner, inner1 -> new ReservationSummaryImpl(inner1, this.manager()));
     }
 
     public PagedIterable<ReservationSummary> list(
-        String scope,
+        String resourceScope,
         Datagrain grain,
         String startDate,
         String endDate,
@@ -74,7 +73,7 @@ public final class ReservationsSummariesImpl implements ReservationsSummaries {
         PagedIterable<ReservationSummaryInner> inner =
             this
                 .serviceClient()
-                .list(scope, grain, startDate, endDate, filter, reservationId, reservationOrderId, context);
+                .list(resourceScope, grain, startDate, endDate, filter, reservationId, reservationOrderId, context);
         return Utils.mapPage(inner, inner1 -> new ReservationSummaryImpl(inner1, this.manager()));
     }
 

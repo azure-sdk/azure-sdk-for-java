@@ -4,25 +4,26 @@
 
 package com.azure.resourcemanager.consumption.fluent.models;
 
-import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.Immutable;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.consumption.models.ReservationTransactionResource;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import java.util.UUID;
 
 /** Modern Reservation transaction resource. */
-@Fluent
+@Immutable
 public final class ModernReservationTransactionInner extends ReservationTransactionResource {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ModernReservationTransactionInner.class);
-
     /*
      * The properties of a modern reservation transaction.
      */
     @JsonProperty(value = "properties", required = true)
     private ModernReservationTransactionProperties innerProperties = new ModernReservationTransactionProperties();
+
+    /** Creates an instance of ModernReservationTransactionInner class. */
+    public ModernReservationTransactionInner() {
+    }
 
     /**
      * Get the innerProperties property: The properties of a modern reservation transaction.
@@ -107,7 +108,7 @@ public final class ModernReservationTransactionInner extends ReservationTransact
     }
 
     /**
-     * Get the eventType property: The type of the transaction (Purchase, Cancel, etc.).
+     * Get the eventType property: The type of the transaction (Purchase, Cancel or Refund).
      *
      * @return the eventType value.
      */
@@ -225,7 +226,7 @@ public final class ModernReservationTransactionInner extends ReservationTransact
     public void validate() {
         super.validate();
         if (innerProperties() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property innerProperties in model ModernReservationTransactionInner"));
@@ -233,4 +234,6 @@ public final class ModernReservationTransactionInner extends ReservationTransact
             innerProperties().validate();
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(ModernReservationTransactionInner.class);
 }
