@@ -12,6 +12,7 @@ import com.azure.core.annotation.HeaderParam;
 import com.azure.core.annotation.Headers;
 import com.azure.core.annotation.Host;
 import com.azure.core.annotation.HostParam;
+import com.azure.core.annotation.Patch;
 import com.azure.core.annotation.PathParam;
 import com.azure.core.annotation.Post;
 import com.azure.core.annotation.Put;
@@ -36,6 +37,7 @@ import com.azure.resourcemanager.machinelearning.fluent.JobsClient;
 import com.azure.resourcemanager.machinelearning.fluent.models.JobBaseInner;
 import com.azure.resourcemanager.machinelearning.models.JobBaseResourceArmPaginatedResult;
 import com.azure.resourcemanager.machinelearning.models.ListViewType;
+import com.azure.resourcemanager.machinelearning.models.PartialJobBasePartialResource;
 import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -46,20 +48,20 @@ public final class JobsClientImpl implements JobsClient {
     private final JobsService service;
 
     /** The service client containing this operation class. */
-    private final AzureMachineLearningWorkspacesImpl client;
+    private final AzureMachineLearningServicesImpl client;
 
     /**
      * Initializes an instance of JobsClientImpl.
      *
      * @param client the instance of the service client containing this operation class.
      */
-    JobsClientImpl(AzureMachineLearningWorkspacesImpl client) {
+    JobsClientImpl(AzureMachineLearningServicesImpl client) {
         this.service = RestProxy.create(JobsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for AzureMachineLearningWorkspacesJobs to be used by the proxy service to
+     * The interface defining all the services for AzureMachineLearningServicesJobs to be used by the proxy service to
      * perform REST calls.
      */
     @Host("{$host}")
@@ -67,8 +69,7 @@ public final class JobsClientImpl implements JobsClient {
     public interface JobsService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/jobs")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/jobs")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<JobBaseResourceArmPaginatedResult>> list(
@@ -81,13 +82,16 @@ public final class JobsClientImpl implements JobsClient {
             @QueryParam("jobType") String jobType,
             @QueryParam("tag") String tag,
             @QueryParam("listViewType") ListViewType listViewType,
+            @QueryParam("assetName") String assetName,
+            @QueryParam("scheduled") Boolean scheduled,
+            @QueryParam("scheduleId") String scheduleId,
+            @QueryParam("properties") String properties,
             @HeaderParam("Accept") String accept,
             Context context);
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/jobs/{id}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/jobs/{id}")
         @ExpectedResponses({200, 202, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(
@@ -102,8 +106,7 @@ public final class JobsClientImpl implements JobsClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/jobs/{id}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/jobs/{id}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<JobBaseInner>> get(
@@ -117,9 +120,24 @@ public final class JobsClientImpl implements JobsClient {
             Context context);
 
         @Headers({"Content-Type: application/json"})
+        @Patch(
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/jobs/{id}")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<JobBaseInner>> update(
+            @HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("workspaceName") String workspaceName,
+            @PathParam("id") String id,
+            @QueryParam("api-version") String apiVersion,
+            @BodyParam("application/json") PartialJobBasePartialResource body,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/jobs/{id}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/jobs/{id}")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<JobBaseInner>> createOrUpdate(
@@ -135,8 +153,7 @@ public final class JobsClientImpl implements JobsClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/jobs/{id}/cancel")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/jobs/{id}/cancel")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> cancel(
@@ -169,6 +186,10 @@ public final class JobsClientImpl implements JobsClient {
      * @param jobType Type of job to be returned.
      * @param tag Jobs returned will have this tag key.
      * @param listViewType View type for including/excluding (for example) archived entities.
+     * @param assetName Asset name the job's named output is registered with.
+     * @param scheduled Indicator whether the job is scheduled job.
+     * @param scheduleId The scheduled id for listing the job triggered from.
+     * @param properties Comma-separated list of property names (and optionally values). Example: prop1,prop2=value2.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -182,7 +203,11 @@ public final class JobsClientImpl implements JobsClient {
         String skip,
         String jobType,
         String tag,
-        ListViewType listViewType) {
+        ListViewType listViewType,
+        String assetName,
+        Boolean scheduled,
+        String scheduleId,
+        String properties) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -217,6 +242,10 @@ public final class JobsClientImpl implements JobsClient {
                             jobType,
                             tag,
                             listViewType,
+                            assetName,
+                            scheduled,
+                            scheduleId,
+                            properties,
                             accept,
                             context))
             .<PagedResponse<JobBaseInner>>map(
@@ -240,6 +269,10 @@ public final class JobsClientImpl implements JobsClient {
      * @param jobType Type of job to be returned.
      * @param tag Jobs returned will have this tag key.
      * @param listViewType View type for including/excluding (for example) archived entities.
+     * @param assetName Asset name the job's named output is registered with.
+     * @param scheduled Indicator whether the job is scheduled job.
+     * @param scheduleId The scheduled id for listing the job triggered from.
+     * @param properties Comma-separated list of property names (and optionally values). Example: prop1,prop2=value2.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -255,6 +288,10 @@ public final class JobsClientImpl implements JobsClient {
         String jobType,
         String tag,
         ListViewType listViewType,
+        String assetName,
+        Boolean scheduled,
+        String scheduleId,
+        String properties,
         Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -288,6 +325,10 @@ public final class JobsClientImpl implements JobsClient {
                 jobType,
                 tag,
                 listViewType,
+                assetName,
+                scheduled,
+                scheduleId,
+                properties,
                 accept,
                 context)
             .map(
@@ -310,6 +351,10 @@ public final class JobsClientImpl implements JobsClient {
      * @param jobType Type of job to be returned.
      * @param tag Jobs returned will have this tag key.
      * @param listViewType View type for including/excluding (for example) archived entities.
+     * @param assetName Asset name the job's named output is registered with.
+     * @param scheduled Indicator whether the job is scheduled job.
+     * @param scheduleId The scheduled id for listing the job triggered from.
+     * @param properties Comma-separated list of property names (and optionally values). Example: prop1,prop2=value2.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -322,9 +367,24 @@ public final class JobsClientImpl implements JobsClient {
         String skip,
         String jobType,
         String tag,
-        ListViewType listViewType) {
+        ListViewType listViewType,
+        String assetName,
+        Boolean scheduled,
+        String scheduleId,
+        String properties) {
         return new PagedFlux<>(
-            () -> listSinglePageAsync(resourceGroupName, workspaceName, skip, jobType, tag, listViewType),
+            () ->
+                listSinglePageAsync(
+                    resourceGroupName,
+                    workspaceName,
+                    skip,
+                    jobType,
+                    tag,
+                    listViewType,
+                    assetName,
+                    scheduled,
+                    scheduleId,
+                    properties),
             nextLink -> listNextSinglePageAsync(nextLink));
     }
 
@@ -344,8 +404,23 @@ public final class JobsClientImpl implements JobsClient {
         final String jobType = null;
         final String tag = null;
         final ListViewType listViewType = null;
+        final String assetName = null;
+        final Boolean scheduled = null;
+        final String scheduleId = null;
+        final String properties = null;
         return new PagedFlux<>(
-            () -> listSinglePageAsync(resourceGroupName, workspaceName, skip, jobType, tag, listViewType),
+            () ->
+                listSinglePageAsync(
+                    resourceGroupName,
+                    workspaceName,
+                    skip,
+                    jobType,
+                    tag,
+                    listViewType,
+                    assetName,
+                    scheduled,
+                    scheduleId,
+                    properties),
             nextLink -> listNextSinglePageAsync(nextLink));
     }
 
@@ -358,6 +433,10 @@ public final class JobsClientImpl implements JobsClient {
      * @param jobType Type of job to be returned.
      * @param tag Jobs returned will have this tag key.
      * @param listViewType View type for including/excluding (for example) archived entities.
+     * @param assetName Asset name the job's named output is registered with.
+     * @param scheduled Indicator whether the job is scheduled job.
+     * @param scheduleId The scheduled id for listing the job triggered from.
+     * @param properties Comma-separated list of property names (and optionally values). Example: prop1,prop2=value2.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -372,9 +451,25 @@ public final class JobsClientImpl implements JobsClient {
         String jobType,
         String tag,
         ListViewType listViewType,
+        String assetName,
+        Boolean scheduled,
+        String scheduleId,
+        String properties,
         Context context) {
         return new PagedFlux<>(
-            () -> listSinglePageAsync(resourceGroupName, workspaceName, skip, jobType, tag, listViewType, context),
+            () ->
+                listSinglePageAsync(
+                    resourceGroupName,
+                    workspaceName,
+                    skip,
+                    jobType,
+                    tag,
+                    listViewType,
+                    assetName,
+                    scheduled,
+                    scheduleId,
+                    properties,
+                    context),
             nextLink -> listNextSinglePageAsync(nextLink, context));
     }
 
@@ -394,7 +489,22 @@ public final class JobsClientImpl implements JobsClient {
         final String jobType = null;
         final String tag = null;
         final ListViewType listViewType = null;
-        return new PagedIterable<>(listAsync(resourceGroupName, workspaceName, skip, jobType, tag, listViewType));
+        final String assetName = null;
+        final Boolean scheduled = null;
+        final String scheduleId = null;
+        final String properties = null;
+        return new PagedIterable<>(
+            listAsync(
+                resourceGroupName,
+                workspaceName,
+                skip,
+                jobType,
+                tag,
+                listViewType,
+                assetName,
+                scheduled,
+                scheduleId,
+                properties));
     }
 
     /**
@@ -406,6 +516,10 @@ public final class JobsClientImpl implements JobsClient {
      * @param jobType Type of job to be returned.
      * @param tag Jobs returned will have this tag key.
      * @param listViewType View type for including/excluding (for example) archived entities.
+     * @param assetName Asset name the job's named output is registered with.
+     * @param scheduled Indicator whether the job is scheduled job.
+     * @param scheduleId The scheduled id for listing the job triggered from.
+     * @param properties Comma-separated list of property names (and optionally values). Example: prop1,prop2=value2.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -420,9 +534,24 @@ public final class JobsClientImpl implements JobsClient {
         String jobType,
         String tag,
         ListViewType listViewType,
+        String assetName,
+        Boolean scheduled,
+        String scheduleId,
+        String properties,
         Context context) {
         return new PagedIterable<>(
-            listAsync(resourceGroupName, workspaceName, skip, jobType, tag, listViewType, context));
+            listAsync(
+                resourceGroupName,
+                workspaceName,
+                skip,
+                jobType,
+                tag,
+                listViewType,
+                assetName,
+                scheduled,
+                scheduleId,
+                properties,
+                context));
     }
 
     /**
@@ -827,6 +956,190 @@ public final class JobsClientImpl implements JobsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public JobBaseInner get(String resourceGroupName, String workspaceName, String id) {
         return getWithResponse(resourceGroupName, workspaceName, id, Context.NONE).getValue();
+    }
+
+    /**
+     * Updates a Job.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param id The name and identifier for the Job. This is case-sensitive.
+     * @param body Job definition to apply during the operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return azure Resource Manager resource envelope along with {@link Response} on successful completion of {@link
+     *     Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<JobBaseInner>> updateWithResponseAsync(
+        String resourceGroupName, String workspaceName, String id, PartialJobBasePartialResource body) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workspaceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
+        }
+        if (id == null) {
+            return Mono.error(new IllegalArgumentException("Parameter id is required and cannot be null."));
+        }
+        if (body == null) {
+            return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
+        } else {
+            body.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service
+                        .update(
+                            this.client.getEndpoint(),
+                            this.client.getSubscriptionId(),
+                            resourceGroupName,
+                            workspaceName,
+                            id,
+                            this.client.getApiVersion(),
+                            body,
+                            accept,
+                            context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Updates a Job.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param id The name and identifier for the Job. This is case-sensitive.
+     * @param body Job definition to apply during the operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return azure Resource Manager resource envelope along with {@link Response} on successful completion of {@link
+     *     Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<JobBaseInner>> updateWithResponseAsync(
+        String resourceGroupName,
+        String workspaceName,
+        String id,
+        PartialJobBasePartialResource body,
+        Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workspaceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
+        }
+        if (id == null) {
+            return Mono.error(new IllegalArgumentException("Parameter id is required and cannot be null."));
+        }
+        if (body == null) {
+            return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
+        } else {
+            body.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .update(
+                this.client.getEndpoint(),
+                this.client.getSubscriptionId(),
+                resourceGroupName,
+                workspaceName,
+                id,
+                this.client.getApiVersion(),
+                body,
+                accept,
+                context);
+    }
+
+    /**
+     * Updates a Job.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param id The name and identifier for the Job. This is case-sensitive.
+     * @param body Job definition to apply during the operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return azure Resource Manager resource envelope on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<JobBaseInner> updateAsync(
+        String resourceGroupName, String workspaceName, String id, PartialJobBasePartialResource body) {
+        return updateWithResponseAsync(resourceGroupName, workspaceName, id, body)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Updates a Job.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param id The name and identifier for the Job. This is case-sensitive.
+     * @param body Job definition to apply during the operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return azure Resource Manager resource envelope along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<JobBaseInner> updateWithResponse(
+        String resourceGroupName,
+        String workspaceName,
+        String id,
+        PartialJobBasePartialResource body,
+        Context context) {
+        return updateWithResponseAsync(resourceGroupName, workspaceName, id, body, context).block();
+    }
+
+    /**
+     * Updates a Job.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param id The name and identifier for the Job. This is case-sensitive.
+     * @param body Job definition to apply during the operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return azure Resource Manager resource envelope.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public JobBaseInner update(
+        String resourceGroupName, String workspaceName, String id, PartialJobBasePartialResource body) {
+        return updateWithResponse(resourceGroupName, workspaceName, id, body, Context.NONE).getValue();
     }
 
     /**
