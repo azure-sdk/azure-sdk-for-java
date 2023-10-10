@@ -123,6 +123,20 @@ public interface ManagedEnvironment {
     AppLogsConfiguration appLogsConfiguration();
 
     /**
+     * Gets the appInsightsConfiguration property: Environment level Application Insights configuration.
+     *
+     * @return the appInsightsConfiguration value.
+     */
+    AppInsightsConfiguration appInsightsConfiguration();
+
+    /**
+     * Gets the openTelemetryConfiguration property: Environment Open Telemetry configuration.
+     *
+     * @return the openTelemetryConfiguration value.
+     */
+    OpenTelemetryConfiguration openTelemetryConfiguration();
+
+    /**
      * Gets the zoneRedundant property: Whether or not this Managed Environment is zone-redundant.
      *
      * @return the zoneRedundant value.
@@ -263,6 +277,8 @@ public interface ManagedEnvironment {
                 DefinitionStages.WithDaprAIConnectionString,
                 DefinitionStages.WithVnetConfiguration,
                 DefinitionStages.WithAppLogsConfiguration,
+                DefinitionStages.WithAppInsightsConfiguration,
+                DefinitionStages.WithOpenTelemetryConfiguration,
                 DefinitionStages.WithZoneRedundant,
                 DefinitionStages.WithCustomDomainConfiguration,
                 DefinitionStages.WithWorkloadProfiles,
@@ -356,6 +372,28 @@ public interface ManagedEnvironment {
              * @return the next definition stage.
              */
             WithCreate withAppLogsConfiguration(AppLogsConfiguration appLogsConfiguration);
+        }
+
+        /** The stage of the ManagedEnvironment definition allowing to specify appInsightsConfiguration. */
+        interface WithAppInsightsConfiguration {
+            /**
+             * Specifies the appInsightsConfiguration property: Environment level Application Insights configuration.
+             *
+             * @param appInsightsConfiguration Environment level Application Insights configuration.
+             * @return the next definition stage.
+             */
+            WithCreate withAppInsightsConfiguration(AppInsightsConfiguration appInsightsConfiguration);
+        }
+
+        /** The stage of the ManagedEnvironment definition allowing to specify openTelemetryConfiguration. */
+        interface WithOpenTelemetryConfiguration {
+            /**
+             * Specifies the openTelemetryConfiguration property: Environment Open Telemetry configuration.
+             *
+             * @param openTelemetryConfiguration Environment Open Telemetry configuration.
+             * @return the next definition stage.
+             */
+            WithCreate withOpenTelemetryConfiguration(OpenTelemetryConfiguration openTelemetryConfiguration);
         }
 
         /** The stage of the ManagedEnvironment definition allowing to specify zoneRedundant. */
@@ -455,6 +493,8 @@ public interface ManagedEnvironment {
             UpdateStages.WithDaprAIConnectionString,
             UpdateStages.WithVnetConfiguration,
             UpdateStages.WithAppLogsConfiguration,
+            UpdateStages.WithAppInsightsConfiguration,
+            UpdateStages.WithOpenTelemetryConfiguration,
             UpdateStages.WithCustomDomainConfiguration,
             UpdateStages.WithWorkloadProfiles,
             UpdateStages.WithKedaConfiguration,
@@ -548,6 +588,28 @@ public interface ManagedEnvironment {
              * @return the next definition stage.
              */
             Update withAppLogsConfiguration(AppLogsConfiguration appLogsConfiguration);
+        }
+
+        /** The stage of the ManagedEnvironment update allowing to specify appInsightsConfiguration. */
+        interface WithAppInsightsConfiguration {
+            /**
+             * Specifies the appInsightsConfiguration property: Environment level Application Insights configuration.
+             *
+             * @param appInsightsConfiguration Environment level Application Insights configuration.
+             * @return the next definition stage.
+             */
+            Update withAppInsightsConfiguration(AppInsightsConfiguration appInsightsConfiguration);
+        }
+
+        /** The stage of the ManagedEnvironment update allowing to specify openTelemetryConfiguration. */
+        interface WithOpenTelemetryConfiguration {
+            /**
+             * Specifies the openTelemetryConfiguration property: Environment Open Telemetry configuration.
+             *
+             * @param openTelemetryConfiguration Environment Open Telemetry configuration.
+             * @return the next definition stage.
+             */
+            Update withOpenTelemetryConfiguration(OpenTelemetryConfiguration openTelemetryConfiguration);
         }
 
         /** The stage of the ManagedEnvironment update allowing to specify customDomainConfiguration. */
