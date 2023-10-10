@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.fluidrelay.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for FluidRelayServers ListByResourceGroup. */
 public final class FluidRelayServersListByResourceGroupSamples {
     /*
@@ -18,6 +16,6 @@ public final class FluidRelayServersListByResourceGroupSamples {
      */
     public static void listAllFluidRelayServersInAResourceGroup(
         com.azure.resourcemanager.fluidrelay.FluidRelayManager manager) {
-        manager.fluidRelayServers().listByResourceGroup("myResourceGroup", Context.NONE);
+        manager.fluidRelayServers().listByResourceGroup("myResourceGroup", com.azure.core.util.Context.NONE);
     }
 }
