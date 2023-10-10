@@ -45,6 +45,13 @@ public final class MigrateMySqlAzureDbForMySqlSyncDatabaseInput {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> targetSetting;
 
+    /*
+     * Mapping of source to target tables
+     */
+    @JsonProperty(value = "tableMap")
+    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
+    private Map<String, String> tableMap;
+
     /** Creates an instance of MigrateMySqlAzureDbForMySqlSyncDatabaseInput class. */
     public MigrateMySqlAzureDbForMySqlSyncDatabaseInput() {
     }
@@ -148,6 +155,26 @@ public final class MigrateMySqlAzureDbForMySqlSyncDatabaseInput {
      */
     public MigrateMySqlAzureDbForMySqlSyncDatabaseInput withTargetSetting(Map<String, String> targetSetting) {
         this.targetSetting = targetSetting;
+        return this;
+    }
+
+    /**
+     * Get the tableMap property: Mapping of source to target tables.
+     *
+     * @return the tableMap value.
+     */
+    public Map<String, String> tableMap() {
+        return this.tableMap;
+    }
+
+    /**
+     * Set the tableMap property: Mapping of source to target tables.
+     *
+     * @param tableMap the tableMap value to set.
+     * @return the MigrateMySqlAzureDbForMySqlSyncDatabaseInput object itself.
+     */
+    public MigrateMySqlAzureDbForMySqlSyncDatabaseInput withTableMap(Map<String, String> tableMap) {
+        this.tableMap = tableMap;
         return this;
     }
 
