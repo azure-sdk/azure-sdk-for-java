@@ -640,7 +640,7 @@ public interface NetworkFabric {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return common response for the state updates.
      */
-    CommonPostActionResponseForStateUpdate upgrade(UpdateVersion body);
+    CommonPostActionResponseForStateUpdate upgrade(UpgradeNetworkFabricProperties body);
 
     /**
      * Implements the operation to the underlying resources.
@@ -654,7 +654,7 @@ public interface NetworkFabric {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return common response for the state updates.
      */
-    CommonPostActionResponseForStateUpdate upgrade(UpdateVersion body, Context context);
+    CommonPostActionResponseForStateUpdate upgrade(UpgradeNetworkFabricProperties body, Context context);
 
     /**
      * Implements the operation to the underlying resources.
