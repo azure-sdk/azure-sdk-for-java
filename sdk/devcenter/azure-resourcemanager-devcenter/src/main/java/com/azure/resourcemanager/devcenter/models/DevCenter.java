@@ -76,6 +76,14 @@ public interface DevCenter {
     String devCenterUri();
 
     /**
+     * Gets the encryption property: Encryption settings to be used for server-side encryption for proprietary content
+     * (such as catalogs, logs, customizations).
+     *
+     * @return the encryption value.
+     */
+    Encryption encryption();
+
+    /**
      * Gets the region of the resource.
      *
      * @return the region of the resource.
@@ -110,11 +118,13 @@ public interface DevCenter {
             DefinitionStages.WithResourceGroup,
             DefinitionStages.WithCreate {
     }
+
     /** The DevCenter definition stages. */
     interface DefinitionStages {
         /** The first stage of the DevCenter definition. */
         interface Blank extends WithLocation {
         }
+
         /** The stage of the DevCenter definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -133,6 +143,7 @@ public interface DevCenter {
              */
             WithResourceGroup withRegion(String location);
         }
+
         /** The stage of the DevCenter definition allowing to specify parent resource. */
         interface WithResourceGroup {
             /**
@@ -143,11 +154,13 @@ public interface DevCenter {
              */
             WithCreate withExistingResourceGroup(String resourceGroupName);
         }
+
         /**
          * The stage of the DevCenter definition which contains all the minimum required properties for the resource to
          * be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithIdentity {
+        interface WithCreate
+            extends DefinitionStages.WithTags, DefinitionStages.WithIdentity, DefinitionStages.WithEncryption {
             /**
              * Executes the create request.
              *
@@ -163,6 +176,7 @@ public interface DevCenter {
              */
             DevCenter create(Context context);
         }
+
         /** The stage of the DevCenter definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -173,6 +187,7 @@ public interface DevCenter {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
         /** The stage of the DevCenter definition allowing to specify identity. */
         interface WithIdentity {
             /**
@@ -183,7 +198,21 @@ public interface DevCenter {
              */
             WithCreate withIdentity(ManagedServiceIdentity identity);
         }
+
+        /** The stage of the DevCenter definition allowing to specify encryption. */
+        interface WithEncryption {
+            /**
+             * Specifies the encryption property: Encryption settings to be used for server-side encryption for
+             * proprietary content (such as catalogs, logs, customizations)..
+             *
+             * @param encryption Encryption settings to be used for server-side encryption for proprietary content (such
+             *     as catalogs, logs, customizations).
+             * @return the next definition stage.
+             */
+            WithCreate withEncryption(Encryption encryption);
+        }
     }
+
     /**
      * Begins update for the DevCenter resource.
      *
@@ -192,7 +221,7 @@ public interface DevCenter {
     DevCenter.Update update();
 
     /** The template for DevCenter update. */
-    interface Update extends UpdateStages.WithTags, UpdateStages.WithIdentity {
+    interface Update extends UpdateStages.WithTags, UpdateStages.WithIdentity, UpdateStages.WithEncryption {
         /**
          * Executes the update request.
          *
@@ -208,6 +237,7 @@ public interface DevCenter {
          */
         DevCenter apply(Context context);
     }
+
     /** The DevCenter update stages. */
     interface UpdateStages {
         /** The stage of the DevCenter update allowing to specify tags. */
@@ -220,6 +250,7 @@ public interface DevCenter {
              */
             Update withTags(Map<String, String> tags);
         }
+
         /** The stage of the DevCenter update allowing to specify identity. */
         interface WithIdentity {
             /**
@@ -230,7 +261,21 @@ public interface DevCenter {
              */
             Update withIdentity(ManagedServiceIdentity identity);
         }
+
+        /** The stage of the DevCenter update allowing to specify encryption. */
+        interface WithEncryption {
+            /**
+             * Specifies the encryption property: Encryption settings to be used for server-side encryption for
+             * proprietary content (such as catalogs, logs, customizations)..
+             *
+             * @param encryption Encryption settings to be used for server-side encryption for proprietary content (such
+             *     as catalogs, logs, customizations).
+             * @return the next definition stage.
+             */
+            Update withEncryption(Encryption encryption);
+        }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *
