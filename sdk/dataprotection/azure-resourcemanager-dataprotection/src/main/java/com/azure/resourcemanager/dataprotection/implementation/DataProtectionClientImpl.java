@@ -23,9 +23,12 @@ import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.dataprotection.fluent.BackupInstancesClient;
+import com.azure.resourcemanager.dataprotection.fluent.BackupInstancesExtensionRoutingsClient;
 import com.azure.resourcemanager.dataprotection.fluent.BackupPoliciesClient;
 import com.azure.resourcemanager.dataprotection.fluent.BackupVaultOperationResultsClient;
 import com.azure.resourcemanager.dataprotection.fluent.BackupVaultsClient;
+import com.azure.resourcemanager.dataprotection.fluent.CrossRegionRestoreJobsClient;
+import com.azure.resourcemanager.dataprotection.fluent.CrossRegionRestoreJobsOperationsClient;
 import com.azure.resourcemanager.dataprotection.fluent.DataProtectionClient;
 import com.azure.resourcemanager.dataprotection.fluent.DataProtectionOperationsClient;
 import com.azure.resourcemanager.dataprotection.fluent.DataProtectionsClient;
@@ -41,6 +44,7 @@ import com.azure.resourcemanager.dataprotection.fluent.OperationStatusResourceGr
 import com.azure.resourcemanager.dataprotection.fluent.RecoveryPointsClient;
 import com.azure.resourcemanager.dataprotection.fluent.ResourceGuardsClient;
 import com.azure.resourcemanager.dataprotection.fluent.RestorableTimeRangesClient;
+import com.azure.resourcemanager.dataprotection.fluent.SecondaryRPsClient;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.nio.ByteBuffer;
@@ -257,6 +261,54 @@ public final class DataProtectionClientImpl implements DataProtectionClient {
         return this.recoveryPoints;
     }
 
+    /** The SecondaryRPsClient object to access its operations. */
+    private final SecondaryRPsClient secondaryRPs;
+
+    /**
+     * Gets the SecondaryRPsClient object to access its operations.
+     *
+     * @return the SecondaryRPsClient object.
+     */
+    public SecondaryRPsClient getSecondaryRPs() {
+        return this.secondaryRPs;
+    }
+
+    /** The CrossRegionRestoreJobsClient object to access its operations. */
+    private final CrossRegionRestoreJobsClient crossRegionRestoreJobs;
+
+    /**
+     * Gets the CrossRegionRestoreJobsClient object to access its operations.
+     *
+     * @return the CrossRegionRestoreJobsClient object.
+     */
+    public CrossRegionRestoreJobsClient getCrossRegionRestoreJobs() {
+        return this.crossRegionRestoreJobs;
+    }
+
+    /** The CrossRegionRestoreJobsOperationsClient object to access its operations. */
+    private final CrossRegionRestoreJobsOperationsClient crossRegionRestoreJobsOperations;
+
+    /**
+     * Gets the CrossRegionRestoreJobsOperationsClient object to access its operations.
+     *
+     * @return the CrossRegionRestoreJobsOperationsClient object.
+     */
+    public CrossRegionRestoreJobsOperationsClient getCrossRegionRestoreJobsOperations() {
+        return this.crossRegionRestoreJobsOperations;
+    }
+
+    /** The BackupInstancesExtensionRoutingsClient object to access its operations. */
+    private final BackupInstancesExtensionRoutingsClient backupInstancesExtensionRoutings;
+
+    /**
+     * Gets the BackupInstancesExtensionRoutingsClient object to access its operations.
+     *
+     * @return the BackupInstancesExtensionRoutingsClient object.
+     */
+    public BackupInstancesExtensionRoutingsClient getBackupInstancesExtensionRoutings() {
+        return this.backupInstancesExtensionRoutings;
+    }
+
     /** The JobsClient object to access its operations. */
     private final JobsClient jobs;
 
@@ -363,7 +415,7 @@ public final class DataProtectionClientImpl implements DataProtectionClient {
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2023-05-01";
+        this.apiVersion = "2023-06-01-preview";
         this.backupVaults = new BackupVaultsClientImpl(this);
         this.operationResults = new OperationResultsClientImpl(this);
         this.operationStatus = new OperationStatusClientImpl(this);
@@ -375,6 +427,10 @@ public final class DataProtectionClientImpl implements DataProtectionClient {
         this.backupPolicies = new BackupPoliciesClientImpl(this);
         this.backupInstances = new BackupInstancesClientImpl(this);
         this.recoveryPoints = new RecoveryPointsClientImpl(this);
+        this.secondaryRPs = new SecondaryRPsClientImpl(this);
+        this.crossRegionRestoreJobs = new CrossRegionRestoreJobsClientImpl(this);
+        this.crossRegionRestoreJobsOperations = new CrossRegionRestoreJobsOperationsClientImpl(this);
+        this.backupInstancesExtensionRoutings = new BackupInstancesExtensionRoutingsClientImpl(this);
         this.jobs = new JobsClientImpl(this);
         this.restorableTimeRanges = new RestorableTimeRangesClientImpl(this);
         this.exportJobs = new ExportJobsClientImpl(this);
