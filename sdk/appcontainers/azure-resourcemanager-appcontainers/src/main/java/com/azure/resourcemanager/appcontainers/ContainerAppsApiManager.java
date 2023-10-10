@@ -26,6 +26,8 @@ import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.appcontainers.fluent.ContainerAppsApiClient;
 import com.azure.resourcemanager.appcontainers.implementation.AvailableWorkloadProfilesImpl;
 import com.azure.resourcemanager.appcontainers.implementation.BillingMetersImpl;
+import com.azure.resourcemanager.appcontainers.implementation.BuildersImpl;
+import com.azure.resourcemanager.appcontainers.implementation.BuildsImpl;
 import com.azure.resourcemanager.appcontainers.implementation.CertificatesImpl;
 import com.azure.resourcemanager.appcontainers.implementation.ConnectedEnvironmentsCertificatesImpl;
 import com.azure.resourcemanager.appcontainers.implementation.ConnectedEnvironmentsDaprComponentsImpl;
@@ -39,18 +41,24 @@ import com.azure.resourcemanager.appcontainers.implementation.ContainerAppsRevis
 import com.azure.resourcemanager.appcontainers.implementation.ContainerAppsRevisionsImpl;
 import com.azure.resourcemanager.appcontainers.implementation.ContainerAppsSourceControlsImpl;
 import com.azure.resourcemanager.appcontainers.implementation.DaprComponentsImpl;
+import com.azure.resourcemanager.appcontainers.implementation.DaprSubscriptionsImpl;
 import com.azure.resourcemanager.appcontainers.implementation.JobsExecutionsImpl;
 import com.azure.resourcemanager.appcontainers.implementation.JobsImpl;
 import com.azure.resourcemanager.appcontainers.implementation.ManagedCertificatesImpl;
 import com.azure.resourcemanager.appcontainers.implementation.ManagedEnvironmentDiagnosticsImpl;
+import com.azure.resourcemanager.appcontainers.implementation.ManagedEnvironmentUsagesImpl;
 import com.azure.resourcemanager.appcontainers.implementation.ManagedEnvironmentsDiagnosticsImpl;
 import com.azure.resourcemanager.appcontainers.implementation.ManagedEnvironmentsImpl;
 import com.azure.resourcemanager.appcontainers.implementation.ManagedEnvironmentsStoragesImpl;
 import com.azure.resourcemanager.appcontainers.implementation.NamespacesImpl;
 import com.azure.resourcemanager.appcontainers.implementation.OperationsImpl;
+import com.azure.resourcemanager.appcontainers.implementation.PatchesImpl;
 import com.azure.resourcemanager.appcontainers.implementation.ResourceProvidersImpl;
+import com.azure.resourcemanager.appcontainers.implementation.UsagesImpl;
 import com.azure.resourcemanager.appcontainers.models.AvailableWorkloadProfiles;
 import com.azure.resourcemanager.appcontainers.models.BillingMeters;
+import com.azure.resourcemanager.appcontainers.models.Builders;
+import com.azure.resourcemanager.appcontainers.models.Builds;
 import com.azure.resourcemanager.appcontainers.models.Certificates;
 import com.azure.resourcemanager.appcontainers.models.ConnectedEnvironments;
 import com.azure.resourcemanager.appcontainers.models.ConnectedEnvironmentsCertificates;
@@ -63,16 +71,20 @@ import com.azure.resourcemanager.appcontainers.models.ContainerAppsRevisionRepli
 import com.azure.resourcemanager.appcontainers.models.ContainerAppsRevisions;
 import com.azure.resourcemanager.appcontainers.models.ContainerAppsSourceControls;
 import com.azure.resourcemanager.appcontainers.models.DaprComponents;
+import com.azure.resourcemanager.appcontainers.models.DaprSubscriptions;
 import com.azure.resourcemanager.appcontainers.models.Jobs;
 import com.azure.resourcemanager.appcontainers.models.JobsExecutions;
 import com.azure.resourcemanager.appcontainers.models.ManagedCertificates;
 import com.azure.resourcemanager.appcontainers.models.ManagedEnvironmentDiagnostics;
+import com.azure.resourcemanager.appcontainers.models.ManagedEnvironmentUsages;
 import com.azure.resourcemanager.appcontainers.models.ManagedEnvironments;
 import com.azure.resourcemanager.appcontainers.models.ManagedEnvironmentsDiagnostics;
 import com.azure.resourcemanager.appcontainers.models.ManagedEnvironmentsStorages;
 import com.azure.resourcemanager.appcontainers.models.Namespaces;
 import com.azure.resourcemanager.appcontainers.models.Operations;
+import com.azure.resourcemanager.appcontainers.models.Patches;
 import com.azure.resourcemanager.appcontainers.models.ResourceProviders;
+import com.azure.resourcemanager.appcontainers.models.Usages;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -87,6 +99,10 @@ public final class ContainerAppsApiManager {
     private AvailableWorkloadProfiles availableWorkloadProfiles;
 
     private BillingMeters billingMeters;
+
+    private Builders builders;
+
+    private Builds builds;
 
     private ConnectedEnvironments connectedEnvironments;
 
@@ -126,9 +142,17 @@ public final class ContainerAppsApiManager {
 
     private DaprComponents daprComponents;
 
+    private DaprSubscriptions daprSubscriptions;
+
     private ManagedEnvironmentsStorages managedEnvironmentsStorages;
 
+    private Patches patches;
+
     private ContainerAppsSourceControls containerAppsSourceControls;
+
+    private Usages usages;
+
+    private ManagedEnvironmentUsages managedEnvironmentUsages;
 
     private final ContainerAppsApiClient clientObject;
 
@@ -295,7 +319,7 @@ public final class ContainerAppsApiManager {
                 .append("-")
                 .append("com.azure.resourcemanager.appcontainers")
                 .append("/")
-                .append("1.0.0-beta.6");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -388,6 +412,30 @@ public final class ContainerAppsApiManager {
             this.billingMeters = new BillingMetersImpl(clientObject.getBillingMeters(), this);
         }
         return billingMeters;
+    }
+
+    /**
+     * Gets the resource collection API of Builders. It manages BuilderResource.
+     *
+     * @return Resource collection API of Builders.
+     */
+    public Builders builders() {
+        if (this.builders == null) {
+            this.builders = new BuildersImpl(clientObject.getBuilders(), this);
+        }
+        return builders;
+    }
+
+    /**
+     * Gets the resource collection API of Builds. It manages BuildResource.
+     *
+     * @return Resource collection API of Builds.
+     */
+    public Builds builds() {
+        if (this.builds == null) {
+            this.builds = new BuildsImpl(clientObject.getBuilds(), this);
+        }
+        return builds;
     }
 
     /**
@@ -628,6 +676,18 @@ public final class ContainerAppsApiManager {
     }
 
     /**
+     * Gets the resource collection API of DaprSubscriptions. It manages DaprSubscription.
+     *
+     * @return Resource collection API of DaprSubscriptions.
+     */
+    public DaprSubscriptions daprSubscriptions() {
+        if (this.daprSubscriptions == null) {
+            this.daprSubscriptions = new DaprSubscriptionsImpl(clientObject.getDaprSubscriptions(), this);
+        }
+        return daprSubscriptions;
+    }
+
+    /**
      * Gets the resource collection API of ManagedEnvironmentsStorages. It manages ManagedEnvironmentStorage.
      *
      * @return Resource collection API of ManagedEnvironmentsStorages.
@@ -641,6 +701,18 @@ public final class ContainerAppsApiManager {
     }
 
     /**
+     * Gets the resource collection API of Patches.
+     *
+     * @return Resource collection API of Patches.
+     */
+    public Patches patches() {
+        if (this.patches == null) {
+            this.patches = new PatchesImpl(clientObject.getPatches(), this);
+        }
+        return patches;
+    }
+
+    /**
      * Gets the resource collection API of ContainerAppsSourceControls. It manages SourceControl.
      *
      * @return Resource collection API of ContainerAppsSourceControls.
@@ -651,6 +723,31 @@ public final class ContainerAppsApiManager {
                 new ContainerAppsSourceControlsImpl(clientObject.getContainerAppsSourceControls(), this);
         }
         return containerAppsSourceControls;
+    }
+
+    /**
+     * Gets the resource collection API of Usages.
+     *
+     * @return Resource collection API of Usages.
+     */
+    public Usages usages() {
+        if (this.usages == null) {
+            this.usages = new UsagesImpl(clientObject.getUsages(), this);
+        }
+        return usages;
+    }
+
+    /**
+     * Gets the resource collection API of ManagedEnvironmentUsages.
+     *
+     * @return Resource collection API of ManagedEnvironmentUsages.
+     */
+    public ManagedEnvironmentUsages managedEnvironmentUsages() {
+        if (this.managedEnvironmentUsages == null) {
+            this.managedEnvironmentUsages =
+                new ManagedEnvironmentUsagesImpl(clientObject.getManagedEnvironmentUsages(), this);
+        }
+        return managedEnvironmentUsages;
     }
 
     /**
