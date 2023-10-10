@@ -98,11 +98,13 @@ public interface ConfidentialLedger {
             DefinitionStages.WithResourceGroup,
             DefinitionStages.WithCreate {
     }
+
     /** The ConfidentialLedger definition stages. */
     interface DefinitionStages {
         /** The first stage of the ConfidentialLedger definition. */
         interface Blank extends WithLocation {
         }
+
         /** The stage of the ConfidentialLedger definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -121,6 +123,7 @@ public interface ConfidentialLedger {
              */
             WithResourceGroup withRegion(String location);
         }
+
         /** The stage of the ConfidentialLedger definition allowing to specify parent resource. */
         interface WithResourceGroup {
             /**
@@ -131,6 +134,7 @@ public interface ConfidentialLedger {
              */
             WithCreate withExistingResourceGroup(String resourceGroupName);
         }
+
         /**
          * The stage of the ConfidentialLedger definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
@@ -151,6 +155,7 @@ public interface ConfidentialLedger {
              */
             ConfidentialLedger create(Context context);
         }
+
         /** The stage of the ConfidentialLedger definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -161,6 +166,7 @@ public interface ConfidentialLedger {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
         /** The stage of the ConfidentialLedger definition allowing to specify properties. */
         interface WithProperties {
             /**
@@ -175,6 +181,7 @@ public interface ConfidentialLedger {
             WithCreate withProperties(LedgerProperties properties);
         }
     }
+
     /**
      * Begins update for the ConfidentialLedger resource.
      *
@@ -199,6 +206,7 @@ public interface ConfidentialLedger {
          */
         ConfidentialLedger apply(Context context);
     }
+
     /** The ConfidentialLedger update stages. */
     interface UpdateStages {
         /** The stage of the ConfidentialLedger update allowing to specify tags. */
@@ -211,6 +219,7 @@ public interface ConfidentialLedger {
              */
             Update withTags(Map<String, String> tags);
         }
+
         /** The stage of the ConfidentialLedger update allowing to specify properties. */
         interface WithProperties {
             /**
@@ -225,6 +234,7 @@ public interface ConfidentialLedger {
             Update withProperties(LedgerProperties properties);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *
@@ -239,4 +249,58 @@ public interface ConfidentialLedger {
      * @return the refreshed resource.
      */
     ConfidentialLedger refresh(Context context);
+
+    /**
+     * Performs the backup operation on a Confidential Ledger Resource.
+     *
+     * <p>Backs up a Confidential Ledger Resource.
+     *
+     * @param confidentialLedger Confidential Ledger Backup Request Body.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return object representing the backup response of a Confidential Ledger Resource.
+     */
+    ConfidentialLedgerBackupResponse backup(ConfidentialLedgerBackup confidentialLedger);
+
+    /**
+     * Performs the backup operation on a Confidential Ledger Resource.
+     *
+     * <p>Backs up a Confidential Ledger Resource.
+     *
+     * @param confidentialLedger Confidential Ledger Backup Request Body.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return object representing the backup response of a Confidential Ledger Resource.
+     */
+    ConfidentialLedgerBackupResponse backup(ConfidentialLedgerBackup confidentialLedger, Context context);
+
+    /**
+     * Performs the restore operation to spin up a newly restored Confidential Ledger Resource.
+     *
+     * <p>Restores a Confidential Ledger Resource.
+     *
+     * @param confidentialLedger Confidential Ledger Restore Request Body.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return object representing the restore response of a Confidential Ledger Resource.
+     */
+    ConfidentialLedgerRestoreResponse restore(ConfidentialLedgerRestore confidentialLedger);
+
+    /**
+     * Performs the restore operation to spin up a newly restored Confidential Ledger Resource.
+     *
+     * <p>Restores a Confidential Ledger Resource.
+     *
+     * @param confidentialLedger Confidential Ledger Restore Request Body.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return object representing the restore response of a Confidential Ledger Resource.
+     */
+    ConfidentialLedgerRestoreResponse restore(ConfidentialLedgerRestore confidentialLedger, Context context);
 }
