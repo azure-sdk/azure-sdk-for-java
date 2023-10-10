@@ -10,7 +10,7 @@ import com.azure.resourcemanager.agrifood.models.PrivateLinkServiceConnectionSta
 /** Samples for PrivateEndpointConnections CreateOrUpdate. */
 public final class PrivateEndpointConnectionsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2021-09-01-preview/examples/PrivateEndpointConnections_CreateOrUpdate.json
+     * x-ms-original-file: specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2023-06-01-preview/examples/PrivateEndpointConnections_CreateOrUpdate.json
      */
     /**
      * Sample code: PrivateEndpointConnections_CreateOrUpdate.
