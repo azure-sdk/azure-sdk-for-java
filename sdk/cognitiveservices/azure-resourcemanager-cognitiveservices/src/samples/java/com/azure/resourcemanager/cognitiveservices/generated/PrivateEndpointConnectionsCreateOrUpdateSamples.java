@@ -11,7 +11,7 @@ import com.azure.resourcemanager.cognitiveservices.models.PrivateLinkServiceConn
 /** Samples for PrivateEndpointConnections CreateOrUpdate. */
 public final class PrivateEndpointConnectionsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/stable/2023-05-01/examples/PutPrivateEndpointConnection.json
+     * x-ms-original-file: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/preview/2023-10-01-preview/examples/PutPrivateEndpointConnection.json
      */
     /**
      * Sample code: PutPrivateEndpointConnection.

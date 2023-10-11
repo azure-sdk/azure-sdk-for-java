@@ -62,6 +62,24 @@ public final class DeploymentProperties {
     @JsonProperty(value = "versionUpgradeOption")
     private DeploymentModelVersionUpgradeOption versionUpgradeOption;
 
+    /*
+     * If the dynamic throttling is enabled.
+     */
+    @JsonProperty(value = "dynamicThrottlingEnabled", access = JsonProperty.Access.WRITE_ONLY)
+    private Boolean dynamicThrottlingEnabled;
+
+    /*
+     * The current capacity.
+     */
+    @JsonProperty(value = "currentCapacity")
+    private Integer currentCapacity;
+
+    /*
+     * The maps to reserved Capacity for fungible deployments (MSS).
+     */
+    @JsonProperty(value = "capacitySettings")
+    private DeploymentCapacitySettings capacitySettings;
+
     /** Creates an instance of DeploymentProperties class. */
     public DeploymentProperties() {
     }
@@ -183,6 +201,55 @@ public final class DeploymentProperties {
     }
 
     /**
+     * Get the dynamicThrottlingEnabled property: If the dynamic throttling is enabled.
+     *
+     * @return the dynamicThrottlingEnabled value.
+     */
+    public Boolean dynamicThrottlingEnabled() {
+        return this.dynamicThrottlingEnabled;
+    }
+
+    /**
+     * Get the currentCapacity property: The current capacity.
+     *
+     * @return the currentCapacity value.
+     */
+    public Integer currentCapacity() {
+        return this.currentCapacity;
+    }
+
+    /**
+     * Set the currentCapacity property: The current capacity.
+     *
+     * @param currentCapacity the currentCapacity value to set.
+     * @return the DeploymentProperties object itself.
+     */
+    public DeploymentProperties withCurrentCapacity(Integer currentCapacity) {
+        this.currentCapacity = currentCapacity;
+        return this;
+    }
+
+    /**
+     * Get the capacitySettings property: The maps to reserved Capacity for fungible deployments (MSS).
+     *
+     * @return the capacitySettings value.
+     */
+    public DeploymentCapacitySettings capacitySettings() {
+        return this.capacitySettings;
+    }
+
+    /**
+     * Set the capacitySettings property: The maps to reserved Capacity for fungible deployments (MSS).
+     *
+     * @param capacitySettings the capacitySettings value to set.
+     * @return the DeploymentProperties object itself.
+     */
+    public DeploymentProperties withCapacitySettings(DeploymentCapacitySettings capacitySettings) {
+        this.capacitySettings = capacitySettings;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -199,6 +266,9 @@ public final class DeploymentProperties {
         }
         if (rateLimits() != null) {
             rateLimits().forEach(e -> e.validate());
+        }
+        if (capacitySettings() != null) {
+            capacitySettings().validate();
         }
     }
 }

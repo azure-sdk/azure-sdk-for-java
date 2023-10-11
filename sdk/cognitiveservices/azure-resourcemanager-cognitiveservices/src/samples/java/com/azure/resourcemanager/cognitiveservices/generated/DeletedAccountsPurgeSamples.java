@@ -7,7 +7,7 @@ package com.azure.resourcemanager.cognitiveservices.generated;
 /** Samples for DeletedAccounts Purge. */
 public final class DeletedAccountsPurgeSamples {
     /*
-     * x-ms-original-file: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/stable/2023-05-01/examples/PurgeDeletedAccount.json
+     * x-ms-original-file: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/preview/2023-10-01-preview/examples/PurgeDeletedAccount.json
      */
     /**
      * Sample code: Delete Account.
