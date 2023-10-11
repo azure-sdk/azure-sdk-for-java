@@ -10,7 +10,9 @@ import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.dataprotection.fluent.JobsClient;
+import com.azure.resourcemanager.dataprotection.fluent.models.AzureBackupJobProgressUrlInner;
 import com.azure.resourcemanager.dataprotection.fluent.models.AzureBackupJobResourceInner;
+import com.azure.resourcemanager.dataprotection.models.AzureBackupJobProgressUrl;
 import com.azure.resourcemanager.dataprotection.models.AzureBackupJobResource;
 import com.azure.resourcemanager.dataprotection.models.Jobs;
 
@@ -57,6 +59,39 @@ public final class JobsImpl implements Jobs {
         AzureBackupJobResourceInner inner = this.serviceClient().get(resourceGroupName, vaultName, jobId);
         if (inner != null) {
             return new AzureBackupJobResourceImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public void triggerCancel(String resourceGroupName, String vaultName, String jobId) {
+        this.serviceClient().triggerCancel(resourceGroupName, vaultName, jobId);
+    }
+
+    public void triggerCancel(String resourceGroupName, String vaultName, String jobId, Context context) {
+        this.serviceClient().triggerCancel(resourceGroupName, vaultName, jobId, context);
+    }
+
+    public Response<AzureBackupJobProgressUrl> generateProgressUrlWithResponse(
+        String resourceGroupName, String vaultName, String jobId, Context context) {
+        Response<AzureBackupJobProgressUrlInner> inner =
+            this.serviceClient().generateProgressUrlWithResponse(resourceGroupName, vaultName, jobId, context);
+        if (inner != null) {
+            return new SimpleResponse<>(
+                inner.getRequest(),
+                inner.getStatusCode(),
+                inner.getHeaders(),
+                new AzureBackupJobProgressUrlImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public AzureBackupJobProgressUrl generateProgressUrl(String resourceGroupName, String vaultName, String jobId) {
+        AzureBackupJobProgressUrlInner inner =
+            this.serviceClient().generateProgressUrl(resourceGroupName, vaultName, jobId);
+        if (inner != null) {
+            return new AzureBackupJobProgressUrlImpl(inner, this.manager());
         } else {
             return null;
         }
