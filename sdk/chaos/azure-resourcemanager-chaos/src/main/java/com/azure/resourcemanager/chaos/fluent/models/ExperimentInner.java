@@ -8,6 +8,7 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
+import com.azure.resourcemanager.chaos.models.ProvisioningState;
 import com.azure.resourcemanager.chaos.models.ResourceIdentity;
 import com.azure.resourcemanager.chaos.models.Selector;
 import com.azure.resourcemanager.chaos.models.Step;
@@ -93,6 +94,15 @@ public final class ExperimentInner extends Resource {
     }
 
     /**
+     * Get the provisioningState property: Most recent provisioning state for the given experiment resource.
+     *
+     * @return the provisioningState value.
+     */
+    public ProvisioningState provisioningState() {
+        return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
+    }
+
+    /**
      * Get the steps property: List of steps.
      *
      * @return the steps value.
@@ -135,31 +145,6 @@ public final class ExperimentInner extends Resource {
             this.innerProperties = new ExperimentProperties();
         }
         this.innerProperties().withSelectors(selectors);
-        return this;
-    }
-
-    /**
-     * Get the startOnCreation property: A boolean value that indicates if experiment should be started on creation or
-     * not.
-     *
-     * @return the startOnCreation value.
-     */
-    public Boolean startOnCreation() {
-        return this.innerProperties() == null ? null : this.innerProperties().startOnCreation();
-    }
-
-    /**
-     * Set the startOnCreation property: A boolean value that indicates if experiment should be started on creation or
-     * not.
-     *
-     * @param startOnCreation the startOnCreation value to set.
-     * @return the ExperimentInner object itself.
-     */
-    public ExperimentInner withStartOnCreation(Boolean startOnCreation) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new ExperimentProperties();
-        }
-        this.innerProperties().withStartOnCreation(startOnCreation);
         return this;
     }
 
