@@ -26,7 +26,9 @@ import com.azure.resourcemanager.chaos.fluent.CapabilitiesClient;
 import com.azure.resourcemanager.chaos.fluent.CapabilityTypesClient;
 import com.azure.resourcemanager.chaos.fluent.ChaosManagementClient;
 import com.azure.resourcemanager.chaos.fluent.ExperimentsClient;
+import com.azure.resourcemanager.chaos.fluent.OperationStatusesClient;
 import com.azure.resourcemanager.chaos.fluent.OperationsClient;
+import com.azure.resourcemanager.chaos.fluent.PrivateAccessesClient;
 import com.azure.resourcemanager.chaos.fluent.TargetTypesClient;
 import com.azure.resourcemanager.chaos.fluent.TargetsClient;
 import java.io.IOException;
@@ -149,6 +151,18 @@ public final class ChaosManagementClientImpl implements ChaosManagementClient {
         return this.experiments;
     }
 
+    /** The OperationStatusesClient object to access its operations. */
+    private final OperationStatusesClient operationStatuses;
+
+    /**
+     * Gets the OperationStatusesClient object to access its operations.
+     *
+     * @return the OperationStatusesClient object.
+     */
+    public OperationStatusesClient getOperationStatuses() {
+        return this.operationStatuses;
+    }
+
     /** The OperationsClient object to access its operations. */
     private final OperationsClient operations;
 
@@ -159,6 +173,18 @@ public final class ChaosManagementClientImpl implements ChaosManagementClient {
      */
     public OperationsClient getOperations() {
         return this.operations;
+    }
+
+    /** The PrivateAccessesClient object to access its operations. */
+    private final PrivateAccessesClient privateAccesses;
+
+    /**
+     * Gets the PrivateAccessesClient object to access its operations.
+     *
+     * @return the PrivateAccessesClient object.
+     */
+    public PrivateAccessesClient getPrivateAccesses() {
+        return this.privateAccesses;
     }
 
     /** The TargetTypesClient object to access its operations. */
@@ -207,11 +233,13 @@ public final class ChaosManagementClientImpl implements ChaosManagementClient {
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2023-04-15-preview";
+        this.apiVersion = "2023-10-27-preview";
         this.capabilities = new CapabilitiesClientImpl(this);
         this.capabilityTypes = new CapabilityTypesClientImpl(this);
         this.experiments = new ExperimentsClientImpl(this);
+        this.operationStatuses = new OperationStatusesClientImpl(this);
         this.operations = new OperationsClientImpl(this);
+        this.privateAccesses = new PrivateAccessesClientImpl(this);
         this.targetTypes = new TargetTypesClientImpl(this);
         this.targets = new TargetsClientImpl(this);
     }
