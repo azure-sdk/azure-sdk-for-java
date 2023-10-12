@@ -10,7 +10,7 @@ import com.azure.resourcemanager.communication.models.ManagedServiceIdentityType
 /** Samples for CommunicationServices CreateOrUpdate. */
 public final class CommunicationServicesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/communication/resource-manager/Microsoft.Communication/preview/2023-04-01-preview/examples/communicationServices/createOrUpdate.json
+     * x-ms-original-file: specification/communication/resource-manager/Microsoft.Communication/preview/2023-06-01-preview/examples/communicationServices/createOrUpdate.json
      */
     /**
      * Sample code: Create or update resource.
@@ -28,7 +28,7 @@ public final class CommunicationServicesCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/communication/resource-manager/Microsoft.Communication/preview/2023-04-01-preview/examples/communicationServices/createOrUpdateWithSystemAssignedIdentity.json
+     * x-ms-original-file: specification/communication/resource-manager/Microsoft.Communication/preview/2023-06-01-preview/examples/communicationServices/createOrUpdateWithSystemAssignedIdentity.json
      */
     /**
      * Sample code: Create or update resource with managed identity.
