@@ -16,6 +16,10 @@ public final class AzureMonitorWorkspaceIntegration {
     @JsonProperty(value = "azureMonitorWorkspaceResourceId")
     private String azureMonitorWorkspaceResourceId;
 
+    /** Creates an instance of AzureMonitorWorkspaceIntegration class. */
+    public AzureMonitorWorkspaceIntegration() {
+    }
+
     /**
      * Get the azureMonitorWorkspaceResourceId property: The resource Id of the connected Azure Monitor Workspace.
      *

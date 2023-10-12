@@ -58,18 +58,6 @@ public interface Grafanas {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The workspace name of Azure Managed Grafana.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the properties of a specific workspace for Grafana resource.
-     */
-    ManagedGrafana getByResourceGroup(String resourceGroupName, String workspaceName);
-
-    /**
-     * Get the properties of a specific workspace for Grafana resource.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The workspace name of Azure Managed Grafana.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -78,6 +66,18 @@ public interface Grafanas {
      */
     Response<ManagedGrafana> getByResourceGroupWithResponse(
         String resourceGroupName, String workspaceName, Context context);
+
+    /**
+     * Get the properties of a specific workspace for Grafana resource.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The workspace name of Azure Managed Grafana.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the properties of a specific workspace for Grafana resource.
+     */
+    ManagedGrafana getByResourceGroup(String resourceGroupName, String workspaceName);
 
     /**
      * Delete a workspace for Grafana resource.
@@ -101,6 +101,58 @@ public interface Grafanas {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     void delete(String resourceGroupName, String workspaceName, Context context);
+
+    /**
+     * Retrieve enterprise add-on details information.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The workspace name of Azure Managed Grafana.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return enterprise details of a Grafana instance along with {@link Response}.
+     */
+    Response<EnterpriseDetails> checkEnterpriseDetailsWithResponse(
+        String resourceGroupName, String workspaceName, Context context);
+
+    /**
+     * Retrieve enterprise add-on details information.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The workspace name of Azure Managed Grafana.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return enterprise details of a Grafana instance.
+     */
+    EnterpriseDetails checkEnterpriseDetails(String resourceGroupName, String workspaceName);
+
+    /**
+     * The fetchAvailablePlugins operation.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The workspace name of Azure Managed Grafana.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response}.
+     */
+    Response<GrafanaAvailablePluginListResponse> fetchAvailablePluginsWithResponse(
+        String resourceGroupName, String workspaceName, Context context);
+
+    /**
+     * The fetchAvailablePlugins operation.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The workspace name of Azure Managed Grafana.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    GrafanaAvailablePluginListResponse fetchAvailablePlugins(String resourceGroupName, String workspaceName);
 
     /**
      * Get the properties of a specific workspace for Grafana resource.
