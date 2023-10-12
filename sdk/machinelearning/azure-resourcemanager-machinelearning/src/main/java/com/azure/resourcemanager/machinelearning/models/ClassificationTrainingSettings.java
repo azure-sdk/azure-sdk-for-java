@@ -119,6 +119,13 @@ public final class ClassificationTrainingSettings extends TrainingSettings {
         return this;
     }
 
+    /** {@inheritDoc} */
+    @Override
+    public ClassificationTrainingSettings withTrainingMode(TrainingMode trainingMode) {
+        super.withTrainingMode(trainingMode);
+        return this;
+    }
+
     /**
      * Validates the instance.
      *
