@@ -190,11 +190,13 @@ public interface SapCentralServerInstance {
             DefinitionStages.WithParentResource,
             DefinitionStages.WithCreate {
     }
+
     /** The SapCentralServerInstance definition stages. */
     interface DefinitionStages {
         /** The first stage of the SapCentralServerInstance definition. */
         interface Blank extends WithLocation {
         }
+
         /** The stage of the SapCentralServerInstance definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -213,6 +215,7 @@ public interface SapCentralServerInstance {
              */
             WithParentResource withRegion(String location);
         }
+
         /** The stage of the SapCentralServerInstance definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -224,6 +227,7 @@ public interface SapCentralServerInstance {
              */
             WithCreate withExistingSapVirtualInstance(String resourceGroupName, String sapVirtualInstanceName);
         }
+
         /**
          * The stage of the SapCentralServerInstance definition which contains all the minimum required properties for
          * the resource to be created, but also allows for any other optional properties to be specified.
@@ -249,6 +253,7 @@ public interface SapCentralServerInstance {
              */
             SapCentralServerInstance create(Context context);
         }
+
         /** The stage of the SapCentralServerInstance definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -259,6 +264,7 @@ public interface SapCentralServerInstance {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
         /** The stage of the SapCentralServerInstance definition allowing to specify messageServerProperties. */
         interface WithMessageServerProperties {
             /**
@@ -269,6 +275,7 @@ public interface SapCentralServerInstance {
              */
             WithCreate withMessageServerProperties(MessageServerProperties messageServerProperties);
         }
+
         /** The stage of the SapCentralServerInstance definition allowing to specify enqueueServerProperties. */
         interface WithEnqueueServerProperties {
             /**
@@ -279,6 +286,7 @@ public interface SapCentralServerInstance {
              */
             WithCreate withEnqueueServerProperties(EnqueueServerProperties enqueueServerProperties);
         }
+
         /** The stage of the SapCentralServerInstance definition allowing to specify gatewayServerProperties. */
         interface WithGatewayServerProperties {
             /**
@@ -289,6 +297,7 @@ public interface SapCentralServerInstance {
              */
             WithCreate withGatewayServerProperties(GatewayServerProperties gatewayServerProperties);
         }
+
         /**
          * The stage of the SapCentralServerInstance definition allowing to specify enqueueReplicationServerProperties.
          */
@@ -304,6 +313,7 @@ public interface SapCentralServerInstance {
                 EnqueueReplicationServerProperties enqueueReplicationServerProperties);
         }
     }
+
     /**
      * Begins update for the SapCentralServerInstance resource.
      *
@@ -328,6 +338,7 @@ public interface SapCentralServerInstance {
          */
         SapCentralServerInstance apply(Context context);
     }
+
     /** The SapCentralServerInstance update stages. */
     interface UpdateStages {
         /** The stage of the SapCentralServerInstance update allowing to specify tags. */
@@ -341,6 +352,7 @@ public interface SapCentralServerInstance {
             Update withTags(Map<String, String> tags);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

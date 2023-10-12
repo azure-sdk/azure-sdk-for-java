@@ -170,11 +170,13 @@ public interface Monitor {
             DefinitionStages.WithResourceGroup,
             DefinitionStages.WithCreate {
     }
+
     /** The Monitor definition stages. */
     interface DefinitionStages {
         /** The first stage of the Monitor definition. */
         interface Blank extends WithLocation {
         }
+
         /** The stage of the Monitor definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -193,6 +195,7 @@ public interface Monitor {
              */
             WithResourceGroup withRegion(String location);
         }
+
         /** The stage of the Monitor definition allowing to specify parent resource. */
         interface WithResourceGroup {
             /**
@@ -203,6 +206,7 @@ public interface Monitor {
              */
             WithCreate withExistingResourceGroup(String resourceGroupName);
         }
+
         /**
          * The stage of the Monitor definition which contains all the minimum required properties for the resource to be
          * created, but also allows for any other optional properties to be specified.
@@ -231,6 +235,7 @@ public interface Monitor {
              */
             Monitor create(Context context);
         }
+
         /** The stage of the Monitor definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -241,6 +246,7 @@ public interface Monitor {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
         /** The stage of the Monitor definition allowing to specify identity. */
         interface WithIdentity {
             /**
@@ -252,6 +258,7 @@ public interface Monitor {
              */
             WithCreate withIdentity(UserAssignedServiceIdentity identity);
         }
+
         /** The stage of the Monitor definition allowing to specify appLocation. */
         interface WithAppLocation {
             /**
@@ -264,6 +271,7 @@ public interface Monitor {
              */
             WithCreate withAppLocation(String appLocation);
         }
+
         /** The stage of the Monitor definition allowing to specify routingPreference. */
         interface WithRoutingPreference {
             /**
@@ -276,6 +284,7 @@ public interface Monitor {
              */
             WithCreate withRoutingPreference(RoutingPreference routingPreference);
         }
+
         /** The stage of the Monitor definition allowing to specify zoneRedundancyPreference. */
         interface WithZoneRedundancyPreference {
             /**
@@ -288,6 +297,7 @@ public interface Monitor {
              */
             WithCreate withZoneRedundancyPreference(String zoneRedundancyPreference);
         }
+
         /** The stage of the Monitor definition allowing to specify managedResourceGroupConfiguration. */
         interface WithManagedResourceGroupConfiguration {
             /**
@@ -298,6 +308,7 @@ public interface Monitor {
              */
             WithCreate withManagedResourceGroupConfiguration(ManagedRGConfiguration managedResourceGroupConfiguration);
         }
+
         /** The stage of the Monitor definition allowing to specify logAnalyticsWorkspaceArmId. */
         interface WithLogAnalyticsWorkspaceArmId {
             /**
@@ -310,6 +321,7 @@ public interface Monitor {
              */
             WithCreate withLogAnalyticsWorkspaceArmId(String logAnalyticsWorkspaceArmId);
         }
+
         /** The stage of the Monitor definition allowing to specify monitorSubnet. */
         interface WithMonitorSubnet {
             /**
@@ -321,6 +333,7 @@ public interface Monitor {
             WithCreate withMonitorSubnet(String monitorSubnet);
         }
     }
+
     /**
      * Begins update for the Monitor resource.
      *
@@ -345,6 +358,7 @@ public interface Monitor {
          */
         Monitor apply(Context context);
     }
+
     /** The Monitor update stages. */
     interface UpdateStages {
         /** The stage of the Monitor update allowing to specify tags. */
@@ -357,6 +371,7 @@ public interface Monitor {
              */
             Update withTags(Map<String, String> tags);
         }
+
         /** The stage of the Monitor update allowing to specify identity. */
         interface WithIdentity {
             /**
@@ -369,6 +384,7 @@ public interface Monitor {
             Update withIdentity(UserAssignedServiceIdentity identity);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

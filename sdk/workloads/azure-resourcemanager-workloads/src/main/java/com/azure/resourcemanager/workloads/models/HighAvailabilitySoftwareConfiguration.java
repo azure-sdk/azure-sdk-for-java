@@ -21,7 +21,7 @@ public final class HighAvailabilitySoftwareConfiguration {
      * The fencing client id secret/password. The secret should never expire. This will be used pacemaker to start/stop
      * the cluster VMs.
      */
-    @JsonProperty(value = "fencingClientPassword", required = true)
+    @JsonProperty(value = "fencingClientPassword")
     private String fencingClientPassword;
 
     /** Creates an instance of HighAvailabilitySoftwareConfiguration class. */
