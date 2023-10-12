@@ -63,11 +63,10 @@ public final class AzureDevOpsOrgsClientImpl implements AzureDevOpsOrgsClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "MicrosoftSecurityDev")
-    private interface AzureDevOpsOrgsService {
+    public interface AzureDevOpsOrgsService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SecurityDevOps"
-                + "/azureDevOpsConnectors/{azureDevOpsConnectorName}/orgs")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SecurityDevOps/azureDevOpsConnectors/{azureDevOpsConnectorName}/orgs")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<AzureDevOpsOrgListResponse>> list(
@@ -81,8 +80,7 @@ public final class AzureDevOpsOrgsClientImpl implements AzureDevOpsOrgsClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SecurityDevOps"
-                + "/azureDevOpsConnectors/{azureDevOpsConnectorName}/orgs/{azureDevOpsOrgName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SecurityDevOps/azureDevOpsConnectors/{azureDevOpsConnectorName}/orgs/{azureDevOpsOrgName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<AzureDevOpsOrgInner>> get(
@@ -97,8 +95,7 @@ public final class AzureDevOpsOrgsClientImpl implements AzureDevOpsOrgsClient {
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SecurityDevOps"
-                + "/azureDevOpsConnectors/{azureDevOpsConnectorName}/orgs/{azureDevOpsOrgName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SecurityDevOps/azureDevOpsConnectors/{azureDevOpsConnectorName}/orgs/{azureDevOpsOrgName}")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
@@ -114,9 +111,8 @@ public final class AzureDevOpsOrgsClientImpl implements AzureDevOpsOrgsClient {
 
         @Headers({"Content-Type: application/json"})
         @Patch(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SecurityDevOps"
-                + "/azureDevOpsConnectors/{azureDevOpsConnectorName}/orgs/{azureDevOpsOrgName}")
-        @ExpectedResponses({202})
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SecurityDevOps/azureDevOpsConnectors/{azureDevOpsConnectorName}/orgs/{azureDevOpsOrgName}")
+        @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> update(
             @HostParam("$host") String endpoint,
@@ -698,7 +694,8 @@ public final class AzureDevOpsOrgsClientImpl implements AzureDevOpsOrgsClient {
         String azureDevOpsConnectorName,
         String azureDevOpsOrgName,
         AzureDevOpsOrgInner azureDevOpsOrg) {
-        return beginCreateOrUpdateAsync(resourceGroupName, azureDevOpsConnectorName, azureDevOpsOrgName, azureDevOpsOrg)
+        return this
+            .beginCreateOrUpdateAsync(resourceGroupName, azureDevOpsConnectorName, azureDevOpsOrgName, azureDevOpsOrg)
             .getSyncPoller();
     }
 
@@ -722,7 +719,8 @@ public final class AzureDevOpsOrgsClientImpl implements AzureDevOpsOrgsClient {
         String azureDevOpsOrgName,
         AzureDevOpsOrgInner azureDevOpsOrg,
         Context context) {
-        return beginCreateOrUpdateAsync(
+        return this
+            .beginCreateOrUpdateAsync(
                 resourceGroupName, azureDevOpsConnectorName, azureDevOpsOrgName, azureDevOpsOrg, context)
             .getSyncPoller();
     }
@@ -1052,7 +1050,8 @@ public final class AzureDevOpsOrgsClientImpl implements AzureDevOpsOrgsClient {
     public SyncPoller<PollResult<AzureDevOpsOrgInner>, AzureDevOpsOrgInner> beginUpdate(
         String resourceGroupName, String azureDevOpsConnectorName, String azureDevOpsOrgName) {
         final AzureDevOpsOrgInner azureDevOpsOrg = null;
-        return beginUpdateAsync(resourceGroupName, azureDevOpsConnectorName, azureDevOpsOrgName, azureDevOpsOrg)
+        return this
+            .beginUpdateAsync(resourceGroupName, azureDevOpsConnectorName, azureDevOpsOrgName, azureDevOpsOrg)
             .getSyncPoller();
     }
 
@@ -1076,8 +1075,8 @@ public final class AzureDevOpsOrgsClientImpl implements AzureDevOpsOrgsClient {
         String azureDevOpsOrgName,
         AzureDevOpsOrgInner azureDevOpsOrg,
         Context context) {
-        return beginUpdateAsync(
-                resourceGroupName, azureDevOpsConnectorName, azureDevOpsOrgName, azureDevOpsOrg, context)
+        return this
+            .beginUpdateAsync(resourceGroupName, azureDevOpsConnectorName, azureDevOpsOrgName, azureDevOpsOrg, context)
             .getSyncPoller();
     }
 

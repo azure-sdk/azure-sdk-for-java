@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.securitydevops.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.securitydevops.models.AutoDiscovery;
 import com.azure.resourcemanager.securitydevops.models.AzureDevOpsProject;
 import com.azure.resourcemanager.securitydevops.models.AzureDevOpsProjectProperties;
@@ -24,7 +23,7 @@ public final class AzureDevOpsProjectUpdateSamples {
         AzureDevOpsProject resource =
             manager
                 .azureDevOpsProjects()
-                .getWithResponse("westusrg", "testconnector", "myOrg", "myProject", Context.NONE)
+                .getWithResponse("westusrg", "testconnector", "myOrg", "myProject", com.azure.core.util.Context.NONE)
                 .getValue();
         resource
             .update()

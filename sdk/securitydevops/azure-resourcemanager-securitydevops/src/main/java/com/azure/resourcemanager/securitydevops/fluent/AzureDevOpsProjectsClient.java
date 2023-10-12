@@ -200,7 +200,7 @@ public interface AzureDevOpsProjectsClient {
      * @param azureDevOpsConnectorName Name of the AzureDevOps Connector.
      * @param azureDevOpsOrgName Name of the AzureDevOps Org.
      * @param azureDevOpsProjectName Name of the AzureDevOps Project.
-     * @param azureDevOpsProject Azure DevOps Org resource payload.
+     * @param azureDevOpsProject Azure DevOps Project resource payload.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -242,7 +242,7 @@ public interface AzureDevOpsProjectsClient {
      * @param azureDevOpsConnectorName Name of the AzureDevOps Connector.
      * @param azureDevOpsOrgName Name of the AzureDevOps Org.
      * @param azureDevOpsProjectName Name of the AzureDevOps Project.
-     * @param azureDevOpsProject Azure DevOps Org resource payload.
+     * @param azureDevOpsProject Azure DevOps Project resource payload.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.

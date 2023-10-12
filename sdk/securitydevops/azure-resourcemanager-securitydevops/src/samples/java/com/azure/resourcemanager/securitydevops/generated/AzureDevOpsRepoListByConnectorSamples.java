@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.securitydevops.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for AzureDevOpsRepo ListByConnector. */
 public final class AzureDevOpsRepoListByConnectorSamples {
     /*
@@ -18,6 +16,6 @@ public final class AzureDevOpsRepoListByConnectorSamples {
      */
     public static void azureDevOpsRepoListByConnector(
         com.azure.resourcemanager.securitydevops.SecurityDevOpsManager manager) {
-        manager.azureDevOpsRepoes().listByConnector("westusrg", "testconnector", Context.NONE);
+        manager.azureDevOpsRepoes().listByConnector("westusrg", "testconnector", com.azure.core.util.Context.NONE);
     }
 }
