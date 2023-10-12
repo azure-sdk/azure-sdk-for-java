@@ -70,11 +70,13 @@ public interface InformationProtectionPolicy {
     /** The entirety of the InformationProtectionPolicy definition. */
     interface Definition extends DefinitionStages.Blank, DefinitionStages.WithScope, DefinitionStages.WithCreate {
     }
+
     /** The InformationProtectionPolicy definition stages. */
     interface DefinitionStages {
         /** The first stage of the InformationProtectionPolicy definition. */
         interface Blank extends WithScope {
         }
+
         /** The stage of the InformationProtectionPolicy definition allowing to specify parent resource. */
         interface WithScope {
             /**
@@ -87,6 +89,7 @@ public interface InformationProtectionPolicy {
              */
             WithCreate withExistingScope(String scope);
         }
+
         /**
          * The stage of the InformationProtectionPolicy definition which contains all the minimum required properties
          * for the resource to be created, but also allows for any other optional properties to be specified.
@@ -107,6 +110,7 @@ public interface InformationProtectionPolicy {
              */
             InformationProtectionPolicy create(Context context);
         }
+
         /** The stage of the InformationProtectionPolicy definition allowing to specify labels. */
         interface WithLabels {
             /**
@@ -117,6 +121,7 @@ public interface InformationProtectionPolicy {
              */
             WithCreate withLabels(Map<String, SensitivityLabel> labels);
         }
+
         /** The stage of the InformationProtectionPolicy definition allowing to specify informationTypes. */
         interface WithInformationTypes {
             /**
@@ -128,6 +133,7 @@ public interface InformationProtectionPolicy {
             WithCreate withInformationTypes(Map<String, InformationType> informationTypes);
         }
     }
+
     /**
      * Begins update for the InformationProtectionPolicy resource.
      *
@@ -152,6 +158,7 @@ public interface InformationProtectionPolicy {
          */
         InformationProtectionPolicy apply(Context context);
     }
+
     /** The InformationProtectionPolicy update stages. */
     interface UpdateStages {
         /** The stage of the InformationProtectionPolicy update allowing to specify labels. */
@@ -164,6 +171,7 @@ public interface InformationProtectionPolicy {
              */
             Update withLabels(Map<String, SensitivityLabel> labels);
         }
+
         /** The stage of the InformationProtectionPolicy update allowing to specify informationTypes. */
         interface WithInformationTypes {
             /**
@@ -175,6 +183,7 @@ public interface InformationProtectionPolicy {
             Update withInformationTypes(Map<String, InformationType> informationTypes);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

@@ -69,11 +69,13 @@ public interface DeviceSecurityGroup {
     /** The entirety of the DeviceSecurityGroup definition. */
     interface Definition extends DefinitionStages.Blank, DefinitionStages.WithScope, DefinitionStages.WithCreate {
     }
+
     /** The DeviceSecurityGroup definition stages. */
     interface DefinitionStages {
         /** The first stage of the DeviceSecurityGroup definition. */
         interface Blank extends WithScope {
         }
+
         /** The stage of the DeviceSecurityGroup definition allowing to specify parent resource. */
         interface WithScope {
             /**
@@ -84,6 +86,7 @@ public interface DeviceSecurityGroup {
              */
             WithCreate withExistingResourceId(String resourceId);
         }
+
         /**
          * The stage of the DeviceSecurityGroup definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
@@ -108,6 +111,7 @@ public interface DeviceSecurityGroup {
              */
             DeviceSecurityGroup create(Context context);
         }
+
         /** The stage of the DeviceSecurityGroup definition allowing to specify thresholdRules. */
         interface WithThresholdRules {
             /**
@@ -118,6 +122,7 @@ public interface DeviceSecurityGroup {
              */
             WithCreate withThresholdRules(List<ThresholdCustomAlertRule> thresholdRules);
         }
+
         /** The stage of the DeviceSecurityGroup definition allowing to specify timeWindowRules. */
         interface WithTimeWindowRules {
             /**
@@ -128,6 +133,7 @@ public interface DeviceSecurityGroup {
              */
             WithCreate withTimeWindowRules(List<TimeWindowCustomAlertRule> timeWindowRules);
         }
+
         /** The stage of the DeviceSecurityGroup definition allowing to specify allowlistRules. */
         interface WithAllowlistRules {
             /**
@@ -138,6 +144,7 @@ public interface DeviceSecurityGroup {
              */
             WithCreate withAllowlistRules(List<AllowlistCustomAlertRule> allowlistRules);
         }
+
         /** The stage of the DeviceSecurityGroup definition allowing to specify denylistRules. */
         interface WithDenylistRules {
             /**
@@ -149,6 +156,7 @@ public interface DeviceSecurityGroup {
             WithCreate withDenylistRules(List<DenylistCustomAlertRule> denylistRules);
         }
     }
+
     /**
      * Begins update for the DeviceSecurityGroup resource.
      *
@@ -177,6 +185,7 @@ public interface DeviceSecurityGroup {
          */
         DeviceSecurityGroup apply(Context context);
     }
+
     /** The DeviceSecurityGroup update stages. */
     interface UpdateStages {
         /** The stage of the DeviceSecurityGroup update allowing to specify thresholdRules. */
@@ -189,6 +198,7 @@ public interface DeviceSecurityGroup {
              */
             Update withThresholdRules(List<ThresholdCustomAlertRule> thresholdRules);
         }
+
         /** The stage of the DeviceSecurityGroup update allowing to specify timeWindowRules. */
         interface WithTimeWindowRules {
             /**
@@ -199,6 +209,7 @@ public interface DeviceSecurityGroup {
              */
             Update withTimeWindowRules(List<TimeWindowCustomAlertRule> timeWindowRules);
         }
+
         /** The stage of the DeviceSecurityGroup update allowing to specify allowlistRules. */
         interface WithAllowlistRules {
             /**
@@ -209,6 +220,7 @@ public interface DeviceSecurityGroup {
              */
             Update withAllowlistRules(List<AllowlistCustomAlertRule> allowlistRules);
         }
+
         /** The stage of the DeviceSecurityGroup update allowing to specify denylistRules. */
         interface WithDenylistRules {
             /**
@@ -220,6 +232,7 @@ public interface DeviceSecurityGroup {
             Update withDenylistRules(List<DenylistCustomAlertRule> denylistRules);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *
