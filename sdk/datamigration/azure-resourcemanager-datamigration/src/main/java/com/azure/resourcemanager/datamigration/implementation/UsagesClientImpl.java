@@ -81,7 +81,8 @@ public final class UsagesClientImpl implements UsagesClient {
     /**
      * Get resource quotas and usage information
      *
-     * <p>This method returns region-specific quotas and resource usage information for the Database Migration Service.
+     * <p>This method returns region-specific quotas and resource usage information for the Azure Database Migration
+     * Service (classic).
      *
      * @param location The Azure region of the operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -133,7 +134,8 @@ public final class UsagesClientImpl implements UsagesClient {
     /**
      * Get resource quotas and usage information
      *
-     * <p>This method returns region-specific quotas and resource usage information for the Database Migration Service.
+     * <p>This method returns region-specific quotas and resource usage information for the Azure Database Migration
+     * Service (classic).
      *
      * @param location The Azure region of the operation.
      * @param context The context to associate with this operation.
@@ -183,7 +185,8 @@ public final class UsagesClientImpl implements UsagesClient {
     /**
      * Get resource quotas and usage information
      *
-     * <p>This method returns region-specific quotas and resource usage information for the Database Migration Service.
+     * <p>This method returns region-specific quotas and resource usage information for the Azure Database Migration
+     * Service (classic).
      *
      * @param location The Azure region of the operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -199,7 +202,8 @@ public final class UsagesClientImpl implements UsagesClient {
     /**
      * Get resource quotas and usage information
      *
-     * <p>This method returns region-specific quotas and resource usage information for the Database Migration Service.
+     * <p>This method returns region-specific quotas and resource usage information for the Azure Database Migration
+     * Service (classic).
      *
      * @param location The Azure region of the operation.
      * @param context The context to associate with this operation.
@@ -217,7 +221,8 @@ public final class UsagesClientImpl implements UsagesClient {
     /**
      * Get resource quotas and usage information
      *
-     * <p>This method returns region-specific quotas and resource usage information for the Database Migration Service.
+     * <p>This method returns region-specific quotas and resource usage information for the Azure Database Migration
+     * Service (classic).
      *
      * @param location The Azure region of the operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -233,7 +238,8 @@ public final class UsagesClientImpl implements UsagesClient {
     /**
      * Get resource quotas and usage information
      *
-     * <p>This method returns region-specific quotas and resource usage information for the Database Migration Service.
+     * <p>This method returns region-specific quotas and resource usage information for the Azure Database Migration
+     * Service (classic).
      *
      * @param location The Azure region of the operation.
      * @param context The context to associate with this operation.

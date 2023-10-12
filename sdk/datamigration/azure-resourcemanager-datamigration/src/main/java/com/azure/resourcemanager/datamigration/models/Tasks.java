@@ -7,15 +7,16 @@ package com.azure.resourcemanager.datamigration.models;
 import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
+import com.azure.resourcemanager.datamigration.fluent.models.CommandPropertiesInner;
 
 /** Resource collection API of Tasks. */
 public interface Tasks {
     /**
      * Get tasks in a service
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. This method
-     * returns a list of tasks owned by a service resource. Some tasks may have a status of Unknown, which indicates
-     * that an error occurred while querying the status of that task.
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). This method returns a list of tasks owned by a service resource. Some tasks may have a status of
+     * Unknown, which indicates that an error occurred while querying the status of that task.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -30,9 +31,9 @@ public interface Tasks {
     /**
      * Get tasks in a service
      *
-     * <p>The services resource is the top-level resource that represents the Database Migration Service. This method
-     * returns a list of tasks owned by a service resource. Some tasks may have a status of Unknown, which indicates
-     * that an error occurred while querying the status of that task.
+     * <p>The services resource is the top-level resource that represents the Azure Database Migration Service
+     * (classic). This method returns a list of tasks owned by a service resource. Some tasks may have a status of
+     * Unknown, which indicates that an error occurred while querying the status of that task.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -50,8 +51,8 @@ public interface Tasks {
     /**
      * Get task information
      *
-     * <p>The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. The GET
-     * method retrieves information about a task.
+     * <p>The tasks resource is a nested, proxy-only resource representing work performed by a DMS (classic) instance.
+     * The GET method retrieves information about a task.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -70,8 +71,8 @@ public interface Tasks {
     /**
      * Get task information
      *
-     * <p>The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. The GET
-     * method retrieves information about a task.
+     * <p>The tasks resource is a nested, proxy-only resource representing work performed by a DMS (classic) instance.
+     * The GET method retrieves information about a task.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -87,8 +88,8 @@ public interface Tasks {
     /**
      * Delete task
      *
-     * <p>The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. The DELETE
-     * method deletes a task, canceling it first if it's running.
+     * <p>The tasks resource is a nested, proxy-only resource representing work performed by a DMS (classic) instance.
+     * The DELETE method deletes a task, canceling it first if it's running.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -112,8 +113,8 @@ public interface Tasks {
     /**
      * Delete task
      *
-     * <p>The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. The DELETE
-     * method deletes a task, canceling it first if it's running.
+     * <p>The tasks resource is a nested, proxy-only resource representing work performed by a DMS (classic) instance.
+     * The DELETE method deletes a task, canceling it first if it's running.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -128,8 +129,8 @@ public interface Tasks {
     /**
      * Cancel a task
      *
-     * <p>The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. This method
-     * cancels a task if it's currently queued or running.
+     * <p>The tasks resource is a nested, proxy-only resource representing work performed by a DMS (classic) instance.
+     * This method cancels a task if it's currently queued or running.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -147,8 +148,8 @@ public interface Tasks {
     /**
      * Cancel a task
      *
-     * <p>The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. This method
-     * cancels a task if it's currently queued or running.
+     * <p>The tasks resource is a nested, proxy-only resource representing work performed by a DMS (classic) instance.
+     * This method cancels a task if it's currently queued or running.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -162,10 +163,54 @@ public interface Tasks {
     ProjectTask cancel(String groupName, String serviceName, String projectName, String taskName);
 
     /**
+     * Execute a command on a task
+     *
+     * <p>The tasks resource is a nested, proxy-only resource representing work performed by a DMS (classic) instance.
+     * This method executes a command on a running task.
+     *
+     * @param groupName Name of the resource group.
+     * @param serviceName Name of the service.
+     * @param projectName Name of the project.
+     * @param taskName Name of the Task.
+     * @param parameters Command to execute.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return base class for all types of DMS (classic) command properties along with {@link Response}.
+     */
+    Response<CommandProperties> commandWithResponse(
+        String groupName,
+        String serviceName,
+        String projectName,
+        String taskName,
+        CommandPropertiesInner parameters,
+        Context context);
+
+    /**
+     * Execute a command on a task
+     *
+     * <p>The tasks resource is a nested, proxy-only resource representing work performed by a DMS (classic) instance.
+     * This method executes a command on a running task.
+     *
+     * @param groupName Name of the resource group.
+     * @param serviceName Name of the service.
+     * @param projectName Name of the project.
+     * @param taskName Name of the Task.
+     * @param parameters Command to execute.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return base class for all types of DMS (classic) command properties.
+     */
+    CommandProperties command(
+        String groupName, String serviceName, String projectName, String taskName, CommandPropertiesInner parameters);
+
+    /**
      * Get task information
      *
-     * <p>The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. The GET
-     * method retrieves information about a task.
+     * <p>The tasks resource is a nested, proxy-only resource representing work performed by a DMS (classic) instance.
+     * The GET method retrieves information about a task.
      *
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -178,8 +223,8 @@ public interface Tasks {
     /**
      * Get task information
      *
-     * <p>The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. The GET
-     * method retrieves information about a task.
+     * <p>The tasks resource is a nested, proxy-only resource representing work performed by a DMS (classic) instance.
+     * The GET method retrieves information about a task.
      *
      * @param id the resource ID.
      * @param expand Expand the response.
@@ -194,8 +239,8 @@ public interface Tasks {
     /**
      * Delete task
      *
-     * <p>The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. The DELETE
-     * method deletes a task, canceling it first if it's running.
+     * <p>The tasks resource is a nested, proxy-only resource representing work performed by a DMS (classic) instance.
+     * The DELETE method deletes a task, canceling it first if it's running.
      *
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -207,8 +252,8 @@ public interface Tasks {
     /**
      * Delete task
      *
-     * <p>The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. The DELETE
-     * method deletes a task, canceling it first if it's running.
+     * <p>The tasks resource is a nested, proxy-only resource representing work performed by a DMS (classic) instance.
+     * The DELETE method deletes a task, canceling it first if it's running.
      *
      * @param id the resource ID.
      * @param deleteRunningTasks Delete the resource even if it contains running tasks.

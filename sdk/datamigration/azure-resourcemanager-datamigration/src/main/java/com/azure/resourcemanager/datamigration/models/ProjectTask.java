@@ -5,7 +5,9 @@
 package com.azure.resourcemanager.datamigration.models;
 
 import com.azure.core.http.rest.Response;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
+import com.azure.resourcemanager.datamigration.fluent.models.CommandPropertiesInner;
 import com.azure.resourcemanager.datamigration.fluent.models.ProjectTaskInner;
 
 /** An immutable client-side representation of ProjectTask. */
@@ -46,6 +48,13 @@ public interface ProjectTask {
     ProjectTaskProperties properties();
 
     /**
+     * Gets the systemData property: Metadata pertaining to creation and last modification of the resource.
+     *
+     * @return the systemData value.
+     */
+    SystemData systemData();
+
+    /**
      * Gets the name of the resource group.
      *
      * @return the name of the resource group.
@@ -63,11 +72,13 @@ public interface ProjectTask {
     interface Definition
         extends DefinitionStages.Blank, DefinitionStages.WithParentResource, DefinitionStages.WithCreate {
     }
+
     /** The ProjectTask definition stages. */
     interface DefinitionStages {
         /** The first stage of the ProjectTask definition. */
         interface Blank extends WithParentResource {
         }
+
         /** The stage of the ProjectTask definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -80,6 +91,7 @@ public interface ProjectTask {
              */
             WithCreate withExistingProject(String groupName, String serviceName, String projectName);
         }
+
         /**
          * The stage of the ProjectTask definition which contains all the minimum required properties for the resource
          * to be created, but also allows for any other optional properties to be specified.
@@ -100,6 +112,7 @@ public interface ProjectTask {
              */
             ProjectTask create(Context context);
         }
+
         /** The stage of the ProjectTask definition allowing to specify etag. */
         interface WithEtag {
             /**
@@ -110,6 +123,7 @@ public interface ProjectTask {
              */
             WithCreate withEtag(String etag);
         }
+
         /** The stage of the ProjectTask definition allowing to specify properties. */
         interface WithProperties {
             /**
@@ -121,6 +135,7 @@ public interface ProjectTask {
             WithCreate withProperties(ProjectTaskProperties properties);
         }
     }
+
     /**
      * Begins update for the ProjectTask resource.
      *
@@ -145,6 +160,7 @@ public interface ProjectTask {
          */
         ProjectTask apply(Context context);
     }
+
     /** The ProjectTask update stages. */
     interface UpdateStages {
         /** The stage of the ProjectTask update allowing to specify etag. */
@@ -157,6 +173,7 @@ public interface ProjectTask {
              */
             Update withEtag(String etag);
         }
+
         /** The stage of the ProjectTask update allowing to specify properties. */
         interface WithProperties {
             /**
@@ -168,6 +185,7 @@ public interface ProjectTask {
             Update withProperties(ProjectTaskProperties properties);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *
@@ -186,8 +204,8 @@ public interface ProjectTask {
     /**
      * Cancel a task
      *
-     * <p>The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. This method
-     * cancels a task if it's currently queued or running.
+     * <p>The tasks resource is a nested, proxy-only resource representing work performed by a DMS (classic) instance.
+     * This method cancels a task if it's currently queued or running.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -200,12 +218,41 @@ public interface ProjectTask {
     /**
      * Cancel a task
      *
-     * <p>The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. This method
-     * cancels a task if it's currently queued or running.
+     * <p>The tasks resource is a nested, proxy-only resource representing work performed by a DMS (classic) instance.
+     * This method cancels a task if it's currently queued or running.
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a task resource.
      */
     ProjectTask cancel();
+
+    /**
+     * Execute a command on a task
+     *
+     * <p>The tasks resource is a nested, proxy-only resource representing work performed by a DMS (classic) instance.
+     * This method executes a command on a running task.
+     *
+     * @param parameters Command to execute.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return base class for all types of DMS (classic) command properties along with {@link Response}.
+     */
+    Response<CommandProperties> commandWithResponse(CommandPropertiesInner parameters, Context context);
+
+    /**
+     * Execute a command on a task
+     *
+     * <p>The tasks resource is a nested, proxy-only resource representing work performed by a DMS (classic) instance.
+     * This method executes a command on a running task.
+     *
+     * @param parameters Command to execute.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return base class for all types of DMS (classic) command properties.
+     */
+    CommandProperties command(CommandPropertiesInner parameters);
 }
