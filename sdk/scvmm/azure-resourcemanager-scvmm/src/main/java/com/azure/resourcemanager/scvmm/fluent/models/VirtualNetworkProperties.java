@@ -40,6 +40,10 @@ public final class VirtualNetworkProperties {
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private String provisioningState;
 
+    /** Creates an instance of VirtualNetworkProperties class. */
+    public VirtualNetworkProperties() {
+    }
+
     /**
      * Get the inventoryItemId property: Gets or sets the inventory Item ID for the resource.
      *

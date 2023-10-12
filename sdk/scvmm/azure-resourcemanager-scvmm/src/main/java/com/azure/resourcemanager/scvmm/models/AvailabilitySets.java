@@ -11,19 +11,9 @@ import com.azure.core.util.Context;
 /** Resource collection API of AvailabilitySets. */
 public interface AvailabilitySets {
     /**
-     * Implements AvailabilitySet GET method.
+     * Gets an AvailabilitySet.
      *
-     * @param resourceGroupName The name of the resource group.
-     * @param availabilitySetName Name of the AvailabilitySet.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the AvailabilitySets resource definition.
-     */
-    AvailabilitySet getByResourceGroup(String resourceGroupName, String availabilitySetName);
-
-    /**
-     * Implements AvailabilitySet GET method.
+     * <p>Implements AvailabilitySet GET method.
      *
      * @param resourceGroupName The name of the resource group.
      * @param availabilitySetName Name of the AvailabilitySet.
@@ -37,20 +27,23 @@ public interface AvailabilitySets {
         String resourceGroupName, String availabilitySetName, Context context);
 
     /**
-     * Deregisters the ScVmm availability set from Azure.
+     * Gets an AvailabilitySet.
+     *
+     * <p>Implements AvailabilitySet GET method.
      *
      * @param resourceGroupName The name of the resource group.
      * @param availabilitySetName Name of the AvailabilitySet.
-     * @param force Forces the resource to be deleted from azure. The corresponding CR would be attempted to be deleted
-     *     too.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the AvailabilitySets resource definition.
      */
-    void delete(String resourceGroupName, String availabilitySetName, Boolean force);
+    AvailabilitySet getByResourceGroup(String resourceGroupName, String availabilitySetName);
 
     /**
-     * Deregisters the ScVmm availability set from Azure.
+     * Implements AvailabilitySet DELETE method.
+     *
+     * <p>Deregisters the ScVmm availability set from Azure.
      *
      * @param resourceGroupName The name of the resource group.
      * @param availabilitySetName Name of the AvailabilitySet.
@@ -61,7 +54,9 @@ public interface AvailabilitySets {
     void delete(String resourceGroupName, String availabilitySetName);
 
     /**
-     * Deregisters the ScVmm availability set from Azure.
+     * Implements AvailabilitySet DELETE method.
+     *
+     * <p>Deregisters the ScVmm availability set from Azure.
      *
      * @param resourceGroupName The name of the resource group.
      * @param availabilitySetName Name of the AvailabilitySet.
@@ -75,7 +70,9 @@ public interface AvailabilitySets {
     void delete(String resourceGroupName, String availabilitySetName, Boolean force, Context context);
 
     /**
-     * List of AvailabilitySets in a resource group.
+     * Implements GET AvailabilitySets in a resource group.
+     *
+     * <p>List of AvailabilitySets in a resource group.
      *
      * @param resourceGroupName The name of the resource group.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -86,7 +83,9 @@ public interface AvailabilitySets {
     PagedIterable<AvailabilitySet> listByResourceGroup(String resourceGroupName);
 
     /**
-     * List of AvailabilitySets in a resource group.
+     * Implements GET AvailabilitySets in a resource group.
+     *
+     * <p>List of AvailabilitySets in a resource group.
      *
      * @param resourceGroupName The name of the resource group.
      * @param context The context to associate with this operation.
@@ -98,7 +97,9 @@ public interface AvailabilitySets {
     PagedIterable<AvailabilitySet> listByResourceGroup(String resourceGroupName, Context context);
 
     /**
-     * List of AvailabilitySets in a subscription.
+     * Implements GET AvailabilitySets in a subscription.
+     *
+     * <p>List of AvailabilitySets in a subscription.
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -107,7 +108,9 @@ public interface AvailabilitySets {
     PagedIterable<AvailabilitySet> list();
 
     /**
-     * List of AvailabilitySets in a subscription.
+     * Implements GET AvailabilitySets in a subscription.
+     *
+     * <p>List of AvailabilitySets in a subscription.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -118,7 +121,9 @@ public interface AvailabilitySets {
     PagedIterable<AvailabilitySet> list(Context context);
 
     /**
-     * Implements AvailabilitySet GET method.
+     * Gets an AvailabilitySet.
+     *
+     * <p>Implements AvailabilitySet GET method.
      *
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -129,7 +134,9 @@ public interface AvailabilitySets {
     AvailabilitySet getById(String id);
 
     /**
-     * Implements AvailabilitySet GET method.
+     * Gets an AvailabilitySet.
+     *
+     * <p>Implements AvailabilitySet GET method.
      *
      * @param id the resource ID.
      * @param context The context to associate with this operation.
@@ -141,7 +148,9 @@ public interface AvailabilitySets {
     Response<AvailabilitySet> getByIdWithResponse(String id, Context context);
 
     /**
-     * Deregisters the ScVmm availability set from Azure.
+     * Implements AvailabilitySet DELETE method.
+     *
+     * <p>Deregisters the ScVmm availability set from Azure.
      *
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -151,7 +160,9 @@ public interface AvailabilitySets {
     void deleteById(String id);
 
     /**
-     * Deregisters the ScVmm availability set from Azure.
+     * Implements AvailabilitySet DELETE method.
+     *
+     * <p>Deregisters the ScVmm availability set from Azure.
      *
      * @param id the resource ID.
      * @param force Forces the resource to be deleted from azure. The corresponding CR would be attempted to be deleted

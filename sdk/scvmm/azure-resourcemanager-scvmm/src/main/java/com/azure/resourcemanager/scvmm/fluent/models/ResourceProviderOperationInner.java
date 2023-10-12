@@ -29,6 +29,10 @@ public final class ResourceProviderOperationInner {
     @JsonProperty(value = "display")
     private ResourceProviderOperationDisplay display;
 
+    /** Creates an instance of ResourceProviderOperationInner class. */
+    public ResourceProviderOperationInner() {
+    }
+
     /**
      * Get the isDataAction property: Indicates whether the operation applies to data-plane.
      *

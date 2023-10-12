@@ -24,6 +24,10 @@ public final class ResourceProviderOperationList {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
+    /** Creates an instance of ResourceProviderOperationList class. */
+    public ResourceProviderOperationList() {
+    }
+
     /**
      * Get the value property: List of Operations.
      *

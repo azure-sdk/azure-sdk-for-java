@@ -9,7 +9,7 @@ import com.azure.resourcemanager.scvmm.models.ExtendedLocation;
 /** Samples for VirtualNetworks CreateOrUpdate. */
 public final class VirtualNetworksCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/preview/2020-06-05-preview/examples/CreateVirtualNetwork.json
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/preview/2023-04-01-preview/examples/CreateVirtualNetwork.json
      */
     /**
      * Sample code: CreateVirtualNetwork.

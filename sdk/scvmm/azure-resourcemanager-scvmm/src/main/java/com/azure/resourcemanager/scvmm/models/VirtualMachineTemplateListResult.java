@@ -24,6 +24,10 @@ public final class VirtualMachineTemplateListResult {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
+    /** Creates an instance of VirtualMachineTemplateListResult class. */
+    public VirtualMachineTemplateListResult() {
+    }
+
     /**
      * Get the value property: List of VirtualMachineTemplates.
      *

@@ -93,6 +93,10 @@ public final class VmmServerImpl implements VmmServer, VmmServer.Definition, Vmm
         return this.location();
     }
 
+    public String resourceGroupName() {
+        return resourceGroupName;
+    }
+
     public VmmServerInner innerModel() {
         return this.innerObject;
     }
