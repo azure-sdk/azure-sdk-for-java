@@ -4,22 +4,21 @@
 
 package com.azure.resourcemanager.notificationhubs.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for NotificationHubs ListKeys. */
 public final class NotificationHubsListKeysSamples {
     /*
-     * x-ms-original-file: specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/stable/2017-04-01/examples/NotificationHubs/NotificationHubAuthorizationRuleListKey.json
+     * x-ms-original-file: specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/stable/2023-09-01/examples/NotificationHubs/AuthorizationRuleListKeys.json
      */
     /**
-     * Sample code: NotificationHubAuthorizationRuleListKey.
+     * Sample code: NotificationHubs_ListKeys.
      *
      * @param manager Entry point to NotificationHubsManager.
      */
-    public static void notificationHubAuthorizationRuleListKey(
+    public static void notificationHubsListKeys(
         com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
         manager
             .notificationHubs()
-            .listKeysWithResponse("5ktrial", "nh-sdk-ns", "nh-sdk-hub", "sdk-AuthRules-5800", Context.NONE);
+            .listKeysWithResponse(
+                "5ktrial", "nh-sdk-ns", "nh-sdk-hub", "sdk-AuthRules-5800", com.azure.core.util.Context.NONE);
     }
 }
