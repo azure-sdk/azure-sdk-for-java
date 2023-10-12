@@ -63,11 +63,10 @@ public final class ConfigurationsClientImpl implements ConfigurationsClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "NginxManagementClien")
-    private interface ConfigurationsService {
+    public interface ConfigurationsService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Nginx.NginxPlus"
-                + "/nginxDeployments/{deploymentName}/configurations")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Nginx.NginxPlus/nginxDeployments/{deploymentName}/configurations")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<NginxConfigurationListResponse>> list(
@@ -81,8 +80,7 @@ public final class ConfigurationsClientImpl implements ConfigurationsClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Nginx.NginxPlus"
-                + "/nginxDeployments/{deploymentName}/configurations/{configurationName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Nginx.NginxPlus/nginxDeployments/{deploymentName}/configurations/{configurationName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<NginxConfigurationInner>> get(
@@ -97,8 +95,7 @@ public final class ConfigurationsClientImpl implements ConfigurationsClient {
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Nginx.NginxPlus"
-                + "/nginxDeployments/{deploymentName}/configurations/{configurationName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Nginx.NginxPlus/nginxDeployments/{deploymentName}/configurations/{configurationName}")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
@@ -114,8 +111,7 @@ public final class ConfigurationsClientImpl implements ConfigurationsClient {
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Nginx.NginxPlus"
-                + "/nginxDeployments/{deploymentName}/configurations/{configurationName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Nginx.NginxPlus/nginxDeployments/{deploymentName}/configurations/{configurationName}")
         @ExpectedResponses({200, 202, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(
@@ -712,7 +708,9 @@ public final class ConfigurationsClientImpl implements ConfigurationsClient {
     public SyncPoller<PollResult<NginxConfigurationInner>, NginxConfigurationInner> beginCreateOrUpdate(
         String resourceGroupName, String deploymentName, String configurationName) {
         final NginxConfigurationInner body = null;
-        return beginCreateOrUpdateAsync(resourceGroupName, deploymentName, configurationName, body).getSyncPoller();
+        return this
+            .beginCreateOrUpdateAsync(resourceGroupName, deploymentName, configurationName, body)
+            .getSyncPoller();
     }
 
     /**
@@ -736,7 +734,8 @@ public final class ConfigurationsClientImpl implements ConfigurationsClient {
         String configurationName,
         NginxConfigurationInner body,
         Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, deploymentName, configurationName, body, context)
+        return this
+            .beginCreateOrUpdateAsync(resourceGroupName, deploymentName, configurationName, body, context)
             .getSyncPoller();
     }
 
@@ -1021,7 +1020,7 @@ public final class ConfigurationsClientImpl implements ConfigurationsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String deploymentName, String configurationName) {
-        return beginDeleteAsync(resourceGroupName, deploymentName, configurationName).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, deploymentName, configurationName).getSyncPoller();
     }
 
     /**
@@ -1040,7 +1039,7 @@ public final class ConfigurationsClientImpl implements ConfigurationsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String deploymentName, String configurationName, Context context) {
-        return beginDeleteAsync(resourceGroupName, deploymentName, configurationName, context).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, deploymentName, configurationName, context).getSyncPoller();
     }
 
     /**

@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.nginx.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Certificates Delete. */
 public final class CertificatesDeleteSamples {
     /*
@@ -17,6 +15,6 @@ public final class CertificatesDeleteSamples {
      * @param manager Entry point to NginxManager.
      */
     public static void certificatesDelete(com.azure.resourcemanager.nginx.NginxManager manager) {
-        manager.certificates().delete("myResourceGroup", "myDeployment", "default", Context.NONE);
+        manager.certificates().delete("myResourceGroup", "myDeployment", "default", com.azure.core.util.Context.NONE);
     }
 }
