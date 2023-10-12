@@ -4,14 +4,18 @@
 
 package com.azure.resourcemanager.devcenter.implementation;
 
+import com.azure.core.http.rest.Response;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.devcenter.fluent.models.CatalogInner;
 import com.azure.resourcemanager.devcenter.models.Catalog;
+import com.azure.resourcemanager.devcenter.models.CatalogConnectionState;
 import com.azure.resourcemanager.devcenter.models.CatalogSyncState;
 import com.azure.resourcemanager.devcenter.models.CatalogUpdate;
 import com.azure.resourcemanager.devcenter.models.GitCatalog;
 import com.azure.resourcemanager.devcenter.models.ProvisioningState;
+import com.azure.resourcemanager.devcenter.models.SyncErrorDetails;
+import com.azure.resourcemanager.devcenter.models.SyncStats;
 import java.time.OffsetDateTime;
 import java.util.Map;
 
@@ -42,6 +46,18 @@ public final class CatalogImpl implements Catalog, Catalog.Definition, Catalog.U
 
     public CatalogSyncState syncState() {
         return this.innerModel().syncState();
+    }
+
+    public SyncStats lastSyncStats() {
+        return this.innerModel().lastSyncStats();
+    }
+
+    public CatalogConnectionState connectionState() {
+        return this.innerModel().connectionState();
+    }
+
+    public OffsetDateTime lastConnectionTime() {
+        return this.innerModel().lastConnectionTime();
     }
 
     public OffsetDateTime lastSyncTime() {
@@ -157,12 +173,30 @@ public final class CatalogImpl implements Catalog, Catalog.Definition, Catalog.U
         return this;
     }
 
+    public Response<SyncErrorDetails> getSyncErrorDetailsWithResponse(Context context) {
+        return serviceManager
+            .catalogs()
+            .getSyncErrorDetailsWithResponse(resourceGroupName, devCenterName, catalogName, context);
+    }
+
+    public SyncErrorDetails getSyncErrorDetails() {
+        return serviceManager.catalogs().getSyncErrorDetails(resourceGroupName, devCenterName, catalogName);
+    }
+
     public void sync() {
         serviceManager.catalogs().sync(resourceGroupName, devCenterName, catalogName);
     }
 
     public void sync(Context context) {
         serviceManager.catalogs().sync(resourceGroupName, devCenterName, catalogName, context);
+    }
+
+    public void connect() {
+        serviceManager.catalogs().connect(resourceGroupName, devCenterName, catalogName);
+    }
+
+    public void connect(Context context) {
+        serviceManager.catalogs().connect(resourceGroupName, devCenterName, catalogName, context);
     }
 
     public CatalogImpl withGitHub(GitCatalog gitHub) {

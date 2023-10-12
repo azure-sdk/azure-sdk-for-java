@@ -125,11 +125,13 @@ public interface Project {
             DefinitionStages.WithResourceGroup,
             DefinitionStages.WithCreate {
     }
+
     /** The Project definition stages. */
     interface DefinitionStages {
         /** The first stage of the Project definition. */
         interface Blank extends WithLocation {
         }
+
         /** The stage of the Project definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -148,6 +150,7 @@ public interface Project {
              */
             WithResourceGroup withRegion(String location);
         }
+
         /** The stage of the Project definition allowing to specify parent resource. */
         interface WithResourceGroup {
             /**
@@ -158,6 +161,7 @@ public interface Project {
              */
             WithCreate withExistingResourceGroup(String resourceGroupName);
         }
+
         /**
          * The stage of the Project definition which contains all the minimum required properties for the resource to be
          * created, but also allows for any other optional properties to be specified.
@@ -182,6 +186,7 @@ public interface Project {
              */
             Project create(Context context);
         }
+
         /** The stage of the Project definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -192,6 +197,7 @@ public interface Project {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
         /** The stage of the Project definition allowing to specify devCenterId. */
         interface WithDevCenterId {
             /**
@@ -202,6 +208,7 @@ public interface Project {
              */
             WithCreate withDevCenterId(String devCenterId);
         }
+
         /** The stage of the Project definition allowing to specify description. */
         interface WithDescription {
             /**
@@ -212,6 +219,7 @@ public interface Project {
              */
             WithCreate withDescription(String description);
         }
+
         /** The stage of the Project definition allowing to specify maxDevBoxesPerUser. */
         interface WithMaxDevBoxesPerUser {
             /**
@@ -226,6 +234,7 @@ public interface Project {
             WithCreate withMaxDevBoxesPerUser(Integer maxDevBoxesPerUser);
         }
     }
+
     /**
      * Begins update for the Project resource.
      *
@@ -254,6 +263,7 @@ public interface Project {
          */
         Project apply(Context context);
     }
+
     /** The Project update stages. */
     interface UpdateStages {
         /** The stage of the Project update allowing to specify tags. */
@@ -266,6 +276,7 @@ public interface Project {
              */
             Update withTags(Map<String, String> tags);
         }
+
         /** The stage of the Project update allowing to specify devCenterId. */
         interface WithDevCenterId {
             /**
@@ -276,6 +287,7 @@ public interface Project {
              */
             Update withDevCenterId(String devCenterId);
         }
+
         /** The stage of the Project update allowing to specify description. */
         interface WithDescription {
             /**
@@ -286,6 +298,7 @@ public interface Project {
              */
             Update withDescription(String description);
         }
+
         /** The stage of the Project update allowing to specify maxDevBoxesPerUser. */
         interface WithMaxDevBoxesPerUser {
             /**
@@ -300,6 +313,7 @@ public interface Project {
             Update withMaxDevBoxesPerUser(Integer maxDevBoxesPerUser);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

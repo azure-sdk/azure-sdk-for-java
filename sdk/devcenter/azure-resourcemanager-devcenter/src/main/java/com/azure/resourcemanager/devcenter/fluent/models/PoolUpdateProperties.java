@@ -7,6 +7,7 @@ package com.azure.resourcemanager.devcenter.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.devcenter.models.LicenseType;
 import com.azure.resourcemanager.devcenter.models.LocalAdminStatus;
+import com.azure.resourcemanager.devcenter.models.SingleSignOnStatus;
 import com.azure.resourcemanager.devcenter.models.StopOnDisconnectConfiguration;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -43,6 +44,13 @@ public class PoolUpdateProperties {
      */
     @JsonProperty(value = "stopOnDisconnect")
     private StopOnDisconnectConfiguration stopOnDisconnect;
+
+    /*
+     * Indicates whether Dev Boxes in this pool are created with single sign on enabled. The also requires that single
+     * sign on be enabled on the tenant.
+     */
+    @JsonProperty(value = "singleSignOnStatus")
+    private SingleSignOnStatus singleSignOnStatus;
 
     /** Creates an instance of PoolUpdateProperties class. */
     public PoolUpdateProperties() {
@@ -149,6 +157,28 @@ public class PoolUpdateProperties {
      */
     public PoolUpdateProperties withStopOnDisconnect(StopOnDisconnectConfiguration stopOnDisconnect) {
         this.stopOnDisconnect = stopOnDisconnect;
+        return this;
+    }
+
+    /**
+     * Get the singleSignOnStatus property: Indicates whether Dev Boxes in this pool are created with single sign on
+     * enabled. The also requires that single sign on be enabled on the tenant.
+     *
+     * @return the singleSignOnStatus value.
+     */
+    public SingleSignOnStatus singleSignOnStatus() {
+        return this.singleSignOnStatus;
+    }
+
+    /**
+     * Set the singleSignOnStatus property: Indicates whether Dev Boxes in this pool are created with single sign on
+     * enabled. The also requires that single sign on be enabled on the tenant.
+     *
+     * @param singleSignOnStatus the singleSignOnStatus value to set.
+     * @return the PoolUpdateProperties object itself.
+     */
+    public PoolUpdateProperties withSingleSignOnStatus(SingleSignOnStatus singleSignOnStatus) {
+        this.singleSignOnStatus = singleSignOnStatus;
         return this;
     }
 
