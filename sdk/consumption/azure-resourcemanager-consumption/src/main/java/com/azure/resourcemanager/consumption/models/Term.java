@@ -17,6 +17,15 @@ public final class Term extends ExpandableStringEnum<Term> {
     public static final Term P3Y = fromString("P3Y");
 
     /**
+     * Creates a new instance of Term value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public Term() {
+    }
+
+    /**
      * Creates or finds a Term from its string representation.
      *
      * @param name a name to look for.
@@ -27,7 +36,11 @@ public final class Term extends ExpandableStringEnum<Term> {
         return fromString(name, Term.class);
     }
 
-    /** @return known Term values. */
+    /**
+     * Gets known Term values.
+     *
+     * @return known Term values.
+     */
     public static Collection<Term> values() {
         return values(Term.class);
     }

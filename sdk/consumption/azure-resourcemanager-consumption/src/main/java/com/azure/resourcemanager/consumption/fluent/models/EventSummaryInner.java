@@ -6,20 +6,16 @@ package com.azure.resourcemanager.consumption.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.consumption.models.Amount;
 import com.azure.resourcemanager.consumption.models.AmountWithExchangeRate;
 import com.azure.resourcemanager.consumption.models.EventType;
 import com.azure.resourcemanager.consumption.models.Reseller;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
 /** An event summary resource. */
 @Fluent
 public final class EventSummaryInner extends ProxyResource {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(EventSummaryInner.class);
-
     /*
      * The event properties.
      */
@@ -27,12 +23,15 @@ public final class EventSummaryInner extends ProxyResource {
     private EventProperties innerProperties;
 
     /*
-     * eTag of the resource. To handle concurrent update scenario, this field
-     * will be used to determine whether the user is updating the latest
-     * version or not.
+     * eTag of the resource. To handle concurrent update scenario, this field will be used to determine whether the
+     * user is updating the latest version or not.
      */
     @JsonProperty(value = "eTag")
     private String etag;
+
+    /** Creates an instance of EventSummaryInner class. */
+    public EventSummaryInner() {
+    }
 
     /**
      * Get the innerProperties property: The event properties.
@@ -121,12 +120,31 @@ public final class EventSummaryInner extends ProxyResource {
     }
 
     /**
-     * Get the closedBalance property: The balance after the event.
+     * Get the closedBalance property: The balance after the event, Note: This will not be returned for Contributor
+     * Organization Type in Multi-Entity consumption commitment.
      *
      * @return the closedBalance value.
      */
     public Amount closedBalance() {
         return this.innerProperties() == null ? null : this.innerProperties().closedBalance();
+    }
+
+    /**
+     * Get the billingAccountId property: Identifier of the billing account.
+     *
+     * @return the billingAccountId value.
+     */
+    public String billingAccountId() {
+        return this.innerProperties() == null ? null : this.innerProperties().billingAccountId();
+    }
+
+    /**
+     * Get the billingAccountDisplayName property: Name of the billing account.
+     *
+     * @return the billingAccountDisplayName value.
+     */
+    public String billingAccountDisplayName() {
+        return this.innerProperties() == null ? null : this.innerProperties().billingAccountDisplayName();
     }
 
     /**
@@ -276,12 +294,23 @@ public final class EventSummaryInner extends ProxyResource {
     }
 
     /**
-     * Get the closedBalanceInBillingCurrency property: The balance in billing currency after the event.
+     * Get the closedBalanceInBillingCurrency property: The balance in billing currency after the event, Note: This will
+     * not be returned for Contributor Organization Type in Multi-Entity consumption commitment.
      *
      * @return the closedBalanceInBillingCurrency value.
      */
     public AmountWithExchangeRate closedBalanceInBillingCurrency() {
         return this.innerProperties() == null ? null : this.innerProperties().closedBalanceInBillingCurrency();
+    }
+
+    /**
+     * Get the isEstimatedBalance property: If true, the listed details are based on an estimation and it will be
+     * subjected to change.
+     *
+     * @return the isEstimatedBalance value.
+     */
+    public Boolean isEstimatedBalance() {
+        return this.innerProperties() == null ? null : this.innerProperties().isEstimatedBalance();
     }
 
     /**

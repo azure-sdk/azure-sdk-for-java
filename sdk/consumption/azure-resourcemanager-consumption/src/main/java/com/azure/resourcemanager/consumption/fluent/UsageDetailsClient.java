@@ -17,34 +17,11 @@ public interface UsageDetailsClient {
      * Lists the usage details for the defined scope. Usage details are available via this API only for May 1, 2014 or
      * later.
      *
-     * @param scope The scope associated with usage details operations. This includes '/subscriptions/{subscriptionId}/'
-     *     for subscription scope, '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}' for Billing Account
-     *     scope, '/providers/Microsoft.Billing/departments/{departmentId}' for Department scope,
-     *     '/providers/Microsoft.Billing/enrollmentAccounts/{enrollmentAccountId}' for EnrollmentAccount scope and
-     *     '/providers/Microsoft.Management/managementGroups/{managementGroupId}' for Management Group scope. For
-     *     subscription, billing account, department, enrollment account and management group, you can also add billing
-     *     period to the scope using '/providers/Microsoft.Billing/billingPeriods/{billingPeriodName}'. For e.g. to
-     *     specify billing period at department scope use
-     *     '/providers/Microsoft.Billing/departments/{departmentId}/providers/Microsoft.Billing/billingPeriods/{billingPeriodName}'.
-     *     Also, Modern Commerce Account scopes are '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}'
-     *     for billingAccount scope,
-     *     '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/billingProfiles/{billingProfileId}' for
-     *     billingProfile scope,
-     *     'providers/Microsoft.Billing/billingAccounts/{billingAccountId}/billingProfiles/{billingProfileId}/invoiceSections/{invoiceSectionId}'
-     *     for invoiceSection scope, and
-     *     'providers/Microsoft.Billing/billingAccounts/{billingAccountId}/customers/{customerId}' specific for
-     *     partners.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing usage details.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<UsageDetailInner> list(String scope);
-
-    /**
-     * Lists the usage details for the defined scope. Usage details are available via this API only for May 1, 2014 or
-     * later.
+     * <p>**Note:Microsoft will be retiring the Consumption Usage Details API at some point in the future. We do not
+     * recommend that you take a new dependency on this API. Please use the Cost Details API instead. We will notify
+     * customers once a date for retirement has been determined.For Learn more,see [Generate Cost Details Report -
+     * Create
+     * Operation](https://learn.microsoft.com/en-us/rest/api/cost-management/generate-cost-details-report/create-operation?tabs=HTTP)**.
      *
      * @param scope The scope associated with usage details operations. This includes '/subscriptions/{subscriptionId}/'
      *     for subscription scope, '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}' for Billing Account
@@ -59,9 +36,44 @@ public interface UsageDetailsClient {
      *     for billingAccount scope,
      *     '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/billingProfiles/{billingProfileId}' for
      *     billingProfile scope,
-     *     'providers/Microsoft.Billing/billingAccounts/{billingAccountId}/billingProfiles/{billingProfileId}/invoiceSections/{invoiceSectionId}'
+     *     '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/billingProfiles/{billingProfileId}/invoiceSections/{invoiceSectionId}'
      *     for invoiceSection scope, and
-     *     'providers/Microsoft.Billing/billingAccounts/{billingAccountId}/customers/{customerId}' specific for
+     *     '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/customers/{customerId}' specific for
+     *     partners.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return result of listing usage details as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<UsageDetailInner> list(String scope);
+
+    /**
+     * Lists the usage details for the defined scope. Usage details are available via this API only for May 1, 2014 or
+     * later.
+     *
+     * <p>**Note:Microsoft will be retiring the Consumption Usage Details API at some point in the future. We do not
+     * recommend that you take a new dependency on this API. Please use the Cost Details API instead. We will notify
+     * customers once a date for retirement has been determined.For Learn more,see [Generate Cost Details Report -
+     * Create
+     * Operation](https://learn.microsoft.com/en-us/rest/api/cost-management/generate-cost-details-report/create-operation?tabs=HTTP)**.
+     *
+     * @param scope The scope associated with usage details operations. This includes '/subscriptions/{subscriptionId}/'
+     *     for subscription scope, '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}' for Billing Account
+     *     scope, '/providers/Microsoft.Billing/departments/{departmentId}' for Department scope,
+     *     '/providers/Microsoft.Billing/enrollmentAccounts/{enrollmentAccountId}' for EnrollmentAccount scope and
+     *     '/providers/Microsoft.Management/managementGroups/{managementGroupId}' for Management Group scope. For
+     *     subscription, billing account, department, enrollment account and management group, you can also add billing
+     *     period to the scope using '/providers/Microsoft.Billing/billingPeriods/{billingPeriodName}'. For e.g. to
+     *     specify billing period at department scope use
+     *     '/providers/Microsoft.Billing/departments/{departmentId}/providers/Microsoft.Billing/billingPeriods/{billingPeriodName}'.
+     *     Also, Modern Commerce Account scopes are '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}'
+     *     for billingAccount scope,
+     *     '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/billingProfiles/{billingProfileId}' for
+     *     billingProfile scope,
+     *     '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/billingProfiles/{billingProfileId}/invoiceSections/{invoiceSectionId}'
+     *     for invoiceSection scope, and
+     *     '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/customers/{customerId}' specific for
      *     partners.
      * @param expand May be used to expand the properties/additionalInfo or properties/meterDetails within a list of
      *     usage details. By default, these fields are not included when listing usage details.
@@ -79,7 +91,7 @@ public interface UsageDetailsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing usage details.
+     * @return result of listing usage details as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<UsageDetailInner> list(
