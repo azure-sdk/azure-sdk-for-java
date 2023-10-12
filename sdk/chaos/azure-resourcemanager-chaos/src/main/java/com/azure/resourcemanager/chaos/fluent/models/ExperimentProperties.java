@@ -26,12 +26,6 @@ public final class ExperimentProperties {
     @JsonProperty(value = "selectors", required = true)
     private List<Selector> selectors;
 
-    /*
-     * A boolean value that indicates if experiment should be started on creation or not.
-     */
-    @JsonProperty(value = "startOnCreation")
-    private Boolean startOnCreation;
-
     /** Creates an instance of ExperimentProperties class. */
     public ExperimentProperties() {
     }
@@ -73,28 +67,6 @@ public final class ExperimentProperties {
      */
     public ExperimentProperties withSelectors(List<Selector> selectors) {
         this.selectors = selectors;
-        return this;
-    }
-
-    /**
-     * Get the startOnCreation property: A boolean value that indicates if experiment should be started on creation or
-     * not.
-     *
-     * @return the startOnCreation value.
-     */
-    public Boolean startOnCreation() {
-        return this.startOnCreation;
-    }
-
-    /**
-     * Set the startOnCreation property: A boolean value that indicates if experiment should be started on creation or
-     * not.
-     *
-     * @param startOnCreation the startOnCreation value to set.
-     * @return the ExperimentProperties object itself.
-     */
-    public ExperimentProperties withStartOnCreation(Boolean startOnCreation) {
-        this.startOnCreation = startOnCreation;
         return this;
     }
 
