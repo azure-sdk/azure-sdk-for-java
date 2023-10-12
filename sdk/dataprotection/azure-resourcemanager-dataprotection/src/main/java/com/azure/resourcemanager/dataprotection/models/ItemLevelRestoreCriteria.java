@@ -23,7 +23,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
         name = "KubernetesStorageClassRestoreCriteria",
         value = KubernetesStorageClassRestoreCriteria.class),
     @JsonSubTypes.Type(name = "KubernetesPVRestoreCriteria", value = KubernetesPVRestoreCriteria.class),
-    @JsonSubTypes.Type(name = "KubernetesClusterRestoreCriteria", value = KubernetesClusterRestoreCriteria.class)
+    @JsonSubTypes.Type(name = "KubernetesClusterRestoreCriteria", value = KubernetesClusterRestoreCriteria.class),
+    @JsonSubTypes.Type(
+        name = "KubernetesClusterVaultTierRestoreCriteria",
+        value = KubernetesClusterVaultTierRestoreCriteria.class)
 })
 @Immutable
 public class ItemLevelRestoreCriteria {

@@ -38,9 +38,12 @@ import com.azure.resourcemanager.dataprotection.fluent.models.OperationJobExtend
 import com.azure.resourcemanager.dataprotection.models.AzureBackupRehydrationRequest;
 import com.azure.resourcemanager.dataprotection.models.AzureBackupRestoreRequest;
 import com.azure.resourcemanager.dataprotection.models.BackupInstanceResourceList;
+import com.azure.resourcemanager.dataprotection.models.CrossRegionRestoreRequestObject;
 import com.azure.resourcemanager.dataprotection.models.SyncBackupInstanceRequest;
 import com.azure.resourcemanager.dataprotection.models.TriggerBackupRequest;
+import com.azure.resourcemanager.dataprotection.models.ValidateCrossRegionRestoreRequestObject;
 import com.azure.resourcemanager.dataprotection.models.ValidateForBackupRequest;
+import com.azure.resourcemanager.dataprotection.models.ValidateForModifyBackupRequest;
 import com.azure.resourcemanager.dataprotection.models.ValidateRestoreRequestObject;
 import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
@@ -164,6 +167,22 @@ public final class BackupInstancesClientImpl implements BackupInstancesClient {
             Context context);
 
         @Headers({"Content-Type: application/json"})
+        @Post(
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/backupVaults/{vaultName}/backupInstances/{backupInstanceName}/validateForModifyBackup")
+        @ExpectedResponses({202})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Flux<ByteBuffer>>> validateForModifyBackup(
+            @HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("vaultName") String vaultName,
+            @PathParam("backupInstanceName") String backupInstanceName,
+            @BodyParam("application/json") ValidateForModifyBackupRequest parameters,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/backupVaults/{vaultName}/backupInstances/{backupInstanceName}/operationResults/{operationId}")
         @ExpectedResponses({200, 202})
@@ -176,6 +195,36 @@ public final class BackupInstancesClientImpl implements BackupInstancesClient {
             @PathParam("backupInstanceName") String backupInstanceName,
             @PathParam("operationId") String operationId,
             @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
+        @Post(
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/locations/{location}/crossRegionRestore")
+        @ExpectedResponses({200, 202})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Flux<ByteBuffer>>> triggerCrossRegionRestore(
+            @HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("location") String location,
+            @BodyParam("application/json") CrossRegionRestoreRequestObject parameters,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
+        @Post(
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/locations/{location}/validateCrossRegionRestore")
+        @ExpectedResponses({200, 202})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Flux<ByteBuffer>>> validateCrossRegionRestore(
+            @HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("location") String location,
+            @BodyParam("application/json") ValidateCrossRegionRestoreRequestObject parameters,
             @HeaderParam("Accept") String accept,
             Context context);
 
@@ -1811,6 +1860,326 @@ public final class BackupInstancesClientImpl implements BackupInstancesClient {
     }
 
     /**
+     * Validate whether update for backup instance will be successful or not.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param vaultName The name of the backup vault.
+     * @param backupInstanceName The name of the backup instance.
+     * @param parameters Request body for operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> validateForModifyBackupWithResponseAsync(
+        String resourceGroupName,
+        String vaultName,
+        String backupInstanceName,
+        ValidateForModifyBackupRequest parameters) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (vaultName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter vaultName is required and cannot be null."));
+        }
+        if (backupInstanceName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter backupInstanceName is required and cannot be null."));
+        }
+        if (parameters == null) {
+            return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
+        } else {
+            parameters.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service
+                        .validateForModifyBackup(
+                            this.client.getEndpoint(),
+                            this.client.getApiVersion(),
+                            this.client.getSubscriptionId(),
+                            resourceGroupName,
+                            vaultName,
+                            backupInstanceName,
+                            parameters,
+                            accept,
+                            context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Validate whether update for backup instance will be successful or not.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param vaultName The name of the backup vault.
+     * @param backupInstanceName The name of the backup instance.
+     * @param parameters Request body for operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> validateForModifyBackupWithResponseAsync(
+        String resourceGroupName,
+        String vaultName,
+        String backupInstanceName,
+        ValidateForModifyBackupRequest parameters,
+        Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (vaultName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter vaultName is required and cannot be null."));
+        }
+        if (backupInstanceName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter backupInstanceName is required and cannot be null."));
+        }
+        if (parameters == null) {
+            return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
+        } else {
+            parameters.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .validateForModifyBackup(
+                this.client.getEndpoint(),
+                this.client.getApiVersion(),
+                this.client.getSubscriptionId(),
+                resourceGroupName,
+                vaultName,
+                backupInstanceName,
+                parameters,
+                accept,
+                context);
+    }
+
+    /**
+     * Validate whether update for backup instance will be successful or not.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param vaultName The name of the backup vault.
+     * @param backupInstanceName The name of the backup instance.
+     * @param parameters Request body for operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginValidateForModifyBackupAsync(
+        String resourceGroupName,
+        String vaultName,
+        String backupInstanceName,
+        ValidateForModifyBackupRequest parameters) {
+        Mono<Response<Flux<ByteBuffer>>> mono =
+            validateForModifyBackupWithResponseAsync(resourceGroupName, vaultName, backupInstanceName, parameters);
+        return this
+            .client
+            .<Void, Void>getLroResult(
+                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+    }
+
+    /**
+     * Validate whether update for backup instance will be successful or not.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param vaultName The name of the backup vault.
+     * @param backupInstanceName The name of the backup instance.
+     * @param parameters Request body for operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginValidateForModifyBackupAsync(
+        String resourceGroupName,
+        String vaultName,
+        String backupInstanceName,
+        ValidateForModifyBackupRequest parameters,
+        Context context) {
+        context = this.client.mergeContext(context);
+        Mono<Response<Flux<ByteBuffer>>> mono =
+            validateForModifyBackupWithResponseAsync(
+                resourceGroupName, vaultName, backupInstanceName, parameters, context);
+        return this
+            .client
+            .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, context);
+    }
+
+    /**
+     * Validate whether update for backup instance will be successful or not.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param vaultName The name of the backup vault.
+     * @param backupInstanceName The name of the backup instance.
+     * @param parameters Request body for operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<Void>, Void> beginValidateForModifyBackup(
+        String resourceGroupName,
+        String vaultName,
+        String backupInstanceName,
+        ValidateForModifyBackupRequest parameters) {
+        return this
+            .beginValidateForModifyBackupAsync(resourceGroupName, vaultName, backupInstanceName, parameters)
+            .getSyncPoller();
+    }
+
+    /**
+     * Validate whether update for backup instance will be successful or not.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param vaultName The name of the backup vault.
+     * @param backupInstanceName The name of the backup instance.
+     * @param parameters Request body for operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<Void>, Void> beginValidateForModifyBackup(
+        String resourceGroupName,
+        String vaultName,
+        String backupInstanceName,
+        ValidateForModifyBackupRequest parameters,
+        Context context) {
+        return this
+            .beginValidateForModifyBackupAsync(resourceGroupName, vaultName, backupInstanceName, parameters, context)
+            .getSyncPoller();
+    }
+
+    /**
+     * Validate whether update for backup instance will be successful or not.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param vaultName The name of the backup vault.
+     * @param backupInstanceName The name of the backup instance.
+     * @param parameters Request body for operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Void> validateForModifyBackupAsync(
+        String resourceGroupName,
+        String vaultName,
+        String backupInstanceName,
+        ValidateForModifyBackupRequest parameters) {
+        return beginValidateForModifyBackupAsync(resourceGroupName, vaultName, backupInstanceName, parameters)
+            .last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Validate whether update for backup instance will be successful or not.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param vaultName The name of the backup vault.
+     * @param backupInstanceName The name of the backup instance.
+     * @param parameters Request body for operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Void> validateForModifyBackupAsync(
+        String resourceGroupName,
+        String vaultName,
+        String backupInstanceName,
+        ValidateForModifyBackupRequest parameters,
+        Context context) {
+        return beginValidateForModifyBackupAsync(resourceGroupName, vaultName, backupInstanceName, parameters, context)
+            .last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Validate whether update for backup instance will be successful or not.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param vaultName The name of the backup vault.
+     * @param backupInstanceName The name of the backup instance.
+     * @param parameters Request body for operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void validateForModifyBackup(
+        String resourceGroupName,
+        String vaultName,
+        String backupInstanceName,
+        ValidateForModifyBackupRequest parameters) {
+        validateForModifyBackupAsync(resourceGroupName, vaultName, backupInstanceName, parameters).block();
+    }
+
+    /**
+     * Validate whether update for backup instance will be successful or not.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param vaultName The name of the backup vault.
+     * @param backupInstanceName The name of the backup instance.
+     * @param parameters Request body for operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void validateForModifyBackup(
+        String resourceGroupName,
+        String vaultName,
+        String backupInstanceName,
+        ValidateForModifyBackupRequest parameters,
+        Context context) {
+        validateForModifyBackupAsync(resourceGroupName, vaultName, backupInstanceName, parameters, context).block();
+    }
+
+    /**
      * Get result of backup instance creation operation.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -1987,6 +2356,575 @@ public final class BackupInstancesClientImpl implements BackupInstancesClient {
         return getBackupInstanceOperationResultWithResponse(
                 resourceGroupName, vaultName, backupInstanceName, operationId, Context.NONE)
             .getValue();
+    }
+
+    /**
+     * The triggerCrossRegionRestore operation.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param location The location parameter.
+     * @param parameters Request body for trigger CRR operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return operationJobExtendedInfo along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> triggerCrossRegionRestoreWithResponseAsync(
+        String resourceGroupName, String location, CrossRegionRestoreRequestObject parameters) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (location == null) {
+            return Mono.error(new IllegalArgumentException("Parameter location is required and cannot be null."));
+        }
+        if (parameters == null) {
+            return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
+        } else {
+            parameters.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service
+                        .triggerCrossRegionRestore(
+                            this.client.getEndpoint(),
+                            this.client.getApiVersion(),
+                            this.client.getSubscriptionId(),
+                            resourceGroupName,
+                            location,
+                            parameters,
+                            accept,
+                            context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * The triggerCrossRegionRestore operation.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param location The location parameter.
+     * @param parameters Request body for trigger CRR operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return operationJobExtendedInfo along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> triggerCrossRegionRestoreWithResponseAsync(
+        String resourceGroupName, String location, CrossRegionRestoreRequestObject parameters, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (location == null) {
+            return Mono.error(new IllegalArgumentException("Parameter location is required and cannot be null."));
+        }
+        if (parameters == null) {
+            return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
+        } else {
+            parameters.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .triggerCrossRegionRestore(
+                this.client.getEndpoint(),
+                this.client.getApiVersion(),
+                this.client.getSubscriptionId(),
+                resourceGroupName,
+                location,
+                parameters,
+                accept,
+                context);
+    }
+
+    /**
+     * The triggerCrossRegionRestore operation.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param location The location parameter.
+     * @param parameters Request body for trigger CRR operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of operationJobExtendedInfo.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<OperationJobExtendedInfoInner>, OperationJobExtendedInfoInner>
+        beginTriggerCrossRegionRestoreAsync(
+            String resourceGroupName, String location, CrossRegionRestoreRequestObject parameters) {
+        Mono<Response<Flux<ByteBuffer>>> mono =
+            triggerCrossRegionRestoreWithResponseAsync(resourceGroupName, location, parameters);
+        return this
+            .client
+            .<OperationJobExtendedInfoInner, OperationJobExtendedInfoInner>getLroResult(
+                mono,
+                this.client.getHttpPipeline(),
+                OperationJobExtendedInfoInner.class,
+                OperationJobExtendedInfoInner.class,
+                this.client.getContext());
+    }
+
+    /**
+     * The triggerCrossRegionRestore operation.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param location The location parameter.
+     * @param parameters Request body for trigger CRR operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of operationJobExtendedInfo.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<OperationJobExtendedInfoInner>, OperationJobExtendedInfoInner>
+        beginTriggerCrossRegionRestoreAsync(
+            String resourceGroupName, String location, CrossRegionRestoreRequestObject parameters, Context context) {
+        context = this.client.mergeContext(context);
+        Mono<Response<Flux<ByteBuffer>>> mono =
+            triggerCrossRegionRestoreWithResponseAsync(resourceGroupName, location, parameters, context);
+        return this
+            .client
+            .<OperationJobExtendedInfoInner, OperationJobExtendedInfoInner>getLroResult(
+                mono,
+                this.client.getHttpPipeline(),
+                OperationJobExtendedInfoInner.class,
+                OperationJobExtendedInfoInner.class,
+                context);
+    }
+
+    /**
+     * The triggerCrossRegionRestore operation.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param location The location parameter.
+     * @param parameters Request body for trigger CRR operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of operationJobExtendedInfo.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<OperationJobExtendedInfoInner>, OperationJobExtendedInfoInner>
+        beginTriggerCrossRegionRestore(
+            String resourceGroupName, String location, CrossRegionRestoreRequestObject parameters) {
+        return this.beginTriggerCrossRegionRestoreAsync(resourceGroupName, location, parameters).getSyncPoller();
+    }
+
+    /**
+     * The triggerCrossRegionRestore operation.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param location The location parameter.
+     * @param parameters Request body for trigger CRR operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of operationJobExtendedInfo.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<OperationJobExtendedInfoInner>, OperationJobExtendedInfoInner>
+        beginTriggerCrossRegionRestore(
+            String resourceGroupName, String location, CrossRegionRestoreRequestObject parameters, Context context) {
+        return this
+            .beginTriggerCrossRegionRestoreAsync(resourceGroupName, location, parameters, context)
+            .getSyncPoller();
+    }
+
+    /**
+     * The triggerCrossRegionRestore operation.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param location The location parameter.
+     * @param parameters Request body for trigger CRR operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return operationJobExtendedInfo on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<OperationJobExtendedInfoInner> triggerCrossRegionRestoreAsync(
+        String resourceGroupName, String location, CrossRegionRestoreRequestObject parameters) {
+        return beginTriggerCrossRegionRestoreAsync(resourceGroupName, location, parameters)
+            .last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * The triggerCrossRegionRestore operation.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param location The location parameter.
+     * @param parameters Request body for trigger CRR operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return operationJobExtendedInfo on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<OperationJobExtendedInfoInner> triggerCrossRegionRestoreAsync(
+        String resourceGroupName, String location, CrossRegionRestoreRequestObject parameters, Context context) {
+        return beginTriggerCrossRegionRestoreAsync(resourceGroupName, location, parameters, context)
+            .last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * The triggerCrossRegionRestore operation.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param location The location parameter.
+     * @param parameters Request body for trigger CRR operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return operationJobExtendedInfo.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public OperationJobExtendedInfoInner triggerCrossRegionRestore(
+        String resourceGroupName, String location, CrossRegionRestoreRequestObject parameters) {
+        return triggerCrossRegionRestoreAsync(resourceGroupName, location, parameters).block();
+    }
+
+    /**
+     * The triggerCrossRegionRestore operation.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param location The location parameter.
+     * @param parameters Request body for trigger CRR operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return operationJobExtendedInfo.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public OperationJobExtendedInfoInner triggerCrossRegionRestore(
+        String resourceGroupName, String location, CrossRegionRestoreRequestObject parameters, Context context) {
+        return triggerCrossRegionRestoreAsync(resourceGroupName, location, parameters, context).block();
+    }
+
+    /**
+     * The validateCrossRegionRestore operation.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param location The location parameter.
+     * @param parameters Request body for operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return operationJobExtendedInfo along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> validateCrossRegionRestoreWithResponseAsync(
+        String resourceGroupName, String location, ValidateCrossRegionRestoreRequestObject parameters) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (location == null) {
+            return Mono.error(new IllegalArgumentException("Parameter location is required and cannot be null."));
+        }
+        if (parameters == null) {
+            return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
+        } else {
+            parameters.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service
+                        .validateCrossRegionRestore(
+                            this.client.getEndpoint(),
+                            this.client.getApiVersion(),
+                            this.client.getSubscriptionId(),
+                            resourceGroupName,
+                            location,
+                            parameters,
+                            accept,
+                            context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * The validateCrossRegionRestore operation.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param location The location parameter.
+     * @param parameters Request body for operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return operationJobExtendedInfo along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> validateCrossRegionRestoreWithResponseAsync(
+        String resourceGroupName,
+        String location,
+        ValidateCrossRegionRestoreRequestObject parameters,
+        Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (location == null) {
+            return Mono.error(new IllegalArgumentException("Parameter location is required and cannot be null."));
+        }
+        if (parameters == null) {
+            return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
+        } else {
+            parameters.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .validateCrossRegionRestore(
+                this.client.getEndpoint(),
+                this.client.getApiVersion(),
+                this.client.getSubscriptionId(),
+                resourceGroupName,
+                location,
+                parameters,
+                accept,
+                context);
+    }
+
+    /**
+     * The validateCrossRegionRestore operation.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param location The location parameter.
+     * @param parameters Request body for operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of operationJobExtendedInfo.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<OperationJobExtendedInfoInner>, OperationJobExtendedInfoInner>
+        beginValidateCrossRegionRestoreAsync(
+            String resourceGroupName, String location, ValidateCrossRegionRestoreRequestObject parameters) {
+        Mono<Response<Flux<ByteBuffer>>> mono =
+            validateCrossRegionRestoreWithResponseAsync(resourceGroupName, location, parameters);
+        return this
+            .client
+            .<OperationJobExtendedInfoInner, OperationJobExtendedInfoInner>getLroResult(
+                mono,
+                this.client.getHttpPipeline(),
+                OperationJobExtendedInfoInner.class,
+                OperationJobExtendedInfoInner.class,
+                this.client.getContext());
+    }
+
+    /**
+     * The validateCrossRegionRestore operation.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param location The location parameter.
+     * @param parameters Request body for operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of operationJobExtendedInfo.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<OperationJobExtendedInfoInner>, OperationJobExtendedInfoInner>
+        beginValidateCrossRegionRestoreAsync(
+            String resourceGroupName,
+            String location,
+            ValidateCrossRegionRestoreRequestObject parameters,
+            Context context) {
+        context = this.client.mergeContext(context);
+        Mono<Response<Flux<ByteBuffer>>> mono =
+            validateCrossRegionRestoreWithResponseAsync(resourceGroupName, location, parameters, context);
+        return this
+            .client
+            .<OperationJobExtendedInfoInner, OperationJobExtendedInfoInner>getLroResult(
+                mono,
+                this.client.getHttpPipeline(),
+                OperationJobExtendedInfoInner.class,
+                OperationJobExtendedInfoInner.class,
+                context);
+    }
+
+    /**
+     * The validateCrossRegionRestore operation.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param location The location parameter.
+     * @param parameters Request body for operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of operationJobExtendedInfo.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<OperationJobExtendedInfoInner>, OperationJobExtendedInfoInner>
+        beginValidateCrossRegionRestore(
+            String resourceGroupName, String location, ValidateCrossRegionRestoreRequestObject parameters) {
+        return this.beginValidateCrossRegionRestoreAsync(resourceGroupName, location, parameters).getSyncPoller();
+    }
+
+    /**
+     * The validateCrossRegionRestore operation.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param location The location parameter.
+     * @param parameters Request body for operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of operationJobExtendedInfo.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<OperationJobExtendedInfoInner>, OperationJobExtendedInfoInner>
+        beginValidateCrossRegionRestore(
+            String resourceGroupName,
+            String location,
+            ValidateCrossRegionRestoreRequestObject parameters,
+            Context context) {
+        return this
+            .beginValidateCrossRegionRestoreAsync(resourceGroupName, location, parameters, context)
+            .getSyncPoller();
+    }
+
+    /**
+     * The validateCrossRegionRestore operation.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param location The location parameter.
+     * @param parameters Request body for operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return operationJobExtendedInfo on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<OperationJobExtendedInfoInner> validateCrossRegionRestoreAsync(
+        String resourceGroupName, String location, ValidateCrossRegionRestoreRequestObject parameters) {
+        return beginValidateCrossRegionRestoreAsync(resourceGroupName, location, parameters)
+            .last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * The validateCrossRegionRestore operation.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param location The location parameter.
+     * @param parameters Request body for operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return operationJobExtendedInfo on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<OperationJobExtendedInfoInner> validateCrossRegionRestoreAsync(
+        String resourceGroupName,
+        String location,
+        ValidateCrossRegionRestoreRequestObject parameters,
+        Context context) {
+        return beginValidateCrossRegionRestoreAsync(resourceGroupName, location, parameters, context)
+            .last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * The validateCrossRegionRestore operation.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param location The location parameter.
+     * @param parameters Request body for operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return operationJobExtendedInfo.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public OperationJobExtendedInfoInner validateCrossRegionRestore(
+        String resourceGroupName, String location, ValidateCrossRegionRestoreRequestObject parameters) {
+        return validateCrossRegionRestoreAsync(resourceGroupName, location, parameters).block();
+    }
+
+    /**
+     * The validateCrossRegionRestore operation.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param location The location parameter.
+     * @param parameters Request body for operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return operationJobExtendedInfo.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public OperationJobExtendedInfoInner validateCrossRegionRestore(
+        String resourceGroupName,
+        String location,
+        ValidateCrossRegionRestoreRequestObject parameters,
+        Context context) {
+        return validateCrossRegionRestoreAsync(resourceGroupName, location, parameters, context).block();
     }
 
     /**

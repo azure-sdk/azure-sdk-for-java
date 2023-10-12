@@ -15,9 +15,12 @@ import com.azure.resourcemanager.dataprotection.fluent.models.BackupInstanceReso
 import com.azure.resourcemanager.dataprotection.fluent.models.OperationJobExtendedInfoInner;
 import com.azure.resourcemanager.dataprotection.models.AzureBackupRehydrationRequest;
 import com.azure.resourcemanager.dataprotection.models.AzureBackupRestoreRequest;
+import com.azure.resourcemanager.dataprotection.models.CrossRegionRestoreRequestObject;
 import com.azure.resourcemanager.dataprotection.models.SyncBackupInstanceRequest;
 import com.azure.resourcemanager.dataprotection.models.TriggerBackupRequest;
+import com.azure.resourcemanager.dataprotection.models.ValidateCrossRegionRestoreRequestObject;
 import com.azure.resourcemanager.dataprotection.models.ValidateForBackupRequest;
+import com.azure.resourcemanager.dataprotection.models.ValidateForModifyBackupRequest;
 import com.azure.resourcemanager.dataprotection.models.ValidateRestoreRequestObject;
 
 /** An instance of this class provides access to all the operations defined in BackupInstancesClient. */
@@ -348,6 +351,84 @@ public interface BackupInstancesClient {
         String resourceGroupName, String vaultName, ValidateForBackupRequest parameters, Context context);
 
     /**
+     * Validate whether update for backup instance will be successful or not.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param vaultName The name of the backup vault.
+     * @param backupInstanceName The name of the backup instance.
+     * @param parameters Request body for operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<Void>, Void> beginValidateForModifyBackup(
+        String resourceGroupName,
+        String vaultName,
+        String backupInstanceName,
+        ValidateForModifyBackupRequest parameters);
+
+    /**
+     * Validate whether update for backup instance will be successful or not.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param vaultName The name of the backup vault.
+     * @param backupInstanceName The name of the backup instance.
+     * @param parameters Request body for operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<Void>, Void> beginValidateForModifyBackup(
+        String resourceGroupName,
+        String vaultName,
+        String backupInstanceName,
+        ValidateForModifyBackupRequest parameters,
+        Context context);
+
+    /**
+     * Validate whether update for backup instance will be successful or not.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param vaultName The name of the backup vault.
+     * @param backupInstanceName The name of the backup instance.
+     * @param parameters Request body for operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    void validateForModifyBackup(
+        String resourceGroupName,
+        String vaultName,
+        String backupInstanceName,
+        ValidateForModifyBackupRequest parameters);
+
+    /**
+     * Validate whether update for backup instance will be successful or not.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param vaultName The name of the backup vault.
+     * @param backupInstanceName The name of the backup instance.
+     * @param parameters Request body for operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    void validateForModifyBackup(
+        String resourceGroupName,
+        String vaultName,
+        String backupInstanceName,
+        ValidateForModifyBackupRequest parameters,
+        Context context);
+
+    /**
      * Get result of backup instance creation operation.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -379,6 +460,135 @@ public interface BackupInstancesClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     BackupInstanceResourceInner getBackupInstanceOperationResult(
         String resourceGroupName, String vaultName, String backupInstanceName, String operationId);
+
+    /**
+     * The triggerCrossRegionRestore operation.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param location The location parameter.
+     * @param parameters Request body for trigger CRR operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of operationJobExtendedInfo.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<OperationJobExtendedInfoInner>, OperationJobExtendedInfoInner> beginTriggerCrossRegionRestore(
+        String resourceGroupName, String location, CrossRegionRestoreRequestObject parameters);
+
+    /**
+     * The triggerCrossRegionRestore operation.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param location The location parameter.
+     * @param parameters Request body for trigger CRR operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of operationJobExtendedInfo.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<OperationJobExtendedInfoInner>, OperationJobExtendedInfoInner> beginTriggerCrossRegionRestore(
+        String resourceGroupName, String location, CrossRegionRestoreRequestObject parameters, Context context);
+
+    /**
+     * The triggerCrossRegionRestore operation.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param location The location parameter.
+     * @param parameters Request body for trigger CRR operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return operationJobExtendedInfo.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    OperationJobExtendedInfoInner triggerCrossRegionRestore(
+        String resourceGroupName, String location, CrossRegionRestoreRequestObject parameters);
+
+    /**
+     * The triggerCrossRegionRestore operation.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param location The location parameter.
+     * @param parameters Request body for trigger CRR operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return operationJobExtendedInfo.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    OperationJobExtendedInfoInner triggerCrossRegionRestore(
+        String resourceGroupName, String location, CrossRegionRestoreRequestObject parameters, Context context);
+
+    /**
+     * The validateCrossRegionRestore operation.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param location The location parameter.
+     * @param parameters Request body for operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of operationJobExtendedInfo.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<OperationJobExtendedInfoInner>, OperationJobExtendedInfoInner>
+        beginValidateCrossRegionRestore(
+            String resourceGroupName, String location, ValidateCrossRegionRestoreRequestObject parameters);
+
+    /**
+     * The validateCrossRegionRestore operation.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param location The location parameter.
+     * @param parameters Request body for operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of operationJobExtendedInfo.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<OperationJobExtendedInfoInner>, OperationJobExtendedInfoInner>
+        beginValidateCrossRegionRestore(
+            String resourceGroupName,
+            String location,
+            ValidateCrossRegionRestoreRequestObject parameters,
+            Context context);
+
+    /**
+     * The validateCrossRegionRestore operation.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param location The location parameter.
+     * @param parameters Request body for operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return operationJobExtendedInfo.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    OperationJobExtendedInfoInner validateCrossRegionRestore(
+        String resourceGroupName, String location, ValidateCrossRegionRestoreRequestObject parameters);
+
+    /**
+     * The validateCrossRegionRestore operation.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param location The location parameter.
+     * @param parameters Request body for operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return operationJobExtendedInfo.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    OperationJobExtendedInfoInner validateCrossRegionRestore(
+        String resourceGroupName, String location, ValidateCrossRegionRestoreRequestObject parameters, Context context);
 
     /**
      * rehydrate recovery point for restore for a BackupInstance.

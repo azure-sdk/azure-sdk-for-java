@@ -16,10 +16,13 @@ import com.azure.resourcemanager.dataprotection.models.AzureBackupRehydrationReq
 import com.azure.resourcemanager.dataprotection.models.AzureBackupRestoreRequest;
 import com.azure.resourcemanager.dataprotection.models.BackupInstanceResource;
 import com.azure.resourcemanager.dataprotection.models.BackupInstances;
+import com.azure.resourcemanager.dataprotection.models.CrossRegionRestoreRequestObject;
 import com.azure.resourcemanager.dataprotection.models.OperationJobExtendedInfo;
 import com.azure.resourcemanager.dataprotection.models.SyncBackupInstanceRequest;
 import com.azure.resourcemanager.dataprotection.models.TriggerBackupRequest;
+import com.azure.resourcemanager.dataprotection.models.ValidateCrossRegionRestoreRequestObject;
 import com.azure.resourcemanager.dataprotection.models.ValidateForBackupRequest;
+import com.azure.resourcemanager.dataprotection.models.ValidateForModifyBackupRequest;
 import com.azure.resourcemanager.dataprotection.models.ValidateRestoreRequestObject;
 
 public final class BackupInstancesImpl implements BackupInstances {
@@ -127,6 +130,25 @@ public final class BackupInstancesImpl implements BackupInstances {
         }
     }
 
+    public void validateForModifyBackup(
+        String resourceGroupName,
+        String vaultName,
+        String backupInstanceName,
+        ValidateForModifyBackupRequest parameters) {
+        this.serviceClient().validateForModifyBackup(resourceGroupName, vaultName, backupInstanceName, parameters);
+    }
+
+    public void validateForModifyBackup(
+        String resourceGroupName,
+        String vaultName,
+        String backupInstanceName,
+        ValidateForModifyBackupRequest parameters,
+        Context context) {
+        this
+            .serviceClient()
+            .validateForModifyBackup(resourceGroupName, vaultName, backupInstanceName, parameters, context);
+    }
+
     public Response<BackupInstanceResource> getBackupInstanceOperationResultWithResponse(
         String resourceGroupName, String vaultName, String backupInstanceName, String operationId, Context context) {
         Response<BackupInstanceResourceInner> inner =
@@ -153,6 +175,53 @@ public final class BackupInstancesImpl implements BackupInstances {
                 .getBackupInstanceOperationResult(resourceGroupName, vaultName, backupInstanceName, operationId);
         if (inner != null) {
             return new BackupInstanceResourceImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public OperationJobExtendedInfo triggerCrossRegionRestore(
+        String resourceGroupName, String location, CrossRegionRestoreRequestObject parameters) {
+        OperationJobExtendedInfoInner inner =
+            this.serviceClient().triggerCrossRegionRestore(resourceGroupName, location, parameters);
+        if (inner != null) {
+            return new OperationJobExtendedInfoImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public OperationJobExtendedInfo triggerCrossRegionRestore(
+        String resourceGroupName, String location, CrossRegionRestoreRequestObject parameters, Context context) {
+        OperationJobExtendedInfoInner inner =
+            this.serviceClient().triggerCrossRegionRestore(resourceGroupName, location, parameters, context);
+        if (inner != null) {
+            return new OperationJobExtendedInfoImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public OperationJobExtendedInfo validateCrossRegionRestore(
+        String resourceGroupName, String location, ValidateCrossRegionRestoreRequestObject parameters) {
+        OperationJobExtendedInfoInner inner =
+            this.serviceClient().validateCrossRegionRestore(resourceGroupName, location, parameters);
+        if (inner != null) {
+            return new OperationJobExtendedInfoImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public OperationJobExtendedInfo validateCrossRegionRestore(
+        String resourceGroupName,
+        String location,
+        ValidateCrossRegionRestoreRequestObject parameters,
+        Context context) {
+        OperationJobExtendedInfoInner inner =
+            this.serviceClient().validateCrossRegionRestore(resourceGroupName, location, parameters, context);
+        if (inner != null) {
+            return new OperationJobExtendedInfoImpl(inner, this.manager());
         } else {
             return null;
         }

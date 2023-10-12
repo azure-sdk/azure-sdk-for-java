@@ -7,10 +7,18 @@ package com.azure.resourcemanager.dataprotection.generated;
 import com.azure.resourcemanager.dataprotection.models.AlertsState;
 import com.azure.resourcemanager.dataprotection.models.AzureMonitorAlertSettings;
 import com.azure.resourcemanager.dataprotection.models.BackupVault;
+import com.azure.resourcemanager.dataprotection.models.CmkKekIdentity;
+import com.azure.resourcemanager.dataprotection.models.CmkKeyVaultProperties;
 import com.azure.resourcemanager.dataprotection.models.CrossRegionRestoreSettings;
 import com.azure.resourcemanager.dataprotection.models.CrossRegionRestoreState;
 import com.azure.resourcemanager.dataprotection.models.DppIdentityDetails;
+import com.azure.resourcemanager.dataprotection.models.EncryptionSettings;
+import com.azure.resourcemanager.dataprotection.models.EncryptionState;
 import com.azure.resourcemanager.dataprotection.models.FeatureSettings;
+import com.azure.resourcemanager.dataprotection.models.IdentityType;
+import com.azure.resourcemanager.dataprotection.models.ImmutabilitySettings;
+import com.azure.resourcemanager.dataprotection.models.ImmutabilityState;
+import com.azure.resourcemanager.dataprotection.models.InfrastructureEncryptionState;
 import com.azure.resourcemanager.dataprotection.models.MonitoringSettings;
 import com.azure.resourcemanager.dataprotection.models.SecuritySettings;
 import com.azure.resourcemanager.dataprotection.models.SoftDeleteSettings;
@@ -25,7 +33,7 @@ import java.util.Map;
 /** Samples for BackupVaults CreateOrUpdate. */
 public final class BackupVaultsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2023-05-01/examples/VaultCRUD/PutBackupVault.json
+     * x-ms-original-file: specification/dataprotection/resource-manager/Microsoft.DataProtection/preview/2023-08-01-preview/examples/VaultCRUD/PutBackupVault.json
      */
     /**
      * Sample code: Create BackupVault.
@@ -66,7 +74,57 @@ public final class BackupVaultsCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2023-05-01/examples/VaultCRUD/PutBackupVaultWithMSI.json
+     * x-ms-original-file: specification/dataprotection/resource-manager/Microsoft.DataProtection/preview/2023-08-01-preview/examples/VaultCRUD/PutBackupVaultWithCMK.json
+     */
+    /**
+     * Sample code: Create BackupVault With CMK.
+     *
+     * @param manager Entry point to DataProtectionManager.
+     */
+    public static void createBackupVaultWithCMK(
+        com.azure.resourcemanager.dataprotection.DataProtectionManager manager) {
+        manager
+            .backupVaults()
+            .define("swaggerExample")
+            .withRegion("WestUS")
+            .withExistingResourceGroup("SampleResourceGroup")
+            .withProperties(
+                new BackupVault()
+                    .withMonitoringSettings(
+                        new MonitoringSettings()
+                            .withAzureMonitorAlertSettings(
+                                new AzureMonitorAlertSettings().withAlertsForAllJobFailures(AlertsState.ENABLED)))
+                    .withSecuritySettings(
+                        new SecuritySettings()
+                            .withSoftDeleteSettings(
+                                new SoftDeleteSettings()
+                                    .withState(SoftDeleteState.OFF)
+                                    .withRetentionDurationInDays(0.0D))
+                            .withImmutabilitySettings(new ImmutabilitySettings().withState(ImmutabilityState.DISABLED))
+                            .withEncryptionSettings(
+                                new EncryptionSettings()
+                                    .withState(EncryptionState.ENABLED)
+                                    .withKeyVaultProperties(
+                                        new CmkKeyVaultProperties().withKeyUri("fakeTokenPlaceholder"))
+                                    .withKekIdentity(
+                                        new CmkKekIdentity()
+                                            .withIdentityType(IdentityType.USER_ASSIGNED)
+                                            .withIdentityId(
+                                                "/subscriptions/85bf5e8c-3084-4f42-add2-746ebb7e97b2/resourcegroups/defaultrg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/examplemsi"))
+                                    .withInfrastructureEncryption(InfrastructureEncryptionState.ENABLED)))
+                    .withStorageSettings(
+                        Arrays
+                            .asList(
+                                new StorageSetting()
+                                    .withDatastoreType(StorageSettingStoreTypes.VAULT_STORE)
+                                    .withType(StorageSettingTypes.LOCALLY_REDUNDANT))))
+            .withTags(mapOf("key1", "fakeTokenPlaceholder"))
+            .withIdentity(new DppIdentityDetails().withType("None"))
+            .create();
+    }
+
+    /*
+     * x-ms-original-file: specification/dataprotection/resource-manager/Microsoft.DataProtection/preview/2023-08-01-preview/examples/VaultCRUD/PutBackupVaultWithMSI.json
      */
     /**
      * Sample code: Create BackupVault With MSI.
@@ -107,6 +165,7 @@ public final class BackupVaultsCreateOrUpdateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
