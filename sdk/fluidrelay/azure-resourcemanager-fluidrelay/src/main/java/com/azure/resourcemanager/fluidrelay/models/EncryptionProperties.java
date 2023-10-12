@@ -16,6 +16,10 @@ public final class EncryptionProperties {
     @JsonProperty(value = "customerManagedKeyEncryption")
     private CustomerManagedKeyEncryptionProperties customerManagedKeyEncryption;
 
+    /** Creates an instance of EncryptionProperties class. */
+    public EncryptionProperties() {
+    }
+
     /**
      * Get the customerManagedKeyEncryption property: All Customer-managed key encryption properties for the resource.
      *

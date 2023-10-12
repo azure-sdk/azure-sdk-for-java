@@ -63,11 +63,10 @@ public final class FluidRelayServersClientImpl implements FluidRelayServersClien
      */
     @Host("{$host}")
     @ServiceInterface(name = "FluidRelayManagement")
-    private interface FluidRelayServersService {
+    public interface FluidRelayServersService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.FluidRelay"
-                + "/fluidRelayServers/{fluidRelayServerName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.FluidRelay/fluidRelayServers/{fluidRelayServerName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<FluidRelayServerInner>> getByResourceGroup(
@@ -81,8 +80,7 @@ public final class FluidRelayServersClientImpl implements FluidRelayServersClien
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.FluidRelay"
-                + "/fluidRelayServers/{fluidRelayServerName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.FluidRelay/fluidRelayServers/{fluidRelayServerName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<FluidRelayServerInner>> createOrUpdate(
@@ -97,8 +95,7 @@ public final class FluidRelayServersClientImpl implements FluidRelayServersClien
 
         @Headers({"Content-Type: application/json"})
         @Patch(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.FluidRelay"
-                + "/fluidRelayServers/{fluidRelayServerName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.FluidRelay/fluidRelayServers/{fluidRelayServerName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<FluidRelayServerInner>> update(
@@ -113,8 +110,7 @@ public final class FluidRelayServersClientImpl implements FluidRelayServersClien
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.FluidRelay"
-                + "/fluidRelayServers/{fluidRelayServerName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.FluidRelay/fluidRelayServers/{fluidRelayServerName}")
         @ExpectedResponses({200, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Void>> delete(
@@ -128,8 +124,7 @@ public final class FluidRelayServersClientImpl implements FluidRelayServersClien
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.FluidRelay"
-                + "/fluidRelayServers/{fluidRelayServerName}/regenerateKey")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.FluidRelay/fluidRelayServers/{fluidRelayServerName}/regenerateKey")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<FluidRelayServerKeysInner>> regenerateKey(
@@ -144,8 +139,7 @@ public final class FluidRelayServersClientImpl implements FluidRelayServersClien
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.FluidRelay"
-                + "/fluidRelayServers/{fluidRelayServerName}/listKeys")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.FluidRelay/fluidRelayServers/{fluidRelayServerName}/listKeys")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<FluidRelayServerKeysInner>> listKeys(
@@ -170,8 +164,7 @@ public final class FluidRelayServersClientImpl implements FluidRelayServersClien
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.FluidRelay"
-                + "/fluidRelayServers")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.FluidRelay/fluidRelayServers")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<FluidRelayServerList>> listByResourceGroup(
@@ -318,21 +311,6 @@ public final class FluidRelayServersClientImpl implements FluidRelayServersClien
      *
      * @param resourceGroup The resource group containing the resource.
      * @param fluidRelayServerName The Fluid Relay server resource name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Fluid Relay server.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public FluidRelayServerInner getByResourceGroup(String resourceGroup, String fluidRelayServerName) {
-        return getByResourceGroupAsync(resourceGroup, fluidRelayServerName).block();
-    }
-
-    /**
-     * Get a Fluid Relay server.
-     *
-     * @param resourceGroup The resource group containing the resource.
-     * @param fluidRelayServerName The Fluid Relay server resource name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -343,6 +321,21 @@ public final class FluidRelayServersClientImpl implements FluidRelayServersClien
     public Response<FluidRelayServerInner> getByResourceGroupWithResponse(
         String resourceGroup, String fluidRelayServerName, Context context) {
         return getByResourceGroupWithResponseAsync(resourceGroup, fluidRelayServerName, context).block();
+    }
+
+    /**
+     * Get a Fluid Relay server.
+     *
+     * @param resourceGroup The resource group containing the resource.
+     * @param fluidRelayServerName The Fluid Relay server resource name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a Fluid Relay server.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public FluidRelayServerInner getByResourceGroup(String resourceGroup, String fluidRelayServerName) {
+        return getByResourceGroupWithResponse(resourceGroup, fluidRelayServerName, Context.NONE).getValue();
     }
 
     /**
@@ -477,23 +470,6 @@ public final class FluidRelayServersClientImpl implements FluidRelayServersClien
      * @param resourceGroup The resource group containing the resource.
      * @param fluidRelayServerName The Fluid Relay server resource name.
      * @param resource The details of the Fluid Relay server resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a FluidRelay Server.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public FluidRelayServerInner createOrUpdate(
-        String resourceGroup, String fluidRelayServerName, FluidRelayServerInner resource) {
-        return createOrUpdateAsync(resourceGroup, fluidRelayServerName, resource).block();
-    }
-
-    /**
-     * Create or Update a Fluid Relay server.
-     *
-     * @param resourceGroup The resource group containing the resource.
-     * @param fluidRelayServerName The Fluid Relay server resource name.
-     * @param resource The details of the Fluid Relay server resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -504,6 +480,23 @@ public final class FluidRelayServersClientImpl implements FluidRelayServersClien
     public Response<FluidRelayServerInner> createOrUpdateWithResponse(
         String resourceGroup, String fluidRelayServerName, FluidRelayServerInner resource, Context context) {
         return createOrUpdateWithResponseAsync(resourceGroup, fluidRelayServerName, resource, context).block();
+    }
+
+    /**
+     * Create or Update a Fluid Relay server.
+     *
+     * @param resourceGroup The resource group containing the resource.
+     * @param fluidRelayServerName The Fluid Relay server resource name.
+     * @param resource The details of the Fluid Relay server resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a FluidRelay Server.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public FluidRelayServerInner createOrUpdate(
+        String resourceGroup, String fluidRelayServerName, FluidRelayServerInner resource) {
+        return createOrUpdateWithResponse(resourceGroup, fluidRelayServerName, resource, Context.NONE).getValue();
     }
 
     /**
@@ -638,23 +631,6 @@ public final class FluidRelayServersClientImpl implements FluidRelayServersClien
      * @param resourceGroup The resource group containing the resource.
      * @param fluidRelayServerName The Fluid Relay server resource name.
      * @param resource The details of the Fluid Relay server resource included in update calls.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a FluidRelay Server.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public FluidRelayServerInner update(
-        String resourceGroup, String fluidRelayServerName, FluidRelayServerUpdate resource) {
-        return updateAsync(resourceGroup, fluidRelayServerName, resource).block();
-    }
-
-    /**
-     * Update a Fluid Relay server.
-     *
-     * @param resourceGroup The resource group containing the resource.
-     * @param fluidRelayServerName The Fluid Relay server resource name.
-     * @param resource The details of the Fluid Relay server resource included in update calls.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -665,6 +641,23 @@ public final class FluidRelayServersClientImpl implements FluidRelayServersClien
     public Response<FluidRelayServerInner> updateWithResponse(
         String resourceGroup, String fluidRelayServerName, FluidRelayServerUpdate resource, Context context) {
         return updateWithResponseAsync(resourceGroup, fluidRelayServerName, resource, context).block();
+    }
+
+    /**
+     * Update a Fluid Relay server.
+     *
+     * @param resourceGroup The resource group containing the resource.
+     * @param fluidRelayServerName The Fluid Relay server resource name.
+     * @param resource The details of the Fluid Relay server resource included in update calls.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a FluidRelay Server.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public FluidRelayServerInner update(
+        String resourceGroup, String fluidRelayServerName, FluidRelayServerUpdate resource) {
+        return updateWithResponse(resourceGroup, fluidRelayServerName, resource, Context.NONE).getValue();
     }
 
     /**
@@ -780,20 +773,6 @@ public final class FluidRelayServersClientImpl implements FluidRelayServersClien
      *
      * @param resourceGroup The resource group containing the resource.
      * @param fluidRelayServerName The Fluid Relay server resource name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceGroup, String fluidRelayServerName) {
-        deleteAsync(resourceGroup, fluidRelayServerName).block();
-    }
-
-    /**
-     * Delete a Fluid Relay server.
-     *
-     * @param resourceGroup The resource group containing the resource.
-     * @param fluidRelayServerName The Fluid Relay server resource name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -803,6 +782,20 @@ public final class FluidRelayServersClientImpl implements FluidRelayServersClien
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<Void> deleteWithResponse(String resourceGroup, String fluidRelayServerName, Context context) {
         return deleteWithResponseAsync(resourceGroup, fluidRelayServerName, context).block();
+    }
+
+    /**
+     * Delete a Fluid Relay server.
+     *
+     * @param resourceGroup The resource group containing the resource.
+     * @param fluidRelayServerName The Fluid Relay server resource name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void delete(String resourceGroup, String fluidRelayServerName) {
+        deleteWithResponse(resourceGroup, fluidRelayServerName, Context.NONE);
     }
 
     /**
@@ -939,23 +932,6 @@ public final class FluidRelayServersClientImpl implements FluidRelayServersClien
      * @param resourceGroup The resource group containing the resource.
      * @param fluidRelayServerName The Fluid Relay server resource name.
      * @param parameters The details of which keys to generate.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the set of available keys for this server.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public FluidRelayServerKeysInner regenerateKey(
-        String resourceGroup, String fluidRelayServerName, RegenerateKeyRequest parameters) {
-        return regenerateKeyAsync(resourceGroup, fluidRelayServerName, parameters).block();
-    }
-
-    /**
-     * Regenerate the primary or secondary key for this server.
-     *
-     * @param resourceGroup The resource group containing the resource.
-     * @param fluidRelayServerName The Fluid Relay server resource name.
-     * @param parameters The details of which keys to generate.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -966,6 +942,23 @@ public final class FluidRelayServersClientImpl implements FluidRelayServersClien
     public Response<FluidRelayServerKeysInner> regenerateKeyWithResponse(
         String resourceGroup, String fluidRelayServerName, RegenerateKeyRequest parameters, Context context) {
         return regenerateKeyWithResponseAsync(resourceGroup, fluidRelayServerName, parameters, context).block();
+    }
+
+    /**
+     * Regenerate the primary or secondary key for this server.
+     *
+     * @param resourceGroup The resource group containing the resource.
+     * @param fluidRelayServerName The Fluid Relay server resource name.
+     * @param parameters The details of which keys to generate.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the set of available keys for this server.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public FluidRelayServerKeysInner regenerateKey(
+        String resourceGroup, String fluidRelayServerName, RegenerateKeyRequest parameters) {
+        return regenerateKeyWithResponse(resourceGroup, fluidRelayServerName, parameters, Context.NONE).getValue();
     }
 
     /**
@@ -1085,21 +1078,6 @@ public final class FluidRelayServersClientImpl implements FluidRelayServersClien
      *
      * @param resourceGroup The resource group containing the resource.
      * @param fluidRelayServerName The Fluid Relay server resource name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return primary and secondary key for this server.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public FluidRelayServerKeysInner listKeys(String resourceGroup, String fluidRelayServerName) {
-        return listKeysAsync(resourceGroup, fluidRelayServerName).block();
-    }
-
-    /**
-     * Get primary and secondary key for this server.
-     *
-     * @param resourceGroup The resource group containing the resource.
-     * @param fluidRelayServerName The Fluid Relay server resource name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1110,6 +1088,21 @@ public final class FluidRelayServersClientImpl implements FluidRelayServersClien
     public Response<FluidRelayServerKeysInner> listKeysWithResponse(
         String resourceGroup, String fluidRelayServerName, Context context) {
         return listKeysWithResponseAsync(resourceGroup, fluidRelayServerName, context).block();
+    }
+
+    /**
+     * Get primary and secondary key for this server.
+     *
+     * @param resourceGroup The resource group containing the resource.
+     * @param fluidRelayServerName The Fluid Relay server resource name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return primary and secondary key for this server.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public FluidRelayServerKeysInner listKeys(String resourceGroup, String fluidRelayServerName) {
+        return listKeysWithResponse(resourceGroup, fluidRelayServerName, Context.NONE).getValue();
     }
 
     /**
@@ -1417,7 +1410,8 @@ public final class FluidRelayServersClientImpl implements FluidRelayServersClien
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1453,7 +1447,8 @@ public final class FluidRelayServersClientImpl implements FluidRelayServersClien
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1490,7 +1485,8 @@ public final class FluidRelayServersClientImpl implements FluidRelayServersClien
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1526,7 +1522,8 @@ public final class FluidRelayServersClientImpl implements FluidRelayServersClien
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
