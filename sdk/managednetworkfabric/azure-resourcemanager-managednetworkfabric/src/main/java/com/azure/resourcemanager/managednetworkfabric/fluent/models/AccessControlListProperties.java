@@ -9,6 +9,7 @@ import com.azure.resourcemanager.managednetworkfabric.models.AccessControlListMa
 import com.azure.resourcemanager.managednetworkfabric.models.AdministrativeState;
 import com.azure.resourcemanager.managednetworkfabric.models.AnnotationResource;
 import com.azure.resourcemanager.managednetworkfabric.models.CommonDynamicMatchConfiguration;
+import com.azure.resourcemanager.managednetworkfabric.models.CommunityActionTypes;
 import com.azure.resourcemanager.managednetworkfabric.models.ConfigurationState;
 import com.azure.resourcemanager.managednetworkfabric.models.ConfigurationType;
 import com.azure.resourcemanager.managednetworkfabric.models.ProvisioningState;
@@ -54,6 +55,12 @@ public final class AccessControlListProperties extends AnnotationResource {
      */
     @JsonProperty(value = "aclsUrl")
     private String aclsUrl;
+
+    /*
+     * Default action that needs to be applied when no condition is matched. Example: Permit | Deny.
+     */
+    @JsonProperty(value = "defaultAction")
+    private CommunityActionTypes defaultAction;
 
     /*
      * List of match configurations.
@@ -144,6 +151,28 @@ public final class AccessControlListProperties extends AnnotationResource {
      */
     public AccessControlListProperties withAclsUrl(String aclsUrl) {
         this.aclsUrl = aclsUrl;
+        return this;
+    }
+
+    /**
+     * Get the defaultAction property: Default action that needs to be applied when no condition is matched. Example:
+     * Permit | Deny.
+     *
+     * @return the defaultAction value.
+     */
+    public CommunityActionTypes defaultAction() {
+        return this.defaultAction;
+    }
+
+    /**
+     * Set the defaultAction property: Default action that needs to be applied when no condition is matched. Example:
+     * Permit | Deny.
+     *
+     * @param defaultAction the defaultAction value to set.
+     * @return the AccessControlListProperties object itself.
+     */
+    public AccessControlListProperties withDefaultAction(CommunityActionTypes defaultAction) {
+        this.defaultAction = defaultAction;
         return this;
     }
 
