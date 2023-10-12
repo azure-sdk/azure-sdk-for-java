@@ -34,6 +34,22 @@ public final class ResourceGraphClientBuilder {
     }
 
     /*
+     * server parameter
+     */
+    private String endpoint;
+
+    /**
+     * Sets server parameter.
+     *
+     * @param endpoint the endpoint value.
+     * @return the ResourceGraphClientBuilder.
+     */
+    public ResourceGraphClientBuilder endpoint(String endpoint) {
+        this.endpoint = endpoint;
+        return this;
+    }
+
+    /*
      * The environment to connect to
      */
     private AzureEnvironment environment;
@@ -103,6 +119,7 @@ public final class ResourceGraphClientBuilder {
      * @return an instance of ResourceGraphClientImpl.
      */
     public ResourceGraphClientImpl buildClient() {
+        String localEndpoint = (endpoint != null) ? endpoint : "";
         String localEndpoint = (endpoint != null) ? endpoint : "https://management.azure.com";
         AzureEnvironment localEnvironment = (environment != null) ? environment : AzureEnvironment.AZURE;
         HttpPipeline localPipeline =
@@ -117,7 +134,12 @@ public final class ResourceGraphClientBuilder {
                 : SerializerFactory.createDefaultManagementSerializerAdapter();
         ResourceGraphClientImpl client =
             new ResourceGraphClientImpl(
-                localPipeline, localSerializerAdapter, localDefaultPollInterval, localEnvironment, localEndpoint);
+                localPipeline,
+                localSerializerAdapter,
+                localDefaultPollInterval,
+                localEnvironment,
+                localEndpoint,
+                localEndpoint);
         return client;
     }
 }
