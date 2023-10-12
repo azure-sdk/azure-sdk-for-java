@@ -48,6 +48,12 @@ public final class NetworkProfile {
     @JsonProperty(value = "egressNatIp")
     private List<IpAddress> egressNatIp;
 
+    /*
+     * Non-RFC 1918 address
+     */
+    @JsonProperty(value = "trustedRanges")
+    private List<String> trustedRanges;
+
     /** Creates an instance of NetworkProfile class. */
     public NetworkProfile() {
     }
@@ -169,6 +175,26 @@ public final class NetworkProfile {
      */
     public NetworkProfile withEgressNatIp(List<IpAddress> egressNatIp) {
         this.egressNatIp = egressNatIp;
+        return this;
+    }
+
+    /**
+     * Get the trustedRanges property: Non-RFC 1918 address.
+     *
+     * @return the trustedRanges value.
+     */
+    public List<String> trustedRanges() {
+        return this.trustedRanges;
+    }
+
+    /**
+     * Set the trustedRanges property: Non-RFC 1918 address.
+     *
+     * @param trustedRanges the trustedRanges value to set.
+     * @return the NetworkProfile object itself.
+     */
+    public NetworkProfile withTrustedRanges(List<String> trustedRanges) {
+        this.trustedRanges = trustedRanges;
         return this;
     }
 
