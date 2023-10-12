@@ -207,7 +207,7 @@ public final class QumuloManager {
                 .append("-")
                 .append("com.azure.resourcemanager.qumulo")
                 .append("/")
-                .append("1.0.0");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -289,8 +289,10 @@ public final class QumuloManager {
     }
 
     /**
-     * @return Wrapped service client QumuloStorage providing direct access to the underlying auto-generated API
-     *     implementation, based on Azure REST API.
+     * Gets wrapped service client QumuloStorage providing direct access to the underlying auto-generated API
+     * implementation, based on Azure REST API.
+     *
+     * @return Wrapped service client QumuloStorage.
      */
     public QumuloStorage serviceClient() {
         return this.clientObject;
