@@ -113,6 +113,31 @@ public final class DelegatedSubnetInner extends DelegatedSubnetResource {
     }
 
     /**
+     * Get the allocationBlockPrefixSize property: Defines prefix size of CIDR blocks allocated to nodes in VnetBlock
+     * Mode. Delegated subnet's prefix size should be smaller than this by a minimum of 3.
+     *
+     * @return the allocationBlockPrefixSize value.
+     */
+    public Integer allocationBlockPrefixSize() {
+        return this.innerProperties() == null ? null : this.innerProperties().allocationBlockPrefixSize();
+    }
+
+    /**
+     * Set the allocationBlockPrefixSize property: Defines prefix size of CIDR blocks allocated to nodes in VnetBlock
+     * Mode. Delegated subnet's prefix size should be smaller than this by a minimum of 3.
+     *
+     * @param allocationBlockPrefixSize the allocationBlockPrefixSize value to set.
+     * @return the DelegatedSubnetInner object itself.
+     */
+    public DelegatedSubnetInner withAllocationBlockPrefixSize(Integer allocationBlockPrefixSize) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new DelegatedSubnetProperties();
+        }
+        this.innerProperties().withAllocationBlockPrefixSize(allocationBlockPrefixSize);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
