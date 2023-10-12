@@ -28,13 +28,17 @@ import com.azure.resourcemanager.chaos.implementation.CapabilitiesImpl;
 import com.azure.resourcemanager.chaos.implementation.CapabilityTypesImpl;
 import com.azure.resourcemanager.chaos.implementation.ChaosManagementClientBuilder;
 import com.azure.resourcemanager.chaos.implementation.ExperimentsImpl;
+import com.azure.resourcemanager.chaos.implementation.OperationStatusesImpl;
 import com.azure.resourcemanager.chaos.implementation.OperationsImpl;
+import com.azure.resourcemanager.chaos.implementation.PrivateAccessesImpl;
 import com.azure.resourcemanager.chaos.implementation.TargetTypesImpl;
 import com.azure.resourcemanager.chaos.implementation.TargetsImpl;
 import com.azure.resourcemanager.chaos.models.Capabilities;
 import com.azure.resourcemanager.chaos.models.CapabilityTypes;
 import com.azure.resourcemanager.chaos.models.Experiments;
+import com.azure.resourcemanager.chaos.models.OperationStatuses;
 import com.azure.resourcemanager.chaos.models.Operations;
+import com.azure.resourcemanager.chaos.models.PrivateAccesses;
 import com.azure.resourcemanager.chaos.models.TargetTypes;
 import com.azure.resourcemanager.chaos.models.Targets;
 import java.time.Duration;
@@ -52,7 +56,11 @@ public final class ChaosManager {
 
     private Experiments experiments;
 
+    private OperationStatuses operationStatuses;
+
     private Operations operations;
+
+    private PrivateAccesses privateAccesses;
 
     private TargetTypes targetTypes;
 
@@ -317,6 +325,18 @@ public final class ChaosManager {
     }
 
     /**
+     * Gets the resource collection API of OperationStatuses.
+     *
+     * @return Resource collection API of OperationStatuses.
+     */
+    public OperationStatuses operationStatuses() {
+        if (this.operationStatuses == null) {
+            this.operationStatuses = new OperationStatusesImpl(clientObject.getOperationStatuses(), this);
+        }
+        return operationStatuses;
+    }
+
+    /**
      * Gets the resource collection API of Operations.
      *
      * @return Resource collection API of Operations.
@@ -326,6 +346,18 @@ public final class ChaosManager {
             this.operations = new OperationsImpl(clientObject.getOperations(), this);
         }
         return operations;
+    }
+
+    /**
+     * Gets the resource collection API of PrivateAccesses. It manages PrivateAccess.
+     *
+     * @return Resource collection API of PrivateAccesses.
+     */
+    public PrivateAccesses privateAccesses() {
+        if (this.privateAccesses == null) {
+            this.privateAccesses = new PrivateAccessesImpl(clientObject.getPrivateAccesses(), this);
+        }
+        return privateAccesses;
     }
 
     /**
@@ -353,8 +385,10 @@ public final class ChaosManager {
     }
 
     /**
-     * @return Wrapped service client ChaosManagementClient providing direct access to the underlying auto-generated API
-     *     implementation, based on Azure REST API.
+     * Gets wrapped service client ChaosManagementClient providing direct access to the underlying auto-generated API
+     * implementation, based on Azure REST API.
+     *
+     * @return Wrapped service client ChaosManagementClient.
      */
     public ChaosManagementClient serviceClient() {
         return this.clientObject;
