@@ -165,6 +165,31 @@ public final class PoolUpdate extends TrackedResourceUpdate {
     }
 
     /**
+     * Get the singleSignOnStatus property: Indicates whether Dev Boxes in this pool are created with single sign on
+     * enabled. The also requires that single sign on be enabled on the tenant.
+     *
+     * @return the singleSignOnStatus value.
+     */
+    public SingleSignOnStatus singleSignOnStatus() {
+        return this.innerProperties() == null ? null : this.innerProperties().singleSignOnStatus();
+    }
+
+    /**
+     * Set the singleSignOnStatus property: Indicates whether Dev Boxes in this pool are created with single sign on
+     * enabled. The also requires that single sign on be enabled on the tenant.
+     *
+     * @param singleSignOnStatus the singleSignOnStatus value to set.
+     * @return the PoolUpdate object itself.
+     */
+    public PoolUpdate withSingleSignOnStatus(SingleSignOnStatus singleSignOnStatus) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new PoolUpdateProperties();
+        }
+        this.innerProperties().withSingleSignOnStatus(singleSignOnStatus);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.

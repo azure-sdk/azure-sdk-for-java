@@ -7,9 +7,11 @@ package com.azure.resourcemanager.devcenter.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
+import com.azure.resourcemanager.devcenter.models.CatalogConnectionState;
 import com.azure.resourcemanager.devcenter.models.CatalogSyncState;
 import com.azure.resourcemanager.devcenter.models.GitCatalog;
 import com.azure.resourcemanager.devcenter.models.ProvisioningState;
+import com.azure.resourcemanager.devcenter.models.SyncStats;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
@@ -66,6 +68,33 @@ public final class CatalogInner extends ProxyResource {
      */
     public CatalogSyncState syncState() {
         return this.innerProperties() == null ? null : this.innerProperties().syncState();
+    }
+
+    /**
+     * Get the lastSyncStats property: Stats of the latest synchronization.
+     *
+     * @return the lastSyncStats value.
+     */
+    public SyncStats lastSyncStats() {
+        return this.innerProperties() == null ? null : this.innerProperties().lastSyncStats();
+    }
+
+    /**
+     * Get the connectionState property: The connection state of the catalog.
+     *
+     * @return the connectionState value.
+     */
+    public CatalogConnectionState connectionState() {
+        return this.innerProperties() == null ? null : this.innerProperties().connectionState();
+    }
+
+    /**
+     * Get the lastConnectionTime property: When the catalog was last connected.
+     *
+     * @return the lastConnectionTime value.
+     */
+    public OffsetDateTime lastConnectionTime() {
+        return this.innerProperties() == null ? null : this.innerProperties().lastConnectionTime();
     }
 
     /**
