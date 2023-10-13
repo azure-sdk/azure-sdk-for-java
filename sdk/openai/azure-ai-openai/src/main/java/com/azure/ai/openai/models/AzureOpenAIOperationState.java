@@ -27,13 +27,6 @@ public final class AzureOpenAIOperationState extends ExpandableStringEnum<AzureO
     @Generated public static final AzureOpenAIOperationState FAILED = fromString("failed");
 
     /**
-     * The entity has been deleted but may still be referenced by other entities that originated before the deletion.
-     * Note that this state is not used by some Azure OpenAI long-running operations and may not represent a terminal
-     * state for those operations.
-     */
-    @Generated public static final AzureOpenAIOperationState DELETED = fromString("deleted");
-
-    /**
      * Creates a new instance of AzureOpenAIOperationState value.
      *
      * @deprecated Use the {@link #fromString(String)} factory method.
