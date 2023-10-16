@@ -38,11 +38,11 @@ public interface ApplicationInsightsManagementClient {
     Duration getDefaultPollInterval();
 
     /**
-     * Gets the OperationsClient object to access its operations.
+     * Gets the ComponentsClient object to access its operations.
      *
-     * @return the OperationsClient object.
+     * @return the ComponentsClient object.
      */
-    OperationsClient getOperations();
+    ComponentsClient getComponents();
 
     /**
      * Gets the AnnotationsClient object to access its operations.
@@ -136,18 +136,18 @@ public interface ApplicationInsightsManagementClient {
     AnalyticsItemsClient getAnalyticsItems();
 
     /**
+     * Gets the OperationsClient object to access its operations.
+     *
+     * @return the OperationsClient object.
+     */
+    OperationsClient getOperations();
+
+    /**
      * Gets the WorkbookTemplatesClient object to access its operations.
      *
      * @return the WorkbookTemplatesClient object.
      */
     WorkbookTemplatesClient getWorkbookTemplates();
-
-    /**
-     * Gets the MyWorkbooksClient object to access its operations.
-     *
-     * @return the MyWorkbooksClient object.
-     */
-    MyWorkbooksClient getMyWorkbooks();
 
     /**
      * Gets the WorkbooksClient object to access its operations.
@@ -157,11 +157,11 @@ public interface ApplicationInsightsManagementClient {
     WorkbooksClient getWorkbooks();
 
     /**
-     * Gets the ComponentsClient object to access its operations.
+     * Gets the LiveTokensClient object to access its operations.
      *
-     * @return the ComponentsClient object.
+     * @return the LiveTokensClient object.
      */
-    ComponentsClient getComponents();
+    LiveTokensClient getLiveTokens();
 
     /**
      * Gets the ComponentLinkedStorageAccountsOperationsClient object to access its operations.
@@ -169,11 +169,4 @@ public interface ApplicationInsightsManagementClient {
      * @return the ComponentLinkedStorageAccountsOperationsClient object.
      */
     ComponentLinkedStorageAccountsOperationsClient getComponentLinkedStorageAccountsOperations();
-
-    /**
-     * Gets the LiveTokensClient object to access its operations.
-     *
-     * @return the LiveTokensClient object.
-     */
-    LiveTokensClient getLiveTokens();
 }
