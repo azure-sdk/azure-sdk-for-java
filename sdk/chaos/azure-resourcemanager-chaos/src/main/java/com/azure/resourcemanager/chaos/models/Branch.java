@@ -9,7 +9,7 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Model that represents a branch in the step. */
+/** Model that represents a branch in the step. 9 total per experiment. */
 @Fluent
 public final class Branch {
     /*
