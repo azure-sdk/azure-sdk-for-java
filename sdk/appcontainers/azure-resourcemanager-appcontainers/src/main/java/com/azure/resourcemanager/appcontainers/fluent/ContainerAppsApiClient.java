@@ -45,6 +45,13 @@ public interface ContainerAppsApiClient {
     Duration getDefaultPollInterval();
 
     /**
+     * Gets the AppResilienciesClient object to access its operations.
+     *
+     * @return the AppResilienciesClient object.
+     */
+    AppResilienciesClient getAppResiliencies();
+
+    /**
      * Gets the ContainerAppsAuthConfigsClient object to access its operations.
      *
      * @return the ContainerAppsAuthConfigsClient object.
@@ -64,6 +71,20 @@ public interface ContainerAppsApiClient {
      * @return the BillingMetersClient object.
      */
     BillingMetersClient getBillingMeters();
+
+    /**
+     * Gets the BuildersClient object to access its operations.
+     *
+     * @return the BuildersClient object.
+     */
+    BuildersClient getBuilders();
+
+    /**
+     * Gets the BuildsClient object to access its operations.
+     *
+     * @return the BuildsClient object.
+     */
+    BuildsClient getBuilds();
 
     /**
      * Gets the ConnectedEnvironmentsClient object to access its operations.
@@ -199,6 +220,20 @@ public interface ContainerAppsApiClient {
     DaprComponentsClient getDaprComponents();
 
     /**
+     * Gets the DaprComponentResiliencyPoliciesClient object to access its operations.
+     *
+     * @return the DaprComponentResiliencyPoliciesClient object.
+     */
+    DaprComponentResiliencyPoliciesClient getDaprComponentResiliencyPolicies();
+
+    /**
+     * Gets the DaprSubscriptionsClient object to access its operations.
+     *
+     * @return the DaprSubscriptionsClient object.
+     */
+    DaprSubscriptionsClient getDaprSubscriptions();
+
+    /**
      * Gets the ManagedEnvironmentsStoragesClient object to access its operations.
      *
      * @return the ManagedEnvironmentsStoragesClient object.
@@ -206,9 +241,30 @@ public interface ContainerAppsApiClient {
     ManagedEnvironmentsStoragesClient getManagedEnvironmentsStorages();
 
     /**
+     * Gets the PatchesClient object to access its operations.
+     *
+     * @return the PatchesClient object.
+     */
+    PatchesClient getPatches();
+
+    /**
      * Gets the ContainerAppsSourceControlsClient object to access its operations.
      *
      * @return the ContainerAppsSourceControlsClient object.
      */
     ContainerAppsSourceControlsClient getContainerAppsSourceControls();
+
+    /**
+     * Gets the UsagesClient object to access its operations.
+     *
+     * @return the UsagesClient object.
+     */
+    UsagesClient getUsages();
+
+    /**
+     * Gets the ManagedEnvironmentUsagesClient object to access its operations.
+     *
+     * @return the ManagedEnvironmentUsagesClient object.
+     */
+    ManagedEnvironmentUsagesClient getManagedEnvironmentUsages();
 }
