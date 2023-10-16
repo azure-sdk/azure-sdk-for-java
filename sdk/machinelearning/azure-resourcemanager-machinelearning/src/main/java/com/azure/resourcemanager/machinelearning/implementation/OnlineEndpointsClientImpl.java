@@ -52,21 +52,21 @@ public final class OnlineEndpointsClientImpl implements OnlineEndpointsClient {
     private final OnlineEndpointsService service;
 
     /** The service client containing this operation class. */
-    private final AzureMachineLearningWorkspacesImpl client;
+    private final AzureMachineLearningServicesImpl client;
 
     /**
      * Initializes an instance of OnlineEndpointsClientImpl.
      *
      * @param client the instance of the service client containing this operation class.
      */
-    OnlineEndpointsClientImpl(AzureMachineLearningWorkspacesImpl client) {
+    OnlineEndpointsClientImpl(AzureMachineLearningServicesImpl client) {
         this.service =
             RestProxy.create(OnlineEndpointsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for AzureMachineLearningWorkspacesOnlineEndpoints to be used by the proxy
+     * The interface defining all the services for AzureMachineLearningServicesOnlineEndpoints to be used by the proxy
      * service to perform REST calls.
      */
     @Host("{$host}")
@@ -74,8 +74,7 @@ public final class OnlineEndpointsClientImpl implements OnlineEndpointsClient {
     public interface OnlineEndpointsService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/onlineEndpoints")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/onlineEndpoints")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<OnlineEndpointTrackedResourceArmPaginatedResult>> list(
@@ -96,8 +95,7 @@ public final class OnlineEndpointsClientImpl implements OnlineEndpointsClient {
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/onlineEndpoints/{endpointName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/onlineEndpoints/{endpointName}")
         @ExpectedResponses({200, 202, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(
@@ -112,8 +110,7 @@ public final class OnlineEndpointsClientImpl implements OnlineEndpointsClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/onlineEndpoints/{endpointName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/onlineEndpoints/{endpointName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<OnlineEndpointInner>> get(
@@ -128,8 +125,7 @@ public final class OnlineEndpointsClientImpl implements OnlineEndpointsClient {
 
         @Headers({"Content-Type: application/json"})
         @Patch(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/onlineEndpoints/{endpointName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/onlineEndpoints/{endpointName}")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> update(
@@ -145,8 +141,7 @@ public final class OnlineEndpointsClientImpl implements OnlineEndpointsClient {
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/onlineEndpoints/{endpointName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/onlineEndpoints/{endpointName}")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
@@ -162,9 +157,7 @@ public final class OnlineEndpointsClientImpl implements OnlineEndpointsClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/onlineEndpoints/{endpointName}"
-                + "/listKeys")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/onlineEndpoints/{endpointName}/listKeys")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<EndpointAuthKeysInner>> listKeys(
@@ -179,9 +172,7 @@ public final class OnlineEndpointsClientImpl implements OnlineEndpointsClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/onlineEndpoints/{endpointName}"
-                + "/regenerateKeys")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/onlineEndpoints/{endpointName}/regenerateKeys")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> regenerateKeys(
@@ -197,8 +188,7 @@ public final class OnlineEndpointsClientImpl implements OnlineEndpointsClient {
 
         @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/onlineEndpoints/{endpointName}/token")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/onlineEndpoints/{endpointName}/token")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<EndpointAuthTokenInner>> getToken(
@@ -2047,7 +2037,7 @@ public final class OnlineEndpointsClientImpl implements OnlineEndpointsClient {
     }
 
     /**
-     * Retrieve a valid AAD token for an Endpoint using AMLToken-based authentication.
+     * Retrieve a valid AML token for an Endpoint using AMLToken-based authentication.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
@@ -2100,7 +2090,7 @@ public final class OnlineEndpointsClientImpl implements OnlineEndpointsClient {
     }
 
     /**
-     * Retrieve a valid AAD token for an Endpoint using AMLToken-based authentication.
+     * Retrieve a valid AML token for an Endpoint using AMLToken-based authentication.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
@@ -2151,7 +2141,7 @@ public final class OnlineEndpointsClientImpl implements OnlineEndpointsClient {
     }
 
     /**
-     * Retrieve a valid AAD token for an Endpoint using AMLToken-based authentication.
+     * Retrieve a valid AML token for an Endpoint using AMLToken-based authentication.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
@@ -2169,7 +2159,7 @@ public final class OnlineEndpointsClientImpl implements OnlineEndpointsClient {
     }
 
     /**
-     * Retrieve a valid AAD token for an Endpoint using AMLToken-based authentication.
+     * Retrieve a valid AML token for an Endpoint using AMLToken-based authentication.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
@@ -2187,7 +2177,7 @@ public final class OnlineEndpointsClientImpl implements OnlineEndpointsClient {
     }
 
     /**
-     * Retrieve a valid AAD token for an Endpoint using AMLToken-based authentication.
+     * Retrieve a valid AML token for an Endpoint using AMLToken-based authentication.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.

@@ -9,11 +9,11 @@ import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.machinelearning.fluent.models.PrivateEndpointConnectionInner;
 import com.azure.resourcemanager.machinelearning.models.ManagedServiceIdentity;
-import com.azure.resourcemanager.machinelearning.models.PrivateEndpoint;
 import com.azure.resourcemanager.machinelearning.models.PrivateEndpointConnection;
 import com.azure.resourcemanager.machinelearning.models.PrivateEndpointConnectionProvisioningState;
 import com.azure.resourcemanager.machinelearning.models.PrivateLinkServiceConnectionState;
 import com.azure.resourcemanager.machinelearning.models.Sku;
+import com.azure.resourcemanager.machinelearning.models.WorkspacePrivateEndpointResource;
 import java.util.Collections;
 import java.util.Map;
 
@@ -43,6 +43,10 @@ public final class PrivateEndpointConnectionImpl
         return this.innerModel().location();
     }
 
+    public Sku sku() {
+        return this.innerModel().sku();
+    }
+
     public Map<String, String> tags() {
         Map<String, String> inner = this.innerModel().tags();
         if (inner != null) {
@@ -52,15 +56,11 @@ public final class PrivateEndpointConnectionImpl
         }
     }
 
-    public Sku sku() {
-        return this.innerModel().sku();
-    }
-
     public SystemData systemData() {
         return this.innerModel().systemData();
     }
 
-    public PrivateEndpoint privateEndpoint() {
+    public WorkspacePrivateEndpointResource privateEndpoint() {
         return this.innerModel().privateEndpoint();
     }
 
@@ -214,7 +214,7 @@ public final class PrivateEndpointConnectionImpl
         return this;
     }
 
-    public PrivateEndpointConnectionImpl withPrivateEndpoint(PrivateEndpoint privateEndpoint) {
+    public PrivateEndpointConnectionImpl withPrivateEndpoint(WorkspacePrivateEndpointResource privateEndpoint) {
         this.innerModel().withPrivateEndpoint(privateEndpoint);
         return this;
     }
@@ -222,6 +222,12 @@ public final class PrivateEndpointConnectionImpl
     public PrivateEndpointConnectionImpl withPrivateLinkServiceConnectionState(
         PrivateLinkServiceConnectionState privateLinkServiceConnectionState) {
         this.innerModel().withPrivateLinkServiceConnectionState(privateLinkServiceConnectionState);
+        return this;
+    }
+
+    public PrivateEndpointConnectionImpl withProvisioningState(
+        PrivateEndpointConnectionProvisioningState provisioningState) {
+        this.innerModel().withProvisioningState(provisioningState);
         return this;
     }
 }

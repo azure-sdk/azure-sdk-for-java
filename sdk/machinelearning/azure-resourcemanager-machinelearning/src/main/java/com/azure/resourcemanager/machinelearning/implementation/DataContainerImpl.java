@@ -49,13 +49,13 @@ public final class DataContainerImpl implements DataContainer, DataContainer.Def
 
     private String resourceGroupName;
 
-    private String workspaceName;
+    private String registryName;
 
     private String name;
 
-    public DataContainerImpl withExistingWorkspace(String resourceGroupName, String workspaceName) {
+    public DataContainerImpl withExistingRegistry(String resourceGroupName, String registryName) {
         this.resourceGroupName = resourceGroupName;
-        this.workspaceName = workspaceName;
+        this.registryName = registryName;
         return this;
     }
 
@@ -63,9 +63,8 @@ public final class DataContainerImpl implements DataContainer, DataContainer.Def
         this.innerObject =
             serviceManager
                 .serviceClient()
-                .getDataContainers()
-                .createOrUpdateWithResponse(resourceGroupName, workspaceName, name, this.innerModel(), Context.NONE)
-                .getValue();
+                .getRegistryDataContainers()
+                .createOrUpdate(resourceGroupName, registryName, name, this.innerModel(), Context.NONE);
         return this;
     }
 
@@ -73,9 +72,8 @@ public final class DataContainerImpl implements DataContainer, DataContainer.Def
         this.innerObject =
             serviceManager
                 .serviceClient()
-                .getDataContainers()
-                .createOrUpdateWithResponse(resourceGroupName, workspaceName, name, this.innerModel(), context)
-                .getValue();
+                .getRegistryDataContainers()
+                .createOrUpdate(resourceGroupName, registryName, name, this.innerModel(), context);
         return this;
     }
 
@@ -93,9 +91,8 @@ public final class DataContainerImpl implements DataContainer, DataContainer.Def
         this.innerObject =
             serviceManager
                 .serviceClient()
-                .getDataContainers()
-                .createOrUpdateWithResponse(resourceGroupName, workspaceName, name, this.innerModel(), Context.NONE)
-                .getValue();
+                .getRegistryDataContainers()
+                .createOrUpdate(resourceGroupName, registryName, name, this.innerModel(), Context.NONE);
         return this;
     }
 
@@ -103,9 +100,8 @@ public final class DataContainerImpl implements DataContainer, DataContainer.Def
         this.innerObject =
             serviceManager
                 .serviceClient()
-                .getDataContainers()
-                .createOrUpdateWithResponse(resourceGroupName, workspaceName, name, this.innerModel(), context)
-                .getValue();
+                .getRegistryDataContainers()
+                .createOrUpdate(resourceGroupName, registryName, name, this.innerModel(), context);
         return this;
     }
 
@@ -115,7 +111,7 @@ public final class DataContainerImpl implements DataContainer, DataContainer.Def
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
         this.resourceGroupName = Utils.getValueFromIdByName(innerObject.id(), "resourceGroups");
-        this.workspaceName = Utils.getValueFromIdByName(innerObject.id(), "workspaces");
+        this.registryName = Utils.getValueFromIdByName(innerObject.id(), "registries");
         this.name = Utils.getValueFromIdByName(innerObject.id(), "data");
     }
 
@@ -123,8 +119,8 @@ public final class DataContainerImpl implements DataContainer, DataContainer.Def
         this.innerObject =
             serviceManager
                 .serviceClient()
-                .getDataContainers()
-                .getWithResponse(resourceGroupName, workspaceName, name, Context.NONE)
+                .getRegistryDataContainers()
+                .getWithResponse(resourceGroupName, registryName, name, Context.NONE)
                 .getValue();
         return this;
     }
@@ -133,8 +129,8 @@ public final class DataContainerImpl implements DataContainer, DataContainer.Def
         this.innerObject =
             serviceManager
                 .serviceClient()
-                .getDataContainers()
-                .getWithResponse(resourceGroupName, workspaceName, name, context)
+                .getRegistryDataContainers()
+                .getWithResponse(resourceGroupName, registryName, name, context)
                 .getValue();
         return this;
     }

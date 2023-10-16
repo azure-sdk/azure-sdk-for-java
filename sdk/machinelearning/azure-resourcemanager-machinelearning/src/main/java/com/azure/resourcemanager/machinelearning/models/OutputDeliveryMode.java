@@ -16,6 +16,9 @@ public final class OutputDeliveryMode extends ExpandableStringEnum<OutputDeliver
     /** Static value Upload for OutputDeliveryMode. */
     public static final OutputDeliveryMode UPLOAD = fromString("Upload");
 
+    /** Static value Direct for OutputDeliveryMode. */
+    public static final OutputDeliveryMode DIRECT = fromString("Direct");
+
     /**
      * Creates a new instance of OutputDeliveryMode value.
      *
