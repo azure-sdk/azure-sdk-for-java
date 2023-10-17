@@ -23,10 +23,20 @@ public final class PerNodeState {
     private String arcInstance;
 
     /*
+     * The service principal id of the arc for server node
+     */
+    @JsonProperty(value = "arcNodeServicePrincipalObjectId", access = JsonProperty.Access.WRITE_ONLY)
+    private String arcNodeServicePrincipalObjectId;
+
+    /*
      * State of Arc agent in this node.
      */
     @JsonProperty(value = "state", access = JsonProperty.Access.WRITE_ONLY)
     private NodeArcState state;
+
+    /** Creates an instance of PerNodeState class. */
+    public PerNodeState() {
+    }
 
     /**
      * Get the name property: Name of the Node in HCI Cluster.
@@ -44,6 +54,15 @@ public final class PerNodeState {
      */
     public String arcInstance() {
         return this.arcInstance;
+    }
+
+    /**
+     * Get the arcNodeServicePrincipalObjectId property: The service principal id of the arc for server node.
+     *
+     * @return the arcNodeServicePrincipalObjectId value.
+     */
+    public String arcNodeServicePrincipalObjectId() {
+        return this.arcNodeServicePrincipalObjectId;
     }
 
     /**

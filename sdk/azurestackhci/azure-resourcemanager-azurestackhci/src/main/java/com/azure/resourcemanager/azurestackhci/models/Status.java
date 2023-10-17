@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for Status. */
+/** Status of the cluster agent. */
 public final class Status extends ExpandableStringEnum<Status> {
     /** Static value NotYetRegistered for Status. */
     public static final Status NOT_YET_REGISTERED = fromString("NotYetRegistered");
@@ -24,6 +24,45 @@ public final class Status extends ExpandableStringEnum<Status> {
 
     /** Static value Error for Status. */
     public static final Status ERROR = fromString("Error");
+
+    /** Static value NotSpecified for Status. */
+    public static final Status NOT_SPECIFIED = fromString("NotSpecified");
+
+    /** Static value ValidationInProgress for Status. */
+    public static final Status VALIDATION_IN_PROGRESS = fromString("ValidationInProgress");
+
+    /** Static value ValidationSuccess for Status. */
+    public static final Status VALIDATION_SUCCESS = fromString("ValidationSuccess");
+
+    /** Static value ValidationFailed for Status. */
+    public static final Status VALIDATION_FAILED = fromString("ValidationFailed");
+
+    /** Static value DeploymentInProgress for Status. */
+    public static final Status DEPLOYMENT_IN_PROGRESS = fromString("DeploymentInProgress");
+
+    /** Static value DeploymentFailed for Status. */
+    public static final Status DEPLOYMENT_FAILED = fromString("DeploymentFailed");
+
+    /** Static value DeploymentSuccess for Status. */
+    public static final Status DEPLOYMENT_SUCCESS = fromString("DeploymentSuccess");
+
+    /** Static value Succeeded for Status. */
+    public static final Status SUCCEEDED = fromString("Succeeded");
+
+    /** Static value Failed for Status. */
+    public static final Status FAILED = fromString("Failed");
+
+    /** Static value InProgress for Status. */
+    public static final Status IN_PROGRESS = fromString("InProgress");
+
+    /**
+     * Creates a new instance of Status value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public Status() {
+    }
 
     /**
      * Creates or finds a Status from its string representation.
