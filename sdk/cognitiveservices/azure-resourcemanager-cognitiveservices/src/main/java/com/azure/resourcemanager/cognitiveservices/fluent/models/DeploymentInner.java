@@ -9,7 +9,9 @@ import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.cognitiveservices.models.DeploymentProperties;
 import com.azure.resourcemanager.cognitiveservices.models.Sku;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.Map;
 
 /** Cognitive Services account deployment. */
 @Fluent
@@ -31,6 +33,13 @@ public final class DeploymentInner extends ProxyResource {
      */
     @JsonProperty(value = "etag", access = JsonProperty.Access.WRITE_ONLY)
     private String etag;
+
+    /*
+     * Resource tags.
+     */
+    @JsonProperty(value = "tags")
+    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
+    private Map<String, String> tags;
 
     /*
      * Properties of Cognitive Services account deployment.
@@ -78,6 +87,26 @@ public final class DeploymentInner extends ProxyResource {
      */
     public String etag() {
         return this.etag;
+    }
+
+    /**
+     * Get the tags property: Resource tags.
+     *
+     * @return the tags value.
+     */
+    public Map<String, String> tags() {
+        return this.tags;
+    }
+
+    /**
+     * Set the tags property: Resource tags.
+     *
+     * @param tags the tags value to set.
+     * @return the DeploymentInner object itself.
+     */
+    public DeploymentInner withTags(Map<String, String> tags) {
+        this.tags = tags;
+        return this;
     }
 
     /**

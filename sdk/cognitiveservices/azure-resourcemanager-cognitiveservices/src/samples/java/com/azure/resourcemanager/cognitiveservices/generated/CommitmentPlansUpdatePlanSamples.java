@@ -11,7 +11,7 @@ import java.util.Map;
 /** Samples for CommitmentPlans UpdatePlan. */
 public final class CommitmentPlansUpdatePlanSamples {
     /*
-     * x-ms-original-file: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/stable/2023-05-01/examples/UpdateSharedCommitmentPlan.json
+     * x-ms-original-file: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/preview/2023-10-01-preview/examples/UpdateSharedCommitmentPlan.json
      */
     /**
      * Sample code: Create Commitment Plan.
@@ -29,6 +29,7 @@ public final class CommitmentPlansUpdatePlanSamples {
         resource.update().withTags(mapOf("name", "value")).apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
