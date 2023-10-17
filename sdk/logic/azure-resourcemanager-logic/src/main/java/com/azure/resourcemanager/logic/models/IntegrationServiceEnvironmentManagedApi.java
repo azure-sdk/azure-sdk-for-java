@@ -180,11 +180,13 @@ public interface IntegrationServiceEnvironmentManagedApi {
             DefinitionStages.WithParentResource,
             DefinitionStages.WithCreate {
     }
+
     /** The IntegrationServiceEnvironmentManagedApi definition stages. */
     interface DefinitionStages {
         /** The first stage of the IntegrationServiceEnvironmentManagedApi definition. */
         interface Blank extends WithLocation {
         }
+
         /** The stage of the IntegrationServiceEnvironmentManagedApi definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -203,6 +205,7 @@ public interface IntegrationServiceEnvironmentManagedApi {
              */
             WithParentResource withRegion(String location);
         }
+
         /** The stage of the IntegrationServiceEnvironmentManagedApi definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -215,6 +218,7 @@ public interface IntegrationServiceEnvironmentManagedApi {
             WithCreate withExistingIntegrationServiceEnvironment(
                 String resourceGroup, String integrationServiceEnvironmentName);
         }
+
         /**
          * The stage of the IntegrationServiceEnvironmentManagedApi definition which contains all the minimum required
          * properties for the resource to be created, but also allows for any other optional properties to be specified.
@@ -238,6 +242,7 @@ public interface IntegrationServiceEnvironmentManagedApi {
              */
             IntegrationServiceEnvironmentManagedApi create(Context context);
         }
+
         /** The stage of the IntegrationServiceEnvironmentManagedApi definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -248,6 +253,7 @@ public interface IntegrationServiceEnvironmentManagedApi {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
         /**
          * The stage of the IntegrationServiceEnvironmentManagedApi definition allowing to specify deploymentParameters.
          */
@@ -262,6 +268,7 @@ public interface IntegrationServiceEnvironmentManagedApi {
             WithCreate withDeploymentParameters(
                 IntegrationServiceEnvironmentManagedApiDeploymentParameters deploymentParameters);
         }
+
         /**
          * The stage of the IntegrationServiceEnvironmentManagedApi definition allowing to specify
          * integrationServiceEnvironment.
@@ -276,6 +283,7 @@ public interface IntegrationServiceEnvironmentManagedApi {
             WithCreate withIntegrationServiceEnvironment(ResourceReference integrationServiceEnvironment);
         }
     }
+
     /**
      * Begins update for the IntegrationServiceEnvironmentManagedApi resource.
      *
@@ -303,6 +311,7 @@ public interface IntegrationServiceEnvironmentManagedApi {
          */
         IntegrationServiceEnvironmentManagedApi apply(Context context);
     }
+
     /** The IntegrationServiceEnvironmentManagedApi update stages. */
     interface UpdateStages {
         /** The stage of the IntegrationServiceEnvironmentManagedApi update allowing to specify tags. */
@@ -315,6 +324,7 @@ public interface IntegrationServiceEnvironmentManagedApi {
              */
             Update withTags(Map<String, String> tags);
         }
+
         /** The stage of the IntegrationServiceEnvironmentManagedApi update allowing to specify deploymentParameters. */
         interface WithDeploymentParameters {
             /**
@@ -327,6 +337,7 @@ public interface IntegrationServiceEnvironmentManagedApi {
             Update withDeploymentParameters(
                 IntegrationServiceEnvironmentManagedApiDeploymentParameters deploymentParameters);
         }
+
         /**
          * The stage of the IntegrationServiceEnvironmentManagedApi update allowing to specify
          * integrationServiceEnvironment.
@@ -341,6 +352,7 @@ public interface IntegrationServiceEnvironmentManagedApi {
             Update withIntegrationServiceEnvironment(ResourceReference integrationServiceEnvironment);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

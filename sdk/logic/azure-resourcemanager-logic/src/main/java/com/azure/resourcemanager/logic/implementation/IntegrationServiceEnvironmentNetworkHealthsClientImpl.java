@@ -62,8 +62,7 @@ public final class IntegrationServiceEnvironmentNetworkHealthsClientImpl
     public interface IntegrationServiceEnvironmentNetworkHealthsService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Logic"
-                + "/integrationServiceEnvironments/{integrationServiceEnvironmentName}/health/network")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Logic/integrationServiceEnvironments/{integrationServiceEnvironmentName}/health/network")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Map<String, IntegrationServiceEnvironmentSubnetNetworkHealthInner>>> get(

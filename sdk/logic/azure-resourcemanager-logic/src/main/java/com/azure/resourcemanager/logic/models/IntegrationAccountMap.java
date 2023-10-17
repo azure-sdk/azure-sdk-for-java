@@ -140,11 +140,13 @@ public interface IntegrationAccountMap {
             DefinitionStages.WithMapType,
             DefinitionStages.WithCreate {
     }
+
     /** The IntegrationAccountMap definition stages. */
     interface DefinitionStages {
         /** The first stage of the IntegrationAccountMap definition. */
         interface Blank extends WithLocation {
         }
+
         /** The stage of the IntegrationAccountMap definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -163,6 +165,7 @@ public interface IntegrationAccountMap {
              */
             WithParentResource withRegion(String location);
         }
+
         /** The stage of the IntegrationAccountMap definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -174,6 +177,7 @@ public interface IntegrationAccountMap {
              */
             WithMapType withExistingIntegrationAccount(String resourceGroupName, String integrationAccountName);
         }
+
         /** The stage of the IntegrationAccountMap definition allowing to specify mapType. */
         interface WithMapType {
             /**
@@ -184,6 +188,7 @@ public interface IntegrationAccountMap {
              */
             WithCreate withMapType(MapType mapType);
         }
+
         /**
          * The stage of the IntegrationAccountMap definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
@@ -209,6 +214,7 @@ public interface IntegrationAccountMap {
              */
             IntegrationAccountMap create(Context context);
         }
+
         /** The stage of the IntegrationAccountMap definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -219,6 +225,7 @@ public interface IntegrationAccountMap {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
         /** The stage of the IntegrationAccountMap definition allowing to specify parametersSchema. */
         interface WithParametersSchema {
             /**
@@ -229,6 +236,7 @@ public interface IntegrationAccountMap {
              */
             WithCreate withParametersSchema(IntegrationAccountMapPropertiesParametersSchema parametersSchema);
         }
+
         /** The stage of the IntegrationAccountMap definition allowing to specify content. */
         interface WithContent {
             /**
@@ -239,6 +247,7 @@ public interface IntegrationAccountMap {
              */
             WithCreate withContent(String content);
         }
+
         /** The stage of the IntegrationAccountMap definition allowing to specify contentType. */
         interface WithContentType {
             /**
@@ -249,6 +258,7 @@ public interface IntegrationAccountMap {
              */
             WithCreate withContentType(String contentType);
         }
+
         /** The stage of the IntegrationAccountMap definition allowing to specify metadata. */
         interface WithMetadata {
             /**
@@ -260,6 +270,7 @@ public interface IntegrationAccountMap {
             WithCreate withMetadata(Object metadata);
         }
     }
+
     /**
      * Begins update for the IntegrationAccountMap resource.
      *
@@ -290,6 +301,7 @@ public interface IntegrationAccountMap {
          */
         IntegrationAccountMap apply(Context context);
     }
+
     /** The IntegrationAccountMap update stages. */
     interface UpdateStages {
         /** The stage of the IntegrationAccountMap update allowing to specify tags. */
@@ -302,6 +314,7 @@ public interface IntegrationAccountMap {
              */
             Update withTags(Map<String, String> tags);
         }
+
         /** The stage of the IntegrationAccountMap update allowing to specify mapType. */
         interface WithMapType {
             /**
@@ -312,6 +325,7 @@ public interface IntegrationAccountMap {
              */
             Update withMapType(MapType mapType);
         }
+
         /** The stage of the IntegrationAccountMap update allowing to specify parametersSchema. */
         interface WithParametersSchema {
             /**
@@ -322,6 +336,7 @@ public interface IntegrationAccountMap {
              */
             Update withParametersSchema(IntegrationAccountMapPropertiesParametersSchema parametersSchema);
         }
+
         /** The stage of the IntegrationAccountMap update allowing to specify content. */
         interface WithContent {
             /**
@@ -332,6 +347,7 @@ public interface IntegrationAccountMap {
              */
             Update withContent(String content);
         }
+
         /** The stage of the IntegrationAccountMap update allowing to specify contentType. */
         interface WithContentType {
             /**
@@ -342,6 +358,7 @@ public interface IntegrationAccountMap {
              */
             Update withContentType(String contentType);
         }
+
         /** The stage of the IntegrationAccountMap update allowing to specify metadata. */
         interface WithMetadata {
             /**
@@ -353,6 +370,7 @@ public interface IntegrationAccountMap {
             Update withMetadata(Object metadata);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

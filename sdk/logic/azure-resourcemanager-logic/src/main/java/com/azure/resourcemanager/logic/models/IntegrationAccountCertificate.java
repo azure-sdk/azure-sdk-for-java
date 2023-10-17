@@ -117,11 +117,13 @@ public interface IntegrationAccountCertificate {
             DefinitionStages.WithParentResource,
             DefinitionStages.WithCreate {
     }
+
     /** The IntegrationAccountCertificate definition stages. */
     interface DefinitionStages {
         /** The first stage of the IntegrationAccountCertificate definition. */
         interface Blank extends WithLocation {
         }
+
         /** The stage of the IntegrationAccountCertificate definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -140,6 +142,7 @@ public interface IntegrationAccountCertificate {
              */
             WithParentResource withRegion(String location);
         }
+
         /** The stage of the IntegrationAccountCertificate definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -151,6 +154,7 @@ public interface IntegrationAccountCertificate {
              */
             WithCreate withExistingIntegrationAccount(String resourceGroupName, String integrationAccountName);
         }
+
         /**
          * The stage of the IntegrationAccountCertificate definition which contains all the minimum required properties
          * for the resource to be created, but also allows for any other optional properties to be specified.
@@ -175,6 +179,7 @@ public interface IntegrationAccountCertificate {
              */
             IntegrationAccountCertificate create(Context context);
         }
+
         /** The stage of the IntegrationAccountCertificate definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -185,6 +190,7 @@ public interface IntegrationAccountCertificate {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
         /** The stage of the IntegrationAccountCertificate definition allowing to specify metadata. */
         interface WithMetadata {
             /**
@@ -195,6 +201,7 @@ public interface IntegrationAccountCertificate {
              */
             WithCreate withMetadata(Object metadata);
         }
+
         /** The stage of the IntegrationAccountCertificate definition allowing to specify key. */
         interface WithKey {
             /**
@@ -205,6 +212,7 @@ public interface IntegrationAccountCertificate {
              */
             WithCreate withKey(KeyVaultKeyReference key);
         }
+
         /** The stage of the IntegrationAccountCertificate definition allowing to specify publicCertificate. */
         interface WithPublicCertificate {
             /**
@@ -216,6 +224,7 @@ public interface IntegrationAccountCertificate {
             WithCreate withPublicCertificate(String publicCertificate);
         }
     }
+
     /**
      * Begins update for the IntegrationAccountCertificate resource.
      *
@@ -244,6 +253,7 @@ public interface IntegrationAccountCertificate {
          */
         IntegrationAccountCertificate apply(Context context);
     }
+
     /** The IntegrationAccountCertificate update stages. */
     interface UpdateStages {
         /** The stage of the IntegrationAccountCertificate update allowing to specify tags. */
@@ -256,6 +266,7 @@ public interface IntegrationAccountCertificate {
              */
             Update withTags(Map<String, String> tags);
         }
+
         /** The stage of the IntegrationAccountCertificate update allowing to specify metadata. */
         interface WithMetadata {
             /**
@@ -266,6 +277,7 @@ public interface IntegrationAccountCertificate {
              */
             Update withMetadata(Object metadata);
         }
+
         /** The stage of the IntegrationAccountCertificate update allowing to specify key. */
         interface WithKey {
             /**
@@ -276,6 +288,7 @@ public interface IntegrationAccountCertificate {
              */
             Update withKey(KeyVaultKeyReference key);
         }
+
         /** The stage of the IntegrationAccountCertificate update allowing to specify publicCertificate. */
         interface WithPublicCertificate {
             /**
@@ -287,6 +300,7 @@ public interface IntegrationAccountCertificate {
             Update withPublicCertificate(String publicCertificate);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

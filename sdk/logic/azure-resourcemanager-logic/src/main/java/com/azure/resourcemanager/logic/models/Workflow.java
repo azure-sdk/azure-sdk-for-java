@@ -181,11 +181,13 @@ public interface Workflow {
             DefinitionStages.WithResourceGroup,
             DefinitionStages.WithCreate {
     }
+
     /** The Workflow definition stages. */
     interface DefinitionStages {
         /** The first stage of the Workflow definition. */
         interface Blank extends WithLocation {
         }
+
         /** The stage of the Workflow definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -204,6 +206,7 @@ public interface Workflow {
              */
             WithResourceGroup withRegion(String location);
         }
+
         /** The stage of the Workflow definition allowing to specify parent resource. */
         interface WithResourceGroup {
             /**
@@ -214,6 +217,7 @@ public interface Workflow {
              */
             WithCreate withExistingResourceGroup(String resourceGroupName);
         }
+
         /**
          * The stage of the Workflow definition which contains all the minimum required properties for the resource to
          * be created, but also allows for any other optional properties to be specified.
@@ -243,6 +247,7 @@ public interface Workflow {
              */
             Workflow create(Context context);
         }
+
         /** The stage of the Workflow definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -253,6 +258,7 @@ public interface Workflow {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
         /** The stage of the Workflow definition allowing to specify identity. */
         interface WithIdentity {
             /**
@@ -263,6 +269,7 @@ public interface Workflow {
              */
             WithCreate withIdentity(ManagedServiceIdentity identity);
         }
+
         /** The stage of the Workflow definition allowing to specify state. */
         interface WithState {
             /**
@@ -273,6 +280,7 @@ public interface Workflow {
              */
             WithCreate withState(WorkflowState state);
         }
+
         /** The stage of the Workflow definition allowing to specify endpointsConfiguration. */
         interface WithEndpointsConfiguration {
             /**
@@ -283,6 +291,7 @@ public interface Workflow {
              */
             WithCreate withEndpointsConfiguration(FlowEndpointsConfiguration endpointsConfiguration);
         }
+
         /** The stage of the Workflow definition allowing to specify accessControl. */
         interface WithAccessControl {
             /**
@@ -293,6 +302,7 @@ public interface Workflow {
              */
             WithCreate withAccessControl(FlowAccessControlConfiguration accessControl);
         }
+
         /** The stage of the Workflow definition allowing to specify integrationAccount. */
         interface WithIntegrationAccount {
             /**
@@ -303,6 +313,7 @@ public interface Workflow {
              */
             WithCreate withIntegrationAccount(ResourceReference integrationAccount);
         }
+
         /** The stage of the Workflow definition allowing to specify integrationServiceEnvironment. */
         interface WithIntegrationServiceEnvironment {
             /**
@@ -313,6 +324,7 @@ public interface Workflow {
              */
             WithCreate withIntegrationServiceEnvironment(ResourceReference integrationServiceEnvironment);
         }
+
         /** The stage of the Workflow definition allowing to specify definition. */
         interface WithDefinition {
             /**
@@ -323,6 +335,7 @@ public interface Workflow {
              */
             WithCreate withDefinition(Object definition);
         }
+
         /** The stage of the Workflow definition allowing to specify parameters. */
         interface WithParameters {
             /**
@@ -334,6 +347,7 @@ public interface Workflow {
             WithCreate withParameters(Map<String, WorkflowParameter> parameters);
         }
     }
+
     /**
      * Begins update for the Workflow resource.
      *
@@ -367,6 +381,7 @@ public interface Workflow {
          */
         Workflow apply(Context context);
     }
+
     /** The Workflow update stages. */
     interface UpdateStages {
         /** The stage of the Workflow update allowing to specify tags. */
@@ -379,6 +394,7 @@ public interface Workflow {
              */
             Update withTags(Map<String, String> tags);
         }
+
         /** The stage of the Workflow update allowing to specify identity. */
         interface WithIdentity {
             /**
@@ -389,6 +405,7 @@ public interface Workflow {
              */
             Update withIdentity(ManagedServiceIdentity identity);
         }
+
         /** The stage of the Workflow update allowing to specify state. */
         interface WithState {
             /**
@@ -399,6 +416,7 @@ public interface Workflow {
              */
             Update withState(WorkflowState state);
         }
+
         /** The stage of the Workflow update allowing to specify endpointsConfiguration. */
         interface WithEndpointsConfiguration {
             /**
@@ -409,6 +427,7 @@ public interface Workflow {
              */
             Update withEndpointsConfiguration(FlowEndpointsConfiguration endpointsConfiguration);
         }
+
         /** The stage of the Workflow update allowing to specify accessControl. */
         interface WithAccessControl {
             /**
@@ -419,6 +438,7 @@ public interface Workflow {
              */
             Update withAccessControl(FlowAccessControlConfiguration accessControl);
         }
+
         /** The stage of the Workflow update allowing to specify integrationAccount. */
         interface WithIntegrationAccount {
             /**
@@ -429,6 +449,7 @@ public interface Workflow {
              */
             Update withIntegrationAccount(ResourceReference integrationAccount);
         }
+
         /** The stage of the Workflow update allowing to specify integrationServiceEnvironment. */
         interface WithIntegrationServiceEnvironment {
             /**
@@ -439,6 +460,7 @@ public interface Workflow {
              */
             Update withIntegrationServiceEnvironment(ResourceReference integrationServiceEnvironment);
         }
+
         /** The stage of the Workflow update allowing to specify definition. */
         interface WithDefinition {
             /**
@@ -449,6 +471,7 @@ public interface Workflow {
              */
             Update withDefinition(Object definition);
         }
+
         /** The stage of the Workflow update allowing to specify parameters. */
         interface WithParameters {
             /**
@@ -460,6 +483,7 @@ public interface Workflow {
             Update withParameters(Map<String, WorkflowParameter> parameters);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

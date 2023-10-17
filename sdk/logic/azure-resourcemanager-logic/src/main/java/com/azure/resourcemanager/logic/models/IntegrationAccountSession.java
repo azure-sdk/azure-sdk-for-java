@@ -103,11 +103,13 @@ public interface IntegrationAccountSession {
             DefinitionStages.WithParentResource,
             DefinitionStages.WithCreate {
     }
+
     /** The IntegrationAccountSession definition stages. */
     interface DefinitionStages {
         /** The first stage of the IntegrationAccountSession definition. */
         interface Blank extends WithLocation {
         }
+
         /** The stage of the IntegrationAccountSession definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -126,6 +128,7 @@ public interface IntegrationAccountSession {
              */
             WithParentResource withRegion(String location);
         }
+
         /** The stage of the IntegrationAccountSession definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -137,6 +140,7 @@ public interface IntegrationAccountSession {
              */
             WithCreate withExistingIntegrationAccount(String resourceGroupName, String integrationAccountName);
         }
+
         /**
          * The stage of the IntegrationAccountSession definition which contains all the minimum required properties for
          * the resource to be created, but also allows for any other optional properties to be specified.
@@ -157,6 +161,7 @@ public interface IntegrationAccountSession {
              */
             IntegrationAccountSession create(Context context);
         }
+
         /** The stage of the IntegrationAccountSession definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -167,6 +172,7 @@ public interface IntegrationAccountSession {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
         /** The stage of the IntegrationAccountSession definition allowing to specify content. */
         interface WithContent {
             /**
@@ -178,6 +184,7 @@ public interface IntegrationAccountSession {
             WithCreate withContent(Object content);
         }
     }
+
     /**
      * Begins update for the IntegrationAccountSession resource.
      *
@@ -202,6 +209,7 @@ public interface IntegrationAccountSession {
          */
         IntegrationAccountSession apply(Context context);
     }
+
     /** The IntegrationAccountSession update stages. */
     interface UpdateStages {
         /** The stage of the IntegrationAccountSession update allowing to specify tags. */
@@ -214,6 +222,7 @@ public interface IntegrationAccountSession {
              */
             Update withTags(Map<String, String> tags);
         }
+
         /** The stage of the IntegrationAccountSession update allowing to specify content. */
         interface WithContent {
             /**
@@ -225,6 +234,7 @@ public interface IntegrationAccountSession {
             Update withContent(Object content);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

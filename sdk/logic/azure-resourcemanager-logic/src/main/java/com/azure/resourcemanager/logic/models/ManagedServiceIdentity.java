@@ -13,7 +13,7 @@ import java.util.UUID;
 
 /** Managed service identity properties. */
 @Fluent
-public class ManagedServiceIdentity {
+public final class ManagedServiceIdentity {
     /*
      * Type of managed service identity. The type 'SystemAssigned' includes an implicitly created identity. The type
      * 'None' will remove any identities from the resource.

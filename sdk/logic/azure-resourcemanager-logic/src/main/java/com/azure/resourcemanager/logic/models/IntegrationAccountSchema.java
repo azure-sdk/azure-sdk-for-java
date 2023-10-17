@@ -154,11 +154,13 @@ public interface IntegrationAccountSchema {
             DefinitionStages.WithSchemaType,
             DefinitionStages.WithCreate {
     }
+
     /** The IntegrationAccountSchema definition stages. */
     interface DefinitionStages {
         /** The first stage of the IntegrationAccountSchema definition. */
         interface Blank extends WithLocation {
         }
+
         /** The stage of the IntegrationAccountSchema definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -177,6 +179,7 @@ public interface IntegrationAccountSchema {
              */
             WithParentResource withRegion(String location);
         }
+
         /** The stage of the IntegrationAccountSchema definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -188,6 +191,7 @@ public interface IntegrationAccountSchema {
              */
             WithSchemaType withExistingIntegrationAccount(String resourceGroupName, String integrationAccountName);
         }
+
         /** The stage of the IntegrationAccountSchema definition allowing to specify schemaType. */
         interface WithSchemaType {
             /**
@@ -198,6 +202,7 @@ public interface IntegrationAccountSchema {
              */
             WithCreate withSchemaType(SchemaType schemaType);
         }
+
         /**
          * The stage of the IntegrationAccountSchema definition which contains all the minimum required properties for
          * the resource to be created, but also allows for any other optional properties to be specified.
@@ -225,6 +230,7 @@ public interface IntegrationAccountSchema {
              */
             IntegrationAccountSchema create(Context context);
         }
+
         /** The stage of the IntegrationAccountSchema definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -235,6 +241,7 @@ public interface IntegrationAccountSchema {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
         /** The stage of the IntegrationAccountSchema definition allowing to specify targetNamespace. */
         interface WithTargetNamespace {
             /**
@@ -245,6 +252,7 @@ public interface IntegrationAccountSchema {
              */
             WithCreate withTargetNamespace(String targetNamespace);
         }
+
         /** The stage of the IntegrationAccountSchema definition allowing to specify documentName. */
         interface WithDocumentName {
             /**
@@ -255,6 +263,7 @@ public interface IntegrationAccountSchema {
              */
             WithCreate withDocumentName(String documentName);
         }
+
         /** The stage of the IntegrationAccountSchema definition allowing to specify fileName. */
         interface WithFileName {
             /**
@@ -265,6 +274,7 @@ public interface IntegrationAccountSchema {
              */
             WithCreate withFileName(String fileName);
         }
+
         /** The stage of the IntegrationAccountSchema definition allowing to specify metadata. */
         interface WithMetadata {
             /**
@@ -275,6 +285,7 @@ public interface IntegrationAccountSchema {
              */
             WithCreate withMetadata(Object metadata);
         }
+
         /** The stage of the IntegrationAccountSchema definition allowing to specify content. */
         interface WithContent {
             /**
@@ -285,6 +296,7 @@ public interface IntegrationAccountSchema {
              */
             WithCreate withContent(String content);
         }
+
         /** The stage of the IntegrationAccountSchema definition allowing to specify contentType. */
         interface WithContentType {
             /**
@@ -296,6 +308,7 @@ public interface IntegrationAccountSchema {
             WithCreate withContentType(String contentType);
         }
     }
+
     /**
      * Begins update for the IntegrationAccountSchema resource.
      *
@@ -328,6 +341,7 @@ public interface IntegrationAccountSchema {
          */
         IntegrationAccountSchema apply(Context context);
     }
+
     /** The IntegrationAccountSchema update stages. */
     interface UpdateStages {
         /** The stage of the IntegrationAccountSchema update allowing to specify tags. */
@@ -340,6 +354,7 @@ public interface IntegrationAccountSchema {
              */
             Update withTags(Map<String, String> tags);
         }
+
         /** The stage of the IntegrationAccountSchema update allowing to specify schemaType. */
         interface WithSchemaType {
             /**
@@ -350,6 +365,7 @@ public interface IntegrationAccountSchema {
              */
             Update withSchemaType(SchemaType schemaType);
         }
+
         /** The stage of the IntegrationAccountSchema update allowing to specify targetNamespace. */
         interface WithTargetNamespace {
             /**
@@ -360,6 +376,7 @@ public interface IntegrationAccountSchema {
              */
             Update withTargetNamespace(String targetNamespace);
         }
+
         /** The stage of the IntegrationAccountSchema update allowing to specify documentName. */
         interface WithDocumentName {
             /**
@@ -370,6 +387,7 @@ public interface IntegrationAccountSchema {
              */
             Update withDocumentName(String documentName);
         }
+
         /** The stage of the IntegrationAccountSchema update allowing to specify fileName. */
         interface WithFileName {
             /**
@@ -380,6 +398,7 @@ public interface IntegrationAccountSchema {
              */
             Update withFileName(String fileName);
         }
+
         /** The stage of the IntegrationAccountSchema update allowing to specify metadata. */
         interface WithMetadata {
             /**
@@ -390,6 +409,7 @@ public interface IntegrationAccountSchema {
              */
             Update withMetadata(Object metadata);
         }
+
         /** The stage of the IntegrationAccountSchema update allowing to specify content. */
         interface WithContent {
             /**
@@ -400,6 +420,7 @@ public interface IntegrationAccountSchema {
              */
             Update withContent(String content);
         }
+
         /** The stage of the IntegrationAccountSchema update allowing to specify contentType. */
         interface WithContentType {
             /**
@@ -411,6 +432,7 @@ public interface IntegrationAccountSchema {
             Update withContentType(String contentType);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

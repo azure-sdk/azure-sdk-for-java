@@ -89,11 +89,13 @@ public interface BatchConfiguration {
             DefinitionStages.WithProperties,
             DefinitionStages.WithCreate {
     }
+
     /** The BatchConfiguration definition stages. */
     interface DefinitionStages {
         /** The first stage of the BatchConfiguration definition. */
         interface Blank extends WithLocation {
         }
+
         /** The stage of the BatchConfiguration definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -112,6 +114,7 @@ public interface BatchConfiguration {
              */
             WithParentResource withRegion(String location);
         }
+
         /** The stage of the BatchConfiguration definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -123,6 +126,7 @@ public interface BatchConfiguration {
              */
             WithProperties withExistingIntegrationAccount(String resourceGroupName, String integrationAccountName);
         }
+
         /** The stage of the BatchConfiguration definition allowing to specify properties. */
         interface WithProperties {
             /**
@@ -133,6 +137,7 @@ public interface BatchConfiguration {
              */
             WithCreate withProperties(BatchConfigurationProperties properties);
         }
+
         /**
          * The stage of the BatchConfiguration definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
@@ -153,6 +158,7 @@ public interface BatchConfiguration {
              */
             BatchConfiguration create(Context context);
         }
+
         /** The stage of the BatchConfiguration definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -164,6 +170,7 @@ public interface BatchConfiguration {
             WithCreate withTags(Map<String, String> tags);
         }
     }
+
     /**
      * Begins update for the BatchConfiguration resource.
      *
@@ -188,6 +195,7 @@ public interface BatchConfiguration {
          */
         BatchConfiguration apply(Context context);
     }
+
     /** The BatchConfiguration update stages. */
     interface UpdateStages {
         /** The stage of the BatchConfiguration update allowing to specify tags. */
@@ -200,6 +208,7 @@ public interface BatchConfiguration {
              */
             Update withTags(Map<String, String> tags);
         }
+
         /** The stage of the BatchConfiguration update allowing to specify properties. */
         interface WithProperties {
             /**
@@ -211,6 +220,7 @@ public interface BatchConfiguration {
             Update withProperties(BatchConfigurationProperties properties);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

@@ -120,11 +120,13 @@ public interface IntegrationAccountPartner {
             DefinitionStages.WithContent,
             DefinitionStages.WithCreate {
     }
+
     /** The IntegrationAccountPartner definition stages. */
     interface DefinitionStages {
         /** The first stage of the IntegrationAccountPartner definition. */
         interface Blank extends WithLocation {
         }
+
         /** The stage of the IntegrationAccountPartner definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -143,6 +145,7 @@ public interface IntegrationAccountPartner {
              */
             WithParentResource withRegion(String location);
         }
+
         /** The stage of the IntegrationAccountPartner definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -154,6 +157,7 @@ public interface IntegrationAccountPartner {
              */
             WithPartnerType withExistingIntegrationAccount(String resourceGroupName, String integrationAccountName);
         }
+
         /** The stage of the IntegrationAccountPartner definition allowing to specify partnerType. */
         interface WithPartnerType {
             /**
@@ -164,6 +168,7 @@ public interface IntegrationAccountPartner {
              */
             WithContent withPartnerType(PartnerType partnerType);
         }
+
         /** The stage of the IntegrationAccountPartner definition allowing to specify content. */
         interface WithContent {
             /**
@@ -174,6 +179,7 @@ public interface IntegrationAccountPartner {
              */
             WithCreate withContent(PartnerContent content);
         }
+
         /**
          * The stage of the IntegrationAccountPartner definition which contains all the minimum required properties for
          * the resource to be created, but also allows for any other optional properties to be specified.
@@ -194,6 +200,7 @@ public interface IntegrationAccountPartner {
              */
             IntegrationAccountPartner create(Context context);
         }
+
         /** The stage of the IntegrationAccountPartner definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -204,6 +211,7 @@ public interface IntegrationAccountPartner {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
         /** The stage of the IntegrationAccountPartner definition allowing to specify metadata. */
         interface WithMetadata {
             /**
@@ -215,6 +223,7 @@ public interface IntegrationAccountPartner {
             WithCreate withMetadata(Object metadata);
         }
     }
+
     /**
      * Begins update for the IntegrationAccountPartner resource.
      *
@@ -243,6 +252,7 @@ public interface IntegrationAccountPartner {
          */
         IntegrationAccountPartner apply(Context context);
     }
+
     /** The IntegrationAccountPartner update stages. */
     interface UpdateStages {
         /** The stage of the IntegrationAccountPartner update allowing to specify tags. */
@@ -255,6 +265,7 @@ public interface IntegrationAccountPartner {
              */
             Update withTags(Map<String, String> tags);
         }
+
         /** The stage of the IntegrationAccountPartner update allowing to specify partnerType. */
         interface WithPartnerType {
             /**
@@ -265,6 +276,7 @@ public interface IntegrationAccountPartner {
              */
             Update withPartnerType(PartnerType partnerType);
         }
+
         /** The stage of the IntegrationAccountPartner update allowing to specify metadata. */
         interface WithMetadata {
             /**
@@ -275,6 +287,7 @@ public interface IntegrationAccountPartner {
              */
             Update withMetadata(Object metadata);
         }
+
         /** The stage of the IntegrationAccountPartner update allowing to specify content. */
         interface WithContent {
             /**
@@ -286,6 +299,7 @@ public interface IntegrationAccountPartner {
             Update withContent(PartnerContent content);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *
