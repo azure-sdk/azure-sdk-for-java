@@ -24,11 +24,25 @@ import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.util.Configuration;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.apicenter.fluent.AzureApiCenter;
+import com.azure.resourcemanager.apicenter.implementation.ApiDefinitionsImpl;
+import com.azure.resourcemanager.apicenter.implementation.ApiVersionsImpl;
+import com.azure.resourcemanager.apicenter.implementation.ApisImpl;
 import com.azure.resourcemanager.apicenter.implementation.AzureApiCenterBuilder;
+import com.azure.resourcemanager.apicenter.implementation.DeploymentsImpl;
+import com.azure.resourcemanager.apicenter.implementation.EnvironmentsImpl;
+import com.azure.resourcemanager.apicenter.implementation.MetadataSchemasImpl;
 import com.azure.resourcemanager.apicenter.implementation.OperationsImpl;
 import com.azure.resourcemanager.apicenter.implementation.ServicesImpl;
+import com.azure.resourcemanager.apicenter.implementation.WorkspacesImpl;
+import com.azure.resourcemanager.apicenter.models.ApiDefinitions;
+import com.azure.resourcemanager.apicenter.models.ApiVersions;
+import com.azure.resourcemanager.apicenter.models.Apis;
+import com.azure.resourcemanager.apicenter.models.Deployments;
+import com.azure.resourcemanager.apicenter.models.Environments;
+import com.azure.resourcemanager.apicenter.models.MetadataSchemas;
 import com.azure.resourcemanager.apicenter.models.Operations;
 import com.azure.resourcemanager.apicenter.models.Services;
+import com.azure.resourcemanager.apicenter.models.Workspaces;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -41,6 +55,20 @@ public final class ApiCenterManager {
     private Operations operations;
 
     private Services services;
+
+    private MetadataSchemas metadataSchemas;
+
+    private Workspaces workspaces;
+
+    private Apis apis;
+
+    private ApiVersions apiVersions;
+
+    private ApiDefinitions apiDefinitions;
+
+    private Deployments deployments;
+
+    private Environments environments;
 
     private final AzureApiCenter clientObject;
 
@@ -286,6 +314,90 @@ public final class ApiCenterManager {
             this.services = new ServicesImpl(clientObject.getServices(), this);
         }
         return services;
+    }
+
+    /**
+     * Gets the resource collection API of MetadataSchemas. It manages MetadataSchema.
+     *
+     * @return Resource collection API of MetadataSchemas.
+     */
+    public MetadataSchemas metadataSchemas() {
+        if (this.metadataSchemas == null) {
+            this.metadataSchemas = new MetadataSchemasImpl(clientObject.getMetadataSchemas(), this);
+        }
+        return metadataSchemas;
+    }
+
+    /**
+     * Gets the resource collection API of Workspaces. It manages Workspace.
+     *
+     * @return Resource collection API of Workspaces.
+     */
+    public Workspaces workspaces() {
+        if (this.workspaces == null) {
+            this.workspaces = new WorkspacesImpl(clientObject.getWorkspaces(), this);
+        }
+        return workspaces;
+    }
+
+    /**
+     * Gets the resource collection API of Apis. It manages Api.
+     *
+     * @return Resource collection API of Apis.
+     */
+    public Apis apis() {
+        if (this.apis == null) {
+            this.apis = new ApisImpl(clientObject.getApis(), this);
+        }
+        return apis;
+    }
+
+    /**
+     * Gets the resource collection API of ApiVersions. It manages ApiVersion.
+     *
+     * @return Resource collection API of ApiVersions.
+     */
+    public ApiVersions apiVersions() {
+        if (this.apiVersions == null) {
+            this.apiVersions = new ApiVersionsImpl(clientObject.getApiVersions(), this);
+        }
+        return apiVersions;
+    }
+
+    /**
+     * Gets the resource collection API of ApiDefinitions. It manages ApiDefinition.
+     *
+     * @return Resource collection API of ApiDefinitions.
+     */
+    public ApiDefinitions apiDefinitions() {
+        if (this.apiDefinitions == null) {
+            this.apiDefinitions = new ApiDefinitionsImpl(clientObject.getApiDefinitions(), this);
+        }
+        return apiDefinitions;
+    }
+
+    /**
+     * Gets the resource collection API of Deployments. It manages Deployment.
+     *
+     * @return Resource collection API of Deployments.
+     */
+    public Deployments deployments() {
+        if (this.deployments == null) {
+            this.deployments = new DeploymentsImpl(clientObject.getDeployments(), this);
+        }
+        return deployments;
+    }
+
+    /**
+     * Gets the resource collection API of Environments. It manages Environment.
+     *
+     * @return Resource collection API of Environments.
+     */
+    public Environments environments() {
+        if (this.environments == null) {
+            this.environments = new EnvironmentsImpl(clientObject.getEnvironments(), this);
+        }
+        return environments;
     }
 
     /**
