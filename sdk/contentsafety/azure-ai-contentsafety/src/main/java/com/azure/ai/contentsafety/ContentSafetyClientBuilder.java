@@ -11,7 +11,9 @@ import com.azure.core.client.traits.ConfigurationTrait;
 import com.azure.core.client.traits.EndpointTrait;
 import com.azure.core.client.traits.HttpTrait;
 import com.azure.core.client.traits.KeyCredentialTrait;
+import com.azure.core.client.traits.TokenCredentialTrait;
 import com.azure.core.credential.KeyCredential;
+import com.azure.core.credential.TokenCredential;
 import com.azure.core.http.HttpClient;
 import com.azure.core.http.HttpHeaderName;
 import com.azure.core.http.HttpHeaders;
@@ -21,6 +23,7 @@ import com.azure.core.http.HttpPipelinePosition;
 import com.azure.core.http.policy.AddDatePolicy;
 import com.azure.core.http.policy.AddHeadersFromContextPolicy;
 import com.azure.core.http.policy.AddHeadersPolicy;
+import com.azure.core.http.policy.BearerTokenAuthenticationPolicy;
 import com.azure.core.http.policy.HttpLogOptions;
 import com.azure.core.http.policy.HttpLoggingPolicy;
 import com.azure.core.http.policy.HttpPipelinePolicy;
@@ -46,11 +49,15 @@ import java.util.Objects;
 public final class ContentSafetyClientBuilder
         implements HttpTrait<ContentSafetyClientBuilder>,
                 ConfigurationTrait<ContentSafetyClientBuilder>,
+                TokenCredentialTrait<ContentSafetyClientBuilder>,
                 KeyCredentialTrait<ContentSafetyClientBuilder>,
                 EndpointTrait<ContentSafetyClientBuilder> {
     @Generated private static final String SDK_NAME = "name";
 
     @Generated private static final String SDK_VERSION = "version";
+
+    @Generated
+    private static final String[] DEFAULT_SCOPES = new String[] {"https://cognitiveservices.azure.com/.default"};
 
     @Generated
     private static final Map<String, String> PROPERTIES = CoreUtils.getProperties("azure-ai-contentsafety.properties");
@@ -150,6 +157,19 @@ public final class ContentSafetyClientBuilder
     @Override
     public ContentSafetyClientBuilder configuration(Configuration configuration) {
         this.configuration = configuration;
+        return this;
+    }
+
+    /*
+     * The TokenCredential used for authentication.
+     */
+    @Generated private TokenCredential tokenCredential;
+
+    /** {@inheritDoc}. */
+    @Generated
+    @Override
+    public ContentSafetyClientBuilder credential(TokenCredential tokenCredential) {
+        this.tokenCredential = tokenCredential;
         return this;
     }
 
@@ -260,6 +280,9 @@ public final class ContentSafetyClientBuilder
         policies.add(new AddDatePolicy());
         if (keyCredential != null) {
             policies.add(new KeyCredentialPolicy("Ocp-Apim-Subscription-Key", keyCredential));
+        }
+        if (tokenCredential != null) {
+            policies.add(new BearerTokenAuthenticationPolicy(tokenCredential, DEFAULT_SCOPES));
         }
         this.pipelinePolicies.stream()
                 .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_RETRY)
