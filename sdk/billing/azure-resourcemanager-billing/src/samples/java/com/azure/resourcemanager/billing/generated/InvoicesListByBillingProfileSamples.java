@@ -4,10 +4,12 @@
 
 package com.azure.resourcemanager.billing.generated;
 
+import java.time.LocalDate;
+
 /** Samples for Invoices ListByBillingProfile. */
 public final class InvoicesListByBillingProfileSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/InvoicesListByBillingProfile.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/invoicesListByBillingProfile.json
      */
     /**
      * Sample code: InvoicesListByBillingProfile.
@@ -18,30 +20,16 @@ public final class InvoicesListByBillingProfileSamples {
         manager
             .invoices()
             .listByBillingProfile(
-                "{billingAccountName}",
-                "{billingProfileName}",
-                "2018-01-01",
-                "2018-06-30",
-                com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/InvoicesListByBillingProfileWithRebillDetails.json
-     */
-    /**
-     * Sample code: InvoicesListByBillingProfileWithRebillDetails.
-     *
-     * @param manager Entry point to BillingManager.
-     */
-    public static void invoicesListByBillingProfileWithRebillDetails(
-        com.azure.resourcemanager.billing.BillingManager manager) {
-        manager
-            .invoices()
-            .listByBillingProfile(
-                "{billingAccountName}",
-                "{billingProfileName}",
-                "2018-01-01",
-                "2018-06-30",
+                "00000000-0000-0000-0000-000000000000:00000000-0000-0000-0000-000000000000_2019-05-31",
+                "xxxx-xxxx-xxx-xxx",
+                LocalDate.parse("2023-01-01"),
+                LocalDate.parse("2023-06-30"),
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
                 com.azure.core.util.Context.NONE);
     }
 }

@@ -5,19 +5,11 @@
 package com.azure.resourcemanager.billing.models;
 
 import com.azure.core.annotation.Immutable;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Map;
 
 /** The rebill details of an invoice. */
 @Immutable
-public final class RebillDetails {
-    /*
-     * The ID of credit note.
-     */
-    @JsonProperty(value = "creditNoteDocumentId", access = JsonProperty.Access.WRITE_ONLY)
-    private String creditNoteDocumentId;
-
+public class RebillDetails {
     /*
      * The ID of invoice.
      */
@@ -25,23 +17,19 @@ public final class RebillDetails {
     private String invoiceDocumentId;
 
     /*
-     * Rebill details for an invoice.
+     * The ID of credit note.
+     */
+    @JsonProperty(value = "creditNoteDocumentId", access = JsonProperty.Access.WRITE_ONLY)
+    private String creditNoteDocumentId;
+
+    /*
+     * The rebill details of an invoice.
      */
     @JsonProperty(value = "rebillDetails", access = JsonProperty.Access.WRITE_ONLY)
-    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
-    private Map<String, RebillDetails> rebillDetails;
+    private RebillDetails rebillDetails;
 
     /** Creates an instance of RebillDetails class. */
     public RebillDetails() {
-    }
-
-    /**
-     * Get the creditNoteDocumentId property: The ID of credit note.
-     *
-     * @return the creditNoteDocumentId value.
-     */
-    public String creditNoteDocumentId() {
-        return this.creditNoteDocumentId;
     }
 
     /**
@@ -54,11 +42,20 @@ public final class RebillDetails {
     }
 
     /**
-     * Get the rebillDetails property: Rebill details for an invoice.
+     * Get the creditNoteDocumentId property: The ID of credit note.
+     *
+     * @return the creditNoteDocumentId value.
+     */
+    public String creditNoteDocumentId() {
+        return this.creditNoteDocumentId;
+    }
+
+    /**
+     * Get the rebillDetails property: The rebill details of an invoice.
      *
      * @return the rebillDetails value.
      */
-    public Map<String, RebillDetails> rebillDetails() {
+    public RebillDetails rebillDetails() {
         return this.rebillDetails;
     }
 
@@ -69,14 +66,7 @@ public final class RebillDetails {
      */
     public void validate() {
         if (rebillDetails() != null) {
-            rebillDetails()
-                .values()
-                .forEach(
-                    e -> {
-                        if (e != null) {
-                            e.validate();
-                        }
-                    });
+            rebillDetails().validate();
         }
     }
 }

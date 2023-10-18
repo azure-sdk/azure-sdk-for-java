@@ -10,8 +10,11 @@ import java.util.Collection;
 
 /** Invoice type. */
 public final class InvoiceType extends ExpandableStringEnum<InvoiceType> {
-    /** Static value AzureService for InvoiceType. */
-    public static final InvoiceType AZURE_SERVICE = fromString("AzureService");
+    /** Static value Unknown for InvoiceType. */
+    public static final InvoiceType UNKNOWN = fromString("Unknown");
+
+    /** Static value AzureServices for InvoiceType. */
+    public static final InvoiceType AZURE_SERVICES = fromString("AzureServices");
 
     /** Static value AzureMarketplace for InvoiceType. */
     public static final InvoiceType AZURE_MARKETPLACE = fromString("AzureMarketplace");

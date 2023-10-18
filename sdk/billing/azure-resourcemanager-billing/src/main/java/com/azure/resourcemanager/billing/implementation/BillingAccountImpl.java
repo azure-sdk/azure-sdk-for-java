@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.billing.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.billing.fluent.models.BillingAccountInner;
 import com.azure.resourcemanager.billing.models.AccountStatus;
 import com.azure.resourcemanager.billing.models.AccountType;
@@ -28,6 +29,10 @@ public final class BillingAccountImpl implements BillingAccount {
         this.serviceManager = serviceManager;
     }
 
+    public String type() {
+        return this.innerModel().type();
+    }
+
     public String id() {
         return this.innerModel().id();
     }
@@ -36,36 +41,24 @@ public final class BillingAccountImpl implements BillingAccount {
         return this.innerModel().name();
     }
 
-    public String type() {
-        return this.innerModel().type();
-    }
-
-    public String displayName() {
-        return this.innerModel().displayName();
-    }
-
-    public AddressDetails soldTo() {
-        return this.innerModel().soldTo();
-    }
-
-    public AgreementType agreementType() {
-        return this.innerModel().agreementType();
-    }
-
-    public AccountType accountType() {
-        return this.innerModel().accountType();
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public AccountStatus accountStatus() {
         return this.innerModel().accountStatus();
     }
 
-    public BillingProfilesOnExpand billingProfiles() {
-        return this.innerModel().billingProfiles();
+    public AccountType accountType() {
+        return this.innerModel().accountType();
     }
 
-    public Enrollment enrollmentDetails() {
-        return this.innerModel().enrollmentDetails();
+    public AgreementType agreementType() {
+        return this.innerModel().agreementType();
+    }
+
+    public BillingProfilesOnExpand billingProfiles() {
+        return this.innerModel().billingProfiles();
     }
 
     public List<Department> departments() {
@@ -77,6 +70,10 @@ public final class BillingAccountImpl implements BillingAccount {
         }
     }
 
+    public String displayName() {
+        return this.innerModel().displayName();
+    }
+
     public List<EnrollmentAccount> enrollmentAccounts() {
         List<EnrollmentAccount> inner = this.innerModel().enrollmentAccounts();
         if (inner != null) {
@@ -86,12 +83,20 @@ public final class BillingAccountImpl implements BillingAccount {
         }
     }
 
+    public Enrollment enrollmentDetails() {
+        return this.innerModel().enrollmentDetails();
+    }
+
     public Boolean hasReadAccess() {
         return this.innerModel().hasReadAccess();
     }
 
     public String notificationEmailAddress() {
         return this.innerModel().notificationEmailAddress();
+    }
+
+    public AddressDetails soldTo() {
+        return this.innerModel().soldTo();
     }
 
     public BillingAccountInner innerModel() {

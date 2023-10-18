@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.billing.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.billing.fluent.models.InvoiceSectionInner;
 import com.azure.resourcemanager.billing.models.InvoiceSection;
 import com.azure.resourcemanager.billing.models.InvoiceSectionState;
@@ -22,6 +23,10 @@ public final class InvoiceSectionImpl implements InvoiceSection {
         this.serviceManager = serviceManager;
     }
 
+    public String type() {
+        return this.innerModel().type();
+    }
+
     public String id() {
         return this.innerModel().id();
     }
@@ -30,8 +35,8 @@ public final class InvoiceSectionImpl implements InvoiceSection {
         return this.innerModel().name();
     }
 
-    public String type() {
-        return this.innerModel().type();
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public String displayName() {

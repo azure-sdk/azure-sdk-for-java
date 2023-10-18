@@ -10,17 +10,11 @@ import java.util.Collection;
 
 /** The family of payment method. */
 public final class PaymentMethodFamily extends ExpandableStringEnum<PaymentMethodFamily> {
-    /** Static value Credits for PaymentMethodFamily. */
-    public static final PaymentMethodFamily CREDITS = fromString("Credits");
-
-    /** Static value CheckWire for PaymentMethodFamily. */
-    public static final PaymentMethodFamily CHECK_WIRE = fromString("CheckWire");
-
     /** Static value CreditCard for PaymentMethodFamily. */
     public static final PaymentMethodFamily CREDIT_CARD = fromString("CreditCard");
 
-    /** Static value None for PaymentMethodFamily. */
-    public static final PaymentMethodFamily NONE = fromString("None");
+    /** Static value CheckWire for PaymentMethodFamily. */
+    public static final PaymentMethodFamily CHECK_WIRE = fromString("CheckWire");
 
     /**
      * Creates a new instance of PaymentMethodFamily value.

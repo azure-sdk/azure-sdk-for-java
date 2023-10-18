@@ -23,18 +23,6 @@ import java.util.Map;
 @Fluent
 public final class BillingProfileProperties {
     /*
-     * The name of the billing profile.
-     */
-    @JsonProperty(value = "displayName")
-    private String displayName;
-
-    /*
-     * The purchase order name that will appear on the invoices generated for the billing profile.
-     */
-    @JsonProperty(value = "poNumber")
-    private String poNumber;
-
-    /*
      * Identifies which services and purchases are paid by a billing profile.
      */
     @JsonProperty(value = "billingRelationshipType", access = JsonProperty.Access.WRITE_ONLY)
@@ -47,16 +35,34 @@ public final class BillingProfileProperties {
     private AddressDetails billTo;
 
     /*
+     * The currency in which the charges for the billing profile are billed.
+     */
+    @JsonProperty(value = "currency", access = JsonProperty.Access.WRITE_ONLY)
+    private String currency;
+
+    /*
+     * The name of the billing profile.
+     */
+    @JsonProperty(value = "displayName")
+    private String displayName;
+
+    /*
+     * Information about the enabled azure plans.
+     */
+    @JsonProperty(value = "enabledAzurePlans")
+    private List<AzurePlan> enabledAzurePlans;
+
+    /*
+     * Indicates whether user has read access to the billing profile.
+     */
+    @JsonProperty(value = "hasReadAccess", access = JsonProperty.Access.WRITE_ONLY)
+    private Boolean hasReadAccess;
+
+    /*
      * Identifies the billing profile that is linked to another billing profile in indirect purchase motion.
      */
     @JsonProperty(value = "indirectRelationshipInfo", access = JsonProperty.Access.WRITE_ONLY)
     private IndirectRelationshipInfo indirectRelationshipInfo;
-
-    /*
-     * Flag controlling whether the invoices for the billing profile are sent through email.
-     */
-    @JsonProperty(value = "invoiceEmailOptIn")
-    private Boolean invoiceEmailOptIn;
 
     /*
      * The day of the month when the invoice for the billing profile is generated.
@@ -65,16 +71,10 @@ public final class BillingProfileProperties {
     private Integer invoiceDay;
 
     /*
-     * The currency in which the charges for the billing profile are billed.
+     * Flag controlling whether the invoices for the billing profile are sent through email.
      */
-    @JsonProperty(value = "currency", access = JsonProperty.Access.WRITE_ONLY)
-    private String currency;
-
-    /*
-     * Information about the enabled azure plans.
-     */
-    @JsonProperty(value = "enabledAzurePlans")
-    private List<AzurePlan> enabledAzurePlans;
+    @JsonProperty(value = "invoiceEmailOptIn")
+    private Boolean invoiceEmailOptIn;
 
     /*
      * The invoice sections associated to the billing profile. By default this is not populated, unless it's specified
@@ -84,16 +84,16 @@ public final class BillingProfileProperties {
     private InvoiceSectionsOnExpand invoiceSections;
 
     /*
-     * Indicates whether user has read access to the billing profile.
+     * The purchase order name that will appear on the invoices generated for the billing profile.
      */
-    @JsonProperty(value = "hasReadAccess", access = JsonProperty.Access.WRITE_ONLY)
-    private Boolean hasReadAccess;
+    @JsonProperty(value = "poNumber")
+    private String poNumber;
 
     /*
-     * The system generated unique identifier for a billing profile.
+     * The billing profile spending limit.
      */
-    @JsonProperty(value = "systemId", access = JsonProperty.Access.WRITE_ONLY)
-    private String systemId;
+    @JsonProperty(value = "spendingLimit", access = JsonProperty.Access.WRITE_ONLY)
+    private SpendingLimit spendingLimit;
 
     /*
      * The status of the billing profile.
@@ -108,17 +108,10 @@ public final class BillingProfileProperties {
     private StatusReasonCode statusReasonCode;
 
     /*
-     * The billing profile spending limit.
+     * The system generated unique identifier for a billing profile.
      */
-    @JsonProperty(value = "spendingLimit", access = JsonProperty.Access.WRITE_ONLY)
-    private SpendingLimit spendingLimit;
-
-    /*
-     * Identifies the cloud environments that are associated with a billing profile. This is a system managed optional
-     * field and gets updated as the billing profile gets associated with accounts in various clouds.
-     */
-    @JsonProperty(value = "targetClouds", access = JsonProperty.Access.WRITE_ONLY)
-    private List<TargetCloud> targetClouds;
+    @JsonProperty(value = "systemId", access = JsonProperty.Access.WRITE_ONLY)
+    private String systemId;
 
     /*
      * Tags of billing profiles.
@@ -127,50 +120,15 @@ public final class BillingProfileProperties {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> tags;
 
+    /*
+     * Identifies the cloud environments that are associated with a billing profile. This is a system managed optional
+     * field and gets updated as the billing profile gets associated with accounts in various clouds.
+     */
+    @JsonProperty(value = "targetClouds", access = JsonProperty.Access.WRITE_ONLY)
+    private List<TargetCloud> targetClouds;
+
     /** Creates an instance of BillingProfileProperties class. */
     public BillingProfileProperties() {
-    }
-
-    /**
-     * Get the displayName property: The name of the billing profile.
-     *
-     * @return the displayName value.
-     */
-    public String displayName() {
-        return this.displayName;
-    }
-
-    /**
-     * Set the displayName property: The name of the billing profile.
-     *
-     * @param displayName the displayName value to set.
-     * @return the BillingProfileProperties object itself.
-     */
-    public BillingProfileProperties withDisplayName(String displayName) {
-        this.displayName = displayName;
-        return this;
-    }
-
-    /**
-     * Get the poNumber property: The purchase order name that will appear on the invoices generated for the billing
-     * profile.
-     *
-     * @return the poNumber value.
-     */
-    public String poNumber() {
-        return this.poNumber;
-    }
-
-    /**
-     * Set the poNumber property: The purchase order name that will appear on the invoices generated for the billing
-     * profile.
-     *
-     * @param poNumber the poNumber value to set.
-     * @return the BillingProfileProperties object itself.
-     */
-    public BillingProfileProperties withPoNumber(String poNumber) {
-        this.poNumber = poNumber;
-        return this;
     }
 
     /**
@@ -203,6 +161,64 @@ public final class BillingProfileProperties {
     }
 
     /**
+     * Get the currency property: The currency in which the charges for the billing profile are billed.
+     *
+     * @return the currency value.
+     */
+    public String currency() {
+        return this.currency;
+    }
+
+    /**
+     * Get the displayName property: The name of the billing profile.
+     *
+     * @return the displayName value.
+     */
+    public String displayName() {
+        return this.displayName;
+    }
+
+    /**
+     * Set the displayName property: The name of the billing profile.
+     *
+     * @param displayName the displayName value to set.
+     * @return the BillingProfileProperties object itself.
+     */
+    public BillingProfileProperties withDisplayName(String displayName) {
+        this.displayName = displayName;
+        return this;
+    }
+
+    /**
+     * Get the enabledAzurePlans property: Information about the enabled azure plans.
+     *
+     * @return the enabledAzurePlans value.
+     */
+    public List<AzurePlan> enabledAzurePlans() {
+        return this.enabledAzurePlans;
+    }
+
+    /**
+     * Set the enabledAzurePlans property: Information about the enabled azure plans.
+     *
+     * @param enabledAzurePlans the enabledAzurePlans value to set.
+     * @return the BillingProfileProperties object itself.
+     */
+    public BillingProfileProperties withEnabledAzurePlans(List<AzurePlan> enabledAzurePlans) {
+        this.enabledAzurePlans = enabledAzurePlans;
+        return this;
+    }
+
+    /**
+     * Get the hasReadAccess property: Indicates whether user has read access to the billing profile.
+     *
+     * @return the hasReadAccess value.
+     */
+    public Boolean hasReadAccess() {
+        return this.hasReadAccess;
+    }
+
+    /**
      * Get the indirectRelationshipInfo property: Identifies the billing profile that is linked to another billing
      * profile in indirect purchase motion.
      *
@@ -210,6 +226,15 @@ public final class BillingProfileProperties {
      */
     public IndirectRelationshipInfo indirectRelationshipInfo() {
         return this.indirectRelationshipInfo;
+    }
+
+    /**
+     * Get the invoiceDay property: The day of the month when the invoice for the billing profile is generated.
+     *
+     * @return the invoiceDay value.
+     */
+    public Integer invoiceDay() {
+        return this.invoiceDay;
     }
 
     /**
@@ -231,44 +256,6 @@ public final class BillingProfileProperties {
      */
     public BillingProfileProperties withInvoiceEmailOptIn(Boolean invoiceEmailOptIn) {
         this.invoiceEmailOptIn = invoiceEmailOptIn;
-        return this;
-    }
-
-    /**
-     * Get the invoiceDay property: The day of the month when the invoice for the billing profile is generated.
-     *
-     * @return the invoiceDay value.
-     */
-    public Integer invoiceDay() {
-        return this.invoiceDay;
-    }
-
-    /**
-     * Get the currency property: The currency in which the charges for the billing profile are billed.
-     *
-     * @return the currency value.
-     */
-    public String currency() {
-        return this.currency;
-    }
-
-    /**
-     * Get the enabledAzurePlans property: Information about the enabled azure plans.
-     *
-     * @return the enabledAzurePlans value.
-     */
-    public List<AzurePlan> enabledAzurePlans() {
-        return this.enabledAzurePlans;
-    }
-
-    /**
-     * Set the enabledAzurePlans property: Information about the enabled azure plans.
-     *
-     * @param enabledAzurePlans the enabledAzurePlans value to set.
-     * @return the BillingProfileProperties object itself.
-     */
-    public BillingProfileProperties withEnabledAzurePlans(List<AzurePlan> enabledAzurePlans) {
-        this.enabledAzurePlans = enabledAzurePlans;
         return this;
     }
 
@@ -295,21 +282,34 @@ public final class BillingProfileProperties {
     }
 
     /**
-     * Get the hasReadAccess property: Indicates whether user has read access to the billing profile.
+     * Get the poNumber property: The purchase order name that will appear on the invoices generated for the billing
+     * profile.
      *
-     * @return the hasReadAccess value.
+     * @return the poNumber value.
      */
-    public Boolean hasReadAccess() {
-        return this.hasReadAccess;
+    public String poNumber() {
+        return this.poNumber;
     }
 
     /**
-     * Get the systemId property: The system generated unique identifier for a billing profile.
+     * Set the poNumber property: The purchase order name that will appear on the invoices generated for the billing
+     * profile.
      *
-     * @return the systemId value.
+     * @param poNumber the poNumber value to set.
+     * @return the BillingProfileProperties object itself.
      */
-    public String systemId() {
-        return this.systemId;
+    public BillingProfileProperties withPoNumber(String poNumber) {
+        this.poNumber = poNumber;
+        return this;
+    }
+
+    /**
+     * Get the spendingLimit property: The billing profile spending limit.
+     *
+     * @return the spendingLimit value.
+     */
+    public SpendingLimit spendingLimit() {
+        return this.spendingLimit;
     }
 
     /**
@@ -331,23 +331,12 @@ public final class BillingProfileProperties {
     }
 
     /**
-     * Get the spendingLimit property: The billing profile spending limit.
+     * Get the systemId property: The system generated unique identifier for a billing profile.
      *
-     * @return the spendingLimit value.
+     * @return the systemId value.
      */
-    public SpendingLimit spendingLimit() {
-        return this.spendingLimit;
-    }
-
-    /**
-     * Get the targetClouds property: Identifies the cloud environments that are associated with a billing profile. This
-     * is a system managed optional field and gets updated as the billing profile gets associated with accounts in
-     * various clouds.
-     *
-     * @return the targetClouds value.
-     */
-    public List<TargetCloud> targetClouds() {
-        return this.targetClouds;
+    public String systemId() {
+        return this.systemId;
     }
 
     /**
@@ -371,6 +360,17 @@ public final class BillingProfileProperties {
     }
 
     /**
+     * Get the targetClouds property: Identifies the cloud environments that are associated with a billing profile. This
+     * is a system managed optional field and gets updated as the billing profile gets associated with accounts in
+     * various clouds.
+     *
+     * @return the targetClouds value.
+     */
+    public List<TargetCloud> targetClouds() {
+        return this.targetClouds;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -379,11 +379,11 @@ public final class BillingProfileProperties {
         if (billTo() != null) {
             billTo().validate();
         }
-        if (indirectRelationshipInfo() != null) {
-            indirectRelationshipInfo().validate();
-        }
         if (enabledAzurePlans() != null) {
             enabledAzurePlans().forEach(e -> e.validate());
+        }
+        if (indirectRelationshipInfo() != null) {
+            indirectRelationshipInfo().validate();
         }
         if (invoiceSections() != null) {
             invoiceSections().validate();

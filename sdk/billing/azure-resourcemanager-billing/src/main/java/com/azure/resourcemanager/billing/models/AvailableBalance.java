@@ -4,12 +4,22 @@
 
 package com.azure.resourcemanager.billing.models;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.billing.fluent.models.AvailableBalanceInner;
 
 /** An immutable client-side representation of AvailableBalance. */
 public interface AvailableBalance {
     /**
-     * Gets the id property: Fully qualified resource Id for the resource.
+     * Gets the type property: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
+     * "Microsoft.Storage/storageAccounts".
+     *
+     * @return the type value.
+     */
+    String type();
+
+    /**
+     * Gets the id property: Fully qualified resource ID for the resource. Ex -
+     * /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
      *
      * @return the id value.
      */
@@ -23,11 +33,11 @@ public interface AvailableBalance {
     String name();
 
     /**
-     * Gets the type property: The type of the resource.
+     * Gets the systemData property: Metadata pertaining to creation and last modification of the resource.
      *
-     * @return the type value.
+     * @return the systemData value.
      */
-    String type();
+    SystemData systemData();
 
     /**
      * Gets the amount property: Balance amount.

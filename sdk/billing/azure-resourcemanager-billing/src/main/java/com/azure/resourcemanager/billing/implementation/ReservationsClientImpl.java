@@ -57,24 +57,8 @@ public final class ReservationsClientImpl implements ReservationsClient {
     @ServiceInterface(name = "BillingManagementCli")
     public interface ReservationsService {
         @Headers({"Content-Type: application/json"})
-        @Get("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/reservations")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ReservationsListResult>> listByBillingAccount(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("billingAccountName") String billingAccountName,
-            @QueryParam("$filter") String filter,
-            @QueryParam("$orderby") String orderby,
-            @QueryParam("refreshSummary") String refreshSummary,
-            @QueryParam("selectedState") String selectedState,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Content-Type: application/json"})
         @Get(
-            "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}"
-                + "/reservations")
+            "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}/reservations")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ReservationsListResult>> listByBillingProfile(
@@ -90,12 +74,17 @@ public final class ReservationsClientImpl implements ReservationsClient {
             Context context);
 
         @Headers({"Content-Type: application/json"})
-        @Get("{nextLink}")
+        @Get("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/reservations")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ReservationsListResult>> listByBillingAccountNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
+        Mono<Response<ReservationsListResult>> listByBillingAccount(
             @HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion,
+            @PathParam("billingAccountName") String billingAccountName,
+            @QueryParam("$filter") String filter,
+            @QueryParam("$orderby") String orderby,
+            @QueryParam("refreshSummary") String refreshSummary,
+            @QueryParam("selectedState") String selectedState,
             @HeaderParam("Accept") String accept,
             Context context);
 
@@ -108,251 +97,16 @@ public final class ReservationsClientImpl implements ReservationsClient {
             @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept,
             Context context);
-    }
 
-    /**
-     * Lists the reservations for a billing account and the roll up counts of reservations group by provisioning states.
-     *
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param filter May be used to filter by reservation properties. The filter supports 'eq', 'or', and 'and'. It does
-     *     not currently support 'ne', 'gt', 'le', 'ge', or 'not'.
-     * @param orderby May be used to sort order by reservation properties.
-     * @param refreshSummary To indicate whether to refresh the roll up counts of the reservations group by provisioning
-     *     states.
-     * @param selectedState The selected provisioning state.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of reservations and summary of roll out count of reservations in each state along with {@link
-     *     PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ReservationInner>> listByBillingAccountSinglePageAsync(
-        String billingAccountName, String filter, String orderby, String refreshSummary, String selectedState) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (billingAccountName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
-        }
-        final String apiVersion = "2020-05-01";
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .listByBillingAccount(
-                            this.client.getEndpoint(),
-                            apiVersion,
-                            billingAccountName,
-                            filter,
-                            orderby,
-                            refreshSummary,
-                            selectedState,
-                            accept,
-                            context))
-            .<PagedResponse<ReservationInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Lists the reservations for a billing account and the roll up counts of reservations group by provisioning states.
-     *
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param filter May be used to filter by reservation properties. The filter supports 'eq', 'or', and 'and'. It does
-     *     not currently support 'ne', 'gt', 'le', 'ge', or 'not'.
-     * @param orderby May be used to sort order by reservation properties.
-     * @param refreshSummary To indicate whether to refresh the roll up counts of the reservations group by provisioning
-     *     states.
-     * @param selectedState The selected provisioning state.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of reservations and summary of roll out count of reservations in each state along with {@link
-     *     PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ReservationInner>> listByBillingAccountSinglePageAsync(
-        String billingAccountName,
-        String filter,
-        String orderby,
-        String refreshSummary,
-        String selectedState,
-        Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (billingAccountName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
-        }
-        final String apiVersion = "2020-05-01";
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .listByBillingAccount(
-                this.client.getEndpoint(),
-                apiVersion,
-                billingAccountName,
-                filter,
-                orderby,
-                refreshSummary,
-                selectedState,
-                accept,
-                context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
-    }
-
-    /**
-     * Lists the reservations for a billing account and the roll up counts of reservations group by provisioning states.
-     *
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param filter May be used to filter by reservation properties. The filter supports 'eq', 'or', and 'and'. It does
-     *     not currently support 'ne', 'gt', 'le', 'ge', or 'not'.
-     * @param orderby May be used to sort order by reservation properties.
-     * @param refreshSummary To indicate whether to refresh the roll up counts of the reservations group by provisioning
-     *     states.
-     * @param selectedState The selected provisioning state.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of reservations and summary of roll out count of reservations in each state as paginated
-     *     response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<ReservationInner> listByBillingAccountAsync(
-        String billingAccountName, String filter, String orderby, String refreshSummary, String selectedState) {
-        return new PagedFlux<>(
-            () ->
-                listByBillingAccountSinglePageAsync(billingAccountName, filter, orderby, refreshSummary, selectedState),
-            nextLink -> listByBillingAccountNextSinglePageAsync(nextLink));
-    }
-
-    /**
-     * Lists the reservations for a billing account and the roll up counts of reservations group by provisioning states.
-     *
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of reservations and summary of roll out count of reservations in each state as paginated
-     *     response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<ReservationInner> listByBillingAccountAsync(String billingAccountName) {
-        final String filter = null;
-        final String orderby = null;
-        final String refreshSummary = null;
-        final String selectedState = null;
-        return new PagedFlux<>(
-            () ->
-                listByBillingAccountSinglePageAsync(billingAccountName, filter, orderby, refreshSummary, selectedState),
-            nextLink -> listByBillingAccountNextSinglePageAsync(nextLink));
-    }
-
-    /**
-     * Lists the reservations for a billing account and the roll up counts of reservations group by provisioning states.
-     *
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param filter May be used to filter by reservation properties. The filter supports 'eq', 'or', and 'and'. It does
-     *     not currently support 'ne', 'gt', 'le', 'ge', or 'not'.
-     * @param orderby May be used to sort order by reservation properties.
-     * @param refreshSummary To indicate whether to refresh the roll up counts of the reservations group by provisioning
-     *     states.
-     * @param selectedState The selected provisioning state.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of reservations and summary of roll out count of reservations in each state as paginated
-     *     response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<ReservationInner> listByBillingAccountAsync(
-        String billingAccountName,
-        String filter,
-        String orderby,
-        String refreshSummary,
-        String selectedState,
-        Context context) {
-        return new PagedFlux<>(
-            () ->
-                listByBillingAccountSinglePageAsync(
-                    billingAccountName, filter, orderby, refreshSummary, selectedState, context),
-            nextLink -> listByBillingAccountNextSinglePageAsync(nextLink, context));
-    }
-
-    /**
-     * Lists the reservations for a billing account and the roll up counts of reservations group by provisioning states.
-     *
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of reservations and summary of roll out count of reservations in each state as paginated
-     *     response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<ReservationInner> listByBillingAccount(String billingAccountName) {
-        final String filter = null;
-        final String orderby = null;
-        final String refreshSummary = null;
-        final String selectedState = null;
-        return new PagedIterable<>(
-            listByBillingAccountAsync(billingAccountName, filter, orderby, refreshSummary, selectedState));
-    }
-
-    /**
-     * Lists the reservations for a billing account and the roll up counts of reservations group by provisioning states.
-     *
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param filter May be used to filter by reservation properties. The filter supports 'eq', 'or', and 'and'. It does
-     *     not currently support 'ne', 'gt', 'le', 'ge', or 'not'.
-     * @param orderby May be used to sort order by reservation properties.
-     * @param refreshSummary To indicate whether to refresh the roll up counts of the reservations group by provisioning
-     *     states.
-     * @param selectedState The selected provisioning state.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of reservations and summary of roll out count of reservations in each state as paginated
-     *     response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<ReservationInner> listByBillingAccount(
-        String billingAccountName,
-        String filter,
-        String orderby,
-        String refreshSummary,
-        String selectedState,
-        Context context) {
-        return new PagedIterable<>(
-            listByBillingAccountAsync(billingAccountName, filter, orderby, refreshSummary, selectedState, context));
+        @Headers({"Content-Type: application/json"})
+        @Get("{nextLink}")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<ReservationsListResult>> listByBillingAccountNext(
+            @PathParam(value = "nextLink", encoded = true) String nextLink,
+            @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept,
+            Context context);
     }
 
     /**
@@ -394,7 +148,6 @@ public final class ReservationsClientImpl implements ReservationsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter billingProfileName is required and cannot be null."));
         }
-        final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -402,7 +155,7 @@ public final class ReservationsClientImpl implements ReservationsClient {
                     service
                         .listByBillingProfile(
                             this.client.getEndpoint(),
-                            apiVersion,
+                            this.client.getApiVersion(),
                             billingAccountName,
                             billingProfileName,
                             filter,
@@ -464,13 +217,12 @@ public final class ReservationsClientImpl implements ReservationsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter billingProfileName is required and cannot be null."));
         }
-        final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listByBillingProfile(
                 this.client.getEndpoint(),
-                apiVersion,
+                this.client.getApiVersion(),
                 billingAccountName,
                 billingProfileName,
                 filter,
@@ -636,10 +388,15 @@ public final class ReservationsClientImpl implements ReservationsClient {
     }
 
     /**
-     * Get the next page of items.
+     * Lists the reservations for a billing account and the roll up counts of reservations group by provisioning states.
      *
-     * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param filter May be used to filter by reservation properties. The filter supports 'eq', 'or', and 'and'. It does
+     *     not currently support 'ne', 'gt', 'le', 'ge', or 'not'.
+     * @param orderby May be used to sort order by reservation properties.
+     * @param refreshSummary To indicate whether to refresh the roll up counts of the reservations group by provisioning
+     *     states.
+     * @param selectedState The selected provisioning state.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -647,20 +404,33 @@ public final class ReservationsClientImpl implements ReservationsClient {
      *     PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ReservationInner>> listByBillingAccountNextSinglePageAsync(String nextLink) {
-        if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
-        }
+    private Mono<PagedResponse<ReservationInner>> listByBillingAccountSinglePageAsync(
+        String billingAccountName, String filter, String orderby, String refreshSummary, String selectedState) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
                     new IllegalArgumentException(
                         "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
+        if (billingAccountName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
         final String accept = "application/json";
         return FluxUtil
             .withContext(
-                context -> service.listByBillingAccountNext(nextLink, this.client.getEndpoint(), accept, context))
+                context ->
+                    service
+                        .listByBillingAccount(
+                            this.client.getEndpoint(),
+                            this.client.getApiVersion(),
+                            billingAccountName,
+                            filter,
+                            orderby,
+                            refreshSummary,
+                            selectedState,
+                            accept,
+                            context))
             .<PagedResponse<ReservationInner>>map(
                 res ->
                     new PagedResponseBase<>(
@@ -674,10 +444,15 @@ public final class ReservationsClientImpl implements ReservationsClient {
     }
 
     /**
-     * Get the next page of items.
+     * Lists the reservations for a billing account and the roll up counts of reservations group by provisioning states.
      *
-     * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param filter May be used to filter by reservation properties. The filter supports 'eq', 'or', and 'and'. It does
+     *     not currently support 'ne', 'gt', 'le', 'ge', or 'not'.
+     * @param orderby May be used to sort order by reservation properties.
+     * @param refreshSummary To indicate whether to refresh the roll up counts of the reservations group by provisioning
+     *     states.
+     * @param selectedState The selected provisioning state.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -686,21 +461,36 @@ public final class ReservationsClientImpl implements ReservationsClient {
      *     PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ReservationInner>> listByBillingAccountNextSinglePageAsync(
-        String nextLink, Context context) {
-        if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
-        }
+    private Mono<PagedResponse<ReservationInner>> listByBillingAccountSinglePageAsync(
+        String billingAccountName,
+        String filter,
+        String orderby,
+        String refreshSummary,
+        String selectedState,
+        Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
                     new IllegalArgumentException(
                         "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
+        if (billingAccountName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByBillingAccountNext(nextLink, this.client.getEndpoint(), accept, context)
+            .listByBillingAccount(
+                this.client.getEndpoint(),
+                this.client.getApiVersion(),
+                billingAccountName,
+                filter,
+                orderby,
+                refreshSummary,
+                selectedState,
+                accept,
+                context)
             .map(
                 res ->
                     new PagedResponseBase<>(
@@ -710,6 +500,134 @@ public final class ReservationsClientImpl implements ReservationsClient {
                         res.getValue().value(),
                         res.getValue().nextLink(),
                         null));
+    }
+
+    /**
+     * Lists the reservations for a billing account and the roll up counts of reservations group by provisioning states.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param filter May be used to filter by reservation properties. The filter supports 'eq', 'or', and 'and'. It does
+     *     not currently support 'ne', 'gt', 'le', 'ge', or 'not'.
+     * @param orderby May be used to sort order by reservation properties.
+     * @param refreshSummary To indicate whether to refresh the roll up counts of the reservations group by provisioning
+     *     states.
+     * @param selectedState The selected provisioning state.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of reservations and summary of roll out count of reservations in each state as paginated
+     *     response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<ReservationInner> listByBillingAccountAsync(
+        String billingAccountName, String filter, String orderby, String refreshSummary, String selectedState) {
+        return new PagedFlux<>(
+            () ->
+                listByBillingAccountSinglePageAsync(billingAccountName, filter, orderby, refreshSummary, selectedState),
+            nextLink -> listByBillingAccountNextSinglePageAsync(nextLink));
+    }
+
+    /**
+     * Lists the reservations for a billing account and the roll up counts of reservations group by provisioning states.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of reservations and summary of roll out count of reservations in each state as paginated
+     *     response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<ReservationInner> listByBillingAccountAsync(String billingAccountName) {
+        final String filter = null;
+        final String orderby = null;
+        final String refreshSummary = null;
+        final String selectedState = null;
+        return new PagedFlux<>(
+            () ->
+                listByBillingAccountSinglePageAsync(billingAccountName, filter, orderby, refreshSummary, selectedState),
+            nextLink -> listByBillingAccountNextSinglePageAsync(nextLink));
+    }
+
+    /**
+     * Lists the reservations for a billing account and the roll up counts of reservations group by provisioning states.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param filter May be used to filter by reservation properties. The filter supports 'eq', 'or', and 'and'. It does
+     *     not currently support 'ne', 'gt', 'le', 'ge', or 'not'.
+     * @param orderby May be used to sort order by reservation properties.
+     * @param refreshSummary To indicate whether to refresh the roll up counts of the reservations group by provisioning
+     *     states.
+     * @param selectedState The selected provisioning state.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of reservations and summary of roll out count of reservations in each state as paginated
+     *     response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<ReservationInner> listByBillingAccountAsync(
+        String billingAccountName,
+        String filter,
+        String orderby,
+        String refreshSummary,
+        String selectedState,
+        Context context) {
+        return new PagedFlux<>(
+            () ->
+                listByBillingAccountSinglePageAsync(
+                    billingAccountName, filter, orderby, refreshSummary, selectedState, context),
+            nextLink -> listByBillingAccountNextSinglePageAsync(nextLink, context));
+    }
+
+    /**
+     * Lists the reservations for a billing account and the roll up counts of reservations group by provisioning states.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of reservations and summary of roll out count of reservations in each state as paginated
+     *     response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<ReservationInner> listByBillingAccount(String billingAccountName) {
+        final String filter = null;
+        final String orderby = null;
+        final String refreshSummary = null;
+        final String selectedState = null;
+        return new PagedIterable<>(
+            listByBillingAccountAsync(billingAccountName, filter, orderby, refreshSummary, selectedState));
+    }
+
+    /**
+     * Lists the reservations for a billing account and the roll up counts of reservations group by provisioning states.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param filter May be used to filter by reservation properties. The filter supports 'eq', 'or', and 'and'. It does
+     *     not currently support 'ne', 'gt', 'le', 'ge', or 'not'.
+     * @param orderby May be used to sort order by reservation properties.
+     * @param refreshSummary To indicate whether to refresh the roll up counts of the reservations group by provisioning
+     *     states.
+     * @param selectedState The selected provisioning state.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of reservations and summary of roll out count of reservations in each state as paginated
+     *     response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<ReservationInner> listByBillingAccount(
+        String billingAccountName,
+        String filter,
+        String orderby,
+        String refreshSummary,
+        String selectedState,
+        Context context) {
+        return new PagedIterable<>(
+            listByBillingAccountAsync(billingAccountName, filter, orderby, refreshSummary, selectedState, context));
     }
 
     /**
@@ -778,6 +696,83 @@ public final class ReservationsClientImpl implements ReservationsClient {
         context = this.client.mergeContext(context);
         return service
             .listByBillingProfileNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(
+                res ->
+                    new PagedResponseBase<>(
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink(),
+                        null));
+    }
+
+    /**
+     * Get the next page of items.
+     *
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of reservations and summary of roll out count of reservations in each state along with {@link
+     *     PagedResponse} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<ReservationInner>> listByBillingAccountNextSinglePageAsync(String nextLink) {
+        if (nextLink == null) {
+            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context -> service.listByBillingAccountNext(nextLink, this.client.getEndpoint(), accept, context))
+            .<PagedResponse<ReservationInner>>map(
+                res ->
+                    new PagedResponseBase<>(
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink(),
+                        null))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Get the next page of items.
+     *
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of reservations and summary of roll out count of reservations in each state along with {@link
+     *     PagedResponse} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<ReservationInner>> listByBillingAccountNextSinglePageAsync(
+        String nextLink, Context context) {
+        if (nextLink == null) {
+            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .listByBillingAccountNext(nextLink, this.client.getEndpoint(), accept, context)
             .map(
                 res ->
                     new PagedResponseBase<>(

@@ -20,12 +20,12 @@ public final class ValidateProductTransferEligibilityResultImpl implements Valid
         this.serviceManager = serviceManager;
     }
 
-    public Boolean isMoveEligible() {
-        return this.innerModel().isMoveEligible();
-    }
-
     public ValidateProductTransferEligibilityError errorDetails() {
         return this.innerModel().errorDetails();
+    }
+
+    public Boolean isMoveEligible() {
+        return this.innerModel().isMoveEligible();
     }
 
     public ValidateProductTransferEligibilityResultInner innerModel() {

@@ -9,47 +9,23 @@ import com.azure.resourcemanager.billing.fluent.models.TransactionInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The list of transactions. */
+/** A container for a list of resources. */
 @Immutable
 public final class TransactionListResult {
-    /*
-     * The list of transactions.
-     */
-    @JsonProperty(value = "value", access = JsonProperty.Access.WRITE_ONLY)
-    private List<TransactionInner> value;
-
-    /*
-     * Total number of records.
-     */
-    @JsonProperty(value = "totalCount", access = JsonProperty.Access.WRITE_ONLY)
-    private Integer totalCount;
-
     /*
      * The link (url) to the next page of results.
      */
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
+    /*
+     * The list of resources.
+     */
+    @JsonProperty(value = "value", access = JsonProperty.Access.WRITE_ONLY)
+    private List<TransactionInner> value;
+
     /** Creates an instance of TransactionListResult class. */
     public TransactionListResult() {
-    }
-
-    /**
-     * Get the value property: The list of transactions.
-     *
-     * @return the value value.
-     */
-    public List<TransactionInner> value() {
-        return this.value;
-    }
-
-    /**
-     * Get the totalCount property: Total number of records.
-     *
-     * @return the totalCount value.
-     */
-    public Integer totalCount() {
-        return this.totalCount;
     }
 
     /**
@@ -59,6 +35,15 @@ public final class TransactionListResult {
      */
     public String nextLink() {
         return this.nextLink;
+    }
+
+    /**
+     * Get the value property: The list of resources.
+     *
+     * @return the value value.
+     */
+    public List<TransactionInner> value() {
+        return this.value;
     }
 
     /**

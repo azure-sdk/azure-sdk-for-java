@@ -4,15 +4,23 @@
 
 package com.azure.resourcemanager.billing.models;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.billing.fluent.models.InvoiceInner;
-import java.time.OffsetDateTime;
 import java.util.List;
-import java.util.Map;
 
 /** An immutable client-side representation of Invoice. */
 public interface Invoice {
     /**
-     * Gets the id property: Fully qualified resource Id for the resource.
+     * Gets the type property: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
+     * "Microsoft.Storage/storageAccounts".
+     *
+     * @return the type value.
+     */
+    String type();
+
+    /**
+     * Gets the id property: Fully qualified resource ID for the resource. Ex -
+     * /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
      *
      * @return the id value.
      */
@@ -26,109 +34,135 @@ public interface Invoice {
     String name();
 
     /**
-     * Gets the type property: The type of the resource.
+     * Gets the systemData property: Metadata pertaining to creation and last modification of the resource.
      *
-     * @return the type value.
+     * @return the systemData value.
      */
-    String type();
+    SystemData systemData();
+
+    /**
+     * Gets the amountDue property: The amount.
+     *
+     * @return the amountDue value.
+     */
+    InvoicePropertiesAmountDue amountDue();
+
+    /**
+     * Gets the azurePrepaymentApplied property: The amount.
+     *
+     * @return the azurePrepaymentApplied value.
+     */
+    InvoicePropertiesAzurePrepaymentApplied azurePrepaymentApplied();
+
+    /**
+     * Gets the billedAmount property: The amount.
+     *
+     * @return the billedAmount value.
+     */
+    InvoicePropertiesBilledAmount billedAmount();
+
+    /**
+     * Gets the billedDocumentId property: The Id of the active invoice which is originally billed after this invoice
+     * was voided. This field is applicable to the void invoices only.
+     *
+     * @return the billedDocumentId value.
+     */
+    String billedDocumentId();
+
+    /**
+     * Gets the billingProfileDisplayName property: The name of the billing profile for which the invoice is generated.
+     *
+     * @return the billingProfileDisplayName value.
+     */
+    String billingProfileDisplayName();
+
+    /**
+     * Gets the billingProfileId property: The ID of the billing profile for which the invoice is generated.
+     *
+     * @return the billingProfileId value.
+     */
+    String billingProfileId();
+
+    /**
+     * Gets the creditAmount property: The amount.
+     *
+     * @return the creditAmount value.
+     */
+    InvoicePropertiesCreditAmount creditAmount();
+
+    /**
+     * Gets the creditForDocumentId property: The Id of the invoice which got voided and this credit note was issued as
+     * a result. This field is applicable to the credit notes only.
+     *
+     * @return the creditForDocumentId value.
+     */
+    String creditForDocumentId();
+
+    /**
+     * Gets the documents property: List of documents available to download and view such as invoice, credit note, or
+     * tax receipt.
+     *
+     * @return the documents value.
+     */
+    List<InvoiceDocument> documents();
+
+    /**
+     * Gets the documentType property: The type of the document.
+     *
+     * @return the documentType value.
+     */
+    InvoiceDocumentType documentType();
+
+    /**
+     * Gets the chargeDate property: Upcoming feature.
+     *
+     * @return the chargeDate value.
+     */
+    String chargeDate();
 
     /**
      * Gets the dueDate property: The due date for the invoice.
      *
      * @return the dueDate value.
      */
-    OffsetDateTime dueDate();
+    String dueDate();
+
+    /**
+     * Gets the failedPayments property: List of failed payments.
+     *
+     * @return the failedPayments value.
+     */
+    List<FailedPayment> failedPayments();
+
+    /**
+     * Gets the freeAzureCreditApplied property: The amount.
+     *
+     * @return the freeAzureCreditApplied value.
+     */
+    InvoicePropertiesFreeAzureCreditApplied freeAzureCreditApplied();
 
     /**
      * Gets the invoiceDate property: The date when the invoice was generated.
      *
      * @return the invoiceDate value.
      */
-    OffsetDateTime invoiceDate();
-
-    /**
-     * Gets the status property: The current status of the invoice.
-     *
-     * @return the status value.
-     */
-    InvoiceStatus status();
-
-    /**
-     * Gets the amountDue property: The amount due as of now.
-     *
-     * @return the amountDue value.
-     */
-    Amount amountDue();
-
-    /**
-     * Gets the azurePrepaymentApplied property: The amount of Azure prepayment applied to the charges. This field is
-     * applicable to billing accounts with agreement type Microsoft Customer Agreement.
-     *
-     * @return the azurePrepaymentApplied value.
-     */
-    Amount azurePrepaymentApplied();
-
-    /**
-     * Gets the billedAmount property: The total charges for the invoice billing period.
-     *
-     * @return the billedAmount value.
-     */
-    Amount billedAmount();
-
-    /**
-     * Gets the creditAmount property: The total refund for returns and cancellations during the invoice billing period.
-     * This field is applicable to billing accounts with agreement type Microsoft Customer Agreement.
-     *
-     * @return the creditAmount value.
-     */
-    Amount creditAmount();
-
-    /**
-     * Gets the freeAzureCreditApplied property: The amount of free Azure credits applied to the charges. This field is
-     * applicable to billing accounts with agreement type Microsoft Customer Agreement.
-     *
-     * @return the freeAzureCreditApplied value.
-     */
-    Amount freeAzureCreditApplied();
-
-    /**
-     * Gets the subTotal property: The pre-tax amount due. This field is applicable to billing accounts with agreement
-     * type Microsoft Customer Agreement.
-     *
-     * @return the subTotal value.
-     */
-    Amount subTotal();
-
-    /**
-     * Gets the taxAmount property: The amount of tax charged for the billing period. This field is applicable to
-     * billing accounts with agreement type Microsoft Customer Agreement.
-     *
-     * @return the taxAmount value.
-     */
-    Amount taxAmount();
-
-    /**
-     * Gets the totalAmount property: The amount due when the invoice was generated. This field is applicable to billing
-     * accounts with agreement type Microsoft Customer Agreement.
-     *
-     * @return the totalAmount value.
-     */
-    Amount totalAmount();
-
-    /**
-     * Gets the invoicePeriodStartDate property: The start date of the billing period for which the invoice is
-     * generated.
-     *
-     * @return the invoicePeriodStartDate value.
-     */
-    OffsetDateTime invoicePeriodStartDate();
+    String invoiceDate();
 
     /**
      * Gets the invoicePeriodEndDate property: The end date of the billing period for which the invoice is generated.
+     * The date is in MM-DD-YYYY format.
      *
      * @return the invoicePeriodEndDate value.
      */
-    OffsetDateTime invoicePeriodEndDate();
+    String invoicePeriodEndDate();
+
+    /**
+     * Gets the invoicePeriodStartDate property: The start date of the billing period for which the invoice is
+     * generated. The date is in MM-DD-YYYY format.
+     *
+     * @return the invoicePeriodStartDate value.
+     */
+    String invoicePeriodStartDate();
 
     /**
      * Gets the invoiceType property: Invoice type.
@@ -146,18 +180,11 @@ public interface Invoice {
     Boolean isMonthlyInvoice();
 
     /**
-     * Gets the billingProfileId property: The ID of the billing profile for which the invoice is generated.
+     * Gets the payments property: List of payments.
      *
-     * @return the billingProfileId value.
+     * @return the payments value.
      */
-    String billingProfileId();
-
-    /**
-     * Gets the billingProfileDisplayName property: The name of the billing profile for which the invoice is generated.
-     *
-     * @return the billingProfileDisplayName value.
-     */
-    String billingProfileDisplayName();
+    List<Payment> payments();
 
     /**
      * Gets the purchaseOrderNumber property: An optional purchase order number for the invoice.
@@ -167,48 +194,25 @@ public interface Invoice {
     String purchaseOrderNumber();
 
     /**
-     * Gets the documents property: List of documents available to download such as invoice and tax receipt.
-     *
-     * @return the documents value.
-     */
-    List<Document> documents();
-
-    /**
-     * Gets the payments property: List of payments.
-     *
-     * @return the payments value.
-     */
-    List<PaymentProperties> payments();
-
-    /**
-     * Gets the rebillDetails property: Rebill details for an invoice.
+     * Gets the rebillDetails property: The rebill details of an invoice.
      *
      * @return the rebillDetails value.
      */
-    Map<String, RebillDetails> rebillDetails();
+    InvoicePropertiesRebillDetails rebillDetails();
 
     /**
-     * Gets the documentType property: The type of the document.
+     * Gets the status property: The current status of the invoice.
      *
-     * @return the documentType value.
+     * @return the status value.
      */
-    InvoiceDocumentType documentType();
+    InvoiceStatus status();
 
     /**
-     * Gets the billedDocumentId property: The Id of the active invoice which is originally billed after this invoice
-     * was voided. This field is applicable to the void invoices only.
+     * Gets the subscriptionDisplayName property: The subscriptionDisplayName property.
      *
-     * @return the billedDocumentId value.
+     * @return the subscriptionDisplayName value.
      */
-    String billedDocumentId();
-
-    /**
-     * Gets the creditForDocumentId property: The Id of the invoice which got voided and this credit note was issued as
-     * a result. This field is applicable to the credit notes only.
-     *
-     * @return the creditForDocumentId value.
-     */
-    String creditForDocumentId();
+    String subscriptionDisplayName();
 
     /**
      * Gets the subscriptionId property: The ID of the subscription for which the invoice is generated.
@@ -216,6 +220,42 @@ public interface Invoice {
      * @return the subscriptionId value.
      */
     String subscriptionId();
+
+    /**
+     * Gets the specialTaxationType property: Identifies the type of tax calculation used for the invoice. The field is
+     * applicable only to invoices with special tax calculation logic.
+     *
+     * @return the specialTaxationType value.
+     */
+    SpecialTaxationType specialTaxationType();
+
+    /**
+     * Gets the subTotal property: The amount.
+     *
+     * @return the subTotal value.
+     */
+    InvoicePropertiesSubTotal subTotal();
+
+    /**
+     * Gets the taxAmount property: The amount.
+     *
+     * @return the taxAmount value.
+     */
+    InvoicePropertiesTaxAmount taxAmount();
+
+    /**
+     * Gets the totalAmount property: The amount.
+     *
+     * @return the totalAmount value.
+     */
+    InvoicePropertiesTotalAmount totalAmount();
+
+    /**
+     * Gets the refundDetails property: The details of refund request.
+     *
+     * @return the refundDetails value.
+     */
+    InvoicePropertiesRefundDetails refundDetails();
 
     /**
      * Gets the inner com.azure.resourcemanager.billing.fluent.models.InvoiceInner object.

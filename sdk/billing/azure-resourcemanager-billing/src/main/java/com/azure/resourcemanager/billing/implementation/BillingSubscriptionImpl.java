@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.billing.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.billing.fluent.models.BillingSubscriptionInner;
 import com.azure.resourcemanager.billing.models.Amount;
 import com.azure.resourcemanager.billing.models.BillingSubscription;
@@ -24,6 +25,10 @@ public final class BillingSubscriptionImpl implements BillingSubscription {
         this.serviceManager = serviceManager;
     }
 
+    public String type() {
+        return this.innerModel().type();
+    }
+
     public String id() {
         return this.innerModel().id();
     }
@@ -32,20 +37,40 @@ public final class BillingSubscriptionImpl implements BillingSubscription {
         return this.innerModel().name();
     }
 
-    public String type() {
-        return this.innerModel().type();
+    public SystemData systemData() {
+        return this.innerModel().systemData();
+    }
+
+    public String billingProfileDisplayName() {
+        return this.innerModel().billingProfileDisplayName();
+    }
+
+    public String billingProfileId() {
+        return this.innerModel().billingProfileId();
+    }
+
+    public String costCenter() {
+        return this.innerModel().costCenter();
+    }
+
+    public String customerDisplayName() {
+        return this.innerModel().customerDisplayName();
+    }
+
+    public String customerId() {
+        return this.innerModel().customerId();
     }
 
     public String displayName() {
         return this.innerModel().displayName();
     }
 
-    public UUID subscriptionId() {
-        return this.innerModel().subscriptionId();
+    public String invoiceSectionDisplayName() {
+        return this.innerModel().invoiceSectionDisplayName();
     }
 
-    public BillingSubscriptionStatusType subscriptionBillingStatus() {
-        return this.innerModel().subscriptionBillingStatus();
+    public String invoiceSectionId() {
+        return this.innerModel().invoiceSectionId();
     }
 
     public Amount lastMonthCharges() {
@@ -56,44 +81,24 @@ public final class BillingSubscriptionImpl implements BillingSubscription {
         return this.innerModel().monthToDateCharges();
     }
 
-    public String billingProfileId() {
-        return this.innerModel().billingProfileId();
-    }
-
-    public String billingProfileDisplayName() {
-        return this.innerModel().billingProfileDisplayName();
-    }
-
-    public String costCenter() {
-        return this.innerModel().costCenter();
-    }
-
-    public String customerId() {
-        return this.innerModel().customerId();
-    }
-
-    public String customerDisplayName() {
-        return this.innerModel().customerDisplayName();
-    }
-
-    public String invoiceSectionId() {
-        return this.innerModel().invoiceSectionId();
-    }
-
-    public String invoiceSectionDisplayName() {
-        return this.innerModel().invoiceSectionDisplayName();
-    }
-
     public Reseller reseller() {
         return this.innerModel().reseller();
+    }
+
+    public String skuDescription() {
+        return this.innerModel().skuDescription();
     }
 
     public String skuId() {
         return this.innerModel().skuId();
     }
 
-    public String skuDescription() {
-        return this.innerModel().skuDescription();
+    public BillingSubscriptionStatusType subscriptionBillingStatus() {
+        return this.innerModel().subscriptionBillingStatus();
+    }
+
+    public UUID subscriptionId() {
+        return this.innerModel().subscriptionId();
     }
 
     public List<String> suspensionReasons() {

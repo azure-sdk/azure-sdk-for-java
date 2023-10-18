@@ -5,7 +5,7 @@
 package com.azure.resourcemanager.billing.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.management.ProxyResource;
+import com.azure.resourcemanager.billing.models.ArmResource;
 import com.azure.resourcemanager.billing.models.InvoiceSectionState;
 import com.azure.resourcemanager.billing.models.TargetCloud;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -13,7 +13,7 @@ import java.util.Map;
 
 /** An invoice section. */
 @Fluent
-public final class InvoiceSectionInner extends ProxyResource {
+public final class InvoiceSectionInner extends ArmResource {
     /*
      * The properties of an invoice section.
      */
@@ -140,7 +140,9 @@ public final class InvoiceSectionInner extends ProxyResource {
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
+    @Override
     public void validate() {
+        super.validate();
         if (innerProperties() != null) {
             innerProperties().validate();
         }

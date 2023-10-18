@@ -11,10 +11,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class BillingRoleAssignmentProperties {
     /*
-     * The date the role assignment was created.
+     * The principal Id of the user who created the role assignment.
      */
-    @JsonProperty(value = "createdOn", access = JsonProperty.Access.WRITE_ONLY)
-    private String createdOn;
+    @JsonProperty(value = "createdByPrincipalId", access = JsonProperty.Access.WRITE_ONLY)
+    private String createdByPrincipalId;
 
     /*
      * The tenant Id of the user who created the role assignment.
@@ -23,16 +23,16 @@ public final class BillingRoleAssignmentProperties {
     private String createdByPrincipalTenantId;
 
     /*
-     * The principal Id of the user who created the role assignment.
-     */
-    @JsonProperty(value = "createdByPrincipalId", access = JsonProperty.Access.WRITE_ONLY)
-    private String createdByPrincipalId;
-
-    /*
      * The email address of the user who created the role assignment.
      */
     @JsonProperty(value = "createdByUserEmailAddress", access = JsonProperty.Access.WRITE_ONLY)
     private String createdByUserEmailAddress;
+
+    /*
+     * The date the role assignment was created.
+     */
+    @JsonProperty(value = "createdOn", access = JsonProperty.Access.WRITE_ONLY)
+    private String createdOn;
 
     /*
      * The principal id of the user to whom the role was assigned.
@@ -75,12 +75,12 @@ public final class BillingRoleAssignmentProperties {
     }
 
     /**
-     * Get the createdOn property: The date the role assignment was created.
+     * Get the createdByPrincipalId property: The principal Id of the user who created the role assignment.
      *
-     * @return the createdOn value.
+     * @return the createdByPrincipalId value.
      */
-    public String createdOn() {
-        return this.createdOn;
+    public String createdByPrincipalId() {
+        return this.createdByPrincipalId;
     }
 
     /**
@@ -93,21 +93,21 @@ public final class BillingRoleAssignmentProperties {
     }
 
     /**
-     * Get the createdByPrincipalId property: The principal Id of the user who created the role assignment.
-     *
-     * @return the createdByPrincipalId value.
-     */
-    public String createdByPrincipalId() {
-        return this.createdByPrincipalId;
-    }
-
-    /**
      * Get the createdByUserEmailAddress property: The email address of the user who created the role assignment.
      *
      * @return the createdByUserEmailAddress value.
      */
     public String createdByUserEmailAddress() {
         return this.createdByUserEmailAddress;
+    }
+
+    /**
+     * Get the createdOn property: The date the role assignment was created.
+     *
+     * @return the createdOn value.
+     */
+    public String createdOn() {
+        return this.createdOn;
     }
 
     /**

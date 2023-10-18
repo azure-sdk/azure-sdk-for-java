@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.billing.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.billing.fluent.models.CustomerInner;
 import com.azure.resourcemanager.billing.models.AzurePlan;
 import com.azure.resourcemanager.billing.models.Customer;
@@ -21,6 +22,10 @@ public final class CustomerImpl implements Customer {
         this.serviceManager = serviceManager;
     }
 
+    public String type() {
+        return this.innerModel().type();
+    }
+
     public String id() {
         return this.innerModel().id();
     }
@@ -29,16 +34,16 @@ public final class CustomerImpl implements Customer {
         return this.innerModel().name();
     }
 
-    public String type() {
-        return this.innerModel().type();
-    }
-
-    public String billingProfileId() {
-        return this.innerModel().billingProfileId();
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public String billingProfileDisplayName() {
         return this.innerModel().billingProfileDisplayName();
+    }
+
+    public String billingProfileId() {
+        return this.innerModel().billingProfileId();
     }
 
     public String displayName() {

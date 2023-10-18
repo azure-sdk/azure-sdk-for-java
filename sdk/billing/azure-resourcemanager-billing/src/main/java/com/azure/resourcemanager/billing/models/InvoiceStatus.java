@@ -10,6 +10,9 @@ import java.util.Collection;
 
 /** The current status of the invoice. */
 public final class InvoiceStatus extends ExpandableStringEnum<InvoiceStatus> {
+    /** Static value Unknown for InvoiceStatus. */
+    public static final InvoiceStatus UNKNOWN = fromString("Unknown");
+
     /** Static value Due for InvoiceStatus. */
     public static final InvoiceStatus DUE = fromString("Due");
 
@@ -21,6 +24,9 @@ public final class InvoiceStatus extends ExpandableStringEnum<InvoiceStatus> {
 
     /** Static value Void for InvoiceStatus. */
     public static final InvoiceStatus VOID = fromString("Void");
+
+    /** Static value Locked for InvoiceStatus. */
+    public static final InvoiceStatus LOCKED = fromString("Locked");
 
     /**
      * Creates a new instance of InvoiceStatus value.

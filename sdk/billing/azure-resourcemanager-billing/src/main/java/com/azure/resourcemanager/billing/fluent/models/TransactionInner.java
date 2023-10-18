@@ -5,18 +5,25 @@
 package com.azure.resourcemanager.billing.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.management.ProxyResource;
-import com.azure.resourcemanager.billing.models.Amount;
-import com.azure.resourcemanager.billing.models.ReservationType;
-import com.azure.resourcemanager.billing.models.TransactionTypeKind;
+import com.azure.resourcemanager.billing.models.ArmResource;
+import com.azure.resourcemanager.billing.models.CreditType;
+import com.azure.resourcemanager.billing.models.SpecialTaxationType;
+import com.azure.resourcemanager.billing.models.TransactionKind;
+import com.azure.resourcemanager.billing.models.TransactionPropertiesAzureCreditApplied;
+import com.azure.resourcemanager.billing.models.TransactionPropertiesConsumptionCommitmentDecremented;
+import com.azure.resourcemanager.billing.models.TransactionPropertiesEffectivePrice;
+import com.azure.resourcemanager.billing.models.TransactionPropertiesMarketPrice;
+import com.azure.resourcemanager.billing.models.TransactionPropertiesRefundTransactionDetails;
+import com.azure.resourcemanager.billing.models.TransactionPropertiesSubTotal;
+import com.azure.resourcemanager.billing.models.TransactionPropertiesTax;
+import com.azure.resourcemanager.billing.models.TransactionPropertiesTransactionAmount;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.time.OffsetDateTime;
 
 /** A transaction. */
 @Fluent
-public final class TransactionInner extends ProxyResource {
+public final class TransactionInner extends ArmResource {
     /*
-     * The properties of a transaction.
+     * The properties of a(n) Transaction
      */
     @JsonProperty(value = "properties")
     private TransactionProperties innerProperties;
@@ -26,7 +33,7 @@ public final class TransactionInner extends ProxyResource {
     }
 
     /**
-     * Get the innerProperties property: The properties of a transaction.
+     * Get the innerProperties property: The properties of a(n) Transaction.
      *
      * @return the innerProperties value.
      */
@@ -35,25 +42,210 @@ public final class TransactionInner extends ProxyResource {
     }
 
     /**
-     * Get the kind property: The kind of transaction. Options are all or reservation.
+     * Get the azureCreditApplied property: The amount.
      *
-     * @return the kind value.
+     * @return the azureCreditApplied value.
      */
-    public TransactionTypeKind kind() {
-        return this.innerProperties() == null ? null : this.innerProperties().kind();
+    public TransactionPropertiesAzureCreditApplied azureCreditApplied() {
+        return this.innerProperties() == null ? null : this.innerProperties().azureCreditApplied();
     }
 
     /**
-     * Set the kind property: The kind of transaction. Options are all or reservation.
+     * Set the azureCreditApplied property: The amount.
      *
-     * @param kind the kind value to set.
+     * @param azureCreditApplied the azureCreditApplied value to set.
      * @return the TransactionInner object itself.
      */
-    public TransactionInner withKind(TransactionTypeKind kind) {
+    public TransactionInner withAzureCreditApplied(TransactionPropertiesAzureCreditApplied azureCreditApplied) {
         if (this.innerProperties() == null) {
             this.innerProperties = new TransactionProperties();
         }
-        this.innerProperties().withKind(kind);
+        this.innerProperties().withAzureCreditApplied(azureCreditApplied);
+        return this;
+    }
+
+    /**
+     * Get the azurePlan property: Details of the Azure plan.
+     *
+     * @return the azurePlan value.
+     */
+    public String azurePlan() {
+        return this.innerProperties() == null ? null : this.innerProperties().azurePlan();
+    }
+
+    /**
+     * Set the azurePlan property: Details of the Azure plan.
+     *
+     * @param azurePlan the azurePlan value to set.
+     * @return the TransactionInner object itself.
+     */
+    public TransactionInner withAzurePlan(String azurePlan) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new TransactionProperties();
+        }
+        this.innerProperties().withAzurePlan(azurePlan);
+        return this;
+    }
+
+    /**
+     * Get the billingCurrency property: The ISO 4217 code for the currency in which this transaction is billed.
+     *
+     * @return the billingCurrency value.
+     */
+    public String billingCurrency() {
+        return this.innerProperties() == null ? null : this.innerProperties().billingCurrency();
+    }
+
+    /**
+     * Set the billingCurrency property: The ISO 4217 code for the currency in which this transaction is billed.
+     *
+     * @param billingCurrency the billingCurrency value to set.
+     * @return the TransactionInner object itself.
+     */
+    public TransactionInner withBillingCurrency(String billingCurrency) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new TransactionProperties();
+        }
+        this.innerProperties().withBillingCurrency(billingCurrency);
+        return this;
+    }
+
+    /**
+     * Get the billingProfileDisplayName property: The name of the billing profile for the invoice section or customer.
+     *
+     * @return the billingProfileDisplayName value.
+     */
+    public Object billingProfileDisplayName() {
+        return this.innerProperties() == null ? null : this.innerProperties().billingProfileDisplayName();
+    }
+
+    /**
+     * Set the billingProfileDisplayName property: The name of the billing profile for the invoice section or customer.
+     *
+     * @param billingProfileDisplayName the billingProfileDisplayName value to set.
+     * @return the TransactionInner object itself.
+     */
+    public TransactionInner withBillingProfileDisplayName(Object billingProfileDisplayName) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new TransactionProperties();
+        }
+        this.innerProperties().withBillingProfileDisplayName(billingProfileDisplayName);
+        return this;
+    }
+
+    /**
+     * Get the billingProfileId property: The fully qualified ID that uniquely identifies a billing profile.
+     *
+     * @return the billingProfileId value.
+     */
+    public String billingProfileId() {
+        return this.innerProperties() == null ? null : this.innerProperties().billingProfileId();
+    }
+
+    /**
+     * Set the billingProfileId property: The fully qualified ID that uniquely identifies a billing profile.
+     *
+     * @param billingProfileId the billingProfileId value to set.
+     * @return the TransactionInner object itself.
+     */
+    public TransactionInner withBillingProfileId(String billingProfileId) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new TransactionProperties();
+        }
+        this.innerProperties().withBillingProfileId(billingProfileId);
+        return this;
+    }
+
+    /**
+     * Get the consumptionCommitmentDecremented property: The amount.
+     *
+     * @return the consumptionCommitmentDecremented value.
+     */
+    public TransactionPropertiesConsumptionCommitmentDecremented consumptionCommitmentDecremented() {
+        return this.innerProperties() == null ? null : this.innerProperties().consumptionCommitmentDecremented();
+    }
+
+    /**
+     * Set the consumptionCommitmentDecremented property: The amount.
+     *
+     * @param consumptionCommitmentDecremented the consumptionCommitmentDecremented value to set.
+     * @return the TransactionInner object itself.
+     */
+    public TransactionInner withConsumptionCommitmentDecremented(
+        TransactionPropertiesConsumptionCommitmentDecremented consumptionCommitmentDecremented) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new TransactionProperties();
+        }
+        this.innerProperties().withConsumptionCommitmentDecremented(consumptionCommitmentDecremented);
+        return this;
+    }
+
+    /**
+     * Get the customerDisplayName property: The name of the customer.
+     *
+     * @return the customerDisplayName value.
+     */
+    public String customerDisplayName() {
+        return this.innerProperties() == null ? null : this.innerProperties().customerDisplayName();
+    }
+
+    /**
+     * Set the customerDisplayName property: The name of the customer.
+     *
+     * @param customerDisplayName the customerDisplayName value to set.
+     * @return the TransactionInner object itself.
+     */
+    public TransactionInner withCustomerDisplayName(String customerDisplayName) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new TransactionProperties();
+        }
+        this.innerProperties().withCustomerDisplayName(customerDisplayName);
+        return this;
+    }
+
+    /**
+     * Get the customerId property: The fully qualified ID that uniquely identifies a customer.
+     *
+     * @return the customerId value.
+     */
+    public String customerId() {
+        return this.innerProperties() == null ? null : this.innerProperties().customerId();
+    }
+
+    /**
+     * Set the customerId property: The fully qualified ID that uniquely identifies a customer.
+     *
+     * @param customerId the customerId value to set.
+     * @return the TransactionInner object itself.
+     */
+    public TransactionInner withCustomerId(String customerId) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new TransactionProperties();
+        }
+        this.innerProperties().withCustomerId(customerId);
+        return this;
+    }
+
+    /**
+     * Get the creditType property: The credit type of the transaction. Applies only to credited transactions.
+     *
+     * @return the creditType value.
+     */
+    public CreditType creditType() {
+        return this.innerProperties() == null ? null : this.innerProperties().creditType();
+    }
+
+    /**
+     * Set the creditType property: The credit type of the transaction. Applies only to credited transactions.
+     *
+     * @param creditType the creditType value to set.
+     * @return the TransactionInner object itself.
+     */
+    public TransactionInner withCreditType(CreditType creditType) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new TransactionProperties();
+        }
+        this.innerProperties().withCreditType(creditType);
         return this;
     }
 
@@ -62,8 +254,93 @@ public final class TransactionInner extends ProxyResource {
      *
      * @return the date value.
      */
-    public OffsetDateTime date() {
+    public String date() {
         return this.innerProperties() == null ? null : this.innerProperties().date();
+    }
+
+    /**
+     * Set the date property: The date of transaction.
+     *
+     * @param date the date value to set.
+     * @return the TransactionInner object itself.
+     */
+    public TransactionInner withDate(String date) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new TransactionProperties();
+        }
+        this.innerProperties().withDate(date);
+        return this;
+    }
+
+    /**
+     * Get the discount property: The percentage discount, if any, applied to this transaction.
+     *
+     * @return the discount value.
+     */
+    public Double discount() {
+        return this.innerProperties() == null ? null : this.innerProperties().discount();
+    }
+
+    /**
+     * Set the discount property: The percentage discount, if any, applied to this transaction.
+     *
+     * @param discount the discount value to set.
+     * @return the TransactionInner object itself.
+     */
+    public TransactionInner withDiscount(Double discount) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new TransactionProperties();
+        }
+        this.innerProperties().withDiscount(discount);
+        return this;
+    }
+
+    /**
+     * Get the effectivePrice property: The amount.
+     *
+     * @return the effectivePrice value.
+     */
+    public TransactionPropertiesEffectivePrice effectivePrice() {
+        return this.innerProperties() == null ? null : this.innerProperties().effectivePrice();
+    }
+
+    /**
+     * Set the effectivePrice property: The amount.
+     *
+     * @param effectivePrice the effectivePrice value to set.
+     * @return the TransactionInner object itself.
+     */
+    public TransactionInner withEffectivePrice(TransactionPropertiesEffectivePrice effectivePrice) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new TransactionProperties();
+        }
+        this.innerProperties().withEffectivePrice(effectivePrice);
+        return this;
+    }
+
+    /**
+     * Get the exchangeRate property: The exchange rate used to convert charged amount to billing currency, if
+     * applicable.
+     *
+     * @return the exchangeRate value.
+     */
+    public Double exchangeRate() {
+        return this.innerProperties() == null ? null : this.innerProperties().exchangeRate();
+    }
+
+    /**
+     * Set the exchangeRate property: The exchange rate used to convert charged amount to billing currency, if
+     * applicable.
+     *
+     * @param exchangeRate the exchangeRate value to set.
+     * @return the TransactionInner object itself.
+     */
+    public TransactionInner withExchangeRate(Double exchangeRate) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new TransactionProperties();
+        }
+        this.innerProperties().withExchangeRate(exchangeRate);
+        return this;
     }
 
     /**
@@ -77,6 +354,21 @@ public final class TransactionInner extends ProxyResource {
     }
 
     /**
+     * Set the invoice property: Invoice on which the transaction was billed or 'pending' if the transaction is not
+     * billed.
+     *
+     * @param invoice the invoice value to set.
+     * @return the TransactionInner object itself.
+     */
+    public TransactionInner withInvoice(String invoice) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new TransactionProperties();
+        }
+        this.innerProperties().withInvoice(invoice);
+        return this;
+    }
+
+    /**
      * Get the invoiceId property: The ID of the invoice on which the transaction was billed. This field is only
      * applicable for transactions which are billed.
      *
@@ -87,114 +379,22 @@ public final class TransactionInner extends ProxyResource {
     }
 
     /**
-     * Get the orderId property: The order ID of the reservation. The field is only applicable for transaction of kind
-     * reservation.
+     * Set the invoiceId property: The ID of the invoice on which the transaction was billed. This field is only
+     * applicable for transactions which are billed.
      *
-     * @return the orderId value.
-     */
-    public String orderId() {
-        return this.innerProperties() == null ? null : this.innerProperties().orderId();
-    }
-
-    /**
-     * Get the orderName property: The name of the reservation order. The field is only applicable for transactions of
-     * kind reservation.
-     *
-     * @return the orderName value.
-     */
-    public String orderName() {
-        return this.innerProperties() == null ? null : this.innerProperties().orderName();
-    }
-
-    /**
-     * Get the productFamily property: The family of the product for which the transaction took place.
-     *
-     * @return the productFamily value.
-     */
-    public String productFamily() {
-        return this.innerProperties() == null ? null : this.innerProperties().productFamily();
-    }
-
-    /**
-     * Get the productTypeId property: The ID of the product type for which the transaction took place.
-     *
-     * @return the productTypeId value.
-     */
-    public String productTypeId() {
-        return this.innerProperties() == null ? null : this.innerProperties().productTypeId();
-    }
-
-    /**
-     * Get the productType property: The type of the product for which the transaction took place.
-     *
-     * @return the productType value.
-     */
-    public String productType() {
-        return this.innerProperties() == null ? null : this.innerProperties().productType();
-    }
-
-    /**
-     * Get the productDescription property: The description of the product for which the transaction took place.
-     *
-     * @return the productDescription value.
-     */
-    public String productDescription() {
-        return this.innerProperties() == null ? null : this.innerProperties().productDescription();
-    }
-
-    /**
-     * Get the transactionType property: The type of transaction.
-     *
-     * @return the transactionType value.
-     */
-    public ReservationType transactionType() {
-        return this.innerProperties() == null ? null : this.innerProperties().transactionType();
-    }
-
-    /**
-     * Set the transactionType property: The type of transaction.
-     *
-     * @param transactionType the transactionType value to set.
+     * @param invoiceId the invoiceId value to set.
      * @return the TransactionInner object itself.
      */
-    public TransactionInner withTransactionType(ReservationType transactionType) {
+    public TransactionInner withInvoiceId(String invoiceId) {
         if (this.innerProperties() == null) {
             this.innerProperties = new TransactionProperties();
         }
-        this.innerProperties().withTransactionType(transactionType);
+        this.innerProperties().withInvoiceId(invoiceId);
         return this;
     }
 
     /**
-     * Get the transactionAmount property: The charge associated with the transaction.
-     *
-     * @return the transactionAmount value.
-     */
-    public Amount transactionAmount() {
-        return this.innerProperties() == null ? null : this.innerProperties().transactionAmount();
-    }
-
-    /**
-     * Get the quantity property: The quantity purchased in the transaction.
-     *
-     * @return the quantity value.
-     */
-    public Integer quantity() {
-        return this.innerProperties() == null ? null : this.innerProperties().quantity();
-    }
-
-    /**
-     * Get the invoiceSectionId property: The ID of the invoice section which will be billed for the transaction.
-     *
-     * @return the invoiceSectionId value.
-     */
-    public String invoiceSectionId() {
-        return this.innerProperties() == null ? null : this.innerProperties().invoiceSectionId();
-    }
-
-    /**
-     * Get the invoiceSectionDisplayName property: The name of the invoice section which will be billed for the
-     * transaction.
+     * Get the invoiceSectionDisplayName property: The name of the invoice section.
      *
      * @return the invoiceSectionDisplayName value.
      */
@@ -203,126 +403,134 @@ public final class TransactionInner extends ProxyResource {
     }
 
     /**
-     * Get the billingProfileId property: The ID of the billing profile which will be billed for the transaction.
+     * Set the invoiceSectionDisplayName property: The name of the invoice section.
      *
-     * @return the billingProfileId value.
+     * @param invoiceSectionDisplayName the invoiceSectionDisplayName value to set.
+     * @return the TransactionInner object itself.
      */
-    public String billingProfileId() {
-        return this.innerProperties() == null ? null : this.innerProperties().billingProfileId();
+    public TransactionInner withInvoiceSectionDisplayName(String invoiceSectionDisplayName) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new TransactionProperties();
+        }
+        this.innerProperties().withInvoiceSectionDisplayName(invoiceSectionDisplayName);
+        return this;
     }
 
     /**
-     * Get the billingProfileDisplayName property: The name of the billing profile which will be billed for the
-     * transaction.
+     * Get the invoiceSectionId property: The fully qualified ID that uniquely identifies an invoice section.
      *
-     * @return the billingProfileDisplayName value.
+     * @return the invoiceSectionId value.
      */
-    public String billingProfileDisplayName() {
-        return this.innerProperties() == null ? null : this.innerProperties().billingProfileDisplayName();
+    public String invoiceSectionId() {
+        return this.innerProperties() == null ? null : this.innerProperties().invoiceSectionId();
     }
 
     /**
-     * Get the customerId property: The ID of the customer for which the transaction took place. The field is applicable
-     * only for Microsoft Partner Agreement billing account.
+     * Set the invoiceSectionId property: The fully qualified ID that uniquely identifies an invoice section.
      *
-     * @return the customerId value.
+     * @param invoiceSectionId the invoiceSectionId value to set.
+     * @return the TransactionInner object itself.
      */
-    public String customerId() {
-        return this.innerProperties() == null ? null : this.innerProperties().customerId();
+    public TransactionInner withInvoiceSectionId(String invoiceSectionId) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new TransactionProperties();
+        }
+        this.innerProperties().withInvoiceSectionId(invoiceSectionId);
+        return this;
     }
 
     /**
-     * Get the customerDisplayName property: The name of the customer for which the transaction took place. The field is
-     * applicable only for Microsoft Partner Agreement billing account.
+     * Get the isThirdParty property: Whether or not the transaction is third party.
      *
-     * @return the customerDisplayName value.
+     * @return the isThirdParty value.
      */
-    public String customerDisplayName() {
-        return this.innerProperties() == null ? null : this.innerProperties().customerDisplayName();
+    public Boolean isThirdParty() {
+        return this.innerProperties() == null ? null : this.innerProperties().isThirdParty();
     }
 
     /**
-     * Get the subscriptionId property: The ID of the subscription that was used for the transaction. The field is only
-     * applicable for transaction of kind reservation.
+     * Set the isThirdParty property: Whether or not the transaction is third party.
      *
-     * @return the subscriptionId value.
+     * @param isThirdParty the isThirdParty value to set.
+     * @return the TransactionInner object itself.
      */
-    public String subscriptionId() {
-        return this.innerProperties() == null ? null : this.innerProperties().subscriptionId();
+    public TransactionInner withIsThirdParty(Boolean isThirdParty) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new TransactionProperties();
+        }
+        this.innerProperties().withIsThirdParty(isThirdParty);
+        return this;
     }
 
     /**
-     * Get the subscriptionName property: The name of the subscription that was used for the transaction. The field is
-     * only applicable for transaction of kind reservation.
+     * Get the kind property: Type of the transaction, billed or unbilled.
      *
-     * @return the subscriptionName value.
+     * @return the kind value.
      */
-    public String subscriptionName() {
-        return this.innerProperties() == null ? null : this.innerProperties().subscriptionName();
+    public TransactionKind kind() {
+        return this.innerProperties() == null ? null : this.innerProperties().kind();
     }
 
     /**
-     * Get the azurePlan property: The type of azure plan of the subscription that was used for the transaction.
+     * Set the kind property: Type of the transaction, billed or unbilled.
      *
-     * @return the azurePlan value.
+     * @param kind the kind value to set.
+     * @return the TransactionInner object itself.
      */
-    public String azurePlan() {
-        return this.innerProperties() == null ? null : this.innerProperties().azurePlan();
+    public TransactionInner withKind(TransactionKind kind) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new TransactionProperties();
+        }
+        this.innerProperties().withKind(kind);
+        return this;
     }
 
     /**
-     * Get the azureCreditApplied property: The amount of any Azure credits automatically applied to this transaction.
-     *
-     * @return the azureCreditApplied value.
-     */
-    public Amount azureCreditApplied() {
-        return this.innerProperties() == null ? null : this.innerProperties().azureCreditApplied();
-    }
-
-    /**
-     * Get the billingCurrency property: The ISO 4217 code for the currency in which this transaction is billed.
-     *
-     * @return the billingCurrency value.
-     */
-    public String billingCurrency() {
-        return this.innerProperties() == null ? null : this.innerProperties().billingCurrency();
-    }
-
-    /**
-     * Get the discount property: The percentage discount, if any, applied to this transaction.
-     *
-     * @return the discount value.
-     */
-    public Float discount() {
-        return this.innerProperties() == null ? null : this.innerProperties().discount();
-    }
-
-    /**
-     * Get the effectivePrice property: The price of the product after applying any discounts.
-     *
-     * @return the effectivePrice value.
-     */
-    public Amount effectivePrice() {
-        return this.innerProperties() == null ? null : this.innerProperties().effectivePrice();
-    }
-
-    /**
-     * Get the exchangeRate property: The exchange rate used to convert charged amount to billing currency, if
-     * applicable.
-     *
-     * @return the exchangeRate value.
-     */
-    public Float exchangeRate() {
-        return this.innerProperties() == null ? null : this.innerProperties().exchangeRate();
-    }
-
-    /**
-     * Get the marketPrice property: The retail price of the product.
+     * Get the marketPrice property: The amount.
      *
      * @return the marketPrice value.
      */
-    public Amount marketPrice() {
+    public TransactionPropertiesMarketPrice marketPrice() {
         return this.innerProperties() == null ? null : this.innerProperties().marketPrice();
+    }
+
+    /**
+     * Set the marketPrice property: The amount.
+     *
+     * @param marketPrice the marketPrice value to set.
+     * @return the TransactionInner object itself.
+     */
+    public TransactionInner withMarketPrice(TransactionPropertiesMarketPrice marketPrice) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new TransactionProperties();
+        }
+        this.innerProperties().withMarketPrice(marketPrice);
+        return this;
+    }
+
+    /**
+     * Get the partNumber property: The part number of the product for which the transaction took place. The field is
+     * only applicable for Enterprise Agreement invoices.
+     *
+     * @return the partNumber value.
+     */
+    public String partNumber() {
+        return this.innerProperties() == null ? null : this.innerProperties().partNumber();
+    }
+
+    /**
+     * Set the partNumber property: The part number of the product for which the transaction took place. The field is
+     * only applicable for Enterprise Agreement invoices.
+     *
+     * @param partNumber the partNumber value to set.
+     * @return the TransactionInner object itself.
+     */
+    public TransactionInner withPartNumber(String partNumber) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new TransactionProperties();
+        }
+        this.innerProperties().withPartNumber(partNumber);
+        return this;
     }
 
     /**
@@ -335,13 +543,180 @@ public final class TransactionInner extends ProxyResource {
     }
 
     /**
+     * Set the pricingCurrency property: The ISO 4217 code for the currency in which the product is priced.
+     *
+     * @param pricingCurrency the pricingCurrency value to set.
+     * @return the TransactionInner object itself.
+     */
+    public TransactionInner withPricingCurrency(String pricingCurrency) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new TransactionProperties();
+        }
+        this.innerProperties().withPricingCurrency(pricingCurrency);
+        return this;
+    }
+
+    /**
+     * Get the productDescription property: The description of the product for which the transaction took place.
+     *
+     * @return the productDescription value.
+     */
+    public String productDescription() {
+        return this.innerProperties() == null ? null : this.innerProperties().productDescription();
+    }
+
+    /**
+     * Set the productDescription property: The description of the product for which the transaction took place.
+     *
+     * @param productDescription the productDescription value to set.
+     * @return the TransactionInner object itself.
+     */
+    public TransactionInner withProductDescription(String productDescription) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new TransactionProperties();
+        }
+        this.innerProperties().withProductDescription(productDescription);
+        return this;
+    }
+
+    /**
+     * Get the productFamily property: The family of the product for which the transaction took place.
+     *
+     * @return the productFamily value.
+     */
+    public String productFamily() {
+        return this.innerProperties() == null ? null : this.innerProperties().productFamily();
+    }
+
+    /**
+     * Set the productFamily property: The family of the product for which the transaction took place.
+     *
+     * @param productFamily the productFamily value to set.
+     * @return the TransactionInner object itself.
+     */
+    public TransactionInner withProductFamily(String productFamily) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new TransactionProperties();
+        }
+        this.innerProperties().withProductFamily(productFamily);
+        return this;
+    }
+
+    /**
+     * Get the productTypeId property: The ID of the product type for which the transaction took place.
+     *
+     * @return the productTypeId value.
+     */
+    public String productTypeId() {
+        return this.innerProperties() == null ? null : this.innerProperties().productTypeId();
+    }
+
+    /**
+     * Set the productTypeId property: The ID of the product type for which the transaction took place.
+     *
+     * @param productTypeId the productTypeId value to set.
+     * @return the TransactionInner object itself.
+     */
+    public TransactionInner withProductTypeId(String productTypeId) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new TransactionProperties();
+        }
+        this.innerProperties().withProductTypeId(productTypeId);
+        return this;
+    }
+
+    /**
+     * Get the productType property: The type of the product for which the transaction took place.
+     *
+     * @return the productType value.
+     */
+    public String productType() {
+        return this.innerProperties() == null ? null : this.innerProperties().productType();
+    }
+
+    /**
+     * Set the productType property: The type of the product for which the transaction took place.
+     *
+     * @param productType the productType value to set.
+     * @return the TransactionInner object itself.
+     */
+    public TransactionInner withProductType(String productType) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new TransactionProperties();
+        }
+        this.innerProperties().withProductType(productType);
+        return this;
+    }
+
+    /**
+     * Get the quantity property: The quantity purchased in the transaction.
+     *
+     * @return the quantity value.
+     */
+    public Integer quantity() {
+        return this.innerProperties() == null ? null : this.innerProperties().quantity();
+    }
+
+    /**
+     * Set the quantity property: The quantity purchased in the transaction.
+     *
+     * @param quantity the quantity value to set.
+     * @return the TransactionInner object itself.
+     */
+    public TransactionInner withQuantity(Integer quantity) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new TransactionProperties();
+        }
+        this.innerProperties().withQuantity(quantity);
+        return this;
+    }
+
+    /**
+     * Get the reasonCode property: There reason code for the transaction.
+     *
+     * @return the reasonCode value.
+     */
+    public String reasonCode() {
+        return this.innerProperties() == null ? null : this.innerProperties().reasonCode();
+    }
+
+    /**
+     * Set the reasonCode property: There reason code for the transaction.
+     *
+     * @param reasonCode the reasonCode value to set.
+     * @return the TransactionInner object itself.
+     */
+    public TransactionInner withReasonCode(String reasonCode) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new TransactionProperties();
+        }
+        this.innerProperties().withReasonCode(reasonCode);
+        return this;
+    }
+
+    /**
      * Get the servicePeriodStartDate property: The date of the purchase of the product, or the start date of the month
      * in which usage started.
      *
      * @return the servicePeriodStartDate value.
      */
-    public OffsetDateTime servicePeriodStartDate() {
+    public String servicePeriodStartDate() {
         return this.innerProperties() == null ? null : this.innerProperties().servicePeriodStartDate();
+    }
+
+    /**
+     * Set the servicePeriodStartDate property: The date of the purchase of the product, or the start date of the month
+     * in which usage started.
+     *
+     * @param servicePeriodStartDate the servicePeriodStartDate value to set.
+     * @return the TransactionInner object itself.
+     */
+    public TransactionInner withServicePeriodStartDate(String servicePeriodStartDate) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new TransactionProperties();
+        }
+        this.innerProperties().withServicePeriodStartDate(servicePeriodStartDate);
+        return this;
     }
 
     /**
@@ -350,26 +725,138 @@ public final class TransactionInner extends ProxyResource {
      *
      * @return the servicePeriodEndDate value.
      */
-    public OffsetDateTime servicePeriodEndDate() {
+    public String servicePeriodEndDate() {
         return this.innerProperties() == null ? null : this.innerProperties().servicePeriodEndDate();
     }
 
     /**
-     * Get the subTotal property: The pre-tax charged amount for the transaction.
+     * Set the servicePeriodEndDate property: The end date of the product term, or the end date of the month in which
+     * usage ended.
+     *
+     * @param servicePeriodEndDate the servicePeriodEndDate value to set.
+     * @return the TransactionInner object itself.
+     */
+    public TransactionInner withServicePeriodEndDate(String servicePeriodEndDate) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new TransactionProperties();
+        }
+        this.innerProperties().withServicePeriodEndDate(servicePeriodEndDate);
+        return this;
+    }
+
+    /**
+     * Get the subTotal property: The amount.
      *
      * @return the subTotal value.
      */
-    public Amount subTotal() {
+    public TransactionPropertiesSubTotal subTotal() {
         return this.innerProperties() == null ? null : this.innerProperties().subTotal();
     }
 
     /**
-     * Get the tax property: The tax amount applied to the transaction.
+     * Set the subTotal property: The amount.
+     *
+     * @param subTotal the subTotal value to set.
+     * @return the TransactionInner object itself.
+     */
+    public TransactionInner withSubTotal(TransactionPropertiesSubTotal subTotal) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new TransactionProperties();
+        }
+        this.innerProperties().withSubTotal(subTotal);
+        return this;
+    }
+
+    /**
+     * Get the tax property: The amount.
      *
      * @return the tax value.
      */
-    public Amount tax() {
+    public TransactionPropertiesTax tax() {
         return this.innerProperties() == null ? null : this.innerProperties().tax();
+    }
+
+    /**
+     * Set the tax property: The amount.
+     *
+     * @param tax the tax value to set.
+     * @return the TransactionInner object itself.
+     */
+    public TransactionInner withTax(TransactionPropertiesTax tax) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new TransactionProperties();
+        }
+        this.innerProperties().withTax(tax);
+        return this;
+    }
+
+    /**
+     * Get the transactionAmount property: The amount.
+     *
+     * @return the transactionAmount value.
+     */
+    public TransactionPropertiesTransactionAmount transactionAmount() {
+        return this.innerProperties() == null ? null : this.innerProperties().transactionAmount();
+    }
+
+    /**
+     * Set the transactionAmount property: The amount.
+     *
+     * @param transactionAmount the transactionAmount value to set.
+     * @return the TransactionInner object itself.
+     */
+    public TransactionInner withTransactionAmount(TransactionPropertiesTransactionAmount transactionAmount) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new TransactionProperties();
+        }
+        this.innerProperties().withTransactionAmount(transactionAmount);
+        return this;
+    }
+
+    /**
+     * Get the transactionType property: The type of transaction.
+     *
+     * @return the transactionType value.
+     */
+    public String transactionType() {
+        return this.innerProperties() == null ? null : this.innerProperties().transactionType();
+    }
+
+    /**
+     * Set the transactionType property: The type of transaction.
+     *
+     * @param transactionType the transactionType value to set.
+     * @return the TransactionInner object itself.
+     */
+    public TransactionInner withTransactionType(String transactionType) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new TransactionProperties();
+        }
+        this.innerProperties().withTransactionType(transactionType);
+        return this;
+    }
+
+    /**
+     * Get the units property: The number of units used for a given product.
+     *
+     * @return the units value.
+     */
+    public Double units() {
+        return this.innerProperties() == null ? null : this.innerProperties().units();
+    }
+
+    /**
+     * Set the units property: The number of units used for a given product.
+     *
+     * @param units the units value to set.
+     * @return the TransactionInner object itself.
+     */
+    public TransactionInner withUnits(Double units) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new TransactionProperties();
+        }
+        this.innerProperties().withUnits(units);
+        return this;
     }
 
     /**
@@ -383,12 +870,18 @@ public final class TransactionInner extends ProxyResource {
     }
 
     /**
-     * Get the units property: The number of units used for a given product.
+     * Set the unitOfMeasure property: The unit of measure used to bill for the product. For example, compute services
+     * are billed per hour.
      *
-     * @return the units value.
+     * @param unitOfMeasure the unitOfMeasure value to set.
+     * @return the TransactionInner object itself.
      */
-    public Float units() {
-        return this.innerProperties() == null ? null : this.innerProperties().units();
+    public TransactionInner withUnitOfMeasure(String unitOfMeasure) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new TransactionProperties();
+        }
+        this.innerProperties().withUnitOfMeasure(unitOfMeasure);
+        return this;
     }
 
     /**
@@ -401,11 +894,76 @@ public final class TransactionInner extends ProxyResource {
     }
 
     /**
+     * Set the unitType property: The description for the unit of measure for a given product.
+     *
+     * @param unitType the unitType value to set.
+     * @return the TransactionInner object itself.
+     */
+    public TransactionInner withUnitType(String unitType) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new TransactionProperties();
+        }
+        this.innerProperties().withUnitType(unitType);
+        return this;
+    }
+
+    /**
+     * Get the specialTaxationType property: Identifies the type of tax calculation used for the invoice. The field is
+     * applicable only to invoices with special tax calculation logic.
+     *
+     * @return the specialTaxationType value.
+     */
+    public SpecialTaxationType specialTaxationType() {
+        return this.innerProperties() == null ? null : this.innerProperties().specialTaxationType();
+    }
+
+    /**
+     * Set the specialTaxationType property: Identifies the type of tax calculation used for the invoice. The field is
+     * applicable only to invoices with special tax calculation logic.
+     *
+     * @param specialTaxationType the specialTaxationType value to set.
+     * @return the TransactionInner object itself.
+     */
+    public TransactionInner withSpecialTaxationType(SpecialTaxationType specialTaxationType) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new TransactionProperties();
+        }
+        this.innerProperties().withSpecialTaxationType(specialTaxationType);
+        return this;
+    }
+
+    /**
+     * Get the refundTransactionDetails property: The refund details of a transaction.
+     *
+     * @return the refundTransactionDetails value.
+     */
+    public TransactionPropertiesRefundTransactionDetails refundTransactionDetails() {
+        return this.innerProperties() == null ? null : this.innerProperties().refundTransactionDetails();
+    }
+
+    /**
+     * Set the refundTransactionDetails property: The refund details of a transaction.
+     *
+     * @param refundTransactionDetails the refundTransactionDetails value to set.
+     * @return the TransactionInner object itself.
+     */
+    public TransactionInner withRefundTransactionDetails(
+        TransactionPropertiesRefundTransactionDetails refundTransactionDetails) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new TransactionProperties();
+        }
+        this.innerProperties().withRefundTransactionDetails(refundTransactionDetails);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
+    @Override
     public void validate() {
+        super.validate();
         if (innerProperties() != null) {
             innerProperties().validate();
         }

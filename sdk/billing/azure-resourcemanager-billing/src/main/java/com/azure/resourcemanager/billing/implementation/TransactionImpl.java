@@ -4,12 +4,20 @@
 
 package com.azure.resourcemanager.billing.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.billing.fluent.models.TransactionInner;
-import com.azure.resourcemanager.billing.models.Amount;
-import com.azure.resourcemanager.billing.models.ReservationType;
+import com.azure.resourcemanager.billing.models.CreditType;
+import com.azure.resourcemanager.billing.models.SpecialTaxationType;
 import com.azure.resourcemanager.billing.models.Transaction;
-import com.azure.resourcemanager.billing.models.TransactionTypeKind;
-import java.time.OffsetDateTime;
+import com.azure.resourcemanager.billing.models.TransactionKind;
+import com.azure.resourcemanager.billing.models.TransactionPropertiesAzureCreditApplied;
+import com.azure.resourcemanager.billing.models.TransactionPropertiesConsumptionCommitmentDecremented;
+import com.azure.resourcemanager.billing.models.TransactionPropertiesEffectivePrice;
+import com.azure.resourcemanager.billing.models.TransactionPropertiesMarketPrice;
+import com.azure.resourcemanager.billing.models.TransactionPropertiesRefundTransactionDetails;
+import com.azure.resourcemanager.billing.models.TransactionPropertiesSubTotal;
+import com.azure.resourcemanager.billing.models.TransactionPropertiesTax;
+import com.azure.resourcemanager.billing.models.TransactionPropertiesTransactionAmount;
 
 public final class TransactionImpl implements Transaction {
     private TransactionInner innerObject;
@@ -21,6 +29,10 @@ public final class TransactionImpl implements Transaction {
         this.serviceManager = serviceManager;
     }
 
+    public String type() {
+        return this.innerModel().type();
+    }
+
     public String id() {
         return this.innerModel().id();
     }
@@ -29,16 +41,60 @@ public final class TransactionImpl implements Transaction {
         return this.innerModel().name();
     }
 
-    public String type() {
-        return this.innerModel().type();
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
-    public TransactionTypeKind kind() {
-        return this.innerModel().kind();
+    public TransactionPropertiesAzureCreditApplied azureCreditApplied() {
+        return this.innerModel().azureCreditApplied();
     }
 
-    public OffsetDateTime date() {
+    public String azurePlan() {
+        return this.innerModel().azurePlan();
+    }
+
+    public String billingCurrency() {
+        return this.innerModel().billingCurrency();
+    }
+
+    public Object billingProfileDisplayName() {
+        return this.innerModel().billingProfileDisplayName();
+    }
+
+    public String billingProfileId() {
+        return this.innerModel().billingProfileId();
+    }
+
+    public TransactionPropertiesConsumptionCommitmentDecremented consumptionCommitmentDecremented() {
+        return this.innerModel().consumptionCommitmentDecremented();
+    }
+
+    public String customerDisplayName() {
+        return this.innerModel().customerDisplayName();
+    }
+
+    public String customerId() {
+        return this.innerModel().customerId();
+    }
+
+    public CreditType creditType() {
+        return this.innerModel().creditType();
+    }
+
+    public String date() {
         return this.innerModel().date();
+    }
+
+    public Double discount() {
+        return this.innerModel().discount();
+    }
+
+    public TransactionPropertiesEffectivePrice effectivePrice() {
+        return this.innerModel().effectivePrice();
+    }
+
+    public Double exchangeRate() {
+        return this.innerModel().exchangeRate();
     }
 
     public String invoice() {
@@ -49,12 +105,36 @@ public final class TransactionImpl implements Transaction {
         return this.innerModel().invoiceId();
     }
 
-    public String orderId() {
-        return this.innerModel().orderId();
+    public String invoiceSectionDisplayName() {
+        return this.innerModel().invoiceSectionDisplayName();
     }
 
-    public String orderName() {
-        return this.innerModel().orderName();
+    public String invoiceSectionId() {
+        return this.innerModel().invoiceSectionId();
+    }
+
+    public Boolean isThirdParty() {
+        return this.innerModel().isThirdParty();
+    }
+
+    public TransactionKind kind() {
+        return this.innerModel().kind();
+    }
+
+    public TransactionPropertiesMarketPrice marketPrice() {
+        return this.innerModel().marketPrice();
+    }
+
+    public String partNumber() {
+        return this.innerModel().partNumber();
+    }
+
+    public String pricingCurrency() {
+        return this.innerModel().pricingCurrency();
+    }
+
+    public String productDescription() {
+        return this.innerModel().productDescription();
     }
 
     public String productFamily() {
@@ -69,112 +149,56 @@ public final class TransactionImpl implements Transaction {
         return this.innerModel().productType();
     }
 
-    public String productDescription() {
-        return this.innerModel().productDescription();
-    }
-
-    public ReservationType transactionType() {
-        return this.innerModel().transactionType();
-    }
-
-    public Amount transactionAmount() {
-        return this.innerModel().transactionAmount();
-    }
-
     public Integer quantity() {
         return this.innerModel().quantity();
     }
 
-    public String invoiceSectionId() {
-        return this.innerModel().invoiceSectionId();
+    public String reasonCode() {
+        return this.innerModel().reasonCode();
     }
 
-    public String invoiceSectionDisplayName() {
-        return this.innerModel().invoiceSectionDisplayName();
-    }
-
-    public String billingProfileId() {
-        return this.innerModel().billingProfileId();
-    }
-
-    public String billingProfileDisplayName() {
-        return this.innerModel().billingProfileDisplayName();
-    }
-
-    public String customerId() {
-        return this.innerModel().customerId();
-    }
-
-    public String customerDisplayName() {
-        return this.innerModel().customerDisplayName();
-    }
-
-    public String subscriptionId() {
-        return this.innerModel().subscriptionId();
-    }
-
-    public String subscriptionName() {
-        return this.innerModel().subscriptionName();
-    }
-
-    public String azurePlan() {
-        return this.innerModel().azurePlan();
-    }
-
-    public Amount azureCreditApplied() {
-        return this.innerModel().azureCreditApplied();
-    }
-
-    public String billingCurrency() {
-        return this.innerModel().billingCurrency();
-    }
-
-    public Float discount() {
-        return this.innerModel().discount();
-    }
-
-    public Amount effectivePrice() {
-        return this.innerModel().effectivePrice();
-    }
-
-    public Float exchangeRate() {
-        return this.innerModel().exchangeRate();
-    }
-
-    public Amount marketPrice() {
-        return this.innerModel().marketPrice();
-    }
-
-    public String pricingCurrency() {
-        return this.innerModel().pricingCurrency();
-    }
-
-    public OffsetDateTime servicePeriodStartDate() {
+    public String servicePeriodStartDate() {
         return this.innerModel().servicePeriodStartDate();
     }
 
-    public OffsetDateTime servicePeriodEndDate() {
+    public String servicePeriodEndDate() {
         return this.innerModel().servicePeriodEndDate();
     }
 
-    public Amount subTotal() {
+    public TransactionPropertiesSubTotal subTotal() {
         return this.innerModel().subTotal();
     }
 
-    public Amount tax() {
+    public TransactionPropertiesTax tax() {
         return this.innerModel().tax();
+    }
+
+    public TransactionPropertiesTransactionAmount transactionAmount() {
+        return this.innerModel().transactionAmount();
+    }
+
+    public String transactionType() {
+        return this.innerModel().transactionType();
+    }
+
+    public Double units() {
+        return this.innerModel().units();
     }
 
     public String unitOfMeasure() {
         return this.innerModel().unitOfMeasure();
     }
 
-    public Float units() {
-        return this.innerModel().units();
-    }
-
     public String unitType() {
         return this.innerModel().unitType();
+    }
+
+    public SpecialTaxationType specialTaxationType() {
+        return this.innerModel().specialTaxationType();
+    }
+
+    public TransactionPropertiesRefundTransactionDetails refundTransactionDetails() {
+        return this.innerModel().refundTransactionDetails();
     }
 
     public TransactionInner innerModel() {

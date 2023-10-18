@@ -25,19 +25,6 @@ public final class BillingPermissionsImpl implements BillingPermissions {
         this.serviceManager = serviceManager;
     }
 
-    public PagedIterable<BillingPermissionsProperties> listByCustomer(String billingAccountName, String customerName) {
-        PagedIterable<BillingPermissionsPropertiesInner> inner =
-            this.serviceClient().listByCustomer(billingAccountName, customerName);
-        return Utils.mapPage(inner, inner1 -> new BillingPermissionsPropertiesImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<BillingPermissionsProperties> listByCustomer(
-        String billingAccountName, String customerName, Context context) {
-        PagedIterable<BillingPermissionsPropertiesInner> inner =
-            this.serviceClient().listByCustomer(billingAccountName, customerName, context);
-        return Utils.mapPage(inner, inner1 -> new BillingPermissionsPropertiesImpl(inner1, this.manager()));
-    }
-
     public PagedIterable<BillingPermissionsProperties> listByBillingAccount(String billingAccountName) {
         PagedIterable<BillingPermissionsPropertiesInner> inner =
             this.serviceClient().listByBillingAccount(billingAccountName);
@@ -48,6 +35,20 @@ public final class BillingPermissionsImpl implements BillingPermissions {
         String billingAccountName, Context context) {
         PagedIterable<BillingPermissionsPropertiesInner> inner =
             this.serviceClient().listByBillingAccount(billingAccountName, context);
+        return Utils.mapPage(inner, inner1 -> new BillingPermissionsPropertiesImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<BillingPermissionsProperties> listByBillingProfile(
+        String billingAccountName, String billingProfileName) {
+        PagedIterable<BillingPermissionsPropertiesInner> inner =
+            this.serviceClient().listByBillingProfile(billingAccountName, billingProfileName);
+        return Utils.mapPage(inner, inner1 -> new BillingPermissionsPropertiesImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<BillingPermissionsProperties> listByBillingProfile(
+        String billingAccountName, String billingProfileName, Context context) {
+        PagedIterable<BillingPermissionsPropertiesInner> inner =
+            this.serviceClient().listByBillingProfile(billingAccountName, billingProfileName, context);
         return Utils.mapPage(inner, inner1 -> new BillingPermissionsPropertiesImpl(inner1, this.manager()));
     }
 
@@ -67,17 +68,16 @@ public final class BillingPermissionsImpl implements BillingPermissions {
         return Utils.mapPage(inner, inner1 -> new BillingPermissionsPropertiesImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<BillingPermissionsProperties> listByBillingProfile(
-        String billingAccountName, String billingProfileName) {
+    public PagedIterable<BillingPermissionsProperties> listByCustomer(String billingAccountName, String customerName) {
         PagedIterable<BillingPermissionsPropertiesInner> inner =
-            this.serviceClient().listByBillingProfile(billingAccountName, billingProfileName);
+            this.serviceClient().listByCustomer(billingAccountName, customerName);
         return Utils.mapPage(inner, inner1 -> new BillingPermissionsPropertiesImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<BillingPermissionsProperties> listByBillingProfile(
-        String billingAccountName, String billingProfileName, Context context) {
+    public PagedIterable<BillingPermissionsProperties> listByCustomer(
+        String billingAccountName, String customerName, Context context) {
         PagedIterable<BillingPermissionsPropertiesInner> inner =
-            this.serviceClient().listByBillingProfile(billingAccountName, billingProfileName, context);
+            this.serviceClient().listByCustomer(billingAccountName, customerName, context);
         return Utils.mapPage(inner, inner1 -> new BillingPermissionsPropertiesImpl(inner1, this.manager()));
     }
 

@@ -31,10 +31,12 @@ import com.azure.core.util.FluxUtil;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.billing.fluent.InvoicesClient;
-import com.azure.resourcemanager.billing.fluent.models.DownloadUrlInner;
+import com.azure.resourcemanager.billing.fluent.models.DocumentDownloadResultInner;
 import com.azure.resourcemanager.billing.fluent.models.InvoiceInner;
+import com.azure.resourcemanager.billing.models.DocumentDownloadRequest;
 import com.azure.resourcemanager.billing.models.InvoiceListResult;
 import java.nio.ByteBuffer;
+import java.time.LocalDate;
 import java.util.List;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -65,67 +67,23 @@ public final class InvoicesClientImpl implements InvoicesClient {
     @ServiceInterface(name = "BillingManagementCli")
     public interface InvoicesService {
         @Headers({"Content-Type: application/json"})
-        @Get("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/invoices")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<InvoiceListResult>> listByBillingAccount(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("billingAccountName") String billingAccountName,
-            @QueryParam("periodStartDate") String periodStartDate,
-            @QueryParam("periodEndDate") String periodEndDate,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Content-Type: application/json"})
         @Get(
-            "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}"
-                + "/invoices")
+            "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}/invoices")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<InvoiceListResult>> listByBillingProfile(
             @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
             @PathParam("billingAccountName") String billingAccountName,
             @PathParam("billingProfileName") String billingProfileName,
-            @QueryParam("periodStartDate") String periodStartDate,
-            @QueryParam("periodEndDate") String periodEndDate,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Content-Type: application/json"})
-        @Get("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/invoices/{invoiceName}")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<InvoiceInner>> get(
-            @HostParam("$host") String endpoint,
+            @QueryParam("periodStartDate") LocalDate periodStartDate,
+            @QueryParam("periodEndDate") LocalDate periodEndDate,
             @QueryParam("api-version") String apiVersion,
-            @PathParam("billingAccountName") String billingAccountName,
-            @PathParam("invoiceName") String invoiceName,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Content-Type: application/json"})
-        @Get("/providers/Microsoft.Billing/billingAccounts/default/invoices/{invoiceName}")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<InvoiceInner>> getById(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("invoiceName") String invoiceName,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Content-Type: application/json"})
-        @Post("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/invoices/{invoiceName}/download")
-        @ExpectedResponses({200, 202})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> downloadInvoice(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("billingAccountName") String billingAccountName,
-            @PathParam("invoiceName") String invoiceName,
-            @QueryParam("downloadToken") String downloadToken,
+            @QueryParam("filter") String filter,
+            @QueryParam("orderBy") String orderBy,
+            @QueryParam("top") Long top,
+            @QueryParam("skip") Long skip,
+            @QueryParam("count") Boolean count,
+            @QueryParam("search") String search,
             @HeaderParam("Accept") String accept,
             Context context);
 
@@ -133,11 +91,120 @@ public final class InvoicesClientImpl implements InvoicesClient {
         @Post("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/downloadDocuments")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> downloadMultipleBillingProfileInvoices(
+        Mono<Response<Flux<ByteBuffer>>> downloadMultipleByBillingAccount(
             @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
             @PathParam("billingAccountName") String billingAccountName,
-            @BodyParam("application/json") List<String> downloadUrls,
+            @QueryParam("api-version") String apiVersion,
+            @BodyParam("application/json") List<DocumentDownloadRequest> body,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
+        @Post("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/invoices/{invoiceName}/amend")
+        @ExpectedResponses({202, 204})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Flux<ByteBuffer>>> amend(
+            @HostParam("$host") String endpoint,
+            @PathParam("billingAccountName") String billingAccountName,
+            @PathParam("invoiceName") String invoiceName,
+            @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
+        @Post("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/invoices/{invoiceName}/download")
+        @ExpectedResponses({200, 202})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Flux<ByteBuffer>>> downloadByBillingAccount(
+            @HostParam("$host") String endpoint,
+            @PathParam("billingAccountName") String billingAccountName,
+            @PathParam("invoiceName") String invoiceName,
+            @QueryParam("documentName") String documentName,
+            @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
+        @Post(
+            "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/invoices/{invoiceName}/summary/download")
+        @ExpectedResponses({200, 202})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Flux<ByteBuffer>>> downloadSummaryByBillingAccount(
+            @HostParam("$host") String endpoint,
+            @PathParam("billingAccountName") String billingAccountName,
+            @PathParam("invoiceName") String invoiceName,
+            @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
+        @Get("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/invoices/{invoiceName}")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<InvoiceInner>> getByBillingAccount(
+            @HostParam("$host") String endpoint,
+            @PathParam("billingAccountName") String billingAccountName,
+            @PathParam("invoiceName") String invoiceName,
+            @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
+        @Get("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/invoices")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<InvoiceListResult>> listByBillingAccount(
+            @HostParam("$host") String endpoint,
+            @PathParam("billingAccountName") String billingAccountName,
+            @QueryParam("periodStartDate") LocalDate periodStartDate,
+            @QueryParam("periodEndDate") LocalDate periodEndDate,
+            @QueryParam("api-version") String apiVersion,
+            @QueryParam("filter") String filter,
+            @QueryParam("orderBy") String orderBy,
+            @QueryParam("top") Long top,
+            @QueryParam("skip") Long skip,
+            @QueryParam("count") Boolean count,
+            @QueryParam("search") String search,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
+        @Post(
+            "/providers/Microsoft.Billing/billingAccounts/default/billingSubscriptions/{subscriptionId}/downloadDocuments")
+        @ExpectedResponses({200, 202})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Flux<ByteBuffer>>> downloadMultipleByBillingSubscription(
+            @HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @QueryParam("api-version") String apiVersion,
+            @BodyParam("application/json") List<DocumentDownloadRequest> body,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
+        @Post(
+            "/providers/Microsoft.Billing/billingAccounts/default/billingSubscriptions/{subscriptionId}/invoices/{invoiceName}/download")
+        @ExpectedResponses({200, 202})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Flux<ByteBuffer>>> downloadByBillingSubscription(
+            @HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("invoiceName") String invoiceName,
+            @QueryParam("documentName") String documentName,
+            @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
+        @Get(
+            "/providers/Microsoft.Billing/billingAccounts/default/billingSubscriptions/{subscriptionId}/invoices/{invoiceName}")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<InvoiceInner>> getByBillingSubscription(
+            @HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("invoiceName") String invoiceName,
+            @QueryParam("api-version") String apiVersion,
             @HeaderParam("Accept") String accept,
             Context context);
 
@@ -148,62 +215,26 @@ public final class InvoicesClientImpl implements InvoicesClient {
         Mono<Response<InvoiceListResult>> listByBillingSubscription(
             @HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
-            @QueryParam("periodStartDate") String periodStartDate,
-            @QueryParam("periodEndDate") String periodEndDate,
+            @QueryParam("periodStartDate") LocalDate periodStartDate,
+            @QueryParam("periodEndDate") LocalDate periodEndDate,
             @QueryParam("api-version") String apiVersion,
+            @QueryParam("filter") String filter,
+            @QueryParam("orderBy") String orderBy,
+            @QueryParam("top") Long top,
+            @QueryParam("skip") Long skip,
+            @QueryParam("count") Boolean count,
+            @QueryParam("search") String search,
             @HeaderParam("Accept") String accept,
             Context context);
 
         @Headers({"Content-Type: application/json"})
-        @Get(
-            "/providers/Microsoft.Billing/billingAccounts/default/billingSubscriptions/{subscriptionId}/invoices"
-                + "/{invoiceName}")
+        @Get("/providers/Microsoft.Billing/billingAccounts/default/invoices/{invoiceName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<InvoiceInner>> getBySubscriptionAndInvoiceId(
+        Mono<Response<InvoiceInner>> get(
             @HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
             @PathParam("invoiceName") String invoiceName,
             @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Content-Type: application/json"})
-        @Post(
-            "/providers/Microsoft.Billing/billingAccounts/default/billingSubscriptions/{subscriptionId}/invoices"
-                + "/{invoiceName}/download")
-        @ExpectedResponses({200, 202})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> downloadBillingSubscriptionInvoice(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("invoiceName") String invoiceName,
-            @QueryParam("downloadToken") String downloadToken,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Content-Type: application/json"})
-        @Post(
-            "/providers/Microsoft.Billing/billingAccounts/default/billingSubscriptions/{subscriptionId}"
-                + "/downloadDocuments")
-        @ExpectedResponses({200, 202})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> downloadMultipleBillingSubscriptionInvoices(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
-            @BodyParam("application/json") List<String> downloadUrls,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Content-Type: application/json"})
-        @Get("{nextLink}")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<InvoiceListResult>> listByBillingAccountNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept,
             Context context);
 
@@ -221,6 +252,16 @@ public final class InvoicesClientImpl implements InvoicesClient {
         @Get("{nextLink}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<InvoiceListResult>> listByBillingAccountNext(
+            @PathParam(value = "nextLink", encoded = true) String nextLink,
+            @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
+        @Get("{nextLink}")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<InvoiceListResult>> listByBillingSubscriptionNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink,
             @HostParam("$host") String endpoint,
@@ -229,214 +270,44 @@ public final class InvoicesClientImpl implements InvoicesClient {
     }
 
     /**
-     * Lists the invoices for a billing account for a given start date and end date. The operation is supported for
-     * billing accounts with agreement type Microsoft Partner Agreement or Microsoft Customer Agreement.
-     *
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param periodStartDate The start date to fetch the invoices. The date should be specified in MM-DD-YYYY format.
-     * @param periodEndDate The end date to fetch the invoices. The date should be specified in MM-DD-YYYY format.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of invoices along with {@link PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<InvoiceInner>> listByBillingAccountSinglePageAsync(
-        String billingAccountName, String periodStartDate, String periodEndDate) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (billingAccountName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
-        }
-        if (periodStartDate == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter periodStartDate is required and cannot be null."));
-        }
-        if (periodEndDate == null) {
-            return Mono.error(new IllegalArgumentException("Parameter periodEndDate is required and cannot be null."));
-        }
-        final String apiVersion = "2020-05-01";
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .listByBillingAccount(
-                            this.client.getEndpoint(),
-                            apiVersion,
-                            billingAccountName,
-                            periodStartDate,
-                            periodEndDate,
-                            accept,
-                            context))
-            .<PagedResponse<InvoiceInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Lists the invoices for a billing account for a given start date and end date. The operation is supported for
-     * billing accounts with agreement type Microsoft Partner Agreement or Microsoft Customer Agreement.
-     *
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param periodStartDate The start date to fetch the invoices. The date should be specified in MM-DD-YYYY format.
-     * @param periodEndDate The end date to fetch the invoices. The date should be specified in MM-DD-YYYY format.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of invoices along with {@link PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<InvoiceInner>> listByBillingAccountSinglePageAsync(
-        String billingAccountName, String periodStartDate, String periodEndDate, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (billingAccountName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
-        }
-        if (periodStartDate == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter periodStartDate is required and cannot be null."));
-        }
-        if (periodEndDate == null) {
-            return Mono.error(new IllegalArgumentException("Parameter periodEndDate is required and cannot be null."));
-        }
-        final String apiVersion = "2020-05-01";
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .listByBillingAccount(
-                this.client.getEndpoint(),
-                apiVersion,
-                billingAccountName,
-                periodStartDate,
-                periodEndDate,
-                accept,
-                context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
-    }
-
-    /**
-     * Lists the invoices for a billing account for a given start date and end date. The operation is supported for
-     * billing accounts with agreement type Microsoft Partner Agreement or Microsoft Customer Agreement.
-     *
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param periodStartDate The start date to fetch the invoices. The date should be specified in MM-DD-YYYY format.
-     * @param periodEndDate The end date to fetch the invoices. The date should be specified in MM-DD-YYYY format.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of invoices as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<InvoiceInner> listByBillingAccountAsync(
-        String billingAccountName, String periodStartDate, String periodEndDate) {
-        return new PagedFlux<>(
-            () -> listByBillingAccountSinglePageAsync(billingAccountName, periodStartDate, periodEndDate),
-            nextLink -> listByBillingAccountNextSinglePageAsync(nextLink));
-    }
-
-    /**
-     * Lists the invoices for a billing account for a given start date and end date. The operation is supported for
-     * billing accounts with agreement type Microsoft Partner Agreement or Microsoft Customer Agreement.
-     *
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param periodStartDate The start date to fetch the invoices. The date should be specified in MM-DD-YYYY format.
-     * @param periodEndDate The end date to fetch the invoices. The date should be specified in MM-DD-YYYY format.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of invoices as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<InvoiceInner> listByBillingAccountAsync(
-        String billingAccountName, String periodStartDate, String periodEndDate, Context context) {
-        return new PagedFlux<>(
-            () -> listByBillingAccountSinglePageAsync(billingAccountName, periodStartDate, periodEndDate, context),
-            nextLink -> listByBillingAccountNextSinglePageAsync(nextLink, context));
-    }
-
-    /**
-     * Lists the invoices for a billing account for a given start date and end date. The operation is supported for
-     * billing accounts with agreement type Microsoft Partner Agreement or Microsoft Customer Agreement.
-     *
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param periodStartDate The start date to fetch the invoices. The date should be specified in MM-DD-YYYY format.
-     * @param periodEndDate The end date to fetch the invoices. The date should be specified in MM-DD-YYYY format.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of invoices as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<InvoiceInner> listByBillingAccount(
-        String billingAccountName, String periodStartDate, String periodEndDate) {
-        return new PagedIterable<>(listByBillingAccountAsync(billingAccountName, periodStartDate, periodEndDate));
-    }
-
-    /**
-     * Lists the invoices for a billing account for a given start date and end date. The operation is supported for
-     * billing accounts with agreement type Microsoft Partner Agreement or Microsoft Customer Agreement.
-     *
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param periodStartDate The start date to fetch the invoices. The date should be specified in MM-DD-YYYY format.
-     * @param periodEndDate The end date to fetch the invoices. The date should be specified in MM-DD-YYYY format.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of invoices as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<InvoiceInner> listByBillingAccount(
-        String billingAccountName, String periodStartDate, String periodEndDate, Context context) {
-        return new PagedIterable<>(
-            listByBillingAccountAsync(billingAccountName, periodStartDate, periodEndDate, context));
-    }
-
-    /**
      * Lists the invoices for a billing profile for a given start date and end date. The operation is supported for
      * billing accounts with agreement type Microsoft Partner Agreement or Microsoft Customer Agreement.
      *
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
-     * @param periodStartDate The start date to fetch the invoices. The date should be specified in MM-DD-YYYY format.
-     * @param periodEndDate The end date to fetch the invoices. The date should be specified in MM-DD-YYYY format.
+     * @param periodStartDate The start date of the billing period for which the invoice is generated. The date is in
+     *     MM-DD-YYYY format.
+     * @param periodEndDate The end date of the billing period for which the invoice is generated. The date is in
+     *     MM-DD-YYYY format.
+     * @param filter The filter query option allows clients to filter a collection of resources that are addressed by a
+     *     request URL.
+     * @param orderBy The orderby query option allows clients to request resources in a particular order.
+     * @param top The top query option requests the number of items in the queried collection to be included in the
+     *     result. The maximum supported value for top is 50.
+     * @param skip The skip query option requests the number of items in the queried collection that are to be skipped
+     *     and not included in the result.
+     * @param count The count query option allows clients to request a count of the matching resources included with the
+     *     resources in the response.
+     * @param search The search query option allows clients to request items within a collection matching a free-text
+     *     search expression. search is only supported for string fields.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of invoices along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return a container for a list of resources along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<InvoiceInner>> listByBillingProfileSinglePageAsync(
-        String billingAccountName, String billingProfileName, String periodStartDate, String periodEndDate) {
+        String billingAccountName,
+        String billingProfileName,
+        LocalDate periodStartDate,
+        LocalDate periodEndDate,
+        String filter,
+        String orderBy,
+        Long top,
+        Long skip,
+        Boolean count,
+        String search) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -451,14 +322,6 @@ public final class InvoicesClientImpl implements InvoicesClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter billingProfileName is required and cannot be null."));
         }
-        if (periodStartDate == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter periodStartDate is required and cannot be null."));
-        }
-        if (periodEndDate == null) {
-            return Mono.error(new IllegalArgumentException("Parameter periodEndDate is required and cannot be null."));
-        }
-        final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -466,11 +329,17 @@ public final class InvoicesClientImpl implements InvoicesClient {
                     service
                         .listByBillingProfile(
                             this.client.getEndpoint(),
-                            apiVersion,
                             billingAccountName,
                             billingProfileName,
                             periodStartDate,
                             periodEndDate,
+                            this.client.getApiVersion(),
+                            filter,
+                            orderBy,
+                            top,
+                            skip,
+                            count,
+                            search,
                             accept,
                             context))
             .<PagedResponse<InvoiceInner>>map(
@@ -491,20 +360,40 @@ public final class InvoicesClientImpl implements InvoicesClient {
      *
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
-     * @param periodStartDate The start date to fetch the invoices. The date should be specified in MM-DD-YYYY format.
-     * @param periodEndDate The end date to fetch the invoices. The date should be specified in MM-DD-YYYY format.
+     * @param periodStartDate The start date of the billing period for which the invoice is generated. The date is in
+     *     MM-DD-YYYY format.
+     * @param periodEndDate The end date of the billing period for which the invoice is generated. The date is in
+     *     MM-DD-YYYY format.
+     * @param filter The filter query option allows clients to filter a collection of resources that are addressed by a
+     *     request URL.
+     * @param orderBy The orderby query option allows clients to request resources in a particular order.
+     * @param top The top query option requests the number of items in the queried collection to be included in the
+     *     result. The maximum supported value for top is 50.
+     * @param skip The skip query option requests the number of items in the queried collection that are to be skipped
+     *     and not included in the result.
+     * @param count The count query option allows clients to request a count of the matching resources included with the
+     *     resources in the response.
+     * @param search The search query option allows clients to request items within a collection matching a free-text
+     *     search expression. search is only supported for string fields.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of invoices along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return a container for a list of resources along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<InvoiceInner>> listByBillingProfileSinglePageAsync(
         String billingAccountName,
         String billingProfileName,
-        String periodStartDate,
-        String periodEndDate,
+        LocalDate periodStartDate,
+        LocalDate periodEndDate,
+        String filter,
+        String orderBy,
+        Long top,
+        Long skip,
+        Boolean count,
+        String search,
         Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -520,24 +409,22 @@ public final class InvoicesClientImpl implements InvoicesClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter billingProfileName is required and cannot be null."));
         }
-        if (periodStartDate == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter periodStartDate is required and cannot be null."));
-        }
-        if (periodEndDate == null) {
-            return Mono.error(new IllegalArgumentException("Parameter periodEndDate is required and cannot be null."));
-        }
-        final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listByBillingProfile(
                 this.client.getEndpoint(),
-                apiVersion,
                 billingAccountName,
                 billingProfileName,
                 periodStartDate,
                 periodEndDate,
+                this.client.getApiVersion(),
+                filter,
+                orderBy,
+                top,
+                skip,
+                count,
+                search,
                 accept,
                 context)
             .map(
@@ -557,20 +444,51 @@ public final class InvoicesClientImpl implements InvoicesClient {
      *
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
-     * @param periodStartDate The start date to fetch the invoices. The date should be specified in MM-DD-YYYY format.
-     * @param periodEndDate The end date to fetch the invoices. The date should be specified in MM-DD-YYYY format.
+     * @param periodStartDate The start date of the billing period for which the invoice is generated. The date is in
+     *     MM-DD-YYYY format.
+     * @param periodEndDate The end date of the billing period for which the invoice is generated. The date is in
+     *     MM-DD-YYYY format.
+     * @param filter The filter query option allows clients to filter a collection of resources that are addressed by a
+     *     request URL.
+     * @param orderBy The orderby query option allows clients to request resources in a particular order.
+     * @param top The top query option requests the number of items in the queried collection to be included in the
+     *     result. The maximum supported value for top is 50.
+     * @param skip The skip query option requests the number of items in the queried collection that are to be skipped
+     *     and not included in the result.
+     * @param count The count query option allows clients to request a count of the matching resources included with the
+     *     resources in the response.
+     * @param search The search query option allows clients to request items within a collection matching a free-text
+     *     search expression. search is only supported for string fields.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of invoices as paginated response with {@link PagedFlux}.
+     * @return a container for a list of resources as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<InvoiceInner> listByBillingProfileAsync(
-        String billingAccountName, String billingProfileName, String periodStartDate, String periodEndDate) {
+        String billingAccountName,
+        String billingProfileName,
+        LocalDate periodStartDate,
+        LocalDate periodEndDate,
+        String filter,
+        String orderBy,
+        Long top,
+        Long skip,
+        Boolean count,
+        String search) {
         return new PagedFlux<>(
             () ->
                 listByBillingProfileSinglePageAsync(
-                    billingAccountName, billingProfileName, periodStartDate, periodEndDate),
+                    billingAccountName,
+                    billingProfileName,
+                    periodStartDate,
+                    periodEndDate,
+                    filter,
+                    orderBy,
+                    top,
+                    skip,
+                    count,
+                    search),
             nextLink -> listByBillingProfileNextSinglePageAsync(nextLink));
     }
 
@@ -580,25 +498,91 @@ public final class InvoicesClientImpl implements InvoicesClient {
      *
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
-     * @param periodStartDate The start date to fetch the invoices. The date should be specified in MM-DD-YYYY format.
-     * @param periodEndDate The end date to fetch the invoices. The date should be specified in MM-DD-YYYY format.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a container for a list of resources as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<InvoiceInner> listByBillingProfileAsync(String billingAccountName, String billingProfileName) {
+        final LocalDate periodStartDate = null;
+        final LocalDate periodEndDate = null;
+        final String filter = null;
+        final String orderBy = null;
+        final Long top = null;
+        final Long skip = null;
+        final Boolean count = null;
+        final String search = null;
+        return new PagedFlux<>(
+            () ->
+                listByBillingProfileSinglePageAsync(
+                    billingAccountName,
+                    billingProfileName,
+                    periodStartDate,
+                    periodEndDate,
+                    filter,
+                    orderBy,
+                    top,
+                    skip,
+                    count,
+                    search),
+            nextLink -> listByBillingProfileNextSinglePageAsync(nextLink));
+    }
+
+    /**
+     * Lists the invoices for a billing profile for a given start date and end date. The operation is supported for
+     * billing accounts with agreement type Microsoft Partner Agreement or Microsoft Customer Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
+     * @param periodStartDate The start date of the billing period for which the invoice is generated. The date is in
+     *     MM-DD-YYYY format.
+     * @param periodEndDate The end date of the billing period for which the invoice is generated. The date is in
+     *     MM-DD-YYYY format.
+     * @param filter The filter query option allows clients to filter a collection of resources that are addressed by a
+     *     request URL.
+     * @param orderBy The orderby query option allows clients to request resources in a particular order.
+     * @param top The top query option requests the number of items in the queried collection to be included in the
+     *     result. The maximum supported value for top is 50.
+     * @param skip The skip query option requests the number of items in the queried collection that are to be skipped
+     *     and not included in the result.
+     * @param count The count query option allows clients to request a count of the matching resources included with the
+     *     resources in the response.
+     * @param search The search query option allows clients to request items within a collection matching a free-text
+     *     search expression. search is only supported for string fields.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of invoices as paginated response with {@link PagedFlux}.
+     * @return a container for a list of resources as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<InvoiceInner> listByBillingProfileAsync(
         String billingAccountName,
         String billingProfileName,
-        String periodStartDate,
-        String periodEndDate,
+        LocalDate periodStartDate,
+        LocalDate periodEndDate,
+        String filter,
+        String orderBy,
+        Long top,
+        Long skip,
+        Boolean count,
+        String search,
         Context context) {
         return new PagedFlux<>(
             () ->
                 listByBillingProfileSinglePageAsync(
-                    billingAccountName, billingProfileName, periodStartDate, periodEndDate, context),
+                    billingAccountName,
+                    billingProfileName,
+                    periodStartDate,
+                    periodEndDate,
+                    filter,
+                    orderBy,
+                    top,
+                    skip,
+                    count,
+                    search,
+                    context),
             nextLink -> listByBillingProfileNextSinglePageAsync(nextLink, context));
     }
 
@@ -608,18 +592,33 @@ public final class InvoicesClientImpl implements InvoicesClient {
      *
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
-     * @param periodStartDate The start date to fetch the invoices. The date should be specified in MM-DD-YYYY format.
-     * @param periodEndDate The end date to fetch the invoices. The date should be specified in MM-DD-YYYY format.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of invoices as paginated response with {@link PagedIterable}.
+     * @return a container for a list of resources as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<InvoiceInner> listByBillingProfile(
-        String billingAccountName, String billingProfileName, String periodStartDate, String periodEndDate) {
+    public PagedIterable<InvoiceInner> listByBillingProfile(String billingAccountName, String billingProfileName) {
+        final LocalDate periodStartDate = null;
+        final LocalDate periodEndDate = null;
+        final String filter = null;
+        final String orderBy = null;
+        final Long top = null;
+        final Long skip = null;
+        final Boolean count = null;
+        final String search = null;
         return new PagedIterable<>(
-            listByBillingProfileAsync(billingAccountName, billingProfileName, periodStartDate, periodEndDate));
+            listByBillingProfileAsync(
+                billingAccountName,
+                billingProfileName,
+                periodStartDate,
+                periodEndDate,
+                filter,
+                orderBy,
+                top,
+                skip,
+                count,
+                search));
     }
 
     /**
@@ -628,39 +627,375 @@ public final class InvoicesClientImpl implements InvoicesClient {
      *
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
-     * @param periodStartDate The start date to fetch the invoices. The date should be specified in MM-DD-YYYY format.
-     * @param periodEndDate The end date to fetch the invoices. The date should be specified in MM-DD-YYYY format.
+     * @param periodStartDate The start date of the billing period for which the invoice is generated. The date is in
+     *     MM-DD-YYYY format.
+     * @param periodEndDate The end date of the billing period for which the invoice is generated. The date is in
+     *     MM-DD-YYYY format.
+     * @param filter The filter query option allows clients to filter a collection of resources that are addressed by a
+     *     request URL.
+     * @param orderBy The orderby query option allows clients to request resources in a particular order.
+     * @param top The top query option requests the number of items in the queried collection to be included in the
+     *     result. The maximum supported value for top is 50.
+     * @param skip The skip query option requests the number of items in the queried collection that are to be skipped
+     *     and not included in the result.
+     * @param count The count query option allows clients to request a count of the matching resources included with the
+     *     resources in the response.
+     * @param search The search query option allows clients to request items within a collection matching a free-text
+     *     search expression. search is only supported for string fields.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of invoices as paginated response with {@link PagedIterable}.
+     * @return a container for a list of resources as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<InvoiceInner> listByBillingProfile(
         String billingAccountName,
         String billingProfileName,
-        String periodStartDate,
-        String periodEndDate,
+        LocalDate periodStartDate,
+        LocalDate periodEndDate,
+        String filter,
+        String orderBy,
+        Long top,
+        Long skip,
+        Boolean count,
+        String search,
         Context context) {
         return new PagedIterable<>(
-            listByBillingProfileAsync(billingAccountName, billingProfileName, periodStartDate, periodEndDate, context));
+            listByBillingProfileAsync(
+                billingAccountName,
+                billingProfileName,
+                periodStartDate,
+                periodEndDate,
+                filter,
+                orderBy,
+                top,
+                skip,
+                count,
+                search,
+                context));
     }
 
     /**
-     * Gets an invoice by billing account name and ID. The operation is supported for billing accounts with agreement
-     * type Microsoft Partner Agreement or Microsoft Customer Agreement.
+     * Gets a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file. The
+     * operation is supported for billing accounts with agreement type Microsoft Partner Agreement or Microsoft Customer
+     * Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param body A list of download details for individual documents.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file
+     *     along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> downloadMultipleByBillingAccountWithResponseAsync(
+        String billingAccountName, List<DocumentDownloadRequest> body) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        if (body != null) {
+            body.forEach(e -> e.validate());
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service
+                        .downloadMultipleByBillingAccount(
+                            this.client.getEndpoint(),
+                            billingAccountName,
+                            this.client.getApiVersion(),
+                            body,
+                            accept,
+                            context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Gets a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file. The
+     * operation is supported for billing accounts with agreement type Microsoft Partner Agreement or Microsoft Customer
+     * Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param body A list of download details for individual documents.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file
+     *     along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> downloadMultipleByBillingAccountWithResponseAsync(
+        String billingAccountName, List<DocumentDownloadRequest> body, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        if (body != null) {
+            body.forEach(e -> e.validate());
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .downloadMultipleByBillingAccount(
+                this.client.getEndpoint(), billingAccountName, this.client.getApiVersion(), body, accept, context);
+    }
+
+    /**
+     * Gets a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file. The
+     * operation is supported for billing accounts with agreement type Microsoft Partner Agreement or Microsoft Customer
+     * Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param body A list of download details for individual documents.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of a URL to download multiple invoice documents (invoice pdf, tax
+     *     receipts, credit notes) as a zip file.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<DocumentDownloadResultInner>, DocumentDownloadResultInner>
+        beginDownloadMultipleByBillingAccountAsync(String billingAccountName, List<DocumentDownloadRequest> body) {
+        Mono<Response<Flux<ByteBuffer>>> mono =
+            downloadMultipleByBillingAccountWithResponseAsync(billingAccountName, body);
+        return this
+            .client
+            .<DocumentDownloadResultInner, DocumentDownloadResultInner>getLroResult(
+                mono,
+                this.client.getHttpPipeline(),
+                DocumentDownloadResultInner.class,
+                DocumentDownloadResultInner.class,
+                this.client.getContext());
+    }
+
+    /**
+     * Gets a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file. The
+     * operation is supported for billing accounts with agreement type Microsoft Partner Agreement or Microsoft Customer
+     * Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of a URL to download multiple invoice documents (invoice pdf, tax
+     *     receipts, credit notes) as a zip file.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<DocumentDownloadResultInner>, DocumentDownloadResultInner>
+        beginDownloadMultipleByBillingAccountAsync(String billingAccountName) {
+        final List<DocumentDownloadRequest> body = null;
+        Mono<Response<Flux<ByteBuffer>>> mono =
+            downloadMultipleByBillingAccountWithResponseAsync(billingAccountName, body);
+        return this
+            .client
+            .<DocumentDownloadResultInner, DocumentDownloadResultInner>getLroResult(
+                mono,
+                this.client.getHttpPipeline(),
+                DocumentDownloadResultInner.class,
+                DocumentDownloadResultInner.class,
+                this.client.getContext());
+    }
+
+    /**
+     * Gets a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file. The
+     * operation is supported for billing accounts with agreement type Microsoft Partner Agreement or Microsoft Customer
+     * Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param body A list of download details for individual documents.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of a URL to download multiple invoice documents (invoice pdf, tax
+     *     receipts, credit notes) as a zip file.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<DocumentDownloadResultInner>, DocumentDownloadResultInner>
+        beginDownloadMultipleByBillingAccountAsync(
+            String billingAccountName, List<DocumentDownloadRequest> body, Context context) {
+        context = this.client.mergeContext(context);
+        Mono<Response<Flux<ByteBuffer>>> mono =
+            downloadMultipleByBillingAccountWithResponseAsync(billingAccountName, body, context);
+        return this
+            .client
+            .<DocumentDownloadResultInner, DocumentDownloadResultInner>getLroResult(
+                mono,
+                this.client.getHttpPipeline(),
+                DocumentDownloadResultInner.class,
+                DocumentDownloadResultInner.class,
+                context);
+    }
+
+    /**
+     * Gets a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file. The
+     * operation is supported for billing accounts with agreement type Microsoft Partner Agreement or Microsoft Customer
+     * Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of a URL to download multiple invoice documents (invoice pdf, tax
+     *     receipts, credit notes) as a zip file.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<DocumentDownloadResultInner>, DocumentDownloadResultInner>
+        beginDownloadMultipleByBillingAccount(String billingAccountName) {
+        final List<DocumentDownloadRequest> body = null;
+        return this.beginDownloadMultipleByBillingAccountAsync(billingAccountName, body).getSyncPoller();
+    }
+
+    /**
+     * Gets a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file. The
+     * operation is supported for billing accounts with agreement type Microsoft Partner Agreement or Microsoft Customer
+     * Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param body A list of download details for individual documents.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of a URL to download multiple invoice documents (invoice pdf, tax
+     *     receipts, credit notes) as a zip file.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<DocumentDownloadResultInner>, DocumentDownloadResultInner>
+        beginDownloadMultipleByBillingAccount(
+            String billingAccountName, List<DocumentDownloadRequest> body, Context context) {
+        return this.beginDownloadMultipleByBillingAccountAsync(billingAccountName, body, context).getSyncPoller();
+    }
+
+    /**
+     * Gets a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file. The
+     * operation is supported for billing accounts with agreement type Microsoft Partner Agreement or Microsoft Customer
+     * Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param body A list of download details for individual documents.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file on
+     *     successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<DocumentDownloadResultInner> downloadMultipleByBillingAccountAsync(
+        String billingAccountName, List<DocumentDownloadRequest> body) {
+        return beginDownloadMultipleByBillingAccountAsync(billingAccountName, body)
+            .last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Gets a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file. The
+     * operation is supported for billing accounts with agreement type Microsoft Partner Agreement or Microsoft Customer
+     * Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file on
+     *     successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<DocumentDownloadResultInner> downloadMultipleByBillingAccountAsync(String billingAccountName) {
+        final List<DocumentDownloadRequest> body = null;
+        return beginDownloadMultipleByBillingAccountAsync(billingAccountName, body)
+            .last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Gets a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file. The
+     * operation is supported for billing accounts with agreement type Microsoft Partner Agreement or Microsoft Customer
+     * Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param body A list of download details for individual documents.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file on
+     *     successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<DocumentDownloadResultInner> downloadMultipleByBillingAccountAsync(
+        String billingAccountName, List<DocumentDownloadRequest> body, Context context) {
+        return beginDownloadMultipleByBillingAccountAsync(billingAccountName, body, context)
+            .last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Gets a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file. The
+     * operation is supported for billing accounts with agreement type Microsoft Partner Agreement or Microsoft Customer
+     * Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public DocumentDownloadResultInner downloadMultipleByBillingAccount(String billingAccountName) {
+        final List<DocumentDownloadRequest> body = null;
+        return downloadMultipleByBillingAccountAsync(billingAccountName, body).block();
+    }
+
+    /**
+     * Gets a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file. The
+     * operation is supported for billing accounts with agreement type Microsoft Partner Agreement or Microsoft Customer
+     * Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param body A list of download details for individual documents.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public DocumentDownloadResultInner downloadMultipleByBillingAccount(
+        String billingAccountName, List<DocumentDownloadRequest> body, Context context) {
+        return downloadMultipleByBillingAccountAsync(billingAccountName, body, context).block();
+    }
+
+    /**
+     * Regenerate an invoice by billing account name and invoice name. The operation is supported for billing accounts
+     * with agreement type Microsoft Customer Agreement.
      *
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param invoiceName The ID that uniquely identifies an invoice.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an invoice by billing account name and ID along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<InvoiceInner>> getWithResponseAsync(String billingAccountName, String invoiceName) {
+    private Mono<Response<Flux<ByteBuffer>>> amendWithResponseAsync(String billingAccountName, String invoiceName) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -674,19 +1009,24 @@ public final class InvoicesClientImpl implements InvoicesClient {
         if (invoiceName == null) {
             return Mono.error(new IllegalArgumentException("Parameter invoiceName is required and cannot be null."));
         }
-        final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
                 context ->
                     service
-                        .get(this.client.getEndpoint(), apiVersion, billingAccountName, invoiceName, accept, context))
+                        .amend(
+                            this.client.getEndpoint(),
+                            billingAccountName,
+                            invoiceName,
+                            this.client.getApiVersion(),
+                            accept,
+                            context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Gets an invoice by billing account name and ID. The operation is supported for billing accounts with agreement
-     * type Microsoft Partner Agreement or Microsoft Customer Agreement.
+     * Regenerate an invoice by billing account name and invoice name. The operation is supported for billing accounts
+     * with agreement type Microsoft Customer Agreement.
      *
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param invoiceName The ID that uniquely identifies an invoice.
@@ -694,11 +1034,10 @@ public final class InvoicesClientImpl implements InvoicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an invoice by billing account name and ID along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<InvoiceInner>> getWithResponseAsync(
+    private Mono<Response<Flux<ByteBuffer>>> amendWithResponseAsync(
         String billingAccountName, String invoiceName, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -713,10 +1052,805 @@ public final class InvoicesClientImpl implements InvoicesClient {
         if (invoiceName == null) {
             return Mono.error(new IllegalArgumentException("Parameter invoiceName is required and cannot be null."));
         }
-        final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), apiVersion, billingAccountName, invoiceName, accept, context);
+        return service
+            .amend(
+                this.client.getEndpoint(),
+                billingAccountName,
+                invoiceName,
+                this.client.getApiVersion(),
+                accept,
+                context);
+    }
+
+    /**
+     * Regenerate an invoice by billing account name and invoice name. The operation is supported for billing accounts
+     * with agreement type Microsoft Customer Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param invoiceName The ID that uniquely identifies an invoice.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginAmendAsync(String billingAccountName, String invoiceName) {
+        Mono<Response<Flux<ByteBuffer>>> mono = amendWithResponseAsync(billingAccountName, invoiceName);
+        return this
+            .client
+            .<Void, Void>getLroResult(
+                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+    }
+
+    /**
+     * Regenerate an invoice by billing account name and invoice name. The operation is supported for billing accounts
+     * with agreement type Microsoft Customer Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param invoiceName The ID that uniquely identifies an invoice.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginAmendAsync(
+        String billingAccountName, String invoiceName, Context context) {
+        context = this.client.mergeContext(context);
+        Mono<Response<Flux<ByteBuffer>>> mono = amendWithResponseAsync(billingAccountName, invoiceName, context);
+        return this
+            .client
+            .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, context);
+    }
+
+    /**
+     * Regenerate an invoice by billing account name and invoice name. The operation is supported for billing accounts
+     * with agreement type Microsoft Customer Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param invoiceName The ID that uniquely identifies an invoice.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<Void>, Void> beginAmend(String billingAccountName, String invoiceName) {
+        return this.beginAmendAsync(billingAccountName, invoiceName).getSyncPoller();
+    }
+
+    /**
+     * Regenerate an invoice by billing account name and invoice name. The operation is supported for billing accounts
+     * with agreement type Microsoft Customer Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param invoiceName The ID that uniquely identifies an invoice.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<Void>, Void> beginAmend(
+        String billingAccountName, String invoiceName, Context context) {
+        return this.beginAmendAsync(billingAccountName, invoiceName, context).getSyncPoller();
+    }
+
+    /**
+     * Regenerate an invoice by billing account name and invoice name. The operation is supported for billing accounts
+     * with agreement type Microsoft Customer Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param invoiceName The ID that uniquely identifies an invoice.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Void> amendAsync(String billingAccountName, String invoiceName) {
+        return beginAmendAsync(billingAccountName, invoiceName).last().flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Regenerate an invoice by billing account name and invoice name. The operation is supported for billing accounts
+     * with agreement type Microsoft Customer Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param invoiceName The ID that uniquely identifies an invoice.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Void> amendAsync(String billingAccountName, String invoiceName, Context context) {
+        return beginAmendAsync(billingAccountName, invoiceName, context)
+            .last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Regenerate an invoice by billing account name and invoice name. The operation is supported for billing accounts
+     * with agreement type Microsoft Customer Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param invoiceName The ID that uniquely identifies an invoice.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void amend(String billingAccountName, String invoiceName) {
+        amendAsync(billingAccountName, invoiceName).block();
+    }
+
+    /**
+     * Regenerate an invoice by billing account name and invoice name. The operation is supported for billing accounts
+     * with agreement type Microsoft Customer Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param invoiceName The ID that uniquely identifies an invoice.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void amend(String billingAccountName, String invoiceName, Context context) {
+        amendAsync(billingAccountName, invoiceName, context).block();
+    }
+
+    /**
+     * Gets a URL to download an invoice document. The operation is supported for billing accounts with agreement type
+     * Microsoft Partner Agreement, Microsoft Customer Agreement or Enterprise Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param invoiceName The ID that uniquely identifies an invoice.
+     * @param documentName The ID that uniquely identifies an invoice document. This ID may be an identifier for an
+     *     invoice PDF, a credit note, or a tax receipt.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a URL to download an invoice document along with {@link Response} on successful completion of {@link
+     *     Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> downloadByBillingAccountWithResponseAsync(
+        String billingAccountName, String invoiceName, String documentName) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        if (invoiceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter invoiceName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service
+                        .downloadByBillingAccount(
+                            this.client.getEndpoint(),
+                            billingAccountName,
+                            invoiceName,
+                            documentName,
+                            this.client.getApiVersion(),
+                            accept,
+                            context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Gets a URL to download an invoice document. The operation is supported for billing accounts with agreement type
+     * Microsoft Partner Agreement, Microsoft Customer Agreement or Enterprise Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param invoiceName The ID that uniquely identifies an invoice.
+     * @param documentName The ID that uniquely identifies an invoice document. This ID may be an identifier for an
+     *     invoice PDF, a credit note, or a tax receipt.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a URL to download an invoice document along with {@link Response} on successful completion of {@link
+     *     Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> downloadByBillingAccountWithResponseAsync(
+        String billingAccountName, String invoiceName, String documentName, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        if (invoiceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter invoiceName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .downloadByBillingAccount(
+                this.client.getEndpoint(),
+                billingAccountName,
+                invoiceName,
+                documentName,
+                this.client.getApiVersion(),
+                accept,
+                context);
+    }
+
+    /**
+     * Gets a URL to download an invoice document. The operation is supported for billing accounts with agreement type
+     * Microsoft Partner Agreement, Microsoft Customer Agreement or Enterprise Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param invoiceName The ID that uniquely identifies an invoice.
+     * @param documentName The ID that uniquely identifies an invoice document. This ID may be an identifier for an
+     *     invoice PDF, a credit note, or a tax receipt.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of a URL to download an invoice document.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<DocumentDownloadResultInner>, DocumentDownloadResultInner>
+        beginDownloadByBillingAccountAsync(String billingAccountName, String invoiceName, String documentName) {
+        Mono<Response<Flux<ByteBuffer>>> mono =
+            downloadByBillingAccountWithResponseAsync(billingAccountName, invoiceName, documentName);
+        return this
+            .client
+            .<DocumentDownloadResultInner, DocumentDownloadResultInner>getLroResult(
+                mono,
+                this.client.getHttpPipeline(),
+                DocumentDownloadResultInner.class,
+                DocumentDownloadResultInner.class,
+                this.client.getContext());
+    }
+
+    /**
+     * Gets a URL to download an invoice document. The operation is supported for billing accounts with agreement type
+     * Microsoft Partner Agreement, Microsoft Customer Agreement or Enterprise Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param invoiceName The ID that uniquely identifies an invoice.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of a URL to download an invoice document.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<DocumentDownloadResultInner>, DocumentDownloadResultInner>
+        beginDownloadByBillingAccountAsync(String billingAccountName, String invoiceName) {
+        final String documentName = null;
+        Mono<Response<Flux<ByteBuffer>>> mono =
+            downloadByBillingAccountWithResponseAsync(billingAccountName, invoiceName, documentName);
+        return this
+            .client
+            .<DocumentDownloadResultInner, DocumentDownloadResultInner>getLroResult(
+                mono,
+                this.client.getHttpPipeline(),
+                DocumentDownloadResultInner.class,
+                DocumentDownloadResultInner.class,
+                this.client.getContext());
+    }
+
+    /**
+     * Gets a URL to download an invoice document. The operation is supported for billing accounts with agreement type
+     * Microsoft Partner Agreement, Microsoft Customer Agreement or Enterprise Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param invoiceName The ID that uniquely identifies an invoice.
+     * @param documentName The ID that uniquely identifies an invoice document. This ID may be an identifier for an
+     *     invoice PDF, a credit note, or a tax receipt.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of a URL to download an invoice document.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<DocumentDownloadResultInner>, DocumentDownloadResultInner>
+        beginDownloadByBillingAccountAsync(
+            String billingAccountName, String invoiceName, String documentName, Context context) {
+        context = this.client.mergeContext(context);
+        Mono<Response<Flux<ByteBuffer>>> mono =
+            downloadByBillingAccountWithResponseAsync(billingAccountName, invoiceName, documentName, context);
+        return this
+            .client
+            .<DocumentDownloadResultInner, DocumentDownloadResultInner>getLroResult(
+                mono,
+                this.client.getHttpPipeline(),
+                DocumentDownloadResultInner.class,
+                DocumentDownloadResultInner.class,
+                context);
+    }
+
+    /**
+     * Gets a URL to download an invoice document. The operation is supported for billing accounts with agreement type
+     * Microsoft Partner Agreement, Microsoft Customer Agreement or Enterprise Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param invoiceName The ID that uniquely identifies an invoice.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of a URL to download an invoice document.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<DocumentDownloadResultInner>, DocumentDownloadResultInner>
+        beginDownloadByBillingAccount(String billingAccountName, String invoiceName) {
+        final String documentName = null;
+        return this.beginDownloadByBillingAccountAsync(billingAccountName, invoiceName, documentName).getSyncPoller();
+    }
+
+    /**
+     * Gets a URL to download an invoice document. The operation is supported for billing accounts with agreement type
+     * Microsoft Partner Agreement, Microsoft Customer Agreement or Enterprise Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param invoiceName The ID that uniquely identifies an invoice.
+     * @param documentName The ID that uniquely identifies an invoice document. This ID may be an identifier for an
+     *     invoice PDF, a credit note, or a tax receipt.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of a URL to download an invoice document.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<DocumentDownloadResultInner>, DocumentDownloadResultInner>
+        beginDownloadByBillingAccount(
+            String billingAccountName, String invoiceName, String documentName, Context context) {
+        return this
+            .beginDownloadByBillingAccountAsync(billingAccountName, invoiceName, documentName, context)
+            .getSyncPoller();
+    }
+
+    /**
+     * Gets a URL to download an invoice document. The operation is supported for billing accounts with agreement type
+     * Microsoft Partner Agreement, Microsoft Customer Agreement or Enterprise Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param invoiceName The ID that uniquely identifies an invoice.
+     * @param documentName The ID that uniquely identifies an invoice document. This ID may be an identifier for an
+     *     invoice PDF, a credit note, or a tax receipt.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a URL to download an invoice document on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<DocumentDownloadResultInner> downloadByBillingAccountAsync(
+        String billingAccountName, String invoiceName, String documentName) {
+        return beginDownloadByBillingAccountAsync(billingAccountName, invoiceName, documentName)
+            .last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Gets a URL to download an invoice document. The operation is supported for billing accounts with agreement type
+     * Microsoft Partner Agreement, Microsoft Customer Agreement or Enterprise Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param invoiceName The ID that uniquely identifies an invoice.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a URL to download an invoice document on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<DocumentDownloadResultInner> downloadByBillingAccountAsync(
+        String billingAccountName, String invoiceName) {
+        final String documentName = null;
+        return beginDownloadByBillingAccountAsync(billingAccountName, invoiceName, documentName)
+            .last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Gets a URL to download an invoice document. The operation is supported for billing accounts with agreement type
+     * Microsoft Partner Agreement, Microsoft Customer Agreement or Enterprise Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param invoiceName The ID that uniquely identifies an invoice.
+     * @param documentName The ID that uniquely identifies an invoice document. This ID may be an identifier for an
+     *     invoice PDF, a credit note, or a tax receipt.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a URL to download an invoice document on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<DocumentDownloadResultInner> downloadByBillingAccountAsync(
+        String billingAccountName, String invoiceName, String documentName, Context context) {
+        return beginDownloadByBillingAccountAsync(billingAccountName, invoiceName, documentName, context)
+            .last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Gets a URL to download an invoice document. The operation is supported for billing accounts with agreement type
+     * Microsoft Partner Agreement, Microsoft Customer Agreement or Enterprise Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param invoiceName The ID that uniquely identifies an invoice.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a URL to download an invoice document.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public DocumentDownloadResultInner downloadByBillingAccount(String billingAccountName, String invoiceName) {
+        final String documentName = null;
+        return downloadByBillingAccountAsync(billingAccountName, invoiceName, documentName).block();
+    }
+
+    /**
+     * Gets a URL to download an invoice document. The operation is supported for billing accounts with agreement type
+     * Microsoft Partner Agreement, Microsoft Customer Agreement or Enterprise Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param invoiceName The ID that uniquely identifies an invoice.
+     * @param documentName The ID that uniquely identifies an invoice document. This ID may be an identifier for an
+     *     invoice PDF, a credit note, or a tax receipt.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a URL to download an invoice document.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public DocumentDownloadResultInner downloadByBillingAccount(
+        String billingAccountName, String invoiceName, String documentName, Context context) {
+        return downloadByBillingAccountAsync(billingAccountName, invoiceName, documentName, context).block();
+    }
+
+    /**
+     * Gets a URL to download the summary document for an invoice. The operation is supported for billing accounts with
+     * agreement type Enterprise Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param invoiceName The ID that uniquely identifies an invoice.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a URL to download the summary document for an invoice along with {@link Response} on successful
+     *     completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> downloadSummaryByBillingAccountWithResponseAsync(
+        String billingAccountName, String invoiceName) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        if (invoiceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter invoiceName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service
+                        .downloadSummaryByBillingAccount(
+                            this.client.getEndpoint(),
+                            billingAccountName,
+                            invoiceName,
+                            this.client.getApiVersion(),
+                            accept,
+                            context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Gets a URL to download the summary document for an invoice. The operation is supported for billing accounts with
+     * agreement type Enterprise Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param invoiceName The ID that uniquely identifies an invoice.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a URL to download the summary document for an invoice along with {@link Response} on successful
+     *     completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> downloadSummaryByBillingAccountWithResponseAsync(
+        String billingAccountName, String invoiceName, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        if (invoiceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter invoiceName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .downloadSummaryByBillingAccount(
+                this.client.getEndpoint(),
+                billingAccountName,
+                invoiceName,
+                this.client.getApiVersion(),
+                accept,
+                context);
+    }
+
+    /**
+     * Gets a URL to download the summary document for an invoice. The operation is supported for billing accounts with
+     * agreement type Enterprise Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param invoiceName The ID that uniquely identifies an invoice.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of a URL to download the summary document for an invoice.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<DocumentDownloadResultInner>, DocumentDownloadResultInner>
+        beginDownloadSummaryByBillingAccountAsync(String billingAccountName, String invoiceName) {
+        Mono<Response<Flux<ByteBuffer>>> mono =
+            downloadSummaryByBillingAccountWithResponseAsync(billingAccountName, invoiceName);
+        return this
+            .client
+            .<DocumentDownloadResultInner, DocumentDownloadResultInner>getLroResult(
+                mono,
+                this.client.getHttpPipeline(),
+                DocumentDownloadResultInner.class,
+                DocumentDownloadResultInner.class,
+                this.client.getContext());
+    }
+
+    /**
+     * Gets a URL to download the summary document for an invoice. The operation is supported for billing accounts with
+     * agreement type Enterprise Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param invoiceName The ID that uniquely identifies an invoice.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of a URL to download the summary document for an invoice.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<DocumentDownloadResultInner>, DocumentDownloadResultInner>
+        beginDownloadSummaryByBillingAccountAsync(String billingAccountName, String invoiceName, Context context) {
+        context = this.client.mergeContext(context);
+        Mono<Response<Flux<ByteBuffer>>> mono =
+            downloadSummaryByBillingAccountWithResponseAsync(billingAccountName, invoiceName, context);
+        return this
+            .client
+            .<DocumentDownloadResultInner, DocumentDownloadResultInner>getLroResult(
+                mono,
+                this.client.getHttpPipeline(),
+                DocumentDownloadResultInner.class,
+                DocumentDownloadResultInner.class,
+                context);
+    }
+
+    /**
+     * Gets a URL to download the summary document for an invoice. The operation is supported for billing accounts with
+     * agreement type Enterprise Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param invoiceName The ID that uniquely identifies an invoice.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of a URL to download the summary document for an invoice.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<DocumentDownloadResultInner>, DocumentDownloadResultInner>
+        beginDownloadSummaryByBillingAccount(String billingAccountName, String invoiceName) {
+        return this.beginDownloadSummaryByBillingAccountAsync(billingAccountName, invoiceName).getSyncPoller();
+    }
+
+    /**
+     * Gets a URL to download the summary document for an invoice. The operation is supported for billing accounts with
+     * agreement type Enterprise Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param invoiceName The ID that uniquely identifies an invoice.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of a URL to download the summary document for an invoice.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<DocumentDownloadResultInner>, DocumentDownloadResultInner>
+        beginDownloadSummaryByBillingAccount(String billingAccountName, String invoiceName, Context context) {
+        return this.beginDownloadSummaryByBillingAccountAsync(billingAccountName, invoiceName, context).getSyncPoller();
+    }
+
+    /**
+     * Gets a URL to download the summary document for an invoice. The operation is supported for billing accounts with
+     * agreement type Enterprise Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param invoiceName The ID that uniquely identifies an invoice.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a URL to download the summary document for an invoice on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<DocumentDownloadResultInner> downloadSummaryByBillingAccountAsync(
+        String billingAccountName, String invoiceName) {
+        return beginDownloadSummaryByBillingAccountAsync(billingAccountName, invoiceName)
+            .last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Gets a URL to download the summary document for an invoice. The operation is supported for billing accounts with
+     * agreement type Enterprise Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param invoiceName The ID that uniquely identifies an invoice.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a URL to download the summary document for an invoice on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<DocumentDownloadResultInner> downloadSummaryByBillingAccountAsync(
+        String billingAccountName, String invoiceName, Context context) {
+        return beginDownloadSummaryByBillingAccountAsync(billingAccountName, invoiceName, context)
+            .last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Gets a URL to download the summary document for an invoice. The operation is supported for billing accounts with
+     * agreement type Enterprise Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param invoiceName The ID that uniquely identifies an invoice.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a URL to download the summary document for an invoice.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public DocumentDownloadResultInner downloadSummaryByBillingAccount(String billingAccountName, String invoiceName) {
+        return downloadSummaryByBillingAccountAsync(billingAccountName, invoiceName).block();
+    }
+
+    /**
+     * Gets a URL to download the summary document for an invoice. The operation is supported for billing accounts with
+     * agreement type Enterprise Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param invoiceName The ID that uniquely identifies an invoice.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a URL to download the summary document for an invoice.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public DocumentDownloadResultInner downloadSummaryByBillingAccount(
+        String billingAccountName, String invoiceName, Context context) {
+        return downloadSummaryByBillingAccountAsync(billingAccountName, invoiceName, context).block();
+    }
+
+    /**
+     * Gets an invoice by billing account name and ID. The operation is supported for billing accounts with agreement
+     * type Microsoft Partner Agreement or Microsoft Customer Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param invoiceName The ID that uniquely identifies an invoice.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return an invoice by billing account name and ID along with {@link Response} on successful completion of {@link
+     *     Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<InvoiceInner>> getByBillingAccountWithResponseAsync(
+        String billingAccountName, String invoiceName) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        if (invoiceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter invoiceName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service
+                        .getByBillingAccount(
+                            this.client.getEndpoint(),
+                            billingAccountName,
+                            invoiceName,
+                            this.client.getApiVersion(),
+                            accept,
+                            context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Gets an invoice by billing account name and ID. The operation is supported for billing accounts with agreement
+     * type Microsoft Partner Agreement or Microsoft Customer Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param invoiceName The ID that uniquely identifies an invoice.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return an invoice by billing account name and ID along with {@link Response} on successful completion of {@link
+     *     Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<InvoiceInner>> getByBillingAccountWithResponseAsync(
+        String billingAccountName, String invoiceName, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        if (invoiceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter invoiceName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .getByBillingAccount(
+                this.client.getEndpoint(),
+                billingAccountName,
+                invoiceName,
+                this.client.getApiVersion(),
+                accept,
+                context);
     }
 
     /**
@@ -731,8 +1865,9 @@ public final class InvoicesClientImpl implements InvoicesClient {
      * @return an invoice by billing account name and ID on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<InvoiceInner> getAsync(String billingAccountName, String invoiceName) {
-        return getWithResponseAsync(billingAccountName, invoiceName).flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    private Mono<InvoiceInner> getByBillingAccountAsync(String billingAccountName, String invoiceName) {
+        return getByBillingAccountWithResponseAsync(billingAccountName, invoiceName)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -748,8 +1883,9 @@ public final class InvoicesClientImpl implements InvoicesClient {
      * @return an invoice by billing account name and ID along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<InvoiceInner> getWithResponse(String billingAccountName, String invoiceName, Context context) {
-        return getWithResponseAsync(billingAccountName, invoiceName, context).block();
+    public Response<InvoiceInner> getByBillingAccountWithResponse(
+        String billingAccountName, String invoiceName, Context context) {
+        return getByBillingAccountWithResponseAsync(billingAccountName, invoiceName, context).block();
     }
 
     /**
@@ -764,128 +1900,47 @@ public final class InvoicesClientImpl implements InvoicesClient {
      * @return an invoice by billing account name and ID.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public InvoiceInner get(String billingAccountName, String invoiceName) {
-        return getWithResponse(billingAccountName, invoiceName, Context.NONE).getValue();
+    public InvoiceInner getByBillingAccount(String billingAccountName, String invoiceName) {
+        return getByBillingAccountWithResponse(billingAccountName, invoiceName, Context.NONE).getValue();
     }
 
     /**
-     * Gets an invoice by ID. The operation is supported for billing accounts with agreement type Microsoft Partner
-     * Agreement or Microsoft Customer Agreement.
-     *
-     * @param invoiceName The ID that uniquely identifies an invoice.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an invoice by ID along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<InvoiceInner>> getByIdWithResponseAsync(String invoiceName) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (invoiceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter invoiceName is required and cannot be null."));
-        }
-        final String apiVersion = "2020-05-01";
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(
-                context -> service.getById(this.client.getEndpoint(), apiVersion, invoiceName, accept, context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Gets an invoice by ID. The operation is supported for billing accounts with agreement type Microsoft Partner
-     * Agreement or Microsoft Customer Agreement.
-     *
-     * @param invoiceName The ID that uniquely identifies an invoice.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an invoice by ID along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<InvoiceInner>> getByIdWithResponseAsync(String invoiceName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (invoiceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter invoiceName is required and cannot be null."));
-        }
-        final String apiVersion = "2020-05-01";
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.getById(this.client.getEndpoint(), apiVersion, invoiceName, accept, context);
-    }
-
-    /**
-     * Gets an invoice by ID. The operation is supported for billing accounts with agreement type Microsoft Partner
-     * Agreement or Microsoft Customer Agreement.
-     *
-     * @param invoiceName The ID that uniquely identifies an invoice.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an invoice by ID on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<InvoiceInner> getByIdAsync(String invoiceName) {
-        return getByIdWithResponseAsync(invoiceName).flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Gets an invoice by ID. The operation is supported for billing accounts with agreement type Microsoft Partner
-     * Agreement or Microsoft Customer Agreement.
-     *
-     * @param invoiceName The ID that uniquely identifies an invoice.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an invoice by ID along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<InvoiceInner> getByIdWithResponse(String invoiceName, Context context) {
-        return getByIdWithResponseAsync(invoiceName, context).block();
-    }
-
-    /**
-     * Gets an invoice by ID. The operation is supported for billing accounts with agreement type Microsoft Partner
-     * Agreement or Microsoft Customer Agreement.
-     *
-     * @param invoiceName The ID that uniquely identifies an invoice.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an invoice by ID.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public InvoiceInner getById(String invoiceName) {
-        return getByIdWithResponse(invoiceName, Context.NONE).getValue();
-    }
-
-    /**
-     * Gets a URL to download an invoice. The operation is supported for billing accounts with agreement type Microsoft
-     * Partner Agreement or Microsoft Customer Agreement.
+     * Lists the invoices for a billing account for a given start date and end date. The operation is supported for
+     * billing accounts with agreement type Microsoft Partner Agreement or Microsoft Customer Agreement.
      *
      * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param invoiceName The ID that uniquely identifies an invoice.
-     * @param downloadToken Download token with document source and document ID.
+     * @param periodStartDate The start date of the billing period for which the invoice is generated. The date is in
+     *     MM-DD-YYYY format.
+     * @param periodEndDate The end date of the billing period for which the invoice is generated. The date is in
+     *     MM-DD-YYYY format.
+     * @param filter The filter query option allows clients to filter a collection of resources that are addressed by a
+     *     request URL.
+     * @param orderBy The orderby query option allows clients to request resources in a particular order.
+     * @param top The top query option requests the number of items in the queried collection to be included in the
+     *     result. The maximum supported value for top is 50.
+     * @param skip The skip query option requests the number of items in the queried collection that are to be skipped
+     *     and not included in the result.
+     * @param count The count query option allows clients to request a count of the matching resources included with the
+     *     resources in the response.
+     * @param search The search query option allows clients to request items within a collection matching a free-text
+     *     search expression. search is only supported for string fields.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a URL to download an invoice along with {@link Response} on successful completion of {@link Mono}.
+     * @return a container for a list of resources along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> downloadInvoiceWithResponseAsync(
-        String billingAccountName, String invoiceName, String downloadToken) {
+    private Mono<PagedResponse<InvoiceInner>> listByBillingAccountSinglePageAsync(
+        String billingAccountName,
+        LocalDate periodStartDate,
+        LocalDate periodEndDate,
+        String filter,
+        String orderBy,
+        Long top,
+        Long skip,
+        Boolean count,
+        String search) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -896,242 +1951,362 @@ public final class InvoicesClientImpl implements InvoicesClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
         }
-        if (invoiceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter invoiceName is required and cannot be null."));
-        }
-        if (downloadToken == null) {
-            return Mono.error(new IllegalArgumentException("Parameter downloadToken is required and cannot be null."));
-        }
-        final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
                 context ->
                     service
-                        .downloadInvoice(
+                        .listByBillingAccount(
                             this.client.getEndpoint(),
-                            apiVersion,
                             billingAccountName,
-                            invoiceName,
-                            downloadToken,
+                            periodStartDate,
+                            periodEndDate,
+                            this.client.getApiVersion(),
+                            filter,
+                            orderBy,
+                            top,
+                            skip,
+                            count,
+                            search,
+                            accept,
+                            context))
+            .<PagedResponse<InvoiceInner>>map(
+                res ->
+                    new PagedResponseBase<>(
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink(),
+                        null))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Lists the invoices for a billing account for a given start date and end date. The operation is supported for
+     * billing accounts with agreement type Microsoft Partner Agreement or Microsoft Customer Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param periodStartDate The start date of the billing period for which the invoice is generated. The date is in
+     *     MM-DD-YYYY format.
+     * @param periodEndDate The end date of the billing period for which the invoice is generated. The date is in
+     *     MM-DD-YYYY format.
+     * @param filter The filter query option allows clients to filter a collection of resources that are addressed by a
+     *     request URL.
+     * @param orderBy The orderby query option allows clients to request resources in a particular order.
+     * @param top The top query option requests the number of items in the queried collection to be included in the
+     *     result. The maximum supported value for top is 50.
+     * @param skip The skip query option requests the number of items in the queried collection that are to be skipped
+     *     and not included in the result.
+     * @param count The count query option allows clients to request a count of the matching resources included with the
+     *     resources in the response.
+     * @param search The search query option allows clients to request items within a collection matching a free-text
+     *     search expression. search is only supported for string fields.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a container for a list of resources along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<InvoiceInner>> listByBillingAccountSinglePageAsync(
+        String billingAccountName,
+        LocalDate periodStartDate,
+        LocalDate periodEndDate,
+        String filter,
+        String orderBy,
+        Long top,
+        Long skip,
+        Boolean count,
+        String search,
+        Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .listByBillingAccount(
+                this.client.getEndpoint(),
+                billingAccountName,
+                periodStartDate,
+                periodEndDate,
+                this.client.getApiVersion(),
+                filter,
+                orderBy,
+                top,
+                skip,
+                count,
+                search,
+                accept,
+                context)
+            .map(
+                res ->
+                    new PagedResponseBase<>(
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink(),
+                        null));
+    }
+
+    /**
+     * Lists the invoices for a billing account for a given start date and end date. The operation is supported for
+     * billing accounts with agreement type Microsoft Partner Agreement or Microsoft Customer Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param periodStartDate The start date of the billing period for which the invoice is generated. The date is in
+     *     MM-DD-YYYY format.
+     * @param periodEndDate The end date of the billing period for which the invoice is generated. The date is in
+     *     MM-DD-YYYY format.
+     * @param filter The filter query option allows clients to filter a collection of resources that are addressed by a
+     *     request URL.
+     * @param orderBy The orderby query option allows clients to request resources in a particular order.
+     * @param top The top query option requests the number of items in the queried collection to be included in the
+     *     result. The maximum supported value for top is 50.
+     * @param skip The skip query option requests the number of items in the queried collection that are to be skipped
+     *     and not included in the result.
+     * @param count The count query option allows clients to request a count of the matching resources included with the
+     *     resources in the response.
+     * @param search The search query option allows clients to request items within a collection matching a free-text
+     *     search expression. search is only supported for string fields.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a container for a list of resources as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<InvoiceInner> listByBillingAccountAsync(
+        String billingAccountName,
+        LocalDate periodStartDate,
+        LocalDate periodEndDate,
+        String filter,
+        String orderBy,
+        Long top,
+        Long skip,
+        Boolean count,
+        String search) {
+        return new PagedFlux<>(
+            () ->
+                listByBillingAccountSinglePageAsync(
+                    billingAccountName, periodStartDate, periodEndDate, filter, orderBy, top, skip, count, search),
+            nextLink -> listByBillingAccountNextSinglePageAsync(nextLink));
+    }
+
+    /**
+     * Lists the invoices for a billing account for a given start date and end date. The operation is supported for
+     * billing accounts with agreement type Microsoft Partner Agreement or Microsoft Customer Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a container for a list of resources as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<InvoiceInner> listByBillingAccountAsync(String billingAccountName) {
+        final LocalDate periodStartDate = null;
+        final LocalDate periodEndDate = null;
+        final String filter = null;
+        final String orderBy = null;
+        final Long top = null;
+        final Long skip = null;
+        final Boolean count = null;
+        final String search = null;
+        return new PagedFlux<>(
+            () ->
+                listByBillingAccountSinglePageAsync(
+                    billingAccountName, periodStartDate, periodEndDate, filter, orderBy, top, skip, count, search),
+            nextLink -> listByBillingAccountNextSinglePageAsync(nextLink));
+    }
+
+    /**
+     * Lists the invoices for a billing account for a given start date and end date. The operation is supported for
+     * billing accounts with agreement type Microsoft Partner Agreement or Microsoft Customer Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param periodStartDate The start date of the billing period for which the invoice is generated. The date is in
+     *     MM-DD-YYYY format.
+     * @param periodEndDate The end date of the billing period for which the invoice is generated. The date is in
+     *     MM-DD-YYYY format.
+     * @param filter The filter query option allows clients to filter a collection of resources that are addressed by a
+     *     request URL.
+     * @param orderBy The orderby query option allows clients to request resources in a particular order.
+     * @param top The top query option requests the number of items in the queried collection to be included in the
+     *     result. The maximum supported value for top is 50.
+     * @param skip The skip query option requests the number of items in the queried collection that are to be skipped
+     *     and not included in the result.
+     * @param count The count query option allows clients to request a count of the matching resources included with the
+     *     resources in the response.
+     * @param search The search query option allows clients to request items within a collection matching a free-text
+     *     search expression. search is only supported for string fields.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a container for a list of resources as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<InvoiceInner> listByBillingAccountAsync(
+        String billingAccountName,
+        LocalDate periodStartDate,
+        LocalDate periodEndDate,
+        String filter,
+        String orderBy,
+        Long top,
+        Long skip,
+        Boolean count,
+        String search,
+        Context context) {
+        return new PagedFlux<>(
+            () ->
+                listByBillingAccountSinglePageAsync(
+                    billingAccountName,
+                    periodStartDate,
+                    periodEndDate,
+                    filter,
+                    orderBy,
+                    top,
+                    skip,
+                    count,
+                    search,
+                    context),
+            nextLink -> listByBillingAccountNextSinglePageAsync(nextLink, context));
+    }
+
+    /**
+     * Lists the invoices for a billing account for a given start date and end date. The operation is supported for
+     * billing accounts with agreement type Microsoft Partner Agreement or Microsoft Customer Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a container for a list of resources as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<InvoiceInner> listByBillingAccount(String billingAccountName) {
+        final LocalDate periodStartDate = null;
+        final LocalDate periodEndDate = null;
+        final String filter = null;
+        final String orderBy = null;
+        final Long top = null;
+        final Long skip = null;
+        final Boolean count = null;
+        final String search = null;
+        return new PagedIterable<>(
+            listByBillingAccountAsync(
+                billingAccountName, periodStartDate, periodEndDate, filter, orderBy, top, skip, count, search));
+    }
+
+    /**
+     * Lists the invoices for a billing account for a given start date and end date. The operation is supported for
+     * billing accounts with agreement type Microsoft Partner Agreement or Microsoft Customer Agreement.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param periodStartDate The start date of the billing period for which the invoice is generated. The date is in
+     *     MM-DD-YYYY format.
+     * @param periodEndDate The end date of the billing period for which the invoice is generated. The date is in
+     *     MM-DD-YYYY format.
+     * @param filter The filter query option allows clients to filter a collection of resources that are addressed by a
+     *     request URL.
+     * @param orderBy The orderby query option allows clients to request resources in a particular order.
+     * @param top The top query option requests the number of items in the queried collection to be included in the
+     *     result. The maximum supported value for top is 50.
+     * @param skip The skip query option requests the number of items in the queried collection that are to be skipped
+     *     and not included in the result.
+     * @param count The count query option allows clients to request a count of the matching resources included with the
+     *     resources in the response.
+     * @param search The search query option allows clients to request items within a collection matching a free-text
+     *     search expression. search is only supported for string fields.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a container for a list of resources as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<InvoiceInner> listByBillingAccount(
+        String billingAccountName,
+        LocalDate periodStartDate,
+        LocalDate periodEndDate,
+        String filter,
+        String orderBy,
+        Long top,
+        Long skip,
+        Boolean count,
+        String search,
+        Context context) {
+        return new PagedIterable<>(
+            listByBillingAccountAsync(
+                billingAccountName,
+                periodStartDate,
+                periodEndDate,
+                filter,
+                orderBy,
+                top,
+                skip,
+                count,
+                search,
+                context));
+    }
+
+    /**
+     * Gets a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file.
+     *
+     * @param subscriptionId The ID that uniquely identifies a billing subscription.
+     * @param body A list of download details for individual documents.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file
+     *     along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> downloadMultipleByBillingSubscriptionWithResponseAsync(
+        String subscriptionId, List<DocumentDownloadRequest> body) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (subscriptionId == null) {
+            return Mono.error(new IllegalArgumentException("Parameter subscriptionId is required and cannot be null."));
+        }
+        if (body != null) {
+            body.forEach(e -> e.validate());
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service
+                        .downloadMultipleByBillingSubscription(
+                            this.client.getEndpoint(),
+                            subscriptionId,
+                            this.client.getApiVersion(),
+                            body,
                             accept,
                             context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Gets a URL to download an invoice. The operation is supported for billing accounts with agreement type Microsoft
-     * Partner Agreement or Microsoft Customer Agreement.
+     * Gets a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file.
      *
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param invoiceName The ID that uniquely identifies an invoice.
-     * @param downloadToken Download token with document source and document ID.
+     * @param subscriptionId The ID that uniquely identifies a billing subscription.
+     * @param body A list of download details for individual documents.
      * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a URL to download an invoice along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> downloadInvoiceWithResponseAsync(
-        String billingAccountName, String invoiceName, String downloadToken, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (billingAccountName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
-        }
-        if (invoiceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter invoiceName is required and cannot be null."));
-        }
-        if (downloadToken == null) {
-            return Mono.error(new IllegalArgumentException("Parameter downloadToken is required and cannot be null."));
-        }
-        final String apiVersion = "2020-05-01";
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .downloadInvoice(
-                this.client.getEndpoint(), apiVersion, billingAccountName, invoiceName, downloadToken, accept, context);
-    }
-
-    /**
-     * Gets a URL to download an invoice. The operation is supported for billing accounts with agreement type Microsoft
-     * Partner Agreement or Microsoft Customer Agreement.
-     *
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param invoiceName The ID that uniquely identifies an invoice.
-     * @param downloadToken Download token with document source and document ID.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of a URL to download an invoice.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<DownloadUrlInner>, DownloadUrlInner> beginDownloadInvoiceAsync(
-        String billingAccountName, String invoiceName, String downloadToken) {
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            downloadInvoiceWithResponseAsync(billingAccountName, invoiceName, downloadToken);
-        return this
-            .client
-            .<DownloadUrlInner, DownloadUrlInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                DownloadUrlInner.class,
-                DownloadUrlInner.class,
-                this.client.getContext());
-    }
-
-    /**
-     * Gets a URL to download an invoice. The operation is supported for billing accounts with agreement type Microsoft
-     * Partner Agreement or Microsoft Customer Agreement.
-     *
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param invoiceName The ID that uniquely identifies an invoice.
-     * @param downloadToken Download token with document source and document ID.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of a URL to download an invoice.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<DownloadUrlInner>, DownloadUrlInner> beginDownloadInvoiceAsync(
-        String billingAccountName, String invoiceName, String downloadToken, Context context) {
-        context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            downloadInvoiceWithResponseAsync(billingAccountName, invoiceName, downloadToken, context);
-        return this
-            .client
-            .<DownloadUrlInner, DownloadUrlInner>getLroResult(
-                mono, this.client.getHttpPipeline(), DownloadUrlInner.class, DownloadUrlInner.class, context);
-    }
-
-    /**
-     * Gets a URL to download an invoice. The operation is supported for billing accounts with agreement type Microsoft
-     * Partner Agreement or Microsoft Customer Agreement.
-     *
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param invoiceName The ID that uniquely identifies an invoice.
-     * @param downloadToken Download token with document source and document ID.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of a URL to download an invoice.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<DownloadUrlInner>, DownloadUrlInner> beginDownloadInvoice(
-        String billingAccountName, String invoiceName, String downloadToken) {
-        return this.beginDownloadInvoiceAsync(billingAccountName, invoiceName, downloadToken).getSyncPoller();
-    }
-
-    /**
-     * Gets a URL to download an invoice. The operation is supported for billing accounts with agreement type Microsoft
-     * Partner Agreement or Microsoft Customer Agreement.
-     *
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param invoiceName The ID that uniquely identifies an invoice.
-     * @param downloadToken Download token with document source and document ID.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of a URL to download an invoice.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<DownloadUrlInner>, DownloadUrlInner> beginDownloadInvoice(
-        String billingAccountName, String invoiceName, String downloadToken, Context context) {
-        return this.beginDownloadInvoiceAsync(billingAccountName, invoiceName, downloadToken, context).getSyncPoller();
-    }
-
-    /**
-     * Gets a URL to download an invoice. The operation is supported for billing accounts with agreement type Microsoft
-     * Partner Agreement or Microsoft Customer Agreement.
-     *
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param invoiceName The ID that uniquely identifies an invoice.
-     * @param downloadToken Download token with document source and document ID.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a URL to download an invoice on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<DownloadUrlInner> downloadInvoiceAsync(
-        String billingAccountName, String invoiceName, String downloadToken) {
-        return beginDownloadInvoiceAsync(billingAccountName, invoiceName, downloadToken)
-            .last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Gets a URL to download an invoice. The operation is supported for billing accounts with agreement type Microsoft
-     * Partner Agreement or Microsoft Customer Agreement.
-     *
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param invoiceName The ID that uniquely identifies an invoice.
-     * @param downloadToken Download token with document source and document ID.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a URL to download an invoice on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<DownloadUrlInner> downloadInvoiceAsync(
-        String billingAccountName, String invoiceName, String downloadToken, Context context) {
-        return beginDownloadInvoiceAsync(billingAccountName, invoiceName, downloadToken, context)
-            .last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Gets a URL to download an invoice. The operation is supported for billing accounts with agreement type Microsoft
-     * Partner Agreement or Microsoft Customer Agreement.
-     *
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param invoiceName The ID that uniquely identifies an invoice.
-     * @param downloadToken Download token with document source and document ID.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a URL to download an invoice.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public DownloadUrlInner downloadInvoice(String billingAccountName, String invoiceName, String downloadToken) {
-        return downloadInvoiceAsync(billingAccountName, invoiceName, downloadToken).block();
-    }
-
-    /**
-     * Gets a URL to download an invoice. The operation is supported for billing accounts with agreement type Microsoft
-     * Partner Agreement or Microsoft Customer Agreement.
-     *
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param invoiceName The ID that uniquely identifies an invoice.
-     * @param downloadToken Download token with document source and document ID.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a URL to download an invoice.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public DownloadUrlInner downloadInvoice(
-        String billingAccountName, String invoiceName, String downloadToken, Context context) {
-        return downloadInvoiceAsync(billingAccountName, invoiceName, downloadToken, context).block();
-    }
-
-    /**
-     * Gets a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file. The
-     * operation is supported for billing accounts with agreement type Microsoft Partner Agreement or Microsoft Customer
-     * Agreement.
-     *
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param downloadUrls An array of download urls for individual documents.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1139,278 +2314,712 @@ public final class InvoicesClientImpl implements InvoicesClient {
      *     along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> downloadMultipleBillingProfileInvoicesWithResponseAsync(
-        String billingAccountName, List<String> downloadUrls) {
+    private Mono<Response<Flux<ByteBuffer>>> downloadMultipleByBillingSubscriptionWithResponseAsync(
+        String subscriptionId, List<DocumentDownloadRequest> body, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
                     new IllegalArgumentException(
                         "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        if (billingAccountName == null) {
+        if (subscriptionId == null) {
+            return Mono.error(new IllegalArgumentException("Parameter subscriptionId is required and cannot be null."));
+        }
+        if (body != null) {
+            body.forEach(e -> e.validate());
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .downloadMultipleByBillingSubscription(
+                this.client.getEndpoint(), subscriptionId, this.client.getApiVersion(), body, accept, context);
+    }
+
+    /**
+     * Gets a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file.
+     *
+     * @param subscriptionId The ID that uniquely identifies a billing subscription.
+     * @param body A list of download details for individual documents.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of a URL to download multiple invoice documents (invoice pdf, tax
+     *     receipts, credit notes) as a zip file.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<DocumentDownloadResultInner>, DocumentDownloadResultInner>
+        beginDownloadMultipleByBillingSubscriptionAsync(String subscriptionId, List<DocumentDownloadRequest> body) {
+        Mono<Response<Flux<ByteBuffer>>> mono =
+            downloadMultipleByBillingSubscriptionWithResponseAsync(subscriptionId, body);
+        return this
+            .client
+            .<DocumentDownloadResultInner, DocumentDownloadResultInner>getLroResult(
+                mono,
+                this.client.getHttpPipeline(),
+                DocumentDownloadResultInner.class,
+                DocumentDownloadResultInner.class,
+                this.client.getContext());
+    }
+
+    /**
+     * Gets a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file.
+     *
+     * @param subscriptionId The ID that uniquely identifies a billing subscription.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of a URL to download multiple invoice documents (invoice pdf, tax
+     *     receipts, credit notes) as a zip file.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<DocumentDownloadResultInner>, DocumentDownloadResultInner>
+        beginDownloadMultipleByBillingSubscriptionAsync(String subscriptionId) {
+        final List<DocumentDownloadRequest> body = null;
+        Mono<Response<Flux<ByteBuffer>>> mono =
+            downloadMultipleByBillingSubscriptionWithResponseAsync(subscriptionId, body);
+        return this
+            .client
+            .<DocumentDownloadResultInner, DocumentDownloadResultInner>getLroResult(
+                mono,
+                this.client.getHttpPipeline(),
+                DocumentDownloadResultInner.class,
+                DocumentDownloadResultInner.class,
+                this.client.getContext());
+    }
+
+    /**
+     * Gets a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file.
+     *
+     * @param subscriptionId The ID that uniquely identifies a billing subscription.
+     * @param body A list of download details for individual documents.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of a URL to download multiple invoice documents (invoice pdf, tax
+     *     receipts, credit notes) as a zip file.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<DocumentDownloadResultInner>, DocumentDownloadResultInner>
+        beginDownloadMultipleByBillingSubscriptionAsync(
+            String subscriptionId, List<DocumentDownloadRequest> body, Context context) {
+        context = this.client.mergeContext(context);
+        Mono<Response<Flux<ByteBuffer>>> mono =
+            downloadMultipleByBillingSubscriptionWithResponseAsync(subscriptionId, body, context);
+        return this
+            .client
+            .<DocumentDownloadResultInner, DocumentDownloadResultInner>getLroResult(
+                mono,
+                this.client.getHttpPipeline(),
+                DocumentDownloadResultInner.class,
+                DocumentDownloadResultInner.class,
+                context);
+    }
+
+    /**
+     * Gets a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file.
+     *
+     * @param subscriptionId The ID that uniquely identifies a billing subscription.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of a URL to download multiple invoice documents (invoice pdf, tax
+     *     receipts, credit notes) as a zip file.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<DocumentDownloadResultInner>, DocumentDownloadResultInner>
+        beginDownloadMultipleByBillingSubscription(String subscriptionId) {
+        final List<DocumentDownloadRequest> body = null;
+        return this.beginDownloadMultipleByBillingSubscriptionAsync(subscriptionId, body).getSyncPoller();
+    }
+
+    /**
+     * Gets a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file.
+     *
+     * @param subscriptionId The ID that uniquely identifies a billing subscription.
+     * @param body A list of download details for individual documents.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of a URL to download multiple invoice documents (invoice pdf, tax
+     *     receipts, credit notes) as a zip file.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<DocumentDownloadResultInner>, DocumentDownloadResultInner>
+        beginDownloadMultipleByBillingSubscription(
+            String subscriptionId, List<DocumentDownloadRequest> body, Context context) {
+        return this.beginDownloadMultipleByBillingSubscriptionAsync(subscriptionId, body, context).getSyncPoller();
+    }
+
+    /**
+     * Gets a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file.
+     *
+     * @param subscriptionId The ID that uniquely identifies a billing subscription.
+     * @param body A list of download details for individual documents.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file on
+     *     successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<DocumentDownloadResultInner> downloadMultipleByBillingSubscriptionAsync(
+        String subscriptionId, List<DocumentDownloadRequest> body) {
+        return beginDownloadMultipleByBillingSubscriptionAsync(subscriptionId, body)
+            .last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Gets a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file.
+     *
+     * @param subscriptionId The ID that uniquely identifies a billing subscription.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file on
+     *     successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<DocumentDownloadResultInner> downloadMultipleByBillingSubscriptionAsync(String subscriptionId) {
+        final List<DocumentDownloadRequest> body = null;
+        return beginDownloadMultipleByBillingSubscriptionAsync(subscriptionId, body)
+            .last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Gets a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file.
+     *
+     * @param subscriptionId The ID that uniquely identifies a billing subscription.
+     * @param body A list of download details for individual documents.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file on
+     *     successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<DocumentDownloadResultInner> downloadMultipleByBillingSubscriptionAsync(
+        String subscriptionId, List<DocumentDownloadRequest> body, Context context) {
+        return beginDownloadMultipleByBillingSubscriptionAsync(subscriptionId, body, context)
+            .last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Gets a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file.
+     *
+     * @param subscriptionId The ID that uniquely identifies a billing subscription.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public DocumentDownloadResultInner downloadMultipleByBillingSubscription(String subscriptionId) {
+        final List<DocumentDownloadRequest> body = null;
+        return downloadMultipleByBillingSubscriptionAsync(subscriptionId, body).block();
+    }
+
+    /**
+     * Gets a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file.
+     *
+     * @param subscriptionId The ID that uniquely identifies a billing subscription.
+     * @param body A list of download details for individual documents.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public DocumentDownloadResultInner downloadMultipleByBillingSubscription(
+        String subscriptionId, List<DocumentDownloadRequest> body, Context context) {
+        return downloadMultipleByBillingSubscriptionAsync(subscriptionId, body, context).block();
+    }
+
+    /**
+     * ets a URL to download an invoice by billing subscription.
+     *
+     * @param subscriptionId The ID that uniquely identifies a billing subscription.
+     * @param invoiceName The ID that uniquely identifies an invoice.
+     * @param documentName The ID that uniquely identifies an invoice document. This ID may be an identifier for an
+     *     invoice PDF, a credit note, or a tax receipt.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a secure URL that can be used to download a an entity until the URL expires along with {@link Response}
+     *     on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> downloadByBillingSubscriptionWithResponseAsync(
+        String subscriptionId, String invoiceName, String documentName) {
+        if (this.client.getEndpoint() == null) {
             return Mono
-                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        if (downloadUrls == null) {
-            return Mono.error(new IllegalArgumentException("Parameter downloadUrls is required and cannot be null."));
+        if (subscriptionId == null) {
+            return Mono.error(new IllegalArgumentException("Parameter subscriptionId is required and cannot be null."));
         }
-        final String apiVersion = "2020-05-01";
+        if (invoiceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter invoiceName is required and cannot be null."));
+        }
         final String accept = "application/json";
         return FluxUtil
             .withContext(
                 context ->
                     service
-                        .downloadMultipleBillingProfileInvoices(
-                            this.client.getEndpoint(), apiVersion, billingAccountName, downloadUrls, accept, context))
+                        .downloadByBillingSubscription(
+                            this.client.getEndpoint(),
+                            subscriptionId,
+                            invoiceName,
+                            documentName,
+                            this.client.getApiVersion(),
+                            accept,
+                            context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Gets a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file. The
-     * operation is supported for billing accounts with agreement type Microsoft Partner Agreement or Microsoft Customer
-     * Agreement.
+     * ets a URL to download an invoice by billing subscription.
      *
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param downloadUrls An array of download urls for individual documents.
+     * @param subscriptionId The ID that uniquely identifies a billing subscription.
+     * @param invoiceName The ID that uniquely identifies an invoice.
+     * @param documentName The ID that uniquely identifies an invoice document. This ID may be an identifier for an
+     *     invoice PDF, a credit note, or a tax receipt.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file
-     *     along with {@link Response} on successful completion of {@link Mono}.
+     * @return a secure URL that can be used to download a an entity until the URL expires along with {@link Response}
+     *     on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> downloadMultipleBillingProfileInvoicesWithResponseAsync(
-        String billingAccountName, List<String> downloadUrls, Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> downloadByBillingSubscriptionWithResponseAsync(
+        String subscriptionId, String invoiceName, String documentName, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
                     new IllegalArgumentException(
                         "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        if (billingAccountName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        if (subscriptionId == null) {
+            return Mono.error(new IllegalArgumentException("Parameter subscriptionId is required and cannot be null."));
         }
-        if (downloadUrls == null) {
-            return Mono.error(new IllegalArgumentException("Parameter downloadUrls is required and cannot be null."));
+        if (invoiceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter invoiceName is required and cannot be null."));
         }
-        final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .downloadMultipleBillingProfileInvoices(
-                this.client.getEndpoint(), apiVersion, billingAccountName, downloadUrls, accept, context);
+            .downloadByBillingSubscription(
+                this.client.getEndpoint(),
+                subscriptionId,
+                invoiceName,
+                documentName,
+                this.client.getApiVersion(),
+                accept,
+                context);
     }
 
     /**
-     * Gets a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file. The
-     * operation is supported for billing accounts with agreement type Microsoft Partner Agreement or Microsoft Customer
-     * Agreement.
+     * ets a URL to download an invoice by billing subscription.
      *
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param downloadUrls An array of download urls for individual documents.
+     * @param subscriptionId The ID that uniquely identifies a billing subscription.
+     * @param invoiceName The ID that uniquely identifies an invoice.
+     * @param documentName The ID that uniquely identifies an invoice document. This ID may be an identifier for an
+     *     invoice PDF, a credit note, or a tax receipt.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of a URL to download multiple invoice documents (invoice pdf, tax
-     *     receipts, credit notes) as a zip file.
+     * @return the {@link PollerFlux} for polling of a secure URL that can be used to download a an entity until the URL
+     *     expires.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<DownloadUrlInner>, DownloadUrlInner> beginDownloadMultipleBillingProfileInvoicesAsync(
-        String billingAccountName, List<String> downloadUrls) {
+    private PollerFlux<PollResult<DocumentDownloadResultInner>, DocumentDownloadResultInner>
+        beginDownloadByBillingSubscriptionAsync(String subscriptionId, String invoiceName, String documentName) {
         Mono<Response<Flux<ByteBuffer>>> mono =
-            downloadMultipleBillingProfileInvoicesWithResponseAsync(billingAccountName, downloadUrls);
+            downloadByBillingSubscriptionWithResponseAsync(subscriptionId, invoiceName, documentName);
         return this
             .client
-            .<DownloadUrlInner, DownloadUrlInner>getLroResult(
+            .<DocumentDownloadResultInner, DocumentDownloadResultInner>getLroResult(
                 mono,
                 this.client.getHttpPipeline(),
-                DownloadUrlInner.class,
-                DownloadUrlInner.class,
+                DocumentDownloadResultInner.class,
+                DocumentDownloadResultInner.class,
                 this.client.getContext());
     }
 
     /**
-     * Gets a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file. The
-     * operation is supported for billing accounts with agreement type Microsoft Partner Agreement or Microsoft Customer
-     * Agreement.
+     * ets a URL to download an invoice by billing subscription.
      *
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param downloadUrls An array of download urls for individual documents.
-     * @param context The context to associate with this operation.
+     * @param subscriptionId The ID that uniquely identifies a billing subscription.
+     * @param invoiceName The ID that uniquely identifies an invoice.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of a URL to download multiple invoice documents (invoice pdf, tax
-     *     receipts, credit notes) as a zip file.
+     * @return the {@link PollerFlux} for polling of a secure URL that can be used to download a an entity until the URL
+     *     expires.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<DownloadUrlInner>, DownloadUrlInner> beginDownloadMultipleBillingProfileInvoicesAsync(
-        String billingAccountName, List<String> downloadUrls, Context context) {
-        context = this.client.mergeContext(context);
+    private PollerFlux<PollResult<DocumentDownloadResultInner>, DocumentDownloadResultInner>
+        beginDownloadByBillingSubscriptionAsync(String subscriptionId, String invoiceName) {
+        final String documentName = null;
         Mono<Response<Flux<ByteBuffer>>> mono =
-            downloadMultipleBillingProfileInvoicesWithResponseAsync(billingAccountName, downloadUrls, context);
+            downloadByBillingSubscriptionWithResponseAsync(subscriptionId, invoiceName, documentName);
         return this
             .client
-            .<DownloadUrlInner, DownloadUrlInner>getLroResult(
-                mono, this.client.getHttpPipeline(), DownloadUrlInner.class, DownloadUrlInner.class, context);
+            .<DocumentDownloadResultInner, DocumentDownloadResultInner>getLroResult(
+                mono,
+                this.client.getHttpPipeline(),
+                DocumentDownloadResultInner.class,
+                DocumentDownloadResultInner.class,
+                this.client.getContext());
     }
 
     /**
-     * Gets a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file. The
-     * operation is supported for billing accounts with agreement type Microsoft Partner Agreement or Microsoft Customer
-     * Agreement.
+     * ets a URL to download an invoice by billing subscription.
      *
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param downloadUrls An array of download urls for individual documents.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of a URL to download multiple invoice documents (invoice pdf, tax
-     *     receipts, credit notes) as a zip file.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<DownloadUrlInner>, DownloadUrlInner> beginDownloadMultipleBillingProfileInvoices(
-        String billingAccountName, List<String> downloadUrls) {
-        return this.beginDownloadMultipleBillingProfileInvoicesAsync(billingAccountName, downloadUrls).getSyncPoller();
-    }
-
-    /**
-     * Gets a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file. The
-     * operation is supported for billing accounts with agreement type Microsoft Partner Agreement or Microsoft Customer
-     * Agreement.
-     *
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param downloadUrls An array of download urls for individual documents.
+     * @param subscriptionId The ID that uniquely identifies a billing subscription.
+     * @param invoiceName The ID that uniquely identifies an invoice.
+     * @param documentName The ID that uniquely identifies an invoice document. This ID may be an identifier for an
+     *     invoice PDF, a credit note, or a tax receipt.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of a URL to download multiple invoice documents (invoice pdf, tax
-     *     receipts, credit notes) as a zip file.
+     * @return the {@link PollerFlux} for polling of a secure URL that can be used to download a an entity until the URL
+     *     expires.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<DownloadUrlInner>, DownloadUrlInner> beginDownloadMultipleBillingProfileInvoices(
-        String billingAccountName, List<String> downloadUrls, Context context) {
+    private PollerFlux<PollResult<DocumentDownloadResultInner>, DocumentDownloadResultInner>
+        beginDownloadByBillingSubscriptionAsync(
+            String subscriptionId, String invoiceName, String documentName, Context context) {
+        context = this.client.mergeContext(context);
+        Mono<Response<Flux<ByteBuffer>>> mono =
+            downloadByBillingSubscriptionWithResponseAsync(subscriptionId, invoiceName, documentName, context);
         return this
-            .beginDownloadMultipleBillingProfileInvoicesAsync(billingAccountName, downloadUrls, context)
+            .client
+            .<DocumentDownloadResultInner, DocumentDownloadResultInner>getLroResult(
+                mono,
+                this.client.getHttpPipeline(),
+                DocumentDownloadResultInner.class,
+                DocumentDownloadResultInner.class,
+                context);
+    }
+
+    /**
+     * ets a URL to download an invoice by billing subscription.
+     *
+     * @param subscriptionId The ID that uniquely identifies a billing subscription.
+     * @param invoiceName The ID that uniquely identifies an invoice.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of a secure URL that can be used to download a an entity until the URL
+     *     expires.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<DocumentDownloadResultInner>, DocumentDownloadResultInner>
+        beginDownloadByBillingSubscription(String subscriptionId, String invoiceName) {
+        final String documentName = null;
+        return this.beginDownloadByBillingSubscriptionAsync(subscriptionId, invoiceName, documentName).getSyncPoller();
+    }
+
+    /**
+     * ets a URL to download an invoice by billing subscription.
+     *
+     * @param subscriptionId The ID that uniquely identifies a billing subscription.
+     * @param invoiceName The ID that uniquely identifies an invoice.
+     * @param documentName The ID that uniquely identifies an invoice document. This ID may be an identifier for an
+     *     invoice PDF, a credit note, or a tax receipt.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of a secure URL that can be used to download a an entity until the URL
+     *     expires.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<DocumentDownloadResultInner>, DocumentDownloadResultInner>
+        beginDownloadByBillingSubscription(
+            String subscriptionId, String invoiceName, String documentName, Context context) {
+        return this
+            .beginDownloadByBillingSubscriptionAsync(subscriptionId, invoiceName, documentName, context)
             .getSyncPoller();
     }
 
     /**
-     * Gets a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file. The
-     * operation is supported for billing accounts with agreement type Microsoft Partner Agreement or Microsoft Customer
-     * Agreement.
+     * ets a URL to download an invoice by billing subscription.
      *
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param downloadUrls An array of download urls for individual documents.
+     * @param subscriptionId The ID that uniquely identifies a billing subscription.
+     * @param invoiceName The ID that uniquely identifies an invoice.
+     * @param documentName The ID that uniquely identifies an invoice document. This ID may be an identifier for an
+     *     invoice PDF, a credit note, or a tax receipt.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file on
-     *     successful completion of {@link Mono}.
+     * @return a secure URL that can be used to download a an entity until the URL expires on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<DownloadUrlInner> downloadMultipleBillingProfileInvoicesAsync(
-        String billingAccountName, List<String> downloadUrls) {
-        return beginDownloadMultipleBillingProfileInvoicesAsync(billingAccountName, downloadUrls)
+    private Mono<DocumentDownloadResultInner> downloadByBillingSubscriptionAsync(
+        String subscriptionId, String invoiceName, String documentName) {
+        return beginDownloadByBillingSubscriptionAsync(subscriptionId, invoiceName, documentName)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
-     * Gets a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file. The
-     * operation is supported for billing accounts with agreement type Microsoft Partner Agreement or Microsoft Customer
-     * Agreement.
+     * ets a URL to download an invoice by billing subscription.
      *
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param downloadUrls An array of download urls for individual documents.
-     * @param context The context to associate with this operation.
+     * @param subscriptionId The ID that uniquely identifies a billing subscription.
+     * @param invoiceName The ID that uniquely identifies an invoice.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file on
-     *     successful completion of {@link Mono}.
+     * @return a secure URL that can be used to download a an entity until the URL expires on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<DownloadUrlInner> downloadMultipleBillingProfileInvoicesAsync(
-        String billingAccountName, List<String> downloadUrls, Context context) {
-        return beginDownloadMultipleBillingProfileInvoicesAsync(billingAccountName, downloadUrls, context)
+    private Mono<DocumentDownloadResultInner> downloadByBillingSubscriptionAsync(
+        String subscriptionId, String invoiceName) {
+        final String documentName = null;
+        return beginDownloadByBillingSubscriptionAsync(subscriptionId, invoiceName, documentName)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
-     * Gets a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file. The
-     * operation is supported for billing accounts with agreement type Microsoft Partner Agreement or Microsoft Customer
-     * Agreement.
+     * ets a URL to download an invoice by billing subscription.
      *
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param downloadUrls An array of download urls for individual documents.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public DownloadUrlInner downloadMultipleBillingProfileInvoices(
-        String billingAccountName, List<String> downloadUrls) {
-        return downloadMultipleBillingProfileInvoicesAsync(billingAccountName, downloadUrls).block();
-    }
-
-    /**
-     * Gets a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file. The
-     * operation is supported for billing accounts with agreement type Microsoft Partner Agreement or Microsoft Customer
-     * Agreement.
-     *
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param downloadUrls An array of download urls for individual documents.
+     * @param subscriptionId The ID that uniquely identifies a billing subscription.
+     * @param invoiceName The ID that uniquely identifies an invoice.
+     * @param documentName The ID that uniquely identifies an invoice document. This ID may be an identifier for an
+     *     invoice PDF, a credit note, or a tax receipt.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file.
+     * @return a secure URL that can be used to download a an entity until the URL expires on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public DownloadUrlInner downloadMultipleBillingProfileInvoices(
-        String billingAccountName, List<String> downloadUrls, Context context) {
-        return downloadMultipleBillingProfileInvoicesAsync(billingAccountName, downloadUrls, context).block();
+    private Mono<DocumentDownloadResultInner> downloadByBillingSubscriptionAsync(
+        String subscriptionId, String invoiceName, String documentName, Context context) {
+        return beginDownloadByBillingSubscriptionAsync(subscriptionId, invoiceName, documentName, context)
+            .last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * ets a URL to download an invoice by billing subscription.
+     *
+     * @param subscriptionId The ID that uniquely identifies a billing subscription.
+     * @param invoiceName The ID that uniquely identifies an invoice.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a secure URL that can be used to download a an entity until the URL expires.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public DocumentDownloadResultInner downloadByBillingSubscription(String subscriptionId, String invoiceName) {
+        final String documentName = null;
+        return downloadByBillingSubscriptionAsync(subscriptionId, invoiceName, documentName).block();
+    }
+
+    /**
+     * ets a URL to download an invoice by billing subscription.
+     *
+     * @param subscriptionId The ID that uniquely identifies a billing subscription.
+     * @param invoiceName The ID that uniquely identifies an invoice.
+     * @param documentName The ID that uniquely identifies an invoice document. This ID may be an identifier for an
+     *     invoice PDF, a credit note, or a tax receipt.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a secure URL that can be used to download a an entity until the URL expires.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public DocumentDownloadResultInner downloadByBillingSubscription(
+        String subscriptionId, String invoiceName, String documentName, Context context) {
+        return downloadByBillingSubscriptionAsync(subscriptionId, invoiceName, documentName, context).block();
+    }
+
+    /**
+     * Gets an invoice by subscription ID and invoice ID.
+     *
+     * @param subscriptionId The ID that uniquely identifies a billing subscription.
+     * @param invoiceName The ID that uniquely identifies an invoice.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return an invoice by subscription ID and invoice ID along with {@link Response} on successful completion of
+     *     {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<InvoiceInner>> getByBillingSubscriptionWithResponseAsync(
+        String subscriptionId, String invoiceName) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (subscriptionId == null) {
+            return Mono.error(new IllegalArgumentException("Parameter subscriptionId is required and cannot be null."));
+        }
+        if (invoiceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter invoiceName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service
+                        .getByBillingSubscription(
+                            this.client.getEndpoint(),
+                            subscriptionId,
+                            invoiceName,
+                            this.client.getApiVersion(),
+                            accept,
+                            context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Gets an invoice by subscription ID and invoice ID.
+     *
+     * @param subscriptionId The ID that uniquely identifies a billing subscription.
+     * @param invoiceName The ID that uniquely identifies an invoice.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return an invoice by subscription ID and invoice ID along with {@link Response} on successful completion of
+     *     {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<InvoiceInner>> getByBillingSubscriptionWithResponseAsync(
+        String subscriptionId, String invoiceName, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (subscriptionId == null) {
+            return Mono.error(new IllegalArgumentException("Parameter subscriptionId is required and cannot be null."));
+        }
+        if (invoiceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter invoiceName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .getByBillingSubscription(
+                this.client.getEndpoint(), subscriptionId, invoiceName, this.client.getApiVersion(), accept, context);
+    }
+
+    /**
+     * Gets an invoice by subscription ID and invoice ID.
+     *
+     * @param subscriptionId The ID that uniquely identifies a billing subscription.
+     * @param invoiceName The ID that uniquely identifies an invoice.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return an invoice by subscription ID and invoice ID on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<InvoiceInner> getByBillingSubscriptionAsync(String subscriptionId, String invoiceName) {
+        return getByBillingSubscriptionWithResponseAsync(subscriptionId, invoiceName)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Gets an invoice by subscription ID and invoice ID.
+     *
+     * @param subscriptionId The ID that uniquely identifies a billing subscription.
+     * @param invoiceName The ID that uniquely identifies an invoice.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return an invoice by subscription ID and invoice ID along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<InvoiceInner> getByBillingSubscriptionWithResponse(
+        String subscriptionId, String invoiceName, Context context) {
+        return getByBillingSubscriptionWithResponseAsync(subscriptionId, invoiceName, context).block();
+    }
+
+    /**
+     * Gets an invoice by subscription ID and invoice ID.
+     *
+     * @param subscriptionId The ID that uniquely identifies a billing subscription.
+     * @param invoiceName The ID that uniquely identifies an invoice.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return an invoice by subscription ID and invoice ID.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public InvoiceInner getByBillingSubscription(String subscriptionId, String invoiceName) {
+        return getByBillingSubscriptionWithResponse(subscriptionId, invoiceName, Context.NONE).getValue();
     }
 
     /**
      * Lists the invoices for a subscription.
      *
-     * @param periodStartDate Invoice period start date.
-     * @param periodEndDate Invoice period end date.
+     * @param subscriptionId The ID that uniquely identifies a billing subscription.
+     * @param periodStartDate The start date of the billing period for which the invoice is generated. The date is in
+     *     MM-DD-YYYY format.
+     * @param periodEndDate The end date of the billing period for which the invoice is generated. The date is in
+     *     MM-DD-YYYY format.
+     * @param filter The filter query option allows clients to filter a collection of resources that are addressed by a
+     *     request URL.
+     * @param orderBy The orderby query option allows clients to request resources in a particular order.
+     * @param top The top query option requests the number of items in the queried collection to be included in the
+     *     result. The maximum supported value for top is 50.
+     * @param skip The skip query option requests the number of items in the queried collection that are to be skipped
+     *     and not included in the result.
+     * @param count The count query option allows clients to request a count of the matching resources included with the
+     *     resources in the response.
+     * @param search The search query option allows clients to request items within a collection matching a free-text
+     *     search expression. search is only supported for string fields.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of invoices along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return a container for a list of resources along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<InvoiceInner>> listByBillingSubscriptionSinglePageAsync(
-        String periodStartDate, String periodEndDate) {
+        String subscriptionId,
+        LocalDate periodStartDate,
+        LocalDate periodEndDate,
+        String filter,
+        String orderBy,
+        Long top,
+        Long skip,
+        Boolean count,
+        String search) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
                     new IllegalArgumentException(
                         "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        if (subscriptionId == null) {
+            return Mono.error(new IllegalArgumentException("Parameter subscriptionId is required and cannot be null."));
         }
-        if (periodStartDate == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter periodStartDate is required and cannot be null."));
-        }
-        if (periodEndDate == null) {
-            return Mono.error(new IllegalArgumentException("Parameter periodEndDate is required and cannot be null."));
-        }
-        final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -1418,10 +3027,16 @@ public final class InvoicesClientImpl implements InvoicesClient {
                     service
                         .listByBillingSubscription(
                             this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
+                            subscriptionId,
                             periodStartDate,
                             periodEndDate,
-                            apiVersion,
+                            this.client.getApiVersion(),
+                            filter,
+                            orderBy,
+                            top,
+                            skip,
+                            count,
+                            search,
                             accept,
                             context))
             .<PagedResponse<InvoiceInner>>map(
@@ -1439,46 +3054,65 @@ public final class InvoicesClientImpl implements InvoicesClient {
     /**
      * Lists the invoices for a subscription.
      *
-     * @param periodStartDate Invoice period start date.
-     * @param periodEndDate Invoice period end date.
+     * @param subscriptionId The ID that uniquely identifies a billing subscription.
+     * @param periodStartDate The start date of the billing period for which the invoice is generated. The date is in
+     *     MM-DD-YYYY format.
+     * @param periodEndDate The end date of the billing period for which the invoice is generated. The date is in
+     *     MM-DD-YYYY format.
+     * @param filter The filter query option allows clients to filter a collection of resources that are addressed by a
+     *     request URL.
+     * @param orderBy The orderby query option allows clients to request resources in a particular order.
+     * @param top The top query option requests the number of items in the queried collection to be included in the
+     *     result. The maximum supported value for top is 50.
+     * @param skip The skip query option requests the number of items in the queried collection that are to be skipped
+     *     and not included in the result.
+     * @param count The count query option allows clients to request a count of the matching resources included with the
+     *     resources in the response.
+     * @param search The search query option allows clients to request items within a collection matching a free-text
+     *     search expression. search is only supported for string fields.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of invoices along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return a container for a list of resources along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<InvoiceInner>> listByBillingSubscriptionSinglePageAsync(
-        String periodStartDate, String periodEndDate, Context context) {
+        String subscriptionId,
+        LocalDate periodStartDate,
+        LocalDate periodEndDate,
+        String filter,
+        String orderBy,
+        Long top,
+        Long skip,
+        Boolean count,
+        String search,
+        Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
                     new IllegalArgumentException(
                         "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        if (subscriptionId == null) {
+            return Mono.error(new IllegalArgumentException("Parameter subscriptionId is required and cannot be null."));
         }
-        if (periodStartDate == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter periodStartDate is required and cannot be null."));
-        }
-        if (periodEndDate == null) {
-            return Mono.error(new IllegalArgumentException("Parameter periodEndDate is required and cannot be null."));
-        }
-        final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listByBillingSubscription(
                 this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
+                subscriptionId,
                 periodStartDate,
                 periodEndDate,
-                apiVersion,
+                this.client.getApiVersion(),
+                filter,
+                orderBy,
+                top,
+                skip,
+                count,
+                search,
                 accept,
                 context)
             .map(
@@ -1495,663 +3129,276 @@ public final class InvoicesClientImpl implements InvoicesClient {
     /**
      * Lists the invoices for a subscription.
      *
-     * @param periodStartDate Invoice period start date.
-     * @param periodEndDate Invoice period end date.
+     * @param subscriptionId The ID that uniquely identifies a billing subscription.
+     * @param periodStartDate The start date of the billing period for which the invoice is generated. The date is in
+     *     MM-DD-YYYY format.
+     * @param periodEndDate The end date of the billing period for which the invoice is generated. The date is in
+     *     MM-DD-YYYY format.
+     * @param filter The filter query option allows clients to filter a collection of resources that are addressed by a
+     *     request URL.
+     * @param orderBy The orderby query option allows clients to request resources in a particular order.
+     * @param top The top query option requests the number of items in the queried collection to be included in the
+     *     result. The maximum supported value for top is 50.
+     * @param skip The skip query option requests the number of items in the queried collection that are to be skipped
+     *     and not included in the result.
+     * @param count The count query option allows clients to request a count of the matching resources included with the
+     *     resources in the response.
+     * @param search The search query option allows clients to request items within a collection matching a free-text
+     *     search expression. search is only supported for string fields.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of invoices as paginated response with {@link PagedFlux}.
+     * @return a container for a list of resources as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<InvoiceInner> listByBillingSubscriptionAsync(String periodStartDate, String periodEndDate) {
+    private PagedFlux<InvoiceInner> listByBillingSubscriptionAsync(
+        String subscriptionId,
+        LocalDate periodStartDate,
+        LocalDate periodEndDate,
+        String filter,
+        String orderBy,
+        Long top,
+        Long skip,
+        Boolean count,
+        String search) {
         return new PagedFlux<>(
-            () -> listByBillingSubscriptionSinglePageAsync(periodStartDate, periodEndDate),
+            () ->
+                listByBillingSubscriptionSinglePageAsync(
+                    subscriptionId, periodStartDate, periodEndDate, filter, orderBy, top, skip, count, search),
             nextLink -> listByBillingSubscriptionNextSinglePageAsync(nextLink));
     }
 
     /**
      * Lists the invoices for a subscription.
      *
-     * @param periodStartDate Invoice period start date.
-     * @param periodEndDate Invoice period end date.
+     * @param subscriptionId The ID that uniquely identifies a billing subscription.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a container for a list of resources as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<InvoiceInner> listByBillingSubscriptionAsync(String subscriptionId) {
+        final LocalDate periodStartDate = null;
+        final LocalDate periodEndDate = null;
+        final String filter = null;
+        final String orderBy = null;
+        final Long top = null;
+        final Long skip = null;
+        final Boolean count = null;
+        final String search = null;
+        return new PagedFlux<>(
+            () ->
+                listByBillingSubscriptionSinglePageAsync(
+                    subscriptionId, periodStartDate, periodEndDate, filter, orderBy, top, skip, count, search),
+            nextLink -> listByBillingSubscriptionNextSinglePageAsync(nextLink));
+    }
+
+    /**
+     * Lists the invoices for a subscription.
+     *
+     * @param subscriptionId The ID that uniquely identifies a billing subscription.
+     * @param periodStartDate The start date of the billing period for which the invoice is generated. The date is in
+     *     MM-DD-YYYY format.
+     * @param periodEndDate The end date of the billing period for which the invoice is generated. The date is in
+     *     MM-DD-YYYY format.
+     * @param filter The filter query option allows clients to filter a collection of resources that are addressed by a
+     *     request URL.
+     * @param orderBy The orderby query option allows clients to request resources in a particular order.
+     * @param top The top query option requests the number of items in the queried collection to be included in the
+     *     result. The maximum supported value for top is 50.
+     * @param skip The skip query option requests the number of items in the queried collection that are to be skipped
+     *     and not included in the result.
+     * @param count The count query option allows clients to request a count of the matching resources included with the
+     *     resources in the response.
+     * @param search The search query option allows clients to request items within a collection matching a free-text
+     *     search expression. search is only supported for string fields.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of invoices as paginated response with {@link PagedFlux}.
+     * @return a container for a list of resources as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<InvoiceInner> listByBillingSubscriptionAsync(
-        String periodStartDate, String periodEndDate, Context context) {
+        String subscriptionId,
+        LocalDate periodStartDate,
+        LocalDate periodEndDate,
+        String filter,
+        String orderBy,
+        Long top,
+        Long skip,
+        Boolean count,
+        String search,
+        Context context) {
         return new PagedFlux<>(
-            () -> listByBillingSubscriptionSinglePageAsync(periodStartDate, periodEndDate, context),
+            () ->
+                listByBillingSubscriptionSinglePageAsync(
+                    subscriptionId, periodStartDate, periodEndDate, filter, orderBy, top, skip, count, search, context),
             nextLink -> listByBillingSubscriptionNextSinglePageAsync(nextLink, context));
     }
 
     /**
      * Lists the invoices for a subscription.
      *
-     * @param periodStartDate Invoice period start date.
-     * @param periodEndDate Invoice period end date.
+     * @param subscriptionId The ID that uniquely identifies a billing subscription.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of invoices as paginated response with {@link PagedIterable}.
+     * @return a container for a list of resources as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<InvoiceInner> listByBillingSubscription(String periodStartDate, String periodEndDate) {
-        return new PagedIterable<>(listByBillingSubscriptionAsync(periodStartDate, periodEndDate));
+    public PagedIterable<InvoiceInner> listByBillingSubscription(String subscriptionId) {
+        final LocalDate periodStartDate = null;
+        final LocalDate periodEndDate = null;
+        final String filter = null;
+        final String orderBy = null;
+        final Long top = null;
+        final Long skip = null;
+        final Boolean count = null;
+        final String search = null;
+        return new PagedIterable<>(
+            listByBillingSubscriptionAsync(
+                subscriptionId, periodStartDate, periodEndDate, filter, orderBy, top, skip, count, search));
     }
 
     /**
      * Lists the invoices for a subscription.
      *
-     * @param periodStartDate Invoice period start date.
-     * @param periodEndDate Invoice period end date.
+     * @param subscriptionId The ID that uniquely identifies a billing subscription.
+     * @param periodStartDate The start date of the billing period for which the invoice is generated. The date is in
+     *     MM-DD-YYYY format.
+     * @param periodEndDate The end date of the billing period for which the invoice is generated. The date is in
+     *     MM-DD-YYYY format.
+     * @param filter The filter query option allows clients to filter a collection of resources that are addressed by a
+     *     request URL.
+     * @param orderBy The orderby query option allows clients to request resources in a particular order.
+     * @param top The top query option requests the number of items in the queried collection to be included in the
+     *     result. The maximum supported value for top is 50.
+     * @param skip The skip query option requests the number of items in the queried collection that are to be skipped
+     *     and not included in the result.
+     * @param count The count query option allows clients to request a count of the matching resources included with the
+     *     resources in the response.
+     * @param search The search query option allows clients to request items within a collection matching a free-text
+     *     search expression. search is only supported for string fields.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of invoices as paginated response with {@link PagedIterable}.
+     * @return a container for a list of resources as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<InvoiceInner> listByBillingSubscription(
-        String periodStartDate, String periodEndDate, Context context) {
-        return new PagedIterable<>(listByBillingSubscriptionAsync(periodStartDate, periodEndDate, context));
+        String subscriptionId,
+        LocalDate periodStartDate,
+        LocalDate periodEndDate,
+        String filter,
+        String orderBy,
+        Long top,
+        Long skip,
+        Boolean count,
+        String search,
+        Context context) {
+        return new PagedIterable<>(
+            listByBillingSubscriptionAsync(
+                subscriptionId, periodStartDate, periodEndDate, filter, orderBy, top, skip, count, search, context));
     }
 
     /**
-     * Gets an invoice by subscription ID and invoice ID.
+     * Gets an invoice by ID. The operation is supported for all billing account types.
      *
      * @param invoiceName The ID that uniquely identifies an invoice.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an invoice by subscription ID and invoice ID along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return an invoice by ID along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<InvoiceInner>> getBySubscriptionAndInvoiceIdWithResponseAsync(String invoiceName) {
+    private Mono<Response<InvoiceInner>> getWithResponseAsync(String invoiceName) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
                     new IllegalArgumentException(
                         "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
         if (invoiceName == null) {
             return Mono.error(new IllegalArgumentException("Parameter invoiceName is required and cannot be null."));
         }
-        final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
                 context ->
-                    service
-                        .getBySubscriptionAndInvoiceId(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            invoiceName,
-                            apiVersion,
-                            accept,
-                            context))
+                    service.get(this.client.getEndpoint(), invoiceName, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Gets an invoice by subscription ID and invoice ID.
+     * Gets an invoice by ID. The operation is supported for all billing account types.
      *
      * @param invoiceName The ID that uniquely identifies an invoice.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an invoice by subscription ID and invoice ID along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return an invoice by ID along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<InvoiceInner>> getBySubscriptionAndInvoiceIdWithResponseAsync(
-        String invoiceName, Context context) {
+    private Mono<Response<InvoiceInner>> getWithResponseAsync(String invoiceName, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
                     new IllegalArgumentException(
                         "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (invoiceName == null) {
             return Mono.error(new IllegalArgumentException("Parameter invoiceName is required and cannot be null."));
         }
-        final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .getBySubscriptionAndInvoiceId(
-                this.client.getEndpoint(), this.client.getSubscriptionId(), invoiceName, apiVersion, accept, context);
+        return service.get(this.client.getEndpoint(), invoiceName, this.client.getApiVersion(), accept, context);
     }
 
     /**
-     * Gets an invoice by subscription ID and invoice ID.
+     * Gets an invoice by ID. The operation is supported for all billing account types.
      *
      * @param invoiceName The ID that uniquely identifies an invoice.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an invoice by subscription ID and invoice ID on successful completion of {@link Mono}.
+     * @return an invoice by ID on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<InvoiceInner> getBySubscriptionAndInvoiceIdAsync(String invoiceName) {
-        return getBySubscriptionAndInvoiceIdWithResponseAsync(invoiceName)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    private Mono<InvoiceInner> getAsync(String invoiceName) {
+        return getWithResponseAsync(invoiceName).flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Gets an invoice by subscription ID and invoice ID.
+     * Gets an invoice by ID. The operation is supported for all billing account types.
      *
      * @param invoiceName The ID that uniquely identifies an invoice.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an invoice by subscription ID and invoice ID along with {@link Response}.
+     * @return an invoice by ID along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<InvoiceInner> getBySubscriptionAndInvoiceIdWithResponse(String invoiceName, Context context) {
-        return getBySubscriptionAndInvoiceIdWithResponseAsync(invoiceName, context).block();
+    public Response<InvoiceInner> getWithResponse(String invoiceName, Context context) {
+        return getWithResponseAsync(invoiceName, context).block();
     }
 
     /**
-     * Gets an invoice by subscription ID and invoice ID.
+     * Gets an invoice by ID. The operation is supported for all billing account types.
      *
      * @param invoiceName The ID that uniquely identifies an invoice.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an invoice by subscription ID and invoice ID.
+     * @return an invoice by ID.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public InvoiceInner getBySubscriptionAndInvoiceId(String invoiceName) {
-        return getBySubscriptionAndInvoiceIdWithResponse(invoiceName, Context.NONE).getValue();
-    }
-
-    /**
-     * Gets a URL to download an invoice.
-     *
-     * @param invoiceName The ID that uniquely identifies an invoice.
-     * @param downloadToken Download token with document source and document ID.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a URL to download an invoice along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> downloadBillingSubscriptionInvoiceWithResponseAsync(
-        String invoiceName, String downloadToken) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (invoiceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter invoiceName is required and cannot be null."));
-        }
-        if (downloadToken == null) {
-            return Mono.error(new IllegalArgumentException("Parameter downloadToken is required and cannot be null."));
-        }
-        final String apiVersion = "2020-05-01";
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .downloadBillingSubscriptionInvoice(
-                            this.client.getEndpoint(),
-                            apiVersion,
-                            this.client.getSubscriptionId(),
-                            invoiceName,
-                            downloadToken,
-                            accept,
-                            context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Gets a URL to download an invoice.
-     *
-     * @param invoiceName The ID that uniquely identifies an invoice.
-     * @param downloadToken Download token with document source and document ID.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a URL to download an invoice along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> downloadBillingSubscriptionInvoiceWithResponseAsync(
-        String invoiceName, String downloadToken, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (invoiceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter invoiceName is required and cannot be null."));
-        }
-        if (downloadToken == null) {
-            return Mono.error(new IllegalArgumentException("Parameter downloadToken is required and cannot be null."));
-        }
-        final String apiVersion = "2020-05-01";
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .downloadBillingSubscriptionInvoice(
-                this.client.getEndpoint(),
-                apiVersion,
-                this.client.getSubscriptionId(),
-                invoiceName,
-                downloadToken,
-                accept,
-                context);
-    }
-
-    /**
-     * Gets a URL to download an invoice.
-     *
-     * @param invoiceName The ID that uniquely identifies an invoice.
-     * @param downloadToken Download token with document source and document ID.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of a URL to download an invoice.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<DownloadUrlInner>, DownloadUrlInner> beginDownloadBillingSubscriptionInvoiceAsync(
-        String invoiceName, String downloadToken) {
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            downloadBillingSubscriptionInvoiceWithResponseAsync(invoiceName, downloadToken);
-        return this
-            .client
-            .<DownloadUrlInner, DownloadUrlInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                DownloadUrlInner.class,
-                DownloadUrlInner.class,
-                this.client.getContext());
-    }
-
-    /**
-     * Gets a URL to download an invoice.
-     *
-     * @param invoiceName The ID that uniquely identifies an invoice.
-     * @param downloadToken Download token with document source and document ID.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of a URL to download an invoice.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<DownloadUrlInner>, DownloadUrlInner> beginDownloadBillingSubscriptionInvoiceAsync(
-        String invoiceName, String downloadToken, Context context) {
-        context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            downloadBillingSubscriptionInvoiceWithResponseAsync(invoiceName, downloadToken, context);
-        return this
-            .client
-            .<DownloadUrlInner, DownloadUrlInner>getLroResult(
-                mono, this.client.getHttpPipeline(), DownloadUrlInner.class, DownloadUrlInner.class, context);
-    }
-
-    /**
-     * Gets a URL to download an invoice.
-     *
-     * @param invoiceName The ID that uniquely identifies an invoice.
-     * @param downloadToken Download token with document source and document ID.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of a URL to download an invoice.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<DownloadUrlInner>, DownloadUrlInner> beginDownloadBillingSubscriptionInvoice(
-        String invoiceName, String downloadToken) {
-        return this.beginDownloadBillingSubscriptionInvoiceAsync(invoiceName, downloadToken).getSyncPoller();
-    }
-
-    /**
-     * Gets a URL to download an invoice.
-     *
-     * @param invoiceName The ID that uniquely identifies an invoice.
-     * @param downloadToken Download token with document source and document ID.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of a URL to download an invoice.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<DownloadUrlInner>, DownloadUrlInner> beginDownloadBillingSubscriptionInvoice(
-        String invoiceName, String downloadToken, Context context) {
-        return this.beginDownloadBillingSubscriptionInvoiceAsync(invoiceName, downloadToken, context).getSyncPoller();
-    }
-
-    /**
-     * Gets a URL to download an invoice.
-     *
-     * @param invoiceName The ID that uniquely identifies an invoice.
-     * @param downloadToken Download token with document source and document ID.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a URL to download an invoice on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<DownloadUrlInner> downloadBillingSubscriptionInvoiceAsync(String invoiceName, String downloadToken) {
-        return beginDownloadBillingSubscriptionInvoiceAsync(invoiceName, downloadToken)
-            .last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Gets a URL to download an invoice.
-     *
-     * @param invoiceName The ID that uniquely identifies an invoice.
-     * @param downloadToken Download token with document source and document ID.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a URL to download an invoice on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<DownloadUrlInner> downloadBillingSubscriptionInvoiceAsync(
-        String invoiceName, String downloadToken, Context context) {
-        return beginDownloadBillingSubscriptionInvoiceAsync(invoiceName, downloadToken, context)
-            .last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Gets a URL to download an invoice.
-     *
-     * @param invoiceName The ID that uniquely identifies an invoice.
-     * @param downloadToken Download token with document source and document ID.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a URL to download an invoice.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public DownloadUrlInner downloadBillingSubscriptionInvoice(String invoiceName, String downloadToken) {
-        return downloadBillingSubscriptionInvoiceAsync(invoiceName, downloadToken).block();
-    }
-
-    /**
-     * Gets a URL to download an invoice.
-     *
-     * @param invoiceName The ID that uniquely identifies an invoice.
-     * @param downloadToken Download token with document source and document ID.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a URL to download an invoice.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public DownloadUrlInner downloadBillingSubscriptionInvoice(
-        String invoiceName, String downloadToken, Context context) {
-        return downloadBillingSubscriptionInvoiceAsync(invoiceName, downloadToken, context).block();
-    }
-
-    /**
-     * Gets a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file.
-     *
-     * @param downloadUrls An array of download urls for individual documents.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file
-     *     along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> downloadMultipleBillingSubscriptionInvoicesWithResponseAsync(
-        List<String> downloadUrls) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (downloadUrls == null) {
-            return Mono.error(new IllegalArgumentException("Parameter downloadUrls is required and cannot be null."));
-        }
-        final String apiVersion = "2020-05-01";
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .downloadMultipleBillingSubscriptionInvoices(
-                            this.client.getEndpoint(),
-                            apiVersion,
-                            this.client.getSubscriptionId(),
-                            downloadUrls,
-                            accept,
-                            context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Gets a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file.
-     *
-     * @param downloadUrls An array of download urls for individual documents.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file
-     *     along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> downloadMultipleBillingSubscriptionInvoicesWithResponseAsync(
-        List<String> downloadUrls, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (downloadUrls == null) {
-            return Mono.error(new IllegalArgumentException("Parameter downloadUrls is required and cannot be null."));
-        }
-        final String apiVersion = "2020-05-01";
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .downloadMultipleBillingSubscriptionInvoices(
-                this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), downloadUrls, accept, context);
-    }
-
-    /**
-     * Gets a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file.
-     *
-     * @param downloadUrls An array of download urls for individual documents.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of a URL to download multiple invoice documents (invoice pdf, tax
-     *     receipts, credit notes) as a zip file.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<DownloadUrlInner>, DownloadUrlInner>
-        beginDownloadMultipleBillingSubscriptionInvoicesAsync(List<String> downloadUrls) {
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            downloadMultipleBillingSubscriptionInvoicesWithResponseAsync(downloadUrls);
-        return this
-            .client
-            .<DownloadUrlInner, DownloadUrlInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                DownloadUrlInner.class,
-                DownloadUrlInner.class,
-                this.client.getContext());
-    }
-
-    /**
-     * Gets a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file.
-     *
-     * @param downloadUrls An array of download urls for individual documents.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of a URL to download multiple invoice documents (invoice pdf, tax
-     *     receipts, credit notes) as a zip file.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<DownloadUrlInner>, DownloadUrlInner>
-        beginDownloadMultipleBillingSubscriptionInvoicesAsync(List<String> downloadUrls, Context context) {
-        context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            downloadMultipleBillingSubscriptionInvoicesWithResponseAsync(downloadUrls, context);
-        return this
-            .client
-            .<DownloadUrlInner, DownloadUrlInner>getLroResult(
-                mono, this.client.getHttpPipeline(), DownloadUrlInner.class, DownloadUrlInner.class, context);
-    }
-
-    /**
-     * Gets a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file.
-     *
-     * @param downloadUrls An array of download urls for individual documents.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of a URL to download multiple invoice documents (invoice pdf, tax
-     *     receipts, credit notes) as a zip file.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<DownloadUrlInner>, DownloadUrlInner> beginDownloadMultipleBillingSubscriptionInvoices(
-        List<String> downloadUrls) {
-        return this.beginDownloadMultipleBillingSubscriptionInvoicesAsync(downloadUrls).getSyncPoller();
-    }
-
-    /**
-     * Gets a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file.
-     *
-     * @param downloadUrls An array of download urls for individual documents.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of a URL to download multiple invoice documents (invoice pdf, tax
-     *     receipts, credit notes) as a zip file.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<DownloadUrlInner>, DownloadUrlInner> beginDownloadMultipleBillingSubscriptionInvoices(
-        List<String> downloadUrls, Context context) {
-        return this.beginDownloadMultipleBillingSubscriptionInvoicesAsync(downloadUrls, context).getSyncPoller();
-    }
-
-    /**
-     * Gets a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file.
-     *
-     * @param downloadUrls An array of download urls for individual documents.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file on
-     *     successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<DownloadUrlInner> downloadMultipleBillingSubscriptionInvoicesAsync(List<String> downloadUrls) {
-        return beginDownloadMultipleBillingSubscriptionInvoicesAsync(downloadUrls)
-            .last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Gets a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file.
-     *
-     * @param downloadUrls An array of download urls for individual documents.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file on
-     *     successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<DownloadUrlInner> downloadMultipleBillingSubscriptionInvoicesAsync(
-        List<String> downloadUrls, Context context) {
-        return beginDownloadMultipleBillingSubscriptionInvoicesAsync(downloadUrls, context)
-            .last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Gets a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file.
-     *
-     * @param downloadUrls An array of download urls for individual documents.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public DownloadUrlInner downloadMultipleBillingSubscriptionInvoices(List<String> downloadUrls) {
-        return downloadMultipleBillingSubscriptionInvoicesAsync(downloadUrls).block();
-    }
-
-    /**
-     * Gets a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file.
-     *
-     * @param downloadUrls An array of download urls for individual documents.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public DownloadUrlInner downloadMultipleBillingSubscriptionInvoices(List<String> downloadUrls, Context context) {
-        return downloadMultipleBillingSubscriptionInvoicesAsync(downloadUrls, context).block();
+    public InvoiceInner get(String invoiceName) {
+        return getWithResponse(invoiceName, Context.NONE).getValue();
     }
 
     /**
@@ -2162,82 +3409,8 @@ public final class InvoicesClientImpl implements InvoicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of invoices along with {@link PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<InvoiceInner>> listByBillingAccountNextSinglePageAsync(String nextLink) {
-        if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
-        }
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(
-                context -> service.listByBillingAccountNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<InvoiceInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Get the next page of items.
-     *
-     * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of invoices along with {@link PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<InvoiceInner>> listByBillingAccountNextSinglePageAsync(
-        String nextLink, Context context) {
-        if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
-        }
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .listByBillingAccountNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
-    }
-
-    /**
-     * Get the next page of items.
-     *
-     * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of invoices along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return a container for a list of resources along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<InvoiceInner>> listByBillingProfileNextSinglePageAsync(String nextLink) {
@@ -2275,7 +3448,8 @@ public final class InvoicesClientImpl implements InvoicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of invoices along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return a container for a list of resources along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<InvoiceInner>> listByBillingProfileNextSinglePageAsync(
@@ -2312,7 +3486,85 @@ public final class InvoicesClientImpl implements InvoicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of invoices along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return a container for a list of resources along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<InvoiceInner>> listByBillingAccountNextSinglePageAsync(String nextLink) {
+        if (nextLink == null) {
+            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context -> service.listByBillingAccountNext(nextLink, this.client.getEndpoint(), accept, context))
+            .<PagedResponse<InvoiceInner>>map(
+                res ->
+                    new PagedResponseBase<>(
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink(),
+                        null))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Get the next page of items.
+     *
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a container for a list of resources along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<InvoiceInner>> listByBillingAccountNextSinglePageAsync(
+        String nextLink, Context context) {
+        if (nextLink == null) {
+            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .listByBillingAccountNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(
+                res ->
+                    new PagedResponseBase<>(
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink(),
+                        null));
+    }
+
+    /**
+     * Get the next page of items.
+     *
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a container for a list of resources along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<InvoiceInner>> listByBillingSubscriptionNextSinglePageAsync(String nextLink) {
@@ -2350,7 +3602,8 @@ public final class InvoicesClientImpl implements InvoicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of invoices along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return a container for a list of resources along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<InvoiceInner>> listByBillingSubscriptionNextSinglePageAsync(

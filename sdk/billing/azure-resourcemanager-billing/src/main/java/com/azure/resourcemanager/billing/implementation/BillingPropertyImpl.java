@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.billing.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.billing.fluent.models.BillingPropertyInner;
 import com.azure.resourcemanager.billing.models.BillingProfileSpendingLimit;
 import com.azure.resourcemanager.billing.models.BillingProfileStatus;
@@ -21,6 +22,10 @@ public final class BillingPropertyImpl implements BillingProperty {
         this.serviceManager = serviceManager;
     }
 
+    public String type() {
+        return this.innerModel().type();
+    }
+
     public String id() {
         return this.innerModel().id();
     }
@@ -29,32 +34,32 @@ public final class BillingPropertyImpl implements BillingProperty {
         return this.innerModel().name();
     }
 
-    public String type() {
-        return this.innerModel().type();
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public String accountAdminNotificationEmailAddress() {
         return this.innerModel().accountAdminNotificationEmailAddress();
     }
 
-    public String billingTenantId() {
-        return this.innerModel().billingTenantId();
+    public String billingAccountDisplayName() {
+        return this.innerModel().billingAccountDisplayName();
     }
 
     public String billingAccountId() {
         return this.innerModel().billingAccountId();
     }
 
-    public String billingAccountDisplayName() {
-        return this.innerModel().billingAccountDisplayName();
+    public String billingProfileDisplayName() {
+        return this.innerModel().billingProfileDisplayName();
     }
 
     public String billingProfileId() {
         return this.innerModel().billingProfileId();
     }
 
-    public String billingProfileDisplayName() {
-        return this.innerModel().billingProfileDisplayName();
+    public BillingProfileSpendingLimit billingProfileSpendingLimit() {
+        return this.innerModel().billingProfileSpendingLimit();
     }
 
     public BillingProfileStatus billingProfileStatus() {
@@ -65,20 +70,20 @@ public final class BillingPropertyImpl implements BillingProperty {
         return this.innerModel().billingProfileStatusReasonCode();
     }
 
-    public BillingProfileSpendingLimit billingProfileSpendingLimit() {
-        return this.innerModel().billingProfileSpendingLimit();
+    public String billingTenantId() {
+        return this.innerModel().billingTenantId();
     }
 
     public String costCenter() {
         return this.innerModel().costCenter();
     }
 
-    public String invoiceSectionId() {
-        return this.innerModel().invoiceSectionId();
-    }
-
     public String invoiceSectionDisplayName() {
         return this.innerModel().invoiceSectionDisplayName();
+    }
+
+    public String invoiceSectionId() {
+        return this.innerModel().invoiceSectionId();
     }
 
     public Boolean isAccountAdmin() {
@@ -93,12 +98,12 @@ public final class BillingPropertyImpl implements BillingProperty {
         return this.innerModel().productName();
     }
 
-    public String skuId() {
-        return this.innerModel().skuId();
-    }
-
     public String skuDescription() {
         return this.innerModel().skuDescription();
+    }
+
+    public String skuId() {
+        return this.innerModel().skuId();
     }
 
     public BillingPropertyInner innerModel() {

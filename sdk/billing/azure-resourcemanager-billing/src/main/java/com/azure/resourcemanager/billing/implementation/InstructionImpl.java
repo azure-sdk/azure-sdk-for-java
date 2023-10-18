@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.billing.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.billing.fluent.models.InstructionInner;
 import com.azure.resourcemanager.billing.models.Instruction;
 import java.time.OffsetDateTime;
@@ -18,6 +19,10 @@ public final class InstructionImpl implements Instruction {
         this.serviceManager = serviceManager;
     }
 
+    public String type() {
+        return this.innerModel().type();
+    }
+
     public String id() {
         return this.innerModel().id();
     }
@@ -26,24 +31,24 @@ public final class InstructionImpl implements Instruction {
         return this.innerModel().name();
     }
 
-    public String type() {
-        return this.innerModel().type();
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public float amount() {
         return this.innerModel().amount();
     }
 
-    public OffsetDateTime startDate() {
-        return this.innerModel().startDate();
+    public OffsetDateTime creationDate() {
+        return this.innerModel().creationDate();
     }
 
     public OffsetDateTime endDate() {
         return this.innerModel().endDate();
     }
 
-    public OffsetDateTime creationDate() {
-        return this.innerModel().creationDate();
+    public OffsetDateTime startDate() {
+        return this.innerModel().startDate();
     }
 
     public InstructionInner innerModel() {

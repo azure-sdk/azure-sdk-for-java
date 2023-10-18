@@ -9,15 +9,9 @@ import com.azure.resourcemanager.billing.fluent.models.InvoiceInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The list of invoices. */
+/** A container for a list of resources. */
 @Immutable
 public final class InvoiceListResult {
-    /*
-     * The list of invoices.
-     */
-    @JsonProperty(value = "value", access = JsonProperty.Access.WRITE_ONLY)
-    private List<InvoiceInner> value;
-
     /*
      * The link (url) to the next page of results.
      */
@@ -25,22 +19,13 @@ public final class InvoiceListResult {
     private String nextLink;
 
     /*
-     * Total number of records.
+     * The list of resources.
      */
-    @JsonProperty(value = "totalCount", access = JsonProperty.Access.WRITE_ONLY)
-    private Integer totalCount;
+    @JsonProperty(value = "value", access = JsonProperty.Access.WRITE_ONLY)
+    private List<InvoiceInner> value;
 
     /** Creates an instance of InvoiceListResult class. */
     public InvoiceListResult() {
-    }
-
-    /**
-     * Get the value property: The list of invoices.
-     *
-     * @return the value value.
-     */
-    public List<InvoiceInner> value() {
-        return this.value;
     }
 
     /**
@@ -53,12 +38,12 @@ public final class InvoiceListResult {
     }
 
     /**
-     * Get the totalCount property: Total number of records.
+     * Get the value property: The list of resources.
      *
-     * @return the totalCount value.
+     * @return the value value.
      */
-    public Integer totalCount() {
-        return this.totalCount;
+    public List<InvoiceInner> value() {
+        return this.value;
     }
 
     /**

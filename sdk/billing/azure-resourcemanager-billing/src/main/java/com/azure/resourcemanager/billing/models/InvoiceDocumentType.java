@@ -10,11 +10,26 @@ import java.util.Collection;
 
 /** The type of the document. */
 public final class InvoiceDocumentType extends ExpandableStringEnum<InvoiceDocumentType> {
+    /** Static value Unknown for InvoiceDocumentType. */
+    public static final InvoiceDocumentType UNKNOWN = fromString("Unknown");
+
     /** Static value Invoice for InvoiceDocumentType. */
     public static final InvoiceDocumentType INVOICE = fromString("Invoice");
 
+    /** Static value VoidNote for InvoiceDocumentType. */
+    public static final InvoiceDocumentType VOID_NOTE = fromString("VoidNote");
+
+    /** Static value TaxReceipt for InvoiceDocumentType. */
+    public static final InvoiceDocumentType TAX_RECEIPT = fromString("TaxReceipt");
+
     /** Static value CreditNote for InvoiceDocumentType. */
     public static final InvoiceDocumentType CREDIT_NOTE = fromString("CreditNote");
+
+    /** Static value Summary for InvoiceDocumentType. */
+    public static final InvoiceDocumentType SUMMARY = fromString("Summary");
+
+    /** Static value Transactions for InvoiceDocumentType. */
+    public static final InvoiceDocumentType TRANSACTIONS = fromString("Transactions");
 
     /**
      * Creates a new instance of InvoiceDocumentType value.

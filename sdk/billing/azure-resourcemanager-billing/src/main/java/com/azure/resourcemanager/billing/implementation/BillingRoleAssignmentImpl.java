@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.billing.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.billing.fluent.models.BillingRoleAssignmentInner;
 import com.azure.resourcemanager.billing.models.BillingRoleAssignment;
 
@@ -18,6 +19,10 @@ public final class BillingRoleAssignmentImpl implements BillingRoleAssignment {
         this.serviceManager = serviceManager;
     }
 
+    public String type() {
+        return this.innerModel().type();
+    }
+
     public String id() {
         return this.innerModel().id();
     }
@@ -26,24 +31,24 @@ public final class BillingRoleAssignmentImpl implements BillingRoleAssignment {
         return this.innerModel().name();
     }
 
-    public String type() {
-        return this.innerModel().type();
-    }
-
-    public String createdOn() {
-        return this.innerModel().createdOn();
-    }
-
-    public String createdByPrincipalTenantId() {
-        return this.innerModel().createdByPrincipalTenantId();
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public String createdByPrincipalId() {
         return this.innerModel().createdByPrincipalId();
     }
 
+    public String createdByPrincipalTenantId() {
+        return this.innerModel().createdByPrincipalTenantId();
+    }
+
     public String createdByUserEmailAddress() {
         return this.innerModel().createdByUserEmailAddress();
+    }
+
+    public String createdOn() {
+        return this.innerModel().createdOn();
     }
 
     public String principalId() {

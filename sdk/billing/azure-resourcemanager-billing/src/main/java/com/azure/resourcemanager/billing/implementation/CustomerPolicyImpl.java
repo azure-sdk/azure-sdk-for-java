@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.billing.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.billing.fluent.models.CustomerPolicyInner;
 import com.azure.resourcemanager.billing.models.CustomerPolicy;
 import com.azure.resourcemanager.billing.models.ViewCharges;
@@ -19,6 +20,10 @@ public final class CustomerPolicyImpl implements CustomerPolicy {
         this.serviceManager = serviceManager;
     }
 
+    public String type() {
+        return this.innerModel().type();
+    }
+
     public String id() {
         return this.innerModel().id();
     }
@@ -27,8 +32,8 @@ public final class CustomerPolicyImpl implements CustomerPolicy {
         return this.innerModel().name();
     }
 
-    public String type() {
-        return this.innerModel().type();
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public ViewCharges viewCharges() {

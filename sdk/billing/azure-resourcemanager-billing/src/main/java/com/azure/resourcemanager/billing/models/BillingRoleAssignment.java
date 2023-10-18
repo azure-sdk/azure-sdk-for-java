@@ -4,12 +4,22 @@
 
 package com.azure.resourcemanager.billing.models;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.billing.fluent.models.BillingRoleAssignmentInner;
 
 /** An immutable client-side representation of BillingRoleAssignment. */
 public interface BillingRoleAssignment {
     /**
-     * Gets the id property: Fully qualified resource Id for the resource.
+     * Gets the type property: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
+     * "Microsoft.Storage/storageAccounts".
+     *
+     * @return the type value.
+     */
+    String type();
+
+    /**
+     * Gets the id property: Fully qualified resource ID for the resource. Ex -
+     * /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
      *
      * @return the id value.
      */
@@ -23,25 +33,11 @@ public interface BillingRoleAssignment {
     String name();
 
     /**
-     * Gets the type property: The type of the resource.
+     * Gets the systemData property: Metadata pertaining to creation and last modification of the resource.
      *
-     * @return the type value.
+     * @return the systemData value.
      */
-    String type();
-
-    /**
-     * Gets the createdOn property: The date the role assignment was created.
-     *
-     * @return the createdOn value.
-     */
-    String createdOn();
-
-    /**
-     * Gets the createdByPrincipalTenantId property: The tenant Id of the user who created the role assignment.
-     *
-     * @return the createdByPrincipalTenantId value.
-     */
-    String createdByPrincipalTenantId();
+    SystemData systemData();
 
     /**
      * Gets the createdByPrincipalId property: The principal Id of the user who created the role assignment.
@@ -51,11 +47,25 @@ public interface BillingRoleAssignment {
     String createdByPrincipalId();
 
     /**
+     * Gets the createdByPrincipalTenantId property: The tenant Id of the user who created the role assignment.
+     *
+     * @return the createdByPrincipalTenantId value.
+     */
+    String createdByPrincipalTenantId();
+
+    /**
      * Gets the createdByUserEmailAddress property: The email address of the user who created the role assignment.
      *
      * @return the createdByUserEmailAddress value.
      */
     String createdByUserEmailAddress();
+
+    /**
+     * Gets the createdOn property: The date the role assignment was created.
+     *
+     * @return the createdOn value.
+     */
+    String createdOn();
 
     /**
      * Gets the principalId property: The principal id of the user to whom the role was assigned.

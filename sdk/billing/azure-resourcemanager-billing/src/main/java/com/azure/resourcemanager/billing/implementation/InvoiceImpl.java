@@ -4,19 +4,28 @@
 
 package com.azure.resourcemanager.billing.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.billing.fluent.models.InvoiceInner;
-import com.azure.resourcemanager.billing.models.Amount;
-import com.azure.resourcemanager.billing.models.Document;
+import com.azure.resourcemanager.billing.models.FailedPayment;
 import com.azure.resourcemanager.billing.models.Invoice;
+import com.azure.resourcemanager.billing.models.InvoiceDocument;
 import com.azure.resourcemanager.billing.models.InvoiceDocumentType;
+import com.azure.resourcemanager.billing.models.InvoicePropertiesAmountDue;
+import com.azure.resourcemanager.billing.models.InvoicePropertiesAzurePrepaymentApplied;
+import com.azure.resourcemanager.billing.models.InvoicePropertiesBilledAmount;
+import com.azure.resourcemanager.billing.models.InvoicePropertiesCreditAmount;
+import com.azure.resourcemanager.billing.models.InvoicePropertiesFreeAzureCreditApplied;
+import com.azure.resourcemanager.billing.models.InvoicePropertiesRebillDetails;
+import com.azure.resourcemanager.billing.models.InvoicePropertiesRefundDetails;
+import com.azure.resourcemanager.billing.models.InvoicePropertiesSubTotal;
+import com.azure.resourcemanager.billing.models.InvoicePropertiesTaxAmount;
+import com.azure.resourcemanager.billing.models.InvoicePropertiesTotalAmount;
 import com.azure.resourcemanager.billing.models.InvoiceStatus;
 import com.azure.resourcemanager.billing.models.InvoiceType;
-import com.azure.resourcemanager.billing.models.PaymentProperties;
-import com.azure.resourcemanager.billing.models.RebillDetails;
-import java.time.OffsetDateTime;
+import com.azure.resourcemanager.billing.models.Payment;
+import com.azure.resourcemanager.billing.models.SpecialTaxationType;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 public final class InvoiceImpl implements Invoice {
     private InvoiceInner innerObject;
@@ -28,6 +37,10 @@ public final class InvoiceImpl implements Invoice {
         this.serviceManager = serviceManager;
     }
 
+    public String type() {
+        return this.innerModel().type();
+    }
+
     public String id() {
         return this.innerModel().id();
     }
@@ -36,60 +49,86 @@ public final class InvoiceImpl implements Invoice {
         return this.innerModel().name();
     }
 
-    public String type() {
-        return this.innerModel().type();
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
-    public OffsetDateTime dueDate() {
-        return this.innerModel().dueDate();
-    }
-
-    public OffsetDateTime invoiceDate() {
-        return this.innerModel().invoiceDate();
-    }
-
-    public InvoiceStatus status() {
-        return this.innerModel().status();
-    }
-
-    public Amount amountDue() {
+    public InvoicePropertiesAmountDue amountDue() {
         return this.innerModel().amountDue();
     }
 
-    public Amount azurePrepaymentApplied() {
+    public InvoicePropertiesAzurePrepaymentApplied azurePrepaymentApplied() {
         return this.innerModel().azurePrepaymentApplied();
     }
 
-    public Amount billedAmount() {
+    public InvoicePropertiesBilledAmount billedAmount() {
         return this.innerModel().billedAmount();
     }
 
-    public Amount creditAmount() {
+    public String billedDocumentId() {
+        return this.innerModel().billedDocumentId();
+    }
+
+    public String billingProfileDisplayName() {
+        return this.innerModel().billingProfileDisplayName();
+    }
+
+    public String billingProfileId() {
+        return this.innerModel().billingProfileId();
+    }
+
+    public InvoicePropertiesCreditAmount creditAmount() {
         return this.innerModel().creditAmount();
     }
 
-    public Amount freeAzureCreditApplied() {
+    public String creditForDocumentId() {
+        return this.innerModel().creditForDocumentId();
+    }
+
+    public List<InvoiceDocument> documents() {
+        List<InvoiceDocument> inner = this.innerModel().documents();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
+    public InvoiceDocumentType documentType() {
+        return this.innerModel().documentType();
+    }
+
+    public String chargeDate() {
+        return this.innerModel().chargeDate();
+    }
+
+    public String dueDate() {
+        return this.innerModel().dueDate();
+    }
+
+    public List<FailedPayment> failedPayments() {
+        List<FailedPayment> inner = this.innerModel().failedPayments();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
+    public InvoicePropertiesFreeAzureCreditApplied freeAzureCreditApplied() {
         return this.innerModel().freeAzureCreditApplied();
     }
 
-    public Amount subTotal() {
-        return this.innerModel().subTotal();
+    public String invoiceDate() {
+        return this.innerModel().invoiceDate();
     }
 
-    public Amount taxAmount() {
-        return this.innerModel().taxAmount();
-    }
-
-    public Amount totalAmount() {
-        return this.innerModel().totalAmount();
-    }
-
-    public OffsetDateTime invoicePeriodStartDate() {
-        return this.innerModel().invoicePeriodStartDate();
-    }
-
-    public OffsetDateTime invoicePeriodEndDate() {
+    public String invoicePeriodEndDate() {
         return this.innerModel().invoicePeriodEndDate();
+    }
+
+    public String invoicePeriodStartDate() {
+        return this.innerModel().invoicePeriodStartDate();
     }
 
     public InvoiceType invoiceType() {
@@ -100,59 +139,53 @@ public final class InvoiceImpl implements Invoice {
         return this.innerModel().isMonthlyInvoice();
     }
 
-    public String billingProfileId() {
-        return this.innerModel().billingProfileId();
-    }
-
-    public String billingProfileDisplayName() {
-        return this.innerModel().billingProfileDisplayName();
+    public List<Payment> payments() {
+        List<Payment> inner = this.innerModel().payments();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
     }
 
     public String purchaseOrderNumber() {
         return this.innerModel().purchaseOrderNumber();
     }
 
-    public List<Document> documents() {
-        List<Document> inner = this.innerModel().documents();
-        if (inner != null) {
-            return Collections.unmodifiableList(inner);
-        } else {
-            return Collections.emptyList();
-        }
+    public InvoicePropertiesRebillDetails rebillDetails() {
+        return this.innerModel().rebillDetails();
     }
 
-    public List<PaymentProperties> payments() {
-        List<PaymentProperties> inner = this.innerModel().payments();
-        if (inner != null) {
-            return Collections.unmodifiableList(inner);
-        } else {
-            return Collections.emptyList();
-        }
+    public InvoiceStatus status() {
+        return this.innerModel().status();
     }
 
-    public Map<String, RebillDetails> rebillDetails() {
-        Map<String, RebillDetails> inner = this.innerModel().rebillDetails();
-        if (inner != null) {
-            return Collections.unmodifiableMap(inner);
-        } else {
-            return Collections.emptyMap();
-        }
-    }
-
-    public InvoiceDocumentType documentType() {
-        return this.innerModel().documentType();
-    }
-
-    public String billedDocumentId() {
-        return this.innerModel().billedDocumentId();
-    }
-
-    public String creditForDocumentId() {
-        return this.innerModel().creditForDocumentId();
+    public String subscriptionDisplayName() {
+        return this.innerModel().subscriptionDisplayName();
     }
 
     public String subscriptionId() {
         return this.innerModel().subscriptionId();
+    }
+
+    public SpecialTaxationType specialTaxationType() {
+        return this.innerModel().specialTaxationType();
+    }
+
+    public InvoicePropertiesSubTotal subTotal() {
+        return this.innerModel().subTotal();
+    }
+
+    public InvoicePropertiesTaxAmount taxAmount() {
+        return this.innerModel().taxAmount();
+    }
+
+    public InvoicePropertiesTotalAmount totalAmount() {
+        return this.innerModel().totalAmount();
+    }
+
+    public InvoicePropertiesRefundDetails refundDetails() {
+        return this.innerModel().refundDetails();
     }
 
     public InvoiceInner innerModel() {

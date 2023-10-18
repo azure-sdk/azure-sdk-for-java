@@ -20,10 +20,10 @@ public final class BillingPropertyProperties {
     private String accountAdminNotificationEmailAddress;
 
     /*
-     * The Azure AD tenant ID of the billing account for the subscription.
+     * The name of the billing account to which the subscription is billed.
      */
-    @JsonProperty(value = "billingTenantId", access = JsonProperty.Access.WRITE_ONLY)
-    private String billingTenantId;
+    @JsonProperty(value = "billingAccountDisplayName", access = JsonProperty.Access.WRITE_ONLY)
+    private String billingAccountDisplayName;
 
     /*
      * The ID of the billing account to which the subscription is billed.
@@ -32,10 +32,10 @@ public final class BillingPropertyProperties {
     private String billingAccountId;
 
     /*
-     * The name of the billing account to which the subscription is billed.
+     * The name of the billing profile to which the subscription is billed.
      */
-    @JsonProperty(value = "billingAccountDisplayName", access = JsonProperty.Access.WRITE_ONLY)
-    private String billingAccountDisplayName;
+    @JsonProperty(value = "billingProfileDisplayName", access = JsonProperty.Access.WRITE_ONLY)
+    private String billingProfileDisplayName;
 
     /*
      * The ID of the billing profile to which the subscription is billed.
@@ -44,10 +44,10 @@ public final class BillingPropertyProperties {
     private String billingProfileId;
 
     /*
-     * The name of the billing profile to which the subscription is billed.
+     * The billing profile spending limit.
      */
-    @JsonProperty(value = "billingProfileDisplayName", access = JsonProperty.Access.WRITE_ONLY)
-    private String billingProfileDisplayName;
+    @JsonProperty(value = "billingProfileSpendingLimit", access = JsonProperty.Access.WRITE_ONLY)
+    private BillingProfileSpendingLimit billingProfileSpendingLimit;
 
     /*
      * The status of the billing profile.
@@ -62,10 +62,10 @@ public final class BillingPropertyProperties {
     private BillingProfileStatusReasonCode billingProfileStatusReasonCode;
 
     /*
-     * The billing profile spending limit.
+     * The Azure AD tenant ID of the billing account for the subscription.
      */
-    @JsonProperty(value = "billingProfileSpendingLimit", access = JsonProperty.Access.WRITE_ONLY)
-    private BillingProfileSpendingLimit billingProfileSpendingLimit;
+    @JsonProperty(value = "billingTenantId", access = JsonProperty.Access.WRITE_ONLY)
+    private String billingTenantId;
 
     /*
      * The cost center applied to the subscription.
@@ -74,16 +74,16 @@ public final class BillingPropertyProperties {
     private String costCenter;
 
     /*
-     * The ID of the invoice section to which the subscription is billed.
-     */
-    @JsonProperty(value = "invoiceSectionId", access = JsonProperty.Access.WRITE_ONLY)
-    private String invoiceSectionId;
-
-    /*
      * The name of the invoice section to which the subscription is billed.
      */
     @JsonProperty(value = "invoiceSectionDisplayName", access = JsonProperty.Access.WRITE_ONLY)
     private String invoiceSectionDisplayName;
+
+    /*
+     * The ID of the invoice section to which the subscription is billed.
+     */
+    @JsonProperty(value = "invoiceSectionId", access = JsonProperty.Access.WRITE_ONLY)
+    private String invoiceSectionId;
 
     /*
      * Indicates whether user is the account admin.
@@ -104,16 +104,16 @@ public final class BillingPropertyProperties {
     private String productName;
 
     /*
-     * The sku ID of the Azure plan for the subscription.
-     */
-    @JsonProperty(value = "skuId", access = JsonProperty.Access.WRITE_ONLY)
-    private String skuId;
-
-    /*
      * The sku description of the Azure plan for the subscription.
      */
     @JsonProperty(value = "skuDescription", access = JsonProperty.Access.WRITE_ONLY)
     private String skuDescription;
+
+    /*
+     * The sku ID of the Azure plan for the subscription.
+     */
+    @JsonProperty(value = "skuId", access = JsonProperty.Access.WRITE_ONLY)
+    private String skuId;
 
     /** Creates an instance of BillingPropertyProperties class. */
     public BillingPropertyProperties() {
@@ -130,12 +130,12 @@ public final class BillingPropertyProperties {
     }
 
     /**
-     * Get the billingTenantId property: The Azure AD tenant ID of the billing account for the subscription.
+     * Get the billingAccountDisplayName property: The name of the billing account to which the subscription is billed.
      *
-     * @return the billingTenantId value.
+     * @return the billingAccountDisplayName value.
      */
-    public String billingTenantId() {
-        return this.billingTenantId;
+    public String billingAccountDisplayName() {
+        return this.billingAccountDisplayName;
     }
 
     /**
@@ -148,12 +148,12 @@ public final class BillingPropertyProperties {
     }
 
     /**
-     * Get the billingAccountDisplayName property: The name of the billing account to which the subscription is billed.
+     * Get the billingProfileDisplayName property: The name of the billing profile to which the subscription is billed.
      *
-     * @return the billingAccountDisplayName value.
+     * @return the billingProfileDisplayName value.
      */
-    public String billingAccountDisplayName() {
-        return this.billingAccountDisplayName;
+    public String billingProfileDisplayName() {
+        return this.billingProfileDisplayName;
     }
 
     /**
@@ -166,12 +166,12 @@ public final class BillingPropertyProperties {
     }
 
     /**
-     * Get the billingProfileDisplayName property: The name of the billing profile to which the subscription is billed.
+     * Get the billingProfileSpendingLimit property: The billing profile spending limit.
      *
-     * @return the billingProfileDisplayName value.
+     * @return the billingProfileSpendingLimit value.
      */
-    public String billingProfileDisplayName() {
-        return this.billingProfileDisplayName;
+    public BillingProfileSpendingLimit billingProfileSpendingLimit() {
+        return this.billingProfileSpendingLimit;
     }
 
     /**
@@ -193,12 +193,12 @@ public final class BillingPropertyProperties {
     }
 
     /**
-     * Get the billingProfileSpendingLimit property: The billing profile spending limit.
+     * Get the billingTenantId property: The Azure AD tenant ID of the billing account for the subscription.
      *
-     * @return the billingProfileSpendingLimit value.
+     * @return the billingTenantId value.
      */
-    public BillingProfileSpendingLimit billingProfileSpendingLimit() {
-        return this.billingProfileSpendingLimit;
+    public String billingTenantId() {
+        return this.billingTenantId;
     }
 
     /**
@@ -222,21 +222,21 @@ public final class BillingPropertyProperties {
     }
 
     /**
-     * Get the invoiceSectionId property: The ID of the invoice section to which the subscription is billed.
-     *
-     * @return the invoiceSectionId value.
-     */
-    public String invoiceSectionId() {
-        return this.invoiceSectionId;
-    }
-
-    /**
      * Get the invoiceSectionDisplayName property: The name of the invoice section to which the subscription is billed.
      *
      * @return the invoiceSectionDisplayName value.
      */
     public String invoiceSectionDisplayName() {
         return this.invoiceSectionDisplayName;
+    }
+
+    /**
+     * Get the invoiceSectionId property: The ID of the invoice section to which the subscription is billed.
+     *
+     * @return the invoiceSectionId value.
+     */
+    public String invoiceSectionId() {
+        return this.invoiceSectionId;
     }
 
     /**
@@ -267,21 +267,21 @@ public final class BillingPropertyProperties {
     }
 
     /**
-     * Get the skuId property: The sku ID of the Azure plan for the subscription.
-     *
-     * @return the skuId value.
-     */
-    public String skuId() {
-        return this.skuId;
-    }
-
-    /**
      * Get the skuDescription property: The sku description of the Azure plan for the subscription.
      *
      * @return the skuDescription value.
      */
     public String skuDescription() {
         return this.skuDescription;
+    }
+
+    /**
+     * Get the skuId property: The sku ID of the Azure plan for the subscription.
+     *
+     * @return the skuId value.
+     */
+    public String skuId() {
+        return this.skuId;
     }
 
     /**
