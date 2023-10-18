@@ -28,17 +28,6 @@ public final class BookmarkOperationsImpl implements BookmarkOperations {
         this.serviceManager = serviceManager;
     }
 
-    public BookmarkExpandResponse expand(
-        String resourceGroupName, String workspaceName, String bookmarkId, BookmarkExpandParameters parameters) {
-        BookmarkExpandResponseInner inner =
-            this.serviceClient().expand(resourceGroupName, workspaceName, bookmarkId, parameters);
-        if (inner != null) {
-            return new BookmarkExpandResponseImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<BookmarkExpandResponse> expandWithResponse(
         String resourceGroupName,
         String workspaceName,
@@ -53,6 +42,17 @@ public final class BookmarkOperationsImpl implements BookmarkOperations {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new BookmarkExpandResponseImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public BookmarkExpandResponse expand(
+        String resourceGroupName, String workspaceName, String bookmarkId, BookmarkExpandParameters parameters) {
+        BookmarkExpandResponseInner inner =
+            this.serviceClient().expand(resourceGroupName, workspaceName, bookmarkId, parameters);
+        if (inner != null) {
+            return new BookmarkExpandResponseImpl(inner, this.manager());
         } else {
             return null;
         }

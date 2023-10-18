@@ -50,39 +50,11 @@ public interface Incident {
     SystemData systemData();
 
     /**
-     * Gets the additionalData property: Additional data on the incident.
+     * Gets the title property: The title of the incident.
      *
-     * @return the additionalData value.
+     * @return the title value.
      */
-    IncidentAdditionalData additionalData();
-
-    /**
-     * Gets the classification property: The reason the incident was closed.
-     *
-     * @return the classification value.
-     */
-    IncidentClassification classification();
-
-    /**
-     * Gets the classificationComment property: Describes the reason the incident was closed.
-     *
-     * @return the classificationComment value.
-     */
-    String classificationComment();
-
-    /**
-     * Gets the classificationReason property: The classification reason the incident was closed with.
-     *
-     * @return the classificationReason value.
-     */
-    IncidentClassificationReason classificationReason();
-
-    /**
-     * Gets the createdTimeUtc property: The time the incident was created.
-     *
-     * @return the createdTimeUtc value.
-     */
-    OffsetDateTime createdTimeUtc();
+    String title();
 
     /**
      * Gets the description property: The description of the incident.
@@ -90,76 +62,6 @@ public interface Incident {
      * @return the description value.
      */
     String description();
-
-    /**
-     * Gets the firstActivityTimeUtc property: The time of the first activity in the incident.
-     *
-     * @return the firstActivityTimeUtc value.
-     */
-    OffsetDateTime firstActivityTimeUtc();
-
-    /**
-     * Gets the incidentUrl property: The deep-link url to the incident in Azure portal.
-     *
-     * @return the incidentUrl value.
-     */
-    String incidentUrl();
-
-    /**
-     * Gets the incidentNumber property: A sequential number.
-     *
-     * @return the incidentNumber value.
-     */
-    Integer incidentNumber();
-
-    /**
-     * Gets the labels property: List of labels relevant to this incident.
-     *
-     * @return the labels value.
-     */
-    List<IncidentLabel> labels();
-
-    /**
-     * Gets the providerName property: The name of the source provider that generated the incident.
-     *
-     * @return the providerName value.
-     */
-    String providerName();
-
-    /**
-     * Gets the providerIncidentId property: The incident ID assigned by the incident provider.
-     *
-     * @return the providerIncidentId value.
-     */
-    String providerIncidentId();
-
-    /**
-     * Gets the lastActivityTimeUtc property: The time of the last activity in the incident.
-     *
-     * @return the lastActivityTimeUtc value.
-     */
-    OffsetDateTime lastActivityTimeUtc();
-
-    /**
-     * Gets the lastModifiedTimeUtc property: The last time the incident was updated.
-     *
-     * @return the lastModifiedTimeUtc value.
-     */
-    OffsetDateTime lastModifiedTimeUtc();
-
-    /**
-     * Gets the owner property: Describes a user that the incident is assigned to.
-     *
-     * @return the owner value.
-     */
-    IncidentOwnerInfo owner();
-
-    /**
-     * Gets the relatedAnalyticRuleIds property: List of resource ids of Analytic rules related to the incident.
-     *
-     * @return the relatedAnalyticRuleIds value.
-     */
-    List<String> relatedAnalyticRuleIds();
 
     /**
      * Gets the severity property: The severity of the incident.
@@ -176,18 +78,116 @@ public interface Incident {
     IncidentStatus status();
 
     /**
+     * Gets the classification property: The reason the incident was closed.
+     *
+     * @return the classification value.
+     */
+    IncidentClassification classification();
+
+    /**
+     * Gets the classificationReason property: The classification reason the incident was closed with.
+     *
+     * @return the classificationReason value.
+     */
+    IncidentClassificationReason classificationReason();
+
+    /**
+     * Gets the classificationComment property: Describes the reason the incident was closed.
+     *
+     * @return the classificationComment value.
+     */
+    String classificationComment();
+
+    /**
+     * Gets the owner property: Describes a user that the incident is assigned to.
+     *
+     * @return the owner value.
+     */
+    IncidentOwnerInfo owner();
+
+    /**
+     * Gets the labels property: List of labels relevant to this incident.
+     *
+     * @return the labels value.
+     */
+    List<IncidentLabel> labels();
+
+    /**
+     * Gets the firstActivityTimeUtc property: The time of the first activity in the incident.
+     *
+     * @return the firstActivityTimeUtc value.
+     */
+    OffsetDateTime firstActivityTimeUtc();
+
+    /**
+     * Gets the lastActivityTimeUtc property: The time of the last activity in the incident.
+     *
+     * @return the lastActivityTimeUtc value.
+     */
+    OffsetDateTime lastActivityTimeUtc();
+
+    /**
+     * Gets the lastModifiedTimeUtc property: The last time the incident was updated.
+     *
+     * @return the lastModifiedTimeUtc value.
+     */
+    OffsetDateTime lastModifiedTimeUtc();
+
+    /**
+     * Gets the createdTimeUtc property: The time the incident was created.
+     *
+     * @return the createdTimeUtc value.
+     */
+    OffsetDateTime createdTimeUtc();
+
+    /**
+     * Gets the incidentNumber property: A sequential number.
+     *
+     * @return the incidentNumber value.
+     */
+    Integer incidentNumber();
+
+    /**
+     * Gets the additionalData property: Additional data on the incident.
+     *
+     * @return the additionalData value.
+     */
+    IncidentAdditionalData additionalData();
+
+    /**
+     * Gets the relatedAnalyticRuleIds property: List of resource ids of Analytic rules related to the incident.
+     *
+     * @return the relatedAnalyticRuleIds value.
+     */
+    List<String> relatedAnalyticRuleIds();
+
+    /**
+     * Gets the incidentUrl property: The deep-link url to the incident in Azure portal.
+     *
+     * @return the incidentUrl value.
+     */
+    String incidentUrl();
+
+    /**
+     * Gets the providerName property: The name of the source provider that generated the incident.
+     *
+     * @return the providerName value.
+     */
+    String providerName();
+
+    /**
+     * Gets the providerIncidentId property: The incident ID assigned by the incident provider.
+     *
+     * @return the providerIncidentId value.
+     */
+    String providerIncidentId();
+
+    /**
      * Gets the teamInformation property: Describes a team for the incident.
      *
      * @return the teamInformation value.
      */
     TeamInformation teamInformation();
-
-    /**
-     * Gets the title property: The title of the incident.
-     *
-     * @return the title value.
-     */
-    String title();
 
     /**
      * Gets the name of the resource group.
@@ -207,11 +207,13 @@ public interface Incident {
     interface Definition
         extends DefinitionStages.Blank, DefinitionStages.WithParentResource, DefinitionStages.WithCreate {
     }
+
     /** The Incident definition stages. */
     interface DefinitionStages {
         /** The first stage of the Incident definition. */
         interface Blank extends WithParentResource {
         }
+
         /** The stage of the Incident definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -223,26 +225,25 @@ public interface Incident {
              */
             WithCreate withExistingWorkspace(String resourceGroupName, String workspaceName);
         }
+
         /**
          * The stage of the Incident definition which contains all the minimum required properties for the resource to
          * be created, but also allows for any other optional properties to be specified.
          */
         interface WithCreate
             extends DefinitionStages.WithEtag,
-                DefinitionStages.WithClassification,
-                DefinitionStages.WithClassificationComment,
-                DefinitionStages.WithClassificationReason,
+                DefinitionStages.WithTitle,
                 DefinitionStages.WithDescription,
-                DefinitionStages.WithFirstActivityTimeUtc,
-                DefinitionStages.WithLabels,
-                DefinitionStages.WithProviderName,
-                DefinitionStages.WithProviderIncidentId,
-                DefinitionStages.WithLastActivityTimeUtc,
-                DefinitionStages.WithOwner,
                 DefinitionStages.WithSeverity,
                 DefinitionStages.WithStatus,
-                DefinitionStages.WithTeamInformation,
-                DefinitionStages.WithTitle {
+                DefinitionStages.WithClassification,
+                DefinitionStages.WithClassificationReason,
+                DefinitionStages.WithClassificationComment,
+                DefinitionStages.WithOwner,
+                DefinitionStages.WithLabels,
+                DefinitionStages.WithFirstActivityTimeUtc,
+                DefinitionStages.WithLastActivityTimeUtc,
+                DefinitionStages.WithTeamInformation {
             /**
              * Executes the create request.
              *
@@ -258,6 +259,7 @@ public interface Incident {
              */
             Incident create(Context context);
         }
+
         /** The stage of the Incident definition allowing to specify etag. */
         interface WithEtag {
             /**
@@ -268,136 +270,7 @@ public interface Incident {
              */
             WithCreate withEtag(String etag);
         }
-        /** The stage of the Incident definition allowing to specify classification. */
-        interface WithClassification {
-            /**
-             * Specifies the classification property: The reason the incident was closed.
-             *
-             * @param classification The reason the incident was closed.
-             * @return the next definition stage.
-             */
-            WithCreate withClassification(IncidentClassification classification);
-        }
-        /** The stage of the Incident definition allowing to specify classificationComment. */
-        interface WithClassificationComment {
-            /**
-             * Specifies the classificationComment property: Describes the reason the incident was closed.
-             *
-             * @param classificationComment Describes the reason the incident was closed.
-             * @return the next definition stage.
-             */
-            WithCreate withClassificationComment(String classificationComment);
-        }
-        /** The stage of the Incident definition allowing to specify classificationReason. */
-        interface WithClassificationReason {
-            /**
-             * Specifies the classificationReason property: The classification reason the incident was closed with.
-             *
-             * @param classificationReason The classification reason the incident was closed with.
-             * @return the next definition stage.
-             */
-            WithCreate withClassificationReason(IncidentClassificationReason classificationReason);
-        }
-        /** The stage of the Incident definition allowing to specify description. */
-        interface WithDescription {
-            /**
-             * Specifies the description property: The description of the incident.
-             *
-             * @param description The description of the incident.
-             * @return the next definition stage.
-             */
-            WithCreate withDescription(String description);
-        }
-        /** The stage of the Incident definition allowing to specify firstActivityTimeUtc. */
-        interface WithFirstActivityTimeUtc {
-            /**
-             * Specifies the firstActivityTimeUtc property: The time of the first activity in the incident.
-             *
-             * @param firstActivityTimeUtc The time of the first activity in the incident.
-             * @return the next definition stage.
-             */
-            WithCreate withFirstActivityTimeUtc(OffsetDateTime firstActivityTimeUtc);
-        }
-        /** The stage of the Incident definition allowing to specify labels. */
-        interface WithLabels {
-            /**
-             * Specifies the labels property: List of labels relevant to this incident.
-             *
-             * @param labels List of labels relevant to this incident.
-             * @return the next definition stage.
-             */
-            WithCreate withLabels(List<IncidentLabel> labels);
-        }
-        /** The stage of the Incident definition allowing to specify providerName. */
-        interface WithProviderName {
-            /**
-             * Specifies the providerName property: The name of the source provider that generated the incident.
-             *
-             * @param providerName The name of the source provider that generated the incident.
-             * @return the next definition stage.
-             */
-            WithCreate withProviderName(String providerName);
-        }
-        /** The stage of the Incident definition allowing to specify providerIncidentId. */
-        interface WithProviderIncidentId {
-            /**
-             * Specifies the providerIncidentId property: The incident ID assigned by the incident provider.
-             *
-             * @param providerIncidentId The incident ID assigned by the incident provider.
-             * @return the next definition stage.
-             */
-            WithCreate withProviderIncidentId(String providerIncidentId);
-        }
-        /** The stage of the Incident definition allowing to specify lastActivityTimeUtc. */
-        interface WithLastActivityTimeUtc {
-            /**
-             * Specifies the lastActivityTimeUtc property: The time of the last activity in the incident.
-             *
-             * @param lastActivityTimeUtc The time of the last activity in the incident.
-             * @return the next definition stage.
-             */
-            WithCreate withLastActivityTimeUtc(OffsetDateTime lastActivityTimeUtc);
-        }
-        /** The stage of the Incident definition allowing to specify owner. */
-        interface WithOwner {
-            /**
-             * Specifies the owner property: Describes a user that the incident is assigned to.
-             *
-             * @param owner Describes a user that the incident is assigned to.
-             * @return the next definition stage.
-             */
-            WithCreate withOwner(IncidentOwnerInfo owner);
-        }
-        /** The stage of the Incident definition allowing to specify severity. */
-        interface WithSeverity {
-            /**
-             * Specifies the severity property: The severity of the incident.
-             *
-             * @param severity The severity of the incident.
-             * @return the next definition stage.
-             */
-            WithCreate withSeverity(IncidentSeverity severity);
-        }
-        /** The stage of the Incident definition allowing to specify status. */
-        interface WithStatus {
-            /**
-             * Specifies the status property: The status of the incident.
-             *
-             * @param status The status of the incident.
-             * @return the next definition stage.
-             */
-            WithCreate withStatus(IncidentStatus status);
-        }
-        /** The stage of the Incident definition allowing to specify teamInformation. */
-        interface WithTeamInformation {
-            /**
-             * Specifies the teamInformation property: Describes a team for the incident.
-             *
-             * @param teamInformation Describes a team for the incident.
-             * @return the next definition stage.
-             */
-            WithCreate withTeamInformation(TeamInformationInner teamInformation);
-        }
+
         /** The stage of the Incident definition allowing to specify title. */
         interface WithTitle {
             /**
@@ -408,7 +281,129 @@ public interface Incident {
              */
             WithCreate withTitle(String title);
         }
+
+        /** The stage of the Incident definition allowing to specify description. */
+        interface WithDescription {
+            /**
+             * Specifies the description property: The description of the incident.
+             *
+             * @param description The description of the incident.
+             * @return the next definition stage.
+             */
+            WithCreate withDescription(String description);
+        }
+
+        /** The stage of the Incident definition allowing to specify severity. */
+        interface WithSeverity {
+            /**
+             * Specifies the severity property: The severity of the incident.
+             *
+             * @param severity The severity of the incident.
+             * @return the next definition stage.
+             */
+            WithCreate withSeverity(IncidentSeverity severity);
+        }
+
+        /** The stage of the Incident definition allowing to specify status. */
+        interface WithStatus {
+            /**
+             * Specifies the status property: The status of the incident.
+             *
+             * @param status The status of the incident.
+             * @return the next definition stage.
+             */
+            WithCreate withStatus(IncidentStatus status);
+        }
+
+        /** The stage of the Incident definition allowing to specify classification. */
+        interface WithClassification {
+            /**
+             * Specifies the classification property: The reason the incident was closed.
+             *
+             * @param classification The reason the incident was closed.
+             * @return the next definition stage.
+             */
+            WithCreate withClassification(IncidentClassification classification);
+        }
+
+        /** The stage of the Incident definition allowing to specify classificationReason. */
+        interface WithClassificationReason {
+            /**
+             * Specifies the classificationReason property: The classification reason the incident was closed with.
+             *
+             * @param classificationReason The classification reason the incident was closed with.
+             * @return the next definition stage.
+             */
+            WithCreate withClassificationReason(IncidentClassificationReason classificationReason);
+        }
+
+        /** The stage of the Incident definition allowing to specify classificationComment. */
+        interface WithClassificationComment {
+            /**
+             * Specifies the classificationComment property: Describes the reason the incident was closed.
+             *
+             * @param classificationComment Describes the reason the incident was closed.
+             * @return the next definition stage.
+             */
+            WithCreate withClassificationComment(String classificationComment);
+        }
+
+        /** The stage of the Incident definition allowing to specify owner. */
+        interface WithOwner {
+            /**
+             * Specifies the owner property: Describes a user that the incident is assigned to.
+             *
+             * @param owner Describes a user that the incident is assigned to.
+             * @return the next definition stage.
+             */
+            WithCreate withOwner(IncidentOwnerInfo owner);
+        }
+
+        /** The stage of the Incident definition allowing to specify labels. */
+        interface WithLabels {
+            /**
+             * Specifies the labels property: List of labels relevant to this incident.
+             *
+             * @param labels List of labels relevant to this incident.
+             * @return the next definition stage.
+             */
+            WithCreate withLabels(List<IncidentLabel> labels);
+        }
+
+        /** The stage of the Incident definition allowing to specify firstActivityTimeUtc. */
+        interface WithFirstActivityTimeUtc {
+            /**
+             * Specifies the firstActivityTimeUtc property: The time of the first activity in the incident.
+             *
+             * @param firstActivityTimeUtc The time of the first activity in the incident.
+             * @return the next definition stage.
+             */
+            WithCreate withFirstActivityTimeUtc(OffsetDateTime firstActivityTimeUtc);
+        }
+
+        /** The stage of the Incident definition allowing to specify lastActivityTimeUtc. */
+        interface WithLastActivityTimeUtc {
+            /**
+             * Specifies the lastActivityTimeUtc property: The time of the last activity in the incident.
+             *
+             * @param lastActivityTimeUtc The time of the last activity in the incident.
+             * @return the next definition stage.
+             */
+            WithCreate withLastActivityTimeUtc(OffsetDateTime lastActivityTimeUtc);
+        }
+
+        /** The stage of the Incident definition allowing to specify teamInformation. */
+        interface WithTeamInformation {
+            /**
+             * Specifies the teamInformation property: Describes a team for the incident.
+             *
+             * @param teamInformation Describes a team for the incident.
+             * @return the next definition stage.
+             */
+            WithCreate withTeamInformation(TeamInformationInner teamInformation);
+        }
     }
+
     /**
      * Begins update for the Incident resource.
      *
@@ -419,20 +414,18 @@ public interface Incident {
     /** The template for Incident update. */
     interface Update
         extends UpdateStages.WithEtag,
-            UpdateStages.WithClassification,
-            UpdateStages.WithClassificationComment,
-            UpdateStages.WithClassificationReason,
+            UpdateStages.WithTitle,
             UpdateStages.WithDescription,
-            UpdateStages.WithFirstActivityTimeUtc,
-            UpdateStages.WithLabels,
-            UpdateStages.WithProviderName,
-            UpdateStages.WithProviderIncidentId,
-            UpdateStages.WithLastActivityTimeUtc,
-            UpdateStages.WithOwner,
             UpdateStages.WithSeverity,
             UpdateStages.WithStatus,
-            UpdateStages.WithTeamInformation,
-            UpdateStages.WithTitle {
+            UpdateStages.WithClassification,
+            UpdateStages.WithClassificationReason,
+            UpdateStages.WithClassificationComment,
+            UpdateStages.WithOwner,
+            UpdateStages.WithLabels,
+            UpdateStages.WithFirstActivityTimeUtc,
+            UpdateStages.WithLastActivityTimeUtc,
+            UpdateStages.WithTeamInformation {
         /**
          * Executes the update request.
          *
@@ -448,6 +441,7 @@ public interface Incident {
          */
         Incident apply(Context context);
     }
+
     /** The Incident update stages. */
     interface UpdateStages {
         /** The stage of the Incident update allowing to specify etag. */
@@ -460,136 +454,7 @@ public interface Incident {
              */
             Update withEtag(String etag);
         }
-        /** The stage of the Incident update allowing to specify classification. */
-        interface WithClassification {
-            /**
-             * Specifies the classification property: The reason the incident was closed.
-             *
-             * @param classification The reason the incident was closed.
-             * @return the next definition stage.
-             */
-            Update withClassification(IncidentClassification classification);
-        }
-        /** The stage of the Incident update allowing to specify classificationComment. */
-        interface WithClassificationComment {
-            /**
-             * Specifies the classificationComment property: Describes the reason the incident was closed.
-             *
-             * @param classificationComment Describes the reason the incident was closed.
-             * @return the next definition stage.
-             */
-            Update withClassificationComment(String classificationComment);
-        }
-        /** The stage of the Incident update allowing to specify classificationReason. */
-        interface WithClassificationReason {
-            /**
-             * Specifies the classificationReason property: The classification reason the incident was closed with.
-             *
-             * @param classificationReason The classification reason the incident was closed with.
-             * @return the next definition stage.
-             */
-            Update withClassificationReason(IncidentClassificationReason classificationReason);
-        }
-        /** The stage of the Incident update allowing to specify description. */
-        interface WithDescription {
-            /**
-             * Specifies the description property: The description of the incident.
-             *
-             * @param description The description of the incident.
-             * @return the next definition stage.
-             */
-            Update withDescription(String description);
-        }
-        /** The stage of the Incident update allowing to specify firstActivityTimeUtc. */
-        interface WithFirstActivityTimeUtc {
-            /**
-             * Specifies the firstActivityTimeUtc property: The time of the first activity in the incident.
-             *
-             * @param firstActivityTimeUtc The time of the first activity in the incident.
-             * @return the next definition stage.
-             */
-            Update withFirstActivityTimeUtc(OffsetDateTime firstActivityTimeUtc);
-        }
-        /** The stage of the Incident update allowing to specify labels. */
-        interface WithLabels {
-            /**
-             * Specifies the labels property: List of labels relevant to this incident.
-             *
-             * @param labels List of labels relevant to this incident.
-             * @return the next definition stage.
-             */
-            Update withLabels(List<IncidentLabel> labels);
-        }
-        /** The stage of the Incident update allowing to specify providerName. */
-        interface WithProviderName {
-            /**
-             * Specifies the providerName property: The name of the source provider that generated the incident.
-             *
-             * @param providerName The name of the source provider that generated the incident.
-             * @return the next definition stage.
-             */
-            Update withProviderName(String providerName);
-        }
-        /** The stage of the Incident update allowing to specify providerIncidentId. */
-        interface WithProviderIncidentId {
-            /**
-             * Specifies the providerIncidentId property: The incident ID assigned by the incident provider.
-             *
-             * @param providerIncidentId The incident ID assigned by the incident provider.
-             * @return the next definition stage.
-             */
-            Update withProviderIncidentId(String providerIncidentId);
-        }
-        /** The stage of the Incident update allowing to specify lastActivityTimeUtc. */
-        interface WithLastActivityTimeUtc {
-            /**
-             * Specifies the lastActivityTimeUtc property: The time of the last activity in the incident.
-             *
-             * @param lastActivityTimeUtc The time of the last activity in the incident.
-             * @return the next definition stage.
-             */
-            Update withLastActivityTimeUtc(OffsetDateTime lastActivityTimeUtc);
-        }
-        /** The stage of the Incident update allowing to specify owner. */
-        interface WithOwner {
-            /**
-             * Specifies the owner property: Describes a user that the incident is assigned to.
-             *
-             * @param owner Describes a user that the incident is assigned to.
-             * @return the next definition stage.
-             */
-            Update withOwner(IncidentOwnerInfo owner);
-        }
-        /** The stage of the Incident update allowing to specify severity. */
-        interface WithSeverity {
-            /**
-             * Specifies the severity property: The severity of the incident.
-             *
-             * @param severity The severity of the incident.
-             * @return the next definition stage.
-             */
-            Update withSeverity(IncidentSeverity severity);
-        }
-        /** The stage of the Incident update allowing to specify status. */
-        interface WithStatus {
-            /**
-             * Specifies the status property: The status of the incident.
-             *
-             * @param status The status of the incident.
-             * @return the next definition stage.
-             */
-            Update withStatus(IncidentStatus status);
-        }
-        /** The stage of the Incident update allowing to specify teamInformation. */
-        interface WithTeamInformation {
-            /**
-             * Specifies the teamInformation property: Describes a team for the incident.
-             *
-             * @param teamInformation Describes a team for the incident.
-             * @return the next definition stage.
-             */
-            Update withTeamInformation(TeamInformationInner teamInformation);
-        }
+
         /** The stage of the Incident update allowing to specify title. */
         interface WithTitle {
             /**
@@ -600,7 +465,129 @@ public interface Incident {
              */
             Update withTitle(String title);
         }
+
+        /** The stage of the Incident update allowing to specify description. */
+        interface WithDescription {
+            /**
+             * Specifies the description property: The description of the incident.
+             *
+             * @param description The description of the incident.
+             * @return the next definition stage.
+             */
+            Update withDescription(String description);
+        }
+
+        /** The stage of the Incident update allowing to specify severity. */
+        interface WithSeverity {
+            /**
+             * Specifies the severity property: The severity of the incident.
+             *
+             * @param severity The severity of the incident.
+             * @return the next definition stage.
+             */
+            Update withSeverity(IncidentSeverity severity);
+        }
+
+        /** The stage of the Incident update allowing to specify status. */
+        interface WithStatus {
+            /**
+             * Specifies the status property: The status of the incident.
+             *
+             * @param status The status of the incident.
+             * @return the next definition stage.
+             */
+            Update withStatus(IncidentStatus status);
+        }
+
+        /** The stage of the Incident update allowing to specify classification. */
+        interface WithClassification {
+            /**
+             * Specifies the classification property: The reason the incident was closed.
+             *
+             * @param classification The reason the incident was closed.
+             * @return the next definition stage.
+             */
+            Update withClassification(IncidentClassification classification);
+        }
+
+        /** The stage of the Incident update allowing to specify classificationReason. */
+        interface WithClassificationReason {
+            /**
+             * Specifies the classificationReason property: The classification reason the incident was closed with.
+             *
+             * @param classificationReason The classification reason the incident was closed with.
+             * @return the next definition stage.
+             */
+            Update withClassificationReason(IncidentClassificationReason classificationReason);
+        }
+
+        /** The stage of the Incident update allowing to specify classificationComment. */
+        interface WithClassificationComment {
+            /**
+             * Specifies the classificationComment property: Describes the reason the incident was closed.
+             *
+             * @param classificationComment Describes the reason the incident was closed.
+             * @return the next definition stage.
+             */
+            Update withClassificationComment(String classificationComment);
+        }
+
+        /** The stage of the Incident update allowing to specify owner. */
+        interface WithOwner {
+            /**
+             * Specifies the owner property: Describes a user that the incident is assigned to.
+             *
+             * @param owner Describes a user that the incident is assigned to.
+             * @return the next definition stage.
+             */
+            Update withOwner(IncidentOwnerInfo owner);
+        }
+
+        /** The stage of the Incident update allowing to specify labels. */
+        interface WithLabels {
+            /**
+             * Specifies the labels property: List of labels relevant to this incident.
+             *
+             * @param labels List of labels relevant to this incident.
+             * @return the next definition stage.
+             */
+            Update withLabels(List<IncidentLabel> labels);
+        }
+
+        /** The stage of the Incident update allowing to specify firstActivityTimeUtc. */
+        interface WithFirstActivityTimeUtc {
+            /**
+             * Specifies the firstActivityTimeUtc property: The time of the first activity in the incident.
+             *
+             * @param firstActivityTimeUtc The time of the first activity in the incident.
+             * @return the next definition stage.
+             */
+            Update withFirstActivityTimeUtc(OffsetDateTime firstActivityTimeUtc);
+        }
+
+        /** The stage of the Incident update allowing to specify lastActivityTimeUtc. */
+        interface WithLastActivityTimeUtc {
+            /**
+             * Specifies the lastActivityTimeUtc property: The time of the last activity in the incident.
+             *
+             * @param lastActivityTimeUtc The time of the last activity in the incident.
+             * @return the next definition stage.
+             */
+            Update withLastActivityTimeUtc(OffsetDateTime lastActivityTimeUtc);
+        }
+
+        /** The stage of the Incident update allowing to specify teamInformation. */
+        interface WithTeamInformation {
+            /**
+             * Specifies the teamInformation property: Describes a team for the incident.
+             *
+             * @param teamInformation Describes a team for the incident.
+             * @return the next definition stage.
+             */
+            Update withTeamInformation(TeamInformationInner teamInformation);
+        }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *
@@ -620,33 +607,24 @@ public interface Incident {
      * Creates a Microsoft team to investigate the incident by sharing information and insights between participants.
      *
      * @param teamProperties Team properties.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return describes team information.
-     */
-    TeamInformation createTeam(TeamProperties teamProperties);
-
-    /**
-     * Creates a Microsoft team to investigate the incident by sharing information and insights between participants.
-     *
-     * @param teamProperties Team properties.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return describes team information along with {@link Response}.
      */
-    Response<TeamInformation> createTeamWithResponse(TeamProperties teamProperties, Context context);
+    Response<TeamInformation> createTeamWithResponse(TeamInformationInner teamProperties, Context context);
 
     /**
-     * Gets all incident alerts.
+     * Creates a Microsoft team to investigate the incident by sharing information and insights between participants.
      *
+     * @param teamProperties Team properties.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all incident alerts.
+     * @return describes team information.
      */
-    IncidentAlertList listAlerts();
+    TeamInformation createTeam(TeamInformationInner teamProperties);
 
     /**
      * Gets all incident alerts.
@@ -660,13 +638,13 @@ public interface Incident {
     Response<IncidentAlertList> listAlertsWithResponse(Context context);
 
     /**
-     * Gets all incident bookmarks.
+     * Gets all incident alerts.
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all incident bookmarks.
+     * @return all incident alerts.
      */
-    IncidentBookmarkList listBookmarks();
+    IncidentAlertList listAlerts();
 
     /**
      * Gets all incident bookmarks.
@@ -680,13 +658,13 @@ public interface Incident {
     Response<IncidentBookmarkList> listBookmarksWithResponse(Context context);
 
     /**
-     * Gets all incident related entities.
+     * Gets all incident bookmarks.
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all incident related entities.
+     * @return all incident bookmarks.
      */
-    IncidentEntitiesResponse listEntities();
+    IncidentBookmarkList listBookmarks();
 
     /**
      * Gets all incident related entities.
@@ -698,4 +676,13 @@ public interface Incident {
      * @return all incident related entities along with {@link Response}.
      */
     Response<IncidentEntitiesResponse> listEntitiesWithResponse(Context context);
+
+    /**
+     * Gets all incident related entities.
+     *
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return all incident related entities.
+     */
+    IncidentEntitiesResponse listEntities();
 }

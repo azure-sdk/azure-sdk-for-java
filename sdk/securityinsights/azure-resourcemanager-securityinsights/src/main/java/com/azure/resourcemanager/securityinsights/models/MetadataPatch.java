@@ -19,6 +19,10 @@ public final class MetadataPatch extends ResourceWithEtag {
     @JsonProperty(value = "properties")
     private MetadataPropertiesPatch innerProperties;
 
+    /** Creates an instance of MetadataPatch class. */
+    public MetadataPatch() {
+    }
+
     /**
      * Get the innerProperties property: Metadata patch request body.
      *
@@ -119,7 +123,7 @@ public final class MetadataPatch extends ResourceWithEtag {
      *
      * @return the kind value.
      */
-    public Kind kind() {
+    public String kind() {
         return this.innerProperties() == null ? null : this.innerProperties().kind();
     }
 
@@ -129,7 +133,7 @@ public final class MetadataPatch extends ResourceWithEtag {
      * @param kind the kind value to set.
      * @return the MetadataPatch object itself.
      */
-    public MetadataPatch withKind(Kind kind) {
+    public MetadataPatch withKind(String kind) {
         if (this.innerProperties() == null) {
             this.innerProperties = new MetadataPropertiesPatch();
         }

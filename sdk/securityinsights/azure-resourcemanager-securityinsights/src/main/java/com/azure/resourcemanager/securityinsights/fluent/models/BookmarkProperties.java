@@ -113,6 +113,10 @@ public final class BookmarkProperties {
     @JsonProperty(value = "techniques")
     private List<String> techniques;
 
+    /** Creates an instance of BookmarkProperties class. */
+    public BookmarkProperties() {
+    }
+
     /**
      * Get the created property: The time the bookmark was created.
      *

@@ -30,6 +30,10 @@ public final class EntityExpandParameters {
     @JsonProperty(value = "startTime")
     private OffsetDateTime startTime;
 
+    /** Creates an instance of EntityExpandParameters class. */
+    public EntityExpandParameters() {
+    }
+
     /**
      * Get the endTime property: The end date filter, so the only expansion results returned are before this date.
      *

@@ -16,6 +16,10 @@ public final class GitHubResourceInfo {
     @JsonProperty(value = "appInstallationId")
     private String appInstallationId;
 
+    /** Creates an instance of GitHubResourceInfo class. */
+    public GitHubResourceInfo() {
+    }
+
     /**
      * Get the appInstallationId property: GitHub application installation id.
      *

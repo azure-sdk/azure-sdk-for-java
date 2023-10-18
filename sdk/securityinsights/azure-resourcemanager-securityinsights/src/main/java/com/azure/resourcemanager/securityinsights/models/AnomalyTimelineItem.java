@@ -83,6 +83,10 @@ public final class AnomalyTimelineItem extends EntityTimelineItem {
     @JsonProperty(value = "reasons")
     private List<String> reasons;
 
+    /** Creates an instance of AnomalyTimelineItem class. */
+    public AnomalyTimelineItem() {
+    }
+
     /**
      * Get the azureResourceId property: The anomaly azure resource id.
      *

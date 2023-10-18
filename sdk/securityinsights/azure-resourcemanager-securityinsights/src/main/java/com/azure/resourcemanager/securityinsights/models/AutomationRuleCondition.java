@@ -25,6 +25,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 })
 @Immutable
 public class AutomationRuleCondition {
+    /** Creates an instance of AutomationRuleCondition class. */
+    public AutomationRuleCondition() {
+    }
+
     /**
      * Validates the instance.
      *

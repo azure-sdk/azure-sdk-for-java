@@ -24,6 +24,10 @@ public final class FusionAlertRuleTemplate extends AlertRuleTemplateInner {
     @JsonProperty(value = "properties")
     private FusionAlertRuleTemplateProperties innerProperties;
 
+    /** Creates an instance of FusionAlertRuleTemplate class. */
+    public FusionAlertRuleTemplate() {
+    }
+
     /**
      * Get the innerProperties property: Fusion alert rule template properties.
      *
