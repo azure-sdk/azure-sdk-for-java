@@ -4,18 +4,17 @@
 
 package com.azure.resourcemanager.chaos.implementation;
 
-import com.azure.resourcemanager.chaos.fluent.models.ExperimentExecutionDetailsInner;
-import com.azure.resourcemanager.chaos.models.ExperimentExecutionDetails;
-import com.azure.resourcemanager.chaos.models.ExperimentExecutionDetailsPropertiesRunInformation;
+import com.azure.resourcemanager.chaos.fluent.models.ExperimentExecutionInner;
+import com.azure.resourcemanager.chaos.models.ExperimentExecution;
 import java.time.OffsetDateTime;
 
-public final class ExperimentExecutionDetailsImpl implements ExperimentExecutionDetails {
-    private ExperimentExecutionDetailsInner innerObject;
+public final class ExperimentExecutionImpl implements ExperimentExecution {
+    private ExperimentExecutionInner innerObject;
 
     private final com.azure.resourcemanager.chaos.ChaosManager serviceManager;
 
-    ExperimentExecutionDetailsImpl(
-        ExperimentExecutionDetailsInner innerObject, com.azure.resourcemanager.chaos.ChaosManager serviceManager) {
+    ExperimentExecutionImpl(
+        ExperimentExecutionInner innerObject, com.azure.resourcemanager.chaos.ChaosManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
     }
@@ -32,18 +31,6 @@ public final class ExperimentExecutionDetailsImpl implements ExperimentExecution
         return this.innerModel().name();
     }
 
-    public String failureReason() {
-        return this.innerModel().failureReason();
-    }
-
-    public OffsetDateTime lastActionAt() {
-        return this.innerModel().lastActionAt();
-    }
-
-    public ExperimentExecutionDetailsPropertiesRunInformation runInformation() {
-        return this.innerModel().runInformation();
-    }
-
     public String status() {
         return this.innerModel().status();
     }
@@ -56,7 +43,7 @@ public final class ExperimentExecutionDetailsImpl implements ExperimentExecution
         return this.innerModel().stoppedAt();
     }
 
-    public ExperimentExecutionDetailsInner innerModel() {
+    public ExperimentExecutionInner innerModel() {
         return this.innerObject;
     }
 

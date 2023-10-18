@@ -5,13 +5,12 @@
 package com.azure.resourcemanager.chaos.fluent.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.resourcemanager.chaos.models.ExperimentExecutionDetailsPropertiesRunInformation;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** Model that represents the execution details of an Experiment. */
+/** Model that represents the execution of a Experiment. */
 @Immutable
-public final class ExperimentExecutionDetailsInner {
+public final class ExperimentExecutionInner {
     /*
      * String of the resource type.
      */
@@ -31,13 +30,13 @@ public final class ExperimentExecutionDetailsInner {
     private String name;
 
     /*
-     * The properties of the experiment execution details.
+     * The properties of experiment execution status.
      */
-    @JsonProperty(value = "properties", access = JsonProperty.Access.WRITE_ONLY)
-    private ExperimentExecutionDetailsProperties innerProperties;
+    @JsonProperty(value = "properties")
+    private ExperimentExecutionProperties innerProperties;
 
-    /** Creates an instance of ExperimentExecutionDetailsInner class. */
-    public ExperimentExecutionDetailsInner() {
+    /** Creates an instance of ExperimentExecutionInner class. */
+    public ExperimentExecutionInner() {
     }
 
     /**
@@ -68,39 +67,12 @@ public final class ExperimentExecutionDetailsInner {
     }
 
     /**
-     * Get the innerProperties property: The properties of the experiment execution details.
+     * Get the innerProperties property: The properties of experiment execution status.
      *
      * @return the innerProperties value.
      */
-    private ExperimentExecutionDetailsProperties innerProperties() {
+    private ExperimentExecutionProperties innerProperties() {
         return this.innerProperties;
-    }
-
-    /**
-     * Get the failureReason property: The reason why the execution failed.
-     *
-     * @return the failureReason value.
-     */
-    public String failureReason() {
-        return this.innerProperties() == null ? null : this.innerProperties().failureReason();
-    }
-
-    /**
-     * Get the lastActionAt property: String that represents the last action date time.
-     *
-     * @return the lastActionAt value.
-     */
-    public OffsetDateTime lastActionAt() {
-        return this.innerProperties() == null ? null : this.innerProperties().lastActionAt();
-    }
-
-    /**
-     * Get the runInformation property: The information of the experiment run.
-     *
-     * @return the runInformation value.
-     */
-    public ExperimentExecutionDetailsPropertiesRunInformation runInformation() {
-        return this.innerProperties() == null ? null : this.innerProperties().runInformation();
     }
 
     /**

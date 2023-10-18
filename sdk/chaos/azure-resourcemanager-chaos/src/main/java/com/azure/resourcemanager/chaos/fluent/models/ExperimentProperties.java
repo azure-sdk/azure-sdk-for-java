@@ -6,6 +6,7 @@ package com.azure.resourcemanager.chaos.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.azure.resourcemanager.chaos.models.ProvisioningState;
 import com.azure.resourcemanager.chaos.models.Selector;
 import com.azure.resourcemanager.chaos.models.Step;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -14,6 +15,12 @@ import java.util.List;
 /** Model that represents the Experiment properties model. */
 @Fluent
 public final class ExperimentProperties {
+    /*
+     * Most recent provisioning state for the given experiment resource.
+     */
+    @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
+    private ProvisioningState provisioningState;
+
     /*
      * List of steps.
      */
@@ -26,14 +33,17 @@ public final class ExperimentProperties {
     @JsonProperty(value = "selectors", required = true)
     private List<Selector> selectors;
 
-    /*
-     * A boolean value that indicates if experiment should be started on creation or not.
-     */
-    @JsonProperty(value = "startOnCreation")
-    private Boolean startOnCreation;
-
     /** Creates an instance of ExperimentProperties class. */
     public ExperimentProperties() {
+    }
+
+    /**
+     * Get the provisioningState property: Most recent provisioning state for the given experiment resource.
+     *
+     * @return the provisioningState value.
+     */
+    public ProvisioningState provisioningState() {
+        return this.provisioningState;
     }
 
     /**
@@ -73,28 +83,6 @@ public final class ExperimentProperties {
      */
     public ExperimentProperties withSelectors(List<Selector> selectors) {
         this.selectors = selectors;
-        return this;
-    }
-
-    /**
-     * Get the startOnCreation property: A boolean value that indicates if experiment should be started on creation or
-     * not.
-     *
-     * @return the startOnCreation value.
-     */
-    public Boolean startOnCreation() {
-        return this.startOnCreation;
-    }
-
-    /**
-     * Set the startOnCreation property: A boolean value that indicates if experiment should be started on creation or
-     * not.
-     *
-     * @param startOnCreation the startOnCreation value to set.
-     * @return the ExperimentProperties object itself.
-     */
-    public ExperimentProperties withStartOnCreation(Boolean startOnCreation) {
-        this.startOnCreation = startOnCreation;
         return this;
     }
 

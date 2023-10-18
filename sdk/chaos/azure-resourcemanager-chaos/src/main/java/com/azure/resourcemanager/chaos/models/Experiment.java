@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.chaos.models;
 
-import com.azure.core.http.rest.Response;
 import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
@@ -64,6 +63,13 @@ public interface Experiment {
     ResourceIdentity identity();
 
     /**
+     * Gets the provisioningState property: Most recent provisioning state for the given experiment resource.
+     *
+     * @return the provisioningState value.
+     */
+    ProvisioningState provisioningState();
+
+    /**
      * Gets the steps property: List of steps.
      *
      * @return the steps value.
@@ -76,14 +82,6 @@ public interface Experiment {
      * @return the selectors value.
      */
     List<Selector> selectors();
-
-    /**
-     * Gets the startOnCreation property: A boolean value that indicates if experiment should be started on creation or
-     * not.
-     *
-     * @return the startOnCreation value.
-     */
-    Boolean startOnCreation();
 
     /**
      * Gets the region of the resource.
@@ -185,8 +183,7 @@ public interface Experiment {
          * The stage of the Experiment definition which contains all the minimum required properties for the resource to
          * be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate
-            extends DefinitionStages.WithTags, DefinitionStages.WithIdentity, DefinitionStages.WithStartOnCreation {
+        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithIdentity {
             /**
              * Executes the create request.
              *
@@ -223,18 +220,6 @@ public interface Experiment {
              * @return the next definition stage.
              */
             WithCreate withIdentity(ResourceIdentity identity);
-        }
-
-        /** The stage of the Experiment definition allowing to specify startOnCreation. */
-        interface WithStartOnCreation {
-            /**
-             * Specifies the startOnCreation property: A boolean value that indicates if experiment should be started on
-             * creation or not..
-             *
-             * @param startOnCreation A boolean value that indicates if experiment should be started on creation or not.
-             * @return the next definition stage.
-             */
-            WithCreate withStartOnCreation(Boolean startOnCreation);
         }
     }
 
@@ -295,22 +280,28 @@ public interface Experiment {
     /**
      * Cancel a running Experiment resource.
      *
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return model that represents the result of a cancel Experiment operation along with {@link Response}.
      */
-    Response<ExperimentCancelOperationResult> cancelWithResponse(Context context);
+    void cancel();
 
     /**
      * Cancel a running Experiment resource.
      *
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return model that represents the result of a cancel Experiment operation.
      */
-    ExperimentCancelOperationResult cancel();
+    void cancel(Context context);
+
+    /**
+     * Start a Experiment resource.
+     *
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void start();
 
     /**
      * Start a Experiment resource.
@@ -319,16 +310,6 @@ public interface Experiment {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return model that represents the result of a start Experiment operation along with {@link Response}.
      */
-    Response<ExperimentStartOperationResult> startWithResponse(Context context);
-
-    /**
-     * Start a Experiment resource.
-     *
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return model that represents the result of a start Experiment operation.
-     */
-    ExperimentStartOperationResult start();
+    void start(Context context);
 }
