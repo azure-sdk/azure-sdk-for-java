@@ -152,11 +152,13 @@ public interface IntegrationAccountAgreement {
             DefinitionStages.WithContent,
             DefinitionStages.WithCreate {
     }
+
     /** The IntegrationAccountAgreement definition stages. */
     interface DefinitionStages {
         /** The first stage of the IntegrationAccountAgreement definition. */
         interface Blank extends WithLocation {
         }
+
         /** The stage of the IntegrationAccountAgreement definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -175,6 +177,7 @@ public interface IntegrationAccountAgreement {
              */
             WithParentResource withRegion(String location);
         }
+
         /** The stage of the IntegrationAccountAgreement definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -186,6 +189,7 @@ public interface IntegrationAccountAgreement {
              */
             WithAgreementType withExistingIntegrationAccount(String resourceGroupName, String integrationAccountName);
         }
+
         /** The stage of the IntegrationAccountAgreement definition allowing to specify agreementType. */
         interface WithAgreementType {
             /**
@@ -196,6 +200,7 @@ public interface IntegrationAccountAgreement {
              */
             WithHostPartner withAgreementType(AgreementType agreementType);
         }
+
         /** The stage of the IntegrationAccountAgreement definition allowing to specify hostPartner. */
         interface WithHostPartner {
             /**
@@ -207,6 +212,7 @@ public interface IntegrationAccountAgreement {
              */
             WithGuestPartner withHostPartner(String hostPartner);
         }
+
         /** The stage of the IntegrationAccountAgreement definition allowing to specify guestPartner. */
         interface WithGuestPartner {
             /**
@@ -218,6 +224,7 @@ public interface IntegrationAccountAgreement {
              */
             WithHostIdentity withGuestPartner(String guestPartner);
         }
+
         /** The stage of the IntegrationAccountAgreement definition allowing to specify hostIdentity. */
         interface WithHostIdentity {
             /**
@@ -228,6 +235,7 @@ public interface IntegrationAccountAgreement {
              */
             WithGuestIdentity withHostIdentity(BusinessIdentity hostIdentity);
         }
+
         /** The stage of the IntegrationAccountAgreement definition allowing to specify guestIdentity. */
         interface WithGuestIdentity {
             /**
@@ -238,6 +246,7 @@ public interface IntegrationAccountAgreement {
              */
             WithContent withGuestIdentity(BusinessIdentity guestIdentity);
         }
+
         /** The stage of the IntegrationAccountAgreement definition allowing to specify content. */
         interface WithContent {
             /**
@@ -248,6 +257,7 @@ public interface IntegrationAccountAgreement {
              */
             WithCreate withContent(AgreementContent content);
         }
+
         /**
          * The stage of the IntegrationAccountAgreement definition which contains all the minimum required properties
          * for the resource to be created, but also allows for any other optional properties to be specified.
@@ -268,6 +278,7 @@ public interface IntegrationAccountAgreement {
              */
             IntegrationAccountAgreement create(Context context);
         }
+
         /** The stage of the IntegrationAccountAgreement definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -278,6 +289,7 @@ public interface IntegrationAccountAgreement {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
         /** The stage of the IntegrationAccountAgreement definition allowing to specify metadata. */
         interface WithMetadata {
             /**
@@ -289,6 +301,7 @@ public interface IntegrationAccountAgreement {
             WithCreate withMetadata(Object metadata);
         }
     }
+
     /**
      * Begins update for the IntegrationAccountAgreement resource.
      *
@@ -321,6 +334,7 @@ public interface IntegrationAccountAgreement {
          */
         IntegrationAccountAgreement apply(Context context);
     }
+
     /** The IntegrationAccountAgreement update stages. */
     interface UpdateStages {
         /** The stage of the IntegrationAccountAgreement update allowing to specify tags. */
@@ -333,6 +347,7 @@ public interface IntegrationAccountAgreement {
              */
             Update withTags(Map<String, String> tags);
         }
+
         /** The stage of the IntegrationAccountAgreement update allowing to specify metadata. */
         interface WithMetadata {
             /**
@@ -343,6 +358,7 @@ public interface IntegrationAccountAgreement {
              */
             Update withMetadata(Object metadata);
         }
+
         /** The stage of the IntegrationAccountAgreement update allowing to specify agreementType. */
         interface WithAgreementType {
             /**
@@ -353,6 +369,7 @@ public interface IntegrationAccountAgreement {
              */
             Update withAgreementType(AgreementType agreementType);
         }
+
         /** The stage of the IntegrationAccountAgreement update allowing to specify hostPartner. */
         interface WithHostPartner {
             /**
@@ -364,6 +381,7 @@ public interface IntegrationAccountAgreement {
              */
             Update withHostPartner(String hostPartner);
         }
+
         /** The stage of the IntegrationAccountAgreement update allowing to specify guestPartner. */
         interface WithGuestPartner {
             /**
@@ -375,6 +393,7 @@ public interface IntegrationAccountAgreement {
              */
             Update withGuestPartner(String guestPartner);
         }
+
         /** The stage of the IntegrationAccountAgreement update allowing to specify hostIdentity. */
         interface WithHostIdentity {
             /**
@@ -385,6 +404,7 @@ public interface IntegrationAccountAgreement {
              */
             Update withHostIdentity(BusinessIdentity hostIdentity);
         }
+
         /** The stage of the IntegrationAccountAgreement update allowing to specify guestIdentity. */
         interface WithGuestIdentity {
             /**
@@ -395,6 +415,7 @@ public interface IntegrationAccountAgreement {
              */
             Update withGuestIdentity(BusinessIdentity guestIdentity);
         }
+
         /** The stage of the IntegrationAccountAgreement update allowing to specify content. */
         interface WithContent {
             /**
@@ -406,6 +427,7 @@ public interface IntegrationAccountAgreement {
             Update withContent(AgreementContent content);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

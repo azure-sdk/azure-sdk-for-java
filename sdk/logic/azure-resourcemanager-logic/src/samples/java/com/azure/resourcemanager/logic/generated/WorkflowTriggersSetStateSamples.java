@@ -10,7 +10,7 @@ import com.azure.resourcemanager.logic.models.WorkflowTriggerReference;
 /** Samples for WorkflowTriggers SetState. */
 public final class WorkflowTriggersSetStateSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/WorkflowTriggers_SetState.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/WorkflowTriggers_SetState.json
      */
     /**
      * Sample code: Set trigger state.

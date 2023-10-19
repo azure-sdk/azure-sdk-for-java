@@ -7,7 +7,7 @@ package com.azure.resourcemanager.logic.generated;
 /** Samples for IntegrationAccounts Delete. */
 public final class IntegrationAccountsDeleteSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationAccounts_Delete.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationAccounts_Delete.json
      */
     /**
      * Sample code: Delete an integration account.

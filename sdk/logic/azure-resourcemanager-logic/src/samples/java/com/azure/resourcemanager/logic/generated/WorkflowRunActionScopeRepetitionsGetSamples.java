@@ -7,7 +7,7 @@ package com.azure.resourcemanager.logic.generated;
 /** Samples for WorkflowRunActionScopeRepetitions Get. */
 public final class WorkflowRunActionScopeRepetitionsGetSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/WorkflowRunActionScopeRepetitions_Get.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/WorkflowRunActionScopeRepetitions_Get.json
      */
     /**
      * Sample code: Get a scoped repetition.

@@ -12,7 +12,7 @@ import java.io.IOException;
 /** Samples for IntegrationAccountAssemblies CreateOrUpdate. */
 public final class IntegrationAccountAssembliesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationAccountAssemblies_CreateOrUpdate.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationAccountAssemblies_CreateOrUpdate.json
      */
     /**
      * Sample code: Create or update an account assembly.

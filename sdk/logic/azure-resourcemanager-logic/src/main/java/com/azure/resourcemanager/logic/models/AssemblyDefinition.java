@@ -90,11 +90,13 @@ public interface AssemblyDefinition {
             DefinitionStages.WithProperties,
             DefinitionStages.WithCreate {
     }
+
     /** The AssemblyDefinition definition stages. */
     interface DefinitionStages {
         /** The first stage of the AssemblyDefinition definition. */
         interface Blank extends WithLocation {
         }
+
         /** The stage of the AssemblyDefinition definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -113,6 +115,7 @@ public interface AssemblyDefinition {
              */
             WithParentResource withRegion(String location);
         }
+
         /** The stage of the AssemblyDefinition definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -124,6 +127,7 @@ public interface AssemblyDefinition {
              */
             WithProperties withExistingIntegrationAccount(String resourceGroupName, String integrationAccountName);
         }
+
         /** The stage of the AssemblyDefinition definition allowing to specify properties. */
         interface WithProperties {
             /**
@@ -134,6 +138,7 @@ public interface AssemblyDefinition {
              */
             WithCreate withProperties(AssemblyProperties properties);
         }
+
         /**
          * The stage of the AssemblyDefinition definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
@@ -154,6 +159,7 @@ public interface AssemblyDefinition {
              */
             AssemblyDefinition create(Context context);
         }
+
         /** The stage of the AssemblyDefinition definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -165,6 +171,7 @@ public interface AssemblyDefinition {
             WithCreate withTags(Map<String, String> tags);
         }
     }
+
     /**
      * Begins update for the AssemblyDefinition resource.
      *
@@ -189,6 +196,7 @@ public interface AssemblyDefinition {
          */
         AssemblyDefinition apply(Context context);
     }
+
     /** The AssemblyDefinition update stages. */
     interface UpdateStages {
         /** The stage of the AssemblyDefinition update allowing to specify tags. */
@@ -201,6 +209,7 @@ public interface AssemblyDefinition {
              */
             Update withTags(Map<String, String> tags);
         }
+
         /** The stage of the AssemblyDefinition update allowing to specify properties. */
         interface WithProperties {
             /**
@@ -212,6 +221,7 @@ public interface AssemblyDefinition {
             Update withProperties(AssemblyProperties properties);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

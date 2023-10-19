@@ -7,7 +7,7 @@ package com.azure.resourcemanager.logic.generated;
 /** Samples for WorkflowRunActionRepetitions ListExpressionTraces. */
 public final class WorkflowRunActionRepetitionsListExpressionTracesSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/WorkflowRunActionRepetitions_ListExpressionTraces.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/WorkflowRunActionRepetitions_ListExpressionTraces.json
      */
     /**
      * Sample code: List expression traces for a repetition.

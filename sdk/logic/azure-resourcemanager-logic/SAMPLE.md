@@ -104,6 +104,11 @@
 - [Restart](#integrationserviceenvironments_restart)
 - [Update](#integrationserviceenvironments_update)
 
+## Locations
+
+- [ValidateWorkflowExport](#locations_validateworkflowexport)
+- [WorkflowExport](#locations_workflowexport)
+
 ## Operations
 
 - [List](#operations_list)
@@ -214,7 +219,7 @@ import java.util.Map;
 /** Samples for IntegrationAccountAgreements CreateOrUpdate. */
 public final class IntegrationAccountAgreementsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationAccountAgreements_CreateOrUpdate.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationAccountAgreements_CreateOrUpdate.json
      */
     /**
      * Sample code: Create or update an agreement.
@@ -369,6 +374,7 @@ public final class IntegrationAccountAgreementsCreateOrUpdateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -388,7 +394,7 @@ public final class IntegrationAccountAgreementsCreateOrUpdateSamples {
 /** Samples for IntegrationAccountAgreements Delete. */
 public final class IntegrationAccountAgreementsDeleteSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationAccountAgreements_Delete.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationAccountAgreements_Delete.json
      */
     /**
      * Sample code: Delete an agreement.
@@ -410,7 +416,7 @@ public final class IntegrationAccountAgreementsDeleteSamples {
 /** Samples for IntegrationAccountAgreements Get. */
 public final class IntegrationAccountAgreementsGetSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationAccountAgreements_Get.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationAccountAgreements_Get.json
      */
     /**
      * Sample code: Get agreement by name.
@@ -432,7 +438,7 @@ public final class IntegrationAccountAgreementsGetSamples {
 /** Samples for IntegrationAccountAgreements List. */
 public final class IntegrationAccountAgreementsListSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationAccountAgreements_List.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationAccountAgreements_List.json
      */
     /**
      * Sample code: Get agreements by integration account name.
@@ -457,7 +463,7 @@ import java.time.OffsetDateTime;
 /** Samples for IntegrationAccountAgreements ListContentCallbackUrl. */
 public final class IntegrationAccountAgreementsListContentCallbackUrlSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationAccountAgreements_ListContentCallbackUrl.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationAccountAgreements_ListContentCallbackUrl.json
      */
     /**
      * Sample code: Get the content callback url.
@@ -490,7 +496,7 @@ import java.io.IOException;
 /** Samples for IntegrationAccountAssemblies CreateOrUpdate. */
 public final class IntegrationAccountAssembliesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationAccountAssemblies_CreateOrUpdate.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationAccountAssemblies_CreateOrUpdate.json
      */
     /**
      * Sample code: Create or update an account assembly.
@@ -523,7 +529,7 @@ public final class IntegrationAccountAssembliesCreateOrUpdateSamples {
 /** Samples for IntegrationAccountAssemblies Delete. */
 public final class IntegrationAccountAssembliesDeleteSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationAccountAssemblies_Delete.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationAccountAssemblies_Delete.json
      */
     /**
      * Sample code: Delete an integration account assembly.
@@ -545,7 +551,7 @@ public final class IntegrationAccountAssembliesDeleteSamples {
 /** Samples for IntegrationAccountAssemblies Get. */
 public final class IntegrationAccountAssembliesGetSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationAccountAssemblies_Get.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationAccountAssemblies_Get.json
      */
     /**
      * Sample code: Get an integration account assembly.
@@ -567,7 +573,7 @@ public final class IntegrationAccountAssembliesGetSamples {
 /** Samples for IntegrationAccountAssemblies List. */
 public final class IntegrationAccountAssembliesListSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationAccountAssemblies_List.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationAccountAssemblies_List.json
      */
     /**
      * Sample code: List integration account assemblies.
@@ -588,7 +594,7 @@ public final class IntegrationAccountAssembliesListSamples {
 /** Samples for IntegrationAccountAssemblies ListContentCallbackUrl. */
 public final class IntegrationAccountAssembliesListContentCallbackUrlSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationAccountAssemblies_ListContentCallbackUrl.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationAccountAssemblies_ListContentCallbackUrl.json
      */
     /**
      * Sample code: Get the callback url for an integration account assembly.
@@ -616,7 +622,7 @@ import com.azure.resourcemanager.logic.models.WorkflowTriggerRecurrence;
 /** Samples for IntegrationAccountBatchConfigurations CreateOrUpdate. */
 public final class IntegrationAccountBatchConfigurationsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationAccountBatchConfigurations_CreateOrUpdate.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationAccountBatchConfigurations_CreateOrUpdate.json
      */
     /**
      * Sample code: Create or update a batch configuration.
@@ -653,7 +659,7 @@ public final class IntegrationAccountBatchConfigurationsCreateOrUpdateSamples {
 /** Samples for IntegrationAccountBatchConfigurations Delete. */
 public final class IntegrationAccountBatchConfigurationsDeleteSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationAccountBatchConfigurations_Delete.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationAccountBatchConfigurations_Delete.json
      */
     /**
      * Sample code: Delete a batch configuration.
@@ -678,7 +684,7 @@ public final class IntegrationAccountBatchConfigurationsDeleteSamples {
 /** Samples for IntegrationAccountBatchConfigurations Get. */
 public final class IntegrationAccountBatchConfigurationsGetSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationAccountBatchConfigurations_Get.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationAccountBatchConfigurations_Get.json
      */
     /**
      * Sample code: Get a batch configuration.
@@ -703,7 +709,7 @@ public final class IntegrationAccountBatchConfigurationsGetSamples {
 /** Samples for IntegrationAccountBatchConfigurations List. */
 public final class IntegrationAccountBatchConfigurationsListSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationAccountBatchConfigurations_List.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationAccountBatchConfigurations_List.json
      */
     /**
      * Sample code: List batch configurations.
@@ -727,7 +733,7 @@ import com.azure.resourcemanager.logic.models.KeyVaultKeyReferenceKeyVault;
 /** Samples for IntegrationAccountCertificates CreateOrUpdate. */
 public final class IntegrationAccountCertificatesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationAccountCertificates_CreateOrUpdate.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationAccountCertificates_CreateOrUpdate.json
      */
     /**
      * Sample code: Create or update a certificate.
@@ -760,7 +766,7 @@ public final class IntegrationAccountCertificatesCreateOrUpdateSamples {
 /** Samples for IntegrationAccountCertificates Delete. */
 public final class IntegrationAccountCertificatesDeleteSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationAccountCertificates_Delete.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationAccountCertificates_Delete.json
      */
     /**
      * Sample code: Delete a certificate.
@@ -782,7 +788,7 @@ public final class IntegrationAccountCertificatesDeleteSamples {
 /** Samples for IntegrationAccountCertificates Get. */
 public final class IntegrationAccountCertificatesGetSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationAccountCertificates_Get.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationAccountCertificates_Get.json
      */
     /**
      * Sample code: Get certificate by name.
@@ -804,7 +810,7 @@ public final class IntegrationAccountCertificatesGetSamples {
 /** Samples for IntegrationAccountCertificates List. */
 public final class IntegrationAccountCertificatesListSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationAccountCertificates_List.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationAccountCertificates_List.json
      */
     /**
      * Sample code: Get certificates by integration account name.
@@ -830,7 +836,7 @@ import java.io.IOException;
 /** Samples for IntegrationAccountMaps CreateOrUpdate. */
 public final class IntegrationAccountMapsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationAccountLargeMaps_CreateOrUpdate.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationAccountLargeMaps_CreateOrUpdate.json
      */
     /**
      * Sample code: Create or update a map larger than 4 MB.
@@ -854,7 +860,7 @@ public final class IntegrationAccountMapsCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationAccountMaps_CreateOrUpdate.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationAccountMaps_CreateOrUpdate.json
      */
     /**
      * Sample code: Create or update a map.
@@ -954,7 +960,7 @@ public final class IntegrationAccountMapsCreateOrUpdateSamples {
 /** Samples for IntegrationAccountMaps Delete. */
 public final class IntegrationAccountMapsDeleteSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationAccountMaps_Delete.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationAccountMaps_Delete.json
      */
     /**
      * Sample code: Delete a map.
@@ -976,7 +982,7 @@ public final class IntegrationAccountMapsDeleteSamples {
 /** Samples for IntegrationAccountMaps Get. */
 public final class IntegrationAccountMapsGetSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationAccountMaps_Get.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationAccountMaps_Get.json
      */
     /**
      * Sample code: Get map by name.
@@ -998,7 +1004,7 @@ public final class IntegrationAccountMapsGetSamples {
 /** Samples for IntegrationAccountMaps List. */
 public final class IntegrationAccountMapsListSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationAccountMaps_List.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationAccountMaps_List.json
      */
     /**
      * Sample code: Get maps by integration account name.
@@ -1023,7 +1029,7 @@ import java.time.OffsetDateTime;
 /** Samples for IntegrationAccountMaps ListContentCallbackUrl. */
 public final class IntegrationAccountMapsListContentCallbackUrlSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationAccountMaps_ListContentCallbackUrl.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationAccountMaps_ListContentCallbackUrl.json
      */
     /**
      * Sample code: Get the content callback url.
@@ -1062,7 +1068,7 @@ import java.util.Map;
 /** Samples for IntegrationAccountPartners CreateOrUpdate. */
 public final class IntegrationAccountPartnersCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationAccountPartners_CreateOrUpdate.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationAccountPartners_CreateOrUpdate.json
      */
     /**
      * Sample code: Create or update a partner.
@@ -1090,6 +1096,7 @@ public final class IntegrationAccountPartnersCreateOrUpdateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -1109,7 +1116,7 @@ public final class IntegrationAccountPartnersCreateOrUpdateSamples {
 /** Samples for IntegrationAccountPartners Delete. */
 public final class IntegrationAccountPartnersDeleteSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationAccountPartners_Delete.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationAccountPartners_Delete.json
      */
     /**
      * Sample code: Delete a partner.
@@ -1131,7 +1138,7 @@ public final class IntegrationAccountPartnersDeleteSamples {
 /** Samples for IntegrationAccountPartners Get. */
 public final class IntegrationAccountPartnersGetSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationAccountPartners_Get.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationAccountPartners_Get.json
      */
     /**
      * Sample code: Get partner by name.
@@ -1153,7 +1160,7 @@ public final class IntegrationAccountPartnersGetSamples {
 /** Samples for IntegrationAccountPartners List. */
 public final class IntegrationAccountPartnersListSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationAccountPartners_List.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationAccountPartners_List.json
      */
     /**
      * Sample code: Get partners by integration account name.
@@ -1178,7 +1185,7 @@ import java.time.OffsetDateTime;
 /** Samples for IntegrationAccountPartners ListContentCallbackUrl. */
 public final class IntegrationAccountPartnersListContentCallbackUrlSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationAccountPartners_ListContentCallbackUrl.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationAccountPartners_ListContentCallbackUrl.json
      */
     /**
      * Sample code: Get the content callback url.
@@ -1213,7 +1220,7 @@ import java.util.Map;
 /** Samples for IntegrationAccountSchemas CreateOrUpdate. */
 public final class IntegrationAccountSchemasCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationAccountSchemas_CreateOrUpdate.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationAccountSchemas_CreateOrUpdate.json
      */
     /**
      * Sample code: Create or update schema.
@@ -1413,6 +1420,7 @@ public final class IntegrationAccountSchemasCreateOrUpdateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -1432,7 +1440,7 @@ public final class IntegrationAccountSchemasCreateOrUpdateSamples {
 /** Samples for IntegrationAccountSchemas Delete. */
 public final class IntegrationAccountSchemasDeleteSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationAccountSchemas_Delete.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationAccountSchemas_Delete.json
      */
     /**
      * Sample code: Delete a schema by name.
@@ -1454,7 +1462,7 @@ public final class IntegrationAccountSchemasDeleteSamples {
 /** Samples for IntegrationAccountSchemas Get. */
 public final class IntegrationAccountSchemasGetSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationAccountSchemas_Get.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationAccountSchemas_Get.json
      */
     /**
      * Sample code: Get schema by name.
@@ -1476,7 +1484,7 @@ public final class IntegrationAccountSchemasGetSamples {
 /** Samples for IntegrationAccountSchemas List. */
 public final class IntegrationAccountSchemasListSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationAccountSchemas_List.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationAccountSchemas_List.json
      */
     /**
      * Sample code: Get schemas by integration account name.
@@ -1501,7 +1509,7 @@ import java.time.OffsetDateTime;
 /** Samples for IntegrationAccountSchemas ListContentCallbackUrl. */
 public final class IntegrationAccountSchemasListContentCallbackUrlSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationAccountSchemas_ListContentCallbackUrl.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationAccountSchemas_ListContentCallbackUrl.json
      */
     /**
      * Sample code: Get the content callback url.
@@ -1533,7 +1541,7 @@ import java.io.IOException;
 /** Samples for IntegrationAccountSessions CreateOrUpdate. */
 public final class IntegrationAccountSessionsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationAccountSessions_CreateOrUpdate.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationAccountSessions_CreateOrUpdate.json
      */
     /**
      * Sample code: Create or update an integration account session.
@@ -1565,7 +1573,7 @@ public final class IntegrationAccountSessionsCreateOrUpdateSamples {
 /** Samples for IntegrationAccountSessions Delete. */
 public final class IntegrationAccountSessionsDeleteSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationAccountSessions_Delete.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationAccountSessions_Delete.json
      */
     /**
      * Sample code: Delete an integration account session.
@@ -1586,7 +1594,7 @@ public final class IntegrationAccountSessionsDeleteSamples {
 /** Samples for IntegrationAccountSessions Get. */
 public final class IntegrationAccountSessionsGetSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationAccountSessions_Get.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationAccountSessions_Get.json
      */
     /**
      * Sample code: Get an integration account session.
@@ -1607,7 +1615,7 @@ public final class IntegrationAccountSessionsGetSamples {
 /** Samples for IntegrationAccountSessions List. */
 public final class IntegrationAccountSessionsListSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationAccountSessions_List.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationAccountSessions_List.json
      */
     /**
      * Sample code: Get a list of integration account sessions.
@@ -1631,7 +1639,7 @@ import com.azure.resourcemanager.logic.models.IntegrationAccountSkuName;
 /** Samples for IntegrationAccounts CreateOrUpdate. */
 public final class IntegrationAccountsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationAccounts_CreateOrUpdate.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationAccounts_CreateOrUpdate.json
      */
     /**
      * Sample code: Create or update an integration account.
@@ -1656,7 +1664,7 @@ public final class IntegrationAccountsCreateOrUpdateSamples {
 /** Samples for IntegrationAccounts Delete. */
 public final class IntegrationAccountsDeleteSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationAccounts_Delete.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationAccounts_Delete.json
      */
     /**
      * Sample code: Delete an integration account.
@@ -1678,7 +1686,7 @@ public final class IntegrationAccountsDeleteSamples {
 /** Samples for IntegrationAccounts GetByResourceGroup. */
 public final class IntegrationAccountsGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationAccounts_Get.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationAccounts_Get.json
      */
     /**
      * Sample code: Get integration account by name.
@@ -1700,7 +1708,7 @@ public final class IntegrationAccountsGetByResourceGroupSamples {
 /** Samples for IntegrationAccounts List. */
 public final class IntegrationAccountsListSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationAccounts_ListBySubscription.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationAccounts_ListBySubscription.json
      */
     /**
      * Sample code: List integration accounts by subscription.
@@ -1719,7 +1727,7 @@ public final class IntegrationAccountsListSamples {
 /** Samples for IntegrationAccounts ListByResourceGroup. */
 public final class IntegrationAccountsListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationAccounts_ListByResourceGroup.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationAccounts_ListByResourceGroup.json
      */
     /**
      * Sample code: List integration accounts by resource group name.
@@ -1743,7 +1751,7 @@ import java.time.OffsetDateTime;
 /** Samples for IntegrationAccounts ListCallbackUrl. */
 public final class IntegrationAccountsListCallbackUrlSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationAccounts_ListCallbackUrl.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationAccounts_ListCallbackUrl.json
      */
     /**
      * Sample code: List IntegrationAccount callback URL.
@@ -1773,7 +1781,7 @@ import com.azure.resourcemanager.logic.models.ListKeyVaultKeysDefinition;
 /** Samples for IntegrationAccounts ListKeyVaultKeys. */
 public final class IntegrationAccountsListKeyVaultKeysSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationAccounts_ListKeyVaultKeys.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationAccounts_ListKeyVaultKeys.json
      */
     /**
      * Sample code: Get Integration Account callback URL.
@@ -1814,7 +1822,7 @@ import java.util.Arrays;
 /** Samples for IntegrationAccounts LogTrackingEvents. */
 public final class IntegrationAccountsLogTrackingEventsSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationAccounts_LogTrackingEvents.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationAccounts_LogTrackingEvents.json
      */
     /**
      * Sample code: Log a tracked event.
@@ -1863,7 +1871,7 @@ import com.azure.resourcemanager.logic.models.RegenerateActionParameter;
 /** Samples for IntegrationAccounts RegenerateAccessKey. */
 public final class IntegrationAccountsRegenerateAccessKeySamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationAccounts_RegenerateAccessKey.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationAccounts_RegenerateAccessKey.json
      */
     /**
      * Sample code: Regenerate access key.
@@ -1892,7 +1900,7 @@ import com.azure.resourcemanager.logic.models.IntegrationAccountSkuName;
 /** Samples for IntegrationAccounts Update. */
 public final class IntegrationAccountsUpdateSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationAccounts_Update.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationAccounts_Update.json
      */
     /**
      * Sample code: Patch an integration account.
@@ -1917,7 +1925,7 @@ public final class IntegrationAccountsUpdateSamples {
 /** Samples for IntegrationServiceEnvironmentManagedApiOperations List. */
 public final class IntegrationServiceEnvironmentManagedApiOperationsListSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationServiceEnvironments_ManagedApis_ListApiOperations.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationServiceEnvironments_ManagedApis_ListApiOperations.json
      */
     /**
      * Sample code: Gets the integration service environment managed Apis.
@@ -1943,7 +1951,7 @@ public final class IntegrationServiceEnvironmentManagedApiOperationsListSamples 
 /** Samples for IntegrationServiceEnvironmentManagedApis Delete. */
 public final class IntegrationServiceEnvironmentManagedApisDeleteSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationServiceEnvironments_ManagedApis_Delete.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationServiceEnvironments_ManagedApis_Delete.json
      */
     /**
      * Sample code: Deletes the integration service environment managed Apis.
@@ -1969,7 +1977,7 @@ public final class IntegrationServiceEnvironmentManagedApisDeleteSamples {
 /** Samples for IntegrationServiceEnvironmentManagedApis Get. */
 public final class IntegrationServiceEnvironmentManagedApisGetSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationServiceEnvironments_ManagedApis_Get.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationServiceEnvironments_ManagedApis_Get.json
      */
     /**
      * Sample code: Gets the integration service environment managed Apis.
@@ -1995,7 +2003,7 @@ public final class IntegrationServiceEnvironmentManagedApisGetSamples {
 /** Samples for IntegrationServiceEnvironmentManagedApis List. */
 public final class IntegrationServiceEnvironmentManagedApisListSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationServiceEnvironments_ManagedApis_List.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationServiceEnvironments_ManagedApis_List.json
      */
     /**
      * Sample code: Gets the integration service environment managed Apis.
@@ -2017,7 +2025,7 @@ public final class IntegrationServiceEnvironmentManagedApisListSamples {
 /** Samples for IntegrationServiceEnvironmentManagedApis Put. */
 public final class IntegrationServiceEnvironmentManagedApisPutSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationServiceEnvironments_ManagedApis_Put.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationServiceEnvironments_ManagedApis_Put.json
      */
     /**
      * Sample code: Gets the integration service environment managed Apis.
@@ -2042,7 +2050,7 @@ public final class IntegrationServiceEnvironmentManagedApisPutSamples {
 /** Samples for IntegrationServiceEnvironmentNetworkHealth Get. */
 public final class IntegrationServiceEnvironmentNetworkHealthGetSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationServiceEnvironments_NetworkHealth.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationServiceEnvironments_NetworkHealth.json
      */
     /**
      * Sample code: Gets the integration service environment network health.
@@ -2065,7 +2073,7 @@ public final class IntegrationServiceEnvironmentNetworkHealthGetSamples {
 /** Samples for IntegrationServiceEnvironmentSkus List. */
 public final class IntegrationServiceEnvironmentSkusListSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationServiceEnvironments_Skus.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationServiceEnvironments_Skus.json
      */
     /**
      * Sample code: List integration service environment skus.
@@ -2097,7 +2105,7 @@ import java.util.Arrays;
 /** Samples for IntegrationServiceEnvironments CreateOrUpdate. */
 public final class IntegrationServiceEnvironmentsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationServiceEnvironments_Put.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationServiceEnvironments_Put.json
      */
     /**
      * Sample code: Create or update an integration service environment.
@@ -2158,7 +2166,7 @@ public final class IntegrationServiceEnvironmentsCreateOrUpdateSamples {
 /** Samples for IntegrationServiceEnvironments Delete. */
 public final class IntegrationServiceEnvironmentsDeleteSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationServiceEnvironments_Delete.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationServiceEnvironments_Delete.json
      */
     /**
      * Sample code: Delete an integration account.
@@ -2180,7 +2188,7 @@ public final class IntegrationServiceEnvironmentsDeleteSamples {
 /** Samples for IntegrationServiceEnvironments GetByResourceGroup. */
 public final class IntegrationServiceEnvironmentsGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationServiceEnvironments_Get.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationServiceEnvironments_Get.json
      */
     /**
      * Sample code: Get integration service environment by name.
@@ -2202,7 +2210,7 @@ public final class IntegrationServiceEnvironmentsGetByResourceGroupSamples {
 /** Samples for IntegrationServiceEnvironments List. */
 public final class IntegrationServiceEnvironmentsListSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationServiceEnvironments_ListBySubscription.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationServiceEnvironments_ListBySubscription.json
      */
     /**
      * Sample code: List integration service environments by subscription.
@@ -2222,7 +2230,7 @@ public final class IntegrationServiceEnvironmentsListSamples {
 /** Samples for IntegrationServiceEnvironments ListByResourceGroup. */
 public final class IntegrationServiceEnvironmentsListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationServiceEnvironments_ListByResourceGroup.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationServiceEnvironments_ListByResourceGroup.json
      */
     /**
      * Sample code: List integration service environments by resource group name.
@@ -2244,7 +2252,7 @@ public final class IntegrationServiceEnvironmentsListByResourceGroupSamples {
 /** Samples for IntegrationServiceEnvironments Restart. */
 public final class IntegrationServiceEnvironmentsRestartSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationServiceEnvironments_Restart.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationServiceEnvironments_Restart.json
      */
     /**
      * Sample code: Restarts an integration service environment.
@@ -2272,7 +2280,7 @@ import java.util.Map;
 /** Samples for IntegrationServiceEnvironments Update. */
 public final class IntegrationServiceEnvironmentsUpdateSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationServiceEnvironments_Patch.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationServiceEnvironments_Patch.json
      */
     /**
      * Sample code: Patch an integration service environment.
@@ -2296,6 +2304,7 @@ public final class IntegrationServiceEnvironmentsUpdateSamples {
             .apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -2309,13 +2318,85 @@ public final class IntegrationServiceEnvironmentsUpdateSamples {
 }
 ```
 
+### Locations_ValidateWorkflowExport
+
+```java
+import com.azure.resourcemanager.logic.models.ResourceReference;
+import com.azure.resourcemanager.logic.models.WorkflowExportOptions;
+import com.azure.resourcemanager.logic.models.WorkflowExportRequest;
+import java.util.Arrays;
+
+/** Samples for Locations ValidateWorkflowExport. */
+public final class LocationsValidateWorkflowExportSamples {
+    /*
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/Locations_ValidateWorkflowExport.json
+     */
+    /**
+     * Sample code: Validates a workflow export.
+     *
+     * @param manager Entry point to LogicManager.
+     */
+    public static void validatesAWorkflowExport(com.azure.resourcemanager.logic.LogicManager manager) {
+        manager
+            .locations()
+            .validateWorkflowExportWithResponse(
+                "brazilsouth",
+                new WorkflowExportRequest()
+                    .withWorkflows(
+                        Arrays
+                            .asList(
+                                new ResourceReference()
+                                    .withId(
+                                        "subscriptions/34adfa4f-cedf-4dc0-ba29-b6d1a69ab345/resourceGroups/existing/ResourceGroup/providers/Microsoft.Logic/workflows/existingWorkflow")))
+                    .withWorkflowExportOptions(WorkflowExportOptions.CLONE_CONNECTIONS),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Locations_WorkflowExport
+
+```java
+import com.azure.resourcemanager.logic.models.ResourceReference;
+import com.azure.resourcemanager.logic.models.WorkflowExportOptions;
+import com.azure.resourcemanager.logic.models.WorkflowExportRequest;
+import java.util.Arrays;
+
+/** Samples for Locations WorkflowExport. */
+public final class LocationsWorkflowExportSamples {
+    /*
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/Locations_WorkflowExport.json
+     */
+    /**
+     * Sample code: Export workflows.
+     *
+     * @param manager Entry point to LogicManager.
+     */
+    public static void exportWorkflows(com.azure.resourcemanager.logic.LogicManager manager) {
+        manager
+            .locations()
+            .workflowExportWithResponse(
+                "brazilsouth",
+                new WorkflowExportRequest()
+                    .withWorkflows(
+                        Arrays
+                            .asList(
+                                new ResourceReference()
+                                    .withId(
+                                        "subscriptions/34adfa4f-cedf-4dc0-ba29-b6d1a69ab345/resourceGroups/existing/ResourceGroup/providers/Microsoft.Logic/workflows/existingWorkflow")))
+                    .withWorkflowExportOptions(WorkflowExportOptions.CLONE_CONNECTIONS),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
 ### Operations_List
 
 ```java
 /** Samples for Operations List. */
 public final class OperationsListSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/Operations_List.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/Operations_List.json
      */
     /**
      * Sample code: List Microsoft.Logic operations.
@@ -2334,7 +2415,7 @@ public final class OperationsListSamples {
 /** Samples for WorkflowRunActionRepetitions Get. */
 public final class WorkflowRunActionRepetitionsGetSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/WorkflowRunActionRepetitions_Get.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/WorkflowRunActionRepetitions_Get.json
      */
     /**
      * Sample code: Get a repetition.
@@ -2361,7 +2442,7 @@ public final class WorkflowRunActionRepetitionsGetSamples {
 /** Samples for WorkflowRunActionRepetitions List. */
 public final class WorkflowRunActionRepetitionsListSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/WorkflowRunActionRepetitions_List.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/WorkflowRunActionRepetitions_List.json
      */
     /**
      * Sample code: List repetitions.
@@ -2387,7 +2468,7 @@ public final class WorkflowRunActionRepetitionsListSamples {
 /** Samples for WorkflowRunActionRepetitions ListExpressionTraces. */
 public final class WorkflowRunActionRepetitionsListExpressionTracesSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/WorkflowRunActionRepetitions_ListExpressionTraces.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/WorkflowRunActionRepetitions_ListExpressionTraces.json
      */
     /**
      * Sample code: List expression traces for a repetition.
@@ -2414,7 +2495,7 @@ public final class WorkflowRunActionRepetitionsListExpressionTracesSamples {
 /** Samples for WorkflowRunActionRepetitionsRequestHistories Get. */
 public final class WorkflowRunActionRepetitionsRequestHistoriesGetSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/WorkflowRunActionRepetitionsRequestHistories_Get.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/WorkflowRunActionRepetitionsRequestHistories_Get.json
      */
     /**
      * Sample code: Get a repetition request history.
@@ -2442,7 +2523,7 @@ public final class WorkflowRunActionRepetitionsRequestHistoriesGetSamples {
 /** Samples for WorkflowRunActionRepetitionsRequestHistories List. */
 public final class WorkflowRunActionRepetitionsRequestHistoriesListSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/WorkflowRunActionRepetitionsRequestHistories_List.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/WorkflowRunActionRepetitionsRequestHistories_List.json
      */
     /**
      * Sample code: List repetition request history.
@@ -2469,7 +2550,7 @@ public final class WorkflowRunActionRepetitionsRequestHistoriesListSamples {
 /** Samples for WorkflowRunActionRequestHistories Get. */
 public final class WorkflowRunActionRequestHistoriesGetSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/WorkflowRunActionRequestHistories_Get.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/WorkflowRunActionRequestHistories_Get.json
      */
     /**
      * Sample code: Get a request history.
@@ -2496,7 +2577,7 @@ public final class WorkflowRunActionRequestHistoriesGetSamples {
 /** Samples for WorkflowRunActionRequestHistories List. */
 public final class WorkflowRunActionRequestHistoriesListSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/WorkflowRunActionRequestHistories_List.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/WorkflowRunActionRequestHistories_List.json
      */
     /**
      * Sample code: List a request history.
@@ -2522,7 +2603,7 @@ public final class WorkflowRunActionRequestHistoriesListSamples {
 /** Samples for WorkflowRunActionScopeRepetitions Get. */
 public final class WorkflowRunActionScopeRepetitionsGetSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/WorkflowRunActionScopeRepetitions_Get.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/WorkflowRunActionScopeRepetitions_Get.json
      */
     /**
      * Sample code: Get a scoped repetition.
@@ -2549,7 +2630,7 @@ public final class WorkflowRunActionScopeRepetitionsGetSamples {
 /** Samples for WorkflowRunActionScopeRepetitions List. */
 public final class WorkflowRunActionScopeRepetitionsListSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/WorkflowRunActionScopeRepetitions_List.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/WorkflowRunActionScopeRepetitions_List.json
      */
     /**
      * Sample code: List the scoped repetitions.
@@ -2575,7 +2656,7 @@ public final class WorkflowRunActionScopeRepetitionsListSamples {
 /** Samples for WorkflowRunActions Get. */
 public final class WorkflowRunActionsGetSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/WorkflowRunActions_Get.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/WorkflowRunActions_Get.json
      */
     /**
      * Sample code: Get a workflow run action.
@@ -2601,7 +2682,7 @@ public final class WorkflowRunActionsGetSamples {
 /** Samples for WorkflowRunActions List. */
 public final class WorkflowRunActionsListSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/WorkflowRunActions_List.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/WorkflowRunActions_List.json
      */
     /**
      * Sample code: List a workflow run actions.
@@ -2628,7 +2709,7 @@ public final class WorkflowRunActionsListSamples {
 /** Samples for WorkflowRunActions ListExpressionTraces. */
 public final class WorkflowRunActionsListExpressionTracesSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/WorkflowRunActions_ListExpressionTraces.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/WorkflowRunActions_ListExpressionTraces.json
      */
     /**
      * Sample code: List expression traces.
@@ -2654,7 +2735,7 @@ public final class WorkflowRunActionsListExpressionTracesSamples {
 /** Samples for WorkflowRunOperations Get. */
 public final class WorkflowRunOperationsGetSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/WorkflowRunOperations_Get.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/WorkflowRunOperations_Get.json
      */
     /**
      * Sample code: Get a run operation.
@@ -2680,7 +2761,7 @@ public final class WorkflowRunOperationsGetSamples {
 /** Samples for WorkflowRuns Cancel. */
 public final class WorkflowRunsCancelSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/WorkflowRuns_Cancel.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/WorkflowRuns_Cancel.json
      */
     /**
      * Sample code: Cancel a workflow run.
@@ -2705,7 +2786,7 @@ public final class WorkflowRunsCancelSamples {
 /** Samples for WorkflowRuns Get. */
 public final class WorkflowRunsGetSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/WorkflowRuns_Get.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/WorkflowRuns_Get.json
      */
     /**
      * Sample code: Get a run for a workflow.
@@ -2730,7 +2811,7 @@ public final class WorkflowRunsGetSamples {
 /** Samples for WorkflowRuns List. */
 public final class WorkflowRunsListSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/WorkflowRuns_List.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/WorkflowRuns_List.json
      */
     /**
      * Sample code: List workflow runs.
@@ -2751,7 +2832,7 @@ public final class WorkflowRunsListSamples {
 /** Samples for WorkflowTriggerHistories Get. */
 public final class WorkflowTriggerHistoriesGetSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/WorkflowTriggerHistories_Get.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/WorkflowTriggerHistories_Get.json
      */
     /**
      * Sample code: Get a workflow trigger history.
@@ -2777,7 +2858,7 @@ public final class WorkflowTriggerHistoriesGetSamples {
 /** Samples for WorkflowTriggerHistories List. */
 public final class WorkflowTriggerHistoriesListSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/WorkflowTriggerHistories_List.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/WorkflowTriggerHistories_List.json
      */
     /**
      * Sample code: List a workflow trigger history.
@@ -2804,7 +2885,7 @@ public final class WorkflowTriggerHistoriesListSamples {
 /** Samples for WorkflowTriggerHistories Resubmit. */
 public final class WorkflowTriggerHistoriesResubmitSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/WorkflowTriggerHistories_Resubmit.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/WorkflowTriggerHistories_Resubmit.json
      */
     /**
      * Sample code: Resubmit a workflow run based on the trigger history.
@@ -2831,7 +2912,7 @@ public final class WorkflowTriggerHistoriesResubmitSamples {
 /** Samples for WorkflowTriggers Get. */
 public final class WorkflowTriggersGetSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/WorkflowTriggers_Get.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/WorkflowTriggers_Get.json
      */
     /**
      * Sample code: Get a workflow trigger.
@@ -2852,7 +2933,7 @@ public final class WorkflowTriggersGetSamples {
 /** Samples for WorkflowTriggers GetSchemaJson. */
 public final class WorkflowTriggersGetSchemaJsonSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/WorkflowTriggers_GetSchemaJson.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/WorkflowTriggers_GetSchemaJson.json
      */
     /**
      * Sample code: Get trigger schema.
@@ -2874,7 +2955,7 @@ public final class WorkflowTriggersGetSchemaJsonSamples {
 /** Samples for WorkflowTriggers List. */
 public final class WorkflowTriggersListSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/WorkflowTriggers_List.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/WorkflowTriggers_List.json
      */
     /**
      * Sample code: List workflow triggers.
@@ -2895,7 +2976,7 @@ public final class WorkflowTriggersListSamples {
 /** Samples for WorkflowTriggers ListCallbackUrl. */
 public final class WorkflowTriggersListCallbackUrlSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/WorkflowTriggers_ListCallbackUrl.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/WorkflowTriggers_ListCallbackUrl.json
      */
     /**
      * Sample code: Get the callback URL for a trigger.
@@ -2917,7 +2998,7 @@ public final class WorkflowTriggersListCallbackUrlSamples {
 /** Samples for WorkflowTriggers Reset. */
 public final class WorkflowTriggersResetSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/WorkflowTriggers_Reset.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/WorkflowTriggers_Reset.json
      */
     /**
      * Sample code: Reset trigger.
@@ -2938,7 +3019,7 @@ public final class WorkflowTriggersResetSamples {
 /** Samples for WorkflowTriggers Run. */
 public final class WorkflowTriggersRunSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/WorkflowTriggers_Run.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/WorkflowTriggers_Run.json
      */
     /**
      * Sample code: Run a workflow trigger.
@@ -2962,7 +3043,7 @@ import com.azure.resourcemanager.logic.models.WorkflowTriggerReference;
 /** Samples for WorkflowTriggers SetState. */
 public final class WorkflowTriggersSetStateSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/WorkflowTriggers_SetState.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/WorkflowTriggers_SetState.json
      */
     /**
      * Sample code: Set trigger state.
@@ -2996,7 +3077,7 @@ import java.time.OffsetDateTime;
 /** Samples for WorkflowVersionTriggers ListCallbackUrl. */
 public final class WorkflowVersionTriggersListCallbackUrlSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/WorkflowVersionTriggers_ListCallbackUrl.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/WorkflowVersionTriggers_ListCallbackUrl.json
      */
     /**
      * Sample code: Get the callback url for a trigger of a workflow version.
@@ -3026,7 +3107,7 @@ public final class WorkflowVersionTriggersListCallbackUrlSamples {
 /** Samples for WorkflowVersions Get. */
 public final class WorkflowVersionsGetSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/WorkflowVersions_Get.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/WorkflowVersions_Get.json
      */
     /**
      * Sample code: Get a workflow version.
@@ -3048,7 +3129,7 @@ public final class WorkflowVersionsGetSamples {
 /** Samples for WorkflowVersions List. */
 public final class WorkflowVersionsListSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/WorkflowVersions_List.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/WorkflowVersions_List.json
      */
     /**
      * Sample code: List a workflows versions.
@@ -3075,7 +3156,7 @@ import java.util.Map;
 /** Samples for Workflows CreateOrUpdate. */
 public final class WorkflowsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/Workflows_CreateOrUpdate.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/Workflows_CreateOrUpdate.json
      */
     /**
      * Sample code: Create or update a workflow.
@@ -3115,6 +3196,7 @@ public final class WorkflowsCreateOrUpdateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -3134,7 +3216,7 @@ public final class WorkflowsCreateOrUpdateSamples {
 /** Samples for Workflows Delete. */
 public final class WorkflowsDeleteSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/Workflows_Delete.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/Workflows_Delete.json
      */
     /**
      * Sample code: Delete a workflow.
@@ -3156,7 +3238,7 @@ public final class WorkflowsDeleteSamples {
 /** Samples for Workflows Disable. */
 public final class WorkflowsDisableSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/Workflows_Disable.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/Workflows_Disable.json
      */
     /**
      * Sample code: Disable a workflow.
@@ -3177,7 +3259,7 @@ public final class WorkflowsDisableSamples {
 /** Samples for Workflows Enable. */
 public final class WorkflowsEnableSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/Workflows_Enable.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/Workflows_Enable.json
      */
     /**
      * Sample code: Enable a workflow.
@@ -3200,7 +3282,7 @@ import com.azure.resourcemanager.logic.models.GenerateUpgradedDefinitionParamete
 /** Samples for Workflows GenerateUpgradedDefinition. */
 public final class WorkflowsGenerateUpgradedDefinitionSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/Workflows_GenerateUpgradedDefinition.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/Workflows_GenerateUpgradedDefinition.json
      */
     /**
      * Sample code: Generate an upgraded definition.
@@ -3225,7 +3307,7 @@ public final class WorkflowsGenerateUpgradedDefinitionSamples {
 /** Samples for Workflows GetByResourceGroup. */
 public final class WorkflowsGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/Workflows_Get.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/Workflows_Get.json
      */
     /**
      * Sample code: Get a workflow.
@@ -3246,7 +3328,7 @@ public final class WorkflowsGetByResourceGroupSamples {
 /** Samples for Workflows List. */
 public final class WorkflowsListSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/Workflows_ListBySubscription.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/Workflows_ListBySubscription.json
      */
     /**
      * Sample code: List all workflows in a subscription.
@@ -3265,7 +3347,7 @@ public final class WorkflowsListSamples {
 /** Samples for Workflows ListByResourceGroup. */
 public final class WorkflowsListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/Workflows_ListByResourceGroup.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/Workflows_ListByResourceGroup.json
      */
     /**
      * Sample code: List all workflows in a resource group.
@@ -3288,7 +3370,7 @@ import java.time.OffsetDateTime;
 /** Samples for Workflows ListCallbackUrl. */
 public final class WorkflowsListCallbackUrlSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/Workflows_ListCallbackUrl.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/Workflows_ListCallbackUrl.json
      */
     /**
      * Sample code: Get callback url.
@@ -3315,7 +3397,7 @@ public final class WorkflowsListCallbackUrlSamples {
 /** Samples for Workflows ListSwagger. */
 public final class WorkflowsListSwaggerSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/Workflows_ListSwagger.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/Workflows_ListSwagger.json
      */
     /**
      * Sample code: Get the swagger for a workflow.
@@ -3338,7 +3420,7 @@ import com.azure.resourcemanager.logic.models.WorkflowReference;
 /** Samples for Workflows Move. */
 public final class WorkflowsMoveSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/Workflows_Move.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/Workflows_Move.json
      */
     /**
      * Sample code: Move a workflow.
@@ -3368,7 +3450,7 @@ import com.azure.resourcemanager.logic.models.RegenerateActionParameter;
 /** Samples for Workflows RegenerateAccessKey. */
 public final class WorkflowsRegenerateAccessKeySamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/Workflows_RegenerateAccessKey.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/Workflows_RegenerateAccessKey.json
      */
     /**
      * Sample code: Regenerate the callback URL access key for request triggers.
@@ -3394,7 +3476,7 @@ public final class WorkflowsRegenerateAccessKeySamples {
 /** Samples for Workflows Update. */
 public final class WorkflowsUpdateSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/Workflows_Update.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/Workflows_Update.json
      */
     /**
      * Sample code: Patch a workflow.
@@ -3423,7 +3505,7 @@ import java.util.Map;
 /** Samples for Workflows ValidateByLocation. */
 public final class WorkflowsValidateByLocationSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/Workflows_ValidateByLocation.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/Workflows_ValidateByLocation.json
      */
     /**
      * Sample code: Validate a workflow.
@@ -3454,6 +3536,7 @@ public final class WorkflowsValidateByLocationSamples {
                 com.azure.core.util.Context.NONE);
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -3481,7 +3564,7 @@ import java.util.Map;
 /** Samples for Workflows ValidateByResourceGroup. */
 public final class WorkflowsValidateByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/Workflows_ValidateByResourceGroup.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/Workflows_ValidateByResourceGroup.json
      */
     /**
      * Sample code: Validate a workflow.
@@ -3511,6 +3594,7 @@ public final class WorkflowsValidateByResourceGroupSamples {
                 com.azure.core.util.Context.NONE);
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

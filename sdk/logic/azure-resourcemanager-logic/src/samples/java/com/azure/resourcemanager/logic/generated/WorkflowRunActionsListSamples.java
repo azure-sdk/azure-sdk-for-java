@@ -7,7 +7,7 @@ package com.azure.resourcemanager.logic.generated;
 /** Samples for WorkflowRunActions List. */
 public final class WorkflowRunActionsListSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/WorkflowRunActions_List.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/WorkflowRunActions_List.json
      */
     /**
      * Sample code: List a workflow run actions.

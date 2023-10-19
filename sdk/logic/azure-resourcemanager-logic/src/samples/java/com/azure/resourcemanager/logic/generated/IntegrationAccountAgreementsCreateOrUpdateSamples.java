@@ -28,7 +28,7 @@ import java.util.Map;
 /** Samples for IntegrationAccountAgreements CreateOrUpdate. */
 public final class IntegrationAccountAgreementsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationAccountAgreements_CreateOrUpdate.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationAccountAgreements_CreateOrUpdate.json
      */
     /**
      * Sample code: Create or update an agreement.
@@ -183,6 +183,7 @@ public final class IntegrationAccountAgreementsCreateOrUpdateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

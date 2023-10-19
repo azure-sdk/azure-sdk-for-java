@@ -7,7 +7,7 @@ package com.azure.resourcemanager.logic.generated;
 /** Samples for IntegrationAccountAssemblies Get. */
 public final class IntegrationAccountAssembliesGetSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationAccountAssemblies_Get.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationAccountAssemblies_Get.json
      */
     /**
      * Sample code: Get an integration account assembly.

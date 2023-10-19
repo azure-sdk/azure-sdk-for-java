@@ -7,7 +7,7 @@ package com.azure.resourcemanager.logic.generated;
 /** Samples for IntegrationServiceEnvironmentSkus List. */
 public final class IntegrationServiceEnvironmentSkusListSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationServiceEnvironments_Skus.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationServiceEnvironments_Skus.json
      */
     /**
      * Sample code: List integration service environment skus.

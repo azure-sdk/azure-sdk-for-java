@@ -67,9 +67,7 @@ public final class IntegrationServiceEnvironmentManagedApiOperationsClientImpl
     public interface IntegrationServiceEnvironmentManagedApiOperationsService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Logic"
-                + "/integrationServiceEnvironments/{integrationServiceEnvironmentName}/managedApis/{apiName}"
-                + "/apiOperations")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Logic/integrationServiceEnvironments/{integrationServiceEnvironmentName}/managedApis/{apiName}/apiOperations")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ApiOperationListResult>> list(

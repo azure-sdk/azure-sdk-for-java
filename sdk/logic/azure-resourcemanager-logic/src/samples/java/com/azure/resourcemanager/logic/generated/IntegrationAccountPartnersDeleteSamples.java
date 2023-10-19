@@ -7,7 +7,7 @@ package com.azure.resourcemanager.logic.generated;
 /** Samples for IntegrationAccountPartners Delete. */
 public final class IntegrationAccountPartnersDeleteSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationAccountPartners_Delete.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationAccountPartners_Delete.json
      */
     /**
      * Sample code: Delete a partner.

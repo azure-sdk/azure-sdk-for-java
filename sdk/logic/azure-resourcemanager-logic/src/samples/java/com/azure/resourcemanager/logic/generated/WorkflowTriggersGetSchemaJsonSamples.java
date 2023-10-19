@@ -7,7 +7,7 @@ package com.azure.resourcemanager.logic.generated;
 /** Samples for WorkflowTriggers GetSchemaJson. */
 public final class WorkflowTriggersGetSchemaJsonSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/WorkflowTriggers_GetSchemaJson.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/WorkflowTriggers_GetSchemaJson.json
      */
     /**
      * Sample code: Get trigger schema.

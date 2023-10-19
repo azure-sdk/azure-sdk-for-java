@@ -11,7 +11,7 @@ import java.time.OffsetDateTime;
 /** Samples for Workflows ListCallbackUrl. */
 public final class WorkflowsListCallbackUrlSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/Workflows_ListCallbackUrl.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/Workflows_ListCallbackUrl.json
      */
     /**
      * Sample code: Get callback url.

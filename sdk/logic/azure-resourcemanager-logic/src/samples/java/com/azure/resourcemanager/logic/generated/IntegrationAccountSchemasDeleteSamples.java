@@ -7,7 +7,7 @@ package com.azure.resourcemanager.logic.generated;
 /** Samples for IntegrationAccountSchemas Delete. */
 public final class IntegrationAccountSchemasDeleteSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationAccountSchemas_Delete.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationAccountSchemas_Delete.json
      */
     /**
      * Sample code: Delete a schema by name.

@@ -9,7 +9,7 @@ import com.azure.resourcemanager.logic.models.GenerateUpgradedDefinitionParamete
 /** Samples for Workflows GenerateUpgradedDefinition. */
 public final class WorkflowsGenerateUpgradedDefinitionSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/Workflows_GenerateUpgradedDefinition.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/Workflows_GenerateUpgradedDefinition.json
      */
     /**
      * Sample code: Generate an upgraded definition.

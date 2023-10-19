@@ -10,7 +10,7 @@ import com.azure.resourcemanager.logic.models.KeyVaultKeyReferenceKeyVault;
 /** Samples for IntegrationAccountCertificates CreateOrUpdate. */
 public final class IntegrationAccountCertificatesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationAccountCertificates_CreateOrUpdate.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationAccountCertificates_CreateOrUpdate.json
      */
     /**
      * Sample code: Create or update a certificate.

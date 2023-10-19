@@ -7,7 +7,7 @@ package com.azure.resourcemanager.logic.generated;
 /** Samples for WorkflowTriggers ListCallbackUrl. */
 public final class WorkflowTriggersListCallbackUrlSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/WorkflowTriggers_ListCallbackUrl.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/WorkflowTriggers_ListCallbackUrl.json
      */
     /**
      * Sample code: Get the callback URL for a trigger.

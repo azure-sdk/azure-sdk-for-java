@@ -18,12 +18,12 @@ import java.time.Duration;
 @ServiceClientBuilder(serviceClients = {LogicManagementClientImpl.class})
 public final class LogicManagementClientBuilder {
     /*
-     * The subscription id.
+     * The ID of the target subscription.
      */
     private String subscriptionId;
 
     /**
-     * Sets The subscription id.
+     * Sets The ID of the target subscription.
      *
      * @param subscriptionId the subscriptionId value.
      * @return the LogicManagementClientBuilder.
@@ -137,7 +137,7 @@ public final class LogicManagementClientBuilder {
                 localSerializerAdapter,
                 localDefaultPollInterval,
                 localEnvironment,
-                subscriptionId,
+                this.subscriptionId,
                 localEndpoint);
         return client;
     }

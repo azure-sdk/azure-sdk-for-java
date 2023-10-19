@@ -7,7 +7,7 @@ package com.azure.resourcemanager.logic.generated;
 /** Samples for WorkflowRunActionRepetitionsRequestHistories List. */
 public final class WorkflowRunActionRepetitionsRequestHistoriesListSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/WorkflowRunActionRepetitionsRequestHistories_List.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/WorkflowRunActionRepetitionsRequestHistories_List.json
      */
     /**
      * Sample code: List repetition request history.

@@ -12,7 +12,7 @@ import com.azure.resourcemanager.logic.models.WorkflowTriggerRecurrence;
 /** Samples for IntegrationAccountBatchConfigurations CreateOrUpdate. */
 public final class IntegrationAccountBatchConfigurationsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationAccountBatchConfigurations_CreateOrUpdate.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationAccountBatchConfigurations_CreateOrUpdate.json
      */
     /**
      * Sample code: Create or update a batch configuration.

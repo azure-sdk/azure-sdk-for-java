@@ -11,7 +11,7 @@ import java.time.OffsetDateTime;
 /** Samples for WorkflowVersionTriggers ListCallbackUrl. */
 public final class WorkflowVersionTriggersListCallbackUrlSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/WorkflowVersionTriggers_ListCallbackUrl.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/WorkflowVersionTriggers_ListCallbackUrl.json
      */
     /**
      * Sample code: Get the callback url for a trigger of a workflow version.

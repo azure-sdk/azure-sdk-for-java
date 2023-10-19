@@ -12,7 +12,7 @@ import java.io.IOException;
 /** Samples for IntegrationAccountMaps CreateOrUpdate. */
 public final class IntegrationAccountMapsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationAccountLargeMaps_CreateOrUpdate.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationAccountLargeMaps_CreateOrUpdate.json
      */
     /**
      * Sample code: Create or update a map larger than 4 MB.
@@ -36,7 +36,7 @@ public final class IntegrationAccountMapsCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationAccountMaps_CreateOrUpdate.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationAccountMaps_CreateOrUpdate.json
      */
     /**
      * Sample code: Create or update a map.

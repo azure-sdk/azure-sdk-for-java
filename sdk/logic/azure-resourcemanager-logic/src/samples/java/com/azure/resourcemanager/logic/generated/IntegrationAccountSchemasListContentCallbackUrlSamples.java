@@ -11,7 +11,7 @@ import java.time.OffsetDateTime;
 /** Samples for IntegrationAccountSchemas ListContentCallbackUrl. */
 public final class IntegrationAccountSchemasListContentCallbackUrlSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationAccountSchemas_ListContentCallbackUrl.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationAccountSchemas_ListContentCallbackUrl.json
      */
     /**
      * Sample code: Get the content callback url.

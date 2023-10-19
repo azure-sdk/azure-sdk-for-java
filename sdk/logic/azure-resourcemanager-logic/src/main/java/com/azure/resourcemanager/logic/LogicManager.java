@@ -38,6 +38,7 @@ import com.azure.resourcemanager.logic.implementation.IntegrationServiceEnvironm
 import com.azure.resourcemanager.logic.implementation.IntegrationServiceEnvironmentNetworkHealthsImpl;
 import com.azure.resourcemanager.logic.implementation.IntegrationServiceEnvironmentSkusImpl;
 import com.azure.resourcemanager.logic.implementation.IntegrationServiceEnvironmentsImpl;
+import com.azure.resourcemanager.logic.implementation.LocationsImpl;
 import com.azure.resourcemanager.logic.implementation.LogicManagementClientBuilder;
 import com.azure.resourcemanager.logic.implementation.OperationsImpl;
 import com.azure.resourcemanager.logic.implementation.WorkflowRunActionRepetitionsImpl;
@@ -66,6 +67,7 @@ import com.azure.resourcemanager.logic.models.IntegrationServiceEnvironmentManag
 import com.azure.resourcemanager.logic.models.IntegrationServiceEnvironmentNetworkHealths;
 import com.azure.resourcemanager.logic.models.IntegrationServiceEnvironmentSkus;
 import com.azure.resourcemanager.logic.models.IntegrationServiceEnvironments;
+import com.azure.resourcemanager.logic.models.Locations;
 import com.azure.resourcemanager.logic.models.Operations;
 import com.azure.resourcemanager.logic.models.WorkflowRunActionRepetitions;
 import com.azure.resourcemanager.logic.models.WorkflowRunActionRepetitionsRequestHistories;
@@ -141,6 +143,8 @@ public final class LogicManager {
     private IntegrationServiceEnvironmentManagedApiOperations integrationServiceEnvironmentManagedApiOperations;
 
     private Operations operations;
+
+    private Locations locations;
 
     private final LogicManagementClient clientObject;
 
@@ -307,7 +311,7 @@ public final class LogicManager {
                 .append("-")
                 .append("com.azure.resourcemanager.logic")
                 .append("/")
-                .append("1.0.0-beta.2");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -714,8 +718,22 @@ public final class LogicManager {
     }
 
     /**
-     * @return Wrapped service client LogicManagementClient providing direct access to the underlying auto-generated API
-     *     implementation, based on Azure REST API.
+     * Gets the resource collection API of Locations.
+     *
+     * @return Resource collection API of Locations.
+     */
+    public Locations locations() {
+        if (this.locations == null) {
+            this.locations = new LocationsImpl(clientObject.getLocations(), this);
+        }
+        return locations;
+    }
+
+    /**
+     * Gets wrapped service client LogicManagementClient providing direct access to the underlying auto-generated API
+     * implementation, based on Azure REST API.
+     *
+     * @return Wrapped service client LogicManagementClient.
      */
     public LogicManagementClient serviceClient() {
         return this.clientObject;

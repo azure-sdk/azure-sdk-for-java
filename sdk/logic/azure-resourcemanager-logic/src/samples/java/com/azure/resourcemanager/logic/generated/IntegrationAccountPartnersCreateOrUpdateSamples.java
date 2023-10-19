@@ -18,7 +18,7 @@ import java.util.Map;
 /** Samples for IntegrationAccountPartners CreateOrUpdate. */
 public final class IntegrationAccountPartnersCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationAccountPartners_CreateOrUpdate.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationAccountPartners_CreateOrUpdate.json
      */
     /**
      * Sample code: Create or update a partner.
@@ -46,6 +46,7 @@ public final class IntegrationAccountPartnersCreateOrUpdateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

@@ -15,7 +15,7 @@ import java.util.Map;
 /** Samples for Workflows CreateOrUpdate. */
 public final class WorkflowsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/Workflows_CreateOrUpdate.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/Workflows_CreateOrUpdate.json
      */
     /**
      * Sample code: Create or update a workflow.
@@ -55,6 +55,7 @@ public final class WorkflowsCreateOrUpdateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

@@ -9,7 +9,7 @@ import com.azure.resourcemanager.logic.models.WorkflowReference;
 /** Samples for Workflows Move. */
 public final class WorkflowsMoveSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/Workflows_Move.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/Workflows_Move.json
      */
     /**
      * Sample code: Move a workflow.

@@ -15,7 +15,7 @@ import java.util.Map;
 /** Samples for Workflows ValidateByLocation. */
 public final class WorkflowsValidateByLocationSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/Workflows_ValidateByLocation.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/Workflows_ValidateByLocation.json
      */
     /**
      * Sample code: Validate a workflow.
@@ -46,6 +46,7 @@ public final class WorkflowsValidateByLocationSamples {
                 com.azure.core.util.Context.NONE);
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** The integration account partner's business identity. */
 @Fluent
-public class BusinessIdentity {
+public final class BusinessIdentity {
     /*
      * The business identity qualifier e.g. as2identity, ZZ, ZZZ, 31, 32
      */

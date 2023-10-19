@@ -7,7 +7,7 @@ package com.azure.resourcemanager.logic.generated;
 /** Samples for Workflows Disable. */
 public final class WorkflowsDisableSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/Workflows_Disable.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/Workflows_Disable.json
      */
     /**
      * Sample code: Disable a workflow.

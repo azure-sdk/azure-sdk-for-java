@@ -10,7 +10,7 @@ import java.time.Duration;
 /** The interface for LogicManagementClient class. */
 public interface LogicManagementClient {
     /**
-     * Gets The subscription id.
+     * Gets The ID of the target subscription.
      *
      * @return the subscriptionId value.
      */
@@ -232,4 +232,11 @@ public interface LogicManagementClient {
      * @return the OperationsClient object.
      */
     OperationsClient getOperations();
+
+    /**
+     * Gets the LocationsClient object to access its operations.
+     *
+     * @return the LocationsClient object.
+     */
+    LocationsClient getLocations();
 }

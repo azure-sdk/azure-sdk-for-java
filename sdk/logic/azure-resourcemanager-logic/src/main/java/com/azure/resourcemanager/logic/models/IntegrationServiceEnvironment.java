@@ -103,11 +103,13 @@ public interface IntegrationServiceEnvironment {
             DefinitionStages.WithResourceGroup,
             DefinitionStages.WithCreate {
     }
+
     /** The IntegrationServiceEnvironment definition stages. */
     interface DefinitionStages {
         /** The first stage of the IntegrationServiceEnvironment definition. */
         interface Blank extends WithLocation {
         }
+
         /** The stage of the IntegrationServiceEnvironment definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -126,6 +128,7 @@ public interface IntegrationServiceEnvironment {
              */
             WithResourceGroup withRegion(String location);
         }
+
         /** The stage of the IntegrationServiceEnvironment definition allowing to specify parent resource. */
         interface WithResourceGroup {
             /**
@@ -136,6 +139,7 @@ public interface IntegrationServiceEnvironment {
              */
             WithCreate withExistingResourceGroup(String resourceGroup);
         }
+
         /**
          * The stage of the IntegrationServiceEnvironment definition which contains all the minimum required properties
          * for the resource to be created, but also allows for any other optional properties to be specified.
@@ -160,6 +164,7 @@ public interface IntegrationServiceEnvironment {
              */
             IntegrationServiceEnvironment create(Context context);
         }
+
         /** The stage of the IntegrationServiceEnvironment definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -170,6 +175,7 @@ public interface IntegrationServiceEnvironment {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
         /** The stage of the IntegrationServiceEnvironment definition allowing to specify properties. */
         interface WithProperties {
             /**
@@ -180,6 +186,7 @@ public interface IntegrationServiceEnvironment {
              */
             WithCreate withProperties(IntegrationServiceEnvironmentProperties properties);
         }
+
         /** The stage of the IntegrationServiceEnvironment definition allowing to specify sku. */
         interface WithSku {
             /**
@@ -190,6 +197,7 @@ public interface IntegrationServiceEnvironment {
              */
             WithCreate withSku(IntegrationServiceEnvironmentSku sku);
         }
+
         /** The stage of the IntegrationServiceEnvironment definition allowing to specify identity. */
         interface WithIdentity {
             /**
@@ -201,6 +209,7 @@ public interface IntegrationServiceEnvironment {
             WithCreate withIdentity(ManagedServiceIdentity identity);
         }
     }
+
     /**
      * Begins update for the IntegrationServiceEnvironment resource.
      *
@@ -226,6 +235,7 @@ public interface IntegrationServiceEnvironment {
          */
         IntegrationServiceEnvironment apply(Context context);
     }
+
     /** The IntegrationServiceEnvironment update stages. */
     interface UpdateStages {
         /** The stage of the IntegrationServiceEnvironment update allowing to specify tags. */
@@ -238,6 +248,7 @@ public interface IntegrationServiceEnvironment {
              */
             Update withTags(Map<String, String> tags);
         }
+
         /** The stage of the IntegrationServiceEnvironment update allowing to specify properties. */
         interface WithProperties {
             /**
@@ -248,6 +259,7 @@ public interface IntegrationServiceEnvironment {
              */
             Update withProperties(IntegrationServiceEnvironmentProperties properties);
         }
+
         /** The stage of the IntegrationServiceEnvironment update allowing to specify sku. */
         interface WithSku {
             /**
@@ -258,6 +270,7 @@ public interface IntegrationServiceEnvironment {
              */
             Update withSku(IntegrationServiceEnvironmentSku sku);
         }
+
         /** The stage of the IntegrationServiceEnvironment update allowing to specify identity. */
         interface WithIdentity {
             /**
@@ -269,6 +282,7 @@ public interface IntegrationServiceEnvironment {
             Update withIdentity(ManagedServiceIdentity identity);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

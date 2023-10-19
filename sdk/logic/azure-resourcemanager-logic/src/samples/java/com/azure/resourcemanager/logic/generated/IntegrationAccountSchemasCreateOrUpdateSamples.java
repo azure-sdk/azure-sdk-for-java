@@ -14,7 +14,7 @@ import java.util.Map;
 /** Samples for IntegrationAccountSchemas CreateOrUpdate. */
 public final class IntegrationAccountSchemasCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationAccountSchemas_CreateOrUpdate.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationAccountSchemas_CreateOrUpdate.json
      */
     /**
      * Sample code: Create or update schema.
@@ -214,6 +214,7 @@ public final class IntegrationAccountSchemasCreateOrUpdateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

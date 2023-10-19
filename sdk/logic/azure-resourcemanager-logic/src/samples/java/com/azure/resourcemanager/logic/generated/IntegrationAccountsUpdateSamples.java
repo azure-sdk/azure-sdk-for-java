@@ -11,7 +11,7 @@ import com.azure.resourcemanager.logic.models.IntegrationAccountSkuName;
 /** Samples for IntegrationAccounts Update. */
 public final class IntegrationAccountsUpdateSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationAccounts_Update.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationAccounts_Update.json
      */
     /**
      * Sample code: Patch an integration account.

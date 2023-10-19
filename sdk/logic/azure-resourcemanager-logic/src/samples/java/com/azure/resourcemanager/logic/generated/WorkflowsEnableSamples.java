@@ -7,7 +7,7 @@ package com.azure.resourcemanager.logic.generated;
 /** Samples for Workflows Enable. */
 public final class WorkflowsEnableSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/Workflows_Enable.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/Workflows_Enable.json
      */
     /**
      * Sample code: Enable a workflow.

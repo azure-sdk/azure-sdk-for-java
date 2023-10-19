@@ -10,7 +10,7 @@ import com.azure.resourcemanager.logic.models.RegenerateActionParameter;
 /** Samples for Workflows RegenerateAccessKey. */
 public final class WorkflowsRegenerateAccessKeySamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/Workflows_RegenerateAccessKey.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/Workflows_RegenerateAccessKey.json
      */
     /**
      * Sample code: Regenerate the callback URL access key for request triggers.

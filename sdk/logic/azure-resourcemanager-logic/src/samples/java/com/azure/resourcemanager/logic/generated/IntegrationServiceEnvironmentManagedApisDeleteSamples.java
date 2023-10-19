@@ -7,7 +7,7 @@ package com.azure.resourcemanager.logic.generated;
 /** Samples for IntegrationServiceEnvironmentManagedApis Delete. */
 public final class IntegrationServiceEnvironmentManagedApisDeleteSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationServiceEnvironments_ManagedApis_Delete.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationServiceEnvironments_ManagedApis_Delete.json
      */
     /**
      * Sample code: Deletes the integration service environment managed Apis.

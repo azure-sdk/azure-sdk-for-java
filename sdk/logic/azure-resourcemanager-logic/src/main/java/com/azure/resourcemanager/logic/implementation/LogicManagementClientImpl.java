@@ -36,6 +36,7 @@ import com.azure.resourcemanager.logic.fluent.IntegrationServiceEnvironmentManag
 import com.azure.resourcemanager.logic.fluent.IntegrationServiceEnvironmentNetworkHealthsClient;
 import com.azure.resourcemanager.logic.fluent.IntegrationServiceEnvironmentSkusClient;
 import com.azure.resourcemanager.logic.fluent.IntegrationServiceEnvironmentsClient;
+import com.azure.resourcemanager.logic.fluent.LocationsClient;
 import com.azure.resourcemanager.logic.fluent.LogicManagementClient;
 import com.azure.resourcemanager.logic.fluent.OperationsClient;
 import com.azure.resourcemanager.logic.fluent.WorkflowRunActionRepetitionsClient;
@@ -62,11 +63,11 @@ import reactor.core.publisher.Mono;
 /** Initializes a new instance of the LogicManagementClientImpl type. */
 @ServiceClient(builder = LogicManagementClientBuilder.class)
 public final class LogicManagementClientImpl implements LogicManagementClient {
-    /** The subscription id. */
+    /** The ID of the target subscription. */
     private final String subscriptionId;
 
     /**
-     * Gets The subscription id.
+     * Gets The ID of the target subscription.
      *
      * @return the subscriptionId value.
      */
@@ -460,6 +461,18 @@ public final class LogicManagementClientImpl implements LogicManagementClient {
         return this.operations;
     }
 
+    /** The LocationsClient object to access its operations. */
+    private final LocationsClient locations;
+
+    /**
+     * Gets the LocationsClient object to access its operations.
+     *
+     * @return the LocationsClient object.
+     */
+    public LocationsClient getLocations() {
+        return this.locations;
+    }
+
     /**
      * Initializes an instance of LogicManagementClient client.
      *
@@ -467,7 +480,7 @@ public final class LogicManagementClientImpl implements LogicManagementClient {
      * @param serializerAdapter The serializer to serialize an object into a string.
      * @param defaultPollInterval The default poll interval for long-running operation.
      * @param environment The Azure environment.
-     * @param subscriptionId The subscription id.
+     * @param subscriptionId The ID of the target subscription.
      * @param endpoint server parameter.
      */
     LogicManagementClientImpl(
@@ -482,7 +495,7 @@ public final class LogicManagementClientImpl implements LogicManagementClient {
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2019-05-01";
+        this.apiVersion = "2022-09-01-preview";
         this.workflows = new WorkflowsClientImpl(this);
         this.workflowVersions = new WorkflowVersionsClientImpl(this);
         this.workflowTriggers = new WorkflowTriggersClientImpl(this);
@@ -513,6 +526,7 @@ public final class LogicManagementClientImpl implements LogicManagementClient {
         this.integrationServiceEnvironmentManagedApiOperations =
             new IntegrationServiceEnvironmentManagedApiOperationsClientImpl(this);
         this.operations = new OperationsClientImpl(this);
+        this.locations = new LocationsClientImpl(this);
     }
 
     /**

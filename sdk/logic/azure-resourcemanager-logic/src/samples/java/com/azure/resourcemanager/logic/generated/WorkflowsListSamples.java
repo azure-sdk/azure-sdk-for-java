@@ -7,7 +7,7 @@ package com.azure.resourcemanager.logic.generated;
 /** Samples for Workflows List. */
 public final class WorkflowsListSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/Workflows_ListBySubscription.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/Workflows_ListBySubscription.json
      */
     /**
      * Sample code: List all workflows in a subscription.

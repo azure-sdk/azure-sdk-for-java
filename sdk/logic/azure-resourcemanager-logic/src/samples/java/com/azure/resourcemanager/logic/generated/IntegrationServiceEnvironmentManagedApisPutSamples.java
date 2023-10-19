@@ -7,7 +7,7 @@ package com.azure.resourcemanager.logic.generated;
 /** Samples for IntegrationServiceEnvironmentManagedApis Put. */
 public final class IntegrationServiceEnvironmentManagedApisPutSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationServiceEnvironments_ManagedApis_Put.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationServiceEnvironments_ManagedApis_Put.json
      */
     /**
      * Sample code: Gets the integration service environment managed Apis.

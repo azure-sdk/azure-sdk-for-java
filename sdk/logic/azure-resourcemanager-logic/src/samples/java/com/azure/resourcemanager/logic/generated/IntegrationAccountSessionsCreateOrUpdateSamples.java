@@ -11,7 +11,7 @@ import java.io.IOException;
 /** Samples for IntegrationAccountSessions CreateOrUpdate. */
 public final class IntegrationAccountSessionsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationAccountSessions_CreateOrUpdate.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationAccountSessions_CreateOrUpdate.json
      */
     /**
      * Sample code: Create or update an integration account session.

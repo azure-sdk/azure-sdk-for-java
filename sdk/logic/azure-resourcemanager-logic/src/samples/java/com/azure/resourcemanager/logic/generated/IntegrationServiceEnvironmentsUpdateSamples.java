@@ -13,7 +13,7 @@ import java.util.Map;
 /** Samples for IntegrationServiceEnvironments Update. */
 public final class IntegrationServiceEnvironmentsUpdateSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationServiceEnvironments_Patch.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationServiceEnvironments_Patch.json
      */
     /**
      * Sample code: Patch an integration service environment.
@@ -37,6 +37,7 @@ public final class IntegrationServiceEnvironmentsUpdateSamples {
             .apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

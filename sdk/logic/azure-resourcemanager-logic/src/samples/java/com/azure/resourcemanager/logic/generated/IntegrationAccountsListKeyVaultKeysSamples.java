@@ -10,7 +10,7 @@ import com.azure.resourcemanager.logic.models.ListKeyVaultKeysDefinition;
 /** Samples for IntegrationAccounts ListKeyVaultKeys. */
 public final class IntegrationAccountsListKeyVaultKeysSamples {
     /*
-     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/stable/2019-05-01/examples/IntegrationAccounts_ListKeyVaultKeys.json
+     * x-ms-original-file: specification/logic/resource-manager/Microsoft.Logic/preview/2022-09-01-preview/examples/IntegrationAccounts_ListKeyVaultKeys.json
      */
     /**
      * Sample code: Get Integration Account callback URL.
