@@ -18,16 +18,16 @@ public final class OperationImpl implements Operation {
         this.serviceManager = serviceManager;
     }
 
-    public String name() {
-        return this.innerModel().name();
+    public OperationDisplay display() {
+        return this.innerModel().display();
     }
 
     public Boolean isDataAction() {
         return this.innerModel().isDataAction();
     }
 
-    public OperationDisplay display() {
-        return this.innerModel().display();
+    public String name() {
+        return this.innerModel().name();
     }
 
     public OperationInner innerModel() {

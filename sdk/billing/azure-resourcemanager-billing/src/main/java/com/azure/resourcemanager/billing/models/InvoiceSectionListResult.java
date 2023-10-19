@@ -13,10 +13,10 @@ import java.util.List;
 @Immutable
 public final class InvoiceSectionListResult {
     /*
-     * The list of invoice sections.
+     * The link (url) to the next page of results.
      */
-    @JsonProperty(value = "value", access = JsonProperty.Access.WRITE_ONLY)
-    private List<InvoiceSectionInner> value;
+    @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
+    private String nextLink;
 
     /*
      * Total number of records.
@@ -25,22 +25,22 @@ public final class InvoiceSectionListResult {
     private Integer totalCount;
 
     /*
-     * The link (url) to the next page of results.
+     * The list of invoice sections.
      */
-    @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
-    private String nextLink;
+    @JsonProperty(value = "value", access = JsonProperty.Access.WRITE_ONLY)
+    private List<InvoiceSectionInner> value;
 
     /** Creates an instance of InvoiceSectionListResult class. */
     public InvoiceSectionListResult() {
     }
 
     /**
-     * Get the value property: The list of invoice sections.
+     * Get the nextLink property: The link (url) to the next page of results.
      *
-     * @return the value value.
+     * @return the nextLink value.
      */
-    public List<InvoiceSectionInner> value() {
-        return this.value;
+    public String nextLink() {
+        return this.nextLink;
     }
 
     /**
@@ -53,12 +53,12 @@ public final class InvoiceSectionListResult {
     }
 
     /**
-     * Get the nextLink property: The link (url) to the next page of results.
+     * Get the value property: The list of invoice sections.
      *
-     * @return the nextLink value.
+     * @return the value value.
      */
-    public String nextLink() {
-        return this.nextLink;
+    public List<InvoiceSectionInner> value() {
+        return this.value;
     }
 
     /**

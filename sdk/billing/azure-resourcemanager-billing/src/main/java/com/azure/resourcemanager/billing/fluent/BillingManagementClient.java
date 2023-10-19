@@ -10,18 +10,18 @@ import java.time.Duration;
 /** The interface for BillingManagementClient class. */
 public interface BillingManagementClient {
     /**
-     * Gets The ID that uniquely identifies an Azure subscription.
-     *
-     * @return the subscriptionId value.
-     */
-    String getSubscriptionId();
-
-    /**
      * Gets server parameter.
      *
      * @return the endpoint value.
      */
     String getEndpoint();
+
+    /**
+     * Gets Api Version.
+     *
+     * @return the apiVersion value.
+     */
+    String getApiVersion();
 
     /**
      * Gets The HTTP pipeline to send requests through.
@@ -38,6 +38,20 @@ public interface BillingManagementClient {
     Duration getDefaultPollInterval();
 
     /**
+     * Gets the AgreementsClient object to access its operations.
+     *
+     * @return the AgreementsClient object.
+     */
+    AgreementsClient getAgreements();
+
+    /**
+     * Gets the AvailableBalancesClient object to access its operations.
+     *
+     * @return the AvailableBalancesClient object.
+     */
+    AvailableBalancesClient getAvailableBalances();
+
+    /**
      * Gets the BillingAccountsClient object to access its operations.
      *
      * @return the BillingAccountsClient object.
@@ -52,18 +66,18 @@ public interface BillingManagementClient {
     AddressClient getAddress();
 
     /**
-     * Gets the AvailableBalancesClient object to access its operations.
+     * Gets the BillingPermissionsClient object to access its operations.
      *
-     * @return the AvailableBalancesClient object.
+     * @return the BillingPermissionsClient object.
      */
-    AvailableBalancesClient getAvailableBalances();
+    BillingPermissionsClient getBillingPermissions();
 
     /**
-     * Gets the InstructionsClient object to access its operations.
+     * Gets the CheckAccessClient object to access its operations.
      *
-     * @return the InstructionsClient object.
+     * @return the CheckAccessClient object.
      */
-    InstructionsClient getInstructions();
+    CheckAccessClient getCheckAccess();
 
     /**
      * Gets the BillingProfilesClient object to access its operations.
@@ -73,74 +87,11 @@ public interface BillingManagementClient {
     BillingProfilesClient getBillingProfiles();
 
     /**
-     * Gets the CustomersClient object to access its operations.
-     *
-     * @return the CustomersClient object.
-     */
-    CustomersClient getCustomers();
-
-    /**
-     * Gets the InvoiceSectionsClient object to access its operations.
-     *
-     * @return the InvoiceSectionsClient object.
-     */
-    InvoiceSectionsClient getInvoiceSections();
-
-    /**
-     * Gets the BillingPermissionsClient object to access its operations.
-     *
-     * @return the BillingPermissionsClient object.
-     */
-    BillingPermissionsClient getBillingPermissions();
-
-    /**
-     * Gets the BillingSubscriptionsClient object to access its operations.
-     *
-     * @return the BillingSubscriptionsClient object.
-     */
-    BillingSubscriptionsClient getBillingSubscriptions();
-
-    /**
-     * Gets the ProductsClient object to access its operations.
-     *
-     * @return the ProductsClient object.
-     */
-    ProductsClient getProducts();
-
-    /**
-     * Gets the InvoicesClient object to access its operations.
-     *
-     * @return the InvoicesClient object.
-     */
-    InvoicesClient getInvoices();
-
-    /**
-     * Gets the TransactionsClient object to access its operations.
-     *
-     * @return the TransactionsClient object.
-     */
-    TransactionsClient getTransactions();
-
-    /**
-     * Gets the PoliciesClient object to access its operations.
-     *
-     * @return the PoliciesClient object.
-     */
-    PoliciesClient getPolicies();
-
-    /**
      * Gets the BillingPropertiesClient object to access its operations.
      *
      * @return the BillingPropertiesClient object.
      */
     BillingPropertiesClient getBillingProperties();
-
-    /**
-     * Gets the BillingRoleDefinitionsClient object to access its operations.
-     *
-     * @return the BillingRoleDefinitionsClient object.
-     */
-    BillingRoleDefinitionsClient getBillingRoleDefinitions();
 
     /**
      * Gets the BillingRoleAssignmentsClient object to access its operations.
@@ -150,11 +101,74 @@ public interface BillingManagementClient {
     BillingRoleAssignmentsClient getBillingRoleAssignments();
 
     /**
-     * Gets the AgreementsClient object to access its operations.
+     * Gets the BillingRoleDefinitionsClient object to access its operations.
      *
-     * @return the AgreementsClient object.
+     * @return the BillingRoleDefinitionsClient object.
      */
-    AgreementsClient getAgreements();
+    BillingRoleDefinitionsClient getBillingRoleDefinitions();
+
+    /**
+     * Gets the BillingSubscriptionsClient object to access its operations.
+     *
+     * @return the BillingSubscriptionsClient object.
+     */
+    BillingSubscriptionsClient getBillingSubscriptions();
+
+    /**
+     * Gets the CustomersClient object to access its operations.
+     *
+     * @return the CustomersClient object.
+     */
+    CustomersClient getCustomers();
+
+    /**
+     * Gets the InstructionsClient object to access its operations.
+     *
+     * @return the InstructionsClient object.
+     */
+    InstructionsClient getInstructions();
+
+    /**
+     * Gets the InvoicesClient object to access its operations.
+     *
+     * @return the InvoicesClient object.
+     */
+    InvoicesClient getInvoices();
+
+    /**
+     * Gets the InvoiceSectionsClient object to access its operations.
+     *
+     * @return the InvoiceSectionsClient object.
+     */
+    InvoiceSectionsClient getInvoiceSections();
+
+    /**
+     * Gets the OperationsClient object to access its operations.
+     *
+     * @return the OperationsClient object.
+     */
+    OperationsClient getOperations();
+
+    /**
+     * Gets the PaymentMethodsClient object to access its operations.
+     *
+     * @return the PaymentMethodsClient object.
+     */
+    PaymentMethodsClient getPaymentMethods();
+
+    /**
+     * Gets the PoliciesClient object to access its operations.
+     *
+     * @return the PoliciesClient object.
+     */
+    PoliciesClient getPolicies();
+
+    /**
+     * Gets the ProductsClient object to access its operations.
+     *
+     * @return the ProductsClient object.
+     */
+    ProductsClient getProducts();
 
     /**
      * Gets the ReservationsClient object to access its operations.
@@ -164,6 +178,13 @@ public interface BillingManagementClient {
     ReservationsClient getReservations();
 
     /**
+     * Gets the TransactionsClient object to access its operations.
+     *
+     * @return the TransactionsClient object.
+     */
+    TransactionsClient getTransactions();
+
+    /**
      * Gets the EnrollmentAccountsClient object to access its operations.
      *
      * @return the EnrollmentAccountsClient object.
@@ -171,16 +192,30 @@ public interface BillingManagementClient {
     EnrollmentAccountsClient getEnrollmentAccounts();
 
     /**
-     * Gets the BillingPeriodsClient object to access its operations.
+     * Gets the TransfersClient object to access its operations.
      *
-     * @return the BillingPeriodsClient object.
+     * @return the TransfersClient object.
      */
-    BillingPeriodsClient getBillingPeriods();
+    TransfersClient getTransfers();
 
     /**
-     * Gets the OperationsClient object to access its operations.
+     * Gets the PartnerTransfersClient object to access its operations.
      *
-     * @return the OperationsClient object.
+     * @return the PartnerTransfersClient object.
      */
-    OperationsClient getOperations();
+    PartnerTransfersClient getPartnerTransfers();
+
+    /**
+     * Gets the RecipientTransfersClient object to access its operations.
+     *
+     * @return the RecipientTransfersClient object.
+     */
+    RecipientTransfersClient getRecipientTransfers();
+
+    /**
+     * Gets the DepartmentsClient object to access its operations.
+     *
+     * @return the DepartmentsClient object.
+     */
+    DepartmentsClient getDepartments();
 }

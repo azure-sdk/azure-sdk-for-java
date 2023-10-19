@@ -4,13 +4,15 @@
 
 package com.azure.resourcemanager.billing.models;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.billing.fluent.models.InvoiceSectionInner;
 import java.util.Map;
 
 /** An immutable client-side representation of InvoiceSection. */
 public interface InvoiceSection {
     /**
-     * Gets the id property: Fully qualified resource Id for the resource.
+     * Gets the id property: Fully qualified resource ID for the resource. Ex -
+     * /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
      *
      * @return the id value.
      */
@@ -24,11 +26,19 @@ public interface InvoiceSection {
     String name();
 
     /**
-     * Gets the type property: The type of the resource.
+     * Gets the type property: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
+     * "Microsoft.Storage/storageAccounts".
      *
      * @return the type value.
      */
     String type();
+
+    /**
+     * Gets the systemData property: Metadata pertaining to creation and last modification of the resource.
+     *
+     * @return the systemData value.
+     */
+    SystemData systemData();
 
     /**
      * Gets the displayName property: The name of the invoice section.

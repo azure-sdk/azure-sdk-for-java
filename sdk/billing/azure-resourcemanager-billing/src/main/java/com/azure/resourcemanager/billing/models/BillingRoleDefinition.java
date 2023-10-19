@@ -4,13 +4,15 @@
 
 package com.azure.resourcemanager.billing.models;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.billing.fluent.models.BillingRoleDefinitionInner;
 import java.util.List;
 
 /** An immutable client-side representation of BillingRoleDefinition. */
 public interface BillingRoleDefinition {
     /**
-     * Gets the id property: Fully qualified resource Id for the resource.
+     * Gets the id property: Fully qualified resource ID for the resource. Ex -
+     * /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
      *
      * @return the id value.
      */
@@ -24,11 +26,19 @@ public interface BillingRoleDefinition {
     String name();
 
     /**
-     * Gets the type property: The type of the resource.
+     * Gets the type property: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
+     * "Microsoft.Storage/storageAccounts".
      *
      * @return the type value.
      */
     String type();
+
+    /**
+     * Gets the systemData property: Metadata pertaining to creation and last modification of the resource.
+     *
+     * @return the systemData value.
+     */
+    SystemData systemData();
 
     /**
      * Gets the description property: The role description.
@@ -42,7 +52,7 @@ public interface BillingRoleDefinition {
      *
      * @return the permissions value.
      */
-    List<BillingPermissionsProperties> permissions();
+    List<BillingPermission> permissions();
 
     /**
      * Gets the roleName property: The name of the role.

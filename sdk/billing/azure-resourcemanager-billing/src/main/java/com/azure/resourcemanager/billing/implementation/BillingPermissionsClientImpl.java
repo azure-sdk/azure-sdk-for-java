@@ -26,8 +26,8 @@ import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
 import com.azure.resourcemanager.billing.fluent.BillingPermissionsClient;
-import com.azure.resourcemanager.billing.fluent.models.BillingPermissionsPropertiesInner;
-import com.azure.resourcemanager.billing.models.BillingPermissionsListResult;
+import com.azure.resourcemanager.billing.fluent.models.BillingPermissionInner;
+import com.azure.resourcemanager.billing.models.BillingPermissionListResult;
 import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in BillingPermissionsClient. */
@@ -57,56 +57,80 @@ public final class BillingPermissionsClientImpl implements BillingPermissionsCli
     @ServiceInterface(name = "BillingManagementCli")
     public interface BillingPermissionsService {
         @Headers({"Content-Type: application/json"})
-        @Get(
-            "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/customers/{customerName}"
-                + "/billingPermissions")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<BillingPermissionsListResult>> listByCustomer(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("billingAccountName") String billingAccountName,
-            @PathParam("customerName") String customerName,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Content-Type: application/json"})
         @Get("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingPermissions")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<BillingPermissionsListResult>> listByBillingAccount(
+        Mono<Response<BillingPermissionListResult>> listByBillingAccount(
             @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
             @PathParam("billingAccountName") String billingAccountName,
+            @QueryParam("api-version") String apiVersion,
             @HeaderParam("Accept") String accept,
             Context context);
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}"
-                + "/invoiceSections/{invoiceSectionName}/billingPermissions")
+            "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}/billingPermissions")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<BillingPermissionsListResult>> listByInvoiceSections(
+        Mono<Response<BillingPermissionListResult>> listByBillingProfile(
             @HostParam("$host") String endpoint,
+            @PathParam("billingAccountName") String billingAccountName,
+            @PathParam("billingProfileName") String billingProfileName,
             @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
+        @Get(
+            "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}/customers/{customerName}/billingPermissions")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<BillingPermissionListResult>> listByCustomer(
+            @HostParam("$host") String endpoint,
+            @PathParam("billingAccountName") String billingAccountName,
+            @PathParam("billingProfileName") String billingProfileName,
+            @PathParam("customerName") String customerName,
+            @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
+        @Get(
+            "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}/invoiceSections/{invoiceSectionName}/billingPermissions")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<BillingPermissionListResult>> listByInvoiceSection(
+            @HostParam("$host") String endpoint,
             @PathParam("billingAccountName") String billingAccountName,
             @PathParam("billingProfileName") String billingProfileName,
             @PathParam("invoiceSectionName") String invoiceSectionName,
+            @QueryParam("api-version") String apiVersion,
             @HeaderParam("Accept") String accept,
             Context context);
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}"
-                + "/billingPermissions")
+            "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/departments/{departmentName}/billingPermissions")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<BillingPermissionsListResult>> listByBillingProfile(
+        Mono<Response<BillingPermissionListResult>> listByDepartment(
             @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
             @PathParam("billingAccountName") String billingAccountName,
-            @PathParam("billingProfileName") String billingProfileName,
+            @PathParam("departmentName") String departmentName,
+            @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
+        @Get(
+            "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/enrollmentAccounts/{enrollmentAccountName}/billingPermissions")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<BillingPermissionListResult>> listByEnrollmentAccount(
+            @HostParam("$host") String endpoint,
+            @PathParam("billingAccountName") String billingAccountName,
+            @PathParam("enrollmentAccountName") String enrollmentAccountName,
+            @QueryParam("api-version") String apiVersion,
             @HeaderParam("Accept") String accept,
             Context context);
 
@@ -114,7 +138,7 @@ public final class BillingPermissionsClientImpl implements BillingPermissionsCli
         @Get("{nextLink}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<BillingPermissionsListResult>> listByCustomerNext(
+        Mono<Response<BillingPermissionListResult>> listByBillingAccountNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink,
             @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept,
@@ -124,7 +148,7 @@ public final class BillingPermissionsClientImpl implements BillingPermissionsCli
         @Get("{nextLink}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<BillingPermissionsListResult>> listByBillingAccountNext(
+        Mono<Response<BillingPermissionListResult>> listByBillingProfileNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink,
             @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept,
@@ -134,7 +158,7 @@ public final class BillingPermissionsClientImpl implements BillingPermissionsCli
         @Get("{nextLink}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<BillingPermissionsListResult>> listByInvoiceSectionsNext(
+        Mono<Response<BillingPermissionListResult>> listByCustomerNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink,
             @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept,
@@ -144,176 +168,31 @@ public final class BillingPermissionsClientImpl implements BillingPermissionsCli
         @Get("{nextLink}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<BillingPermissionsListResult>> listByBillingProfileNext(
+        Mono<Response<BillingPermissionListResult>> listByInvoiceSectionNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink,
             @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept,
             Context context);
-    }
 
-    /**
-     * Lists the billing permissions the caller has for a customer.
-     *
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param customerName The ID that uniquely identifies a customer.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of list billingPermissions a caller has on a billing account along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<BillingPermissionsPropertiesInner>> listByCustomerSinglePageAsync(
-        String billingAccountName, String customerName) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (billingAccountName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
-        }
-        if (customerName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter customerName is required and cannot be null."));
-        }
-        final String apiVersion = "2020-05-01";
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .listByCustomer(
-                            this.client.getEndpoint(), apiVersion, billingAccountName, customerName, accept, context))
-            .<PagedResponse<BillingPermissionsPropertiesInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
+        @Headers({"Content-Type: application/json"})
+        @Get("{nextLink}")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<BillingPermissionListResult>> listByDepartmentNext(
+            @PathParam(value = "nextLink", encoded = true) String nextLink,
+            @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept,
+            Context context);
 
-    /**
-     * Lists the billing permissions the caller has for a customer.
-     *
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param customerName The ID that uniquely identifies a customer.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of list billingPermissions a caller has on a billing account along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<BillingPermissionsPropertiesInner>> listByCustomerSinglePageAsync(
-        String billingAccountName, String customerName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (billingAccountName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
-        }
-        if (customerName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter customerName is required and cannot be null."));
-        }
-        final String apiVersion = "2020-05-01";
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .listByCustomer(this.client.getEndpoint(), apiVersion, billingAccountName, customerName, accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
-    }
-
-    /**
-     * Lists the billing permissions the caller has for a customer.
-     *
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param customerName The ID that uniquely identifies a customer.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of list billingPermissions a caller has on a billing account as paginated response with {@link
-     *     PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<BillingPermissionsPropertiesInner> listByCustomerAsync(
-        String billingAccountName, String customerName) {
-        return new PagedFlux<>(
-            () -> listByCustomerSinglePageAsync(billingAccountName, customerName),
-            nextLink -> listByCustomerNextSinglePageAsync(nextLink));
-    }
-
-    /**
-     * Lists the billing permissions the caller has for a customer.
-     *
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param customerName The ID that uniquely identifies a customer.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of list billingPermissions a caller has on a billing account as paginated response with {@link
-     *     PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<BillingPermissionsPropertiesInner> listByCustomerAsync(
-        String billingAccountName, String customerName, Context context) {
-        return new PagedFlux<>(
-            () -> listByCustomerSinglePageAsync(billingAccountName, customerName, context),
-            nextLink -> listByCustomerNextSinglePageAsync(nextLink, context));
-    }
-
-    /**
-     * Lists the billing permissions the caller has for a customer.
-     *
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param customerName The ID that uniquely identifies a customer.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of list billingPermissions a caller has on a billing account as paginated response with {@link
-     *     PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BillingPermissionsPropertiesInner> listByCustomer(
-        String billingAccountName, String customerName) {
-        return new PagedIterable<>(listByCustomerAsync(billingAccountName, customerName));
-    }
-
-    /**
-     * Lists the billing permissions the caller has for a customer.
-     *
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param customerName The ID that uniquely identifies a customer.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of list billingPermissions a caller has on a billing account as paginated response with {@link
-     *     PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BillingPermissionsPropertiesInner> listByCustomer(
-        String billingAccountName, String customerName, Context context) {
-        return new PagedIterable<>(listByCustomerAsync(billingAccountName, customerName, context));
+        @Headers({"Content-Type: application/json"})
+        @Get("{nextLink}")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<BillingPermissionListResult>> listByEnrollmentAccountNext(
+            @PathParam(value = "nextLink", encoded = true) String nextLink,
+            @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept,
+            Context context);
     }
 
     /**
@@ -323,12 +202,11 @@ public final class BillingPermissionsClientImpl implements BillingPermissionsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of list billingPermissions a caller has on a billing account along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
+     * @return a container for a list of resources along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<BillingPermissionsPropertiesInner>> listByBillingAccountSinglePageAsync(
-        String billingAccountName) {
+    private Mono<PagedResponse<BillingPermissionInner>> listByBillingAccountSinglePageAsync(String billingAccountName) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -339,15 +217,18 @@ public final class BillingPermissionsClientImpl implements BillingPermissionsCli
             return Mono
                 .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
         }
-        final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
                 context ->
                     service
                         .listByBillingAccount(
-                            this.client.getEndpoint(), apiVersion, billingAccountName, accept, context))
-            .<PagedResponse<BillingPermissionsPropertiesInner>>map(
+                            this.client.getEndpoint(),
+                            billingAccountName,
+                            this.client.getApiVersion(),
+                            accept,
+                            context))
+            .<PagedResponse<BillingPermissionInner>>map(
                 res ->
                     new PagedResponseBase<>(
                         res.getRequest(),
@@ -367,11 +248,11 @@ public final class BillingPermissionsClientImpl implements BillingPermissionsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of list billingPermissions a caller has on a billing account along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
+     * @return a container for a list of resources along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<BillingPermissionsPropertiesInner>> listByBillingAccountSinglePageAsync(
+    private Mono<PagedResponse<BillingPermissionInner>> listByBillingAccountSinglePageAsync(
         String billingAccountName, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -383,11 +264,11 @@ public final class BillingPermissionsClientImpl implements BillingPermissionsCli
             return Mono
                 .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
         }
-        final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByBillingAccount(this.client.getEndpoint(), apiVersion, billingAccountName, accept, context)
+            .listByBillingAccount(
+                this.client.getEndpoint(), billingAccountName, this.client.getApiVersion(), accept, context)
             .map(
                 res ->
                     new PagedResponseBase<>(
@@ -406,11 +287,10 @@ public final class BillingPermissionsClientImpl implements BillingPermissionsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of list billingPermissions a caller has on a billing account as paginated response with {@link
-     *     PagedFlux}.
+     * @return a container for a list of resources as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<BillingPermissionsPropertiesInner> listByBillingAccountAsync(String billingAccountName) {
+    private PagedFlux<BillingPermissionInner> listByBillingAccountAsync(String billingAccountName) {
         return new PagedFlux<>(
             () -> listByBillingAccountSinglePageAsync(billingAccountName),
             nextLink -> listByBillingAccountNextSinglePageAsync(nextLink));
@@ -424,12 +304,10 @@ public final class BillingPermissionsClientImpl implements BillingPermissionsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of list billingPermissions a caller has on a billing account as paginated response with {@link
-     *     PagedFlux}.
+     * @return a container for a list of resources as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<BillingPermissionsPropertiesInner> listByBillingAccountAsync(
-        String billingAccountName, Context context) {
+    private PagedFlux<BillingPermissionInner> listByBillingAccountAsync(String billingAccountName, Context context) {
         return new PagedFlux<>(
             () -> listByBillingAccountSinglePageAsync(billingAccountName, context),
             nextLink -> listByBillingAccountNextSinglePageAsync(nextLink, context));
@@ -442,11 +320,10 @@ public final class BillingPermissionsClientImpl implements BillingPermissionsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of list billingPermissions a caller has on a billing account as paginated response with {@link
-     *     PagedIterable}.
+     * @return a container for a list of resources as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BillingPermissionsPropertiesInner> listByBillingAccount(String billingAccountName) {
+    public PagedIterable<BillingPermissionInner> listByBillingAccount(String billingAccountName) {
         return new PagedIterable<>(listByBillingAccountAsync(billingAccountName));
     }
 
@@ -458,211 +335,11 @@ public final class BillingPermissionsClientImpl implements BillingPermissionsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of list billingPermissions a caller has on a billing account as paginated response with {@link
-     *     PagedIterable}.
+     * @return a container for a list of resources as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BillingPermissionsPropertiesInner> listByBillingAccount(
-        String billingAccountName, Context context) {
+    public PagedIterable<BillingPermissionInner> listByBillingAccount(String billingAccountName, Context context) {
         return new PagedIterable<>(listByBillingAccountAsync(billingAccountName, context));
-    }
-
-    /**
-     * Lists the billing permissions the caller has on an invoice section.
-     *
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param billingProfileName The ID that uniquely identifies a billing profile.
-     * @param invoiceSectionName The ID that uniquely identifies an invoice section.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of list billingPermissions a caller has on a billing account along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<BillingPermissionsPropertiesInner>> listByInvoiceSectionsSinglePageAsync(
-        String billingAccountName, String billingProfileName, String invoiceSectionName) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (billingAccountName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
-        }
-        if (billingProfileName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingProfileName is required and cannot be null."));
-        }
-        if (invoiceSectionName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter invoiceSectionName is required and cannot be null."));
-        }
-        final String apiVersion = "2020-05-01";
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .listByInvoiceSections(
-                            this.client.getEndpoint(),
-                            apiVersion,
-                            billingAccountName,
-                            billingProfileName,
-                            invoiceSectionName,
-                            accept,
-                            context))
-            .<PagedResponse<BillingPermissionsPropertiesInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Lists the billing permissions the caller has on an invoice section.
-     *
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param billingProfileName The ID that uniquely identifies a billing profile.
-     * @param invoiceSectionName The ID that uniquely identifies an invoice section.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of list billingPermissions a caller has on a billing account along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<BillingPermissionsPropertiesInner>> listByInvoiceSectionsSinglePageAsync(
-        String billingAccountName, String billingProfileName, String invoiceSectionName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (billingAccountName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
-        }
-        if (billingProfileName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingProfileName is required and cannot be null."));
-        }
-        if (invoiceSectionName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter invoiceSectionName is required and cannot be null."));
-        }
-        final String apiVersion = "2020-05-01";
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .listByInvoiceSections(
-                this.client.getEndpoint(),
-                apiVersion,
-                billingAccountName,
-                billingProfileName,
-                invoiceSectionName,
-                accept,
-                context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
-    }
-
-    /**
-     * Lists the billing permissions the caller has on an invoice section.
-     *
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param billingProfileName The ID that uniquely identifies a billing profile.
-     * @param invoiceSectionName The ID that uniquely identifies an invoice section.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of list billingPermissions a caller has on a billing account as paginated response with {@link
-     *     PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<BillingPermissionsPropertiesInner> listByInvoiceSectionsAsync(
-        String billingAccountName, String billingProfileName, String invoiceSectionName) {
-        return new PagedFlux<>(
-            () -> listByInvoiceSectionsSinglePageAsync(billingAccountName, billingProfileName, invoiceSectionName),
-            nextLink -> listByInvoiceSectionsNextSinglePageAsync(nextLink));
-    }
-
-    /**
-     * Lists the billing permissions the caller has on an invoice section.
-     *
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param billingProfileName The ID that uniquely identifies a billing profile.
-     * @param invoiceSectionName The ID that uniquely identifies an invoice section.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of list billingPermissions a caller has on a billing account as paginated response with {@link
-     *     PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<BillingPermissionsPropertiesInner> listByInvoiceSectionsAsync(
-        String billingAccountName, String billingProfileName, String invoiceSectionName, Context context) {
-        return new PagedFlux<>(
-            () ->
-                listByInvoiceSectionsSinglePageAsync(
-                    billingAccountName, billingProfileName, invoiceSectionName, context),
-            nextLink -> listByInvoiceSectionsNextSinglePageAsync(nextLink, context));
-    }
-
-    /**
-     * Lists the billing permissions the caller has on an invoice section.
-     *
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param billingProfileName The ID that uniquely identifies a billing profile.
-     * @param invoiceSectionName The ID that uniquely identifies an invoice section.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of list billingPermissions a caller has on a billing account as paginated response with {@link
-     *     PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BillingPermissionsPropertiesInner> listByInvoiceSections(
-        String billingAccountName, String billingProfileName, String invoiceSectionName) {
-        return new PagedIterable<>(
-            listByInvoiceSectionsAsync(billingAccountName, billingProfileName, invoiceSectionName));
-    }
-
-    /**
-     * Lists the billing permissions the caller has on an invoice section.
-     *
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param billingProfileName The ID that uniquely identifies a billing profile.
-     * @param invoiceSectionName The ID that uniquely identifies an invoice section.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of list billingPermissions a caller has on a billing account as paginated response with {@link
-     *     PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BillingPermissionsPropertiesInner> listByInvoiceSections(
-        String billingAccountName, String billingProfileName, String invoiceSectionName, Context context) {
-        return new PagedIterable<>(
-            listByInvoiceSectionsAsync(billingAccountName, billingProfileName, invoiceSectionName, context));
     }
 
     /**
@@ -673,11 +350,11 @@ public final class BillingPermissionsClientImpl implements BillingPermissionsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of list billingPermissions a caller has on a billing account along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
+     * @return a container for a list of resources along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<BillingPermissionsPropertiesInner>> listByBillingProfileSinglePageAsync(
+    private Mono<PagedResponse<BillingPermissionInner>> listByBillingProfileSinglePageAsync(
         String billingAccountName, String billingProfileName) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -693,7 +370,6 @@ public final class BillingPermissionsClientImpl implements BillingPermissionsCli
             return Mono
                 .error(new IllegalArgumentException("Parameter billingProfileName is required and cannot be null."));
         }
-        final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -701,12 +377,12 @@ public final class BillingPermissionsClientImpl implements BillingPermissionsCli
                     service
                         .listByBillingProfile(
                             this.client.getEndpoint(),
-                            apiVersion,
                             billingAccountName,
                             billingProfileName,
+                            this.client.getApiVersion(),
                             accept,
                             context))
-            .<PagedResponse<BillingPermissionsPropertiesInner>>map(
+            .<PagedResponse<BillingPermissionInner>>map(
                 res ->
                     new PagedResponseBase<>(
                         res.getRequest(),
@@ -727,11 +403,11 @@ public final class BillingPermissionsClientImpl implements BillingPermissionsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of list billingPermissions a caller has on a billing account along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
+     * @return a container for a list of resources along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<BillingPermissionsPropertiesInner>> listByBillingProfileSinglePageAsync(
+    private Mono<PagedResponse<BillingPermissionInner>> listByBillingProfileSinglePageAsync(
         String billingAccountName, String billingProfileName, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -747,12 +423,16 @@ public final class BillingPermissionsClientImpl implements BillingPermissionsCli
             return Mono
                 .error(new IllegalArgumentException("Parameter billingProfileName is required and cannot be null."));
         }
-        final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listByBillingProfile(
-                this.client.getEndpoint(), apiVersion, billingAccountName, billingProfileName, accept, context)
+                this.client.getEndpoint(),
+                billingAccountName,
+                billingProfileName,
+                this.client.getApiVersion(),
+                accept,
+                context)
             .map(
                 res ->
                     new PagedResponseBase<>(
@@ -772,11 +452,10 @@ public final class BillingPermissionsClientImpl implements BillingPermissionsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of list billingPermissions a caller has on a billing account as paginated response with {@link
-     *     PagedFlux}.
+     * @return a container for a list of resources as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<BillingPermissionsPropertiesInner> listByBillingProfileAsync(
+    private PagedFlux<BillingPermissionInner> listByBillingProfileAsync(
         String billingAccountName, String billingProfileName) {
         return new PagedFlux<>(
             () -> listByBillingProfileSinglePageAsync(billingAccountName, billingProfileName),
@@ -792,11 +471,10 @@ public final class BillingPermissionsClientImpl implements BillingPermissionsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of list billingPermissions a caller has on a billing account as paginated response with {@link
-     *     PagedFlux}.
+     * @return a container for a list of resources as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<BillingPermissionsPropertiesInner> listByBillingProfileAsync(
+    private PagedFlux<BillingPermissionInner> listByBillingProfileAsync(
         String billingAccountName, String billingProfileName, Context context) {
         return new PagedFlux<>(
             () -> listByBillingProfileSinglePageAsync(billingAccountName, billingProfileName, context),
@@ -811,11 +489,10 @@ public final class BillingPermissionsClientImpl implements BillingPermissionsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of list billingPermissions a caller has on a billing account as paginated response with {@link
-     *     PagedIterable}.
+     * @return a container for a list of resources as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BillingPermissionsPropertiesInner> listByBillingProfile(
+    public PagedIterable<BillingPermissionInner> listByBillingProfile(
         String billingAccountName, String billingProfileName) {
         return new PagedIterable<>(listByBillingProfileAsync(billingAccountName, billingProfileName));
     }
@@ -829,41 +506,60 @@ public final class BillingPermissionsClientImpl implements BillingPermissionsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of list billingPermissions a caller has on a billing account as paginated response with {@link
-     *     PagedIterable}.
+     * @return a container for a list of resources as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BillingPermissionsPropertiesInner> listByBillingProfile(
+    public PagedIterable<BillingPermissionInner> listByBillingProfile(
         String billingAccountName, String billingProfileName, Context context) {
         return new PagedIterable<>(listByBillingProfileAsync(billingAccountName, billingProfileName, context));
     }
 
     /**
-     * Get the next page of items.
+     * Lists the billing permissions the caller has for a customer.
      *
-     * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
+     * @param customerName The ID that uniquely identifies a customer.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of list billingPermissions a caller has on a billing account along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
+     * @return a container for a list of resources along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<BillingPermissionsPropertiesInner>> listByCustomerNextSinglePageAsync(String nextLink) {
-        if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
-        }
+    private Mono<PagedResponse<BillingPermissionInner>> listByCustomerSinglePageAsync(
+        String billingAccountName, String billingProfileName, String customerName) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
                     new IllegalArgumentException(
                         "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
+        if (billingAccountName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        if (billingProfileName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter billingProfileName is required and cannot be null."));
+        }
+        if (customerName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter customerName is required and cannot be null."));
+        }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.listByCustomerNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<BillingPermissionsPropertiesInner>>map(
+            .withContext(
+                context ->
+                    service
+                        .listByCustomer(
+                            this.client.getEndpoint(),
+                            billingAccountName,
+                            billingProfileName,
+                            customerName,
+                            this.client.getApiVersion(),
+                            accept,
+                            context))
+            .<PagedResponse<BillingPermissionInner>>map(
                 res ->
                     new PagedResponseBase<>(
                         res.getRequest(),
@@ -876,33 +572,49 @@ public final class BillingPermissionsClientImpl implements BillingPermissionsCli
     }
 
     /**
-     * Get the next page of items.
+     * Lists the billing permissions the caller has for a customer.
      *
-     * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
+     * @param customerName The ID that uniquely identifies a customer.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of list billingPermissions a caller has on a billing account along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
+     * @return a container for a list of resources along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<BillingPermissionsPropertiesInner>> listByCustomerNextSinglePageAsync(
-        String nextLink, Context context) {
-        if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
-        }
+    private Mono<PagedResponse<BillingPermissionInner>> listByCustomerSinglePageAsync(
+        String billingAccountName, String billingProfileName, String customerName, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
                     new IllegalArgumentException(
                         "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
+        if (billingAccountName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        if (billingProfileName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter billingProfileName is required and cannot be null."));
+        }
+        if (customerName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter customerName is required and cannot be null."));
+        }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByCustomerNext(nextLink, this.client.getEndpoint(), accept, context)
+            .listByCustomer(
+                this.client.getEndpoint(),
+                billingAccountName,
+                billingProfileName,
+                customerName,
+                this.client.getApiVersion(),
+                accept,
+                context)
             .map(
                 res ->
                     new PagedResponseBase<>(
@@ -915,6 +627,612 @@ public final class BillingPermissionsClientImpl implements BillingPermissionsCli
     }
 
     /**
+     * Lists the billing permissions the caller has for a customer.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
+     * @param customerName The ID that uniquely identifies a customer.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a container for a list of resources as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<BillingPermissionInner> listByCustomerAsync(
+        String billingAccountName, String billingProfileName, String customerName) {
+        return new PagedFlux<>(
+            () -> listByCustomerSinglePageAsync(billingAccountName, billingProfileName, customerName),
+            nextLink -> listByCustomerNextSinglePageAsync(nextLink));
+    }
+
+    /**
+     * Lists the billing permissions the caller has for a customer.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
+     * @param customerName The ID that uniquely identifies a customer.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a container for a list of resources as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<BillingPermissionInner> listByCustomerAsync(
+        String billingAccountName, String billingProfileName, String customerName, Context context) {
+        return new PagedFlux<>(
+            () -> listByCustomerSinglePageAsync(billingAccountName, billingProfileName, customerName, context),
+            nextLink -> listByCustomerNextSinglePageAsync(nextLink, context));
+    }
+
+    /**
+     * Lists the billing permissions the caller has for a customer.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
+     * @param customerName The ID that uniquely identifies a customer.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a container for a list of resources as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<BillingPermissionInner> listByCustomer(
+        String billingAccountName, String billingProfileName, String customerName) {
+        return new PagedIterable<>(listByCustomerAsync(billingAccountName, billingProfileName, customerName));
+    }
+
+    /**
+     * Lists the billing permissions the caller has for a customer.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
+     * @param customerName The ID that uniquely identifies a customer.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a container for a list of resources as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<BillingPermissionInner> listByCustomer(
+        String billingAccountName, String billingProfileName, String customerName, Context context) {
+        return new PagedIterable<>(listByCustomerAsync(billingAccountName, billingProfileName, customerName, context));
+    }
+
+    /**
+     * Lists the billing permissions the caller has for an invoice section.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
+     * @param invoiceSectionName The ID that uniquely identifies an invoice section.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a container for a list of resources along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<BillingPermissionInner>> listByInvoiceSectionSinglePageAsync(
+        String billingAccountName, String billingProfileName, String invoiceSectionName) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        if (billingProfileName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter billingProfileName is required and cannot be null."));
+        }
+        if (invoiceSectionName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter invoiceSectionName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service
+                        .listByInvoiceSection(
+                            this.client.getEndpoint(),
+                            billingAccountName,
+                            billingProfileName,
+                            invoiceSectionName,
+                            this.client.getApiVersion(),
+                            accept,
+                            context))
+            .<PagedResponse<BillingPermissionInner>>map(
+                res ->
+                    new PagedResponseBase<>(
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink(),
+                        null))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Lists the billing permissions the caller has for an invoice section.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
+     * @param invoiceSectionName The ID that uniquely identifies an invoice section.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a container for a list of resources along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<BillingPermissionInner>> listByInvoiceSectionSinglePageAsync(
+        String billingAccountName, String billingProfileName, String invoiceSectionName, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        if (billingProfileName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter billingProfileName is required and cannot be null."));
+        }
+        if (invoiceSectionName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter invoiceSectionName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .listByInvoiceSection(
+                this.client.getEndpoint(),
+                billingAccountName,
+                billingProfileName,
+                invoiceSectionName,
+                this.client.getApiVersion(),
+                accept,
+                context)
+            .map(
+                res ->
+                    new PagedResponseBase<>(
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink(),
+                        null));
+    }
+
+    /**
+     * Lists the billing permissions the caller has for an invoice section.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
+     * @param invoiceSectionName The ID that uniquely identifies an invoice section.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a container for a list of resources as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<BillingPermissionInner> listByInvoiceSectionAsync(
+        String billingAccountName, String billingProfileName, String invoiceSectionName) {
+        return new PagedFlux<>(
+            () -> listByInvoiceSectionSinglePageAsync(billingAccountName, billingProfileName, invoiceSectionName),
+            nextLink -> listByInvoiceSectionNextSinglePageAsync(nextLink));
+    }
+
+    /**
+     * Lists the billing permissions the caller has for an invoice section.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
+     * @param invoiceSectionName The ID that uniquely identifies an invoice section.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a container for a list of resources as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<BillingPermissionInner> listByInvoiceSectionAsync(
+        String billingAccountName, String billingProfileName, String invoiceSectionName, Context context) {
+        return new PagedFlux<>(
+            () ->
+                listByInvoiceSectionSinglePageAsync(
+                    billingAccountName, billingProfileName, invoiceSectionName, context),
+            nextLink -> listByInvoiceSectionNextSinglePageAsync(nextLink, context));
+    }
+
+    /**
+     * Lists the billing permissions the caller has for an invoice section.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
+     * @param invoiceSectionName The ID that uniquely identifies an invoice section.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a container for a list of resources as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<BillingPermissionInner> listByInvoiceSection(
+        String billingAccountName, String billingProfileName, String invoiceSectionName) {
+        return new PagedIterable<>(
+            listByInvoiceSectionAsync(billingAccountName, billingProfileName, invoiceSectionName));
+    }
+
+    /**
+     * Lists the billing permissions the caller has for an invoice section.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
+     * @param invoiceSectionName The ID that uniquely identifies an invoice section.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a container for a list of resources as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<BillingPermissionInner> listByInvoiceSection(
+        String billingAccountName, String billingProfileName, String invoiceSectionName, Context context) {
+        return new PagedIterable<>(
+            listByInvoiceSectionAsync(billingAccountName, billingProfileName, invoiceSectionName, context));
+    }
+
+    /**
+     * Lists the billing permissions the caller has for a department.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param departmentName The name of the department.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a container for a list of resources along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<BillingPermissionInner>> listByDepartmentSinglePageAsync(
+        String billingAccountName, String departmentName) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        if (departmentName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter departmentName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service
+                        .listByDepartment(
+                            this.client.getEndpoint(),
+                            billingAccountName,
+                            departmentName,
+                            this.client.getApiVersion(),
+                            accept,
+                            context))
+            .<PagedResponse<BillingPermissionInner>>map(
+                res ->
+                    new PagedResponseBase<>(
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink(),
+                        null))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Lists the billing permissions the caller has for a department.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param departmentName The name of the department.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a container for a list of resources along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<BillingPermissionInner>> listByDepartmentSinglePageAsync(
+        String billingAccountName, String departmentName, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        if (departmentName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter departmentName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .listByDepartment(
+                this.client.getEndpoint(),
+                billingAccountName,
+                departmentName,
+                this.client.getApiVersion(),
+                accept,
+                context)
+            .map(
+                res ->
+                    new PagedResponseBase<>(
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink(),
+                        null));
+    }
+
+    /**
+     * Lists the billing permissions the caller has for a department.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param departmentName The name of the department.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a container for a list of resources as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<BillingPermissionInner> listByDepartmentAsync(String billingAccountName, String departmentName) {
+        return new PagedFlux<>(
+            () -> listByDepartmentSinglePageAsync(billingAccountName, departmentName),
+            nextLink -> listByDepartmentNextSinglePageAsync(nextLink));
+    }
+
+    /**
+     * Lists the billing permissions the caller has for a department.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param departmentName The name of the department.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a container for a list of resources as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<BillingPermissionInner> listByDepartmentAsync(
+        String billingAccountName, String departmentName, Context context) {
+        return new PagedFlux<>(
+            () -> listByDepartmentSinglePageAsync(billingAccountName, departmentName, context),
+            nextLink -> listByDepartmentNextSinglePageAsync(nextLink, context));
+    }
+
+    /**
+     * Lists the billing permissions the caller has for a department.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param departmentName The name of the department.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a container for a list of resources as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<BillingPermissionInner> listByDepartment(String billingAccountName, String departmentName) {
+        return new PagedIterable<>(listByDepartmentAsync(billingAccountName, departmentName));
+    }
+
+    /**
+     * Lists the billing permissions the caller has for a department.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param departmentName The name of the department.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a container for a list of resources as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<BillingPermissionInner> listByDepartment(
+        String billingAccountName, String departmentName, Context context) {
+        return new PagedIterable<>(listByDepartmentAsync(billingAccountName, departmentName, context));
+    }
+
+    /**
+     * Lists the billing permissions the caller has for an enrollment account.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param enrollmentAccountName The name of the enrollment account.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a container for a list of resources along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<BillingPermissionInner>> listByEnrollmentAccountSinglePageAsync(
+        String billingAccountName, String enrollmentAccountName) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        if (enrollmentAccountName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter enrollmentAccountName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service
+                        .listByEnrollmentAccount(
+                            this.client.getEndpoint(),
+                            billingAccountName,
+                            enrollmentAccountName,
+                            this.client.getApiVersion(),
+                            accept,
+                            context))
+            .<PagedResponse<BillingPermissionInner>>map(
+                res ->
+                    new PagedResponseBase<>(
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink(),
+                        null))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Lists the billing permissions the caller has for an enrollment account.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param enrollmentAccountName The name of the enrollment account.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a container for a list of resources along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<BillingPermissionInner>> listByEnrollmentAccountSinglePageAsync(
+        String billingAccountName, String enrollmentAccountName, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        if (enrollmentAccountName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter enrollmentAccountName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .listByEnrollmentAccount(
+                this.client.getEndpoint(),
+                billingAccountName,
+                enrollmentAccountName,
+                this.client.getApiVersion(),
+                accept,
+                context)
+            .map(
+                res ->
+                    new PagedResponseBase<>(
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink(),
+                        null));
+    }
+
+    /**
+     * Lists the billing permissions the caller has for an enrollment account.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param enrollmentAccountName The name of the enrollment account.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a container for a list of resources as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<BillingPermissionInner> listByEnrollmentAccountAsync(
+        String billingAccountName, String enrollmentAccountName) {
+        return new PagedFlux<>(
+            () -> listByEnrollmentAccountSinglePageAsync(billingAccountName, enrollmentAccountName),
+            nextLink -> listByEnrollmentAccountNextSinglePageAsync(nextLink));
+    }
+
+    /**
+     * Lists the billing permissions the caller has for an enrollment account.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param enrollmentAccountName The name of the enrollment account.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a container for a list of resources as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<BillingPermissionInner> listByEnrollmentAccountAsync(
+        String billingAccountName, String enrollmentAccountName, Context context) {
+        return new PagedFlux<>(
+            () -> listByEnrollmentAccountSinglePageAsync(billingAccountName, enrollmentAccountName, context),
+            nextLink -> listByEnrollmentAccountNextSinglePageAsync(nextLink, context));
+    }
+
+    /**
+     * Lists the billing permissions the caller has for an enrollment account.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param enrollmentAccountName The name of the enrollment account.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a container for a list of resources as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<BillingPermissionInner> listByEnrollmentAccount(
+        String billingAccountName, String enrollmentAccountName) {
+        return new PagedIterable<>(listByEnrollmentAccountAsync(billingAccountName, enrollmentAccountName));
+    }
+
+    /**
+     * Lists the billing permissions the caller has for an enrollment account.
+     *
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param enrollmentAccountName The name of the enrollment account.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a container for a list of resources as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<BillingPermissionInner> listByEnrollmentAccount(
+        String billingAccountName, String enrollmentAccountName, Context context) {
+        return new PagedIterable<>(listByEnrollmentAccountAsync(billingAccountName, enrollmentAccountName, context));
+    }
+
+    /**
      * Get the next page of items.
      *
      * @param nextLink The URL to get the next list of items
@@ -922,12 +1240,11 @@ public final class BillingPermissionsClientImpl implements BillingPermissionsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of list billingPermissions a caller has on a billing account along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
+     * @return a container for a list of resources along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<BillingPermissionsPropertiesInner>> listByBillingAccountNextSinglePageAsync(
-        String nextLink) {
+    private Mono<PagedResponse<BillingPermissionInner>> listByBillingAccountNextSinglePageAsync(String nextLink) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
@@ -941,7 +1258,7 @@ public final class BillingPermissionsClientImpl implements BillingPermissionsCli
         return FluxUtil
             .withContext(
                 context -> service.listByBillingAccountNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<BillingPermissionsPropertiesInner>>map(
+            .<PagedResponse<BillingPermissionInner>>map(
                 res ->
                     new PagedResponseBase<>(
                         res.getRequest(),
@@ -962,11 +1279,11 @@ public final class BillingPermissionsClientImpl implements BillingPermissionsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of list billingPermissions a caller has on a billing account along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
+     * @return a container for a list of resources along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<BillingPermissionsPropertiesInner>> listByBillingAccountNextSinglePageAsync(
+    private Mono<PagedResponse<BillingPermissionInner>> listByBillingAccountNextSinglePageAsync(
         String nextLink, Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
@@ -1000,12 +1317,11 @@ public final class BillingPermissionsClientImpl implements BillingPermissionsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of list billingPermissions a caller has on a billing account along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
+     * @return a container for a list of resources along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<BillingPermissionsPropertiesInner>> listByInvoiceSectionsNextSinglePageAsync(
-        String nextLink) {
+    private Mono<PagedResponse<BillingPermissionInner>> listByBillingProfileNextSinglePageAsync(String nextLink) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
@@ -1018,8 +1334,8 @@ public final class BillingPermissionsClientImpl implements BillingPermissionsCli
         final String accept = "application/json";
         return FluxUtil
             .withContext(
-                context -> service.listByInvoiceSectionsNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<BillingPermissionsPropertiesInner>>map(
+                context -> service.listByBillingProfileNext(nextLink, this.client.getEndpoint(), accept, context))
+            .<PagedResponse<BillingPermissionInner>>map(
                 res ->
                     new PagedResponseBase<>(
                         res.getRequest(),
@@ -1040,11 +1356,11 @@ public final class BillingPermissionsClientImpl implements BillingPermissionsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of list billingPermissions a caller has on a billing account along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
+     * @return a container for a list of resources along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<BillingPermissionsPropertiesInner>> listByInvoiceSectionsNextSinglePageAsync(
+    private Mono<PagedResponse<BillingPermissionInner>> listByBillingProfileNextSinglePageAsync(
         String nextLink, Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
@@ -1058,7 +1374,7 @@ public final class BillingPermissionsClientImpl implements BillingPermissionsCli
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByInvoiceSectionsNext(nextLink, this.client.getEndpoint(), accept, context)
+            .listByBillingProfileNext(nextLink, this.client.getEndpoint(), accept, context)
             .map(
                 res ->
                     new PagedResponseBase<>(
@@ -1078,12 +1394,11 @@ public final class BillingPermissionsClientImpl implements BillingPermissionsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of list billingPermissions a caller has on a billing account along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
+     * @return a container for a list of resources along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<BillingPermissionsPropertiesInner>> listByBillingProfileNextSinglePageAsync(
-        String nextLink) {
+    private Mono<PagedResponse<BillingPermissionInner>> listByCustomerNextSinglePageAsync(String nextLink) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
@@ -1095,9 +1410,8 @@ public final class BillingPermissionsClientImpl implements BillingPermissionsCli
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.listByBillingProfileNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<BillingPermissionsPropertiesInner>>map(
+            .withContext(context -> service.listByCustomerNext(nextLink, this.client.getEndpoint(), accept, context))
+            .<PagedResponse<BillingPermissionInner>>map(
                 res ->
                     new PagedResponseBase<>(
                         res.getRequest(),
@@ -1118,11 +1432,11 @@ public final class BillingPermissionsClientImpl implements BillingPermissionsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of list billingPermissions a caller has on a billing account along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
+     * @return a container for a list of resources along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<BillingPermissionsPropertiesInner>> listByBillingProfileNextSinglePageAsync(
+    private Mono<PagedResponse<BillingPermissionInner>> listByCustomerNextSinglePageAsync(
         String nextLink, Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
@@ -1136,7 +1450,237 @@ public final class BillingPermissionsClientImpl implements BillingPermissionsCli
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByBillingProfileNext(nextLink, this.client.getEndpoint(), accept, context)
+            .listByCustomerNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(
+                res ->
+                    new PagedResponseBase<>(
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink(),
+                        null));
+    }
+
+    /**
+     * Get the next page of items.
+     *
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a container for a list of resources along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<BillingPermissionInner>> listByInvoiceSectionNextSinglePageAsync(String nextLink) {
+        if (nextLink == null) {
+            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context -> service.listByInvoiceSectionNext(nextLink, this.client.getEndpoint(), accept, context))
+            .<PagedResponse<BillingPermissionInner>>map(
+                res ->
+                    new PagedResponseBase<>(
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink(),
+                        null))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Get the next page of items.
+     *
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a container for a list of resources along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<BillingPermissionInner>> listByInvoiceSectionNextSinglePageAsync(
+        String nextLink, Context context) {
+        if (nextLink == null) {
+            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .listByInvoiceSectionNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(
+                res ->
+                    new PagedResponseBase<>(
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink(),
+                        null));
+    }
+
+    /**
+     * Get the next page of items.
+     *
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a container for a list of resources along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<BillingPermissionInner>> listByDepartmentNextSinglePageAsync(String nextLink) {
+        if (nextLink == null) {
+            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.listByDepartmentNext(nextLink, this.client.getEndpoint(), accept, context))
+            .<PagedResponse<BillingPermissionInner>>map(
+                res ->
+                    new PagedResponseBase<>(
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink(),
+                        null))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Get the next page of items.
+     *
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a container for a list of resources along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<BillingPermissionInner>> listByDepartmentNextSinglePageAsync(
+        String nextLink, Context context) {
+        if (nextLink == null) {
+            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .listByDepartmentNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(
+                res ->
+                    new PagedResponseBase<>(
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink(),
+                        null));
+    }
+
+    /**
+     * Get the next page of items.
+     *
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a container for a list of resources along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<BillingPermissionInner>> listByEnrollmentAccountNextSinglePageAsync(String nextLink) {
+        if (nextLink == null) {
+            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context -> service.listByEnrollmentAccountNext(nextLink, this.client.getEndpoint(), accept, context))
+            .<PagedResponse<BillingPermissionInner>>map(
+                res ->
+                    new PagedResponseBase<>(
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink(),
+                        null))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Get the next page of items.
+     *
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a container for a list of resources along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<BillingPermissionInner>> listByEnrollmentAccountNextSinglePageAsync(
+        String nextLink, Context context) {
+        if (nextLink == null) {
+            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .listByEnrollmentAccountNext(nextLink, this.client.getEndpoint(), accept, context)
             .map(
                 res ->
                     new PagedResponseBase<>(

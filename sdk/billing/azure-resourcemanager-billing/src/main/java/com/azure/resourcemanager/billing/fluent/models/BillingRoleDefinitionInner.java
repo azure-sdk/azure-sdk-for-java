@@ -5,15 +5,15 @@
 package com.azure.resourcemanager.billing.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.management.ProxyResource;
+import com.azure.resourcemanager.billing.models.ArmResource;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** The properties of a role definition. */
 @Fluent
-public final class BillingRoleDefinitionInner extends ProxyResource {
+public final class BillingRoleDefinitionInner extends ArmResource {
     /*
-     * The properties of the a role definition.
+     * The properties of a(n) BillingRoleDefinition
      */
     @JsonProperty(value = "properties")
     private BillingRoleDefinitionProperties innerProperties;
@@ -23,7 +23,7 @@ public final class BillingRoleDefinitionInner extends ProxyResource {
     }
 
     /**
-     * Get the innerProperties property: The properties of the a role definition.
+     * Get the innerProperties property: The properties of a(n) BillingRoleDefinition.
      *
      * @return the innerProperties value.
      */
@@ -45,22 +45,8 @@ public final class BillingRoleDefinitionInner extends ProxyResource {
      *
      * @return the permissions value.
      */
-    public List<BillingPermissionsPropertiesInner> permissions() {
+    public List<BillingPermissionInner> permissions() {
         return this.innerProperties() == null ? null : this.innerProperties().permissions();
-    }
-
-    /**
-     * Set the permissions property: The billingPermissions the role has.
-     *
-     * @param permissions the permissions value to set.
-     * @return the BillingRoleDefinitionInner object itself.
-     */
-    public BillingRoleDefinitionInner withPermissions(List<BillingPermissionsPropertiesInner> permissions) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new BillingRoleDefinitionProperties();
-        }
-        this.innerProperties().withPermissions(permissions);
-        return this;
     }
 
     /**
@@ -73,11 +59,27 @@ public final class BillingRoleDefinitionInner extends ProxyResource {
     }
 
     /**
+     * Set the roleName property: The name of the role.
+     *
+     * @param roleName the roleName value to set.
+     * @return the BillingRoleDefinitionInner object itself.
+     */
+    public BillingRoleDefinitionInner withRoleName(String roleName) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new BillingRoleDefinitionProperties();
+        }
+        this.innerProperties().withRoleName(roleName);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
+    @Override
     public void validate() {
+        super.validate();
         if (innerProperties() != null) {
             innerProperties().validate();
         }

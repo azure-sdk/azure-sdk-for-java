@@ -4,9 +4,10 @@
 
 package com.azure.resourcemanager.billing.implementation;
 
-import com.azure.resourcemanager.billing.fluent.models.BillingPermissionsPropertiesInner;
+import com.azure.core.management.SystemData;
+import com.azure.resourcemanager.billing.fluent.models.BillingPermissionInner;
 import com.azure.resourcemanager.billing.fluent.models.BillingRoleDefinitionInner;
-import com.azure.resourcemanager.billing.models.BillingPermissionsProperties;
+import com.azure.resourcemanager.billing.models.BillingPermission;
 import com.azure.resourcemanager.billing.models.BillingRoleDefinition;
 import java.util.Collections;
 import java.util.List;
@@ -35,18 +36,22 @@ public final class BillingRoleDefinitionImpl implements BillingRoleDefinition {
         return this.innerModel().type();
     }
 
+    public SystemData systemData() {
+        return this.innerModel().systemData();
+    }
+
     public String description() {
         return this.innerModel().description();
     }
 
-    public List<BillingPermissionsProperties> permissions() {
-        List<BillingPermissionsPropertiesInner> inner = this.innerModel().permissions();
+    public List<BillingPermission> permissions() {
+        List<BillingPermissionInner> inner = this.innerModel().permissions();
         if (inner != null) {
             return Collections
                 .unmodifiableList(
                     inner
                         .stream()
-                        .map(inner1 -> new BillingPermissionsPropertiesImpl(inner1, this.manager()))
+                        .map(inner1 -> new BillingPermissionImpl(inner1, this.manager()))
                         .collect(Collectors.toList()));
         } else {
             return Collections.emptyList();

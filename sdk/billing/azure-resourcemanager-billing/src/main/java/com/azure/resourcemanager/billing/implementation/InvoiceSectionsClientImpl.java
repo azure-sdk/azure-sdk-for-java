@@ -65,8 +65,7 @@ public final class InvoiceSectionsClientImpl implements InvoiceSectionsClient {
     public interface InvoiceSectionsService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}"
-                + "/invoiceSections")
+            "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}/invoiceSections")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<InvoiceSectionListResult>> listByBillingProfile(
@@ -79,8 +78,7 @@ public final class InvoiceSectionsClientImpl implements InvoiceSectionsClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}"
-                + "/invoiceSections/{invoiceSectionName}")
+            "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}/invoiceSections/{invoiceSectionName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<InvoiceSectionInner>> get(
@@ -94,8 +92,7 @@ public final class InvoiceSectionsClientImpl implements InvoiceSectionsClient {
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}"
-                + "/invoiceSections/{invoiceSectionName}")
+            "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}/invoiceSections/{invoiceSectionName}")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
@@ -147,7 +144,6 @@ public final class InvoiceSectionsClientImpl implements InvoiceSectionsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter billingProfileName is required and cannot be null."));
         }
-        final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -155,7 +151,7 @@ public final class InvoiceSectionsClientImpl implements InvoiceSectionsClient {
                     service
                         .listByBillingProfile(
                             this.client.getEndpoint(),
-                            apiVersion,
+                            this.client.getApiVersion(),
                             billingAccountName,
                             billingProfileName,
                             accept,
@@ -201,12 +197,16 @@ public final class InvoiceSectionsClientImpl implements InvoiceSectionsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter billingProfileName is required and cannot be null."));
         }
-        final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listByBillingProfile(
-                this.client.getEndpoint(), apiVersion, billingAccountName, billingProfileName, accept, context)
+                this.client.getEndpoint(),
+                this.client.getApiVersion(),
+                billingAccountName,
+                billingProfileName,
+                accept,
+                context)
             .map(
                 res ->
                     new PagedResponseBase<>(
@@ -325,7 +325,6 @@ public final class InvoiceSectionsClientImpl implements InvoiceSectionsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter invoiceSectionName is required and cannot be null."));
         }
-        final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -333,7 +332,7 @@ public final class InvoiceSectionsClientImpl implements InvoiceSectionsClient {
                     service
                         .get(
                             this.client.getEndpoint(),
-                            apiVersion,
+                            this.client.getApiVersion(),
                             billingAccountName,
                             billingProfileName,
                             invoiceSectionName,
@@ -376,13 +375,12 @@ public final class InvoiceSectionsClientImpl implements InvoiceSectionsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter invoiceSectionName is required and cannot be null."));
         }
-        final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .get(
                 this.client.getEndpoint(),
-                apiVersion,
+                this.client.getApiVersion(),
                 billingAccountName,
                 billingProfileName,
                 invoiceSectionName,
@@ -487,7 +485,6 @@ public final class InvoiceSectionsClientImpl implements InvoiceSectionsClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -495,7 +492,7 @@ public final class InvoiceSectionsClientImpl implements InvoiceSectionsClient {
                     service
                         .createOrUpdate(
                             this.client.getEndpoint(),
-                            apiVersion,
+                            this.client.getApiVersion(),
                             billingAccountName,
                             billingProfileName,
                             invoiceSectionName,
@@ -549,13 +546,12 @@ public final class InvoiceSectionsClientImpl implements InvoiceSectionsClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .createOrUpdate(
                 this.client.getEndpoint(),
-                apiVersion,
+                this.client.getApiVersion(),
                 billingAccountName,
                 billingProfileName,
                 invoiceSectionName,

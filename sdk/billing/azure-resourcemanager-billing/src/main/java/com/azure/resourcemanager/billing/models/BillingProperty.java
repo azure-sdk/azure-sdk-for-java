@@ -4,12 +4,14 @@
 
 package com.azure.resourcemanager.billing.models;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.billing.fluent.models.BillingPropertyInner;
 
 /** An immutable client-side representation of BillingProperty. */
 public interface BillingProperty {
     /**
-     * Gets the id property: Fully qualified resource Id for the resource.
+     * Gets the id property: Fully qualified resource ID for the resource. Ex -
+     * /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
      *
      * @return the id value.
      */
@@ -23,11 +25,19 @@ public interface BillingProperty {
     String name();
 
     /**
-     * Gets the type property: The type of the resource.
+     * Gets the type property: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
+     * "Microsoft.Storage/storageAccounts".
      *
      * @return the type value.
      */
     String type();
+
+    /**
+     * Gets the systemData property: Metadata pertaining to creation and last modification of the resource.
+     *
+     * @return the systemData value.
+     */
+    SystemData systemData();
 
     /**
      * Gets the accountAdminNotificationEmailAddress property: The email address on which the account admin gets all
@@ -38,11 +48,11 @@ public interface BillingProperty {
     String accountAdminNotificationEmailAddress();
 
     /**
-     * Gets the billingTenantId property: The Azure AD tenant ID of the billing account for the subscription.
+     * Gets the billingAccountDisplayName property: The name of the billing account to which the subscription is billed.
      *
-     * @return the billingTenantId value.
+     * @return the billingAccountDisplayName value.
      */
-    String billingTenantId();
+    String billingAccountDisplayName();
 
     /**
      * Gets the billingAccountId property: The ID of the billing account to which the subscription is billed.
@@ -52,11 +62,11 @@ public interface BillingProperty {
     String billingAccountId();
 
     /**
-     * Gets the billingAccountDisplayName property: The name of the billing account to which the subscription is billed.
+     * Gets the billingProfileDisplayName property: The name of the billing profile to which the subscription is billed.
      *
-     * @return the billingAccountDisplayName value.
+     * @return the billingProfileDisplayName value.
      */
-    String billingAccountDisplayName();
+    String billingProfileDisplayName();
 
     /**
      * Gets the billingProfileId property: The ID of the billing profile to which the subscription is billed.
@@ -66,11 +76,11 @@ public interface BillingProperty {
     String billingProfileId();
 
     /**
-     * Gets the billingProfileDisplayName property: The name of the billing profile to which the subscription is billed.
+     * Gets the billingProfileSpendingLimit property: The billing profile spending limit.
      *
-     * @return the billingProfileDisplayName value.
+     * @return the billingProfileSpendingLimit value.
      */
-    String billingProfileDisplayName();
+    BillingProfileSpendingLimit billingProfileSpendingLimit();
 
     /**
      * Gets the billingProfileStatus property: The status of the billing profile.
@@ -87,11 +97,11 @@ public interface BillingProperty {
     BillingProfileStatusReasonCode billingProfileStatusReasonCode();
 
     /**
-     * Gets the billingProfileSpendingLimit property: The billing profile spending limit.
+     * Gets the billingTenantId property: The Azure AD tenant ID of the billing account for the subscription.
      *
-     * @return the billingProfileSpendingLimit value.
+     * @return the billingTenantId value.
      */
-    BillingProfileSpendingLimit billingProfileSpendingLimit();
+    String billingTenantId();
 
     /**
      * Gets the costCenter property: The cost center applied to the subscription.
@@ -101,18 +111,18 @@ public interface BillingProperty {
     String costCenter();
 
     /**
-     * Gets the invoiceSectionId property: The ID of the invoice section to which the subscription is billed.
-     *
-     * @return the invoiceSectionId value.
-     */
-    String invoiceSectionId();
-
-    /**
      * Gets the invoiceSectionDisplayName property: The name of the invoice section to which the subscription is billed.
      *
      * @return the invoiceSectionDisplayName value.
      */
     String invoiceSectionDisplayName();
+
+    /**
+     * Gets the invoiceSectionId property: The ID of the invoice section to which the subscription is billed.
+     *
+     * @return the invoiceSectionId value.
+     */
+    String invoiceSectionId();
 
     /**
      * Gets the isAccountAdmin property: Indicates whether user is the account admin.
@@ -136,18 +146,18 @@ public interface BillingProperty {
     String productName();
 
     /**
-     * Gets the skuId property: The sku ID of the Azure plan for the subscription.
-     *
-     * @return the skuId value.
-     */
-    String skuId();
-
-    /**
      * Gets the skuDescription property: The sku description of the Azure plan for the subscription.
      *
      * @return the skuDescription value.
      */
     String skuDescription();
+
+    /**
+     * Gets the skuId property: The sku ID of the Azure plan for the subscription.
+     *
+     * @return the skuId value.
+     */
+    String skuId();
 
     /**
      * Gets the inner com.azure.resourcemanager.billing.fluent.models.BillingPropertyInner object.

@@ -5,14 +5,17 @@
 package com.azure.resourcemanager.billing.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.management.ProxyResource;
+import com.azure.resourcemanager.billing.models.ArmResource;
+import com.azure.resourcemanager.billing.models.NotificationFrequency;
+import com.azure.resourcemanager.billing.models.PrincipalType;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.time.OffsetDateTime;
 
-/** The role assignment. */
+/** The properties of the billing role assignment. */
 @Fluent
-public final class BillingRoleAssignmentInner extends ProxyResource {
+public final class BillingRoleAssignmentInner extends ArmResource {
     /*
-     * The properties of the role assignment.
+     * The properties of a(n) BillingRoleAssignment
      */
     @JsonProperty(value = "properties")
     private BillingRoleAssignmentProperties innerProperties;
@@ -22,7 +25,7 @@ public final class BillingRoleAssignmentInner extends ProxyResource {
     }
 
     /**
-     * Get the innerProperties property: The properties of the role assignment.
+     * Get the innerProperties property: The properties of a(n) BillingRoleAssignment.
      *
      * @return the innerProperties value.
      */
@@ -35,7 +38,7 @@ public final class BillingRoleAssignmentInner extends ProxyResource {
      *
      * @return the createdOn value.
      */
-    public String createdOn() {
+    public OffsetDateTime createdOn() {
         return this.innerProperties() == null ? null : this.innerProperties().createdOn();
     }
 
@@ -49,7 +52,7 @@ public final class BillingRoleAssignmentInner extends ProxyResource {
     }
 
     /**
-     * Get the createdByPrincipalId property: The principal Id of the user who created the role assignment.
+     * Get the createdByPrincipalId property: The object ID of the user who created the role assignment.
      *
      * @return the createdByPrincipalId value.
      */
@@ -58,7 +61,17 @@ public final class BillingRoleAssignmentInner extends ProxyResource {
     }
 
     /**
-     * Get the createdByUserEmailAddress property: The email address of the user who created the role assignment.
+     * Get the createdByPrincipalPuid property: The principal PUID of the user who created the role assignment.
+     *
+     * @return the createdByPrincipalPuid value.
+     */
+    public String createdByPrincipalPuid() {
+        return this.innerProperties() == null ? null : this.innerProperties().createdByPrincipalPuid();
+    }
+
+    /**
+     * Get the createdByUserEmailAddress property: The email address of the user who created the role assignment. This
+     * is supported only for billing accounts with agreement type Enterprise Agreement.
      *
      * @return the createdByUserEmailAddress value.
      */
@@ -67,7 +80,108 @@ public final class BillingRoleAssignmentInner extends ProxyResource {
     }
 
     /**
-     * Get the principalId property: The principal id of the user to whom the role was assigned.
+     * Get the modifiedOn property: The date the role assignment was modified.
+     *
+     * @return the modifiedOn value.
+     */
+    public OffsetDateTime modifiedOn() {
+        return this.innerProperties() == null ? null : this.innerProperties().modifiedOn();
+    }
+
+    /**
+     * Get the modifiedByPrincipalPuid property: The principal PUID of the user who modified the role assignment.
+     *
+     * @return the modifiedByPrincipalPuid value.
+     */
+    public String modifiedByPrincipalPuid() {
+        return this.innerProperties() == null ? null : this.innerProperties().modifiedByPrincipalPuid();
+    }
+
+    /**
+     * Get the modifiedByUserEmailAddress property: The email address of the user who modified the role assignment. This
+     * is supported only for billing accounts with agreement type Enterprise Agreement.
+     *
+     * @return the modifiedByUserEmailAddress value.
+     */
+    public String modifiedByUserEmailAddress() {
+        return this.innerProperties() == null ? null : this.innerProperties().modifiedByUserEmailAddress();
+    }
+
+    /**
+     * Get the modifiedByPrincipalId property: The principal PUID of the user who modified the role assignment.
+     *
+     * @return the modifiedByPrincipalId value.
+     */
+    public String modifiedByPrincipalId() {
+        return this.innerProperties() == null ? null : this.innerProperties().modifiedByPrincipalId();
+    }
+
+    /**
+     * Get the modifiedByPrincipalTenantId property: The tenant Id of the user who modified the role assignment.
+     *
+     * @return the modifiedByPrincipalTenantId value.
+     */
+    public String modifiedByPrincipalTenantId() {
+        return this.innerProperties() == null ? null : this.innerProperties().modifiedByPrincipalTenantId();
+    }
+
+    /**
+     * Get the notificationContact property: The Notification Contact person email address.
+     *
+     * @return the notificationContact value.
+     */
+    public String notificationContact() {
+        return this.innerProperties() == null ? null : this.innerProperties().notificationContact();
+    }
+
+    /**
+     * Set the notificationContact property: The Notification Contact person email address.
+     *
+     * @param notificationContact the notificationContact value to set.
+     * @return the BillingRoleAssignmentInner object itself.
+     */
+    public BillingRoleAssignmentInner withNotificationContact(String notificationContact) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new BillingRoleAssignmentProperties();
+        }
+        this.innerProperties().withNotificationContact(notificationContact);
+        return this;
+    }
+
+    /**
+     * Get the notificationFrequency property: Frequency of notification.
+     *
+     * @return the notificationFrequency value.
+     */
+    public NotificationFrequency notificationFrequency() {
+        return this.innerProperties() == null ? null : this.innerProperties().notificationFrequency();
+    }
+
+    /**
+     * Get the principalPuid property: The principal PUID of the user to whom the role was assigned.
+     *
+     * @return the principalPuid value.
+     */
+    public String principalPuid() {
+        return this.innerProperties() == null ? null : this.innerProperties().principalPuid();
+    }
+
+    /**
+     * Set the principalPuid property: The principal PUID of the user to whom the role was assigned.
+     *
+     * @param principalPuid the principalPuid value to set.
+     * @return the BillingRoleAssignmentInner object itself.
+     */
+    public BillingRoleAssignmentInner withPrincipalPuid(String principalPuid) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new BillingRoleAssignmentProperties();
+        }
+        this.innerProperties().withPrincipalPuid(principalPuid);
+        return this;
+    }
+
+    /**
+     * Get the principalId property: The object id of the user to whom the role was assigned.
      *
      * @return the principalId value.
      */
@@ -76,7 +190,7 @@ public final class BillingRoleAssignmentInner extends ProxyResource {
     }
 
     /**
-     * Set the principalId property: The principal id of the user to whom the role was assigned.
+     * Set the principalId property: The object id of the user to whom the role was assigned.
      *
      * @param principalId the principalId value to set.
      * @return the BillingRoleAssignmentInner object itself.
@@ -145,7 +259,23 @@ public final class BillingRoleAssignmentInner extends ProxyResource {
     }
 
     /**
-     * Get the userAuthenticationType property: The authentication type.
+     * Set the scope property: The scope at which the role was assigned.
+     *
+     * @param scope the scope value to set.
+     * @return the BillingRoleAssignmentInner object itself.
+     */
+    public BillingRoleAssignmentInner withScope(String scope) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new BillingRoleAssignmentProperties();
+        }
+        this.innerProperties().withScope(scope);
+        return this;
+    }
+
+    /**
+     * Get the userAuthenticationType property: The authentication type of the user, whether Organization or MSA, of the
+     * user to whom the role was assigned. This is supported only for billing accounts with agreement type Enterprise
+     * Agreement.
      *
      * @return the userAuthenticationType value.
      */
@@ -154,7 +284,9 @@ public final class BillingRoleAssignmentInner extends ProxyResource {
     }
 
     /**
-     * Set the userAuthenticationType property: The authentication type.
+     * Set the userAuthenticationType property: The authentication type of the user, whether Organization or MSA, of the
+     * user to whom the role was assigned. This is supported only for billing accounts with agreement type Enterprise
+     * Agreement.
      *
      * @param userAuthenticationType the userAuthenticationType value to set.
      * @return the BillingRoleAssignmentInner object itself.
@@ -168,7 +300,8 @@ public final class BillingRoleAssignmentInner extends ProxyResource {
     }
 
     /**
-     * Get the userEmailAddress property: The email address of the user.
+     * Get the userEmailAddress property: The email address of the user to whom the role was assigned. This is supported
+     * only for billing accounts with agreement type Enterprise Agreement.
      *
      * @return the userEmailAddress value.
      */
@@ -177,7 +310,8 @@ public final class BillingRoleAssignmentInner extends ProxyResource {
     }
 
     /**
-     * Set the userEmailAddress property: The email address of the user.
+     * Set the userEmailAddress property: The email address of the user to whom the role was assigned. This is supported
+     * only for billing accounts with agreement type Enterprise Agreement.
      *
      * @param userEmailAddress the userEmailAddress value to set.
      * @return the BillingRoleAssignmentInner object itself.
@@ -191,11 +325,123 @@ public final class BillingRoleAssignmentInner extends ProxyResource {
     }
 
     /**
+     * Get the principalTenantName property: The friendly name of the tenant of the user to whom the role was assigned.
+     * This will be 'Primary Tenant' for the primary tenant of the billing account.
+     *
+     * @return the principalTenantName value.
+     */
+    public String principalTenantName() {
+        return this.innerProperties() == null ? null : this.innerProperties().principalTenantName();
+    }
+
+    /**
+     * Get the principalDisplayName property: The display name of the principal to whom the role was assigned.
+     *
+     * @return the principalDisplayName value.
+     */
+    public String principalDisplayName() {
+        return this.innerProperties() == null ? null : this.innerProperties().principalDisplayName();
+    }
+
+    /**
+     * Get the principalType property: The type of a role Assignment.
+     *
+     * @return the principalType value.
+     */
+    public PrincipalType principalType() {
+        return this.innerProperties() == null ? null : this.innerProperties().principalType();
+    }
+
+    /**
+     * Get the billingRequestId property: The ID of the billing request that was created for the role assignment. This
+     * is only applicable to cross tenant role assignments or role assignments created through the billing request.
+     *
+     * @return the billingRequestId value.
+     */
+    public String billingRequestId() {
+        return this.innerProperties() == null ? null : this.innerProperties().billingRequestId();
+    }
+
+    /**
+     * Get the billingAccountId property: The fully qualified ID that uniquely identifies a billing account.
+     *
+     * @return the billingAccountId value.
+     */
+    public String billingAccountId() {
+        return this.innerProperties() == null ? null : this.innerProperties().billingAccountId();
+    }
+
+    /**
+     * Get the billingAccountDisplayName property: The name of the billing account.
+     *
+     * @return the billingAccountDisplayName value.
+     */
+    public String billingAccountDisplayName() {
+        return this.innerProperties() == null ? null : this.innerProperties().billingAccountDisplayName();
+    }
+
+    /**
+     * Get the billingProfileId property: The fully qualified ID that uniquely identifies a billing profile.
+     *
+     * @return the billingProfileId value.
+     */
+    public String billingProfileId() {
+        return this.innerProperties() == null ? null : this.innerProperties().billingProfileId();
+    }
+
+    /**
+     * Get the billingProfileDisplayName property: The name of the billing profile.
+     *
+     * @return the billingProfileDisplayName value.
+     */
+    public String billingProfileDisplayName() {
+        return this.innerProperties() == null ? null : this.innerProperties().billingProfileDisplayName();
+    }
+
+    /**
+     * Get the invoiceSectionId property: The fully qualified ID that uniquely identifies an invoice section.
+     *
+     * @return the invoiceSectionId value.
+     */
+    public String invoiceSectionId() {
+        return this.innerProperties() == null ? null : this.innerProperties().invoiceSectionId();
+    }
+
+    /**
+     * Get the invoiceSectionDisplayName property: The name of the invoice section.
+     *
+     * @return the invoiceSectionDisplayName value.
+     */
+    public String invoiceSectionDisplayName() {
+        return this.innerProperties() == null ? null : this.innerProperties().invoiceSectionDisplayName();
+    }
+
+    /**
+     * Get the customerId property: The fully qualified ID that uniquely identifies a customer.
+     *
+     * @return the customerId value.
+     */
+    public String customerId() {
+        return this.innerProperties() == null ? null : this.innerProperties().customerId();
+    }
+
+    /**
+     * Get the customerDisplayName property: The name of the customer.
+     *
+     * @return the customerDisplayName value.
+     */
+    public String customerDisplayName() {
+        return this.innerProperties() == null ? null : this.innerProperties().customerDisplayName();
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
+    @Override
     public void validate() {
+        super.validate();
         if (innerProperties() != null) {
             innerProperties().validate();
         }

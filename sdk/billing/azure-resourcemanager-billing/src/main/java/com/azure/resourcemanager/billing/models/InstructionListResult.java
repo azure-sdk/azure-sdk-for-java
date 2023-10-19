@@ -13,28 +13,19 @@ import java.util.List;
 @Immutable
 public final class InstructionListResult {
     /*
-     * The list of billing instructions used during invoice generation.
-     */
-    @JsonProperty(value = "value", access = JsonProperty.Access.WRITE_ONLY)
-    private List<InstructionInner> value;
-
-    /*
      * The link (url) to the next page of results.
      */
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
+    /*
+     * The list of billing instructions used during invoice generation.
+     */
+    @JsonProperty(value = "value", access = JsonProperty.Access.WRITE_ONLY)
+    private List<InstructionInner> value;
+
     /** Creates an instance of InstructionListResult class. */
     public InstructionListResult() {
-    }
-
-    /**
-     * Get the value property: The list of billing instructions used during invoice generation.
-     *
-     * @return the value value.
-     */
-    public List<InstructionInner> value() {
-        return this.value;
     }
 
     /**
@@ -44,6 +35,15 @@ public final class InstructionListResult {
      */
     public String nextLink() {
         return this.nextLink;
+    }
+
+    /**
+     * Get the value property: The list of billing instructions used during invoice generation.
+     *
+     * @return the value value.
+     */
+    public List<InstructionInner> value() {
+        return this.value;
     }
 
     /**

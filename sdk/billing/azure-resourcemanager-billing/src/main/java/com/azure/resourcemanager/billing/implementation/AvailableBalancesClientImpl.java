@@ -53,8 +53,7 @@ public final class AvailableBalancesClientImpl implements AvailableBalancesClien
     public interface AvailableBalancesService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}"
-                + "/availableBalance/default")
+            "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}/availableBalance/default")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<AvailableBalanceInner>> get(
@@ -95,7 +94,6 @@ public final class AvailableBalancesClientImpl implements AvailableBalancesClien
             return Mono
                 .error(new IllegalArgumentException("Parameter billingProfileName is required and cannot be null."));
         }
-        final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -105,7 +103,7 @@ public final class AvailableBalancesClientImpl implements AvailableBalancesClien
                             this.client.getEndpoint(),
                             billingAccountName,
                             billingProfileName,
-                            apiVersion,
+                            this.client.getApiVersion(),
                             accept,
                             context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -141,11 +139,16 @@ public final class AvailableBalancesClientImpl implements AvailableBalancesClien
             return Mono
                 .error(new IllegalArgumentException("Parameter billingProfileName is required and cannot be null."));
         }
-        final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .get(this.client.getEndpoint(), billingAccountName, billingProfileName, apiVersion, accept, context);
+            .get(
+                this.client.getEndpoint(),
+                billingAccountName,
+                billingProfileName,
+                this.client.getApiVersion(),
+                accept,
+                context);
     }
 
     /**

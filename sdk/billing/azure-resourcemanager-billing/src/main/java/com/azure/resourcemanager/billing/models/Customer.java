@@ -4,13 +4,15 @@
 
 package com.azure.resourcemanager.billing.models;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.billing.fluent.models.CustomerInner;
 import java.util.List;
 
 /** An immutable client-side representation of Customer. */
 public interface Customer {
     /**
-     * Gets the id property: Fully qualified resource Id for the resource.
+     * Gets the id property: Fully qualified resource ID for the resource. Ex -
+     * /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
      *
      * @return the id value.
      */
@@ -24,18 +26,19 @@ public interface Customer {
     String name();
 
     /**
-     * Gets the type property: The type of the resource.
+     * Gets the type property: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
+     * "Microsoft.Storage/storageAccounts".
      *
      * @return the type value.
      */
     String type();
 
     /**
-     * Gets the billingProfileId property: The ID of the billing profile for the invoice section.
+     * Gets the systemData property: Metadata pertaining to creation and last modification of the resource.
      *
-     * @return the billingProfileId value.
+     * @return the systemData value.
      */
-    String billingProfileId();
+    SystemData systemData();
 
     /**
      * Gets the billingProfileDisplayName property: The name of the billing profile for the invoice section.
@@ -43,6 +46,13 @@ public interface Customer {
      * @return the billingProfileDisplayName value.
      */
     String billingProfileDisplayName();
+
+    /**
+     * Gets the billingProfileId property: The ID of the billing profile for the invoice section.
+     *
+     * @return the billingProfileId value.
+     */
+    String billingProfileId();
 
     /**
      * Gets the displayName property: The name of the customer.

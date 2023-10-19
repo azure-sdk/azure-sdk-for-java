@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.billing.models;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.billing.fluent.models.AgreementInner;
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -11,7 +12,8 @@ import java.util.List;
 /** An immutable client-side representation of Agreement. */
 public interface Agreement {
     /**
-     * Gets the id property: Fully qualified resource Id for the resource.
+     * Gets the id property: Fully qualified resource ID for the resource. Ex -
+     * /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
      *
      * @return the id value.
      */
@@ -25,25 +27,19 @@ public interface Agreement {
     String name();
 
     /**
-     * Gets the type property: The type of the resource.
+     * Gets the type property: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
+     * "Microsoft.Storage/storageAccounts".
      *
      * @return the type value.
      */
     String type();
 
     /**
-     * Gets the agreementLink property: The URL to download the agreement.
+     * Gets the systemData property: Metadata pertaining to creation and last modification of the resource.
      *
-     * @return the agreementLink value.
+     * @return the systemData value.
      */
-    String agreementLink();
-
-    /**
-     * Gets the category property: The category of the agreement signed by a customer.
-     *
-     * @return the category value.
-     */
-    Category category();
+    SystemData systemData();
 
     /**
      * Gets the acceptanceMode property: The mode of acceptance for an agreement.
@@ -53,12 +49,26 @@ public interface Agreement {
     AcceptanceMode acceptanceMode();
 
     /**
+     * Gets the agreementLink property: The URL to download the agreement.
+     *
+     * @return the agreementLink value.
+     */
+    String agreementLink();
+
+    /**
      * Gets the billingProfileInfo property: The list of billing profiles associated with agreement and present only for
      * specific agreements.
      *
      * @return the billingProfileInfo value.
      */
     BillingProfileInfo billingProfileInfo();
+
+    /**
+     * Gets the category property: The category of the agreement signed by a customer.
+     *
+     * @return the category value.
+     */
+    Category category();
 
     /**
      * Gets the effectiveDate property: The date from which the agreement is effective.

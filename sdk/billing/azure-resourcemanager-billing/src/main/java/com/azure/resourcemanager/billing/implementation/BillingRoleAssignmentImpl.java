@@ -4,8 +4,12 @@
 
 package com.azure.resourcemanager.billing.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.billing.fluent.models.BillingRoleAssignmentInner;
 import com.azure.resourcemanager.billing.models.BillingRoleAssignment;
+import com.azure.resourcemanager.billing.models.NotificationFrequency;
+import com.azure.resourcemanager.billing.models.PrincipalType;
+import java.time.OffsetDateTime;
 
 public final class BillingRoleAssignmentImpl implements BillingRoleAssignment {
     private BillingRoleAssignmentInner innerObject;
@@ -30,7 +34,11 @@ public final class BillingRoleAssignmentImpl implements BillingRoleAssignment {
         return this.innerModel().type();
     }
 
-    public String createdOn() {
+    public SystemData systemData() {
+        return this.innerModel().systemData();
+    }
+
+    public OffsetDateTime createdOn() {
         return this.innerModel().createdOn();
     }
 
@@ -42,8 +50,44 @@ public final class BillingRoleAssignmentImpl implements BillingRoleAssignment {
         return this.innerModel().createdByPrincipalId();
     }
 
+    public String createdByPrincipalPuid() {
+        return this.innerModel().createdByPrincipalPuid();
+    }
+
     public String createdByUserEmailAddress() {
         return this.innerModel().createdByUserEmailAddress();
+    }
+
+    public OffsetDateTime modifiedOn() {
+        return this.innerModel().modifiedOn();
+    }
+
+    public String modifiedByPrincipalPuid() {
+        return this.innerModel().modifiedByPrincipalPuid();
+    }
+
+    public String modifiedByUserEmailAddress() {
+        return this.innerModel().modifiedByUserEmailAddress();
+    }
+
+    public String modifiedByPrincipalId() {
+        return this.innerModel().modifiedByPrincipalId();
+    }
+
+    public String modifiedByPrincipalTenantId() {
+        return this.innerModel().modifiedByPrincipalTenantId();
+    }
+
+    public String notificationContact() {
+        return this.innerModel().notificationContact();
+    }
+
+    public NotificationFrequency notificationFrequency() {
+        return this.innerModel().notificationFrequency();
+    }
+
+    public String principalPuid() {
+        return this.innerModel().principalPuid();
     }
 
     public String principalId() {
@@ -68,6 +112,54 @@ public final class BillingRoleAssignmentImpl implements BillingRoleAssignment {
 
     public String userEmailAddress() {
         return this.innerModel().userEmailAddress();
+    }
+
+    public String principalTenantName() {
+        return this.innerModel().principalTenantName();
+    }
+
+    public String principalDisplayName() {
+        return this.innerModel().principalDisplayName();
+    }
+
+    public PrincipalType principalType() {
+        return this.innerModel().principalType();
+    }
+
+    public String billingRequestId() {
+        return this.innerModel().billingRequestId();
+    }
+
+    public String billingAccountId() {
+        return this.innerModel().billingAccountId();
+    }
+
+    public String billingAccountDisplayName() {
+        return this.innerModel().billingAccountDisplayName();
+    }
+
+    public String billingProfileId() {
+        return this.innerModel().billingProfileId();
+    }
+
+    public String billingProfileDisplayName() {
+        return this.innerModel().billingProfileDisplayName();
+    }
+
+    public String invoiceSectionId() {
+        return this.innerModel().invoiceSectionId();
+    }
+
+    public String invoiceSectionDisplayName() {
+        return this.innerModel().invoiceSectionDisplayName();
+    }
+
+    public String customerId() {
+        return this.innerModel().customerId();
+    }
+
+    public String customerDisplayName() {
+        return this.innerModel().customerDisplayName();
     }
 
     public BillingRoleAssignmentInner innerModel() {

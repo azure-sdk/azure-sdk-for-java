@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.billing.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.billing.fluent.models.PolicyInner;
 import com.azure.resourcemanager.billing.models.MarketplacePurchasesPolicy;
 import com.azure.resourcemanager.billing.models.Policy;
@@ -30,6 +31,10 @@ public final class PolicyImpl implements Policy {
 
     public String type() {
         return this.innerModel().type();
+    }
+
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public MarketplacePurchasesPolicy marketplacePurchases() {

@@ -4,12 +4,15 @@
 
 package com.azure.resourcemanager.billing.models;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.billing.fluent.models.BillingRoleAssignmentInner;
+import java.time.OffsetDateTime;
 
 /** An immutable client-side representation of BillingRoleAssignment. */
 public interface BillingRoleAssignment {
     /**
-     * Gets the id property: Fully qualified resource Id for the resource.
+     * Gets the id property: Fully qualified resource ID for the resource. Ex -
+     * /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
      *
      * @return the id value.
      */
@@ -23,18 +26,26 @@ public interface BillingRoleAssignment {
     String name();
 
     /**
-     * Gets the type property: The type of the resource.
+     * Gets the type property: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
+     * "Microsoft.Storage/storageAccounts".
      *
      * @return the type value.
      */
     String type();
 
     /**
+     * Gets the systemData property: Metadata pertaining to creation and last modification of the resource.
+     *
+     * @return the systemData value.
+     */
+    SystemData systemData();
+
+    /**
      * Gets the createdOn property: The date the role assignment was created.
      *
      * @return the createdOn value.
      */
-    String createdOn();
+    OffsetDateTime createdOn();
 
     /**
      * Gets the createdByPrincipalTenantId property: The tenant Id of the user who created the role assignment.
@@ -44,21 +55,86 @@ public interface BillingRoleAssignment {
     String createdByPrincipalTenantId();
 
     /**
-     * Gets the createdByPrincipalId property: The principal Id of the user who created the role assignment.
+     * Gets the createdByPrincipalId property: The object ID of the user who created the role assignment.
      *
      * @return the createdByPrincipalId value.
      */
     String createdByPrincipalId();
 
     /**
-     * Gets the createdByUserEmailAddress property: The email address of the user who created the role assignment.
+     * Gets the createdByPrincipalPuid property: The principal PUID of the user who created the role assignment.
+     *
+     * @return the createdByPrincipalPuid value.
+     */
+    String createdByPrincipalPuid();
+
+    /**
+     * Gets the createdByUserEmailAddress property: The email address of the user who created the role assignment. This
+     * is supported only for billing accounts with agreement type Enterprise Agreement.
      *
      * @return the createdByUserEmailAddress value.
      */
     String createdByUserEmailAddress();
 
     /**
-     * Gets the principalId property: The principal id of the user to whom the role was assigned.
+     * Gets the modifiedOn property: The date the role assignment was modified.
+     *
+     * @return the modifiedOn value.
+     */
+    OffsetDateTime modifiedOn();
+
+    /**
+     * Gets the modifiedByPrincipalPuid property: The principal PUID of the user who modified the role assignment.
+     *
+     * @return the modifiedByPrincipalPuid value.
+     */
+    String modifiedByPrincipalPuid();
+
+    /**
+     * Gets the modifiedByUserEmailAddress property: The email address of the user who modified the role assignment.
+     * This is supported only for billing accounts with agreement type Enterprise Agreement.
+     *
+     * @return the modifiedByUserEmailAddress value.
+     */
+    String modifiedByUserEmailAddress();
+
+    /**
+     * Gets the modifiedByPrincipalId property: The principal PUID of the user who modified the role assignment.
+     *
+     * @return the modifiedByPrincipalId value.
+     */
+    String modifiedByPrincipalId();
+
+    /**
+     * Gets the modifiedByPrincipalTenantId property: The tenant Id of the user who modified the role assignment.
+     *
+     * @return the modifiedByPrincipalTenantId value.
+     */
+    String modifiedByPrincipalTenantId();
+
+    /**
+     * Gets the notificationContact property: The Notification Contact person email address.
+     *
+     * @return the notificationContact value.
+     */
+    String notificationContact();
+
+    /**
+     * Gets the notificationFrequency property: Frequency of notification.
+     *
+     * @return the notificationFrequency value.
+     */
+    NotificationFrequency notificationFrequency();
+
+    /**
+     * Gets the principalPuid property: The principal PUID of the user to whom the role was assigned.
+     *
+     * @return the principalPuid value.
+     */
+    String principalPuid();
+
+    /**
+     * Gets the principalId property: The object id of the user to whom the role was assigned.
      *
      * @return the principalId value.
      */
@@ -86,18 +162,107 @@ public interface BillingRoleAssignment {
     String scope();
 
     /**
-     * Gets the userAuthenticationType property: The authentication type.
+     * Gets the userAuthenticationType property: The authentication type of the user, whether Organization or MSA, of
+     * the user to whom the role was assigned. This is supported only for billing accounts with agreement type
+     * Enterprise Agreement.
      *
      * @return the userAuthenticationType value.
      */
     String userAuthenticationType();
 
     /**
-     * Gets the userEmailAddress property: The email address of the user.
+     * Gets the userEmailAddress property: The email address of the user to whom the role was assigned. This is
+     * supported only for billing accounts with agreement type Enterprise Agreement.
      *
      * @return the userEmailAddress value.
      */
     String userEmailAddress();
+
+    /**
+     * Gets the principalTenantName property: The friendly name of the tenant of the user to whom the role was assigned.
+     * This will be 'Primary Tenant' for the primary tenant of the billing account.
+     *
+     * @return the principalTenantName value.
+     */
+    String principalTenantName();
+
+    /**
+     * Gets the principalDisplayName property: The display name of the principal to whom the role was assigned.
+     *
+     * @return the principalDisplayName value.
+     */
+    String principalDisplayName();
+
+    /**
+     * Gets the principalType property: The type of a role Assignment.
+     *
+     * @return the principalType value.
+     */
+    PrincipalType principalType();
+
+    /**
+     * Gets the billingRequestId property: The ID of the billing request that was created for the role assignment. This
+     * is only applicable to cross tenant role assignments or role assignments created through the billing request.
+     *
+     * @return the billingRequestId value.
+     */
+    String billingRequestId();
+
+    /**
+     * Gets the billingAccountId property: The fully qualified ID that uniquely identifies a billing account.
+     *
+     * @return the billingAccountId value.
+     */
+    String billingAccountId();
+
+    /**
+     * Gets the billingAccountDisplayName property: The name of the billing account.
+     *
+     * @return the billingAccountDisplayName value.
+     */
+    String billingAccountDisplayName();
+
+    /**
+     * Gets the billingProfileId property: The fully qualified ID that uniquely identifies a billing profile.
+     *
+     * @return the billingProfileId value.
+     */
+    String billingProfileId();
+
+    /**
+     * Gets the billingProfileDisplayName property: The name of the billing profile.
+     *
+     * @return the billingProfileDisplayName value.
+     */
+    String billingProfileDisplayName();
+
+    /**
+     * Gets the invoiceSectionId property: The fully qualified ID that uniquely identifies an invoice section.
+     *
+     * @return the invoiceSectionId value.
+     */
+    String invoiceSectionId();
+
+    /**
+     * Gets the invoiceSectionDisplayName property: The name of the invoice section.
+     *
+     * @return the invoiceSectionDisplayName value.
+     */
+    String invoiceSectionDisplayName();
+
+    /**
+     * Gets the customerId property: The fully qualified ID that uniquely identifies a customer.
+     *
+     * @return the customerId value.
+     */
+    String customerId();
+
+    /**
+     * Gets the customerDisplayName property: The name of the customer.
+     *
+     * @return the customerDisplayName value.
+     */
+    String customerDisplayName();
 
     /**
      * Gets the inner com.azure.resourcemanager.billing.fluent.models.BillingRoleAssignmentInner object.

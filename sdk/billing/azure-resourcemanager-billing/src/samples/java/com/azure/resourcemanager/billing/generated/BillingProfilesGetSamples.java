@@ -7,31 +7,31 @@ package com.azure.resourcemanager.billing.generated;
 /** Samples for BillingProfiles Get. */
 public final class BillingProfilesGetSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/BillingProfileWithExpand.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/billingProfilesGet.json
      */
     /**
-     * Sample code: BillingProfileWithExpand.
+     * Sample code: billingProfilesGet.
      *
      * @param manager Entry point to BillingManager.
      */
-    public static void billingProfileWithExpand(com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void billingProfilesGet(com.azure.resourcemanager.billing.BillingManager manager) {
+        manager
+            .billingProfiles()
+            .getWithResponse("{billingAccountName}", "{billingProfileName}", null, com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2023-04-01/examples/billingProfilesGetWithExpand.json
+     */
+    /**
+     * Sample code: billingProfilesGetWithExpand.
+     *
+     * @param manager Entry point to BillingManager.
+     */
+    public static void billingProfilesGetWithExpand(com.azure.resourcemanager.billing.BillingManager manager) {
         manager
             .billingProfiles()
             .getWithResponse(
                 "{billingAccountName}", "{billingProfileName}", "invoiceSections", com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/BillingProfile.json
-     */
-    /**
-     * Sample code: BillingProfile.
-     *
-     * @param manager Entry point to BillingManager.
-     */
-    public static void billingProfile(com.azure.resourcemanager.billing.BillingManager manager) {
-        manager
-            .billingProfiles()
-            .getWithResponse("{billingAccountName}", "{billingProfileName}", null, com.azure.core.util.Context.NONE);
     }
 }

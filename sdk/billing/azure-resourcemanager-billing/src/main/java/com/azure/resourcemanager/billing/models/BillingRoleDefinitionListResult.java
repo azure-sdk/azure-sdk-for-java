@@ -9,32 +9,23 @@ import com.azure.resourcemanager.billing.fluent.models.BillingRoleDefinitionInne
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The list of role definitions. */
+/** A container for a list of resources. */
 @Immutable
 public final class BillingRoleDefinitionListResult {
-    /*
-     * The role definitions.
-     */
-    @JsonProperty(value = "value", access = JsonProperty.Access.WRITE_ONLY)
-    private List<BillingRoleDefinitionInner> value;
-
     /*
      * The link (url) to the next page of results.
      */
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
+    /*
+     * The list of resources.
+     */
+    @JsonProperty(value = "value", access = JsonProperty.Access.WRITE_ONLY)
+    private List<BillingRoleDefinitionInner> value;
+
     /** Creates an instance of BillingRoleDefinitionListResult class. */
     public BillingRoleDefinitionListResult() {
-    }
-
-    /**
-     * Get the value property: The role definitions.
-     *
-     * @return the value value.
-     */
-    public List<BillingRoleDefinitionInner> value() {
-        return this.value;
     }
 
     /**
@@ -44,6 +35,15 @@ public final class BillingRoleDefinitionListResult {
      */
     public String nextLink() {
         return this.nextLink;
+    }
+
+    /**
+     * Get the value property: The list of resources.
+     *
+     * @return the value value.
+     */
+    public List<BillingRoleDefinitionInner> value() {
+        return this.value;
     }
 
     /**
