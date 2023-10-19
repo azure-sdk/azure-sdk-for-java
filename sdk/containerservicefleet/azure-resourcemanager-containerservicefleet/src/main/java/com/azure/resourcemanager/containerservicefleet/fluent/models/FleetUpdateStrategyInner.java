@@ -5,21 +5,20 @@
 package com.azure.resourcemanager.containerservicefleet.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.management.Resource;
+import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
-import com.azure.resourcemanager.containerservicefleet.models.FleetProvisioningState;
-import com.azure.resourcemanager.containerservicefleet.models.ManagedServiceIdentity;
+import com.azure.resourcemanager.containerservicefleet.models.FleetUpdateStrategyProvisioningState;
+import com.azure.resourcemanager.containerservicefleet.models.UpdateRunStrategy;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Map;
 
-/** The Fleet resource. */
+/** Defines a multi-stage process to perform update operations across members of a Fleet. */
 @Fluent
-public final class FleetInner extends Resource {
+public final class FleetUpdateStrategyInner extends ProxyResource {
     /*
      * The resource-specific properties for this resource.
      */
     @JsonProperty(value = "properties")
-    private FleetProperties innerProperties;
+    private FleetUpdateStrategyProperties innerProperties;
 
     /*
      * If eTag is provided in the response body, it may also be provided as a header per the normal etag convention.
@@ -31,19 +30,13 @@ public final class FleetInner extends Resource {
     private String etag;
 
     /*
-     * Managed identity.
-     */
-    @JsonProperty(value = "identity")
-    private ManagedServiceIdentity identity;
-
-    /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
      */
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of FleetInner class. */
-    public FleetInner() {
+    /** Creates an instance of FleetUpdateStrategyInner class. */
+    public FleetUpdateStrategyInner() {
     }
 
     /**
@@ -51,7 +44,7 @@ public final class FleetInner extends Resource {
      *
      * @return the innerProperties value.
      */
-    private FleetProperties innerProperties() {
+    private FleetUpdateStrategyProperties innerProperties() {
         return this.innerProperties;
     }
 
@@ -68,26 +61,6 @@ public final class FleetInner extends Resource {
     }
 
     /**
-     * Get the identity property: Managed identity.
-     *
-     * @return the identity value.
-     */
-    public ManagedServiceIdentity identity() {
-        return this.identity;
-    }
-
-    /**
-     * Set the identity property: Managed identity.
-     *
-     * @param identity the identity value to set.
-     * @return the FleetInner object itself.
-     */
-    public FleetInner withIdentity(ManagedServiceIdentity identity) {
-        this.identity = identity;
-        return this;
-    }
-
-    /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      *
      * @return the systemData value.
@@ -96,27 +69,36 @@ public final class FleetInner extends Resource {
         return this.systemData;
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public FleetInner withLocation(String location) {
-        super.withLocation(location);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public FleetInner withTags(Map<String, String> tags) {
-        super.withTags(tags);
-        return this;
-    }
-
     /**
-     * Get the provisioningState property: The status of the last operation.
+     * Get the provisioningState property: The provisioning state of the UpdateStrategy resource.
      *
      * @return the provisioningState value.
      */
-    public FleetProvisioningState provisioningState() {
+    public FleetUpdateStrategyProvisioningState provisioningState() {
         return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
+    }
+
+    /**
+     * Get the strategy property: Defines the update sequence of the clusters.
+     *
+     * @return the strategy value.
+     */
+    public UpdateRunStrategy strategy() {
+        return this.innerProperties() == null ? null : this.innerProperties().strategy();
+    }
+
+    /**
+     * Set the strategy property: Defines the update sequence of the clusters.
+     *
+     * @param strategy the strategy value to set.
+     * @return the FleetUpdateStrategyInner object itself.
+     */
+    public FleetUpdateStrategyInner withStrategy(UpdateRunStrategy strategy) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new FleetUpdateStrategyProperties();
+        }
+        this.innerProperties().withStrategy(strategy);
+        return this;
     }
 
     /**
@@ -127,9 +109,6 @@ public final class FleetInner extends Resource {
     public void validate() {
         if (innerProperties() != null) {
             innerProperties().validate();
-        }
-        if (identity() != null) {
-            identity().validate();
         }
     }
 }
