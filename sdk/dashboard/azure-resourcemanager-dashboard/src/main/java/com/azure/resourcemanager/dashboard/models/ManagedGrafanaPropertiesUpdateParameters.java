@@ -5,7 +5,9 @@
 package com.azure.resourcemanager.dashboard.models;
 
 import com.azure.core.annotation.Fluent;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.Map;
 
 /** The properties parameters for a PATCH request to a grafana resource. */
 @Fluent
@@ -40,6 +42,36 @@ public final class ManagedGrafanaPropertiesUpdateParameters {
      */
     @JsonProperty(value = "grafanaIntegrations")
     private GrafanaIntegrations grafanaIntegrations;
+
+    /*
+     * Enterprise settings of a Grafana instance
+     */
+    @JsonProperty(value = "enterpriseConfigurations")
+    private EnterpriseConfigurations enterpriseConfigurations;
+
+    /*
+     * Server configurations of a Grafana instance
+     */
+    @JsonProperty(value = "grafanaConfigurations")
+    private GrafanaConfigurations grafanaConfigurations;
+
+    /*
+     * Update of Grafana plugin. Key is plugin id, value is plugin definition. If plugin definition is null, plugin
+     * with given plugin id will be removed. Otherwise, given plugin will be installed.
+     */
+    @JsonProperty(value = "grafanaPlugins")
+    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
+    private Map<String, GrafanaPlugin> grafanaPlugins;
+
+    /*
+     * The major Grafana software version to target.
+     */
+    @JsonProperty(value = "grafanaMajorVersion")
+    private String grafanaMajorVersion;
+
+    /** Creates an instance of ManagedGrafanaPropertiesUpdateParameters class. */
+    public ManagedGrafanaPropertiesUpdateParameters() {
+    }
 
     /**
      * Get the zoneRedundancy property: The zone redundancy setting of the Grafana instance.
@@ -145,6 +177,92 @@ public final class ManagedGrafanaPropertiesUpdateParameters {
     }
 
     /**
+     * Get the enterpriseConfigurations property: Enterprise settings of a Grafana instance.
+     *
+     * @return the enterpriseConfigurations value.
+     */
+    public EnterpriseConfigurations enterpriseConfigurations() {
+        return this.enterpriseConfigurations;
+    }
+
+    /**
+     * Set the enterpriseConfigurations property: Enterprise settings of a Grafana instance.
+     *
+     * @param enterpriseConfigurations the enterpriseConfigurations value to set.
+     * @return the ManagedGrafanaPropertiesUpdateParameters object itself.
+     */
+    public ManagedGrafanaPropertiesUpdateParameters withEnterpriseConfigurations(
+        EnterpriseConfigurations enterpriseConfigurations) {
+        this.enterpriseConfigurations = enterpriseConfigurations;
+        return this;
+    }
+
+    /**
+     * Get the grafanaConfigurations property: Server configurations of a Grafana instance.
+     *
+     * @return the grafanaConfigurations value.
+     */
+    public GrafanaConfigurations grafanaConfigurations() {
+        return this.grafanaConfigurations;
+    }
+
+    /**
+     * Set the grafanaConfigurations property: Server configurations of a Grafana instance.
+     *
+     * @param grafanaConfigurations the grafanaConfigurations value to set.
+     * @return the ManagedGrafanaPropertiesUpdateParameters object itself.
+     */
+    public ManagedGrafanaPropertiesUpdateParameters withGrafanaConfigurations(
+        GrafanaConfigurations grafanaConfigurations) {
+        this.grafanaConfigurations = grafanaConfigurations;
+        return this;
+    }
+
+    /**
+     * Get the grafanaPlugins property: Update of Grafana plugin. Key is plugin id, value is plugin definition. If
+     * plugin definition is null, plugin with given plugin id will be removed. Otherwise, given plugin will be
+     * installed.
+     *
+     * @return the grafanaPlugins value.
+     */
+    public Map<String, GrafanaPlugin> grafanaPlugins() {
+        return this.grafanaPlugins;
+    }
+
+    /**
+     * Set the grafanaPlugins property: Update of Grafana plugin. Key is plugin id, value is plugin definition. If
+     * plugin definition is null, plugin with given plugin id will be removed. Otherwise, given plugin will be
+     * installed.
+     *
+     * @param grafanaPlugins the grafanaPlugins value to set.
+     * @return the ManagedGrafanaPropertiesUpdateParameters object itself.
+     */
+    public ManagedGrafanaPropertiesUpdateParameters withGrafanaPlugins(Map<String, GrafanaPlugin> grafanaPlugins) {
+        this.grafanaPlugins = grafanaPlugins;
+        return this;
+    }
+
+    /**
+     * Get the grafanaMajorVersion property: The major Grafana software version to target.
+     *
+     * @return the grafanaMajorVersion value.
+     */
+    public String grafanaMajorVersion() {
+        return this.grafanaMajorVersion;
+    }
+
+    /**
+     * Set the grafanaMajorVersion property: The major Grafana software version to target.
+     *
+     * @param grafanaMajorVersion the grafanaMajorVersion value to set.
+     * @return the ManagedGrafanaPropertiesUpdateParameters object itself.
+     */
+    public ManagedGrafanaPropertiesUpdateParameters withGrafanaMajorVersion(String grafanaMajorVersion) {
+        this.grafanaMajorVersion = grafanaMajorVersion;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -152,6 +270,22 @@ public final class ManagedGrafanaPropertiesUpdateParameters {
     public void validate() {
         if (grafanaIntegrations() != null) {
             grafanaIntegrations().validate();
+        }
+        if (enterpriseConfigurations() != null) {
+            enterpriseConfigurations().validate();
+        }
+        if (grafanaConfigurations() != null) {
+            grafanaConfigurations().validate();
+        }
+        if (grafanaPlugins() != null) {
+            grafanaPlugins()
+                .values()
+                .forEach(
+                    e -> {
+                        if (e != null) {
+                            e.validate();
+                        }
+                    });
         }
     }
 }
