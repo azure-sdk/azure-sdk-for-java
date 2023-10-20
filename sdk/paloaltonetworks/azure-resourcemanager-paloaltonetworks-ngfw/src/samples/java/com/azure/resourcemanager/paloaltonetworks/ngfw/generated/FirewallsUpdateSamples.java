@@ -37,7 +37,7 @@ import java.util.Map;
 /** Samples for Firewalls Update. */
 public final class FirewallsUpdateSamples {
     /*
-     * x-ms-original-file: specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2022-08-29/examples/Firewalls_Update_MinimumSet_Gen.json
+     * x-ms-original-file: specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2023-10-10-preview/examples/Firewalls_Update_MinimumSet_Gen.json
      */
     /**
      * Sample code: Firewalls_Update_MinimumSet_Gen.
@@ -55,7 +55,7 @@ public final class FirewallsUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2022-08-29/examples/Firewalls_Update_MaximumSet_Gen.json
+     * x-ms-original-file: specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/preview/2023-10-10-preview/examples/Firewalls_Update_MaximumSet_Gen.json
      */
     /**
      * Sample code: Firewalls_Update_MaximumSet_Gen.
@@ -146,7 +146,9 @@ public final class FirewallsUpdateSamples {
                                         new IpAddress()
                                             .withResourceId(
                                                 "/subscriptions/01c7d41f-afaf-464e-8a8b-5c6f9f98cee8/resourceGroups/mj-liftr-integration/providers/Microsoft.Network/publicIPAddresses/mj-liftr-integration-egressNatIp1")
-                                            .withAddress("20.22.92.111"))))
+                                            .withAddress("20.22.92.111")))
+                            .withTrustedRanges(Arrays.asList("20.22.92.11"))
+                            .withPrivateSourceNatRulesDestination(Arrays.asList("20.22.92.11")))
                     .withIsPanoramaManaged(BooleanEnum.TRUE)
                     .withPanoramaConfig(new PanoramaConfig().withConfigString("bas64EncodedString"))
                     .withAssociatedRulestack(
@@ -201,6 +203,7 @@ public final class FirewallsUpdateSamples {
             .apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

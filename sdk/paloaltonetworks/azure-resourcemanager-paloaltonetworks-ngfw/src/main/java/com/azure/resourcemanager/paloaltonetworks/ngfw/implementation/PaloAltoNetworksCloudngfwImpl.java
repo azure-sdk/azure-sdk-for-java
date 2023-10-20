@@ -311,7 +311,7 @@ public final class PaloAltoNetworksCloudngfwImpl implements PaloAltoNetworksClou
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2022-08-29";
+        this.apiVersion = "2023-10-10-preview";
         this.globalRulestacks = new GlobalRulestacksClientImpl(this);
         this.certificateObjectGlobalRulestacks = new CertificateObjectGlobalRulestacksClientImpl(this);
         this.fqdnListGlobalRulestacks = new FqdnListGlobalRulestacksClientImpl(this);
