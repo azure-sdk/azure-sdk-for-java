@@ -7,70 +7,15 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
+import com.azure.resourcemanager.machinelearning.fluent.models.WorkspaceConnectionPropertiesV2BasicResourceInner;
 
 /** Resource collection API of WorkspaceConnections. */
 public interface WorkspaceConnections {
     /**
-     * The get operation.
+     * Lists all the available machine learning workspaces connections under the specified workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
-     * @param connectionName Friendly name of the workspace connection.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response}.
-     */
-    Response<WorkspaceConnectionPropertiesV2BasicResource> getWithResponse(
-        String resourceGroupName, String workspaceName, String connectionName, Context context);
-
-    /**
-     * The get operation.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
-     * @param connectionName Friendly name of the workspace connection.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
-     */
-    WorkspaceConnectionPropertiesV2BasicResource get(
-        String resourceGroupName, String workspaceName, String connectionName);
-
-    /**
-     * The delete operation.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
-     * @param connectionName Friendly name of the workspace connection.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
-     */
-    Response<Void> deleteWithResponse(
-        String resourceGroupName, String workspaceName, String connectionName, Context context);
-
-    /**
-     * The delete operation.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
-     * @param connectionName Friendly name of the workspace connection.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void delete(String resourceGroupName, String workspaceName, String connectionName);
-
-    /**
-     * The list operation.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -79,10 +24,10 @@ public interface WorkspaceConnections {
     PagedIterable<WorkspaceConnectionPropertiesV2BasicResource> list(String resourceGroupName, String workspaceName);
 
     /**
-     * The list operation.
+     * Lists all the available machine learning workspaces connections under the specified workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @param target Target of the workspace connection.
      * @param category Category of the workspace connection.
      * @param context The context to associate with this operation.
@@ -95,7 +40,133 @@ public interface WorkspaceConnections {
         String resourceGroupName, String workspaceName, String target, String category, Context context);
 
     /**
-     * The get operation.
+     * Delete machine learning workspaces connections by name.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Azure Machine Learning Workspace Name.
+     * @param connectionName Friendly name of the workspace connection.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    Response<Void> deleteWithResponse(
+        String resourceGroupName, String workspaceName, String connectionName, Context context);
+
+    /**
+     * Delete machine learning workspaces connections by name.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Azure Machine Learning Workspace Name.
+     * @param connectionName Friendly name of the workspace connection.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void delete(String resourceGroupName, String workspaceName, String connectionName);
+
+    /**
+     * Lists machine learning workspaces connections by name.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Azure Machine Learning Workspace Name.
+     * @param connectionName Friendly name of the workspace connection.
+     * @param aoaiModelsToDeploy query parameter for which AOAI mode should be deployed.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response}.
+     */
+    Response<WorkspaceConnectionPropertiesV2BasicResource> getWithResponse(
+        String resourceGroupName,
+        String workspaceName,
+        String connectionName,
+        String aoaiModelsToDeploy,
+        Context context);
+
+    /**
+     * Lists machine learning workspaces connections by name.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Azure Machine Learning Workspace Name.
+     * @param connectionName Friendly name of the workspace connection.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    WorkspaceConnectionPropertiesV2BasicResource get(
+        String resourceGroupName, String workspaceName, String connectionName);
+
+    /**
+     * List all the secrets of a machine learning workspaces connections.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Azure Machine Learning Workspace Name.
+     * @param connectionName Friendly name of the workspace connection.
+     * @param aoaiModelsToDeploy query parameter for which AOAI mode should be deployed.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response}.
+     */
+    Response<WorkspaceConnectionPropertiesV2BasicResource> listSecretsWithResponse(
+        String resourceGroupName,
+        String workspaceName,
+        String connectionName,
+        String aoaiModelsToDeploy,
+        Context context);
+
+    /**
+     * List all the secrets of a machine learning workspaces connections.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Azure Machine Learning Workspace Name.
+     * @param connectionName Friendly name of the workspace connection.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    WorkspaceConnectionPropertiesV2BasicResource listSecrets(
+        String resourceGroupName, String workspaceName, String connectionName);
+
+    /**
+     * Test machine learning workspaces connections under the specified workspace.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Azure Machine Learning Workspace Name.
+     * @param connectionName Friendly name of the workspace connection.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void testConnection(String resourceGroupName, String workspaceName, String connectionName);
+
+    /**
+     * Test machine learning workspaces connections under the specified workspace.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Azure Machine Learning Workspace Name.
+     * @param connectionName Friendly name of the workspace connection.
+     * @param body Workspace Connection object.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void testConnection(
+        String resourceGroupName,
+        String workspaceName,
+        String connectionName,
+        WorkspaceConnectionPropertiesV2BasicResourceInner body,
+        Context context);
+
+    /**
+     * Lists machine learning workspaces connections by name.
      *
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -106,19 +177,21 @@ public interface WorkspaceConnections {
     WorkspaceConnectionPropertiesV2BasicResource getById(String id);
 
     /**
-     * The get operation.
+     * Lists machine learning workspaces connections by name.
      *
      * @param id the resource ID.
+     * @param aoaiModelsToDeploy query parameter for which AOAI mode should be deployed.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response body along with {@link Response}.
      */
-    Response<WorkspaceConnectionPropertiesV2BasicResource> getByIdWithResponse(String id, Context context);
+    Response<WorkspaceConnectionPropertiesV2BasicResource> getByIdWithResponse(
+        String id, String aoaiModelsToDeploy, Context context);
 
     /**
-     * The delete operation.
+     * Delete machine learning workspaces connections by name.
      *
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -128,7 +201,7 @@ public interface WorkspaceConnections {
     void deleteById(String id);
 
     /**
-     * The delete operation.
+     * Delete machine learning workspaces connections by name.
      *
      * @param id the resource ID.
      * @param context The context to associate with this operation.

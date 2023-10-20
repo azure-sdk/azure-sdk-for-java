@@ -36,6 +36,12 @@ public final class ComputeInstanceDataMount {
     private MountAction mountAction;
 
     /*
+     * Mount Mode.
+     */
+    @JsonProperty(value = "mountMode")
+    private MountMode mountMode;
+
+    /*
      * who this data mount created by.
      */
     @JsonProperty(value = "createdBy")
@@ -148,6 +154,26 @@ public final class ComputeInstanceDataMount {
      */
     public ComputeInstanceDataMount withMountAction(MountAction mountAction) {
         this.mountAction = mountAction;
+        return this;
+    }
+
+    /**
+     * Get the mountMode property: Mount Mode.
+     *
+     * @return the mountMode value.
+     */
+    public MountMode mountMode() {
+        return this.mountMode;
+    }
+
+    /**
+     * Set the mountMode property: Mount Mode.
+     *
+     * @param mountMode the mountMode value to set.
+     * @return the ComputeInstanceDataMount object itself.
+     */
+    public ComputeInstanceDataMount withMountMode(MountMode mountMode) {
+        this.mountMode = mountMode;
         return this;
     }
 

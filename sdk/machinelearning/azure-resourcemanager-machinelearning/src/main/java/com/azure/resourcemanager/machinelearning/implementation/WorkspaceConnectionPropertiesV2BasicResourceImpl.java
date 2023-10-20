@@ -4,24 +4,21 @@
 
 package com.azure.resourcemanager.machinelearning.implementation;
 
+import com.azure.core.http.rest.Response;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.machinelearning.fluent.models.WorkspaceConnectionPropertiesV2BasicResourceInner;
 import com.azure.resourcemanager.machinelearning.models.WorkspaceConnectionPropertiesV2;
 import com.azure.resourcemanager.machinelearning.models.WorkspaceConnectionPropertiesV2BasicResource;
+import com.azure.resourcemanager.machinelearning.models.WorkspaceConnectionUpdateParameter;
 
 public final class WorkspaceConnectionPropertiesV2BasicResourceImpl
-    implements WorkspaceConnectionPropertiesV2BasicResource, WorkspaceConnectionPropertiesV2BasicResource.Definition {
+    implements WorkspaceConnectionPropertiesV2BasicResource,
+        WorkspaceConnectionPropertiesV2BasicResource.Definition,
+        WorkspaceConnectionPropertiesV2BasicResource.Update {
     private WorkspaceConnectionPropertiesV2BasicResourceInner innerObject;
 
     private final com.azure.resourcemanager.machinelearning.MachineLearningManager serviceManager;
-
-    WorkspaceConnectionPropertiesV2BasicResourceImpl(
-        WorkspaceConnectionPropertiesV2BasicResourceInner innerObject,
-        com.azure.resourcemanager.machinelearning.MachineLearningManager serviceManager) {
-        this.innerObject = innerObject;
-        this.serviceManager = serviceManager;
-    }
 
     public String id() {
         return this.innerModel().id();
@@ -43,6 +40,10 @@ public final class WorkspaceConnectionPropertiesV2BasicResourceImpl
         return this.innerModel().systemData();
     }
 
+    public String resourceGroupName() {
+        return resourceGroupName;
+    }
+
     public WorkspaceConnectionPropertiesV2BasicResourceInner innerModel() {
         return this.innerObject;
     }
@@ -56,6 +57,8 @@ public final class WorkspaceConnectionPropertiesV2BasicResourceImpl
     private String workspaceName;
 
     private String connectionName;
+
+    private WorkspaceConnectionUpdateParameter updateBody;
 
     public WorkspaceConnectionPropertiesV2BasicResourceImpl withExistingWorkspace(
         String resourceGroupName, String workspaceName) {
@@ -91,28 +94,96 @@ public final class WorkspaceConnectionPropertiesV2BasicResourceImpl
         this.connectionName = name;
     }
 
-    public WorkspaceConnectionPropertiesV2BasicResource refresh() {
+    public WorkspaceConnectionPropertiesV2BasicResourceImpl update() {
+        this.updateBody = new WorkspaceConnectionUpdateParameter();
+        return this;
+    }
+
+    public WorkspaceConnectionPropertiesV2BasicResource apply() {
         this.innerObject =
             serviceManager
                 .serviceClient()
                 .getWorkspaceConnections()
-                .getWithResponse(resourceGroupName, workspaceName, connectionName, Context.NONE)
+                .updateWithResponse(resourceGroupName, workspaceName, connectionName, updateBody, Context.NONE)
+                .getValue();
+        return this;
+    }
+
+    public WorkspaceConnectionPropertiesV2BasicResource apply(Context context) {
+        this.innerObject =
+            serviceManager
+                .serviceClient()
+                .getWorkspaceConnections()
+                .updateWithResponse(resourceGroupName, workspaceName, connectionName, updateBody, context)
+                .getValue();
+        return this;
+    }
+
+    WorkspaceConnectionPropertiesV2BasicResourceImpl(
+        WorkspaceConnectionPropertiesV2BasicResourceInner innerObject,
+        com.azure.resourcemanager.machinelearning.MachineLearningManager serviceManager) {
+        this.innerObject = innerObject;
+        this.serviceManager = serviceManager;
+        this.resourceGroupName = Utils.getValueFromIdByName(innerObject.id(), "resourceGroups");
+        this.workspaceName = Utils.getValueFromIdByName(innerObject.id(), "workspaces");
+        this.connectionName = Utils.getValueFromIdByName(innerObject.id(), "connections");
+    }
+
+    public WorkspaceConnectionPropertiesV2BasicResource refresh() {
+        String localAoaiModelsToDeploy = null;
+        this.innerObject =
+            serviceManager
+                .serviceClient()
+                .getWorkspaceConnections()
+                .getWithResponse(
+                    resourceGroupName, workspaceName, connectionName, localAoaiModelsToDeploy, Context.NONE)
                 .getValue();
         return this;
     }
 
     public WorkspaceConnectionPropertiesV2BasicResource refresh(Context context) {
+        String localAoaiModelsToDeploy = null;
         this.innerObject =
             serviceManager
                 .serviceClient()
                 .getWorkspaceConnections()
-                .getWithResponse(resourceGroupName, workspaceName, connectionName, context)
+                .getWithResponse(resourceGroupName, workspaceName, connectionName, localAoaiModelsToDeploy, context)
                 .getValue();
         return this;
     }
 
+    public Response<WorkspaceConnectionPropertiesV2BasicResource> listSecretsWithResponse(
+        String aoaiModelsToDeploy, Context context) {
+        return serviceManager
+            .workspaceConnections()
+            .listSecretsWithResponse(resourceGroupName, workspaceName, connectionName, aoaiModelsToDeploy, context);
+    }
+
+    public WorkspaceConnectionPropertiesV2BasicResource listSecrets() {
+        return serviceManager.workspaceConnections().listSecrets(resourceGroupName, workspaceName, connectionName);
+    }
+
+    public void testConnection() {
+        serviceManager.workspaceConnections().testConnection(resourceGroupName, workspaceName, connectionName);
+    }
+
+    public void testConnection(WorkspaceConnectionPropertiesV2BasicResourceInner body, Context context) {
+        serviceManager
+            .workspaceConnections()
+            .testConnection(resourceGroupName, workspaceName, connectionName, body, context);
+    }
+
     public WorkspaceConnectionPropertiesV2BasicResourceImpl withProperties(WorkspaceConnectionPropertiesV2 properties) {
-        this.innerModel().withProperties(properties);
-        return this;
+        if (isInCreateMode()) {
+            this.innerModel().withProperties(properties);
+            return this;
+        } else {
+            this.updateBody.withProperties(properties);
+            return this;
+        }
+    }
+
+    private boolean isInCreateMode() {
+        return this.innerModel().id() == null;
     }
 }
