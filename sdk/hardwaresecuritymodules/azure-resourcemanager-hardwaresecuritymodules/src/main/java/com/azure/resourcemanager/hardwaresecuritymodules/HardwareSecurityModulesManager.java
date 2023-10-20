@@ -23,12 +23,16 @@ import com.azure.core.management.http.policy.ArmChallengeAuthenticationPolicy;
 import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.util.Configuration;
 import com.azure.core.util.logging.ClientLogger;
-import com.azure.resourcemanager.hardwaresecuritymodules.fluent.AzureDedicatedHsmResourceProvider;
-import com.azure.resourcemanager.hardwaresecuritymodules.implementation.AzureDedicatedHsmResourceProviderBuilder;
-import com.azure.resourcemanager.hardwaresecuritymodules.implementation.DedicatedHsmsImpl;
-import com.azure.resourcemanager.hardwaresecuritymodules.implementation.OperationsImpl;
-import com.azure.resourcemanager.hardwaresecuritymodules.models.DedicatedHsms;
-import com.azure.resourcemanager.hardwaresecuritymodules.models.Operations;
+import com.azure.resourcemanager.hardwaresecuritymodules.fluent.AzureHsmResourceProvider;
+import com.azure.resourcemanager.hardwaresecuritymodules.implementation.AzureHsmResourceProviderBuilder;
+import com.azure.resourcemanager.hardwaresecuritymodules.implementation.CloudHsmClusterPrivateEndpointConnectionsImpl;
+import com.azure.resourcemanager.hardwaresecuritymodules.implementation.CloudHsmClusterPrivateLinkResourcesImpl;
+import com.azure.resourcemanager.hardwaresecuritymodules.implementation.CloudHsmClustersImpl;
+import com.azure.resourcemanager.hardwaresecuritymodules.implementation.PrivateEndpointConnectionsImpl;
+import com.azure.resourcemanager.hardwaresecuritymodules.models.CloudHsmClusterPrivateEndpointConnections;
+import com.azure.resourcemanager.hardwaresecuritymodules.models.CloudHsmClusterPrivateLinkResources;
+import com.azure.resourcemanager.hardwaresecuritymodules.models.CloudHsmClusters;
+import com.azure.resourcemanager.hardwaresecuritymodules.models.PrivateEndpointConnections;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -38,21 +42,25 @@ import java.util.stream.Collectors;
 
 /**
  * Entry point to HardwareSecurityModulesManager. The Azure management API provides a RESTful set of web services that
- * interact with Azure Dedicated HSM RP.
+ * interact with Azure HSM RP.
  */
 public final class HardwareSecurityModulesManager {
-    private Operations operations;
+    private CloudHsmClusters cloudHsmClusters;
 
-    private DedicatedHsms dedicatedHsms;
+    private CloudHsmClusterPrivateLinkResources cloudHsmClusterPrivateLinkResources;
 
-    private final AzureDedicatedHsmResourceProvider clientObject;
+    private CloudHsmClusterPrivateEndpointConnections cloudHsmClusterPrivateEndpointConnections;
+
+    private PrivateEndpointConnections privateEndpointConnections;
+
+    private final AzureHsmResourceProvider clientObject;
 
     private HardwareSecurityModulesManager(
         HttpPipeline httpPipeline, AzureProfile profile, Duration defaultPollInterval) {
         Objects.requireNonNull(httpPipeline, "'httpPipeline' cannot be null.");
         Objects.requireNonNull(profile, "'profile' cannot be null.");
         this.clientObject =
-            new AzureDedicatedHsmResourceProviderBuilder()
+            new AzureHsmResourceProviderBuilder()
                 .pipeline(httpPipeline)
                 .endpoint(profile.getEnvironment().getResourceManagerEndpoint())
                 .subscriptionId(profile.getSubscriptionId())
@@ -270,34 +278,66 @@ public final class HardwareSecurityModulesManager {
     }
 
     /**
-     * Gets the resource collection API of Operations.
+     * Gets the resource collection API of CloudHsmClusters. It manages CloudHsmCluster.
      *
-     * @return Resource collection API of Operations.
+     * @return Resource collection API of CloudHsmClusters.
      */
-    public Operations operations() {
-        if (this.operations == null) {
-            this.operations = new OperationsImpl(clientObject.getOperations(), this);
+    public CloudHsmClusters cloudHsmClusters() {
+        if (this.cloudHsmClusters == null) {
+            this.cloudHsmClusters = new CloudHsmClustersImpl(clientObject.getCloudHsmClusters(), this);
         }
-        return operations;
+        return cloudHsmClusters;
     }
 
     /**
-     * Gets the resource collection API of DedicatedHsms.
+     * Gets the resource collection API of CloudHsmClusterPrivateLinkResources.
      *
-     * @return Resource collection API of DedicatedHsms.
+     * @return Resource collection API of CloudHsmClusterPrivateLinkResources.
      */
-    public DedicatedHsms dedicatedHsms() {
-        if (this.dedicatedHsms == null) {
-            this.dedicatedHsms = new DedicatedHsmsImpl(clientObject.getDedicatedHsms(), this);
+    public CloudHsmClusterPrivateLinkResources cloudHsmClusterPrivateLinkResources() {
+        if (this.cloudHsmClusterPrivateLinkResources == null) {
+            this.cloudHsmClusterPrivateLinkResources =
+                new CloudHsmClusterPrivateLinkResourcesImpl(
+                    clientObject.getCloudHsmClusterPrivateLinkResources(), this);
         }
-        return dedicatedHsms;
+        return cloudHsmClusterPrivateLinkResources;
     }
 
     /**
-     * @return Wrapped service client AzureDedicatedHsmResourceProvider providing direct access to the underlying
-     *     auto-generated API implementation, based on Azure REST API.
+     * Gets the resource collection API of CloudHsmClusterPrivateEndpointConnections. It manages
+     * PrivateEndpointConnection.
+     *
+     * @return Resource collection API of CloudHsmClusterPrivateEndpointConnections.
      */
-    public AzureDedicatedHsmResourceProvider serviceClient() {
+    public CloudHsmClusterPrivateEndpointConnections cloudHsmClusterPrivateEndpointConnections() {
+        if (this.cloudHsmClusterPrivateEndpointConnections == null) {
+            this.cloudHsmClusterPrivateEndpointConnections =
+                new CloudHsmClusterPrivateEndpointConnectionsImpl(
+                    clientObject.getCloudHsmClusterPrivateEndpointConnections(), this);
+        }
+        return cloudHsmClusterPrivateEndpointConnections;
+    }
+
+    /**
+     * Gets the resource collection API of PrivateEndpointConnections.
+     *
+     * @return Resource collection API of PrivateEndpointConnections.
+     */
+    public PrivateEndpointConnections privateEndpointConnections() {
+        if (this.privateEndpointConnections == null) {
+            this.privateEndpointConnections =
+                new PrivateEndpointConnectionsImpl(clientObject.getPrivateEndpointConnections(), this);
+        }
+        return privateEndpointConnections;
+    }
+
+    /**
+     * Gets wrapped service client AzureHsmResourceProvider providing direct access to the underlying auto-generated API
+     * implementation, based on Azure REST API.
+     *
+     * @return Wrapped service client AzureHsmResourceProvider.
+     */
+    public AzureHsmResourceProvider serviceClient() {
         return this.clientObject;
     }
 }
