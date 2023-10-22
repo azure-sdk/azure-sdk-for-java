@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
+import java.util.Map;
 
 /** WebHook activity. */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
@@ -23,6 +24,12 @@ public final class WebhookActivity extends ControlActivity {
     @JsonProperty(value = "typeProperties", required = true)
     private WebhookActivityTypeProperties innerTypeProperties = new WebhookActivityTypeProperties();
 
+    /*
+     * Activity policy.
+     */
+    @JsonProperty(value = "policy")
+    private SecureInputOutputPolicy policy;
+
     /** Creates an instance of WebhookActivity class. */
     public WebhookActivity() {
     }
@@ -34,6 +41,26 @@ public final class WebhookActivity extends ControlActivity {
      */
     private WebhookActivityTypeProperties innerTypeProperties() {
         return this.innerTypeProperties;
+    }
+
+    /**
+     * Get the policy property: Activity policy.
+     *
+     * @return the policy value.
+     */
+    public SecureInputOutputPolicy policy() {
+        return this.policy;
+    }
+
+    /**
+     * Set the policy property: Activity policy.
+     *
+     * @param policy the policy value to set.
+     * @return the WebhookActivity object itself.
+     */
+    public WebhookActivity withPolicy(SecureInputOutputPolicy policy) {
+        this.policy = policy;
+        return this;
     }
 
     /** {@inheritDoc} */
@@ -160,7 +187,7 @@ public final class WebhookActivity extends ControlActivity {
      *
      * @return the headers value.
      */
-    public Object headers() {
+    public Map<String, String> headers() {
         return this.innerTypeProperties() == null ? null : this.innerTypeProperties().headers();
     }
 
@@ -172,7 +199,7 @@ public final class WebhookActivity extends ControlActivity {
      * @param headers the headers value to set.
      * @return the WebhookActivity object itself.
      */
-    public WebhookActivity withHeaders(Object headers) {
+    public WebhookActivity withHeaders(Map<String, String> headers) {
         if (this.innerTypeProperties() == null) {
             this.innerTypeProperties = new WebhookActivityTypeProperties();
         }
@@ -270,6 +297,9 @@ public final class WebhookActivity extends ControlActivity {
                         "Missing required property innerTypeProperties in model WebhookActivity"));
         } else {
             innerTypeProperties().validate();
+        }
+        if (policy() != null) {
+            policy().validate();
         }
     }
 

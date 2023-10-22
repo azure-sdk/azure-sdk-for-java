@@ -11,8 +11,10 @@ import com.azure.resourcemanager.datafactory.models.IntegrationRuntimeReference;
 import com.azure.resourcemanager.datafactory.models.LinkedServiceReference;
 import com.azure.resourcemanager.datafactory.models.WebActivityAuthentication;
 import com.azure.resourcemanager.datafactory.models.WebActivityMethod;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
+import java.util.Map;
 
 /** Web activity type properties. */
 @Fluent
@@ -35,7 +37,8 @@ public final class WebActivityTypeProperties {
      * resultType string).
      */
     @JsonProperty(value = "headers")
-    private Object headers;
+    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
+    private Map<String, String> headers;
 
     /*
      * Represents the payload that will be sent to the endpoint. Required for POST/PUT method, not allowed for GET
@@ -125,7 +128,7 @@ public final class WebActivityTypeProperties {
      *
      * @return the headers value.
      */
-    public Object headers() {
+    public Map<String, String> headers() {
         return this.headers;
     }
 
@@ -137,7 +140,7 @@ public final class WebActivityTypeProperties {
      * @param headers the headers value to set.
      * @return the WebActivityTypeProperties object itself.
      */
-    public WebActivityTypeProperties withHeaders(Object headers) {
+    public WebActivityTypeProperties withHeaders(Map<String, String> headers) {
         this.headers = headers;
         return this;
     }

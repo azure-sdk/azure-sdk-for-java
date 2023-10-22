@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
+import java.util.Map;
 
 /** Web activity. */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
@@ -145,7 +146,7 @@ public final class WebActivity extends ExecutionActivity {
      *
      * @return the headers value.
      */
-    public Object headers() {
+    public Map<String, String> headers() {
         return this.innerTypeProperties() == null ? null : this.innerTypeProperties().headers();
     }
 
@@ -157,7 +158,7 @@ public final class WebActivity extends ExecutionActivity {
      * @param headers the headers value to set.
      * @return the WebActivity object itself.
      */
-    public WebActivity withHeaders(Object headers) {
+    public WebActivity withHeaders(Map<String, String> headers) {
         if (this.innerTypeProperties() == null) {
             this.innerTypeProperties = new WebActivityTypeProperties();
         }
