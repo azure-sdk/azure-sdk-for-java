@@ -31,6 +31,18 @@ public final class ProvisioningState extends ExpandableStringEnum<ProvisioningSt
     /** Static value Deleted for ProvisioningState. */
     public static final ProvisioningState DELETED = fromString("Deleted");
 
+    /** Static value Converging for ProvisioningState. */
+    public static final ProvisioningState CONVERGING = fromString("Converging");
+
+    /**
+     * Creates a new instance of ProvisioningState value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public ProvisioningState() {
+    }
+
     /**
      * Creates or finds a ProvisioningState from its string representation.
      *

@@ -24,27 +24,37 @@ import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.util.Configuration;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.hybridnetwork.fluent.HybridNetworkManagementClient;
-import com.azure.resourcemanager.hybridnetwork.implementation.DevicesImpl;
+import com.azure.resourcemanager.hybridnetwork.implementation.ArtifactManifestsImpl;
+import com.azure.resourcemanager.hybridnetwork.implementation.ArtifactStoresImpl;
+import com.azure.resourcemanager.hybridnetwork.implementation.ComponentsImpl;
+import com.azure.resourcemanager.hybridnetwork.implementation.ConfigurationGroupSchemasImpl;
+import com.azure.resourcemanager.hybridnetwork.implementation.ConfigurationGroupValuesImpl;
 import com.azure.resourcemanager.hybridnetwork.implementation.HybridNetworkManagementClientBuilder;
-import com.azure.resourcemanager.hybridnetwork.implementation.NetworkFunctionVendorSkusImpl;
-import com.azure.resourcemanager.hybridnetwork.implementation.NetworkFunctionVendorsImpl;
+import com.azure.resourcemanager.hybridnetwork.implementation.NetworkFunctionDefinitionGroupsImpl;
+import com.azure.resourcemanager.hybridnetwork.implementation.NetworkFunctionDefinitionVersionsImpl;
 import com.azure.resourcemanager.hybridnetwork.implementation.NetworkFunctionsImpl;
+import com.azure.resourcemanager.hybridnetwork.implementation.NetworkServiceDesignGroupsImpl;
+import com.azure.resourcemanager.hybridnetwork.implementation.NetworkServiceDesignVersionsImpl;
 import com.azure.resourcemanager.hybridnetwork.implementation.OperationsImpl;
-import com.azure.resourcemanager.hybridnetwork.implementation.RoleInstancesImpl;
-import com.azure.resourcemanager.hybridnetwork.implementation.VendorNetworkFunctionsImpl;
-import com.azure.resourcemanager.hybridnetwork.implementation.VendorSkuPreviewsImpl;
-import com.azure.resourcemanager.hybridnetwork.implementation.VendorSkusImpl;
-import com.azure.resourcemanager.hybridnetwork.implementation.VendorsImpl;
-import com.azure.resourcemanager.hybridnetwork.models.Devices;
-import com.azure.resourcemanager.hybridnetwork.models.NetworkFunctionVendorSkus;
-import com.azure.resourcemanager.hybridnetwork.models.NetworkFunctionVendors;
+import com.azure.resourcemanager.hybridnetwork.implementation.ProxyArtifactsImpl;
+import com.azure.resourcemanager.hybridnetwork.implementation.PublishersImpl;
+import com.azure.resourcemanager.hybridnetwork.implementation.SiteNetworkServicesImpl;
+import com.azure.resourcemanager.hybridnetwork.implementation.SitesImpl;
+import com.azure.resourcemanager.hybridnetwork.models.ArtifactManifests;
+import com.azure.resourcemanager.hybridnetwork.models.ArtifactStores;
+import com.azure.resourcemanager.hybridnetwork.models.Components;
+import com.azure.resourcemanager.hybridnetwork.models.ConfigurationGroupSchemas;
+import com.azure.resourcemanager.hybridnetwork.models.ConfigurationGroupValues;
+import com.azure.resourcemanager.hybridnetwork.models.NetworkFunctionDefinitionGroups;
+import com.azure.resourcemanager.hybridnetwork.models.NetworkFunctionDefinitionVersions;
 import com.azure.resourcemanager.hybridnetwork.models.NetworkFunctions;
+import com.azure.resourcemanager.hybridnetwork.models.NetworkServiceDesignGroups;
+import com.azure.resourcemanager.hybridnetwork.models.NetworkServiceDesignVersions;
 import com.azure.resourcemanager.hybridnetwork.models.Operations;
-import com.azure.resourcemanager.hybridnetwork.models.RoleInstances;
-import com.azure.resourcemanager.hybridnetwork.models.VendorNetworkFunctions;
-import com.azure.resourcemanager.hybridnetwork.models.VendorSkuPreviews;
-import com.azure.resourcemanager.hybridnetwork.models.VendorSkus;
-import com.azure.resourcemanager.hybridnetwork.models.Vendors;
+import com.azure.resourcemanager.hybridnetwork.models.ProxyArtifacts;
+import com.azure.resourcemanager.hybridnetwork.models.Publishers;
+import com.azure.resourcemanager.hybridnetwork.models.SiteNetworkServices;
+import com.azure.resourcemanager.hybridnetwork.models.Sites;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -57,25 +67,35 @@ import java.util.stream.Collectors;
  * Network resources.
  */
 public final class HybridNetworkManager {
+    private ConfigurationGroupSchemas configurationGroupSchemas;
+
+    private ConfigurationGroupValues configurationGroupValues;
+
     private NetworkFunctions networkFunctions;
 
-    private Devices devices;
+    private Components components;
+
+    private NetworkFunctionDefinitionGroups networkFunctionDefinitionGroups;
+
+    private NetworkFunctionDefinitionVersions networkFunctionDefinitionVersions;
+
+    private NetworkServiceDesignGroups networkServiceDesignGroups;
+
+    private NetworkServiceDesignVersions networkServiceDesignVersions;
 
     private Operations operations;
 
-    private Vendors vendors;
+    private Publishers publishers;
 
-    private VendorSkus vendorSkus;
+    private ArtifactStores artifactStores;
 
-    private VendorSkuPreviews vendorSkuPreviews;
+    private ArtifactManifests artifactManifests;
 
-    private NetworkFunctionVendors networkFunctionVendors;
+    private ProxyArtifacts proxyArtifacts;
 
-    private NetworkFunctionVendorSkus networkFunctionVendorSkus;
+    private Sites sites;
 
-    private VendorNetworkFunctions vendorNetworkFunctions;
-
-    private RoleInstances roleInstances;
+    private SiteNetworkServices siteNetworkServices;
 
     private final HybridNetworkManagementClient clientObject;
 
@@ -242,7 +262,7 @@ public final class HybridNetworkManager {
                 .append("-")
                 .append("com.azure.resourcemanager.hybridnetwork")
                 .append("/")
-                .append("1.0.0-beta.2");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -300,6 +320,32 @@ public final class HybridNetworkManager {
     }
 
     /**
+     * Gets the resource collection API of ConfigurationGroupSchemas. It manages ConfigurationGroupSchema.
+     *
+     * @return Resource collection API of ConfigurationGroupSchemas.
+     */
+    public ConfigurationGroupSchemas configurationGroupSchemas() {
+        if (this.configurationGroupSchemas == null) {
+            this.configurationGroupSchemas =
+                new ConfigurationGroupSchemasImpl(clientObject.getConfigurationGroupSchemas(), this);
+        }
+        return configurationGroupSchemas;
+    }
+
+    /**
+     * Gets the resource collection API of ConfigurationGroupValues. It manages ConfigurationGroupValue.
+     *
+     * @return Resource collection API of ConfigurationGroupValues.
+     */
+    public ConfigurationGroupValues configurationGroupValues() {
+        if (this.configurationGroupValues == null) {
+            this.configurationGroupValues =
+                new ConfigurationGroupValuesImpl(clientObject.getConfigurationGroupValues(), this);
+        }
+        return configurationGroupValues;
+    }
+
+    /**
      * Gets the resource collection API of NetworkFunctions. It manages NetworkFunction.
      *
      * @return Resource collection API of NetworkFunctions.
@@ -312,15 +358,68 @@ public final class HybridNetworkManager {
     }
 
     /**
-     * Gets the resource collection API of Devices. It manages Device.
+     * Gets the resource collection API of Components.
      *
-     * @return Resource collection API of Devices.
+     * @return Resource collection API of Components.
      */
-    public Devices devices() {
-        if (this.devices == null) {
-            this.devices = new DevicesImpl(clientObject.getDevices(), this);
+    public Components components() {
+        if (this.components == null) {
+            this.components = new ComponentsImpl(clientObject.getComponents(), this);
         }
-        return devices;
+        return components;
+    }
+
+    /**
+     * Gets the resource collection API of NetworkFunctionDefinitionGroups. It manages NetworkFunctionDefinitionGroup.
+     *
+     * @return Resource collection API of NetworkFunctionDefinitionGroups.
+     */
+    public NetworkFunctionDefinitionGroups networkFunctionDefinitionGroups() {
+        if (this.networkFunctionDefinitionGroups == null) {
+            this.networkFunctionDefinitionGroups =
+                new NetworkFunctionDefinitionGroupsImpl(clientObject.getNetworkFunctionDefinitionGroups(), this);
+        }
+        return networkFunctionDefinitionGroups;
+    }
+
+    /**
+     * Gets the resource collection API of NetworkFunctionDefinitionVersions. It manages
+     * NetworkFunctionDefinitionVersion.
+     *
+     * @return Resource collection API of NetworkFunctionDefinitionVersions.
+     */
+    public NetworkFunctionDefinitionVersions networkFunctionDefinitionVersions() {
+        if (this.networkFunctionDefinitionVersions == null) {
+            this.networkFunctionDefinitionVersions =
+                new NetworkFunctionDefinitionVersionsImpl(clientObject.getNetworkFunctionDefinitionVersions(), this);
+        }
+        return networkFunctionDefinitionVersions;
+    }
+
+    /**
+     * Gets the resource collection API of NetworkServiceDesignGroups. It manages NetworkServiceDesignGroup.
+     *
+     * @return Resource collection API of NetworkServiceDesignGroups.
+     */
+    public NetworkServiceDesignGroups networkServiceDesignGroups() {
+        if (this.networkServiceDesignGroups == null) {
+            this.networkServiceDesignGroups =
+                new NetworkServiceDesignGroupsImpl(clientObject.getNetworkServiceDesignGroups(), this);
+        }
+        return networkServiceDesignGroups;
+    }
+
+    /**
+     * Gets the resource collection API of NetworkServiceDesignVersions. It manages NetworkServiceDesignVersion.
+     *
+     * @return Resource collection API of NetworkServiceDesignVersions.
+     */
+    public NetworkServiceDesignVersions networkServiceDesignVersions() {
+        if (this.networkServiceDesignVersions == null) {
+            this.networkServiceDesignVersions =
+                new NetworkServiceDesignVersionsImpl(clientObject.getNetworkServiceDesignVersions(), this);
+        }
+        return networkServiceDesignVersions;
     }
 
     /**
@@ -336,95 +435,82 @@ public final class HybridNetworkManager {
     }
 
     /**
-     * Gets the resource collection API of Vendors. It manages Vendor.
+     * Gets the resource collection API of Publishers. It manages Publisher.
      *
-     * @return Resource collection API of Vendors.
+     * @return Resource collection API of Publishers.
      */
-    public Vendors vendors() {
-        if (this.vendors == null) {
-            this.vendors = new VendorsImpl(clientObject.getVendors(), this);
+    public Publishers publishers() {
+        if (this.publishers == null) {
+            this.publishers = new PublishersImpl(clientObject.getPublishers(), this);
         }
-        return vendors;
+        return publishers;
     }
 
     /**
-     * Gets the resource collection API of VendorSkus. It manages VendorSku.
+     * Gets the resource collection API of ArtifactStores. It manages ArtifactStore.
      *
-     * @return Resource collection API of VendorSkus.
+     * @return Resource collection API of ArtifactStores.
      */
-    public VendorSkus vendorSkus() {
-        if (this.vendorSkus == null) {
-            this.vendorSkus = new VendorSkusImpl(clientObject.getVendorSkus(), this);
+    public ArtifactStores artifactStores() {
+        if (this.artifactStores == null) {
+            this.artifactStores = new ArtifactStoresImpl(clientObject.getArtifactStores(), this);
         }
-        return vendorSkus;
+        return artifactStores;
     }
 
     /**
-     * Gets the resource collection API of VendorSkuPreviews. It manages PreviewSubscription.
+     * Gets the resource collection API of ArtifactManifests. It manages ArtifactManifest.
      *
-     * @return Resource collection API of VendorSkuPreviews.
+     * @return Resource collection API of ArtifactManifests.
      */
-    public VendorSkuPreviews vendorSkuPreviews() {
-        if (this.vendorSkuPreviews == null) {
-            this.vendorSkuPreviews = new VendorSkuPreviewsImpl(clientObject.getVendorSkuPreviews(), this);
+    public ArtifactManifests artifactManifests() {
+        if (this.artifactManifests == null) {
+            this.artifactManifests = new ArtifactManifestsImpl(clientObject.getArtifactManifests(), this);
         }
-        return vendorSkuPreviews;
+        return artifactManifests;
     }
 
     /**
-     * Gets the resource collection API of NetworkFunctionVendors.
+     * Gets the resource collection API of ProxyArtifacts.
      *
-     * @return Resource collection API of NetworkFunctionVendors.
+     * @return Resource collection API of ProxyArtifacts.
      */
-    public NetworkFunctionVendors networkFunctionVendors() {
-        if (this.networkFunctionVendors == null) {
-            this.networkFunctionVendors =
-                new NetworkFunctionVendorsImpl(clientObject.getNetworkFunctionVendors(), this);
+    public ProxyArtifacts proxyArtifacts() {
+        if (this.proxyArtifacts == null) {
+            this.proxyArtifacts = new ProxyArtifactsImpl(clientObject.getProxyArtifacts(), this);
         }
-        return networkFunctionVendors;
+        return proxyArtifacts;
     }
 
     /**
-     * Gets the resource collection API of NetworkFunctionVendorSkus.
+     * Gets the resource collection API of Sites. It manages Site.
      *
-     * @return Resource collection API of NetworkFunctionVendorSkus.
+     * @return Resource collection API of Sites.
      */
-    public NetworkFunctionVendorSkus networkFunctionVendorSkus() {
-        if (this.networkFunctionVendorSkus == null) {
-            this.networkFunctionVendorSkus =
-                new NetworkFunctionVendorSkusImpl(clientObject.getNetworkFunctionVendorSkus(), this);
+    public Sites sites() {
+        if (this.sites == null) {
+            this.sites = new SitesImpl(clientObject.getSites(), this);
         }
-        return networkFunctionVendorSkus;
+        return sites;
     }
 
     /**
-     * Gets the resource collection API of VendorNetworkFunctions. It manages VendorNetworkFunction.
+     * Gets the resource collection API of SiteNetworkServices. It manages SiteNetworkService.
      *
-     * @return Resource collection API of VendorNetworkFunctions.
+     * @return Resource collection API of SiteNetworkServices.
      */
-    public VendorNetworkFunctions vendorNetworkFunctions() {
-        if (this.vendorNetworkFunctions == null) {
-            this.vendorNetworkFunctions =
-                new VendorNetworkFunctionsImpl(clientObject.getVendorNetworkFunctions(), this);
+    public SiteNetworkServices siteNetworkServices() {
+        if (this.siteNetworkServices == null) {
+            this.siteNetworkServices = new SiteNetworkServicesImpl(clientObject.getSiteNetworkServices(), this);
         }
-        return vendorNetworkFunctions;
+        return siteNetworkServices;
     }
 
     /**
-     * Gets the resource collection API of RoleInstances.
+     * Gets wrapped service client HybridNetworkManagementClient providing direct access to the underlying
+     * auto-generated API implementation, based on Azure REST API.
      *
-     * @return Resource collection API of RoleInstances.
-     */
-    public RoleInstances roleInstances() {
-        if (this.roleInstances == null) {
-            this.roleInstances = new RoleInstancesImpl(clientObject.getRoleInstances(), this);
-        }
-        return roleInstances;
-    }
-
-    /**
-     * @return Wrapped service client HybridNetworkManagementClient providing direct access to the underlying
-     *     auto-generated API implementation, based on Azure REST API.
+     * @return Wrapped service client HybridNetworkManagementClient.
      */
     public HybridNetworkManagementClient serviceClient() {
         return this.clientObject;
