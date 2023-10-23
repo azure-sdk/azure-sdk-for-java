@@ -33,11 +33,14 @@ import com.azure.resourcemanager.mysqlflexibleserver.fluent.DatabasesClient;
 import com.azure.resourcemanager.mysqlflexibleserver.fluent.FirewallRulesClient;
 import com.azure.resourcemanager.mysqlflexibleserver.fluent.GetPrivateDnsZoneSuffixesClient;
 import com.azure.resourcemanager.mysqlflexibleserver.fluent.LocationBasedCapabilitiesClient;
+import com.azure.resourcemanager.mysqlflexibleserver.fluent.LocationBasedCapabilitySetsClient;
 import com.azure.resourcemanager.mysqlflexibleserver.fluent.LogFilesClient;
 import com.azure.resourcemanager.mysqlflexibleserver.fluent.MySqlManagementClient;
+import com.azure.resourcemanager.mysqlflexibleserver.fluent.OperationResultsClient;
 import com.azure.resourcemanager.mysqlflexibleserver.fluent.OperationsClient;
 import com.azure.resourcemanager.mysqlflexibleserver.fluent.ReplicasClient;
 import com.azure.resourcemanager.mysqlflexibleserver.fluent.ServersClient;
+import com.azure.resourcemanager.mysqlflexibleserver.fluent.ServersMigrationsClient;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.nio.ByteBuffer;
@@ -50,11 +53,11 @@ import reactor.core.publisher.Mono;
 /** Initializes a new instance of the MySqlManagementClientImpl type. */
 @ServiceClient(builder = MySqlManagementClientBuilder.class)
 public final class MySqlManagementClientImpl implements MySqlManagementClient {
-    /** The ID of the target subscription. */
+    /** The ID of the target subscription. The value must be an UUID. */
     private final String subscriptionId;
 
     /**
-     * Gets The ID of the target subscription.
+     * Gets The ID of the target subscription. The value must be an UUID.
      *
      * @return the subscriptionId value.
      */
@@ -72,6 +75,18 @@ public final class MySqlManagementClientImpl implements MySqlManagementClient {
      */
     public String getEndpoint() {
         return this.endpoint;
+    }
+
+    /** Api Version. */
+    private final String apiVersion;
+
+    /**
+     * Gets Api Version.
+     *
+     * @return the apiVersion value.
+     */
+    public String getApiVersion() {
+        return this.apiVersion;
     }
 
     /** The HTTP pipeline to send requests through. */
@@ -206,6 +221,18 @@ public final class MySqlManagementClientImpl implements MySqlManagementClient {
         return this.replicas;
     }
 
+    /** The ServersMigrationsClient object to access its operations. */
+    private final ServersMigrationsClient serversMigrations;
+
+    /**
+     * Gets the ServersMigrationsClient object to access its operations.
+     *
+     * @return the ServersMigrationsClient object.
+     */
+    public ServersMigrationsClient getServersMigrations() {
+        return this.serversMigrations;
+    }
+
     /** The LogFilesClient object to access its operations. */
     private final LogFilesClient logFiles;
 
@@ -228,6 +255,18 @@ public final class MySqlManagementClientImpl implements MySqlManagementClient {
      */
     public LocationBasedCapabilitiesClient getLocationBasedCapabilities() {
         return this.locationBasedCapabilities;
+    }
+
+    /** The LocationBasedCapabilitySetsClient object to access its operations. */
+    private final LocationBasedCapabilitySetsClient locationBasedCapabilitySets;
+
+    /**
+     * Gets the LocationBasedCapabilitySetsClient object to access its operations.
+     *
+     * @return the LocationBasedCapabilitySetsClient object.
+     */
+    public LocationBasedCapabilitySetsClient getLocationBasedCapabilitySets() {
+        return this.locationBasedCapabilitySets;
     }
 
     /** The CheckVirtualNetworkSubnetUsagesClient object to access its operations. */
@@ -266,6 +305,18 @@ public final class MySqlManagementClientImpl implements MySqlManagementClient {
         return this.checkNameAvailabilityWithoutLocations;
     }
 
+    /** The OperationResultsClient object to access its operations. */
+    private final OperationResultsClient operationResults;
+
+    /**
+     * Gets the OperationResultsClient object to access its operations.
+     *
+     * @return the OperationResultsClient object.
+     */
+    public OperationResultsClient getOperationResults() {
+        return this.operationResults;
+    }
+
     /** The GetPrivateDnsZoneSuffixesClient object to access its operations. */
     private final GetPrivateDnsZoneSuffixesClient getPrivateDnsZoneSuffixes;
 
@@ -297,7 +348,7 @@ public final class MySqlManagementClientImpl implements MySqlManagementClient {
      * @param serializerAdapter The serializer to serialize an object into a string.
      * @param defaultPollInterval The default poll interval for long-running operation.
      * @param environment The Azure environment.
-     * @param subscriptionId The ID of the target subscription.
+     * @param subscriptionId The ID of the target subscription. The value must be an UUID.
      * @param endpoint server parameter.
      */
     MySqlManagementClientImpl(
@@ -312,6 +363,7 @@ public final class MySqlManagementClientImpl implements MySqlManagementClient {
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
+        this.apiVersion = "2023-06-30";
         this.azureADAdministrators = new AzureADAdministratorsClientImpl(this);
         this.backups = new BackupsClientImpl(this);
         this.backupAndExports = new BackupAndExportsClientImpl(this);
@@ -320,11 +372,14 @@ public final class MySqlManagementClientImpl implements MySqlManagementClient {
         this.firewallRules = new FirewallRulesClientImpl(this);
         this.servers = new ServersClientImpl(this);
         this.replicas = new ReplicasClientImpl(this);
+        this.serversMigrations = new ServersMigrationsClientImpl(this);
         this.logFiles = new LogFilesClientImpl(this);
         this.locationBasedCapabilities = new LocationBasedCapabilitiesClientImpl(this);
+        this.locationBasedCapabilitySets = new LocationBasedCapabilitySetsClientImpl(this);
         this.checkVirtualNetworkSubnetUsages = new CheckVirtualNetworkSubnetUsagesClientImpl(this);
         this.checkNameAvailabilities = new CheckNameAvailabilitiesClientImpl(this);
         this.checkNameAvailabilityWithoutLocations = new CheckNameAvailabilityWithoutLocationsClientImpl(this);
+        this.operationResults = new OperationResultsClientImpl(this);
         this.getPrivateDnsZoneSuffixes = new GetPrivateDnsZoneSuffixesClientImpl(this);
         this.operations = new OperationsClientImpl(this);
     }
