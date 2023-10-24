@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.securitydevops.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for GitHubConnector List. */
 public final class GitHubConnectorListSamples {
     /*
@@ -18,6 +16,6 @@ public final class GitHubConnectorListSamples {
      */
     public static void gitHubConnectorListBySubscription(
         com.azure.resourcemanager.securitydevops.SecurityDevOpsManager manager) {
-        manager.gitHubConnectors().list(Context.NONE);
+        manager.gitHubConnectors().list(com.azure.core.util.Context.NONE);
     }
 }

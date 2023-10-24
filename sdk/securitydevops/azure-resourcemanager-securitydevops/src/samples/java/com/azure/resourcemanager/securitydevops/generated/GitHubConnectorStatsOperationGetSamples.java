@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.securitydevops.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for GitHubConnectorStatsOperation Get. */
 public final class GitHubConnectorStatsOperationGetSamples {
     /*
@@ -17,6 +15,8 @@ public final class GitHubConnectorStatsOperationGetSamples {
      * @param manager Entry point to SecurityDevOpsManager.
      */
     public static void gitHubConnectorStatsGet(com.azure.resourcemanager.securitydevops.SecurityDevOpsManager manager) {
-        manager.gitHubConnectorStatsOperations().getWithResponse("westusrg", "testconnector", Context.NONE);
+        manager
+            .gitHubConnectorStatsOperations()
+            .getWithResponse("westusrg", "testconnector", com.azure.core.util.Context.NONE);
     }
 }

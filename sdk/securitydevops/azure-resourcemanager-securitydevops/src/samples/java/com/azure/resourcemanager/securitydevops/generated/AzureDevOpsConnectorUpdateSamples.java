@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.securitydevops.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.securitydevops.models.AzureDevOpsConnector;
 import java.util.HashMap;
 import java.util.Map;
@@ -24,11 +23,12 @@ public final class AzureDevOpsConnectorUpdateSamples {
         AzureDevOpsConnector resource =
             manager
                 .azureDevOpsConnectors()
-                .getByResourceGroupWithResponse("westusrg", "testconnector", Context.NONE)
+                .getByResourceGroupWithResponse("westusrg", "testconnector", com.azure.core.util.Context.NONE)
                 .getValue();
         resource.update().withTags(mapOf("client", "dev-client", "env", "dev")).apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

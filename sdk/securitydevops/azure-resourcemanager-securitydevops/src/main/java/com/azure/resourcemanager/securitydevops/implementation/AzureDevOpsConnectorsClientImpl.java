@@ -65,11 +65,10 @@ public final class AzureDevOpsConnectorsClientImpl implements AzureDevOpsConnect
      */
     @Host("{$host}")
     @ServiceInterface(name = "MicrosoftSecurityDev")
-    private interface AzureDevOpsConnectorsService {
+    public interface AzureDevOpsConnectorsService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SecurityDevOps"
-                + "/azureDevOpsConnectors")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SecurityDevOps/azureDevOpsConnectors")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<AzureDevOpsConnectorListResponse>> listByResourceGroup(
@@ -82,8 +81,7 @@ public final class AzureDevOpsConnectorsClientImpl implements AzureDevOpsConnect
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SecurityDevOps"
-                + "/azureDevOpsConnectors/{azureDevOpsConnectorName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SecurityDevOps/azureDevOpsConnectors/{azureDevOpsConnectorName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<AzureDevOpsConnectorInner>> getByResourceGroup(
@@ -97,8 +95,7 @@ public final class AzureDevOpsConnectorsClientImpl implements AzureDevOpsConnect
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SecurityDevOps"
-                + "/azureDevOpsConnectors/{azureDevOpsConnectorName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SecurityDevOps/azureDevOpsConnectors/{azureDevOpsConnectorName}")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
@@ -113,8 +110,7 @@ public final class AzureDevOpsConnectorsClientImpl implements AzureDevOpsConnect
 
         @Headers({"Content-Type: application/json"})
         @Patch(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SecurityDevOps"
-                + "/azureDevOpsConnectors/{azureDevOpsConnectorName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SecurityDevOps/azureDevOpsConnectors/{azureDevOpsConnectorName}")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> update(
@@ -129,8 +125,7 @@ public final class AzureDevOpsConnectorsClientImpl implements AzureDevOpsConnect
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SecurityDevOps"
-                + "/azureDevOpsConnectors/{azureDevOpsConnectorName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SecurityDevOps/azureDevOpsConnectors/{azureDevOpsConnectorName}")
         @ExpectedResponses({200, 202, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(
@@ -673,7 +668,8 @@ public final class AzureDevOpsConnectorsClientImpl implements AzureDevOpsConnect
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<AzureDevOpsConnectorInner>, AzureDevOpsConnectorInner> beginCreateOrUpdate(
         String resourceGroupName, String azureDevOpsConnectorName, AzureDevOpsConnectorInner azureDevOpsConnector) {
-        return beginCreateOrUpdateAsync(resourceGroupName, azureDevOpsConnectorName, azureDevOpsConnector)
+        return this
+            .beginCreateOrUpdateAsync(resourceGroupName, azureDevOpsConnectorName, azureDevOpsConnector)
             .getSyncPoller();
     }
 
@@ -695,7 +691,8 @@ public final class AzureDevOpsConnectorsClientImpl implements AzureDevOpsConnect
         String azureDevOpsConnectorName,
         AzureDevOpsConnectorInner azureDevOpsConnector,
         Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, azureDevOpsConnectorName, azureDevOpsConnector, context)
+        return this
+            .beginCreateOrUpdateAsync(resourceGroupName, azureDevOpsConnectorName, azureDevOpsConnector, context)
             .getSyncPoller();
     }
 
@@ -987,7 +984,7 @@ public final class AzureDevOpsConnectorsClientImpl implements AzureDevOpsConnect
     public SyncPoller<PollResult<AzureDevOpsConnectorInner>, AzureDevOpsConnectorInner> beginUpdate(
         String resourceGroupName, String azureDevOpsConnectorName) {
         final AzureDevOpsConnectorInner azureDevOpsConnector = null;
-        return beginUpdateAsync(resourceGroupName, azureDevOpsConnectorName, azureDevOpsConnector).getSyncPoller();
+        return this.beginUpdateAsync(resourceGroupName, azureDevOpsConnectorName, azureDevOpsConnector).getSyncPoller();
     }
 
     /**
@@ -1008,7 +1005,8 @@ public final class AzureDevOpsConnectorsClientImpl implements AzureDevOpsConnect
         String azureDevOpsConnectorName,
         AzureDevOpsConnectorInner azureDevOpsConnector,
         Context context) {
-        return beginUpdateAsync(resourceGroupName, azureDevOpsConnectorName, azureDevOpsConnector, context)
+        return this
+            .beginUpdateAsync(resourceGroupName, azureDevOpsConnectorName, azureDevOpsConnector, context)
             .getSyncPoller();
     }
 
@@ -1261,7 +1259,7 @@ public final class AzureDevOpsConnectorsClientImpl implements AzureDevOpsConnect
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String azureDevOpsConnectorName) {
-        return beginDeleteAsync(resourceGroupName, azureDevOpsConnectorName).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, azureDevOpsConnectorName).getSyncPoller();
     }
 
     /**
@@ -1278,7 +1276,7 @@ public final class AzureDevOpsConnectorsClientImpl implements AzureDevOpsConnect
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String azureDevOpsConnectorName, Context context) {
-        return beginDeleteAsync(resourceGroupName, azureDevOpsConnectorName, context).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, azureDevOpsConnectorName, context).getSyncPoller();
     }
 
     /**
