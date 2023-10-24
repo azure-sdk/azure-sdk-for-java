@@ -18,16 +18,22 @@ public final class NotebookResourceInfoInner {
     private String fqdn;
 
     /*
-     * the data plane resourceId that used to initialize notebook component
+     * The isPrivateLinkEnabled property.
      */
-    @JsonProperty(value = "resourceId")
-    private String resourceId;
+    @JsonProperty(value = "isPrivateLinkEnabled")
+    private Boolean isPrivateLinkEnabled;
 
     /*
      * The error that occurs when preparing notebook.
      */
     @JsonProperty(value = "notebookPreparationError")
     private NotebookPreparationError notebookPreparationError;
+
+    /*
+     * the data plane resourceId that used to initialize notebook component
+     */
+    @JsonProperty(value = "resourceId")
+    private String resourceId;
 
     /** Creates an instance of NotebookResourceInfoInner class. */
     public NotebookResourceInfoInner() {
@@ -54,22 +60,22 @@ public final class NotebookResourceInfoInner {
     }
 
     /**
-     * Get the resourceId property: the data plane resourceId that used to initialize notebook component.
+     * Get the isPrivateLinkEnabled property: The isPrivateLinkEnabled property.
      *
-     * @return the resourceId value.
+     * @return the isPrivateLinkEnabled value.
      */
-    public String resourceId() {
-        return this.resourceId;
+    public Boolean isPrivateLinkEnabled() {
+        return this.isPrivateLinkEnabled;
     }
 
     /**
-     * Set the resourceId property: the data plane resourceId that used to initialize notebook component.
+     * Set the isPrivateLinkEnabled property: The isPrivateLinkEnabled property.
      *
-     * @param resourceId the resourceId value to set.
+     * @param isPrivateLinkEnabled the isPrivateLinkEnabled value to set.
      * @return the NotebookResourceInfoInner object itself.
      */
-    public NotebookResourceInfoInner withResourceId(String resourceId) {
-        this.resourceId = resourceId;
+    public NotebookResourceInfoInner withIsPrivateLinkEnabled(Boolean isPrivateLinkEnabled) {
+        this.isPrivateLinkEnabled = isPrivateLinkEnabled;
         return this;
     }
 
@@ -90,6 +96,26 @@ public final class NotebookResourceInfoInner {
      */
     public NotebookResourceInfoInner withNotebookPreparationError(NotebookPreparationError notebookPreparationError) {
         this.notebookPreparationError = notebookPreparationError;
+        return this;
+    }
+
+    /**
+     * Get the resourceId property: the data plane resourceId that used to initialize notebook component.
+     *
+     * @return the resourceId value.
+     */
+    public String resourceId() {
+        return this.resourceId;
+    }
+
+    /**
+     * Set the resourceId property: the data plane resourceId that used to initialize notebook component.
+     *
+     * @param resourceId the resourceId value to set.
+     * @return the NotebookResourceInfoInner object itself.
+     */
+    public NotebookResourceInfoInner withResourceId(String resourceId) {
+        this.resourceId = resourceId;
         return this;
     }
 
