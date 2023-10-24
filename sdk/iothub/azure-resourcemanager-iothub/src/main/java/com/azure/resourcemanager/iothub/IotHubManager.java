@@ -28,6 +28,7 @@ import com.azure.resourcemanager.iothub.implementation.CertificatesImpl;
 import com.azure.resourcemanager.iothub.implementation.IotHubClientBuilder;
 import com.azure.resourcemanager.iothub.implementation.IotHubResourcesImpl;
 import com.azure.resourcemanager.iothub.implementation.IotHubsImpl;
+import com.azure.resourcemanager.iothub.implementation.NetworkSecurityPerimeterConfigurationsImpl;
 import com.azure.resourcemanager.iothub.implementation.OperationsImpl;
 import com.azure.resourcemanager.iothub.implementation.PrivateEndpointConnectionsImpl;
 import com.azure.resourcemanager.iothub.implementation.PrivateLinkResourcesOperationsImpl;
@@ -35,6 +36,7 @@ import com.azure.resourcemanager.iothub.implementation.ResourceProviderCommonsIm
 import com.azure.resourcemanager.iothub.models.Certificates;
 import com.azure.resourcemanager.iothub.models.IotHubResources;
 import com.azure.resourcemanager.iothub.models.IotHubs;
+import com.azure.resourcemanager.iothub.models.NetworkSecurityPerimeterConfigurations;
 import com.azure.resourcemanager.iothub.models.Operations;
 import com.azure.resourcemanager.iothub.models.PrivateEndpointConnections;
 import com.azure.resourcemanager.iothub.models.PrivateLinkResourcesOperations;
@@ -61,6 +63,8 @@ public final class IotHubManager {
     private PrivateLinkResourcesOperations privateLinkResourcesOperations;
 
     private PrivateEndpointConnections privateEndpointConnections;
+
+    private NetworkSecurityPerimeterConfigurations networkSecurityPerimeterConfigurations;
 
     private final IotHubClient clientObject;
 
@@ -227,7 +231,7 @@ public final class IotHubManager {
                 .append("-")
                 .append("com.azure.resourcemanager.iothub")
                 .append("/")
-                .append("1.2.0");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -369,6 +373,20 @@ public final class IotHubManager {
                 new PrivateEndpointConnectionsImpl(clientObject.getPrivateEndpointConnections(), this);
         }
         return privateEndpointConnections;
+    }
+
+    /**
+     * Gets the resource collection API of NetworkSecurityPerimeterConfigurations.
+     *
+     * @return Resource collection API of NetworkSecurityPerimeterConfigurations.
+     */
+    public NetworkSecurityPerimeterConfigurations networkSecurityPerimeterConfigurations() {
+        if (this.networkSecurityPerimeterConfigurations == null) {
+            this.networkSecurityPerimeterConfigurations =
+                new NetworkSecurityPerimeterConfigurationsImpl(
+                    clientObject.getNetworkSecurityPerimeterConfigurations(), this);
+        }
+        return networkSecurityPerimeterConfigurations;
     }
 
     /**

@@ -32,8 +32,8 @@ public final class RoutingProperties {
 
     /*
      * The properties of the route that is used as a fall-back route when none of the conditions specified in the
-     * 'routes' section are met. This is an optional parameter. When this property is not present in the template, the
-     * fallback route is disabled by default.
+     * 'routes' section are met. This is an optional parameter. When this property is not set, the messages which do
+     * not meet any of the conditions specified in the 'routes' section get routed to the built-in eventhub endpoint.
      */
     @JsonProperty(value = "fallbackRoute")
     private FallbackRouteProperties fallbackRoute;
@@ -100,7 +100,8 @@ public final class RoutingProperties {
     /**
      * Get the fallbackRoute property: The properties of the route that is used as a fall-back route when none of the
      * conditions specified in the 'routes' section are met. This is an optional parameter. When this property is not
-     * present in the template, the fallback route is disabled by default.
+     * set, the messages which do not meet any of the conditions specified in the 'routes' section get routed to the
+     * built-in eventhub endpoint.
      *
      * @return the fallbackRoute value.
      */
@@ -111,7 +112,8 @@ public final class RoutingProperties {
     /**
      * Set the fallbackRoute property: The properties of the route that is used as a fall-back route when none of the
      * conditions specified in the 'routes' section are met. This is an optional parameter. When this property is not
-     * present in the template, the fallback route is disabled by default.
+     * set, the messages which do not meet any of the conditions specified in the 'routes' section get routed to the
+     * built-in eventhub endpoint.
      *
      * @param fallbackRoute the fallbackRoute value to set.
      * @return the RoutingProperties object itself.

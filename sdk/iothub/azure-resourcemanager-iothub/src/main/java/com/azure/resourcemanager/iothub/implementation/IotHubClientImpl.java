@@ -26,6 +26,7 @@ import com.azure.resourcemanager.iothub.fluent.CertificatesClient;
 import com.azure.resourcemanager.iothub.fluent.IotHubClient;
 import com.azure.resourcemanager.iothub.fluent.IotHubResourcesClient;
 import com.azure.resourcemanager.iothub.fluent.IotHubsClient;
+import com.azure.resourcemanager.iothub.fluent.NetworkSecurityPerimeterConfigurationsClient;
 import com.azure.resourcemanager.iothub.fluent.OperationsClient;
 import com.azure.resourcemanager.iothub.fluent.PrivateEndpointConnectionsClient;
 import com.azure.resourcemanager.iothub.fluent.PrivateLinkResourcesOperationsClient;
@@ -198,6 +199,18 @@ public final class IotHubClientImpl implements IotHubClient {
         return this.privateEndpointConnections;
     }
 
+    /** The NetworkSecurityPerimeterConfigurationsClient object to access its operations. */
+    private final NetworkSecurityPerimeterConfigurationsClient networkSecurityPerimeterConfigurations;
+
+    /**
+     * Gets the NetworkSecurityPerimeterConfigurationsClient object to access its operations.
+     *
+     * @return the NetworkSecurityPerimeterConfigurationsClient object.
+     */
+    public NetworkSecurityPerimeterConfigurationsClient getNetworkSecurityPerimeterConfigurations() {
+        return this.networkSecurityPerimeterConfigurations;
+    }
+
     /**
      * Initializes an instance of IotHubClient client.
      *
@@ -220,7 +233,7 @@ public final class IotHubClientImpl implements IotHubClient {
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2023-06-30";
+        this.apiVersion = "2023-07-15-preview";
         this.operations = new OperationsClientImpl(this);
         this.iotHubResources = new IotHubResourcesClientImpl(this);
         this.resourceProviderCommons = new ResourceProviderCommonsClientImpl(this);
@@ -228,6 +241,7 @@ public final class IotHubClientImpl implements IotHubClient {
         this.iotHubs = new IotHubsClientImpl(this);
         this.privateLinkResourcesOperations = new PrivateLinkResourcesOperationsClientImpl(this);
         this.privateEndpointConnections = new PrivateEndpointConnectionsClientImpl(this);
+        this.networkSecurityPerimeterConfigurations = new NetworkSecurityPerimeterConfigurationsClientImpl(this);
     }
 
     /**

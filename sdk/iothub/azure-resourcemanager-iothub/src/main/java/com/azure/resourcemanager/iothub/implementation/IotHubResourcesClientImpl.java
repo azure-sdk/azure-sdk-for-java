@@ -662,8 +662,7 @@ public final class IotHubResourcesClientImpl implements IotHubResourcesClient {
      *
      * <p>Create or update the metadata of an Iot hub. The usual pattern to modify a property is to retrieve the IoT hub
      * metadata and security metadata, and then combine them with the modified values in a new body to update the IoT
-     * hub. If certain properties are missing in the JSON, updating IoT Hub may cause these values to fallback to
-     * default, which may lead to unexpected behavior.
+     * hub.
      *
      * @param resourceGroupName The name of the resource group that contains the IoT hub.
      * @param resourceName The name of the IoT hub.
@@ -726,8 +725,7 @@ public final class IotHubResourcesClientImpl implements IotHubResourcesClient {
      *
      * <p>Create or update the metadata of an Iot hub. The usual pattern to modify a property is to retrieve the IoT hub
      * metadata and security metadata, and then combine them with the modified values in a new body to update the IoT
-     * hub. If certain properties are missing in the JSON, updating IoT Hub may cause these values to fallback to
-     * default, which may lead to unexpected behavior.
+     * hub.
      *
      * @param resourceGroupName The name of the resource group that contains the IoT hub.
      * @param resourceName The name of the IoT hub.
@@ -792,8 +790,7 @@ public final class IotHubResourcesClientImpl implements IotHubResourcesClient {
      *
      * <p>Create or update the metadata of an Iot hub. The usual pattern to modify a property is to retrieve the IoT hub
      * metadata and security metadata, and then combine them with the modified values in a new body to update the IoT
-     * hub. If certain properties are missing in the JSON, updating IoT Hub may cause these values to fallback to
-     * default, which may lead to unexpected behavior.
+     * hub.
      *
      * @param resourceGroupName The name of the resource group that contains the IoT hub.
      * @param resourceName The name of the IoT hub.
@@ -825,8 +822,7 @@ public final class IotHubResourcesClientImpl implements IotHubResourcesClient {
      *
      * <p>Create or update the metadata of an Iot hub. The usual pattern to modify a property is to retrieve the IoT hub
      * metadata and security metadata, and then combine them with the modified values in a new body to update the IoT
-     * hub. If certain properties are missing in the JSON, updating IoT Hub may cause these values to fallback to
-     * default, which may lead to unexpected behavior.
+     * hub.
      *
      * @param resourceGroupName The name of the resource group that contains the IoT hub.
      * @param resourceName The name of the IoT hub.
@@ -857,8 +853,7 @@ public final class IotHubResourcesClientImpl implements IotHubResourcesClient {
      *
      * <p>Create or update the metadata of an Iot hub. The usual pattern to modify a property is to retrieve the IoT hub
      * metadata and security metadata, and then combine them with the modified values in a new body to update the IoT
-     * hub. If certain properties are missing in the JSON, updating IoT Hub may cause these values to fallback to
-     * default, which may lead to unexpected behavior.
+     * hub.
      *
      * @param resourceGroupName The name of the resource group that contains the IoT hub.
      * @param resourceName The name of the IoT hub.
@@ -896,8 +891,7 @@ public final class IotHubResourcesClientImpl implements IotHubResourcesClient {
      *
      * <p>Create or update the metadata of an Iot hub. The usual pattern to modify a property is to retrieve the IoT hub
      * metadata and security metadata, and then combine them with the modified values in a new body to update the IoT
-     * hub. If certain properties are missing in the JSON, updating IoT Hub may cause these values to fallback to
-     * default, which may lead to unexpected behavior.
+     * hub.
      *
      * @param resourceGroupName The name of the resource group that contains the IoT hub.
      * @param resourceName The name of the IoT hub.
@@ -921,8 +915,7 @@ public final class IotHubResourcesClientImpl implements IotHubResourcesClient {
      *
      * <p>Create or update the metadata of an Iot hub. The usual pattern to modify a property is to retrieve the IoT hub
      * metadata and security metadata, and then combine them with the modified values in a new body to update the IoT
-     * hub. If certain properties are missing in the JSON, updating IoT Hub may cause these values to fallback to
-     * default, which may lead to unexpected behavior.
+     * hub.
      *
      * @param resourceGroupName The name of the resource group that contains the IoT hub.
      * @param resourceName The name of the IoT hub.
@@ -952,8 +945,7 @@ public final class IotHubResourcesClientImpl implements IotHubResourcesClient {
      *
      * <p>Create or update the metadata of an Iot hub. The usual pattern to modify a property is to retrieve the IoT hub
      * metadata and security metadata, and then combine them with the modified values in a new body to update the IoT
-     * hub. If certain properties are missing in the JSON, updating IoT Hub may cause these values to fallback to
-     * default, which may lead to unexpected behavior.
+     * hub.
      *
      * @param resourceGroupName The name of the resource group that contains the IoT hub.
      * @param resourceName The name of the IoT hub.
@@ -978,8 +970,7 @@ public final class IotHubResourcesClientImpl implements IotHubResourcesClient {
      *
      * <p>Create or update the metadata of an Iot hub. The usual pattern to modify a property is to retrieve the IoT hub
      * metadata and security metadata, and then combine them with the modified values in a new body to update the IoT
-     * hub. If certain properties are missing in the JSON, updating IoT Hub may cause these values to fallback to
-     * default, which may lead to unexpected behavior.
+     * hub.
      *
      * @param resourceGroupName The name of the resource group that contains the IoT hub.
      * @param resourceName The name of the IoT hub.
@@ -1003,8 +994,7 @@ public final class IotHubResourcesClientImpl implements IotHubResourcesClient {
      *
      * <p>Create or update the metadata of an Iot hub. The usual pattern to modify a property is to retrieve the IoT hub
      * metadata and security metadata, and then combine them with the modified values in a new body to update the IoT
-     * hub. If certain properties are missing in the JSON, updating IoT Hub may cause these values to fallback to
-     * default, which may lead to unexpected behavior.
+     * hub.
      *
      * @param resourceGroupName The name of the resource group that contains the IoT hub.
      * @param resourceName The name of the IoT hub.
@@ -1034,8 +1024,7 @@ public final class IotHubResourcesClientImpl implements IotHubResourcesClient {
      *
      * <p>Create or update the metadata of an Iot hub. The usual pattern to modify a property is to retrieve the IoT hub
      * metadata and security metadata, and then combine them with the modified values in a new body to update the IoT
-     * hub. If certain properties are missing in the JSON, updating IoT Hub may cause these values to fallback to
-     * default, which may lead to unexpected behavior.
+     * hub.
      *
      * @param resourceGroupName The name of the resource group that contains the IoT hub.
      * @param resourceName The name of the IoT hub.
@@ -1057,8 +1046,7 @@ public final class IotHubResourcesClientImpl implements IotHubResourcesClient {
      *
      * <p>Create or update the metadata of an Iot hub. The usual pattern to modify a property is to retrieve the IoT hub
      * metadata and security metadata, and then combine them with the modified values in a new body to update the IoT
-     * hub. If certain properties are missing in the JSON, updating IoT Hub may cause these values to fallback to
-     * default, which may lead to unexpected behavior.
+     * hub.
      *
      * @param resourceGroupName The name of the resource group that contains the IoT hub.
      * @param resourceName The name of the IoT hub.

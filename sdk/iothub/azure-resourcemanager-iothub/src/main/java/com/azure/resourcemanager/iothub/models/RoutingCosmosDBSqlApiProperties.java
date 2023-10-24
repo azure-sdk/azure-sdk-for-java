@@ -22,7 +22,7 @@ public final class RoutingCosmosDBSqlApiProperties {
     /*
      * Id of the cosmos DB sql container endpoint
      */
-    @JsonProperty(value = "id", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "id")
     private String id;
 
     /*
@@ -130,6 +130,17 @@ public final class RoutingCosmosDBSqlApiProperties {
      */
     public String id() {
         return this.id;
+    }
+
+    /**
+     * Set the id property: Id of the cosmos DB sql container endpoint.
+     *
+     * @param id the id value to set.
+     * @return the RoutingCosmosDBSqlApiProperties object itself.
+     */
+    public RoutingCosmosDBSqlApiProperties withId(String id) {
+        this.id = id;
+        return this;
     }
 
     /**

@@ -4,12 +4,14 @@
 
 package com.azure.resourcemanager.iothub.generated;
 
+import com.azure.resourcemanager.iothub.models.AuthenticationType;
 import com.azure.resourcemanager.iothub.models.ExportDevicesRequest;
+import com.azure.resourcemanager.iothub.models.ManagedIdentity;
 
 /** Samples for IotHubResource ExportDevices. */
 public final class IotHubResourceExportDevicesSamples {
     /*
-     * x-ms-original-file: specification/iothub/resource-manager/Microsoft.Devices/stable/2023-06-30/examples/iothub_exportdevices.json
+     * x-ms-original-file: specification/iothub/resource-manager/Microsoft.Devices/preview/2023-07-15-preview/examples/iothub_exportdevices.json
      */
     /**
      * Sample code: IotHubResource_ExportDevices.
@@ -22,7 +24,14 @@ public final class IotHubResourceExportDevicesSamples {
             .exportDevicesWithResponse(
                 "myResourceGroup",
                 "testHub",
-                new ExportDevicesRequest().withExportBlobContainerUri("testBlob").withExcludeKeys(true),
+                new ExportDevicesRequest()
+                    .withExportBlobContainerUri("testBlob")
+                    .withExcludeKeys(true)
+                    .withAuthenticationType(AuthenticationType.IDENTITY_BASED)
+                    .withIdentity(
+                        new ManagedIdentity()
+                            .withUserAssignedIdentity(
+                                "/subscriptions/91d12660-3dec-467a-be2a-213b5544ddc0/resourceGroups/myResourceGroup/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id1")),
                 com.azure.core.util.Context.NONE);
     }
 }
