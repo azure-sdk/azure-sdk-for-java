@@ -22,6 +22,10 @@ public final class IncidentConfiguration {
     @JsonProperty(value = "groupingConfiguration")
     private GroupingConfiguration groupingConfiguration;
 
+    /** Creates an instance of IncidentConfiguration class. */
+    public IncidentConfiguration() {
+    }
+
     /**
      * Get the createIncident property: Create incidents from alerts triggered by this analytics rule.
      *

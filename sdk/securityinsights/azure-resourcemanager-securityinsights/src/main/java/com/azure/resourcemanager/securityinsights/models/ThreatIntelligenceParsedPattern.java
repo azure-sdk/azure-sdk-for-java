@@ -23,6 +23,10 @@ public final class ThreatIntelligenceParsedPattern {
     @JsonProperty(value = "patternTypeValues")
     private List<ThreatIntelligenceParsedPatternTypeValue> patternTypeValues;
 
+    /** Creates an instance of ThreatIntelligenceParsedPattern class. */
+    public ThreatIntelligenceParsedPattern() {
+    }
+
     /**
      * Get the patternTypeKey property: Pattern type key.
      *

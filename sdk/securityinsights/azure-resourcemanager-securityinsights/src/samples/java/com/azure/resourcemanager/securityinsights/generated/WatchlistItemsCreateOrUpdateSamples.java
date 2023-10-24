@@ -10,7 +10,7 @@ import java.util.Map;
 /** Samples for WatchlistItems CreateOrUpdate. */
 public final class WatchlistItemsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/watchlists/CreateWatchlistItem.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2023-10-01-preview/examples/watchlists/CreateWatchlistItem.json
      */
     /**
      * Sample code: Creates or updates a watchlist item.
@@ -41,6 +41,7 @@ public final class WatchlistItemsCreateOrUpdateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

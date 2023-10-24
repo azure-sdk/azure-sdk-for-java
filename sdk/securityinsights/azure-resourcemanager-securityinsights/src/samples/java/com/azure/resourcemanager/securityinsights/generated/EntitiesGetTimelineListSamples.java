@@ -4,14 +4,13 @@
 
 package com.azure.resourcemanager.securityinsights.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.securityinsights.models.EntityTimelineParameters;
 import java.time.OffsetDateTime;
 
 /** Samples for EntitiesGetTimeline List. */
 public final class EntitiesGetTimelineListSamples {
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/entities/timeline/PostTimelineEntity.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2023-10-01-preview/examples/entities/timeline/PostTimelineEntity.json
      */
     /**
      * Sample code: Entity timeline.
@@ -29,6 +28,6 @@ public final class EntitiesGetTimelineListSamples {
                     .withStartTime(OffsetDateTime.parse("2021-09-01T00:00:00.000Z"))
                     .withEndTime(OffsetDateTime.parse("2021-10-01T00:00:00.000Z"))
                     .withNumberOfBucket(4),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

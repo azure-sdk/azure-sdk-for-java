@@ -4,12 +4,10 @@
 
 package com.azure.resourcemanager.securityinsights.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for SourceControlsOperation List. */
 public final class SourceControlsOperationListSamples {
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/sourcecontrols/GetSourceControls.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2023-10-01-preview/examples/sourcecontrols/GetSourceControls.json
      */
     /**
      * Sample code: Get all source controls.
@@ -18,6 +16,6 @@ public final class SourceControlsOperationListSamples {
      */
     public static void getAllSourceControls(
         com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
-        manager.sourceControlsOperations().list("myRg", "myWorkspace", Context.NONE);
+        manager.sourceControlsOperations().list("myRg", "myWorkspace", com.azure.core.util.Context.NONE);
     }
 }

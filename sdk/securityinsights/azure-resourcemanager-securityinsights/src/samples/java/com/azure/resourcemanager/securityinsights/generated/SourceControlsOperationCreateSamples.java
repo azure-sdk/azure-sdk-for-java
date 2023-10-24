@@ -4,23 +4,24 @@
 
 package com.azure.resourcemanager.securityinsights.generated;
 
-import com.azure.resourcemanager.securityinsights.models.ContentPathMap;
 import com.azure.resourcemanager.securityinsights.models.ContentType;
 import com.azure.resourcemanager.securityinsights.models.RepoType;
 import com.azure.resourcemanager.securityinsights.models.Repository;
+import com.azure.resourcemanager.securityinsights.models.RepositoryAccess;
+import com.azure.resourcemanager.securityinsights.models.RepositoryAccessKind;
 import java.util.Arrays;
 
 /** Samples for SourceControlsOperation Create. */
 public final class SourceControlsOperationCreateSamples {
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/sourcecontrols/CreateSourceControl.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2023-10-01-preview/examples/sourcecontrols/CreateSourceControl.json
      */
     /**
-     * Sample code: Creates a source control.
+     * Sample code: Creates or updates a source control.
      *
      * @param manager Entry point to SecurityInsightsManager.
      */
-    public static void createsASourceControl(
+    public static void createsOrUpdatesASourceControl(
         com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
         manager
             .sourceControlsOperations()
@@ -35,16 +36,13 @@ public final class SourceControlsOperationCreateSamples {
                 new Repository()
                     .withUrl("https://github.com/user/repo")
                     .withBranch("master")
-                    .withDisplayUrl("https://github.com/user/repo")
-                    .withPathMapping(
-                        Arrays
-                            .asList(
-                                new ContentPathMap()
-                                    .withContentType(ContentType.fromString("AnalyticRules"))
-                                    .withPath("path/to/rules"),
-                                new ContentPathMap()
-                                    .withContentType(ContentType.WORKBOOK)
-                                    .withPath("path/to/workbooks"))))
+                    .withDisplayUrl("https://github.com/user/repo"))
+            .withRepositoryAccess(
+                new RepositoryAccess()
+                    .withKind(RepositoryAccessKind.OAUTH)
+                    .withCode("fakeTokenPlaceholder")
+                    .withState("state")
+                    .withClientId("54b3c2c0-1f48-4a1c-af9f-6399c3240b73"))
             .create();
     }
 }

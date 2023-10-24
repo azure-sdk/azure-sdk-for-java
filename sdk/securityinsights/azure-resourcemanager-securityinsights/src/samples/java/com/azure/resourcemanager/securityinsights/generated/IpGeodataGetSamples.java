@@ -4,12 +4,10 @@
 
 package com.azure.resourcemanager.securityinsights.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for IpGeodata Get. */
 public final class IpGeodataGetSamples {
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/enrichment/GetGeodataByIp.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2023-10-01-preview/examples/enrichment/GetGeodataByIp.json
      */
     /**
      * Sample code: Get geodata for a single IP address.
@@ -18,6 +16,6 @@ public final class IpGeodataGetSamples {
      */
     public static void getGeodataForASingleIPAddress(
         com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
-        manager.ipGeodatas().getWithResponse("myRg", "1.2.3.4", Context.NONE);
+        manager.ipGeodatas().getWithResponse("myRg", "1.2.3.4", com.azure.core.util.Context.NONE);
     }
 }

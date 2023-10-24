@@ -18,6 +18,15 @@ public final class AutomationRuleBooleanConditionSupportedOperator
     public static final AutomationRuleBooleanConditionSupportedOperator OR = fromString("Or");
 
     /**
+     * Creates a new instance of AutomationRuleBooleanConditionSupportedOperator value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public AutomationRuleBooleanConditionSupportedOperator() {
+    }
+
+    /**
      * Creates or finds a AutomationRuleBooleanConditionSupportedOperator from its string representation.
      *
      * @param name a name to look for.

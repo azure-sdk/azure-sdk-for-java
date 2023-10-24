@@ -29,17 +29,6 @@ public final class SentinelOnboardingStatesImpl implements SentinelOnboardingSta
         this.serviceManager = serviceManager;
     }
 
-    public SentinelOnboardingState get(
-        String resourceGroupName, String workspaceName, String sentinelOnboardingStateName) {
-        SentinelOnboardingStateInner inner =
-            this.serviceClient().get(resourceGroupName, workspaceName, sentinelOnboardingStateName);
-        if (inner != null) {
-            return new SentinelOnboardingStateImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<SentinelOnboardingState> getWithResponse(
         String resourceGroupName, String workspaceName, String sentinelOnboardingStateName, Context context) {
         Response<SentinelOnboardingStateInner> inner =
@@ -57,8 +46,15 @@ public final class SentinelOnboardingStatesImpl implements SentinelOnboardingSta
         }
     }
 
-    public void delete(String resourceGroupName, String workspaceName, String sentinelOnboardingStateName) {
-        this.serviceClient().delete(resourceGroupName, workspaceName, sentinelOnboardingStateName);
+    public SentinelOnboardingState get(
+        String resourceGroupName, String workspaceName, String sentinelOnboardingStateName) {
+        SentinelOnboardingStateInner inner =
+            this.serviceClient().get(resourceGroupName, workspaceName, sentinelOnboardingStateName);
+        if (inner != null) {
+            return new SentinelOnboardingStateImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public Response<Void> deleteWithResponse(
@@ -68,13 +64,8 @@ public final class SentinelOnboardingStatesImpl implements SentinelOnboardingSta
             .deleteWithResponse(resourceGroupName, workspaceName, sentinelOnboardingStateName, context);
     }
 
-    public SentinelOnboardingStatesList list(String resourceGroupName, String workspaceName) {
-        SentinelOnboardingStatesListInner inner = this.serviceClient().list(resourceGroupName, workspaceName);
-        if (inner != null) {
-            return new SentinelOnboardingStatesListImpl(inner, this.manager());
-        } else {
-            return null;
-        }
+    public void delete(String resourceGroupName, String workspaceName, String sentinelOnboardingStateName) {
+        this.serviceClient().delete(resourceGroupName, workspaceName, sentinelOnboardingStateName);
     }
 
     public Response<SentinelOnboardingStatesList> listWithResponse(
@@ -87,6 +78,15 @@ public final class SentinelOnboardingStatesImpl implements SentinelOnboardingSta
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new SentinelOnboardingStatesListImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public SentinelOnboardingStatesList list(String resourceGroupName, String workspaceName) {
+        SentinelOnboardingStatesListInner inner = this.serviceClient().list(resourceGroupName, workspaceName);
+        if (inner != null) {
+            return new SentinelOnboardingStatesListImpl(inner, this.manager());
         } else {
             return null;
         }

@@ -24,6 +24,10 @@ public final class EntityExpandResponseValue {
     @JsonProperty(value = "edges")
     private List<EntityEdges> edges;
 
+    /** Creates an instance of EntityExpandResponseValue class. */
+    public EntityExpandResponseValue() {
+    }
+
     /**
      * Get the entities property: Array of the expansion result entities.
      *

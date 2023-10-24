@@ -35,6 +35,10 @@ public final class EntityInsightItem {
     @JsonProperty(value = "chartQueryResults")
     private List<InsightsTableResult> chartQueryResults;
 
+    /** Creates an instance of EntityInsightItem class. */
+    public EntityInsightItem() {
+    }
+
     /**
      * Get the queryId property: The query id of the insight.
      *

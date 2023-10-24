@@ -25,6 +25,10 @@ public final class RepoList {
     @JsonProperty(value = "value", required = true)
     private List<RepoInner> value;
 
+    /** Creates an instance of RepoList class. */
+    public RepoList() {
+    }
+
     /**
      * Get the nextLink property: URL to fetch the next set of repositories.
      *

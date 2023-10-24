@@ -38,15 +38,6 @@ public final class AlertRulesImpl implements AlertRules {
         return Utils.mapPage(inner, inner1 -> new AlertRuleImpl(inner1, this.manager()));
     }
 
-    public AlertRule get(String resourceGroupName, String workspaceName, String ruleId) {
-        AlertRuleInner inner = this.serviceClient().get(resourceGroupName, workspaceName, ruleId);
-        if (inner != null) {
-            return new AlertRuleImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<AlertRule> getWithResponse(
         String resourceGroupName, String workspaceName, String ruleId, Context context) {
         Response<AlertRuleInner> inner =
@@ -62,9 +53,8 @@ public final class AlertRulesImpl implements AlertRules {
         }
     }
 
-    public AlertRule createOrUpdate(
-        String resourceGroupName, String workspaceName, String ruleId, AlertRuleInner alertRule) {
-        AlertRuleInner inner = this.serviceClient().createOrUpdate(resourceGroupName, workspaceName, ruleId, alertRule);
+    public AlertRule get(String resourceGroupName, String workspaceName, String ruleId) {
+        AlertRuleInner inner = this.serviceClient().get(resourceGroupName, workspaceName, ruleId);
         if (inner != null) {
             return new AlertRuleImpl(inner, this.manager());
         } else {
@@ -89,13 +79,23 @@ public final class AlertRulesImpl implements AlertRules {
         }
     }
 
-    public void delete(String resourceGroupName, String workspaceName, String ruleId) {
-        this.serviceClient().delete(resourceGroupName, workspaceName, ruleId);
+    public AlertRule createOrUpdate(
+        String resourceGroupName, String workspaceName, String ruleId, AlertRuleInner alertRule) {
+        AlertRuleInner inner = this.serviceClient().createOrUpdate(resourceGroupName, workspaceName, ruleId, alertRule);
+        if (inner != null) {
+            return new AlertRuleImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public Response<Void> deleteWithResponse(
         String resourceGroupName, String workspaceName, String ruleId, Context context) {
         return this.serviceClient().deleteWithResponse(resourceGroupName, workspaceName, ruleId, context);
+    }
+
+    public void delete(String resourceGroupName, String workspaceName, String ruleId) {
+        this.serviceClient().delete(resourceGroupName, workspaceName, ruleId);
     }
 
     private AlertRulesClient serviceClient() {

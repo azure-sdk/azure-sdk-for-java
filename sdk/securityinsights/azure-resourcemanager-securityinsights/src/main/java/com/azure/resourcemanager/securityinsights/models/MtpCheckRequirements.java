@@ -21,6 +21,10 @@ public final class MtpCheckRequirements extends DataConnectorsCheckRequirements 
     @JsonProperty(value = "properties")
     private MtpCheckRequirementsProperties innerProperties;
 
+    /** Creates an instance of MtpCheckRequirements class. */
+    public MtpCheckRequirements() {
+    }
+
     /**
      * Get the innerProperties property: MTP (Microsoft Threat Protection) requirements check properties.
      *
@@ -28,6 +32,29 @@ public final class MtpCheckRequirements extends DataConnectorsCheckRequirements 
      */
     private MtpCheckRequirementsProperties innerProperties() {
         return this.innerProperties;
+    }
+
+    /**
+     * Get the tenantId property: The tenant id to connect to, and get the data from.
+     *
+     * @return the tenantId value.
+     */
+    public String tenantId() {
+        return this.innerProperties() == null ? null : this.innerProperties().tenantId();
+    }
+
+    /**
+     * Set the tenantId property: The tenant id to connect to, and get the data from.
+     *
+     * @param tenantId the tenantId value to set.
+     * @return the MtpCheckRequirements object itself.
+     */
+    public MtpCheckRequirements withTenantId(String tenantId) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new MtpCheckRequirementsProperties();
+        }
+        this.innerProperties().withTenantId(tenantId);
+        return this;
     }
 
     /**

@@ -23,6 +23,10 @@ public final class AwsS3DataConnector extends DataConnectorInner {
     @JsonProperty(value = "properties")
     private AwsS3DataConnectorProperties innerProperties;
 
+    /** Creates an instance of AwsS3DataConnector class. */
+    public AwsS3DataConnector() {
+    }
+
     /**
      * Get the innerProperties property: Amazon Web Services S3 data connector properties.
      *

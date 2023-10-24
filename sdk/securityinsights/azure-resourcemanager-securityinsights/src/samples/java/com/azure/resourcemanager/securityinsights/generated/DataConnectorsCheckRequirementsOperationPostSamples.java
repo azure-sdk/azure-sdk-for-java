@@ -4,12 +4,12 @@
 
 package com.azure.resourcemanager.securityinsights.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.securityinsights.models.AadCheckRequirements;
 import com.azure.resourcemanager.securityinsights.models.AscCheckRequirements;
 import com.azure.resourcemanager.securityinsights.models.Dynamics365CheckRequirements;
 import com.azure.resourcemanager.securityinsights.models.IoTCheckRequirements;
 import com.azure.resourcemanager.securityinsights.models.McasCheckRequirements;
+import com.azure.resourcemanager.securityinsights.models.MicrosoftPurviewInformationProtectionCheckRequirements;
 import com.azure.resourcemanager.securityinsights.models.MstiCheckRequirements;
 import com.azure.resourcemanager.securityinsights.models.MtpCheckRequirements;
 import com.azure.resourcemanager.securityinsights.models.Office365ProjectCheckRequirements;
@@ -22,7 +22,7 @@ import com.azure.resourcemanager.securityinsights.models.TiTaxiiCheckRequirement
 /** Samples for DataConnectorsCheckRequirementsOperation Post. */
 public final class DataConnectorsCheckRequirementsOperationPostSamples {
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/dataConnectors/CheckRequirementsOfficeATP.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2023-10-01-preview/examples/dataConnectors/CheckRequirementsOfficeATP.json
      */
     /**
      * Sample code: Check requirements for OfficeATP.
@@ -33,11 +33,15 @@ public final class DataConnectorsCheckRequirementsOperationPostSamples {
         com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
         manager
             .dataConnectorsCheckRequirementsOperations()
-            .postWithResponse("myRg", "myWorkspace", new OfficeAtpCheckRequirements(), Context.NONE);
+            .postWithResponse(
+                "myRg",
+                "myWorkspace",
+                new OfficeAtpCheckRequirements().withTenantId("2070ecc9-b4d5-4ae4-adaa-936fa1954fa8"),
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/dataConnectors/CheckRequirementsOffice365Project.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2023-10-01-preview/examples/dataConnectors/CheckRequirementsOffice365Project.json
      */
     /**
      * Sample code: Check requirements for Office365Project.
@@ -48,26 +52,34 @@ public final class DataConnectorsCheckRequirementsOperationPostSamples {
         com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
         manager
             .dataConnectorsCheckRequirementsOperations()
-            .postWithResponse("myRg", "myWorkspace", new Office365ProjectCheckRequirements(), Context.NONE);
+            .postWithResponse(
+                "myRg",
+                "myWorkspace",
+                new Office365ProjectCheckRequirements().withTenantId("2070ecc9-b4d5-4ae4-adaa-936fa1954fa8"),
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/dataConnectors/CheckRequirementsAzureActiveDirectory.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2023-10-01-preview/examples/dataConnectors/CheckRequirementsAzureActiveDirectoryNoAuthorization.json
      */
     /**
-     * Sample code: Check requirements for AAD.
+     * Sample code: Check requirements for AADIP (Azure Active Directory Identity Protection) - no authorization.
      *
      * @param manager Entry point to SecurityInsightsManager.
      */
-    public static void checkRequirementsForAAD(
+    public static void checkRequirementsForAADIPAzureActiveDirectoryIdentityProtectionNoAuthorization(
         com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
         manager
             .dataConnectorsCheckRequirementsOperations()
-            .postWithResponse("myRg", "myWorkspace", new AadCheckRequirements(), Context.NONE);
+            .postWithResponse(
+                "myRg",
+                "myWorkspace",
+                new AadCheckRequirements().withTenantId("2070ecc9-b4d5-4ae4-adaa-936fa1954fa8"),
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/dataConnectors/CheckRequirementsMicrosoftCloudAppSecurity.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2023-10-01-preview/examples/dataConnectors/CheckRequirementsMicrosoftCloudAppSecurity.json
      */
     /**
      * Sample code: Check requirements for Mcas.
@@ -78,11 +90,15 @@ public final class DataConnectorsCheckRequirementsOperationPostSamples {
         com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
         manager
             .dataConnectorsCheckRequirementsOperations()
-            .postWithResponse("myRg", "myWorkspace", new McasCheckRequirements(), Context.NONE);
+            .postWithResponse(
+                "myRg",
+                "myWorkspace",
+                new McasCheckRequirements().withTenantId("2070ecc9-b4d5-4ae4-adaa-936fa1954fa8"),
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/dataConnectors/CheckRequirementsIoT.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2023-10-01-preview/examples/dataConnectors/CheckRequirementsIoT.json
      */
     /**
      * Sample code: Check requirements for IoT.
@@ -97,11 +113,11 @@ public final class DataConnectorsCheckRequirementsOperationPostSamples {
                 "myRg",
                 "myWorkspace",
                 new IoTCheckRequirements().withSubscriptionId("c0688291-89d7-4bed-87a2-a7b1bff43f4c"),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/dataConnectors/CheckRequirementsMdatp.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2023-10-01-preview/examples/dataConnectors/CheckRequirementsMdatp.json
      */
     /**
      * Sample code: Check requirements for Mdatp.
@@ -112,26 +128,15 @@ public final class DataConnectorsCheckRequirementsOperationPostSamples {
         com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
         manager
             .dataConnectorsCheckRequirementsOperations()
-            .postWithResponse("myRg", "myWorkspace", new McasCheckRequirements(), Context.NONE);
+            .postWithResponse(
+                "myRg",
+                "myWorkspace",
+                new McasCheckRequirements().withTenantId("2070ecc9-b4d5-4ae4-adaa-936fa1954fa8"),
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/dataConnectors/CheckRequirementsAzureActiveDirectoryNoAuthorization.json
-     */
-    /**
-     * Sample code: Check requirements for AAD - no authorization.
-     *
-     * @param manager Entry point to SecurityInsightsManager.
-     */
-    public static void checkRequirementsForAADNoAuthorization(
-        com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
-        manager
-            .dataConnectorsCheckRequirementsOperations()
-            .postWithResponse("myRg", "myWorkspace", new AadCheckRequirements(), Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/dataConnectors/CheckRequirementsAzureSecurityCenter.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2023-10-01-preview/examples/dataConnectors/CheckRequirementsAzureSecurityCenter.json
      */
     /**
      * Sample code: Check requirements for ASC.
@@ -146,11 +151,31 @@ public final class DataConnectorsCheckRequirementsOperationPostSamples {
                 "myRg",
                 "myWorkspace",
                 new AscCheckRequirements().withSubscriptionId("c0688291-89d7-4bed-87a2-a7b1bff43f4c"),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/dataConnectors/CheckRequirementsMicrosoftThreatProtection.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2023-10-01-preview/examples/dataConnectors/CheckRequirementsMicrosoftPurviewInformationProtection.json
+     */
+    /**
+     * Sample code: Check requirements for MicrosoftPurviewInformationProtection.
+     *
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void checkRequirementsForMicrosoftPurviewInformationProtection(
+        com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager
+            .dataConnectorsCheckRequirementsOperations()
+            .postWithResponse(
+                "myRg",
+                "myWorkspace",
+                new MicrosoftPurviewInformationProtectionCheckRequirements()
+                    .withTenantId("2070ecc9-b4d5-4ae4-adaa-936fa1954fa8"),
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2023-10-01-preview/examples/dataConnectors/CheckRequirementsMicrosoftThreatProtection.json
      */
     /**
      * Sample code: Check requirements for MicrosoftThreatProtection.
@@ -161,11 +186,15 @@ public final class DataConnectorsCheckRequirementsOperationPostSamples {
         com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
         manager
             .dataConnectorsCheckRequirementsOperations()
-            .postWithResponse("myRg", "myWorkspace", new MtpCheckRequirements(), Context.NONE);
+            .postWithResponse(
+                "myRg",
+                "myWorkspace",
+                new MtpCheckRequirements().withTenantId("2070ecc9-b4d5-4ae4-adaa-936fa1954fa8"),
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/dataConnectors/CheckRequirementsThreatIntelligenceTaxii.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2023-10-01-preview/examples/dataConnectors/CheckRequirementsThreatIntelligenceTaxii.json
      */
     /**
      * Sample code: Check requirements for TI Taxii.
@@ -176,11 +205,15 @@ public final class DataConnectorsCheckRequirementsOperationPostSamples {
         com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
         manager
             .dataConnectorsCheckRequirementsOperations()
-            .postWithResponse("myRg", "myWorkspace", new TiTaxiiCheckRequirements(), Context.NONE);
+            .postWithResponse(
+                "myRg",
+                "myWorkspace",
+                new TiTaxiiCheckRequirements().withTenantId("2070ecc9-b4d5-4ae4-adaa-936fa1954fa8"),
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/dataConnectors/CheckRequirementsOfficeIRM.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2023-10-01-preview/examples/dataConnectors/CheckRequirementsOfficeIRM.json
      */
     /**
      * Sample code: Check requirements for OfficeIRM.
@@ -191,11 +224,15 @@ public final class DataConnectorsCheckRequirementsOperationPostSamples {
         com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
         manager
             .dataConnectorsCheckRequirementsOperations()
-            .postWithResponse("myRg", "myWorkspace", new OfficeIrmCheckRequirements(), Context.NONE);
+            .postWithResponse(
+                "myRg",
+                "myWorkspace",
+                new OfficeIrmCheckRequirements().withTenantId("2070ecc9-b4d5-4ae4-adaa-936fa1954fa8"),
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/dataConnectors/CheckRequirementsMicrosoftThreatIntelligence.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2023-10-01-preview/examples/dataConnectors/CheckRequirementsMicrosoftThreatIntelligence.json
      */
     /**
      * Sample code: Check requirements for MicrosoftThreatIntelligence.
@@ -206,11 +243,34 @@ public final class DataConnectorsCheckRequirementsOperationPostSamples {
         com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
         manager
             .dataConnectorsCheckRequirementsOperations()
-            .postWithResponse("myRg", "myWorkspace", new MstiCheckRequirements(), Context.NONE);
+            .postWithResponse(
+                "myRg",
+                "myWorkspace",
+                new MstiCheckRequirements().withTenantId("06b3ccb8-1384-4bcc-aec7-852f6d57161b"),
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/dataConnectors/CheckRequirementsOfficePowerBI.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2023-10-01-preview/examples/dataConnectors/CheckRequirementsAzureActiveDirectory.json
+     */
+    /**
+     * Sample code: Check requirements for AADIP (Azure Active Directory Identity Protection).
+     *
+     * @param manager Entry point to SecurityInsightsManager.
+     */
+    public static void checkRequirementsForAADIPAzureActiveDirectoryIdentityProtection(
+        com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
+        manager
+            .dataConnectorsCheckRequirementsOperations()
+            .postWithResponse(
+                "myRg",
+                "myWorkspace",
+                new AadCheckRequirements().withTenantId("2070ecc9-b4d5-4ae4-adaa-936fa1954fa8"),
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2023-10-01-preview/examples/dataConnectors/CheckRequirementsOfficePowerBI.json
      */
     /**
      * Sample code: Check requirements for OfficePowerBI.
@@ -221,11 +281,15 @@ public final class DataConnectorsCheckRequirementsOperationPostSamples {
         com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
         manager
             .dataConnectorsCheckRequirementsOperations()
-            .postWithResponse("myRg", "myWorkspace", new OfficePowerBICheckRequirements(), Context.NONE);
+            .postWithResponse(
+                "myRg",
+                "myWorkspace",
+                new OfficePowerBICheckRequirements().withTenantId("2070ecc9-b4d5-4ae4-adaa-936fa1954fa8"),
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/dataConnectors/CheckRequirementsDynamics365.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2023-10-01-preview/examples/dataConnectors/CheckRequirementsDynamics365.json
      */
     /**
      * Sample code: Check requirements for Dynamics365.
@@ -236,26 +300,34 @@ public final class DataConnectorsCheckRequirementsOperationPostSamples {
         com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
         manager
             .dataConnectorsCheckRequirementsOperations()
-            .postWithResponse("myRg", "myWorkspace", new Dynamics365CheckRequirements(), Context.NONE);
+            .postWithResponse(
+                "myRg",
+                "myWorkspace",
+                new Dynamics365CheckRequirements().withTenantId("2070ecc9-b4d5-4ae4-adaa-936fa1954fa8"),
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/dataConnectors/CheckRequirementsAzureActiveDirectoryNoLicense.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2023-10-01-preview/examples/dataConnectors/CheckRequirementsAzureActiveDirectoryNoLicense.json
      */
     /**
-     * Sample code: Check requirements for AAD - no license.
+     * Sample code: Check requirements for AADIP (Azure Active Directory Identity Protection) - no license.
      *
      * @param manager Entry point to SecurityInsightsManager.
      */
-    public static void checkRequirementsForAADNoLicense(
+    public static void checkRequirementsForAADIPAzureActiveDirectoryIdentityProtectionNoLicense(
         com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
         manager
             .dataConnectorsCheckRequirementsOperations()
-            .postWithResponse("myRg", "myWorkspace", new AadCheckRequirements(), Context.NONE);
+            .postWithResponse(
+                "myRg",
+                "myWorkspace",
+                new AadCheckRequirements().withTenantId("2070ecc9-b4d5-4ae4-adaa-936fa1954fa8"),
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/dataConnectors/CheckRequirementsThreatIntelligence.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2023-10-01-preview/examples/dataConnectors/CheckRequirementsThreatIntelligence.json
      */
     /**
      * Sample code: Check requirements for TI.
@@ -266,6 +338,10 @@ public final class DataConnectorsCheckRequirementsOperationPostSamples {
         com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
         manager
             .dataConnectorsCheckRequirementsOperations()
-            .postWithResponse("myRg", "myWorkspace", new TICheckRequirements(), Context.NONE);
+            .postWithResponse(
+                "myRg",
+                "myWorkspace",
+                new TICheckRequirements().withTenantId("2070ecc9-b4d5-4ae4-adaa-936fa1954fa8"),
+                com.azure.core.util.Context.NONE);
     }
 }
