@@ -93,6 +93,12 @@ public final class CommunicationsGatewayProperties {
     private Boolean onPremMcpEnabled;
 
     /*
+     * Whether an integrated Mobile Control Point is in use.
+     */
+    @JsonProperty(value = "integratedMcpEnabled")
+    private Boolean integratedMcpEnabled;
+
+    /*
      * A list of dial strings used for emergency calling.
      */
     @JsonProperty(value = "emergencyDialStrings")
@@ -312,6 +318,26 @@ public final class CommunicationsGatewayProperties {
      */
     public CommunicationsGatewayProperties withOnPremMcpEnabled(Boolean onPremMcpEnabled) {
         this.onPremMcpEnabled = onPremMcpEnabled;
+        return this;
+    }
+
+    /**
+     * Get the integratedMcpEnabled property: Whether an integrated Mobile Control Point is in use.
+     *
+     * @return the integratedMcpEnabled value.
+     */
+    public Boolean integratedMcpEnabled() {
+        return this.integratedMcpEnabled;
+    }
+
+    /**
+     * Set the integratedMcpEnabled property: Whether an integrated Mobile Control Point is in use.
+     *
+     * @param integratedMcpEnabled the integratedMcpEnabled value to set.
+     * @return the CommunicationsGatewayProperties object itself.
+     */
+    public CommunicationsGatewayProperties withIntegratedMcpEnabled(Boolean integratedMcpEnabled) {
+        this.integratedMcpEnabled = integratedMcpEnabled;
         return this;
     }
 

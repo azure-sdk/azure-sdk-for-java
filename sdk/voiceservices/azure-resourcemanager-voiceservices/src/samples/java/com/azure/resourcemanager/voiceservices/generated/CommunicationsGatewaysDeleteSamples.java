@@ -7,7 +7,7 @@ package com.azure.resourcemanager.voiceservices.generated;
 /** Samples for CommunicationsGateways Delete. */
 public final class CommunicationsGatewaysDeleteSamples {
     /*
-     * x-ms-original-file: specification/voiceservices/resource-manager/Microsoft.VoiceServices/stable/2023-01-31/examples/CommunicationsGateways_Delete.json
+     * x-ms-original-file: specification/voiceservices/resource-manager/Microsoft.VoiceServices/stable/2023-04-03/examples/CommunicationsGateways_Delete.json
      */
     /**
      * Sample code: DeleteCommunicationsGatewayResource.
