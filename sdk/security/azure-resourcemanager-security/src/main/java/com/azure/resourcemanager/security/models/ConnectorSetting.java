@@ -56,11 +56,13 @@ public interface ConnectorSetting {
     /** The entirety of the ConnectorSetting definition. */
     interface Definition extends DefinitionStages.Blank, DefinitionStages.WithCreate {
     }
+
     /** The ConnectorSetting definition stages. */
     interface DefinitionStages {
         /** The first stage of the ConnectorSetting definition. */
         interface Blank extends WithCreate {
         }
+
         /**
          * The stage of the ConnectorSetting definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
@@ -82,6 +84,7 @@ public interface ConnectorSetting {
              */
             ConnectorSetting create(Context context);
         }
+
         /** The stage of the ConnectorSetting definition allowing to specify hybridComputeSettings. */
         interface WithHybridComputeSettings {
             /**
@@ -94,6 +97,7 @@ public interface ConnectorSetting {
              */
             WithCreate withHybridComputeSettings(HybridComputeSettingsProperties hybridComputeSettings);
         }
+
         /** The stage of the ConnectorSetting definition allowing to specify authenticationDetails. */
         interface WithAuthenticationDetails {
             /**
@@ -107,6 +111,7 @@ public interface ConnectorSetting {
             WithCreate withAuthenticationDetails(AuthenticationDetailsProperties authenticationDetails);
         }
     }
+
     /**
      * Begins update for the ConnectorSetting resource.
      *
@@ -131,6 +136,7 @@ public interface ConnectorSetting {
          */
         ConnectorSetting apply(Context context);
     }
+
     /** The ConnectorSetting update stages. */
     interface UpdateStages {
         /** The stage of the ConnectorSetting update allowing to specify hybridComputeSettings. */
@@ -145,6 +151,7 @@ public interface ConnectorSetting {
              */
             Update withHybridComputeSettings(HybridComputeSettingsProperties hybridComputeSettings);
         }
+
         /** The stage of the ConnectorSetting update allowing to specify authenticationDetails. */
         interface WithAuthenticationDetails {
             /**
@@ -158,6 +165,7 @@ public interface ConnectorSetting {
             Update withAuthenticationDetails(AuthenticationDetailsProperties authenticationDetails);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

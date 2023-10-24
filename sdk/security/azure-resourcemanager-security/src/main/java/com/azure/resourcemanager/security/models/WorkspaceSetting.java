@@ -55,11 +55,13 @@ public interface WorkspaceSetting {
     /** The entirety of the WorkspaceSetting definition. */
     interface Definition extends DefinitionStages.Blank, DefinitionStages.WithCreate {
     }
+
     /** The WorkspaceSetting definition stages. */
     interface DefinitionStages {
         /** The first stage of the WorkspaceSetting definition. */
         interface Blank extends WithCreate {
         }
+
         /**
          * The stage of the WorkspaceSetting definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
@@ -80,6 +82,7 @@ public interface WorkspaceSetting {
              */
             WorkspaceSetting create(Context context);
         }
+
         /** The stage of the WorkspaceSetting definition allowing to specify workspaceId. */
         interface WithWorkspaceId {
             /**
@@ -90,6 +93,7 @@ public interface WorkspaceSetting {
              */
             WithCreate withWorkspaceId(String workspaceId);
         }
+
         /** The stage of the WorkspaceSetting definition allowing to specify scope. */
         interface WithScope {
             /**
@@ -103,6 +107,7 @@ public interface WorkspaceSetting {
             WithCreate withScope(String scope);
         }
     }
+
     /**
      * Begins update for the WorkspaceSetting resource.
      *
@@ -127,6 +132,7 @@ public interface WorkspaceSetting {
          */
         WorkspaceSetting apply(Context context);
     }
+
     /** The WorkspaceSetting update stages. */
     interface UpdateStages {
         /** The stage of the WorkspaceSetting update allowing to specify workspaceId. */
@@ -139,6 +145,7 @@ public interface WorkspaceSetting {
              */
             Update withWorkspaceId(String workspaceId);
         }
+
         /** The stage of the WorkspaceSetting update allowing to specify scope. */
         interface WithScope {
             /**
@@ -152,6 +159,7 @@ public interface WorkspaceSetting {
             Update withScope(String scope);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *
