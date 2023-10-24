@@ -6,7 +6,6 @@ package com.azure.resourcemanager.paloaltonetworks.ngfw.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
-import com.azure.resourcemanager.paloaltonetworks.ngfw.models.Country;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
@@ -17,7 +16,7 @@ public final class CountriesResponseInner {
      * List of countries
      */
     @JsonProperty(value = "value", required = true)
-    private List<Country> value;
+    private List<CountryInner> value;
 
     /*
      * next link
@@ -34,7 +33,7 @@ public final class CountriesResponseInner {
      *
      * @return the value value.
      */
-    public List<Country> value() {
+    public List<CountryInner> value() {
         return this.value;
     }
 
@@ -44,7 +43,7 @@ public final class CountriesResponseInner {
      * @param value the value value to set.
      * @return the CountriesResponseInner object itself.
      */
-    public CountriesResponseInner withValue(List<Country> value) {
+    public CountriesResponseInner withValue(List<CountryInner> value) {
         this.value = value;
         return this;
     }
