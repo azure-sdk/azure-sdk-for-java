@@ -361,6 +361,7 @@ public interface NetworkFabric {
          */
         interface WithCreate
             extends DefinitionStages.WithTags,
+                DefinitionStages.WithFabricVersion,
                 DefinitionStages.WithRackCount,
                 DefinitionStages.WithIpv6Prefix,
                 DefinitionStages.WithAnnotation {
@@ -389,6 +390,17 @@ public interface NetworkFabric {
              * @return the next definition stage.
              */
             WithCreate withTags(Map<String, String> tags);
+        }
+
+        /** The stage of the NetworkFabric definition allowing to specify fabricVersion. */
+        interface WithFabricVersion {
+            /**
+             * Specifies the fabricVersion property: The version of Network Fabric..
+             *
+             * @param fabricVersion The version of Network Fabric.
+             * @return the next definition stage.
+             */
+            WithCreate withFabricVersion(String fabricVersion);
         }
 
         /** The stage of the NetworkFabric definition allowing to specify rackCount. */
@@ -640,7 +652,7 @@ public interface NetworkFabric {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return common response for the state updates.
      */
-    CommonPostActionResponseForStateUpdate upgrade(UpdateVersion body);
+    CommonPostActionResponseForStateUpdate upgrade(UpgradeNetworkFabricProperties body);
 
     /**
      * Implements the operation to the underlying resources.
@@ -654,7 +666,7 @@ public interface NetworkFabric {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return common response for the state updates.
      */
-    CommonPostActionResponseForStateUpdate upgrade(UpdateVersion body, Context context);
+    CommonPostActionResponseForStateUpdate upgrade(UpgradeNetworkFabricProperties body, Context context);
 
     /**
      * Implements the operation to the underlying resources.
