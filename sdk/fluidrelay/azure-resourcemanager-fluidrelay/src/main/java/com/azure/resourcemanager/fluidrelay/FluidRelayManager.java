@@ -211,7 +211,7 @@ public final class FluidRelayManager {
                 .append("-")
                 .append("com.azure.resourcemanager.fluidrelay")
                 .append("/")
-                .append("1.0.0");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -305,8 +305,10 @@ public final class FluidRelayManager {
     }
 
     /**
-     * @return Wrapped service client FluidRelayManagementClient providing direct access to the underlying
-     *     auto-generated API implementation, based on Azure REST API.
+     * Gets wrapped service client FluidRelayManagementClient providing direct access to the underlying auto-generated
+     * API implementation, based on Azure REST API.
+     *
+     * @return Wrapped service client FluidRelayManagementClient.
      */
     public FluidRelayManagementClient serviceClient() {
         return this.clientObject;

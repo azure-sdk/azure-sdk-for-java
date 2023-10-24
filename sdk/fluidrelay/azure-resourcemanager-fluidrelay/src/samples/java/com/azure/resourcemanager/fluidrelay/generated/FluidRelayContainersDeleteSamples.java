@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.fluidrelay.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for FluidRelayContainers Delete. */
 public final class FluidRelayContainersDeleteSamples {
     /*
@@ -19,6 +17,7 @@ public final class FluidRelayContainersDeleteSamples {
     public static void deleteAFluidRelayContainer(com.azure.resourcemanager.fluidrelay.FluidRelayManager manager) {
         manager
             .fluidRelayContainers()
-            .deleteWithResponse("myResourceGroup", "myFluidRelayServer", "myFluidRelayContainer", Context.NONE);
+            .deleteWithResponse(
+                "myResourceGroup", "myFluidRelayServer", "myFluidRelayContainer", com.azure.core.util.Context.NONE);
     }
 }

@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.fluidrelay.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for FluidRelayServers ListKeys. */
 public final class FluidRelayServersListKeysSamples {
     /*
@@ -17,6 +15,8 @@ public final class FluidRelayServersListKeysSamples {
      * @param manager Entry point to FluidRelayManager.
      */
     public static void getKeysForAFluidRelayServer(com.azure.resourcemanager.fluidrelay.FluidRelayManager manager) {
-        manager.fluidRelayServers().listKeysWithResponse("myResourceGroup", "myFluidRelayServer", Context.NONE);
+        manager
+            .fluidRelayServers()
+            .listKeysWithResponse("myResourceGroup", "myFluidRelayServer", com.azure.core.util.Context.NONE);
     }
 }

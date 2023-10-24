@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.fluidrelay.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.fluidrelay.models.KeyName;
 import com.azure.resourcemanager.fluidrelay.models.RegenerateKeyRequest;
 
@@ -26,6 +25,6 @@ public final class FluidRelayServersRegenerateKeySamples {
                 "myResourceGroup",
                 "myFluidRelayServer",
                 new RegenerateKeyRequest().withKeyName(KeyName.KEY1),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
