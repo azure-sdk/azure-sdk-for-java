@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.confluent.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.confluent.models.OrganizationResource;
 import java.util.HashMap;
 import java.util.Map;
@@ -12,7 +11,7 @@ import java.util.Map;
 /** Samples for Organization Update. */
 public final class OrganizationUpdateSamples {
     /*
-     * x-ms-original-file: specification/confluent/resource-manager/Microsoft.Confluent/preview/2021-09-01-preview/examples/Organization_Update.json
+     * x-ms-original-file: specification/confluent/resource-manager/Microsoft.Confluent/stable/2023-08-22/examples/Organization_Update.json
      */
     /**
      * Sample code: Confluent_Update.
@@ -23,11 +22,12 @@ public final class OrganizationUpdateSamples {
         OrganizationResource resource =
             manager
                 .organizations()
-                .getByResourceGroupWithResponse("myResourceGroup", "myOrganization", Context.NONE)
+                .getByResourceGroupWithResponse("myResourceGroup", "myOrganization", com.azure.core.util.Context.NONE)
                 .getValue();
         resource.update().withTags(mapOf("client", "dev-client", "env", "dev")).apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
