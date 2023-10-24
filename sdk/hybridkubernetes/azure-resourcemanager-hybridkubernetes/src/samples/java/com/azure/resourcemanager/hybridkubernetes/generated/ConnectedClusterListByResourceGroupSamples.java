@@ -7,7 +7,7 @@ package com.azure.resourcemanager.hybridkubernetes.generated;
 /** Samples for ConnectedCluster ListByResourceGroup. */
 public final class ConnectedClusterListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/hybridkubernetes/resource-manager/Microsoft.Kubernetes/stable/2021-10-01/examples/GetClustersByResourceGroupExample.json
+     * x-ms-original-file: specification/hybridkubernetes/resource-manager/Microsoft.Kubernetes/preview/2023-11-01-preview/examples/GetClustersByResourceGroupExample.json
      */
     /**
      * Sample code: GetClustersExample.
