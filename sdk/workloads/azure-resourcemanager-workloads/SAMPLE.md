@@ -100,7 +100,7 @@ public final class MonitorsCreateSamples {
             .define("mySapMonitor")
             .withRegion("westus")
             .withExistingResourceGroup("myResourceGroup")
-            .withTags(mapOf("key", "value"))
+            .withTags(mapOf("key", "fakeTokenPlaceholder"))
             .withAppLocation("westus")
             .withRoutingPreference(RoutingPreference.ROUTE_ALL)
             .withManagedResourceGroupConfiguration(new ManagedRGConfiguration().withName("myManagedRg"))
@@ -111,6 +111,7 @@ public final class MonitorsCreateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -251,11 +252,12 @@ public final class MonitorsUpdateSamples {
                 .getValue();
         resource
             .update()
-            .withTags(mapOf("testkey", "testvalue"))
+            .withTags(mapOf("testkey", "fakeTokenPlaceholder"))
             .withIdentity(new UserAssignedServiceIdentity().withType(ManagedServiceIdentityType.NONE))
             .apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -759,6 +761,10 @@ public final class ProviderInstancesListSamples {
 ### ResourceProvider_SapAvailabilityZoneDetails
 
 ```java
+import com.azure.resourcemanager.workloads.models.SapAvailabilityZoneDetailsRequest;
+import com.azure.resourcemanager.workloads.models.SapDatabaseType;
+import com.azure.resourcemanager.workloads.models.SapProductType;
+
 /** Samples for ResourceProvider SapAvailabilityZoneDetails. */
 public final class ResourceProviderSapAvailabilityZoneDetailsSamples {
     /*
@@ -773,7 +779,13 @@ public final class ResourceProviderSapAvailabilityZoneDetailsSamples {
         com.azure.resourcemanager.workloads.WorkloadsManager manager) {
         manager
             .resourceProviders()
-            .sapAvailabilityZoneDetailsWithResponse("centralus", null, com.azure.core.util.Context.NONE);
+            .sapAvailabilityZoneDetailsWithResponse(
+                "centralus",
+                new SapAvailabilityZoneDetailsRequest()
+                    .withAppLocation("northeurope")
+                    .withSapProduct(SapProductType.S4HANA)
+                    .withDatabaseType(SapDatabaseType.HANA),
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -787,7 +799,13 @@ public final class ResourceProviderSapAvailabilityZoneDetailsSamples {
     public static void sAPAvailabilityZoneDetailsEastus(com.azure.resourcemanager.workloads.WorkloadsManager manager) {
         manager
             .resourceProviders()
-            .sapAvailabilityZoneDetailsWithResponse("centralus", null, com.azure.core.util.Context.NONE);
+            .sapAvailabilityZoneDetailsWithResponse(
+                "centralus",
+                new SapAvailabilityZoneDetailsRequest()
+                    .withAppLocation("eastus")
+                    .withSapProduct(SapProductType.S4HANA)
+                    .withDatabaseType(SapDatabaseType.HANA),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -795,6 +813,12 @@ public final class ResourceProviderSapAvailabilityZoneDetailsSamples {
 ### ResourceProvider_SapDiskConfigurations
 
 ```java
+import com.azure.resourcemanager.workloads.models.SapDatabaseType;
+import com.azure.resourcemanager.workloads.models.SapDeploymentType;
+import com.azure.resourcemanager.workloads.models.SapDiskConfigurationsRequest;
+import com.azure.resourcemanager.workloads.models.SapEnvironmentType;
+import com.azure.resourcemanager.workloads.models.SapProductType;
+
 /** Samples for ResourceProvider SapDiskConfigurations. */
 public final class ResourceProviderSapDiskConfigurationsSamples {
     /*
@@ -808,7 +832,16 @@ public final class ResourceProviderSapDiskConfigurationsSamples {
     public static void sAPDiskConfigurationsNonProd(com.azure.resourcemanager.workloads.WorkloadsManager manager) {
         manager
             .resourceProviders()
-            .sapDiskConfigurationsWithResponse("centralus", null, com.azure.core.util.Context.NONE);
+            .sapDiskConfigurationsWithResponse(
+                "centralus",
+                new SapDiskConfigurationsRequest()
+                    .withAppLocation("eastus")
+                    .withEnvironment(SapEnvironmentType.NON_PROD)
+                    .withSapProduct(SapProductType.S4HANA)
+                    .withDatabaseType(SapDatabaseType.HANA)
+                    .withDeploymentType(SapDeploymentType.THREE_TIER)
+                    .withDbVmSku("Standard_M32ts"),
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -822,7 +855,16 @@ public final class ResourceProviderSapDiskConfigurationsSamples {
     public static void sAPDiskConfigurationsProd(com.azure.resourcemanager.workloads.WorkloadsManager manager) {
         manager
             .resourceProviders()
-            .sapDiskConfigurationsWithResponse("centralus", null, com.azure.core.util.Context.NONE);
+            .sapDiskConfigurationsWithResponse(
+                "centralus",
+                new SapDiskConfigurationsRequest()
+                    .withAppLocation("eastus")
+                    .withEnvironment(SapEnvironmentType.PROD)
+                    .withSapProduct(SapProductType.S4HANA)
+                    .withDatabaseType(SapDatabaseType.HANA)
+                    .withDeploymentType(SapDeploymentType.THREE_TIER)
+                    .withDbVmSku("Standard_M32ts"),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -830,6 +872,14 @@ public final class ResourceProviderSapDiskConfigurationsSamples {
 ### ResourceProvider_SapSizingRecommendations
 
 ```java
+import com.azure.resourcemanager.workloads.models.SapDatabaseScaleMethod;
+import com.azure.resourcemanager.workloads.models.SapDatabaseType;
+import com.azure.resourcemanager.workloads.models.SapDeploymentType;
+import com.azure.resourcemanager.workloads.models.SapEnvironmentType;
+import com.azure.resourcemanager.workloads.models.SapHighAvailabilityType;
+import com.azure.resourcemanager.workloads.models.SapProductType;
+import com.azure.resourcemanager.workloads.models.SapSizingRecommendationRequest;
+
 /** Samples for ResourceProvider SapSizingRecommendations. */
 public final class ResourceProviderSapSizingRecommendationsSamples {
     /*
@@ -844,7 +894,18 @@ public final class ResourceProviderSapSizingRecommendationsSamples {
         com.azure.resourcemanager.workloads.WorkloadsManager manager) {
         manager
             .resourceProviders()
-            .sapSizingRecommendationsWithResponse("centralus", null, com.azure.core.util.Context.NONE);
+            .sapSizingRecommendationsWithResponse(
+                "centralus",
+                new SapSizingRecommendationRequest()
+                    .withAppLocation("eastus")
+                    .withEnvironment(SapEnvironmentType.PROD)
+                    .withSapProduct(SapProductType.S4HANA)
+                    .withDeploymentType(SapDeploymentType.THREE_TIER)
+                    .withSaps(20000L)
+                    .withDbMemory(1024L)
+                    .withDatabaseType(SapDatabaseType.HANA)
+                    .withDbScaleMethod(SapDatabaseScaleMethod.SCALE_UP),
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -859,7 +920,18 @@ public final class ResourceProviderSapSizingRecommendationsSamples {
         com.azure.resourcemanager.workloads.WorkloadsManager manager) {
         manager
             .resourceProviders()
-            .sapSizingRecommendationsWithResponse("centralus", null, com.azure.core.util.Context.NONE);
+            .sapSizingRecommendationsWithResponse(
+                "centralus",
+                new SapSizingRecommendationRequest()
+                    .withAppLocation("eastus")
+                    .withEnvironment(SapEnvironmentType.NON_PROD)
+                    .withSapProduct(SapProductType.S4HANA)
+                    .withDeploymentType(SapDeploymentType.SINGLE_SERVER)
+                    .withSaps(60000L)
+                    .withDbMemory(2000L)
+                    .withDatabaseType(SapDatabaseType.HANA)
+                    .withDbScaleMethod(SapDatabaseScaleMethod.SCALE_UP),
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -874,7 +946,19 @@ public final class ResourceProviderSapSizingRecommendationsSamples {
         com.azure.resourcemanager.workloads.WorkloadsManager manager) {
         manager
             .resourceProviders()
-            .sapSizingRecommendationsWithResponse("centralus", null, com.azure.core.util.Context.NONE);
+            .sapSizingRecommendationsWithResponse(
+                "centralus",
+                new SapSizingRecommendationRequest()
+                    .withAppLocation("eastus")
+                    .withEnvironment(SapEnvironmentType.PROD)
+                    .withSapProduct(SapProductType.S4HANA)
+                    .withDeploymentType(SapDeploymentType.THREE_TIER)
+                    .withSaps(75000L)
+                    .withDbMemory(1024L)
+                    .withDatabaseType(SapDatabaseType.HANA)
+                    .withDbScaleMethod(SapDatabaseScaleMethod.SCALE_UP)
+                    .withHighAvailabilityType(SapHighAvailabilityType.AVAILABILITY_ZONE),
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -889,7 +973,19 @@ public final class ResourceProviderSapSizingRecommendationsSamples {
         com.azure.resourcemanager.workloads.WorkloadsManager manager) {
         manager
             .resourceProviders()
-            .sapSizingRecommendationsWithResponse("centralus", null, com.azure.core.util.Context.NONE);
+            .sapSizingRecommendationsWithResponse(
+                "centralus",
+                new SapSizingRecommendationRequest()
+                    .withAppLocation("eastus")
+                    .withEnvironment(SapEnvironmentType.PROD)
+                    .withSapProduct(SapProductType.S4HANA)
+                    .withDeploymentType(SapDeploymentType.THREE_TIER)
+                    .withSaps(75000L)
+                    .withDbMemory(1024L)
+                    .withDatabaseType(SapDatabaseType.HANA)
+                    .withDbScaleMethod(SapDatabaseScaleMethod.SCALE_UP)
+                    .withHighAvailabilityType(SapHighAvailabilityType.AVAILABILITY_SET),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -897,6 +993,13 @@ public final class ResourceProviderSapSizingRecommendationsSamples {
 ### ResourceProvider_SapSupportedSku
 
 ```java
+import com.azure.resourcemanager.workloads.models.SapDatabaseType;
+import com.azure.resourcemanager.workloads.models.SapDeploymentType;
+import com.azure.resourcemanager.workloads.models.SapEnvironmentType;
+import com.azure.resourcemanager.workloads.models.SapHighAvailabilityType;
+import com.azure.resourcemanager.workloads.models.SapProductType;
+import com.azure.resourcemanager.workloads.models.SapSupportedSkusRequest;
+
 /** Samples for ResourceProvider SapSupportedSku. */
 public final class ResourceProviderSapSupportedSkuSamples {
     /*
@@ -908,7 +1011,17 @@ public final class ResourceProviderSapSupportedSkuSamples {
      * @param manager Entry point to WorkloadsManager.
      */
     public static void sAPSupportedSkusSingleServer(com.azure.resourcemanager.workloads.WorkloadsManager manager) {
-        manager.resourceProviders().sapSupportedSkuWithResponse("centralus", null, com.azure.core.util.Context.NONE);
+        manager
+            .resourceProviders()
+            .sapSupportedSkuWithResponse(
+                "centralus",
+                new SapSupportedSkusRequest()
+                    .withAppLocation("eastus")
+                    .withEnvironment(SapEnvironmentType.NON_PROD)
+                    .withSapProduct(SapProductType.S4HANA)
+                    .withDeploymentType(SapDeploymentType.SINGLE_SERVER)
+                    .withDatabaseType(SapDatabaseType.HANA),
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -920,7 +1033,17 @@ public final class ResourceProviderSapSupportedSkuSamples {
      * @param manager Entry point to WorkloadsManager.
      */
     public static void sAPSupportedSkusDistributed(com.azure.resourcemanager.workloads.WorkloadsManager manager) {
-        manager.resourceProviders().sapSupportedSkuWithResponse("centralus", null, com.azure.core.util.Context.NONE);
+        manager
+            .resourceProviders()
+            .sapSupportedSkuWithResponse(
+                "centralus",
+                new SapSupportedSkusRequest()
+                    .withAppLocation("eastus")
+                    .withEnvironment(SapEnvironmentType.PROD)
+                    .withSapProduct(SapProductType.S4HANA)
+                    .withDeploymentType(SapDeploymentType.THREE_TIER)
+                    .withDatabaseType(SapDatabaseType.HANA),
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -933,7 +1056,18 @@ public final class ResourceProviderSapSupportedSkuSamples {
      */
     public static void sAPSupportedSkusDistributedHAAvZone(
         com.azure.resourcemanager.workloads.WorkloadsManager manager) {
-        manager.resourceProviders().sapSupportedSkuWithResponse("centralus", null, com.azure.core.util.Context.NONE);
+        manager
+            .resourceProviders()
+            .sapSupportedSkuWithResponse(
+                "centralus",
+                new SapSupportedSkusRequest()
+                    .withAppLocation("eastus")
+                    .withEnvironment(SapEnvironmentType.PROD)
+                    .withSapProduct(SapProductType.S4HANA)
+                    .withDeploymentType(SapDeploymentType.THREE_TIER)
+                    .withDatabaseType(SapDatabaseType.HANA)
+                    .withHighAvailabilityType(SapHighAvailabilityType.AVAILABILITY_ZONE),
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -946,7 +1080,18 @@ public final class ResourceProviderSapSupportedSkuSamples {
      */
     public static void sAPSupportedSkusDistributedHAAvSet(
         com.azure.resourcemanager.workloads.WorkloadsManager manager) {
-        manager.resourceProviders().sapSupportedSkuWithResponse("centralus", null, com.azure.core.util.Context.NONE);
+        manager
+            .resourceProviders()
+            .sapSupportedSkuWithResponse(
+                "centralus",
+                new SapSupportedSkusRequest()
+                    .withAppLocation("eastus")
+                    .withEnvironment(SapEnvironmentType.PROD)
+                    .withSapProduct(SapProductType.S4HANA)
+                    .withDeploymentType(SapDeploymentType.THREE_TIER)
+                    .withDatabaseType(SapDatabaseType.HANA)
+                    .withHighAvailabilityType(SapHighAvailabilityType.AVAILABILITY_SET),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -997,6 +1142,7 @@ public final class SapApplicationServerInstancesCreateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -1148,6 +1294,7 @@ public final class SapApplicationServerInstancesUpdateSamples {
         resource.update().withTags(mapOf("tag1", "value1")).apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -1206,6 +1353,7 @@ public final class SapCentralInstancesCreateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -1354,6 +1502,7 @@ public final class SapCentralInstancesUpdateSamples {
         resource.update().withTags(mapOf("tag1", "value1")).apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -1412,6 +1561,7 @@ public final class SapDatabaseInstancesCreateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -1556,9 +1706,10 @@ public final class SapDatabaseInstancesUpdateSamples {
                 .sapDatabaseInstances()
                 .getWithResponse("test-rg", "X00", "databaseServer", com.azure.core.util.Context.NONE)
                 .getValue();
-        resource.update().withTags(mapOf("key1", "value1")).apply();
+        resource.update().withTags(mapOf("key1", "fakeTokenPlaceholder")).apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -4628,6 +4779,7 @@ public final class SapVirtualInstancesCreateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -4790,11 +4942,12 @@ public final class SapVirtualInstancesUpdateSamples {
                 .getValue();
         resource
             .update()
-            .withTags(mapOf("key1", "svi1"))
+            .withTags(mapOf("key1", "fakeTokenPlaceholder"))
             .withIdentity(new UserAssignedServiceIdentity().withType(ManagedServiceIdentityType.NONE))
             .apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

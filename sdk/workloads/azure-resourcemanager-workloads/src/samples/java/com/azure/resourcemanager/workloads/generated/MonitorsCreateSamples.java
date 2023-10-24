@@ -25,7 +25,7 @@ public final class MonitorsCreateSamples {
             .define("mySapMonitor")
             .withRegion("westus")
             .withExistingResourceGroup("myResourceGroup")
-            .withTags(mapOf("key", "value"))
+            .withTags(mapOf("key", "fakeTokenPlaceholder"))
             .withAppLocation("westus")
             .withRoutingPreference(RoutingPreference.ROUTE_ALL)
             .withManagedResourceGroupConfiguration(new ManagedRGConfiguration().withName("myManagedRg"))
@@ -36,6 +36,7 @@ public final class MonitorsCreateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
