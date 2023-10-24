@@ -81,12 +81,12 @@ public final class ResourceSkusClientImpl implements ResourceSkusClient {
     /**
      * Get supported SKUs
      *
-     * <p>The skus action returns the list of SKUs that DMS supports.
+     * <p>The skus action returns the list of SKUs that DMS (classic) supports.
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the DMS List SKUs operation response along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return the DMS (classic) List SKUs operation response along with {@link PagedResponse} on successful completion
+     *     of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ResourceSkuInner>> listSinglePageAsync() {
@@ -128,14 +128,14 @@ public final class ResourceSkusClientImpl implements ResourceSkusClient {
     /**
      * Get supported SKUs
      *
-     * <p>The skus action returns the list of SKUs that DMS supports.
+     * <p>The skus action returns the list of SKUs that DMS (classic) supports.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the DMS List SKUs operation response along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return the DMS (classic) List SKUs operation response along with {@link PagedResponse} on successful completion
+     *     of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ResourceSkuInner>> listSinglePageAsync(Context context) {
@@ -174,11 +174,11 @@ public final class ResourceSkusClientImpl implements ResourceSkusClient {
     /**
      * Get supported SKUs
      *
-     * <p>The skus action returns the list of SKUs that DMS supports.
+     * <p>The skus action returns the list of SKUs that DMS (classic) supports.
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the DMS List SKUs operation response as paginated response with {@link PagedFlux}.
+     * @return the DMS (classic) List SKUs operation response as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ResourceSkuInner> listAsync() {
@@ -188,13 +188,13 @@ public final class ResourceSkusClientImpl implements ResourceSkusClient {
     /**
      * Get supported SKUs
      *
-     * <p>The skus action returns the list of SKUs that DMS supports.
+     * <p>The skus action returns the list of SKUs that DMS (classic) supports.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the DMS List SKUs operation response as paginated response with {@link PagedFlux}.
+     * @return the DMS (classic) List SKUs operation response as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ResourceSkuInner> listAsync(Context context) {
@@ -205,11 +205,11 @@ public final class ResourceSkusClientImpl implements ResourceSkusClient {
     /**
      * Get supported SKUs
      *
-     * <p>The skus action returns the list of SKUs that DMS supports.
+     * <p>The skus action returns the list of SKUs that DMS (classic) supports.
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the DMS List SKUs operation response as paginated response with {@link PagedIterable}.
+     * @return the DMS (classic) List SKUs operation response as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ResourceSkuInner> list() {
@@ -219,13 +219,13 @@ public final class ResourceSkusClientImpl implements ResourceSkusClient {
     /**
      * Get supported SKUs
      *
-     * <p>The skus action returns the list of SKUs that DMS supports.
+     * <p>The skus action returns the list of SKUs that DMS (classic) supports.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the DMS List SKUs operation response as paginated response with {@link PagedIterable}.
+     * @return the DMS (classic) List SKUs operation response as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ResourceSkuInner> list(Context context) {
@@ -240,8 +240,8 @@ public final class ResourceSkusClientImpl implements ResourceSkusClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the DMS List SKUs operation response along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return the DMS (classic) List SKUs operation response along with {@link PagedResponse} on successful completion
+     *     of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ResourceSkuInner>> listSkusNextSinglePageAsync(String nextLink) {
@@ -278,8 +278,8 @@ public final class ResourceSkusClientImpl implements ResourceSkusClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the DMS List SKUs operation response along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return the DMS (classic) List SKUs operation response along with {@link PagedResponse} on successful completion
+     *     of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ResourceSkuInner>> listSkusNextSinglePageAsync(String nextLink, Context context) {
