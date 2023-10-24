@@ -28,7 +28,7 @@ public final class BigDataPoolsCreateOrUpdateSamples {
             .define("ExamplePool")
             .withRegion("West US 2")
             .withExistingWorkspace("ExampleResourceGroup", "ExampleWorkspace")
-            .withTags(mapOf("key", "value"))
+            .withTags(mapOf("key", "fakeTokenPlaceholder"))
             .withAutoScale(new AutoScaleProperties().withMinNodeCount(3).withEnabled(true).withMaxNodeCount(50))
             .withAutoPause(new AutoPauseProperties().withDelayInMinutes(15).withEnabled(true))
             .withIsAutotuneEnabled(false)
@@ -42,6 +42,7 @@ public final class BigDataPoolsCreateOrUpdateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
