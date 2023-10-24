@@ -4,11 +4,14 @@
 
 package com.azure.resourcemanager.apicenter.implementation;
 
+import com.azure.core.http.rest.Response;
 import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.apicenter.fluent.models.ServiceInner;
 import com.azure.resourcemanager.apicenter.models.ManagedServiceIdentity;
+import com.azure.resourcemanager.apicenter.models.MetadataSchemaExportRequest;
+import com.azure.resourcemanager.apicenter.models.MetadataSchemaExportResult;
 import com.azure.resourcemanager.apicenter.models.ProvisioningState;
 import com.azure.resourcemanager.apicenter.models.Service;
 import com.azure.resourcemanager.apicenter.models.ServiceUpdate;
@@ -81,7 +84,7 @@ public final class ServiceImpl implements Service, Service.Definition, Service.U
 
     private String serviceName;
 
-    private ServiceUpdate updateParameters;
+    private ServiceUpdate updatePayload;
 
     public ServiceImpl withExistingResourceGroup(String resourceGroupName) {
         this.resourceGroupName = resourceGroupName;
@@ -115,7 +118,7 @@ public final class ServiceImpl implements Service, Service.Definition, Service.U
     }
 
     public ServiceImpl update() {
-        this.updateParameters = new ServiceUpdate();
+        this.updatePayload = new ServiceUpdate();
         return this;
     }
 
@@ -124,7 +127,7 @@ public final class ServiceImpl implements Service, Service.Definition, Service.U
             serviceManager
                 .serviceClient()
                 .getServices()
-                .updateWithResponse(resourceGroupName, serviceName, updateParameters, Context.NONE)
+                .updateWithResponse(resourceGroupName, serviceName, updatePayload, Context.NONE)
                 .getValue();
         return this;
     }
@@ -134,7 +137,7 @@ public final class ServiceImpl implements Service, Service.Definition, Service.U
             serviceManager
                 .serviceClient()
                 .getServices()
-                .updateWithResponse(resourceGroupName, serviceName, updateParameters, context)
+                .updateWithResponse(resourceGroupName, serviceName, updatePayload, context)
                 .getValue();
         return this;
     }
@@ -164,6 +167,17 @@ public final class ServiceImpl implements Service, Service.Definition, Service.U
                 .getByResourceGroupWithResponse(resourceGroupName, serviceName, context)
                 .getValue();
         return this;
+    }
+
+    public Response<MetadataSchemaExportResult> exportMetadataSchemaWithResponse(
+        MetadataSchemaExportRequest payload, Context context) {
+        return serviceManager
+            .services()
+            .exportMetadataSchemaWithResponse(resourceGroupName, serviceName, payload, context);
+    }
+
+    public MetadataSchemaExportResult exportMetadataSchema(MetadataSchemaExportRequest payload) {
+        return serviceManager.services().exportMetadataSchema(resourceGroupName, serviceName, payload);
     }
 
     public ServiceImpl withRegion(Region location) {
