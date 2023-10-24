@@ -4,13 +4,12 @@
 
 package com.azure.resourcemanager.consumption.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.consumption.models.Datagrain;
 
 /** Samples for ReservationsSummaries List. */
 public final class ReservationsSummariesListSamples {
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/ReservationSummariesDailyWithBillingAccountId.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2023-11-01/examples/ReservationSummariesDailyWithBillingAccountId.json
      */
     /**
      * Sample code: ReservationSummariesDailyWithBillingAccountId.
@@ -29,11 +28,11 @@ public final class ReservationsSummariesListSamples {
                 "properties/usageDate ge 2017-10-01 AND properties/usageDate le 2017-11-20",
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/ReservationSummariesDailyWithBillingProfileId.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2023-11-01/examples/ReservationSummariesDailyWithBillingProfileId.json
      */
     /**
      * Sample code: ReservationSummariesDailyWithBillingProfileId.
@@ -52,11 +51,11 @@ public final class ReservationsSummariesListSamples {
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/ReservationSummariesMonthlyWithBillingAccountId.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2023-11-01/examples/ReservationSummariesMonthlyWithBillingAccountId.json
      */
     /**
      * Sample code: ReservationSummariesMonthlyWithBillingAccountId.
@@ -75,11 +74,11 @@ public final class ReservationsSummariesListSamples {
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/ReservationSummariesMonthlyWithBillingProfileId.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2023-11-01/examples/ReservationSummariesMonthlyWithBillingProfileId.json
      */
     /**
      * Sample code: ReservationSummariesMonthlyWithBillingProfileId.
@@ -98,11 +97,11 @@ public final class ReservationsSummariesListSamples {
                 null,
                 null,
                 null,
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/ReservationSummariesMonthlyWithBillingProfileIdReservationId.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2023-11-01/examples/ReservationSummariesMonthlyWithBillingProfileIdReservationId.json
      */
     /**
      * Sample code: ReservationSummariesMonthlyWithBillingProfileIdReservationId.
@@ -121,6 +120,6 @@ public final class ReservationsSummariesListSamples {
                 null,
                 "1c6b6358-709f-484c-85f1-72e862a0cf3b",
                 "9f39ba10-794f-4dcb-8f4b-8d0cb47c27dc",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

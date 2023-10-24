@@ -39,7 +39,8 @@ public interface LotSummary {
     String etag();
 
     /**
-     * Gets the originalAmount property: The original amount of a lot.
+     * Gets the originalAmount property: The original amount of a lot, Note: This will not be returned for Contributor
+     * Organization Type in Multi-Entity consumption commitment.
      *
      * @return the originalAmount value.
      */
@@ -110,7 +111,8 @@ public interface LotSummary {
     String billingCurrency();
 
     /**
-     * Gets the originalAmountInBillingCurrency property: The original amount of a lot in billing currency.
+     * Gets the originalAmountInBillingCurrency property: The original amount of a lot in billing currency, Note: This
+     * will not be returned for Contributor Organization Type in Multi-Entity consumption commitment.
      *
      * @return the originalAmountInBillingCurrency value.
      */
@@ -131,11 +133,33 @@ public interface LotSummary {
     Reseller reseller();
 
     /**
+     * Gets the isEstimatedBalance property: If true, the listed details are based on an estimation and it will be
+     * subjected to change.
+     *
+     * @return the isEstimatedBalance value.
+     */
+    Boolean isEstimatedBalance();
+
+    /**
      * Gets the etagPropertiesEtag property: The eTag for the resource.
      *
      * @return the etagPropertiesEtag value.
      */
     String etagPropertiesEtag();
+
+    /**
+     * Gets the organizationType property: The organization type of the lot.
+     *
+     * @return the organizationType value.
+     */
+    OrganizationType organizationType();
+
+    /**
+     * Gets the usedAmount property: Amount consumed from the commitment.
+     *
+     * @return the usedAmount value.
+     */
+    Amount usedAmount();
 
     /**
      * Gets the inner com.azure.resourcemanager.consumption.fluent.models.LotSummaryInner object.

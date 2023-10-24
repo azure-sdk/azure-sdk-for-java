@@ -12,10 +12,9 @@ import com.azure.resourcemanager.consumption.fluent.BalancesClient;
 import com.azure.resourcemanager.consumption.fluent.models.BalanceInner;
 import com.azure.resourcemanager.consumption.models.Balance;
 import com.azure.resourcemanager.consumption.models.Balances;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class BalancesImpl implements Balances {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(BalancesImpl.class);
+    private static final ClientLogger LOGGER = new ClientLogger(BalancesImpl.class);
 
     private final BalancesClient innerClient;
 
@@ -25,15 +24,6 @@ public final class BalancesImpl implements Balances {
         BalancesClient innerClient, com.azure.resourcemanager.consumption.ConsumptionManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
-    }
-
-    public Balance getByBillingAccount(String billingAccountId) {
-        BalanceInner inner = this.serviceClient().getByBillingAccount(billingAccountId);
-        if (inner != null) {
-            return new BalanceImpl(inner, this.manager());
-        } else {
-            return null;
-        }
     }
 
     public Response<Balance> getByBillingAccountWithResponse(String billingAccountId, Context context) {
@@ -49,9 +39,8 @@ public final class BalancesImpl implements Balances {
         }
     }
 
-    public Balance getForBillingPeriodByBillingAccount(String billingAccountId, String billingPeriodName) {
-        BalanceInner inner =
-            this.serviceClient().getForBillingPeriodByBillingAccount(billingAccountId, billingPeriodName);
+    public Balance getByBillingAccount(String billingAccountId) {
+        BalanceInner inner = this.serviceClient().getByBillingAccount(billingAccountId);
         if (inner != null) {
             return new BalanceImpl(inner, this.manager());
         } else {
@@ -71,6 +60,16 @@ public final class BalancesImpl implements Balances {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new BalanceImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public Balance getForBillingPeriodByBillingAccount(String billingAccountId, String billingPeriodName) {
+        BalanceInner inner =
+            this.serviceClient().getForBillingPeriodByBillingAccount(billingAccountId, billingPeriodName);
+        if (inner != null) {
+            return new BalanceImpl(inner, this.manager());
         } else {
             return null;
         }
