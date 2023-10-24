@@ -194,7 +194,7 @@ public final class DncImpl implements Dnc {
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2021-03-15";
+        this.apiVersion = "2023-06-27-preview";
         this.controllers = new ControllersClientImpl(this);
         this.delegatedNetworks = new DelegatedNetworksClientImpl(this);
         this.orchestratorInstanceServices = new OrchestratorInstanceServicesClientImpl(this);
