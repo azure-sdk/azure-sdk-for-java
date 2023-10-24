@@ -215,7 +215,7 @@ public final class NginxManager {
                 .append("-")
                 .append("com.azure.resourcemanager.nginx")
                 .append("/")
-                .append("1.0.0-beta.2");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -321,8 +321,10 @@ public final class NginxManager {
     }
 
     /**
-     * @return Wrapped service client NginxManagementClient providing direct access to the underlying auto-generated API
-     *     implementation, based on Azure REST API.
+     * Gets wrapped service client NginxManagementClient providing direct access to the underlying auto-generated API
+     * implementation, based on Azure REST API.
+     *
+     * @return Wrapped service client NginxManagementClient.
      */
     public NginxManagementClient serviceClient() {
         return this.clientObject;
