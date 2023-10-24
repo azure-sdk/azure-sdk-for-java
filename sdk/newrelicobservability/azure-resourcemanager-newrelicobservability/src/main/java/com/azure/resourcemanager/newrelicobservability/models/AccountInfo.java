@@ -23,7 +23,7 @@ public final class AccountInfo {
     private String ingestionKey;
 
     /*
-     * NewRelic account region
+     * Region where New Relic account is present
      */
     @JsonProperty(value = "region")
     private String region;
@@ -73,7 +73,7 @@ public final class AccountInfo {
     }
 
     /**
-     * Get the region property: NewRelic account region.
+     * Get the region property: Region where New Relic account is present.
      *
      * @return the region value.
      */
@@ -82,7 +82,7 @@ public final class AccountInfo {
     }
 
     /**
-     * Set the region property: NewRelic account region.
+     * Set the region property: Region where New Relic account is present.
      *
      * @param region the region value to set.
      * @return the AccountInfo object itself.
