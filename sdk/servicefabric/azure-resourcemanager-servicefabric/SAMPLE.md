@@ -78,6 +78,7 @@ public final class ApplicationTypeVersionsCreateOrUpdateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -150,9 +151,7 @@ public final class ApplicationTypeVersionsListSamples {
      */
     public static void getAListOfApplicationTypeVersionResources(
         com.azure.resourcemanager.servicefabric.ServiceFabricManager manager) {
-        manager
-            .applicationTypeVersions()
-            .listWithResponse("resRg", "myCluster", "myAppType", com.azure.core.util.Context.NONE);
+        manager.applicationTypeVersions().list("resRg", "myCluster", "myAppType", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -182,6 +181,7 @@ public final class ApplicationTypesCreateOrUpdateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -248,7 +248,7 @@ public final class ApplicationTypesListSamples {
      */
     public static void getAListOfApplicationTypeNameResources(
         com.azure.resourcemanager.servicefabric.ServiceFabricManager manager) {
-        manager.applicationTypes().listWithResponse("resRg", "myCluster", com.azure.core.util.Context.NONE);
+        manager.applicationTypes().list("resRg", "myCluster", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -367,6 +367,7 @@ public final class ApplicationsCreateOrUpdateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -433,7 +434,7 @@ public final class ApplicationsListSamples {
      */
     public static void getAListOfApplicationResources(
         com.azure.resourcemanager.servicefabric.ServiceFabricManager manager) {
-        manager.applications().listWithResponse("resRg", "myCluster", com.azure.core.util.Context.NONE);
+        manager.applications().list("resRg", "myCluster", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -837,6 +838,7 @@ public final class ClustersCreateOrUpdateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -902,7 +904,7 @@ public final class ClustersListSamples {
      * @param manager Entry point to ServiceFabricManager.
      */
     public static void listClusters(com.azure.resourcemanager.servicefabric.ServiceFabricManager manager) {
-        manager.clusters().listWithResponse(com.azure.core.util.Context.NONE);
+        manager.clusters().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -922,7 +924,7 @@ public final class ClustersListByResourceGroupSamples {
      */
     public static void listClusterByResourceGroup(
         com.azure.resourcemanager.servicefabric.ServiceFabricManager manager) {
-        manager.clusters().listByResourceGroupWithResponse("resRg", com.azure.core.util.Context.NONE);
+        manager.clusters().listByResourceGroup("resRg", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1034,6 +1036,7 @@ public final class ClustersUpdateSamples {
             .apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -1146,6 +1149,7 @@ public final class ServicesCreateOrUpdateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -1214,7 +1218,7 @@ public final class ServicesListSamples {
      */
     public static void getAListOfServiceResources(
         com.azure.resourcemanager.servicefabric.ServiceFabricManager manager) {
-        manager.services().listWithResponse("resRg", "myCluster", "myApp", com.azure.core.util.Context.NONE);
+        manager.services().list("resRg", "myCluster", "myApp", com.azure.core.util.Context.NONE);
     }
 }
 ```

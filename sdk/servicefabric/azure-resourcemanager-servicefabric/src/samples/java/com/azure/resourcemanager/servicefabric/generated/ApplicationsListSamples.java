@@ -16,6 +16,6 @@ public final class ApplicationsListSamples {
      */
     public static void getAListOfApplicationResources(
         com.azure.resourcemanager.servicefabric.ServiceFabricManager manager) {
-        manager.applications().listWithResponse("resRg", "myCluster", com.azure.core.util.Context.NONE);
+        manager.applications().list("resRg", "myCluster", com.azure.core.util.Context.NONE);
     }
 }

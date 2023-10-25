@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.servicefabric.models;
 
+import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 
@@ -90,15 +91,14 @@ public interface ApplicationTypeVersions {
      * @param resourceGroupName The name of the resource group.
      * @param clusterName The name of the cluster resource.
      * @param applicationTypeName The name of the application type name resource.
-     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return all application type version resources created or in the process of being created in the Service Fabric
-     *     application type name resource along with {@link Response}.
+     *     application type name resource as paginated response with {@link PagedIterable}.
      */
-    Response<ApplicationTypeVersionResourceList> listWithResponse(
-        String resourceGroupName, String clusterName, String applicationTypeName, Context context);
+    PagedIterable<ApplicationTypeVersionResource> list(
+        String resourceGroupName, String clusterName, String applicationTypeName);
 
     /**
      * Gets the list of application type version resources created in the specified Service Fabric application type name
@@ -110,13 +110,15 @@ public interface ApplicationTypeVersions {
      * @param resourceGroupName The name of the resource group.
      * @param clusterName The name of the cluster resource.
      * @param applicationTypeName The name of the application type name resource.
+     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return all application type version resources created or in the process of being created in the Service Fabric
-     *     application type name resource.
+     *     application type name resource as paginated response with {@link PagedIterable}.
      */
-    ApplicationTypeVersionResourceList list(String resourceGroupName, String clusterName, String applicationTypeName);
+    PagedIterable<ApplicationTypeVersionResource> list(
+        String resourceGroupName, String clusterName, String applicationTypeName, Context context);
 
     /**
      * Gets a Service Fabric application type version resource.

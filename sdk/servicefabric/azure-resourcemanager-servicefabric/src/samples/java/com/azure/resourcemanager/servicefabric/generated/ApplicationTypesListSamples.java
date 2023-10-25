@@ -16,6 +16,6 @@ public final class ApplicationTypesListSamples {
      */
     public static void getAListOfApplicationTypeNameResources(
         com.azure.resourcemanager.servicefabric.ServiceFabricManager manager) {
-        manager.applicationTypes().listWithResponse("resRg", "myCluster", com.azure.core.util.Context.NONE);
+        manager.applicationTypes().list("resRg", "myCluster", com.azure.core.util.Context.NONE);
     }
 }

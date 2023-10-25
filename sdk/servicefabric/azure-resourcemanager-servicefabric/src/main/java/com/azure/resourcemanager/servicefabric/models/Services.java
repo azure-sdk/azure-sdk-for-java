@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.servicefabric.models;
 
+import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 
@@ -88,15 +89,13 @@ public interface Services {
      * @param resourceGroupName The name of the resource group.
      * @param clusterName The name of the cluster resource.
      * @param applicationName The name of the application resource.
-     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return all service resources created or in the process of being created in the Service Fabric application
-     *     resource along with {@link Response}.
+     *     resource as paginated response with {@link PagedIterable}.
      */
-    Response<ServiceResourceList> listWithResponse(
-        String resourceGroupName, String clusterName, String applicationName, Context context);
+    PagedIterable<ServiceResource> list(String resourceGroupName, String clusterName, String applicationName);
 
     /**
      * Gets the list of service resources created in the specified Service Fabric application resource.
@@ -107,13 +106,15 @@ public interface Services {
      * @param resourceGroupName The name of the resource group.
      * @param clusterName The name of the cluster resource.
      * @param applicationName The name of the application resource.
+     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return all service resources created or in the process of being created in the Service Fabric application
-     *     resource.
+     *     resource as paginated response with {@link PagedIterable}.
      */
-    ServiceResourceList list(String resourceGroupName, String clusterName, String applicationName);
+    PagedIterable<ServiceResource> list(
+        String resourceGroupName, String clusterName, String applicationName, Context context);
 
     /**
      * Gets a Service Fabric service resource.

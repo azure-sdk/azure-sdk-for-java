@@ -16,6 +16,6 @@ public final class ServicesListSamples {
      */
     public static void getAListOfServiceResources(
         com.azure.resourcemanager.servicefabric.ServiceFabricManager manager) {
-        manager.services().listWithResponse("resRg", "myCluster", "myApp", com.azure.core.util.Context.NONE);
+        manager.services().list("resRg", "myCluster", "myApp", com.azure.core.util.Context.NONE);
     }
 }
