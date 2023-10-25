@@ -33,6 +33,14 @@ public final class ForecastingSettings {
     private FeatureLags featureLags;
 
     /*
+     * The feature columns that are available for training but unknown at the time of forecast/inference.
+     * If features_unknown_at_forecast_time is not set, it is assumed that all the feature columns in the dataset are
+     * known at inference time.
+     */
+    @JsonProperty(value = "featuresUnknownAtForecastTime")
+    private List<String> featuresUnknownAtForecastTime;
+
+    /*
      * The desired maximum forecast horizon in units of time-series frequency.
      */
     @JsonProperty(value = "forecastHorizon")
@@ -61,7 +69,7 @@ public final class ForecastingSettings {
     /*
      * The function to be used to aggregate the time series target column to conform to a user specified frequency.
      * If the TargetAggregateFunction is set i.e. not 'None', but the freq parameter is not set, the error is raised.
-     * The possible target aggregation functions are: "sum", "max", "min" and "mean".
+     * The possible target aggregation functions are: "sum", "max", "min"\  and "mean".
      */
     @JsonProperty(value = "targetAggregateFunction")
     private TargetAggregationFunction targetAggregateFunction;
@@ -168,6 +176,30 @@ public final class ForecastingSettings {
     }
 
     /**
+     * Get the featuresUnknownAtForecastTime property: The feature columns that are available for training but unknown
+     * at the time of forecast/inference. If features_unknown_at_forecast_time is not set, it is assumed that all the
+     * feature columns in the dataset are known at inference time.
+     *
+     * @return the featuresUnknownAtForecastTime value.
+     */
+    public List<String> featuresUnknownAtForecastTime() {
+        return this.featuresUnknownAtForecastTime;
+    }
+
+    /**
+     * Set the featuresUnknownAtForecastTime property: The feature columns that are available for training but unknown
+     * at the time of forecast/inference. If features_unknown_at_forecast_time is not set, it is assumed that all the
+     * feature columns in the dataset are known at inference time.
+     *
+     * @param featuresUnknownAtForecastTime the featuresUnknownAtForecastTime value to set.
+     * @return the ForecastingSettings object itself.
+     */
+    public ForecastingSettings withFeaturesUnknownAtForecastTime(List<String> featuresUnknownAtForecastTime) {
+        this.featuresUnknownAtForecastTime = featuresUnknownAtForecastTime;
+        return this;
+    }
+
+    /**
      * Get the forecastHorizon property: The desired maximum forecast horizon in units of time-series frequency.
      *
      * @return the forecastHorizon value.
@@ -255,8 +287,8 @@ public final class ForecastingSettings {
     /**
      * Get the targetAggregateFunction property: The function to be used to aggregate the time series target column to
      * conform to a user specified frequency. If the TargetAggregateFunction is set i.e. not 'None', but the freq
-     * parameter is not set, the error is raised. The possible target aggregation functions are: "sum", "max", "min" and
-     * "mean".
+     * parameter is not set, the error is raised. The possible target aggregation functions are: "sum", "max", "min"\
+     * and "mean".
      *
      * @return the targetAggregateFunction value.
      */
@@ -267,8 +299,8 @@ public final class ForecastingSettings {
     /**
      * Set the targetAggregateFunction property: The function to be used to aggregate the time series target column to
      * conform to a user specified frequency. If the TargetAggregateFunction is set i.e. not 'None', but the freq
-     * parameter is not set, the error is raised. The possible target aggregation functions are: "sum", "max", "min" and
-     * "mean".
+     * parameter is not set, the error is raised. The possible target aggregation functions are: "sum", "max", "min"\
+     * and "mean".
      *
      * @param targetAggregateFunction the targetAggregateFunction value to set.
      * @return the ForecastingSettings object itself.

@@ -7,6 +7,7 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
+import com.azure.resourcemanager.machinelearning.fluent.models.ComponentContainerInner;
 
 /** Resource collection API of ComponentContainers. */
 public interface ComponentContainers {
@@ -93,55 +94,33 @@ public interface ComponentContainers {
     ComponentContainer get(String resourceGroupName, String workspaceName, String name);
 
     /**
-     * Get container.
+     * Create or update container.
      *
-     * @param id the resource ID.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return container along with {@link Response}.
-     */
-    ComponentContainer getById(String id);
-
-    /**
-     * Get container.
-     *
-     * @param id the resource ID.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param name Container name.
+     * @param body Container entity to create or update.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return container along with {@link Response}.
+     * @return azure Resource Manager resource envelope along with {@link Response}.
      */
-    Response<ComponentContainer> getByIdWithResponse(String id, Context context);
+    Response<ComponentContainer> createOrUpdateWithResponse(
+        String resourceGroupName, String workspaceName, String name, ComponentContainerInner body, Context context);
 
     /**
-     * Delete container.
+     * Create or update container.
      *
-     * @param id the resource ID.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param name Container name.
+     * @param body Container entity to create or update.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return azure Resource Manager resource envelope.
      */
-    void deleteById(String id);
-
-    /**
-     * Delete container.
-     *
-     * @param id the resource ID.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
-     */
-    Response<Void> deleteByIdWithResponse(String id, Context context);
-
-    /**
-     * Begins definition for a new ComponentContainer resource.
-     *
-     * @param name resource name.
-     * @return the first stage of the new ComponentContainer definition.
-     */
-    ComponentContainer.DefinitionStages.Blank define(String name);
+    ComponentContainer createOrUpdate(
+        String resourceGroupName, String workspaceName, String name, ComponentContainerInner body);
 }
