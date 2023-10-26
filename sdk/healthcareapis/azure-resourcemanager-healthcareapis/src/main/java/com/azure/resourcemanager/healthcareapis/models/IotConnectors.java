@@ -41,19 +41,6 @@ public interface IotConnectors {
      * @param resourceGroupName The name of the resource group that contains the service instance.
      * @param workspaceName The name of workspace resource.
      * @param iotConnectorName The name of IoT Connector resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the properties of the specified IoT Connector.
-     */
-    IotConnector get(String resourceGroupName, String workspaceName, String iotConnectorName);
-
-    /**
-     * Gets the properties of the specified IoT Connector.
-     *
-     * @param resourceGroupName The name of the resource group that contains the service instance.
-     * @param workspaceName The name of workspace resource.
-     * @param iotConnectorName The name of IoT Connector resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -62,6 +49,19 @@ public interface IotConnectors {
      */
     Response<IotConnector> getWithResponse(
         String resourceGroupName, String workspaceName, String iotConnectorName, Context context);
+
+    /**
+     * Gets the properties of the specified IoT Connector.
+     *
+     * @param resourceGroupName The name of the resource group that contains the service instance.
+     * @param workspaceName The name of workspace resource.
+     * @param iotConnectorName The name of IoT Connector resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the properties of the specified IoT Connector.
+     */
+    IotConnector get(String resourceGroupName, String workspaceName, String iotConnectorName);
 
     /**
      * Deletes an IoT Connector.

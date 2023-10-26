@@ -23,19 +23,6 @@ public interface ServicesClient {
      *
      * @param resourceGroupName The name of the resource group that contains the service instance.
      * @param resourceName The name of the service instance.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the metadata of a service instance.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    ServicesDescriptionInner getByResourceGroup(String resourceGroupName, String resourceName);
-
-    /**
-     * Get the metadata of a service instance.
-     *
-     * @param resourceGroupName The name of the resource group that contains the service instance.
-     * @param resourceName The name of the service instance.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -45,6 +32,19 @@ public interface ServicesClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ServicesDescriptionInner> getByResourceGroupWithResponse(
         String resourceGroupName, String resourceName, Context context);
+
+    /**
+     * Get the metadata of a service instance.
+     *
+     * @param resourceGroupName The name of the resource group that contains the service instance.
+     * @param resourceName The name of the service instance.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the metadata of a service instance.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    ServicesDescriptionInner getByResourceGroup(String resourceGroupName, String resourceName);
 
     /**
      * Create or update the metadata of a service instance.
@@ -280,20 +280,6 @@ public interface ServicesClient {
      *
      * @param checkNameAvailabilityInputs Set the name parameter in the CheckNameAvailabilityParameters structure to the
      *     name of the service instance to check.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the properties indicating whether a given service name is available.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    ServicesNameAvailabilityInfoInner checkNameAvailability(
-        CheckNameAvailabilityParameters checkNameAvailabilityInputs);
-
-    /**
-     * Check if a service instance name is available.
-     *
-     * @param checkNameAvailabilityInputs Set the name parameter in the CheckNameAvailabilityParameters structure to the
-     *     name of the service instance to check.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -303,4 +289,18 @@ public interface ServicesClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ServicesNameAvailabilityInfoInner> checkNameAvailabilityWithResponse(
         CheckNameAvailabilityParameters checkNameAvailabilityInputs, Context context);
+
+    /**
+     * Check if a service instance name is available.
+     *
+     * @param checkNameAvailabilityInputs Set the name parameter in the CheckNameAvailabilityParameters structure to the
+     *     name of the service instance to check.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the properties indicating whether a given service name is available.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    ServicesNameAvailabilityInfoInner checkNameAvailability(
+        CheckNameAvailabilityParameters checkNameAvailabilityInputs);
 }

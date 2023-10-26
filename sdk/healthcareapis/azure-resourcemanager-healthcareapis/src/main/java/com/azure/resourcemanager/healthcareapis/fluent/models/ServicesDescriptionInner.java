@@ -28,6 +28,10 @@ public final class ServicesDescriptionInner extends ServicesResource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
+    /** Creates an instance of ServicesDescriptionInner class. */
+    public ServicesDescriptionInner() {
+    }
+
     /**
      * Get the properties property: The common properties of a service.
      *
