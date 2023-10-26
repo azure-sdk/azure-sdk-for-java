@@ -125,6 +125,72 @@ public interface Ledgers {
     PagedIterable<ConfidentialLedger> list(String filter, Context context);
 
     /**
+     * Performs the backup operation on a Confidential Ledger Resource.
+     *
+     * <p>Backs up a Confidential Ledger Resource.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param ledgerName Name of the Confidential Ledger.
+     * @param confidentialLedger Confidential Ledger Backup Request Body.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return object representing the backup response of a Confidential Ledger Resource.
+     */
+    ConfidentialLedgerBackupResponse backup(
+        String resourceGroupName, String ledgerName, ConfidentialLedgerBackup confidentialLedger);
+
+    /**
+     * Performs the backup operation on a Confidential Ledger Resource.
+     *
+     * <p>Backs up a Confidential Ledger Resource.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param ledgerName Name of the Confidential Ledger.
+     * @param confidentialLedger Confidential Ledger Backup Request Body.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return object representing the backup response of a Confidential Ledger Resource.
+     */
+    ConfidentialLedgerBackupResponse backup(
+        String resourceGroupName, String ledgerName, ConfidentialLedgerBackup confidentialLedger, Context context);
+
+    /**
+     * Performs the restore operation to spin up a newly restored Confidential Ledger Resource.
+     *
+     * <p>Restores a Confidential Ledger Resource.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param ledgerName Name of the Confidential Ledger.
+     * @param confidentialLedger Confidential Ledger Restore Request Body.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return object representing the restore response of a Confidential Ledger Resource.
+     */
+    ConfidentialLedgerRestoreResponse restore(
+        String resourceGroupName, String ledgerName, ConfidentialLedgerRestore confidentialLedger);
+
+    /**
+     * Performs the restore operation to spin up a newly restored Confidential Ledger Resource.
+     *
+     * <p>Restores a Confidential Ledger Resource.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param ledgerName Name of the Confidential Ledger.
+     * @param confidentialLedger Confidential Ledger Restore Request Body.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return object representing the restore response of a Confidential Ledger Resource.
+     */
+    ConfidentialLedgerRestoreResponse restore(
+        String resourceGroupName, String ledgerName, ConfidentialLedgerRestore confidentialLedger, Context context);
+
+    /**
      * Retrieves information about a Confidential Ledger resource.
      *
      * <p>Retrieves the properties of a Confidential Ledger.

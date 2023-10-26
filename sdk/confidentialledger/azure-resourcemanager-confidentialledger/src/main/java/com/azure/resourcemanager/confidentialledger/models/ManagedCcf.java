@@ -78,6 +78,13 @@ public interface ManagedCcf {
     String regionName();
 
     /**
+     * Gets the name of the resource group.
+     *
+     * @return the name of the resource group.
+     */
+    String resourceGroupName();
+
+    /**
      * Gets the inner com.azure.resourcemanager.confidentialledger.fluent.models.ManagedCcfInner object.
      *
      * @return the inner object.
@@ -91,11 +98,13 @@ public interface ManagedCcf {
             DefinitionStages.WithResourceGroup,
             DefinitionStages.WithCreate {
     }
+
     /** The ManagedCcf definition stages. */
     interface DefinitionStages {
         /** The first stage of the ManagedCcf definition. */
         interface Blank extends WithLocation {
         }
+
         /** The stage of the ManagedCcf definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -114,6 +123,7 @@ public interface ManagedCcf {
              */
             WithResourceGroup withRegion(String location);
         }
+
         /** The stage of the ManagedCcf definition allowing to specify parent resource. */
         interface WithResourceGroup {
             /**
@@ -124,6 +134,7 @@ public interface ManagedCcf {
              */
             WithCreate withExistingResourceGroup(String resourceGroupName);
         }
+
         /**
          * The stage of the ManagedCcf definition which contains all the minimum required properties for the resource to
          * be created, but also allows for any other optional properties to be specified.
@@ -144,6 +155,7 @@ public interface ManagedCcf {
              */
             ManagedCcf create(Context context);
         }
+
         /** The stage of the ManagedCcf definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -154,6 +166,7 @@ public interface ManagedCcf {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
         /** The stage of the ManagedCcf definition allowing to specify properties. */
         interface WithProperties {
             /**
@@ -168,6 +181,60 @@ public interface ManagedCcf {
             WithCreate withProperties(ManagedCcfProperties properties);
         }
     }
+
+    /**
+     * Begins update for the ManagedCcf resource.
+     *
+     * @return the stage of resource update.
+     */
+    ManagedCcf.Update update();
+
+    /** The template for ManagedCcf update. */
+    interface Update extends UpdateStages.WithTags, UpdateStages.WithProperties {
+        /**
+         * Executes the update request.
+         *
+         * @return the updated resource.
+         */
+        ManagedCcf apply();
+
+        /**
+         * Executes the update request.
+         *
+         * @param context The context to associate with this operation.
+         * @return the updated resource.
+         */
+        ManagedCcf apply(Context context);
+    }
+
+    /** The ManagedCcf update stages. */
+    interface UpdateStages {
+        /** The stage of the ManagedCcf update allowing to specify tags. */
+        interface WithTags {
+            /**
+             * Specifies the tags property: Resource tags..
+             *
+             * @param tags Resource tags.
+             * @return the next definition stage.
+             */
+            Update withTags(Map<String, String> tags);
+        }
+
+        /** The stage of the ManagedCcf update allowing to specify properties. */
+        interface WithProperties {
+            /**
+             * Specifies the properties property: ManagedCCFProperties
+             *
+             * <p>Properties of Managed CCF Resource..
+             *
+             * @param properties ManagedCCFProperties
+             *     <p>Properties of Managed CCF Resource.
+             * @return the next definition stage.
+             */
+            Update withProperties(ManagedCcfProperties properties);
+        }
+    }
+
     /**
      * Refreshes the resource to sync with Azure.
      *
@@ -182,4 +249,58 @@ public interface ManagedCcf {
      * @return the refreshed resource.
      */
     ManagedCcf refresh(Context context);
+
+    /**
+     * Performs the backup operation on a Managed CCF Resource.
+     *
+     * <p>Backs up a Managed CCF Resource.
+     *
+     * @param managedCcf Managed CCF Backup Request Body.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return object representing the backup response of a Managed CCF Resource.
+     */
+    ManagedCcfBackupResponse backup(ManagedCcfBackup managedCcf);
+
+    /**
+     * Performs the backup operation on a Managed CCF Resource.
+     *
+     * <p>Backs up a Managed CCF Resource.
+     *
+     * @param managedCcf Managed CCF Backup Request Body.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return object representing the backup response of a Managed CCF Resource.
+     */
+    ManagedCcfBackupResponse backup(ManagedCcfBackup managedCcf, Context context);
+
+    /**
+     * Performs the restore operation to spin up a newly restored Managed CCF Resource.
+     *
+     * <p>Restores a Managed CCF Resource.
+     *
+     * @param managedCcf Managed CCF Restore Request Body.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return object representing the restore response of a Managed CCF Resource.
+     */
+    ManagedCcfRestoreResponse restore(ManagedCcfRestore managedCcf);
+
+    /**
+     * Performs the restore operation to spin up a newly restored Managed CCF Resource.
+     *
+     * <p>Restores a Managed CCF Resource.
+     *
+     * @param managedCcf Managed CCF Restore Request Body.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return object representing the restore response of a Managed CCF Resource.
+     */
+    ManagedCcfRestoreResponse restore(ManagedCcfRestore managedCcf, Context context);
 }
