@@ -22,6 +22,16 @@ public final class ServiceCosmosDbConfigurationInfo {
     @JsonProperty(value = "keyVaultKeyUri")
     private String keyVaultKeyUri;
 
+    /*
+     * The multi-tenant application id used to enable CMK access for services in a data sovereign region.
+     */
+    @JsonProperty(value = "crossTenantCmkApplicationId")
+    private String crossTenantCmkApplicationId;
+
+    /** Creates an instance of ServiceCosmosDbConfigurationInfo class. */
+    public ServiceCosmosDbConfigurationInfo() {
+    }
+
     /**
      * Get the offerThroughput property: The provisioned throughput for the backing database.
      *
@@ -59,6 +69,28 @@ public final class ServiceCosmosDbConfigurationInfo {
      */
     public ServiceCosmosDbConfigurationInfo withKeyVaultKeyUri(String keyVaultKeyUri) {
         this.keyVaultKeyUri = keyVaultKeyUri;
+        return this;
+    }
+
+    /**
+     * Get the crossTenantCmkApplicationId property: The multi-tenant application id used to enable CMK access for
+     * services in a data sovereign region.
+     *
+     * @return the crossTenantCmkApplicationId value.
+     */
+    public String crossTenantCmkApplicationId() {
+        return this.crossTenantCmkApplicationId;
+    }
+
+    /**
+     * Set the crossTenantCmkApplicationId property: The multi-tenant application id used to enable CMK access for
+     * services in a data sovereign region.
+     *
+     * @param crossTenantCmkApplicationId the crossTenantCmkApplicationId value to set.
+     * @return the ServiceCosmosDbConfigurationInfo object itself.
+     */
+    public ServiceCosmosDbConfigurationInfo withCrossTenantCmkApplicationId(String crossTenantCmkApplicationId) {
+        this.crossTenantCmkApplicationId = crossTenantCmkApplicationId;
         return this;
     }
 

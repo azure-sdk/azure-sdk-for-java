@@ -16,6 +16,10 @@ public final class ServiceExportConfigurationInfo {
     @JsonProperty(value = "storageAccountName")
     private String storageAccountName;
 
+    /** Creates an instance of ServiceExportConfigurationInfo class. */
+    public ServiceExportConfigurationInfo() {
+    }
+
     /**
      * Get the storageAccountName property: The name of the default export storage account.
      *
