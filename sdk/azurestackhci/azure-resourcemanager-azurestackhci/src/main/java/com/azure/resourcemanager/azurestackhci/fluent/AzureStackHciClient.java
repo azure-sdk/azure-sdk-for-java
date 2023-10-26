@@ -45,11 +45,32 @@ public interface AzureStackHciClient {
     Duration getDefaultPollInterval();
 
     /**
-     * Gets the GalleryImagesOperationsClient object to access its operations.
+     * Gets the ArcSettingsClient object to access its operations.
      *
-     * @return the GalleryImagesOperationsClient object.
+     * @return the ArcSettingsClient object.
      */
-    GalleryImagesOperationsClient getGalleryImagesOperations();
+    ArcSettingsClient getArcSettings();
+
+    /**
+     * Gets the ClustersClient object to access its operations.
+     *
+     * @return the ClustersClient object.
+     */
+    ClustersClient getClusters();
+
+    /**
+     * Gets the ExtensionsClient object to access its operations.
+     *
+     * @return the ExtensionsClient object.
+     */
+    ExtensionsClient getExtensions();
+
+    /**
+     * Gets the OffersClient object to access its operations.
+     *
+     * @return the OffersClient object.
+     */
+    OffersClient getOffers();
 
     /**
      * Gets the OperationsClient object to access its operations.
@@ -59,65 +80,37 @@ public interface AzureStackHciClient {
     OperationsClient getOperations();
 
     /**
-     * Gets the LogicalNetworksOperationsClient object to access its operations.
+     * Gets the PublishersClient object to access its operations.
      *
-     * @return the LogicalNetworksOperationsClient object.
+     * @return the PublishersClient object.
      */
-    LogicalNetworksOperationsClient getLogicalNetworksOperations();
+    PublishersClient getPublishers();
 
     /**
-     * Gets the MarketplaceGalleryImagesOperationsClient object to access its operations.
+     * Gets the SkusClient object to access its operations.
      *
-     * @return the MarketplaceGalleryImagesOperationsClient object.
+     * @return the SkusClient object.
      */
-    MarketplaceGalleryImagesOperationsClient getMarketplaceGalleryImagesOperations();
+    SkusClient getSkus();
 
     /**
-     * Gets the NetworkInterfacesOperationsClient object to access its operations.
+     * Gets the UpdateRunsClient object to access its operations.
      *
-     * @return the NetworkInterfacesOperationsClient object.
+     * @return the UpdateRunsClient object.
      */
-    NetworkInterfacesOperationsClient getNetworkInterfacesOperations();
+    UpdateRunsClient getUpdateRuns();
 
     /**
-     * Gets the StorageContainersOperationsClient object to access its operations.
+     * Gets the UpdateSummariesOperationsClient object to access its operations.
      *
-     * @return the StorageContainersOperationsClient object.
+     * @return the UpdateSummariesOperationsClient object.
      */
-    StorageContainersOperationsClient getStorageContainersOperations();
+    UpdateSummariesOperationsClient getUpdateSummariesOperations();
 
     /**
-     * Gets the VirtualHardDisksOperationsClient object to access its operations.
+     * Gets the UpdatesClient object to access its operations.
      *
-     * @return the VirtualHardDisksOperationsClient object.
+     * @return the UpdatesClient object.
      */
-    VirtualHardDisksOperationsClient getVirtualHardDisksOperations();
-
-    /**
-     * Gets the VirtualMachineInstancesClient object to access its operations.
-     *
-     * @return the VirtualMachineInstancesClient object.
-     */
-    VirtualMachineInstancesClient getVirtualMachineInstances();
-
-    /**
-     * Gets the HybridIdentityMetadatasClient object to access its operations.
-     *
-     * @return the HybridIdentityMetadatasClient object.
-     */
-    HybridIdentityMetadatasClient getHybridIdentityMetadatas();
-
-    /**
-     * Gets the GuestAgentsClient object to access its operations.
-     *
-     * @return the GuestAgentsClient object.
-     */
-    GuestAgentsClient getGuestAgents();
-
-    /**
-     * Gets the GuestAgentsOperationsClient object to access its operations.
-     *
-     * @return the GuestAgentsOperationsClient object.
-     */
-    GuestAgentsOperationsClient getGuestAgentsOperations();
+    UpdatesClient getUpdates();
 }
