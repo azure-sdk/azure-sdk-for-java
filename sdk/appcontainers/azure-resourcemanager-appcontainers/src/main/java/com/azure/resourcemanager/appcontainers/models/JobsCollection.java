@@ -4,74 +4,29 @@
 
 package com.azure.resourcemanager.appcontainers.models;
 
-import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.azure.resourcemanager.appcontainers.fluent.models.JobInner;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.resourcemanager.appcontainers.fluent.models.JobsCollectionInner;
 import java.util.List;
 
-/** Container Apps Jobs collection ARM resource. */
-@Fluent
-public final class JobsCollection {
-    /*
-     * Collection of resources.
-     */
-    @JsonProperty(value = "value", required = true)
-    private List<JobInner> value;
-
-    /*
-     * Link to next page of resources.
-     */
-    @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
-    private String nextLink;
-
-    /** Creates an instance of JobsCollection class. */
-    public JobsCollection() {
-    }
-
+/** An immutable client-side representation of JobsCollection. */
+public interface JobsCollection {
     /**
-     * Get the value property: Collection of resources.
+     * Gets the value property: Collection of resources.
      *
      * @return the value value.
      */
-    public List<JobInner> value() {
-        return this.value;
-    }
+    List<Job> value();
 
     /**
-     * Set the value property: Collection of resources.
-     *
-     * @param value the value value to set.
-     * @return the JobsCollection object itself.
-     */
-    public JobsCollection withValue(List<JobInner> value) {
-        this.value = value;
-        return this;
-    }
-
-    /**
-     * Get the nextLink property: Link to next page of resources.
+     * Gets the nextLink property: Link to next page of resources.
      *
      * @return the nextLink value.
      */
-    public String nextLink() {
-        return this.nextLink;
-    }
+    String nextLink();
 
     /**
-     * Validates the instance.
+     * Gets the inner com.azure.resourcemanager.appcontainers.fluent.models.JobsCollectionInner object.
      *
-     * @throws IllegalArgumentException thrown if the instance is not valid.
+     * @return the inner object.
      */
-    public void validate() {
-        if (value() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property value in model JobsCollection"));
-        } else {
-            value().forEach(e -> e.validate());
-        }
-    }
-
-    private static final ClientLogger LOGGER = new ClientLogger(JobsCollection.class);
+    JobsCollectionInner innerModel();
 }
