@@ -9,7 +9,7 @@ import com.azure.resourcemanager.voiceservices.models.TestLinePurpose;
 /** Samples for TestLines CreateOrUpdate. */
 public final class TestLinesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/voiceservices/resource-manager/Microsoft.VoiceServices/stable/2023-01-31/examples/TestLines_CreateOrUpdate.json
+     * x-ms-original-file: specification/voiceservices/resource-manager/Microsoft.VoiceServices/stable/2023-09-01/examples/TestLines_CreateOrUpdate.json
      */
     /**
      * Sample code: CreateTestLineResource.

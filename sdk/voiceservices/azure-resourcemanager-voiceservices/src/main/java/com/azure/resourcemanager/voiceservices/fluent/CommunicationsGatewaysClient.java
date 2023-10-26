@@ -160,6 +160,40 @@ public interface CommunicationsGatewaysClient {
         Context context);
 
     /**
+     * Update a CommunicationsGateway.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param communicationsGatewayName Unique identifier for this deployment.
+     * @param properties The resource properties to be updated.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a CommunicationsGateway resource along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<CommunicationsGatewayInner> updateWithResponse(
+        String resourceGroupName,
+        String communicationsGatewayName,
+        CommunicationsGatewayUpdate properties,
+        Context context);
+
+    /**
+     * Update a CommunicationsGateway.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param communicationsGatewayName Unique identifier for this deployment.
+     * @param properties The resource properties to be updated.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a CommunicationsGateway resource.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    CommunicationsGatewayInner update(
+        String resourceGroupName, String communicationsGatewayName, CommunicationsGatewayUpdate properties);
+
+    /**
      * Delete a CommunicationsGateway.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -211,38 +245,4 @@ public interface CommunicationsGatewaysClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     void delete(String resourceGroupName, String communicationsGatewayName, Context context);
-
-    /**
-     * Update a CommunicationsGateway.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param communicationsGatewayName Unique identifier for this deployment.
-     * @param properties The resource properties to be updated.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a CommunicationsGateway resource along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<CommunicationsGatewayInner> updateWithResponse(
-        String resourceGroupName,
-        String communicationsGatewayName,
-        CommunicationsGatewayUpdate properties,
-        Context context);
-
-    /**
-     * Update a CommunicationsGateway.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param communicationsGatewayName Unique identifier for this deployment.
-     * @param properties The resource properties to be updated.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a CommunicationsGateway resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    CommunicationsGatewayInner update(
-        String resourceGroupName, String communicationsGatewayName, CommunicationsGatewayUpdate properties);
 }

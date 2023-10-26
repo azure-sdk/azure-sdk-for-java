@@ -181,7 +181,7 @@ public final class MicrosoftVoiceServicesImpl implements MicrosoftVoiceServices 
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2023-01-31";
+        this.apiVersion = "2023-09-01";
         this.operations = new OperationsClientImpl(this);
         this.communicationsGateways = new CommunicationsGatewaysClientImpl(this);
         this.nameAvailabilities = new NameAvailabilitiesClientImpl(this);
