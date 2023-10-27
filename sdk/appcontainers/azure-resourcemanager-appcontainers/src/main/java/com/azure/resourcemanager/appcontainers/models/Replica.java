@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.appcontainers.models;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.appcontainers.fluent.models.ReplicaInner;
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -30,6 +31,13 @@ public interface Replica {
      * @return the type value.
      */
     String type();
+
+    /**
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     *
+     * @return the systemData value.
+     */
+    SystemData systemData();
 
     /**
      * Gets the createdTime property: Timestamp describing when the pod was created by controller.

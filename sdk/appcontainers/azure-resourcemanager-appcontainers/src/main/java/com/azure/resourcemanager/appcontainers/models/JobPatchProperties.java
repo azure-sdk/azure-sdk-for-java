@@ -13,6 +13,12 @@ import java.util.Map;
 @Fluent
 public final class JobPatchProperties {
     /*
+     * The complex type of the extended location.
+     */
+    @JsonProperty(value = "extendedLocation")
+    private ExtendedLocation extendedLocation;
+
+    /*
      * Managed identities needed by a container app job to interact with other Azure services to not maintain any
      * secrets or credentials in code.
      */
@@ -34,6 +40,26 @@ public final class JobPatchProperties {
 
     /** Creates an instance of JobPatchProperties class. */
     public JobPatchProperties() {
+    }
+
+    /**
+     * Get the extendedLocation property: The complex type of the extended location.
+     *
+     * @return the extendedLocation value.
+     */
+    public ExtendedLocation extendedLocation() {
+        return this.extendedLocation;
+    }
+
+    /**
+     * Set the extendedLocation property: The complex type of the extended location.
+     *
+     * @param extendedLocation the extendedLocation value to set.
+     * @return the JobPatchProperties object itself.
+     */
+    public JobPatchProperties withExtendedLocation(ExtendedLocation extendedLocation) {
+        this.extendedLocation = extendedLocation;
+        return this;
     }
 
     /**
@@ -104,6 +130,9 @@ public final class JobPatchProperties {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (extendedLocation() != null) {
+            extendedLocation().validate();
+        }
         if (identity() != null) {
             identity().validate();
         }

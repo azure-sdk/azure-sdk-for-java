@@ -9,6 +9,7 @@ import com.azure.core.util.Context;
 import com.azure.resourcemanager.appcontainers.fluent.models.AuthConfigInner;
 import com.azure.resourcemanager.appcontainers.models.AuthConfig;
 import com.azure.resourcemanager.appcontainers.models.AuthPlatform;
+import com.azure.resourcemanager.appcontainers.models.EncryptionSettings;
 import com.azure.resourcemanager.appcontainers.models.GlobalValidation;
 import com.azure.resourcemanager.appcontainers.models.HttpSettings;
 import com.azure.resourcemanager.appcontainers.models.IdentityProviders;
@@ -53,6 +54,10 @@ public final class AuthConfigImpl implements AuthConfig, AuthConfig.Definition, 
 
     public HttpSettings httpSettings() {
         return this.innerModel().httpSettings();
+    }
+
+    public EncryptionSettings encryptionSettings() {
+        return this.innerModel().encryptionSettings();
     }
 
     public String resourceGroupName() {
@@ -184,6 +189,11 @@ public final class AuthConfigImpl implements AuthConfig, AuthConfig.Definition, 
 
     public AuthConfigImpl withHttpSettings(HttpSettings httpSettings) {
         this.innerModel().withHttpSettings(httpSettings);
+        return this;
+    }
+
+    public AuthConfigImpl withEncryptionSettings(EncryptionSettings encryptionSettings) {
+        this.innerModel().withEncryptionSettings(encryptionSettings);
         return this;
     }
 }
