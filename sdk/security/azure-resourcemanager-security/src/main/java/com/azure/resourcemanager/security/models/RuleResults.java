@@ -48,11 +48,13 @@ public interface RuleResults {
     /** The entirety of the RuleResults definition. */
     interface Definition extends DefinitionStages.Blank, DefinitionStages.WithScope, DefinitionStages.WithCreate {
     }
+
     /** The RuleResults definition stages. */
     interface DefinitionStages {
         /** The first stage of the RuleResults definition. */
         interface Blank extends WithScope {
         }
+
         /** The stage of the RuleResults definition allowing to specify parent resource. */
         interface WithScope {
             /**
@@ -63,6 +65,7 @@ public interface RuleResults {
              */
             WithCreate withExistingResourceId(String resourceId);
         }
+
         /**
          * The stage of the RuleResults definition which contains all the minimum required properties for the resource
          * to be created, but also allows for any other optional properties to be specified.
@@ -84,6 +87,7 @@ public interface RuleResults {
              */
             RuleResults create(Context context);
         }
+
         /** The stage of the RuleResults definition allowing to specify latestScan. */
         interface WithLatestScan {
             /**
@@ -94,6 +98,7 @@ public interface RuleResults {
              */
             WithCreate withLatestScan(Boolean latestScan);
         }
+
         /** The stage of the RuleResults definition allowing to specify results. */
         interface WithResults {
             /**
@@ -106,6 +111,7 @@ public interface RuleResults {
              */
             WithCreate withResults(List<List<String>> results);
         }
+
         /** The stage of the RuleResults definition allowing to specify workspaceId. */
         interface WithWorkspaceId {
             /**
@@ -117,6 +123,7 @@ public interface RuleResults {
             WithCreate withWorkspaceId(String workspaceId);
         }
     }
+
     /**
      * Begins update for the RuleResults resource.
      *
@@ -141,6 +148,7 @@ public interface RuleResults {
          */
         RuleResults apply(Context context);
     }
+
     /** The RuleResults update stages. */
     interface UpdateStages {
         /** The stage of the RuleResults update allowing to specify latestScan. */
@@ -153,6 +161,7 @@ public interface RuleResults {
              */
             Update withLatestScan(Boolean latestScan);
         }
+
         /** The stage of the RuleResults update allowing to specify results. */
         interface WithResults {
             /**
@@ -165,6 +174,7 @@ public interface RuleResults {
              */
             Update withResults(List<List<String>> results);
         }
+
         /** The stage of the RuleResults update allowing to specify workspaceId. */
         interface WithWorkspaceId {
             /**

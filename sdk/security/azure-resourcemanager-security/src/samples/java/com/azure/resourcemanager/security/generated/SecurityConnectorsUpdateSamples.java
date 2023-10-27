@@ -16,7 +16,7 @@ import java.util.Map;
 /** Samples for SecurityConnectors Update. */
 public final class SecurityConnectorsUpdateSamples {
     /*
-     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-03-01-preview/examples/SecurityConnectors/PatchSecurityConnector_example.json
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-10-01-preview/examples/SecurityConnectors/PatchSecurityConnector_example.json
      */
     /**
      * Sample code: Update a security connector.
@@ -46,6 +46,7 @@ public final class SecurityConnectorsUpdateSamples {
             .apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

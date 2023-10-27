@@ -26,6 +26,12 @@ public final class GcpProjectEnvironmentData extends EnvironmentData {
     @JsonProperty(value = "projectDetails")
     private GcpProjectDetails projectDetails;
 
+    /*
+     * Scan interval in hours (value should be between 1-hour to 24-hours)
+     */
+    @JsonProperty(value = "scanInterval")
+    private Long scanInterval;
+
     /** Creates an instance of GcpProjectEnvironmentData class. */
     public GcpProjectEnvironmentData() {
     }
@@ -67,6 +73,26 @@ public final class GcpProjectEnvironmentData extends EnvironmentData {
      */
     public GcpProjectEnvironmentData withProjectDetails(GcpProjectDetails projectDetails) {
         this.projectDetails = projectDetails;
+        return this;
+    }
+
+    /**
+     * Get the scanInterval property: Scan interval in hours (value should be between 1-hour to 24-hours).
+     *
+     * @return the scanInterval value.
+     */
+    public Long scanInterval() {
+        return this.scanInterval;
+    }
+
+    /**
+     * Set the scanInterval property: Scan interval in hours (value should be between 1-hour to 24-hours).
+     *
+     * @param scanInterval the scanInterval value to set.
+     * @return the GcpProjectEnvironmentData object itself.
+     */
+    public GcpProjectEnvironmentData withScanInterval(Long scanInterval) {
+        this.scanInterval = scanInterval;
         return this;
     }
 

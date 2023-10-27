@@ -122,11 +122,13 @@ public interface Automation {
             DefinitionStages.WithResourceGroup,
             DefinitionStages.WithCreate {
     }
+
     /** The Automation definition stages. */
     interface DefinitionStages {
         /** The first stage of the Automation definition. */
         interface Blank extends WithLocation {
         }
+
         /** The stage of the Automation definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -145,6 +147,7 @@ public interface Automation {
              */
             WithResourceGroup withRegion(String location);
         }
+
         /** The stage of the Automation definition allowing to specify parent resource. */
         interface WithResourceGroup {
             /**
@@ -156,6 +159,7 @@ public interface Automation {
              */
             WithCreate withExistingResourceGroup(String resourceGroupName);
         }
+
         /**
          * The stage of the Automation definition which contains all the minimum required properties for the resource to
          * be created, but also allows for any other optional properties to be specified.
@@ -182,6 +186,7 @@ public interface Automation {
              */
             Automation create(Context context);
         }
+
         /** The stage of the Automation definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -192,6 +197,7 @@ public interface Automation {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
         /** The stage of the Automation definition allowing to specify description. */
         interface WithDescription {
             /**
@@ -202,6 +208,7 @@ public interface Automation {
              */
             WithCreate withDescription(String description);
         }
+
         /** The stage of the Automation definition allowing to specify isEnabled. */
         interface WithIsEnabled {
             /**
@@ -212,6 +219,7 @@ public interface Automation {
              */
             WithCreate withIsEnabled(Boolean isEnabled);
         }
+
         /** The stage of the Automation definition allowing to specify scopes. */
         interface WithScopes {
             /**
@@ -226,6 +234,7 @@ public interface Automation {
              */
             WithCreate withScopes(List<AutomationScope> scopes);
         }
+
         /** The stage of the Automation definition allowing to specify sources. */
         interface WithSources {
             /**
@@ -238,6 +247,7 @@ public interface Automation {
              */
             WithCreate withSources(List<AutomationSource> sources);
         }
+
         /** The stage of the Automation definition allowing to specify actions. */
         interface WithActions {
             /**
@@ -251,6 +261,7 @@ public interface Automation {
             WithCreate withActions(List<AutomationAction> actions);
         }
     }
+
     /**
      * Begins update for the Automation resource.
      *
@@ -281,6 +292,7 @@ public interface Automation {
          */
         Automation apply(Context context);
     }
+
     /** The Automation update stages. */
     interface UpdateStages {
         /** The stage of the Automation update allowing to specify tags. */
@@ -293,6 +305,7 @@ public interface Automation {
              */
             Update withTags(Map<String, String> tags);
         }
+
         /** The stage of the Automation update allowing to specify description. */
         interface WithDescription {
             /**
@@ -303,6 +316,7 @@ public interface Automation {
              */
             Update withDescription(String description);
         }
+
         /** The stage of the Automation update allowing to specify isEnabled. */
         interface WithIsEnabled {
             /**
@@ -313,6 +327,7 @@ public interface Automation {
              */
             Update withIsEnabled(Boolean isEnabled);
         }
+
         /** The stage of the Automation update allowing to specify scopes. */
         interface WithScopes {
             /**
@@ -327,6 +342,7 @@ public interface Automation {
              */
             Update withScopes(List<AutomationScope> scopes);
         }
+
         /** The stage of the Automation update allowing to specify sources. */
         interface WithSources {
             /**
@@ -339,6 +355,7 @@ public interface Automation {
              */
             Update withSources(List<AutomationSource> sources);
         }
+
         /** The stage of the Automation update allowing to specify actions. */
         interface WithActions {
             /**
@@ -352,6 +369,7 @@ public interface Automation {
             Update withActions(List<AutomationAction> actions);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *
