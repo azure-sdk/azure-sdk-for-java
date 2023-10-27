@@ -13,6 +13,7 @@ import com.azure.resourcemanager.imagebuilder.models.ImageTemplateCustomizer;
 import com.azure.resourcemanager.imagebuilder.models.ImageTemplateDistributor;
 import com.azure.resourcemanager.imagebuilder.models.ImageTemplateIdentity;
 import com.azure.resourcemanager.imagebuilder.models.ImageTemplateLastRunStatus;
+import com.azure.resourcemanager.imagebuilder.models.ImageTemplatePropertiesErrorHandling;
 import com.azure.resourcemanager.imagebuilder.models.ImageTemplatePropertiesOptimize;
 import com.azure.resourcemanager.imagebuilder.models.ImageTemplatePropertiesValidate;
 import com.azure.resourcemanager.imagebuilder.models.ImageTemplateSource;
@@ -90,6 +91,10 @@ public final class ImageTemplateImpl implements ImageTemplate, ImageTemplate.Def
         } else {
             return Collections.emptyList();
         }
+    }
+
+    public ImageTemplatePropertiesErrorHandling errorHandling() {
+        return this.innerModel().errorHandling();
     }
 
     public ProvisioningState provisioningState() {
@@ -273,43 +278,93 @@ public final class ImageTemplateImpl implements ImageTemplate, ImageTemplate.Def
     }
 
     public ImageTemplateImpl withSource(ImageTemplateSource source) {
-        this.innerModel().withSource(source);
-        return this;
+        if (isInCreateMode()) {
+            this.innerModel().withSource(source);
+            return this;
+        } else {
+            this.updateParameters.withSource(source);
+            return this;
+        }
     }
 
     public ImageTemplateImpl withCustomize(List<ImageTemplateCustomizer> customize) {
-        this.innerModel().withCustomize(customize);
-        return this;
+        if (isInCreateMode()) {
+            this.innerModel().withCustomize(customize);
+            return this;
+        } else {
+            this.updateParameters.withCustomize(customize);
+            return this;
+        }
     }
 
     public ImageTemplateImpl withOptimize(ImageTemplatePropertiesOptimize optimize) {
-        this.innerModel().withOptimize(optimize);
-        return this;
+        if (isInCreateMode()) {
+            this.innerModel().withOptimize(optimize);
+            return this;
+        } else {
+            this.updateParameters.withOptimize(optimize);
+            return this;
+        }
     }
 
     public ImageTemplateImpl withValidation(ImageTemplatePropertiesValidate validation) {
-        this.innerModel().withValidation(validation);
-        return this;
+        if (isInCreateMode()) {
+            this.innerModel().withValidation(validation);
+            return this;
+        } else {
+            this.updateParameters.withValidation(validation);
+            return this;
+        }
     }
 
     public ImageTemplateImpl withDistribute(List<ImageTemplateDistributor> distribute) {
-        this.innerModel().withDistribute(distribute);
-        return this;
+        if (isInCreateMode()) {
+            this.innerModel().withDistribute(distribute);
+            return this;
+        } else {
+            this.updateParameters.withDistribute(distribute);
+            return this;
+        }
+    }
+
+    public ImageTemplateImpl withErrorHandling(ImageTemplatePropertiesErrorHandling errorHandling) {
+        if (isInCreateMode()) {
+            this.innerModel().withErrorHandling(errorHandling);
+            return this;
+        } else {
+            this.updateParameters.withErrorHandling(errorHandling);
+            return this;
+        }
     }
 
     public ImageTemplateImpl withBuildTimeoutInMinutes(Integer buildTimeoutInMinutes) {
-        this.innerModel().withBuildTimeoutInMinutes(buildTimeoutInMinutes);
-        return this;
+        if (isInCreateMode()) {
+            this.innerModel().withBuildTimeoutInMinutes(buildTimeoutInMinutes);
+            return this;
+        } else {
+            this.updateParameters.withBuildTimeoutInMinutes(buildTimeoutInMinutes);
+            return this;
+        }
     }
 
     public ImageTemplateImpl withVmProfile(ImageTemplateVmProfile vmProfile) {
-        this.innerModel().withVmProfile(vmProfile);
-        return this;
+        if (isInCreateMode()) {
+            this.innerModel().withVmProfile(vmProfile);
+            return this;
+        } else {
+            this.updateParameters.withVmProfile(vmProfile);
+            return this;
+        }
     }
 
     public ImageTemplateImpl withStagingResourceGroup(String stagingResourceGroup) {
-        this.innerModel().withStagingResourceGroup(stagingResourceGroup);
-        return this;
+        if (isInCreateMode()) {
+            this.innerModel().withStagingResourceGroup(stagingResourceGroup);
+            return this;
+        } else {
+            this.updateParameters.withStagingResourceGroup(stagingResourceGroup);
+            return this;
+        }
     }
 
     private boolean isInCreateMode() {

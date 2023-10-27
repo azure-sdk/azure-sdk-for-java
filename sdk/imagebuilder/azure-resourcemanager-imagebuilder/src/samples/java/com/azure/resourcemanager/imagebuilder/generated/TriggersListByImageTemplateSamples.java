@@ -7,7 +7,7 @@ package com.azure.resourcemanager.imagebuilder.generated;
 /** Samples for Triggers ListByImageTemplate. */
 public final class TriggersListByImageTemplateSamples {
     /*
-     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2022-07-01/examples/ListTriggers.json
+     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2023-07-01/examples/ListTriggers.json
      */
     /**
      * Sample code: List triggers by image template.

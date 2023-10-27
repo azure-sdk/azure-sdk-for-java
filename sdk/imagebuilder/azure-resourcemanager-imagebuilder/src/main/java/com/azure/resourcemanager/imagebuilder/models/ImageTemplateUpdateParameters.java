@@ -5,8 +5,10 @@
 package com.azure.resourcemanager.imagebuilder.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.resourcemanager.imagebuilder.fluent.models.ImageTemplateProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 import java.util.Map;
 
 /** Parameters for updating an image template. */
@@ -24,6 +26,12 @@ public final class ImageTemplateUpdateParameters {
     @JsonProperty(value = "tags")
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> tags;
+
+    /*
+     * The properties of the image template
+     */
+    @JsonProperty(value = "properties")
+    private ImageTemplateProperties innerProperties;
 
     /** Creates an instance of ImageTemplateUpdateParameters class. */
     public ImageTemplateUpdateParameters() {
@@ -70,6 +78,278 @@ public final class ImageTemplateUpdateParameters {
     }
 
     /**
+     * Get the innerProperties property: The properties of the image template.
+     *
+     * @return the innerProperties value.
+     */
+    private ImageTemplateProperties innerProperties() {
+        return this.innerProperties;
+    }
+
+    /**
+     * Get the source property: Specifies the properties used to describe the source image.
+     *
+     * @return the source value.
+     */
+    public ImageTemplateSource source() {
+        return this.innerProperties() == null ? null : this.innerProperties().source();
+    }
+
+    /**
+     * Set the source property: Specifies the properties used to describe the source image.
+     *
+     * @param source the source value to set.
+     * @return the ImageTemplateUpdateParameters object itself.
+     */
+    public ImageTemplateUpdateParameters withSource(ImageTemplateSource source) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ImageTemplateProperties();
+        }
+        this.innerProperties().withSource(source);
+        return this;
+    }
+
+    /**
+     * Get the customize property: Specifies the properties used to describe the customization steps of the image, like
+     * Image source etc.
+     *
+     * @return the customize value.
+     */
+    public List<ImageTemplateCustomizer> customize() {
+        return this.innerProperties() == null ? null : this.innerProperties().customize();
+    }
+
+    /**
+     * Set the customize property: Specifies the properties used to describe the customization steps of the image, like
+     * Image source etc.
+     *
+     * @param customize the customize value to set.
+     * @return the ImageTemplateUpdateParameters object itself.
+     */
+    public ImageTemplateUpdateParameters withCustomize(List<ImageTemplateCustomizer> customize) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ImageTemplateProperties();
+        }
+        this.innerProperties().withCustomize(customize);
+        return this;
+    }
+
+    /**
+     * Get the optimize property: Specifies optimization to be performed on image.
+     *
+     * @return the optimize value.
+     */
+    public ImageTemplatePropertiesOptimize optimize() {
+        return this.innerProperties() == null ? null : this.innerProperties().optimize();
+    }
+
+    /**
+     * Set the optimize property: Specifies optimization to be performed on image.
+     *
+     * @param optimize the optimize value to set.
+     * @return the ImageTemplateUpdateParameters object itself.
+     */
+    public ImageTemplateUpdateParameters withOptimize(ImageTemplatePropertiesOptimize optimize) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ImageTemplateProperties();
+        }
+        this.innerProperties().withOptimize(optimize);
+        return this;
+    }
+
+    /**
+     * Get the validation property: Configuration options and list of validations to be performed on the resulting
+     * image.
+     *
+     * @return the validation value.
+     */
+    public ImageTemplatePropertiesValidate validation() {
+        return this.innerProperties() == null ? null : this.innerProperties().validation();
+    }
+
+    /**
+     * Set the validation property: Configuration options and list of validations to be performed on the resulting
+     * image.
+     *
+     * @param validation the validation value to set.
+     * @return the ImageTemplateUpdateParameters object itself.
+     */
+    public ImageTemplateUpdateParameters withValidation(ImageTemplatePropertiesValidate validation) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ImageTemplateProperties();
+        }
+        this.innerProperties().withValidation(validation);
+        return this;
+    }
+
+    /**
+     * Get the distribute property: The distribution targets where the image output needs to go to.
+     *
+     * @return the distribute value.
+     */
+    public List<ImageTemplateDistributor> distribute() {
+        return this.innerProperties() == null ? null : this.innerProperties().distribute();
+    }
+
+    /**
+     * Set the distribute property: The distribution targets where the image output needs to go to.
+     *
+     * @param distribute the distribute value to set.
+     * @return the ImageTemplateUpdateParameters object itself.
+     */
+    public ImageTemplateUpdateParameters withDistribute(List<ImageTemplateDistributor> distribute) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ImageTemplateProperties();
+        }
+        this.innerProperties().withDistribute(distribute);
+        return this;
+    }
+
+    /**
+     * Get the errorHandling property: Error handling options upon a build failure.
+     *
+     * @return the errorHandling value.
+     */
+    public ImageTemplatePropertiesErrorHandling errorHandling() {
+        return this.innerProperties() == null ? null : this.innerProperties().errorHandling();
+    }
+
+    /**
+     * Set the errorHandling property: Error handling options upon a build failure.
+     *
+     * @param errorHandling the errorHandling value to set.
+     * @return the ImageTemplateUpdateParameters object itself.
+     */
+    public ImageTemplateUpdateParameters withErrorHandling(ImageTemplatePropertiesErrorHandling errorHandling) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ImageTemplateProperties();
+        }
+        this.innerProperties().withErrorHandling(errorHandling);
+        return this;
+    }
+
+    /**
+     * Get the provisioningState property: Provisioning state of the resource.
+     *
+     * @return the provisioningState value.
+     */
+    public ProvisioningState provisioningState() {
+        return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
+    }
+
+    /**
+     * Get the provisioningError property: Provisioning error, if any.
+     *
+     * @return the provisioningError value.
+     */
+    public ProvisioningError provisioningError() {
+        return this.innerProperties() == null ? null : this.innerProperties().provisioningError();
+    }
+
+    /**
+     * Get the lastRunStatus property: State of 'run' that is currently executing or was last executed.
+     *
+     * @return the lastRunStatus value.
+     */
+    public ImageTemplateLastRunStatus lastRunStatus() {
+        return this.innerProperties() == null ? null : this.innerProperties().lastRunStatus();
+    }
+
+    /**
+     * Get the buildTimeoutInMinutes property: Maximum duration to wait while building the image template (includes all
+     * customizations, optimization, validations, and distributions). Omit or specify 0 to use the default (4 hours).
+     *
+     * @return the buildTimeoutInMinutes value.
+     */
+    public Integer buildTimeoutInMinutes() {
+        return this.innerProperties() == null ? null : this.innerProperties().buildTimeoutInMinutes();
+    }
+
+    /**
+     * Set the buildTimeoutInMinutes property: Maximum duration to wait while building the image template (includes all
+     * customizations, optimization, validations, and distributions). Omit or specify 0 to use the default (4 hours).
+     *
+     * @param buildTimeoutInMinutes the buildTimeoutInMinutes value to set.
+     * @return the ImageTemplateUpdateParameters object itself.
+     */
+    public ImageTemplateUpdateParameters withBuildTimeoutInMinutes(Integer buildTimeoutInMinutes) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ImageTemplateProperties();
+        }
+        this.innerProperties().withBuildTimeoutInMinutes(buildTimeoutInMinutes);
+        return this;
+    }
+
+    /**
+     * Get the vmProfile property: Describes how virtual machine is set up to build images.
+     *
+     * @return the vmProfile value.
+     */
+    public ImageTemplateVmProfile vmProfile() {
+        return this.innerProperties() == null ? null : this.innerProperties().vmProfile();
+    }
+
+    /**
+     * Set the vmProfile property: Describes how virtual machine is set up to build images.
+     *
+     * @param vmProfile the vmProfile value to set.
+     * @return the ImageTemplateUpdateParameters object itself.
+     */
+    public ImageTemplateUpdateParameters withVmProfile(ImageTemplateVmProfile vmProfile) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ImageTemplateProperties();
+        }
+        this.innerProperties().withVmProfile(vmProfile);
+        return this;
+    }
+
+    /**
+     * Get the stagingResourceGroup property: The staging resource group id in the same subscription as the image
+     * template that will be used to build the image. If this field is empty, a resource group with a random name will
+     * be created. If the resource group specified in this field doesn't exist, it will be created with the same name.
+     * If the resource group specified exists, it must be empty and in the same region as the image template. The
+     * resource group created will be deleted during template deletion if this field is empty or the resource group
+     * specified doesn't exist, but if the resource group specified exists the resources created in the resource group
+     * will be deleted during template deletion and the resource group itself will remain.
+     *
+     * @return the stagingResourceGroup value.
+     */
+    public String stagingResourceGroup() {
+        return this.innerProperties() == null ? null : this.innerProperties().stagingResourceGroup();
+    }
+
+    /**
+     * Set the stagingResourceGroup property: The staging resource group id in the same subscription as the image
+     * template that will be used to build the image. If this field is empty, a resource group with a random name will
+     * be created. If the resource group specified in this field doesn't exist, it will be created with the same name.
+     * If the resource group specified exists, it must be empty and in the same region as the image template. The
+     * resource group created will be deleted during template deletion if this field is empty or the resource group
+     * specified doesn't exist, but if the resource group specified exists the resources created in the resource group
+     * will be deleted during template deletion and the resource group itself will remain.
+     *
+     * @param stagingResourceGroup the stagingResourceGroup value to set.
+     * @return the ImageTemplateUpdateParameters object itself.
+     */
+    public ImageTemplateUpdateParameters withStagingResourceGroup(String stagingResourceGroup) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ImageTemplateProperties();
+        }
+        this.innerProperties().withStagingResourceGroup(stagingResourceGroup);
+        return this;
+    }
+
+    /**
+     * Get the exactStagingResourceGroup property: The staging resource group id in the same subscription as the image
+     * template that will be used to build the image. This read-only field differs from 'stagingResourceGroup' only if
+     * the value specified in the 'stagingResourceGroup' field is empty.
+     *
+     * @return the exactStagingResourceGroup value.
+     */
+    public String exactStagingResourceGroup() {
+        return this.innerProperties() == null ? null : this.innerProperties().exactStagingResourceGroup();
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -77,6 +357,9 @@ public final class ImageTemplateUpdateParameters {
     public void validate() {
         if (identity() != null) {
             identity().validate();
+        }
+        if (innerProperties() != null) {
+            innerProperties().validate();
         }
     }
 }
