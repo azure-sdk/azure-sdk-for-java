@@ -200,6 +200,86 @@ public final class ContentSafetyClientImpl {
                 RequestOptions requestOptions,
                 Context context);
 
+        @Post("/text:detectJailbreak")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(
+                value = ClientAuthenticationException.class,
+                code = {401})
+        @UnexpectedResponseExceptionType(
+                value = ResourceNotFoundException.class,
+                code = {404})
+        @UnexpectedResponseExceptionType(
+                value = ResourceModifiedException.class,
+                code = {409})
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Mono<Response<BinaryData>> detectTextJailbreak(
+                @HostParam("endpoint") String endpoint,
+                @QueryParam("api-version") String apiVersion,
+                @HeaderParam("accept") String accept,
+                @BodyParam("application/json") BinaryData body,
+                RequestOptions requestOptions,
+                Context context);
+
+        @Post("/text:detectJailbreak")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(
+                value = ClientAuthenticationException.class,
+                code = {401})
+        @UnexpectedResponseExceptionType(
+                value = ResourceNotFoundException.class,
+                code = {404})
+        @UnexpectedResponseExceptionType(
+                value = ResourceModifiedException.class,
+                code = {409})
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Response<BinaryData> detectTextJailbreakSync(
+                @HostParam("endpoint") String endpoint,
+                @QueryParam("api-version") String apiVersion,
+                @HeaderParam("accept") String accept,
+                @BodyParam("application/json") BinaryData body,
+                RequestOptions requestOptions,
+                Context context);
+
+        @Post("/text:detectProtectedMaterial")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(
+                value = ClientAuthenticationException.class,
+                code = {401})
+        @UnexpectedResponseExceptionType(
+                value = ResourceNotFoundException.class,
+                code = {404})
+        @UnexpectedResponseExceptionType(
+                value = ResourceModifiedException.class,
+                code = {409})
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Mono<Response<BinaryData>> detectTextProtectedMaterial(
+                @HostParam("endpoint") String endpoint,
+                @QueryParam("api-version") String apiVersion,
+                @HeaderParam("accept") String accept,
+                @BodyParam("application/json") BinaryData body,
+                RequestOptions requestOptions,
+                Context context);
+
+        @Post("/text:detectProtectedMaterial")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(
+                value = ClientAuthenticationException.class,
+                code = {401})
+        @UnexpectedResponseExceptionType(
+                value = ResourceNotFoundException.class,
+                code = {404})
+        @UnexpectedResponseExceptionType(
+                value = ResourceModifiedException.class,
+                code = {409})
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Response<BinaryData> detectTextProtectedMaterialSync(
+                @HostParam("endpoint") String endpoint,
+                @QueryParam("api-version") String apiVersion,
+                @HeaderParam("accept") String accept,
+                @BodyParam("application/json") BinaryData body,
+                RequestOptions requestOptions,
+                Context context);
+
         @Post("/image:analyze")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
@@ -402,7 +482,7 @@ public final class ContentSafetyClientImpl {
                 RequestOptions requestOptions,
                 Context context);
 
-        @Post("/text/blocklists/{blocklistName}:addBlockItems")
+        @Post("/text/blocklists/{blocklistName}:addOrUpdateBlocklistItems")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
                 value = ClientAuthenticationException.class,
@@ -414,16 +494,16 @@ public final class ContentSafetyClientImpl {
                 value = ResourceModifiedException.class,
                 code = {409})
         @UnexpectedResponseExceptionType(HttpResponseException.class)
-        Mono<Response<BinaryData>> addBlockItems(
+        Mono<Response<BinaryData>> addOrUpdateBlocklistItems(
                 @HostParam("endpoint") String endpoint,
                 @QueryParam("api-version") String apiVersion,
                 @PathParam("blocklistName") String blocklistName,
                 @HeaderParam("accept") String accept,
-                @BodyParam("application/json") BinaryData addBlockItemsOptions,
+                @BodyParam("application/json") BinaryData addOrUpdateTextBlocklistItemsOptions,
                 RequestOptions requestOptions,
                 Context context);
 
-        @Post("/text/blocklists/{blocklistName}:addBlockItems")
+        @Post("/text/blocklists/{blocklistName}:addOrUpdateBlocklistItems")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
                 value = ClientAuthenticationException.class,
@@ -435,16 +515,16 @@ public final class ContentSafetyClientImpl {
                 value = ResourceModifiedException.class,
                 code = {409})
         @UnexpectedResponseExceptionType(HttpResponseException.class)
-        Response<BinaryData> addBlockItemsSync(
+        Response<BinaryData> addOrUpdateBlocklistItemsSync(
                 @HostParam("endpoint") String endpoint,
                 @QueryParam("api-version") String apiVersion,
                 @PathParam("blocklistName") String blocklistName,
                 @HeaderParam("accept") String accept,
-                @BodyParam("application/json") BinaryData addBlockItemsOptions,
+                @BodyParam("application/json") BinaryData addOrUpdateTextBlocklistItemsOptions,
                 RequestOptions requestOptions,
                 Context context);
 
-        @Post("/text/blocklists/{blocklistName}:removeBlockItems")
+        @Post("/text/blocklists/{blocklistName}:removeBlocklistItems")
         @ExpectedResponses({204})
         @UnexpectedResponseExceptionType(
                 value = ClientAuthenticationException.class,
@@ -456,16 +536,16 @@ public final class ContentSafetyClientImpl {
                 value = ResourceModifiedException.class,
                 code = {409})
         @UnexpectedResponseExceptionType(HttpResponseException.class)
-        Mono<Response<Void>> removeBlockItems(
+        Mono<Response<Void>> removeBlocklistItems(
                 @HostParam("endpoint") String endpoint,
                 @QueryParam("api-version") String apiVersion,
                 @PathParam("blocklistName") String blocklistName,
                 @HeaderParam("accept") String accept,
-                @BodyParam("application/json") BinaryData removeBlockItemsOptions,
+                @BodyParam("application/json") BinaryData removeTextBlocklistItemsOptions,
                 RequestOptions requestOptions,
                 Context context);
 
-        @Post("/text/blocklists/{blocklistName}:removeBlockItems")
+        @Post("/text/blocklists/{blocklistName}:removeBlocklistItems")
         @ExpectedResponses({204})
         @UnexpectedResponseExceptionType(
                 value = ClientAuthenticationException.class,
@@ -477,16 +557,16 @@ public final class ContentSafetyClientImpl {
                 value = ResourceModifiedException.class,
                 code = {409})
         @UnexpectedResponseExceptionType(HttpResponseException.class)
-        Response<Void> removeBlockItemsSync(
+        Response<Void> removeBlocklistItemsSync(
                 @HostParam("endpoint") String endpoint,
                 @QueryParam("api-version") String apiVersion,
                 @PathParam("blocklistName") String blocklistName,
                 @HeaderParam("accept") String accept,
-                @BodyParam("application/json") BinaryData removeBlockItemsOptions,
+                @BodyParam("application/json") BinaryData removeTextBlocklistItemsOptions,
                 RequestOptions requestOptions,
                 Context context);
 
-        @Get("/text/blocklists/{blocklistName}/blockItems/{blockItemId}")
+        @Get("/text/blocklists/{blocklistName}/blocklistItems/{blocklistItemId}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
                 value = ClientAuthenticationException.class,
@@ -502,12 +582,12 @@ public final class ContentSafetyClientImpl {
                 @HostParam("endpoint") String endpoint,
                 @QueryParam("api-version") String apiVersion,
                 @PathParam("blocklistName") String blocklistName,
-                @PathParam("blockItemId") String blockItemId,
+                @PathParam("blocklistItemId") String blocklistItemId,
                 @HeaderParam("accept") String accept,
                 RequestOptions requestOptions,
                 Context context);
 
-        @Get("/text/blocklists/{blocklistName}/blockItems/{blockItemId}")
+        @Get("/text/blocklists/{blocklistName}/blocklistItems/{blocklistItemId}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
                 value = ClientAuthenticationException.class,
@@ -523,12 +603,12 @@ public final class ContentSafetyClientImpl {
                 @HostParam("endpoint") String endpoint,
                 @QueryParam("api-version") String apiVersion,
                 @PathParam("blocklistName") String blocklistName,
-                @PathParam("blockItemId") String blockItemId,
+                @PathParam("blocklistItemId") String blocklistItemId,
                 @HeaderParam("accept") String accept,
                 RequestOptions requestOptions,
                 Context context);
 
-        @Get("/text/blocklists/{blocklistName}/blockItems")
+        @Get("/text/blocklists/{blocklistName}/blocklistItems")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
                 value = ClientAuthenticationException.class,
@@ -548,7 +628,7 @@ public final class ContentSafetyClientImpl {
                 RequestOptions requestOptions,
                 Context context);
 
-        @Get("/text/blocklists/{blocklistName}/blockItems")
+        @Get("/text/blocklists/{blocklistName}/blocklistItems")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
                 value = ClientAuthenticationException.class,
@@ -648,8 +728,8 @@ public final class ContentSafetyClientImpl {
     /**
      * Analyze Text
      *
-     * <p>A sync API for harmful content analysis for text. Currently, we support four categories: Hate, SelfHarm,
-     * Sexual, Violence.
+     * <p>A synchronous API for the analysis of potentially harmful text content. Currently, it supports four
+     * categories: Hate, SelfHarm, Sexual, and Violence.
      *
      * <p><strong>Request Body Schema</strong>
      *
@@ -662,7 +742,8 @@ public final class ContentSafetyClientImpl {
      *     blocklistNames (Optional): [
      *         String (Optional)
      *     ]
-     *     breakByBlocklists: Boolean (Optional)
+     *     haltOnBlocklistHit: Boolean (Optional)
+     *     outputType: String(FourSeverityLevels/EightSeverityLevels) (Optional)
      * }
      * }</pre>
      *
@@ -670,32 +751,31 @@ public final class ContentSafetyClientImpl {
      *
      * <pre>{@code
      * {
-     *     blocklistsMatchResults (Optional): [
+     *     blocklistsMatch (Optional): [
      *          (Optional){
      *             blocklistName: String (Required)
-     *             blockItemId: String (Required)
-     *             blockItemText: String (Required)
-     *             offset: int (Required)
-     *             length: int (Required)
+     *             blocklistItemId: String (Required)
+     *             blocklistItemText: String (Required)
      *         }
      *     ]
-     *     hateResult (Optional): {
-     *         category: String(Hate/SelfHarm/Sexual/Violence) (Required)
-     *         severity: int (Required)
-     *     }
-     *     selfHarmResult (Optional): (recursive schema, see selfHarmResult above)
-     *     sexualResult (Optional): (recursive schema, see sexualResult above)
-     *     violenceResult (Optional): (recursive schema, see violenceResult above)
+     *     categoriesAnalysis (Required): [
+     *          (Required){
+     *             category: String(Hate/SelfHarm/Sexual/Violence) (Required)
+     *             severity: Integer (Optional)
+     *             accepted: Boolean (Optional)
+     *         }
+     *     ]
+     *     accepted: Boolean (Optional)
      * }
      * }</pre>
      *
-     * @param body The request of text analysis.
+     * @param body The text analysis request.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the analysis response of the text along with {@link Response} on successful completion of {@link Mono}.
+     * @return the text analysis response along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<BinaryData>> analyzeTextWithResponseAsync(BinaryData body, RequestOptions requestOptions) {
@@ -714,8 +794,8 @@ public final class ContentSafetyClientImpl {
     /**
      * Analyze Text
      *
-     * <p>A sync API for harmful content analysis for text. Currently, we support four categories: Hate, SelfHarm,
-     * Sexual, Violence.
+     * <p>A synchronous API for the analysis of potentially harmful text content. Currently, it supports four
+     * categories: Hate, SelfHarm, Sexual, and Violence.
      *
      * <p><strong>Request Body Schema</strong>
      *
@@ -728,7 +808,8 @@ public final class ContentSafetyClientImpl {
      *     blocklistNames (Optional): [
      *         String (Optional)
      *     ]
-     *     breakByBlocklists: Boolean (Optional)
+     *     haltOnBlocklistHit: Boolean (Optional)
+     *     outputType: String(FourSeverityLevels/EightSeverityLevels) (Optional)
      * }
      * }</pre>
      *
@@ -736,32 +817,31 @@ public final class ContentSafetyClientImpl {
      *
      * <pre>{@code
      * {
-     *     blocklistsMatchResults (Optional): [
+     *     blocklistsMatch (Optional): [
      *          (Optional){
      *             blocklistName: String (Required)
-     *             blockItemId: String (Required)
-     *             blockItemText: String (Required)
-     *             offset: int (Required)
-     *             length: int (Required)
+     *             blocklistItemId: String (Required)
+     *             blocklistItemText: String (Required)
      *         }
      *     ]
-     *     hateResult (Optional): {
-     *         category: String(Hate/SelfHarm/Sexual/Violence) (Required)
-     *         severity: int (Required)
-     *     }
-     *     selfHarmResult (Optional): (recursive schema, see selfHarmResult above)
-     *     sexualResult (Optional): (recursive schema, see sexualResult above)
-     *     violenceResult (Optional): (recursive schema, see violenceResult above)
+     *     categoriesAnalysis (Required): [
+     *          (Required){
+     *             category: String(Hate/SelfHarm/Sexual/Violence) (Required)
+     *             severity: Integer (Optional)
+     *             accepted: Boolean (Optional)
+     *         }
+     *     ]
+     *     accepted: Boolean (Optional)
      * }
      * }</pre>
      *
-     * @param body The request of text analysis.
+     * @param body The text analysis request.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the analysis response of the text along with {@link Response}.
+     * @return the text analysis response along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<BinaryData> analyzeTextWithResponse(BinaryData body, RequestOptions requestOptions) {
@@ -771,10 +851,180 @@ public final class ContentSafetyClientImpl {
     }
 
     /**
+     * Analyze Text Jailbreak
+     *
+     * <p>A synchronous API for the analysis of text jailbreak.
+     *
+     * <p><strong>Request Body Schema</strong>
+     *
+     * <pre>{@code
+     * {
+     *     text: String (Required)
+     * }
+     * }</pre>
+     *
+     * <p><strong>Response Body Schema</strong>
+     *
+     * <pre>{@code
+     * {
+     *     jailbreakAnalysis (Required): {
+     *         detected: boolean (Required)
+     *     }
+     * }
+     * }</pre>
+     *
+     * @param body The text jailbreak analysis request.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the text jailbreak analysis request along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<BinaryData>> detectTextJailbreakWithResponseAsync(
+            BinaryData body, RequestOptions requestOptions) {
+        final String accept = "application/json";
+        return FluxUtil.withContext(
+                context ->
+                        service.detectTextJailbreak(
+                                this.getEndpoint(),
+                                this.getServiceVersion().getVersion(),
+                                accept,
+                                body,
+                                requestOptions,
+                                context));
+    }
+
+    /**
+     * Analyze Text Jailbreak
+     *
+     * <p>A synchronous API for the analysis of text jailbreak.
+     *
+     * <p><strong>Request Body Schema</strong>
+     *
+     * <pre>{@code
+     * {
+     *     text: String (Required)
+     * }
+     * }</pre>
+     *
+     * <p><strong>Response Body Schema</strong>
+     *
+     * <pre>{@code
+     * {
+     *     jailbreakAnalysis (Required): {
+     *         detected: boolean (Required)
+     *     }
+     * }
+     * }</pre>
+     *
+     * @param body The text jailbreak analysis request.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the text jailbreak analysis request along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<BinaryData> detectTextJailbreakWithResponse(BinaryData body, RequestOptions requestOptions) {
+        final String accept = "application/json";
+        return service.detectTextJailbreakSync(
+                this.getEndpoint(), this.getServiceVersion().getVersion(), accept, body, requestOptions, Context.NONE);
+    }
+
+    /**
+     * Analyze Protected Material
+     *
+     * <p>A synchronous API for the analysis of protected material.
+     *
+     * <p><strong>Request Body Schema</strong>
+     *
+     * <pre>{@code
+     * {
+     *     text: String (Required)
+     * }
+     * }</pre>
+     *
+     * <p><strong>Response Body Schema</strong>
+     *
+     * <pre>{@code
+     * {
+     *     protectedMaterialAnalysis (Required): {
+     *         detected: boolean (Required)
+     *     }
+     * }
+     * }</pre>
+     *
+     * @param body The text analysis request.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the protected material analysis response along with {@link Response} on successful completion of {@link
+     *     Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<BinaryData>> detectTextProtectedMaterialWithResponseAsync(
+            BinaryData body, RequestOptions requestOptions) {
+        final String accept = "application/json";
+        return FluxUtil.withContext(
+                context ->
+                        service.detectTextProtectedMaterial(
+                                this.getEndpoint(),
+                                this.getServiceVersion().getVersion(),
+                                accept,
+                                body,
+                                requestOptions,
+                                context));
+    }
+
+    /**
+     * Analyze Protected Material
+     *
+     * <p>A synchronous API for the analysis of protected material.
+     *
+     * <p><strong>Request Body Schema</strong>
+     *
+     * <pre>{@code
+     * {
+     *     text: String (Required)
+     * }
+     * }</pre>
+     *
+     * <p><strong>Response Body Schema</strong>
+     *
+     * <pre>{@code
+     * {
+     *     protectedMaterialAnalysis (Required): {
+     *         detected: boolean (Required)
+     *     }
+     * }
+     * }</pre>
+     *
+     * @param body The text analysis request.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the protected material analysis response along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<BinaryData> detectTextProtectedMaterialWithResponse(
+            BinaryData body, RequestOptions requestOptions) {
+        final String accept = "application/json";
+        return service.detectTextProtectedMaterialSync(
+                this.getEndpoint(), this.getServiceVersion().getVersion(), accept, body, requestOptions, Context.NONE);
+    }
+
+    /**
      * Analyze Image
      *
-     * <p>A sync API for harmful content analysis for image. Currently, we support four categories: Hate, SelfHarm,
-     * Sexual, Violence.
+     * <p>A synchronous API for the analysis of potentially harmful image content. Currently, it supports four
+     * categories: Hate, SelfHarm, Sexual, and Violence.
      *
      * <p><strong>Request Body Schema</strong>
      *
@@ -787,6 +1037,7 @@ public final class ContentSafetyClientImpl {
      *     categories (Optional): [
      *         String(Hate/SelfHarm/Sexual/Violence) (Optional)
      *     ]
+     *     outputType: String(FourSeverityLevels) (Optional)
      * }
      * }</pre>
      *
@@ -794,23 +1045,24 @@ public final class ContentSafetyClientImpl {
      *
      * <pre>{@code
      * {
-     *     hateResult (Optional): {
-     *         category: String(Hate/SelfHarm/Sexual/Violence) (Required)
-     *         severity: int (Required)
-     *     }
-     *     selfHarmResult (Optional): (recursive schema, see selfHarmResult above)
-     *     sexualResult (Optional): (recursive schema, see sexualResult above)
-     *     violenceResult (Optional): (recursive schema, see violenceResult above)
+     *     categoriesAnalysis (Required): [
+     *          (Required){
+     *             category: String(Hate/SelfHarm/Sexual/Violence) (Required)
+     *             severity: Integer (Optional)
+     *             accepted: Boolean (Optional)
+     *         }
+     *     ]
+     *     accepted: Boolean (Optional)
      * }
      * }</pre>
      *
-     * @param body The analysis request of the image.
+     * @param body The image analysis request.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the analysis response of the image along with {@link Response} on successful completion of {@link Mono}.
+     * @return the image analysis response along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<BinaryData>> analyzeImageWithResponseAsync(BinaryData body, RequestOptions requestOptions) {
@@ -829,8 +1081,8 @@ public final class ContentSafetyClientImpl {
     /**
      * Analyze Image
      *
-     * <p>A sync API for harmful content analysis for image. Currently, we support four categories: Hate, SelfHarm,
-     * Sexual, Violence.
+     * <p>A synchronous API for the analysis of potentially harmful image content. Currently, it supports four
+     * categories: Hate, SelfHarm, Sexual, and Violence.
      *
      * <p><strong>Request Body Schema</strong>
      *
@@ -843,6 +1095,7 @@ public final class ContentSafetyClientImpl {
      *     categories (Optional): [
      *         String(Hate/SelfHarm/Sexual/Violence) (Optional)
      *     ]
+     *     outputType: String(FourSeverityLevels) (Optional)
      * }
      * }</pre>
      *
@@ -850,23 +1103,24 @@ public final class ContentSafetyClientImpl {
      *
      * <pre>{@code
      * {
-     *     hateResult (Optional): {
-     *         category: String(Hate/SelfHarm/Sexual/Violence) (Required)
-     *         severity: int (Required)
-     *     }
-     *     selfHarmResult (Optional): (recursive schema, see selfHarmResult above)
-     *     sexualResult (Optional): (recursive schema, see sexualResult above)
-     *     violenceResult (Optional): (recursive schema, see violenceResult above)
+     *     categoriesAnalysis (Required): [
+     *          (Required){
+     *             category: String(Hate/SelfHarm/Sexual/Violence) (Required)
+     *             severity: Integer (Optional)
+     *             accepted: Boolean (Optional)
+     *         }
+     *     ]
+     *     accepted: Boolean (Optional)
      * }
      * }</pre>
      *
-     * @param body The analysis request of the image.
+     * @param body The image analysis request.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the analysis response of the image along with {@link Response}.
+     * @return the image analysis response along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<BinaryData> analyzeImageWithResponse(BinaryData body, RequestOptions requestOptions) {
@@ -949,7 +1203,7 @@ public final class ContentSafetyClientImpl {
     /**
      * Create Or Update Text Blocklist
      *
-     * <p>Updates a text blocklist, if blocklistName does not exist, create a new blocklist.
+     * <p>Updates a text blocklist. If the blocklistName does not exist, a new blocklist will be created.
      *
      * <p><strong>Request Body Schema</strong>
      *
@@ -999,7 +1253,7 @@ public final class ContentSafetyClientImpl {
     /**
      * Create Or Update Text Blocklist
      *
-     * <p>Updates a text blocklist, if blocklistName does not exist, create a new blocklist.
+     * <p>Updates a text blocklist. If the blocklistName does not exist, a new blocklist will be created.
      *
      * <p><strong>Request Body Schema</strong>
      *
@@ -1247,16 +1501,18 @@ public final class ContentSafetyClientImpl {
     }
 
     /**
-     * Add BlockItems To Text Blocklist
+     * Add or update BlocklistItems To Text Blocklist
      *
-     * <p>Add blockItems to a text blocklist. You can add at most 100 BlockItems in one request.
+     * <p>Add or update blocklistItems to a text blocklist. You can add or update at most 100 blocklistItems in one
+     * request.
      *
      * <p><strong>Request Body Schema</strong>
      *
      * <pre>{@code
      * {
-     *     blockItems (Required): [
+     *     blocklistItems (Required): [
      *          (Required){
+     *             blocklistItemId: String (Required)
      *             description: String (Optional)
      *             text: String (Required)
      *         }
@@ -1268,9 +1524,9 @@ public final class ContentSafetyClientImpl {
      *
      * <pre>{@code
      * {
-     *     value (Optional): [
-     *          (Optional){
-     *             blockItemId: String (Required)
+     *     blocklistItems (Required): [
+     *          (Required){
+     *             blocklistItemId: String (Required)
      *             description: String (Optional)
      *             text: String (Required)
      *         }
@@ -1279,42 +1535,44 @@ public final class ContentSafetyClientImpl {
      * }</pre>
      *
      * @param blocklistName Text blocklist name.
-     * @param addBlockItemsOptions The request of adding blockItems to text blocklist.
+     * @param addOrUpdateTextBlocklistItemsOptions The request to add blocklistItems to a text blocklist.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the response of adding blockItems to text blocklist along with {@link Response} on successful completion
-     *     of {@link Mono}.
+     * @return the response of adding blocklistItems to the text blocklist along with {@link Response} on successful
+     *     completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> addBlockItemsWithResponseAsync(
-            String blocklistName, BinaryData addBlockItemsOptions, RequestOptions requestOptions) {
+    public Mono<Response<BinaryData>> addOrUpdateBlocklistItemsWithResponseAsync(
+            String blocklistName, BinaryData addOrUpdateTextBlocklistItemsOptions, RequestOptions requestOptions) {
         final String accept = "application/json";
         return FluxUtil.withContext(
                 context ->
-                        service.addBlockItems(
+                        service.addOrUpdateBlocklistItems(
                                 this.getEndpoint(),
                                 this.getServiceVersion().getVersion(),
                                 blocklistName,
                                 accept,
-                                addBlockItemsOptions,
+                                addOrUpdateTextBlocklistItemsOptions,
                                 requestOptions,
                                 context));
     }
 
     /**
-     * Add BlockItems To Text Blocklist
+     * Add or update BlocklistItems To Text Blocklist
      *
-     * <p>Add blockItems to a text blocklist. You can add at most 100 BlockItems in one request.
+     * <p>Add or update blocklistItems to a text blocklist. You can add or update at most 100 blocklistItems in one
+     * request.
      *
      * <p><strong>Request Body Schema</strong>
      *
      * <pre>{@code
      * {
-     *     blockItems (Required): [
+     *     blocklistItems (Required): [
      *          (Required){
+     *             blocklistItemId: String (Required)
      *             description: String (Optional)
      *             text: String (Required)
      *         }
@@ -1326,9 +1584,9 @@ public final class ContentSafetyClientImpl {
      *
      * <pre>{@code
      * {
-     *     value (Optional): [
-     *          (Optional){
-     *             blockItemId: String (Required)
+     *     blocklistItems (Required): [
+     *          (Required){
+     *             blocklistItemId: String (Required)
      *             description: String (Optional)
      *             text: String (Required)
      *         }
@@ -1337,45 +1595,45 @@ public final class ContentSafetyClientImpl {
      * }</pre>
      *
      * @param blocklistName Text blocklist name.
-     * @param addBlockItemsOptions The request of adding blockItems to text blocklist.
+     * @param addOrUpdateTextBlocklistItemsOptions The request to add blocklistItems to a text blocklist.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the response of adding blockItems to text blocklist along with {@link Response}.
+     * @return the response of adding blocklistItems to the text blocklist along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> addBlockItemsWithResponse(
-            String blocklistName, BinaryData addBlockItemsOptions, RequestOptions requestOptions) {
+    public Response<BinaryData> addOrUpdateBlocklistItemsWithResponse(
+            String blocklistName, BinaryData addOrUpdateTextBlocklistItemsOptions, RequestOptions requestOptions) {
         final String accept = "application/json";
-        return service.addBlockItemsSync(
+        return service.addOrUpdateBlocklistItemsSync(
                 this.getEndpoint(),
                 this.getServiceVersion().getVersion(),
                 blocklistName,
                 accept,
-                addBlockItemsOptions,
+                addOrUpdateTextBlocklistItemsOptions,
                 requestOptions,
                 Context.NONE);
     }
 
     /**
-     * Remove BlockItems From Text Blocklist
+     * Remove BlocklistItems From Text Blocklist
      *
-     * <p>Remove blockItems from a text blocklist. You can remove at most 100 BlockItems in one request.
+     * <p>Remove blocklistItems from a text blocklist. You can remove at most 100 BlocklistItems in one request.
      *
      * <p><strong>Request Body Schema</strong>
      *
      * <pre>{@code
      * {
-     *     blockItemIds (Required): [
+     *     blocklistItemIds (Required): [
      *         String (Required)
      *     ]
      * }
      * }</pre>
      *
      * @param blocklistName Text blocklist name.
-     * @param removeBlockItemsOptions The request of removing blockItems from text blocklist.
+     * @param removeTextBlocklistItemsOptions The request to remove blocklistItems from a text blocklist.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -1384,38 +1642,38 @@ public final class ContentSafetyClientImpl {
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> removeBlockItemsWithResponseAsync(
-            String blocklistName, BinaryData removeBlockItemsOptions, RequestOptions requestOptions) {
+    public Mono<Response<Void>> removeBlocklistItemsWithResponseAsync(
+            String blocklistName, BinaryData removeTextBlocklistItemsOptions, RequestOptions requestOptions) {
         final String accept = "application/json";
         return FluxUtil.withContext(
                 context ->
-                        service.removeBlockItems(
+                        service.removeBlocklistItems(
                                 this.getEndpoint(),
                                 this.getServiceVersion().getVersion(),
                                 blocklistName,
                                 accept,
-                                removeBlockItemsOptions,
+                                removeTextBlocklistItemsOptions,
                                 requestOptions,
                                 context));
     }
 
     /**
-     * Remove BlockItems From Text Blocklist
+     * Remove BlocklistItems From Text Blocklist
      *
-     * <p>Remove blockItems from a text blocklist. You can remove at most 100 BlockItems in one request.
+     * <p>Remove blocklistItems from a text blocklist. You can remove at most 100 BlocklistItems in one request.
      *
      * <p><strong>Request Body Schema</strong>
      *
      * <pre>{@code
      * {
-     *     blockItemIds (Required): [
+     *     blocklistItemIds (Required): [
      *         String (Required)
      *     ]
      * }
      * }</pre>
      *
      * @param blocklistName Text blocklist name.
-     * @param removeBlockItemsOptions The request of removing blockItems from text blocklist.
+     * @param removeTextBlocklistItemsOptions The request to remove blocklistItems from a text blocklist.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -1424,47 +1682,47 @@ public final class ContentSafetyClientImpl {
      * @return the {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> removeBlockItemsWithResponse(
-            String blocklistName, BinaryData removeBlockItemsOptions, RequestOptions requestOptions) {
+    public Response<Void> removeBlocklistItemsWithResponse(
+            String blocklistName, BinaryData removeTextBlocklistItemsOptions, RequestOptions requestOptions) {
         final String accept = "application/json";
-        return service.removeBlockItemsSync(
+        return service.removeBlocklistItemsSync(
                 this.getEndpoint(),
                 this.getServiceVersion().getVersion(),
                 blocklistName,
                 accept,
-                removeBlockItemsOptions,
+                removeTextBlocklistItemsOptions,
                 requestOptions,
                 Context.NONE);
     }
 
     /**
-     * Get BlockItem By blocklistName And blockItemId
+     * Get BlocklistItem By blocklistName And blocklistItemId
      *
-     * <p>Get blockItem By blockItemId from a text blocklist.
+     * <p>Get blocklistItem by blocklistName and blocklistItemId from a text blocklist.
      *
      * <p><strong>Response Body Schema</strong>
      *
      * <pre>{@code
      * {
-     *     blockItemId: String (Required)
+     *     blocklistItemId: String (Required)
      *     description: String (Optional)
      *     text: String (Required)
      * }
      * }</pre>
      *
      * @param blocklistName Text blocklist name.
-     * @param blockItemId Block Item Id. It will be uuid.
+     * @param blocklistItemId The service will generate a BlocklistItemId, which will be a UUID.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return blockItem By blockItemId from a text blocklist along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return blocklistItem by blocklistName and blocklistItemId from a text blocklist along with {@link Response} on
+     *     successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<BinaryData>> getTextBlocklistItemWithResponseAsync(
-            String blocklistName, String blockItemId, RequestOptions requestOptions) {
+            String blocklistName, String blocklistItemId, RequestOptions requestOptions) {
         final String accept = "application/json";
         return FluxUtil.withContext(
                 context ->
@@ -1472,54 +1730,54 @@ public final class ContentSafetyClientImpl {
                                 this.getEndpoint(),
                                 this.getServiceVersion().getVersion(),
                                 blocklistName,
-                                blockItemId,
+                                blocklistItemId,
                                 accept,
                                 requestOptions,
                                 context));
     }
 
     /**
-     * Get BlockItem By blocklistName And blockItemId
+     * Get BlocklistItem By blocklistName And blocklistItemId
      *
-     * <p>Get blockItem By blockItemId from a text blocklist.
+     * <p>Get blocklistItem by blocklistName and blocklistItemId from a text blocklist.
      *
      * <p><strong>Response Body Schema</strong>
      *
      * <pre>{@code
      * {
-     *     blockItemId: String (Required)
+     *     blocklistItemId: String (Required)
      *     description: String (Optional)
      *     text: String (Required)
      * }
      * }</pre>
      *
      * @param blocklistName Text blocklist name.
-     * @param blockItemId Block Item Id. It will be uuid.
+     * @param blocklistItemId The service will generate a BlocklistItemId, which will be a UUID.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return blockItem By blockItemId from a text blocklist along with {@link Response}.
+     * @return blocklistItem by blocklistName and blocklistItemId from a text blocklist along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<BinaryData> getTextBlocklistItemWithResponse(
-            String blocklistName, String blockItemId, RequestOptions requestOptions) {
+            String blocklistName, String blocklistItemId, RequestOptions requestOptions) {
         final String accept = "application/json";
         return service.getTextBlocklistItemSync(
                 this.getEndpoint(),
                 this.getServiceVersion().getVersion(),
                 blocklistName,
-                blockItemId,
+                blocklistItemId,
                 accept,
                 requestOptions,
                 Context.NONE);
     }
 
     /**
-     * Get All BlockItems By blocklistName
+     * Get All BlocklistItems By blocklistName
      *
-     * <p>Get all blockItems in a text blocklist.
+     * <p>Get all blocklistItems in a text blocklist.
      *
      * <p><strong>Query Parameters</strong>
      *
@@ -1537,7 +1795,7 @@ public final class ContentSafetyClientImpl {
      *
      * <pre>{@code
      * {
-     *     blockItemId: String (Required)
+     *     blocklistItemId: String (Required)
      *     description: String (Optional)
      *     text: String (Required)
      * }
@@ -1549,8 +1807,8 @@ public final class ContentSafetyClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return all blockItems in a text blocklist along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return all blocklistItems in a text blocklist along with {@link PagedResponse} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<BinaryData>> listTextBlocklistItemsSinglePageAsync(
@@ -1577,9 +1835,9 @@ public final class ContentSafetyClientImpl {
     }
 
     /**
-     * Get All BlockItems By blocklistName
+     * Get All BlocklistItems By blocklistName
      *
-     * <p>Get all blockItems in a text blocklist.
+     * <p>Get all blocklistItems in a text blocklist.
      *
      * <p><strong>Query Parameters</strong>
      *
@@ -1597,7 +1855,7 @@ public final class ContentSafetyClientImpl {
      *
      * <pre>{@code
      * {
-     *     blockItemId: String (Required)
+     *     blocklistItemId: String (Required)
      *     description: String (Optional)
      *     text: String (Required)
      * }
@@ -1609,7 +1867,7 @@ public final class ContentSafetyClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return all blockItems in a text blocklist as paginated response with {@link PagedFlux}.
+     * @return all blocklistItems in a text blocklist as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedFlux<BinaryData> listTextBlocklistItemsAsync(String blocklistName, RequestOptions requestOptions) {
@@ -1647,9 +1905,9 @@ public final class ContentSafetyClientImpl {
     }
 
     /**
-     * Get All BlockItems By blocklistName
+     * Get All BlocklistItems By blocklistName
      *
-     * <p>Get all blockItems in a text blocklist.
+     * <p>Get all blocklistItems in a text blocklist.
      *
      * <p><strong>Query Parameters</strong>
      *
@@ -1667,7 +1925,7 @@ public final class ContentSafetyClientImpl {
      *
      * <pre>{@code
      * {
-     *     blockItemId: String (Required)
+     *     blocklistItemId: String (Required)
      *     description: String (Optional)
      *     text: String (Required)
      * }
@@ -1679,7 +1937,7 @@ public final class ContentSafetyClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return all blockItems in a text blocklist along with {@link PagedResponse}.
+     * @return all blocklistItems in a text blocklist along with {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private PagedResponse<BinaryData> listTextBlocklistItemsSinglePage(
@@ -1703,9 +1961,9 @@ public final class ContentSafetyClientImpl {
     }
 
     /**
-     * Get All BlockItems By blocklistName
+     * Get All BlocklistItems By blocklistName
      *
-     * <p>Get all blockItems in a text blocklist.
+     * <p>Get all blocklistItems in a text blocklist.
      *
      * <p><strong>Query Parameters</strong>
      *
@@ -1723,7 +1981,7 @@ public final class ContentSafetyClientImpl {
      *
      * <pre>{@code
      * {
-     *     blockItemId: String (Required)
+     *     blocklistItemId: String (Required)
      *     description: String (Optional)
      *     text: String (Required)
      * }
@@ -1735,7 +1993,7 @@ public final class ContentSafetyClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return all blockItems in a text blocklist as paginated response with {@link PagedIterable}.
+     * @return all blocklistItems in a text blocklist as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<BinaryData> listTextBlocklistItems(String blocklistName, RequestOptions requestOptions) {
@@ -1853,7 +2111,7 @@ public final class ContentSafetyClientImpl {
     }
 
     /**
-     * Get All BlockItems By blocklistName
+     * Get All BlocklistItems By blocklistName
      *
      * <p>Get the next page of items.
      *
@@ -1861,7 +2119,7 @@ public final class ContentSafetyClientImpl {
      *
      * <pre>{@code
      * {
-     *     blockItemId: String (Required)
+     *     blocklistItemId: String (Required)
      *     description: String (Optional)
      *     text: String (Required)
      * }
@@ -1874,7 +2132,7 @@ public final class ContentSafetyClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return paged collection of TextBlockItem items along with {@link PagedResponse} on successful completion of
+     * @return paged collection of TextBlocklistItem items along with {@link PagedResponse} on successful completion of
      *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -1897,7 +2155,7 @@ public final class ContentSafetyClientImpl {
     }
 
     /**
-     * Get All BlockItems By blocklistName
+     * Get All BlocklistItems By blocklistName
      *
      * <p>Get the next page of items.
      *
@@ -1905,7 +2163,7 @@ public final class ContentSafetyClientImpl {
      *
      * <pre>{@code
      * {
-     *     blockItemId: String (Required)
+     *     blocklistItemId: String (Required)
      *     description: String (Optional)
      *     text: String (Required)
      * }
@@ -1918,7 +2176,7 @@ public final class ContentSafetyClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return paged collection of TextBlockItem items along with {@link PagedResponse}.
+     * @return paged collection of TextBlocklistItem items along with {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private PagedResponse<BinaryData> listTextBlocklistItemsNextSinglePage(
