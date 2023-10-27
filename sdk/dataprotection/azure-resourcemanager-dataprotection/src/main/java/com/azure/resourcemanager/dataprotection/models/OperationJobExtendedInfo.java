@@ -9,7 +9,7 @@ import com.azure.resourcemanager.dataprotection.fluent.models.OperationJobExtend
 /** An immutable client-side representation of OperationJobExtendedInfo. */
 public interface OperationJobExtendedInfo {
     /**
-     * Gets the jobId property: Arm Id of the job created for this operation.
+     * Gets the jobId property: Name or Arm Id of the job created for this operation.
      *
      * @return the jobId value.
      */

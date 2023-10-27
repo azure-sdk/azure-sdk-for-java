@@ -122,6 +122,27 @@ public interface DataProtectionClient {
     RecoveryPointsClient getRecoveryPoints();
 
     /**
+     * Gets the SecondaryRPsClient object to access its operations.
+     *
+     * @return the SecondaryRPsClient object.
+     */
+    SecondaryRPsClient getSecondaryRPs();
+
+    /**
+     * Gets the CrossRegionRestoreJobsClient object to access its operations.
+     *
+     * @return the CrossRegionRestoreJobsClient object.
+     */
+    CrossRegionRestoreJobsClient getCrossRegionRestoreJobs();
+
+    /**
+     * Gets the CrossRegionRestoreJobsOperationsClient object to access its operations.
+     *
+     * @return the CrossRegionRestoreJobsOperationsClient object.
+     */
+    CrossRegionRestoreJobsOperationsClient getCrossRegionRestoreJobsOperations();
+
+    /**
      * Gets the JobsClient object to access its operations.
      *
      * @return the JobsClient object.
