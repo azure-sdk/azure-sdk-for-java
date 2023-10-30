@@ -9,7 +9,9 @@ import com.azure.core.annotation.ServiceMethod;
 import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
+import com.azure.resourcemanager.apicenter.fluent.models.MetadataSchemaExportResultInner;
 import com.azure.resourcemanager.apicenter.fluent.models.ServiceInner;
+import com.azure.resourcemanager.apicenter.models.MetadataSchemaExportRequest;
 import com.azure.resourcemanager.apicenter.models.ServiceUpdate;
 
 /** An instance of this class provides access to all the operations defined in ServicesClient. */
@@ -37,7 +39,7 @@ public interface ServicesClient {
     PagedIterable<ServiceInner> list(Context context);
 
     /**
-     * Lists services within a resource group.
+     * Returns a collection of services within the resource group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -49,7 +51,7 @@ public interface ServicesClient {
     PagedIterable<ServiceInner> listByResourceGroup(String resourceGroupName);
 
     /**
-     * Lists services within a resource group.
+     * Returns a collection of services within the resource group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
@@ -62,39 +64,45 @@ public interface ServicesClient {
     PagedIterable<ServiceInner> listByResourceGroup(String resourceGroupName, Context context);
 
     /**
-     * Get service.
+     * Get service
+     *
+     * <p>Returns details of the service.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param serviceName Service name.
+     * @param serviceName The name of Azure API Center service.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return service along with {@link Response}.
+     * @return the service entity along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ServiceInner> getByResourceGroupWithResponse(
         String resourceGroupName, String serviceName, Context context);
 
     /**
-     * Get service.
+     * Get service
+     *
+     * <p>Returns details of the service.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param serviceName Service name.
+     * @param serviceName The name of Azure API Center service.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return service.
+     * @return the service entity.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     ServiceInner getByResourceGroup(String resourceGroupName, String serviceName);
 
     /**
-     * Create or update service.
+     * Create or update service
+     *
+     * <p>Creates new or updates existing API.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param serviceName Service name.
-     * @param resource The service entity.
+     * @param serviceName The name of Azure API Center service.
+     * @param payload The service entity.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -103,13 +111,15 @@ public interface ServicesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ServiceInner> createOrUpdateWithResponse(
-        String resourceGroupName, String serviceName, ServiceInner resource, Context context);
+        String resourceGroupName, String serviceName, ServiceInner payload, Context context);
 
     /**
-     * Create or update service.
+     * Create or update service
+     *
+     * <p>Creates new or updates existing API.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param serviceName Service name.
+     * @param serviceName The name of Azure API Center service.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -119,11 +129,13 @@ public interface ServicesClient {
     ServiceInner createOrUpdate(String resourceGroupName, String serviceName);
 
     /**
-     * Update service.
+     * Update service
+     *
+     * <p>Updates existing service.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param serviceName Service name.
-     * @param parameters The service properties to be updated.
+     * @param serviceName The name of Azure API Center service.
+     * @param payload The service properties to be updated.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -132,13 +144,15 @@ public interface ServicesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ServiceInner> updateWithResponse(
-        String resourceGroupName, String serviceName, ServiceUpdate parameters, Context context);
+        String resourceGroupName, String serviceName, ServiceUpdate payload, Context context);
 
     /**
-     * Update service.
+     * Update service
+     *
+     * <p>Updates existing service.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param serviceName Service name.
+     * @param serviceName The name of Azure API Center service.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -148,10 +162,12 @@ public interface ServicesClient {
     ServiceInner update(String resourceGroupName, String serviceName);
 
     /**
-     * Delete service.
+     * Delete service
+     *
+     * <p>Deletes specified service.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param serviceName Service name.
+     * @param serviceName The name of Azure API Center service.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -162,14 +178,51 @@ public interface ServicesClient {
     Response<Void> deleteWithResponse(String resourceGroupName, String serviceName, Context context);
 
     /**
-     * Delete service.
+     * Delete service
+     *
+     * <p>Deletes specified service.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param serviceName Service name.
+     * @param serviceName The name of Azure API Center service.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     void delete(String resourceGroupName, String serviceName);
+
+    /**
+     * Export effective metadata schema
+     *
+     * <p>Exports the effective metadata schema.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param serviceName The name of Azure API Center service.
+     * @param payload The metadata schema request details.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the metadata schema export result along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<MetadataSchemaExportResultInner> exportMetadataSchemaWithResponse(
+        String resourceGroupName, String serviceName, MetadataSchemaExportRequest payload, Context context);
+
+    /**
+     * Export effective metadata schema
+     *
+     * <p>Exports the effective metadata schema.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param serviceName The name of Azure API Center service.
+     * @param payload The metadata schema request details.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the metadata schema export result.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    MetadataSchemaExportResultInner exportMetadataSchema(
+        String resourceGroupName, String serviceName, MetadataSchemaExportRequest payload);
 }
