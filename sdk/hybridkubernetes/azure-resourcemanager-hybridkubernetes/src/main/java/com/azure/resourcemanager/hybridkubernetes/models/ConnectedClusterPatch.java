@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.hybridkubernetes.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.resourcemanager.hybridkubernetes.fluent.models.ConnectedClusterPatchProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
@@ -23,7 +24,7 @@ public final class ConnectedClusterPatch {
      * Describes the connected cluster resource properties that can be updated during PATCH operation.
      */
     @JsonProperty(value = "properties")
-    private Object properties;
+    private ConnectedClusterPatchProperties innerProperties;
 
     /** Creates an instance of ConnectedClusterPatch class. */
     public ConnectedClusterPatch() {
@@ -50,24 +51,81 @@ public final class ConnectedClusterPatch {
     }
 
     /**
-     * Get the properties property: Describes the connected cluster resource properties that can be updated during PATCH
-     * operation.
+     * Get the innerProperties property: Describes the connected cluster resource properties that can be updated during
+     * PATCH operation.
      *
-     * @return the properties value.
+     * @return the innerProperties value.
      */
-    public Object properties() {
-        return this.properties;
+    private ConnectedClusterPatchProperties innerProperties() {
+        return this.innerProperties;
     }
 
     /**
-     * Set the properties property: Describes the connected cluster resource properties that can be updated during PATCH
-     * operation.
+     * Get the distribution property: Represents the distribution of the connected cluster.
      *
-     * @param properties the properties value to set.
+     * @return the distribution value.
+     */
+    public String distribution() {
+        return this.innerProperties() == null ? null : this.innerProperties().distribution();
+    }
+
+    /**
+     * Set the distribution property: Represents the distribution of the connected cluster.
+     *
+     * @param distribution the distribution value to set.
      * @return the ConnectedClusterPatch object itself.
      */
-    public ConnectedClusterPatch withProperties(Object properties) {
-        this.properties = properties;
+    public ConnectedClusterPatch withDistribution(String distribution) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ConnectedClusterPatchProperties();
+        }
+        this.innerProperties().withDistribution(distribution);
+        return this;
+    }
+
+    /**
+     * Get the distributionVersion property: Represents the Kubernetes distribution version on this connected cluster.
+     *
+     * @return the distributionVersion value.
+     */
+    public String distributionVersion() {
+        return this.innerProperties() == null ? null : this.innerProperties().distributionVersion();
+    }
+
+    /**
+     * Set the distributionVersion property: Represents the Kubernetes distribution version on this connected cluster.
+     *
+     * @param distributionVersion the distributionVersion value to set.
+     * @return the ConnectedClusterPatch object itself.
+     */
+    public ConnectedClusterPatch withDistributionVersion(String distributionVersion) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ConnectedClusterPatchProperties();
+        }
+        this.innerProperties().withDistributionVersion(distributionVersion);
+        return this;
+    }
+
+    /**
+     * Get the azureHybridBenefit property: Indicates whether Azure Hybrid Benefit is opted in.
+     *
+     * @return the azureHybridBenefit value.
+     */
+    public AzureHybridBenefit azureHybridBenefit() {
+        return this.innerProperties() == null ? null : this.innerProperties().azureHybridBenefit();
+    }
+
+    /**
+     * Set the azureHybridBenefit property: Indicates whether Azure Hybrid Benefit is opted in.
+     *
+     * @param azureHybridBenefit the azureHybridBenefit value to set.
+     * @return the ConnectedClusterPatch object itself.
+     */
+    public ConnectedClusterPatch withAzureHybridBenefit(AzureHybridBenefit azureHybridBenefit) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ConnectedClusterPatchProperties();
+        }
+        this.innerProperties().withAzureHybridBenefit(azureHybridBenefit);
         return this;
     }
 
@@ -77,5 +135,8 @@ public final class ConnectedClusterPatch {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (innerProperties() != null) {
+            innerProperties().validate();
+        }
     }
 }
