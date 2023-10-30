@@ -18,12 +18,12 @@ import java.time.Duration;
 @ServiceClientBuilder(serviceClients = {DataMigrationManagementClientImpl.class})
 public final class DataMigrationManagementClientBuilder {
     /*
-     * Identifier of the subscription
+     * Subscription ID that identifies an Azure subscription.
      */
     private String subscriptionId;
 
     /**
-     * Sets Identifier of the subscription.
+     * Sets Subscription ID that identifies an Azure subscription.
      *
      * @param subscriptionId the subscriptionId value.
      * @return the DataMigrationManagementClientBuilder.
@@ -137,7 +137,7 @@ public final class DataMigrationManagementClientBuilder {
                 localSerializerAdapter,
                 localDefaultPollInterval,
                 localEnvironment,
-                subscriptionId,
+                this.subscriptionId,
                 localEndpoint);
         return client;
     }

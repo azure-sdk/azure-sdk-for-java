@@ -7,7 +7,7 @@ package com.azure.resourcemanager.datamigration.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Server properties for Oracle, MySQL type source. */
+/** Server properties for MySQL type source. */
 @Immutable
 public final class ServerProperties {
     /*
