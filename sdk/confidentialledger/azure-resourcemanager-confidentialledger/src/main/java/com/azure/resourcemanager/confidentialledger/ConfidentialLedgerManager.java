@@ -218,7 +218,7 @@ public final class ConfidentialLedgerManager {
                 .append("-")
                 .append("com.azure.resourcemanager.confidentialledger")
                 .append("/")
-                .append("1.0.0-beta.3");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -324,8 +324,10 @@ public final class ConfidentialLedgerManager {
     }
 
     /**
-     * @return Wrapped service client ConfidentialLedgerManagementClient providing direct access to the underlying
-     *     auto-generated API implementation, based on Azure REST API.
+     * Gets wrapped service client ConfidentialLedgerManagementClient providing direct access to the underlying
+     * auto-generated API implementation, based on Azure REST API.
+     *
+     * @return Wrapped service client ConfidentialLedgerManagementClient.
      */
     public ConfidentialLedgerManagementClient serviceClient() {
         return this.clientObject;
