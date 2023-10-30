@@ -96,11 +96,13 @@ public interface NginxCertificate {
             DefinitionStages.WithParentResource,
             DefinitionStages.WithCreate {
     }
+
     /** The NginxCertificate definition stages. */
     interface DefinitionStages {
         /** The first stage of the NginxCertificate definition. */
         interface Blank extends WithLocation {
         }
+
         /** The stage of the NginxCertificate definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -119,6 +121,7 @@ public interface NginxCertificate {
              */
             WithParentResource withRegion(String location);
         }
+
         /** The stage of the NginxCertificate definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -130,6 +133,7 @@ public interface NginxCertificate {
              */
             WithCreate withExistingNginxDeployment(String resourceGroupName, String deploymentName);
         }
+
         /**
          * The stage of the NginxCertificate definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
@@ -150,6 +154,7 @@ public interface NginxCertificate {
              */
             NginxCertificate create(Context context);
         }
+
         /** The stage of the NginxCertificate definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -160,6 +165,7 @@ public interface NginxCertificate {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
         /** The stage of the NginxCertificate definition allowing to specify properties. */
         interface WithProperties {
             /**
@@ -171,6 +177,7 @@ public interface NginxCertificate {
             WithCreate withProperties(NginxCertificateProperties properties);
         }
     }
+
     /**
      * Begins update for the NginxCertificate resource.
      *
@@ -195,6 +202,7 @@ public interface NginxCertificate {
          */
         NginxCertificate apply(Context context);
     }
+
     /** The NginxCertificate update stages. */
     interface UpdateStages {
         /** The stage of the NginxCertificate update allowing to specify tags. */
@@ -207,6 +215,7 @@ public interface NginxCertificate {
              */
             Update withTags(Map<String, String> tags);
         }
+
         /** The stage of the NginxCertificate update allowing to specify properties. */
         interface WithProperties {
             /**
@@ -218,6 +227,7 @@ public interface NginxCertificate {
             Update withProperties(NginxCertificateProperties properties);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *
