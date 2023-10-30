@@ -5,16 +5,12 @@
 package com.azure.resourcemanager.consumption.fluent.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.consumption.models.Amount;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** The properties of modern charge summary. */
 @Immutable
 public final class ModernChargeSummaryProperties {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ModernChargeSummaryProperties.class);
-
     /*
      * The id of the billing period resource that the charge belongs to.
      */
@@ -80,6 +76,16 @@ public final class ModernChargeSummaryProperties {
      */
     @JsonProperty(value = "isInvoiced", access = JsonProperty.Access.WRITE_ONLY)
     private Boolean isInvoiced;
+
+    /*
+     * Subscription guid.
+     */
+    @JsonProperty(value = "subscriptionId", access = JsonProperty.Access.WRITE_ONLY)
+    private String subscriptionId;
+
+    /** Creates an instance of ModernChargeSummaryProperties class. */
+    public ModernChargeSummaryProperties() {
+    }
 
     /**
      * Get the billingPeriodId property: The id of the billing period resource that the charge belongs to.
@@ -178,6 +184,15 @@ public final class ModernChargeSummaryProperties {
      */
     public Boolean isInvoiced() {
         return this.isInvoiced;
+    }
+
+    /**
+     * Get the subscriptionId property: Subscription guid.
+     *
+     * @return the subscriptionId value.
+     */
+    public String subscriptionId() {
+        return this.subscriptionId;
     }
 
     /**
