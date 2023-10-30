@@ -1,0 +1,1 @@
+[ [ "com.azure.resourcemanager.iotfirmwaredefense.implementation.FirmwaresClientImpl$FirmwaresService" ], [ "com.azure.resourcemanager.iotfirmwaredefense.implementation.WorkspacesClientImpl$WorkspacesService" ], [ "com.azure.resourcemanager.iotfirmwaredefense.implementation.OperationsClientImpl$OperationsService" ] ]
