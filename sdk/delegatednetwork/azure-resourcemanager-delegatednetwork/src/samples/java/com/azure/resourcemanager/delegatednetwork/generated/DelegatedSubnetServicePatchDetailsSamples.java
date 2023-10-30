@@ -11,7 +11,7 @@ import java.util.Map;
 /** Samples for DelegatedSubnetService PatchDetails. */
 public final class DelegatedSubnetServicePatchDetailsSamples {
     /*
-     * x-ms-original-file: specification/dnc/resource-manager/Microsoft.DelegatedNetwork/stable/2021-03-15/examples/patchDelegatedSubnet.json
+     * x-ms-original-file: specification/dnc/resource-manager/Microsoft.DelegatedNetwork/preview/2023-06-27-preview/examples/patchDelegatedSubnet.json
      */
     /**
      * Sample code: patch delegated subnet.
@@ -25,9 +25,10 @@ public final class DelegatedSubnetServicePatchDetailsSamples {
                 .delegatedSubnetServices()
                 .getByResourceGroupWithResponse("TestRG", "delegated1", com.azure.core.util.Context.NONE)
                 .getValue();
-        resource.update().withTags(mapOf("key", "value")).apply();
+        resource.update().withTags(mapOf("key", "fakeTokenPlaceholder")).apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
