@@ -15,12 +15,14 @@ import com.azure.core.management.exception.ManagementException;
 import com.azure.core.management.polling.PollResult;
 import com.azure.core.management.polling.PollerFactory;
 import com.azure.core.util.Context;
+import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.core.util.polling.AsyncPollResponse;
 import com.azure.core.util.polling.LongRunningOperationStatus;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
+import com.azure.resourcemanager.confluent.fluent.AccessClient;
 import com.azure.resourcemanager.confluent.fluent.ConfluentManagementClient;
 import com.azure.resourcemanager.confluent.fluent.MarketplaceAgreementsClient;
 import com.azure.resourcemanager.confluent.fluent.OrganizationOperationsClient;
@@ -32,20 +34,17 @@ import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.time.Duration;
-import java.util.Map;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 /** Initializes a new instance of the ConfluentManagementClientImpl type. */
 @ServiceClient(builder = ConfluentManagementClientBuilder.class)
 public final class ConfluentManagementClientImpl implements ConfluentManagementClient {
-    private final ClientLogger logger = new ClientLogger(ConfluentManagementClientImpl.class);
-
-    /** Microsoft Azure subscription id. */
+    /** The ID of the target subscription. The value must be an UUID. */
     private final String subscriptionId;
 
     /**
-     * Gets Microsoft Azure subscription id.
+     * Gets The ID of the target subscription. The value must be an UUID.
      *
      * @return the subscriptionId value.
      */
@@ -161,6 +160,18 @@ public final class ConfluentManagementClientImpl implements ConfluentManagementC
         return this.validations;
     }
 
+    /** The AccessClient object to access its operations. */
+    private final AccessClient access;
+
+    /**
+     * Gets the AccessClient object to access its operations.
+     *
+     * @return the AccessClient object.
+     */
+    public AccessClient getAccess() {
+        return this.access;
+    }
+
     /**
      * Initializes an instance of ConfluentManagementClient client.
      *
@@ -168,7 +179,7 @@ public final class ConfluentManagementClientImpl implements ConfluentManagementC
      * @param serializerAdapter The serializer to serialize an object into a string.
      * @param defaultPollInterval The default poll interval for long-running operation.
      * @param environment The Azure environment.
-     * @param subscriptionId Microsoft Azure subscription id.
+     * @param subscriptionId The ID of the target subscription. The value must be an UUID.
      * @param endpoint server parameter.
      */
     ConfluentManagementClientImpl(
@@ -183,11 +194,12 @@ public final class ConfluentManagementClientImpl implements ConfluentManagementC
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2021-09-01-preview";
+        this.apiVersion = "2023-08-22";
         this.marketplaceAgreements = new MarketplaceAgreementsClientImpl(this);
         this.organizationOperations = new OrganizationOperationsClientImpl(this);
         this.organizations = new OrganizationsClientImpl(this);
         this.validations = new ValidationsClientImpl(this);
+        this.access = new AccessClientImpl(this);
     }
 
     /**
@@ -206,10 +218,7 @@ public final class ConfluentManagementClientImpl implements ConfluentManagementC
      * @return the merged context.
      */
     public Context mergeContext(Context context) {
-        for (Map.Entry<Object, Object> entry : this.getContext().getValues().entrySet()) {
-            context = context.addData(entry.getKey(), entry.getValue());
-        }
-        return context;
+        return CoreUtils.mergeContexts(this.getContext(), context);
     }
 
     /**
@@ -273,7 +282,7 @@ public final class ConfluentManagementClientImpl implements ConfluentManagementC
                             managementError = null;
                         }
                     } catch (IOException | RuntimeException ioe) {
-                        logger.logThrowableAsWarning(ioe);
+                        LOGGER.logThrowableAsWarning(ioe);
                     }
                 }
             } else {
@@ -332,4 +341,6 @@ public final class ConfluentManagementClientImpl implements ConfluentManagementC
             return Mono.just(new String(responseBody, charset));
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(ConfluentManagementClientImpl.class);
 }

@@ -63,7 +63,9 @@ public interface OrganizationResource {
     OffsetDateTime createdTime();
 
     /**
-     * Gets the provisioningState property: ProvisioningState Provision states for confluent RP.
+     * Gets the provisioningState property: ProvisioningState
+     *
+     * <p>Provision states for confluent RP.
      *
      * @return the provisioningState value.
      */
@@ -98,6 +100,13 @@ public interface OrganizationResource {
     UserDetail userDetail();
 
     /**
+     * Gets the linkOrganization property: Link an existing Confluent organization.
+     *
+     * @return the linkOrganization value.
+     */
+    LinkOrganization linkOrganization();
+
+    /**
      * Gets the region of the resource.
      *
      * @return the region of the resource.
@@ -110,6 +119,13 @@ public interface OrganizationResource {
      * @return the name of the resource region.
      */
     String regionName();
+
+    /**
+     * Gets the name of the resource group.
+     *
+     * @return the name of the resource group.
+     */
+    String resourceGroupName();
 
     /**
      * Gets the inner com.azure.resourcemanager.confluent.fluent.models.OrganizationResourceInner object.
@@ -127,11 +143,13 @@ public interface OrganizationResource {
             DefinitionStages.WithUserDetail,
             DefinitionStages.WithCreate {
     }
+
     /** The OrganizationResource definition stages. */
     interface DefinitionStages {
         /** The first stage of the OrganizationResource definition. */
         interface Blank extends WithLocation {
         }
+
         /** The stage of the OrganizationResource definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -150,16 +168,18 @@ public interface OrganizationResource {
              */
             WithResourceGroup withRegion(String location);
         }
+
         /** The stage of the OrganizationResource definition allowing to specify parent resource. */
         interface WithResourceGroup {
             /**
              * Specifies resourceGroupName.
              *
-             * @param resourceGroupName Resource group name.
+             * @param resourceGroupName The name of the resource group. The name is case insensitive.
              * @return the next definition stage.
              */
             WithOfferDetail withExistingResourceGroup(String resourceGroupName);
         }
+
         /** The stage of the OrganizationResource definition allowing to specify offerDetail. */
         interface WithOfferDetail {
             /**
@@ -170,6 +190,7 @@ public interface OrganizationResource {
              */
             WithUserDetail withOfferDetail(OfferDetail offerDetail);
         }
+
         /** The stage of the OrganizationResource definition allowing to specify userDetail. */
         interface WithUserDetail {
             /**
@@ -180,11 +201,12 @@ public interface OrganizationResource {
              */
             WithCreate withUserDetail(UserDetail userDetail);
         }
+
         /**
          * The stage of the OrganizationResource definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithTags {
+        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithLinkOrganization {
             /**
              * Executes the create request.
              *
@@ -200,6 +222,7 @@ public interface OrganizationResource {
              */
             OrganizationResource create(Context context);
         }
+
         /** The stage of the OrganizationResource definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -210,7 +233,19 @@ public interface OrganizationResource {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
+        /** The stage of the OrganizationResource definition allowing to specify linkOrganization. */
+        interface WithLinkOrganization {
+            /**
+             * Specifies the linkOrganization property: Link an existing Confluent organization.
+             *
+             * @param linkOrganization Link an existing Confluent organization.
+             * @return the next definition stage.
+             */
+            WithCreate withLinkOrganization(LinkOrganization linkOrganization);
+        }
     }
+
     /**
      * Begins update for the OrganizationResource resource.
      *
@@ -235,6 +270,7 @@ public interface OrganizationResource {
          */
         OrganizationResource apply(Context context);
     }
+
     /** The OrganizationResource update stages. */
     interface UpdateStages {
         /** The stage of the OrganizationResource update allowing to specify tags. */
@@ -248,6 +284,7 @@ public interface OrganizationResource {
             Update withTags(Map<String, String> tags);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

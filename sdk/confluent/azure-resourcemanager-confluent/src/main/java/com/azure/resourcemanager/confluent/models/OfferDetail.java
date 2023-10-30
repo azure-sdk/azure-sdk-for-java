@@ -6,14 +6,12 @@ package com.azure.resourcemanager.confluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 
 /** Confluent Offer detail. */
 @Fluent
 public final class OfferDetail {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(OfferDetail.class);
-
     /*
      * Publisher Id
      */
@@ -45,10 +43,34 @@ public final class OfferDetail {
     private String termUnit;
 
     /*
-     * SaaSOfferStatus SaaS Offer Status
+     * Offer Plan Term Id
+     */
+    @JsonProperty(value = "termId")
+    private String termId;
+
+    /*
+     * Private Offer Id
+     */
+    @JsonProperty(value = "privateOfferId")
+    private String privateOfferId;
+
+    /*
+     * Array of Private Offer Ids
+     */
+    @JsonProperty(value = "privateOfferIds")
+    private List<String> privateOfferIds;
+
+    /*
+     * SaaSOfferStatus
+     *
+     * SaaS Offer Status
      */
     @JsonProperty(value = "status")
     private SaaSOfferStatus status;
+
+    /** Creates an instance of OfferDetail class. */
+    public OfferDetail() {
+    }
 
     /**
      * Get the publisherId property: Publisher Id.
@@ -151,7 +173,69 @@ public final class OfferDetail {
     }
 
     /**
-     * Get the status property: SaaSOfferStatus SaaS Offer Status.
+     * Get the termId property: Offer Plan Term Id.
+     *
+     * @return the termId value.
+     */
+    public String termId() {
+        return this.termId;
+    }
+
+    /**
+     * Set the termId property: Offer Plan Term Id.
+     *
+     * @param termId the termId value to set.
+     * @return the OfferDetail object itself.
+     */
+    public OfferDetail withTermId(String termId) {
+        this.termId = termId;
+        return this;
+    }
+
+    /**
+     * Get the privateOfferId property: Private Offer Id.
+     *
+     * @return the privateOfferId value.
+     */
+    public String privateOfferId() {
+        return this.privateOfferId;
+    }
+
+    /**
+     * Set the privateOfferId property: Private Offer Id.
+     *
+     * @param privateOfferId the privateOfferId value to set.
+     * @return the OfferDetail object itself.
+     */
+    public OfferDetail withPrivateOfferId(String privateOfferId) {
+        this.privateOfferId = privateOfferId;
+        return this;
+    }
+
+    /**
+     * Get the privateOfferIds property: Array of Private Offer Ids.
+     *
+     * @return the privateOfferIds value.
+     */
+    public List<String> privateOfferIds() {
+        return this.privateOfferIds;
+    }
+
+    /**
+     * Set the privateOfferIds property: Array of Private Offer Ids.
+     *
+     * @param privateOfferIds the privateOfferIds value to set.
+     * @return the OfferDetail object itself.
+     */
+    public OfferDetail withPrivateOfferIds(List<String> privateOfferIds) {
+        this.privateOfferIds = privateOfferIds;
+        return this;
+    }
+
+    /**
+     * Get the status property: SaaSOfferStatus
+     *
+     * <p>SaaS Offer Status.
      *
      * @return the status value.
      */
@@ -160,7 +244,9 @@ public final class OfferDetail {
     }
 
     /**
-     * Set the status property: SaaSOfferStatus SaaS Offer Status.
+     * Set the status property: SaaSOfferStatus
+     *
+     * <p>SaaS Offer Status.
      *
      * @param status the status value to set.
      * @return the OfferDetail object itself.
@@ -177,28 +263,30 @@ public final class OfferDetail {
      */
     public void validate() {
         if (publisherId() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property publisherId in model OfferDetail"));
         }
         if (id() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(new IllegalArgumentException("Missing required property id in model OfferDetail"));
         }
         if (planId() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property planId in model OfferDetail"));
         }
         if (planName() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property planName in model OfferDetail"));
         }
         if (termUnit() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property termUnit in model OfferDetail"));
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(OfferDetail.class);
 }
