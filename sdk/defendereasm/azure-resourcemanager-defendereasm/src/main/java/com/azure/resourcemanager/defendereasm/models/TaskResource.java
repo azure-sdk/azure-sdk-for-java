@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.defendereasm.models;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.defendereasm.fluent.models.TaskResourceInner;
 
 /** An immutable client-side representation of TaskResource. */
@@ -28,6 +29,13 @@ public interface TaskResource {
      * @return the type value.
      */
     String type();
+
+    /**
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     *
+     * @return the systemData value.
+     */
+    SystemData systemData();
 
     /**
      * Gets the startedAt property: The time the task started.
