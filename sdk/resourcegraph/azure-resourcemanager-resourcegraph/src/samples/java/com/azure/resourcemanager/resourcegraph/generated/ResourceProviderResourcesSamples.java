@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.resourcegraph.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.resourcegraph.models.FacetRequest;
 import com.azure.resourcemanager.resourcegraph.models.FacetRequestOptions;
 import com.azure.resourcemanager.resourcegraph.models.FacetSortOrder;
@@ -15,7 +14,7 @@ import java.util.Arrays;
 /** Samples for ResourceProvider Resources. */
 public final class ResourceProviderResourcesSamples {
     /*
-     * x-ms-original-file: specification/resourcegraph/resource-manager/Microsoft.ResourceGraph/stable/2021-03-01/examples/ResourcesMgBasicQuery.json
+     * x-ms-original-file: specification/resourcegraph/resource-manager/Microsoft.ResourceGraph/preview/2023-09-01-preview/examples/ResourcesMgBasicQuery.json
      */
     /**
      * Sample code: Basic management group query.
@@ -29,11 +28,11 @@ public final class ResourceProviderResourcesSamples {
                 new QueryRequest()
                     .withManagementGroups(Arrays.asList("e927f598-c1d4-4f72-8541-95d83a6a4ac8", "ProductionMG"))
                     .withQuery("Resources | project id, name, type, location, tags | limit 3"),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/resourcegraph/resource-manager/Microsoft.ResourceGraph/stable/2021-03-01/examples/ResourcesBasicQuery.json
+     * x-ms-original-file: specification/resourcegraph/resource-manager/Microsoft.ResourceGraph/preview/2023-09-01-preview/examples/ResourcesBasicQuery.json
      */
     /**
      * Sample code: Basic query.
@@ -47,11 +46,11 @@ public final class ResourceProviderResourcesSamples {
                 new QueryRequest()
                     .withSubscriptions(Arrays.asList("cfbbd179-59d2-4052-aa06-9270a38aa9d6"))
                     .withQuery("Resources | project id, name, type, location, tags | limit 3"),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/resourcegraph/resource-manager/Microsoft.ResourceGraph/stable/2021-03-01/examples/ResourcesFacetQuery.json
+     * x-ms-original-file: specification/resourcegraph/resource-manager/Microsoft.ResourceGraph/preview/2023-09-01-preview/examples/ResourcesFacetQuery.json
      */
     /**
      * Sample code: Query with a facet request.
@@ -95,11 +94,11 @@ public final class ResourceProviderResourcesSamples {
                                         new FacetRequestOptions()
                                             .withFilter("resourceGroup contains 'test'")
                                             .withTop(3)))),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/resourcegraph/resource-manager/Microsoft.ResourceGraph/stable/2021-03-01/examples/ResourcesFilterQuery.json
+     * x-ms-original-file: specification/resourcegraph/resource-manager/Microsoft.ResourceGraph/preview/2023-09-01-preview/examples/ResourcesFilterQuery.json
      */
     /**
      * Sample code: Filter resources.
@@ -115,11 +114,11 @@ public final class ResourceProviderResourcesSamples {
                     .withQuery(
                         "Resources | project id, name, type, location | where type =~"
                             + " 'Microsoft.Compute/virtualMachines' | limit 3"),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/resourcegraph/resource-manager/Microsoft.ResourceGraph/stable/2021-03-01/examples/ResourcesSummarizeQuery.json
+     * x-ms-original-file: specification/resourcegraph/resource-manager/Microsoft.ResourceGraph/preview/2023-09-01-preview/examples/ResourcesSummarizeQuery.json
      */
     /**
      * Sample code: Summarize resources by location.
@@ -134,11 +133,11 @@ public final class ResourceProviderResourcesSamples {
                 new QueryRequest()
                     .withSubscriptions(Arrays.asList("cfbbd179-59d2-4052-aa06-9270a38aa9d6"))
                     .withQuery("Resources | project id, name, type, location | summarize by location"),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/resourcegraph/resource-manager/Microsoft.ResourceGraph/stable/2021-03-01/examples/ResourcesPropertiesQuery.json
+     * x-ms-original-file: specification/resourcegraph/resource-manager/Microsoft.ResourceGraph/preview/2023-09-01-preview/examples/ResourcesPropertiesQuery.json
      */
     /**
      * Sample code: Access a properties field.
@@ -154,11 +153,11 @@ public final class ResourceProviderResourcesSamples {
                     .withQuery(
                         "Resources | where type =~ 'Microsoft.Compute/virtualMachines' | summarize count() by"
                             + " tostring(properties.storageProfile.osDisk.osType)"),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/resourcegraph/resource-manager/Microsoft.ResourceGraph/stable/2021-03-01/examples/ResourcesComplexQuery.json
+     * x-ms-original-file: specification/resourcegraph/resource-manager/Microsoft.ResourceGraph/preview/2023-09-01-preview/examples/ResourcesComplexQuery.json
      */
     /**
      * Sample code: Complex query.
@@ -174,11 +173,11 @@ public final class ResourceProviderResourcesSamples {
                     .withQuery(
                         "Resources | project id, name, type, location | where type =~"
                             + " 'Microsoft.Compute/virtualMachines' | summarize count() by location | top 3 by count_"),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/resourcegraph/resource-manager/Microsoft.ResourceGraph/stable/2021-03-01/examples/ResourcesNextPageQuery.json
+     * x-ms-original-file: specification/resourcegraph/resource-manager/Microsoft.ResourceGraph/preview/2023-09-01-preview/examples/ResourcesNextPageQuery.json
      */
     /**
      * Sample code: Next page query.
@@ -192,14 +191,12 @@ public final class ResourceProviderResourcesSamples {
                 new QueryRequest()
                     .withSubscriptions(Arrays.asList("cfbbd179-59d2-4052-aa06-9270a38aa9d6"))
                     .withQuery("Resources | where name contains 'test' | project id, name, type, location")
-                    .withOptions(
-                        new QueryRequestOptions()
-                            .withSkipToken("eyAibm8iOiAibHVjayIsICJidXQiOiAibmljZSIsICJ0cnkiOiAiISIgfQ==")),
-                Context.NONE);
+                    .withOptions(new QueryRequestOptions().withSkipToken("fakeTokenPlaceholder")),
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/resourcegraph/resource-manager/Microsoft.ResourceGraph/stable/2021-03-01/examples/ResourcesFirstPageQuery.json
+     * x-ms-original-file: specification/resourcegraph/resource-manager/Microsoft.ResourceGraph/preview/2023-09-01-preview/examples/ResourcesFirstPageQuery.json
      */
     /**
      * Sample code: First page query.
@@ -214,11 +211,11 @@ public final class ResourceProviderResourcesSamples {
                     .withSubscriptions(Arrays.asList("cfbbd179-59d2-4052-aa06-9270a38aa9d6"))
                     .withQuery("Resources | where name contains 'test' | project id, name, type, location")
                     .withOptions(new QueryRequestOptions().withTop(3).withSkip(0)),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/resourcegraph/resource-manager/Microsoft.ResourceGraph/stable/2021-03-01/examples/ResourcesTenantBasicQuery.json
+     * x-ms-original-file: specification/resourcegraph/resource-manager/Microsoft.ResourceGraph/preview/2023-09-01-preview/examples/ResourcesTenantBasicQuery.json
      */
     /**
      * Sample code: Basic tenant query.
@@ -230,11 +227,11 @@ public final class ResourceProviderResourcesSamples {
             .resourceProviders()
             .resourcesWithResponse(
                 new QueryRequest().withQuery("Resources | project id, name, type, location, tags | limit 3"),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/resourcegraph/resource-manager/Microsoft.ResourceGraph/stable/2021-03-01/examples/ResourcesRandomPageQuery.json
+     * x-ms-original-file: specification/resourcegraph/resource-manager/Microsoft.ResourceGraph/preview/2023-09-01-preview/examples/ResourcesRandomPageQuery.json
      */
     /**
      * Sample code: Random page query.
@@ -249,6 +246,6 @@ public final class ResourceProviderResourcesSamples {
                     .withSubscriptions(Arrays.asList("cfbbd179-59d2-4052-aa06-9270a38aa9d6"))
                     .withQuery("Resources | where name contains 'test' | project id, name, type, location")
                     .withOptions(new QueryRequestOptions().withTop(2).withSkip(10)),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
