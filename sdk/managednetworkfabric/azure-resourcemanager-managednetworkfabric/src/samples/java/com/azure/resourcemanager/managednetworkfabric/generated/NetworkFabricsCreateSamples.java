@@ -103,12 +103,14 @@ public final class NetworkFabricsCreateSamples {
                                     .withSecondaryIpv4Prefix("10.0.0.15/30")
                                     .withSecondaryIpv6Prefix("2FFE:FFFF:0:CD30::ac/126"))))
             .withTags(mapOf("keyID", "fakeTokenPlaceholder"))
+            .withFabricVersion("1.x.x")
             .withRackCount(4)
             .withIpv6Prefix("3FFE:FFFF:0:CD40::/59")
             .withAnnotation("annotation")
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

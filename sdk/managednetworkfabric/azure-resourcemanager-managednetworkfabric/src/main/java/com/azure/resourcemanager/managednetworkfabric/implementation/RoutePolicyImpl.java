@@ -12,6 +12,7 @@ import com.azure.resourcemanager.managednetworkfabric.models.AddressFamilyType;
 import com.azure.resourcemanager.managednetworkfabric.models.AdministrativeState;
 import com.azure.resourcemanager.managednetworkfabric.models.CommonPostActionResponseForDeviceUpdate;
 import com.azure.resourcemanager.managednetworkfabric.models.CommonPostActionResponseForStateUpdate;
+import com.azure.resourcemanager.managednetworkfabric.models.CommunityActionTypes;
 import com.azure.resourcemanager.managednetworkfabric.models.ConfigurationState;
 import com.azure.resourcemanager.managednetworkfabric.models.ProvisioningState;
 import com.azure.resourcemanager.managednetworkfabric.models.RoutePolicy;
@@ -75,6 +76,10 @@ public final class RoutePolicyImpl implements RoutePolicy, RoutePolicy.Definitio
 
     public AdministrativeState administrativeState() {
         return this.innerModel().administrativeState();
+    }
+
+    public CommunityActionTypes defaultAction() {
+        return this.innerModel().defaultAction();
     }
 
     public List<RoutePolicyStatementProperties> statements() {
@@ -253,6 +258,16 @@ public final class RoutePolicyImpl implements RoutePolicy, RoutePolicy.Definitio
     public RoutePolicyImpl withAddressFamilyType(AddressFamilyType addressFamilyType) {
         this.innerModel().withAddressFamilyType(addressFamilyType);
         return this;
+    }
+
+    public RoutePolicyImpl withDefaultAction(CommunityActionTypes defaultAction) {
+        if (isInCreateMode()) {
+            this.innerModel().withDefaultAction(defaultAction);
+            return this;
+        } else {
+            this.updateBody.withDefaultAction(defaultAction);
+            return this;
+        }
     }
 
     public RoutePolicyImpl withStatements(List<RoutePolicyStatementProperties> statements) {

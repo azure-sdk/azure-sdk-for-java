@@ -246,6 +246,7 @@ import com.azure.resourcemanager.managednetworkfabric.models.AccessControlListMa
 import com.azure.resourcemanager.managednetworkfabric.models.AccessControlListPortCondition;
 import com.azure.resourcemanager.managednetworkfabric.models.AclActionType;
 import com.azure.resourcemanager.managednetworkfabric.models.CommonDynamicMatchConfiguration;
+import com.azure.resourcemanager.managednetworkfabric.models.CommunityActionTypes;
 import com.azure.resourcemanager.managednetworkfabric.models.ConfigurationType;
 import com.azure.resourcemanager.managednetworkfabric.models.IpAddressType;
 import com.azure.resourcemanager.managednetworkfabric.models.IpGroupProperties;
@@ -281,6 +282,7 @@ public final class AccessControlListsCreateSamples {
             .withTags(mapOf("keyID", "fakeTokenPlaceholder"))
             .withConfigurationType(ConfigurationType.FILE)
             .withAclsUrl("https://ACL-Storage-URL")
+            .withDefaultAction(CommunityActionTypes.PERMIT)
             .withMatchConfigurations(
                 Arrays
                     .asList(
@@ -349,6 +351,7 @@ public final class AccessControlListsCreateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -474,6 +477,7 @@ import com.azure.resourcemanager.managednetworkfabric.models.AccessControlListMa
 import com.azure.resourcemanager.managednetworkfabric.models.AccessControlListPortCondition;
 import com.azure.resourcemanager.managednetworkfabric.models.AclActionType;
 import com.azure.resourcemanager.managednetworkfabric.models.CommonDynamicMatchConfiguration;
+import com.azure.resourcemanager.managednetworkfabric.models.CommunityActionTypes;
 import com.azure.resourcemanager.managednetworkfabric.models.ConfigurationType;
 import com.azure.resourcemanager.managednetworkfabric.models.IpAddressType;
 import com.azure.resourcemanager.managednetworkfabric.models.IpGroupProperties;
@@ -512,6 +516,7 @@ public final class AccessControlListsUpdateSamples {
             .withAnnotation("annotation")
             .withConfigurationType(ConfigurationType.FILE)
             .withAclsUrl("https://microsoft.com/a")
+            .withDefaultAction(CommunityActionTypes.PERMIT)
             .withMatchConfigurations(
                 Arrays
                     .asList(
@@ -579,6 +584,7 @@ public final class AccessControlListsUpdateSamples {
             .apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -1311,6 +1317,7 @@ public final class InternetGatewayRulesCreateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -1439,6 +1446,7 @@ public final class InternetGatewayRulesUpdateSamples {
         resource.update().withTags(mapOf("key3311", "fakeTokenPlaceholder")).apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -1486,6 +1494,7 @@ public final class InternetGatewaysCreateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -1614,6 +1623,7 @@ public final class InternetGatewaysUpdateSamples {
             .apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -1667,6 +1677,7 @@ public final class IpCommunitiesCreateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -1841,6 +1852,7 @@ public final class IpExtendedCommunitiesCreateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -1980,6 +1992,7 @@ public final class IpExtendedCommunitiesUpdateSamples {
             .apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -2034,6 +2047,7 @@ public final class IpPrefixesCreateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -2173,6 +2187,7 @@ public final class IpPrefixesUpdateSamples {
             .apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -2240,6 +2255,7 @@ public final class L2IsolationDomainsCreateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -2367,6 +2383,7 @@ public final class L2IsolationDomainsUpdateSamples {
             .apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -2507,6 +2524,7 @@ public final class L3IsolationDomainsCreateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -2656,6 +2674,7 @@ public final class L3IsolationDomainsUpdateSamples {
             .apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -2766,6 +2785,7 @@ public final class NeighborGroupsCreateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -2909,6 +2929,7 @@ public final class NeighborGroupsUpdateSamples {
             .apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -2993,6 +3014,7 @@ public final class NetworkDevicesCreateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -3170,6 +3192,7 @@ public final class NetworkDevicesUpdateSamples {
             .apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -3588,12 +3611,14 @@ public final class NetworkFabricsCreateSamples {
                                     .withSecondaryIpv4Prefix("10.0.0.15/30")
                                     .withSecondaryIpv6Prefix("2FFE:FFFF:0:CD30::ac/126"))))
             .withTags(mapOf("keyID", "fakeTokenPlaceholder"))
+            .withFabricVersion("1.x.x")
             .withRackCount(4)
             .withIpv6Prefix("3FFE:FFFF:0:CD40::/59")
             .withAnnotation("annotation")
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -3877,6 +3902,7 @@ public final class NetworkFabricsUpdateSamples {
             .apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -3953,7 +3979,8 @@ public final class NetworkFabricsUpdateWorkloadManagementBfdConfigurationSamples
 ### NetworkFabrics_Upgrade
 
 ```java
-import com.azure.resourcemanager.managednetworkfabric.models.UpdateVersion;
+import com.azure.resourcemanager.managednetworkfabric.models.NetworkFabricUpgradeAction;
+import com.azure.resourcemanager.managednetworkfabric.models.UpgradeNetworkFabricProperties;
 
 /** Samples for NetworkFabrics Upgrade. */
 public final class NetworkFabricsUpgradeSamples {
@@ -3972,7 +3999,7 @@ public final class NetworkFabricsUpgradeSamples {
             .upgrade(
                 "example-rg",
                 "example-fabric",
-                new UpdateVersion().withVersion("version1"),
+                new UpgradeNetworkFabricProperties().withVersion("3.x.x").withAction(NetworkFabricUpgradeAction.START),
                 com.azure.core.util.Context.NONE);
     }
 }
@@ -4183,6 +4210,7 @@ public final class NetworkPacketBrokersCreateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -4309,6 +4337,7 @@ public final class NetworkPacketBrokersUpdateSamples {
         resource.update().withTags(mapOf("key8772", "fakeTokenPlaceholder")).apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -4354,6 +4383,7 @@ public final class NetworkRacksCreateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -4476,6 +4506,7 @@ public final class NetworkRacksUpdateSamples {
         resource.update().withTags(mapOf("keyID", "fakeTokenPlaceholder")).apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -4607,6 +4638,7 @@ public final class NetworkTapRulesCreateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -4838,6 +4870,7 @@ public final class NetworkTapRulesUpdateSamples {
             .apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -4957,6 +4990,7 @@ public final class NetworkTapsCreateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -5127,6 +5161,7 @@ public final class NetworkTapsUpdateSamples {
             .apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -5514,6 +5549,7 @@ public final class RoutePoliciesCommitConfigurationSamples {
 import com.azure.resourcemanager.managednetworkfabric.models.ActionIpCommunityProperties;
 import com.azure.resourcemanager.managednetworkfabric.models.ActionIpExtendedCommunityProperties;
 import com.azure.resourcemanager.managednetworkfabric.models.AddressFamilyType;
+import com.azure.resourcemanager.managednetworkfabric.models.CommunityActionTypes;
 import com.azure.resourcemanager.managednetworkfabric.models.IpCommunityIdList;
 import com.azure.resourcemanager.managednetworkfabric.models.IpExtendedCommunityIdList;
 import com.azure.resourcemanager.managednetworkfabric.models.RoutePolicyActionType;
@@ -5546,6 +5582,7 @@ public final class RoutePoliciesCreateSamples {
                 "/subscriptions/1234ABCD-0A1B-1234-5678-123456ABCDEF/resourceGroups/example-rg/providers/Microsoft.ManagedNetworkFabric/networkFabrics/example-fabric")
             .withTags(mapOf("keyID", "fakeTokenPlaceholder"))
             .withAddressFamilyType(AddressFamilyType.IPV4)
+            .withDefaultAction(CommunityActionTypes.DENY)
             .withStatements(
                 Arrays
                     .asList(
@@ -5613,6 +5650,7 @@ public final class RoutePoliciesCreateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -5713,6 +5751,7 @@ public final class RoutePoliciesListByResourceGroupSamples {
 ```java
 import com.azure.resourcemanager.managednetworkfabric.models.ActionIpCommunityProperties;
 import com.azure.resourcemanager.managednetworkfabric.models.ActionIpExtendedCommunityProperties;
+import com.azure.resourcemanager.managednetworkfabric.models.CommunityActionTypes;
 import com.azure.resourcemanager.managednetworkfabric.models.IpCommunityIdList;
 import com.azure.resourcemanager.managednetworkfabric.models.IpExtendedCommunityIdList;
 import com.azure.resourcemanager.managednetworkfabric.models.RoutePolicy;
@@ -5745,6 +5784,7 @@ public final class RoutePoliciesUpdateSamples {
         resource
             .update()
             .withTags(mapOf("keyID", "fakeTokenPlaceholder"))
+            .withDefaultAction(CommunityActionTypes.DENY)
             .withStatements(
                 Arrays
                     .asList(
@@ -5811,6 +5851,7 @@ public final class RoutePoliciesUpdateSamples {
             .apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

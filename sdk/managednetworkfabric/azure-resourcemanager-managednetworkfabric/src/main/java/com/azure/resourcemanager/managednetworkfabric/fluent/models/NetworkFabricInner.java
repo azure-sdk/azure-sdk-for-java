@@ -105,6 +105,20 @@ public final class NetworkFabricInner extends Resource {
     }
 
     /**
+     * Set the fabricVersion property: The version of Network Fabric.
+     *
+     * @param fabricVersion the fabricVersion value to set.
+     * @return the NetworkFabricInner object itself.
+     */
+    public NetworkFabricInner withFabricVersion(String fabricVersion) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new NetworkFabricProperties();
+        }
+        this.innerProperties().withFabricVersion(fabricVersion);
+        return this;
+    }
+
+    /**
      * Get the routerIds property: Array of router IDs.
      *
      * @return the routerIds value.
