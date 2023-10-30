@@ -5,7 +5,9 @@
 package com.azure.resourcemanager.appcontainers.models;
 
 import com.azure.core.annotation.Fluent;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.Map;
 
 /** Configuration to bind a ContainerApp to a dev ContainerApp Service. */
 @Fluent
@@ -21,6 +23,19 @@ public final class ServiceBind {
      */
     @JsonProperty(value = "name")
     private String name;
+
+    /*
+     * Type of the client to be used to connect to the service
+     */
+    @JsonProperty(value = "clientType")
+    private String clientType;
+
+    /*
+     * Customized keys for customizing injected values to the app
+     */
+    @JsonProperty(value = "customizedKeys")
+    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
+    private Map<String, String> customizedKeys;
 
     /** Creates an instance of ServiceBind class. */
     public ServiceBind() {
@@ -63,6 +78,46 @@ public final class ServiceBind {
      */
     public ServiceBind withName(String name) {
         this.name = name;
+        return this;
+    }
+
+    /**
+     * Get the clientType property: Type of the client to be used to connect to the service.
+     *
+     * @return the clientType value.
+     */
+    public String clientType() {
+        return this.clientType;
+    }
+
+    /**
+     * Set the clientType property: Type of the client to be used to connect to the service.
+     *
+     * @param clientType the clientType value to set.
+     * @return the ServiceBind object itself.
+     */
+    public ServiceBind withClientType(String clientType) {
+        this.clientType = clientType;
+        return this;
+    }
+
+    /**
+     * Get the customizedKeys property: Customized keys for customizing injected values to the app.
+     *
+     * @return the customizedKeys value.
+     */
+    public Map<String, String> customizedKeys() {
+        return this.customizedKeys;
+    }
+
+    /**
+     * Set the customizedKeys property: Customized keys for customizing injected values to the app.
+     *
+     * @param customizedKeys the customizedKeys value to set.
+     * @return the ServiceBind object itself.
+     */
+    public ServiceBind withCustomizedKeys(Map<String, String> customizedKeys) {
+        this.customizedKeys = customizedKeys;
         return this;
     }
 

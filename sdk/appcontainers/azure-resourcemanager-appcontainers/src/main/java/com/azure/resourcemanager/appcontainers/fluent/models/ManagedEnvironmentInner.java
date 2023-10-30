@@ -7,12 +7,14 @@ package com.azure.resourcemanager.appcontainers.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
 import com.azure.core.management.SystemData;
+import com.azure.resourcemanager.appcontainers.models.AppInsightsConfiguration;
 import com.azure.resourcemanager.appcontainers.models.AppLogsConfiguration;
 import com.azure.resourcemanager.appcontainers.models.CustomDomainConfiguration;
 import com.azure.resourcemanager.appcontainers.models.DaprConfiguration;
 import com.azure.resourcemanager.appcontainers.models.EnvironmentProvisioningState;
 import com.azure.resourcemanager.appcontainers.models.KedaConfiguration;
 import com.azure.resourcemanager.appcontainers.models.ManagedEnvironmentPropertiesPeerAuthentication;
+import com.azure.resourcemanager.appcontainers.models.OpenTelemetryConfiguration;
 import com.azure.resourcemanager.appcontainers.models.VnetConfiguration;
 import com.azure.resourcemanager.appcontainers.models.WorkloadProfile;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -227,6 +229,53 @@ public final class ManagedEnvironmentInner extends Resource {
             this.innerProperties = new ManagedEnvironmentProperties();
         }
         this.innerProperties().withAppLogsConfiguration(appLogsConfiguration);
+        return this;
+    }
+
+    /**
+     * Get the appInsightsConfiguration property: Environment level Application Insights configuration.
+     *
+     * @return the appInsightsConfiguration value.
+     */
+    public AppInsightsConfiguration appInsightsConfiguration() {
+        return this.innerProperties() == null ? null : this.innerProperties().appInsightsConfiguration();
+    }
+
+    /**
+     * Set the appInsightsConfiguration property: Environment level Application Insights configuration.
+     *
+     * @param appInsightsConfiguration the appInsightsConfiguration value to set.
+     * @return the ManagedEnvironmentInner object itself.
+     */
+    public ManagedEnvironmentInner withAppInsightsConfiguration(AppInsightsConfiguration appInsightsConfiguration) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ManagedEnvironmentProperties();
+        }
+        this.innerProperties().withAppInsightsConfiguration(appInsightsConfiguration);
+        return this;
+    }
+
+    /**
+     * Get the openTelemetryConfiguration property: Environment Open Telemetry configuration.
+     *
+     * @return the openTelemetryConfiguration value.
+     */
+    public OpenTelemetryConfiguration openTelemetryConfiguration() {
+        return this.innerProperties() == null ? null : this.innerProperties().openTelemetryConfiguration();
+    }
+
+    /**
+     * Set the openTelemetryConfiguration property: Environment Open Telemetry configuration.
+     *
+     * @param openTelemetryConfiguration the openTelemetryConfiguration value to set.
+     * @return the ManagedEnvironmentInner object itself.
+     */
+    public ManagedEnvironmentInner withOpenTelemetryConfiguration(
+        OpenTelemetryConfiguration openTelemetryConfiguration) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ManagedEnvironmentProperties();
+        }
+        this.innerProperties().withOpenTelemetryConfiguration(openTelemetryConfiguration);
         return this;
     }
 
