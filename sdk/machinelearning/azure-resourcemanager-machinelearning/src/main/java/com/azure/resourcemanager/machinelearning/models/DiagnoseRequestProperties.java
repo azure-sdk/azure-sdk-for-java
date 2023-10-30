@@ -13,46 +13,11 @@ import java.util.Map;
 @Fluent
 public final class DiagnoseRequestProperties {
     /*
-     * Setting for diagnosing user defined routing
+     * Setting for diagnosing dependent application insights
      */
-    @JsonProperty(value = "udr")
+    @JsonProperty(value = "applicationInsights")
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
-    private Map<String, Object> udr;
-
-    /*
-     * Setting for diagnosing network security group
-     */
-    @JsonProperty(value = "nsg")
-    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
-    private Map<String, Object> nsg;
-
-    /*
-     * Setting for diagnosing resource lock
-     */
-    @JsonProperty(value = "resourceLock")
-    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
-    private Map<String, Object> resourceLock;
-
-    /*
-     * Setting for diagnosing dns resolution
-     */
-    @JsonProperty(value = "dnsResolution")
-    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
-    private Map<String, Object> dnsResolution;
-
-    /*
-     * Setting for diagnosing dependent storage account
-     */
-    @JsonProperty(value = "storageAccount")
-    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
-    private Map<String, Object> storageAccount;
-
-    /*
-     * Setting for diagnosing dependent key vault
-     */
-    @JsonProperty(value = "keyVault")
-    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
-    private Map<String, Object> keyVault;
+    private Map<String, Object> applicationInsights;
 
     /*
      * Setting for diagnosing dependent container registry
@@ -62,11 +27,25 @@ public final class DiagnoseRequestProperties {
     private Map<String, Object> containerRegistry;
 
     /*
-     * Setting for diagnosing dependent application insights
+     * Setting for diagnosing dns resolution
      */
-    @JsonProperty(value = "applicationInsights")
+    @JsonProperty(value = "dnsResolution")
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
-    private Map<String, Object> applicationInsights;
+    private Map<String, Object> dnsResolution;
+
+    /*
+     * Setting for diagnosing dependent key vault
+     */
+    @JsonProperty(value = "keyVault")
+    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
+    private Map<String, Object> keyVault;
+
+    /*
+     * Setting for diagnosing network security group
+     */
+    @JsonProperty(value = "nsg")
+    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
+    private Map<String, Object> nsg;
 
     /*
      * Setting for diagnosing unclassified category of problems
@@ -75,127 +54,55 @@ public final class DiagnoseRequestProperties {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, Object> others;
 
+    /*
+     * Setting for diagnosing the presence of required resource providers in the workspace.
+     */
+    @JsonProperty(value = "requiredResourceProviders")
+    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
+    private Map<String, Object> requiredResourceProviders;
+
+    /*
+     * Setting for diagnosing resource lock
+     */
+    @JsonProperty(value = "resourceLock")
+    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
+    private Map<String, Object> resourceLock;
+
+    /*
+     * Setting for diagnosing dependent storage account
+     */
+    @JsonProperty(value = "storageAccount")
+    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
+    private Map<String, Object> storageAccount;
+
+    /*
+     * Setting for diagnosing user defined routing
+     */
+    @JsonProperty(value = "udr")
+    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
+    private Map<String, Object> udr;
+
     /** Creates an instance of DiagnoseRequestProperties class. */
     public DiagnoseRequestProperties() {
     }
 
     /**
-     * Get the udr property: Setting for diagnosing user defined routing.
+     * Get the applicationInsights property: Setting for diagnosing dependent application insights.
      *
-     * @return the udr value.
+     * @return the applicationInsights value.
      */
-    public Map<String, Object> udr() {
-        return this.udr;
+    public Map<String, Object> applicationInsights() {
+        return this.applicationInsights;
     }
 
     /**
-     * Set the udr property: Setting for diagnosing user defined routing.
+     * Set the applicationInsights property: Setting for diagnosing dependent application insights.
      *
-     * @param udr the udr value to set.
+     * @param applicationInsights the applicationInsights value to set.
      * @return the DiagnoseRequestProperties object itself.
      */
-    public DiagnoseRequestProperties withUdr(Map<String, Object> udr) {
-        this.udr = udr;
-        return this;
-    }
-
-    /**
-     * Get the nsg property: Setting for diagnosing network security group.
-     *
-     * @return the nsg value.
-     */
-    public Map<String, Object> nsg() {
-        return this.nsg;
-    }
-
-    /**
-     * Set the nsg property: Setting for diagnosing network security group.
-     *
-     * @param nsg the nsg value to set.
-     * @return the DiagnoseRequestProperties object itself.
-     */
-    public DiagnoseRequestProperties withNsg(Map<String, Object> nsg) {
-        this.nsg = nsg;
-        return this;
-    }
-
-    /**
-     * Get the resourceLock property: Setting for diagnosing resource lock.
-     *
-     * @return the resourceLock value.
-     */
-    public Map<String, Object> resourceLock() {
-        return this.resourceLock;
-    }
-
-    /**
-     * Set the resourceLock property: Setting for diagnosing resource lock.
-     *
-     * @param resourceLock the resourceLock value to set.
-     * @return the DiagnoseRequestProperties object itself.
-     */
-    public DiagnoseRequestProperties withResourceLock(Map<String, Object> resourceLock) {
-        this.resourceLock = resourceLock;
-        return this;
-    }
-
-    /**
-     * Get the dnsResolution property: Setting for diagnosing dns resolution.
-     *
-     * @return the dnsResolution value.
-     */
-    public Map<String, Object> dnsResolution() {
-        return this.dnsResolution;
-    }
-
-    /**
-     * Set the dnsResolution property: Setting for diagnosing dns resolution.
-     *
-     * @param dnsResolution the dnsResolution value to set.
-     * @return the DiagnoseRequestProperties object itself.
-     */
-    public DiagnoseRequestProperties withDnsResolution(Map<String, Object> dnsResolution) {
-        this.dnsResolution = dnsResolution;
-        return this;
-    }
-
-    /**
-     * Get the storageAccount property: Setting for diagnosing dependent storage account.
-     *
-     * @return the storageAccount value.
-     */
-    public Map<String, Object> storageAccount() {
-        return this.storageAccount;
-    }
-
-    /**
-     * Set the storageAccount property: Setting for diagnosing dependent storage account.
-     *
-     * @param storageAccount the storageAccount value to set.
-     * @return the DiagnoseRequestProperties object itself.
-     */
-    public DiagnoseRequestProperties withStorageAccount(Map<String, Object> storageAccount) {
-        this.storageAccount = storageAccount;
-        return this;
-    }
-
-    /**
-     * Get the keyVault property: Setting for diagnosing dependent key vault.
-     *
-     * @return the keyVault value.
-     */
-    public Map<String, Object> keyVault() {
-        return this.keyVault;
-    }
-
-    /**
-     * Set the keyVault property: Setting for diagnosing dependent key vault.
-     *
-     * @param keyVault the keyVault value to set.
-     * @return the DiagnoseRequestProperties object itself.
-     */
-    public DiagnoseRequestProperties withKeyVault(Map<String, Object> keyVault) {
-        this.keyVault = keyVault;
+    public DiagnoseRequestProperties withApplicationInsights(Map<String, Object> applicationInsights) {
+        this.applicationInsights = applicationInsights;
         return this;
     }
 
@@ -220,22 +127,62 @@ public final class DiagnoseRequestProperties {
     }
 
     /**
-     * Get the applicationInsights property: Setting for diagnosing dependent application insights.
+     * Get the dnsResolution property: Setting for diagnosing dns resolution.
      *
-     * @return the applicationInsights value.
+     * @return the dnsResolution value.
      */
-    public Map<String, Object> applicationInsights() {
-        return this.applicationInsights;
+    public Map<String, Object> dnsResolution() {
+        return this.dnsResolution;
     }
 
     /**
-     * Set the applicationInsights property: Setting for diagnosing dependent application insights.
+     * Set the dnsResolution property: Setting for diagnosing dns resolution.
      *
-     * @param applicationInsights the applicationInsights value to set.
+     * @param dnsResolution the dnsResolution value to set.
      * @return the DiagnoseRequestProperties object itself.
      */
-    public DiagnoseRequestProperties withApplicationInsights(Map<String, Object> applicationInsights) {
-        this.applicationInsights = applicationInsights;
+    public DiagnoseRequestProperties withDnsResolution(Map<String, Object> dnsResolution) {
+        this.dnsResolution = dnsResolution;
+        return this;
+    }
+
+    /**
+     * Get the keyVault property: Setting for diagnosing dependent key vault.
+     *
+     * @return the keyVault value.
+     */
+    public Map<String, Object> keyVault() {
+        return this.keyVault;
+    }
+
+    /**
+     * Set the keyVault property: Setting for diagnosing dependent key vault.
+     *
+     * @param keyVault the keyVault value to set.
+     * @return the DiagnoseRequestProperties object itself.
+     */
+    public DiagnoseRequestProperties withKeyVault(Map<String, Object> keyVault) {
+        this.keyVault = keyVault;
+        return this;
+    }
+
+    /**
+     * Get the nsg property: Setting for diagnosing network security group.
+     *
+     * @return the nsg value.
+     */
+    public Map<String, Object> nsg() {
+        return this.nsg;
+    }
+
+    /**
+     * Set the nsg property: Setting for diagnosing network security group.
+     *
+     * @param nsg the nsg value to set.
+     * @return the DiagnoseRequestProperties object itself.
+     */
+    public DiagnoseRequestProperties withNsg(Map<String, Object> nsg) {
+        this.nsg = nsg;
         return this;
     }
 
@@ -256,6 +203,88 @@ public final class DiagnoseRequestProperties {
      */
     public DiagnoseRequestProperties withOthers(Map<String, Object> others) {
         this.others = others;
+        return this;
+    }
+
+    /**
+     * Get the requiredResourceProviders property: Setting for diagnosing the presence of required resource providers in
+     * the workspace.
+     *
+     * @return the requiredResourceProviders value.
+     */
+    public Map<String, Object> requiredResourceProviders() {
+        return this.requiredResourceProviders;
+    }
+
+    /**
+     * Set the requiredResourceProviders property: Setting for diagnosing the presence of required resource providers in
+     * the workspace.
+     *
+     * @param requiredResourceProviders the requiredResourceProviders value to set.
+     * @return the DiagnoseRequestProperties object itself.
+     */
+    public DiagnoseRequestProperties withRequiredResourceProviders(Map<String, Object> requiredResourceProviders) {
+        this.requiredResourceProviders = requiredResourceProviders;
+        return this;
+    }
+
+    /**
+     * Get the resourceLock property: Setting for diagnosing resource lock.
+     *
+     * @return the resourceLock value.
+     */
+    public Map<String, Object> resourceLock() {
+        return this.resourceLock;
+    }
+
+    /**
+     * Set the resourceLock property: Setting for diagnosing resource lock.
+     *
+     * @param resourceLock the resourceLock value to set.
+     * @return the DiagnoseRequestProperties object itself.
+     */
+    public DiagnoseRequestProperties withResourceLock(Map<String, Object> resourceLock) {
+        this.resourceLock = resourceLock;
+        return this;
+    }
+
+    /**
+     * Get the storageAccount property: Setting for diagnosing dependent storage account.
+     *
+     * @return the storageAccount value.
+     */
+    public Map<String, Object> storageAccount() {
+        return this.storageAccount;
+    }
+
+    /**
+     * Set the storageAccount property: Setting for diagnosing dependent storage account.
+     *
+     * @param storageAccount the storageAccount value to set.
+     * @return the DiagnoseRequestProperties object itself.
+     */
+    public DiagnoseRequestProperties withStorageAccount(Map<String, Object> storageAccount) {
+        this.storageAccount = storageAccount;
+        return this;
+    }
+
+    /**
+     * Get the udr property: Setting for diagnosing user defined routing.
+     *
+     * @return the udr value.
+     */
+    public Map<String, Object> udr() {
+        return this.udr;
+    }
+
+    /**
+     * Set the udr property: Setting for diagnosing user defined routing.
+     *
+     * @param udr the udr value to set.
+     * @return the DiagnoseRequestProperties object itself.
+     */
+    public DiagnoseRequestProperties withUdr(Map<String, Object> udr) {
+        this.udr = udr;
         return this;
     }
 

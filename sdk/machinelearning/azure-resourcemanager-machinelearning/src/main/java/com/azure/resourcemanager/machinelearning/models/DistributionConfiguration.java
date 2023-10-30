@@ -19,6 +19,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "Mpi", value = Mpi.class),
     @JsonSubTypes.Type(name = "PyTorch", value = PyTorch.class),
+    @JsonSubTypes.Type(name = "Ray", value = Ray.class),
     @JsonSubTypes.Type(name = "TensorFlow", value = TensorFlow.class)
 })
 @Immutable

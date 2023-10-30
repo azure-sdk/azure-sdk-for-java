@@ -7,7 +7,7 @@ package com.azure.resourcemanager.machinelearning.generated;
 /** Samples for Datastores ListSecrets. */
 public final class DatastoresListSecretsSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Datastore/listSecrets.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2023-08-01-preview/examples/Datastore/listSecrets.json
      */
     /**
      * Sample code: Get datastore secrets.

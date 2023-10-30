@@ -6,10 +6,13 @@ package com.azure.resourcemanager.machinelearning.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.machinelearning.models.EncryptionProperty;
+import com.azure.resourcemanager.machinelearning.models.FeatureStoreSettings;
 import com.azure.resourcemanager.machinelearning.models.ProvisioningState;
-import com.azure.resourcemanager.machinelearning.models.PublicNetworkAccess;
+import com.azure.resourcemanager.machinelearning.models.PublicNetworkAccessType;
+import com.azure.resourcemanager.machinelearning.models.ServerlessComputeSettings;
 import com.azure.resourcemanager.machinelearning.models.ServiceManagedResourcesSettings;
 import com.azure.resourcemanager.machinelearning.models.SharedPrivateLinkResource;
+import com.azure.resourcemanager.machinelearning.models.WorkspaceHubConfig;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
@@ -17,10 +20,34 @@ import java.util.List;
 @Fluent
 public final class WorkspacePropertiesInner {
     /*
-     * The immutable id associated with this workspace.
+     * The flag to indicate whether to allow public access when behind VNet.
      */
-    @JsonProperty(value = "workspaceId", access = JsonProperty.Access.WRITE_ONLY)
-    private String workspaceId;
+    @JsonProperty(value = "allowPublicAccessWhenBehindVnet")
+    private Boolean allowPublicAccessWhenBehindVnet;
+
+    /*
+     * ARM id of the application insights associated with this workspace.
+     */
+    @JsonProperty(value = "applicationInsights")
+    private String applicationInsights;
+
+    /*
+     * The associatedWorkspaces property.
+     */
+    @JsonProperty(value = "associatedWorkspaces")
+    private List<String> associatedWorkspaces;
+
+    /*
+     * The containerRegistries property.
+     */
+    @JsonProperty(value = "containerRegistries")
+    private List<String> containerRegistries;
+
+    /*
+     * ARM id of the container registry associated with this workspace.
+     */
+    @JsonProperty(value = "containerRegistry")
+    private String containerRegistry;
 
     /*
      * The description of this workspace.
@@ -29,10 +56,58 @@ public final class WorkspacePropertiesInner {
     private String description;
 
     /*
+     * Url for the discovery service to identify regional endpoints for machine learning experimentation services
+     */
+    @JsonProperty(value = "discoveryUrl")
+    private String discoveryUrl;
+
+    /*
+     * The enableDataIsolation property.
+     */
+    @JsonProperty(value = "enableDataIsolation")
+    private Boolean enableDataIsolation;
+
+    /*
+     * The encryption property.
+     */
+    @JsonProperty(value = "encryption")
+    private EncryptionProperty encryption;
+
+    /*
+     * The existingWorkspaces property.
+     */
+    @JsonProperty(value = "existingWorkspaces")
+    private List<String> existingWorkspaces;
+
+    /*
+     * Settings for feature store type workspace.
+     */
+    @JsonProperty(value = "featureStoreSettings")
+    private FeatureStoreSettings featureStoreSettings;
+
+    /*
      * The friendly name for this workspace. This name in mutable
      */
     @JsonProperty(value = "friendlyName")
     private String friendlyName;
+
+    /*
+     * The flag to signal HBI data in the workspace and reduce diagnostic data collected by the service
+     */
+    @JsonProperty(value = "hbiWorkspace")
+    private Boolean hbiWorkspace;
+
+    /*
+     * The hubResourceId property.
+     */
+    @JsonProperty(value = "hubResourceId")
+    private String hubResourceId;
+
+    /*
+     * The compute name for image build
+     */
+    @JsonProperty(value = "imageBuildCompute")
+    private String imageBuildCompute;
 
     /*
      * ARM id of the key vault associated with this workspace. This cannot be changed once the workspace has been
@@ -42,29 +117,46 @@ public final class WorkspacePropertiesInner {
     private String keyVault;
 
     /*
-     * ARM id of the application insights associated with this workspace.
+     * The keyVaults property.
      */
-    @JsonProperty(value = "applicationInsights")
-    private String applicationInsights;
+    @JsonProperty(value = "keyVaults")
+    private List<String> keyVaults;
 
     /*
-     * ARM id of the container registry associated with this workspace.
+     * Managed Network settings for a machine learning workspace.
      */
-    @JsonProperty(value = "containerRegistry")
-    private String containerRegistry;
+    @JsonProperty(value = "managedNetwork")
+    private ManagedNetworkSettingsInner managedNetwork;
 
     /*
-     * ARM id of the storage account associated with this workspace. This cannot be changed once the workspace has been
-     * created
+     * The URI associated with this workspace that machine learning flow must point at to set up tracking.
      */
-    @JsonProperty(value = "storageAccount")
-    private String storageAccount;
+    @JsonProperty(value = "mlFlowTrackingUri", access = JsonProperty.Access.WRITE_ONLY)
+    private String mlFlowTrackingUri;
 
     /*
-     * Url for the discovery service to identify regional endpoints for machine learning experimentation services
+     * The notebook info of Azure ML workspace.
      */
-    @JsonProperty(value = "discoveryUrl")
-    private String discoveryUrl;
+    @JsonProperty(value = "notebookInfo", access = JsonProperty.Access.WRITE_ONLY)
+    private NotebookResourceInfoInner notebookInfo;
+
+    /*
+     * The user assigned identity resource id that represents the workspace identity.
+     */
+    @JsonProperty(value = "primaryUserAssignedIdentity")
+    private String primaryUserAssignedIdentity;
+
+    /*
+     * The list of private endpoint connections in the workspace.
+     */
+    @JsonProperty(value = "privateEndpointConnections", access = JsonProperty.Access.WRITE_ONLY)
+    private List<PrivateEndpointConnectionInner> privateEndpointConnections;
+
+    /*
+     * Count of private connections in the workspace
+     */
+    @JsonProperty(value = "privateLinkCount", access = JsonProperty.Access.WRITE_ONLY)
+    private Integer privateLinkCount;
 
     /*
      * The current deployment state of workspace resource. The provisioningState is to indicate states for resource
@@ -74,16 +166,22 @@ public final class WorkspacePropertiesInner {
     private ProvisioningState provisioningState;
 
     /*
-     * The encryption settings of Azure ML workspace.
+     * Whether requests from Public Network are allowed.
      */
-    @JsonProperty(value = "encryption")
-    private EncryptionProperty encryption;
+    @JsonProperty(value = "publicNetworkAccess")
+    private PublicNetworkAccessType publicNetworkAccess;
 
     /*
-     * The flag to signal HBI data in the workspace and reduce diagnostic data collected by the service
+     * Settings for serverless compute created in the workspace
      */
-    @JsonProperty(value = "hbiWorkspace")
-    private Boolean hbiWorkspace;
+    @JsonProperty(value = "serverlessComputeSettings")
+    private ServerlessComputeSettings serverlessComputeSettings;
+
+    /*
+     * The service managed resource settings.
+     */
+    @JsonProperty(value = "serviceManagedResourcesSettings")
+    private ServiceManagedResourcesSettings serviceManagedResourcesSettings;
 
     /*
      * The name of the managed resource group created by workspace RP in customer subscription if the workspace is CMK
@@ -93,64 +191,29 @@ public final class WorkspacePropertiesInner {
     private String serviceProvisionedResourceGroup;
 
     /*
-     * Count of private connections in the workspace
-     */
-    @JsonProperty(value = "privateLinkCount", access = JsonProperty.Access.WRITE_ONLY)
-    private Integer privateLinkCount;
-
-    /*
-     * The compute name for image build
-     */
-    @JsonProperty(value = "imageBuildCompute")
-    private String imageBuildCompute;
-
-    /*
-     * The flag to indicate whether to allow public access when behind VNet.
-     */
-    @JsonProperty(value = "allowPublicAccessWhenBehindVnet")
-    private Boolean allowPublicAccessWhenBehindVnet;
-
-    /*
-     * Whether requests from Public Network are allowed.
-     */
-    @JsonProperty(value = "publicNetworkAccess")
-    private PublicNetworkAccess publicNetworkAccess;
-
-    /*
-     * The list of private endpoint connections in the workspace.
-     */
-    @JsonProperty(value = "privateEndpointConnections", access = JsonProperty.Access.WRITE_ONLY)
-    private List<PrivateEndpointConnectionInner> privateEndpointConnections;
-
-    /*
      * The list of shared private link resources in this workspace.
      */
     @JsonProperty(value = "sharedPrivateLinkResources")
     private List<SharedPrivateLinkResource> sharedPrivateLinkResources;
 
     /*
-     * The notebook info of Azure ML workspace.
+     * Retention time in days after workspace get soft deleted.
      */
-    @JsonProperty(value = "notebookInfo", access = JsonProperty.Access.WRITE_ONLY)
-    private NotebookResourceInfoInner notebookInfo;
+    @JsonProperty(value = "softDeleteRetentionInDays")
+    private Integer softDeleteRetentionInDays;
 
     /*
-     * The service managed resource settings.
+     * ARM id of the storage account associated with this workspace. This cannot be changed once the workspace has been
+     * created
      */
-    @JsonProperty(value = "serviceManagedResourcesSettings")
-    private ServiceManagedResourcesSettings serviceManagedResourcesSettings;
+    @JsonProperty(value = "storageAccount")
+    private String storageAccount;
 
     /*
-     * The user assigned identity resource id that represents the workspace identity.
+     * The storageAccounts property.
      */
-    @JsonProperty(value = "primaryUserAssignedIdentity")
-    private String primaryUserAssignedIdentity;
-
-    /*
-     * The tenant id associated with this workspace.
-     */
-    @JsonProperty(value = "tenantId", access = JsonProperty.Access.WRITE_ONLY)
-    private String tenantId;
+    @JsonProperty(value = "storageAccounts")
+    private List<String> storageAccounts;
 
     /*
      * If the storage associated with the workspace has hierarchical namespace(HNS) enabled.
@@ -159,10 +222,16 @@ public final class WorkspacePropertiesInner {
     private Boolean storageHnsEnabled;
 
     /*
-     * The URI associated with this workspace that machine learning flow must point at to set up tracking.
+     * The auth mode used for accessing the system datastores of the workspace.
      */
-    @JsonProperty(value = "mlFlowTrackingUri", access = JsonProperty.Access.WRITE_ONLY)
-    private String mlFlowTrackingUri;
+    @JsonProperty(value = "systemDatastoresAuthMode")
+    private String systemDatastoresAuthMode;
+
+    /*
+     * The tenant id associated with this workspace.
+     */
+    @JsonProperty(value = "tenantId", access = JsonProperty.Access.WRITE_ONLY)
+    private String tenantId;
 
     /*
      * Enabling v1_legacy_mode may prevent you from using features provided by the v2 API.
@@ -170,78 +239,41 @@ public final class WorkspacePropertiesInner {
     @JsonProperty(value = "v1LegacyMode")
     private Boolean v1LegacyMode;
 
+    /*
+     * WorkspaceHub's configuration object.
+     */
+    @JsonProperty(value = "workspaceHubConfig")
+    private WorkspaceHubConfig workspaceHubConfig;
+
+    /*
+     * The immutable id associated with this workspace.
+     */
+    @JsonProperty(value = "workspaceId", access = JsonProperty.Access.WRITE_ONLY)
+    private String workspaceId;
+
     /** Creates an instance of WorkspacePropertiesInner class. */
     public WorkspacePropertiesInner() {
     }
 
     /**
-     * Get the workspaceId property: The immutable id associated with this workspace.
+     * Get the allowPublicAccessWhenBehindVnet property: The flag to indicate whether to allow public access when behind
+     * VNet.
      *
-     * @return the workspaceId value.
+     * @return the allowPublicAccessWhenBehindVnet value.
      */
-    public String workspaceId() {
-        return this.workspaceId;
+    public Boolean allowPublicAccessWhenBehindVnet() {
+        return this.allowPublicAccessWhenBehindVnet;
     }
 
     /**
-     * Get the description property: The description of this workspace.
+     * Set the allowPublicAccessWhenBehindVnet property: The flag to indicate whether to allow public access when behind
+     * VNet.
      *
-     * @return the description value.
-     */
-    public String description() {
-        return this.description;
-    }
-
-    /**
-     * Set the description property: The description of this workspace.
-     *
-     * @param description the description value to set.
+     * @param allowPublicAccessWhenBehindVnet the allowPublicAccessWhenBehindVnet value to set.
      * @return the WorkspacePropertiesInner object itself.
      */
-    public WorkspacePropertiesInner withDescription(String description) {
-        this.description = description;
-        return this;
-    }
-
-    /**
-     * Get the friendlyName property: The friendly name for this workspace. This name in mutable.
-     *
-     * @return the friendlyName value.
-     */
-    public String friendlyName() {
-        return this.friendlyName;
-    }
-
-    /**
-     * Set the friendlyName property: The friendly name for this workspace. This name in mutable.
-     *
-     * @param friendlyName the friendlyName value to set.
-     * @return the WorkspacePropertiesInner object itself.
-     */
-    public WorkspacePropertiesInner withFriendlyName(String friendlyName) {
-        this.friendlyName = friendlyName;
-        return this;
-    }
-
-    /**
-     * Get the keyVault property: ARM id of the key vault associated with this workspace. This cannot be changed once
-     * the workspace has been created.
-     *
-     * @return the keyVault value.
-     */
-    public String keyVault() {
-        return this.keyVault;
-    }
-
-    /**
-     * Set the keyVault property: ARM id of the key vault associated with this workspace. This cannot be changed once
-     * the workspace has been created.
-     *
-     * @param keyVault the keyVault value to set.
-     * @return the WorkspacePropertiesInner object itself.
-     */
-    public WorkspacePropertiesInner withKeyVault(String keyVault) {
-        this.keyVault = keyVault;
+    public WorkspacePropertiesInner withAllowPublicAccessWhenBehindVnet(Boolean allowPublicAccessWhenBehindVnet) {
+        this.allowPublicAccessWhenBehindVnet = allowPublicAccessWhenBehindVnet;
         return this;
     }
 
@@ -266,6 +298,46 @@ public final class WorkspacePropertiesInner {
     }
 
     /**
+     * Get the associatedWorkspaces property: The associatedWorkspaces property.
+     *
+     * @return the associatedWorkspaces value.
+     */
+    public List<String> associatedWorkspaces() {
+        return this.associatedWorkspaces;
+    }
+
+    /**
+     * Set the associatedWorkspaces property: The associatedWorkspaces property.
+     *
+     * @param associatedWorkspaces the associatedWorkspaces value to set.
+     * @return the WorkspacePropertiesInner object itself.
+     */
+    public WorkspacePropertiesInner withAssociatedWorkspaces(List<String> associatedWorkspaces) {
+        this.associatedWorkspaces = associatedWorkspaces;
+        return this;
+    }
+
+    /**
+     * Get the containerRegistries property: The containerRegistries property.
+     *
+     * @return the containerRegistries value.
+     */
+    public List<String> containerRegistries() {
+        return this.containerRegistries;
+    }
+
+    /**
+     * Set the containerRegistries property: The containerRegistries property.
+     *
+     * @param containerRegistries the containerRegistries value to set.
+     * @return the WorkspacePropertiesInner object itself.
+     */
+    public WorkspacePropertiesInner withContainerRegistries(List<String> containerRegistries) {
+        this.containerRegistries = containerRegistries;
+        return this;
+    }
+
+    /**
      * Get the containerRegistry property: ARM id of the container registry associated with this workspace.
      *
      * @return the containerRegistry value.
@@ -286,24 +358,22 @@ public final class WorkspacePropertiesInner {
     }
 
     /**
-     * Get the storageAccount property: ARM id of the storage account associated with this workspace. This cannot be
-     * changed once the workspace has been created.
+     * Get the description property: The description of this workspace.
      *
-     * @return the storageAccount value.
+     * @return the description value.
      */
-    public String storageAccount() {
-        return this.storageAccount;
+    public String description() {
+        return this.description;
     }
 
     /**
-     * Set the storageAccount property: ARM id of the storage account associated with this workspace. This cannot be
-     * changed once the workspace has been created.
+     * Set the description property: The description of this workspace.
      *
-     * @param storageAccount the storageAccount value to set.
+     * @param description the description value to set.
      * @return the WorkspacePropertiesInner object itself.
      */
-    public WorkspacePropertiesInner withStorageAccount(String storageAccount) {
-        this.storageAccount = storageAccount;
+    public WorkspacePropertiesInner withDescription(String description) {
+        this.description = description;
         return this;
     }
 
@@ -330,17 +400,27 @@ public final class WorkspacePropertiesInner {
     }
 
     /**
-     * Get the provisioningState property: The current deployment state of workspace resource. The provisioningState is
-     * to indicate states for resource provisioning.
+     * Get the enableDataIsolation property: The enableDataIsolation property.
      *
-     * @return the provisioningState value.
+     * @return the enableDataIsolation value.
      */
-    public ProvisioningState provisioningState() {
-        return this.provisioningState;
+    public Boolean enableDataIsolation() {
+        return this.enableDataIsolation;
     }
 
     /**
-     * Get the encryption property: The encryption settings of Azure ML workspace.
+     * Set the enableDataIsolation property: The enableDataIsolation property.
+     *
+     * @param enableDataIsolation the enableDataIsolation value to set.
+     * @return the WorkspacePropertiesInner object itself.
+     */
+    public WorkspacePropertiesInner withEnableDataIsolation(Boolean enableDataIsolation) {
+        this.enableDataIsolation = enableDataIsolation;
+        return this;
+    }
+
+    /**
+     * Get the encryption property: The encryption property.
      *
      * @return the encryption value.
      */
@@ -349,13 +429,73 @@ public final class WorkspacePropertiesInner {
     }
 
     /**
-     * Set the encryption property: The encryption settings of Azure ML workspace.
+     * Set the encryption property: The encryption property.
      *
      * @param encryption the encryption value to set.
      * @return the WorkspacePropertiesInner object itself.
      */
     public WorkspacePropertiesInner withEncryption(EncryptionProperty encryption) {
         this.encryption = encryption;
+        return this;
+    }
+
+    /**
+     * Get the existingWorkspaces property: The existingWorkspaces property.
+     *
+     * @return the existingWorkspaces value.
+     */
+    public List<String> existingWorkspaces() {
+        return this.existingWorkspaces;
+    }
+
+    /**
+     * Set the existingWorkspaces property: The existingWorkspaces property.
+     *
+     * @param existingWorkspaces the existingWorkspaces value to set.
+     * @return the WorkspacePropertiesInner object itself.
+     */
+    public WorkspacePropertiesInner withExistingWorkspaces(List<String> existingWorkspaces) {
+        this.existingWorkspaces = existingWorkspaces;
+        return this;
+    }
+
+    /**
+     * Get the featureStoreSettings property: Settings for feature store type workspace.
+     *
+     * @return the featureStoreSettings value.
+     */
+    public FeatureStoreSettings featureStoreSettings() {
+        return this.featureStoreSettings;
+    }
+
+    /**
+     * Set the featureStoreSettings property: Settings for feature store type workspace.
+     *
+     * @param featureStoreSettings the featureStoreSettings value to set.
+     * @return the WorkspacePropertiesInner object itself.
+     */
+    public WorkspacePropertiesInner withFeatureStoreSettings(FeatureStoreSettings featureStoreSettings) {
+        this.featureStoreSettings = featureStoreSettings;
+        return this;
+    }
+
+    /**
+     * Get the friendlyName property: The friendly name for this workspace. This name in mutable.
+     *
+     * @return the friendlyName value.
+     */
+    public String friendlyName() {
+        return this.friendlyName;
+    }
+
+    /**
+     * Set the friendlyName property: The friendly name for this workspace. This name in mutable.
+     *
+     * @param friendlyName the friendlyName value to set.
+     * @return the WorkspacePropertiesInner object itself.
+     */
+    public WorkspacePropertiesInner withFriendlyName(String friendlyName) {
+        this.friendlyName = friendlyName;
         return this;
     }
 
@@ -382,22 +522,23 @@ public final class WorkspacePropertiesInner {
     }
 
     /**
-     * Get the serviceProvisionedResourceGroup property: The name of the managed resource group created by workspace RP
-     * in customer subscription if the workspace is CMK workspace.
+     * Get the hubResourceId property: The hubResourceId property.
      *
-     * @return the serviceProvisionedResourceGroup value.
+     * @return the hubResourceId value.
      */
-    public String serviceProvisionedResourceGroup() {
-        return this.serviceProvisionedResourceGroup;
+    public String hubResourceId() {
+        return this.hubResourceId;
     }
 
     /**
-     * Get the privateLinkCount property: Count of private connections in the workspace.
+     * Set the hubResourceId property: The hubResourceId property.
      *
-     * @return the privateLinkCount value.
+     * @param hubResourceId the hubResourceId value to set.
+     * @return the WorkspacePropertiesInner object itself.
      */
-    public Integer privateLinkCount() {
-        return this.privateLinkCount;
+    public WorkspacePropertiesInner withHubResourceId(String hubResourceId) {
+        this.hubResourceId = hubResourceId;
+        return this;
     }
 
     /**
@@ -421,75 +562,75 @@ public final class WorkspacePropertiesInner {
     }
 
     /**
-     * Get the allowPublicAccessWhenBehindVnet property: The flag to indicate whether to allow public access when behind
-     * VNet.
+     * Get the keyVault property: ARM id of the key vault associated with this workspace. This cannot be changed once
+     * the workspace has been created.
      *
-     * @return the allowPublicAccessWhenBehindVnet value.
+     * @return the keyVault value.
      */
-    public Boolean allowPublicAccessWhenBehindVnet() {
-        return this.allowPublicAccessWhenBehindVnet;
+    public String keyVault() {
+        return this.keyVault;
     }
 
     /**
-     * Set the allowPublicAccessWhenBehindVnet property: The flag to indicate whether to allow public access when behind
-     * VNet.
+     * Set the keyVault property: ARM id of the key vault associated with this workspace. This cannot be changed once
+     * the workspace has been created.
      *
-     * @param allowPublicAccessWhenBehindVnet the allowPublicAccessWhenBehindVnet value to set.
+     * @param keyVault the keyVault value to set.
      * @return the WorkspacePropertiesInner object itself.
      */
-    public WorkspacePropertiesInner withAllowPublicAccessWhenBehindVnet(Boolean allowPublicAccessWhenBehindVnet) {
-        this.allowPublicAccessWhenBehindVnet = allowPublicAccessWhenBehindVnet;
+    public WorkspacePropertiesInner withKeyVault(String keyVault) {
+        this.keyVault = keyVault;
         return this;
     }
 
     /**
-     * Get the publicNetworkAccess property: Whether requests from Public Network are allowed.
+     * Get the keyVaults property: The keyVaults property.
      *
-     * @return the publicNetworkAccess value.
+     * @return the keyVaults value.
      */
-    public PublicNetworkAccess publicNetworkAccess() {
-        return this.publicNetworkAccess;
+    public List<String> keyVaults() {
+        return this.keyVaults;
     }
 
     /**
-     * Set the publicNetworkAccess property: Whether requests from Public Network are allowed.
+     * Set the keyVaults property: The keyVaults property.
      *
-     * @param publicNetworkAccess the publicNetworkAccess value to set.
+     * @param keyVaults the keyVaults value to set.
      * @return the WorkspacePropertiesInner object itself.
      */
-    public WorkspacePropertiesInner withPublicNetworkAccess(PublicNetworkAccess publicNetworkAccess) {
-        this.publicNetworkAccess = publicNetworkAccess;
+    public WorkspacePropertiesInner withKeyVaults(List<String> keyVaults) {
+        this.keyVaults = keyVaults;
         return this;
     }
 
     /**
-     * Get the privateEndpointConnections property: The list of private endpoint connections in the workspace.
+     * Get the managedNetwork property: Managed Network settings for a machine learning workspace.
      *
-     * @return the privateEndpointConnections value.
+     * @return the managedNetwork value.
      */
-    public List<PrivateEndpointConnectionInner> privateEndpointConnections() {
-        return this.privateEndpointConnections;
+    public ManagedNetworkSettingsInner managedNetwork() {
+        return this.managedNetwork;
     }
 
     /**
-     * Get the sharedPrivateLinkResources property: The list of shared private link resources in this workspace.
+     * Set the managedNetwork property: Managed Network settings for a machine learning workspace.
      *
-     * @return the sharedPrivateLinkResources value.
-     */
-    public List<SharedPrivateLinkResource> sharedPrivateLinkResources() {
-        return this.sharedPrivateLinkResources;
-    }
-
-    /**
-     * Set the sharedPrivateLinkResources property: The list of shared private link resources in this workspace.
-     *
-     * @param sharedPrivateLinkResources the sharedPrivateLinkResources value to set.
+     * @param managedNetwork the managedNetwork value to set.
      * @return the WorkspacePropertiesInner object itself.
      */
-    public WorkspacePropertiesInner withSharedPrivateLinkResources(
-        List<SharedPrivateLinkResource> sharedPrivateLinkResources) {
-        this.sharedPrivateLinkResources = sharedPrivateLinkResources;
+    public WorkspacePropertiesInner withManagedNetwork(ManagedNetworkSettingsInner managedNetwork) {
+        this.managedNetwork = managedNetwork;
         return this;
+    }
+
+    /**
+     * Get the mlFlowTrackingUri property: The URI associated with this workspace that machine learning flow must point
+     * at to set up tracking.
+     *
+     * @return the mlFlowTrackingUri value.
+     */
+    public String mlFlowTrackingUri() {
+        return this.mlFlowTrackingUri;
     }
 
     /**
@@ -499,27 +640,6 @@ public final class WorkspacePropertiesInner {
      */
     public NotebookResourceInfoInner notebookInfo() {
         return this.notebookInfo;
-    }
-
-    /**
-     * Get the serviceManagedResourcesSettings property: The service managed resource settings.
-     *
-     * @return the serviceManagedResourcesSettings value.
-     */
-    public ServiceManagedResourcesSettings serviceManagedResourcesSettings() {
-        return this.serviceManagedResourcesSettings;
-    }
-
-    /**
-     * Set the serviceManagedResourcesSettings property: The service managed resource settings.
-     *
-     * @param serviceManagedResourcesSettings the serviceManagedResourcesSettings value to set.
-     * @return the WorkspacePropertiesInner object itself.
-     */
-    public WorkspacePropertiesInner withServiceManagedResourcesSettings(
-        ServiceManagedResourcesSettings serviceManagedResourcesSettings) {
-        this.serviceManagedResourcesSettings = serviceManagedResourcesSettings;
-        return this;
     }
 
     /**
@@ -545,12 +665,185 @@ public final class WorkspacePropertiesInner {
     }
 
     /**
-     * Get the tenantId property: The tenant id associated with this workspace.
+     * Get the privateEndpointConnections property: The list of private endpoint connections in the workspace.
      *
-     * @return the tenantId value.
+     * @return the privateEndpointConnections value.
      */
-    public String tenantId() {
-        return this.tenantId;
+    public List<PrivateEndpointConnectionInner> privateEndpointConnections() {
+        return this.privateEndpointConnections;
+    }
+
+    /**
+     * Get the privateLinkCount property: Count of private connections in the workspace.
+     *
+     * @return the privateLinkCount value.
+     */
+    public Integer privateLinkCount() {
+        return this.privateLinkCount;
+    }
+
+    /**
+     * Get the provisioningState property: The current deployment state of workspace resource. The provisioningState is
+     * to indicate states for resource provisioning.
+     *
+     * @return the provisioningState value.
+     */
+    public ProvisioningState provisioningState() {
+        return this.provisioningState;
+    }
+
+    /**
+     * Get the publicNetworkAccess property: Whether requests from Public Network are allowed.
+     *
+     * @return the publicNetworkAccess value.
+     */
+    public PublicNetworkAccessType publicNetworkAccess() {
+        return this.publicNetworkAccess;
+    }
+
+    /**
+     * Set the publicNetworkAccess property: Whether requests from Public Network are allowed.
+     *
+     * @param publicNetworkAccess the publicNetworkAccess value to set.
+     * @return the WorkspacePropertiesInner object itself.
+     */
+    public WorkspacePropertiesInner withPublicNetworkAccess(PublicNetworkAccessType publicNetworkAccess) {
+        this.publicNetworkAccess = publicNetworkAccess;
+        return this;
+    }
+
+    /**
+     * Get the serverlessComputeSettings property: Settings for serverless compute created in the workspace.
+     *
+     * @return the serverlessComputeSettings value.
+     */
+    public ServerlessComputeSettings serverlessComputeSettings() {
+        return this.serverlessComputeSettings;
+    }
+
+    /**
+     * Set the serverlessComputeSettings property: Settings for serverless compute created in the workspace.
+     *
+     * @param serverlessComputeSettings the serverlessComputeSettings value to set.
+     * @return the WorkspacePropertiesInner object itself.
+     */
+    public WorkspacePropertiesInner withServerlessComputeSettings(ServerlessComputeSettings serverlessComputeSettings) {
+        this.serverlessComputeSettings = serverlessComputeSettings;
+        return this;
+    }
+
+    /**
+     * Get the serviceManagedResourcesSettings property: The service managed resource settings.
+     *
+     * @return the serviceManagedResourcesSettings value.
+     */
+    public ServiceManagedResourcesSettings serviceManagedResourcesSettings() {
+        return this.serviceManagedResourcesSettings;
+    }
+
+    /**
+     * Set the serviceManagedResourcesSettings property: The service managed resource settings.
+     *
+     * @param serviceManagedResourcesSettings the serviceManagedResourcesSettings value to set.
+     * @return the WorkspacePropertiesInner object itself.
+     */
+    public WorkspacePropertiesInner withServiceManagedResourcesSettings(
+        ServiceManagedResourcesSettings serviceManagedResourcesSettings) {
+        this.serviceManagedResourcesSettings = serviceManagedResourcesSettings;
+        return this;
+    }
+
+    /**
+     * Get the serviceProvisionedResourceGroup property: The name of the managed resource group created by workspace RP
+     * in customer subscription if the workspace is CMK workspace.
+     *
+     * @return the serviceProvisionedResourceGroup value.
+     */
+    public String serviceProvisionedResourceGroup() {
+        return this.serviceProvisionedResourceGroup;
+    }
+
+    /**
+     * Get the sharedPrivateLinkResources property: The list of shared private link resources in this workspace.
+     *
+     * @return the sharedPrivateLinkResources value.
+     */
+    public List<SharedPrivateLinkResource> sharedPrivateLinkResources() {
+        return this.sharedPrivateLinkResources;
+    }
+
+    /**
+     * Set the sharedPrivateLinkResources property: The list of shared private link resources in this workspace.
+     *
+     * @param sharedPrivateLinkResources the sharedPrivateLinkResources value to set.
+     * @return the WorkspacePropertiesInner object itself.
+     */
+    public WorkspacePropertiesInner withSharedPrivateLinkResources(
+        List<SharedPrivateLinkResource> sharedPrivateLinkResources) {
+        this.sharedPrivateLinkResources = sharedPrivateLinkResources;
+        return this;
+    }
+
+    /**
+     * Get the softDeleteRetentionInDays property: Retention time in days after workspace get soft deleted.
+     *
+     * @return the softDeleteRetentionInDays value.
+     */
+    public Integer softDeleteRetentionInDays() {
+        return this.softDeleteRetentionInDays;
+    }
+
+    /**
+     * Set the softDeleteRetentionInDays property: Retention time in days after workspace get soft deleted.
+     *
+     * @param softDeleteRetentionInDays the softDeleteRetentionInDays value to set.
+     * @return the WorkspacePropertiesInner object itself.
+     */
+    public WorkspacePropertiesInner withSoftDeleteRetentionInDays(Integer softDeleteRetentionInDays) {
+        this.softDeleteRetentionInDays = softDeleteRetentionInDays;
+        return this;
+    }
+
+    /**
+     * Get the storageAccount property: ARM id of the storage account associated with this workspace. This cannot be
+     * changed once the workspace has been created.
+     *
+     * @return the storageAccount value.
+     */
+    public String storageAccount() {
+        return this.storageAccount;
+    }
+
+    /**
+     * Set the storageAccount property: ARM id of the storage account associated with this workspace. This cannot be
+     * changed once the workspace has been created.
+     *
+     * @param storageAccount the storageAccount value to set.
+     * @return the WorkspacePropertiesInner object itself.
+     */
+    public WorkspacePropertiesInner withStorageAccount(String storageAccount) {
+        this.storageAccount = storageAccount;
+        return this;
+    }
+
+    /**
+     * Get the storageAccounts property: The storageAccounts property.
+     *
+     * @return the storageAccounts value.
+     */
+    public List<String> storageAccounts() {
+        return this.storageAccounts;
+    }
+
+    /**
+     * Set the storageAccounts property: The storageAccounts property.
+     *
+     * @param storageAccounts the storageAccounts value to set.
+     * @return the WorkspacePropertiesInner object itself.
+     */
+    public WorkspacePropertiesInner withStorageAccounts(List<String> storageAccounts) {
+        this.storageAccounts = storageAccounts;
+        return this;
     }
 
     /**
@@ -564,13 +857,34 @@ public final class WorkspacePropertiesInner {
     }
 
     /**
-     * Get the mlFlowTrackingUri property: The URI associated with this workspace that machine learning flow must point
-     * at to set up tracking.
+     * Get the systemDatastoresAuthMode property: The auth mode used for accessing the system datastores of the
+     * workspace.
      *
-     * @return the mlFlowTrackingUri value.
+     * @return the systemDatastoresAuthMode value.
      */
-    public String mlFlowTrackingUri() {
-        return this.mlFlowTrackingUri;
+    public String systemDatastoresAuthMode() {
+        return this.systemDatastoresAuthMode;
+    }
+
+    /**
+     * Set the systemDatastoresAuthMode property: The auth mode used for accessing the system datastores of the
+     * workspace.
+     *
+     * @param systemDatastoresAuthMode the systemDatastoresAuthMode value to set.
+     * @return the WorkspacePropertiesInner object itself.
+     */
+    public WorkspacePropertiesInner withSystemDatastoresAuthMode(String systemDatastoresAuthMode) {
+        this.systemDatastoresAuthMode = systemDatastoresAuthMode;
+        return this;
+    }
+
+    /**
+     * Get the tenantId property: The tenant id associated with this workspace.
+     *
+     * @return the tenantId value.
+     */
+    public String tenantId() {
+        return this.tenantId;
     }
 
     /**
@@ -596,6 +910,35 @@ public final class WorkspacePropertiesInner {
     }
 
     /**
+     * Get the workspaceHubConfig property: WorkspaceHub's configuration object.
+     *
+     * @return the workspaceHubConfig value.
+     */
+    public WorkspaceHubConfig workspaceHubConfig() {
+        return this.workspaceHubConfig;
+    }
+
+    /**
+     * Set the workspaceHubConfig property: WorkspaceHub's configuration object.
+     *
+     * @param workspaceHubConfig the workspaceHubConfig value to set.
+     * @return the WorkspacePropertiesInner object itself.
+     */
+    public WorkspacePropertiesInner withWorkspaceHubConfig(WorkspaceHubConfig workspaceHubConfig) {
+        this.workspaceHubConfig = workspaceHubConfig;
+        return this;
+    }
+
+    /**
+     * Get the workspaceId property: The immutable id associated with this workspace.
+     *
+     * @return the workspaceId value.
+     */
+    public String workspaceId() {
+        return this.workspaceId;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -604,17 +947,29 @@ public final class WorkspacePropertiesInner {
         if (encryption() != null) {
             encryption().validate();
         }
-        if (privateEndpointConnections() != null) {
-            privateEndpointConnections().forEach(e -> e.validate());
+        if (featureStoreSettings() != null) {
+            featureStoreSettings().validate();
         }
-        if (sharedPrivateLinkResources() != null) {
-            sharedPrivateLinkResources().forEach(e -> e.validate());
+        if (managedNetwork() != null) {
+            managedNetwork().validate();
         }
         if (notebookInfo() != null) {
             notebookInfo().validate();
         }
+        if (privateEndpointConnections() != null) {
+            privateEndpointConnections().forEach(e -> e.validate());
+        }
+        if (serverlessComputeSettings() != null) {
+            serverlessComputeSettings().validate();
+        }
         if (serviceManagedResourcesSettings() != null) {
             serviceManagedResourcesSettings().validate();
+        }
+        if (sharedPrivateLinkResources() != null) {
+            sharedPrivateLinkResources().forEach(e -> e.validate());
+        }
+        if (workspaceHubConfig() != null) {
+            workspaceHubConfig().validate();
         }
     }
 }

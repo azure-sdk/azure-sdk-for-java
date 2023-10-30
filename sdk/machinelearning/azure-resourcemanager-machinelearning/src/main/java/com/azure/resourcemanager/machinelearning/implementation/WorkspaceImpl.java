@@ -8,26 +8,32 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
+import com.azure.resourcemanager.machinelearning.fluent.models.ManagedNetworkSettingsInner;
 import com.azure.resourcemanager.machinelearning.fluent.models.NotebookResourceInfoInner;
 import com.azure.resourcemanager.machinelearning.fluent.models.PrivateEndpointConnectionInner;
 import com.azure.resourcemanager.machinelearning.fluent.models.WorkspaceInner;
+import com.azure.resourcemanager.machinelearning.fluent.models.WorkspaceUpdateParametersInner;
 import com.azure.resourcemanager.machinelearning.models.DiagnoseResponseResult;
 import com.azure.resourcemanager.machinelearning.models.DiagnoseWorkspaceParameters;
 import com.azure.resourcemanager.machinelearning.models.EncryptionProperty;
+import com.azure.resourcemanager.machinelearning.models.EncryptionUpdateProperties;
+import com.azure.resourcemanager.machinelearning.models.FeatureStoreSettings;
 import com.azure.resourcemanager.machinelearning.models.ListNotebookKeysResult;
 import com.azure.resourcemanager.machinelearning.models.ListStorageAccountKeysResult;
 import com.azure.resourcemanager.machinelearning.models.ListWorkspaceKeysResult;
+import com.azure.resourcemanager.machinelearning.models.ManagedNetworkSettings;
 import com.azure.resourcemanager.machinelearning.models.ManagedServiceIdentity;
 import com.azure.resourcemanager.machinelearning.models.NotebookAccessTokenResult;
 import com.azure.resourcemanager.machinelearning.models.NotebookResourceInfo;
 import com.azure.resourcemanager.machinelearning.models.PrivateEndpointConnection;
 import com.azure.resourcemanager.machinelearning.models.ProvisioningState;
-import com.azure.resourcemanager.machinelearning.models.PublicNetworkAccess;
+import com.azure.resourcemanager.machinelearning.models.PublicNetworkAccessType;
+import com.azure.resourcemanager.machinelearning.models.ServerlessComputeSettings;
 import com.azure.resourcemanager.machinelearning.models.ServiceManagedResourcesSettings;
 import com.azure.resourcemanager.machinelearning.models.SharedPrivateLinkResource;
 import com.azure.resourcemanager.machinelearning.models.Sku;
 import com.azure.resourcemanager.machinelearning.models.Workspace;
-import com.azure.resourcemanager.machinelearning.models.WorkspaceUpdateParameters;
+import com.azure.resourcemanager.machinelearning.models.WorkspaceHubConfig;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -54,8 +60,16 @@ public final class WorkspaceImpl implements Workspace, Workspace.Definition, Wor
         return this.innerModel().identity();
     }
 
+    public String kind() {
+        return this.innerModel().kind();
+    }
+
     public String location() {
         return this.innerModel().location();
+    }
+
+    public Sku sku() {
+        return this.innerModel().sku();
     }
 
     public Map<String, String> tags() {
@@ -67,76 +81,122 @@ public final class WorkspaceImpl implements Workspace, Workspace.Definition, Wor
         }
     }
 
-    public Sku sku() {
-        return this.innerModel().sku();
-    }
-
     public SystemData systemData() {
         return this.innerModel().systemData();
-    }
-
-    public String workspaceId() {
-        return this.innerModel().workspaceId();
-    }
-
-    public String description() {
-        return this.innerModel().description();
-    }
-
-    public String friendlyName() {
-        return this.innerModel().friendlyName();
-    }
-
-    public String keyVault() {
-        return this.innerModel().keyVault();
-    }
-
-    public String applicationInsights() {
-        return this.innerModel().applicationInsights();
-    }
-
-    public String containerRegistry() {
-        return this.innerModel().containerRegistry();
-    }
-
-    public String storageAccount() {
-        return this.innerModel().storageAccount();
-    }
-
-    public String discoveryUrl() {
-        return this.innerModel().discoveryUrl();
-    }
-
-    public ProvisioningState provisioningState() {
-        return this.innerModel().provisioningState();
-    }
-
-    public EncryptionProperty encryption() {
-        return this.innerModel().encryption();
-    }
-
-    public Boolean hbiWorkspace() {
-        return this.innerModel().hbiWorkspace();
-    }
-
-    public String serviceProvisionedResourceGroup() {
-        return this.innerModel().serviceProvisionedResourceGroup();
-    }
-
-    public Integer privateLinkCount() {
-        return this.innerModel().privateLinkCount();
-    }
-
-    public String imageBuildCompute() {
-        return this.innerModel().imageBuildCompute();
     }
 
     public Boolean allowPublicAccessWhenBehindVnet() {
         return this.innerModel().allowPublicAccessWhenBehindVnet();
     }
 
-    public PublicNetworkAccess publicNetworkAccess() {
-        return this.innerModel().publicNetworkAccess();
+    public String applicationInsights() {
+        return this.innerModel().applicationInsights();
+    }
+
+    public List<String> associatedWorkspaces() {
+        List<String> inner = this.innerModel().associatedWorkspaces();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
+    public List<String> containerRegistries() {
+        List<String> inner = this.innerModel().containerRegistries();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
+    public String containerRegistry() {
+        return this.innerModel().containerRegistry();
+    }
+
+    public String description() {
+        return this.innerModel().description();
+    }
+
+    public String discoveryUrl() {
+        return this.innerModel().discoveryUrl();
+    }
+
+    public Boolean enableDataIsolation() {
+        return this.innerModel().enableDataIsolation();
+    }
+
+    public EncryptionProperty encryption() {
+        return this.innerModel().encryption();
+    }
+
+    public List<String> existingWorkspaces() {
+        List<String> inner = this.innerModel().existingWorkspaces();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
+    public FeatureStoreSettings featureStoreSettings() {
+        return this.innerModel().featureStoreSettings();
+    }
+
+    public String friendlyName() {
+        return this.innerModel().friendlyName();
+    }
+
+    public Boolean hbiWorkspace() {
+        return this.innerModel().hbiWorkspace();
+    }
+
+    public String hubResourceId() {
+        return this.innerModel().hubResourceId();
+    }
+
+    public String imageBuildCompute() {
+        return this.innerModel().imageBuildCompute();
+    }
+
+    public String keyVault() {
+        return this.innerModel().keyVault();
+    }
+
+    public List<String> keyVaults() {
+        List<String> inner = this.innerModel().keyVaults();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
+    public ManagedNetworkSettings managedNetwork() {
+        ManagedNetworkSettingsInner inner = this.innerModel().managedNetwork();
+        if (inner != null) {
+            return new ManagedNetworkSettingsImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public String mlFlowTrackingUri() {
+        return this.innerModel().mlFlowTrackingUri();
+    }
+
+    public NotebookResourceInfo notebookInfo() {
+        NotebookResourceInfoInner inner = this.innerModel().notebookInfo();
+        if (inner != null) {
+            return new NotebookResourceInfoImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public String primaryUserAssignedIdentity() {
+        return this.innerModel().primaryUserAssignedIdentity();
     }
 
     public List<PrivateEndpointConnection> privateEndpointConnections() {
@@ -153,6 +213,30 @@ public final class WorkspaceImpl implements Workspace, Workspace.Definition, Wor
         }
     }
 
+    public Integer privateLinkCount() {
+        return this.innerModel().privateLinkCount();
+    }
+
+    public ProvisioningState provisioningState() {
+        return this.innerModel().provisioningState();
+    }
+
+    public PublicNetworkAccessType publicNetworkAccess() {
+        return this.innerModel().publicNetworkAccess();
+    }
+
+    public ServerlessComputeSettings serverlessComputeSettings() {
+        return this.innerModel().serverlessComputeSettings();
+    }
+
+    public ServiceManagedResourcesSettings serviceManagedResourcesSettings() {
+        return this.innerModel().serviceManagedResourcesSettings();
+    }
+
+    public String serviceProvisionedResourceGroup() {
+        return this.innerModel().serviceProvisionedResourceGroup();
+    }
+
     public List<SharedPrivateLinkResource> sharedPrivateLinkResources() {
         List<SharedPrivateLinkResource> inner = this.innerModel().sharedPrivateLinkResources();
         if (inner != null) {
@@ -162,37 +246,45 @@ public final class WorkspaceImpl implements Workspace, Workspace.Definition, Wor
         }
     }
 
-    public NotebookResourceInfo notebookInfo() {
-        NotebookResourceInfoInner inner = this.innerModel().notebookInfo();
+    public Integer softDeleteRetentionInDays() {
+        return this.innerModel().softDeleteRetentionInDays();
+    }
+
+    public String storageAccount() {
+        return this.innerModel().storageAccount();
+    }
+
+    public List<String> storageAccounts() {
+        List<String> inner = this.innerModel().storageAccounts();
         if (inner != null) {
-            return new NotebookResourceInfoImpl(inner, this.manager());
+            return Collections.unmodifiableList(inner);
         } else {
-            return null;
+            return Collections.emptyList();
         }
-    }
-
-    public ServiceManagedResourcesSettings serviceManagedResourcesSettings() {
-        return this.innerModel().serviceManagedResourcesSettings();
-    }
-
-    public String primaryUserAssignedIdentity() {
-        return this.innerModel().primaryUserAssignedIdentity();
-    }
-
-    public String tenantId() {
-        return this.innerModel().tenantId();
     }
 
     public Boolean storageHnsEnabled() {
         return this.innerModel().storageHnsEnabled();
     }
 
-    public String mlFlowTrackingUri() {
-        return this.innerModel().mlFlowTrackingUri();
+    public String systemDatastoresAuthMode() {
+        return this.innerModel().systemDatastoresAuthMode();
+    }
+
+    public String tenantId() {
+        return this.innerModel().tenantId();
     }
 
     public Boolean v1LegacyMode() {
         return this.innerModel().v1LegacyMode();
+    }
+
+    public WorkspaceHubConfig workspaceHubConfig() {
+        return this.innerModel().workspaceHubConfig();
+    }
+
+    public String workspaceId() {
+        return this.innerModel().workspaceId();
     }
 
     public Region region() {
@@ -219,7 +311,7 @@ public final class WorkspaceImpl implements Workspace, Workspace.Definition, Wor
 
     private String workspaceName;
 
-    private WorkspaceUpdateParameters updateParameters;
+    private WorkspaceUpdateParametersInner updateBody;
 
     public WorkspaceImpl withExistingResourceGroup(String resourceGroupName) {
         this.resourceGroupName = resourceGroupName;
@@ -251,7 +343,7 @@ public final class WorkspaceImpl implements Workspace, Workspace.Definition, Wor
     }
 
     public WorkspaceImpl update() {
-        this.updateParameters = new WorkspaceUpdateParameters();
+        this.updateBody = new WorkspaceUpdateParametersInner();
         return this;
     }
 
@@ -260,7 +352,7 @@ public final class WorkspaceImpl implements Workspace, Workspace.Definition, Wor
             serviceManager
                 .serviceClient()
                 .getWorkspaces()
-                .update(resourceGroupName, workspaceName, updateParameters, Context.NONE);
+                .update(resourceGroupName, workspaceName, updateBody, Context.NONE);
         return this;
     }
 
@@ -269,7 +361,7 @@ public final class WorkspaceImpl implements Workspace, Workspace.Definition, Wor
             serviceManager
                 .serviceClient()
                 .getWorkspaces()
-                .update(resourceGroupName, workspaceName, updateParameters, context);
+                .update(resourceGroupName, workspaceName, updateBody, context);
         return this;
     }
 
@@ -305,8 +397,8 @@ public final class WorkspaceImpl implements Workspace, Workspace.Definition, Wor
         return serviceManager.workspaces().diagnose(resourceGroupName, workspaceName);
     }
 
-    public DiagnoseResponseResult diagnose(DiagnoseWorkspaceParameters parameters, Context context) {
-        return serviceManager.workspaces().diagnose(resourceGroupName, workspaceName, parameters, context);
+    public DiagnoseResponseResult diagnose(DiagnoseWorkspaceParameters body, Context context) {
+        return serviceManager.workspaces().diagnose(resourceGroupName, workspaceName, body, context);
     }
 
     public Response<ListWorkspaceKeysResult> listKeysWithResponse(Context context) {
@@ -315,14 +407,6 @@ public final class WorkspaceImpl implements Workspace, Workspace.Definition, Wor
 
     public ListWorkspaceKeysResult listKeys() {
         return serviceManager.workspaces().listKeys(resourceGroupName, workspaceName);
-    }
-
-    public void resyncKeys() {
-        serviceManager.workspaces().resyncKeys(resourceGroupName, workspaceName);
-    }
-
-    public void resyncKeys(Context context) {
-        serviceManager.workspaces().resyncKeys(resourceGroupName, workspaceName, context);
     }
 
     public Response<NotebookAccessTokenResult> listNotebookAccessTokenWithResponse(Context context) {
@@ -335,12 +419,12 @@ public final class WorkspaceImpl implements Workspace, Workspace.Definition, Wor
         return serviceManager.workspaces().listNotebookAccessToken(resourceGroupName, workspaceName);
     }
 
-    public NotebookResourceInfo prepareNotebook() {
-        return serviceManager.workspaces().prepareNotebook(resourceGroupName, workspaceName);
+    public Response<ListNotebookKeysResult> listNotebookKeysWithResponse(Context context) {
+        return serviceManager.workspaces().listNotebookKeysWithResponse(resourceGroupName, workspaceName, context);
     }
 
-    public NotebookResourceInfo prepareNotebook(Context context) {
-        return serviceManager.workspaces().prepareNotebook(resourceGroupName, workspaceName, context);
+    public ListNotebookKeysResult listNotebookKeys() {
+        return serviceManager.workspaces().listNotebookKeys(resourceGroupName, workspaceName);
     }
 
     public Response<ListStorageAccountKeysResult> listStorageAccountKeysWithResponse(Context context) {
@@ -353,12 +437,20 @@ public final class WorkspaceImpl implements Workspace, Workspace.Definition, Wor
         return serviceManager.workspaces().listStorageAccountKeys(resourceGroupName, workspaceName);
     }
 
-    public Response<ListNotebookKeysResult> listNotebookKeysWithResponse(Context context) {
-        return serviceManager.workspaces().listNotebookKeysWithResponse(resourceGroupName, workspaceName, context);
+    public NotebookResourceInfo prepareNotebook() {
+        return serviceManager.workspaces().prepareNotebook(resourceGroupName, workspaceName);
     }
 
-    public ListNotebookKeysResult listNotebookKeys() {
-        return serviceManager.workspaces().listNotebookKeys(resourceGroupName, workspaceName);
+    public NotebookResourceInfo prepareNotebook(Context context) {
+        return serviceManager.workspaces().prepareNotebook(resourceGroupName, workspaceName, context);
+    }
+
+    public void resyncKeys() {
+        serviceManager.workspaces().resyncKeys(resourceGroupName, workspaceName);
+    }
+
+    public void resyncKeys(Context context) {
+        serviceManager.workspaces().resyncKeys(resourceGroupName, workspaceName, context);
     }
 
     public WorkspaceImpl withRegion(Region location) {
@@ -376,7 +468,7 @@ public final class WorkspaceImpl implements Workspace, Workspace.Definition, Wor
             this.innerModel().withTags(tags);
             return this;
         } else {
-            this.updateParameters.withTags(tags);
+            this.updateBody.withTags(tags);
             return this;
         }
     }
@@ -386,9 +478,14 @@ public final class WorkspaceImpl implements Workspace, Workspace.Definition, Wor
             this.innerModel().withIdentity(identity);
             return this;
         } else {
-            this.updateParameters.withIdentity(identity);
+            this.updateBody.withIdentity(identity);
             return this;
         }
+    }
+
+    public WorkspaceImpl withKind(String kind) {
+        this.innerModel().withKind(kind);
+        return this;
     }
 
     public WorkspaceImpl withSku(Sku sku) {
@@ -396,82 +493,7 @@ public final class WorkspaceImpl implements Workspace, Workspace.Definition, Wor
             this.innerModel().withSku(sku);
             return this;
         } else {
-            this.updateParameters.withSku(sku);
-            return this;
-        }
-    }
-
-    public WorkspaceImpl withDescription(String description) {
-        if (isInCreateMode()) {
-            this.innerModel().withDescription(description);
-            return this;
-        } else {
-            this.updateParameters.withDescription(description);
-            return this;
-        }
-    }
-
-    public WorkspaceImpl withFriendlyName(String friendlyName) {
-        if (isInCreateMode()) {
-            this.innerModel().withFriendlyName(friendlyName);
-            return this;
-        } else {
-            this.updateParameters.withFriendlyName(friendlyName);
-            return this;
-        }
-    }
-
-    public WorkspaceImpl withKeyVault(String keyVault) {
-        this.innerModel().withKeyVault(keyVault);
-        return this;
-    }
-
-    public WorkspaceImpl withApplicationInsights(String applicationInsights) {
-        if (isInCreateMode()) {
-            this.innerModel().withApplicationInsights(applicationInsights);
-            return this;
-        } else {
-            this.updateParameters.withApplicationInsights(applicationInsights);
-            return this;
-        }
-    }
-
-    public WorkspaceImpl withContainerRegistry(String containerRegistry) {
-        if (isInCreateMode()) {
-            this.innerModel().withContainerRegistry(containerRegistry);
-            return this;
-        } else {
-            this.updateParameters.withContainerRegistry(containerRegistry);
-            return this;
-        }
-    }
-
-    public WorkspaceImpl withStorageAccount(String storageAccount) {
-        this.innerModel().withStorageAccount(storageAccount);
-        return this;
-    }
-
-    public WorkspaceImpl withDiscoveryUrl(String discoveryUrl) {
-        this.innerModel().withDiscoveryUrl(discoveryUrl);
-        return this;
-    }
-
-    public WorkspaceImpl withEncryption(EncryptionProperty encryption) {
-        this.innerModel().withEncryption(encryption);
-        return this;
-    }
-
-    public WorkspaceImpl withHbiWorkspace(Boolean hbiWorkspace) {
-        this.innerModel().withHbiWorkspace(hbiWorkspace);
-        return this;
-    }
-
-    public WorkspaceImpl withImageBuildCompute(String imageBuildCompute) {
-        if (isInCreateMode()) {
-            this.innerModel().withImageBuildCompute(imageBuildCompute);
-            return this;
-        } else {
-            this.updateParameters.withImageBuildCompute(imageBuildCompute);
+            this.updateBody.withSku(sku);
             return this;
         }
     }
@@ -481,28 +503,127 @@ public final class WorkspaceImpl implements Workspace, Workspace.Definition, Wor
         return this;
     }
 
-    public WorkspaceImpl withPublicNetworkAccess(PublicNetworkAccess publicNetworkAccess) {
+    public WorkspaceImpl withApplicationInsights(String applicationInsights) {
         if (isInCreateMode()) {
-            this.innerModel().withPublicNetworkAccess(publicNetworkAccess);
+            this.innerModel().withApplicationInsights(applicationInsights);
             return this;
         } else {
-            this.updateParameters.withPublicNetworkAccess(publicNetworkAccess);
+            this.updateBody.withApplicationInsights(applicationInsights);
             return this;
         }
     }
 
-    public WorkspaceImpl withSharedPrivateLinkResources(List<SharedPrivateLinkResource> sharedPrivateLinkResources) {
-        this.innerModel().withSharedPrivateLinkResources(sharedPrivateLinkResources);
+    public WorkspaceImpl withAssociatedWorkspaces(List<String> associatedWorkspaces) {
+        this.innerModel().withAssociatedWorkspaces(associatedWorkspaces);
         return this;
     }
 
-    public WorkspaceImpl withServiceManagedResourcesSettings(
-        ServiceManagedResourcesSettings serviceManagedResourcesSettings) {
+    public WorkspaceImpl withContainerRegistries(List<String> containerRegistries) {
+        this.innerModel().withContainerRegistries(containerRegistries);
+        return this;
+    }
+
+    public WorkspaceImpl withContainerRegistry(String containerRegistry) {
         if (isInCreateMode()) {
-            this.innerModel().withServiceManagedResourcesSettings(serviceManagedResourcesSettings);
+            this.innerModel().withContainerRegistry(containerRegistry);
             return this;
         } else {
-            this.updateParameters.withServiceManagedResourcesSettings(serviceManagedResourcesSettings);
+            this.updateBody.withContainerRegistry(containerRegistry);
+            return this;
+        }
+    }
+
+    public WorkspaceImpl withDescription(String description) {
+        if (isInCreateMode()) {
+            this.innerModel().withDescription(description);
+            return this;
+        } else {
+            this.updateBody.withDescription(description);
+            return this;
+        }
+    }
+
+    public WorkspaceImpl withDiscoveryUrl(String discoveryUrl) {
+        this.innerModel().withDiscoveryUrl(discoveryUrl);
+        return this;
+    }
+
+    public WorkspaceImpl withEnableDataIsolation(Boolean enableDataIsolation) {
+        if (isInCreateMode()) {
+            this.innerModel().withEnableDataIsolation(enableDataIsolation);
+            return this;
+        } else {
+            this.updateBody.withEnableDataIsolation(enableDataIsolation);
+            return this;
+        }
+    }
+
+    public WorkspaceImpl withEncryption(EncryptionProperty encryption) {
+        this.innerModel().withEncryption(encryption);
+        return this;
+    }
+
+    public WorkspaceImpl withExistingWorkspaces(List<String> existingWorkspaces) {
+        this.innerModel().withExistingWorkspaces(existingWorkspaces);
+        return this;
+    }
+
+    public WorkspaceImpl withFeatureStoreSettings(FeatureStoreSettings featureStoreSettings) {
+        if (isInCreateMode()) {
+            this.innerModel().withFeatureStoreSettings(featureStoreSettings);
+            return this;
+        } else {
+            this.updateBody.withFeatureStoreSettings(featureStoreSettings);
+            return this;
+        }
+    }
+
+    public WorkspaceImpl withFriendlyName(String friendlyName) {
+        if (isInCreateMode()) {
+            this.innerModel().withFriendlyName(friendlyName);
+            return this;
+        } else {
+            this.updateBody.withFriendlyName(friendlyName);
+            return this;
+        }
+    }
+
+    public WorkspaceImpl withHbiWorkspace(Boolean hbiWorkspace) {
+        this.innerModel().withHbiWorkspace(hbiWorkspace);
+        return this;
+    }
+
+    public WorkspaceImpl withHubResourceId(String hubResourceId) {
+        this.innerModel().withHubResourceId(hubResourceId);
+        return this;
+    }
+
+    public WorkspaceImpl withImageBuildCompute(String imageBuildCompute) {
+        if (isInCreateMode()) {
+            this.innerModel().withImageBuildCompute(imageBuildCompute);
+            return this;
+        } else {
+            this.updateBody.withImageBuildCompute(imageBuildCompute);
+            return this;
+        }
+    }
+
+    public WorkspaceImpl withKeyVault(String keyVault) {
+        this.innerModel().withKeyVault(keyVault);
+        return this;
+    }
+
+    public WorkspaceImpl withKeyVaults(List<String> keyVaults) {
+        this.innerModel().withKeyVaults(keyVaults);
+        return this;
+    }
+
+    public WorkspaceImpl withManagedNetwork(ManagedNetworkSettingsInner managedNetwork) {
+        if (isInCreateMode()) {
+            this.innerModel().withManagedNetwork(managedNetwork);
+            return this;
+        } else {
+            this.updateBody.withManagedNetwork(managedNetwork);
             return this;
         }
     }
@@ -512,13 +633,89 @@ public final class WorkspaceImpl implements Workspace, Workspace.Definition, Wor
             this.innerModel().withPrimaryUserAssignedIdentity(primaryUserAssignedIdentity);
             return this;
         } else {
-            this.updateParameters.withPrimaryUserAssignedIdentity(primaryUserAssignedIdentity);
+            this.updateBody.withPrimaryUserAssignedIdentity(primaryUserAssignedIdentity);
             return this;
         }
     }
 
+    public WorkspaceImpl withPublicNetworkAccess(PublicNetworkAccessType publicNetworkAccess) {
+        if (isInCreateMode()) {
+            this.innerModel().withPublicNetworkAccess(publicNetworkAccess);
+            return this;
+        } else {
+            this.updateBody.withPublicNetworkAccess(publicNetworkAccess);
+            return this;
+        }
+    }
+
+    public WorkspaceImpl withServerlessComputeSettings(ServerlessComputeSettings serverlessComputeSettings) {
+        if (isInCreateMode()) {
+            this.innerModel().withServerlessComputeSettings(serverlessComputeSettings);
+            return this;
+        } else {
+            this.updateBody.withServerlessComputeSettings(serverlessComputeSettings);
+            return this;
+        }
+    }
+
+    public WorkspaceImpl withServiceManagedResourcesSettings(
+        ServiceManagedResourcesSettings serviceManagedResourcesSettings) {
+        if (isInCreateMode()) {
+            this.innerModel().withServiceManagedResourcesSettings(serviceManagedResourcesSettings);
+            return this;
+        } else {
+            this.updateBody.withServiceManagedResourcesSettings(serviceManagedResourcesSettings);
+            return this;
+        }
+    }
+
+    public WorkspaceImpl withSharedPrivateLinkResources(List<SharedPrivateLinkResource> sharedPrivateLinkResources) {
+        this.innerModel().withSharedPrivateLinkResources(sharedPrivateLinkResources);
+        return this;
+    }
+
+    public WorkspaceImpl withSoftDeleteRetentionInDays(Integer softDeleteRetentionInDays) {
+        if (isInCreateMode()) {
+            this.innerModel().withSoftDeleteRetentionInDays(softDeleteRetentionInDays);
+            return this;
+        } else {
+            this.updateBody.withSoftDeleteRetentionInDays(softDeleteRetentionInDays);
+            return this;
+        }
+    }
+
+    public WorkspaceImpl withStorageAccount(String storageAccount) {
+        this.innerModel().withStorageAccount(storageAccount);
+        return this;
+    }
+
+    public WorkspaceImpl withStorageAccounts(List<String> storageAccounts) {
+        this.innerModel().withStorageAccounts(storageAccounts);
+        return this;
+    }
+
+    public WorkspaceImpl withSystemDatastoresAuthMode(String systemDatastoresAuthMode) {
+        this.innerModel().withSystemDatastoresAuthMode(systemDatastoresAuthMode);
+        return this;
+    }
+
     public WorkspaceImpl withV1LegacyMode(Boolean v1LegacyMode) {
-        this.innerModel().withV1LegacyMode(v1LegacyMode);
+        if (isInCreateMode()) {
+            this.innerModel().withV1LegacyMode(v1LegacyMode);
+            return this;
+        } else {
+            this.updateBody.withV1LegacyMode(v1LegacyMode);
+            return this;
+        }
+    }
+
+    public WorkspaceImpl withWorkspaceHubConfig(WorkspaceHubConfig workspaceHubConfig) {
+        this.innerModel().withWorkspaceHubConfig(workspaceHubConfig);
+        return this;
+    }
+
+    public WorkspaceImpl withEncryption(EncryptionUpdateProperties encryption) {
+        this.updateBody.withEncryption(encryption);
         return this;
     }
 
