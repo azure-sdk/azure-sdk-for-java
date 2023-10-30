@@ -28,6 +28,24 @@ public final class MarketplaceSaaSInfo {
     @JsonProperty(value = "marketplaceResourceId")
     private String marketplaceResourceId;
 
+    /*
+     * Marketplace Subscription Details: SaaS Subscription Status
+     */
+    @JsonProperty(value = "marketplaceStatus")
+    private String marketplaceStatus;
+
+    /*
+     * The Azure Subscription ID to which the Marketplace Subscription belongs and gets billed into.
+     */
+    @JsonProperty(value = "billedAzureSubscriptionId")
+    private String billedAzureSubscriptionId;
+
+    /*
+     * Flag specifying if the Marketplace status is subscribed or not.
+     */
+    @JsonProperty(value = "subscribed")
+    private Boolean subscribed;
+
     /** Creates an instance of MarketplaceSaaSInfo class. */
     public MarketplaceSaaSInfo() {
     }
@@ -90,6 +108,68 @@ public final class MarketplaceSaaSInfo {
      */
     public MarketplaceSaaSInfo withMarketplaceResourceId(String marketplaceResourceId) {
         this.marketplaceResourceId = marketplaceResourceId;
+        return this;
+    }
+
+    /**
+     * Get the marketplaceStatus property: Marketplace Subscription Details: SaaS Subscription Status.
+     *
+     * @return the marketplaceStatus value.
+     */
+    public String marketplaceStatus() {
+        return this.marketplaceStatus;
+    }
+
+    /**
+     * Set the marketplaceStatus property: Marketplace Subscription Details: SaaS Subscription Status.
+     *
+     * @param marketplaceStatus the marketplaceStatus value to set.
+     * @return the MarketplaceSaaSInfo object itself.
+     */
+    public MarketplaceSaaSInfo withMarketplaceStatus(String marketplaceStatus) {
+        this.marketplaceStatus = marketplaceStatus;
+        return this;
+    }
+
+    /**
+     * Get the billedAzureSubscriptionId property: The Azure Subscription ID to which the Marketplace Subscription
+     * belongs and gets billed into.
+     *
+     * @return the billedAzureSubscriptionId value.
+     */
+    public String billedAzureSubscriptionId() {
+        return this.billedAzureSubscriptionId;
+    }
+
+    /**
+     * Set the billedAzureSubscriptionId property: The Azure Subscription ID to which the Marketplace Subscription
+     * belongs and gets billed into.
+     *
+     * @param billedAzureSubscriptionId the billedAzureSubscriptionId value to set.
+     * @return the MarketplaceSaaSInfo object itself.
+     */
+    public MarketplaceSaaSInfo withBilledAzureSubscriptionId(String billedAzureSubscriptionId) {
+        this.billedAzureSubscriptionId = billedAzureSubscriptionId;
+        return this;
+    }
+
+    /**
+     * Get the subscribed property: Flag specifying if the Marketplace status is subscribed or not.
+     *
+     * @return the subscribed value.
+     */
+    public Boolean subscribed() {
+        return this.subscribed;
+    }
+
+    /**
+     * Set the subscribed property: Flag specifying if the Marketplace status is subscribed or not.
+     *
+     * @param subscribed the subscribed value to set.
+     * @return the MarketplaceSaaSInfo object itself.
+     */
+    public MarketplaceSaaSInfo withSubscribed(Boolean subscribed) {
+        this.subscribed = subscribed;
         return this;
     }
 

@@ -7,7 +7,7 @@ package com.azure.resourcemanager.elastic.generated;
 /** Samples for AllTrafficFilters List. */
 public final class AllTrafficFiltersListSamples {
     /*
-     * x-ms-original-file: specification/elastic/resource-manager/Microsoft.Elastic/preview/2023-02-01-preview/examples/AllTrafficFilters_list.json
+     * x-ms-original-file: specification/elastic/resource-manager/Microsoft.Elastic/preview/2023-10-01-preview/examples/AllTrafficFilters_list.json
      */
     /**
      * Sample code: AllTrafficFilters_list.

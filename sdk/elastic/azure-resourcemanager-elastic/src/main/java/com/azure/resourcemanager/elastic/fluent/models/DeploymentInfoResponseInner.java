@@ -37,6 +37,13 @@ public final class DeploymentInfoResponseInner {
     private String diskCapacity;
 
     /*
+     * Elasticsearch endpoint in Elastic cloud deployment. This is either the aliased_endpoint if available, or the
+     * service_url otherwise.
+     */
+    @JsonProperty(value = "elasticsearchEndPoint", access = JsonProperty.Access.WRITE_ONLY)
+    private String elasticsearchEndPoint;
+
+    /*
      * Deployment URL of the elasticsearch in Elastic cloud deployment.
      */
     @JsonProperty(value = "deploymentUrl", access = JsonProperty.Access.WRITE_ONLY)
@@ -86,6 +93,16 @@ public final class DeploymentInfoResponseInner {
      */
     public String diskCapacity() {
         return this.diskCapacity;
+    }
+
+    /**
+     * Get the elasticsearchEndPoint property: Elasticsearch endpoint in Elastic cloud deployment. This is either the
+     * aliased_endpoint if available, or the service_url otherwise.
+     *
+     * @return the elasticsearchEndPoint value.
+     */
+    public String elasticsearchEndPoint() {
+        return this.elasticsearchEndPoint;
     }
 
     /**

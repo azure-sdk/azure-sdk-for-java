@@ -37,6 +37,14 @@ public interface DeploymentInfoResponse {
     String diskCapacity();
 
     /**
+     * Gets the elasticsearchEndPoint property: Elasticsearch endpoint in Elastic cloud deployment. This is either the
+     * aliased_endpoint if available, or the service_url otherwise.
+     *
+     * @return the elasticsearchEndPoint value.
+     */
+    String elasticsearchEndPoint();
+
+    /**
      * Gets the deploymentUrl property: Deployment URL of the elasticsearch in Elastic cloud deployment.
      *
      * @return the deploymentUrl value.
