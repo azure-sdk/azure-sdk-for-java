@@ -24,6 +24,10 @@ public final class PagedLabServicesSkus {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
+    /** Creates an instance of PagedLabServicesSkus class. */
+    public PagedLabServicesSkus() {
+    }
+
     /**
      * Get the value property: The array page of sku results.
      *

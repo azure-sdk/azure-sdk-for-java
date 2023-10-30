@@ -4,12 +4,10 @@
 
 package com.azure.resourcemanager.labservices.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Users Delete. */
 public final class UsersDeleteSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Users/deleteUser.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/Users/deleteUser.json
      */
     /**
      * Sample code: deleteUser.
@@ -17,6 +15,6 @@ public final class UsersDeleteSamples {
      * @param manager Entry point to LabServicesManager.
      */
     public static void deleteUser(com.azure.resourcemanager.labservices.LabServicesManager manager) {
-        manager.users().delete("testrg123", "testlab", "testuser", Context.NONE);
+        manager.users().delete("testrg123", "testlab", "testuser", com.azure.core.util.Context.NONE);
     }
 }

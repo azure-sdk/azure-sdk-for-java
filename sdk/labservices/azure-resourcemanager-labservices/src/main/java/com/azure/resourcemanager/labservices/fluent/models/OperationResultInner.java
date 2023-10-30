@@ -57,6 +57,10 @@ public final class OperationResultInner {
     @JsonProperty(value = "error")
     private ManagementError error;
 
+    /** Creates an instance of OperationResultInner class. */
+    public OperationResultInner() {
+    }
+
     /**
      * Get the id property: Fully qualified resource ID for the resource. Ex -
      * /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.

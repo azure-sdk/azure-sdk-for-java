@@ -22,6 +22,10 @@ public final class SaveImageBody {
     @JsonProperty(value = "labVirtualMachineId")
     private String labVirtualMachineId;
 
+    /** Creates an instance of SaveImageBody class. */
+    public SaveImageBody() {
+    }
+
     /**
      * Get the name property: The name for the image we create.
      *

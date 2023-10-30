@@ -4,13 +4,12 @@
 
 package com.azure.resourcemanager.labservices.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.labservices.models.ResetPasswordBody;
 
 /** Samples for VirtualMachines ResetPassword. */
 public final class VirtualMachinesResetPasswordSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/VirtualMachines/resetPasswordVirtualMachine.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/VirtualMachines/resetPasswordVirtualMachine.json
      */
     /**
      * Sample code: resetPasswordVirtualMachine.
@@ -21,10 +20,10 @@ public final class VirtualMachinesResetPasswordSamples {
         manager
             .virtualMachines()
             .resetPassword(
-                "fakeResourceGroupNamePlaceholder",
+                "testrg123",
                 "testlab",
                 "template",
-                new ResetPasswordBody().withUsername("example-username").withPassword("example-password"),
-                Context.NONE);
+                new ResetPasswordBody().withUsername("example-username").withPassword("fakeTokenPlaceholder"),
+                com.azure.core.util.Context.NONE);
     }
 }

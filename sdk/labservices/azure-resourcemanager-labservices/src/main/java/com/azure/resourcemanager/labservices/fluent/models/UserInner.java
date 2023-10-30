@@ -11,6 +11,7 @@ import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.labservices.models.InvitationState;
 import com.azure.resourcemanager.labservices.models.ProvisioningState;
 import com.azure.resourcemanager.labservices.models.RegistrationState;
+import com.azure.resourcemanager.labservices.models.ResourceOperationError;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.Duration;
 import java.time.OffsetDateTime;
@@ -29,6 +30,10 @@ public final class UserInner extends ProxyResource {
      */
     @JsonProperty(value = "properties", required = true)
     private UserProperties innerProperties = new UserProperties();
+
+    /** Creates an instance of UserInner class. */
+    public UserInner() {
+    }
 
     /**
      * Get the systemData property: Metadata pertaining to creation and last modification of the user resource.
@@ -55,6 +60,15 @@ public final class UserInner extends ProxyResource {
      */
     public ProvisioningState provisioningState() {
         return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
+    }
+
+    /**
+     * Get the resourceOperationError property: Error details of last operation done on lab plan.
+     *
+     * @return the resourceOperationError value.
+     */
+    public ResourceOperationError resourceOperationError() {
+        return this.innerProperties() == null ? null : this.innerProperties().resourceOperationError();
     }
 
     /**

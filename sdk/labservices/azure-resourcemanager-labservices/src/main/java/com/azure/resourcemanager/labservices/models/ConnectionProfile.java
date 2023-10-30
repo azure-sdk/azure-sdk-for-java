@@ -34,6 +34,10 @@ public final class ConnectionProfile {
     @JsonProperty(value = "clientRdpAccess")
     private ConnectionType clientRdpAccess;
 
+    /** Creates an instance of ConnectionProfile class. */
+    public ConnectionProfile() {
+    }
+
     /**
      * Get the webSshAccess property: The enabled access level for Web Access over SSH.
      *

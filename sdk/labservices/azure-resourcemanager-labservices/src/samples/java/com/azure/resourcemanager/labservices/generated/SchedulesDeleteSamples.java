@@ -4,12 +4,10 @@
 
 package com.azure.resourcemanager.labservices.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Schedules Delete. */
 public final class SchedulesDeleteSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Schedules/deleteSchedule.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/Schedules/deleteSchedule.json
      */
     /**
      * Sample code: deleteSchedule.
@@ -17,6 +15,6 @@ public final class SchedulesDeleteSamples {
      * @param manager Entry point to LabServicesManager.
      */
     public static void deleteSchedule(com.azure.resourcemanager.labservices.LabServicesManager manager) {
-        manager.schedules().delete("testrg123", "testlab", "schedule1", Context.NONE);
+        manager.schedules().delete("testrg123", "testlab", "schedule1", com.azure.core.util.Context.NONE);
     }
 }

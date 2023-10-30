@@ -9,6 +9,7 @@ import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.labservices.models.InvitationState;
 import com.azure.resourcemanager.labservices.models.ProvisioningState;
 import com.azure.resourcemanager.labservices.models.RegistrationState;
+import com.azure.resourcemanager.labservices.models.ResourceOperationError;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.Duration;
 import java.time.OffsetDateTime;
@@ -21,6 +22,12 @@ public final class UserProperties extends UserUpdateProperties {
      */
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ProvisioningState provisioningState;
+
+    /*
+     * Error details of last operation done on lab plan.
+     */
+    @JsonProperty(value = "resourceOperationError", access = JsonProperty.Access.WRITE_ONLY)
+    private ResourceOperationError resourceOperationError;
 
     /*
      * Display name of the user, for example user's full name.
@@ -58,6 +65,10 @@ public final class UserProperties extends UserUpdateProperties {
     @JsonProperty(value = "totalUsage", access = JsonProperty.Access.WRITE_ONLY)
     private Duration totalUsage;
 
+    /** Creates an instance of UserProperties class. */
+    public UserProperties() {
+    }
+
     /**
      * Get the provisioningState property: Current provisioning state of the user resource.
      *
@@ -65,6 +76,15 @@ public final class UserProperties extends UserUpdateProperties {
      */
     public ProvisioningState provisioningState() {
         return this.provisioningState;
+    }
+
+    /**
+     * Get the resourceOperationError property: Error details of last operation done on lab plan.
+     *
+     * @return the resourceOperationError value.
+     */
+    public ResourceOperationError resourceOperationError() {
+        return this.resourceOperationError;
     }
 
     /**
@@ -147,6 +167,9 @@ public final class UserProperties extends UserUpdateProperties {
     @Override
     public void validate() {
         super.validate();
+        if (resourceOperationError() != null) {
+            resourceOperationError().validate();
+        }
         if (email() == null) {
             throw LOGGER
                 .logExceptionAsError(
