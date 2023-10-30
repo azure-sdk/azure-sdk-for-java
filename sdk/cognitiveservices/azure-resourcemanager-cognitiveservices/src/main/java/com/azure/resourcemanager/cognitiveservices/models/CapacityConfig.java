@@ -6,6 +6,7 @@ package com.azure.resourcemanager.cognitiveservices.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 
 /** The capacity configuration. */
 @Fluent
@@ -33,6 +34,12 @@ public final class CapacityConfig {
      */
     @JsonProperty(value = "default")
     private Integer defaultProperty;
+
+    /*
+     * The array of allowed values for capacity.
+     */
+    @JsonProperty(value = "allowedValues")
+    private List<Integer> allowedValues;
 
     /** Creates an instance of CapacityConfig class. */
     public CapacityConfig() {
@@ -115,6 +122,26 @@ public final class CapacityConfig {
      */
     public CapacityConfig withDefaultProperty(Integer defaultProperty) {
         this.defaultProperty = defaultProperty;
+        return this;
+    }
+
+    /**
+     * Get the allowedValues property: The array of allowed values for capacity.
+     *
+     * @return the allowedValues value.
+     */
+    public List<Integer> allowedValues() {
+        return this.allowedValues;
+    }
+
+    /**
+     * Set the allowedValues property: The array of allowed values for capacity.
+     *
+     * @param allowedValues the allowedValues value to set.
+     * @return the CapacityConfig object itself.
+     */
+    public CapacityConfig withAllowedValues(List<Integer> allowedValues) {
+        this.allowedValues = allowedValues;
         return this;
     }
 

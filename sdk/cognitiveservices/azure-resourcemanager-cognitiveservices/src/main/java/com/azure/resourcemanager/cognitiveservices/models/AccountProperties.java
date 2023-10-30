@@ -82,6 +82,12 @@ public final class AccountProperties {
     private List<UserOwnedStorage> userOwnedStorage;
 
     /*
+     * The user owned AML workspace properties.
+     */
+    @JsonProperty(value = "amlWorkspace")
+    private UserOwnedAmlWorkspace amlWorkspace;
+
+    /*
      * The private endpoint connection associated with the Cognitive Services account.
      */
     @JsonProperty(value = "privateEndpointConnections", access = JsonProperty.Access.WRITE_ONLY)
@@ -341,6 +347,26 @@ public final class AccountProperties {
      */
     public AccountProperties withUserOwnedStorage(List<UserOwnedStorage> userOwnedStorage) {
         this.userOwnedStorage = userOwnedStorage;
+        return this;
+    }
+
+    /**
+     * Get the amlWorkspace property: The user owned AML workspace properties.
+     *
+     * @return the amlWorkspace value.
+     */
+    public UserOwnedAmlWorkspace amlWorkspace() {
+        return this.amlWorkspace;
+    }
+
+    /**
+     * Set the amlWorkspace property: The user owned AML workspace properties.
+     *
+     * @param amlWorkspace the amlWorkspace value to set.
+     * @return the AccountProperties object itself.
+     */
+    public AccountProperties withAmlWorkspace(UserOwnedAmlWorkspace amlWorkspace) {
+        this.amlWorkspace = amlWorkspace;
         return this;
     }
 
@@ -606,6 +632,9 @@ public final class AccountProperties {
         }
         if (userOwnedStorage() != null) {
             userOwnedStorage().forEach(e -> e.validate());
+        }
+        if (amlWorkspace() != null) {
+            amlWorkspace().validate();
         }
         if (privateEndpointConnections() != null) {
             privateEndpointConnections().forEach(e -> e.validate());
