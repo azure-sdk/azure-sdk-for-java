@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.sphere.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.sphere.fluent.models.DeploymentInner;
 import com.azure.resourcemanager.sphere.fluent.models.ImageInner;
@@ -30,6 +31,10 @@ public final class DeploymentImpl implements Deployment, Deployment.Definition, 
 
     public String type() {
         return this.innerModel().type();
+    }
+
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public String deploymentId() {
