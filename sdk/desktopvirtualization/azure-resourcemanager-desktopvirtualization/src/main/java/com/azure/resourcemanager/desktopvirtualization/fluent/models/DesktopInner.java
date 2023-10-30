@@ -12,6 +12,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 /** Schema for Desktop properties. */
 @Fluent
 public final class DesktopInner extends ProxyResource {
+    private static final byte[] EMPTY_BYTE_ARRAY = new byte[0];
+
     /*
      * Metadata pertaining to creation and last modification of the resource.
      */
@@ -116,7 +118,7 @@ public final class DesktopInner extends ProxyResource {
      * @return the iconContent value.
      */
     public byte[] iconContent() {
-        return this.innerProperties() == null ? new byte[0] : this.innerProperties().iconContent();
+        return this.innerProperties() == null ? EMPTY_BYTE_ARRAY : this.innerProperties().iconContent();
     }
 
     /**
