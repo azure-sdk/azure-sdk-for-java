@@ -34,6 +34,12 @@ public final class AutoPatchingSettings {
     @JsonProperty(value = "maintenanceWindowDuration")
     private Integer maintenanceWindowDuration;
 
+    /*
+     * Additional Patch to be enable or enabled on the SQL Virtual Machine.
+     */
+    @JsonProperty(value = "additionalVmPatch")
+    private AdditionalVmPatch additionalVmPatch;
+
     /** Creates an instance of AutoPatchingSettings class. */
     public AutoPatchingSettings() {
     }
@@ -115,6 +121,26 @@ public final class AutoPatchingSettings {
      */
     public AutoPatchingSettings withMaintenanceWindowDuration(Integer maintenanceWindowDuration) {
         this.maintenanceWindowDuration = maintenanceWindowDuration;
+        return this;
+    }
+
+    /**
+     * Get the additionalVmPatch property: Additional Patch to be enable or enabled on the SQL Virtual Machine.
+     *
+     * @return the additionalVmPatch value.
+     */
+    public AdditionalVmPatch additionalVmPatch() {
+        return this.additionalVmPatch;
+    }
+
+    /**
+     * Set the additionalVmPatch property: Additional Patch to be enable or enabled on the SQL Virtual Machine.
+     *
+     * @param additionalVmPatch the additionalVmPatch value to set.
+     * @return the AutoPatchingSettings object itself.
+     */
+    public AutoPatchingSettings withAdditionalVmPatch(AdditionalVmPatch additionalVmPatch) {
+        this.additionalVmPatch = additionalVmPatch;
         return this;
     }
 

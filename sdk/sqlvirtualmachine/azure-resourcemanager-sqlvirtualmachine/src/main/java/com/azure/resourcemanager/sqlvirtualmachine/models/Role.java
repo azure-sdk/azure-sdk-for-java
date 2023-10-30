@@ -10,11 +10,11 @@ import java.util.Collection;
 
 /** Replica Role in availability group. */
 public final class Role extends ExpandableStringEnum<Role> {
-    /** Static value PRIMARY for Role. */
-    public static final Role PRIMARY = fromString("PRIMARY");
+    /** Static value Primary for Role. */
+    public static final Role PRIMARY = fromString("Primary");
 
-    /** Static value SECONDARY for Role. */
-    public static final Role SECONDARY = fromString("SECONDARY");
+    /** Static value Secondary for Role. */
+    public static final Role SECONDARY = fromString("Secondary");
 
     /**
      * Creates a new instance of Role value.
