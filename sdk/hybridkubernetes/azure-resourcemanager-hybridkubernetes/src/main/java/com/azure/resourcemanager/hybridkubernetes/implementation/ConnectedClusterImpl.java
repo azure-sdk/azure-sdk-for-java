@@ -9,12 +9,17 @@ import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.hybridkubernetes.fluent.models.ConnectedClusterInner;
+import com.azure.resourcemanager.hybridkubernetes.models.AadProfile;
+import com.azure.resourcemanager.hybridkubernetes.models.ArcAgentProfile;
+import com.azure.resourcemanager.hybridkubernetes.models.AzureHybridBenefit;
 import com.azure.resourcemanager.hybridkubernetes.models.ConnectedCluster;
 import com.azure.resourcemanager.hybridkubernetes.models.ConnectedClusterIdentity;
+import com.azure.resourcemanager.hybridkubernetes.models.ConnectedClusterKind;
 import com.azure.resourcemanager.hybridkubernetes.models.ConnectedClusterPatch;
 import com.azure.resourcemanager.hybridkubernetes.models.ConnectivityStatus;
 import com.azure.resourcemanager.hybridkubernetes.models.CredentialResults;
 import com.azure.resourcemanager.hybridkubernetes.models.ListClusterUserCredentialProperties;
+import com.azure.resourcemanager.hybridkubernetes.models.PrivateLinkState;
 import com.azure.resourcemanager.hybridkubernetes.models.ProvisioningState;
 import java.time.OffsetDateTime;
 import java.util.Collections;
@@ -55,6 +60,10 @@ public final class ConnectedClusterImpl
         return this.innerModel().identity();
     }
 
+    public ConnectedClusterKind kind() {
+        return this.innerModel().kind();
+    }
+
     public SystemData systemData() {
         return this.innerModel().systemData();
     }
@@ -87,6 +96,10 @@ public final class ConnectedClusterImpl
         return this.innerModel().distribution();
     }
 
+    public String distributionVersion() {
+        return this.innerModel().distributionVersion();
+    }
+
     public String infrastructure() {
         return this.innerModel().infrastructure();
     }
@@ -105,6 +118,35 @@ public final class ConnectedClusterImpl
 
     public ConnectivityStatus connectivityStatus() {
         return this.innerModel().connectivityStatus();
+    }
+
+    public PrivateLinkState privateLinkState() {
+        return this.innerModel().privateLinkState();
+    }
+
+    public String privateLinkScopeResourceId() {
+        return this.innerModel().privateLinkScopeResourceId();
+    }
+
+    public AzureHybridBenefit azureHybridBenefit() {
+        return this.innerModel().azureHybridBenefit();
+    }
+
+    public AadProfile aadProfile() {
+        return this.innerModel().aadProfile();
+    }
+
+    public ArcAgentProfile arcAgentProfile() {
+        return this.innerModel().arcAgentProfile();
+    }
+
+    public Map<String, String> miscellaneousProperties() {
+        Map<String, String> inner = this.innerModel().miscellaneousProperties();
+        if (inner != null) {
+            return Collections.unmodifiableMap(inner);
+        } else {
+            return Collections.emptyMap();
+        }
     }
 
     public Region region() {
@@ -258,14 +300,34 @@ public final class ConnectedClusterImpl
         }
     }
 
+    public ConnectedClusterImpl withKind(ConnectedClusterKind kind) {
+        this.innerModel().withKind(kind);
+        return this;
+    }
+
     public ConnectedClusterImpl withProvisioningState(ProvisioningState provisioningState) {
         this.innerModel().withProvisioningState(provisioningState);
         return this;
     }
 
     public ConnectedClusterImpl withDistribution(String distribution) {
-        this.innerModel().withDistribution(distribution);
-        return this;
+        if (isInCreateMode()) {
+            this.innerModel().withDistribution(distribution);
+            return this;
+        } else {
+            this.updateConnectedClusterPatch.withDistribution(distribution);
+            return this;
+        }
+    }
+
+    public ConnectedClusterImpl withDistributionVersion(String distributionVersion) {
+        if (isInCreateMode()) {
+            this.innerModel().withDistributionVersion(distributionVersion);
+            return this;
+        } else {
+            this.updateConnectedClusterPatch.withDistributionVersion(distributionVersion);
+            return this;
+        }
     }
 
     public ConnectedClusterImpl withInfrastructure(String infrastructure) {
@@ -273,8 +335,33 @@ public final class ConnectedClusterImpl
         return this;
     }
 
-    public ConnectedClusterImpl withProperties(Object properties) {
-        this.updateConnectedClusterPatch.withProperties(properties);
+    public ConnectedClusterImpl withPrivateLinkState(PrivateLinkState privateLinkState) {
+        this.innerModel().withPrivateLinkState(privateLinkState);
+        return this;
+    }
+
+    public ConnectedClusterImpl withPrivateLinkScopeResourceId(String privateLinkScopeResourceId) {
+        this.innerModel().withPrivateLinkScopeResourceId(privateLinkScopeResourceId);
+        return this;
+    }
+
+    public ConnectedClusterImpl withAzureHybridBenefit(AzureHybridBenefit azureHybridBenefit) {
+        if (isInCreateMode()) {
+            this.innerModel().withAzureHybridBenefit(azureHybridBenefit);
+            return this;
+        } else {
+            this.updateConnectedClusterPatch.withAzureHybridBenefit(azureHybridBenefit);
+            return this;
+        }
+    }
+
+    public ConnectedClusterImpl withAadProfile(AadProfile aadProfile) {
+        this.innerModel().withAadProfile(aadProfile);
+        return this;
+    }
+
+    public ConnectedClusterImpl withArcAgentProfile(ArcAgentProfile arcAgentProfile) {
+        this.innerModel().withArcAgentProfile(arcAgentProfile);
         return this;
     }
 
