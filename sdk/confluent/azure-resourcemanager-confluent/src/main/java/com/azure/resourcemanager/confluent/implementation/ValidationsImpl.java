@@ -10,12 +10,13 @@ import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.confluent.fluent.ValidationsClient;
 import com.azure.resourcemanager.confluent.fluent.models.OrganizationResourceInner;
+import com.azure.resourcemanager.confluent.fluent.models.ValidationResponseInner;
 import com.azure.resourcemanager.confluent.models.OrganizationResource;
+import com.azure.resourcemanager.confluent.models.ValidationResponse;
 import com.azure.resourcemanager.confluent.models.Validations;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class ValidationsImpl implements Validations {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ValidationsImpl.class);
+    private static final ClientLogger LOGGER = new ClientLogger(ValidationsImpl.class);
 
     private final ValidationsClient innerClient;
 
@@ -25,6 +26,21 @@ public final class ValidationsImpl implements Validations {
         ValidationsClient innerClient, com.azure.resourcemanager.confluent.ConfluentManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
+    }
+
+    public Response<OrganizationResource> validateOrganizationWithResponse(
+        String resourceGroupName, String organizationName, OrganizationResourceInner body, Context context) {
+        Response<OrganizationResourceInner> inner =
+            this.serviceClient().validateOrganizationWithResponse(resourceGroupName, organizationName, body, context);
+        if (inner != null) {
+            return new SimpleResponse<>(
+                inner.getRequest(),
+                inner.getStatusCode(),
+                inner.getHeaders(),
+                new OrganizationResourceImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
     }
 
     public OrganizationResource validateOrganization(
@@ -38,16 +54,27 @@ public final class ValidationsImpl implements Validations {
         }
     }
 
-    public Response<OrganizationResource> validateOrganizationWithResponse(
+    public Response<ValidationResponse> validateOrganizationV2WithResponse(
         String resourceGroupName, String organizationName, OrganizationResourceInner body, Context context) {
-        Response<OrganizationResourceInner> inner =
-            this.serviceClient().validateOrganizationWithResponse(resourceGroupName, organizationName, body, context);
+        Response<ValidationResponseInner> inner =
+            this.serviceClient().validateOrganizationV2WithResponse(resourceGroupName, organizationName, body, context);
         if (inner != null) {
             return new SimpleResponse<>(
                 inner.getRequest(),
                 inner.getStatusCode(),
                 inner.getHeaders(),
-                new OrganizationResourceImpl(inner.getValue(), this.manager()));
+                new ValidationResponseImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public ValidationResponse validateOrganizationV2(
+        String resourceGroupName, String organizationName, OrganizationResourceInner body) {
+        ValidationResponseInner inner =
+            this.serviceClient().validateOrganizationV2(resourceGroupName, organizationName, body);
+        if (inner != null) {
+            return new ValidationResponseImpl(inner, this.manager());
         } else {
             return null;
         }

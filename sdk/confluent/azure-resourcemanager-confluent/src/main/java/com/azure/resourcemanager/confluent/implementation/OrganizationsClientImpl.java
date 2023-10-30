@@ -30,7 +30,6 @@ import com.azure.core.management.exception.ManagementException;
 import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.confluent.fluent.OrganizationsClient;
@@ -43,8 +42,6 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in OrganizationsClient. */
 public final class OrganizationsClientImpl implements OrganizationsClient {
-    private final ClientLogger logger = new ClientLogger(OrganizationsClientImpl.class);
-
     /** The proxy service used to perform REST calls. */
     private final OrganizationsService service;
 
@@ -68,7 +65,7 @@ public final class OrganizationsClientImpl implements OrganizationsClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "ConfluentManagementC")
-    private interface OrganizationsService {
+    public interface OrganizationsService {
         @Headers({"Content-Type: application/json"})
         @Get("/subscriptions/{subscriptionId}/providers/Microsoft.Confluent/organizations")
         @ExpectedResponses({200})
@@ -82,8 +79,7 @@ public final class OrganizationsClientImpl implements OrganizationsClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Confluent"
-                + "/organizations")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Confluent/organizations")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<OrganizationResourceListResult>> listByResourceGroup(
@@ -96,8 +92,7 @@ public final class OrganizationsClientImpl implements OrganizationsClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Confluent"
-                + "/organizations/{organizationName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Confluent/organizations/{organizationName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<OrganizationResourceInner>> getByResourceGroup(
@@ -111,8 +106,7 @@ public final class OrganizationsClientImpl implements OrganizationsClient {
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Confluent"
-                + "/organizations/{organizationName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Confluent/organizations/{organizationName}")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> create(
@@ -127,8 +121,7 @@ public final class OrganizationsClientImpl implements OrganizationsClient {
 
         @Headers({"Content-Type: application/json"})
         @Patch(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Confluent"
-                + "/organizations/{organizationName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Confluent/organizations/{organizationName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<OrganizationResourceInner>> update(
@@ -143,8 +136,7 @@ public final class OrganizationsClientImpl implements OrganizationsClient {
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Confluent"
-                + "/organizations/{organizationName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Confluent/organizations/{organizationName}")
         @ExpectedResponses({200, 202, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(
@@ -182,7 +174,8 @@ public final class OrganizationsClientImpl implements OrganizationsClient {
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation.
+     * @return the response of a list operation along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<OrganizationResourceInner>> listSinglePageAsync() {
@@ -228,7 +221,8 @@ public final class OrganizationsClientImpl implements OrganizationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation.
+     * @return the response of a list operation along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<OrganizationResourceInner>> listSinglePageAsync(Context context) {
@@ -269,7 +263,7 @@ public final class OrganizationsClientImpl implements OrganizationsClient {
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation.
+     * @return the response of a list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<OrganizationResourceInner> listAsync() {
@@ -284,7 +278,7 @@ public final class OrganizationsClientImpl implements OrganizationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation.
+     * @return the response of a list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<OrganizationResourceInner> listAsync(Context context) {
@@ -297,7 +291,7 @@ public final class OrganizationsClientImpl implements OrganizationsClient {
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation.
+     * @return the response of a list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<OrganizationResourceInner> list() {
@@ -311,7 +305,7 @@ public final class OrganizationsClientImpl implements OrganizationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation.
+     * @return the response of a list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<OrganizationResourceInner> list(Context context) {
@@ -321,11 +315,12 @@ public final class OrganizationsClientImpl implements OrganizationsClient {
     /**
      * List all Organizations under the specified resource group.
      *
-     * @param resourceGroupName Resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation.
+     * @return the response of a list operation along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<OrganizationResourceInner>> listByResourceGroupSinglePageAsync(
@@ -373,12 +368,13 @@ public final class OrganizationsClientImpl implements OrganizationsClient {
     /**
      * List all Organizations under the specified resource group.
      *
-     * @param resourceGroupName Resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation.
+     * @return the response of a list operation along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<OrganizationResourceInner>> listByResourceGroupSinglePageAsync(
@@ -423,11 +419,11 @@ public final class OrganizationsClientImpl implements OrganizationsClient {
     /**
      * List all Organizations under the specified resource group.
      *
-     * @param resourceGroupName Resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation.
+     * @return the response of a list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<OrganizationResourceInner> listByResourceGroupAsync(String resourceGroupName) {
@@ -439,12 +435,12 @@ public final class OrganizationsClientImpl implements OrganizationsClient {
     /**
      * List all Organizations under the specified resource group.
      *
-     * @param resourceGroupName Resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation.
+     * @return the response of a list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<OrganizationResourceInner> listByResourceGroupAsync(String resourceGroupName, Context context) {
@@ -456,11 +452,11 @@ public final class OrganizationsClientImpl implements OrganizationsClient {
     /**
      * List all Organizations under the specified resource group.
      *
-     * @param resourceGroupName Resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation.
+     * @return the response of a list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<OrganizationResourceInner> listByResourceGroup(String resourceGroupName) {
@@ -470,12 +466,12 @@ public final class OrganizationsClientImpl implements OrganizationsClient {
     /**
      * List all Organizations under the specified resource group.
      *
-     * @param resourceGroupName Resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation.
+     * @return the response of a list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<OrganizationResourceInner> listByResourceGroup(String resourceGroupName, Context context) {
@@ -485,12 +481,13 @@ public final class OrganizationsClientImpl implements OrganizationsClient {
     /**
      * Get the properties of a specific Organization resource.
      *
-     * @param resourceGroupName Resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param organizationName Organization resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the properties of a specific Organization resource.
+     * @return the properties of a specific Organization resource along with {@link Response} on successful completion
+     *     of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<OrganizationResourceInner>> getByResourceGroupWithResponseAsync(
@@ -534,13 +531,14 @@ public final class OrganizationsClientImpl implements OrganizationsClient {
     /**
      * Get the properties of a specific Organization resource.
      *
-     * @param resourceGroupName Resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param organizationName Organization resource name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the properties of a specific Organization resource.
+     * @return the properties of a specific Organization resource along with {@link Response} on successful completion
+     *     of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<OrganizationResourceInner>> getByResourceGroupWithResponseAsync(
@@ -581,51 +579,29 @@ public final class OrganizationsClientImpl implements OrganizationsClient {
     /**
      * Get the properties of a specific Organization resource.
      *
-     * @param resourceGroupName Resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param organizationName Organization resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the properties of a specific Organization resource.
+     * @return the properties of a specific Organization resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<OrganizationResourceInner> getByResourceGroupAsync(String resourceGroupName, String organizationName) {
         return getByResourceGroupWithResponseAsync(resourceGroupName, organizationName)
-            .flatMap(
-                (Response<OrganizationResourceInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
      * Get the properties of a specific Organization resource.
      *
-     * @param resourceGroupName Resource group name.
-     * @param organizationName Organization resource name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the properties of a specific Organization resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public OrganizationResourceInner getByResourceGroup(String resourceGroupName, String organizationName) {
-        return getByResourceGroupAsync(resourceGroupName, organizationName).block();
-    }
-
-    /**
-     * Get the properties of a specific Organization resource.
-     *
-     * @param resourceGroupName Resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param organizationName Organization resource name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the properties of a specific Organization resource.
+     * @return the properties of a specific Organization resource along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<OrganizationResourceInner> getByResourceGroupWithResponse(
@@ -634,15 +610,30 @@ public final class OrganizationsClientImpl implements OrganizationsClient {
     }
 
     /**
+     * Get the properties of a specific Organization resource.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param organizationName Organization resource name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the properties of a specific Organization resource.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public OrganizationResourceInner getByResourceGroup(String resourceGroupName, String organizationName) {
+        return getByResourceGroupWithResponse(resourceGroupName, organizationName, Context.NONE).getValue();
+    }
+
+    /**
      * Create Organization resource.
      *
-     * @param resourceGroupName Resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param organizationName Organization resource name.
      * @param body Organization resource model.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return organization resource.
+     * @return organization resource along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createWithResponseAsync(
@@ -690,14 +681,14 @@ public final class OrganizationsClientImpl implements OrganizationsClient {
     /**
      * Create Organization resource.
      *
-     * @param resourceGroupName Resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param organizationName Organization resource name.
      * @param body Organization resource model.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return organization resource.
+     * @return organization resource along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createWithResponseAsync(
@@ -742,13 +733,13 @@ public final class OrganizationsClientImpl implements OrganizationsClient {
     /**
      * Create Organization resource.
      *
-     * @param resourceGroupName Resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param organizationName Organization resource name.
      * @param body Organization resource model.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return organization resource.
+     * @return the {@link PollerFlux} for polling of organization resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<OrganizationResourceInner>, OrganizationResourceInner> beginCreateAsync(
@@ -761,20 +752,45 @@ public final class OrganizationsClientImpl implements OrganizationsClient {
                 this.client.getHttpPipeline(),
                 OrganizationResourceInner.class,
                 OrganizationResourceInner.class,
-                Context.NONE);
+                this.client.getContext());
     }
 
     /**
      * Create Organization resource.
      *
-     * @param resourceGroupName Resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param organizationName Organization resource name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of organization resource.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<OrganizationResourceInner>, OrganizationResourceInner> beginCreateAsync(
+        String resourceGroupName, String organizationName) {
+        final OrganizationResourceInner body = null;
+        Mono<Response<Flux<ByteBuffer>>> mono = createWithResponseAsync(resourceGroupName, organizationName, body);
+        return this
+            .client
+            .<OrganizationResourceInner, OrganizationResourceInner>getLroResult(
+                mono,
+                this.client.getHttpPipeline(),
+                OrganizationResourceInner.class,
+                OrganizationResourceInner.class,
+                this.client.getContext());
+    }
+
+    /**
+     * Create Organization resource.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param organizationName Organization resource name.
      * @param body Organization resource model.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return organization resource.
+     * @return the {@link PollerFlux} for polling of organization resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<OrganizationResourceInner>, OrganizationResourceInner> beginCreateAsync(
@@ -795,48 +811,48 @@ public final class OrganizationsClientImpl implements OrganizationsClient {
     /**
      * Create Organization resource.
      *
-     * @param resourceGroupName Resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param organizationName Organization resource name.
-     * @param body Organization resource model.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return organization resource.
+     * @return the {@link SyncPoller} for polling of organization resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<OrganizationResourceInner>, OrganizationResourceInner> beginCreate(
-        String resourceGroupName, String organizationName, OrganizationResourceInner body) {
-        return beginCreateAsync(resourceGroupName, organizationName, body).getSyncPoller();
+        String resourceGroupName, String organizationName) {
+        final OrganizationResourceInner body = null;
+        return this.beginCreateAsync(resourceGroupName, organizationName, body).getSyncPoller();
     }
 
     /**
      * Create Organization resource.
      *
-     * @param resourceGroupName Resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param organizationName Organization resource name.
      * @param body Organization resource model.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return organization resource.
+     * @return the {@link SyncPoller} for polling of organization resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<OrganizationResourceInner>, OrganizationResourceInner> beginCreate(
         String resourceGroupName, String organizationName, OrganizationResourceInner body, Context context) {
-        return beginCreateAsync(resourceGroupName, organizationName, body, context).getSyncPoller();
+        return this.beginCreateAsync(resourceGroupName, organizationName, body, context).getSyncPoller();
     }
 
     /**
      * Create Organization resource.
      *
-     * @param resourceGroupName Resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param organizationName Organization resource name.
      * @param body Organization resource model.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return organization resource.
+     * @return organization resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<OrganizationResourceInner> createAsync(
@@ -849,12 +865,12 @@ public final class OrganizationsClientImpl implements OrganizationsClient {
     /**
      * Create Organization resource.
      *
-     * @param resourceGroupName Resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param organizationName Organization resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return organization resource.
+     * @return organization resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<OrganizationResourceInner> createAsync(String resourceGroupName, String organizationName) {
@@ -867,14 +883,14 @@ public final class OrganizationsClientImpl implements OrganizationsClient {
     /**
      * Create Organization resource.
      *
-     * @param resourceGroupName Resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param organizationName Organization resource name.
      * @param body Organization resource model.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return organization resource.
+     * @return organization resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<OrganizationResourceInner> createAsync(
@@ -887,24 +903,7 @@ public final class OrganizationsClientImpl implements OrganizationsClient {
     /**
      * Create Organization resource.
      *
-     * @param resourceGroupName Resource group name.
-     * @param organizationName Organization resource name.
-     * @param body Organization resource model.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return organization resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public OrganizationResourceInner create(
-        String resourceGroupName, String organizationName, OrganizationResourceInner body) {
-        return createAsync(resourceGroupName, organizationName, body).block();
-    }
-
-    /**
-     * Create Organization resource.
-     *
-     * @param resourceGroupName Resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param organizationName Organization resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -920,7 +919,7 @@ public final class OrganizationsClientImpl implements OrganizationsClient {
     /**
      * Create Organization resource.
      *
-     * @param resourceGroupName Resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param organizationName Organization resource name.
      * @param body Organization resource model.
      * @param context The context to associate with this operation.
@@ -938,13 +937,13 @@ public final class OrganizationsClientImpl implements OrganizationsClient {
     /**
      * Update Organization resource.
      *
-     * @param resourceGroupName Resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param organizationName Organization resource name.
      * @param body Updated Organization resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return organization resource.
+     * @return organization resource along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<OrganizationResourceInner>> updateWithResponseAsync(
@@ -992,14 +991,14 @@ public final class OrganizationsClientImpl implements OrganizationsClient {
     /**
      * Update Organization resource.
      *
-     * @param resourceGroupName Resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param organizationName Organization resource name.
      * @param body Updated Organization resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return organization resource.
+     * @return organization resource along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<OrganizationResourceInner>> updateWithResponseAsync(
@@ -1044,56 +1043,42 @@ public final class OrganizationsClientImpl implements OrganizationsClient {
     /**
      * Update Organization resource.
      *
-     * @param resourceGroupName Resource group name.
-     * @param organizationName Organization resource name.
-     * @param body Updated Organization resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return organization resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<OrganizationResourceInner> updateAsync(
-        String resourceGroupName, String organizationName, OrganizationResourceUpdate body) {
-        return updateWithResponseAsync(resourceGroupName, organizationName, body)
-            .flatMap(
-                (Response<OrganizationResourceInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
-    }
-
-    /**
-     * Update Organization resource.
-     *
-     * @param resourceGroupName Resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param organizationName Organization resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return organization resource.
+     * @return organization resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<OrganizationResourceInner> updateAsync(String resourceGroupName, String organizationName) {
         final OrganizationResourceUpdate body = null;
         return updateWithResponseAsync(resourceGroupName, organizationName, body)
-            .flatMap(
-                (Response<OrganizationResourceInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
      * Update Organization resource.
      *
-     * @param resourceGroupName Resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param organizationName Organization resource name.
+     * @param body Updated Organization resource.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return organization resource along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<OrganizationResourceInner> updateWithResponse(
+        String resourceGroupName, String organizationName, OrganizationResourceUpdate body, Context context) {
+        return updateWithResponseAsync(resourceGroupName, organizationName, body, context).block();
+    }
+
+    /**
+     * Update Organization resource.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param organizationName Organization resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1103,36 +1088,18 @@ public final class OrganizationsClientImpl implements OrganizationsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public OrganizationResourceInner update(String resourceGroupName, String organizationName) {
         final OrganizationResourceUpdate body = null;
-        return updateAsync(resourceGroupName, organizationName, body).block();
-    }
-
-    /**
-     * Update Organization resource.
-     *
-     * @param resourceGroupName Resource group name.
-     * @param organizationName Organization resource name.
-     * @param body Updated Organization resource.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return organization resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<OrganizationResourceInner> updateWithResponse(
-        String resourceGroupName, String organizationName, OrganizationResourceUpdate body, Context context) {
-        return updateWithResponseAsync(resourceGroupName, organizationName, body, context).block();
+        return updateWithResponse(resourceGroupName, organizationName, body, Context.NONE).getValue();
     }
 
     /**
      * Delete Organization resource.
      *
-     * @param resourceGroupName Resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param organizationName Organization resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
@@ -1176,13 +1143,13 @@ public final class OrganizationsClientImpl implements OrganizationsClient {
     /**
      * Delete Organization resource.
      *
-     * @param resourceGroupName Resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param organizationName Organization resource name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
@@ -1223,31 +1190,32 @@ public final class OrganizationsClientImpl implements OrganizationsClient {
     /**
      * Delete Organization resource.
      *
-     * @param resourceGroupName Resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param organizationName Organization resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String organizationName) {
         Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceGroupName, organizationName);
         return this
             .client
-            .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, Context.NONE);
+            .<Void, Void>getLroResult(
+                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
     }
 
     /**
      * Delete Organization resource.
      *
-     * @param resourceGroupName Resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param organizationName Organization resource name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
@@ -1262,44 +1230,44 @@ public final class OrganizationsClientImpl implements OrganizationsClient {
     /**
      * Delete Organization resource.
      *
-     * @param resourceGroupName Resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param organizationName Organization resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String organizationName) {
-        return beginDeleteAsync(resourceGroupName, organizationName).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, organizationName).getSyncPoller();
     }
 
     /**
      * Delete Organization resource.
      *
-     * @param resourceGroupName Resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param organizationName Organization resource name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String organizationName, Context context) {
-        return beginDeleteAsync(resourceGroupName, organizationName, context).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, organizationName, context).getSyncPoller();
     }
 
     /**
      * Delete Organization resource.
      *
-     * @param resourceGroupName Resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param organizationName Organization resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String resourceGroupName, String organizationName) {
@@ -1311,13 +1279,13 @@ public final class OrganizationsClientImpl implements OrganizationsClient {
     /**
      * Delete Organization resource.
      *
-     * @param resourceGroupName Resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param organizationName Organization resource name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String resourceGroupName, String organizationName, Context context) {
@@ -1329,7 +1297,7 @@ public final class OrganizationsClientImpl implements OrganizationsClient {
     /**
      * Delete Organization resource.
      *
-     * @param resourceGroupName Resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param organizationName Organization resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1343,7 +1311,7 @@ public final class OrganizationsClientImpl implements OrganizationsClient {
     /**
      * Delete Organization resource.
      *
-     * @param resourceGroupName Resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param organizationName Organization resource name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1358,11 +1326,13 @@ public final class OrganizationsClientImpl implements OrganizationsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation.
+     * @return the response of a list operation along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<OrganizationResourceInner>> listBySubscriptionNextSinglePageAsync(String nextLink) {
@@ -1394,12 +1364,14 @@ public final class OrganizationsClientImpl implements OrganizationsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation.
+     * @return the response of a list operation along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<OrganizationResourceInner>> listBySubscriptionNextSinglePageAsync(
@@ -1431,11 +1403,13 @@ public final class OrganizationsClientImpl implements OrganizationsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation.
+     * @return the response of a list operation along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<OrganizationResourceInner>> listByResourceGroupNextSinglePageAsync(String nextLink) {
@@ -1467,12 +1441,14 @@ public final class OrganizationsClientImpl implements OrganizationsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation.
+     * @return the response of a list operation along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<OrganizationResourceInner>> listByResourceGroupNextSinglePageAsync(
