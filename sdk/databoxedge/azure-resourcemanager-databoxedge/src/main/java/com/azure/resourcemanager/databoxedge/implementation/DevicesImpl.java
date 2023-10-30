@@ -12,12 +12,15 @@ import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.databoxedge.fluent.DevicesClient;
 import com.azure.resourcemanager.databoxedge.fluent.models.DataBoxEdgeDeviceExtendedInfoInner;
 import com.azure.resourcemanager.databoxedge.fluent.models.DataBoxEdgeDeviceInner;
+import com.azure.resourcemanager.databoxedge.fluent.models.GenerateCertResponseInner;
 import com.azure.resourcemanager.databoxedge.fluent.models.NetworkSettingsInner;
 import com.azure.resourcemanager.databoxedge.fluent.models.UpdateSummaryInner;
 import com.azure.resourcemanager.databoxedge.fluent.models.UploadCertificateResponseInner;
 import com.azure.resourcemanager.databoxedge.models.DataBoxEdgeDevice;
 import com.azure.resourcemanager.databoxedge.models.DataBoxEdgeDeviceExtendedInfo;
+import com.azure.resourcemanager.databoxedge.models.DataBoxEdgeDeviceExtendedInfoPatch;
 import com.azure.resourcemanager.databoxedge.models.Devices;
+import com.azure.resourcemanager.databoxedge.models.GenerateCertResponse;
 import com.azure.resourcemanager.databoxedge.models.NetworkSettings;
 import com.azure.resourcemanager.databoxedge.models.SecuritySettings;
 import com.azure.resourcemanager.databoxedge.models.UpdateSummary;
@@ -99,6 +102,30 @@ public final class DevicesImpl implements Devices {
         this.serviceClient().downloadUpdates(deviceName, resourceGroupName, context);
     }
 
+    public Response<GenerateCertResponse> generateCertificateWithResponse(
+        String deviceName, String resourceGroupName, Context context) {
+        Response<GenerateCertResponseInner> inner =
+            this.serviceClient().generateCertificateWithResponse(deviceName, resourceGroupName, context);
+        if (inner != null) {
+            return new SimpleResponse<>(
+                inner.getRequest(),
+                inner.getStatusCode(),
+                inner.getHeaders(),
+                new GenerateCertResponseImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public GenerateCertResponse generateCertificate(String deviceName, String resourceGroupName) {
+        GenerateCertResponseInner inner = this.serviceClient().generateCertificate(deviceName, resourceGroupName);
+        if (inner != null) {
+            return new GenerateCertResponseImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
     public Response<DataBoxEdgeDeviceExtendedInfo> getExtendedInformationWithResponse(
         String deviceName, String resourceGroupName, Context context) {
         Response<DataBoxEdgeDeviceExtendedInfoInner> inner =
@@ -172,6 +199,34 @@ public final class DevicesImpl implements Devices {
     public void createOrUpdateSecuritySettings(
         String deviceName, String resourceGroupName, SecuritySettings securitySettings, Context context) {
         this.serviceClient().createOrUpdateSecuritySettings(deviceName, resourceGroupName, securitySettings, context);
+    }
+
+    public Response<DataBoxEdgeDeviceExtendedInfo> updateExtendedInformationWithResponse(
+        String deviceName, String resourceGroupName, DataBoxEdgeDeviceExtendedInfoPatch parameters, Context context) {
+        Response<DataBoxEdgeDeviceExtendedInfoInner> inner =
+            this
+                .serviceClient()
+                .updateExtendedInformationWithResponse(deviceName, resourceGroupName, parameters, context);
+        if (inner != null) {
+            return new SimpleResponse<>(
+                inner.getRequest(),
+                inner.getStatusCode(),
+                inner.getHeaders(),
+                new DataBoxEdgeDeviceExtendedInfoImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public DataBoxEdgeDeviceExtendedInfo updateExtendedInformation(
+        String deviceName, String resourceGroupName, DataBoxEdgeDeviceExtendedInfoPatch parameters) {
+        DataBoxEdgeDeviceExtendedInfoInner inner =
+            this.serviceClient().updateExtendedInformation(deviceName, resourceGroupName, parameters);
+        if (inner != null) {
+            return new DataBoxEdgeDeviceExtendedInfoImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public Response<UpdateSummary> getUpdateSummaryWithResponse(

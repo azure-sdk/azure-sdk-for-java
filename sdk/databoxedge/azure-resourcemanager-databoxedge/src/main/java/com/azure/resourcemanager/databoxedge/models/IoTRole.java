@@ -129,6 +129,61 @@ public final class IoTRole extends RoleInner {
     }
 
     /**
+     * Get the ioTEdgeAgentInfo property: Iot edge agent details to download the agent and bootstrap iot runtime.
+     *
+     * @return the ioTEdgeAgentInfo value.
+     */
+    public IoTEdgeAgentInfo ioTEdgeAgentInfo() {
+        return this.innerProperties() == null ? null : this.innerProperties().ioTEdgeAgentInfo();
+    }
+
+    /**
+     * Set the ioTEdgeAgentInfo property: Iot edge agent details to download the agent and bootstrap iot runtime.
+     *
+     * @param ioTEdgeAgentInfo the ioTEdgeAgentInfo value to set.
+     * @return the IoTRole object itself.
+     */
+    public IoTRole withIoTEdgeAgentInfo(IoTEdgeAgentInfo ioTEdgeAgentInfo) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new IoTRoleProperties();
+        }
+        this.innerProperties().withIoTEdgeAgentInfo(ioTEdgeAgentInfo);
+        return this;
+    }
+
+    /**
+     * Get the hostPlatformType property: Platform where the Iot runtime is hosted.
+     *
+     * @return the hostPlatformType value.
+     */
+    public HostPlatformType hostPlatformType() {
+        return this.innerProperties() == null ? null : this.innerProperties().hostPlatformType();
+    }
+
+    /**
+     * Get the computeResource property: Resource allocation.
+     *
+     * @return the computeResource value.
+     */
+    public ComputeResource computeResource() {
+        return this.innerProperties() == null ? null : this.innerProperties().computeResource();
+    }
+
+    /**
+     * Set the computeResource property: Resource allocation.
+     *
+     * @param computeResource the computeResource value to set.
+     * @return the IoTRole object itself.
+     */
+    public IoTRole withComputeResource(ComputeResource computeResource) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new IoTRoleProperties();
+        }
+        this.innerProperties().withComputeResource(computeResource);
+        return this;
+    }
+
+    /**
      * Get the roleStatus property: Role status.
      *
      * @return the roleStatus value.

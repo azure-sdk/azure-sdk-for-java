@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.databoxedge.fluent.models;
 
 import com.azure.core.annotation.Immutable;
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.databoxedge.models.ArmBaseModel;
 import com.azure.resourcemanager.databoxedge.models.NetworkAdapter;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -19,6 +20,12 @@ public final class NetworkSettingsInner extends ArmBaseModel {
     @JsonProperty(value = "properties", access = JsonProperty.Access.WRITE_ONLY)
     private NetworkSettingsProperties innerProperties;
 
+    /*
+     * Metadata pertaining to creation and last modification of NetworkSettings
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
+
     /** Creates an instance of NetworkSettingsInner class. */
     public NetworkSettingsInner() {
     }
@@ -30,6 +37,15 @@ public final class NetworkSettingsInner extends ArmBaseModel {
      */
     private NetworkSettingsProperties innerProperties() {
         return this.innerProperties;
+    }
+
+    /**
+     * Get the systemData property: Metadata pertaining to creation and last modification of NetworkSettings.
+     *
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**
