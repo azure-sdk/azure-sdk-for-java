@@ -26,7 +26,7 @@ public final class HealthDataClassification {
      * The resource scope of the health report
      */
     @JsonProperty(value = "scope")
-    private ScopeName scope;
+    private String scope;
 
     /** Creates an instance of HealthDataClassification class. */
     public HealthDataClassification() {
@@ -77,7 +77,7 @@ public final class HealthDataClassification {
      *
      * @return the scope value.
      */
-    public ScopeName scope() {
+    public String scope() {
         return this.scope;
     }
 
@@ -87,7 +87,7 @@ public final class HealthDataClassification {
      * @param scope the scope value to set.
      * @return the HealthDataClassification object itself.
      */
-    public HealthDataClassification withScope(ScopeName scope) {
+    public HealthDataClassification withScope(String scope) {
         this.scope = scope;
         return this;
     }

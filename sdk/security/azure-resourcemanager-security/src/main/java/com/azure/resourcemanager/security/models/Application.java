@@ -69,11 +69,13 @@ public interface Application {
     /** The entirety of the Application definition. */
     interface Definition extends DefinitionStages.Blank, DefinitionStages.WithCreate {
     }
+
     /** The Application definition stages. */
     interface DefinitionStages {
         /** The first stage of the Application definition. */
         interface Blank extends WithCreate {
         }
+
         /**
          * The stage of the Application definition which contains all the minimum required properties for the resource
          * to be created, but also allows for any other optional properties to be specified.
@@ -98,6 +100,7 @@ public interface Application {
              */
             Application create(Context context);
         }
+
         /** The stage of the Application definition allowing to specify displayName. */
         interface WithDisplayName {
             /**
@@ -108,6 +111,7 @@ public interface Application {
              */
             WithCreate withDisplayName(String displayName);
         }
+
         /** The stage of the Application definition allowing to specify description. */
         interface WithDescription {
             /**
@@ -118,6 +122,7 @@ public interface Application {
              */
             WithCreate withDescription(String description);
         }
+
         /** The stage of the Application definition allowing to specify sourceResourceType. */
         interface WithSourceResourceType {
             /**
@@ -128,6 +133,7 @@ public interface Application {
              */
             WithCreate withSourceResourceType(ApplicationSourceResourceType sourceResourceType);
         }
+
         /** The stage of the Application definition allowing to specify conditionSets. */
         interface WithConditionSets {
             /**
@@ -139,6 +145,7 @@ public interface Application {
             WithCreate withConditionSets(List<Object> conditionSets);
         }
     }
+
     /**
      * Begins update for the Application resource.
      *
@@ -167,6 +174,7 @@ public interface Application {
          */
         Application apply(Context context);
     }
+
     /** The Application update stages. */
     interface UpdateStages {
         /** The stage of the Application update allowing to specify displayName. */
@@ -179,6 +187,7 @@ public interface Application {
              */
             Update withDisplayName(String displayName);
         }
+
         /** The stage of the Application update allowing to specify description. */
         interface WithDescription {
             /**
@@ -189,6 +198,7 @@ public interface Application {
              */
             Update withDescription(String description);
         }
+
         /** The stage of the Application update allowing to specify sourceResourceType. */
         interface WithSourceResourceType {
             /**
@@ -199,6 +209,7 @@ public interface Application {
              */
             Update withSourceResourceType(ApplicationSourceResourceType sourceResourceType);
         }
+
         /** The stage of the Application update allowing to specify conditionSets. */
         interface WithConditionSets {
             /**
@@ -210,6 +221,7 @@ public interface Application {
             Update withConditionSets(List<Object> conditionSets);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *
