@@ -11,7 +11,11 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.polling.SyncPoller;
+import com.azure.resourcemanager.confidentialledger.fluent.models.ManagedCcfBackupResponseInner;
 import com.azure.resourcemanager.confidentialledger.fluent.models.ManagedCcfInner;
+import com.azure.resourcemanager.confidentialledger.fluent.models.ManagedCcfRestoreResponseInner;
+import com.azure.resourcemanager.confidentialledger.models.ManagedCcfBackup;
+import com.azure.resourcemanager.confidentialledger.models.ManagedCcfRestore;
 
 /** An instance of this class provides access to all the operations defined in ManagedCcfsClient. */
 public interface ManagedCcfsClient {
@@ -185,10 +189,10 @@ public interface ManagedCcfsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the {@link SyncPoller} for polling of managed CCF.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginUpdate(
+    SyncPoller<PollResult<ManagedCcfInner>, ManagedCcfInner> beginUpdate(
         String resourceGroupName, String appName, ManagedCcfInner managedCcf);
 
     /**
@@ -203,10 +207,10 @@ public interface ManagedCcfsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the {@link SyncPoller} for polling of managed CCF.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginUpdate(
+    SyncPoller<PollResult<ManagedCcfInner>, ManagedCcfInner> beginUpdate(
         String resourceGroupName, String appName, ManagedCcfInner managedCcf, Context context);
 
     /**
@@ -220,9 +224,10 @@ public interface ManagedCcfsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return managed CCF.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    void update(String resourceGroupName, String appName, ManagedCcfInner managedCcf);
+    ManagedCcfInner update(String resourceGroupName, String appName, ManagedCcfInner managedCcf);
 
     /**
      * Update Managed CCF properties
@@ -236,9 +241,10 @@ public interface ManagedCcfsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return managed CCF.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    void update(String resourceGroupName, String appName, ManagedCcfInner managedCcf, Context context);
+    ManagedCcfInner update(String resourceGroupName, String appName, ManagedCcfInner managedCcf, Context context);
 
     /**
      * Retrieves information about all Managed CCF resources under the given subscription and resource group
@@ -300,4 +306,142 @@ public interface ManagedCcfsClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ManagedCcfInner> list(String filter, Context context);
+
+    /**
+     * Performs the backup operation on a Managed CCF Resource.
+     *
+     * <p>Backs up a Managed CCF Resource.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param appName Name of the Managed CCF.
+     * @param managedCcf Managed CCF Backup Request Body.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of object representing the backup response of a Managed CCF Resource.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<ManagedCcfBackupResponseInner>, ManagedCcfBackupResponseInner> beginBackup(
+        String resourceGroupName, String appName, ManagedCcfBackup managedCcf);
+
+    /**
+     * Performs the backup operation on a Managed CCF Resource.
+     *
+     * <p>Backs up a Managed CCF Resource.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param appName Name of the Managed CCF.
+     * @param managedCcf Managed CCF Backup Request Body.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of object representing the backup response of a Managed CCF Resource.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<ManagedCcfBackupResponseInner>, ManagedCcfBackupResponseInner> beginBackup(
+        String resourceGroupName, String appName, ManagedCcfBackup managedCcf, Context context);
+
+    /**
+     * Performs the backup operation on a Managed CCF Resource.
+     *
+     * <p>Backs up a Managed CCF Resource.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param appName Name of the Managed CCF.
+     * @param managedCcf Managed CCF Backup Request Body.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return object representing the backup response of a Managed CCF Resource.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    ManagedCcfBackupResponseInner backup(String resourceGroupName, String appName, ManagedCcfBackup managedCcf);
+
+    /**
+     * Performs the backup operation on a Managed CCF Resource.
+     *
+     * <p>Backs up a Managed CCF Resource.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param appName Name of the Managed CCF.
+     * @param managedCcf Managed CCF Backup Request Body.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return object representing the backup response of a Managed CCF Resource.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    ManagedCcfBackupResponseInner backup(
+        String resourceGroupName, String appName, ManagedCcfBackup managedCcf, Context context);
+
+    /**
+     * Performs the restore operation to spin up a newly restored Managed CCF Resource.
+     *
+     * <p>Restores a Managed CCF Resource.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param appName Name of the Managed CCF.
+     * @param managedCcf Managed CCF Restore Request Body.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of object representing the restore response of a Managed CCF Resource.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<ManagedCcfRestoreResponseInner>, ManagedCcfRestoreResponseInner> beginRestore(
+        String resourceGroupName, String appName, ManagedCcfRestore managedCcf);
+
+    /**
+     * Performs the restore operation to spin up a newly restored Managed CCF Resource.
+     *
+     * <p>Restores a Managed CCF Resource.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param appName Name of the Managed CCF.
+     * @param managedCcf Managed CCF Restore Request Body.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of object representing the restore response of a Managed CCF Resource.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<ManagedCcfRestoreResponseInner>, ManagedCcfRestoreResponseInner> beginRestore(
+        String resourceGroupName, String appName, ManagedCcfRestore managedCcf, Context context);
+
+    /**
+     * Performs the restore operation to spin up a newly restored Managed CCF Resource.
+     *
+     * <p>Restores a Managed CCF Resource.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param appName Name of the Managed CCF.
+     * @param managedCcf Managed CCF Restore Request Body.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return object representing the restore response of a Managed CCF Resource.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    ManagedCcfRestoreResponseInner restore(String resourceGroupName, String appName, ManagedCcfRestore managedCcf);
+
+    /**
+     * Performs the restore operation to spin up a newly restored Managed CCF Resource.
+     *
+     * <p>Restores a Managed CCF Resource.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param appName Name of the Managed CCF.
+     * @param managedCcf Managed CCF Restore Request Body.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return object representing the restore response of a Managed CCF Resource.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    ManagedCcfRestoreResponseInner restore(
+        String resourceGroupName, String appName, ManagedCcfRestore managedCcf, Context context);
 }
