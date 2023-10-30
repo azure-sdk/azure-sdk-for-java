@@ -46,6 +46,10 @@ public final class FluidRelayServerProperties {
     @JsonProperty(value = "storagesku")
     private StorageSku storagesku;
 
+    /** Creates an instance of FluidRelayServerProperties class. */
+    public FluidRelayServerProperties() {
+    }
+
     /**
      * Get the frsTenantId property: The Fluid tenantId for this server.
      *

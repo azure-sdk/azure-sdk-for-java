@@ -135,11 +135,13 @@ public interface FluidRelayServer {
             DefinitionStages.WithResourceGroup,
             DefinitionStages.WithCreate {
     }
+
     /** The FluidRelayServer definition stages. */
     interface DefinitionStages {
         /** The first stage of the FluidRelayServer definition. */
         interface Blank extends WithLocation {
         }
+
         /** The stage of the FluidRelayServer definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -158,6 +160,7 @@ public interface FluidRelayServer {
              */
             WithResourceGroup withRegion(String location);
         }
+
         /** The stage of the FluidRelayServer definition allowing to specify parent resource. */
         interface WithResourceGroup {
             /**
@@ -168,6 +171,7 @@ public interface FluidRelayServer {
              */
             WithCreate withExistingResourceGroup(String resourceGroup);
         }
+
         /**
          * The stage of the FluidRelayServer definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
@@ -193,6 +197,7 @@ public interface FluidRelayServer {
              */
             FluidRelayServer create(Context context);
         }
+
         /** The stage of the FluidRelayServer definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -203,6 +208,7 @@ public interface FluidRelayServer {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
         /** The stage of the FluidRelayServer definition allowing to specify identity. */
         interface WithIdentity {
             /**
@@ -213,6 +219,7 @@ public interface FluidRelayServer {
              */
             WithCreate withIdentity(Identity identity);
         }
+
         /** The stage of the FluidRelayServer definition allowing to specify provisioningState. */
         interface WithProvisioningState {
             /**
@@ -223,6 +230,7 @@ public interface FluidRelayServer {
              */
             WithCreate withProvisioningState(ProvisioningState provisioningState);
         }
+
         /** The stage of the FluidRelayServer definition allowing to specify encryption. */
         interface WithEncryption {
             /**
@@ -233,6 +241,7 @@ public interface FluidRelayServer {
              */
             WithCreate withEncryption(EncryptionProperties encryption);
         }
+
         /** The stage of the FluidRelayServer definition allowing to specify storagesku. */
         interface WithStoragesku {
             /**
@@ -247,6 +256,7 @@ public interface FluidRelayServer {
             WithCreate withStoragesku(StorageSku storagesku);
         }
     }
+
     /**
      * Begins update for the FluidRelayServer resource.
      *
@@ -271,6 +281,7 @@ public interface FluidRelayServer {
          */
         FluidRelayServer apply(Context context);
     }
+
     /** The FluidRelayServer update stages. */
     interface UpdateStages {
         /** The stage of the FluidRelayServer update allowing to specify tags. */
@@ -283,6 +294,7 @@ public interface FluidRelayServer {
              */
             Update withTags(Map<String, String> tags);
         }
+
         /** The stage of the FluidRelayServer update allowing to specify identity. */
         interface WithIdentity {
             /**
@@ -293,6 +305,7 @@ public interface FluidRelayServer {
              */
             Update withIdentity(Identity identity);
         }
+
         /** The stage of the FluidRelayServer update allowing to specify encryption. */
         interface WithEncryption {
             /**
@@ -304,6 +317,7 @@ public interface FluidRelayServer {
             Update withEncryption(EncryptionProperties encryption);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *
@@ -323,17 +337,6 @@ public interface FluidRelayServer {
      * Regenerate the primary or secondary key for this server.
      *
      * @param parameters The details of which keys to generate.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the set of available keys for this server.
-     */
-    FluidRelayServerKeys regenerateKey(RegenerateKeyRequest parameters);
-
-    /**
-     * Regenerate the primary or secondary key for this server.
-     *
-     * @param parameters The details of which keys to generate.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -343,13 +346,15 @@ public interface FluidRelayServer {
     Response<FluidRelayServerKeys> regenerateKeyWithResponse(RegenerateKeyRequest parameters, Context context);
 
     /**
-     * Get primary and secondary key for this server.
+     * Regenerate the primary or secondary key for this server.
      *
+     * @param parameters The details of which keys to generate.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return primary and secondary key for this server.
+     * @return the set of available keys for this server.
      */
-    FluidRelayServerKeys listKeys();
+    FluidRelayServerKeys regenerateKey(RegenerateKeyRequest parameters);
 
     /**
      * Get primary and secondary key for this server.
@@ -361,4 +366,13 @@ public interface FluidRelayServer {
      * @return primary and secondary key for this server along with {@link Response}.
      */
     Response<FluidRelayServerKeys> listKeysWithResponse(Context context);
+
+    /**
+     * Get primary and secondary key for this server.
+     *
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return primary and secondary key for this server.
+     */
+    FluidRelayServerKeys listKeys();
 }

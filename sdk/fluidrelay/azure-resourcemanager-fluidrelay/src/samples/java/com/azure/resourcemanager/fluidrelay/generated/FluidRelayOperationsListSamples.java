@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.fluidrelay.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for FluidRelayOperations List. */
 public final class FluidRelayOperationsListSamples {
     /*
@@ -17,6 +15,6 @@ public final class FluidRelayOperationsListSamples {
      * @param manager Entry point to FluidRelayManager.
      */
     public static void listFluidRelayServerOperations(com.azure.resourcemanager.fluidrelay.FluidRelayManager manager) {
-        manager.fluidRelayOperations().list(Context.NONE);
+        manager.fluidRelayOperations().list(com.azure.core.util.Context.NONE);
     }
 }

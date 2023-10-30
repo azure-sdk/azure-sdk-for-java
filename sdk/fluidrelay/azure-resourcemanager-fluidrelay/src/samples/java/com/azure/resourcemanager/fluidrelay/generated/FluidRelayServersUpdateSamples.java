@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.fluidrelay.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.fluidrelay.models.FluidRelayServer;
 import java.util.HashMap;
 import java.util.Map;
@@ -23,11 +22,13 @@ public final class FluidRelayServersUpdateSamples {
         FluidRelayServer resource =
             manager
                 .fluidRelayServers()
-                .getByResourceGroupWithResponse("myResourceGroup", "myFluidRelayServer", Context.NONE)
+                .getByResourceGroupWithResponse(
+                    "myResourceGroup", "myFluidRelayServer", com.azure.core.util.Context.NONE)
                 .getValue();
         resource.update().withTags(mapOf("Category", "sales")).apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

@@ -57,11 +57,10 @@ public final class FluidRelayContainersClientImpl implements FluidRelayContainer
      */
     @Host("{$host}")
     @ServiceInterface(name = "FluidRelayManagement")
-    private interface FluidRelayContainersService {
+    public interface FluidRelayContainersService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.FluidRelay"
-                + "/fluidRelayServers/{fluidRelayServerName}/fluidRelayContainers/{fluidRelayContainerName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.FluidRelay/fluidRelayServers/{fluidRelayServerName}/fluidRelayContainers/{fluidRelayContainerName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<FluidRelayContainerInner>> get(
@@ -76,8 +75,7 @@ public final class FluidRelayContainersClientImpl implements FluidRelayContainer
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.FluidRelay"
-                + "/fluidRelayServers/{fluidRelayServerName}/fluidRelayContainers/{fluidRelayContainerName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.FluidRelay/fluidRelayServers/{fluidRelayServerName}/fluidRelayContainers/{fluidRelayContainerName}")
         @ExpectedResponses({200, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Void>> delete(
@@ -92,8 +90,7 @@ public final class FluidRelayContainersClientImpl implements FluidRelayContainer
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.FluidRelay"
-                + "/fluidRelayServers/{fluidRelayServerName}/fluidRelayContainers")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.FluidRelay/fluidRelayServers/{fluidRelayServerName}/fluidRelayContainers")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<FluidRelayContainerList>> listByFluidRelayServers(
@@ -248,23 +245,6 @@ public final class FluidRelayContainersClientImpl implements FluidRelayContainer
      * @param resourceGroup The resource group containing the resource.
      * @param fluidRelayServerName The Fluid Relay server resource name.
      * @param fluidRelayContainerName The Fluid Relay container resource name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Fluid Relay container.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public FluidRelayContainerInner get(
-        String resourceGroup, String fluidRelayServerName, String fluidRelayContainerName) {
-        return getAsync(resourceGroup, fluidRelayServerName, fluidRelayContainerName).block();
-    }
-
-    /**
-     * Get a Fluid Relay container.
-     *
-     * @param resourceGroup The resource group containing the resource.
-     * @param fluidRelayServerName The Fluid Relay server resource name.
-     * @param fluidRelayContainerName The Fluid Relay container resource name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -275,6 +255,23 @@ public final class FluidRelayContainersClientImpl implements FluidRelayContainer
     public Response<FluidRelayContainerInner> getWithResponse(
         String resourceGroup, String fluidRelayServerName, String fluidRelayContainerName, Context context) {
         return getWithResponseAsync(resourceGroup, fluidRelayServerName, fluidRelayContainerName, context).block();
+    }
+
+    /**
+     * Get a Fluid Relay container.
+     *
+     * @param resourceGroup The resource group containing the resource.
+     * @param fluidRelayServerName The Fluid Relay server resource name.
+     * @param fluidRelayContainerName The Fluid Relay container resource name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a Fluid Relay container.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public FluidRelayContainerInner get(
+        String resourceGroup, String fluidRelayServerName, String fluidRelayContainerName) {
+        return getWithResponse(resourceGroup, fluidRelayServerName, fluidRelayContainerName, Context.NONE).getValue();
     }
 
     /**
@@ -408,21 +405,6 @@ public final class FluidRelayContainersClientImpl implements FluidRelayContainer
      * @param resourceGroup The resource group containing the resource.
      * @param fluidRelayServerName The Fluid Relay server resource name.
      * @param fluidRelayContainerName The Fluid Relay container resource name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceGroup, String fluidRelayServerName, String fluidRelayContainerName) {
-        deleteAsync(resourceGroup, fluidRelayServerName, fluidRelayContainerName).block();
-    }
-
-    /**
-     * Delete a Fluid Relay container.
-     *
-     * @param resourceGroup The resource group containing the resource.
-     * @param fluidRelayServerName The Fluid Relay server resource name.
-     * @param fluidRelayContainerName The Fluid Relay container resource name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -433,6 +415,21 @@ public final class FluidRelayContainersClientImpl implements FluidRelayContainer
     public Response<Void> deleteWithResponse(
         String resourceGroup, String fluidRelayServerName, String fluidRelayContainerName, Context context) {
         return deleteWithResponseAsync(resourceGroup, fluidRelayServerName, fluidRelayContainerName, context).block();
+    }
+
+    /**
+     * Delete a Fluid Relay container.
+     *
+     * @param resourceGroup The resource group containing the resource.
+     * @param fluidRelayServerName The Fluid Relay server resource name.
+     * @param fluidRelayContainerName The Fluid Relay container resource name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void delete(String resourceGroup, String fluidRelayServerName, String fluidRelayContainerName) {
+        deleteWithResponse(resourceGroup, fluidRelayServerName, fluidRelayContainerName, Context.NONE);
     }
 
     /**
@@ -620,7 +617,8 @@ public final class FluidRelayContainersClientImpl implements FluidRelayContainer
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -656,7 +654,8 @@ public final class FluidRelayContainersClientImpl implements FluidRelayContainer
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

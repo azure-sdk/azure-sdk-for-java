@@ -96,11 +96,12 @@ public final class FluidRelayServersCreateOrUpdateSamples {
                                     .withIdentityType(CmkIdentityType.USER_ASSIGNED)
                                     .withUserAssignedIdentityResourceId(
                                         "/subscriptions/xxxx-xxxx-xxxx-xxxx/resourceGroups/myResourceGroup/providers/Microsoft.ManagedIdentity/userAssignedIdentities/identityForCMK"))
-                            .withKeyEncryptionKeyUrl("https://contosovault.vault.azure.net/keys/contosokek")))
+                            .withKeyEncryptionKeyUrl("fakeTokenPlaceholder")))
             .withStoragesku(StorageSku.BASIC)
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
