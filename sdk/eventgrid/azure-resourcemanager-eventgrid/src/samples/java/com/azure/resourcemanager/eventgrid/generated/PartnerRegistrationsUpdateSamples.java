@@ -25,9 +25,10 @@ public final class PartnerRegistrationsUpdateSamples {
                 .getByResourceGroupWithResponse(
                     "examplerg", "examplePartnerRegistrationName1", com.azure.core.util.Context.NONE)
                 .getValue();
-        resource.update().withTags(mapOf("NewKey", "NewValue")).apply();
+        resource.update().withTags(mapOf("NewKey", "fakeTokenPlaceholder")).apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
