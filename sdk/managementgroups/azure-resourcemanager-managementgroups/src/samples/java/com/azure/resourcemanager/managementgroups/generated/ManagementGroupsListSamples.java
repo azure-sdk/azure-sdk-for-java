@@ -7,7 +7,7 @@ package com.azure.resourcemanager.managementgroups.generated;
 /** Samples for ManagementGroups List. */
 public final class ManagementGroupsListSamples {
     /*
-     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2021-04-01/examples/ListManagementGroups.json
+     * x-ms-original-file: specification/managementgroups/resource-manager/Microsoft.Management/stable/2023-04-01/examples/ListManagementGroups.json
      */
     /**
      * Sample code: ListManagementGroups.
