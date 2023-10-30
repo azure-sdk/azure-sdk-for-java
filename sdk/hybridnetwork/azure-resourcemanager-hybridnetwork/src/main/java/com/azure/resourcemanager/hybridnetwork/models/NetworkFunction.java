@@ -5,11 +5,9 @@
 package com.azure.resourcemanager.hybridnetwork.models;
 
 import com.azure.core.management.Region;
-import com.azure.core.management.SubResource;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.hybridnetwork.fluent.models.NetworkFunctionInner;
-import java.util.List;
 import java.util.Map;
 
 /** An immutable client-side representation of NetworkFunction. */
@@ -50,6 +48,13 @@ public interface NetworkFunction {
     Map<String, String> tags();
 
     /**
+     * Gets the properties property: Network function properties.
+     *
+     * @return the properties value.
+     */
+    NetworkFunctionPropertiesFormat properties();
+
+    /**
      * Gets the etag property: A unique read-only string that changes whenever the resource is updated.
      *
      * @return the etag value.
@@ -57,89 +62,18 @@ public interface NetworkFunction {
     String etag();
 
     /**
-     * Gets the systemData property: The system meta data relating to this resource.
+     * Gets the identity property: The managed identity of the network function.
+     *
+     * @return the identity value.
+     */
+    ManagedServiceIdentity identity();
+
+    /**
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      *
      * @return the systemData value.
      */
     SystemData systemData();
-
-    /**
-     * Gets the provisioningState property: The provisioning state of the network function resource.
-     *
-     * @return the provisioningState value.
-     */
-    ProvisioningState provisioningState();
-
-    /**
-     * Gets the device property: The reference to the device resource. Once set, it cannot be updated.
-     *
-     * @return the device value.
-     */
-    SubResource device();
-
-    /**
-     * Gets the skuName property: The sku name for the network function. Once set, it cannot be updated.
-     *
-     * @return the skuName value.
-     */
-    String skuName();
-
-    /**
-     * Gets the skuType property: The sku type for the network function.
-     *
-     * @return the skuType value.
-     */
-    SkuType skuType();
-
-    /**
-     * Gets the vendorName property: The vendor name for the network function. Once set, it cannot be updated.
-     *
-     * @return the vendorName value.
-     */
-    String vendorName();
-
-    /**
-     * Gets the serviceKey property: The service key for the network function resource.
-     *
-     * @return the serviceKey value.
-     */
-    String serviceKey();
-
-    /**
-     * Gets the vendorProvisioningState property: The vendor provisioning state for the network function resource.
-     *
-     * @return the vendorProvisioningState value.
-     */
-    VendorProvisioningState vendorProvisioningState();
-
-    /**
-     * Gets the managedApplication property: The resource URI of the managed application.
-     *
-     * @return the managedApplication value.
-     */
-    SubResource managedApplication();
-
-    /**
-     * Gets the managedApplicationParameters property: The parameters for the managed application.
-     *
-     * @return the managedApplicationParameters value.
-     */
-    Object managedApplicationParameters();
-
-    /**
-     * Gets the networkFunctionContainerConfigurations property: The network function container configurations from the
-     * user.
-     *
-     * @return the networkFunctionContainerConfigurations value.
-     */
-    Object networkFunctionContainerConfigurations();
-
-    /**
-     * Gets the networkFunctionUserConfigurations property: The network function configurations from the user.
-     *
-     * @return the networkFunctionUserConfigurations value.
-     */
-    List<NetworkFunctionUserConfiguration> networkFunctionUserConfigurations();
 
     /**
      * Gets the region of the resource.
@@ -176,11 +110,13 @@ public interface NetworkFunction {
             DefinitionStages.WithResourceGroup,
             DefinitionStages.WithCreate {
     }
+
     /** The NetworkFunction definition stages. */
     interface DefinitionStages {
         /** The first stage of the NetworkFunction definition. */
         interface Blank extends WithLocation {
         }
+
         /** The stage of the NetworkFunction definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -199,6 +135,7 @@ public interface NetworkFunction {
              */
             WithResourceGroup withRegion(String location);
         }
+
         /** The stage of the NetworkFunction definition allowing to specify parent resource. */
         interface WithResourceGroup {
             /**
@@ -209,19 +146,16 @@ public interface NetworkFunction {
              */
             WithCreate withExistingResourceGroup(String resourceGroupName);
         }
+
         /**
          * The stage of the NetworkFunction definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
          */
         interface WithCreate
             extends DefinitionStages.WithTags,
+                DefinitionStages.WithProperties,
                 DefinitionStages.WithEtag,
-                DefinitionStages.WithDevice,
-                DefinitionStages.WithSkuName,
-                DefinitionStages.WithVendorName,
-                DefinitionStages.WithManagedApplicationParameters,
-                DefinitionStages.WithNetworkFunctionContainerConfigurations,
-                DefinitionStages.WithNetworkFunctionUserConfigurations {
+                DefinitionStages.WithIdentity {
             /**
              * Executes the create request.
              *
@@ -237,6 +171,7 @@ public interface NetworkFunction {
              */
             NetworkFunction create(Context context);
         }
+
         /** The stage of the NetworkFunction definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -247,6 +182,18 @@ public interface NetworkFunction {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
+        /** The stage of the NetworkFunction definition allowing to specify properties. */
+        interface WithProperties {
+            /**
+             * Specifies the properties property: Network function properties..
+             *
+             * @param properties Network function properties.
+             * @return the next definition stage.
+             */
+            WithCreate withProperties(NetworkFunctionPropertiesFormat properties);
+        }
+
         /** The stage of the NetworkFunction definition allowing to specify etag. */
         interface WithEtag {
             /**
@@ -257,72 +204,19 @@ public interface NetworkFunction {
              */
             WithCreate withEtag(String etag);
         }
-        /** The stage of the NetworkFunction definition allowing to specify device. */
-        interface WithDevice {
+
+        /** The stage of the NetworkFunction definition allowing to specify identity. */
+        interface WithIdentity {
             /**
-             * Specifies the device property: The reference to the device resource. Once set, it cannot be updated..
+             * Specifies the identity property: The managed identity of the network function..
              *
-             * @param device The reference to the device resource. Once set, it cannot be updated.
+             * @param identity The managed identity of the network function.
              * @return the next definition stage.
              */
-            WithCreate withDevice(SubResource device);
-        }
-        /** The stage of the NetworkFunction definition allowing to specify skuName. */
-        interface WithSkuName {
-            /**
-             * Specifies the skuName property: The sku name for the network function. Once set, it cannot be updated..
-             *
-             * @param skuName The sku name for the network function. Once set, it cannot be updated.
-             * @return the next definition stage.
-             */
-            WithCreate withSkuName(String skuName);
-        }
-        /** The stage of the NetworkFunction definition allowing to specify vendorName. */
-        interface WithVendorName {
-            /**
-             * Specifies the vendorName property: The vendor name for the network function. Once set, it cannot be
-             * updated..
-             *
-             * @param vendorName The vendor name for the network function. Once set, it cannot be updated.
-             * @return the next definition stage.
-             */
-            WithCreate withVendorName(String vendorName);
-        }
-        /** The stage of the NetworkFunction definition allowing to specify managedApplicationParameters. */
-        interface WithManagedApplicationParameters {
-            /**
-             * Specifies the managedApplicationParameters property: The parameters for the managed application..
-             *
-             * @param managedApplicationParameters The parameters for the managed application.
-             * @return the next definition stage.
-             */
-            WithCreate withManagedApplicationParameters(Object managedApplicationParameters);
-        }
-        /** The stage of the NetworkFunction definition allowing to specify networkFunctionContainerConfigurations. */
-        interface WithNetworkFunctionContainerConfigurations {
-            /**
-             * Specifies the networkFunctionContainerConfigurations property: The network function container
-             * configurations from the user..
-             *
-             * @param networkFunctionContainerConfigurations The network function container configurations from the
-             *     user.
-             * @return the next definition stage.
-             */
-            WithCreate withNetworkFunctionContainerConfigurations(Object networkFunctionContainerConfigurations);
-        }
-        /** The stage of the NetworkFunction definition allowing to specify networkFunctionUserConfigurations. */
-        interface WithNetworkFunctionUserConfigurations {
-            /**
-             * Specifies the networkFunctionUserConfigurations property: The network function configurations from the
-             * user..
-             *
-             * @param networkFunctionUserConfigurations The network function configurations from the user.
-             * @return the next definition stage.
-             */
-            WithCreate withNetworkFunctionUserConfigurations(
-                List<NetworkFunctionUserConfiguration> networkFunctionUserConfigurations);
+            WithCreate withIdentity(ManagedServiceIdentity identity);
         }
     }
+
     /**
      * Begins update for the NetworkFunction resource.
      *
@@ -347,6 +241,7 @@ public interface NetworkFunction {
          */
         NetworkFunction apply(Context context);
     }
+
     /** The NetworkFunction update stages. */
     interface UpdateStages {
         /** The stage of the NetworkFunction update allowing to specify tags. */
@@ -360,6 +255,7 @@ public interface NetworkFunction {
             Update withTags(Map<String, String> tags);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *
@@ -374,4 +270,25 @@ public interface NetworkFunction {
      * @return the refreshed resource.
      */
     NetworkFunction refresh(Context context);
+
+    /**
+     * Execute a request to services on a containerized network function.
+     *
+     * @param parameters Payload for execute request post call.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void executeRequest(ExecuteRequestParameters parameters);
+
+    /**
+     * Execute a request to services on a containerized network function.
+     *
+     * @param parameters Payload for execute request post call.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void executeRequest(ExecuteRequestParameters parameters, Context context);
 }
