@@ -12,7 +12,7 @@ import java.util.Map;
 /** Samples for ResourceProvider Mitigate. */
 public final class ResourceProviderMitigateSamples {
     /*
-     * x-ms-original-file: specification/databox/resource-manager/Microsoft.DataBox/stable/2022-12-01/examples/JobMitigate.json
+     * x-ms-original-file: specification/databox/resource-manager/Microsoft.DataBox/stable/2023-03-01/examples/JobMitigate.json
      */
     /**
      * Sample code: Mitigate.
@@ -35,6 +35,7 @@ public final class ResourceProviderMitigateSamples {
                 com.azure.core.util.Context.NONE);
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

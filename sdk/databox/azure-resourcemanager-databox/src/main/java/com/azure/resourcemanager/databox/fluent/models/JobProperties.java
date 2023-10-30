@@ -69,6 +69,12 @@ public final class JobProperties {
     private StageName status;
 
     /*
+     * Name of the stage where delay might be present.
+     */
+    @JsonProperty(value = "delayedStage", access = JsonProperty.Access.WRITE_ONLY)
+    private StageName delayedStage;
+
+    /*
      * Time at which the job was started in UTC ISO 8601 format.
      */
     @JsonProperty(value = "startTime", access = JsonProperty.Access.WRITE_ONLY)
@@ -195,6 +201,15 @@ public final class JobProperties {
      */
     public StageName status() {
         return this.status;
+    }
+
+    /**
+     * Get the delayedStage property: Name of the stage where delay might be present.
+     *
+     * @return the delayedStage value.
+     */
+    public StageName delayedStage() {
+        return this.delayedStage;
     }
 
     /**
