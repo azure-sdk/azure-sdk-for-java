@@ -111,7 +111,6 @@ public final class ReplicasClientImpl implements ReplicasClient {
         if (serverName == null) {
             return Mono.error(new IllegalArgumentException("Parameter serverName is required and cannot be null."));
         }
-        final String apiVersion = "2022-09-30-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -119,7 +118,7 @@ public final class ReplicasClientImpl implements ReplicasClient {
                     service
                         .listByServer(
                             this.client.getEndpoint(),
-                            apiVersion,
+                            this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             serverName,
@@ -170,13 +169,12 @@ public final class ReplicasClientImpl implements ReplicasClient {
         if (serverName == null) {
             return Mono.error(new IllegalArgumentException("Parameter serverName is required and cannot be null."));
         }
-        final String apiVersion = "2022-09-30-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listByServer(
                 this.client.getEndpoint(),
-                apiVersion,
+                this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 serverName,
