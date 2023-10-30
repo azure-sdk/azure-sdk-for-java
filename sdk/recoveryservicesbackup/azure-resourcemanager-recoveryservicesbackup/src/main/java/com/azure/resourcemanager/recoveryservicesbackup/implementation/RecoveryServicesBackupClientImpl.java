@@ -42,6 +42,8 @@ import com.azure.resourcemanager.recoveryservicesbackup.fluent.BmsPrepareDataMov
 import com.azure.resourcemanager.recoveryservicesbackup.fluent.DeletedProtectionContainersClient;
 import com.azure.resourcemanager.recoveryservicesbackup.fluent.ExportJobsOperationResultsClient;
 import com.azure.resourcemanager.recoveryservicesbackup.fluent.FeatureSupportsClient;
+import com.azure.resourcemanager.recoveryservicesbackup.fluent.FetchTieringCostsClient;
+import com.azure.resourcemanager.recoveryservicesbackup.fluent.GetTieringCostOperationResultsClient;
 import com.azure.resourcemanager.recoveryservicesbackup.fluent.ItemLevelRecoveryConnectionsClient;
 import com.azure.resourcemanager.recoveryservicesbackup.fluent.JobCancellationsClient;
 import com.azure.resourcemanager.recoveryservicesbackup.fluent.JobDetailsClient;
@@ -70,6 +72,7 @@ import com.azure.resourcemanager.recoveryservicesbackup.fluent.ResourceGuardProx
 import com.azure.resourcemanager.recoveryservicesbackup.fluent.ResourceProvidersClient;
 import com.azure.resourcemanager.recoveryservicesbackup.fluent.RestoresClient;
 import com.azure.resourcemanager.recoveryservicesbackup.fluent.SecurityPINsClient;
+import com.azure.resourcemanager.recoveryservicesbackup.fluent.TieringCostOperationStatusClient;
 import com.azure.resourcemanager.recoveryservicesbackup.fluent.ValidateOperationResultsClient;
 import com.azure.resourcemanager.recoveryservicesbackup.fluent.ValidateOperationStatusesClient;
 import com.azure.resourcemanager.recoveryservicesbackup.fluent.ValidateOperationsClient;
@@ -757,6 +760,42 @@ public final class RecoveryServicesBackupClientImpl implements RecoveryServicesB
         return this.resourceGuardProxyOperations;
     }
 
+    /** The FetchTieringCostsClient object to access its operations. */
+    private final FetchTieringCostsClient fetchTieringCosts;
+
+    /**
+     * Gets the FetchTieringCostsClient object to access its operations.
+     *
+     * @return the FetchTieringCostsClient object.
+     */
+    public FetchTieringCostsClient getFetchTieringCosts() {
+        return this.fetchTieringCosts;
+    }
+
+    /** The GetTieringCostOperationResultsClient object to access its operations. */
+    private final GetTieringCostOperationResultsClient getTieringCostOperationResults;
+
+    /**
+     * Gets the GetTieringCostOperationResultsClient object to access its operations.
+     *
+     * @return the GetTieringCostOperationResultsClient object.
+     */
+    public GetTieringCostOperationResultsClient getGetTieringCostOperationResults() {
+        return this.getTieringCostOperationResults;
+    }
+
+    /** The TieringCostOperationStatusClient object to access its operations. */
+    private final TieringCostOperationStatusClient tieringCostOperationStatus;
+
+    /**
+     * Gets the TieringCostOperationStatusClient object to access its operations.
+     *
+     * @return the TieringCostOperationStatusClient object.
+     */
+    public TieringCostOperationStatusClient getTieringCostOperationStatus() {
+        return this.tieringCostOperationStatus;
+    }
+
     /**
      * Initializes an instance of RecoveryServicesBackupClient client.
      *
@@ -779,7 +818,7 @@ public final class RecoveryServicesBackupClientImpl implements RecoveryServicesB
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2023-04-01";
+        this.apiVersion = "2023-06-01";
         this.backupResourceStorageConfigsNonCrrs = new BackupResourceStorageConfigsNonCrrsClientImpl(this);
         this.protectionIntents = new ProtectionIntentsClientImpl(this);
         this.backupStatus = new BackupStatusClientImpl(this);
@@ -831,6 +870,9 @@ public final class RecoveryServicesBackupClientImpl implements RecoveryServicesB
         this.recoveryPointsRecommendedForMoves = new RecoveryPointsRecommendedForMovesClientImpl(this);
         this.resourceGuardProxies = new ResourceGuardProxiesClientImpl(this);
         this.resourceGuardProxyOperations = new ResourceGuardProxyOperationsClientImpl(this);
+        this.fetchTieringCosts = new FetchTieringCostsClientImpl(this);
+        this.getTieringCostOperationResults = new GetTieringCostOperationResultsClientImpl(this);
+        this.tieringCostOperationStatus = new TieringCostOperationStatusClientImpl(this);
     }
 
     /**
