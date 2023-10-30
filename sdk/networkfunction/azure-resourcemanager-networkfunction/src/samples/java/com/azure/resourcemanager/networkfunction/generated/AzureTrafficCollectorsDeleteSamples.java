@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.networkfunction.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for AzureTrafficCollectors Delete. */
 public final class AzureTrafficCollectorsDeleteSamples {
     /*
@@ -18,6 +16,6 @@ public final class AzureTrafficCollectorsDeleteSamples {
      */
     public static void deleteTrafficCollector(
         com.azure.resourcemanager.networkfunction.AzureTrafficCollectorManager manager) {
-        manager.azureTrafficCollectors().delete("rg1", "atc", Context.NONE);
+        manager.azureTrafficCollectors().delete("rg1", "atc", com.azure.core.util.Context.NONE);
     }
 }
