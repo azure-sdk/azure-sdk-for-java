@@ -25,6 +25,10 @@ public final class BookmarkList {
     @JsonProperty(value = "value", required = true)
     private List<BookmarkInner> value;
 
+    /** Creates an instance of BookmarkList class. */
+    public BookmarkList() {
+    }
+
     /**
      * Get the nextLink property: URL to fetch the next set of bookmarks.
      *

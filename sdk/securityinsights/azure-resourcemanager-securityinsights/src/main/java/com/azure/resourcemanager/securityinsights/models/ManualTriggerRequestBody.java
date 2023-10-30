@@ -24,6 +24,10 @@ public final class ManualTriggerRequestBody {
     @JsonProperty(value = "logicAppsResourceId", required = true)
     private String logicAppsResourceId;
 
+    /** Creates an instance of ManualTriggerRequestBody class. */
+    public ManualTriggerRequestBody() {
+    }
+
     /**
      * Get the tenantId property: The tenantId property.
      *

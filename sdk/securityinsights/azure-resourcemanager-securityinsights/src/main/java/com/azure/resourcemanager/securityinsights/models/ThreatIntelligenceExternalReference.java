@@ -43,6 +43,10 @@ public final class ThreatIntelligenceExternalReference {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> hashes;
 
+    /** Creates an instance of ThreatIntelligenceExternalReference class. */
+    public ThreatIntelligenceExternalReference() {
+    }
+
     /**
      * Get the description property: External reference description.
      *

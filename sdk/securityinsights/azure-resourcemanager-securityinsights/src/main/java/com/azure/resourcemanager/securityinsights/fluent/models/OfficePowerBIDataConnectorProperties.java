@@ -19,6 +19,10 @@ public final class OfficePowerBIDataConnectorProperties extends DataConnectorTen
     @JsonProperty(value = "dataTypes", required = true)
     private OfficePowerBIConnectorDataTypes dataTypes;
 
+    /** Creates an instance of OfficePowerBIDataConnectorProperties class. */
+    public OfficePowerBIDataConnectorProperties() {
+    }
+
     /**
      * Get the dataTypes property: The available data types for the connector.
      *

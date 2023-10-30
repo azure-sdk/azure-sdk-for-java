@@ -63,21 +63,6 @@ public interface IncidentRelationsClient {
      * @param workspaceName The name of the workspace.
      * @param incidentId Incident ID.
      * @param relationName Relation Name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an incident relation.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    RelationInner get(String resourceGroupName, String workspaceName, String incidentId, String relationName);
-
-    /**
-     * Gets an incident relation.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param incidentId Incident ID.
-     * @param relationName Relation Name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -89,21 +74,19 @@ public interface IncidentRelationsClient {
         String resourceGroupName, String workspaceName, String incidentId, String relationName, Context context);
 
     /**
-     * Creates or updates the incident relation.
+     * Gets an incident relation.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param incidentId Incident ID.
      * @param relationName Relation Name.
-     * @param relation The relation model.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a relation between two resources.
+     * @return an incident relation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    RelationInner createOrUpdate(
-        String resourceGroupName, String workspaceName, String incidentId, String relationName, RelationInner relation);
+    RelationInner get(String resourceGroupName, String workspaceName, String incidentId, String relationName);
 
     /**
      * Creates or updates the incident relation.
@@ -129,18 +112,21 @@ public interface IncidentRelationsClient {
         Context context);
 
     /**
-     * Delete the incident relation.
+     * Creates or updates the incident relation.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param incidentId Incident ID.
      * @param relationName Relation Name.
+     * @param relation The relation model.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return represents a relation between two resources.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    void delete(String resourceGroupName, String workspaceName, String incidentId, String relationName);
+    RelationInner createOrUpdate(
+        String resourceGroupName, String workspaceName, String incidentId, String relationName, RelationInner relation);
 
     /**
      * Delete the incident relation.
@@ -158,4 +144,18 @@ public interface IncidentRelationsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deleteWithResponse(
         String resourceGroupName, String workspaceName, String incidentId, String relationName, Context context);
+
+    /**
+     * Delete the incident relation.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param incidentId Incident ID.
+     * @param relationName Relation Name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    void delete(String resourceGroupName, String workspaceName, String incidentId, String relationName);
 }

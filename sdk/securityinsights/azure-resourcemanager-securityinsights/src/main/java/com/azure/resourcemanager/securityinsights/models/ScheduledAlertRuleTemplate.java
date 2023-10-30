@@ -26,6 +26,10 @@ public final class ScheduledAlertRuleTemplate extends AlertRuleTemplateInner {
     @JsonProperty(value = "properties")
     private ScheduledAlertRuleTemplateProperties innerProperties;
 
+    /** Creates an instance of ScheduledAlertRuleTemplate class. */
+    public ScheduledAlertRuleTemplate() {
+    }
+
     /**
      * Get the innerProperties property: Scheduled alert rule template properties.
      *
@@ -467,6 +471,30 @@ public final class ScheduledAlertRuleTemplate extends AlertRuleTemplateInner {
             this.innerProperties = new ScheduledAlertRuleTemplateProperties();
         }
         this.innerProperties().withAlertDetailsOverride(alertDetailsOverride);
+        return this;
+    }
+
+    /**
+     * Get the sentinelEntitiesMappings property: Array of the sentinel entity mappings of the alert rule.
+     *
+     * @return the sentinelEntitiesMappings value.
+     */
+    public List<SentinelEntityMapping> sentinelEntitiesMappings() {
+        return this.innerProperties() == null ? null : this.innerProperties().sentinelEntitiesMappings();
+    }
+
+    /**
+     * Set the sentinelEntitiesMappings property: Array of the sentinel entity mappings of the alert rule.
+     *
+     * @param sentinelEntitiesMappings the sentinelEntitiesMappings value to set.
+     * @return the ScheduledAlertRuleTemplate object itself.
+     */
+    public ScheduledAlertRuleTemplate withSentinelEntitiesMappings(
+        List<SentinelEntityMapping> sentinelEntitiesMappings) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ScheduledAlertRuleTemplateProperties();
+        }
+        this.innerProperties().withSentinelEntitiesMappings(sentinelEntitiesMappings);
         return this;
     }
 

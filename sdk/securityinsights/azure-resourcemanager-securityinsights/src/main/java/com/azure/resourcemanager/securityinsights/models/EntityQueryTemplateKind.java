@@ -14,6 +14,15 @@ public final class EntityQueryTemplateKind extends ExpandableStringEnum<EntityQu
     public static final EntityQueryTemplateKind ACTIVITY = fromString("Activity");
 
     /**
+     * Creates a new instance of EntityQueryTemplateKind value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public EntityQueryTemplateKind() {
+    }
+
+    /**
      * Creates or finds a EntityQueryTemplateKind from its string representation.
      *
      * @param name a name to look for.

@@ -26,6 +26,15 @@ public final class ConfidenceScoreStatus extends ExpandableStringEnum<Confidence
     public static final ConfidenceScoreStatus FINAL = fromString("Final");
 
     /**
+     * Creates a new instance of ConfidenceScoreStatus value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public ConfidenceScoreStatus() {
+    }
+
+    /**
      * Creates or finds a ConfidenceScoreStatus from its string representation.
      *
      * @param name a name to look for.

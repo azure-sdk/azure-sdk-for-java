@@ -36,6 +36,10 @@ public final class CodelessConnectorPollingResponseProperties {
     @JsonProperty(value = "isGzipCompressed")
     private Boolean isGzipCompressed;
 
+    /** Creates an instance of CodelessConnectorPollingResponseProperties class. */
+    public CodelessConnectorPollingResponseProperties() {
+    }
+
     /**
      * Get the eventsJsonPaths property: Describes the path we should extract the data in the response.
      *

@@ -23,6 +23,10 @@ public final class ExpansionEntityQuery extends EntityQueryInner {
     @JsonProperty(value = "properties")
     private ExpansionEntityQueriesProperties innerProperties;
 
+    /** Creates an instance of ExpansionEntityQuery class. */
+    public ExpansionEntityQuery() {
+    }
+
     /**
      * Get the innerProperties property: Expansion entity query properties.
      *

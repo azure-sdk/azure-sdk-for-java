@@ -17,6 +17,10 @@ public class DataConnectorDataTypeCommon {
     @JsonProperty(value = "state", required = true)
     private DataTypeState state;
 
+    /** Creates an instance of DataConnectorDataTypeCommon class. */
+    public DataConnectorDataTypeCommon() {
+    }
+
     /**
      * Get the state property: Describe whether this data type connection is enabled or not.
      *

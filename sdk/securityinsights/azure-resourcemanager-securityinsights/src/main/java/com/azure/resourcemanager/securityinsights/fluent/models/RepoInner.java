@@ -29,6 +29,10 @@ public final class RepoInner {
     @JsonProperty(value = "branches")
     private List<String> branches;
 
+    /** Creates an instance of RepoInner class. */
+    public RepoInner() {
+    }
+
     /**
      * Get the url property: The url to access the repository.
      *

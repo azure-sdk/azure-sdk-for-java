@@ -29,6 +29,10 @@ public final class UserInfo {
     @JsonProperty(value = "objectId")
     private UUID objectId;
 
+    /** Creates an instance of UserInfo class. */
+    public UserInfo() {
+    }
+
     /**
      * Get the email property: The email of the user.
      *

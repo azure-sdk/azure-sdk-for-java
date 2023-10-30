@@ -22,6 +22,10 @@ public final class EntityFieldMapping {
     @JsonProperty(value = "value")
     private String value;
 
+    /** Creates an instance of EntityFieldMapping class. */
+    public EntityFieldMapping() {
+    }
+
     /**
      * Get the identifier property: Alert V3 identifier.
      *
