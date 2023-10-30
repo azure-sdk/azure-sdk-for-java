@@ -22,7 +22,7 @@ public final class ServiceInner extends Resource {
     private ServiceProperties innerProperties;
 
     /*
-     * The identity of the service.
+     * Managed service identity (system assigned and/or user assigned identities)
      */
     @JsonProperty(value = "identity")
     private ManagedServiceIdentity identity;
@@ -47,7 +47,7 @@ public final class ServiceInner extends Resource {
     }
 
     /**
-     * Get the identity property: The identity of the service.
+     * Get the identity property: Managed service identity (system assigned and/or user assigned identities).
      *
      * @return the identity value.
      */
@@ -56,7 +56,7 @@ public final class ServiceInner extends Resource {
     }
 
     /**
-     * Set the identity property: The identity of the service.
+     * Set the identity property: Managed service identity (system assigned and/or user assigned identities).
      *
      * @param identity the identity value to set.
      * @return the ServiceInner object itself.
@@ -90,7 +90,7 @@ public final class ServiceInner extends Resource {
     }
 
     /**
-     * Get the provisioningState property: The status of the last operation.
+     * Get the provisioningState property: Provisioning state of the service.
      *
      * @return the provisioningState value.
      */

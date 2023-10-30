@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Immutable
 public final class ServiceProperties {
     /*
-     * The status of the last operation.
+     * Provisioning state of the service.
      */
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ProvisioningState provisioningState;
@@ -22,7 +22,7 @@ public final class ServiceProperties {
     }
 
     /**
-     * Get the provisioningState property: The status of the last operation.
+     * Get the provisioningState property: Provisioning state of the service.
      *
      * @return the provisioningState value.
      */
