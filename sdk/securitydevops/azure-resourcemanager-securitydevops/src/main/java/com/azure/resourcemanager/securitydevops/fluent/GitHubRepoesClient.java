@@ -199,7 +199,7 @@ public interface GitHubRepoesClient {
         Context context);
 
     /**
-     * Patch a monitored GitHub repository.
+     * Update a monitored GitHub repository.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param gitHubConnectorName Name of the GitHub Connector.
@@ -215,7 +215,7 @@ public interface GitHubRepoesClient {
         String resourceGroupName, String gitHubConnectorName, String gitHubOwnerName, String gitHubRepoName);
 
     /**
-     * Patch a monitored GitHub repository.
+     * Update a monitored GitHub repository.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param gitHubConnectorName Name of the GitHub Connector.
@@ -238,7 +238,7 @@ public interface GitHubRepoesClient {
         Context context);
 
     /**
-     * Patch a monitored GitHub repository.
+     * Update a monitored GitHub repository.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param gitHubConnectorName Name of the GitHub Connector.
@@ -254,7 +254,7 @@ public interface GitHubRepoesClient {
         String resourceGroupName, String gitHubConnectorName, String gitHubOwnerName, String gitHubRepoName);
 
     /**
-     * Patch a monitored GitHub repository.
+     * Update a monitored GitHub repository.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param gitHubConnectorName Name of the GitHub Connector.

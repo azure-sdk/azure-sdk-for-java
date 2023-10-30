@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.securitydevops.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.securitydevops.models.AutoDiscovery;
 import com.azure.resourcemanager.securitydevops.models.AzureDevOpsOrg;
 import com.azure.resourcemanager.securitydevops.models.AzureDevOpsOrgProperties;
@@ -21,7 +20,10 @@ public final class AzureDevOpsOrgUpdateSamples {
      */
     public static void azureDevOpsOrgUpdate(com.azure.resourcemanager.securitydevops.SecurityDevOpsManager manager) {
         AzureDevOpsOrg resource =
-            manager.azureDevOpsOrgs().getWithResponse("westusrg", "testconnector", "myOrg", Context.NONE).getValue();
+            manager
+                .azureDevOpsOrgs()
+                .getWithResponse("westusrg", "testconnector", "myOrg", com.azure.core.util.Context.NONE)
+                .getValue();
         resource
             .update()
             .withProperties(new AzureDevOpsOrgProperties().withAutoDiscovery(AutoDiscovery.DISABLED))

@@ -29,8 +29,6 @@ public final class AzureDevOpsRepoCreateOrUpdateSamples {
             .withExistingProject("westusrg", "testconnector", "myOrg", "myProject")
             .withProperties(
                 new AzureDevOpsRepoProperties()
-                    .withRepoId("00000000-0000-0000-0000-000000000000")
-                    .withRepoUrl("https://dev.azure.com/myOrg/myProject/_git/myRepo")
                     .withActionableRemediation(
                         new ActionableRemediation()
                             .withState(ActionableRemediationState.ENABLED)

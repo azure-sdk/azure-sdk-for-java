@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.securitydevops.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for GitHubRepo Get. */
 public final class GitHubRepoGetSamples {
     /*
@@ -17,6 +15,8 @@ public final class GitHubRepoGetSamples {
      * @param manager Entry point to SecurityDevOpsManager.
      */
     public static void gitHubRepoGet(com.azure.resourcemanager.securitydevops.SecurityDevOpsManager manager) {
-        manager.gitHubRepoes().getWithResponse("westusrg", "testconnector", "Azure", "39093389", Context.NONE);
+        manager
+            .gitHubRepoes()
+            .getWithResponse("westusrg", "testconnector", "Azure", "39093389", com.azure.core.util.Context.NONE);
     }
 }

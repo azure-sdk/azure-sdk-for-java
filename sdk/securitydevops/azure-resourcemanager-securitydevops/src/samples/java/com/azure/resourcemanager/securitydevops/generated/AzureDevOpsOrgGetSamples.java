@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.securitydevops.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for AzureDevOpsOrg Get. */
 public final class AzureDevOpsOrgGetSamples {
     /*
@@ -17,6 +15,8 @@ public final class AzureDevOpsOrgGetSamples {
      * @param manager Entry point to SecurityDevOpsManager.
      */
     public static void azureDevOpsOrgGet(com.azure.resourcemanager.securitydevops.SecurityDevOpsManager manager) {
-        manager.azureDevOpsOrgs().getWithResponse("westusrg", "testconnector", "myOrg", Context.NONE);
+        manager
+            .azureDevOpsOrgs()
+            .getWithResponse("westusrg", "testconnector", "myOrg", com.azure.core.util.Context.NONE);
     }
 }
