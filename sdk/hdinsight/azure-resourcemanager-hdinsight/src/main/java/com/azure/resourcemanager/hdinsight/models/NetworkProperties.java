@@ -11,6 +11,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class NetworkProperties {
     /*
+     * A value to describe how the outbound dependencies of a HDInsight cluster are managed. 'Managed' means that the
+     * outbound dependencies are managed by the HDInsight service. 'External' means that the outbound dependencies are
+     * managed by a customer specific solution.
+     */
+    @JsonProperty(value = "outboundDependenciesManagedType")
+    private OutboundDependenciesManagedType outboundDependenciesManagedType;
+
+    /*
      * The direction for the resource provider connection.
      */
     @JsonProperty(value = "resourceProviderConnection")
@@ -24,6 +32,31 @@ public final class NetworkProperties {
 
     /** Creates an instance of NetworkProperties class. */
     public NetworkProperties() {
+    }
+
+    /**
+     * Get the outboundDependenciesManagedType property: A value to describe how the outbound dependencies of a
+     * HDInsight cluster are managed. 'Managed' means that the outbound dependencies are managed by the HDInsight
+     * service. 'External' means that the outbound dependencies are managed by a customer specific solution.
+     *
+     * @return the outboundDependenciesManagedType value.
+     */
+    public OutboundDependenciesManagedType outboundDependenciesManagedType() {
+        return this.outboundDependenciesManagedType;
+    }
+
+    /**
+     * Set the outboundDependenciesManagedType property: A value to describe how the outbound dependencies of a
+     * HDInsight cluster are managed. 'Managed' means that the outbound dependencies are managed by the HDInsight
+     * service. 'External' means that the outbound dependencies are managed by a customer specific solution.
+     *
+     * @param outboundDependenciesManagedType the outboundDependenciesManagedType value to set.
+     * @return the NetworkProperties object itself.
+     */
+    public NetworkProperties withOutboundDependenciesManagedType(
+        OutboundDependenciesManagedType outboundDependenciesManagedType) {
+        this.outboundDependenciesManagedType = outboundDependenciesManagedType;
+        return this;
     }
 
     /**

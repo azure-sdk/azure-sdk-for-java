@@ -44,7 +44,7 @@ import java.util.Map;
 /** Samples for Clusters Create. */
 public final class ClustersCreateSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2023-04-15-preview/examples/CreateLinuxHadoopSshPassword.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2023-08-15-preview/examples/CreateLinuxHadoopSshPassword.json
      */
     /**
      * Sample code: Create Hadoop on Linux cluster with SSH password.
@@ -126,7 +126,7 @@ public final class ClustersCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2023-04-15-preview/examples/CreateKafkaClusterWithKafkaRestProxy.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2023-08-15-preview/examples/CreateKafkaClusterWithKafkaRestProxy.json
      */
     /**
      * Sample code: Create Kafka cluster with Kafka Rest Proxy.
@@ -223,7 +223,7 @@ public final class ClustersCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2023-04-15-preview/examples/CreateHDInsightClusterWithAutoscaleConfig.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2023-08-15-preview/examples/CreateHDInsightClusterWithAutoscaleConfig.json
      */
     /**
      * Sample code: Create HDInsight cluster with Autoscale configuration.
@@ -341,7 +341,7 @@ public final class ClustersCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2023-04-15-preview/examples/CreateLinuxHadoopSshPublicKey.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2023-08-15-preview/examples/CreateLinuxHadoopSshPublicKey.json
      */
     /**
      * Sample code: Create Hadoop on Linux cluster with SSH public key.
@@ -430,7 +430,7 @@ public final class ClustersCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2023-04-15-preview/examples/CreateHDInsightClusterWithAvailabilityZones.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2023-08-15-preview/examples/CreateHDInsightClusterWithAvailabilityZones.json
      */
     /**
      * Sample code: Create cluster with availability zones.
@@ -544,7 +544,7 @@ public final class ClustersCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2023-04-15-preview/examples/CreateLinuxHadoopAdlsGen2.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2023-08-15-preview/examples/CreateLinuxHadoopAdlsGen2.json
      */
     /**
      * Sample code: Create Hadoop cluster with Azure Data Lake Storage Gen 2.
@@ -626,7 +626,7 @@ public final class ClustersCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2023-04-15-preview/examples/CreateLinuxHadoopSecureHadoop.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2023-08-15-preview/examples/CreateLinuxHadoopSecureHadoop.json
      */
     /**
      * Sample code: Create Secure Hadoop cluster.
@@ -762,7 +762,7 @@ public final class ClustersCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2023-04-15-preview/examples/CreateLinuxSparkSshPassword.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2023-08-15-preview/examples/CreateLinuxSparkSshPassword.json
      */
     /**
      * Sample code: Create Spark on Linux Cluster with SSH password.
@@ -834,7 +834,7 @@ public final class ClustersCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2023-04-15-preview/examples/CreateHDInsightClusterWithCustomNetworkProperties.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2023-08-15-preview/examples/CreateHDInsightClusterWithCustomNetworkProperties.json
      */
     /**
      * Sample code: Create cluster with network properties.
@@ -933,7 +933,7 @@ public final class ClustersCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2023-04-15-preview/examples/CreateHDInsightClusterWithTLS12.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2023-08-15-preview/examples/CreateHDInsightClusterWithTLS12.json
      */
     /**
      * Sample code: Create cluster with TLS 1.2.
@@ -1012,7 +1012,7 @@ public final class ClustersCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2023-04-15-preview/examples/CreateHDInsightClusterWithEncryptionAtHost.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2023-08-15-preview/examples/CreateHDInsightClusterWithEncryptionAtHost.json
      */
     /**
      * Sample code: Create cluster with encryption at host.
@@ -1091,7 +1091,7 @@ public final class ClustersCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2023-04-15-preview/examples/CreateHDInsightClusterWithEncryptionInTransit.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2023-08-15-preview/examples/CreateHDInsightClusterWithEncryptionInTransit.json
      */
     /**
      * Sample code: Create cluster with encryption in transit.
@@ -1171,7 +1171,7 @@ public final class ClustersCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2023-04-15-preview/examples/CreateHDInsightClusterWithComputeIsolationProperties.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2023-08-15-preview/examples/CreateHDInsightClusterWithComputeIsolationProperties.json
      */
     /**
      * Sample code: Create cluster with compute isolation properties.
@@ -1254,6 +1254,7 @@ public final class ClustersCreateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

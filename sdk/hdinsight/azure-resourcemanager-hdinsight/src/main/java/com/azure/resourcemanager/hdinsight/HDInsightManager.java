@@ -243,7 +243,7 @@ public final class HDInsightManager {
                 .append("-")
                 .append("com.azure.resourcemanager.hdinsight")
                 .append("/")
-                .append("1.1.0-beta.1");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -435,8 +435,10 @@ public final class HDInsightManager {
     }
 
     /**
-     * @return Wrapped service client HDInsightManagementClient providing direct access to the underlying auto-generated
-     *     API implementation, based on Azure REST API.
+     * Gets wrapped service client HDInsightManagementClient providing direct access to the underlying auto-generated
+     * API implementation, based on Azure REST API.
+     *
+     * @return Wrapped service client HDInsightManagementClient.
      */
     public HDInsightManagementClient serviceClient() {
         return this.clientObject;
