@@ -12,6 +12,7 @@ import com.azure.resourcemanager.imagebuilder.models.ImageTemplateCustomizer;
 import com.azure.resourcemanager.imagebuilder.models.ImageTemplateDistributor;
 import com.azure.resourcemanager.imagebuilder.models.ImageTemplateIdentity;
 import com.azure.resourcemanager.imagebuilder.models.ImageTemplateLastRunStatus;
+import com.azure.resourcemanager.imagebuilder.models.ImageTemplatePropertiesErrorHandling;
 import com.azure.resourcemanager.imagebuilder.models.ImageTemplatePropertiesOptimize;
 import com.azure.resourcemanager.imagebuilder.models.ImageTemplatePropertiesValidate;
 import com.azure.resourcemanager.imagebuilder.models.ImageTemplateSource;
@@ -215,6 +216,29 @@ public final class ImageTemplateInner extends Resource {
             this.innerProperties = new ImageTemplateProperties();
         }
         this.innerProperties().withDistribute(distribute);
+        return this;
+    }
+
+    /**
+     * Get the errorHandling property: Error handling options upon a build failure.
+     *
+     * @return the errorHandling value.
+     */
+    public ImageTemplatePropertiesErrorHandling errorHandling() {
+        return this.innerProperties() == null ? null : this.innerProperties().errorHandling();
+    }
+
+    /**
+     * Set the errorHandling property: Error handling options upon a build failure.
+     *
+     * @param errorHandling the errorHandling value to set.
+     * @return the ImageTemplateInner object itself.
+     */
+    public ImageTemplateInner withErrorHandling(ImageTemplatePropertiesErrorHandling errorHandling) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ImageTemplateProperties();
+        }
+        this.innerProperties().withErrorHandling(errorHandling);
         return this;
     }
 
