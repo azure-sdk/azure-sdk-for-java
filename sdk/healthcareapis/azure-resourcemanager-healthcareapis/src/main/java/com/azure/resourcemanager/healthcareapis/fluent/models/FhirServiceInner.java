@@ -6,12 +6,14 @@ package com.azure.resourcemanager.healthcareapis.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.SystemData;
-import com.azure.resourcemanager.healthcareapis.models.FhirServiceAccessPolicyEntry;
+import com.azure.resourcemanager.healthcareapis.models.Encryption;
 import com.azure.resourcemanager.healthcareapis.models.FhirServiceAcrConfiguration;
 import com.azure.resourcemanager.healthcareapis.models.FhirServiceAuthenticationConfiguration;
 import com.azure.resourcemanager.healthcareapis.models.FhirServiceCorsConfiguration;
 import com.azure.resourcemanager.healthcareapis.models.FhirServiceExportConfiguration;
+import com.azure.resourcemanager.healthcareapis.models.FhirServiceImportConfiguration;
 import com.azure.resourcemanager.healthcareapis.models.FhirServiceKind;
+import com.azure.resourcemanager.healthcareapis.models.ImplementationGuidesConfiguration;
 import com.azure.resourcemanager.healthcareapis.models.PrivateEndpointConnection;
 import com.azure.resourcemanager.healthcareapis.models.ProvisioningState;
 import com.azure.resourcemanager.healthcareapis.models.PublicNetworkAccess;
@@ -45,11 +47,14 @@ public final class FhirServiceInner extends TaggedResource {
     private SystemData systemData;
 
     /*
-     * Setting indicating whether the service has a managed identity associated
-     * with it.
+     * Setting indicating whether the service has a managed identity associated with it.
      */
     @JsonProperty(value = "identity")
     private ServiceManagedIdentityIdentity identity;
+
+    /** Creates an instance of FhirServiceInner class. */
+    public FhirServiceInner() {
+    }
 
     /**
      * Get the kind property: The kind of the service.
@@ -137,29 +142,6 @@ public final class FhirServiceInner extends TaggedResource {
      */
     public ProvisioningState provisioningState() {
         return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
-    }
-
-    /**
-     * Get the accessPolicies property: Fhir Service access policies.
-     *
-     * @return the accessPolicies value.
-     */
-    public List<FhirServiceAccessPolicyEntry> accessPolicies() {
-        return this.innerProperties() == null ? null : this.innerProperties().accessPolicies();
-    }
-
-    /**
-     * Set the accessPolicies property: Fhir Service access policies.
-     *
-     * @param accessPolicies the accessPolicies value to set.
-     * @return the FhirServiceInner object itself.
-     */
-    public FhirServiceInner withAccessPolicies(List<FhirServiceAccessPolicyEntry> accessPolicies) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new FhirServiceProperties();
-        }
-        this.innerProperties().withAccessPolicies(accessPolicies);
-        return this;
     }
 
     /**
@@ -320,6 +302,76 @@ public final class FhirServiceInner extends TaggedResource {
             this.innerProperties = new FhirServiceProperties();
         }
         this.innerProperties().withResourceVersionPolicyConfiguration(resourceVersionPolicyConfiguration);
+        return this;
+    }
+
+    /**
+     * Get the importConfiguration property: Fhir Service import configuration.
+     *
+     * @return the importConfiguration value.
+     */
+    public FhirServiceImportConfiguration importConfiguration() {
+        return this.innerProperties() == null ? null : this.innerProperties().importConfiguration();
+    }
+
+    /**
+     * Set the importConfiguration property: Fhir Service import configuration.
+     *
+     * @param importConfiguration the importConfiguration value to set.
+     * @return the FhirServiceInner object itself.
+     */
+    public FhirServiceInner withImportConfiguration(FhirServiceImportConfiguration importConfiguration) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new FhirServiceProperties();
+        }
+        this.innerProperties().withImportConfiguration(importConfiguration);
+        return this;
+    }
+
+    /**
+     * Get the implementationGuidesConfiguration property: Implementation Guides configuration.
+     *
+     * @return the implementationGuidesConfiguration value.
+     */
+    public ImplementationGuidesConfiguration implementationGuidesConfiguration() {
+        return this.innerProperties() == null ? null : this.innerProperties().implementationGuidesConfiguration();
+    }
+
+    /**
+     * Set the implementationGuidesConfiguration property: Implementation Guides configuration.
+     *
+     * @param implementationGuidesConfiguration the implementationGuidesConfiguration value to set.
+     * @return the FhirServiceInner object itself.
+     */
+    public FhirServiceInner withImplementationGuidesConfiguration(
+        ImplementationGuidesConfiguration implementationGuidesConfiguration) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new FhirServiceProperties();
+        }
+        this.innerProperties().withImplementationGuidesConfiguration(implementationGuidesConfiguration);
+        return this;
+    }
+
+    /**
+     * Get the encryption property: The encryption settings of the FHIR service.
+     *
+     * @return the encryption value.
+     */
+    public Encryption encryption() {
+        return this.innerProperties() == null ? null : this.innerProperties().encryption();
+    }
+
+    /**
+     * Set the encryption property: The encryption settings of the FHIR service.
+     *
+     * @param encryption the encryption value to set.
+     * @return the FhirServiceInner object itself.
+     */
+    public FhirServiceInner withEncryption(Encryption encryption) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new FhirServiceProperties();
+        }
+        this.innerProperties().withEncryption(encryption);
         return this;
     }
 

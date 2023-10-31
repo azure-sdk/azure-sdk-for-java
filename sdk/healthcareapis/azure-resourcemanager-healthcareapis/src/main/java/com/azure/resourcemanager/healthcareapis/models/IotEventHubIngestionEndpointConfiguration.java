@@ -28,6 +28,10 @@ public final class IotEventHubIngestionEndpointConfiguration {
     @JsonProperty(value = "fullyQualifiedEventHubNamespace")
     private String fullyQualifiedEventHubNamespace;
 
+    /** Creates an instance of IotEventHubIngestionEndpointConfiguration class. */
+    public IotEventHubIngestionEndpointConfiguration() {
+    }
+
     /**
      * Get the eventHubName property: Event Hub name to connect to.
      *

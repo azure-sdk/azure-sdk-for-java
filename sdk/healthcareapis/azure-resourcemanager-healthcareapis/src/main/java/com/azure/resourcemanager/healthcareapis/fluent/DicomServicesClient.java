@@ -49,20 +49,6 @@ public interface DicomServicesClient {
      * @param resourceGroupName The name of the resource group that contains the service instance.
      * @param workspaceName The name of workspace resource.
      * @param dicomServiceName The name of DICOM Service resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the properties of the specified DICOM Service.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    DicomServiceInner get(String resourceGroupName, String workspaceName, String dicomServiceName);
-
-    /**
-     * Gets the properties of the specified DICOM Service.
-     *
-     * @param resourceGroupName The name of the resource group that contains the service instance.
-     * @param workspaceName The name of workspace resource.
-     * @param dicomServiceName The name of DICOM Service resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -72,6 +58,20 @@ public interface DicomServicesClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<DicomServiceInner> getWithResponse(
         String resourceGroupName, String workspaceName, String dicomServiceName, Context context);
+
+    /**
+     * Gets the properties of the specified DICOM Service.
+     *
+     * @param resourceGroupName The name of the resource group that contains the service instance.
+     * @param workspaceName The name of workspace resource.
+     * @param dicomServiceName The name of DICOM Service resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the properties of the specified DICOM Service.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    DicomServiceInner get(String resourceGroupName, String workspaceName, String dicomServiceName);
 
     /**
      * Creates or updates a DICOM Service resource with the specified parameters.
