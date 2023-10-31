@@ -5,9 +5,7 @@
 package com.azure.resourcemanager.consumption.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.consumption.fluent.models.UsageDetailInner;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
@@ -17,8 +15,6 @@ import java.util.List;
  */
 @Immutable
 public final class UsageDetailsListResult {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(UsageDetailsListResult.class);
-
     /*
      * The list of usage details.
      */
@@ -30,6 +26,10 @@ public final class UsageDetailsListResult {
      */
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
+
+    /** Creates an instance of UsageDetailsListResult class. */
+    public UsageDetailsListResult() {
+    }
 
     /**
      * Get the value property: The list of usage details.

@@ -82,11 +82,26 @@ public interface EventSummary {
     Amount charges();
 
     /**
-     * Gets the closedBalance property: The balance after the event.
+     * Gets the closedBalance property: The balance after the event, Note: This will not be returned for Contributor
+     * Organization Type in Multi-Entity consumption commitment.
      *
      * @return the closedBalance value.
      */
     Amount closedBalance();
+
+    /**
+     * Gets the billingAccountId property: Identifier of the billing account.
+     *
+     * @return the billingAccountId value.
+     */
+    String billingAccountId();
+
+    /**
+     * Gets the billingAccountDisplayName property: Name of the billing account.
+     *
+     * @return the billingAccountDisplayName value.
+     */
+    String billingAccountDisplayName();
 
     /**
      * Gets the eventType property: Identifies the type of the event.
@@ -193,11 +208,20 @@ public interface EventSummary {
     AmountWithExchangeRate chargesInBillingCurrency();
 
     /**
-     * Gets the closedBalanceInBillingCurrency property: The balance in billing currency after the event.
+     * Gets the closedBalanceInBillingCurrency property: The balance in billing currency after the event, Note: This
+     * will not be returned for Contributor Organization Type in Multi-Entity consumption commitment.
      *
      * @return the closedBalanceInBillingCurrency value.
      */
     AmountWithExchangeRate closedBalanceInBillingCurrency();
+
+    /**
+     * Gets the isEstimatedBalance property: If true, the listed details are based on an estimation and it will be
+     * subjected to change.
+     *
+     * @return the isEstimatedBalance value.
+     */
+    Boolean isEstimatedBalance();
 
     /**
      * Gets the etagPropertiesEtag property: The eTag for the resource.

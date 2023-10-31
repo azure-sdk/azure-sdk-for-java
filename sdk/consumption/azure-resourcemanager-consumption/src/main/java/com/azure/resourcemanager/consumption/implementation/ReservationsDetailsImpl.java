@@ -11,10 +11,9 @@ import com.azure.resourcemanager.consumption.fluent.ReservationsDetailsClient;
 import com.azure.resourcemanager.consumption.fluent.models.ReservationDetailInner;
 import com.azure.resourcemanager.consumption.models.ReservationDetail;
 import com.azure.resourcemanager.consumption.models.ReservationsDetails;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class ReservationsDetailsImpl implements ReservationsDetails {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ReservationsDetailsImpl.class);
+    private static final ClientLogger LOGGER = new ClientLogger(ReservationsDetailsImpl.class);
 
     private final ReservationsDetailsClient innerClient;
 
@@ -56,13 +55,13 @@ public final class ReservationsDetailsImpl implements ReservationsDetails {
         return Utils.mapPage(inner, inner1 -> new ReservationDetailImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<ReservationDetail> list(String scope) {
-        PagedIterable<ReservationDetailInner> inner = this.serviceClient().list(scope);
+    public PagedIterable<ReservationDetail> list(String resourceScope) {
+        PagedIterable<ReservationDetailInner> inner = this.serviceClient().list(resourceScope);
         return Utils.mapPage(inner, inner1 -> new ReservationDetailImpl(inner1, this.manager()));
     }
 
     public PagedIterable<ReservationDetail> list(
-        String scope,
+        String resourceScope,
         String startDate,
         String endDate,
         String filter,
@@ -70,7 +69,9 @@ public final class ReservationsDetailsImpl implements ReservationsDetails {
         String reservationOrderId,
         Context context) {
         PagedIterable<ReservationDetailInner> inner =
-            this.serviceClient().list(scope, startDate, endDate, filter, reservationId, reservationOrderId, context);
+            this
+                .serviceClient()
+                .list(resourceScope, startDate, endDate, filter, reservationId, reservationOrderId, context);
         return Utils.mapPage(inner, inner1 -> new ReservationDetailImpl(inner1, this.manager()));
     }
 

@@ -4,12 +4,10 @@
 
 package com.azure.resourcemanager.consumption.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for AggregatedCost GetByManagementGroup. */
 public final class AggregatedCostGetByManagementGroupSamples {
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/AggregatedCostByManagementGroupFilterByDate.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2023-11-01/examples/AggregatedCostByManagementGroupFilterByDate.json
      */
     /**
      * Sample code: AggregatedCostByManagementGroupFilterByDate.
@@ -23,11 +21,11 @@ public final class AggregatedCostGetByManagementGroupSamples {
             .getByManagementGroupWithResponse(
                 "managementGroupForTest",
                 "usageStart ge '2018-08-15' and properties/usageStart le '2018-08-31'",
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/AggregatedCostByManagementGroup.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2023-11-01/examples/AggregatedCostByManagementGroup.json
      */
     /**
      * Sample code: AggregatedCostByManagementGroup.
@@ -36,6 +34,8 @@ public final class AggregatedCostGetByManagementGroupSamples {
      */
     public static void aggregatedCostByManagementGroup(
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
-        manager.aggregatedCosts().getByManagementGroupWithResponse("managementGroupForTest", null, Context.NONE);
+        manager
+            .aggregatedCosts()
+            .getByManagementGroupWithResponse("managementGroupForTest", null, com.azure.core.util.Context.NONE);
     }
 }
