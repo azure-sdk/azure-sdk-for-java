@@ -19,6 +19,12 @@ public final class NetworkRuleSet {
     private NetworkRuleAction defaultAction;
 
     /*
+     * Setting for trusted services.
+     */
+    @JsonProperty(value = "bypass")
+    private ByPassSelection bypass;
+
+    /*
      * The list of IP address rules.
      */
     @JsonProperty(value = "ipRules")
@@ -53,6 +59,26 @@ public final class NetworkRuleSet {
      */
     public NetworkRuleSet withDefaultAction(NetworkRuleAction defaultAction) {
         this.defaultAction = defaultAction;
+        return this;
+    }
+
+    /**
+     * Get the bypass property: Setting for trusted services.
+     *
+     * @return the bypass value.
+     */
+    public ByPassSelection bypass() {
+        return this.bypass;
+    }
+
+    /**
+     * Set the bypass property: Setting for trusted services.
+     *
+     * @param bypass the bypass value to set.
+     * @return the NetworkRuleSet object itself.
+     */
+    public NetworkRuleSet withBypass(ByPassSelection bypass) {
+        this.bypass = bypass;
         return this;
     }
 
