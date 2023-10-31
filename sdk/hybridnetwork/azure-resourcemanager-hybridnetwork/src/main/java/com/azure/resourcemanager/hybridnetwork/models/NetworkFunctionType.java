@@ -20,6 +20,15 @@ public final class NetworkFunctionType extends ExpandableStringEnum<NetworkFunct
     public static final NetworkFunctionType CONTAINERIZED_NETWORK_FUNCTION = fromString("ContainerizedNetworkFunction");
 
     /**
+     * Creates a new instance of NetworkFunctionType value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public NetworkFunctionType() {
+    }
+
+    /**
      * Creates or finds a NetworkFunctionType from its string representation.
      *
      * @param name a name to look for.
