@@ -7,7 +7,7 @@ package com.azure.resourcemanager.desktopvirtualization.generated;
 /** Samples for Applications Get. */
 public final class ApplicationsGetSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2023-09-05/examples/Application_Get.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2023-10-04-preview/examples/Application_Get.json
      */
     /**
      * Sample code: Application_Get.

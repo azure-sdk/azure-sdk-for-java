@@ -150,6 +150,15 @@ public final class HostPoolImpl implements HostPool, HostPool.Definition, HostPo
         }
     }
 
+    public List<String> appAttachPackageReferences() {
+        List<String> inner = this.innerModel().appAttachPackageReferences();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
     public String ssoadfsAuthority() {
         return this.innerModel().ssoadfsAuthority();
     }

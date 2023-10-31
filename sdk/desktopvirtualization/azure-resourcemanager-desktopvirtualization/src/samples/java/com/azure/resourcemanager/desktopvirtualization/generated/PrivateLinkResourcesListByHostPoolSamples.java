@@ -7,7 +7,7 @@ package com.azure.resourcemanager.desktopvirtualization.generated;
 /** Samples for PrivateLinkResources ListByHostPool. */
 public final class PrivateLinkResourcesListByHostPoolSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2023-09-05/examples/PrivateLinkResources_ListByHostPool.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2023-10-04-preview/examples/PrivateLinkResources_ListByHostPool.json
      */
     /**
      * Sample code: PrivateLinkResources_ListByHostPool.
