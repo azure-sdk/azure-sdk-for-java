@@ -12,7 +12,7 @@ import com.azure.resourcemanager.datamigration.models.ResourceSkuRestrictions;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Describes an available DMS SKU. */
+/** Describes an available DMS (classic) SKU. */
 @Immutable
 public final class ResourceSkuInner {
     /*
@@ -28,7 +28,7 @@ public final class ResourceSkuInner {
     private String name;
 
     /*
-     * Specifies the tier of DMS in a scale set.
+     * Specifies the tier of DMS (classic) in a scale set.
      */
     @JsonProperty(value = "tier", access = JsonProperty.Access.WRITE_ONLY)
     private String tier;
@@ -110,7 +110,7 @@ public final class ResourceSkuInner {
     }
 
     /**
-     * Get the tier property: Specifies the tier of DMS in a scale set.
+     * Get the tier property: Specifies the tier of DMS (classic) in a scale set.
      *
      * @return the tier value.
      */

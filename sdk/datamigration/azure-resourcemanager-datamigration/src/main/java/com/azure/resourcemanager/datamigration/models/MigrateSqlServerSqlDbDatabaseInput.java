@@ -37,6 +37,18 @@ public final class MigrateSqlServerSqlDbDatabaseInput {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> tableMap;
 
+    /*
+     * Settings selected for DB schema migration.
+     */
+    @JsonProperty(value = "schemaSetting")
+    private Object schemaSetting;
+
+    /*
+     * id of the database
+     */
+    @JsonProperty(value = "id")
+    private String id;
+
     /** Creates an instance of MigrateSqlServerSqlDbDatabaseInput class. */
     public MigrateSqlServerSqlDbDatabaseInput() {
     }
@@ -120,6 +132,46 @@ public final class MigrateSqlServerSqlDbDatabaseInput {
      */
     public MigrateSqlServerSqlDbDatabaseInput withTableMap(Map<String, String> tableMap) {
         this.tableMap = tableMap;
+        return this;
+    }
+
+    /**
+     * Get the schemaSetting property: Settings selected for DB schema migration.
+     *
+     * @return the schemaSetting value.
+     */
+    public Object schemaSetting() {
+        return this.schemaSetting;
+    }
+
+    /**
+     * Set the schemaSetting property: Settings selected for DB schema migration.
+     *
+     * @param schemaSetting the schemaSetting value to set.
+     * @return the MigrateSqlServerSqlDbDatabaseInput object itself.
+     */
+    public MigrateSqlServerSqlDbDatabaseInput withSchemaSetting(Object schemaSetting) {
+        this.schemaSetting = schemaSetting;
+        return this;
+    }
+
+    /**
+     * Get the id property: id of the database.
+     *
+     * @return the id value.
+     */
+    public String id() {
+        return this.id;
+    }
+
+    /**
+     * Set the id property: id of the database.
+     *
+     * @param id the id value to set.
+     * @return the MigrateSqlServerSqlDbDatabaseInput object itself.
+     */
+    public MigrateSqlServerSqlDbDatabaseInput withId(String id) {
+        this.id = id;
         return this;
     }
 

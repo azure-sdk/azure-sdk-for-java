@@ -6,6 +6,8 @@ package com.azure.resourcemanager.datamigration.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
+import com.azure.core.management.SystemData;
+import com.azure.resourcemanager.datamigration.models.AzureActiveDirectoryApp;
 import com.azure.resourcemanager.datamigration.models.ConnectionInfo;
 import com.azure.resourcemanager.datamigration.models.DatabaseInfo;
 import com.azure.resourcemanager.datamigration.models.ProjectProvisioningState;
@@ -25,6 +27,18 @@ public final class ProjectInner extends Resource {
     @JsonProperty(value = "properties")
     private ProjectProperties innerProperties;
 
+    /*
+     * HTTP strong entity tag value. This is ignored if submitted.
+     */
+    @JsonProperty(value = "etag")
+    private String etag;
+
+    /*
+     * The systemData property.
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
+
     /** Creates an instance of ProjectInner class. */
     public ProjectInner() {
     }
@@ -36,6 +50,35 @@ public final class ProjectInner extends Resource {
      */
     private ProjectProperties innerProperties() {
         return this.innerProperties;
+    }
+
+    /**
+     * Get the etag property: HTTP strong entity tag value. This is ignored if submitted.
+     *
+     * @return the etag value.
+     */
+    public String etag() {
+        return this.etag;
+    }
+
+    /**
+     * Set the etag property: HTTP strong entity tag value. This is ignored if submitted.
+     *
+     * @param etag the etag value to set.
+     * @return the ProjectInner object itself.
+     */
+    public ProjectInner withEtag(String etag) {
+        this.etag = etag;
+        return this;
+    }
+
+    /**
+     * Get the systemData property: The systemData property.
+     *
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /** {@inheritDoc} */
@@ -72,6 +115,31 @@ public final class ProjectInner extends Resource {
             this.innerProperties = new ProjectProperties();
         }
         this.innerProperties().withSourcePlatform(sourcePlatform);
+        return this;
+    }
+
+    /**
+     * Get the azureAuthenticationInfo property: Field that defines the Azure active directory application info, used to
+     * connect to the target Azure resource.
+     *
+     * @return the azureAuthenticationInfo value.
+     */
+    public AzureActiveDirectoryApp azureAuthenticationInfo() {
+        return this.innerProperties() == null ? null : this.innerProperties().azureAuthenticationInfo();
+    }
+
+    /**
+     * Set the azureAuthenticationInfo property: Field that defines the Azure active directory application info, used to
+     * connect to the target Azure resource.
+     *
+     * @param azureAuthenticationInfo the azureAuthenticationInfo value to set.
+     * @return the ProjectInner object itself.
+     */
+    public ProjectInner withAzureAuthenticationInfo(AzureActiveDirectoryApp azureAuthenticationInfo) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ProjectProperties();
+        }
+        this.innerProperties().withAzureAuthenticationInfo(azureAuthenticationInfo);
         return this;
     }
 
