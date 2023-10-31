@@ -1,6 +1,8 @@
 # Release History
 
-## 1.1.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2023-10-31)
+
+- Azure Resource Manager SourceControlConfiguration client library for Java. This package contains Microsoft Azure SDK for SourceControlConfiguration Management SDK. KubernetesConfiguration Client. Package tag package-2023-05. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Features Added
 
