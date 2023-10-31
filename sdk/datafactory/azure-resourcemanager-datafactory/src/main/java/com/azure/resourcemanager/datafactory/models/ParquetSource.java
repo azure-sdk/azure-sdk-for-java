@@ -21,6 +21,12 @@ public final class ParquetSource extends CopySource {
     private StoreReadSettings storeSettings;
 
     /*
+     * Parquet format settings.
+     */
+    @JsonProperty(value = "formatSettings")
+    private ParquetReadSettings formatSettings;
+
+    /*
      * Specifies the additional columns to be added to source data. Type: array of objects(AdditionalColumns) (or
      * Expression with resultType array of objects).
      */
@@ -48,6 +54,26 @@ public final class ParquetSource extends CopySource {
      */
     public ParquetSource withStoreSettings(StoreReadSettings storeSettings) {
         this.storeSettings = storeSettings;
+        return this;
+    }
+
+    /**
+     * Get the formatSettings property: Parquet format settings.
+     *
+     * @return the formatSettings value.
+     */
+    public ParquetReadSettings formatSettings() {
+        return this.formatSettings;
+    }
+
+    /**
+     * Set the formatSettings property: Parquet format settings.
+     *
+     * @param formatSettings the formatSettings value to set.
+     * @return the ParquetSource object itself.
+     */
+    public ParquetSource withFormatSettings(ParquetReadSettings formatSettings) {
+        this.formatSettings = formatSettings;
         return this;
     }
 
@@ -111,6 +137,9 @@ public final class ParquetSource extends CopySource {
         super.validate();
         if (storeSettings() != null) {
             storeSettings().validate();
+        }
+        if (formatSettings() != null) {
+            formatSettings().validate();
         }
     }
 }
