@@ -28,6 +28,8 @@ import com.azure.resourcemanager.dataprotection.implementation.BackupInstancesIm
 import com.azure.resourcemanager.dataprotection.implementation.BackupPoliciesImpl;
 import com.azure.resourcemanager.dataprotection.implementation.BackupVaultOperationResultsImpl;
 import com.azure.resourcemanager.dataprotection.implementation.BackupVaultsImpl;
+import com.azure.resourcemanager.dataprotection.implementation.CrossRegionRestoreJobsImpl;
+import com.azure.resourcemanager.dataprotection.implementation.CrossRegionRestoreJobsOperationsImpl;
 import com.azure.resourcemanager.dataprotection.implementation.DataProtectionClientBuilder;
 import com.azure.resourcemanager.dataprotection.implementation.DataProtectionOperationsImpl;
 import com.azure.resourcemanager.dataprotection.implementation.DataProtectionsImpl;
@@ -43,10 +45,13 @@ import com.azure.resourcemanager.dataprotection.implementation.OperationStatusRe
 import com.azure.resourcemanager.dataprotection.implementation.RecoveryPointsImpl;
 import com.azure.resourcemanager.dataprotection.implementation.ResourceGuardsImpl;
 import com.azure.resourcemanager.dataprotection.implementation.RestorableTimeRangesImpl;
+import com.azure.resourcemanager.dataprotection.implementation.SecondaryRPsImpl;
 import com.azure.resourcemanager.dataprotection.models.BackupInstances;
 import com.azure.resourcemanager.dataprotection.models.BackupPolicies;
 import com.azure.resourcemanager.dataprotection.models.BackupVaultOperationResults;
 import com.azure.resourcemanager.dataprotection.models.BackupVaults;
+import com.azure.resourcemanager.dataprotection.models.CrossRegionRestoreJobs;
+import com.azure.resourcemanager.dataprotection.models.CrossRegionRestoreJobsOperations;
 import com.azure.resourcemanager.dataprotection.models.DataProtectionOperations;
 import com.azure.resourcemanager.dataprotection.models.DataProtections;
 import com.azure.resourcemanager.dataprotection.models.DeletedBackupInstances;
@@ -61,6 +66,7 @@ import com.azure.resourcemanager.dataprotection.models.OperationStatusResourceGr
 import com.azure.resourcemanager.dataprotection.models.RecoveryPoints;
 import com.azure.resourcemanager.dataprotection.models.ResourceGuards;
 import com.azure.resourcemanager.dataprotection.models.RestorableTimeRanges;
+import com.azure.resourcemanager.dataprotection.models.SecondaryRPs;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -91,6 +97,12 @@ public final class DataProtectionManager {
     private BackupInstances backupInstances;
 
     private RecoveryPoints recoveryPoints;
+
+    private SecondaryRPs secondaryRPs;
+
+    private CrossRegionRestoreJobs crossRegionRestoreJobs;
+
+    private CrossRegionRestoreJobsOperations crossRegionRestoreJobsOperations;
 
     private Jobs jobs;
 
@@ -271,7 +283,7 @@ public final class DataProtectionManager {
                 .append("-")
                 .append("com.azure.resourcemanager.dataprotection")
                 .append("/")
-                .append("1.1.0");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -466,6 +478,44 @@ public final class DataProtectionManager {
     }
 
     /**
+     * Gets the resource collection API of SecondaryRPs.
+     *
+     * @return Resource collection API of SecondaryRPs.
+     */
+    public SecondaryRPs secondaryRPs() {
+        if (this.secondaryRPs == null) {
+            this.secondaryRPs = new SecondaryRPsImpl(clientObject.getSecondaryRPs(), this);
+        }
+        return secondaryRPs;
+    }
+
+    /**
+     * Gets the resource collection API of CrossRegionRestoreJobs.
+     *
+     * @return Resource collection API of CrossRegionRestoreJobs.
+     */
+    public CrossRegionRestoreJobs crossRegionRestoreJobs() {
+        if (this.crossRegionRestoreJobs == null) {
+            this.crossRegionRestoreJobs =
+                new CrossRegionRestoreJobsImpl(clientObject.getCrossRegionRestoreJobs(), this);
+        }
+        return crossRegionRestoreJobs;
+    }
+
+    /**
+     * Gets the resource collection API of CrossRegionRestoreJobsOperations.
+     *
+     * @return Resource collection API of CrossRegionRestoreJobsOperations.
+     */
+    public CrossRegionRestoreJobsOperations crossRegionRestoreJobsOperations() {
+        if (this.crossRegionRestoreJobsOperations == null) {
+            this.crossRegionRestoreJobsOperations =
+                new CrossRegionRestoreJobsOperationsImpl(clientObject.getCrossRegionRestoreJobsOperations(), this);
+        }
+        return crossRegionRestoreJobsOperations;
+    }
+
+    /**
      * Gets the resource collection API of Jobs.
      *
      * @return Resource collection API of Jobs.
@@ -553,8 +603,10 @@ public final class DataProtectionManager {
     }
 
     /**
-     * @return Wrapped service client DataProtectionClient providing direct access to the underlying auto-generated API
-     *     implementation, based on Azure REST API.
+     * Gets wrapped service client DataProtectionClient providing direct access to the underlying auto-generated API
+     * implementation, based on Azure REST API.
+     *
+     * @return Wrapped service client DataProtectionClient.
      */
     public DataProtectionClient serviceClient() {
         return this.clientObject;

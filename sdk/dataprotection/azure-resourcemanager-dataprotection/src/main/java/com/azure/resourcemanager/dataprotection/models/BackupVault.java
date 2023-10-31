@@ -70,6 +70,12 @@ public final class BackupVault {
     @JsonProperty(value = "secureScore", access = JsonProperty.Access.WRITE_ONLY)
     private SecureScoreLevel secureScore;
 
+    /*
+     * List of replicated regions for Backup Vault
+     */
+    @JsonProperty(value = "replicatedRegions")
+    private List<String> replicatedRegions;
+
     /** Creates an instance of BackupVault class. */
     public BackupVault() {
     }
@@ -197,6 +203,26 @@ public final class BackupVault {
      */
     public SecureScoreLevel secureScore() {
         return this.secureScore;
+    }
+
+    /**
+     * Get the replicatedRegions property: List of replicated regions for Backup Vault.
+     *
+     * @return the replicatedRegions value.
+     */
+    public List<String> replicatedRegions() {
+        return this.replicatedRegions;
+    }
+
+    /**
+     * Set the replicatedRegions property: List of replicated regions for Backup Vault.
+     *
+     * @param replicatedRegions the replicatedRegions value to set.
+     * @return the BackupVault object itself.
+     */
+    public BackupVault withReplicatedRegions(List<String> replicatedRegions) {
+        this.replicatedRegions = replicatedRegions;
+        return this;
     }
 
     /**

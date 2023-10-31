@@ -81,6 +81,13 @@ public final class AzureBackupDiscreteRecoveryPoint extends AzureBackupRecoveryP
     @JsonProperty(value = "expiryTime", access = JsonProperty.Access.WRITE_ONLY)
     private OffsetDateTime expiryTime;
 
+    /*
+     * Specifies recovery point completeness. Partial (i.e., only some of the intended items were backed up), or
+     * Completed (i.e., ALL intended items were backed up).
+     */
+    @JsonProperty(value = "recoveryPointState")
+    private RecoveryPointCompletionState recoveryPointState;
+
     /** Creates an instance of AzureBackupDiscreteRecoveryPoint class. */
     public AzureBackupDiscreteRecoveryPoint() {
     }
@@ -273,6 +280,28 @@ public final class AzureBackupDiscreteRecoveryPoint extends AzureBackupRecoveryP
      */
     public OffsetDateTime expiryTime() {
         return this.expiryTime;
+    }
+
+    /**
+     * Get the recoveryPointState property: Specifies recovery point completeness. Partial (i.e., only some of the
+     * intended items were backed up), or Completed (i.e., ALL intended items were backed up).
+     *
+     * @return the recoveryPointState value.
+     */
+    public RecoveryPointCompletionState recoveryPointState() {
+        return this.recoveryPointState;
+    }
+
+    /**
+     * Set the recoveryPointState property: Specifies recovery point completeness. Partial (i.e., only some of the
+     * intended items were backed up), or Completed (i.e., ALL intended items were backed up).
+     *
+     * @param recoveryPointState the recoveryPointState value to set.
+     * @return the AzureBackupDiscreteRecoveryPoint object itself.
+     */
+    public AzureBackupDiscreteRecoveryPoint withRecoveryPointState(RecoveryPointCompletionState recoveryPointState) {
+        this.recoveryPointState = recoveryPointState;
+        return this;
     }
 
     /**
