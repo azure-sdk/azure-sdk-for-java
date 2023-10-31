@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Identity for the connected cluster. */
 @Fluent
-public class ConnectedClusterIdentity {
+public final class ConnectedClusterIdentity {
     /*
      * The principal id of connected cluster identity. This property will only be provided for a system assigned
      * identity.
