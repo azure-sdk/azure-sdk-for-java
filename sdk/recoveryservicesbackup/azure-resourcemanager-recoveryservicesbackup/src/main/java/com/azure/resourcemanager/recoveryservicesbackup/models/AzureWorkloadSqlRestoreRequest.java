@@ -154,6 +154,29 @@ public class AzureWorkloadSqlRestoreRequest extends AzureWorkloadRestoreRequest 
 
     /** {@inheritDoc} */
     @Override
+    public AzureWorkloadSqlRestoreRequest withTargetResourceGroupName(String targetResourceGroupName) {
+        super.withTargetResourceGroupName(targetResourceGroupName);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public AzureWorkloadSqlRestoreRequest withUserAssignedManagedIdentityDetails(
+        UserAssignedManagedIdentityDetails userAssignedManagedIdentityDetails) {
+        super.withUserAssignedManagedIdentityDetails(userAssignedManagedIdentityDetails);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public AzureWorkloadSqlRestoreRequest withSnapshotRestoreParameters(
+        SnapshotRestoreParameters snapshotRestoreParameters) {
+        super.withSnapshotRestoreParameters(snapshotRestoreParameters);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public AzureWorkloadSqlRestoreRequest withTargetVirtualMachineId(String targetVirtualMachineId) {
         super.withTargetVirtualMachineId(targetVirtualMachineId);
         return this;

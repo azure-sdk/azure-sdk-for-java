@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.recoveryservicesbackup.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
@@ -14,7 +15,7 @@ public final class ResourceGuardProxyBase {
     /*
      * The resourceGuardResourceId property.
      */
-    @JsonProperty(value = "resourceGuardResourceId")
+    @JsonProperty(value = "resourceGuardResourceId", required = true)
     private String resourceGuardResourceId;
 
     /*
@@ -126,8 +127,16 @@ public final class ResourceGuardProxyBase {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (resourceGuardResourceId() == null) {
+            throw LOGGER
+                .logExceptionAsError(
+                    new IllegalArgumentException(
+                        "Missing required property resourceGuardResourceId in model ResourceGuardProxyBase"));
+        }
         if (resourceGuardOperationDetails() != null) {
             resourceGuardOperationDetails().forEach(e -> e.validate());
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(ResourceGuardProxyBase.class);
 }
