@@ -15,6 +15,7 @@ import com.azure.resourcemanager.workloads.models.SapDatabaseInstance;
 import com.azure.resourcemanager.workloads.models.SapVirtualInstanceError;
 import com.azure.resourcemanager.workloads.models.SapVirtualInstanceProvisioningState;
 import com.azure.resourcemanager.workloads.models.SapVirtualInstanceStatus;
+import com.azure.resourcemanager.workloads.models.StartRequest;
 import com.azure.resourcemanager.workloads.models.StopRequest;
 import com.azure.resourcemanager.workloads.models.UpdateSapDatabaseInstanceRequest;
 import java.util.Collections;
@@ -167,7 +168,9 @@ public final class SapDatabaseInstanceImpl
             serviceManager
                 .serviceClient()
                 .getSapDatabaseInstances()
-                .update(resourceGroupName, sapVirtualInstanceName, databaseInstanceName, updateBody, Context.NONE);
+                .updateWithResponse(
+                    resourceGroupName, sapVirtualInstanceName, databaseInstanceName, updateBody, Context.NONE)
+                .getValue();
         return this;
     }
 
@@ -176,7 +179,9 @@ public final class SapDatabaseInstanceImpl
             serviceManager
                 .serviceClient()
                 .getSapDatabaseInstances()
-                .update(resourceGroupName, sapVirtualInstanceName, databaseInstanceName, updateBody, context);
+                .updateWithResponse(
+                    resourceGroupName, sapVirtualInstanceName, databaseInstanceName, updateBody, context)
+                .getValue();
         return this;
     }
 
@@ -215,10 +220,10 @@ public final class SapDatabaseInstanceImpl
             .startInstance(resourceGroupName, sapVirtualInstanceName, databaseInstanceName);
     }
 
-    public OperationStatusResult startInstance(Context context) {
+    public OperationStatusResult startInstance(StartRequest body, Context context) {
         return serviceManager
             .sapDatabaseInstances()
-            .startInstance(resourceGroupName, sapVirtualInstanceName, databaseInstanceName, context);
+            .startInstance(resourceGroupName, sapVirtualInstanceName, databaseInstanceName, body, context);
     }
 
     public OperationStatusResult stopInstance() {

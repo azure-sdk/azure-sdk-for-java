@@ -15,6 +15,7 @@ import com.azure.resourcemanager.workloads.fluent.models.SapDatabaseInstanceInne
 import com.azure.resourcemanager.workloads.models.OperationStatusResult;
 import com.azure.resourcemanager.workloads.models.SapDatabaseInstance;
 import com.azure.resourcemanager.workloads.models.SapDatabaseInstances;
+import com.azure.resourcemanager.workloads.models.StartRequest;
 import com.azure.resourcemanager.workloads.models.StopRequest;
 
 public final class SapDatabaseInstancesImpl implements SapDatabaseInstances {
@@ -58,26 +59,13 @@ public final class SapDatabaseInstancesImpl implements SapDatabaseInstances {
         }
     }
 
-    public OperationStatusResult delete(
-        String resourceGroupName, String sapVirtualInstanceName, String databaseInstanceName) {
-        OperationStatusResultInner inner =
-            this.serviceClient().delete(resourceGroupName, sapVirtualInstanceName, databaseInstanceName);
-        if (inner != null) {
-            return new OperationStatusResultImpl(inner, this.manager());
-        } else {
-            return null;
-        }
+    public void delete(String resourceGroupName, String sapVirtualInstanceName, String databaseInstanceName) {
+        this.serviceClient().delete(resourceGroupName, sapVirtualInstanceName, databaseInstanceName);
     }
 
-    public OperationStatusResult delete(
+    public void delete(
         String resourceGroupName, String sapVirtualInstanceName, String databaseInstanceName, Context context) {
-        OperationStatusResultInner inner =
-            this.serviceClient().delete(resourceGroupName, sapVirtualInstanceName, databaseInstanceName, context);
-        if (inner != null) {
-            return new OperationStatusResultImpl(inner, this.manager());
-        } else {
-            return null;
-        }
+        this.serviceClient().delete(resourceGroupName, sapVirtualInstanceName, databaseInstanceName, context);
     }
 
     public PagedIterable<SapDatabaseInstance> list(String resourceGroupName, String sapVirtualInstanceName) {
@@ -105,11 +93,15 @@ public final class SapDatabaseInstancesImpl implements SapDatabaseInstances {
     }
 
     public OperationStatusResult startInstance(
-        String resourceGroupName, String sapVirtualInstanceName, String databaseInstanceName, Context context) {
+        String resourceGroupName,
+        String sapVirtualInstanceName,
+        String databaseInstanceName,
+        StartRequest body,
+        Context context) {
         OperationStatusResultInner inner =
             this
                 .serviceClient()
-                .startInstance(resourceGroupName, sapVirtualInstanceName, databaseInstanceName, context);
+                .startInstance(resourceGroupName, sapVirtualInstanceName, databaseInstanceName, body, context);
         if (inner != null) {
             return new OperationStatusResultImpl(inner, this.manager());
         } else {
@@ -207,7 +199,7 @@ public final class SapDatabaseInstancesImpl implements SapDatabaseInstances {
         return this.getWithResponse(resourceGroupName, sapVirtualInstanceName, databaseInstanceName, context);
     }
 
-    public OperationStatusResult deleteById(String id) {
+    public void deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
             throw LOGGER
@@ -234,10 +226,10 @@ public final class SapDatabaseInstancesImpl implements SapDatabaseInstances {
                             .format(
                                 "The resource ID '%s' is not valid. Missing path segment 'databaseInstances'.", id)));
         }
-        return this.delete(resourceGroupName, sapVirtualInstanceName, databaseInstanceName, Context.NONE);
+        this.delete(resourceGroupName, sapVirtualInstanceName, databaseInstanceName, Context.NONE);
     }
 
-    public OperationStatusResult deleteByIdWithResponse(String id, Context context) {
+    public void deleteByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
             throw LOGGER
@@ -264,7 +256,7 @@ public final class SapDatabaseInstancesImpl implements SapDatabaseInstances {
                             .format(
                                 "The resource ID '%s' is not valid. Missing path segment 'databaseInstances'.", id)));
         }
-        return this.delete(resourceGroupName, sapVirtualInstanceName, databaseInstanceName, context);
+        this.delete(resourceGroupName, sapVirtualInstanceName, databaseInstanceName, context);
     }
 
     private SapDatabaseInstancesClient serviceClient() {

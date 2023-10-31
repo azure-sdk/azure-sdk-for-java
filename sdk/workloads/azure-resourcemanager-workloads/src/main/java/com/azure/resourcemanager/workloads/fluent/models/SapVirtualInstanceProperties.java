@@ -7,6 +7,7 @@ package com.azure.resourcemanager.workloads.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.workloads.models.ManagedRGConfiguration;
+import com.azure.resourcemanager.workloads.models.ManagedResourcesNetworkAccessType;
 import com.azure.resourcemanager.workloads.models.SapConfiguration;
 import com.azure.resourcemanager.workloads.models.SapEnvironmentType;
 import com.azure.resourcemanager.workloads.models.SapHealthState;
@@ -31,6 +32,16 @@ public final class SapVirtualInstanceProperties {
      */
     @JsonProperty(value = "sapProduct", required = true)
     private SapProductType sapProduct;
+
+    /*
+     * Specifies the network access configuration for the resources that will be deployed in the Managed Resource
+     * Group. The options to choose from are Public and Private. If 'Private' is chosen, the Storage Account service
+     * tag should be enabled on the subnets in which the SAP VMs exist. This is required for establishing connectivity
+     * between VM extensions and the managed resource group storage account. This setting is currently applicable only
+     * to Storage Account. Learn more here https://go.microsoft.com/fwlink/?linkid=2247228
+     */
+    @JsonProperty(value = "managedResourcesNetworkAccessType")
+    private ManagedResourcesNetworkAccessType managedResourcesNetworkAccessType;
 
     /*
      * Defines if the SAP system is being created using Azure Center for SAP solutions (ACSS) or if an existing SAP
@@ -116,6 +127,37 @@ public final class SapVirtualInstanceProperties {
      */
     public SapVirtualInstanceProperties withSapProduct(SapProductType sapProduct) {
         this.sapProduct = sapProduct;
+        return this;
+    }
+
+    /**
+     * Get the managedResourcesNetworkAccessType property: Specifies the network access configuration for the resources
+     * that will be deployed in the Managed Resource Group. The options to choose from are Public and Private. If
+     * 'Private' is chosen, the Storage Account service tag should be enabled on the subnets in which the SAP VMs exist.
+     * This is required for establishing connectivity between VM extensions and the managed resource group storage
+     * account. This setting is currently applicable only to Storage Account. Learn more here
+     * https://go.microsoft.com/fwlink/?linkid=2247228.
+     *
+     * @return the managedResourcesNetworkAccessType value.
+     */
+    public ManagedResourcesNetworkAccessType managedResourcesNetworkAccessType() {
+        return this.managedResourcesNetworkAccessType;
+    }
+
+    /**
+     * Set the managedResourcesNetworkAccessType property: Specifies the network access configuration for the resources
+     * that will be deployed in the Managed Resource Group. The options to choose from are Public and Private. If
+     * 'Private' is chosen, the Storage Account service tag should be enabled on the subnets in which the SAP VMs exist.
+     * This is required for establishing connectivity between VM extensions and the managed resource group storage
+     * account. This setting is currently applicable only to Storage Account. Learn more here
+     * https://go.microsoft.com/fwlink/?linkid=2247228.
+     *
+     * @param managedResourcesNetworkAccessType the managedResourcesNetworkAccessType value to set.
+     * @return the SapVirtualInstanceProperties object itself.
+     */
+    public SapVirtualInstanceProperties withManagedResourcesNetworkAccessType(
+        ManagedResourcesNetworkAccessType managedResourcesNetworkAccessType) {
+        this.managedResourcesNetworkAccessType = managedResourcesNetworkAccessType;
         return this;
     }
 

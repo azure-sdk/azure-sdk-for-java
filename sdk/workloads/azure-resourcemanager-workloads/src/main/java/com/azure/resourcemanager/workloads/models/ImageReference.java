@@ -42,6 +42,14 @@ public final class ImageReference {
     @JsonProperty(value = "version")
     private String version;
 
+    /*
+     * Specifies the ARM resource ID of the Azure Compute Gallery image version used for creating ACSS VMs. You will
+     * need to provide this input when you choose to deploy virtual machines in ACSS with OS image from the Azure
+     * Compute gallery.
+     */
+    @JsonProperty(value = "id")
+    private String id;
+
     /** Creates an instance of ImageReference class. */
     public ImageReference() {
     }
@@ -131,6 +139,30 @@ public final class ImageReference {
      */
     public ImageReference withVersion(String version) {
         this.version = version;
+        return this;
+    }
+
+    /**
+     * Get the id property: Specifies the ARM resource ID of the Azure Compute Gallery image version used for creating
+     * ACSS VMs. You will need to provide this input when you choose to deploy virtual machines in ACSS with OS image
+     * from the Azure Compute gallery.
+     *
+     * @return the id value.
+     */
+    public String id() {
+        return this.id;
+    }
+
+    /**
+     * Set the id property: Specifies the ARM resource ID of the Azure Compute Gallery image version used for creating
+     * ACSS VMs. You will need to provide this input when you choose to deploy virtual machines in ACSS with OS image
+     * from the Azure Compute gallery.
+     *
+     * @param id the id value to set.
+     * @return the ImageReference object itself.
+     */
+    public ImageReference withId(String id) {
+        this.id = id;
         return this;
     }
 

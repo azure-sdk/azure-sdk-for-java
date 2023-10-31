@@ -91,7 +91,7 @@ public final class SapCentralServerInstanceInner extends Resource {
     }
 
     /**
-     * Get the messageServerProperties property: Defines the SAP Message Server properties.
+     * Get the messageServerProperties property: Defines the SAP message server properties.
      *
      * @return the messageServerProperties value.
      */
@@ -100,7 +100,7 @@ public final class SapCentralServerInstanceInner extends Resource {
     }
 
     /**
-     * Set the messageServerProperties property: Defines the SAP Message Server properties.
+     * Set the messageServerProperties property: Defines the SAP message server properties.
      *
      * @param messageServerProperties the messageServerProperties value to set.
      * @return the SapCentralServerInstanceInner object itself.

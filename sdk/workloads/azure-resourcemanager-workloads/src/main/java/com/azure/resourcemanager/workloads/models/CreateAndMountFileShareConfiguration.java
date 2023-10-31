@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 /**
  * Gets or sets the file share configuration where the transport directory fileshare is created and mounted as a part of
  * the create infra flow. Please pre-create the resource group you intend to place the transport directory in. The
- * storage account and fileshare will be auto-created by the ACSS and doesn’t need to pre-created.
+ * storage account and fileshare will be auto-created by the ACSS and doesn't need to be pre-created.
  */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "configurationType")
 @JsonTypeName("CreateAndMount")

@@ -11,7 +11,7 @@ import java.util.Map;
 /** Samples for SapApplicationServerInstances Update. */
 public final class SapApplicationServerInstancesUpdateSamples {
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPApplicationServerInstances_Update.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapapplicationinstances/SAPApplicationServerInstances_Update.json
      */
     /**
      * Sample code: SAPApplicationServerInstances_Update.
@@ -28,6 +28,7 @@ public final class SapApplicationServerInstancesUpdateSamples {
         resource.update().withTags(mapOf("tag1", "value1")).apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

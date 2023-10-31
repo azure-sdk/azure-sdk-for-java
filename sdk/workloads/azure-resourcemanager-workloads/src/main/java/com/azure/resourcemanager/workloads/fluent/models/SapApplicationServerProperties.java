@@ -72,6 +72,12 @@ public final class SapApplicationServerProperties {
     private Long icmHttpsPort;
 
     /*
+     * Application server instance dispatcher status.
+     */
+    @JsonProperty(value = "dispatcherStatus", access = JsonProperty.Access.WRITE_ONLY)
+    private String dispatcherStatus;
+
+    /*
      * The Load Balancer details such as LoadBalancer ID attached to Application Server Virtual Machines
      */
     @JsonProperty(value = "loadBalancerDetails", access = JsonProperty.Access.WRITE_ONLY)
@@ -190,6 +196,15 @@ public final class SapApplicationServerProperties {
      */
     public Long icmHttpsPort() {
         return this.icmHttpsPort;
+    }
+
+    /**
+     * Get the dispatcherStatus property: Application server instance dispatcher status.
+     *
+     * @return the dispatcherStatus value.
+     */
+    public String dispatcherStatus() {
+        return this.dispatcherStatus;
     }
 
     /**

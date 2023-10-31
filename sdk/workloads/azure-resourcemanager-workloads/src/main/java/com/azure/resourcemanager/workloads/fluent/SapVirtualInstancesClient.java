@@ -13,6 +13,7 @@ import com.azure.core.util.Context;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.workloads.fluent.models.OperationStatusResultInner;
 import com.azure.resourcemanager.workloads.fluent.models.SapVirtualInstanceInner;
+import com.azure.resourcemanager.workloads.models.StartRequest;
 import com.azure.resourcemanager.workloads.models.StopRequest;
 import com.azure.resourcemanager.workloads.models.UpdateSapVirtualInstanceRequest;
 
@@ -110,15 +111,29 @@ public interface SapVirtualInstancesClient {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of define the Virtual Instance for SAP solutions resource.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<SapVirtualInstanceInner>, SapVirtualInstanceInner> beginUpdate(
+        String resourceGroupName, String sapVirtualInstanceName);
+
+    /**
+     * Updates a Virtual Instance for SAP solutions resource.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
      * @param body Request body to update a Virtual Instance for SAP solutions resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return define the Virtual Instance for SAP solutions resource along with {@link Response}.
+     * @return the {@link SyncPoller} for polling of define the Virtual Instance for SAP solutions resource.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<SapVirtualInstanceInner> updateWithResponse(
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<SapVirtualInstanceInner>, SapVirtualInstanceInner> beginUpdate(
         String resourceGroupName, String sapVirtualInstanceName, UpdateSapVirtualInstanceRequest body, Context context);
 
     /**
@@ -135,6 +150,22 @@ public interface SapVirtualInstancesClient {
     SapVirtualInstanceInner update(String resourceGroupName, String sapVirtualInstanceName);
 
     /**
+     * Updates a Virtual Instance for SAP solutions resource.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
+     * @param body Request body to update a Virtual Instance for SAP solutions resource.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return define the Virtual Instance for SAP solutions resource.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    SapVirtualInstanceInner update(
+        String resourceGroupName, String sapVirtualInstanceName, UpdateSapVirtualInstanceRequest body, Context context);
+
+    /**
      * Deletes a Virtual Instance for SAP solutions resource and its child resources, that is the associated Central
      * Services Instance, Application Server Instances and Database Instance.
      *
@@ -143,11 +174,10 @@ public interface SapVirtualInstancesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of the current status of an async operation.
+     * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<OperationStatusResultInner>, OperationStatusResultInner> beginDelete(
-        String resourceGroupName, String sapVirtualInstanceName);
+    SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String sapVirtualInstanceName);
 
     /**
      * Deletes a Virtual Instance for SAP solutions resource and its child resources, that is the associated Central
@@ -159,10 +189,10 @@ public interface SapVirtualInstancesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of the current status of an async operation.
+     * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<OperationStatusResultInner>, OperationStatusResultInner> beginDelete(
+    SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String sapVirtualInstanceName, Context context);
 
     /**
@@ -174,10 +204,9 @@ public interface SapVirtualInstancesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the current status of an async operation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    OperationStatusResultInner delete(String resourceGroupName, String sapVirtualInstanceName);
+    void delete(String resourceGroupName, String sapVirtualInstanceName);
 
     /**
      * Deletes a Virtual Instance for SAP solutions resource and its child resources, that is the associated Central
@@ -189,10 +218,9 @@ public interface SapVirtualInstancesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the current status of an async operation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    OperationStatusResultInner delete(String resourceGroupName, String sapVirtualInstanceName, Context context);
+    void delete(String resourceGroupName, String sapVirtualInstanceName, Context context);
 
     /**
      * Gets all Virtual Instances for SAP solutions resources in a Resource Group.
@@ -264,6 +292,7 @@ public interface SapVirtualInstancesClient {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
+     * @param body The Virtual Instance for SAP solutions resource start request body.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -272,7 +301,7 @@ public interface SapVirtualInstancesClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<OperationStatusResultInner>, OperationStatusResultInner> beginStart(
-        String resourceGroupName, String sapVirtualInstanceName, Context context);
+        String resourceGroupName, String sapVirtualInstanceName, StartRequest body, Context context);
 
     /**
      * Starts the SAP application, that is the Central Services instance and Application server instances.
@@ -292,6 +321,7 @@ public interface SapVirtualInstancesClient {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
+     * @param body The Virtual Instance for SAP solutions resource start request body.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -299,7 +329,8 @@ public interface SapVirtualInstancesClient {
      * @return the current status of an async operation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    OperationStatusResultInner start(String resourceGroupName, String sapVirtualInstanceName, Context context);
+    OperationStatusResultInner start(
+        String resourceGroupName, String sapVirtualInstanceName, StartRequest body, Context context);
 
     /**
      * Stops the SAP Application, that is the Application server instances and Central Services instance.

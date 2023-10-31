@@ -26,6 +26,9 @@ public final class SapVirtualInstanceProvisioningState
     /** Static value Deleting for SapVirtualInstanceProvisioningState. */
     public static final SapVirtualInstanceProvisioningState DELETING = fromString("Deleting");
 
+    /** Static value Canceled for SapVirtualInstanceProvisioningState. */
+    public static final SapVirtualInstanceProvisioningState CANCELED = fromString("Canceled");
+
     /**
      * Creates a new instance of SapVirtualInstanceProvisioningState value.
      *

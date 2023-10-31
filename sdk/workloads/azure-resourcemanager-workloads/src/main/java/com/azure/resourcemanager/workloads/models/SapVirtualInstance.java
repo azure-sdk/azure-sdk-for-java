@@ -48,8 +48,7 @@ public interface SapVirtualInstance {
     Map<String, String> tags();
 
     /**
-     * Gets the identity property: A pre-created user assigned identity with appropriate roles assigned. To learn more
-     * on identity and roles required, visit the ACSS how-to-guide.
+     * Gets the identity property: Managed service identity (user assigned identities).
      *
      * @return the identity value.
      */
@@ -75,6 +74,18 @@ public interface SapVirtualInstance {
      * @return the sapProduct value.
      */
     SapProductType sapProduct();
+
+    /**
+     * Gets the managedResourcesNetworkAccessType property: Specifies the network access configuration for the resources
+     * that will be deployed in the Managed Resource Group. The options to choose from are Public and Private. If
+     * 'Private' is chosen, the Storage Account service tag should be enabled on the subnets in which the SAP VMs exist.
+     * This is required for establishing connectivity between VM extensions and the managed resource group storage
+     * account. This setting is currently applicable only to Storage Account. Learn more here
+     * https://go.microsoft.com/fwlink/?linkid=2247228.
+     *
+     * @return the managedResourcesNetworkAccessType value.
+     */
+    ManagedResourcesNetworkAccessType managedResourcesNetworkAccessType();
 
     /**
      * Gets the configuration property: Defines if the SAP system is being created using Azure Center for SAP solutions
@@ -164,11 +175,13 @@ public interface SapVirtualInstance {
             DefinitionStages.WithConfiguration,
             DefinitionStages.WithCreate {
     }
+
     /** The SapVirtualInstance definition stages. */
     interface DefinitionStages {
         /** The first stage of the SapVirtualInstance definition. */
         interface Blank extends WithLocation {
         }
+
         /** The stage of the SapVirtualInstance definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -187,6 +200,7 @@ public interface SapVirtualInstance {
              */
             WithResourceGroup withRegion(String location);
         }
+
         /** The stage of the SapVirtualInstance definition allowing to specify parent resource. */
         interface WithResourceGroup {
             /**
@@ -197,6 +211,7 @@ public interface SapVirtualInstance {
              */
             WithEnvironment withExistingResourceGroup(String resourceGroupName);
         }
+
         /** The stage of the SapVirtualInstance definition allowing to specify environment. */
         interface WithEnvironment {
             /**
@@ -207,6 +222,7 @@ public interface SapVirtualInstance {
              */
             WithSapProduct withEnvironment(SapEnvironmentType environment);
         }
+
         /** The stage of the SapVirtualInstance definition allowing to specify sapProduct. */
         interface WithSapProduct {
             /**
@@ -217,6 +233,7 @@ public interface SapVirtualInstance {
              */
             WithConfiguration withSapProduct(SapProductType sapProduct);
         }
+
         /** The stage of the SapVirtualInstance definition allowing to specify configuration. */
         interface WithConfiguration {
             /**
@@ -229,6 +246,7 @@ public interface SapVirtualInstance {
              */
             WithCreate withConfiguration(SapConfiguration configuration);
         }
+
         /**
          * The stage of the SapVirtualInstance definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
@@ -236,6 +254,7 @@ public interface SapVirtualInstance {
         interface WithCreate
             extends DefinitionStages.WithTags,
                 DefinitionStages.WithIdentity,
+                DefinitionStages.WithManagedResourcesNetworkAccessType,
                 DefinitionStages.WithManagedResourceGroupConfiguration {
             /**
              * Executes the create request.
@@ -252,6 +271,7 @@ public interface SapVirtualInstance {
              */
             SapVirtualInstance create(Context context);
         }
+
         /** The stage of the SapVirtualInstance definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -262,18 +282,40 @@ public interface SapVirtualInstance {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
         /** The stage of the SapVirtualInstance definition allowing to specify identity. */
         interface WithIdentity {
             /**
-             * Specifies the identity property: A pre-created user assigned identity with appropriate roles assigned. To
-             * learn more on identity and roles required, visit the ACSS how-to-guide..
+             * Specifies the identity property: Managed service identity (user assigned identities).
              *
-             * @param identity A pre-created user assigned identity with appropriate roles assigned. To learn more on
-             *     identity and roles required, visit the ACSS how-to-guide.
+             * @param identity Managed service identity (user assigned identities).
              * @return the next definition stage.
              */
             WithCreate withIdentity(UserAssignedServiceIdentity identity);
         }
+
+        /** The stage of the SapVirtualInstance definition allowing to specify managedResourcesNetworkAccessType. */
+        interface WithManagedResourcesNetworkAccessType {
+            /**
+             * Specifies the managedResourcesNetworkAccessType property: Specifies the network access configuration for
+             * the resources that will be deployed in the Managed Resource Group. The options to choose from are Public
+             * and Private. If 'Private' is chosen, the Storage Account service tag should be enabled on the subnets in
+             * which the SAP VMs exist. This is required for establishing connectivity between VM extensions and the
+             * managed resource group storage account. This setting is currently applicable only to Storage Account.
+             * Learn more here https://go.microsoft.com/fwlink/?linkid=2247228.
+             *
+             * @param managedResourcesNetworkAccessType Specifies the network access configuration for the resources
+             *     that will be deployed in the Managed Resource Group. The options to choose from are Public and
+             *     Private. If 'Private' is chosen, the Storage Account service tag should be enabled on the subnets in
+             *     which the SAP VMs exist. This is required for establishing connectivity between VM extensions and the
+             *     managed resource group storage account. This setting is currently applicable only to Storage Account.
+             *     Learn more here https://go.microsoft.com/fwlink/?linkid=2247228.
+             * @return the next definition stage.
+             */
+            WithCreate withManagedResourcesNetworkAccessType(
+                ManagedResourcesNetworkAccessType managedResourcesNetworkAccessType);
+        }
+
         /** The stage of the SapVirtualInstance definition allowing to specify managedResourceGroupConfiguration. */
         interface WithManagedResourceGroupConfiguration {
             /**
@@ -285,6 +327,7 @@ public interface SapVirtualInstance {
             WithCreate withManagedResourceGroupConfiguration(ManagedRGConfiguration managedResourceGroupConfiguration);
         }
     }
+
     /**
      * Begins update for the SapVirtualInstance resource.
      *
@@ -293,7 +336,7 @@ public interface SapVirtualInstance {
     SapVirtualInstance.Update update();
 
     /** The template for SapVirtualInstance update. */
-    interface Update extends UpdateStages.WithTags, UpdateStages.WithIdentity {
+    interface Update extends UpdateStages.WithTags, UpdateStages.WithIdentity, UpdateStages.WithProperties {
         /**
          * Executes the update request.
          *
@@ -309,6 +352,7 @@ public interface SapVirtualInstance {
          */
         SapVirtualInstance apply(Context context);
     }
+
     /** The SapVirtualInstance update stages. */
     interface UpdateStages {
         /** The stage of the SapVirtualInstance update allowing to specify tags. */
@@ -321,19 +365,30 @@ public interface SapVirtualInstance {
              */
             Update withTags(Map<String, String> tags);
         }
+
         /** The stage of the SapVirtualInstance update allowing to specify identity. */
         interface WithIdentity {
             /**
-             * Specifies the identity property: A pre-created user assigned identity with appropriate roles assigned. To
-             * learn more on identity and roles required, visit the ACSS how-to-guide..
+             * Specifies the identity property: Managed service identity (user assigned identities).
              *
-             * @param identity A pre-created user assigned identity with appropriate roles assigned. To learn more on
-             *     identity and roles required, visit the ACSS how-to-guide.
+             * @param identity Managed service identity (user assigned identities).
              * @return the next definition stage.
              */
             Update withIdentity(UserAssignedServiceIdentity identity);
         }
+
+        /** The stage of the SapVirtualInstance update allowing to specify properties. */
+        interface WithProperties {
+            /**
+             * Specifies the properties property: Defines the properties to be updated for Virtual Instance for SAP..
+             *
+             * @param properties Defines the properties to be updated for Virtual Instance for SAP.
+             * @return the next definition stage.
+             */
+            Update withProperties(UpdateSapVirtualInstanceProperties properties);
+        }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *
@@ -361,13 +416,14 @@ public interface SapVirtualInstance {
     /**
      * Starts the SAP application, that is the Central Services instance and Application server instances.
      *
+     * @param body The Virtual Instance for SAP solutions resource start request body.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the current status of an async operation.
      */
-    OperationStatusResult start(Context context);
+    OperationStatusResult start(StartRequest body, Context context);
 
     /**
      * Stops the SAP Application, that is the Application server instances and Central Services instance.

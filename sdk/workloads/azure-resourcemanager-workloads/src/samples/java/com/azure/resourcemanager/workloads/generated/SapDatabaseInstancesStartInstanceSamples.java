@@ -4,10 +4,12 @@
 
 package com.azure.resourcemanager.workloads.generated;
 
+import com.azure.resourcemanager.workloads.models.StartRequest;
+
 /** Samples for SapDatabaseInstances StartInstance. */
 public final class SapDatabaseInstancesStartInstanceSamples {
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPDatabaseInstances_StartInstance.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapdatabaseinstances/SAPDatabaseInstances_StartInstance.json
      */
     /**
      * Sample code: Start the database instance of the SAP system.
@@ -16,6 +18,22 @@ public final class SapDatabaseInstancesStartInstanceSamples {
      */
     public static void startTheDatabaseInstanceOfTheSAPSystem(
         com.azure.resourcemanager.workloads.WorkloadsManager manager) {
-        manager.sapDatabaseInstances().startInstance("test-rg", "X00", "db0", com.azure.core.util.Context.NONE);
+        manager.sapDatabaseInstances().startInstance("test-rg", "X00", "db0", null, com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapdatabaseinstances/SAPDatabaseInstances_StartInstance_WithInfraOperations.json
+     */
+    /**
+     * Sample code: Start Virtual Machine and the database instance of the SAP system on it.
+     *
+     * @param manager Entry point to WorkloadsManager.
+     */
+    public static void startVirtualMachineAndTheDatabaseInstanceOfTheSAPSystemOnIt(
+        com.azure.resourcemanager.workloads.WorkloadsManager manager) {
+        manager
+            .sapDatabaseInstances()
+            .startInstance(
+                "test-rg", "X00", "db0", new StartRequest().withStartVm(true), com.azure.core.util.Context.NONE);
     }
 }

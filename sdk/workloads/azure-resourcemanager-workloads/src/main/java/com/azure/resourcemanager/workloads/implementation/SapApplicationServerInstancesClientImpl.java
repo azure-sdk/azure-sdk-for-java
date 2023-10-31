@@ -37,6 +37,7 @@ import com.azure.resourcemanager.workloads.fluent.SapApplicationServerInstancesC
 import com.azure.resourcemanager.workloads.fluent.models.OperationStatusResultInner;
 import com.azure.resourcemanager.workloads.fluent.models.SapApplicationServerInstanceInner;
 import com.azure.resourcemanager.workloads.models.SapApplicationServerInstanceList;
+import com.azure.resourcemanager.workloads.models.StartRequest;
 import com.azure.resourcemanager.workloads.models.StopRequest;
 import com.azure.resourcemanager.workloads.models.UpdateSapApplicationInstanceRequest;
 import java.nio.ByteBuffer;
@@ -107,9 +108,9 @@ public final class SapApplicationServerInstancesClientImpl implements SapApplica
         @Headers({"Content-Type: application/json"})
         @Patch(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Workloads/sapVirtualInstances/{sapVirtualInstanceName}/applicationInstances/{applicationInstanceName}")
-        @ExpectedResponses({200, 201})
+        @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> update(
+        Mono<Response<SapApplicationServerInstanceInner>> update(
             @HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
@@ -123,7 +124,7 @@ public final class SapApplicationServerInstancesClientImpl implements SapApplica
         @Headers({"Content-Type: application/json"})
         @Delete(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Workloads/sapVirtualInstances/{sapVirtualInstanceName}/applicationInstances/{applicationInstanceName}")
-        @ExpectedResponses({200, 202, 204})
+        @ExpectedResponses({202, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(
             @HostParam("$host") String endpoint,
@@ -161,6 +162,7 @@ public final class SapApplicationServerInstancesClientImpl implements SapApplica
             @PathParam("sapVirtualInstanceName") String sapVirtualInstanceName,
             @PathParam("applicationInstanceName") String applicationInstanceName,
             @QueryParam("api-version") String apiVersion,
+            @BodyParam("application/json") StartRequest body,
             @HeaderParam("Accept") String accept,
             Context context);
 
@@ -752,7 +754,7 @@ public final class SapApplicationServerInstancesClientImpl implements SapApplica
     }
 
     /**
-     * Puts the SAP Application Server Instance resource.
+     * Updates the SAP Application server instance resource. This can be used to update tags on the resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
@@ -765,7 +767,7 @@ public final class SapApplicationServerInstancesClientImpl implements SapApplica
      *     of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
+    private Mono<Response<SapApplicationServerInstanceInner>> updateWithResponseAsync(
         String resourceGroupName,
         String sapVirtualInstanceName,
         String applicationInstanceName,
@@ -818,7 +820,7 @@ public final class SapApplicationServerInstancesClientImpl implements SapApplica
     }
 
     /**
-     * Puts the SAP Application Server Instance resource.
+     * Updates the SAP Application server instance resource. This can be used to update tags on the resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
@@ -832,7 +834,7 @@ public final class SapApplicationServerInstancesClientImpl implements SapApplica
      *     of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
+    private Mono<Response<SapApplicationServerInstanceInner>> updateWithResponseAsync(
         String resourceGroupName,
         String sapVirtualInstanceName,
         String applicationInstanceName,
@@ -883,167 +885,7 @@ public final class SapApplicationServerInstancesClientImpl implements SapApplica
     }
 
     /**
-     * Puts the SAP Application Server Instance resource.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
-     * @param applicationInstanceName The name of SAP Application Server instance resource.
-     * @param body The SAP Application Server Instance resource request body.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of define the SAP Application Server Instance resource.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<SapApplicationServerInstanceInner>, SapApplicationServerInstanceInner>
-        beginUpdateAsync(
-            String resourceGroupName,
-            String sapVirtualInstanceName,
-            String applicationInstanceName,
-            UpdateSapApplicationInstanceRequest body) {
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            updateWithResponseAsync(resourceGroupName, sapVirtualInstanceName, applicationInstanceName, body);
-        return this
-            .client
-            .<SapApplicationServerInstanceInner, SapApplicationServerInstanceInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                SapApplicationServerInstanceInner.class,
-                SapApplicationServerInstanceInner.class,
-                this.client.getContext());
-    }
-
-    /**
-     * Puts the SAP Application Server Instance resource.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
-     * @param applicationInstanceName The name of SAP Application Server instance resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of define the SAP Application Server Instance resource.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<SapApplicationServerInstanceInner>, SapApplicationServerInstanceInner>
-        beginUpdateAsync(String resourceGroupName, String sapVirtualInstanceName, String applicationInstanceName) {
-        final UpdateSapApplicationInstanceRequest body = null;
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            updateWithResponseAsync(resourceGroupName, sapVirtualInstanceName, applicationInstanceName, body);
-        return this
-            .client
-            .<SapApplicationServerInstanceInner, SapApplicationServerInstanceInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                SapApplicationServerInstanceInner.class,
-                SapApplicationServerInstanceInner.class,
-                this.client.getContext());
-    }
-
-    /**
-     * Puts the SAP Application Server Instance resource.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
-     * @param applicationInstanceName The name of SAP Application Server instance resource.
-     * @param body The SAP Application Server Instance resource request body.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of define the SAP Application Server Instance resource.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<SapApplicationServerInstanceInner>, SapApplicationServerInstanceInner>
-        beginUpdateAsync(
-            String resourceGroupName,
-            String sapVirtualInstanceName,
-            String applicationInstanceName,
-            UpdateSapApplicationInstanceRequest body,
-            Context context) {
-        context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            updateWithResponseAsync(resourceGroupName, sapVirtualInstanceName, applicationInstanceName, body, context);
-        return this
-            .client
-            .<SapApplicationServerInstanceInner, SapApplicationServerInstanceInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                SapApplicationServerInstanceInner.class,
-                SapApplicationServerInstanceInner.class,
-                context);
-    }
-
-    /**
-     * Puts the SAP Application Server Instance resource.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
-     * @param applicationInstanceName The name of SAP Application Server instance resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of define the SAP Application Server Instance resource.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<SapApplicationServerInstanceInner>, SapApplicationServerInstanceInner> beginUpdate(
-        String resourceGroupName, String sapVirtualInstanceName, String applicationInstanceName) {
-        final UpdateSapApplicationInstanceRequest body = null;
-        return this
-            .beginUpdateAsync(resourceGroupName, sapVirtualInstanceName, applicationInstanceName, body)
-            .getSyncPoller();
-    }
-
-    /**
-     * Puts the SAP Application Server Instance resource.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
-     * @param applicationInstanceName The name of SAP Application Server instance resource.
-     * @param body The SAP Application Server Instance resource request body.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of define the SAP Application Server Instance resource.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<SapApplicationServerInstanceInner>, SapApplicationServerInstanceInner> beginUpdate(
-        String resourceGroupName,
-        String sapVirtualInstanceName,
-        String applicationInstanceName,
-        UpdateSapApplicationInstanceRequest body,
-        Context context) {
-        return this
-            .beginUpdateAsync(resourceGroupName, sapVirtualInstanceName, applicationInstanceName, body, context)
-            .getSyncPoller();
-    }
-
-    /**
-     * Puts the SAP Application Server Instance resource.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
-     * @param applicationInstanceName The name of SAP Application Server instance resource.
-     * @param body The SAP Application Server Instance resource request body.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return define the SAP Application Server Instance resource on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<SapApplicationServerInstanceInner> updateAsync(
-        String resourceGroupName,
-        String sapVirtualInstanceName,
-        String applicationInstanceName,
-        UpdateSapApplicationInstanceRequest body) {
-        return beginUpdateAsync(resourceGroupName, sapVirtualInstanceName, applicationInstanceName, body)
-            .last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Puts the SAP Application Server Instance resource.
+     * Updates the SAP Application server instance resource. This can be used to update tags on the resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
@@ -1057,13 +899,12 @@ public final class SapApplicationServerInstancesClientImpl implements SapApplica
     private Mono<SapApplicationServerInstanceInner> updateAsync(
         String resourceGroupName, String sapVirtualInstanceName, String applicationInstanceName) {
         final UpdateSapApplicationInstanceRequest body = null;
-        return beginUpdateAsync(resourceGroupName, sapVirtualInstanceName, applicationInstanceName, body)
-            .last()
-            .flatMap(this.client::getLroFinalResultOrError);
+        return updateWithResponseAsync(resourceGroupName, sapVirtualInstanceName, applicationInstanceName, body)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Puts the SAP Application Server Instance resource.
+     * Updates the SAP Application server instance resource. This can be used to update tags on the resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
@@ -1073,22 +914,22 @@ public final class SapApplicationServerInstancesClientImpl implements SapApplica
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return define the SAP Application Server Instance resource on successful completion of {@link Mono}.
+     * @return define the SAP Application Server Instance resource along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<SapApplicationServerInstanceInner> updateAsync(
+    public Response<SapApplicationServerInstanceInner> updateWithResponse(
         String resourceGroupName,
         String sapVirtualInstanceName,
         String applicationInstanceName,
         UpdateSapApplicationInstanceRequest body,
         Context context) {
-        return beginUpdateAsync(resourceGroupName, sapVirtualInstanceName, applicationInstanceName, body, context)
-            .last()
-            .flatMap(this.client::getLroFinalResultOrError);
+        return updateWithResponseAsync(
+                resourceGroupName, sapVirtualInstanceName, applicationInstanceName, body, context)
+            .block();
     }
 
     /**
-     * Puts the SAP Application Server Instance resource.
+     * Updates the SAP Application server instance resource. This can be used to update tags on the resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
@@ -1102,30 +943,9 @@ public final class SapApplicationServerInstancesClientImpl implements SapApplica
     public SapApplicationServerInstanceInner update(
         String resourceGroupName, String sapVirtualInstanceName, String applicationInstanceName) {
         final UpdateSapApplicationInstanceRequest body = null;
-        return updateAsync(resourceGroupName, sapVirtualInstanceName, applicationInstanceName, body).block();
-    }
-
-    /**
-     * Puts the SAP Application Server Instance resource.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
-     * @param applicationInstanceName The name of SAP Application Server instance resource.
-     * @param body The SAP Application Server Instance resource request body.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return define the SAP Application Server Instance resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public SapApplicationServerInstanceInner update(
-        String resourceGroupName,
-        String sapVirtualInstanceName,
-        String applicationInstanceName,
-        UpdateSapApplicationInstanceRequest body,
-        Context context) {
-        return updateAsync(resourceGroupName, sapVirtualInstanceName, applicationInstanceName, body, context).block();
+        return updateWithResponse(
+                resourceGroupName, sapVirtualInstanceName, applicationInstanceName, body, Context.NONE)
+            .getValue();
     }
 
     /**
@@ -1138,8 +958,7 @@ public final class SapApplicationServerInstancesClientImpl implements SapApplica
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the current status of an async operation along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
@@ -1198,8 +1017,7 @@ public final class SapApplicationServerInstancesClientImpl implements SapApplica
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the current status of an async operation along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
@@ -1254,21 +1072,17 @@ public final class SapApplicationServerInstancesClientImpl implements SapApplica
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of the current status of an async operation.
+     * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<OperationStatusResultInner>, OperationStatusResultInner> beginDeleteAsync(
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
         String resourceGroupName, String sapVirtualInstanceName, String applicationInstanceName) {
         Mono<Response<Flux<ByteBuffer>>> mono =
             deleteWithResponseAsync(resourceGroupName, sapVirtualInstanceName, applicationInstanceName);
         return this
             .client
-            .<OperationStatusResultInner, OperationStatusResultInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                OperationStatusResultInner.class,
-                OperationStatusResultInner.class,
-                this.client.getContext());
+            .<Void, Void>getLroResult(
+                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
     }
 
     /**
@@ -1282,22 +1096,17 @@ public final class SapApplicationServerInstancesClientImpl implements SapApplica
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of the current status of an async operation.
+     * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<OperationStatusResultInner>, OperationStatusResultInner> beginDeleteAsync(
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
         String resourceGroupName, String sapVirtualInstanceName, String applicationInstanceName, Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono =
             deleteWithResponseAsync(resourceGroupName, sapVirtualInstanceName, applicationInstanceName, context);
         return this
             .client
-            .<OperationStatusResultInner, OperationStatusResultInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                OperationStatusResultInner.class,
-                OperationStatusResultInner.class,
-                context);
+            .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, context);
     }
 
     /**
@@ -1310,10 +1119,10 @@ public final class SapApplicationServerInstancesClientImpl implements SapApplica
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of the current status of an async operation.
+     * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<OperationStatusResultInner>, OperationStatusResultInner> beginDelete(
+    public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String sapVirtualInstanceName, String applicationInstanceName) {
         return this
             .beginDeleteAsync(resourceGroupName, sapVirtualInstanceName, applicationInstanceName)
@@ -1331,10 +1140,10 @@ public final class SapApplicationServerInstancesClientImpl implements SapApplica
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of the current status of an async operation.
+     * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<OperationStatusResultInner>, OperationStatusResultInner> beginDelete(
+    public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String sapVirtualInstanceName, String applicationInstanceName, Context context) {
         return this
             .beginDeleteAsync(resourceGroupName, sapVirtualInstanceName, applicationInstanceName, context)
@@ -1351,10 +1160,10 @@ public final class SapApplicationServerInstancesClientImpl implements SapApplica
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the current status of an async operation on successful completion of {@link Mono}.
+     * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<OperationStatusResultInner> deleteAsync(
+    private Mono<Void> deleteAsync(
         String resourceGroupName, String sapVirtualInstanceName, String applicationInstanceName) {
         return beginDeleteAsync(resourceGroupName, sapVirtualInstanceName, applicationInstanceName)
             .last()
@@ -1372,10 +1181,10 @@ public final class SapApplicationServerInstancesClientImpl implements SapApplica
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the current status of an async operation on successful completion of {@link Mono}.
+     * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<OperationStatusResultInner> deleteAsync(
+    private Mono<Void> deleteAsync(
         String resourceGroupName, String sapVirtualInstanceName, String applicationInstanceName, Context context) {
         return beginDeleteAsync(resourceGroupName, sapVirtualInstanceName, applicationInstanceName, context)
             .last()
@@ -1392,12 +1201,10 @@ public final class SapApplicationServerInstancesClientImpl implements SapApplica
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the current status of an async operation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public OperationStatusResultInner delete(
-        String resourceGroupName, String sapVirtualInstanceName, String applicationInstanceName) {
-        return deleteAsync(resourceGroupName, sapVirtualInstanceName, applicationInstanceName).block();
+    public void delete(String resourceGroupName, String sapVirtualInstanceName, String applicationInstanceName) {
+        deleteAsync(resourceGroupName, sapVirtualInstanceName, applicationInstanceName).block();
     }
 
     /**
@@ -1411,12 +1218,11 @@ public final class SapApplicationServerInstancesClientImpl implements SapApplica
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the current status of an async operation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public OperationStatusResultInner delete(
+    public void delete(
         String resourceGroupName, String sapVirtualInstanceName, String applicationInstanceName, Context context) {
-        return deleteAsync(resourceGroupName, sapVirtualInstanceName, applicationInstanceName, context).block();
+        deleteAsync(resourceGroupName, sapVirtualInstanceName, applicationInstanceName, context).block();
     }
 
     /**
@@ -1617,6 +1423,7 @@ public final class SapApplicationServerInstancesClientImpl implements SapApplica
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
      * @param applicationInstanceName The name of SAP Application Server instance resource.
+     * @param body SAP Application server instance start request body.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1625,7 +1432,7 @@ public final class SapApplicationServerInstancesClientImpl implements SapApplica
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> startInstanceWithResponseAsync(
-        String resourceGroupName, String sapVirtualInstanceName, String applicationInstanceName) {
+        String resourceGroupName, String sapVirtualInstanceName, String applicationInstanceName, StartRequest body) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -1651,6 +1458,9 @@ public final class SapApplicationServerInstancesClientImpl implements SapApplica
             return Mono
                 .error(
                     new IllegalArgumentException("Parameter applicationInstanceName is required and cannot be null."));
+        }
+        if (body != null) {
+            body.validate();
         }
         final String accept = "application/json";
         return FluxUtil
@@ -1664,6 +1474,7 @@ public final class SapApplicationServerInstancesClientImpl implements SapApplica
                             sapVirtualInstanceName,
                             applicationInstanceName,
                             this.client.getApiVersion(),
+                            body,
                             accept,
                             context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -1675,6 +1486,7 @@ public final class SapApplicationServerInstancesClientImpl implements SapApplica
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
      * @param applicationInstanceName The name of SAP Application Server instance resource.
+     * @param body SAP Application server instance start request body.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1684,7 +1496,11 @@ public final class SapApplicationServerInstancesClientImpl implements SapApplica
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> startInstanceWithResponseAsync(
-        String resourceGroupName, String sapVirtualInstanceName, String applicationInstanceName, Context context) {
+        String resourceGroupName,
+        String sapVirtualInstanceName,
+        String applicationInstanceName,
+        StartRequest body,
+        Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -1711,6 +1527,9 @@ public final class SapApplicationServerInstancesClientImpl implements SapApplica
                 .error(
                     new IllegalArgumentException("Parameter applicationInstanceName is required and cannot be null."));
         }
+        if (body != null) {
+            body.validate();
+        }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -1721,6 +1540,7 @@ public final class SapApplicationServerInstancesClientImpl implements SapApplica
                 sapVirtualInstanceName,
                 applicationInstanceName,
                 this.client.getApiVersion(),
+                body,
                 accept,
                 context);
     }
@@ -1731,6 +1551,7 @@ public final class SapApplicationServerInstancesClientImpl implements SapApplica
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
      * @param applicationInstanceName The name of SAP Application Server instance resource.
+     * @param body SAP Application server instance start request body.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1738,9 +1559,9 @@ public final class SapApplicationServerInstancesClientImpl implements SapApplica
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<OperationStatusResultInner>, OperationStatusResultInner> beginStartInstanceAsync(
-        String resourceGroupName, String sapVirtualInstanceName, String applicationInstanceName) {
+        String resourceGroupName, String sapVirtualInstanceName, String applicationInstanceName, StartRequest body) {
         Mono<Response<Flux<ByteBuffer>>> mono =
-            startInstanceWithResponseAsync(resourceGroupName, sapVirtualInstanceName, applicationInstanceName);
+            startInstanceWithResponseAsync(resourceGroupName, sapVirtualInstanceName, applicationInstanceName, body);
         return this
             .client
             .<OperationStatusResultInner, OperationStatusResultInner>getLroResult(
@@ -1757,6 +1578,34 @@ public final class SapApplicationServerInstancesClientImpl implements SapApplica
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
      * @param applicationInstanceName The name of SAP Application Server instance resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of the current status of an async operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<OperationStatusResultInner>, OperationStatusResultInner> beginStartInstanceAsync(
+        String resourceGroupName, String sapVirtualInstanceName, String applicationInstanceName) {
+        final StartRequest body = null;
+        Mono<Response<Flux<ByteBuffer>>> mono =
+            startInstanceWithResponseAsync(resourceGroupName, sapVirtualInstanceName, applicationInstanceName, body);
+        return this
+            .client
+            .<OperationStatusResultInner, OperationStatusResultInner>getLroResult(
+                mono,
+                this.client.getHttpPipeline(),
+                OperationStatusResultInner.class,
+                OperationStatusResultInner.class,
+                this.client.getContext());
+    }
+
+    /**
+     * Starts the SAP Application Server Instance.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
+     * @param applicationInstanceName The name of SAP Application Server instance resource.
+     * @param body SAP Application server instance start request body.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1765,10 +1614,15 @@ public final class SapApplicationServerInstancesClientImpl implements SapApplica
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<OperationStatusResultInner>, OperationStatusResultInner> beginStartInstanceAsync(
-        String resourceGroupName, String sapVirtualInstanceName, String applicationInstanceName, Context context) {
+        String resourceGroupName,
+        String sapVirtualInstanceName,
+        String applicationInstanceName,
+        StartRequest body,
+        Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono =
-            startInstanceWithResponseAsync(resourceGroupName, sapVirtualInstanceName, applicationInstanceName, context);
+            startInstanceWithResponseAsync(
+                resourceGroupName, sapVirtualInstanceName, applicationInstanceName, body, context);
         return this
             .client
             .<OperationStatusResultInner, OperationStatusResultInner>getLroResult(
@@ -1793,8 +1647,9 @@ public final class SapApplicationServerInstancesClientImpl implements SapApplica
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<OperationStatusResultInner>, OperationStatusResultInner> beginStartInstance(
         String resourceGroupName, String sapVirtualInstanceName, String applicationInstanceName) {
+        final StartRequest body = null;
         return this
-            .beginStartInstanceAsync(resourceGroupName, sapVirtualInstanceName, applicationInstanceName)
+            .beginStartInstanceAsync(resourceGroupName, sapVirtualInstanceName, applicationInstanceName, body)
             .getSyncPoller();
     }
 
@@ -1804,6 +1659,7 @@ public final class SapApplicationServerInstancesClientImpl implements SapApplica
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
      * @param applicationInstanceName The name of SAP Application Server instance resource.
+     * @param body SAP Application server instance start request body.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1812,9 +1668,13 @@ public final class SapApplicationServerInstancesClientImpl implements SapApplica
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<OperationStatusResultInner>, OperationStatusResultInner> beginStartInstance(
-        String resourceGroupName, String sapVirtualInstanceName, String applicationInstanceName, Context context) {
+        String resourceGroupName,
+        String sapVirtualInstanceName,
+        String applicationInstanceName,
+        StartRequest body,
+        Context context) {
         return this
-            .beginStartInstanceAsync(resourceGroupName, sapVirtualInstanceName, applicationInstanceName, context)
+            .beginStartInstanceAsync(resourceGroupName, sapVirtualInstanceName, applicationInstanceName, body, context)
             .getSyncPoller();
     }
 
@@ -1824,6 +1684,7 @@ public final class SapApplicationServerInstancesClientImpl implements SapApplica
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
      * @param applicationInstanceName The name of SAP Application Server instance resource.
+     * @param body SAP Application server instance start request body.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1831,8 +1692,8 @@ public final class SapApplicationServerInstancesClientImpl implements SapApplica
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<OperationStatusResultInner> startInstanceAsync(
-        String resourceGroupName, String sapVirtualInstanceName, String applicationInstanceName) {
-        return beginStartInstanceAsync(resourceGroupName, sapVirtualInstanceName, applicationInstanceName)
+        String resourceGroupName, String sapVirtualInstanceName, String applicationInstanceName, StartRequest body) {
+        return beginStartInstanceAsync(resourceGroupName, sapVirtualInstanceName, applicationInstanceName, body)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
@@ -1843,6 +1704,27 @@ public final class SapApplicationServerInstancesClientImpl implements SapApplica
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
      * @param applicationInstanceName The name of SAP Application Server instance resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the current status of an async operation on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<OperationStatusResultInner> startInstanceAsync(
+        String resourceGroupName, String sapVirtualInstanceName, String applicationInstanceName) {
+        final StartRequest body = null;
+        return beginStartInstanceAsync(resourceGroupName, sapVirtualInstanceName, applicationInstanceName, body)
+            .last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Starts the SAP Application Server Instance.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
+     * @param applicationInstanceName The name of SAP Application Server instance resource.
+     * @param body SAP Application server instance start request body.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1851,8 +1733,13 @@ public final class SapApplicationServerInstancesClientImpl implements SapApplica
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<OperationStatusResultInner> startInstanceAsync(
-        String resourceGroupName, String sapVirtualInstanceName, String applicationInstanceName, Context context) {
-        return beginStartInstanceAsync(resourceGroupName, sapVirtualInstanceName, applicationInstanceName, context)
+        String resourceGroupName,
+        String sapVirtualInstanceName,
+        String applicationInstanceName,
+        StartRequest body,
+        Context context) {
+        return beginStartInstanceAsync(
+                resourceGroupName, sapVirtualInstanceName, applicationInstanceName, body, context)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
@@ -1871,7 +1758,8 @@ public final class SapApplicationServerInstancesClientImpl implements SapApplica
     @ServiceMethod(returns = ReturnType.SINGLE)
     public OperationStatusResultInner startInstance(
         String resourceGroupName, String sapVirtualInstanceName, String applicationInstanceName) {
-        return startInstanceAsync(resourceGroupName, sapVirtualInstanceName, applicationInstanceName).block();
+        final StartRequest body = null;
+        return startInstanceAsync(resourceGroupName, sapVirtualInstanceName, applicationInstanceName, body).block();
     }
 
     /**
@@ -1880,6 +1768,7 @@ public final class SapApplicationServerInstancesClientImpl implements SapApplica
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
      * @param applicationInstanceName The name of SAP Application Server instance resource.
+     * @param body SAP Application server instance start request body.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1888,8 +1777,13 @@ public final class SapApplicationServerInstancesClientImpl implements SapApplica
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public OperationStatusResultInner startInstance(
-        String resourceGroupName, String sapVirtualInstanceName, String applicationInstanceName, Context context) {
-        return startInstanceAsync(resourceGroupName, sapVirtualInstanceName, applicationInstanceName, context).block();
+        String resourceGroupName,
+        String sapVirtualInstanceName,
+        String applicationInstanceName,
+        StartRequest body,
+        Context context) {
+        return startInstanceAsync(resourceGroupName, sapVirtualInstanceName, applicationInstanceName, body, context)
+            .block();
     }
 
     /**

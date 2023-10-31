@@ -1,25 +1,26 @@
 # Code snippets and samples
 
 
-## Monitors
+## AcssBackupConnections
 
-- [Create](#monitors_create)
-- [Delete](#monitors_delete)
-- [GetByResourceGroup](#monitors_getbyresourcegroup)
-- [List](#monitors_list)
-- [ListByResourceGroup](#monitors_listbyresourcegroup)
-- [Update](#monitors_update)
+- [Create](#acssbackupconnections_create)
+- [Delete](#acssbackupconnections_delete)
+- [Get](#acssbackupconnections_get)
+- [List](#acssbackupconnections_list)
+- [Update](#acssbackupconnections_update)
+
+## Connectors
+
+- [Create](#connectors_create)
+- [Delete](#connectors_delete)
+- [GetByResourceGroup](#connectors_getbyresourcegroup)
+- [List](#connectors_list)
+- [ListByResourceGroup](#connectors_listbyresourcegroup)
+- [Update](#connectors_update)
 
 ## Operations
 
 - [List](#operations_list)
-
-## ProviderInstances
-
-- [Create](#providerinstances_create)
-- [Delete](#providerinstances_delete)
-- [Get](#providerinstances_get)
-- [List](#providerinstances_list)
 
 ## ResourceProvider
 
@@ -58,14 +59,6 @@
 - [StopInstance](#sapdatabaseinstances_stopinstance)
 - [Update](#sapdatabaseinstances_update)
 
-## SapLandscapeMonitor
-
-- [Create](#saplandscapemonitor_create)
-- [Delete](#saplandscapemonitor_delete)
-- [Get](#saplandscapemonitor_get)
-- [List](#saplandscapemonitor_list)
-- [Update](#saplandscapemonitor_update)
-
 ## SapVirtualInstances
 
 - [Create](#sapvirtualinstances_create)
@@ -76,41 +69,654 @@
 - [Start](#sapvirtualinstances_start)
 - [Stop](#sapvirtualinstances_stop)
 - [Update](#sapvirtualinstances_update)
-### Monitors_Create
+### AcssBackupConnections_Create
 
 ```java
-import com.azure.resourcemanager.workloads.models.ManagedRGConfiguration;
-import com.azure.resourcemanager.workloads.models.RoutingPreference;
+import com.azure.resourcemanager.workloads.models.AzureIaaSvmProtectionPolicy;
+import com.azure.resourcemanager.workloads.models.AzureVmWorkloadProtectionPolicy;
+import com.azure.resourcemanager.workloads.models.DBBackupPolicyProperties;
+import com.azure.resourcemanager.workloads.models.DailyRetentionSchedule;
+import com.azure.resourcemanager.workloads.models.DayOfWeek;
+import com.azure.resourcemanager.workloads.models.DiskExclusionProperties;
+import com.azure.resourcemanager.workloads.models.ExistingRecoveryServicesVault;
+import com.azure.resourcemanager.workloads.models.HanaBackupData;
+import com.azure.resourcemanager.workloads.models.IaasvmPolicyType;
+import com.azure.resourcemanager.workloads.models.InstantRPAdditionalDetails;
+import com.azure.resourcemanager.workloads.models.LogSchedulePolicy;
+import com.azure.resourcemanager.workloads.models.LongTermRetentionPolicy;
+import com.azure.resourcemanager.workloads.models.MonthOfYear;
+import com.azure.resourcemanager.workloads.models.MonthlyRetentionSchedule;
+import com.azure.resourcemanager.workloads.models.NewRecoveryServicesVault;
+import com.azure.resourcemanager.workloads.models.PolicyType;
+import com.azure.resourcemanager.workloads.models.RetentionDuration;
+import com.azure.resourcemanager.workloads.models.RetentionDurationType;
+import com.azure.resourcemanager.workloads.models.RetentionScheduleFormat;
+import com.azure.resourcemanager.workloads.models.ScheduleRunType;
+import com.azure.resourcemanager.workloads.models.Settings;
+import com.azure.resourcemanager.workloads.models.SimpleRetentionPolicy;
+import com.azure.resourcemanager.workloads.models.SimpleSchedulePolicy;
+import com.azure.resourcemanager.workloads.models.SnapshotBackupAdditionalDetails;
+import com.azure.resourcemanager.workloads.models.SqlBackupData;
+import com.azure.resourcemanager.workloads.models.SslConfiguration;
+import com.azure.resourcemanager.workloads.models.SslCryptoProvider;
+import com.azure.resourcemanager.workloads.models.SubProtectionPolicy;
+import com.azure.resourcemanager.workloads.models.TieringMode;
+import com.azure.resourcemanager.workloads.models.TieringPolicy;
+import com.azure.resourcemanager.workloads.models.UserAssignedIdentityProperties;
+import com.azure.resourcemanager.workloads.models.UserAssignedManagedIdentityDetails;
+import com.azure.resourcemanager.workloads.models.VMBackupData;
+import com.azure.resourcemanager.workloads.models.VMBackupPolicyProperties;
+import com.azure.resourcemanager.workloads.models.WeekOfMonth;
+import com.azure.resourcemanager.workloads.models.WeeklyRetentionFormat;
+import com.azure.resourcemanager.workloads.models.WeeklyRetentionSchedule;
+import com.azure.resourcemanager.workloads.models.WorkloadType;
+import com.azure.resourcemanager.workloads.models.YearlyRetentionSchedule;
+import java.time.OffsetDateTime;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-/** Samples for Monitors Create. */
-public final class MonitorsCreateSamples {
+/** Samples for AcssBackupConnections Create. */
+public final class AcssBackupConnectionsCreateSamples {
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/workloadmonitor/monitors_Create.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/connectors/preview/2023-10-01-preview/examples/ACSSBackup/SQL_NewPolicy.json
      */
     /**
-     * Sample code: Create a SAP monitor.
+     * Sample code: Create a SQL backup connection with a new backup policy.
      *
      * @param manager Entry point to WorkloadsManager.
      */
-    public static void createASAPMonitor(com.azure.resourcemanager.workloads.WorkloadsManager manager) {
+    public static void createASQLBackupConnectionWithANewBackupPolicy(
+        com.azure.resourcemanager.workloads.WorkloadsManager manager) {
         manager
-            .monitors()
-            .define("mySapMonitor")
-            .withRegion("westus")
-            .withExistingResourceGroup("myResourceGroup")
-            .withTags(mapOf("key", "value"))
-            .withAppLocation("westus")
-            .withRoutingPreference(RoutingPreference.ROUTE_ALL)
-            .withManagedResourceGroupConfiguration(new ManagedRGConfiguration().withName("myManagedRg"))
-            .withLogAnalyticsWorkspaceArmId(
-                "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/myResourceGroup/providers/microsoft.operationalinsights/workspaces/myWorkspace")
-            .withMonitorSubnet(
-                "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.Network/virtualNetworks/myVnet/subnets/mySubnet")
+            .acssBackupConnections()
+            .define("dbBackup")
+            .withRegion("westcentralus")
+            .withExistingConnector("test-rg", "C1")
+            .withTags(mapOf())
+            .withBackupData(
+                new SqlBackupData()
+                    .withRecoveryServicesVault(
+                        new NewRecoveryServicesVault().withName("test-vault").withResourceGroup("test-rg"))
+                    .withBackupPolicy(
+                        new DBBackupPolicyProperties()
+                            .withName("defaultSqlPolicy")
+                            .withProperties(
+                                new AzureVmWorkloadProtectionPolicy()
+                                    .withProtectedItemsCount(0)
+                                    .withWorkLoadType(WorkloadType.SQLDATA_BASE)
+                                    .withSettings(
+                                        new Settings()
+                                            .withTimeZone("UTC")
+                                            .withIssqlcompression(true)
+                                            .withIsCompression(true))
+                                    .withSubProtectionPolicy(
+                                        Arrays
+                                            .asList(
+                                                new SubProtectionPolicy()
+                                                    .withPolicyType(PolicyType.FULL)
+                                                    .withSchedulePolicy(
+                                                        new SimpleSchedulePolicy()
+                                                            .withScheduleRunFrequency(ScheduleRunType.WEEKLY)
+                                                            .withScheduleRunDays(Arrays.asList(DayOfWeek.SUNDAY))
+                                                            .withScheduleRunTimes(
+                                                                Arrays
+                                                                    .asList(
+                                                                        OffsetDateTime
+                                                                            .parse("2022-11-29T19:30:00.000Z"))))
+                                                    .withRetentionPolicy(
+                                                        new LongTermRetentionPolicy()
+                                                            .withWeeklySchedule(
+                                                                new WeeklyRetentionSchedule()
+                                                                    .withDaysOfTheWeek(Arrays.asList(DayOfWeek.SUNDAY))
+                                                                    .withRetentionTimes(
+                                                                        Arrays
+                                                                            .asList(
+                                                                                OffsetDateTime
+                                                                                    .parse("2022-11-29T19:30:00.000Z")))
+                                                                    .withRetentionDuration(
+                                                                        new RetentionDuration()
+                                                                            .withCount(104)
+                                                                            .withDurationType(
+                                                                                RetentionDurationType.WEEKS)))
+                                                            .withMonthlySchedule(
+                                                                new MonthlyRetentionSchedule()
+                                                                    .withRetentionScheduleFormatType(
+                                                                        RetentionScheduleFormat.WEEKLY)
+                                                                    .withRetentionScheduleWeekly(
+                                                                        new WeeklyRetentionFormat()
+                                                                            .withDaysOfTheWeek(
+                                                                                Arrays.asList(DayOfWeek.SUNDAY))
+                                                                            .withWeeksOfTheMonth(
+                                                                                Arrays.asList(WeekOfMonth.FIRST)))
+                                                                    .withRetentionTimes(
+                                                                        Arrays
+                                                                            .asList(
+                                                                                OffsetDateTime
+                                                                                    .parse("2022-11-29T19:30:00.000Z")))
+                                                                    .withRetentionDuration(
+                                                                        new RetentionDuration()
+                                                                            .withCount(60)
+                                                                            .withDurationType(
+                                                                                RetentionDurationType.MONTHS)))
+                                                            .withYearlySchedule(
+                                                                new YearlyRetentionSchedule()
+                                                                    .withRetentionScheduleFormatType(
+                                                                        RetentionScheduleFormat.WEEKLY)
+                                                                    .withMonthsOfYear(
+                                                                        Arrays.asList(MonthOfYear.JANUARY))
+                                                                    .withRetentionScheduleWeekly(
+                                                                        new WeeklyRetentionFormat()
+                                                                            .withDaysOfTheWeek(
+                                                                                Arrays.asList(DayOfWeek.SUNDAY))
+                                                                            .withWeeksOfTheMonth(
+                                                                                Arrays.asList(WeekOfMonth.FIRST)))
+                                                                    .withRetentionTimes(
+                                                                        Arrays
+                                                                            .asList(
+                                                                                OffsetDateTime
+                                                                                    .parse("2022-11-29T19:30:00.000Z")))
+                                                                    .withRetentionDuration(
+                                                                        new RetentionDuration()
+                                                                            .withCount(10)
+                                                                            .withDurationType(
+                                                                                RetentionDurationType.YEARS))))
+                                                    .withTieringPolicy(
+                                                        mapOf(
+                                                            "ArchivedRP",
+                                                            new TieringPolicy()
+                                                                .withTieringMode(TieringMode.TIER_AFTER)
+                                                                .withDuration(45)
+                                                                .withDurationType(RetentionDurationType.DAYS))),
+                                                new SubProtectionPolicy()
+                                                    .withPolicyType(PolicyType.DIFFERENTIAL)
+                                                    .withSchedulePolicy(
+                                                        new SimpleSchedulePolicy()
+                                                            .withScheduleRunFrequency(ScheduleRunType.WEEKLY)
+                                                            .withScheduleRunDays(Arrays.asList(DayOfWeek.MONDAY))
+                                                            .withScheduleRunTimes(
+                                                                Arrays
+                                                                    .asList(
+                                                                        OffsetDateTime.parse("2022-09-29T02:00:00Z")))
+                                                            .withScheduleWeeklyFrequency(0))
+                                                    .withRetentionPolicy(
+                                                        new SimpleRetentionPolicy()
+                                                            .withRetentionDuration(
+                                                                new RetentionDuration()
+                                                                    .withCount(30)
+                                                                    .withDurationType(RetentionDurationType.DAYS))),
+                                                new SubProtectionPolicy()
+                                                    .withPolicyType(PolicyType.LOG)
+                                                    .withSchedulePolicy(
+                                                        new LogSchedulePolicy().withScheduleFrequencyInMins(120))
+                                                    .withRetentionPolicy(
+                                                        new SimpleRetentionPolicy()
+                                                            .withRetentionDuration(
+                                                                new RetentionDuration()
+                                                                    .withCount(20)
+                                                                    .withDurationType(RetentionDurationType.DAYS))))))))
             .create();
     }
 
+    /*
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/connectors/preview/2023-10-01-preview/examples/ACSSBackup/VM_NewPolicy.json
+     */
+    /**
+     * Sample code: Create a VM backup connection with a new backup policy with tieringPolicy.
+     *
+     * @param manager Entry point to WorkloadsManager.
+     */
+    public static void createAVMBackupConnectionWithANewBackupPolicyWithTieringPolicy(
+        com.azure.resourcemanager.workloads.WorkloadsManager manager) {
+        manager
+            .acssBackupConnections()
+            .define("vmBackup")
+            .withRegion("westcentralus")
+            .withExistingConnector("test-rg", "C1")
+            .withTags(mapOf())
+            .withBackupData(
+                new VMBackupData()
+                    .withRecoveryServicesVault(
+                        new NewRecoveryServicesVault().withName("test-vault").withResourceGroup("test-rg"))
+                    .withBackupPolicy(
+                        new VMBackupPolicyProperties()
+                            .withName("defaultVmPolicy")
+                            .withProperties(
+                                new AzureIaaSvmProtectionPolicy()
+                                    .withProtectedItemsCount(0)
+                                    .withInstantRPDetails(
+                                        new InstantRPAdditionalDetails()
+                                            .withAzureBackupRGNamePrefix("dasas")
+                                            .withAzureBackupRGNameSuffix("a"))
+                                    .withSchedulePolicy(
+                                        new SimpleSchedulePolicy()
+                                            .withScheduleRunFrequency(ScheduleRunType.DAILY)
+                                            .withScheduleRunTimes(
+                                                Arrays.asList(OffsetDateTime.parse("2022-11-29T19:30:00.000Z"))))
+                                    .withRetentionPolicy(
+                                        new LongTermRetentionPolicy()
+                                            .withDailySchedule(
+                                                new DailyRetentionSchedule()
+                                                    .withRetentionTimes(
+                                                        Arrays.asList(OffsetDateTime.parse("2022-11-29T19:30:00.000Z")))
+                                                    .withRetentionDuration(
+                                                        new RetentionDuration()
+                                                            .withCount(30)
+                                                            .withDurationType(RetentionDurationType.DAYS)))
+                                            .withWeeklySchedule(
+                                                new WeeklyRetentionSchedule()
+                                                    .withDaysOfTheWeek(Arrays.asList(DayOfWeek.SUNDAY))
+                                                    .withRetentionTimes(
+                                                        Arrays.asList(OffsetDateTime.parse("2022-11-29T19:30:00.000Z")))
+                                                    .withRetentionDuration(
+                                                        new RetentionDuration()
+                                                            .withCount(12)
+                                                            .withDurationType(RetentionDurationType.WEEKS)))
+                                            .withMonthlySchedule(
+                                                new MonthlyRetentionSchedule()
+                                                    .withRetentionScheduleFormatType(RetentionScheduleFormat.WEEKLY)
+                                                    .withRetentionScheduleWeekly(
+                                                        new WeeklyRetentionFormat()
+                                                            .withDaysOfTheWeek(Arrays.asList(DayOfWeek.SUNDAY))
+                                                            .withWeeksOfTheMonth(Arrays.asList(WeekOfMonth.FIRST)))
+                                                    .withRetentionTimes(
+                                                        Arrays.asList(OffsetDateTime.parse("2022-11-29T19:30:00.000Z")))
+                                                    .withRetentionDuration(
+                                                        new RetentionDuration()
+                                                            .withCount(60)
+                                                            .withDurationType(RetentionDurationType.MONTHS)))
+                                            .withYearlySchedule(
+                                                new YearlyRetentionSchedule()
+                                                    .withRetentionScheduleFormatType(RetentionScheduleFormat.WEEKLY)
+                                                    .withMonthsOfYear(Arrays.asList(MonthOfYear.JANUARY))
+                                                    .withRetentionScheduleWeekly(
+                                                        new WeeklyRetentionFormat()
+                                                            .withDaysOfTheWeek(Arrays.asList(DayOfWeek.SUNDAY))
+                                                            .withWeeksOfTheMonth(Arrays.asList(WeekOfMonth.FIRST)))
+                                                    .withRetentionTimes(
+                                                        Arrays.asList(OffsetDateTime.parse("2022-11-29T19:30:00.000Z")))
+                                                    .withRetentionDuration(
+                                                        new RetentionDuration()
+                                                            .withCount(10)
+                                                            .withDurationType(RetentionDurationType.YEARS))))
+                                    .withTieringPolicy(
+                                        mapOf(
+                                            "ArchivedRP",
+                                            new TieringPolicy()
+                                                .withTieringMode(TieringMode.TIER_AFTER)
+                                                .withDuration(3)
+                                                .withDurationType(RetentionDurationType.MONTHS)))
+                                    .withInstantRpRetentionRangeInDays(2)
+                                    .withTimeZone("UTC")
+                                    .withPolicyType(IaasvmPolicyType.V1)))
+                    .withDiskExclusionProperties(
+                        new DiskExclusionProperties().withDiskLunList(Arrays.asList()).withIsInclusionList(true)))
+            .create();
+    }
+
+    /*
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/connectors/preview/2023-10-01-preview/examples/ACSSBackup/DB_New_Create.json
+     */
+    /**
+     * Sample code: Create a db backup connection with a new backup policy.
+     *
+     * @param manager Entry point to WorkloadsManager.
+     */
+    public static void createADbBackupConnectionWithANewBackupPolicy(
+        com.azure.resourcemanager.workloads.WorkloadsManager manager) {
+        manager
+            .acssBackupConnections()
+            .define("dbBackup")
+            .withRegion("westcentralus")
+            .withExistingConnector("test-rg", "C1")
+            .withTags(mapOf())
+            .withBackupData(
+                new SqlBackupData()
+                    .withRecoveryServicesVault(
+                        new ExistingRecoveryServicesVault()
+                            .withId(
+                                "/subscriptions/6d875e77-e412-4d7d-9af4-8895278b4443/resourceGroups/test-rg/providers/Microsoft.RecoveryServices/vaults/test-vault"))
+                    .withBackupPolicy(
+                        new DBBackupPolicyProperties()
+                            .withName("defaultDbPolicy")
+                            .withProperties(
+                                new AzureVmWorkloadProtectionPolicy()
+                                    .withProtectedItemsCount(0)
+                                    .withWorkLoadType(WorkloadType.SQLDATA_BASE)
+                                    .withSettings(
+                                        new Settings()
+                                            .withTimeZone("UTC")
+                                            .withIssqlcompression(false)
+                                            .withIsCompression(false))
+                                    .withSubProtectionPolicy(
+                                        Arrays
+                                            .asList(
+                                                new SubProtectionPolicy()
+                                                    .withPolicyType(PolicyType.FULL)
+                                                    .withSchedulePolicy(
+                                                        new SimpleSchedulePolicy()
+                                                            .withScheduleRunFrequency(ScheduleRunType.DAILY)
+                                                            .withScheduleRunTimes(
+                                                                Arrays
+                                                                    .asList(
+                                                                        OffsetDateTime.parse("2018-01-10T18:30:00Z")))
+                                                            .withScheduleWeeklyFrequency(0))
+                                                    .withRetentionPolicy(
+                                                        new LongTermRetentionPolicy()
+                                                            .withDailySchedule(
+                                                                new DailyRetentionSchedule()
+                                                                    .withRetentionTimes(
+                                                                        Arrays
+                                                                            .asList(
+                                                                                OffsetDateTime
+                                                                                    .parse("2018-01-10T18:30:00Z")))
+                                                                    .withRetentionDuration(
+                                                                        new RetentionDuration()
+                                                                            .withCount(30)
+                                                                            .withDurationType(
+                                                                                RetentionDurationType.DAYS)))),
+                                                new SubProtectionPolicy()
+                                                    .withPolicyType(PolicyType.LOG)
+                                                    .withSchedulePolicy(
+                                                        new LogSchedulePolicy().withScheduleFrequencyInMins(60))
+                                                    .withRetentionPolicy(
+                                                        new SimpleRetentionPolicy()
+                                                            .withRetentionDuration(
+                                                                new RetentionDuration()
+                                                                    .withCount(30)
+                                                                    .withDurationType(RetentionDurationType.DAYS))))))))
+            .create();
+    }
+
+    /*
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/connectors/preview/2023-10-01-preview/examples/ACSSBackup/HANA_NewPolicy.json
+     */
+    /**
+     * Sample code: Create a HANA backup connection with a new backup policy.
+     *
+     * @param manager Entry point to WorkloadsManager.
+     */
+    public static void createAHANABackupConnectionWithANewBackupPolicy(
+        com.azure.resourcemanager.workloads.WorkloadsManager manager) {
+        manager
+            .acssBackupConnections()
+            .define("dbBackup")
+            .withRegion("westcentralus")
+            .withExistingConnector("test-rg", "C1")
+            .withTags(mapOf())
+            .withBackupData(
+                new HanaBackupData()
+                    .withRecoveryServicesVault(
+                        new NewRecoveryServicesVault().withName("test-vault").withResourceGroup("test-rg"))
+                    .withSslConfiguration(
+                        new SslConfiguration()
+                            .withSslKeyStore("fakeTokenPlaceholder")
+                            .withSslTrustStore("sapsrv.pse")
+                            .withSslHostnameInCertificate("hostname")
+                            .withSslCryptoProvider(SslCryptoProvider.COMMONCRYPTO))
+                    .withBackupPolicy(
+                        new DBBackupPolicyProperties()
+                            .withName("defaultHanaPolicy")
+                            .withProperties(
+                                new AzureVmWorkloadProtectionPolicy()
+                                    .withProtectedItemsCount(0)
+                                    .withWorkLoadType(WorkloadType.SAPHANA_DATABASE)
+                                    .withSettings(
+                                        new Settings()
+                                            .withTimeZone("UTC")
+                                            .withIssqlcompression(false)
+                                            .withIsCompression(false))
+                                    .withSubProtectionPolicy(
+                                        Arrays
+                                            .asList(
+                                                new SubProtectionPolicy()
+                                                    .withPolicyType(PolicyType.FULL)
+                                                    .withSchedulePolicy(
+                                                        new SimpleSchedulePolicy()
+                                                            .withScheduleRunFrequency(ScheduleRunType.WEEKLY)
+                                                            .withScheduleRunDays(Arrays.asList(DayOfWeek.SUNDAY))
+                                                            .withScheduleRunTimes(
+                                                                Arrays
+                                                                    .asList(
+                                                                        OffsetDateTime
+                                                                            .parse("2022-11-29T19:30:00.000Z"))))
+                                                    .withRetentionPolicy(
+                                                        new LongTermRetentionPolicy()
+                                                            .withWeeklySchedule(
+                                                                new WeeklyRetentionSchedule()
+                                                                    .withDaysOfTheWeek(Arrays.asList(DayOfWeek.SUNDAY))
+                                                                    .withRetentionTimes(
+                                                                        Arrays
+                                                                            .asList(
+                                                                                OffsetDateTime
+                                                                                    .parse("2022-11-29T19:30:00.000Z")))
+                                                                    .withRetentionDuration(
+                                                                        new RetentionDuration()
+                                                                            .withCount(104)
+                                                                            .withDurationType(
+                                                                                RetentionDurationType.WEEKS)))
+                                                            .withMonthlySchedule(
+                                                                new MonthlyRetentionSchedule()
+                                                                    .withRetentionScheduleFormatType(
+                                                                        RetentionScheduleFormat.WEEKLY)
+                                                                    .withRetentionScheduleWeekly(
+                                                                        new WeeklyRetentionFormat()
+                                                                            .withDaysOfTheWeek(
+                                                                                Arrays.asList(DayOfWeek.SUNDAY))
+                                                                            .withWeeksOfTheMonth(
+                                                                                Arrays.asList(WeekOfMonth.FIRST)))
+                                                                    .withRetentionTimes(
+                                                                        Arrays
+                                                                            .asList(
+                                                                                OffsetDateTime
+                                                                                    .parse("2022-11-29T19:30:00.000Z")))
+                                                                    .withRetentionDuration(
+                                                                        new RetentionDuration()
+                                                                            .withCount(60)
+                                                                            .withDurationType(
+                                                                                RetentionDurationType.MONTHS)))
+                                                            .withYearlySchedule(
+                                                                new YearlyRetentionSchedule()
+                                                                    .withRetentionScheduleFormatType(
+                                                                        RetentionScheduleFormat.WEEKLY)
+                                                                    .withMonthsOfYear(
+                                                                        Arrays.asList(MonthOfYear.JANUARY))
+                                                                    .withRetentionScheduleWeekly(
+                                                                        new WeeklyRetentionFormat()
+                                                                            .withDaysOfTheWeek(
+                                                                                Arrays.asList(DayOfWeek.SUNDAY))
+                                                                            .withWeeksOfTheMonth(
+                                                                                Arrays.asList(WeekOfMonth.FIRST)))
+                                                                    .withRetentionTimes(
+                                                                        Arrays
+                                                                            .asList(
+                                                                                OffsetDateTime
+                                                                                    .parse("2022-11-29T19:30:00.000Z")))
+                                                                    .withRetentionDuration(
+                                                                        new RetentionDuration()
+                                                                            .withCount(10)
+                                                                            .withDurationType(
+                                                                                RetentionDurationType.YEARS))))
+                                                    .withTieringPolicy(
+                                                        mapOf(
+                                                            "ArchivedRP",
+                                                            new TieringPolicy()
+                                                                .withTieringMode(TieringMode.DO_NOT_TIER))),
+                                                new SubProtectionPolicy()
+                                                    .withPolicyType(PolicyType.DIFFERENTIAL)
+                                                    .withSchedulePolicy(
+                                                        new SimpleSchedulePolicy()
+                                                            .withScheduleRunFrequency(ScheduleRunType.WEEKLY)
+                                                            .withScheduleRunDays(Arrays.asList(DayOfWeek.MONDAY))
+                                                            .withScheduleRunTimes(
+                                                                Arrays
+                                                                    .asList(
+                                                                        OffsetDateTime.parse("2022-09-29T02:00:00Z")))
+                                                            .withScheduleWeeklyFrequency(0))
+                                                    .withRetentionPolicy(
+                                                        new SimpleRetentionPolicy()
+                                                            .withRetentionDuration(
+                                                                new RetentionDuration()
+                                                                    .withCount(30)
+                                                                    .withDurationType(RetentionDurationType.DAYS))),
+                                                new SubProtectionPolicy()
+                                                    .withPolicyType(PolicyType.LOG)
+                                                    .withSchedulePolicy(
+                                                        new LogSchedulePolicy().withScheduleFrequencyInMins(120))
+                                                    .withRetentionPolicy(
+                                                        new SimpleRetentionPolicy()
+                                                            .withRetentionDuration(
+                                                                new RetentionDuration()
+                                                                    .withCount(20)
+                                                                    .withDurationType(RetentionDurationType.DAYS)))))))
+                    .withHdbuserstoreKeyName("fakeTokenPlaceholder")
+                    .withInstanceNumber("00")
+                    .withDbInstanceSnapshotBackupPolicy(
+                        new DBBackupPolicyProperties()
+                            .withName("defaultDbInstanceSnapshotPolicy")
+                            .withProperties(
+                                new AzureVmWorkloadProtectionPolicy()
+                                    .withWorkLoadType(WorkloadType.SAPHANA_DBINSTANCE)
+                                    .withSettings(
+                                        new Settings()
+                                            .withTimeZone("UTC")
+                                            .withIssqlcompression(false)
+                                            .withIsCompression(false))
+                                    .withSubProtectionPolicy(
+                                        Arrays
+                                            .asList(
+                                                new SubProtectionPolicy()
+                                                    .withPolicyType(PolicyType.SNAPSHOT_FULL)
+                                                    .withSchedulePolicy(
+                                                        new SimpleSchedulePolicy()
+                                                            .withScheduleRunFrequency(ScheduleRunType.DAILY)
+                                                            .withScheduleRunTimes(
+                                                                Arrays
+                                                                    .asList(
+                                                                        OffsetDateTime
+                                                                            .parse("2023-09-18T06:30:00.000Z"))))
+                                                    .withSnapshotBackupAdditionalDetails(
+                                                        new SnapshotBackupAdditionalDetails()
+                                                            .withInstantRpRetentionRangeInDays(1)
+                                                            .withInstantRPDetails("test-rg")
+                                                            .withUserAssignedManagedIdentityDetails(
+                                                                new UserAssignedManagedIdentityDetails()
+                                                                    .withIdentityArmId(
+                                                                        "/subscriptions/6d875e77-e412-4d7d-9af4-8895278b4443/resourcegroups/test-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/testMsi")
+                                                                    .withIdentityName("testMsi")
+                                                                    .withUserAssignedIdentityProperties(
+                                                                        new UserAssignedIdentityProperties()
+                                                                            .withClientId(
+                                                                                "c3a877cf-51f8-4031-8f17-ab562d1e7737")
+                                                                            .withPrincipalId(
+                                                                                "2f5834bd-4b86-4d85-a8df-6dd829a6418c")))))))))
+            .create();
+    }
+
+    /*
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/connectors/preview/2023-10-01-preview/examples/ACSSBackup/VM_Existing_Create.json
+     */
+    /**
+     * Sample code: Create a vm backup connection with an existing backup policy.
+     *
+     * @param manager Entry point to WorkloadsManager.
+     */
+    public static void createAVmBackupConnectionWithAnExistingBackupPolicy(
+        com.azure.resourcemanager.workloads.WorkloadsManager manager) {
+        manager
+            .acssBackupConnections()
+            .define("vmBackup")
+            .withRegion("westcentralus")
+            .withExistingConnector("test-rg", "C1")
+            .withTags(mapOf())
+            .withBackupData(
+                new VMBackupData()
+                    .withRecoveryServicesVault(
+                        new ExistingRecoveryServicesVault()
+                            .withId(
+                                "/subscriptions/6d875e77-e412-4d7d-9af4-8895278b4443/resourceGroups/test-rg/providers/Microsoft.RecoveryServices/vaults/test-vault"))
+                    .withBackupPolicy(new VMBackupPolicyProperties().withName("defaultVmPolicy"))
+                    .withDiskExclusionProperties(
+                        new DiskExclusionProperties().withDiskLunList(Arrays.asList()).withIsInclusionList(true)))
+            .create();
+    }
+
+    /*
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/connectors/preview/2023-10-01-preview/examples/ACSSBackup/DB_Existing_Create.json
+     */
+    /**
+     * Sample code: Create a db backup connection with an existing backup policy.
+     *
+     * @param manager Entry point to WorkloadsManager.
+     */
+    public static void createADbBackupConnectionWithAnExistingBackupPolicy(
+        com.azure.resourcemanager.workloads.WorkloadsManager manager) {
+        manager
+            .acssBackupConnections()
+            .define("dbBackup")
+            .withRegion("westcentralus")
+            .withExistingConnector("test-rg", "C1")
+            .withTags(mapOf())
+            .withBackupData(
+                new SqlBackupData()
+                    .withRecoveryServicesVault(
+                        new ExistingRecoveryServicesVault()
+                            .withId(
+                                "/subscriptions/6d875e77-e412-4d7d-9af4-8895278b4443/resourceGroups/test-rg/providers/Microsoft.RecoveryServices/vaults/test-vault"))
+                    .withBackupPolicy(new DBBackupPolicyProperties().withName("defaultDbPolicy")))
+            .create();
+    }
+
+    /*
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/connectors/preview/2023-10-01-preview/examples/ACSSBackup/VM_New_Create.json
+     */
+    /**
+     * Sample code: Create a vm backup connection with a new backup policy.
+     *
+     * @param manager Entry point to WorkloadsManager.
+     */
+    public static void createAVmBackupConnectionWithANewBackupPolicy(
+        com.azure.resourcemanager.workloads.WorkloadsManager manager) {
+        manager
+            .acssBackupConnections()
+            .define("vmBackup")
+            .withRegion("westcentralus")
+            .withExistingConnector("test-rg", "C1")
+            .withTags(mapOf())
+            .withBackupData(
+                new VMBackupData()
+                    .withRecoveryServicesVault(
+                        new NewRecoveryServicesVault().withName("test-vault").withResourceGroup("test-rg"))
+                    .withBackupPolicy(
+                        new VMBackupPolicyProperties()
+                            .withName("defaultVmPolicy")
+                            .withProperties(
+                                new AzureIaaSvmProtectionPolicy()
+                                    .withProtectedItemsCount(0)
+                                    .withInstantRPDetails(new InstantRPAdditionalDetails())
+                                    .withSchedulePolicy(
+                                        new SimpleSchedulePolicy()
+                                            .withScheduleRunFrequency(ScheduleRunType.DAILY)
+                                            .withScheduleRunTimes(
+                                                Arrays.asList(OffsetDateTime.parse("2018-01-10T18:30:00Z")))
+                                            .withScheduleWeeklyFrequency(0))
+                                    .withRetentionPolicy(
+                                        new LongTermRetentionPolicy()
+                                            .withDailySchedule(
+                                                new DailyRetentionSchedule()
+                                                    .withRetentionTimes(
+                                                        Arrays.asList(OffsetDateTime.parse("2018-01-10T18:30:00Z")))
+                                                    .withRetentionDuration(
+                                                        new RetentionDuration()
+                                                            .withCount(30)
+                                                            .withDurationType(RetentionDurationType.DAYS))))
+                                    .withInstantRpRetentionRangeInDays(2)))
+                    .withDiskExclusionProperties(
+                        new DiskExclusionProperties().withDiskLunList(Arrays.asList()).withIsInclusionList(true)))
+            .create();
+    }
+
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -124,138 +730,254 @@ public final class MonitorsCreateSamples {
 }
 ```
 
-### Monitors_Delete
+### AcssBackupConnections_Delete
 
 ```java
-/** Samples for Monitors Delete. */
-public final class MonitorsDeleteSamples {
+/** Samples for AcssBackupConnections Delete. */
+public final class AcssBackupConnectionsDeleteSamples {
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/workloadmonitor/monitors_Delete.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/connectors/preview/2023-10-01-preview/examples/ACSSBackup/Delete.json
      */
     /**
-     * Sample code: Deletes a SAP monitor.
+     * Sample code: Delete a backup connection resource of virtual instance for SAP.
      *
      * @param manager Entry point to WorkloadsManager.
      */
-    public static void deletesASAPMonitor(com.azure.resourcemanager.workloads.WorkloadsManager manager) {
-        manager.monitors().delete("myResourceGroup", "mySapMonitor", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Monitors_GetByResourceGroup
-
-```java
-/** Samples for Monitors GetByResourceGroup. */
-public final class MonitorsGetByResourceGroupSamples {
-    /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/workloadmonitor/monitors_Get.json
-     */
-    /**
-     * Sample code: Get properties of a SAP monitor.
-     *
-     * @param manager Entry point to WorkloadsManager.
-     */
-    public static void getPropertiesOfASAPMonitor(com.azure.resourcemanager.workloads.WorkloadsManager manager) {
-        manager
-            .monitors()
-            .getByResourceGroupWithResponse("myResourceGroup", "mySapMonitor", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Monitors_List
-
-```java
-/** Samples for Monitors List. */
-public final class MonitorsListSamples {
-    /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/workloadmonitor/monitors_List.json
-     */
-    /**
-     * Sample code: List all SAP monitors in a subscription.
-     *
-     * @param manager Entry point to WorkloadsManager.
-     */
-    public static void listAllSAPMonitorsInASubscription(com.azure.resourcemanager.workloads.WorkloadsManager manager) {
-        manager.monitors().list(com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Monitors_ListByResourceGroup
-
-```java
-/** Samples for Monitors ListByResourceGroup. */
-public final class MonitorsListByResourceGroupSamples {
-    /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/workloadmonitor/monitors_ListByRG.json
-     */
-    /**
-     * Sample code: List all SAP monitors in a resource group.
-     *
-     * @param manager Entry point to WorkloadsManager.
-     */
-    public static void listAllSAPMonitorsInAResourceGroup(
+    public static void deleteABackupConnectionResourceOfVirtualInstanceForSAP(
         com.azure.resourcemanager.workloads.WorkloadsManager manager) {
-        manager.monitors().listByResourceGroup("example-rg", com.azure.core.util.Context.NONE);
+        manager.acssBackupConnections().delete("test-rg", "C1", "vmBackup", com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### Monitors_Update
+### AcssBackupConnections_Get
 
 ```java
-import com.azure.resourcemanager.workloads.models.ManagedServiceIdentityType;
-import com.azure.resourcemanager.workloads.models.Monitor;
-import com.azure.resourcemanager.workloads.models.UserAssignedServiceIdentity;
+/** Samples for AcssBackupConnections Get. */
+public final class AcssBackupConnectionsGetSamples {
+    /*
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/connectors/preview/2023-10-01-preview/examples/ACSSBackup/Get.json
+     */
+    /**
+     * Sample code: Get the backup connection resource of virtual instance for SAP.
+     *
+     * @param manager Entry point to WorkloadsManager.
+     */
+    public static void getTheBackupConnectionResourceOfVirtualInstanceForSAP(
+        com.azure.resourcemanager.workloads.WorkloadsManager manager) {
+        manager.acssBackupConnections().getWithResponse("test-rg", "C1", "vmBackup", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### AcssBackupConnections_List
+
+```java
+/** Samples for AcssBackupConnections List. */
+public final class AcssBackupConnectionsListSamples {
+    /*
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/connectors/preview/2023-10-01-preview/examples/ACSSBackup/List.json
+     */
+    /**
+     * Sample code: List the backup connection resources of virtual instance for SAP under the given connector resource.
+     *
+     * @param manager Entry point to WorkloadsManager.
+     */
+    public static void listTheBackupConnectionResourcesOfVirtualInstanceForSAPUnderTheGivenConnectorResource(
+        com.azure.resourcemanager.workloads.WorkloadsManager manager) {
+        manager.acssBackupConnections().list("test-rg", "C1", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### AcssBackupConnections_Update
+
+```java
+import com.azure.resourcemanager.workloads.models.AcssBackupConnection;
 import java.util.HashMap;
 import java.util.Map;
 
-/** Samples for Monitors Update. */
-public final class MonitorsUpdateSamples {
+/** Samples for AcssBackupConnections Update. */
+public final class AcssBackupConnectionsUpdateSamples {
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/workloadmonitor/monitors_PatchTags_Delete.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/connectors/preview/2023-10-01-preview/examples/ACSSBackup/Update.json
      */
     /**
-     * Sample code: Delete Tags field of a SAP monitor.
+     * Sample code: Update an backup connection resource of virtual instance for SAP.
      *
      * @param manager Entry point to WorkloadsManager.
      */
-    public static void deleteTagsFieldOfASAPMonitor(com.azure.resourcemanager.workloads.WorkloadsManager manager) {
-        Monitor resource =
+    public static void updateAnBackupConnectionResourceOfVirtualInstanceForSAP(
+        com.azure.resourcemanager.workloads.WorkloadsManager manager) {
+        AcssBackupConnection resource =
             manager
-                .monitors()
-                .getByResourceGroupWithResponse("myResourceGroup", "mySapMonitor", com.azure.core.util.Context.NONE)
+                .acssBackupConnections()
+                .getWithResponse("test-rg", "C1", "vmBackup", com.azure.core.util.Context.NONE)
                 .getValue();
-        resource
-            .update()
+        resource.update().withTags(mapOf("tag1", "value1")).apply();
+    }
+
+    // Use "Map.of" if available
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
+    }
+}
+```
+
+### Connectors_Create
+
+```java
+import java.util.HashMap;
+import java.util.Map;
+
+/** Samples for Connectors Create. */
+public final class ConnectorsCreateSamples {
+    /*
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/connectors/preview/2023-10-01-preview/examples/connectors/Create.json
+     */
+    /**
+     * Sample code: Create a connector resource.
+     *
+     * @param manager Entry point to WorkloadsManager.
+     */
+    public static void createAConnectorResource(com.azure.resourcemanager.workloads.WorkloadsManager manager) {
+        manager
+            .connectors()
+            .define("C1")
+            .withRegion("westcentralus")
+            .withExistingResourceGroup("test-rg")
+            .withSourceResourceId(
+                "/subscriptions/6d875e77-e412-4d7d-9af4-8895278b4443/resourceGroups/test-rg/providers/Microsoft.Workloads/sapVirtualInstances/X00")
             .withTags(mapOf())
-            .withIdentity(new UserAssignedServiceIdentity().withType(ManagedServiceIdentityType.NONE))
-            .apply();
+            .create();
     }
 
+    // Use "Map.of" if available
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
+    }
+}
+```
+
+### Connectors_Delete
+
+```java
+/** Samples for Connectors Delete. */
+public final class ConnectorsDeleteSamples {
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/workloadmonitor/monitors_PatchTags.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/connectors/preview/2023-10-01-preview/examples/connectors/Delete.json
      */
     /**
-     * Sample code: Update Tags field of a SAP monitor.
+     * Sample code: Delete the connector resource.
      *
      * @param manager Entry point to WorkloadsManager.
      */
-    public static void updateTagsFieldOfASAPMonitor(com.azure.resourcemanager.workloads.WorkloadsManager manager) {
-        Monitor resource =
+    public static void deleteTheConnectorResource(com.azure.resourcemanager.workloads.WorkloadsManager manager) {
+        manager.connectors().delete("test-rg", "C1", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Connectors_GetByResourceGroup
+
+```java
+/** Samples for Connectors GetByResourceGroup. */
+public final class ConnectorsGetByResourceGroupSamples {
+    /*
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/connectors/preview/2023-10-01-preview/examples/connectors/Get.json
+     */
+    /**
+     * Sample code: Get the connector resource.
+     *
+     * @param manager Entry point to WorkloadsManager.
+     */
+    public static void getTheConnectorResource(com.azure.resourcemanager.workloads.WorkloadsManager manager) {
+        manager.connectors().getByResourceGroupWithResponse("test-rg", "C1", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Connectors_List
+
+```java
+/** Samples for Connectors List. */
+public final class ConnectorsListSamples {
+    /*
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/connectors/preview/2023-10-01-preview/examples/connectors/ListBySubscription.json
+     */
+    /**
+     * Sample code: List all connector resources in a subscription.
+     *
+     * @param manager Entry point to WorkloadsManager.
+     */
+    public static void listAllConnectorResourcesInASubscription(
+        com.azure.resourcemanager.workloads.WorkloadsManager manager) {
+        manager.connectors().list(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Connectors_ListByResourceGroup
+
+```java
+/** Samples for Connectors ListByResourceGroup. */
+public final class ConnectorsListByResourceGroupSamples {
+    /*
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/connectors/preview/2023-10-01-preview/examples/connectors/ListByResourceGroup.json
+     */
+    /**
+     * Sample code: List all connector resources in a resource group.
+     *
+     * @param manager Entry point to WorkloadsManager.
+     */
+    public static void listAllConnectorResourcesInAResourceGroup(
+        com.azure.resourcemanager.workloads.WorkloadsManager manager) {
+        manager.connectors().listByResourceGroup("test-rg", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Connectors_Update
+
+```java
+import com.azure.resourcemanager.workloads.models.Connector;
+import java.util.HashMap;
+import java.util.Map;
+
+/** Samples for Connectors Update. */
+public final class ConnectorsUpdateSamples {
+    /*
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/connectors/preview/2023-10-01-preview/examples/connectors/Update.json
+     */
+    /**
+     * Sample code: Update the connector resource.
+     *
+     * @param manager Entry point to WorkloadsManager.
+     */
+    public static void updateTheConnectorResource(com.azure.resourcemanager.workloads.WorkloadsManager manager) {
+        Connector resource =
             manager
-                .monitors()
-                .getByResourceGroupWithResponse("myResourceGroup", "mySapMonitor", com.azure.core.util.Context.NONE)
+                .connectors()
+                .getByResourceGroupWithResponse("test-rg", "C1", com.azure.core.util.Context.NONE)
                 .getValue();
-        resource
-            .update()
-            .withTags(mapOf("testkey", "testvalue"))
-            .withIdentity(new UserAssignedServiceIdentity().withType(ManagedServiceIdentityType.NONE))
-            .apply();
+        resource.update().withTags(mapOf("tag1", "value1")).apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -275,7 +997,7 @@ public final class MonitorsUpdateSamples {
 /** Samples for Operations List. */
 public final class OperationsListSamples {
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/Operations_List.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/operations/preview/2023-10-01-preview/examples/Operations_List.json
      */
     /**
      * Sample code: Operations.
@@ -288,481 +1010,17 @@ public final class OperationsListSamples {
 }
 ```
 
-### ProviderInstances_Create
-
-```java
-import com.azure.resourcemanager.workloads.models.DB2ProviderInstanceProperties;
-import com.azure.resourcemanager.workloads.models.HanaDbProviderInstanceProperties;
-import com.azure.resourcemanager.workloads.models.MsSqlServerProviderInstanceProperties;
-import com.azure.resourcemanager.workloads.models.PrometheusHaClusterProviderInstanceProperties;
-import com.azure.resourcemanager.workloads.models.PrometheusOSProviderInstanceProperties;
-import com.azure.resourcemanager.workloads.models.SapNetWeaverProviderInstanceProperties;
-import com.azure.resourcemanager.workloads.models.SslPreference;
-import java.util.Arrays;
-
-/** Samples for ProviderInstances Create. */
-public final class ProviderInstancesCreateSamples {
-    /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/workloadmonitor/MsSqlServerProviderInstance_Create.json
-     */
-    /**
-     * Sample code: Create a MsSqlServer provider.
-     *
-     * @param manager Entry point to WorkloadsManager.
-     */
-    public static void createAMsSqlServerProvider(com.azure.resourcemanager.workloads.WorkloadsManager manager) {
-        manager
-            .providerInstances()
-            .define("myProviderInstance")
-            .withExistingMonitor("myResourceGroup", "mySapMonitor")
-            .withProviderSettings(
-                new MsSqlServerProviderInstanceProperties()
-                    .withHostname("hostname")
-                    .withDbPort("5912")
-                    .withDbUsername("user")
-                    .withDbPassword("fakeTokenPlaceholder")
-                    .withDbPasswordUri("fakeTokenPlaceholder")
-                    .withSapSid("sid")
-                    .withSslPreference(SslPreference.SERVER_CERTIFICATE)
-                    .withSslCertificateUri("https://storageaccount.blob.core.windows.net/containername/filename"))
-            .create();
-    }
-
-    /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/workloadmonitor/Db2ProviderInstances_Create_Root_Certificate.json
-     */
-    /**
-     * Sample code: Create a Db2 provider with Root Certificate.
-     *
-     * @param manager Entry point to WorkloadsManager.
-     */
-    public static void createADb2ProviderWithRootCertificate(
-        com.azure.resourcemanager.workloads.WorkloadsManager manager) {
-        manager
-            .providerInstances()
-            .define("myProviderInstance")
-            .withExistingMonitor("myResourceGroup", "mySapMonitor")
-            .withProviderSettings(
-                new DB2ProviderInstanceProperties()
-                    .withHostname("hostname")
-                    .withDbName("dbName")
-                    .withDbPort("dbPort")
-                    .withDbUsername("username")
-                    .withDbPassword("fakeTokenPlaceholder")
-                    .withDbPasswordUri("fakeTokenPlaceholder")
-                    .withSapSid("SID")
-                    .withSslPreference(SslPreference.ROOT_CERTIFICATE))
-            .create();
-    }
-
-    /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/workloadmonitor/ProviderInstances_Create.json
-     */
-    /**
-     * Sample code: Create a SAP monitor Hana provider.
-     *
-     * @param manager Entry point to WorkloadsManager.
-     */
-    public static void createASAPMonitorHanaProvider(com.azure.resourcemanager.workloads.WorkloadsManager manager) {
-        manager
-            .providerInstances()
-            .define("myProviderInstance")
-            .withExistingMonitor("myResourceGroup", "mySapMonitor")
-            .withProviderSettings(
-                new HanaDbProviderInstanceProperties()
-                    .withHostname("name")
-                    .withDbName("db")
-                    .withSqlPort("0000")
-                    .withInstanceNumber("00")
-                    .withDbUsername("user")
-                    .withDbPassword("fakeTokenPlaceholder")
-                    .withDbPasswordUri("fakeTokenPlaceholder")
-                    .withSslCertificateUri("https://storageaccount.blob.core.windows.net/containername/filename")
-                    .withSslHostnameInCertificate("xyz.domain.com")
-                    .withSslPreference(SslPreference.SERVER_CERTIFICATE)
-                    .withSapSid("SID"))
-            .create();
-    }
-
-    /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/workloadmonitor/NetWeaverProviderInstances_Create_Root_Certificate.json
-     */
-    /**
-     * Sample code: Create a SAP monitor NetWeaver provider with Root Certificate.
-     *
-     * @param manager Entry point to WorkloadsManager.
-     */
-    public static void createASAPMonitorNetWeaverProviderWithRootCertificate(
-        com.azure.resourcemanager.workloads.WorkloadsManager manager) {
-        manager
-            .providerInstances()
-            .define("myProviderInstance")
-            .withExistingMonitor("myResourceGroup", "mySapMonitor")
-            .withProviderSettings(
-                new SapNetWeaverProviderInstanceProperties()
-                    .withSapSid("SID")
-                    .withSapHostname("name")
-                    .withSapInstanceNr("00")
-                    .withSapHostFileEntries(Arrays.asList("127.0.0.1 name fqdn"))
-                    .withSapUsername("username")
-                    .withSapPassword("fakeTokenPlaceholder")
-                    .withSapPasswordUri("fakeTokenPlaceholder")
-                    .withSapClientId("111")
-                    .withSapPortNumber("1234")
-                    .withSslPreference(SslPreference.ROOT_CERTIFICATE))
-            .create();
-    }
-
-    /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/workloadmonitor/MsSqlServerProviderInstance_Create_Root_Certificate.json
-     */
-    /**
-     * Sample code: Create a MsSqlServer provider with Root Certificate.
-     *
-     * @param manager Entry point to WorkloadsManager.
-     */
-    public static void createAMsSqlServerProviderWithRootCertificate(
-        com.azure.resourcemanager.workloads.WorkloadsManager manager) {
-        manager
-            .providerInstances()
-            .define("myProviderInstance")
-            .withExistingMonitor("myResourceGroup", "mySapMonitor")
-            .withProviderSettings(
-                new MsSqlServerProviderInstanceProperties()
-                    .withHostname("hostname")
-                    .withDbPort("5912")
-                    .withDbUsername("user")
-                    .withDbPassword("fakeTokenPlaceholder")
-                    .withDbPasswordUri("fakeTokenPlaceholder")
-                    .withSapSid("sid")
-                    .withSslPreference(SslPreference.ROOT_CERTIFICATE))
-            .create();
-    }
-
-    /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/workloadmonitor/PrometheusHaClusterProviderInstances_Create.json
-     */
-    /**
-     * Sample code: Create a PrometheusHaCluster provider.
-     *
-     * @param manager Entry point to WorkloadsManager.
-     */
-    public static void createAPrometheusHaClusterProvider(
-        com.azure.resourcemanager.workloads.WorkloadsManager manager) {
-        manager
-            .providerInstances()
-            .define("myProviderInstance")
-            .withExistingMonitor("myResourceGroup", "mySapMonitor")
-            .withProviderSettings(
-                new PrometheusHaClusterProviderInstanceProperties()
-                    .withPrometheusUrl("http://192.168.0.0:9090/metrics")
-                    .withHostname("hostname")
-                    .withSid("sid")
-                    .withClusterName("clusterName")
-                    .withSslPreference(SslPreference.SERVER_CERTIFICATE)
-                    .withSslCertificateUri("https://storageaccount.blob.core.windows.net/containername/filename"))
-            .create();
-    }
-
-    /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/workloadmonitor/PrometheusHaClusterProviderInstances_Create_Root_Certificate.json
-     */
-    /**
-     * Sample code: Create a PrometheusHaCluster provider with Root Certificate.
-     *
-     * @param manager Entry point to WorkloadsManager.
-     */
-    public static void createAPrometheusHaClusterProviderWithRootCertificate(
-        com.azure.resourcemanager.workloads.WorkloadsManager manager) {
-        manager
-            .providerInstances()
-            .define("myProviderInstance")
-            .withExistingMonitor("myResourceGroup", "mySapMonitor")
-            .withProviderSettings(
-                new PrometheusHaClusterProviderInstanceProperties()
-                    .withPrometheusUrl("http://192.168.0.0:9090/metrics")
-                    .withHostname("hostname")
-                    .withSid("sid")
-                    .withClusterName("clusterName")
-                    .withSslPreference(SslPreference.ROOT_CERTIFICATE))
-            .create();
-    }
-
-    /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/workloadmonitor/Db2ProviderInstances_Create.json
-     */
-    /**
-     * Sample code: Create a Db2 provider.
-     *
-     * @param manager Entry point to WorkloadsManager.
-     */
-    public static void createADb2Provider(com.azure.resourcemanager.workloads.WorkloadsManager manager) {
-        manager
-            .providerInstances()
-            .define("myProviderInstance")
-            .withExistingMonitor("myResourceGroup", "mySapMonitor")
-            .withProviderSettings(
-                new DB2ProviderInstanceProperties()
-                    .withHostname("hostname")
-                    .withDbName("dbName")
-                    .withDbPort("dbPort")
-                    .withDbUsername("username")
-                    .withDbPassword("fakeTokenPlaceholder")
-                    .withDbPasswordUri("fakeTokenPlaceholder")
-                    .withSapSid("SID")
-                    .withSslPreference(SslPreference.SERVER_CERTIFICATE)
-                    .withSslCertificateUri("https://storageaccount.blob.core.windows.net/containername/filename"))
-            .create();
-    }
-
-    /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/workloadmonitor/PrometheusOSProviderInstances_Create_Root_Certificate.json
-     */
-    /**
-     * Sample code: Create a OS provider with Root Certificate.
-     *
-     * @param manager Entry point to WorkloadsManager.
-     */
-    public static void createAOSProviderWithRootCertificate(
-        com.azure.resourcemanager.workloads.WorkloadsManager manager) {
-        manager
-            .providerInstances()
-            .define("myProviderInstance")
-            .withExistingMonitor("myResourceGroup", "mySapMonitor")
-            .withProviderSettings(
-                new PrometheusOSProviderInstanceProperties()
-                    .withPrometheusUrl("http://192.168.0.0:9090/metrics")
-                    .withSslPreference(SslPreference.ROOT_CERTIFICATE)
-                    .withSapSid("SID"))
-            .create();
-    }
-
-    /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/workloadmonitor/PrometheusOSProviderInstances_Create.json
-     */
-    /**
-     * Sample code: Create a OS provider.
-     *
-     * @param manager Entry point to WorkloadsManager.
-     */
-    public static void createAOSProvider(com.azure.resourcemanager.workloads.WorkloadsManager manager) {
-        manager
-            .providerInstances()
-            .define("myProviderInstance")
-            .withExistingMonitor("myResourceGroup", "mySapMonitor")
-            .withProviderSettings(
-                new PrometheusOSProviderInstanceProperties()
-                    .withPrometheusUrl("http://192.168.0.0:9090/metrics")
-                    .withSslPreference(SslPreference.SERVER_CERTIFICATE)
-                    .withSslCertificateUri("https://storageaccount.blob.core.windows.net/containername/filename")
-                    .withSapSid("SID"))
-            .create();
-    }
-
-    /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/workloadmonitor/NetWeaverProviderInstances_Create.json
-     */
-    /**
-     * Sample code: Create a SAP monitor NetWeaver provider.
-     *
-     * @param manager Entry point to WorkloadsManager.
-     */
-    public static void createASAPMonitorNetWeaverProvider(
-        com.azure.resourcemanager.workloads.WorkloadsManager manager) {
-        manager
-            .providerInstances()
-            .define("myProviderInstance")
-            .withExistingMonitor("myResourceGroup", "mySapMonitor")
-            .withProviderSettings(
-                new SapNetWeaverProviderInstanceProperties()
-                    .withSapSid("SID")
-                    .withSapHostname("name")
-                    .withSapInstanceNr("00")
-                    .withSapHostFileEntries(Arrays.asList("127.0.0.1 name fqdn"))
-                    .withSapUsername("username")
-                    .withSapPassword("fakeTokenPlaceholder")
-                    .withSapPasswordUri("fakeTokenPlaceholder")
-                    .withSapClientId("111")
-                    .withSapPortNumber("1234")
-                    .withSslCertificateUri("https://storageaccount.blob.core.windows.net/containername/filename")
-                    .withSslPreference(SslPreference.SERVER_CERTIFICATE))
-            .create();
-    }
-
-    /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/workloadmonitor/ProviderInstances_Create_Root_Certificate.json
-     */
-    /**
-     * Sample code: Create a SAP monitor Hana provider with Root Certificate.
-     *
-     * @param manager Entry point to WorkloadsManager.
-     */
-    public static void createASAPMonitorHanaProviderWithRootCertificate(
-        com.azure.resourcemanager.workloads.WorkloadsManager manager) {
-        manager
-            .providerInstances()
-            .define("myProviderInstance")
-            .withExistingMonitor("myResourceGroup", "mySapMonitor")
-            .withProviderSettings(
-                new HanaDbProviderInstanceProperties()
-                    .withHostname("name")
-                    .withDbName("db")
-                    .withSqlPort("0000")
-                    .withInstanceNumber("00")
-                    .withDbUsername("user")
-                    .withDbPassword("fakeTokenPlaceholder")
-                    .withDbPasswordUri("fakeTokenPlaceholder")
-                    .withSslHostnameInCertificate("xyz.domain.com")
-                    .withSslPreference(SslPreference.ROOT_CERTIFICATE)
-                    .withSapSid("SID"))
-            .create();
-    }
-}
-```
-
-### ProviderInstances_Delete
-
-```java
-/** Samples for ProviderInstances Delete. */
-public final class ProviderInstancesDeleteSamples {
-    /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/workloadmonitor/ProviderInstances_Delete.json
-     */
-    /**
-     * Sample code: Deletes a SAP monitor provider.
-     *
-     * @param manager Entry point to WorkloadsManager.
-     */
-    public static void deletesASAPMonitorProvider(com.azure.resourcemanager.workloads.WorkloadsManager manager) {
-        manager
-            .providerInstances()
-            .delete("myResourceGroup", "mySapMonitor", "myProviderInstance", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### ProviderInstances_Get
-
-```java
-/** Samples for ProviderInstances Get. */
-public final class ProviderInstancesGetSamples {
-    /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/workloadmonitor/ProviderInstances_Get.json
-     */
-    /**
-     * Sample code: Get properties of a SAP monitor Hana provider.
-     *
-     * @param manager Entry point to WorkloadsManager.
-     */
-    public static void getPropertiesOfASAPMonitorHanaProvider(
-        com.azure.resourcemanager.workloads.WorkloadsManager manager) {
-        manager
-            .providerInstances()
-            .getWithResponse("myResourceGroup", "mySapMonitor", "myProviderInstance", com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/workloadmonitor/PrometheusHaClusterProviderInstances_Get.json
-     */
-    /**
-     * Sample code: Get properties of a PrometheusHaCluster provider.
-     *
-     * @param manager Entry point to WorkloadsManager.
-     */
-    public static void getPropertiesOfAPrometheusHaClusterProvider(
-        com.azure.resourcemanager.workloads.WorkloadsManager manager) {
-        manager
-            .providerInstances()
-            .getWithResponse("myResourceGroup", "mySapMonitor", "myProviderInstance", com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/workloadmonitor/PrometheusOSProviderInstances_Get.json
-     */
-    /**
-     * Sample code: Get properties of a OS provider.
-     *
-     * @param manager Entry point to WorkloadsManager.
-     */
-    public static void getPropertiesOfAOSProvider(com.azure.resourcemanager.workloads.WorkloadsManager manager) {
-        manager
-            .providerInstances()
-            .getWithResponse("myResourceGroup", "mySapMonitor", "myProviderInstance", com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/workloadmonitor/Db2ProviderInstances_Get.json
-     */
-    /**
-     * Sample code: Get properties of a Db2 provider.
-     *
-     * @param manager Entry point to WorkloadsManager.
-     */
-    public static void getPropertiesOfADb2Provider(com.azure.resourcemanager.workloads.WorkloadsManager manager) {
-        manager
-            .providerInstances()
-            .getWithResponse("myResourceGroup", "mySapMonitor", "myProviderInstance", com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/workloadmonitor/MsSqlServerProviderInstance_Get.json
-     */
-    /**
-     * Sample code: Get properties of a MsSqlServer provider.
-     *
-     * @param manager Entry point to WorkloadsManager.
-     */
-    public static void getPropertiesOfAMsSqlServerProvider(
-        com.azure.resourcemanager.workloads.WorkloadsManager manager) {
-        manager
-            .providerInstances()
-            .getWithResponse("myResourceGroup", "mySapMonitor", "myProviderInstance", com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/workloadmonitor/NetWeaverProviderInstances_Get.json
-     */
-    /**
-     * Sample code: Get properties of a SAP monitor NetWeaver provider.
-     *
-     * @param manager Entry point to WorkloadsManager.
-     */
-    public static void getPropertiesOfASAPMonitorNetWeaverProvider(
-        com.azure.resourcemanager.workloads.WorkloadsManager manager) {
-        manager
-            .providerInstances()
-            .getWithResponse("myResourceGroup", "mySapMonitor", "myProviderInstance", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### ProviderInstances_List
-
-```java
-/** Samples for ProviderInstances List. */
-public final class ProviderInstancesListSamples {
-    /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/workloadmonitor/ProviderInstances_List.json
-     */
-    /**
-     * Sample code: List all SAP monitors providers in a subscription.
-     *
-     * @param manager Entry point to WorkloadsManager.
-     */
-    public static void listAllSAPMonitorsProvidersInASubscription(
-        com.azure.resourcemanager.workloads.WorkloadsManager manager) {
-        manager.providerInstances().list("myResourceGroup", "mySapMonitor", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
 ### ResourceProvider_SapAvailabilityZoneDetails
 
 ```java
+import com.azure.resourcemanager.workloads.models.SapAvailabilityZoneDetailsRequest;
+import com.azure.resourcemanager.workloads.models.SapDatabaseType;
+import com.azure.resourcemanager.workloads.models.SapProductType;
+
 /** Samples for ResourceProvider SapAvailabilityZoneDetails. */
 public final class ResourceProviderSapAvailabilityZoneDetailsSamples {
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPAvailabilityZoneDetails_northeurope.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPAvailabilityZoneDetails_northeurope.json
      */
     /**
      * Sample code: SAPAvailabilityZoneDetails_northeurope.
@@ -773,11 +1031,17 @@ public final class ResourceProviderSapAvailabilityZoneDetailsSamples {
         com.azure.resourcemanager.workloads.WorkloadsManager manager) {
         manager
             .resourceProviders()
-            .sapAvailabilityZoneDetailsWithResponse("centralus", null, com.azure.core.util.Context.NONE);
+            .sapAvailabilityZoneDetailsWithResponse(
+                "centralus",
+                new SapAvailabilityZoneDetailsRequest()
+                    .withAppLocation("northeurope")
+                    .withSapProduct(SapProductType.S4HANA)
+                    .withDatabaseType(SapDatabaseType.HANA),
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPAvailabilityZoneDetails_eastus.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPAvailabilityZoneDetails_eastus.json
      */
     /**
      * Sample code: SAPAvailabilityZoneDetails_eastus.
@@ -787,7 +1051,13 @@ public final class ResourceProviderSapAvailabilityZoneDetailsSamples {
     public static void sAPAvailabilityZoneDetailsEastus(com.azure.resourcemanager.workloads.WorkloadsManager manager) {
         manager
             .resourceProviders()
-            .sapAvailabilityZoneDetailsWithResponse("centralus", null, com.azure.core.util.Context.NONE);
+            .sapAvailabilityZoneDetailsWithResponse(
+                "centralus",
+                new SapAvailabilityZoneDetailsRequest()
+                    .withAppLocation("eastus")
+                    .withSapProduct(SapProductType.S4HANA)
+                    .withDatabaseType(SapDatabaseType.HANA),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -795,10 +1065,16 @@ public final class ResourceProviderSapAvailabilityZoneDetailsSamples {
 ### ResourceProvider_SapDiskConfigurations
 
 ```java
+import com.azure.resourcemanager.workloads.models.SapDatabaseType;
+import com.azure.resourcemanager.workloads.models.SapDeploymentType;
+import com.azure.resourcemanager.workloads.models.SapDiskConfigurationsRequest;
+import com.azure.resourcemanager.workloads.models.SapEnvironmentType;
+import com.azure.resourcemanager.workloads.models.SapProductType;
+
 /** Samples for ResourceProvider SapDiskConfigurations. */
 public final class ResourceProviderSapDiskConfigurationsSamples {
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPDiskConfigurations_NonProd.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPDiskConfigurations_NonProd.json
      */
     /**
      * Sample code: SAPDiskConfigurations_NonProd.
@@ -808,11 +1084,20 @@ public final class ResourceProviderSapDiskConfigurationsSamples {
     public static void sAPDiskConfigurationsNonProd(com.azure.resourcemanager.workloads.WorkloadsManager manager) {
         manager
             .resourceProviders()
-            .sapDiskConfigurationsWithResponse("centralus", null, com.azure.core.util.Context.NONE);
+            .sapDiskConfigurationsWithResponse(
+                "centralus",
+                new SapDiskConfigurationsRequest()
+                    .withAppLocation("eastus")
+                    .withEnvironment(SapEnvironmentType.NON_PROD)
+                    .withSapProduct(SapProductType.S4HANA)
+                    .withDatabaseType(SapDatabaseType.HANA)
+                    .withDeploymentType(SapDeploymentType.THREE_TIER)
+                    .withDbVmSku("Standard_M32ts"),
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPDiskConfigurations_Prod.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPDiskConfigurations_Prod.json
      */
     /**
      * Sample code: SAPDiskConfigurations_Prod.
@@ -822,7 +1107,16 @@ public final class ResourceProviderSapDiskConfigurationsSamples {
     public static void sAPDiskConfigurationsProd(com.azure.resourcemanager.workloads.WorkloadsManager manager) {
         manager
             .resourceProviders()
-            .sapDiskConfigurationsWithResponse("centralus", null, com.azure.core.util.Context.NONE);
+            .sapDiskConfigurationsWithResponse(
+                "centralus",
+                new SapDiskConfigurationsRequest()
+                    .withAppLocation("eastus")
+                    .withEnvironment(SapEnvironmentType.PROD)
+                    .withSapProduct(SapProductType.S4HANA)
+                    .withDatabaseType(SapDatabaseType.HANA)
+                    .withDeploymentType(SapDeploymentType.THREE_TIER)
+                    .withDbVmSku("Standard_M32ts"),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -830,10 +1124,18 @@ public final class ResourceProviderSapDiskConfigurationsSamples {
 ### ResourceProvider_SapSizingRecommendations
 
 ```java
+import com.azure.resourcemanager.workloads.models.SapDatabaseScaleMethod;
+import com.azure.resourcemanager.workloads.models.SapDatabaseType;
+import com.azure.resourcemanager.workloads.models.SapDeploymentType;
+import com.azure.resourcemanager.workloads.models.SapEnvironmentType;
+import com.azure.resourcemanager.workloads.models.SapHighAvailabilityType;
+import com.azure.resourcemanager.workloads.models.SapProductType;
+import com.azure.resourcemanager.workloads.models.SapSizingRecommendationRequest;
+
 /** Samples for ResourceProvider SapSizingRecommendations. */
 public final class ResourceProviderSapSizingRecommendationsSamples {
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPSizingRecommendations_S4HANA_Distributed.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPSizingRecommendations_S4HANA_Distributed.json
      */
     /**
      * Sample code: SAPSizingRecommendations_S4HANA_Distributed.
@@ -844,11 +1146,22 @@ public final class ResourceProviderSapSizingRecommendationsSamples {
         com.azure.resourcemanager.workloads.WorkloadsManager manager) {
         manager
             .resourceProviders()
-            .sapSizingRecommendationsWithResponse("centralus", null, com.azure.core.util.Context.NONE);
+            .sapSizingRecommendationsWithResponse(
+                "centralus",
+                new SapSizingRecommendationRequest()
+                    .withAppLocation("eastus")
+                    .withEnvironment(SapEnvironmentType.PROD)
+                    .withSapProduct(SapProductType.S4HANA)
+                    .withDeploymentType(SapDeploymentType.THREE_TIER)
+                    .withSaps(20000L)
+                    .withDbMemory(1024L)
+                    .withDatabaseType(SapDatabaseType.HANA)
+                    .withDbScaleMethod(SapDatabaseScaleMethod.SCALE_UP),
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPSizingRecommendations_S4HANA_SingleServer.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPSizingRecommendations_S4HANA_SingleServer.json
      */
     /**
      * Sample code: SAPSizingRecommendations_S4HANA_SingleServer.
@@ -859,11 +1172,22 @@ public final class ResourceProviderSapSizingRecommendationsSamples {
         com.azure.resourcemanager.workloads.WorkloadsManager manager) {
         manager
             .resourceProviders()
-            .sapSizingRecommendationsWithResponse("centralus", null, com.azure.core.util.Context.NONE);
+            .sapSizingRecommendationsWithResponse(
+                "centralus",
+                new SapSizingRecommendationRequest()
+                    .withAppLocation("eastus")
+                    .withEnvironment(SapEnvironmentType.NON_PROD)
+                    .withSapProduct(SapProductType.S4HANA)
+                    .withDeploymentType(SapDeploymentType.SINGLE_SERVER)
+                    .withSaps(60000L)
+                    .withDbMemory(2000L)
+                    .withDatabaseType(SapDatabaseType.HANA)
+                    .withDbScaleMethod(SapDatabaseScaleMethod.SCALE_UP),
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPSizingRecommendations_S4HANA_HA_AvZone.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPSizingRecommendations_S4HANA_HA_AvZone.json
      */
     /**
      * Sample code: SAPSizingRecommendations_S4HANA_DistributedHA_AvZone.
@@ -874,11 +1198,23 @@ public final class ResourceProviderSapSizingRecommendationsSamples {
         com.azure.resourcemanager.workloads.WorkloadsManager manager) {
         manager
             .resourceProviders()
-            .sapSizingRecommendationsWithResponse("centralus", null, com.azure.core.util.Context.NONE);
+            .sapSizingRecommendationsWithResponse(
+                "centralus",
+                new SapSizingRecommendationRequest()
+                    .withAppLocation("eastus")
+                    .withEnvironment(SapEnvironmentType.PROD)
+                    .withSapProduct(SapProductType.S4HANA)
+                    .withDeploymentType(SapDeploymentType.THREE_TIER)
+                    .withSaps(75000L)
+                    .withDbMemory(1024L)
+                    .withDatabaseType(SapDatabaseType.HANA)
+                    .withDbScaleMethod(SapDatabaseScaleMethod.SCALE_UP)
+                    .withHighAvailabilityType(SapHighAvailabilityType.AVAILABILITY_ZONE),
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPSizingRecommendations_S4HANA_HA_AvSet.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPSizingRecommendations_S4HANA_HA_AvSet.json
      */
     /**
      * Sample code: SAPSizingRecommendations_S4HANA_DistributedHA_AvSet.
@@ -889,7 +1225,19 @@ public final class ResourceProviderSapSizingRecommendationsSamples {
         com.azure.resourcemanager.workloads.WorkloadsManager manager) {
         manager
             .resourceProviders()
-            .sapSizingRecommendationsWithResponse("centralus", null, com.azure.core.util.Context.NONE);
+            .sapSizingRecommendationsWithResponse(
+                "centralus",
+                new SapSizingRecommendationRequest()
+                    .withAppLocation("eastus")
+                    .withEnvironment(SapEnvironmentType.PROD)
+                    .withSapProduct(SapProductType.S4HANA)
+                    .withDeploymentType(SapDeploymentType.THREE_TIER)
+                    .withSaps(75000L)
+                    .withDbMemory(1024L)
+                    .withDatabaseType(SapDatabaseType.HANA)
+                    .withDbScaleMethod(SapDatabaseScaleMethod.SCALE_UP)
+                    .withHighAvailabilityType(SapHighAvailabilityType.AVAILABILITY_SET),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -897,10 +1245,17 @@ public final class ResourceProviderSapSizingRecommendationsSamples {
 ### ResourceProvider_SapSupportedSku
 
 ```java
+import com.azure.resourcemanager.workloads.models.SapDatabaseType;
+import com.azure.resourcemanager.workloads.models.SapDeploymentType;
+import com.azure.resourcemanager.workloads.models.SapEnvironmentType;
+import com.azure.resourcemanager.workloads.models.SapHighAvailabilityType;
+import com.azure.resourcemanager.workloads.models.SapProductType;
+import com.azure.resourcemanager.workloads.models.SapSupportedSkusRequest;
+
 /** Samples for ResourceProvider SapSupportedSku. */
 public final class ResourceProviderSapSupportedSkuSamples {
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPSupportedSkus_SingleServer.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPSupportedSkus_SingleServer.json
      */
     /**
      * Sample code: SAPSupportedSkus_SingleServer.
@@ -908,11 +1263,21 @@ public final class ResourceProviderSapSupportedSkuSamples {
      * @param manager Entry point to WorkloadsManager.
      */
     public static void sAPSupportedSkusSingleServer(com.azure.resourcemanager.workloads.WorkloadsManager manager) {
-        manager.resourceProviders().sapSupportedSkuWithResponse("centralus", null, com.azure.core.util.Context.NONE);
+        manager
+            .resourceProviders()
+            .sapSupportedSkuWithResponse(
+                "centralus",
+                new SapSupportedSkusRequest()
+                    .withAppLocation("eastus")
+                    .withEnvironment(SapEnvironmentType.NON_PROD)
+                    .withSapProduct(SapProductType.S4HANA)
+                    .withDeploymentType(SapDeploymentType.SINGLE_SERVER)
+                    .withDatabaseType(SapDatabaseType.HANA),
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPSupportedSkus_Distributed.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPSupportedSkus_Distributed.json
      */
     /**
      * Sample code: SAPSupportedSkus_Distributed.
@@ -920,11 +1285,21 @@ public final class ResourceProviderSapSupportedSkuSamples {
      * @param manager Entry point to WorkloadsManager.
      */
     public static void sAPSupportedSkusDistributed(com.azure.resourcemanager.workloads.WorkloadsManager manager) {
-        manager.resourceProviders().sapSupportedSkuWithResponse("centralus", null, com.azure.core.util.Context.NONE);
+        manager
+            .resourceProviders()
+            .sapSupportedSkuWithResponse(
+                "centralus",
+                new SapSupportedSkusRequest()
+                    .withAppLocation("eastus")
+                    .withEnvironment(SapEnvironmentType.PROD)
+                    .withSapProduct(SapProductType.S4HANA)
+                    .withDeploymentType(SapDeploymentType.THREE_TIER)
+                    .withDatabaseType(SapDatabaseType.HANA),
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPSupportedSkus_DistributedHA_AvZone.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPSupportedSkus_DistributedHA_AvZone.json
      */
     /**
      * Sample code: SAPSupportedSkus_DistributedHA_AvZone.
@@ -933,11 +1308,22 @@ public final class ResourceProviderSapSupportedSkuSamples {
      */
     public static void sAPSupportedSkusDistributedHAAvZone(
         com.azure.resourcemanager.workloads.WorkloadsManager manager) {
-        manager.resourceProviders().sapSupportedSkuWithResponse("centralus", null, com.azure.core.util.Context.NONE);
+        manager
+            .resourceProviders()
+            .sapSupportedSkuWithResponse(
+                "centralus",
+                new SapSupportedSkusRequest()
+                    .withAppLocation("eastus")
+                    .withEnvironment(SapEnvironmentType.PROD)
+                    .withSapProduct(SapProductType.S4HANA)
+                    .withDeploymentType(SapDeploymentType.THREE_TIER)
+                    .withDatabaseType(SapDatabaseType.HANA)
+                    .withHighAvailabilityType(SapHighAvailabilityType.AVAILABILITY_ZONE),
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPSupportedSkus_DistributedHA_AvSet.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPSupportedSkus_DistributedHA_AvSet.json
      */
     /**
      * Sample code: SAPSupportedSkus_DistributedHA_AvSet.
@@ -946,7 +1332,18 @@ public final class ResourceProviderSapSupportedSkuSamples {
      */
     public static void sAPSupportedSkusDistributedHAAvSet(
         com.azure.resourcemanager.workloads.WorkloadsManager manager) {
-        manager.resourceProviders().sapSupportedSkuWithResponse("centralus", null, com.azure.core.util.Context.NONE);
+        manager
+            .resourceProviders()
+            .sapSupportedSkuWithResponse(
+                "centralus",
+                new SapSupportedSkusRequest()
+                    .withAppLocation("eastus")
+                    .withEnvironment(SapEnvironmentType.PROD)
+                    .withSapProduct(SapProductType.S4HANA)
+                    .withDeploymentType(SapDeploymentType.THREE_TIER)
+                    .withDatabaseType(SapDatabaseType.HANA)
+                    .withHighAvailabilityType(SapHighAvailabilityType.AVAILABILITY_SET),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -960,7 +1357,7 @@ import java.util.Map;
 /** Samples for SapApplicationServerInstances Create. */
 public final class SapApplicationServerInstancesCreateSamples {
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPApplicationServerInstances_Create.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapapplicationinstances/SAPApplicationServerInstances_Create.json
      */
     /**
      * Sample code: SAPApplicationServerInstances_Create.
@@ -972,14 +1369,14 @@ public final class SapApplicationServerInstancesCreateSamples {
         manager
             .sapApplicationServerInstances()
             .define("app01")
-            .withRegion("westcentralus")
+            .withRegion("eastus")
             .withExistingSapVirtualInstance("test-rg", "X00")
             .withTags(mapOf())
             .create();
     }
 
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPApplicationServerInstances_Create_HA_AvSet.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapapplicationinstances/SAPApplicationServerInstances_Create_HA_AvSet.json
      */
     /**
      * Sample code: Create SAP Application Server Instances for HA System with Availability Set.
@@ -991,12 +1388,13 @@ public final class SapApplicationServerInstancesCreateSamples {
         manager
             .sapApplicationServerInstances()
             .define("app01")
-            .withRegion("westcentralus")
+            .withRegion("eastus")
             .withExistingSapVirtualInstance("test-rg", "X00")
             .withTags(mapOf())
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -1016,7 +1414,7 @@ public final class SapApplicationServerInstancesCreateSamples {
 /** Samples for SapApplicationServerInstances Delete. */
 public final class SapApplicationServerInstancesDeleteSamples {
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPApplicationServerInstances_Delete.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapapplicationinstances/SAPApplicationServerInstances_Delete.json
      */
     /**
      * Sample code: SAPApplicationServerInstances_Delete.
@@ -1036,7 +1434,7 @@ public final class SapApplicationServerInstancesDeleteSamples {
 /** Samples for SapApplicationServerInstances Get. */
 public final class SapApplicationServerInstancesGetSamples {
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPApplicationServerInstances_Get.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapapplicationinstances/SAPApplicationServerInstances_Get.json
      */
     /**
      * Sample code: SAPApplicationServerInstances_Get.
@@ -1057,7 +1455,7 @@ public final class SapApplicationServerInstancesGetSamples {
 /** Samples for SapApplicationServerInstances List. */
 public final class SapApplicationServerInstancesListSamples {
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPApplicationServerInstances_List.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapapplicationinstances/SAPApplicationServerInstances_List.json
      */
     /**
      * Sample code: SAPApplicationServerInstances_List.
@@ -1073,10 +1471,28 @@ public final class SapApplicationServerInstancesListSamples {
 ### SapApplicationServerInstances_StartInstance
 
 ```java
+import com.azure.resourcemanager.workloads.models.StartRequest;
+
 /** Samples for SapApplicationServerInstances StartInstance. */
 public final class SapApplicationServerInstancesStartInstanceSamples {
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPApplicationServerInstances_StartInstance.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapapplicationinstances/SAPApplicationServerInstances_StartInstance_WithInfraOperations.json
+     */
+    /**
+     * Sample code: Start Virtual Machine and the SAP Application Server Instance on it.
+     *
+     * @param manager Entry point to WorkloadsManager.
+     */
+    public static void startVirtualMachineAndTheSAPApplicationServerInstanceOnIt(
+        com.azure.resourcemanager.workloads.WorkloadsManager manager) {
+        manager
+            .sapApplicationServerInstances()
+            .startInstance(
+                "test-rg", "X00", "app01", new StartRequest().withStartVm(true), com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapapplicationinstances/SAPApplicationServerInstances_StartInstance.json
      */
     /**
      * Sample code: Start the SAP Application Server Instance.
@@ -1087,7 +1503,7 @@ public final class SapApplicationServerInstancesStartInstanceSamples {
         com.azure.resourcemanager.workloads.WorkloadsManager manager) {
         manager
             .sapApplicationServerInstances()
-            .startInstance("test-rg", "X00", "app01", com.azure.core.util.Context.NONE);
+            .startInstance("test-rg", "X00", "app01", null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1100,7 +1516,27 @@ import com.azure.resourcemanager.workloads.models.StopRequest;
 /** Samples for SapApplicationServerInstances StopInstance. */
 public final class SapApplicationServerInstancesStopInstanceSamples {
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPApplicationServerInstances_StopInstance.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapapplicationinstances/SAPApplicationServerInstances_StopInstance_WithInfraOperations.json
+     */
+    /**
+     * Sample code: Stop the SAP Application Server Instance and the Virtual machine.
+     *
+     * @param manager Entry point to WorkloadsManager.
+     */
+    public static void stopTheSAPApplicationServerInstanceAndTheVirtualMachine(
+        com.azure.resourcemanager.workloads.WorkloadsManager manager) {
+        manager
+            .sapApplicationServerInstances()
+            .stopInstance(
+                "test-rg",
+                "X00",
+                "app01",
+                new StopRequest().withSoftStopTimeoutSeconds(0L).withDeallocateVm(true),
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapapplicationinstances/SAPApplicationServerInstances_StopInstance.json
      */
     /**
      * Sample code: Stop the SAP Application Server Instance.
@@ -1131,7 +1567,7 @@ import java.util.Map;
 /** Samples for SapApplicationServerInstances Update. */
 public final class SapApplicationServerInstancesUpdateSamples {
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPApplicationServerInstances_Update.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapapplicationinstances/SAPApplicationServerInstances_Update.json
      */
     /**
      * Sample code: SAPApplicationServerInstances_Update.
@@ -1148,6 +1584,7 @@ public final class SapApplicationServerInstancesUpdateSamples {
         resource.update().withTags(mapOf("tag1", "value1")).apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -1170,7 +1607,7 @@ import java.util.Map;
 /** Samples for SapCentralInstances Create. */
 public final class SapCentralInstancesCreateSamples {
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPCentralInstances_Create_HA_AvSet.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapcentralinstances/SAPCentralInstances_Create_HA_AvSet.json
      */
     /**
      * Sample code: Create SAP Central Instances for HA System with Availability Set.
@@ -1182,14 +1619,14 @@ public final class SapCentralInstancesCreateSamples {
         manager
             .sapCentralInstances()
             .define("centralServer")
-            .withRegion("westcentralus")
+            .withRegion("eastus")
             .withExistingSapVirtualInstance("test-rg", "X00")
             .withTags(mapOf())
             .create();
     }
 
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPCentralInstances_Create.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapcentralinstances/SAPCentralInstances_Create.json
      */
     /**
      * Sample code: SAPCentralInstances_Create.
@@ -1200,12 +1637,13 @@ public final class SapCentralInstancesCreateSamples {
         manager
             .sapCentralInstances()
             .define("centralServer")
-            .withRegion("westcentralus")
+            .withRegion("eastus")
             .withExistingSapVirtualInstance("test-rg", "X00")
             .withTags(mapOf())
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -1225,7 +1663,7 @@ public final class SapCentralInstancesCreateSamples {
 /** Samples for SapCentralInstances Delete. */
 public final class SapCentralInstancesDeleteSamples {
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPCentralInstances_Delete.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapcentralinstances/SAPCentralInstances_Delete.json
      */
     /**
      * Sample code: SAPCentralInstances_Delete.
@@ -1244,7 +1682,7 @@ public final class SapCentralInstancesDeleteSamples {
 /** Samples for SapCentralInstances Get. */
 public final class SapCentralInstancesGetSamples {
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPCentralInstances_Get.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapcentralinstances/SAPCentralInstances_Get.json
      */
     /**
      * Sample code: SAPCentralInstances_Get.
@@ -1265,7 +1703,7 @@ public final class SapCentralInstancesGetSamples {
 /** Samples for SapCentralInstances List. */
 public final class SapCentralInstancesListSamples {
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPCentralInstances_List.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapcentralinstances/SAPCentralInstances_List.json
      */
     /**
      * Sample code: SAPCentralInstances_List.
@@ -1281,10 +1719,32 @@ public final class SapCentralInstancesListSamples {
 ### SapCentralInstances_StartInstance
 
 ```java
+import com.azure.resourcemanager.workloads.models.StartRequest;
+
 /** Samples for SapCentralInstances StartInstance. */
 public final class SapCentralInstancesStartInstanceSamples {
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPCentralInstances_StartInstance.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapcentralinstances/SAPCentralInstances_StartInstance_WithInfraOperations.json
+     */
+    /**
+     * Sample code: Start the virtual machine(s) and the SAP central services instance on it.
+     *
+     * @param manager Entry point to WorkloadsManager.
+     */
+    public static void startTheVirtualMachineSAndTheSAPCentralServicesInstanceOnIt(
+        com.azure.resourcemanager.workloads.WorkloadsManager manager) {
+        manager
+            .sapCentralInstances()
+            .startInstance(
+                "test-rg",
+                "X00",
+                "centralServer",
+                new StartRequest().withStartVm(true),
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapcentralinstances/SAPCentralInstances_StartInstance.json
      */
     /**
      * Sample code: Start the SAP Central Services Instance.
@@ -1295,7 +1755,7 @@ public final class SapCentralInstancesStartInstanceSamples {
         com.azure.resourcemanager.workloads.WorkloadsManager manager) {
         manager
             .sapCentralInstances()
-            .startInstance("test-rg", "X00", "centralServer", com.azure.core.util.Context.NONE);
+            .startInstance("test-rg", "X00", "centralServer", null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1308,7 +1768,7 @@ import com.azure.resourcemanager.workloads.models.StopRequest;
 /** Samples for SapCentralInstances StopInstance. */
 public final class SapCentralInstancesStopInstanceSamples {
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPCentralInstances_StopInstance.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapcentralinstances/SAPCentralInstances_StopInstance.json
      */
     /**
      * Sample code: Stop the SAP Central Services Instance.
@@ -1325,6 +1785,26 @@ public final class SapCentralInstancesStopInstanceSamples {
                 new StopRequest().withSoftStopTimeoutSeconds(1200L),
                 com.azure.core.util.Context.NONE);
     }
+
+    /*
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapcentralinstances/SAPCentralInstances_StopInstance_WithInfraOperations.json
+     */
+    /**
+     * Sample code: Stop the SAP Central Services Instance and its underlying Virtual Machine(s).
+     *
+     * @param manager Entry point to WorkloadsManager.
+     */
+    public static void stopTheSAPCentralServicesInstanceAndItsUnderlyingVirtualMachineS(
+        com.azure.resourcemanager.workloads.WorkloadsManager manager) {
+        manager
+            .sapCentralInstances()
+            .stopInstance(
+                "test-rg",
+                "X00",
+                "centralServer",
+                new StopRequest().withDeallocateVm(true),
+                com.azure.core.util.Context.NONE);
+    }
 }
 ```
 
@@ -1338,7 +1818,7 @@ import java.util.Map;
 /** Samples for SapCentralInstances Update. */
 public final class SapCentralInstancesUpdateSamples {
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPCentralInstances_Update.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapcentralinstances/SAPCentralInstances_Update.json
      */
     /**
      * Sample code: SAPCentralInstances_Update.
@@ -1354,6 +1834,7 @@ public final class SapCentralInstancesUpdateSamples {
         resource.update().withTags(mapOf("tag1", "value1")).apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -1376,7 +1857,7 @@ import java.util.Map;
 /** Samples for SapDatabaseInstances Create. */
 public final class SapDatabaseInstancesCreateSamples {
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPDatabaseInstances_Create_HA_AvSet.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapdatabaseinstances/SAPDatabaseInstances_Create_HA_AvSet.json
      */
     /**
      * Sample code: Create SAP Database Instances for HA System with Availability Set.
@@ -1388,14 +1869,14 @@ public final class SapDatabaseInstancesCreateSamples {
         manager
             .sapDatabaseInstances()
             .define("databaseServer")
-            .withRegion("westcentralus")
+            .withRegion("eastus")
             .withExistingSapVirtualInstance("test-rg", "X00")
             .withTags(mapOf())
             .create();
     }
 
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPDatabaseInstances_Create.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapdatabaseinstances/SAPDatabaseInstances_Create.json
      */
     /**
      * Sample code: SAPDatabaseInstances_Create.
@@ -1406,12 +1887,13 @@ public final class SapDatabaseInstancesCreateSamples {
         manager
             .sapDatabaseInstances()
             .define("databaseServer")
-            .withRegion("westcentralus")
+            .withRegion("eastus")
             .withExistingSapVirtualInstance("test-rg", "X00")
             .withTags(mapOf())
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -1431,7 +1913,7 @@ public final class SapDatabaseInstancesCreateSamples {
 /** Samples for SapDatabaseInstances Delete. */
 public final class SapDatabaseInstancesDeleteSamples {
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPDatabaseInstances_Delete.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapdatabaseinstances/SAPDatabaseInstances_Delete.json
      */
     /**
      * Sample code: SAPDatabaseInstances_Delete.
@@ -1450,7 +1932,7 @@ public final class SapDatabaseInstancesDeleteSamples {
 /** Samples for SapDatabaseInstances Get. */
 public final class SapDatabaseInstancesGetSamples {
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPDatabaseInstances_Get.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapdatabaseinstances/SAPDatabaseInstances_Get.json
      */
     /**
      * Sample code: SAPDatabaseInstances_Get.
@@ -1471,7 +1953,7 @@ public final class SapDatabaseInstancesGetSamples {
 /** Samples for SapDatabaseInstances List. */
 public final class SapDatabaseInstancesListSamples {
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPDatabaseInstances_List.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapdatabaseinstances/SAPDatabaseInstances_List.json
      */
     /**
      * Sample code: SAPDatabaseInstances_List.
@@ -1487,10 +1969,12 @@ public final class SapDatabaseInstancesListSamples {
 ### SapDatabaseInstances_StartInstance
 
 ```java
+import com.azure.resourcemanager.workloads.models.StartRequest;
+
 /** Samples for SapDatabaseInstances StartInstance. */
 public final class SapDatabaseInstancesStartInstanceSamples {
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPDatabaseInstances_StartInstance.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapdatabaseinstances/SAPDatabaseInstances_StartInstance.json
      */
     /**
      * Sample code: Start the database instance of the SAP system.
@@ -1499,7 +1983,23 @@ public final class SapDatabaseInstancesStartInstanceSamples {
      */
     public static void startTheDatabaseInstanceOfTheSAPSystem(
         com.azure.resourcemanager.workloads.WorkloadsManager manager) {
-        manager.sapDatabaseInstances().startInstance("test-rg", "X00", "db0", com.azure.core.util.Context.NONE);
+        manager.sapDatabaseInstances().startInstance("test-rg", "X00", "db0", null, com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapdatabaseinstances/SAPDatabaseInstances_StartInstance_WithInfraOperations.json
+     */
+    /**
+     * Sample code: Start Virtual Machine and the database instance of the SAP system on it.
+     *
+     * @param manager Entry point to WorkloadsManager.
+     */
+    public static void startVirtualMachineAndTheDatabaseInstanceOfTheSAPSystemOnIt(
+        com.azure.resourcemanager.workloads.WorkloadsManager manager) {
+        manager
+            .sapDatabaseInstances()
+            .startInstance(
+                "test-rg", "X00", "db0", new StartRequest().withStartVm(true), com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1512,7 +2012,7 @@ import com.azure.resourcemanager.workloads.models.StopRequest;
 /** Samples for SapDatabaseInstances StopInstance. */
 public final class SapDatabaseInstancesStopInstanceSamples {
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPDatabaseInstances_StopInstance.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapdatabaseinstances/SAPDatabaseInstances_StopInstance.json
      */
     /**
      * Sample code: Stop the database instance of the SAP system.
@@ -1530,6 +2030,26 @@ public final class SapDatabaseInstancesStopInstanceSamples {
                 new StopRequest().withSoftStopTimeoutSeconds(0L),
                 com.azure.core.util.Context.NONE);
     }
+
+    /*
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapdatabaseinstances/SAPDatabaseInstances_StopInstance_WithInfraOperations.json
+     */
+    /**
+     * Sample code: Stop the database instance of the SAP system and the underlying Virtual Machine(s).
+     *
+     * @param manager Entry point to WorkloadsManager.
+     */
+    public static void stopTheDatabaseInstanceOfTheSAPSystemAndTheUnderlyingVirtualMachineS(
+        com.azure.resourcemanager.workloads.WorkloadsManager manager) {
+        manager
+            .sapDatabaseInstances()
+            .stopInstance(
+                "test-rg",
+                "X00",
+                "db0",
+                new StopRequest().withSoftStopTimeoutSeconds(0L).withDeallocateVm(true),
+                com.azure.core.util.Context.NONE);
+    }
 }
 ```
 
@@ -1543,7 +2063,7 @@ import java.util.Map;
 /** Samples for SapDatabaseInstances Update. */
 public final class SapDatabaseInstancesUpdateSamples {
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPDatabaseInstances_Update.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapdatabaseinstances/SAPDatabaseInstances_Update.json
      */
     /**
      * Sample code: SAPDatabaseInstances_Update.
@@ -1556,9 +2076,10 @@ public final class SapDatabaseInstancesUpdateSamples {
                 .sapDatabaseInstances()
                 .getWithResponse("test-rg", "X00", "databaseServer", com.azure.core.util.Context.NONE)
                 .getValue();
-        resource.update().withTags(mapOf("key1", "value1")).apply();
+        resource.update().withTags(mapOf("key1", "fakeTokenPlaceholder")).apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -1568,176 +2089,6 @@ public final class SapDatabaseInstancesUpdateSamples {
             map.put(key, value);
         }
         return map;
-    }
-}
-```
-
-### SapLandscapeMonitor_Create
-
-```java
-import com.azure.resourcemanager.workloads.fluent.models.SapLandscapeMonitorInner;
-import com.azure.resourcemanager.workloads.models.SapLandscapeMonitorMetricThresholds;
-import com.azure.resourcemanager.workloads.models.SapLandscapeMonitorPropertiesGrouping;
-import com.azure.resourcemanager.workloads.models.SapLandscapeMonitorSidMapping;
-import java.util.Arrays;
-
-/** Samples for SapLandscapeMonitor Create. */
-public final class SapLandscapeMonitorCreateSamples {
-    /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/workloadmonitor/SapLandscapeMonitor_Create.json
-     */
-    /**
-     * Sample code: Create for SAP Landscape monitor Dashboard.
-     *
-     * @param manager Entry point to WorkloadsManager.
-     */
-    public static void createForSAPLandscapeMonitorDashboard(
-        com.azure.resourcemanager.workloads.WorkloadsManager manager) {
-        manager
-            .sapLandscapeMonitors()
-            .createWithResponse(
-                "myResourceGroup",
-                "mySapMonitor",
-                new SapLandscapeMonitorInner()
-                    .withGrouping(
-                        new SapLandscapeMonitorPropertiesGrouping()
-                            .withLandscape(
-                                Arrays
-                                    .asList(
-                                        new SapLandscapeMonitorSidMapping()
-                                            .withName("Prod")
-                                            .withTopSid(Arrays.asList("SID1", "SID2"))))
-                            .withSapApplication(
-                                Arrays
-                                    .asList(
-                                        new SapLandscapeMonitorSidMapping()
-                                            .withName("ERP1")
-                                            .withTopSid(Arrays.asList("SID1", "SID2")))))
-                    .withTopMetricsThresholds(
-                        Arrays
-                            .asList(
-                                new SapLandscapeMonitorMetricThresholds()
-                                    .withName("Instance Availability")
-                                    .withGreen(90.0F)
-                                    .withYellow(75.0F)
-                                    .withRed(50.0F))),
-                com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### SapLandscapeMonitor_Delete
-
-```java
-/** Samples for SapLandscapeMonitor Delete. */
-public final class SapLandscapeMonitorDeleteSamples {
-    /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/workloadmonitor/SapLandscapeMonitor_Delete.json
-     */
-    /**
-     * Sample code: Deletes SAP monitor.
-     *
-     * @param manager Entry point to WorkloadsManager.
-     */
-    public static void deletesSAPMonitor(com.azure.resourcemanager.workloads.WorkloadsManager manager) {
-        manager
-            .sapLandscapeMonitors()
-            .deleteByResourceGroupWithResponse("myResourceGroup", "mySapMonitor", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### SapLandscapeMonitor_Get
-
-```java
-/** Samples for SapLandscapeMonitor Get. */
-public final class SapLandscapeMonitorGetSamples {
-    /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/workloadmonitor/SapLandscapeMonitor_Get.json
-     */
-    /**
-     * Sample code: Get properties of a SAP monitor.
-     *
-     * @param manager Entry point to WorkloadsManager.
-     */
-    public static void getPropertiesOfASAPMonitor(com.azure.resourcemanager.workloads.WorkloadsManager manager) {
-        manager
-            .sapLandscapeMonitors()
-            .getWithResponse("myResourceGroup", "mySapMonitor", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### SapLandscapeMonitor_List
-
-```java
-/** Samples for SapLandscapeMonitor List. */
-public final class SapLandscapeMonitorListSamples {
-    /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/workloadmonitor/SapLandscapeMonitor_List.json
-     */
-    /**
-     * Sample code: Get properties of a SAP monitor.
-     *
-     * @param manager Entry point to WorkloadsManager.
-     */
-    public static void getPropertiesOfASAPMonitor(com.azure.resourcemanager.workloads.WorkloadsManager manager) {
-        manager
-            .sapLandscapeMonitors()
-            .listWithResponse("myResourceGroup", "mySapMonitor", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### SapLandscapeMonitor_Update
-
-```java
-import com.azure.resourcemanager.workloads.fluent.models.SapLandscapeMonitorInner;
-import com.azure.resourcemanager.workloads.models.SapLandscapeMonitorMetricThresholds;
-import com.azure.resourcemanager.workloads.models.SapLandscapeMonitorPropertiesGrouping;
-import com.azure.resourcemanager.workloads.models.SapLandscapeMonitorSidMapping;
-import java.util.Arrays;
-
-/** Samples for SapLandscapeMonitor Update. */
-public final class SapLandscapeMonitorUpdateSamples {
-    /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/workloadmonitor/SapLandscapeMonitor_Update.json
-     */
-    /**
-     * Sample code: Update SAP monitor.
-     *
-     * @param manager Entry point to WorkloadsManager.
-     */
-    public static void updateSAPMonitor(com.azure.resourcemanager.workloads.WorkloadsManager manager) {
-        manager
-            .sapLandscapeMonitors()
-            .updateWithResponse(
-                "myResourceGroup",
-                "mySapMonitor",
-                new SapLandscapeMonitorInner()
-                    .withGrouping(
-                        new SapLandscapeMonitorPropertiesGrouping()
-                            .withLandscape(
-                                Arrays
-                                    .asList(
-                                        new SapLandscapeMonitorSidMapping()
-                                            .withName("Prod")
-                                            .withTopSid(Arrays.asList("SID1", "SID2"))))
-                            .withSapApplication(
-                                Arrays
-                                    .asList(
-                                        new SapLandscapeMonitorSidMapping()
-                                            .withName("ERP1")
-                                            .withTopSid(Arrays.asList("SID1", "SID2")))))
-                    .withTopMetricsThresholds(
-                        Arrays
-                            .asList(
-                                new SapLandscapeMonitorMetricThresholds()
-                                    .withName("Instance Availability")
-                                    .withGreen(90.0F)
-                                    .withYellow(75.0F)
-                                    .withRed(50.0F))),
-                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1764,6 +2115,8 @@ import com.azure.resourcemanager.workloads.models.HighAvailabilityConfiguration;
 import com.azure.resourcemanager.workloads.models.ImageReference;
 import com.azure.resourcemanager.workloads.models.LinuxConfiguration;
 import com.azure.resourcemanager.workloads.models.LoadBalancerResourceNames;
+import com.azure.resourcemanager.workloads.models.ManagedRGConfiguration;
+import com.azure.resourcemanager.workloads.models.ManagedResourcesNetworkAccessType;
 import com.azure.resourcemanager.workloads.models.MountFileShareConfiguration;
 import com.azure.resourcemanager.workloads.models.NetworkConfiguration;
 import com.azure.resourcemanager.workloads.models.NetworkInterfaceResourceNames;
@@ -1792,7 +2145,7 @@ import java.util.Map;
 /** Samples for SapVirtualInstances Create. */
 public final class SapVirtualInstancesCreateSamples {
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPVirtualInstances_Install_Distributed.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Install_Distributed.json
      */
     /**
      * Sample code: Install SAP Software on Distributed System.
@@ -1900,7 +2253,7 @@ public final class SapVirtualInstancesCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPVirtualInstances_Create_HA_AvZone.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Create_HA_AvZone.json
      */
     /**
      * Sample code: Create Infrastructure only for HA System with Availability Zone.
@@ -1912,7 +2265,7 @@ public final class SapVirtualInstancesCreateSamples {
         manager
             .sapVirtualInstances()
             .define("X00")
-            .withRegion("westcentralus")
+            .withRegion("eastus")
             .withExistingResourceGroup("test-rg")
             .withEnvironment(SapEnvironmentType.PROD)
             .withSapProduct(SapProductType.S4HANA)
@@ -2015,7 +2368,7 @@ public final class SapVirtualInstancesCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPVirtualInstances_Create_WithOSConfig_Distributed.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Create_WithOSConfig_Distributed.json
      */
     /**
      * Sample code: Create Infrastructure with OS configuration for Distributed System (Recommended).
@@ -2027,7 +2380,7 @@ public final class SapVirtualInstancesCreateSamples {
         manager
             .sapVirtualInstances()
             .define("X00")
-            .withRegion("westcentralus")
+            .withRegion("eastus")
             .withExistingResourceGroup("test-rg")
             .withEnvironment(SapEnvironmentType.PROD)
             .withSapProduct(SapProductType.S4HANA)
@@ -2116,7 +2469,7 @@ public final class SapVirtualInstancesCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPVirtualInstances_DetectInstallation_SingleServer.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_DetectInstallation_SingleServer.json
      */
     /**
      * Sample code: Detect SAP Software Installation on a Single Server System.
@@ -2128,7 +2481,7 @@ public final class SapVirtualInstancesCreateSamples {
         manager
             .sapVirtualInstances()
             .define("X00")
-            .withRegion("westcentralus")
+            .withRegion("eastus")
             .withExistingResourceGroup("test-rg")
             .withEnvironment(SapEnvironmentType.NON_PROD)
             .withSapProduct(SapProductType.S4HANA)
@@ -2171,7 +2524,109 @@ public final class SapVirtualInstancesCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPVirtualInstances_Create_DiskDetails_HA_AvSet.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Create_WithOSConfig_WithTrustedAccess.json
+     */
+    /**
+     * Sample code: Create Infrastructure (with OS configuration) with trusted access enabled.
+     *
+     * @param manager Entry point to WorkloadsManager.
+     */
+    public static void createInfrastructureWithOSConfigurationWithTrustedAccessEnabled(
+        com.azure.resourcemanager.workloads.WorkloadsManager manager) {
+        manager
+            .sapVirtualInstances()
+            .define("X00")
+            .withRegion("eastus")
+            .withExistingResourceGroup("test-rg")
+            .withEnvironment(SapEnvironmentType.PROD)
+            .withSapProduct(SapProductType.S4HANA)
+            .withConfiguration(
+                new DeploymentWithOSConfiguration()
+                    .withAppLocation("eastus")
+                    .withInfrastructureConfiguration(
+                        new ThreeTierConfiguration()
+                            .withAppResourceGroup("X00-RG")
+                            .withCentralServer(
+                                new CentralServerConfiguration()
+                                    .withSubnetId(
+                                        "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/test-rg/providers/Microsoft.Networks/virtualNetworks/test-vnet/subnets/appsubnet")
+                                    .withVirtualMachineConfiguration(
+                                        new VirtualMachineConfiguration()
+                                            .withVmSize("Standard_E16ds_v4")
+                                            .withImageReference(
+                                                new ImageReference()
+                                                    .withPublisher("RedHat")
+                                                    .withOffer("RHEL-SAP")
+                                                    .withSku("84sapha-gen2")
+                                                    .withVersion("latest"))
+                                            .withOsProfile(
+                                                new OSProfile()
+                                                    .withAdminUsername("{your-username}")
+                                                    .withOsConfiguration(
+                                                        new LinuxConfiguration()
+                                                            .withDisablePasswordAuthentication(true)
+                                                            .withSshKeyPair(
+                                                                new SshKeyPair()
+                                                                    .withPublicKey("fakeTokenPlaceholder")
+                                                                    .withPrivateKey("fakeTokenPlaceholder")))))
+                                    .withInstanceCount(1L))
+                            .withApplicationServer(
+                                new ApplicationServerConfiguration()
+                                    .withSubnetId(
+                                        "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/test-rg/providers/Microsoft.Networks/virtualNetworks/test-vnet/subnets/appsubnet")
+                                    .withVirtualMachineConfiguration(
+                                        new VirtualMachineConfiguration()
+                                            .withVmSize("Standard_E32ds_v4")
+                                            .withImageReference(
+                                                new ImageReference()
+                                                    .withPublisher("RedHat")
+                                                    .withOffer("RHEL-SAP")
+                                                    .withSku("84sapha-gen2")
+                                                    .withVersion("latest"))
+                                            .withOsProfile(
+                                                new OSProfile()
+                                                    .withAdminUsername("{your-username}")
+                                                    .withOsConfiguration(
+                                                        new LinuxConfiguration()
+                                                            .withDisablePasswordAuthentication(true)
+                                                            .withSshKeyPair(
+                                                                new SshKeyPair()
+                                                                    .withPublicKey("fakeTokenPlaceholder")
+                                                                    .withPrivateKey("fakeTokenPlaceholder")))))
+                                    .withInstanceCount(6L))
+                            .withDatabaseServer(
+                                new DatabaseConfiguration()
+                                    .withDatabaseType(SapDatabaseType.HANA)
+                                    .withSubnetId(
+                                        "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/test-rg/providers/Microsoft.Networks/virtualNetworks/test-vnet/subnets/dbsubnet")
+                                    .withVirtualMachineConfiguration(
+                                        new VirtualMachineConfiguration()
+                                            .withVmSize("Standard_M32ts")
+                                            .withImageReference(
+                                                new ImageReference()
+                                                    .withPublisher("RedHat")
+                                                    .withOffer("RHEL-SAP")
+                                                    .withSku("84sapha-gen2")
+                                                    .withVersion("latest"))
+                                            .withOsProfile(
+                                                new OSProfile()
+                                                    .withAdminUsername("{your-username}")
+                                                    .withOsConfiguration(
+                                                        new LinuxConfiguration()
+                                                            .withDisablePasswordAuthentication(true)
+                                                            .withSshKeyPair(
+                                                                new SshKeyPair()
+                                                                    .withPublicKey("fakeTokenPlaceholder")
+                                                                    .withPrivateKey("fakeTokenPlaceholder")))))
+                                    .withInstanceCount(1L)))
+                    .withOsSapConfiguration(new OsSapConfiguration().withSapFqdn("xyz.test.com")))
+            .withTags(mapOf())
+            .withManagedResourcesNetworkAccessType(ManagedResourcesNetworkAccessType.PRIVATE)
+            .create();
+    }
+
+    /*
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Create_DiskDetails_HA_AvSet.json
      */
     /**
      * Sample code: Create Infrastructure with Disk and OS configuration for HA System with Availability Set
@@ -2184,7 +2639,7 @@ public final class SapVirtualInstancesCreateSamples {
         manager
             .sapVirtualInstances()
             .define("X00")
-            .withRegion("westcentralus")
+            .withRegion("eastus")
             .withExistingResourceGroup("test-rg")
             .withEnvironment(SapEnvironmentType.PROD)
             .withSapProduct(SapProductType.S4HANA)
@@ -2310,7 +2765,141 @@ public final class SapVirtualInstancesCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPVirtualInstances_Create_HA_AvSet.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Create_Discover_TrustedAccessEnable.json
+     */
+    /**
+     * Sample code: Register with trusted access enabled.
+     *
+     * @param manager Entry point to WorkloadsManager.
+     */
+    public static void registerWithTrustedAccessEnabled(com.azure.resourcemanager.workloads.WorkloadsManager manager) {
+        manager
+            .sapVirtualInstances()
+            .define("X00")
+            .withRegion("northeurope")
+            .withExistingResourceGroup("test-rg")
+            .withEnvironment(SapEnvironmentType.NON_PROD)
+            .withSapProduct(SapProductType.S4HANA)
+            .withConfiguration(
+                new DiscoveryConfiguration()
+                    .withCentralServerVmId(
+                        "/subscriptions/8e17e36c-42e9-4cd5-a078-7b44883414e0/resourceGroups/test-rg/providers/Microsoft.Compute/virtualMachines/sapq20scsvm0"))
+            .withTags(mapOf("createdby", "abc@microsoft.com", "test", "abc"))
+            .withManagedResourcesNetworkAccessType(ManagedResourcesNetworkAccessType.PRIVATE)
+            .create();
+    }
+
+    /*
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Create_Custom_Image.json
+     */
+    /**
+     * Sample code: Create Infrastructure (with OS configuration) with Azure Compute Gallery Image.
+     *
+     * @param manager Entry point to WorkloadsManager.
+     */
+    public static void createInfrastructureWithOSConfigurationWithAzureComputeGalleryImage(
+        com.azure.resourcemanager.workloads.WorkloadsManager manager) {
+        manager
+            .sapVirtualInstances()
+            .define("X00")
+            .withRegion("eastus")
+            .withExistingResourceGroup("test-rg")
+            .withEnvironment(SapEnvironmentType.PROD)
+            .withSapProduct(SapProductType.S4HANA)
+            .withConfiguration(
+                new DeploymentConfiguration()
+                    .withAppLocation("eastus")
+                    .withInfrastructureConfiguration(
+                        new ThreeTierConfiguration()
+                            .withAppResourceGroup("X00-RG")
+                            .withCentralServer(
+                                new CentralServerConfiguration()
+                                    .withSubnetId(
+                                        "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/test-rg/providers/Microsoft.Networks/virtualNetworks/test-vnet/subnets/appsubnet")
+                                    .withVirtualMachineConfiguration(
+                                        new VirtualMachineConfiguration()
+                                            .withVmSize("Standard_E16ds_v4")
+                                            .withImageReference(
+                                                new ImageReference()
+                                                    .withId(
+                                                        "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/test-rg/providers/Microsoft.Compute/galleries/testgallery/images/rhelimagetest/versions/0.0.1"))
+                                            .withOsProfile(
+                                                new OSProfile()
+                                                    .withAdminUsername("{your-username}")
+                                                    .withOsConfiguration(
+                                                        new LinuxConfiguration()
+                                                            .withDisablePasswordAuthentication(true)
+                                                            .withSsh(
+                                                                new SshConfiguration()
+                                                                    .withPublicKeys(
+                                                                        Arrays
+                                                                            .asList(
+                                                                                new SshPublicKey()
+                                                                                    .withKeyData(
+                                                                                        "fakeTokenPlaceholder")))))))
+                                    .withInstanceCount(2L))
+                            .withApplicationServer(
+                                new ApplicationServerConfiguration()
+                                    .withSubnetId(
+                                        "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/test-rg/providers/Microsoft.Networks/virtualNetworks/test-vnet/subnets/appsubnet")
+                                    .withVirtualMachineConfiguration(
+                                        new VirtualMachineConfiguration()
+                                            .withVmSize("Standard_E32ds_v4")
+                                            .withImageReference(
+                                                new ImageReference()
+                                                    .withId(
+                                                        "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/test-rg/providers/Microsoft.Compute/galleries/testgallery/images/rhelimagetest/versions/0.0.1"))
+                                            .withOsProfile(
+                                                new OSProfile()
+                                                    .withAdminUsername("{your-username}")
+                                                    .withOsConfiguration(
+                                                        new LinuxConfiguration()
+                                                            .withDisablePasswordAuthentication(true)
+                                                            .withSsh(
+                                                                new SshConfiguration()
+                                                                    .withPublicKeys(
+                                                                        Arrays
+                                                                            .asList(
+                                                                                new SshPublicKey()
+                                                                                    .withKeyData(
+                                                                                        "fakeTokenPlaceholder")))))))
+                                    .withInstanceCount(6L))
+                            .withDatabaseServer(
+                                new DatabaseConfiguration()
+                                    .withDatabaseType(SapDatabaseType.HANA)
+                                    .withSubnetId(
+                                        "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/test-rg/providers/Microsoft.Networks/virtualNetworks/test-vnet/subnets/dbsubnet")
+                                    .withVirtualMachineConfiguration(
+                                        new VirtualMachineConfiguration()
+                                            .withVmSize("Standard_M32ts")
+                                            .withImageReference(
+                                                new ImageReference()
+                                                    .withId(
+                                                        "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/test-rg/providers/Microsoft.Compute/galleries/testgallery/images/rhelimagetest/versions/0.0.1"))
+                                            .withOsProfile(
+                                                new OSProfile()
+                                                    .withAdminUsername("{your-username}")
+                                                    .withOsConfiguration(
+                                                        new LinuxConfiguration()
+                                                            .withDisablePasswordAuthentication(true)
+                                                            .withSsh(
+                                                                new SshConfiguration()
+                                                                    .withPublicKeys(
+                                                                        Arrays
+                                                                            .asList(
+                                                                                new SshPublicKey()
+                                                                                    .withKeyData(
+                                                                                        "fakeTokenPlaceholder")))))))
+                                    .withInstanceCount(2L))
+                            .withHighAvailabilityConfig(
+                                new HighAvailabilityConfiguration()
+                                    .withHighAvailabilityType(SapHighAvailabilityType.AVAILABILITY_ZONE))))
+            .withTags(mapOf())
+            .create();
+    }
+
+    /*
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Create_HA_AvSet.json
      */
     /**
      * Sample code: Create Infrastructure only for HA System with Availability Set.
@@ -2322,7 +2911,7 @@ public final class SapVirtualInstancesCreateSamples {
         manager
             .sapVirtualInstances()
             .define("X00")
-            .withRegion("westcentralus")
+            .withRegion("eastus")
             .withExistingResourceGroup("test-rg")
             .withEnvironment(SapEnvironmentType.PROD)
             .withSapProduct(SapProductType.S4HANA)
@@ -2425,7 +3014,7 @@ public final class SapVirtualInstancesCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPVirtualInstances_DetectInstallation_HA_AvZone.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_DetectInstallation_HA_AvZone.json
      */
     /**
      * Sample code: Detect SAP Software Installation on an HA System with Availability Zone.
@@ -2437,7 +3026,7 @@ public final class SapVirtualInstancesCreateSamples {
         manager
             .sapVirtualInstances()
             .define("X00")
-            .withRegion("westcentralus")
+            .withRegion("eastus")
             .withExistingResourceGroup("test-rg")
             .withEnvironment(SapEnvironmentType.PROD)
             .withSapProduct(SapProductType.S4HANA)
@@ -2533,7 +3122,7 @@ public final class SapVirtualInstancesCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPVirtualInstances_Create_SingleServer.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Create_SingleServer.json
      */
     /**
      * Sample code: Create Infrastructure only for Single Server System.
@@ -2545,7 +3134,7 @@ public final class SapVirtualInstancesCreateSamples {
         manager
             .sapVirtualInstances()
             .define("X00")
-            .withRegion("westcentralus")
+            .withRegion("eastus")
             .withExistingResourceGroup("test-rg")
             .withEnvironment(SapEnvironmentType.NON_PROD)
             .withSapProduct(SapProductType.S4HANA)
@@ -2586,7 +3175,7 @@ public final class SapVirtualInstancesCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPVirtualInstances_Create_Distributed_CreateTransport.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Create_Distributed_CreateTransport.json
      */
     /**
      * Sample code: Create Infrastructure with a new SAP Transport Directory Fileshare.
@@ -2598,7 +3187,7 @@ public final class SapVirtualInstancesCreateSamples {
         manager
             .sapVirtualInstances()
             .define("X00")
-            .withRegion("westcentralus")
+            .withRegion("eastus")
             .withExistingResourceGroup("test-rg")
             .withEnvironment(SapEnvironmentType.PROD)
             .withSapProduct(SapProductType.S4HANA)
@@ -2693,7 +3282,7 @@ public final class SapVirtualInstancesCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPVirtualInstances_Create_Discover.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Create_Discover.json
      */
     /**
      * Sample code: Register existing SAP system as Virtual Instance for SAP solutions.
@@ -2718,7 +3307,7 @@ public final class SapVirtualInstancesCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPVirtualInstances_Create_CustomFullResourceNames_Distributed.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Create_CustomFullResourceNames_Distributed.json
      */
     /**
      * Sample code: Create Infrastructure (with OS configuration) with custom resource names for Distributed System.
@@ -2730,7 +3319,7 @@ public final class SapVirtualInstancesCreateSamples {
         manager
             .sapVirtualInstances()
             .define("X00")
-            .withRegion("westcentralus")
+            .withRegion("eastus")
             .withExistingResourceGroup("test-rg")
             .withEnvironment(SapEnvironmentType.PROD)
             .withSapProduct(SapProductType.S4HANA)
@@ -2889,11 +3478,13 @@ public final class SapVirtualInstancesCreateSamples {
                                             .withSharedStorageAccountPrivateEndPointName("peForxNFS"))))
                     .withOsSapConfiguration(new OsSapConfiguration().withSapFqdn("xyz.test.com")))
             .withTags(mapOf())
+            .withManagedResourceGroupConfiguration(
+                new ManagedRGConfiguration().withName("mrg-X00-8e17e36c-42e9-4cd5-a078-7b44883414e0"))
             .create();
     }
 
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPVirtualInstances_Create_CustomFullResourceNames_SingleServer.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Create_CustomFullResourceNames_SingleServer.json
      */
     /**
      * Sample code: Create Infrastructure (with OS configuration) with custom resource names for Single Server System.
@@ -2905,7 +3496,7 @@ public final class SapVirtualInstancesCreateSamples {
         manager
             .sapVirtualInstances()
             .define("X00")
-            .withRegion("westcentralus")
+            .withRegion("eastus")
             .withExistingResourceGroup("test-rg")
             .withEnvironment(SapEnvironmentType.NON_PROD)
             .withSapProduct(SapProductType.S4HANA)
@@ -2940,11 +3531,13 @@ public final class SapVirtualInstancesCreateSamples {
                                                             .withPrivateKey("fakeTokenPlaceholder"))))))
                     .withOsSapConfiguration(new OsSapConfiguration().withSapFqdn("xyz.test.com")))
             .withTags(mapOf())
+            .withManagedResourceGroupConfiguration(
+                new ManagedRGConfiguration().withName("mrg-X00-8e17e36c-42e9-4cd5-a078-7b44883414e0"))
             .create();
     }
 
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPVirtualInstances_Create_CustomFullResourceNames_HA_AvZone.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Create_CustomFullResourceNames_HA_AvZone.json
      */
     /**
      * Sample code: Create Infrastructure (with OS configuration) with custom resource names for HA system with
@@ -2957,7 +3550,7 @@ public final class SapVirtualInstancesCreateSamples {
         manager
             .sapVirtualInstances()
             .define("X00")
-            .withRegion("westcentralus")
+            .withRegion("eastus")
             .withExistingResourceGroup("test-rg")
             .withEnvironment(SapEnvironmentType.PROD)
             .withSapProduct(SapProductType.S4HANA)
@@ -3162,11 +3755,13 @@ public final class SapVirtualInstancesCreateSamples {
                                             .withSharedStorageAccountPrivateEndPointName("peForxNFS"))))
                     .withOsSapConfiguration(new OsSapConfiguration().withSapFqdn("xyz.test.com")))
             .withTags(mapOf())
+            .withManagedResourceGroupConfiguration(
+                new ManagedRGConfiguration().withName("mrg-X00-8e17e36c-42e9-4cd5-a078-7b44883414e0"))
             .create();
     }
 
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPVirtualInstances_Create_Distributed_MountTransport.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Create_Distributed_MountTransport.json
      */
     /**
      * Sample code: Create Infrastructure with an existing SAP Transport Directory Fileshare.
@@ -3178,7 +3773,7 @@ public final class SapVirtualInstancesCreateSamples {
         manager
             .sapVirtualInstances()
             .define("X00")
-            .withRegion("westcentralus")
+            .withRegion("eastus")
             .withExistingResourceGroup("test-rg")
             .withEnvironment(SapEnvironmentType.PROD)
             .withSapProduct(SapProductType.S4HANA)
@@ -3275,7 +3870,7 @@ public final class SapVirtualInstancesCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPVirtualInstances_Create_CustomFullResourceNames_HA_AvSet.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Create_CustomFullResourceNames_HA_AvSet.json
      */
     /**
      * Sample code: Create Infrastructure (with OS configuration) with custom resource names for HA System with
@@ -3288,7 +3883,7 @@ public final class SapVirtualInstancesCreateSamples {
         manager
             .sapVirtualInstances()
             .define("X00")
-            .withRegion("westcentralus")
+            .withRegion("eastus")
             .withExistingResourceGroup("test-rg")
             .withEnvironment(SapEnvironmentType.PROD)
             .withSapProduct(SapProductType.S4HANA)
@@ -3496,11 +4091,13 @@ public final class SapVirtualInstancesCreateSamples {
                                             .withSharedStorageAccountPrivateEndPointName("peForxNFS"))))
                     .withOsSapConfiguration(new OsSapConfiguration().withSapFqdn("xyz.test.com")))
             .withTags(mapOf())
+            .withManagedResourceGroupConfiguration(
+                new ManagedRGConfiguration().withName("mrg-X00-8e17e36c-42e9-4cd5-a078-7b44883414e0"))
             .create();
     }
 
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPVirtualInstances_Create_WithOSConfig_HA_AvSet.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Create_WithOSConfig_HA_AvSet.json
      */
     /**
      * Sample code: Create Infrastructure with OS configuration for HA System with Availability Set (Recommended).
@@ -3512,7 +4109,7 @@ public final class SapVirtualInstancesCreateSamples {
         manager
             .sapVirtualInstances()
             .define("X00")
-            .withRegion("westcentralus")
+            .withRegion("eastus")
             .withExistingResourceGroup("test-rg")
             .withEnvironment(SapEnvironmentType.PROD)
             .withSapProduct(SapProductType.S4HANA)
@@ -3604,7 +4201,7 @@ public final class SapVirtualInstancesCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPVirtualInstances_Create_DiskDetails_Distributed.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Create_DiskDetails_Distributed.json
      */
     /**
      * Sample code: Create Infrastructure with Disk and OS configuration for Distributed System (Recommended).
@@ -3616,7 +4213,7 @@ public final class SapVirtualInstancesCreateSamples {
         manager
             .sapVirtualInstances()
             .define("X00")
-            .withRegion("westcentralus")
+            .withRegion("eastus")
             .withExistingResourceGroup("test-rg")
             .withEnvironment(SapEnvironmentType.PROD)
             .withSapProduct(SapProductType.S4HANA)
@@ -3739,7 +4336,7 @@ public final class SapVirtualInstancesCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPVirtualInstances_DetectInstallation_Distributed.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_DetectInstallation_Distributed.json
      */
     /**
      * Sample code: Detect SAP Software Installation on a Distributed System.
@@ -3844,7 +4441,7 @@ public final class SapVirtualInstancesCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPVirtualInstances_DetectInstallation_HA_AvSet.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_DetectInstallation_HA_AvSet.json
      */
     /**
      * Sample code: Detect SAP Software Installation on an HA System with Availability Set.
@@ -3856,7 +4453,7 @@ public final class SapVirtualInstancesCreateSamples {
         manager
             .sapVirtualInstances()
             .define("X00")
-            .withRegion("westcentralus")
+            .withRegion("eastus")
             .withExistingResourceGroup("test-rg")
             .withEnvironment(SapEnvironmentType.PROD)
             .withSapProduct(SapProductType.S4HANA)
@@ -3952,7 +4549,7 @@ public final class SapVirtualInstancesCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPVirtualInstances_Install_SingleServer.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Install_SingleServer.json
      */
     /**
      * Sample code: Install SAP Software on Single Server System.
@@ -4008,7 +4605,7 @@ public final class SapVirtualInstancesCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPVirtualInstances_Create_Distributed.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Create_Distributed.json
      */
     /**
      * Sample code: Create Infrastructure only for Distributed System.
@@ -4020,7 +4617,7 @@ public final class SapVirtualInstancesCreateSamples {
         manager
             .sapVirtualInstances()
             .define("X00")
-            .withRegion("westcentralus")
+            .withRegion("eastus")
             .withExistingResourceGroup("test-rg")
             .withEnvironment(SapEnvironmentType.PROD)
             .withSapProduct(SapProductType.S4HANA)
@@ -4120,7 +4717,7 @@ public final class SapVirtualInstancesCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPVirtualInstances_Create_Discover_CustomMrgStorageAccountName.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Create_Discover_CustomMrgStorageAccountName.json
      */
     /**
      * Sample code: Register existing SAP system as Virtual Instance for SAP solutions with optional customizations.
@@ -4146,7 +4743,7 @@ public final class SapVirtualInstancesCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPVirtualInstances_Create_Distributed_SkipTransport.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Create_Distributed_SkipTransport.json
      */
     /**
      * Sample code: Create Infrastructure without a SAP Transport Directory Fileshare.
@@ -4158,7 +4755,7 @@ public final class SapVirtualInstancesCreateSamples {
         manager
             .sapVirtualInstances()
             .define("X00")
-            .withRegion("westcentralus")
+            .withRegion("eastus")
             .withExistingResourceGroup("test-rg")
             .withEnvironment(SapEnvironmentType.PROD)
             .withSapProduct(SapProductType.S4HANA)
@@ -4250,7 +4847,7 @@ public final class SapVirtualInstancesCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPVirtualInstances_Create_WithOSConfig_SingleServer.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Create_WithOSConfig_SingleServer.json
      */
     /**
      * Sample code: Create Infrastructure with OS configuration for Single Server System (Recommended).
@@ -4262,7 +4859,7 @@ public final class SapVirtualInstancesCreateSamples {
         manager
             .sapVirtualInstances()
             .define("X00")
-            .withRegion("westcentralus")
+            .withRegion("eastus")
             .withExistingResourceGroup("test-rg")
             .withEnvironment(SapEnvironmentType.NON_PROD)
             .withSapProduct(SapProductType.S4HANA)
@@ -4301,7 +4898,7 @@ public final class SapVirtualInstancesCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPVirtualInstances_Create_DiskDetails_HA_AvZone.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Create_DiskDetails_HA_AvZone.json
      */
     /**
      * Sample code: Create Infrastructure with Disk and OS configuration for HA System with Availability Zone
@@ -4314,7 +4911,7 @@ public final class SapVirtualInstancesCreateSamples {
         manager
             .sapVirtualInstances()
             .define("X00")
-            .withRegion("westcentralus")
+            .withRegion("eastus")
             .withExistingResourceGroup("test-rg")
             .withEnvironment(SapEnvironmentType.PROD)
             .withSapProduct(SapProductType.S4HANA)
@@ -4440,7 +5037,7 @@ public final class SapVirtualInstancesCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPVirtualInstances_Create_WithOSConfig_HA_AvZone.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Create_WithOSConfig_HA_AvZone.json
      */
     /**
      * Sample code: Create Infrastructure with OS configuration for HA System with Availability Zone (Recommended).
@@ -4452,7 +5049,7 @@ public final class SapVirtualInstancesCreateSamples {
         manager
             .sapVirtualInstances()
             .define("X00")
-            .withRegion("westcentralus")
+            .withRegion("eastus")
             .withExistingResourceGroup("test-rg")
             .withEnvironment(SapEnvironmentType.PROD)
             .withSapProduct(SapProductType.S4HANA)
@@ -4544,7 +5141,7 @@ public final class SapVirtualInstancesCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPVirtualInstances_Create_DiskDetails_SingleServer.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Create_DiskDetails_SingleServer.json
      */
     /**
      * Sample code: Create Infrastructure with Disk and OS configurations for Single Server System (Recommended).
@@ -4556,7 +5153,7 @@ public final class SapVirtualInstancesCreateSamples {
         manager
             .sapVirtualInstances()
             .define("X00")
-            .withRegion("westcentralus")
+            .withRegion("eastus")
             .withExistingResourceGroup("test-rg")
             .withEnvironment(SapEnvironmentType.NON_PROD)
             .withSapProduct(SapProductType.S4HANA)
@@ -4628,6 +5225,7 @@ public final class SapVirtualInstancesCreateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -4647,7 +5245,7 @@ public final class SapVirtualInstancesCreateSamples {
 /** Samples for SapVirtualInstances Delete. */
 public final class SapVirtualInstancesDeleteSamples {
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPVirtualInstances_Delete.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Delete.json
      */
     /**
      * Sample code: SAPVirtualInstances_Delete.
@@ -4666,7 +5264,7 @@ public final class SapVirtualInstancesDeleteSamples {
 /** Samples for SapVirtualInstances GetByResourceGroup. */
 public final class SapVirtualInstancesGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPVirtualInstances_Get.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Get.json
      */
     /**
      * Sample code: SAPVirtualInstances_Get.
@@ -4674,6 +5272,21 @@ public final class SapVirtualInstancesGetByResourceGroupSamples {
      * @param manager Entry point to WorkloadsManager.
      */
     public static void sAPVirtualInstancesGet(com.azure.resourcemanager.workloads.WorkloadsManager manager) {
+        manager
+            .sapVirtualInstances()
+            .getByResourceGroupWithResponse("test-rg", "X00", com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Get_ACSSInstallationBlocked.json
+     */
+    /**
+     * Sample code: SAPVirtualInstances Get With ACSS Installation Blocked.
+     *
+     * @param manager Entry point to WorkloadsManager.
+     */
+    public static void sAPVirtualInstancesGetWithACSSInstallationBlocked(
+        com.azure.resourcemanager.workloads.WorkloadsManager manager) {
         manager
             .sapVirtualInstances()
             .getByResourceGroupWithResponse("test-rg", "X00", com.azure.core.util.Context.NONE);
@@ -4687,7 +5300,7 @@ public final class SapVirtualInstancesGetByResourceGroupSamples {
 /** Samples for SapVirtualInstances List. */
 public final class SapVirtualInstancesListSamples {
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPVirtualInstances_ListBySubscription.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_ListBySubscription.json
      */
     /**
      * Sample code: SAPVirtualInstances_ListBySubscription.
@@ -4707,7 +5320,7 @@ public final class SapVirtualInstancesListSamples {
 /** Samples for SapVirtualInstances ListByResourceGroup. */
 public final class SapVirtualInstancesListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPVirtualInstances_ListByResourceGroup.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_ListByResourceGroup.json
      */
     /**
      * Sample code: SAPVirtualInstances_ListByResourceGroup.
@@ -4724,18 +5337,35 @@ public final class SapVirtualInstancesListByResourceGroupSamples {
 ### SapVirtualInstances_Start
 
 ```java
+import com.azure.resourcemanager.workloads.models.StartRequest;
+
 /** Samples for SapVirtualInstances Start. */
 public final class SapVirtualInstancesStartSamples {
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPVirtualInstances_Start.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Start_WithInfraOperations.json
      */
     /**
-     * Sample code: SAPVirtualInstances_Start.
+     * Sample code: Start the virtual machines and the SAP system.
      *
      * @param manager Entry point to WorkloadsManager.
      */
-    public static void sAPVirtualInstancesStart(com.azure.resourcemanager.workloads.WorkloadsManager manager) {
-        manager.sapVirtualInstances().start("test-rg", "X00", com.azure.core.util.Context.NONE);
+    public static void startTheVirtualMachinesAndTheSAPSystem(
+        com.azure.resourcemanager.workloads.WorkloadsManager manager) {
+        manager
+            .sapVirtualInstances()
+            .start("test-rg", "X00", new StartRequest().withStartVm(true), com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Start.json
+     */
+    /**
+     * Sample code: Start the SAP system.
+     *
+     * @param manager Entry point to WorkloadsManager.
+     */
+    public static void startTheSAPSystem(com.azure.resourcemanager.workloads.WorkloadsManager manager) {
+        manager.sapVirtualInstances().start("test-rg", "X00", null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -4748,7 +5378,26 @@ import com.azure.resourcemanager.workloads.models.StopRequest;
 /** Samples for SapVirtualInstances Stop. */
 public final class SapVirtualInstancesStopSamples {
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPVirtualInstances_Stop.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Stop_WithInfraOperations.json
+     */
+    /**
+     * Sample code: Stop the virtual machine(s) and the SAP system on it.
+     *
+     * @param manager Entry point to WorkloadsManager.
+     */
+    public static void stopTheVirtualMachineSAndTheSAPSystemOnIt(
+        com.azure.resourcemanager.workloads.WorkloadsManager manager) {
+        manager
+            .sapVirtualInstances()
+            .stop(
+                "test-rg",
+                "X00",
+                new StopRequest().withSoftStopTimeoutSeconds(0L).withDeallocateVm(true),
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Stop.json
      */
     /**
      * Sample code: SAPVirtualInstances_Stop.
@@ -4766,8 +5415,10 @@ public final class SapVirtualInstancesStopSamples {
 ### SapVirtualInstances_Update
 
 ```java
+import com.azure.resourcemanager.workloads.models.ManagedResourcesNetworkAccessType;
 import com.azure.resourcemanager.workloads.models.ManagedServiceIdentityType;
 import com.azure.resourcemanager.workloads.models.SapVirtualInstance;
+import com.azure.resourcemanager.workloads.models.UpdateSapVirtualInstanceProperties;
 import com.azure.resourcemanager.workloads.models.UserAssignedServiceIdentity;
 import java.util.HashMap;
 import java.util.Map;
@@ -4775,7 +5426,7 @@ import java.util.Map;
 /** Samples for SapVirtualInstances Update. */
 public final class SapVirtualInstancesUpdateSamples {
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPVirtualInstances_Update.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Update.json
      */
     /**
      * Sample code: SAPVirtualInstances_Update.
@@ -4790,11 +5441,37 @@ public final class SapVirtualInstancesUpdateSamples {
                 .getValue();
         resource
             .update()
-            .withTags(mapOf("key1", "svi1"))
+            .withTags(mapOf("key1", "fakeTokenPlaceholder"))
             .withIdentity(new UserAssignedServiceIdentity().withType(ManagedServiceIdentityType.NONE))
             .apply();
     }
 
+    /*
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_TrustedAccessEnable_Update.json
+     */
+    /**
+     * Sample code: SAPVirtualInstances_TrustedAccessEnable_Update.
+     *
+     * @param manager Entry point to WorkloadsManager.
+     */
+    public static void sAPVirtualInstancesTrustedAccessEnableUpdate(
+        com.azure.resourcemanager.workloads.WorkloadsManager manager) {
+        SapVirtualInstance resource =
+            manager
+                .sapVirtualInstances()
+                .getByResourceGroupWithResponse("test-rg", "X00", com.azure.core.util.Context.NONE)
+                .getValue();
+        resource
+            .update()
+            .withTags(mapOf("key1", "fakeTokenPlaceholder"))
+            .withIdentity(new UserAssignedServiceIdentity().withType(ManagedServiceIdentityType.NONE))
+            .withProperties(
+                new UpdateSapVirtualInstanceProperties()
+                    .withManagedResourcesNetworkAccessType(ManagedResourcesNetworkAccessType.PRIVATE))
+            .apply();
+    }
+
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

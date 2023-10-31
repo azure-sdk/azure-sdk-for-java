@@ -9,6 +9,7 @@ import com.azure.core.management.Resource;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.workloads.models.ManagedRGConfiguration;
+import com.azure.resourcemanager.workloads.models.ManagedResourcesNetworkAccessType;
 import com.azure.resourcemanager.workloads.models.SapConfiguration;
 import com.azure.resourcemanager.workloads.models.SapEnvironmentType;
 import com.azure.resourcemanager.workloads.models.SapHealthState;
@@ -25,8 +26,7 @@ import java.util.Map;
 @Fluent
 public final class SapVirtualInstanceInner extends Resource {
     /*
-     * A pre-created user assigned identity with appropriate roles assigned. To learn more on identity and roles
-     * required, visit the ACSS how-to-guide.
+     * Managed service identity (user assigned identities)
      */
     @JsonProperty(value = "identity")
     private UserAssignedServiceIdentity identity;
@@ -48,8 +48,7 @@ public final class SapVirtualInstanceInner extends Resource {
     }
 
     /**
-     * Get the identity property: A pre-created user assigned identity with appropriate roles assigned. To learn more on
-     * identity and roles required, visit the ACSS how-to-guide.
+     * Get the identity property: Managed service identity (user assigned identities).
      *
      * @return the identity value.
      */
@@ -58,8 +57,7 @@ public final class SapVirtualInstanceInner extends Resource {
     }
 
     /**
-     * Set the identity property: A pre-created user assigned identity with appropriate roles assigned. To learn more on
-     * identity and roles required, visit the ACSS how-to-guide.
+     * Set the identity property: Managed service identity (user assigned identities).
      *
      * @param identity the identity value to set.
      * @return the SapVirtualInstanceInner object itself.
@@ -144,6 +142,40 @@ public final class SapVirtualInstanceInner extends Resource {
             this.innerProperties = new SapVirtualInstanceProperties();
         }
         this.innerProperties().withSapProduct(sapProduct);
+        return this;
+    }
+
+    /**
+     * Get the managedResourcesNetworkAccessType property: Specifies the network access configuration for the resources
+     * that will be deployed in the Managed Resource Group. The options to choose from are Public and Private. If
+     * 'Private' is chosen, the Storage Account service tag should be enabled on the subnets in which the SAP VMs exist.
+     * This is required for establishing connectivity between VM extensions and the managed resource group storage
+     * account. This setting is currently applicable only to Storage Account. Learn more here
+     * https://go.microsoft.com/fwlink/?linkid=2247228.
+     *
+     * @return the managedResourcesNetworkAccessType value.
+     */
+    public ManagedResourcesNetworkAccessType managedResourcesNetworkAccessType() {
+        return this.innerProperties() == null ? null : this.innerProperties().managedResourcesNetworkAccessType();
+    }
+
+    /**
+     * Set the managedResourcesNetworkAccessType property: Specifies the network access configuration for the resources
+     * that will be deployed in the Managed Resource Group. The options to choose from are Public and Private. If
+     * 'Private' is chosen, the Storage Account service tag should be enabled on the subnets in which the SAP VMs exist.
+     * This is required for establishing connectivity between VM extensions and the managed resource group storage
+     * account. This setting is currently applicable only to Storage Account. Learn more here
+     * https://go.microsoft.com/fwlink/?linkid=2247228.
+     *
+     * @param managedResourcesNetworkAccessType the managedResourcesNetworkAccessType value to set.
+     * @return the SapVirtualInstanceInner object itself.
+     */
+    public SapVirtualInstanceInner withManagedResourcesNetworkAccessType(
+        ManagedResourcesNetworkAccessType managedResourcesNetworkAccessType) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new SapVirtualInstanceProperties();
+        }
+        this.innerProperties().withManagedResourcesNetworkAccessType(managedResourcesNetworkAccessType);
         return this;
     }
 

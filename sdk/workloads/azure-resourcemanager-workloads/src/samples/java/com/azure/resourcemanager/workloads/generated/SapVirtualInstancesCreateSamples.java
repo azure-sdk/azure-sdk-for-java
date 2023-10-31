@@ -23,6 +23,8 @@ import com.azure.resourcemanager.workloads.models.HighAvailabilityConfiguration;
 import com.azure.resourcemanager.workloads.models.ImageReference;
 import com.azure.resourcemanager.workloads.models.LinuxConfiguration;
 import com.azure.resourcemanager.workloads.models.LoadBalancerResourceNames;
+import com.azure.resourcemanager.workloads.models.ManagedRGConfiguration;
+import com.azure.resourcemanager.workloads.models.ManagedResourcesNetworkAccessType;
 import com.azure.resourcemanager.workloads.models.MountFileShareConfiguration;
 import com.azure.resourcemanager.workloads.models.NetworkConfiguration;
 import com.azure.resourcemanager.workloads.models.NetworkInterfaceResourceNames;
@@ -51,7 +53,7 @@ import java.util.Map;
 /** Samples for SapVirtualInstances Create. */
 public final class SapVirtualInstancesCreateSamples {
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPVirtualInstances_Install_Distributed.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Install_Distributed.json
      */
     /**
      * Sample code: Install SAP Software on Distributed System.
@@ -159,7 +161,7 @@ public final class SapVirtualInstancesCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPVirtualInstances_Create_HA_AvZone.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Create_HA_AvZone.json
      */
     /**
      * Sample code: Create Infrastructure only for HA System with Availability Zone.
@@ -171,7 +173,7 @@ public final class SapVirtualInstancesCreateSamples {
         manager
             .sapVirtualInstances()
             .define("X00")
-            .withRegion("westcentralus")
+            .withRegion("eastus")
             .withExistingResourceGroup("test-rg")
             .withEnvironment(SapEnvironmentType.PROD)
             .withSapProduct(SapProductType.S4HANA)
@@ -274,7 +276,7 @@ public final class SapVirtualInstancesCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPVirtualInstances_Create_WithOSConfig_Distributed.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Create_WithOSConfig_Distributed.json
      */
     /**
      * Sample code: Create Infrastructure with OS configuration for Distributed System (Recommended).
@@ -286,7 +288,7 @@ public final class SapVirtualInstancesCreateSamples {
         manager
             .sapVirtualInstances()
             .define("X00")
-            .withRegion("westcentralus")
+            .withRegion("eastus")
             .withExistingResourceGroup("test-rg")
             .withEnvironment(SapEnvironmentType.PROD)
             .withSapProduct(SapProductType.S4HANA)
@@ -375,7 +377,7 @@ public final class SapVirtualInstancesCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPVirtualInstances_DetectInstallation_SingleServer.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_DetectInstallation_SingleServer.json
      */
     /**
      * Sample code: Detect SAP Software Installation on a Single Server System.
@@ -387,7 +389,7 @@ public final class SapVirtualInstancesCreateSamples {
         manager
             .sapVirtualInstances()
             .define("X00")
-            .withRegion("westcentralus")
+            .withRegion("eastus")
             .withExistingResourceGroup("test-rg")
             .withEnvironment(SapEnvironmentType.NON_PROD)
             .withSapProduct(SapProductType.S4HANA)
@@ -430,7 +432,109 @@ public final class SapVirtualInstancesCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPVirtualInstances_Create_DiskDetails_HA_AvSet.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Create_WithOSConfig_WithTrustedAccess.json
+     */
+    /**
+     * Sample code: Create Infrastructure (with OS configuration) with trusted access enabled.
+     *
+     * @param manager Entry point to WorkloadsManager.
+     */
+    public static void createInfrastructureWithOSConfigurationWithTrustedAccessEnabled(
+        com.azure.resourcemanager.workloads.WorkloadsManager manager) {
+        manager
+            .sapVirtualInstances()
+            .define("X00")
+            .withRegion("eastus")
+            .withExistingResourceGroup("test-rg")
+            .withEnvironment(SapEnvironmentType.PROD)
+            .withSapProduct(SapProductType.S4HANA)
+            .withConfiguration(
+                new DeploymentWithOSConfiguration()
+                    .withAppLocation("eastus")
+                    .withInfrastructureConfiguration(
+                        new ThreeTierConfiguration()
+                            .withAppResourceGroup("X00-RG")
+                            .withCentralServer(
+                                new CentralServerConfiguration()
+                                    .withSubnetId(
+                                        "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/test-rg/providers/Microsoft.Networks/virtualNetworks/test-vnet/subnets/appsubnet")
+                                    .withVirtualMachineConfiguration(
+                                        new VirtualMachineConfiguration()
+                                            .withVmSize("Standard_E16ds_v4")
+                                            .withImageReference(
+                                                new ImageReference()
+                                                    .withPublisher("RedHat")
+                                                    .withOffer("RHEL-SAP")
+                                                    .withSku("84sapha-gen2")
+                                                    .withVersion("latest"))
+                                            .withOsProfile(
+                                                new OSProfile()
+                                                    .withAdminUsername("{your-username}")
+                                                    .withOsConfiguration(
+                                                        new LinuxConfiguration()
+                                                            .withDisablePasswordAuthentication(true)
+                                                            .withSshKeyPair(
+                                                                new SshKeyPair()
+                                                                    .withPublicKey("fakeTokenPlaceholder")
+                                                                    .withPrivateKey("fakeTokenPlaceholder")))))
+                                    .withInstanceCount(1L))
+                            .withApplicationServer(
+                                new ApplicationServerConfiguration()
+                                    .withSubnetId(
+                                        "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/test-rg/providers/Microsoft.Networks/virtualNetworks/test-vnet/subnets/appsubnet")
+                                    .withVirtualMachineConfiguration(
+                                        new VirtualMachineConfiguration()
+                                            .withVmSize("Standard_E32ds_v4")
+                                            .withImageReference(
+                                                new ImageReference()
+                                                    .withPublisher("RedHat")
+                                                    .withOffer("RHEL-SAP")
+                                                    .withSku("84sapha-gen2")
+                                                    .withVersion("latest"))
+                                            .withOsProfile(
+                                                new OSProfile()
+                                                    .withAdminUsername("{your-username}")
+                                                    .withOsConfiguration(
+                                                        new LinuxConfiguration()
+                                                            .withDisablePasswordAuthentication(true)
+                                                            .withSshKeyPair(
+                                                                new SshKeyPair()
+                                                                    .withPublicKey("fakeTokenPlaceholder")
+                                                                    .withPrivateKey("fakeTokenPlaceholder")))))
+                                    .withInstanceCount(6L))
+                            .withDatabaseServer(
+                                new DatabaseConfiguration()
+                                    .withDatabaseType(SapDatabaseType.HANA)
+                                    .withSubnetId(
+                                        "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/test-rg/providers/Microsoft.Networks/virtualNetworks/test-vnet/subnets/dbsubnet")
+                                    .withVirtualMachineConfiguration(
+                                        new VirtualMachineConfiguration()
+                                            .withVmSize("Standard_M32ts")
+                                            .withImageReference(
+                                                new ImageReference()
+                                                    .withPublisher("RedHat")
+                                                    .withOffer("RHEL-SAP")
+                                                    .withSku("84sapha-gen2")
+                                                    .withVersion("latest"))
+                                            .withOsProfile(
+                                                new OSProfile()
+                                                    .withAdminUsername("{your-username}")
+                                                    .withOsConfiguration(
+                                                        new LinuxConfiguration()
+                                                            .withDisablePasswordAuthentication(true)
+                                                            .withSshKeyPair(
+                                                                new SshKeyPair()
+                                                                    .withPublicKey("fakeTokenPlaceholder")
+                                                                    .withPrivateKey("fakeTokenPlaceholder")))))
+                                    .withInstanceCount(1L)))
+                    .withOsSapConfiguration(new OsSapConfiguration().withSapFqdn("xyz.test.com")))
+            .withTags(mapOf())
+            .withManagedResourcesNetworkAccessType(ManagedResourcesNetworkAccessType.PRIVATE)
+            .create();
+    }
+
+    /*
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Create_DiskDetails_HA_AvSet.json
      */
     /**
      * Sample code: Create Infrastructure with Disk and OS configuration for HA System with Availability Set
@@ -443,7 +547,7 @@ public final class SapVirtualInstancesCreateSamples {
         manager
             .sapVirtualInstances()
             .define("X00")
-            .withRegion("westcentralus")
+            .withRegion("eastus")
             .withExistingResourceGroup("test-rg")
             .withEnvironment(SapEnvironmentType.PROD)
             .withSapProduct(SapProductType.S4HANA)
@@ -569,7 +673,141 @@ public final class SapVirtualInstancesCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPVirtualInstances_Create_HA_AvSet.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Create_Discover_TrustedAccessEnable.json
+     */
+    /**
+     * Sample code: Register with trusted access enabled.
+     *
+     * @param manager Entry point to WorkloadsManager.
+     */
+    public static void registerWithTrustedAccessEnabled(com.azure.resourcemanager.workloads.WorkloadsManager manager) {
+        manager
+            .sapVirtualInstances()
+            .define("X00")
+            .withRegion("northeurope")
+            .withExistingResourceGroup("test-rg")
+            .withEnvironment(SapEnvironmentType.NON_PROD)
+            .withSapProduct(SapProductType.S4HANA)
+            .withConfiguration(
+                new DiscoveryConfiguration()
+                    .withCentralServerVmId(
+                        "/subscriptions/8e17e36c-42e9-4cd5-a078-7b44883414e0/resourceGroups/test-rg/providers/Microsoft.Compute/virtualMachines/sapq20scsvm0"))
+            .withTags(mapOf("createdby", "abc@microsoft.com", "test", "abc"))
+            .withManagedResourcesNetworkAccessType(ManagedResourcesNetworkAccessType.PRIVATE)
+            .create();
+    }
+
+    /*
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Create_Custom_Image.json
+     */
+    /**
+     * Sample code: Create Infrastructure (with OS configuration) with Azure Compute Gallery Image.
+     *
+     * @param manager Entry point to WorkloadsManager.
+     */
+    public static void createInfrastructureWithOSConfigurationWithAzureComputeGalleryImage(
+        com.azure.resourcemanager.workloads.WorkloadsManager manager) {
+        manager
+            .sapVirtualInstances()
+            .define("X00")
+            .withRegion("eastus")
+            .withExistingResourceGroup("test-rg")
+            .withEnvironment(SapEnvironmentType.PROD)
+            .withSapProduct(SapProductType.S4HANA)
+            .withConfiguration(
+                new DeploymentConfiguration()
+                    .withAppLocation("eastus")
+                    .withInfrastructureConfiguration(
+                        new ThreeTierConfiguration()
+                            .withAppResourceGroup("X00-RG")
+                            .withCentralServer(
+                                new CentralServerConfiguration()
+                                    .withSubnetId(
+                                        "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/test-rg/providers/Microsoft.Networks/virtualNetworks/test-vnet/subnets/appsubnet")
+                                    .withVirtualMachineConfiguration(
+                                        new VirtualMachineConfiguration()
+                                            .withVmSize("Standard_E16ds_v4")
+                                            .withImageReference(
+                                                new ImageReference()
+                                                    .withId(
+                                                        "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/test-rg/providers/Microsoft.Compute/galleries/testgallery/images/rhelimagetest/versions/0.0.1"))
+                                            .withOsProfile(
+                                                new OSProfile()
+                                                    .withAdminUsername("{your-username}")
+                                                    .withOsConfiguration(
+                                                        new LinuxConfiguration()
+                                                            .withDisablePasswordAuthentication(true)
+                                                            .withSsh(
+                                                                new SshConfiguration()
+                                                                    .withPublicKeys(
+                                                                        Arrays
+                                                                            .asList(
+                                                                                new SshPublicKey()
+                                                                                    .withKeyData(
+                                                                                        "fakeTokenPlaceholder")))))))
+                                    .withInstanceCount(2L))
+                            .withApplicationServer(
+                                new ApplicationServerConfiguration()
+                                    .withSubnetId(
+                                        "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/test-rg/providers/Microsoft.Networks/virtualNetworks/test-vnet/subnets/appsubnet")
+                                    .withVirtualMachineConfiguration(
+                                        new VirtualMachineConfiguration()
+                                            .withVmSize("Standard_E32ds_v4")
+                                            .withImageReference(
+                                                new ImageReference()
+                                                    .withId(
+                                                        "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/test-rg/providers/Microsoft.Compute/galleries/testgallery/images/rhelimagetest/versions/0.0.1"))
+                                            .withOsProfile(
+                                                new OSProfile()
+                                                    .withAdminUsername("{your-username}")
+                                                    .withOsConfiguration(
+                                                        new LinuxConfiguration()
+                                                            .withDisablePasswordAuthentication(true)
+                                                            .withSsh(
+                                                                new SshConfiguration()
+                                                                    .withPublicKeys(
+                                                                        Arrays
+                                                                            .asList(
+                                                                                new SshPublicKey()
+                                                                                    .withKeyData(
+                                                                                        "fakeTokenPlaceholder")))))))
+                                    .withInstanceCount(6L))
+                            .withDatabaseServer(
+                                new DatabaseConfiguration()
+                                    .withDatabaseType(SapDatabaseType.HANA)
+                                    .withSubnetId(
+                                        "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/test-rg/providers/Microsoft.Networks/virtualNetworks/test-vnet/subnets/dbsubnet")
+                                    .withVirtualMachineConfiguration(
+                                        new VirtualMachineConfiguration()
+                                            .withVmSize("Standard_M32ts")
+                                            .withImageReference(
+                                                new ImageReference()
+                                                    .withId(
+                                                        "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/test-rg/providers/Microsoft.Compute/galleries/testgallery/images/rhelimagetest/versions/0.0.1"))
+                                            .withOsProfile(
+                                                new OSProfile()
+                                                    .withAdminUsername("{your-username}")
+                                                    .withOsConfiguration(
+                                                        new LinuxConfiguration()
+                                                            .withDisablePasswordAuthentication(true)
+                                                            .withSsh(
+                                                                new SshConfiguration()
+                                                                    .withPublicKeys(
+                                                                        Arrays
+                                                                            .asList(
+                                                                                new SshPublicKey()
+                                                                                    .withKeyData(
+                                                                                        "fakeTokenPlaceholder")))))))
+                                    .withInstanceCount(2L))
+                            .withHighAvailabilityConfig(
+                                new HighAvailabilityConfiguration()
+                                    .withHighAvailabilityType(SapHighAvailabilityType.AVAILABILITY_ZONE))))
+            .withTags(mapOf())
+            .create();
+    }
+
+    /*
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Create_HA_AvSet.json
      */
     /**
      * Sample code: Create Infrastructure only for HA System with Availability Set.
@@ -581,7 +819,7 @@ public final class SapVirtualInstancesCreateSamples {
         manager
             .sapVirtualInstances()
             .define("X00")
-            .withRegion("westcentralus")
+            .withRegion("eastus")
             .withExistingResourceGroup("test-rg")
             .withEnvironment(SapEnvironmentType.PROD)
             .withSapProduct(SapProductType.S4HANA)
@@ -684,7 +922,7 @@ public final class SapVirtualInstancesCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPVirtualInstances_DetectInstallation_HA_AvZone.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_DetectInstallation_HA_AvZone.json
      */
     /**
      * Sample code: Detect SAP Software Installation on an HA System with Availability Zone.
@@ -696,7 +934,7 @@ public final class SapVirtualInstancesCreateSamples {
         manager
             .sapVirtualInstances()
             .define("X00")
-            .withRegion("westcentralus")
+            .withRegion("eastus")
             .withExistingResourceGroup("test-rg")
             .withEnvironment(SapEnvironmentType.PROD)
             .withSapProduct(SapProductType.S4HANA)
@@ -792,7 +1030,7 @@ public final class SapVirtualInstancesCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPVirtualInstances_Create_SingleServer.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Create_SingleServer.json
      */
     /**
      * Sample code: Create Infrastructure only for Single Server System.
@@ -804,7 +1042,7 @@ public final class SapVirtualInstancesCreateSamples {
         manager
             .sapVirtualInstances()
             .define("X00")
-            .withRegion("westcentralus")
+            .withRegion("eastus")
             .withExistingResourceGroup("test-rg")
             .withEnvironment(SapEnvironmentType.NON_PROD)
             .withSapProduct(SapProductType.S4HANA)
@@ -845,7 +1083,7 @@ public final class SapVirtualInstancesCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPVirtualInstances_Create_Distributed_CreateTransport.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Create_Distributed_CreateTransport.json
      */
     /**
      * Sample code: Create Infrastructure with a new SAP Transport Directory Fileshare.
@@ -857,7 +1095,7 @@ public final class SapVirtualInstancesCreateSamples {
         manager
             .sapVirtualInstances()
             .define("X00")
-            .withRegion("westcentralus")
+            .withRegion("eastus")
             .withExistingResourceGroup("test-rg")
             .withEnvironment(SapEnvironmentType.PROD)
             .withSapProduct(SapProductType.S4HANA)
@@ -952,7 +1190,7 @@ public final class SapVirtualInstancesCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPVirtualInstances_Create_Discover.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Create_Discover.json
      */
     /**
      * Sample code: Register existing SAP system as Virtual Instance for SAP solutions.
@@ -977,7 +1215,7 @@ public final class SapVirtualInstancesCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPVirtualInstances_Create_CustomFullResourceNames_Distributed.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Create_CustomFullResourceNames_Distributed.json
      */
     /**
      * Sample code: Create Infrastructure (with OS configuration) with custom resource names for Distributed System.
@@ -989,7 +1227,7 @@ public final class SapVirtualInstancesCreateSamples {
         manager
             .sapVirtualInstances()
             .define("X00")
-            .withRegion("westcentralus")
+            .withRegion("eastus")
             .withExistingResourceGroup("test-rg")
             .withEnvironment(SapEnvironmentType.PROD)
             .withSapProduct(SapProductType.S4HANA)
@@ -1148,11 +1386,13 @@ public final class SapVirtualInstancesCreateSamples {
                                             .withSharedStorageAccountPrivateEndPointName("peForxNFS"))))
                     .withOsSapConfiguration(new OsSapConfiguration().withSapFqdn("xyz.test.com")))
             .withTags(mapOf())
+            .withManagedResourceGroupConfiguration(
+                new ManagedRGConfiguration().withName("mrg-X00-8e17e36c-42e9-4cd5-a078-7b44883414e0"))
             .create();
     }
 
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPVirtualInstances_Create_CustomFullResourceNames_SingleServer.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Create_CustomFullResourceNames_SingleServer.json
      */
     /**
      * Sample code: Create Infrastructure (with OS configuration) with custom resource names for Single Server System.
@@ -1164,7 +1404,7 @@ public final class SapVirtualInstancesCreateSamples {
         manager
             .sapVirtualInstances()
             .define("X00")
-            .withRegion("westcentralus")
+            .withRegion("eastus")
             .withExistingResourceGroup("test-rg")
             .withEnvironment(SapEnvironmentType.NON_PROD)
             .withSapProduct(SapProductType.S4HANA)
@@ -1199,11 +1439,13 @@ public final class SapVirtualInstancesCreateSamples {
                                                             .withPrivateKey("fakeTokenPlaceholder"))))))
                     .withOsSapConfiguration(new OsSapConfiguration().withSapFqdn("xyz.test.com")))
             .withTags(mapOf())
+            .withManagedResourceGroupConfiguration(
+                new ManagedRGConfiguration().withName("mrg-X00-8e17e36c-42e9-4cd5-a078-7b44883414e0"))
             .create();
     }
 
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPVirtualInstances_Create_CustomFullResourceNames_HA_AvZone.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Create_CustomFullResourceNames_HA_AvZone.json
      */
     /**
      * Sample code: Create Infrastructure (with OS configuration) with custom resource names for HA system with
@@ -1216,7 +1458,7 @@ public final class SapVirtualInstancesCreateSamples {
         manager
             .sapVirtualInstances()
             .define("X00")
-            .withRegion("westcentralus")
+            .withRegion("eastus")
             .withExistingResourceGroup("test-rg")
             .withEnvironment(SapEnvironmentType.PROD)
             .withSapProduct(SapProductType.S4HANA)
@@ -1421,11 +1663,13 @@ public final class SapVirtualInstancesCreateSamples {
                                             .withSharedStorageAccountPrivateEndPointName("peForxNFS"))))
                     .withOsSapConfiguration(new OsSapConfiguration().withSapFqdn("xyz.test.com")))
             .withTags(mapOf())
+            .withManagedResourceGroupConfiguration(
+                new ManagedRGConfiguration().withName("mrg-X00-8e17e36c-42e9-4cd5-a078-7b44883414e0"))
             .create();
     }
 
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPVirtualInstances_Create_Distributed_MountTransport.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Create_Distributed_MountTransport.json
      */
     /**
      * Sample code: Create Infrastructure with an existing SAP Transport Directory Fileshare.
@@ -1437,7 +1681,7 @@ public final class SapVirtualInstancesCreateSamples {
         manager
             .sapVirtualInstances()
             .define("X00")
-            .withRegion("westcentralus")
+            .withRegion("eastus")
             .withExistingResourceGroup("test-rg")
             .withEnvironment(SapEnvironmentType.PROD)
             .withSapProduct(SapProductType.S4HANA)
@@ -1534,7 +1778,7 @@ public final class SapVirtualInstancesCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPVirtualInstances_Create_CustomFullResourceNames_HA_AvSet.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Create_CustomFullResourceNames_HA_AvSet.json
      */
     /**
      * Sample code: Create Infrastructure (with OS configuration) with custom resource names for HA System with
@@ -1547,7 +1791,7 @@ public final class SapVirtualInstancesCreateSamples {
         manager
             .sapVirtualInstances()
             .define("X00")
-            .withRegion("westcentralus")
+            .withRegion("eastus")
             .withExistingResourceGroup("test-rg")
             .withEnvironment(SapEnvironmentType.PROD)
             .withSapProduct(SapProductType.S4HANA)
@@ -1755,11 +1999,13 @@ public final class SapVirtualInstancesCreateSamples {
                                             .withSharedStorageAccountPrivateEndPointName("peForxNFS"))))
                     .withOsSapConfiguration(new OsSapConfiguration().withSapFqdn("xyz.test.com")))
             .withTags(mapOf())
+            .withManagedResourceGroupConfiguration(
+                new ManagedRGConfiguration().withName("mrg-X00-8e17e36c-42e9-4cd5-a078-7b44883414e0"))
             .create();
     }
 
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPVirtualInstances_Create_WithOSConfig_HA_AvSet.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Create_WithOSConfig_HA_AvSet.json
      */
     /**
      * Sample code: Create Infrastructure with OS configuration for HA System with Availability Set (Recommended).
@@ -1771,7 +2017,7 @@ public final class SapVirtualInstancesCreateSamples {
         manager
             .sapVirtualInstances()
             .define("X00")
-            .withRegion("westcentralus")
+            .withRegion("eastus")
             .withExistingResourceGroup("test-rg")
             .withEnvironment(SapEnvironmentType.PROD)
             .withSapProduct(SapProductType.S4HANA)
@@ -1863,7 +2109,7 @@ public final class SapVirtualInstancesCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPVirtualInstances_Create_DiskDetails_Distributed.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Create_DiskDetails_Distributed.json
      */
     /**
      * Sample code: Create Infrastructure with Disk and OS configuration for Distributed System (Recommended).
@@ -1875,7 +2121,7 @@ public final class SapVirtualInstancesCreateSamples {
         manager
             .sapVirtualInstances()
             .define("X00")
-            .withRegion("westcentralus")
+            .withRegion("eastus")
             .withExistingResourceGroup("test-rg")
             .withEnvironment(SapEnvironmentType.PROD)
             .withSapProduct(SapProductType.S4HANA)
@@ -1998,7 +2244,7 @@ public final class SapVirtualInstancesCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPVirtualInstances_DetectInstallation_Distributed.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_DetectInstallation_Distributed.json
      */
     /**
      * Sample code: Detect SAP Software Installation on a Distributed System.
@@ -2103,7 +2349,7 @@ public final class SapVirtualInstancesCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPVirtualInstances_DetectInstallation_HA_AvSet.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_DetectInstallation_HA_AvSet.json
      */
     /**
      * Sample code: Detect SAP Software Installation on an HA System with Availability Set.
@@ -2115,7 +2361,7 @@ public final class SapVirtualInstancesCreateSamples {
         manager
             .sapVirtualInstances()
             .define("X00")
-            .withRegion("westcentralus")
+            .withRegion("eastus")
             .withExistingResourceGroup("test-rg")
             .withEnvironment(SapEnvironmentType.PROD)
             .withSapProduct(SapProductType.S4HANA)
@@ -2211,7 +2457,7 @@ public final class SapVirtualInstancesCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPVirtualInstances_Install_SingleServer.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Install_SingleServer.json
      */
     /**
      * Sample code: Install SAP Software on Single Server System.
@@ -2267,7 +2513,7 @@ public final class SapVirtualInstancesCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPVirtualInstances_Create_Distributed.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Create_Distributed.json
      */
     /**
      * Sample code: Create Infrastructure only for Distributed System.
@@ -2279,7 +2525,7 @@ public final class SapVirtualInstancesCreateSamples {
         manager
             .sapVirtualInstances()
             .define("X00")
-            .withRegion("westcentralus")
+            .withRegion("eastus")
             .withExistingResourceGroup("test-rg")
             .withEnvironment(SapEnvironmentType.PROD)
             .withSapProduct(SapProductType.S4HANA)
@@ -2379,7 +2625,7 @@ public final class SapVirtualInstancesCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPVirtualInstances_Create_Discover_CustomMrgStorageAccountName.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Create_Discover_CustomMrgStorageAccountName.json
      */
     /**
      * Sample code: Register existing SAP system as Virtual Instance for SAP solutions with optional customizations.
@@ -2405,7 +2651,7 @@ public final class SapVirtualInstancesCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPVirtualInstances_Create_Distributed_SkipTransport.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Create_Distributed_SkipTransport.json
      */
     /**
      * Sample code: Create Infrastructure without a SAP Transport Directory Fileshare.
@@ -2417,7 +2663,7 @@ public final class SapVirtualInstancesCreateSamples {
         manager
             .sapVirtualInstances()
             .define("X00")
-            .withRegion("westcentralus")
+            .withRegion("eastus")
             .withExistingResourceGroup("test-rg")
             .withEnvironment(SapEnvironmentType.PROD)
             .withSapProduct(SapProductType.S4HANA)
@@ -2509,7 +2755,7 @@ public final class SapVirtualInstancesCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPVirtualInstances_Create_WithOSConfig_SingleServer.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Create_WithOSConfig_SingleServer.json
      */
     /**
      * Sample code: Create Infrastructure with OS configuration for Single Server System (Recommended).
@@ -2521,7 +2767,7 @@ public final class SapVirtualInstancesCreateSamples {
         manager
             .sapVirtualInstances()
             .define("X00")
-            .withRegion("westcentralus")
+            .withRegion("eastus")
             .withExistingResourceGroup("test-rg")
             .withEnvironment(SapEnvironmentType.NON_PROD)
             .withSapProduct(SapProductType.S4HANA)
@@ -2560,7 +2806,7 @@ public final class SapVirtualInstancesCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPVirtualInstances_Create_DiskDetails_HA_AvZone.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Create_DiskDetails_HA_AvZone.json
      */
     /**
      * Sample code: Create Infrastructure with Disk and OS configuration for HA System with Availability Zone
@@ -2573,7 +2819,7 @@ public final class SapVirtualInstancesCreateSamples {
         manager
             .sapVirtualInstances()
             .define("X00")
-            .withRegion("westcentralus")
+            .withRegion("eastus")
             .withExistingResourceGroup("test-rg")
             .withEnvironment(SapEnvironmentType.PROD)
             .withSapProduct(SapProductType.S4HANA)
@@ -2699,7 +2945,7 @@ public final class SapVirtualInstancesCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPVirtualInstances_Create_WithOSConfig_HA_AvZone.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Create_WithOSConfig_HA_AvZone.json
      */
     /**
      * Sample code: Create Infrastructure with OS configuration for HA System with Availability Zone (Recommended).
@@ -2711,7 +2957,7 @@ public final class SapVirtualInstancesCreateSamples {
         manager
             .sapVirtualInstances()
             .define("X00")
-            .withRegion("westcentralus")
+            .withRegion("eastus")
             .withExistingResourceGroup("test-rg")
             .withEnvironment(SapEnvironmentType.PROD)
             .withSapProduct(SapProductType.S4HANA)
@@ -2803,7 +3049,7 @@ public final class SapVirtualInstancesCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPVirtualInstances_Create_DiskDetails_SingleServer.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Create_DiskDetails_SingleServer.json
      */
     /**
      * Sample code: Create Infrastructure with Disk and OS configurations for Single Server System (Recommended).
@@ -2815,7 +3061,7 @@ public final class SapVirtualInstancesCreateSamples {
         manager
             .sapVirtualInstances()
             .define("X00")
-            .withRegion("westcentralus")
+            .withRegion("eastus")
             .withExistingResourceGroup("test-rg")
             .withEnvironment(SapEnvironmentType.NON_PROD)
             .withSapProduct(SapProductType.S4HANA)
@@ -2887,6 +3133,7 @@ public final class SapVirtualInstancesCreateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

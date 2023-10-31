@@ -15,6 +15,7 @@ import com.azure.resourcemanager.workloads.fluent.models.SapApplicationServerIns
 import com.azure.resourcemanager.workloads.models.OperationStatusResult;
 import com.azure.resourcemanager.workloads.models.SapApplicationServerInstance;
 import com.azure.resourcemanager.workloads.models.SapApplicationServerInstances;
+import com.azure.resourcemanager.workloads.models.StartRequest;
 import com.azure.resourcemanager.workloads.models.StopRequest;
 
 public final class SapApplicationServerInstancesImpl implements SapApplicationServerInstances {
@@ -59,26 +60,13 @@ public final class SapApplicationServerInstancesImpl implements SapApplicationSe
         }
     }
 
-    public OperationStatusResult delete(
-        String resourceGroupName, String sapVirtualInstanceName, String applicationInstanceName) {
-        OperationStatusResultInner inner =
-            this.serviceClient().delete(resourceGroupName, sapVirtualInstanceName, applicationInstanceName);
-        if (inner != null) {
-            return new OperationStatusResultImpl(inner, this.manager());
-        } else {
-            return null;
-        }
+    public void delete(String resourceGroupName, String sapVirtualInstanceName, String applicationInstanceName) {
+        this.serviceClient().delete(resourceGroupName, sapVirtualInstanceName, applicationInstanceName);
     }
 
-    public OperationStatusResult delete(
+    public void delete(
         String resourceGroupName, String sapVirtualInstanceName, String applicationInstanceName, Context context) {
-        OperationStatusResultInner inner =
-            this.serviceClient().delete(resourceGroupName, sapVirtualInstanceName, applicationInstanceName, context);
-        if (inner != null) {
-            return new OperationStatusResultImpl(inner, this.manager());
-        } else {
-            return null;
-        }
+        this.serviceClient().delete(resourceGroupName, sapVirtualInstanceName, applicationInstanceName, context);
     }
 
     public PagedIterable<SapApplicationServerInstance> list(String resourceGroupName, String sapVirtualInstanceName) {
@@ -106,11 +94,15 @@ public final class SapApplicationServerInstancesImpl implements SapApplicationSe
     }
 
     public OperationStatusResult startInstance(
-        String resourceGroupName, String sapVirtualInstanceName, String applicationInstanceName, Context context) {
+        String resourceGroupName,
+        String sapVirtualInstanceName,
+        String applicationInstanceName,
+        StartRequest body,
+        Context context) {
         OperationStatusResultInner inner =
             this
                 .serviceClient()
-                .startInstance(resourceGroupName, sapVirtualInstanceName, applicationInstanceName, context);
+                .startInstance(resourceGroupName, sapVirtualInstanceName, applicationInstanceName, body, context);
         if (inner != null) {
             return new OperationStatusResultImpl(inner, this.manager());
         } else {
@@ -210,7 +202,7 @@ public final class SapApplicationServerInstancesImpl implements SapApplicationSe
         return this.getWithResponse(resourceGroupName, sapVirtualInstanceName, applicationInstanceName, context);
     }
 
-    public OperationStatusResult deleteById(String id) {
+    public void deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
             throw LOGGER
@@ -238,10 +230,10 @@ public final class SapApplicationServerInstancesImpl implements SapApplicationSe
                                 "The resource ID '%s' is not valid. Missing path segment 'applicationInstances'.",
                                 id)));
         }
-        return this.delete(resourceGroupName, sapVirtualInstanceName, applicationInstanceName, Context.NONE);
+        this.delete(resourceGroupName, sapVirtualInstanceName, applicationInstanceName, Context.NONE);
     }
 
-    public OperationStatusResult deleteByIdWithResponse(String id, Context context) {
+    public void deleteByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
             throw LOGGER
@@ -269,7 +261,7 @@ public final class SapApplicationServerInstancesImpl implements SapApplicationSe
                                 "The resource ID '%s' is not valid. Missing path segment 'applicationInstances'.",
                                 id)));
         }
-        return this.delete(resourceGroupName, sapVirtualInstanceName, applicationInstanceName, context);
+        this.delete(resourceGroupName, sapVirtualInstanceName, applicationInstanceName, context);
     }
 
     private SapApplicationServerInstancesClient serviceClient() {

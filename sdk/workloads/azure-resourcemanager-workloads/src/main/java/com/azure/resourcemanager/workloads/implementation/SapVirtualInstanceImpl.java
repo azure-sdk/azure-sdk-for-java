@@ -9,6 +9,7 @@ import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.workloads.fluent.models.SapVirtualInstanceInner;
 import com.azure.resourcemanager.workloads.models.ManagedRGConfiguration;
+import com.azure.resourcemanager.workloads.models.ManagedResourcesNetworkAccessType;
 import com.azure.resourcemanager.workloads.models.OperationStatusResult;
 import com.azure.resourcemanager.workloads.models.SapConfiguration;
 import com.azure.resourcemanager.workloads.models.SapEnvironmentType;
@@ -19,7 +20,9 @@ import com.azure.resourcemanager.workloads.models.SapVirtualInstanceError;
 import com.azure.resourcemanager.workloads.models.SapVirtualInstanceProvisioningState;
 import com.azure.resourcemanager.workloads.models.SapVirtualInstanceState;
 import com.azure.resourcemanager.workloads.models.SapVirtualInstanceStatus;
+import com.azure.resourcemanager.workloads.models.StartRequest;
 import com.azure.resourcemanager.workloads.models.StopRequest;
+import com.azure.resourcemanager.workloads.models.UpdateSapVirtualInstanceProperties;
 import com.azure.resourcemanager.workloads.models.UpdateSapVirtualInstanceRequest;
 import com.azure.resourcemanager.workloads.models.UserAssignedServiceIdentity;
 import java.util.Collections;
@@ -70,6 +73,10 @@ public final class SapVirtualInstanceImpl
 
     public SapProductType sapProduct() {
         return this.innerModel().sapProduct();
+    }
+
+    public ManagedResourcesNetworkAccessType managedResourcesNetworkAccessType() {
+        return this.innerModel().managedResourcesNetworkAccessType();
     }
 
     public SapConfiguration configuration() {
@@ -165,8 +172,7 @@ public final class SapVirtualInstanceImpl
             serviceManager
                 .serviceClient()
                 .getSapVirtualInstances()
-                .updateWithResponse(resourceGroupName, sapVirtualInstanceName, updateBody, Context.NONE)
-                .getValue();
+                .update(resourceGroupName, sapVirtualInstanceName, updateBody, Context.NONE);
         return this;
     }
 
@@ -175,8 +181,7 @@ public final class SapVirtualInstanceImpl
             serviceManager
                 .serviceClient()
                 .getSapVirtualInstances()
-                .updateWithResponse(resourceGroupName, sapVirtualInstanceName, updateBody, context)
-                .getValue();
+                .update(resourceGroupName, sapVirtualInstanceName, updateBody, context);
         return this;
     }
 
@@ -212,8 +217,8 @@ public final class SapVirtualInstanceImpl
         return serviceManager.sapVirtualInstances().start(resourceGroupName, sapVirtualInstanceName);
     }
 
-    public OperationStatusResult start(Context context) {
-        return serviceManager.sapVirtualInstances().start(resourceGroupName, sapVirtualInstanceName, context);
+    public OperationStatusResult start(StartRequest body, Context context) {
+        return serviceManager.sapVirtualInstances().start(resourceGroupName, sapVirtualInstanceName, body, context);
     }
 
     public OperationStatusResult stop() {
@@ -269,9 +274,20 @@ public final class SapVirtualInstanceImpl
         }
     }
 
+    public SapVirtualInstanceImpl withManagedResourcesNetworkAccessType(
+        ManagedResourcesNetworkAccessType managedResourcesNetworkAccessType) {
+        this.innerModel().withManagedResourcesNetworkAccessType(managedResourcesNetworkAccessType);
+        return this;
+    }
+
     public SapVirtualInstanceImpl withManagedResourceGroupConfiguration(
         ManagedRGConfiguration managedResourceGroupConfiguration) {
         this.innerModel().withManagedResourceGroupConfiguration(managedResourceGroupConfiguration);
+        return this;
+    }
+
+    public SapVirtualInstanceImpl withProperties(UpdateSapVirtualInstanceProperties properties) {
+        this.updateBody.withProperties(properties);
         return this;
     }
 

@@ -10,7 +10,7 @@ import java.util.Map;
 /** Samples for SapDatabaseInstances Create. */
 public final class SapDatabaseInstancesCreateSamples {
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPDatabaseInstances_Create_HA_AvSet.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapdatabaseinstances/SAPDatabaseInstances_Create_HA_AvSet.json
      */
     /**
      * Sample code: Create SAP Database Instances for HA System with Availability Set.
@@ -22,14 +22,14 @@ public final class SapDatabaseInstancesCreateSamples {
         manager
             .sapDatabaseInstances()
             .define("databaseServer")
-            .withRegion("westcentralus")
+            .withRegion("eastus")
             .withExistingSapVirtualInstance("test-rg", "X00")
             .withTags(mapOf())
             .create();
     }
 
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPDatabaseInstances_Create.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapdatabaseinstances/SAPDatabaseInstances_Create.json
      */
     /**
      * Sample code: SAPDatabaseInstances_Create.
@@ -40,12 +40,13 @@ public final class SapDatabaseInstancesCreateSamples {
         manager
             .sapDatabaseInstances()
             .define("databaseServer")
-            .withRegion("westcentralus")
+            .withRegion("eastus")
             .withExistingSapVirtualInstance("test-rg", "X00")
             .withTags(mapOf())
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

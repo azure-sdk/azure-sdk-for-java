@@ -150,6 +150,15 @@ public final class SapApplicationServerInstanceInner extends Resource {
     }
 
     /**
+     * Get the dispatcherStatus property: Application server instance dispatcher status.
+     *
+     * @return the dispatcherStatus value.
+     */
+    public String dispatcherStatus() {
+        return this.innerProperties() == null ? null : this.innerProperties().dispatcherStatus();
+    }
+
+    /**
      * Get the loadBalancerDetails property: The Load Balancer details such as LoadBalancer ID attached to Application
      * Server Virtual Machines.
      *

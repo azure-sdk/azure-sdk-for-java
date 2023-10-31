@@ -52,6 +52,9 @@ public final class SapVirtualInstanceState extends ExpandableStringEnum<SapVirtu
     /** Static value RegistrationComplete for SapVirtualInstanceState. */
     public static final SapVirtualInstanceState REGISTRATION_COMPLETE = fromString("RegistrationComplete");
 
+    /** Static value ACSSInstallationBlocked for SapVirtualInstanceState. */
+    public static final SapVirtualInstanceState ACSSINSTALLATION_BLOCKED = fromString("ACSSInstallationBlocked");
+
     /**
      * Creates a new instance of SapVirtualInstanceState value.
      *

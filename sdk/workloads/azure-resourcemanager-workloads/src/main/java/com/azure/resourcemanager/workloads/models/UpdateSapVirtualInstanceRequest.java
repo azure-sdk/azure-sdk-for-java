@@ -20,11 +20,16 @@ public final class UpdateSapVirtualInstanceRequest {
     private Map<String, String> tags;
 
     /*
-     * A pre-created user assigned identity with appropriate roles assigned. To learn more on identity and roles
-     * required, visit the ACSS how-to-guide.
+     * Managed service identity (user assigned identities)
      */
     @JsonProperty(value = "identity")
     private UserAssignedServiceIdentity identity;
+
+    /*
+     * Defines the properties to be updated for Virtual Instance for SAP.
+     */
+    @JsonProperty(value = "properties")
+    private UpdateSapVirtualInstanceProperties properties;
 
     /** Creates an instance of UpdateSapVirtualInstanceRequest class. */
     public UpdateSapVirtualInstanceRequest() {
@@ -51,8 +56,7 @@ public final class UpdateSapVirtualInstanceRequest {
     }
 
     /**
-     * Get the identity property: A pre-created user assigned identity with appropriate roles assigned. To learn more on
-     * identity and roles required, visit the ACSS how-to-guide.
+     * Get the identity property: Managed service identity (user assigned identities).
      *
      * @return the identity value.
      */
@@ -61,14 +65,33 @@ public final class UpdateSapVirtualInstanceRequest {
     }
 
     /**
-     * Set the identity property: A pre-created user assigned identity with appropriate roles assigned. To learn more on
-     * identity and roles required, visit the ACSS how-to-guide.
+     * Set the identity property: Managed service identity (user assigned identities).
      *
      * @param identity the identity value to set.
      * @return the UpdateSapVirtualInstanceRequest object itself.
      */
     public UpdateSapVirtualInstanceRequest withIdentity(UserAssignedServiceIdentity identity) {
         this.identity = identity;
+        return this;
+    }
+
+    /**
+     * Get the properties property: Defines the properties to be updated for Virtual Instance for SAP.
+     *
+     * @return the properties value.
+     */
+    public UpdateSapVirtualInstanceProperties properties() {
+        return this.properties;
+    }
+
+    /**
+     * Set the properties property: Defines the properties to be updated for Virtual Instance for SAP.
+     *
+     * @param properties the properties value to set.
+     * @return the UpdateSapVirtualInstanceRequest object itself.
+     */
+    public UpdateSapVirtualInstanceRequest withProperties(UpdateSapVirtualInstanceProperties properties) {
+        this.properties = properties;
         return this;
     }
 
@@ -80,6 +103,9 @@ public final class UpdateSapVirtualInstanceRequest {
     public void validate() {
         if (identity() != null) {
             identity().validate();
+        }
+        if (properties() != null) {
+            properties().validate();
         }
     }
 }

@@ -16,6 +16,7 @@ import com.azure.resourcemanager.workloads.models.SapHealthState;
 import com.azure.resourcemanager.workloads.models.SapVirtualInstanceError;
 import com.azure.resourcemanager.workloads.models.SapVirtualInstanceProvisioningState;
 import com.azure.resourcemanager.workloads.models.SapVirtualInstanceStatus;
+import com.azure.resourcemanager.workloads.models.StartRequest;
 import com.azure.resourcemanager.workloads.models.StopRequest;
 import com.azure.resourcemanager.workloads.models.UpdateSapApplicationInstanceRequest;
 import java.util.Collections;
@@ -93,6 +94,10 @@ public final class SapApplicationServerInstanceImpl
 
     public Long icmHttpsPort() {
         return this.innerModel().icmHttpsPort();
+    }
+
+    public String dispatcherStatus() {
+        return this.innerModel().dispatcherStatus();
     }
 
     public LoadBalancerDetails loadBalancerDetails() {
@@ -198,7 +203,9 @@ public final class SapApplicationServerInstanceImpl
             serviceManager
                 .serviceClient()
                 .getSapApplicationServerInstances()
-                .update(resourceGroupName, sapVirtualInstanceName, applicationInstanceName, updateBody, Context.NONE);
+                .updateWithResponse(
+                    resourceGroupName, sapVirtualInstanceName, applicationInstanceName, updateBody, Context.NONE)
+                .getValue();
         return this;
     }
 
@@ -207,7 +214,9 @@ public final class SapApplicationServerInstanceImpl
             serviceManager
                 .serviceClient()
                 .getSapApplicationServerInstances()
-                .update(resourceGroupName, sapVirtualInstanceName, applicationInstanceName, updateBody, context);
+                .updateWithResponse(
+                    resourceGroupName, sapVirtualInstanceName, applicationInstanceName, updateBody, context)
+                .getValue();
         return this;
     }
 
@@ -247,10 +256,10 @@ public final class SapApplicationServerInstanceImpl
             .startInstance(resourceGroupName, sapVirtualInstanceName, applicationInstanceName);
     }
 
-    public OperationStatusResult startInstance(Context context) {
+    public OperationStatusResult startInstance(StartRequest body, Context context) {
         return serviceManager
             .sapApplicationServerInstances()
-            .startInstance(resourceGroupName, sapVirtualInstanceName, applicationInstanceName, context);
+            .startInstance(resourceGroupName, sapVirtualInstanceName, applicationInstanceName, body, context);
     }
 
     public OperationStatusResult stopInstance() {

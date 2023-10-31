@@ -45,9 +45,8 @@ public interface SapVirtualInstances {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the current status of an async operation.
      */
-    OperationStatusResult deleteByResourceGroup(String resourceGroupName, String sapVirtualInstanceName);
+    void deleteByResourceGroup(String resourceGroupName, String sapVirtualInstanceName);
 
     /**
      * Deletes a Virtual Instance for SAP solutions resource and its child resources, that is the associated Central
@@ -59,9 +58,8 @@ public interface SapVirtualInstances {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the current status of an async operation.
      */
-    OperationStatusResult delete(String resourceGroupName, String sapVirtualInstanceName, Context context);
+    void delete(String resourceGroupName, String sapVirtualInstanceName, Context context);
 
     /**
      * Gets all Virtual Instances for SAP solutions resources in a Resource Group.
@@ -127,13 +125,15 @@ public interface SapVirtualInstances {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
+     * @param body The Virtual Instance for SAP solutions resource start request body.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the current status of an async operation.
      */
-    OperationStatusResult start(String resourceGroupName, String sapVirtualInstanceName, Context context);
+    OperationStatusResult start(
+        String resourceGroupName, String sapVirtualInstanceName, StartRequest body, Context context);
 
     /**
      * Stops the SAP Application, that is the Application server instances and Central Services instance.
@@ -193,9 +193,8 @@ public interface SapVirtualInstances {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the current status of an async operation.
      */
-    OperationStatusResult deleteById(String id);
+    void deleteById(String id);
 
     /**
      * Deletes a Virtual Instance for SAP solutions resource and its child resources, that is the associated Central
@@ -206,9 +205,8 @@ public interface SapVirtualInstances {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the current status of an async operation.
      */
-    OperationStatusResult deleteByIdWithResponse(String id, Context context);
+    void deleteByIdWithResponse(String id, Context context);
 
     /**
      * Begins definition for a new SapVirtualInstance resource.

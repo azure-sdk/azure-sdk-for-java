@@ -4,8 +4,10 @@
 
 package com.azure.resourcemanager.workloads.generated;
 
+import com.azure.resourcemanager.workloads.models.ManagedResourcesNetworkAccessType;
 import com.azure.resourcemanager.workloads.models.ManagedServiceIdentityType;
 import com.azure.resourcemanager.workloads.models.SapVirtualInstance;
+import com.azure.resourcemanager.workloads.models.UpdateSapVirtualInstanceProperties;
 import com.azure.resourcemanager.workloads.models.UserAssignedServiceIdentity;
 import java.util.HashMap;
 import java.util.Map;
@@ -13,7 +15,7 @@ import java.util.Map;
 /** Samples for SapVirtualInstances Update. */
 public final class SapVirtualInstancesUpdateSamples {
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPVirtualInstances_Update.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Update.json
      */
     /**
      * Sample code: SAPVirtualInstances_Update.
@@ -28,11 +30,37 @@ public final class SapVirtualInstancesUpdateSamples {
                 .getValue();
         resource
             .update()
-            .withTags(mapOf("key1", "svi1"))
+            .withTags(mapOf("key1", "fakeTokenPlaceholder"))
             .withIdentity(new UserAssignedServiceIdentity().withType(ManagedServiceIdentityType.NONE))
             .apply();
     }
 
+    /*
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_TrustedAccessEnable_Update.json
+     */
+    /**
+     * Sample code: SAPVirtualInstances_TrustedAccessEnable_Update.
+     *
+     * @param manager Entry point to WorkloadsManager.
+     */
+    public static void sAPVirtualInstancesTrustedAccessEnableUpdate(
+        com.azure.resourcemanager.workloads.WorkloadsManager manager) {
+        SapVirtualInstance resource =
+            manager
+                .sapVirtualInstances()
+                .getByResourceGroupWithResponse("test-rg", "X00", com.azure.core.util.Context.NONE)
+                .getValue();
+        resource
+            .update()
+            .withTags(mapOf("key1", "fakeTokenPlaceholder"))
+            .withIdentity(new UserAssignedServiceIdentity().withType(ManagedServiceIdentityType.NONE))
+            .withProperties(
+                new UpdateSapVirtualInstanceProperties()
+                    .withManagedResourcesNetworkAccessType(ManagedResourcesNetworkAccessType.PRIVATE))
+            .apply();
+    }
+
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

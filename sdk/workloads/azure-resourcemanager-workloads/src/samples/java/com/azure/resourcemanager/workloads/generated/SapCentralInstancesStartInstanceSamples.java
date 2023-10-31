@@ -4,10 +4,32 @@
 
 package com.azure.resourcemanager.workloads.generated;
 
+import com.azure.resourcemanager.workloads.models.StartRequest;
+
 /** Samples for SapCentralInstances StartInstance. */
 public final class SapCentralInstancesStartInstanceSamples {
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPCentralInstances_StartInstance.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapcentralinstances/SAPCentralInstances_StartInstance_WithInfraOperations.json
+     */
+    /**
+     * Sample code: Start the virtual machine(s) and the SAP central services instance on it.
+     *
+     * @param manager Entry point to WorkloadsManager.
+     */
+    public static void startTheVirtualMachineSAndTheSAPCentralServicesInstanceOnIt(
+        com.azure.resourcemanager.workloads.WorkloadsManager manager) {
+        manager
+            .sapCentralInstances()
+            .startInstance(
+                "test-rg",
+                "X00",
+                "centralServer",
+                new StartRequest().withStartVm(true),
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapcentralinstances/SAPCentralInstances_StartInstance.json
      */
     /**
      * Sample code: Start the SAP Central Services Instance.
@@ -18,6 +40,6 @@ public final class SapCentralInstancesStartInstanceSamples {
         com.azure.resourcemanager.workloads.WorkloadsManager manager) {
         manager
             .sapCentralInstances()
-            .startInstance("test-rg", "X00", "centralServer", com.azure.core.util.Context.NONE);
+            .startInstance("test-rg", "X00", "centralServer", null, com.azure.core.util.Context.NONE);
     }
 }

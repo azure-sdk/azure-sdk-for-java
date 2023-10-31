@@ -18,6 +18,12 @@ public final class StopRequest {
     @JsonProperty(value = "softStopTimeoutSeconds")
     private Long softStopTimeoutSeconds;
 
+    /*
+     * The boolean value indicates whether to Stop and deallocate the virtual machines along with the SAP instances.
+     */
+    @JsonProperty(value = "deallocateVm")
+    private Boolean deallocateVm;
+
     /** Creates an instance of StopRequest class. */
     public StopRequest() {
     }
@@ -43,6 +49,28 @@ public final class StopRequest {
      */
     public StopRequest withSoftStopTimeoutSeconds(Long softStopTimeoutSeconds) {
         this.softStopTimeoutSeconds = softStopTimeoutSeconds;
+        return this;
+    }
+
+    /**
+     * Get the deallocateVm property: The boolean value indicates whether to Stop and deallocate the virtual machines
+     * along with the SAP instances.
+     *
+     * @return the deallocateVm value.
+     */
+    public Boolean deallocateVm() {
+        return this.deallocateVm;
+    }
+
+    /**
+     * Set the deallocateVm property: The boolean value indicates whether to Stop and deallocate the virtual machines
+     * along with the SAP instances.
+     *
+     * @param deallocateVm the deallocateVm value to set.
+     * @return the StopRequest object itself.
+     */
+    public StopRequest withDeallocateVm(Boolean deallocateVm) {
+        this.deallocateVm = deallocateVm;
         return this;
     }
 

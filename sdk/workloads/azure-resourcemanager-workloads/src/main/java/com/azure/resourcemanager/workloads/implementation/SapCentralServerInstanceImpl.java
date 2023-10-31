@@ -20,6 +20,7 @@ import com.azure.resourcemanager.workloads.models.SapHealthState;
 import com.azure.resourcemanager.workloads.models.SapVirtualInstanceError;
 import com.azure.resourcemanager.workloads.models.SapVirtualInstanceProvisioningState;
 import com.azure.resourcemanager.workloads.models.SapVirtualInstanceStatus;
+import com.azure.resourcemanager.workloads.models.StartRequest;
 import com.azure.resourcemanager.workloads.models.StopRequest;
 import com.azure.resourcemanager.workloads.models.UpdateSapCentralInstanceRequest;
 import java.util.Collections;
@@ -192,7 +193,9 @@ public final class SapCentralServerInstanceImpl
             serviceManager
                 .serviceClient()
                 .getSapCentralInstances()
-                .update(resourceGroupName, sapVirtualInstanceName, centralInstanceName, updateBody, Context.NONE);
+                .updateWithResponse(
+                    resourceGroupName, sapVirtualInstanceName, centralInstanceName, updateBody, Context.NONE)
+                .getValue();
         return this;
     }
 
@@ -201,7 +204,8 @@ public final class SapCentralServerInstanceImpl
             serviceManager
                 .serviceClient()
                 .getSapCentralInstances()
-                .update(resourceGroupName, sapVirtualInstanceName, centralInstanceName, updateBody, context);
+                .updateWithResponse(resourceGroupName, sapVirtualInstanceName, centralInstanceName, updateBody, context)
+                .getValue();
         return this;
     }
 
@@ -241,10 +245,10 @@ public final class SapCentralServerInstanceImpl
             .startInstance(resourceGroupName, sapVirtualInstanceName, centralInstanceName);
     }
 
-    public OperationStatusResult startInstance(Context context) {
+    public OperationStatusResult startInstance(StartRequest body, Context context) {
         return serviceManager
             .sapCentralInstances()
-            .startInstance(resourceGroupName, sapVirtualInstanceName, centralInstanceName, context);
+            .startInstance(resourceGroupName, sapVirtualInstanceName, centralInstanceName, body, context);
     }
 
     public OperationStatusResult stopInstance() {

@@ -22,14 +22,13 @@ import com.azure.core.util.polling.LongRunningOperationStatus;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
-import com.azure.resourcemanager.workloads.fluent.MonitorsClient;
+import com.azure.resourcemanager.workloads.fluent.AcssBackupConnectionsClient;
+import com.azure.resourcemanager.workloads.fluent.ConnectorsClient;
 import com.azure.resourcemanager.workloads.fluent.OperationsClient;
-import com.azure.resourcemanager.workloads.fluent.ProviderInstancesClient;
 import com.azure.resourcemanager.workloads.fluent.ResourceProvidersClient;
 import com.azure.resourcemanager.workloads.fluent.SapApplicationServerInstancesClient;
 import com.azure.resourcemanager.workloads.fluent.SapCentralInstancesClient;
 import com.azure.resourcemanager.workloads.fluent.SapDatabaseInstancesClient;
-import com.azure.resourcemanager.workloads.fluent.SapLandscapeMonitorsClient;
 import com.azure.resourcemanager.workloads.fluent.SapVirtualInstancesClient;
 import com.azure.resourcemanager.workloads.fluent.WorkloadsClient;
 import java.io.IOException;
@@ -176,42 +175,6 @@ public final class WorkloadsClientImpl implements WorkloadsClient {
         return this.sapApplicationServerInstances;
     }
 
-    /** The MonitorsClient object to access its operations. */
-    private final MonitorsClient monitors;
-
-    /**
-     * Gets the MonitorsClient object to access its operations.
-     *
-     * @return the MonitorsClient object.
-     */
-    public MonitorsClient getMonitors() {
-        return this.monitors;
-    }
-
-    /** The ProviderInstancesClient object to access its operations. */
-    private final ProviderInstancesClient providerInstances;
-
-    /**
-     * Gets the ProviderInstancesClient object to access its operations.
-     *
-     * @return the ProviderInstancesClient object.
-     */
-    public ProviderInstancesClient getProviderInstances() {
-        return this.providerInstances;
-    }
-
-    /** The SapLandscapeMonitorsClient object to access its operations. */
-    private final SapLandscapeMonitorsClient sapLandscapeMonitors;
-
-    /**
-     * Gets the SapLandscapeMonitorsClient object to access its operations.
-     *
-     * @return the SapLandscapeMonitorsClient object.
-     */
-    public SapLandscapeMonitorsClient getSapLandscapeMonitors() {
-        return this.sapLandscapeMonitors;
-    }
-
     /** The OperationsClient object to access its operations. */
     private final OperationsClient operations;
 
@@ -222,6 +185,30 @@ public final class WorkloadsClientImpl implements WorkloadsClient {
      */
     public OperationsClient getOperations() {
         return this.operations;
+    }
+
+    /** The ConnectorsClient object to access its operations. */
+    private final ConnectorsClient connectors;
+
+    /**
+     * Gets the ConnectorsClient object to access its operations.
+     *
+     * @return the ConnectorsClient object.
+     */
+    public ConnectorsClient getConnectors() {
+        return this.connectors;
+    }
+
+    /** The AcssBackupConnectionsClient object to access its operations. */
+    private final AcssBackupConnectionsClient acssBackupConnections;
+
+    /**
+     * Gets the AcssBackupConnectionsClient object to access its operations.
+     *
+     * @return the AcssBackupConnectionsClient object.
+     */
+    public AcssBackupConnectionsClient getAcssBackupConnections() {
+        return this.acssBackupConnections;
     }
 
     /**
@@ -246,16 +233,15 @@ public final class WorkloadsClientImpl implements WorkloadsClient {
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2023-04-01";
+        this.apiVersion = "2023-10-01-preview";
         this.resourceProviders = new ResourceProvidersClientImpl(this);
         this.sapVirtualInstances = new SapVirtualInstancesClientImpl(this);
         this.sapCentralInstances = new SapCentralInstancesClientImpl(this);
         this.sapDatabaseInstances = new SapDatabaseInstancesClientImpl(this);
         this.sapApplicationServerInstances = new SapApplicationServerInstancesClientImpl(this);
-        this.monitors = new MonitorsClientImpl(this);
-        this.providerInstances = new ProviderInstancesClientImpl(this);
-        this.sapLandscapeMonitors = new SapLandscapeMonitorsClientImpl(this);
         this.operations = new OperationsClientImpl(this);
+        this.connectors = new ConnectorsClientImpl(this);
+        this.acssBackupConnections = new AcssBackupConnectionsClientImpl(this);
     }
 
     /**

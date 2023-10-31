@@ -9,7 +9,26 @@ import com.azure.resourcemanager.workloads.models.StopRequest;
 /** Samples for SapVirtualInstances Stop. */
 public final class SapVirtualInstancesStopSamples {
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPVirtualInstances_Stop.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Stop_WithInfraOperations.json
+     */
+    /**
+     * Sample code: Stop the virtual machine(s) and the SAP system on it.
+     *
+     * @param manager Entry point to WorkloadsManager.
+     */
+    public static void stopTheVirtualMachineSAndTheSAPSystemOnIt(
+        com.azure.resourcemanager.workloads.WorkloadsManager manager) {
+        manager
+            .sapVirtualInstances()
+            .stop(
+                "test-rg",
+                "X00",
+                new StopRequest().withSoftStopTimeoutSeconds(0L).withDeallocateVm(true),
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Stop.json
      */
     /**
      * Sample code: SAPVirtualInstances_Stop.

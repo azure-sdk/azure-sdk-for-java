@@ -34,7 +34,7 @@ public final class SapCentralServerProperties {
     private String subnet;
 
     /*
-     * Defines the SAP Message Server properties.
+     * Defines the SAP message server properties.
      */
     @JsonProperty(value = "messageServerProperties")
     private MessageServerProperties messageServerProperties;
@@ -128,7 +128,7 @@ public final class SapCentralServerProperties {
     }
 
     /**
-     * Get the messageServerProperties property: Defines the SAP Message Server properties.
+     * Get the messageServerProperties property: Defines the SAP message server properties.
      *
      * @return the messageServerProperties value.
      */
@@ -137,7 +137,7 @@ public final class SapCentralServerProperties {
     }
 
     /**
-     * Set the messageServerProperties property: Defines the SAP Message Server properties.
+     * Set the messageServerProperties property: Defines the SAP message server properties.
      *
      * @param messageServerProperties the messageServerProperties value to set.
      * @return the SapCentralServerProperties object itself.

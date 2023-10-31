@@ -7,41 +7,41 @@ package com.azure.resourcemanager.workloads.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Defines the SAP Message Server properties. */
+/** Defines the SAP message server properties. */
 @Immutable
 public final class MessageServerProperties {
     /*
-     * Message Server port.
+     * message server port.
      */
     @JsonProperty(value = "msPort", access = JsonProperty.Access.WRITE_ONLY)
     private Long msPort;
 
     /*
-     * Message Server internal MS port.
+     * message server internal MS port.
      */
     @JsonProperty(value = "internalMsPort", access = JsonProperty.Access.WRITE_ONLY)
     private Long internalMsPort;
 
     /*
-     * Message Server HTTP Port.
+     * message server HTTP Port.
      */
     @JsonProperty(value = "httpPort", access = JsonProperty.Access.WRITE_ONLY)
     private Long httpPort;
 
     /*
-     * Message Server HTTPS Port.
+     * message server HTTPS Port.
      */
     @JsonProperty(value = "httpsPort", access = JsonProperty.Access.WRITE_ONLY)
     private Long httpsPort;
 
     /*
-     * Message Server SAP Hostname.
+     * message server SAP Hostname.
      */
     @JsonProperty(value = "hostname", access = JsonProperty.Access.WRITE_ONLY)
     private String hostname;
 
     /*
-     * Message server IP Address.
+     * message server IP Address.
      */
     @JsonProperty(value = "ipAddress", access = JsonProperty.Access.WRITE_ONLY)
     private String ipAddress;
@@ -57,7 +57,7 @@ public final class MessageServerProperties {
     }
 
     /**
-     * Get the msPort property: Message Server port.
+     * Get the msPort property: message server port.
      *
      * @return the msPort value.
      */
@@ -66,7 +66,7 @@ public final class MessageServerProperties {
     }
 
     /**
-     * Get the internalMsPort property: Message Server internal MS port.
+     * Get the internalMsPort property: message server internal MS port.
      *
      * @return the internalMsPort value.
      */
@@ -75,7 +75,7 @@ public final class MessageServerProperties {
     }
 
     /**
-     * Get the httpPort property: Message Server HTTP Port.
+     * Get the httpPort property: message server HTTP Port.
      *
      * @return the httpPort value.
      */
@@ -84,7 +84,7 @@ public final class MessageServerProperties {
     }
 
     /**
-     * Get the httpsPort property: Message Server HTTPS Port.
+     * Get the httpsPort property: message server HTTPS Port.
      *
      * @return the httpsPort value.
      */
@@ -93,7 +93,7 @@ public final class MessageServerProperties {
     }
 
     /**
-     * Get the hostname property: Message Server SAP Hostname.
+     * Get the hostname property: message server SAP Hostname.
      *
      * @return the hostname value.
      */
@@ -102,7 +102,7 @@ public final class MessageServerProperties {
     }
 
     /**
-     * Get the ipAddress property: Message server IP Address.
+     * Get the ipAddress property: message server IP Address.
      *
      * @return the ipAddress value.
      */

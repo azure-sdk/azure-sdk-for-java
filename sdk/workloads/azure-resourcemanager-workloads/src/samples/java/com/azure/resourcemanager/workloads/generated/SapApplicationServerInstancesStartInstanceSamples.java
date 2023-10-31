@@ -4,10 +4,28 @@
 
 package com.azure.resourcemanager.workloads.generated;
 
+import com.azure.resourcemanager.workloads.models.StartRequest;
+
 /** Samples for SapApplicationServerInstances StartInstance. */
 public final class SapApplicationServerInstancesStartInstanceSamples {
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/sapvirtualinstances/SAPApplicationServerInstances_StartInstance.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapapplicationinstances/SAPApplicationServerInstances_StartInstance_WithInfraOperations.json
+     */
+    /**
+     * Sample code: Start Virtual Machine and the SAP Application Server Instance on it.
+     *
+     * @param manager Entry point to WorkloadsManager.
+     */
+    public static void startVirtualMachineAndTheSAPApplicationServerInstanceOnIt(
+        com.azure.resourcemanager.workloads.WorkloadsManager manager) {
+        manager
+            .sapApplicationServerInstances()
+            .startInstance(
+                "test-rg", "X00", "app01", new StartRequest().withStartVm(true), com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/SAPVirtualInstance/preview/2023-10-01-preview/examples/sapapplicationinstances/SAPApplicationServerInstances_StartInstance.json
      */
     /**
      * Sample code: Start the SAP Application Server Instance.
@@ -18,6 +36,6 @@ public final class SapApplicationServerInstancesStartInstanceSamples {
         com.azure.resourcemanager.workloads.WorkloadsManager manager) {
         manager
             .sapApplicationServerInstances()
-            .startInstance("test-rg", "X00", "app01", com.azure.core.util.Context.NONE);
+            .startInstance("test-rg", "X00", "app01", null, com.azure.core.util.Context.NONE);
     }
 }

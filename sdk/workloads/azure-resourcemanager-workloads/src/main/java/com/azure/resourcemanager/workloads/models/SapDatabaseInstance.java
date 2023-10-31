@@ -155,11 +155,13 @@ public interface SapDatabaseInstance {
             DefinitionStages.WithParentResource,
             DefinitionStages.WithCreate {
     }
+
     /** The SapDatabaseInstance definition stages. */
     interface DefinitionStages {
         /** The first stage of the SapDatabaseInstance definition. */
         interface Blank extends WithLocation {
         }
+
         /** The stage of the SapDatabaseInstance definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -178,6 +180,7 @@ public interface SapDatabaseInstance {
              */
             WithParentResource withRegion(String location);
         }
+
         /** The stage of the SapDatabaseInstance definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -189,6 +192,7 @@ public interface SapDatabaseInstance {
              */
             WithCreate withExistingSapVirtualInstance(String resourceGroupName, String sapVirtualInstanceName);
         }
+
         /**
          * The stage of the SapDatabaseInstance definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
@@ -209,6 +213,7 @@ public interface SapDatabaseInstance {
              */
             SapDatabaseInstance create(Context context);
         }
+
         /** The stage of the SapDatabaseInstance definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -220,6 +225,7 @@ public interface SapDatabaseInstance {
             WithCreate withTags(Map<String, String> tags);
         }
     }
+
     /**
      * Begins update for the SapDatabaseInstance resource.
      *
@@ -244,6 +250,7 @@ public interface SapDatabaseInstance {
          */
         SapDatabaseInstance apply(Context context);
     }
+
     /** The SapDatabaseInstance update stages. */
     interface UpdateStages {
         /** The stage of the SapDatabaseInstance update allowing to specify tags. */
@@ -257,6 +264,7 @@ public interface SapDatabaseInstance {
             Update withTags(Map<String, String> tags);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *
@@ -284,13 +292,14 @@ public interface SapDatabaseInstance {
     /**
      * Starts the database instance of the SAP system.
      *
+     * @param body SAP Database server instance start request body.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the current status of an async operation.
      */
-    OperationStatusResult startInstance(Context context);
+    OperationStatusResult startInstance(StartRequest body, Context context);
 
     /**
      * Stops the database instance of the SAP system.

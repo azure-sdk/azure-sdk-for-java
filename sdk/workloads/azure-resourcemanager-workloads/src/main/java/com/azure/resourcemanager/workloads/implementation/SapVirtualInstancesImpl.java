@@ -15,6 +15,7 @@ import com.azure.resourcemanager.workloads.fluent.models.SapVirtualInstanceInner
 import com.azure.resourcemanager.workloads.models.OperationStatusResult;
 import com.azure.resourcemanager.workloads.models.SapVirtualInstance;
 import com.azure.resourcemanager.workloads.models.SapVirtualInstances;
+import com.azure.resourcemanager.workloads.models.StartRequest;
 import com.azure.resourcemanager.workloads.models.StopRequest;
 
 public final class SapVirtualInstancesImpl implements SapVirtualInstances {
@@ -55,23 +56,12 @@ public final class SapVirtualInstancesImpl implements SapVirtualInstances {
         }
     }
 
-    public OperationStatusResult deleteByResourceGroup(String resourceGroupName, String sapVirtualInstanceName) {
-        OperationStatusResultInner inner = this.serviceClient().delete(resourceGroupName, sapVirtualInstanceName);
-        if (inner != null) {
-            return new OperationStatusResultImpl(inner, this.manager());
-        } else {
-            return null;
-        }
+    public void deleteByResourceGroup(String resourceGroupName, String sapVirtualInstanceName) {
+        this.serviceClient().delete(resourceGroupName, sapVirtualInstanceName);
     }
 
-    public OperationStatusResult delete(String resourceGroupName, String sapVirtualInstanceName, Context context) {
-        OperationStatusResultInner inner =
-            this.serviceClient().delete(resourceGroupName, sapVirtualInstanceName, context);
-        if (inner != null) {
-            return new OperationStatusResultImpl(inner, this.manager());
-        } else {
-            return null;
-        }
+    public void delete(String resourceGroupName, String sapVirtualInstanceName, Context context) {
+        this.serviceClient().delete(resourceGroupName, sapVirtualInstanceName, context);
     }
 
     public PagedIterable<SapVirtualInstance> listByResourceGroup(String resourceGroupName) {
@@ -104,9 +94,10 @@ public final class SapVirtualInstancesImpl implements SapVirtualInstances {
         }
     }
 
-    public OperationStatusResult start(String resourceGroupName, String sapVirtualInstanceName, Context context) {
+    public OperationStatusResult start(
+        String resourceGroupName, String sapVirtualInstanceName, StartRequest body, Context context) {
         OperationStatusResultInner inner =
-            this.serviceClient().start(resourceGroupName, sapVirtualInstanceName, context);
+            this.serviceClient().start(resourceGroupName, sapVirtualInstanceName, body, context);
         if (inner != null) {
             return new OperationStatusResultImpl(inner, this.manager());
         } else {
@@ -176,7 +167,7 @@ public final class SapVirtualInstancesImpl implements SapVirtualInstances {
         return this.getByResourceGroupWithResponse(resourceGroupName, sapVirtualInstanceName, context);
     }
 
-    public OperationStatusResult deleteById(String id) {
+    public void deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
             throw LOGGER
@@ -194,10 +185,10 @@ public final class SapVirtualInstancesImpl implements SapVirtualInstances {
                             .format(
                                 "The resource ID '%s' is not valid. Missing path segment 'sapVirtualInstances'.", id)));
         }
-        return this.delete(resourceGroupName, sapVirtualInstanceName, Context.NONE);
+        this.delete(resourceGroupName, sapVirtualInstanceName, Context.NONE);
     }
 
-    public OperationStatusResult deleteByIdWithResponse(String id, Context context) {
+    public void deleteByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
             throw LOGGER
@@ -215,7 +206,7 @@ public final class SapVirtualInstancesImpl implements SapVirtualInstances {
                             .format(
                                 "The resource ID '%s' is not valid. Missing path segment 'sapVirtualInstances'.", id)));
         }
-        return this.delete(resourceGroupName, sapVirtualInstanceName, context);
+        this.delete(resourceGroupName, sapVirtualInstanceName, context);
     }
 
     private SapVirtualInstancesClient serviceClient() {

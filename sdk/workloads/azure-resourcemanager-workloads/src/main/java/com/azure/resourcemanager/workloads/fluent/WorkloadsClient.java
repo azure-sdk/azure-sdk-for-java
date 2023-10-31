@@ -80,30 +80,23 @@ public interface WorkloadsClient {
     SapApplicationServerInstancesClient getSapApplicationServerInstances();
 
     /**
-     * Gets the MonitorsClient object to access its operations.
-     *
-     * @return the MonitorsClient object.
-     */
-    MonitorsClient getMonitors();
-
-    /**
-     * Gets the ProviderInstancesClient object to access its operations.
-     *
-     * @return the ProviderInstancesClient object.
-     */
-    ProviderInstancesClient getProviderInstances();
-
-    /**
-     * Gets the SapLandscapeMonitorsClient object to access its operations.
-     *
-     * @return the SapLandscapeMonitorsClient object.
-     */
-    SapLandscapeMonitorsClient getSapLandscapeMonitors();
-
-    /**
      * Gets the OperationsClient object to access its operations.
      *
      * @return the OperationsClient object.
      */
     OperationsClient getOperations();
+
+    /**
+     * Gets the ConnectorsClient object to access its operations.
+     *
+     * @return the ConnectorsClient object.
+     */
+    ConnectorsClient getConnectors();
+
+    /**
+     * Gets the AcssBackupConnectionsClient object to access its operations.
+     *
+     * @return the AcssBackupConnectionsClient object.
+     */
+    AcssBackupConnectionsClient getAcssBackupConnections();
 }
