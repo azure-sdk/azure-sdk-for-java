@@ -53,7 +53,7 @@ public final class FileSystemsCreateOrUpdateSamples {
             .withDelegatedSubnetId("neqctctqdmjezfgt")
             .withAdminPassword("ekceujoecaashtjlsgcymnrdozk")
             .withInitialCapacity(9)
-            .withTags(mapOf("key6565", "cgdhmupta"))
+            .withTags(mapOf("key6565", "fakeTokenPlaceholder"))
             .withIdentity(
                 new ManagedServiceIdentity()
                     .withType(ManagedServiceIdentityType.NONE)
@@ -92,6 +92,7 @@ public final class FileSystemsCreateOrUpdateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -288,7 +289,7 @@ public final class FileSystemsUpdateSamples {
                 .getValue();
         resource
             .update()
-            .withTags(mapOf("key7534", "jsgqvqbagquvxowbrkanyhzvo"))
+            .withTags(mapOf("key7534", "fakeTokenPlaceholder"))
             .withIdentity(
                 new ManagedServiceIdentity()
                     .withType(ManagedServiceIdentityType.NONE)
@@ -308,6 +309,7 @@ public final class FileSystemsUpdateSamples {
             .apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
