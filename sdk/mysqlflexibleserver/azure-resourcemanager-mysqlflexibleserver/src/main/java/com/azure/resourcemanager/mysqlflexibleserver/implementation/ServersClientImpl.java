@@ -281,7 +281,7 @@ public final class ServersClientImpl implements ServersClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2022-09-30-preview";
+        final String apiVersion = "2023-10-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -338,7 +338,7 @@ public final class ServersClientImpl implements ServersClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2022-09-30-preview";
+        final String apiVersion = "2023-10-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -543,7 +543,7 @@ public final class ServersClientImpl implements ServersClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2022-09-30-preview";
+        final String apiVersion = "2023-10-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -601,7 +601,7 @@ public final class ServersClientImpl implements ServersClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2022-09-30-preview";
+        final String apiVersion = "2023-10-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -807,7 +807,7 @@ public final class ServersClientImpl implements ServersClient {
         if (serverName == null) {
             return Mono.error(new IllegalArgumentException("Parameter serverName is required and cannot be null."));
         }
-        final String apiVersion = "2022-09-30-preview";
+        final String apiVersion = "2023-10-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -857,7 +857,7 @@ public final class ServersClientImpl implements ServersClient {
         if (serverName == null) {
             return Mono.error(new IllegalArgumentException("Parameter serverName is required and cannot be null."));
         }
-        final String apiVersion = "2022-09-30-preview";
+        final String apiVersion = "2023-10-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -1037,7 +1037,7 @@ public final class ServersClientImpl implements ServersClient {
         if (serverName == null) {
             return Mono.error(new IllegalArgumentException("Parameter serverName is required and cannot be null."));
         }
-        final String apiVersion = "2022-09-30-preview";
+        final String apiVersion = "2023-10-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -1087,7 +1087,7 @@ public final class ServersClientImpl implements ServersClient {
         if (serverName == null) {
             return Mono.error(new IllegalArgumentException("Parameter serverName is required and cannot be null."));
         }
-        final String apiVersion = "2022-09-30-preview";
+        final String apiVersion = "2023-10-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -1176,7 +1176,7 @@ public final class ServersClientImpl implements ServersClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        final String apiVersion = "2022-09-30-preview";
+        final String apiVersion = "2023-10-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -1230,7 +1230,7 @@ public final class ServersClientImpl implements ServersClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        final String apiVersion = "2022-09-30-preview";
+        final String apiVersion = "2023-10-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -1335,7 +1335,7 @@ public final class ServersClientImpl implements ServersClient {
                     new IllegalArgumentException(
                         "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2022-09-30-preview";
+        final String apiVersion = "2023-10-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -1377,7 +1377,7 @@ public final class ServersClientImpl implements ServersClient {
                     new IllegalArgumentException(
                         "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2022-09-30-preview";
+        final String apiVersion = "2023-10-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -1477,7 +1477,7 @@ public final class ServersClientImpl implements ServersClient {
         if (serverName == null) {
             return Mono.error(new IllegalArgumentException("Parameter serverName is required and cannot be null."));
         }
-        final String apiVersion = "2022-09-30-preview";
+        final String apiVersion = "2023-10-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -1527,7 +1527,7 @@ public final class ServersClientImpl implements ServersClient {
         if (serverName == null) {
             return Mono.error(new IllegalArgumentException("Parameter serverName is required and cannot be null."));
         }
-        final String apiVersion = "2022-09-30-preview";
+        final String apiVersion = "2023-10-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -1713,7 +1713,7 @@ public final class ServersClientImpl implements ServersClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2022-09-30-preview";
+        final String apiVersion = "2023-10-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -1770,7 +1770,7 @@ public final class ServersClientImpl implements ServersClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2022-09-30-preview";
+        final String apiVersion = "2023-10-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -1965,7 +1965,7 @@ public final class ServersClientImpl implements ServersClient {
         if (serverName == null) {
             return Mono.error(new IllegalArgumentException("Parameter serverName is required and cannot be null."));
         }
-        final String apiVersion = "2022-09-30-preview";
+        final String apiVersion = "2023-10-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -2015,7 +2015,7 @@ public final class ServersClientImpl implements ServersClient {
         if (serverName == null) {
             return Mono.error(new IllegalArgumentException("Parameter serverName is required and cannot be null."));
         }
-        final String apiVersion = "2022-09-30-preview";
+        final String apiVersion = "2023-10-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -2193,7 +2193,7 @@ public final class ServersClientImpl implements ServersClient {
         if (serverName == null) {
             return Mono.error(new IllegalArgumentException("Parameter serverName is required and cannot be null."));
         }
-        final String apiVersion = "2022-09-30-preview";
+        final String apiVersion = "2023-10-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -2243,7 +2243,7 @@ public final class ServersClientImpl implements ServersClient {
         if (serverName == null) {
             return Mono.error(new IllegalArgumentException("Parameter serverName is required and cannot be null."));
         }
-        final String apiVersion = "2022-09-30-preview";
+        final String apiVersion = "2023-10-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -2428,7 +2428,7 @@ public final class ServersClientImpl implements ServersClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2022-09-30-preview";
+        final String apiVersion = "2023-10-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -2485,7 +2485,7 @@ public final class ServersClientImpl implements ServersClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2022-09-30-preview";
+        final String apiVersion = "2023-10-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service

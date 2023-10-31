@@ -12,7 +12,7 @@ import java.util.Arrays;
 /** Samples for BackupAndExport Create. */
 public final class BackupAndExportCreateSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/Backups/preview/2022-09-30-preview/examples/BackupAndExport.json
+     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/Backups/preview/2023-06-01-preview/examples/BackupAndExport.json
      */
     /**
      * Sample code: Create and Export Backup.
