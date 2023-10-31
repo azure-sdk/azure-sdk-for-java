@@ -99,6 +99,12 @@ public final class HostPoolPropertiesInner {
     private List<String> applicationGroupReferences;
 
     /*
+     * List of App Attach Package links.
+     */
+    @JsonProperty(value = "appAttachPackageReferences", access = JsonProperty.Access.WRITE_ONLY)
+    private List<String> appAttachPackageReferences;
+
+    /*
      * URL to customer ADFS server for signing WVD SSO certificates.
      */
     @JsonProperty(value = "ssoadfsAuthority")
@@ -400,6 +406,15 @@ public final class HostPoolPropertiesInner {
      */
     public List<String> applicationGroupReferences() {
         return this.applicationGroupReferences;
+    }
+
+    /**
+     * Get the appAttachPackageReferences property: List of App Attach Package links.
+     *
+     * @return the appAttachPackageReferences value.
+     */
+    public List<String> appAttachPackageReferences() {
+        return this.appAttachPackageReferences;
     }
 
     /**

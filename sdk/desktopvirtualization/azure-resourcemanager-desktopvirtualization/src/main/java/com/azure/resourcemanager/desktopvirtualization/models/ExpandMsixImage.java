@@ -124,6 +124,20 @@ public interface ExpandMsixImage {
     List<MsixPackageApplications> packageApplications();
 
     /**
+     * Gets the certificateName property: Certificate name found in the appxmanifest.xml.
+     *
+     * @return the certificateName value.
+     */
+    String certificateName();
+
+    /**
+     * Gets the certificateExpiry property: Date certificate expires, found in the appxmanifest.xml.
+     *
+     * @return the certificateExpiry value.
+     */
+    OffsetDateTime certificateExpiry();
+
+    /**
      * Gets the inner com.azure.resourcemanager.desktopvirtualization.fluent.models.ExpandMsixImageInner object.
      *
      * @return the inner object.

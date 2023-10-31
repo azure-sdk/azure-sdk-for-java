@@ -336,6 +336,52 @@ public final class ExpandMsixImageInner extends ProxyResource {
     }
 
     /**
+     * Get the certificateName property: Certificate name found in the appxmanifest.xml.
+     *
+     * @return the certificateName value.
+     */
+    public String certificateName() {
+        return this.innerProperties() == null ? null : this.innerProperties().certificateName();
+    }
+
+    /**
+     * Set the certificateName property: Certificate name found in the appxmanifest.xml.
+     *
+     * @param certificateName the certificateName value to set.
+     * @return the ExpandMsixImageInner object itself.
+     */
+    public ExpandMsixImageInner withCertificateName(String certificateName) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ExpandMsixImageProperties();
+        }
+        this.innerProperties().withCertificateName(certificateName);
+        return this;
+    }
+
+    /**
+     * Get the certificateExpiry property: Date certificate expires, found in the appxmanifest.xml.
+     *
+     * @return the certificateExpiry value.
+     */
+    public OffsetDateTime certificateExpiry() {
+        return this.innerProperties() == null ? null : this.innerProperties().certificateExpiry();
+    }
+
+    /**
+     * Set the certificateExpiry property: Date certificate expires, found in the appxmanifest.xml.
+     *
+     * @param certificateExpiry the certificateExpiry value to set.
+     * @return the ExpandMsixImageInner object itself.
+     */
+    public ExpandMsixImageInner withCertificateExpiry(OffsetDateTime certificateExpiry) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ExpandMsixImageProperties();
+        }
+        this.innerProperties().withCertificateExpiry(certificateExpiry);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.

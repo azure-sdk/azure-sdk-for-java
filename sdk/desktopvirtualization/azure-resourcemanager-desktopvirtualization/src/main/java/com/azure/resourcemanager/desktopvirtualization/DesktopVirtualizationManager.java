@@ -24,6 +24,8 @@ import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.util.Configuration;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.desktopvirtualization.fluent.DesktopVirtualizationApiClient;
+import com.azure.resourcemanager.desktopvirtualization.implementation.AppAttachPackageInfoesImpl;
+import com.azure.resourcemanager.desktopvirtualization.implementation.AppAttachPackagesImpl;
 import com.azure.resourcemanager.desktopvirtualization.implementation.ApplicationGroupsImpl;
 import com.azure.resourcemanager.desktopvirtualization.implementation.ApplicationsImpl;
 import com.azure.resourcemanager.desktopvirtualization.implementation.DesktopVirtualizationApiClientBuilder;
@@ -41,6 +43,8 @@ import com.azure.resourcemanager.desktopvirtualization.implementation.SessionHos
 import com.azure.resourcemanager.desktopvirtualization.implementation.StartMenuItemsImpl;
 import com.azure.resourcemanager.desktopvirtualization.implementation.UserSessionsImpl;
 import com.azure.resourcemanager.desktopvirtualization.implementation.WorkspacesImpl;
+import com.azure.resourcemanager.desktopvirtualization.models.AppAttachPackageInfoes;
+import com.azure.resourcemanager.desktopvirtualization.models.AppAttachPackages;
 import com.azure.resourcemanager.desktopvirtualization.models.ApplicationGroups;
 import com.azure.resourcemanager.desktopvirtualization.models.Applications;
 import com.azure.resourcemanager.desktopvirtualization.models.Desktops;
@@ -96,7 +100,11 @@ public final class DesktopVirtualizationManager {
 
     private MsixPackages msixPackages;
 
+    private AppAttachPackageInfoes appAttachPackageInfoes;
+
     private MsixImages msixImages;
+
+    private AppAttachPackages appAttachPackages;
 
     private final DesktopVirtualizationApiClient clientObject;
 
@@ -264,7 +272,7 @@ public final class DesktopVirtualizationManager {
                 .append("-")
                 .append("com.azure.resourcemanager.desktopvirtualization")
                 .append("/")
-                .append("1.1.0");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -505,6 +513,19 @@ public final class DesktopVirtualizationManager {
     }
 
     /**
+     * Gets the resource collection API of AppAttachPackageInfoes.
+     *
+     * @return Resource collection API of AppAttachPackageInfoes.
+     */
+    public AppAttachPackageInfoes appAttachPackageInfoes() {
+        if (this.appAttachPackageInfoes == null) {
+            this.appAttachPackageInfoes =
+                new AppAttachPackageInfoesImpl(clientObject.getAppAttachPackageInfoes(), this);
+        }
+        return appAttachPackageInfoes;
+    }
+
+    /**
      * Gets the resource collection API of MsixImages.
      *
      * @return Resource collection API of MsixImages.
@@ -514,6 +535,18 @@ public final class DesktopVirtualizationManager {
             this.msixImages = new MsixImagesImpl(clientObject.getMsixImages(), this);
         }
         return msixImages;
+    }
+
+    /**
+     * Gets the resource collection API of AppAttachPackages. It manages AppAttachPackage.
+     *
+     * @return Resource collection API of AppAttachPackages.
+     */
+    public AppAttachPackages appAttachPackages() {
+        if (this.appAttachPackages == null) {
+            this.appAttachPackages = new AppAttachPackagesImpl(clientObject.getAppAttachPackages(), this);
+        }
+        return appAttachPackages;
     }
 
     /**

@@ -92,6 +92,18 @@ public final class ExpandMsixImageProperties {
     @JsonProperty(value = "packageApplications")
     private List<MsixPackageApplications> packageApplications;
 
+    /*
+     * Certificate name found in the appxmanifest.xml.
+     */
+    @JsonProperty(value = "certificateName")
+    private String certificateName;
+
+    /*
+     * Date certificate expires, found in the appxmanifest.xml.
+     */
+    @JsonProperty(value = "certificateExpiry")
+    private OffsetDateTime certificateExpiry;
+
     /** Creates an instance of ExpandMsixImageProperties class. */
     public ExpandMsixImageProperties() {
     }
@@ -355,6 +367,46 @@ public final class ExpandMsixImageProperties {
      */
     public ExpandMsixImageProperties withPackageApplications(List<MsixPackageApplications> packageApplications) {
         this.packageApplications = packageApplications;
+        return this;
+    }
+
+    /**
+     * Get the certificateName property: Certificate name found in the appxmanifest.xml.
+     *
+     * @return the certificateName value.
+     */
+    public String certificateName() {
+        return this.certificateName;
+    }
+
+    /**
+     * Set the certificateName property: Certificate name found in the appxmanifest.xml.
+     *
+     * @param certificateName the certificateName value to set.
+     * @return the ExpandMsixImageProperties object itself.
+     */
+    public ExpandMsixImageProperties withCertificateName(String certificateName) {
+        this.certificateName = certificateName;
+        return this;
+    }
+
+    /**
+     * Get the certificateExpiry property: Date certificate expires, found in the appxmanifest.xml.
+     *
+     * @return the certificateExpiry value.
+     */
+    public OffsetDateTime certificateExpiry() {
+        return this.certificateExpiry;
+    }
+
+    /**
+     * Set the certificateExpiry property: Date certificate expires, found in the appxmanifest.xml.
+     *
+     * @param certificateExpiry the certificateExpiry value to set.
+     * @return the ExpandMsixImageProperties object itself.
+     */
+    public ExpandMsixImageProperties withCertificateExpiry(OffsetDateTime certificateExpiry) {
+        this.certificateExpiry = certificateExpiry;
         return this;
     }
 

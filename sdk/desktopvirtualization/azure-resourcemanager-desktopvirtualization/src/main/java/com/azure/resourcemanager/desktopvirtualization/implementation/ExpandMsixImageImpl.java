@@ -98,6 +98,14 @@ public final class ExpandMsixImageImpl implements ExpandMsixImage {
         }
     }
 
+    public String certificateName() {
+        return this.innerModel().certificateName();
+    }
+
+    public OffsetDateTime certificateExpiry() {
+        return this.innerModel().certificateExpiry();
+    }
+
     public ExpandMsixImageInner innerModel() {
         return this.innerObject;
     }
