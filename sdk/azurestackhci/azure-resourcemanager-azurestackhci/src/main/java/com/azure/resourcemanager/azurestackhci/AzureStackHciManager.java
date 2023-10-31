@@ -243,7 +243,7 @@ public final class AzureStackHciManager {
                 .append("-")
                 .append("com.azure.resourcemanager.azurestackhci")
                 .append("/")
-                .append("1.0.0-beta.4");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
