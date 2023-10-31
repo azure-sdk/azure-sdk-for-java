@@ -7,6 +7,8 @@ package com.azure.resourcemanager.newrelicobservability.generated;
 import com.azure.resourcemanager.newrelicobservability.models.AccountCreationSource;
 import com.azure.resourcemanager.newrelicobservability.models.AccountInfo;
 import com.azure.resourcemanager.newrelicobservability.models.BillingCycle;
+import com.azure.resourcemanager.newrelicobservability.models.ManagedServiceIdentity;
+import com.azure.resourcemanager.newrelicobservability.models.ManagedServiceIdentityType;
 import com.azure.resourcemanager.newrelicobservability.models.NewRelicAccountProperties;
 import com.azure.resourcemanager.newrelicobservability.models.NewRelicSingleSignOnProperties;
 import com.azure.resourcemanager.newrelicobservability.models.OrgCreationSource;
@@ -15,6 +17,7 @@ import com.azure.resourcemanager.newrelicobservability.models.PlanData;
 import com.azure.resourcemanager.newrelicobservability.models.ProvisioningState;
 import com.azure.resourcemanager.newrelicobservability.models.SingleSignOnStates;
 import com.azure.resourcemanager.newrelicobservability.models.UsageType;
+import com.azure.resourcemanager.newrelicobservability.models.UserAssignedIdentity;
 import com.azure.resourcemanager.newrelicobservability.models.UserInfo;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -23,7 +26,7 @@ import java.util.Map;
 /** Samples for Monitors CreateOrUpdate. */
 public final class MonitorsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/newrelic/resource-manager/NewRelic.Observability/stable/2022-07-01/examples/Monitors_CreateOrUpdate_MaximumSet_Gen.json
+     * x-ms-original-file: specification/newrelic/resource-manager/NewRelic.Observability/preview/2023-10-01-preview/examples/Monitors_CreateOrUpdate_MaximumSet_Gen.json
      */
     /**
      * Sample code: Monitors_CreateOrUpdate_MaximumSet_Gen.
@@ -37,7 +40,11 @@ public final class MonitorsCreateOrUpdateSamples {
             .define("cdlymktqw")
             .withRegion("k")
             .withExistingResourceGroup("rgNewRelic")
-            .withTags(mapOf("key6976", "oaxfhf"))
+            .withTags(mapOf("key6976", "fakeTokenPlaceholder"))
+            .withIdentity(
+                new ManagedServiceIdentity()
+                    .withType(ManagedServiceIdentityType.NONE)
+                    .withUserAssignedIdentities(mapOf("key8903", new UserAssignedIdentity())))
             .withNewRelicAccountProperties(
                 new NewRelicAccountProperties()
                     .withUserId("vcscxlncofcuduadesd")
@@ -71,6 +78,7 @@ public final class MonitorsCreateOrUpdateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

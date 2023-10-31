@@ -59,7 +59,7 @@ public interface AccountResource {
     String accountName();
 
     /**
-     * Gets the region property: region.
+     * Gets the region property: Region where New Relic account is present.
      *
      * @return the region value.
      */

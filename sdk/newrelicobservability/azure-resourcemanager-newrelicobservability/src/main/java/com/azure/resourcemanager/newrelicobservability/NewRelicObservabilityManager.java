@@ -25,6 +25,8 @@ import com.azure.core.util.Configuration;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.newrelicobservability.fluent.NewRelicObservability;
 import com.azure.resourcemanager.newrelicobservability.implementation.AccountsImpl;
+import com.azure.resourcemanager.newrelicobservability.implementation.BillingInfoesImpl;
+import com.azure.resourcemanager.newrelicobservability.implementation.ConnectedPartnerResourcesImpl;
 import com.azure.resourcemanager.newrelicobservability.implementation.MonitorsImpl;
 import com.azure.resourcemanager.newrelicobservability.implementation.NewRelicObservabilityBuilder;
 import com.azure.resourcemanager.newrelicobservability.implementation.OperationsImpl;
@@ -32,6 +34,8 @@ import com.azure.resourcemanager.newrelicobservability.implementation.Organizati
 import com.azure.resourcemanager.newrelicobservability.implementation.PlansImpl;
 import com.azure.resourcemanager.newrelicobservability.implementation.TagRulesImpl;
 import com.azure.resourcemanager.newrelicobservability.models.Accounts;
+import com.azure.resourcemanager.newrelicobservability.models.BillingInfoes;
+import com.azure.resourcemanager.newrelicobservability.models.ConnectedPartnerResources;
 import com.azure.resourcemanager.newrelicobservability.models.Monitors;
 import com.azure.resourcemanager.newrelicobservability.models.Operations;
 import com.azure.resourcemanager.newrelicobservability.models.Organizations;
@@ -55,6 +59,10 @@ public final class NewRelicObservabilityManager {
     private Organizations organizations;
 
     private Plans plans;
+
+    private BillingInfoes billingInfoes;
+
+    private ConnectedPartnerResources connectedPartnerResources;
 
     private TagRules tagRules;
 
@@ -224,7 +232,7 @@ public final class NewRelicObservabilityManager {
                 .append("-")
                 .append("com.azure.resourcemanager.newrelicobservability")
                 .append("/")
-                .append("1.0.0");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -342,6 +350,31 @@ public final class NewRelicObservabilityManager {
     }
 
     /**
+     * Gets the resource collection API of BillingInfoes.
+     *
+     * @return Resource collection API of BillingInfoes.
+     */
+    public BillingInfoes billingInfoes() {
+        if (this.billingInfoes == null) {
+            this.billingInfoes = new BillingInfoesImpl(clientObject.getBillingInfoes(), this);
+        }
+        return billingInfoes;
+    }
+
+    /**
+     * Gets the resource collection API of ConnectedPartnerResources.
+     *
+     * @return Resource collection API of ConnectedPartnerResources.
+     */
+    public ConnectedPartnerResources connectedPartnerResources() {
+        if (this.connectedPartnerResources == null) {
+            this.connectedPartnerResources =
+                new ConnectedPartnerResourcesImpl(clientObject.getConnectedPartnerResources(), this);
+        }
+        return connectedPartnerResources;
+    }
+
+    /**
      * Gets the resource collection API of TagRules. It manages TagRule.
      *
      * @return Resource collection API of TagRules.
@@ -354,8 +387,10 @@ public final class NewRelicObservabilityManager {
     }
 
     /**
-     * @return Wrapped service client NewRelicObservability providing direct access to the underlying auto-generated API
-     *     implementation, based on Azure REST API.
+     * Gets wrapped service client NewRelicObservability providing direct access to the underlying auto-generated API
+     * implementation, based on Azure REST API.
+     *
+     * @return Wrapped service client NewRelicObservability.
      */
     public NewRelicObservability serviceClient() {
         return this.clientObject;
