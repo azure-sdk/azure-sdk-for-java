@@ -10,8 +10,14 @@ import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.confidentialledger.fluent.ManagedCcfsClient;
+import com.azure.resourcemanager.confidentialledger.fluent.models.ManagedCcfBackupResponseInner;
 import com.azure.resourcemanager.confidentialledger.fluent.models.ManagedCcfInner;
+import com.azure.resourcemanager.confidentialledger.fluent.models.ManagedCcfRestoreResponseInner;
 import com.azure.resourcemanager.confidentialledger.models.ManagedCcf;
+import com.azure.resourcemanager.confidentialledger.models.ManagedCcfBackup;
+import com.azure.resourcemanager.confidentialledger.models.ManagedCcfBackupResponse;
+import com.azure.resourcemanager.confidentialledger.models.ManagedCcfRestore;
+import com.azure.resourcemanager.confidentialledger.models.ManagedCcfRestoreResponse;
 import com.azure.resourcemanager.confidentialledger.models.ManagedCcfs;
 
 public final class ManagedCcfsImpl implements ManagedCcfs {
@@ -60,14 +66,6 @@ public final class ManagedCcfsImpl implements ManagedCcfs {
         this.serviceClient().delete(resourceGroupName, appName, context);
     }
 
-    public void update(String resourceGroupName, String appName, ManagedCcfInner managedCcf) {
-        this.serviceClient().update(resourceGroupName, appName, managedCcf);
-    }
-
-    public void update(String resourceGroupName, String appName, ManagedCcfInner managedCcf, Context context) {
-        this.serviceClient().update(resourceGroupName, appName, managedCcf, context);
-    }
-
     public PagedIterable<ManagedCcf> listByResourceGroup(String resourceGroupName) {
         PagedIterable<ManagedCcfInner> inner = this.serviceClient().listByResourceGroup(resourceGroupName);
         return Utils.mapPage(inner, inner1 -> new ManagedCcfImpl(inner1, this.manager()));
@@ -87,6 +85,46 @@ public final class ManagedCcfsImpl implements ManagedCcfs {
     public PagedIterable<ManagedCcf> list(String filter, Context context) {
         PagedIterable<ManagedCcfInner> inner = this.serviceClient().list(filter, context);
         return Utils.mapPage(inner, inner1 -> new ManagedCcfImpl(inner1, this.manager()));
+    }
+
+    public ManagedCcfBackupResponse backup(String resourceGroupName, String appName, ManagedCcfBackup managedCcf) {
+        ManagedCcfBackupResponseInner inner = this.serviceClient().backup(resourceGroupName, appName, managedCcf);
+        if (inner != null) {
+            return new ManagedCcfBackupResponseImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public ManagedCcfBackupResponse backup(
+        String resourceGroupName, String appName, ManagedCcfBackup managedCcf, Context context) {
+        ManagedCcfBackupResponseInner inner =
+            this.serviceClient().backup(resourceGroupName, appName, managedCcf, context);
+        if (inner != null) {
+            return new ManagedCcfBackupResponseImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public ManagedCcfRestoreResponse restore(String resourceGroupName, String appName, ManagedCcfRestore managedCcf) {
+        ManagedCcfRestoreResponseInner inner = this.serviceClient().restore(resourceGroupName, appName, managedCcf);
+        if (inner != null) {
+            return new ManagedCcfRestoreResponseImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public ManagedCcfRestoreResponse restore(
+        String resourceGroupName, String appName, ManagedCcfRestore managedCcf, Context context) {
+        ManagedCcfRestoreResponseInner inner =
+            this.serviceClient().restore(resourceGroupName, appName, managedCcf, context);
+        if (inner != null) {
+            return new ManagedCcfRestoreResponseImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public ManagedCcf getById(String id) {
