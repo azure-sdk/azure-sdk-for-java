@@ -8,7 +8,11 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for ProvisionState. */
+/**
+ * ProvisioningState
+ *
+ * <p>Provision states for confluent RP.
+ */
 public final class ProvisionState extends ExpandableStringEnum<ProvisionState> {
     /** Static value Accepted for ProvisionState. */
     public static final ProvisionState ACCEPTED = fromString("Accepted");
@@ -38,6 +42,15 @@ public final class ProvisionState extends ExpandableStringEnum<ProvisionState> {
     public static final ProvisionState NOT_SPECIFIED = fromString("NotSpecified");
 
     /**
+     * Creates a new instance of ProvisionState value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public ProvisionState() {
+    }
+
+    /**
      * Creates or finds a ProvisionState from its string representation.
      *
      * @param name a name to look for.
@@ -48,7 +61,11 @@ public final class ProvisionState extends ExpandableStringEnum<ProvisionState> {
         return fromString(name, ProvisionState.class);
     }
 
-    /** @return known ProvisionState values. */
+    /**
+     * Gets known ProvisionState values.
+     *
+     * @return known ProvisionState values.
+     */
     public static Collection<ProvisionState> values() {
         return values(ProvisionState.class);
     }
