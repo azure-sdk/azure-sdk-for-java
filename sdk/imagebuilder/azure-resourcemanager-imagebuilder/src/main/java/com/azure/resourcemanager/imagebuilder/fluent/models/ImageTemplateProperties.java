@@ -9,6 +9,7 @@ import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.imagebuilder.models.ImageTemplateCustomizer;
 import com.azure.resourcemanager.imagebuilder.models.ImageTemplateDistributor;
 import com.azure.resourcemanager.imagebuilder.models.ImageTemplateLastRunStatus;
+import com.azure.resourcemanager.imagebuilder.models.ImageTemplatePropertiesErrorHandling;
 import com.azure.resourcemanager.imagebuilder.models.ImageTemplatePropertiesOptimize;
 import com.azure.resourcemanager.imagebuilder.models.ImageTemplatePropertiesValidate;
 import com.azure.resourcemanager.imagebuilder.models.ImageTemplateSource;
@@ -50,6 +51,12 @@ public final class ImageTemplateProperties {
      */
     @JsonProperty(value = "distribute", required = true)
     private List<ImageTemplateDistributor> distribute;
+
+    /*
+     * Error handling options upon a build failure
+     */
+    @JsonProperty(value = "errorHandling")
+    private ImageTemplatePropertiesErrorHandling errorHandling;
 
     /*
      * Provisioning state of the resource
@@ -211,6 +218,26 @@ public final class ImageTemplateProperties {
     }
 
     /**
+     * Get the errorHandling property: Error handling options upon a build failure.
+     *
+     * @return the errorHandling value.
+     */
+    public ImageTemplatePropertiesErrorHandling errorHandling() {
+        return this.errorHandling;
+    }
+
+    /**
+     * Set the errorHandling property: Error handling options upon a build failure.
+     *
+     * @param errorHandling the errorHandling value to set.
+     * @return the ImageTemplateProperties object itself.
+     */
+    public ImageTemplateProperties withErrorHandling(ImageTemplatePropertiesErrorHandling errorHandling) {
+        this.errorHandling = errorHandling;
+        return this;
+    }
+
+    /**
      * Get the provisioningState property: Provisioning state of the resource.
      *
      * @return the provisioningState value.
@@ -351,6 +378,9 @@ public final class ImageTemplateProperties {
                         "Missing required property distribute in model ImageTemplateProperties"));
         } else {
             distribute().forEach(e -> e.validate());
+        }
+        if (errorHandling() != null) {
+            errorHandling().validate();
         }
         if (provisioningError() != null) {
             provisioningError().validate();

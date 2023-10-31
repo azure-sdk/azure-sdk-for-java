@@ -30,7 +30,7 @@
 /** Samples for Operations List. */
 public final class OperationsListSamples {
     /*
-     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2022-07-01/examples/OperationsList.json
+     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2023-07-01/examples/OperationsList.json
      */
     /**
      * Sample code: Retrieve operations list.
@@ -51,7 +51,7 @@ import com.azure.resourcemanager.imagebuilder.models.SourceImageTriggerPropertie
 /** Samples for Triggers CreateOrUpdate. */
 public final class TriggersCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2022-07-01/examples/CreateSourceImageTrigger.json
+     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2023-07-01/examples/CreateSourceImageTrigger.json
      */
     /**
      * Sample code: Create or update a source image type trigger.
@@ -76,7 +76,7 @@ public final class TriggersCreateOrUpdateSamples {
 /** Samples for Triggers Delete. */
 public final class TriggersDeleteSamples {
     /*
-     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2022-07-01/examples/DeleteTrigger.json
+     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2023-07-01/examples/DeleteTrigger.json
      */
     /**
      * Sample code: Delete a trigger resource.
@@ -95,7 +95,7 @@ public final class TriggersDeleteSamples {
 /** Samples for Triggers Get. */
 public final class TriggersGetSamples {
     /*
-     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2022-07-01/examples/GetTrigger.json
+     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2023-07-01/examples/GetTrigger.json
      */
     /**
      * Sample code: Get a trigger resource.
@@ -116,7 +116,7 @@ public final class TriggersGetSamples {
 /** Samples for Triggers ListByImageTemplate. */
 public final class TriggersListByImageTemplateSamples {
     /*
-     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2022-07-01/examples/ListTriggers.json
+     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2023-07-01/examples/ListTriggers.json
      */
     /**
      * Sample code: List triggers by image template.
@@ -135,7 +135,7 @@ public final class TriggersListByImageTemplateSamples {
 /** Samples for VirtualMachineImageTemplates Cancel. */
 public final class VirtualMachineImageTemplatesCancelSamples {
     /*
-     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2022-07-01/examples/CancelImageBuild.json
+     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2023-07-01/examples/CancelImageBuild.json
      */
     /**
      * Sample code: Cancel the image build based on the imageTemplate.
@@ -172,7 +172,7 @@ import java.util.Map;
 /** Samples for VirtualMachineImageTemplates CreateOrUpdate. */
 public final class VirtualMachineImageTemplatesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2022-07-01/examples/CreateImageTemplateLinux.json
+     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2023-07-01/examples/CreateImageTemplateLinux.json
      */
     /**
      * Sample code: Create an Image Template for Linux.
@@ -225,7 +225,7 @@ public final class VirtualMachineImageTemplatesCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2022-07-01/examples/CreateImageTemplateWindows.json
+     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2023-07-01/examples/CreateImageTemplateWindows.json
      */
     /**
      * Sample code: Create an Image Template for Windows.
@@ -314,6 +314,7 @@ public final class VirtualMachineImageTemplatesCreateOrUpdateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -333,7 +334,7 @@ public final class VirtualMachineImageTemplatesCreateOrUpdateSamples {
 /** Samples for VirtualMachineImageTemplates Delete. */
 public final class VirtualMachineImageTemplatesDeleteSamples {
     /*
-     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2022-07-01/examples/DeleteImageTemplate.json
+     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2023-07-01/examples/DeleteImageTemplate.json
      */
     /**
      * Sample code: Delete an Image Template.
@@ -354,7 +355,7 @@ public final class VirtualMachineImageTemplatesDeleteSamples {
 /** Samples for VirtualMachineImageTemplates GetByResourceGroup. */
 public final class VirtualMachineImageTemplatesGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2022-07-01/examples/GetImageTemplate.json
+     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2023-07-01/examples/GetImageTemplate.json
      */
     /**
      * Sample code: Retrieve an Image Template.
@@ -375,7 +376,7 @@ public final class VirtualMachineImageTemplatesGetByResourceGroupSamples {
 /** Samples for VirtualMachineImageTemplates GetRunOutput. */
 public final class VirtualMachineImageTemplatesGetRunOutputSamples {
     /*
-     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2022-07-01/examples/GetRunOutput.json
+     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2023-07-01/examples/GetRunOutput.json
      */
     /**
      * Sample code: Retrieve single runOutput.
@@ -397,7 +398,7 @@ public final class VirtualMachineImageTemplatesGetRunOutputSamples {
 /** Samples for VirtualMachineImageTemplates List. */
 public final class VirtualMachineImageTemplatesListSamples {
     /*
-     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2022-07-01/examples/ListImageTemplates.json
+     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2023-07-01/examples/ListImageTemplates.json
      */
     /**
      * Sample code: List images by subscription.
@@ -416,7 +417,7 @@ public final class VirtualMachineImageTemplatesListSamples {
 /** Samples for VirtualMachineImageTemplates ListByResourceGroup. */
 public final class VirtualMachineImageTemplatesListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2022-07-01/examples/ListImageTemplatesByRg.json
+     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2023-07-01/examples/ListImageTemplatesByRg.json
      */
     /**
      * Sample code: List images by resource group.
@@ -435,7 +436,7 @@ public final class VirtualMachineImageTemplatesListByResourceGroupSamples {
 /** Samples for VirtualMachineImageTemplates ListRunOutputs. */
 public final class VirtualMachineImageTemplatesListRunOutputsSamples {
     /*
-     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2022-07-01/examples/ListRunOutputs.json
+     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2023-07-01/examples/ListRunOutputs.json
      */
     /**
      * Sample code: Retrieve a list of all outputs created by the last run of an Image Template.
@@ -457,7 +458,7 @@ public final class VirtualMachineImageTemplatesListRunOutputsSamples {
 /** Samples for VirtualMachineImageTemplates Run. */
 public final class VirtualMachineImageTemplatesRunSamples {
     /*
-     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2022-07-01/examples/RunImageTemplate.json
+     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2023-07-01/examples/RunImageTemplate.json
      */
     /**
      * Sample code: Create image(s) from existing imageTemplate.
@@ -485,7 +486,7 @@ import java.util.Map;
 /** Samples for VirtualMachineImageTemplates Update. */
 public final class VirtualMachineImageTemplatesUpdateSamples {
     /*
-     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2022-07-01/examples/UpdateImageTemplateToRemoveIdentities.json
+     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2023-07-01/examples/UpdateImageTemplateToRemoveIdentities.json
      */
     /**
      * Sample code: Remove identities for an Image Template.
@@ -503,7 +504,7 @@ public final class VirtualMachineImageTemplatesUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2022-07-01/examples/UpdateImageTemplateTags.json
+     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2023-07-01/examples/UpdateImageTemplateTags.json
      */
     /**
      * Sample code: Update the tags for an Image Template.
@@ -520,6 +521,7 @@ public final class VirtualMachineImageTemplatesUpdateSamples {
         resource.update().withTags(mapOf("new-tag", "new-value")).apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

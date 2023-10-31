@@ -173,7 +173,7 @@ public final class ImageBuilderClientImpl implements ImageBuilderClient {
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2022-07-01";
+        this.apiVersion = "2023-07-01";
         this.virtualMachineImageTemplates = new VirtualMachineImageTemplatesClientImpl(this);
         this.triggers = new TriggersClientImpl(this);
         this.operations = new OperationsClientImpl(this);
