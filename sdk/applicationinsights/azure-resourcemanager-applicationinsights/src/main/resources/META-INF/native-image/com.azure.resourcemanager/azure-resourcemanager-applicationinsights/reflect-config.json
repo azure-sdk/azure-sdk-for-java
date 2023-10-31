@@ -399,6 +399,21 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
+  "name" : "com.azure.resourcemanager.applicationinsights.fluent.models.ComponentLinkedStorageAccountsInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.applicationinsights.fluent.models.LinkedStorageAccountsProperties",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.applicationinsights.models.ComponentLinkedStorageAccountsPatch",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
   "name" : "com.azure.resourcemanager.applicationinsights.models.ApplicationType",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
@@ -480,6 +495,11 @@
   "allDeclaredMethods" : true
 }, {
   "name" : "com.azure.resourcemanager.applicationinsights.models.WorkbookUpdateSharedTypeKind",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.applicationinsights.models.StorageType",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true

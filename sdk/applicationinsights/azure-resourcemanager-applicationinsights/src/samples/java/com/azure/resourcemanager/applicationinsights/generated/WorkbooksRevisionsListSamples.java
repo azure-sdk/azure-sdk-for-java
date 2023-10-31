@@ -7,7 +7,7 @@ package com.azure.resourcemanager.applicationinsights.generated;
 /** Samples for Workbooks RevisionsList. */
 public final class WorkbooksRevisionsListSamples {
     /*
-     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2022-04-01/examples/WorkbookRevisionsList.json
+     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2023-06-01/examples/WorkbookRevisionsList.json
      */
     /**
      * Sample code: WorkbookRevisionsList.
