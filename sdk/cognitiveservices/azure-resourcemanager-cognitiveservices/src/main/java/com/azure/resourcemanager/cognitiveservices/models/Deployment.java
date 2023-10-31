@@ -7,6 +7,7 @@ package com.azure.resourcemanager.cognitiveservices.models;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.cognitiveservices.fluent.models.DeploymentInner;
+import java.util.Map;
 
 /** An immutable client-side representation of Deployment. */
 public interface Deployment {
@@ -51,6 +52,13 @@ public interface Deployment {
      * @return the etag value.
      */
     String etag();
+
+    /**
+     * Gets the tags property: Resource tags.
+     *
+     * @return the tags value.
+     */
+    Map<String, String> tags();
 
     /**
      * Gets the properties property: Properties of Cognitive Services account deployment.
@@ -100,7 +108,8 @@ public interface Deployment {
          * The stage of the Deployment definition which contains all the minimum required properties for the resource to
          * be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithSku, DefinitionStages.WithProperties {
+        interface WithCreate
+            extends DefinitionStages.WithTags, DefinitionStages.WithSku, DefinitionStages.WithProperties {
             /**
              * Executes the create request.
              *
@@ -115,6 +124,17 @@ public interface Deployment {
              * @return the created resource.
              */
             Deployment create(Context context);
+        }
+
+        /** The stage of the Deployment definition allowing to specify tags. */
+        interface WithTags {
+            /**
+             * Specifies the tags property: Resource tags..
+             *
+             * @param tags Resource tags.
+             * @return the next definition stage.
+             */
+            WithCreate withTags(Map<String, String> tags);
         }
 
         /** The stage of the Deployment definition allowing to specify sku. */
@@ -148,7 +168,7 @@ public interface Deployment {
     Deployment.Update update();
 
     /** The template for Deployment update. */
-    interface Update extends UpdateStages.WithSku, UpdateStages.WithProperties {
+    interface Update extends UpdateStages.WithTags, UpdateStages.WithSku {
         /**
          * Executes the update request.
          *
@@ -167,6 +187,17 @@ public interface Deployment {
 
     /** The Deployment update stages. */
     interface UpdateStages {
+        /** The stage of the Deployment update allowing to specify tags. */
+        interface WithTags {
+            /**
+             * Specifies the tags property: Resource tags..
+             *
+             * @param tags Resource tags.
+             * @return the next definition stage.
+             */
+            Update withTags(Map<String, String> tags);
+        }
+
         /** The stage of the Deployment update allowing to specify sku. */
         interface WithSku {
             /**
@@ -176,17 +207,6 @@ public interface Deployment {
              * @return the next definition stage.
              */
             Update withSku(Sku sku);
-        }
-
-        /** The stage of the Deployment update allowing to specify properties. */
-        interface WithProperties {
-            /**
-             * Specifies the properties property: Properties of Cognitive Services account deployment..
-             *
-             * @param properties Properties of Cognitive Services account deployment.
-             * @return the next definition stage.
-             */
-            Update withProperties(DeploymentProperties properties);
         }
     }
 

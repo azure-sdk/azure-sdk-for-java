@@ -10,7 +10,7 @@ import java.util.Arrays;
 /** Samples for ResourceProvider CheckSkuAvailability. */
 public final class ResourceProviderCheckSkuAvailabilitySamples {
     /*
-     * x-ms-original-file: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/stable/2023-05-01/examples/CheckSkuAvailability.json
+     * x-ms-original-file: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/preview/2023-10-01-preview/examples/CheckSkuAvailability.json
      */
     /**
      * Sample code: Check SKU Availability.
