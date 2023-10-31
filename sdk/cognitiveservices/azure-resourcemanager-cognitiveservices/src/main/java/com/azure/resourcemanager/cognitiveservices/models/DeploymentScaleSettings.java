@@ -7,7 +7,7 @@ package com.azure.resourcemanager.cognitiveservices.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Properties of Cognitive Services account deployment model. */
+/** Properties of Cognitive Services account deployment model. (Deprecated, please use Deployment.sku instead.). */
 @Fluent
 public final class DeploymentScaleSettings {
     /*
