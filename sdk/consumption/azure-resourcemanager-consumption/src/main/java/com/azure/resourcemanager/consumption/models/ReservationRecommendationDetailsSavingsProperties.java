@@ -5,17 +5,12 @@
 package com.azure.resourcemanager.consumption.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Details of the estimated savings. */
 @Fluent
 public final class ReservationRecommendationDetailsSavingsProperties {
-    @JsonIgnore
-    private final ClientLogger logger = new ClientLogger(ReservationRecommendationDetailsSavingsProperties.class);
-
     /*
      * List of calculated savings.
      */
@@ -23,8 +18,7 @@ public final class ReservationRecommendationDetailsSavingsProperties {
     private List<ReservationRecommendationDetailsCalculatedSavingsProperties> calculatedSavings;
 
     /*
-     * Number of days of usage to look back used for computing the
-     * recommendation.
+     * Number of days of usage to look back used for computing the recommendation.
      */
     @JsonProperty(value = "lookBackPeriod", access = JsonProperty.Access.WRITE_ONLY)
     private Integer lookBackPeriod;
@@ -52,6 +46,10 @@ public final class ReservationRecommendationDetailsSavingsProperties {
      */
     @JsonProperty(value = "unitOfMeasure", access = JsonProperty.Access.WRITE_ONLY)
     private String unitOfMeasure;
+
+    /** Creates an instance of ReservationRecommendationDetailsSavingsProperties class. */
+    public ReservationRecommendationDetailsSavingsProperties() {
+    }
 
     /**
      * Get the calculatedSavings property: List of calculated savings.

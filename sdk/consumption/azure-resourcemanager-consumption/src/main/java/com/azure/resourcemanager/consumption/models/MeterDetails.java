@@ -5,16 +5,12 @@
 package com.azure.resourcemanager.consumption.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.math.BigDecimal;
 
 /** The properties of the meter detail. */
 @Immutable
 public final class MeterDetails {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(MeterDetails.class);
-
     /*
      * The name of the meter, within the given meter category
      */
@@ -22,22 +18,19 @@ public final class MeterDetails {
     private String meterName;
 
     /*
-     * The category of the meter, for example, 'Cloud services', 'Networking',
-     * etc..
+     * The category of the meter, for example, 'Cloud services', 'Networking', etc..
      */
     @JsonProperty(value = "meterCategory", access = JsonProperty.Access.WRITE_ONLY)
     private String meterCategory;
 
     /*
-     * The subcategory of the meter, for example, 'A6 Cloud services',
-     * 'ExpressRoute (IXP)', etc..
+     * The subcategory of the meter, for example, 'A6 Cloud services', 'ExpressRoute (IXP)', etc..
      */
     @JsonProperty(value = "meterSubCategory", access = JsonProperty.Access.WRITE_ONLY)
     private String meterSubCategory;
 
     /*
-     * The unit in which the meter consumption is charged, for example,
-     * 'Hours', 'GB', etc.
+     * The unit in which the meter consumption is charged, for example, 'Hours', 'GB', etc.
      */
     @JsonProperty(value = "unit", access = JsonProperty.Access.WRITE_ONLY)
     private String unit;
@@ -71,6 +64,10 @@ public final class MeterDetails {
      */
     @JsonProperty(value = "serviceTier", access = JsonProperty.Access.WRITE_ONLY)
     private String serviceTier;
+
+    /** Creates an instance of MeterDetails class. */
+    public MeterDetails() {
+    }
 
     /**
      * Get the meterName property: The name of the meter, within the given meter category.

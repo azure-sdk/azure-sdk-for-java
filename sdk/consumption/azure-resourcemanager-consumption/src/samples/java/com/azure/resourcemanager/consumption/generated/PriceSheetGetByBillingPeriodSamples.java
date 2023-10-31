@@ -4,12 +4,10 @@
 
 package com.azure.resourcemanager.consumption.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for PriceSheet GetByBillingPeriod. */
 public final class PriceSheetGetByBillingPeriodSamples {
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/PriceSheetForBillingPeriod.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2023-11-01/examples/PriceSheetForBillingPeriod.json
      */
     /**
      * Sample code: PriceSheetForBillingPeriod.
@@ -17,11 +15,13 @@ public final class PriceSheetGetByBillingPeriodSamples {
      * @param manager Entry point to ConsumptionManager.
      */
     public static void priceSheetForBillingPeriod(com.azure.resourcemanager.consumption.ConsumptionManager manager) {
-        manager.priceSheets().getByBillingPeriodWithResponse("201801", null, null, null, Context.NONE);
+        manager
+            .priceSheets()
+            .getByBillingPeriodWithResponse("201801", null, null, null, com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/PriceSheetExpand.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2023-11-01/examples/PriceSheetExpand.json
      */
     /**
      * Sample code: PriceSheetExpand.
@@ -29,6 +29,8 @@ public final class PriceSheetGetByBillingPeriodSamples {
      * @param manager Entry point to ConsumptionManager.
      */
     public static void priceSheetExpand(com.azure.resourcemanager.consumption.ConsumptionManager manager) {
-        manager.priceSheets().getByBillingPeriodWithResponse("201801", "meterDetails", null, null, Context.NONE);
+        manager
+            .priceSheets()
+            .getByBillingPeriodWithResponse("201801", "meterDetails", null, null, com.azure.core.util.Context.NONE);
     }
 }
