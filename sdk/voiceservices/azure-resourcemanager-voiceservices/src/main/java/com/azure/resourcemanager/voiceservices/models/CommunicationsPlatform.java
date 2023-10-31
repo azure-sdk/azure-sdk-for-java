@@ -16,6 +16,9 @@ public final class CommunicationsPlatform extends ExpandableStringEnum<Communica
     /** Static value TeamsPhoneMobile for CommunicationsPlatform. */
     public static final CommunicationsPlatform TEAMS_PHONE_MOBILE = fromString("TeamsPhoneMobile");
 
+    /** Static value TeamsDirectRouting for CommunicationsPlatform. */
+    public static final CommunicationsPlatform TEAMS_DIRECT_ROUTING = fromString("TeamsDirectRouting");
+
     /**
      * Creates a new instance of CommunicationsPlatform value.
      *
