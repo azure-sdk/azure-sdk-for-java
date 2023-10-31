@@ -7,7 +7,7 @@ package com.azure.resourcemanager.fluidrelay.models;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-/** Defines values for KeyName. */
+/** The key to regenerate. */
 public enum KeyName {
     /** Enum value key1. */
     KEY1("key1"),
@@ -42,6 +42,7 @@ public enum KeyName {
         return null;
     }
 
+    /** {@inheritDoc} */
     @JsonValue
     @Override
     public String toString() {

@@ -38,6 +38,10 @@ public final class FluidRelayServerUpdate {
     @JsonProperty(value = "location")
     private String location;
 
+    /** Creates an instance of FluidRelayServerUpdate class. */
+    public FluidRelayServerUpdate() {
+    }
+
     /**
      * Get the innerProperties property: The resource-specific properties that can be updated for this resource.
      *

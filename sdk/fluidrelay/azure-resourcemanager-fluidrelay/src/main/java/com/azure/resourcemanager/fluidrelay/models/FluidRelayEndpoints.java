@@ -29,6 +29,10 @@ public final class FluidRelayEndpoints {
     @JsonProperty(value = "serviceEndpoints", access = JsonProperty.Access.WRITE_ONLY)
     private List<String> serviceEndpoints;
 
+    /** Creates an instance of FluidRelayEndpoints class. */
+    public FluidRelayEndpoints() {
+    }
+
     /**
      * Get the ordererEndpoints property: The Fluid Relay Orderer endpoints.
      *
