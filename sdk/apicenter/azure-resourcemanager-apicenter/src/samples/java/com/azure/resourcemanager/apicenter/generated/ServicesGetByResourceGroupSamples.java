@@ -7,7 +7,7 @@ package com.azure.resourcemanager.apicenter.generated;
 /** Samples for Services GetByResourceGroup. */
 public final class ServicesGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/apicenter/resource-manager/Microsoft.ApiCenter/preview/2023-07-01-preview/examples/Services_Get.json
+     * x-ms-original-file: specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/Services_Get.json
      */
     /**
      * Sample code: Services_Get.

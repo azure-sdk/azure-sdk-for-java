@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.apicenter.models;
 
+import com.azure.core.http.rest.Response;
 import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
@@ -48,7 +49,7 @@ public interface Service {
     Map<String, String> tags();
 
     /**
-     * Gets the identity property: The identity of the service.
+     * Gets the identity property: Managed service identity (system assigned and/or user assigned identities).
      *
      * @return the identity value.
      */
@@ -62,7 +63,7 @@ public interface Service {
     SystemData systemData();
 
     /**
-     * Gets the provisioningState property: The status of the last operation.
+     * Gets the provisioningState property: Provisioning state of the service.
      *
      * @return the provisioningState value.
      */
@@ -175,9 +176,10 @@ public interface Service {
         /** The stage of the Service definition allowing to specify identity. */
         interface WithIdentity {
             /**
-             * Specifies the identity property: The identity of the service..
+             * Specifies the identity property: Managed service identity (system assigned and/or user assigned
+             * identities).
              *
-             * @param identity The identity of the service.
+             * @param identity Managed service identity (system assigned and/or user assigned identities).
              * @return the next definition stage.
              */
             WithCreate withIdentity(ManagedServiceIdentity identity);
@@ -227,4 +229,32 @@ public interface Service {
      * @return the refreshed resource.
      */
     Service refresh(Context context);
+
+    /**
+     * Export effective metadata schema
+     *
+     * <p>Exports the effective metadata schema.
+     *
+     * @param payload The metadata schema request details.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the metadata schema export result along with {@link Response}.
+     */
+    Response<MetadataSchemaExportResult> exportMetadataSchemaWithResponse(
+        MetadataSchemaExportRequest payload, Context context);
+
+    /**
+     * Export effective metadata schema
+     *
+     * <p>Exports the effective metadata schema.
+     *
+     * @param payload The metadata schema request details.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the metadata schema export result.
+     */
+    MetadataSchemaExportResult exportMetadataSchema(MetadataSchemaExportRequest payload);
 }
