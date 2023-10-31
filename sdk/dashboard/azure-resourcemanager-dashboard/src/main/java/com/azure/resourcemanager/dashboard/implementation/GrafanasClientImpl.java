@@ -14,6 +14,7 @@ import com.azure.core.annotation.Host;
 import com.azure.core.annotation.HostParam;
 import com.azure.core.annotation.Patch;
 import com.azure.core.annotation.PathParam;
+import com.azure.core.annotation.Post;
 import com.azure.core.annotation.Put;
 import com.azure.core.annotation.QueryParam;
 import com.azure.core.annotation.ReturnType;
@@ -33,7 +34,10 @@ import com.azure.core.util.FluxUtil;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.dashboard.fluent.GrafanasClient;
+import com.azure.resourcemanager.dashboard.fluent.models.EnterpriseDetailsInner;
+import com.azure.resourcemanager.dashboard.fluent.models.GrafanaAvailablePluginListResponseInner;
 import com.azure.resourcemanager.dashboard.fluent.models.ManagedGrafanaInner;
+import com.azure.resourcemanager.dashboard.models.GrafanasUpdateResponse;
 import com.azure.resourcemanager.dashboard.models.ManagedGrafanaListResponse;
 import com.azure.resourcemanager.dashboard.models.ManagedGrafanaUpdateParameters;
 import java.nio.ByteBuffer;
@@ -64,7 +68,7 @@ public final class GrafanasClientImpl implements GrafanasClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "DashboardManagementC")
-    private interface GrafanasService {
+    public interface GrafanasService {
         @Headers({"Content-Type: application/json"})
         @Get("/subscriptions/{subscriptionId}/providers/Microsoft.Dashboard/grafana")
         @ExpectedResponses({200})
@@ -90,8 +94,7 @@ public final class GrafanasClientImpl implements GrafanasClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Dashboard/grafana"
-                + "/{workspaceName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Dashboard/grafana/{workspaceName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ManagedGrafanaInner>> getByResourceGroup(
@@ -105,8 +108,7 @@ public final class GrafanasClientImpl implements GrafanasClient {
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Dashboard/grafana"
-                + "/{workspaceName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Dashboard/grafana/{workspaceName}")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> create(
@@ -121,11 +123,10 @@ public final class GrafanasClientImpl implements GrafanasClient {
 
         @Headers({"Content-Type: application/json"})
         @Patch(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Dashboard/grafana"
-                + "/{workspaceName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Dashboard/grafana/{workspaceName}")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ManagedGrafanaInner>> update(
+        Mono<GrafanasUpdateResponse> update(
             @HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
@@ -137,11 +138,38 @@ public final class GrafanasClientImpl implements GrafanasClient {
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Dashboard/grafana"
-                + "/{workspaceName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Dashboard/grafana/{workspaceName}")
         @ExpectedResponses({200, 202, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(
+            @HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("workspaceName") String workspaceName,
+            @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
+        @Post(
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Dashboard/grafana/{workspaceName}/checkEnterpriseDetails")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<EnterpriseDetailsInner>> checkEnterpriseDetails(
+            @HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("workspaceName") String workspaceName,
+            @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
+        @Post(
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Dashboard/grafana/{workspaceName}/fetchAvailablePlugins")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<GrafanaAvailablePluginListResponseInner>> fetchAvailablePlugins(
             @HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
@@ -591,21 +619,6 @@ public final class GrafanasClientImpl implements GrafanasClient {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The workspace name of Azure Managed Grafana.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the properties of a specific workspace for Grafana resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ManagedGrafanaInner getByResourceGroup(String resourceGroupName, String workspaceName) {
-        return getByResourceGroupAsync(resourceGroupName, workspaceName).block();
-    }
-
-    /**
-     * Get the properties of a specific workspace for Grafana resource.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The workspace name of Azure Managed Grafana.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -616,6 +629,21 @@ public final class GrafanasClientImpl implements GrafanasClient {
     public Response<ManagedGrafanaInner> getByResourceGroupWithResponse(
         String resourceGroupName, String workspaceName, Context context) {
         return getByResourceGroupWithResponseAsync(resourceGroupName, workspaceName, context).block();
+    }
+
+    /**
+     * Get the properties of a specific workspace for Grafana resource.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The workspace name of Azure Managed Grafana.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the properties of a specific workspace for Grafana resource.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ManagedGrafanaInner getByResourceGroup(String resourceGroupName, String workspaceName) {
+        return getByResourceGroupWithResponse(resourceGroupName, workspaceName, Context.NONE).getValue();
     }
 
     /**
@@ -797,7 +825,7 @@ public final class GrafanasClientImpl implements GrafanasClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<ManagedGrafanaInner>, ManagedGrafanaInner> beginCreate(
         String resourceGroupName, String workspaceName, ManagedGrafanaInner requestBodyParameters) {
-        return beginCreateAsync(resourceGroupName, workspaceName, requestBodyParameters).getSyncPoller();
+        return this.beginCreateAsync(resourceGroupName, workspaceName, requestBodyParameters).getSyncPoller();
     }
 
     /**
@@ -816,7 +844,7 @@ public final class GrafanasClientImpl implements GrafanasClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<ManagedGrafanaInner>, ManagedGrafanaInner> beginCreate(
         String resourceGroupName, String workspaceName, ManagedGrafanaInner requestBodyParameters, Context context) {
-        return beginCreateAsync(resourceGroupName, workspaceName, requestBodyParameters, context).getSyncPoller();
+        return this.beginCreateAsync(resourceGroupName, workspaceName, requestBodyParameters, context).getSyncPoller();
     }
 
     /**
@@ -906,10 +934,10 @@ public final class GrafanasClientImpl implements GrafanasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the grafana resource type along with {@link Response} on successful completion of {@link Mono}.
+     * @return the grafana resource type on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<ManagedGrafanaInner>> updateWithResponseAsync(
+    private Mono<GrafanasUpdateResponse> updateWithResponseAsync(
         String resourceGroupName, String workspaceName, ManagedGrafanaUpdateParameters requestBodyParameters) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -963,10 +991,10 @@ public final class GrafanasClientImpl implements GrafanasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the grafana resource type along with {@link Response} on successful completion of {@link Mono}.
+     * @return the grafana resource type on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<ManagedGrafanaInner>> updateWithResponseAsync(
+    private Mono<GrafanasUpdateResponse> updateWithResponseAsync(
         String resourceGroupName,
         String workspaceName,
         ManagedGrafanaUpdateParameters requestBodyParameters,
@@ -1034,15 +1062,19 @@ public final class GrafanasClientImpl implements GrafanasClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The workspace name of Azure Managed Grafana.
      * @param requestBodyParameters The parameters for a PATCH request to a grafana resource.
+     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the grafana resource type.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ManagedGrafanaInner update(
-        String resourceGroupName, String workspaceName, ManagedGrafanaUpdateParameters requestBodyParameters) {
-        return updateAsync(resourceGroupName, workspaceName, requestBodyParameters).block();
+    public GrafanasUpdateResponse updateWithResponse(
+        String resourceGroupName,
+        String workspaceName,
+        ManagedGrafanaUpdateParameters requestBodyParameters,
+        Context context) {
+        return updateWithResponseAsync(resourceGroupName, workspaceName, requestBodyParameters, context).block();
     }
 
     /**
@@ -1051,19 +1083,15 @@ public final class GrafanasClientImpl implements GrafanasClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The workspace name of Azure Managed Grafana.
      * @param requestBodyParameters The parameters for a PATCH request to a grafana resource.
-     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the grafana resource type along with {@link Response}.
+     * @return the grafana resource type.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ManagedGrafanaInner> updateWithResponse(
-        String resourceGroupName,
-        String workspaceName,
-        ManagedGrafanaUpdateParameters requestBodyParameters,
-        Context context) {
-        return updateWithResponseAsync(resourceGroupName, workspaceName, requestBodyParameters, context).block();
+    public ManagedGrafanaInner update(
+        String resourceGroupName, String workspaceName, ManagedGrafanaUpdateParameters requestBodyParameters) {
+        return updateWithResponse(resourceGroupName, workspaceName, requestBodyParameters, Context.NONE).getValue();
     }
 
     /**
@@ -1211,7 +1239,7 @@ public final class GrafanasClientImpl implements GrafanasClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String workspaceName) {
-        return beginDeleteAsync(resourceGroupName, workspaceName).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, workspaceName).getSyncPoller();
     }
 
     /**
@@ -1228,7 +1256,7 @@ public final class GrafanasClientImpl implements GrafanasClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String workspaceName, Context context) {
-        return beginDeleteAsync(resourceGroupName, workspaceName, context).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, workspaceName, context).getSyncPoller();
     }
 
     /**
@@ -1291,6 +1319,294 @@ public final class GrafanasClientImpl implements GrafanasClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public void delete(String resourceGroupName, String workspaceName, Context context) {
         deleteAsync(resourceGroupName, workspaceName, context).block();
+    }
+
+    /**
+     * Retrieve enterprise add-on details information.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The workspace name of Azure Managed Grafana.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return enterprise details of a Grafana instance along with {@link Response} on successful completion of {@link
+     *     Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<EnterpriseDetailsInner>> checkEnterpriseDetailsWithResponseAsync(
+        String resourceGroupName, String workspaceName) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workspaceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service
+                        .checkEnterpriseDetails(
+                            this.client.getEndpoint(),
+                            this.client.getSubscriptionId(),
+                            resourceGroupName,
+                            workspaceName,
+                            this.client.getApiVersion(),
+                            accept,
+                            context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Retrieve enterprise add-on details information.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The workspace name of Azure Managed Grafana.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return enterprise details of a Grafana instance along with {@link Response} on successful completion of {@link
+     *     Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<EnterpriseDetailsInner>> checkEnterpriseDetailsWithResponseAsync(
+        String resourceGroupName, String workspaceName, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workspaceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .checkEnterpriseDetails(
+                this.client.getEndpoint(),
+                this.client.getSubscriptionId(),
+                resourceGroupName,
+                workspaceName,
+                this.client.getApiVersion(),
+                accept,
+                context);
+    }
+
+    /**
+     * Retrieve enterprise add-on details information.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The workspace name of Azure Managed Grafana.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return enterprise details of a Grafana instance on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<EnterpriseDetailsInner> checkEnterpriseDetailsAsync(String resourceGroupName, String workspaceName) {
+        return checkEnterpriseDetailsWithResponseAsync(resourceGroupName, workspaceName)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Retrieve enterprise add-on details information.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The workspace name of Azure Managed Grafana.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return enterprise details of a Grafana instance along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<EnterpriseDetailsInner> checkEnterpriseDetailsWithResponse(
+        String resourceGroupName, String workspaceName, Context context) {
+        return checkEnterpriseDetailsWithResponseAsync(resourceGroupName, workspaceName, context).block();
+    }
+
+    /**
+     * Retrieve enterprise add-on details information.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The workspace name of Azure Managed Grafana.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return enterprise details of a Grafana instance.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public EnterpriseDetailsInner checkEnterpriseDetails(String resourceGroupName, String workspaceName) {
+        return checkEnterpriseDetailsWithResponse(resourceGroupName, workspaceName, Context.NONE).getValue();
+    }
+
+    /**
+     * The fetchAvailablePlugins operation.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The workspace name of Azure Managed Grafana.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<GrafanaAvailablePluginListResponseInner>> fetchAvailablePluginsWithResponseAsync(
+        String resourceGroupName, String workspaceName) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workspaceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service
+                        .fetchAvailablePlugins(
+                            this.client.getEndpoint(),
+                            this.client.getSubscriptionId(),
+                            resourceGroupName,
+                            workspaceName,
+                            this.client.getApiVersion(),
+                            accept,
+                            context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * The fetchAvailablePlugins operation.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The workspace name of Azure Managed Grafana.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<GrafanaAvailablePluginListResponseInner>> fetchAvailablePluginsWithResponseAsync(
+        String resourceGroupName, String workspaceName, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workspaceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .fetchAvailablePlugins(
+                this.client.getEndpoint(),
+                this.client.getSubscriptionId(),
+                resourceGroupName,
+                workspaceName,
+                this.client.getApiVersion(),
+                accept,
+                context);
+    }
+
+    /**
+     * The fetchAvailablePlugins operation.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The workspace name of Azure Managed Grafana.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<GrafanaAvailablePluginListResponseInner> fetchAvailablePluginsAsync(
+        String resourceGroupName, String workspaceName) {
+        return fetchAvailablePluginsWithResponseAsync(resourceGroupName, workspaceName)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * The fetchAvailablePlugins operation.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The workspace name of Azure Managed Grafana.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<GrafanaAvailablePluginListResponseInner> fetchAvailablePluginsWithResponse(
+        String resourceGroupName, String workspaceName, Context context) {
+        return fetchAvailablePluginsWithResponseAsync(resourceGroupName, workspaceName, context).block();
+    }
+
+    /**
+     * The fetchAvailablePlugins operation.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The workspace name of Azure Managed Grafana.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public GrafanaAvailablePluginListResponseInner fetchAvailablePlugins(
+        String resourceGroupName, String workspaceName) {
+        return fetchAvailablePluginsWithResponse(resourceGroupName, workspaceName, Context.NONE).getValue();
     }
 
     /**

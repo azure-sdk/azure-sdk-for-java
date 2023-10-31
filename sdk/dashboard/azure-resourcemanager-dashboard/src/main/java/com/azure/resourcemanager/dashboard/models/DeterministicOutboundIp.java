@@ -17,6 +17,15 @@ public final class DeterministicOutboundIp extends ExpandableStringEnum<Determin
     public static final DeterministicOutboundIp ENABLED = fromString("Enabled");
 
     /**
+     * Creates a new instance of DeterministicOutboundIp value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public DeterministicOutboundIp() {
+    }
+
+    /**
      * Creates or finds a DeterministicOutboundIp from its string representation.
      *
      * @param name a name to look for.

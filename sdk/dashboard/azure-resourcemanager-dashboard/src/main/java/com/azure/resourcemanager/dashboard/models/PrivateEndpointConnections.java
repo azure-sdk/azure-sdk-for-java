@@ -16,19 +16,6 @@ public interface PrivateEndpointConnections {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The workspace name of Azure Managed Grafana.
      * @param privateEndpointConnectionName The private endpoint connection name of Azure Managed Grafana.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return private endpoint connections.
-     */
-    PrivateEndpointConnection get(String resourceGroupName, String workspaceName, String privateEndpointConnectionName);
-
-    /**
-     * Get private endpoint connections.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The workspace name of Azure Managed Grafana.
-     * @param privateEndpointConnectionName The private endpoint connection name of Azure Managed Grafana.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -37,6 +24,19 @@ public interface PrivateEndpointConnections {
      */
     Response<PrivateEndpointConnection> getWithResponse(
         String resourceGroupName, String workspaceName, String privateEndpointConnectionName, Context context);
+
+    /**
+     * Get private endpoint connections.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The workspace name of Azure Managed Grafana.
+     * @param privateEndpointConnectionName The private endpoint connection name of Azure Managed Grafana.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return private endpoint connections.
+     */
+    PrivateEndpointConnection get(String resourceGroupName, String workspaceName, String privateEndpointConnectionName);
 
     /**
      * Delete private endpoint connection.
