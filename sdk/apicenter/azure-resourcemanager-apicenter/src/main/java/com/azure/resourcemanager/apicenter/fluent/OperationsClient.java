@@ -13,7 +13,9 @@ import com.azure.resourcemanager.apicenter.fluent.models.OperationInner;
 /** An instance of this class provides access to all the operations defined in OperationsClient. */
 public interface OperationsClient {
     /**
-     * List the operations for the provider.
+     * List resource provider operations
+     *
+     * <p>Returns a collection of resource provider operations.
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -24,7 +26,9 @@ public interface OperationsClient {
     PagedIterable<OperationInner> list();
 
     /**
-     * List the operations for the provider.
+     * List resource provider operations
+     *
+     * <p>Returns a collection of resource provider operations.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
