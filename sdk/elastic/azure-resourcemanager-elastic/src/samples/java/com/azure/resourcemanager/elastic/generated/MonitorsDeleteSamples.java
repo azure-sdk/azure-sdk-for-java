@@ -7,7 +7,7 @@ package com.azure.resourcemanager.elastic.generated;
 /** Samples for Monitors Delete. */
 public final class MonitorsDeleteSamples {
     /*
-     * x-ms-original-file: specification/elastic/resource-manager/Microsoft.Elastic/preview/2023-02-01-preview/examples/Monitors_Delete.json
+     * x-ms-original-file: specification/elastic/resource-manager/Microsoft.Elastic/preview/2023-10-01-preview/examples/Monitors_Delete.json
      */
     /**
      * Sample code: Monitors_Delete.
