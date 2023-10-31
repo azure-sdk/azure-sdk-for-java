@@ -37,10 +37,12 @@ import com.azure.resourcemanager.paloaltonetworks.ngfw.fluent.LocalRulestacksCli
 import com.azure.resourcemanager.paloaltonetworks.ngfw.fluent.models.AdvSecurityObjectListResponseInner;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.fluent.models.ChangelogInner;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.fluent.models.CountriesResponseInner;
+import com.azure.resourcemanager.paloaltonetworks.ngfw.fluent.models.CountryInner;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.fluent.models.ListAppIdResponseInner;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.fluent.models.ListFirewallsResponseInner;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.fluent.models.LocalRulestackResourceInner;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.fluent.models.PredefinedUrlCategoriesResponseInner;
+import com.azure.resourcemanager.paloaltonetworks.ngfw.fluent.models.PredefinedUrlCategoryInner;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.fluent.models.SecurityServicesResponseInner;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.fluent.models.SupportInfoInner;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.models.AdvSecurityObjectTypeEnum;
@@ -2187,10 +2189,10 @@ public final class LocalRulestacksClientImpl implements LocalRulestacksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     * @return the response body along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<ListAppIdResponseInner>> listAppIdsWithResponseAsync(
+    private Mono<PagedResponse<String>> listAppIdsSinglePageAsync(
         String resourceGroupName,
         String localRulestackName,
         String appIdVersion,
@@ -2234,6 +2236,15 @@ public final class LocalRulestacksClientImpl implements LocalRulestacksClient {
                             top,
                             accept,
                             context))
+            .<PagedResponse<String>>map(
+                res ->
+                    new PagedResponseBase<>(
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink(),
+                        null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -2250,10 +2261,10 @@ public final class LocalRulestacksClientImpl implements LocalRulestacksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     * @return the response body along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<ListAppIdResponseInner>> listAppIdsWithResponseAsync(
+    private Mono<PagedResponse<String>> listAppIdsSinglePageAsync(
         String resourceGroupName,
         String localRulestackName,
         String appIdVersion,
@@ -2295,77 +2306,16 @@ public final class LocalRulestacksClientImpl implements LocalRulestacksClient {
                 skip,
                 top,
                 accept,
-                context);
-    }
-
-    /**
-     * List of AppIds for LocalRulestack ApiVersion.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param localRulestackName LocalRulestack resource name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ListAppIdResponseInner> listAppIdsAsync(String resourceGroupName, String localRulestackName) {
-        final String appIdVersion = null;
-        final String appPrefix = null;
-        final String skip = null;
-        final Integer top = null;
-        return listAppIdsWithResponseAsync(resourceGroupName, localRulestackName, appIdVersion, appPrefix, skip, top)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * List of AppIds for LocalRulestack ApiVersion.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param localRulestackName LocalRulestack resource name.
-     * @param appIdVersion The appIdVersion parameter.
-     * @param appPrefix The appPrefix parameter.
-     * @param skip The skip parameter.
-     * @param top The top parameter.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ListAppIdResponseInner> listAppIdsWithResponse(
-        String resourceGroupName,
-        String localRulestackName,
-        String appIdVersion,
-        String appPrefix,
-        String skip,
-        Integer top,
-        Context context) {
-        return listAppIdsWithResponseAsync(
-                resourceGroupName, localRulestackName, appIdVersion, appPrefix, skip, top, context)
-            .block();
-    }
-
-    /**
-     * List of AppIds for LocalRulestack ApiVersion.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param localRulestackName LocalRulestack resource name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ListAppIdResponseInner listAppIds(String resourceGroupName, String localRulestackName) {
-        final String appIdVersion = null;
-        final String appPrefix = null;
-        final String skip = null;
-        final Integer top = null;
-        return listAppIdsWithResponse(
-                resourceGroupName, localRulestackName, appIdVersion, appPrefix, skip, top, Context.NONE)
-            .getValue();
+                context)
+            .map(
+                res ->
+                    new PagedResponseBase<>(
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink(),
+                        null));
     }
 
     /**
@@ -2378,10 +2328,10 @@ public final class LocalRulestacksClientImpl implements LocalRulestacksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return countries Response Object along with {@link Response} on successful completion of {@link Mono}.
+     * @return countries Response Object along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<CountriesResponseInner>> listCountriesWithResponseAsync(
+    private Mono<PagedResponse<CountryInner>> listCountriesSinglePageAsync(
         String resourceGroupName, String localRulestackName, String skip, Integer top) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -2418,6 +2368,15 @@ public final class LocalRulestacksClientImpl implements LocalRulestacksClient {
                             top,
                             accept,
                             context))
+            .<PagedResponse<CountryInner>>map(
+                res ->
+                    new PagedResponseBase<>(
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink(),
+                        null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -2432,10 +2391,10 @@ public final class LocalRulestacksClientImpl implements LocalRulestacksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return countries Response Object along with {@link Response} on successful completion of {@link Mono}.
+     * @return countries Response Object along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<CountriesResponseInner>> listCountriesWithResponseAsync(
+    private Mono<PagedResponse<CountryInner>> listCountriesSinglePageAsync(
         String resourceGroupName, String localRulestackName, String skip, Integer top, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -2469,61 +2428,16 @@ public final class LocalRulestacksClientImpl implements LocalRulestacksClient {
                 skip,
                 top,
                 accept,
-                context);
-    }
-
-    /**
-     * List of countries for Rulestack.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param localRulestackName LocalRulestack resource name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return countries Response Object on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<CountriesResponseInner> listCountriesAsync(String resourceGroupName, String localRulestackName) {
-        final String skip = null;
-        final Integer top = null;
-        return listCountriesWithResponseAsync(resourceGroupName, localRulestackName, skip, top)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * List of countries for Rulestack.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param localRulestackName LocalRulestack resource name.
-     * @param skip The skip parameter.
-     * @param top The top parameter.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return countries Response Object along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<CountriesResponseInner> listCountriesWithResponse(
-        String resourceGroupName, String localRulestackName, String skip, Integer top, Context context) {
-        return listCountriesWithResponseAsync(resourceGroupName, localRulestackName, skip, top, context).block();
-    }
-
-    /**
-     * List of countries for Rulestack.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param localRulestackName LocalRulestack resource name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return countries Response Object.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public CountriesResponseInner listCountries(String resourceGroupName, String localRulestackName) {
-        final String skip = null;
-        final Integer top = null;
-        return listCountriesWithResponse(resourceGroupName, localRulestackName, skip, top, Context.NONE).getValue();
+                context)
+            .map(
+                res ->
+                    new PagedResponseBase<>(
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink(),
+                        null));
     }
 
     /**
@@ -2680,10 +2594,11 @@ public final class LocalRulestacksClientImpl implements LocalRulestacksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return predefined url categories response along with {@link Response} on successful completion of {@link Mono}.
+     * @return predefined url categories response along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<PredefinedUrlCategoriesResponseInner>> listPredefinedUrlCategoriesWithResponseAsync(
+    private Mono<PagedResponse<PredefinedUrlCategoryInner>> listPredefinedUrlCategoriesSinglePageAsync(
         String resourceGroupName, String localRulestackName, String skip, Integer top) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -2720,6 +2635,15 @@ public final class LocalRulestacksClientImpl implements LocalRulestacksClient {
                             top,
                             accept,
                             context))
+            .<PagedResponse<PredefinedUrlCategoryInner>>map(
+                res ->
+                    new PagedResponseBase<>(
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink(),
+                        null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -2734,10 +2658,11 @@ public final class LocalRulestacksClientImpl implements LocalRulestacksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return predefined url categories response along with {@link Response} on successful completion of {@link Mono}.
+     * @return predefined url categories response along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<PredefinedUrlCategoriesResponseInner>> listPredefinedUrlCategoriesWithResponseAsync(
+    private Mono<PagedResponse<PredefinedUrlCategoryInner>> listPredefinedUrlCategoriesSinglePageAsync(
         String resourceGroupName, String localRulestackName, String skip, Integer top, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -2771,65 +2696,16 @@ public final class LocalRulestacksClientImpl implements LocalRulestacksClient {
                 skip,
                 top,
                 accept,
-                context);
-    }
-
-    /**
-     * List predefined URL categories for rulestack.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param localRulestackName LocalRulestack resource name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return predefined url categories response on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PredefinedUrlCategoriesResponseInner> listPredefinedUrlCategoriesAsync(
-        String resourceGroupName, String localRulestackName) {
-        final String skip = null;
-        final Integer top = null;
-        return listPredefinedUrlCategoriesWithResponseAsync(resourceGroupName, localRulestackName, skip, top)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * List predefined URL categories for rulestack.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param localRulestackName LocalRulestack resource name.
-     * @param skip The skip parameter.
-     * @param top The top parameter.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return predefined url categories response along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<PredefinedUrlCategoriesResponseInner> listPredefinedUrlCategoriesWithResponse(
-        String resourceGroupName, String localRulestackName, String skip, Integer top, Context context) {
-        return listPredefinedUrlCategoriesWithResponseAsync(resourceGroupName, localRulestackName, skip, top, context)
-            .block();
-    }
-
-    /**
-     * List predefined URL categories for rulestack.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param localRulestackName LocalRulestack resource name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return predefined url categories response.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public PredefinedUrlCategoriesResponseInner listPredefinedUrlCategories(
-        String resourceGroupName, String localRulestackName) {
-        final String skip = null;
-        final Integer top = null;
-        return listPredefinedUrlCategoriesWithResponse(resourceGroupName, localRulestackName, skip, top, Context.NONE)
-            .getValue();
+                context)
+            .map(
+                res ->
+                    new PagedResponseBase<>(
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink(),
+                        null));
     }
 
     /**

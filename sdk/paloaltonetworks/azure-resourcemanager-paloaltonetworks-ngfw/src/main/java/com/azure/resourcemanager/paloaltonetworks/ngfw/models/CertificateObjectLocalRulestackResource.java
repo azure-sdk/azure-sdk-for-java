@@ -104,11 +104,13 @@ public interface CertificateObjectLocalRulestackResource {
             DefinitionStages.WithCertificateSelfSigned,
             DefinitionStages.WithCreate {
     }
+
     /** The CertificateObjectLocalRulestackResource definition stages. */
     interface DefinitionStages {
         /** The first stage of the CertificateObjectLocalRulestackResource definition. */
         interface Blank extends WithParentResource {
         }
+
         /** The stage of the CertificateObjectLocalRulestackResource definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -120,6 +122,7 @@ public interface CertificateObjectLocalRulestackResource {
              */
             WithCertificateSelfSigned withExistingLocalRulestack(String resourceGroupName, String localRulestackName);
         }
+
         /**
          * The stage of the CertificateObjectLocalRulestackResource definition allowing to specify
          * certificateSelfSigned.
@@ -133,6 +136,7 @@ public interface CertificateObjectLocalRulestackResource {
              */
             WithCreate withCertificateSelfSigned(BooleanEnum certificateSelfSigned);
         }
+
         /**
          * The stage of the CertificateObjectLocalRulestackResource definition which contains all the minimum required
          * properties for the resource to be created, but also allows for any other optional properties to be specified.
@@ -157,6 +161,7 @@ public interface CertificateObjectLocalRulestackResource {
              */
             CertificateObjectLocalRulestackResource create(Context context);
         }
+
         /**
          * The stage of the CertificateObjectLocalRulestackResource definition allowing to specify
          * certificateSignerResourceId.
@@ -172,6 +177,7 @@ public interface CertificateObjectLocalRulestackResource {
              */
             WithCreate withCertificateSignerResourceId(String certificateSignerResourceId);
         }
+
         /** The stage of the CertificateObjectLocalRulestackResource definition allowing to specify auditComment. */
         interface WithAuditComment {
             /**
@@ -182,6 +188,7 @@ public interface CertificateObjectLocalRulestackResource {
              */
             WithCreate withAuditComment(String auditComment);
         }
+
         /** The stage of the CertificateObjectLocalRulestackResource definition allowing to specify description. */
         interface WithDescription {
             /**
@@ -192,6 +199,7 @@ public interface CertificateObjectLocalRulestackResource {
              */
             WithCreate withDescription(String description);
         }
+
         /** The stage of the CertificateObjectLocalRulestackResource definition allowing to specify etag. */
         interface WithEtag {
             /**
@@ -203,6 +211,7 @@ public interface CertificateObjectLocalRulestackResource {
             WithCreate withEtag(String etag);
         }
     }
+
     /**
      * Begins update for the CertificateObjectLocalRulestackResource resource.
      *
@@ -232,6 +241,7 @@ public interface CertificateObjectLocalRulestackResource {
          */
         CertificateObjectLocalRulestackResource apply(Context context);
     }
+
     /** The CertificateObjectLocalRulestackResource update stages. */
     interface UpdateStages {
         /**
@@ -249,6 +259,7 @@ public interface CertificateObjectLocalRulestackResource {
              */
             Update withCertificateSignerResourceId(String certificateSignerResourceId);
         }
+
         /**
          * The stage of the CertificateObjectLocalRulestackResource update allowing to specify certificateSelfSigned.
          */
@@ -261,6 +272,7 @@ public interface CertificateObjectLocalRulestackResource {
              */
             Update withCertificateSelfSigned(BooleanEnum certificateSelfSigned);
         }
+
         /** The stage of the CertificateObjectLocalRulestackResource update allowing to specify auditComment. */
         interface WithAuditComment {
             /**
@@ -271,6 +283,7 @@ public interface CertificateObjectLocalRulestackResource {
              */
             Update withAuditComment(String auditComment);
         }
+
         /** The stage of the CertificateObjectLocalRulestackResource update allowing to specify description. */
         interface WithDescription {
             /**
@@ -281,6 +294,7 @@ public interface CertificateObjectLocalRulestackResource {
              */
             Update withDescription(String description);
         }
+
         /** The stage of the CertificateObjectLocalRulestackResource update allowing to specify etag. */
         interface WithEtag {
             /**
@@ -292,6 +306,7 @@ public interface CertificateObjectLocalRulestackResource {
             Update withEtag(String etag);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

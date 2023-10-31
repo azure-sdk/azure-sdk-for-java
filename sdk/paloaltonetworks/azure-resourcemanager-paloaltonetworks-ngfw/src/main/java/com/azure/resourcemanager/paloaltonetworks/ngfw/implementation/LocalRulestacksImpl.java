@@ -12,22 +12,16 @@ import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.fluent.LocalRulestacksClient;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.fluent.models.AdvSecurityObjectListResponseInner;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.fluent.models.ChangelogInner;
-import com.azure.resourcemanager.paloaltonetworks.ngfw.fluent.models.CountriesResponseInner;
-import com.azure.resourcemanager.paloaltonetworks.ngfw.fluent.models.ListAppIdResponseInner;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.fluent.models.ListFirewallsResponseInner;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.fluent.models.LocalRulestackResourceInner;
-import com.azure.resourcemanager.paloaltonetworks.ngfw.fluent.models.PredefinedUrlCategoriesResponseInner;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.fluent.models.SecurityServicesResponseInner;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.fluent.models.SupportInfoInner;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.models.AdvSecurityObjectListResponse;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.models.AdvSecurityObjectTypeEnum;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.models.Changelog;
-import com.azure.resourcemanager.paloaltonetworks.ngfw.models.CountriesResponse;
-import com.azure.resourcemanager.paloaltonetworks.ngfw.models.ListAppIdResponse;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.models.ListFirewallsResponse;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.models.LocalRulestackResource;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.models.LocalRulestacks;
-import com.azure.resourcemanager.paloaltonetworks.ngfw.models.PredefinedUrlCategoriesResponse;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.models.SecurityServicesResponse;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.models.SecurityServicesTypeEnum;
 import com.azure.resourcemanager.paloaltonetworks.ngfw.models.SupportInfo;
@@ -190,63 +184,6 @@ public final class LocalRulestacksImpl implements LocalRulestacks {
         }
     }
 
-    public Response<ListAppIdResponse> listAppIdsWithResponse(
-        String resourceGroupName,
-        String localRulestackName,
-        String appIdVersion,
-        String appPrefix,
-        String skip,
-        Integer top,
-        Context context) {
-        Response<ListAppIdResponseInner> inner =
-            this
-                .serviceClient()
-                .listAppIdsWithResponse(
-                    resourceGroupName, localRulestackName, appIdVersion, appPrefix, skip, top, context);
-        if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
-                new ListAppIdResponseImpl(inner.getValue(), this.manager()));
-        } else {
-            return null;
-        }
-    }
-
-    public ListAppIdResponse listAppIds(String resourceGroupName, String localRulestackName) {
-        ListAppIdResponseInner inner = this.serviceClient().listAppIds(resourceGroupName, localRulestackName);
-        if (inner != null) {
-            return new ListAppIdResponseImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
-    public Response<CountriesResponse> listCountriesWithResponse(
-        String resourceGroupName, String localRulestackName, String skip, Integer top, Context context) {
-        Response<CountriesResponseInner> inner =
-            this.serviceClient().listCountriesWithResponse(resourceGroupName, localRulestackName, skip, top, context);
-        if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
-                new CountriesResponseImpl(inner.getValue(), this.manager()));
-        } else {
-            return null;
-        }
-    }
-
-    public CountriesResponse listCountries(String resourceGroupName, String localRulestackName) {
-        CountriesResponseInner inner = this.serviceClient().listCountries(resourceGroupName, localRulestackName);
-        if (inner != null) {
-            return new CountriesResponseImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<ListFirewallsResponse> listFirewallsWithResponse(
         String resourceGroupName, String localRulestackName, Context context) {
         Response<ListFirewallsResponseInner> inner =
@@ -266,34 +203,6 @@ public final class LocalRulestacksImpl implements LocalRulestacks {
         ListFirewallsResponseInner inner = this.serviceClient().listFirewalls(resourceGroupName, localRulestackName);
         if (inner != null) {
             return new ListFirewallsResponseImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
-    public Response<PredefinedUrlCategoriesResponse> listPredefinedUrlCategoriesWithResponse(
-        String resourceGroupName, String localRulestackName, String skip, Integer top, Context context) {
-        Response<PredefinedUrlCategoriesResponseInner> inner =
-            this
-                .serviceClient()
-                .listPredefinedUrlCategoriesWithResponse(resourceGroupName, localRulestackName, skip, top, context);
-        if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
-                new PredefinedUrlCategoriesResponseImpl(inner.getValue(), this.manager()));
-        } else {
-            return null;
-        }
-    }
-
-    public PredefinedUrlCategoriesResponse listPredefinedUrlCategories(
-        String resourceGroupName, String localRulestackName) {
-        PredefinedUrlCategoriesResponseInner inner =
-            this.serviceClient().listPredefinedUrlCategories(resourceGroupName, localRulestackName);
-        if (inner != null) {
-            return new PredefinedUrlCategoriesResponseImpl(inner, this.manager());
         } else {
             return null;
         }
