@@ -37,7 +37,7 @@ import java.util.Map;
 /** Samples for ContainerApps Update. */
 public final class ContainerAppsUpdateSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2023-05-01/examples/ContainerApps_Patch.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2023-08-01-preview/examples/ContainerApps_Patch.json
      */
     /**
      * Sample code: Patch Container App.
@@ -157,7 +157,9 @@ public final class ContainerAppsUpdateSamples {
                                 new ServiceBind()
                                     .withServiceId(
                                         "/subscriptions/34adfa4f-cedf-4dc0-ba29-b6d1a69ab345/resourceGroups/rg/providers/Microsoft.App/containerApps/service")
-                                    .withName("service"))))
+                                    .withName("service")
+                                    .withClientType("dotnet")
+                                    .withCustomizedKeys(mapOf("DesiredKey", "fakeTokenPlaceholder")))))
             .apply();
     }
 
