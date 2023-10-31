@@ -13,6 +13,12 @@ import java.util.Map;
 @Fluent
 public final class ManagedGrafanaUpdateParameters {
     /*
+     * The sku property.
+     */
+    @JsonProperty(value = "sku")
+    private ResourceSku sku;
+
+    /*
      * The managed identity of the grafana resource.
      */
     @JsonProperty(value = "identity")
@@ -30,6 +36,30 @@ public final class ManagedGrafanaUpdateParameters {
      */
     @JsonProperty(value = "properties")
     private ManagedGrafanaPropertiesUpdateParameters properties;
+
+    /** Creates an instance of ManagedGrafanaUpdateParameters class. */
+    public ManagedGrafanaUpdateParameters() {
+    }
+
+    /**
+     * Get the sku property: The sku property.
+     *
+     * @return the sku value.
+     */
+    public ResourceSku sku() {
+        return this.sku;
+    }
+
+    /**
+     * Set the sku property: The sku property.
+     *
+     * @param sku the sku value to set.
+     * @return the ManagedGrafanaUpdateParameters object itself.
+     */
+    public ManagedGrafanaUpdateParameters withSku(ResourceSku sku) {
+        this.sku = sku;
+        return this;
+    }
 
     /**
      * Get the identity property: The managed identity of the grafana resource.
@@ -97,6 +127,9 @@ public final class ManagedGrafanaUpdateParameters {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (sku() != null) {
+            sku().validate();
+        }
         if (identity() != null) {
             identity().validate();
         }

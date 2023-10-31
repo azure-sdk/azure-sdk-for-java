@@ -10,7 +10,11 @@ import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.dashboard.fluent.GrafanasClient;
+import com.azure.resourcemanager.dashboard.fluent.models.EnterpriseDetailsInner;
+import com.azure.resourcemanager.dashboard.fluent.models.GrafanaAvailablePluginListResponseInner;
 import com.azure.resourcemanager.dashboard.fluent.models.ManagedGrafanaInner;
+import com.azure.resourcemanager.dashboard.models.EnterpriseDetails;
+import com.azure.resourcemanager.dashboard.models.GrafanaAvailablePluginListResponse;
 import com.azure.resourcemanager.dashboard.models.Grafanas;
 import com.azure.resourcemanager.dashboard.models.ManagedGrafana;
 
@@ -47,15 +51,6 @@ public final class GrafanasImpl implements Grafanas {
         return Utils.mapPage(inner, inner1 -> new ManagedGrafanaImpl(inner1, this.manager()));
     }
 
-    public ManagedGrafana getByResourceGroup(String resourceGroupName, String workspaceName) {
-        ManagedGrafanaInner inner = this.serviceClient().getByResourceGroup(resourceGroupName, workspaceName);
-        if (inner != null) {
-            return new ManagedGrafanaImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<ManagedGrafana> getByResourceGroupWithResponse(
         String resourceGroupName, String workspaceName, Context context) {
         Response<ManagedGrafanaInner> inner =
@@ -71,12 +66,70 @@ public final class GrafanasImpl implements Grafanas {
         }
     }
 
+    public ManagedGrafana getByResourceGroup(String resourceGroupName, String workspaceName) {
+        ManagedGrafanaInner inner = this.serviceClient().getByResourceGroup(resourceGroupName, workspaceName);
+        if (inner != null) {
+            return new ManagedGrafanaImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
     public void deleteByResourceGroup(String resourceGroupName, String workspaceName) {
         this.serviceClient().delete(resourceGroupName, workspaceName);
     }
 
     public void delete(String resourceGroupName, String workspaceName, Context context) {
         this.serviceClient().delete(resourceGroupName, workspaceName, context);
+    }
+
+    public Response<EnterpriseDetails> checkEnterpriseDetailsWithResponse(
+        String resourceGroupName, String workspaceName, Context context) {
+        Response<EnterpriseDetailsInner> inner =
+            this.serviceClient().checkEnterpriseDetailsWithResponse(resourceGroupName, workspaceName, context);
+        if (inner != null) {
+            return new SimpleResponse<>(
+                inner.getRequest(),
+                inner.getStatusCode(),
+                inner.getHeaders(),
+                new EnterpriseDetailsImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public EnterpriseDetails checkEnterpriseDetails(String resourceGroupName, String workspaceName) {
+        EnterpriseDetailsInner inner = this.serviceClient().checkEnterpriseDetails(resourceGroupName, workspaceName);
+        if (inner != null) {
+            return new EnterpriseDetailsImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public Response<GrafanaAvailablePluginListResponse> fetchAvailablePluginsWithResponse(
+        String resourceGroupName, String workspaceName, Context context) {
+        Response<GrafanaAvailablePluginListResponseInner> inner =
+            this.serviceClient().fetchAvailablePluginsWithResponse(resourceGroupName, workspaceName, context);
+        if (inner != null) {
+            return new SimpleResponse<>(
+                inner.getRequest(),
+                inner.getStatusCode(),
+                inner.getHeaders(),
+                new GrafanaAvailablePluginListResponseImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public GrafanaAvailablePluginListResponse fetchAvailablePlugins(String resourceGroupName, String workspaceName) {
+        GrafanaAvailablePluginListResponseInner inner =
+            this.serviceClient().fetchAvailablePlugins(resourceGroupName, workspaceName);
+        if (inner != null) {
+            return new GrafanaAvailablePluginListResponseImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public ManagedGrafana getById(String id) {
