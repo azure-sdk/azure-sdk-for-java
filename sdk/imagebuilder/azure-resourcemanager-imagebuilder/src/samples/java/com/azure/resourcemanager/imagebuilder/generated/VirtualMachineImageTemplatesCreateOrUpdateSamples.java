@@ -22,7 +22,7 @@ import java.util.Map;
 /** Samples for VirtualMachineImageTemplates CreateOrUpdate. */
 public final class VirtualMachineImageTemplatesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2022-07-01/examples/CreateImageTemplateLinux.json
+     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2023-07-01/examples/CreateImageTemplateLinux.json
      */
     /**
      * Sample code: Create an Image Template for Linux.
@@ -75,7 +75,7 @@ public final class VirtualMachineImageTemplatesCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2022-07-01/examples/CreateImageTemplateWindows.json
+     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2023-07-01/examples/CreateImageTemplateWindows.json
      */
     /**
      * Sample code: Create an Image Template for Windows.
@@ -164,6 +164,7 @@ public final class VirtualMachineImageTemplatesCreateOrUpdateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
