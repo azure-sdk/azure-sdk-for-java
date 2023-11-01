@@ -13,11 +13,11 @@ import com.azure.resourcemanager.mysqlflexibleserver.models.DataEncryptionType;
 import com.azure.resourcemanager.mysqlflexibleserver.models.EnableStatusEnum;
 import com.azure.resourcemanager.mysqlflexibleserver.models.HighAvailability;
 import com.azure.resourcemanager.mysqlflexibleserver.models.HighAvailabilityMode;
-import com.azure.resourcemanager.mysqlflexibleserver.models.Identity;
 import com.azure.resourcemanager.mysqlflexibleserver.models.ManagedServiceIdentityType;
+import com.azure.resourcemanager.mysqlflexibleserver.models.MySqlServerIdentity;
+import com.azure.resourcemanager.mysqlflexibleserver.models.MySqlServerSku;
+import com.azure.resourcemanager.mysqlflexibleserver.models.ServerSkuTier;
 import com.azure.resourcemanager.mysqlflexibleserver.models.ServerVersion;
-import com.azure.resourcemanager.mysqlflexibleserver.models.Sku;
-import com.azure.resourcemanager.mysqlflexibleserver.models.SkuTier;
 import com.azure.resourcemanager.mysqlflexibleserver.models.Storage;
 import java.io.IOException;
 import java.time.OffsetDateTime;
@@ -27,7 +27,7 @@ import java.util.Map;
 /** Samples for Servers Create. */
 public final class ServersCreateSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/preview/2022-09-30-preview/examples/ServerCreateReplica.json
+     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/preview/2023-10-01-preview/examples/ServerCreateReplica.json
      */
     /**
      * Sample code: Create a replica server.
@@ -47,7 +47,7 @@ public final class ServersCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/preview/2022-09-30-preview/examples/ServerCreate.json
+     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/preview/2023-10-01-preview/examples/ServerCreate.json
      */
     /**
      * Sample code: Create a new server.
@@ -61,7 +61,7 @@ public final class ServersCreateSamples {
             .withRegion("southeastasia")
             .withExistingResourceGroup("testrg")
             .withTags(mapOf("num", "1"))
-            .withSku(new Sku().withName("Standard_D2ds_v4").withTier(SkuTier.GENERAL_PURPOSE))
+            .withSku(new MySqlServerSku().withName("Standard_D2ds_v4").withTier(ServerSkuTier.GENERAL_PURPOSE))
             .withAdministratorLogin("cloudsa")
             .withAdministratorLoginPassword("your_password")
             .withVersion(ServerVersion.FIVE_SEVEN)
@@ -75,7 +75,7 @@ public final class ServersCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/preview/2022-09-30-preview/examples/ServerCreateWithBYOK.json
+     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/preview/2023-10-01-preview/examples/ServerCreateWithBYOK.json
      */
     /**
      * Sample code: Create a server with byok.
@@ -91,7 +91,7 @@ public final class ServersCreateSamples {
             .withExistingResourceGroup("testrg")
             .withTags(mapOf("num", "1"))
             .withIdentity(
-                new Identity()
+                new MySqlServerIdentity()
                     .withType(ManagedServiceIdentityType.USER_ASSIGNED)
                     .withUserAssignedIdentities(
                         mapOf(
@@ -99,7 +99,7 @@ public final class ServersCreateSamples {
                             SerializerFactory
                                 .createDefaultManagementSerializerAdapter()
                                 .deserialize("{}", Object.class, SerializerEncoding.JSON))))
-            .withSku(new Sku().withName("Standard_D2ds_v4").withTier(SkuTier.GENERAL_PURPOSE))
+            .withSku(new MySqlServerSku().withName("Standard_D2ds_v4").withTier(ServerSkuTier.GENERAL_PURPOSE))
             .withAdministratorLogin("cloudsa")
             .withAdministratorLoginPassword("your_password")
             .withVersion(ServerVersion.FIVE_SEVEN)
@@ -122,7 +122,7 @@ public final class ServersCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/preview/2022-09-30-preview/examples/ServerCreateWithPointInTimeRestore.json
+     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/preview/2023-10-01-preview/examples/ServerCreateWithPointInTimeRestore.json
      */
     /**
      * Sample code: Create a server as a point in time restore.
@@ -137,7 +137,7 @@ public final class ServersCreateSamples {
             .withRegion("SoutheastAsia")
             .withExistingResourceGroup("TargetResourceGroup")
             .withTags(mapOf("num", "1"))
-            .withSku(new Sku().withName("Standard_D14_v2").withTier(SkuTier.GENERAL_PURPOSE))
+            .withSku(new MySqlServerSku().withName("Standard_D14_v2").withTier(ServerSkuTier.GENERAL_PURPOSE))
             .withCreateMode(CreateMode.POINT_IN_TIME_RESTORE)
             .withSourceServerResourceId(
                 "/subscriptions/ffffffff-ffff-ffff-ffff-ffffffffffff/resourceGroups/SourceResourceGroup/providers/Microsoft.DBforMySQL/flexibleServers/sourceserver")
@@ -145,6 +145,7 @@ public final class ServersCreateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

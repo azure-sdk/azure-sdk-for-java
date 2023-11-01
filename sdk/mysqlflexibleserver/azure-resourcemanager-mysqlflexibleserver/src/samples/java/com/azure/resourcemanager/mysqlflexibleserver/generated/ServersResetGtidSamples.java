@@ -9,7 +9,7 @@ import com.azure.resourcemanager.mysqlflexibleserver.models.ServerGtidSetParamet
 /** Samples for Servers ResetGtid. */
 public final class ServersResetGtidSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/preview/2022-09-30-preview/examples/ServerResetGtid.json
+     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/preview/2023-10-01-preview/examples/ServerResetGtid.json
      */
     /**
      * Sample code: Reset GTID on a server.
