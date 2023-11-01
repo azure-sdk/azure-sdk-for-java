@@ -1,0 +1,47 @@
+# NOTE: Please refer to https://aka.ms/azsdk/engsys/ci-yaml before editing this file.
+
+trigger:
+  branches:
+    include:
+      - main
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/powerplatform/ci.yml
+      - sdk/powerplatform/azure-resourcemanager-powerplatform/
+    exclude:
+      - sdk/powerplatform/pom.xml
+      - sdk/powerplatform/azure-resourcemanager-powerplatform/pom.xml
+
+pr:
+  branches:
+    include:
+      - main
+      - feature/*
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/powerplatform/ci.yml
+      - sdk/powerplatform/azure-resourcemanager-powerplatform/
+    exclude:
+      - sdk/powerplatform/pom.xml
+      - sdk/powerplatform/azure-resourcemanager-powerplatform/pom.xml
+
+parameters:
+  - name: release_azureresourcemanagerpowerplatform
+    displayName: azure-resourcemanager-powerplatform
+    type: boolean
+    default: false
+
+extends:
+  template: ../../eng/pipelines/templates/stages/archetype-sdk-client.yml
+  parameters:
+    ServiceDirectory: powerplatform
+    EnableBatchRelease: true
+    Artifacts:
+      - name: azure-resourcemanager-powerplatform
+        groupId: com.azure.resourcemanager
+        safeName: azureresourcemanagerpowerplatform
+        releaseInBatch: ${{ parameters.release_azureresourcemanagerpowerplatform }}
