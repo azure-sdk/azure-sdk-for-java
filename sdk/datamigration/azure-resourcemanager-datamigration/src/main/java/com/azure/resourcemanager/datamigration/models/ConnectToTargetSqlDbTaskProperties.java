@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
+import java.util.Map;
 
 /** Properties for the task that validates connection to SQL DB and target server requirements. */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "taskType")
@@ -26,6 +27,12 @@ public final class ConnectToTargetSqlDbTaskProperties extends ProjectTaskPropert
      */
     @JsonProperty(value = "output", access = JsonProperty.Access.WRITE_ONLY)
     private List<ConnectToTargetSqlDbTaskOutput> output;
+
+    /*
+     * DateTime in UTC when the task was created
+     */
+    @JsonProperty(value = "createdOn")
+    private String createdOn;
 
     /** Creates an instance of ConnectToTargetSqlDbTaskProperties class. */
     public ConnectToTargetSqlDbTaskProperties() {
@@ -58,6 +65,33 @@ public final class ConnectToTargetSqlDbTaskProperties extends ProjectTaskPropert
      */
     public List<ConnectToTargetSqlDbTaskOutput> output() {
         return this.output;
+    }
+
+    /**
+     * Get the createdOn property: DateTime in UTC when the task was created.
+     *
+     * @return the createdOn value.
+     */
+    public String createdOn() {
+        return this.createdOn;
+    }
+
+    /**
+     * Set the createdOn property: DateTime in UTC when the task was created.
+     *
+     * @param createdOn the createdOn value to set.
+     * @return the ConnectToTargetSqlDbTaskProperties object itself.
+     */
+    public ConnectToTargetSqlDbTaskProperties withCreatedOn(String createdOn) {
+        this.createdOn = createdOn;
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public ConnectToTargetSqlDbTaskProperties withClientData(Map<String, String> clientData) {
+        super.withClientData(clientData);
+        return this;
     }
 
     /**

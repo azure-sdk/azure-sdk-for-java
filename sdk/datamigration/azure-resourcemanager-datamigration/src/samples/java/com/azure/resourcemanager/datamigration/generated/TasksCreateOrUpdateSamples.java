@@ -12,7 +12,7 @@ import com.azure.resourcemanager.datamigration.models.SqlConnectionInfo;
 /** Samples for Tasks CreateOrUpdate. */
 public final class TasksCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/stable/2018-04-19/examples/Tasks_CreateOrUpdate.json
+     * x-ms-original-file: specification/datamigration/resource-manager/Microsoft.DataMigration/preview/2022-03-30-preview/examples/Tasks_CreateOrUpdate.json
      */
     /**
      * Sample code: Tasks_CreateOrUpdate.
