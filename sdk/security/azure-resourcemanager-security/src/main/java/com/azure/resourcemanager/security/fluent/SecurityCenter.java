@@ -325,6 +325,20 @@ public interface SecurityCenter {
     ConnectorsClient getConnectors();
 
     /**
+     * Gets the ResourceProvidersClient object to access its operations.
+     *
+     * @return the ResourceProvidersClient object.
+     */
+    ResourceProvidersClient getResourceProviders();
+
+    /**
+     * Gets the SensitivitySettingsClient object to access its operations.
+     *
+     * @return the SensitivitySettingsClient object.
+     */
+    SensitivitySettingsClient getSensitivitySettings();
+
+    /**
      * Gets the AlertsClient object to access its operations.
      *
      * @return the AlertsClient object.
@@ -337,13 +351,6 @@ public interface SecurityCenter {
      * @return the SettingsClient object.
      */
     SettingsClient getSettings();
-
-    /**
-     * Gets the IngestionSettingsClient object to access its operations.
-     *
-     * @return the IngestionSettingsClient object.
-     */
-    IngestionSettingsClient getIngestionSettings();
 
     /**
      * Gets the SoftwareInventoriesClient object to access its operations.
@@ -402,34 +409,6 @@ public interface SecurityCenter {
     ApiCollectionsClient getApiCollections();
 
     /**
-     * Gets the ApiCollectionOnboardingsClient object to access its operations.
-     *
-     * @return the ApiCollectionOnboardingsClient object.
-     */
-    ApiCollectionOnboardingsClient getApiCollectionOnboardings();
-
-    /**
-     * Gets the ApiCollectionOffboardingsClient object to access its operations.
-     *
-     * @return the ApiCollectionOffboardingsClient object.
-     */
-    ApiCollectionOffboardingsClient getApiCollectionOffboardings();
-
-    /**
-     * Gets the HealthReportsClient object to access its operations.
-     *
-     * @return the HealthReportsClient object.
-     */
-    HealthReportsClient getHealthReports();
-
-    /**
-     * Gets the HealthReportOperationsClient object to access its operations.
-     *
-     * @return the HealthReportOperationsClient object.
-     */
-    HealthReportOperationsClient getHealthReportOperations();
-
-    /**
      * Gets the SqlVulnerabilityAssessmentScansClient object to access its operations.
      *
      * @return the SqlVulnerabilityAssessmentScansClient object.
@@ -451,16 +430,107 @@ public interface SecurityCenter {
     SqlVulnerabilityAssessmentBaselineRulesClient getSqlVulnerabilityAssessmentBaselineRules();
 
     /**
-     * Gets the SecurityConnectorsClient object to access its operations.
-     *
-     * @return the SecurityConnectorsClient object.
-     */
-    SecurityConnectorsClient getSecurityConnectors();
-
-    /**
      * Gets the SecurityOperatorsClient object to access its operations.
      *
      * @return the SecurityOperatorsClient object.
      */
     SecurityOperatorsClient getSecurityOperators();
+
+    /**
+     * Gets the ServerVulnerabilityAssessmentsSettingsClient object to access its operations.
+     *
+     * @return the ServerVulnerabilityAssessmentsSettingsClient object.
+     */
+    ServerVulnerabilityAssessmentsSettingsClient getServerVulnerabilityAssessmentsSettings();
+
+    /**
+     * Gets the HealthReportsClient object to access its operations.
+     *
+     * @return the HealthReportsClient object.
+     */
+    HealthReportsClient getHealthReports();
+
+    /**
+     * Gets the DefenderForStoragesClient object to access its operations.
+     *
+     * @return the DefenderForStoragesClient object.
+     */
+    DefenderForStoragesClient getDefenderForStorages();
+
+    /**
+     * Gets the AzureDevOpsOrgsClient object to access its operations.
+     *
+     * @return the AzureDevOpsOrgsClient object.
+     */
+    AzureDevOpsOrgsClient getAzureDevOpsOrgs();
+
+    /**
+     * Gets the AzureDevOpsProjectsClient object to access its operations.
+     *
+     * @return the AzureDevOpsProjectsClient object.
+     */
+    AzureDevOpsProjectsClient getAzureDevOpsProjects();
+
+    /**
+     * Gets the AzureDevOpsReposClient object to access its operations.
+     *
+     * @return the AzureDevOpsReposClient object.
+     */
+    AzureDevOpsReposClient getAzureDevOpsRepos();
+
+    /**
+     * Gets the DevOpsConfigurationsClient object to access its operations.
+     *
+     * @return the DevOpsConfigurationsClient object.
+     */
+    DevOpsConfigurationsClient getDevOpsConfigurations();
+
+    /**
+     * Gets the GitHubOwnersClient object to access its operations.
+     *
+     * @return the GitHubOwnersClient object.
+     */
+    GitHubOwnersClient getGitHubOwners();
+
+    /**
+     * Gets the GitHubReposClient object to access its operations.
+     *
+     * @return the GitHubReposClient object.
+     */
+    GitHubReposClient getGitHubRepos();
+
+    /**
+     * Gets the GitLabGroupsClient object to access its operations.
+     *
+     * @return the GitLabGroupsClient object.
+     */
+    GitLabGroupsClient getGitLabGroups();
+
+    /**
+     * Gets the GitLabSubgroupsClient object to access its operations.
+     *
+     * @return the GitLabSubgroupsClient object.
+     */
+    GitLabSubgroupsClient getGitLabSubgroups();
+
+    /**
+     * Gets the GitLabProjectsClient object to access its operations.
+     *
+     * @return the GitLabProjectsClient object.
+     */
+    GitLabProjectsClient getGitLabProjects();
+
+    /**
+     * Gets the DevOpsOperationResultsClient object to access its operations.
+     *
+     * @return the DevOpsOperationResultsClient object.
+     */
+    DevOpsOperationResultsClient getDevOpsOperationResults();
+
+    /**
+     * Gets the SecurityConnectorsClient object to access its operations.
+     *
+     * @return the SecurityConnectorsClient object.
+     */
+    SecurityConnectorsClient getSecurityConnectors();
 }
