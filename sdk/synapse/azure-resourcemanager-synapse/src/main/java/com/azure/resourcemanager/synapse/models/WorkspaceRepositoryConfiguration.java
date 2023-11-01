@@ -18,7 +18,7 @@ public final class WorkspaceRepositoryConfiguration {
     private String type;
 
     /*
-     * GitHub Enterprise host name. For example: https://github.mydomain.com
+     * GitHub Enterprise host name. For example: `https://github.mydomain.com`
      */
     @JsonProperty(value = "hostName")
     private String hostname;
@@ -92,7 +92,7 @@ public final class WorkspaceRepositoryConfiguration {
     }
 
     /**
-     * Get the hostname property: GitHub Enterprise host name. For example: https://github.mydomain.com.
+     * Get the hostname property: GitHub Enterprise host name. For example: `https://github.mydomain.com`.
      *
      * @return the hostname value.
      */
@@ -101,7 +101,7 @@ public final class WorkspaceRepositoryConfiguration {
     }
 
     /**
-     * Set the hostname property: GitHub Enterprise host name. For example: https://github.mydomain.com.
+     * Set the hostname property: GitHub Enterprise host name. For example: `https://github.mydomain.com`.
      *
      * @param hostname the hostname value to set.
      * @return the WorkspaceRepositoryConfiguration object itself.

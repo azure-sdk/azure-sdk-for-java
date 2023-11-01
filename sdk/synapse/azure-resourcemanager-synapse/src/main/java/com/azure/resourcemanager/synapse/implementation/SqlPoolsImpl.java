@@ -11,7 +11,6 @@ import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.synapse.fluent.SqlPoolsClient;
 import com.azure.resourcemanager.synapse.fluent.models.SqlPoolInner;
-import com.azure.resourcemanager.synapse.models.ResourceMoveDefinition;
 import com.azure.resourcemanager.synapse.models.SqlPool;
 import com.azure.resourcemanager.synapse.models.SqlPools;
 
@@ -114,22 +113,6 @@ public final class SqlPoolsImpl implements SqlPools {
         } else {
             return null;
         }
-    }
-
-    public Response<Void> renameWithResponse(
-        String resourceGroupName,
-        String workspaceName,
-        String sqlPoolName,
-        ResourceMoveDefinition parameters,
-        Context context) {
-        return this
-            .serviceClient()
-            .renameWithResponse(resourceGroupName, workspaceName, sqlPoolName, parameters, context);
-    }
-
-    public void rename(
-        String resourceGroupName, String workspaceName, String sqlPoolName, ResourceMoveDefinition parameters) {
-        this.serviceClient().rename(resourceGroupName, workspaceName, sqlPoolName, parameters);
     }
 
     public SqlPool getById(String id) {

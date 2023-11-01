@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.synapse.models;
 
-import com.azure.core.http.rest.Response;
 import com.azure.core.management.Region;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.synapse.fluent.models.SqlPoolInner;
@@ -181,11 +180,13 @@ public interface SqlPool {
             DefinitionStages.WithParentResource,
             DefinitionStages.WithCreate {
     }
+
     /** The SqlPool definition stages. */
     interface DefinitionStages {
         /** The first stage of the SqlPool definition. */
         interface Blank extends WithLocation {
         }
+
         /** The stage of the SqlPool definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -204,6 +205,7 @@ public interface SqlPool {
              */
             WithParentResource withRegion(String location);
         }
+
         /** The stage of the SqlPool definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -215,6 +217,7 @@ public interface SqlPool {
              */
             WithCreate withExistingWorkspace(String resourceGroupName, String workspaceName);
         }
+
         /**
          * The stage of the SqlPool definition which contains all the minimum required properties for the resource to be
          * created, but also allows for any other optional properties to be specified.
@@ -246,6 +249,7 @@ public interface SqlPool {
              */
             SqlPool create(Context context);
         }
+
         /** The stage of the SqlPool definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -256,6 +260,7 @@ public interface SqlPool {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
         /** The stage of the SqlPool definition allowing to specify sku. */
         interface WithSku {
             /**
@@ -269,6 +274,7 @@ public interface SqlPool {
              */
             WithCreate withSku(Sku sku);
         }
+
         /** The stage of the SqlPool definition allowing to specify maxSizeBytes. */
         interface WithMaxSizeBytes {
             /**
@@ -279,6 +285,7 @@ public interface SqlPool {
              */
             WithCreate withMaxSizeBytes(Long maxSizeBytes);
         }
+
         /** The stage of the SqlPool definition allowing to specify collation. */
         interface WithCollation {
             /**
@@ -289,6 +296,7 @@ public interface SqlPool {
              */
             WithCreate withCollation(String collation);
         }
+
         /** The stage of the SqlPool definition allowing to specify sourceDatabaseId. */
         interface WithSourceDatabaseId {
             /**
@@ -299,6 +307,7 @@ public interface SqlPool {
              */
             WithCreate withSourceDatabaseId(String sourceDatabaseId);
         }
+
         /** The stage of the SqlPool definition allowing to specify recoverableDatabaseId. */
         interface WithRecoverableDatabaseId {
             /**
@@ -309,6 +318,7 @@ public interface SqlPool {
              */
             WithCreate withRecoverableDatabaseId(String recoverableDatabaseId);
         }
+
         /** The stage of the SqlPool definition allowing to specify provisioningState. */
         interface WithProvisioningState {
             /**
@@ -319,6 +329,7 @@ public interface SqlPool {
              */
             WithCreate withProvisioningState(String provisioningState);
         }
+
         /** The stage of the SqlPool definition allowing to specify restorePointInTime. */
         interface WithRestorePointInTime {
             /**
@@ -329,6 +340,7 @@ public interface SqlPool {
              */
             WithCreate withRestorePointInTime(OffsetDateTime restorePointInTime);
         }
+
         /** The stage of the SqlPool definition allowing to specify createMode. */
         interface WithCreateMode {
             /**
@@ -360,6 +372,7 @@ public interface SqlPool {
              */
             WithCreate withCreateMode(CreateMode createMode);
         }
+
         /** The stage of the SqlPool definition allowing to specify storageAccountType. */
         interface WithStorageAccountType {
             /**
@@ -371,6 +384,7 @@ public interface SqlPool {
              */
             WithCreate withStorageAccountType(StorageAccountType storageAccountType);
         }
+
         /** The stage of the SqlPool definition allowing to specify sourceDatabaseDeletionDate. */
         interface WithSourceDatabaseDeletionDate {
             /**
@@ -382,6 +396,7 @@ public interface SqlPool {
             WithCreate withSourceDatabaseDeletionDate(OffsetDateTime sourceDatabaseDeletionDate);
         }
     }
+
     /**
      * Begins update for the SqlPool resource.
      *
@@ -414,6 +429,7 @@ public interface SqlPool {
          */
         SqlPool apply(Context context);
     }
+
     /** The SqlPool update stages. */
     interface UpdateStages {
         /** The stage of the SqlPool update allowing to specify tags. */
@@ -426,6 +442,7 @@ public interface SqlPool {
              */
             Update withTags(Map<String, String> tags);
         }
+
         /** The stage of the SqlPool update allowing to specify sku. */
         interface WithSku {
             /**
@@ -439,6 +456,7 @@ public interface SqlPool {
              */
             Update withSku(Sku sku);
         }
+
         /** The stage of the SqlPool update allowing to specify maxSizeBytes. */
         interface WithMaxSizeBytes {
             /**
@@ -449,6 +467,7 @@ public interface SqlPool {
              */
             Update withMaxSizeBytes(Long maxSizeBytes);
         }
+
         /** The stage of the SqlPool update allowing to specify sourceDatabaseId. */
         interface WithSourceDatabaseId {
             /**
@@ -459,6 +478,7 @@ public interface SqlPool {
              */
             Update withSourceDatabaseId(String sourceDatabaseId);
         }
+
         /** The stage of the SqlPool update allowing to specify recoverableDatabaseId. */
         interface WithRecoverableDatabaseId {
             /**
@@ -469,6 +489,7 @@ public interface SqlPool {
              */
             Update withRecoverableDatabaseId(String recoverableDatabaseId);
         }
+
         /** The stage of the SqlPool update allowing to specify provisioningState. */
         interface WithProvisioningState {
             /**
@@ -479,6 +500,7 @@ public interface SqlPool {
              */
             Update withProvisioningState(String provisioningState);
         }
+
         /** The stage of the SqlPool update allowing to specify createMode. */
         interface WithCreateMode {
             /**
@@ -510,6 +532,7 @@ public interface SqlPool {
              */
             Update withCreateMode(CreateMode createMode);
         }
+
         /** The stage of the SqlPool update allowing to specify storageAccountType. */
         interface WithStorageAccountType {
             /**
@@ -522,6 +545,7 @@ public interface SqlPool {
             Update withStorageAccountType(StorageAccountType storageAccountType);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *
@@ -584,30 +608,4 @@ public interface SqlPool {
      * @return sQL pool.
      */
     SqlPool resume(Context context);
-
-    /**
-     * Rename a SQL pool
-     *
-     * <p>Rename a SQL pool.
-     *
-     * @param parameters The resource move definition for renaming this Sql pool.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
-     */
-    Response<Void> renameWithResponse(ResourceMoveDefinition parameters, Context context);
-
-    /**
-     * Rename a SQL pool
-     *
-     * <p>Rename a SQL pool.
-     *
-     * @param parameters The resource move definition for renaming this Sql pool.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void rename(ResourceMoveDefinition parameters);
 }
