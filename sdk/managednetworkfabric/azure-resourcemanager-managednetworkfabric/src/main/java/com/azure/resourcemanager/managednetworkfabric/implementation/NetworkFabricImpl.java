@@ -20,7 +20,7 @@ import com.azure.resourcemanager.managednetworkfabric.models.NetworkFabricPatcha
 import com.azure.resourcemanager.managednetworkfabric.models.ProvisioningState;
 import com.azure.resourcemanager.managednetworkfabric.models.TerminalServerConfiguration;
 import com.azure.resourcemanager.managednetworkfabric.models.UpdateAdministrativeState;
-import com.azure.resourcemanager.managednetworkfabric.models.UpdateVersion;
+import com.azure.resourcemanager.managednetworkfabric.models.UpgradeNetworkFabricProperties;
 import com.azure.resourcemanager.managednetworkfabric.models.ValidateConfigurationProperties;
 import com.azure.resourcemanager.managednetworkfabric.models.ValidateConfigurationResponse;
 import java.util.Collections;
@@ -277,11 +277,11 @@ public final class NetworkFabricImpl implements NetworkFabric, NetworkFabric.Def
         return serviceManager.networkFabrics().deprovision(resourceGroupName, networkFabricName, context);
     }
 
-    public CommonPostActionResponseForStateUpdate upgrade(UpdateVersion body) {
+    public CommonPostActionResponseForStateUpdate upgrade(UpgradeNetworkFabricProperties body) {
         return serviceManager.networkFabrics().upgrade(resourceGroupName, networkFabricName, body);
     }
 
-    public CommonPostActionResponseForStateUpdate upgrade(UpdateVersion body, Context context) {
+    public CommonPostActionResponseForStateUpdate upgrade(UpgradeNetworkFabricProperties body, Context context) {
         return serviceManager.networkFabrics().upgrade(resourceGroupName, networkFabricName, body, context);
     }
 
@@ -406,6 +406,11 @@ public final class NetworkFabricImpl implements NetworkFabric, NetworkFabric.Def
             this.updateBody.withTags(tags);
             return this;
         }
+    }
+
+    public NetworkFabricImpl withFabricVersion(String fabricVersion) {
+        this.innerModel().withFabricVersion(fabricVersion);
+        return this;
     }
 
     public NetworkFabricImpl withRackCount(Integer rackCount) {
