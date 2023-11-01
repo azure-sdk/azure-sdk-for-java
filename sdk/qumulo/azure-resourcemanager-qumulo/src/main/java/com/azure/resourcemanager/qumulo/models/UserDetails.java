@@ -14,7 +14,7 @@ public final class UserDetails {
     /*
      * User Email
      */
-    @JsonProperty(value = "email", required = true)
+    @JsonProperty(value = "email")
     private String email;
 
     /** Creates an instance of UserDetails class. */
