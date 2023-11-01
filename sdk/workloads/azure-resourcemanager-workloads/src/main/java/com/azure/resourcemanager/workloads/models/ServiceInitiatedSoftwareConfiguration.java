@@ -42,7 +42,7 @@ public final class ServiceInitiatedSoftwareConfiguration extends SoftwareConfigu
     /*
      * The SSH private key.
      */
-    @JsonProperty(value = "sshPrivateKey", required = true)
+    @JsonProperty(value = "sshPrivateKey")
     private String sshPrivateKey;
 
     /*
