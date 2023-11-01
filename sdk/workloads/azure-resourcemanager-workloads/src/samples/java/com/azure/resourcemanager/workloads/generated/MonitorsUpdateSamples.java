@@ -49,11 +49,12 @@ public final class MonitorsUpdateSamples {
                 .getValue();
         resource
             .update()
-            .withTags(mapOf("testkey", "testvalue"))
+            .withTags(mapOf("testkey", "fakeTokenPlaceholder"))
             .withIdentity(new UserAssignedServiceIdentity().withType(ManagedServiceIdentityType.NONE))
             .apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

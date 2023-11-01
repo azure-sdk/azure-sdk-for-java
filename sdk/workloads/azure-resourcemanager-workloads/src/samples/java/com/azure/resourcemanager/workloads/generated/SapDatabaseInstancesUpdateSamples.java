@@ -24,9 +24,10 @@ public final class SapDatabaseInstancesUpdateSamples {
                 .sapDatabaseInstances()
                 .getWithResponse("test-rg", "X00", "databaseServer", com.azure.core.util.Context.NONE)
                 .getValue();
-        resource.update().withTags(mapOf("key1", "value1")).apply();
+        resource.update().withTags(mapOf("key1", "fakeTokenPlaceholder")).apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
