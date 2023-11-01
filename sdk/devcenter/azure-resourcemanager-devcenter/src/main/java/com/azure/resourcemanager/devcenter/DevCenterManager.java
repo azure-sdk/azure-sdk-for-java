@@ -287,7 +287,7 @@ public final class DevCenterManager {
                 .append("-")
                 .append("com.azure.resourcemanager.devcenter")
                 .append("/")
-                .append("1.0.0-beta.6");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
