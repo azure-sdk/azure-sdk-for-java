@@ -12,7 +12,7 @@ import com.azure.resourcemanager.desktopvirtualization.models.Time;
 /** Samples for ScalingPlanPersonalSchedules Update. */
 public final class ScalingPlanPersonalSchedulesUpdateSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2023-09-05/examples/ScalingPlanPersonalSchedule_Update.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2023-10-04-preview/examples/ScalingPlanPersonalSchedule_Update.json
      */
     /**
      * Sample code: ScalingPlanPersonalSchedules_Update.

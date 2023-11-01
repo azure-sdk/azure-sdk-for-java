@@ -93,6 +93,15 @@ public final class HostPoolPropertiesImpl implements HostPoolProperties {
         }
     }
 
+    public List<String> appAttachPackageReferences() {
+        List<String> inner = this.innerModel().appAttachPackageReferences();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
     public String ssoadfsAuthority() {
         return this.innerModel().ssoadfsAuthority();
     }

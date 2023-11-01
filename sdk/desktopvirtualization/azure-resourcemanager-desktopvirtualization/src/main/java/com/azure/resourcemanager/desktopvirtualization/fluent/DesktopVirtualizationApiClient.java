@@ -150,9 +150,23 @@ public interface DesktopVirtualizationApiClient {
     MsixPackagesClient getMsixPackages();
 
     /**
+     * Gets the AppAttachPackageInfoesClient object to access its operations.
+     *
+     * @return the AppAttachPackageInfoesClient object.
+     */
+    AppAttachPackageInfoesClient getAppAttachPackageInfoes();
+
+    /**
      * Gets the MsixImagesClient object to access its operations.
      *
      * @return the MsixImagesClient object.
      */
     MsixImagesClient getMsixImages();
+
+    /**
+     * Gets the AppAttachPackagesClient object to access its operations.
+     *
+     * @return the AppAttachPackagesClient object.
+     */
+    AppAttachPackagesClient getAppAttachPackages();
 }

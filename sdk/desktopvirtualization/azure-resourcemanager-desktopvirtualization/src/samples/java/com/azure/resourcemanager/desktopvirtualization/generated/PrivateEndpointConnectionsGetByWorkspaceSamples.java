@@ -7,7 +7,7 @@ package com.azure.resourcemanager.desktopvirtualization.generated;
 /** Samples for PrivateEndpointConnections GetByWorkspace. */
 public final class PrivateEndpointConnectionsGetByWorkspaceSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2023-09-05/examples/PrivateEndpointConnection_GetByWorkspace.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2023-10-04-preview/examples/PrivateEndpointConnection_GetByWorkspace.json
      */
     /**
      * Sample code: PrivateEndpointConnection_GetByWorkspace.

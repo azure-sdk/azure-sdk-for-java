@@ -17,7 +17,7 @@ import java.util.Map;
 /** Samples for ScalingPlans Create. */
 public final class ScalingPlansCreateSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2023-09-05/examples/ScalingPlan_Create.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2023-10-04-preview/examples/ScalingPlan_Create.json
      */
     /**
      * Sample code: ScalingPlans_Create.
