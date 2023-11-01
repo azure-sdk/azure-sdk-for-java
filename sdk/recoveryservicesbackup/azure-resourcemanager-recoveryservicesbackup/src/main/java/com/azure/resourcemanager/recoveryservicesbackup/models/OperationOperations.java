@@ -22,7 +22,7 @@ public interface OperationOperations {
      * @return the response body along with {@link Response}.
      */
     Response<ValidateOperationsResponse> validateWithResponse(
-        String vaultName, String resourceGroupName, ValidateOperationRequest parameters, Context context);
+        String vaultName, String resourceGroupName, ValidateOperationRequestResource parameters, Context context);
 
     /**
      * Validate operation for specified backed up item. This is a synchronous operation.
@@ -36,5 +36,5 @@ public interface OperationOperations {
      * @return the response.
      */
     ValidateOperationsResponse validate(
-        String vaultName, String resourceGroupName, ValidateOperationRequest parameters);
+        String vaultName, String resourceGroupName, ValidateOperationRequestResource parameters);
 }
