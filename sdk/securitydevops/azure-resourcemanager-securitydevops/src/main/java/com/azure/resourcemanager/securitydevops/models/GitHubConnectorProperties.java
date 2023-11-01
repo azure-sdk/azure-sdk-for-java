@@ -16,11 +16,14 @@ public final class GitHubConnectorProperties {
     /*
      * The provisioningState property.
      */
-    @JsonProperty(value = "provisioningState")
+    @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ProvisioningState provisioningState;
 
     /*
      * Gets or sets one-time OAuth code to exchange for refresh and access tokens.
+     *
+     * Only used during PUT operations. The secret is cleared during GET.
+     * In general, RPaaS does not return any property marked as a secret.
      */
     @JsonProperty(value = "code")
     private String code;
@@ -39,18 +42,10 @@ public final class GitHubConnectorProperties {
     }
 
     /**
-     * Set the provisioningState property: The provisioningState property.
-     *
-     * @param provisioningState the provisioningState value to set.
-     * @return the GitHubConnectorProperties object itself.
-     */
-    public GitHubConnectorProperties withProvisioningState(ProvisioningState provisioningState) {
-        this.provisioningState = provisioningState;
-        return this;
-    }
-
-    /**
      * Get the code property: Gets or sets one-time OAuth code to exchange for refresh and access tokens.
+     *
+     * <p>Only used during PUT operations. The secret is cleared during GET. In general, RPaaS does not return any
+     * property marked as a secret.
      *
      * @return the code value.
      */
@@ -60,6 +55,9 @@ public final class GitHubConnectorProperties {
 
     /**
      * Set the code property: Gets or sets one-time OAuth code to exchange for refresh and access tokens.
+     *
+     * <p>Only used during PUT operations. The secret is cleared during GET. In general, RPaaS does not return any
+     * property marked as a secret.
      *
      * @param code the code value to set.
      * @return the GitHubConnectorProperties object itself.

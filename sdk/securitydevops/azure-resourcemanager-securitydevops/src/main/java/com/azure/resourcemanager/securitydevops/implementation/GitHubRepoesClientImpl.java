@@ -63,11 +63,10 @@ public final class GitHubRepoesClientImpl implements GitHubRepoesClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "MicrosoftSecurityDev")
-    private interface GitHubRepoesService {
+    public interface GitHubRepoesService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SecurityDevOps"
-                + "/gitHubConnectors/{gitHubConnectorName}/repos")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SecurityDevOps/gitHubConnectors/{gitHubConnectorName}/repos")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<GitHubRepoListResponse>> listByConnector(
@@ -81,8 +80,7 @@ public final class GitHubRepoesClientImpl implements GitHubRepoesClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SecurityDevOps"
-                + "/gitHubConnectors/{gitHubConnectorName}/owners/{gitHubOwnerName}/repos")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SecurityDevOps/gitHubConnectors/{gitHubConnectorName}/owners/{gitHubOwnerName}/repos")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<GitHubRepoListResponse>> list(
@@ -97,8 +95,7 @@ public final class GitHubRepoesClientImpl implements GitHubRepoesClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SecurityDevOps"
-                + "/gitHubConnectors/{gitHubConnectorName}/owners/{gitHubOwnerName}/repos/{gitHubRepoName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SecurityDevOps/gitHubConnectors/{gitHubConnectorName}/owners/{gitHubOwnerName}/repos/{gitHubRepoName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<GitHubRepoInner>> get(
@@ -114,8 +111,7 @@ public final class GitHubRepoesClientImpl implements GitHubRepoesClient {
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SecurityDevOps"
-                + "/gitHubConnectors/{gitHubConnectorName}/owners/{gitHubOwnerName}/repos/{gitHubRepoName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SecurityDevOps/gitHubConnectors/{gitHubConnectorName}/owners/{gitHubOwnerName}/repos/{gitHubRepoName}")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
@@ -132,9 +128,8 @@ public final class GitHubRepoesClientImpl implements GitHubRepoesClient {
 
         @Headers({"Content-Type: application/json"})
         @Patch(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SecurityDevOps"
-                + "/gitHubConnectors/{gitHubConnectorName}/owners/{gitHubOwnerName}/repos/{gitHubRepoName}")
-        @ExpectedResponses({202})
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SecurityDevOps/gitHubConnectors/{gitHubConnectorName}/owners/{gitHubOwnerName}/repos/{gitHubRepoName}")
+        @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> update(
             @HostParam("$host") String endpoint,
@@ -961,7 +956,8 @@ public final class GitHubRepoesClientImpl implements GitHubRepoesClient {
         String gitHubOwnerName,
         String gitHubRepoName,
         GitHubRepoInner gitHubRepo) {
-        return beginCreateOrUpdateAsync(
+        return this
+            .beginCreateOrUpdateAsync(
                 resourceGroupName, gitHubConnectorName, gitHubOwnerName, gitHubRepoName, gitHubRepo)
             .getSyncPoller();
     }
@@ -988,7 +984,8 @@ public final class GitHubRepoesClientImpl implements GitHubRepoesClient {
         String gitHubRepoName,
         GitHubRepoInner gitHubRepo,
         Context context) {
-        return beginCreateOrUpdateAsync(
+        return this
+            .beginCreateOrUpdateAsync(
                 resourceGroupName, gitHubConnectorName, gitHubOwnerName, gitHubRepoName, gitHubRepo, context)
             .getSyncPoller();
     }
@@ -1099,7 +1096,7 @@ public final class GitHubRepoesClientImpl implements GitHubRepoesClient {
     }
 
     /**
-     * Patch a monitored GitHub repository.
+     * Update a monitored GitHub repository.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param gitHubConnectorName Name of the GitHub Connector.
@@ -1168,7 +1165,7 @@ public final class GitHubRepoesClientImpl implements GitHubRepoesClient {
     }
 
     /**
-     * Patch a monitored GitHub repository.
+     * Update a monitored GitHub repository.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param gitHubConnectorName Name of the GitHub Connector.
@@ -1236,7 +1233,7 @@ public final class GitHubRepoesClientImpl implements GitHubRepoesClient {
     }
 
     /**
-     * Patch a monitored GitHub repository.
+     * Update a monitored GitHub repository.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param gitHubConnectorName Name of the GitHub Connector.
@@ -1269,7 +1266,7 @@ public final class GitHubRepoesClientImpl implements GitHubRepoesClient {
     }
 
     /**
-     * Patch a monitored GitHub repository.
+     * Update a monitored GitHub repository.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param gitHubConnectorName Name of the GitHub Connector.
@@ -1298,7 +1295,7 @@ public final class GitHubRepoesClientImpl implements GitHubRepoesClient {
     }
 
     /**
-     * Patch a monitored GitHub repository.
+     * Update a monitored GitHub repository.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param gitHubConnectorName Name of the GitHub Connector.
@@ -1330,7 +1327,7 @@ public final class GitHubRepoesClientImpl implements GitHubRepoesClient {
     }
 
     /**
-     * Patch a monitored GitHub repository.
+     * Update a monitored GitHub repository.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param gitHubConnectorName Name of the GitHub Connector.
@@ -1345,12 +1342,13 @@ public final class GitHubRepoesClientImpl implements GitHubRepoesClient {
     public SyncPoller<PollResult<GitHubRepoInner>, GitHubRepoInner> beginUpdate(
         String resourceGroupName, String gitHubConnectorName, String gitHubOwnerName, String gitHubRepoName) {
         final GitHubRepoInner gitHubRepo = null;
-        return beginUpdateAsync(resourceGroupName, gitHubConnectorName, gitHubOwnerName, gitHubRepoName, gitHubRepo)
+        return this
+            .beginUpdateAsync(resourceGroupName, gitHubConnectorName, gitHubOwnerName, gitHubRepoName, gitHubRepo)
             .getSyncPoller();
     }
 
     /**
-     * Patch a monitored GitHub repository.
+     * Update a monitored GitHub repository.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param gitHubConnectorName Name of the GitHub Connector.
@@ -1371,13 +1369,14 @@ public final class GitHubRepoesClientImpl implements GitHubRepoesClient {
         String gitHubRepoName,
         GitHubRepoInner gitHubRepo,
         Context context) {
-        return beginUpdateAsync(
+        return this
+            .beginUpdateAsync(
                 resourceGroupName, gitHubConnectorName, gitHubOwnerName, gitHubRepoName, gitHubRepo, context)
             .getSyncPoller();
     }
 
     /**
-     * Patch a monitored GitHub repository.
+     * Update a monitored GitHub repository.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param gitHubConnectorName Name of the GitHub Connector.
@@ -1402,7 +1401,7 @@ public final class GitHubRepoesClientImpl implements GitHubRepoesClient {
     }
 
     /**
-     * Patch a monitored GitHub repository.
+     * Update a monitored GitHub repository.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param gitHubConnectorName Name of the GitHub Connector.
@@ -1423,7 +1422,7 @@ public final class GitHubRepoesClientImpl implements GitHubRepoesClient {
     }
 
     /**
-     * Patch a monitored GitHub repository.
+     * Update a monitored GitHub repository.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param gitHubConnectorName Name of the GitHub Connector.
@@ -1451,7 +1450,7 @@ public final class GitHubRepoesClientImpl implements GitHubRepoesClient {
     }
 
     /**
-     * Patch a monitored GitHub repository.
+     * Update a monitored GitHub repository.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param gitHubConnectorName Name of the GitHub Connector.
@@ -1470,7 +1469,7 @@ public final class GitHubRepoesClientImpl implements GitHubRepoesClient {
     }
 
     /**
-     * Patch a monitored GitHub repository.
+     * Update a monitored GitHub repository.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param gitHubConnectorName Name of the GitHub Connector.

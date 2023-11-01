@@ -12,6 +12,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public final class AuthorizationInfo {
     /*
      * Gets or sets one-time OAuth code to exchange for refresh and access tokens.
+     *
+     * Only used during PUT operations. The secret is cleared during GET.
+     * In general, RPaaS does not return any property marked as a secret.
      */
     @JsonProperty(value = "code")
     private String code;
@@ -23,6 +26,9 @@ public final class AuthorizationInfo {
     /**
      * Get the code property: Gets or sets one-time OAuth code to exchange for refresh and access tokens.
      *
+     * <p>Only used during PUT operations. The secret is cleared during GET. In general, RPaaS does not return any
+     * property marked as a secret.
+     *
      * @return the code value.
      */
     public String code() {
@@ -31,6 +37,9 @@ public final class AuthorizationInfo {
 
     /**
      * Set the code property: Gets or sets one-time OAuth code to exchange for refresh and access tokens.
+     *
+     * <p>Only used during PUT operations. The secret is cleared during GET. In general, RPaaS does not return any
+     * property marked as a secret.
      *
      * @param code the code value to set.
      * @return the AuthorizationInfo object itself.

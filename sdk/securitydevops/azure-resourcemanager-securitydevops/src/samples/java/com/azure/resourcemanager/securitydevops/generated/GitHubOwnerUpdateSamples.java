@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.securitydevops.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.securitydevops.models.GitHubOwner;
 
 /** Samples for GitHubOwner Update. */
@@ -19,7 +18,10 @@ public final class GitHubOwnerUpdateSamples {
      */
     public static void gitHubOwnerUpdate(com.azure.resourcemanager.securitydevops.SecurityDevOpsManager manager) {
         GitHubOwner resource =
-            manager.gitHubOwners().getWithResponse("westusrg", "testconnector", "Azure", Context.NONE).getValue();
+            manager
+                .gitHubOwners()
+                .getWithResponse("westusrg", "testconnector", "Azure", com.azure.core.util.Context.NONE)
+                .getValue();
         resource.update().apply();
     }
 }

@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.securitydevops.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for AzureDevOpsRepo Get. */
 public final class AzureDevOpsRepoGetSamples {
     /*
@@ -19,6 +17,7 @@ public final class AzureDevOpsRepoGetSamples {
     public static void azureDevOpsRepoGet(com.azure.resourcemanager.securitydevops.SecurityDevOpsManager manager) {
         manager
             .azureDevOpsRepoes()
-            .getWithResponse("westusrg", "testconnector", "myOrg", "myProject", "myRepo", Context.NONE);
+            .getWithResponse(
+                "westusrg", "testconnector", "myOrg", "myProject", "myRepo", com.azure.core.util.Context.NONE);
     }
 }
