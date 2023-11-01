@@ -78,6 +78,7 @@
     <module>sdk/dnsresolver</module>
     <module>sdk/dynatrace</module>
     <module>sdk/easm</module>
+    <module>sdk/edgemarketplace</module>
     <module>sdk/edgeorder</module>
     <module>sdk/education</module>
     <module>sdk/elastic</module>
