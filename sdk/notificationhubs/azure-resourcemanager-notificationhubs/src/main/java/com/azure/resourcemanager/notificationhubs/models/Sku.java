@@ -6,46 +6,47 @@ package com.azure.resourcemanager.notificationhubs.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** The Sku description for a namespace. */
 @Fluent
 public final class Sku {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(Sku.class);
-
     /*
-     * Name of the notification hub sku
+     * Namespace SKU name.
      */
     @JsonProperty(value = "name", required = true)
     private SkuName name;
 
     /*
-     * The tier of particular sku
+     * Gets or sets the tier of particular sku
      */
     @JsonProperty(value = "tier")
     private String tier;
 
     /*
-     * The Sku size
+     * Gets or sets the Sku size
      */
     @JsonProperty(value = "size")
     private String size;
 
     /*
-     * The Sku Family
+     * Gets or sets the Sku Family
      */
     @JsonProperty(value = "family")
     private String family;
 
     /*
-     * The capacity of the resource
+     * Gets or sets the capacity of the resource
      */
     @JsonProperty(value = "capacity")
     private Integer capacity;
 
+    /** Creates an instance of Sku class. */
+    public Sku() {
+    }
+
     /**
-     * Get the name property: Name of the notification hub sku.
+     * Get the name property: Namespace SKU name.
      *
      * @return the name value.
      */
@@ -54,7 +55,7 @@ public final class Sku {
     }
 
     /**
-     * Set the name property: Name of the notification hub sku.
+     * Set the name property: Namespace SKU name.
      *
      * @param name the name value to set.
      * @return the Sku object itself.
@@ -65,7 +66,7 @@ public final class Sku {
     }
 
     /**
-     * Get the tier property: The tier of particular sku.
+     * Get the tier property: Gets or sets the tier of particular sku.
      *
      * @return the tier value.
      */
@@ -74,7 +75,7 @@ public final class Sku {
     }
 
     /**
-     * Set the tier property: The tier of particular sku.
+     * Set the tier property: Gets or sets the tier of particular sku.
      *
      * @param tier the tier value to set.
      * @return the Sku object itself.
@@ -85,7 +86,7 @@ public final class Sku {
     }
 
     /**
-     * Get the size property: The Sku size.
+     * Get the size property: Gets or sets the Sku size.
      *
      * @return the size value.
      */
@@ -94,7 +95,7 @@ public final class Sku {
     }
 
     /**
-     * Set the size property: The Sku size.
+     * Set the size property: Gets or sets the Sku size.
      *
      * @param size the size value to set.
      * @return the Sku object itself.
@@ -105,7 +106,7 @@ public final class Sku {
     }
 
     /**
-     * Get the family property: The Sku Family.
+     * Get the family property: Gets or sets the Sku Family.
      *
      * @return the family value.
      */
@@ -114,7 +115,7 @@ public final class Sku {
     }
 
     /**
-     * Set the family property: The Sku Family.
+     * Set the family property: Gets or sets the Sku Family.
      *
      * @param family the family value to set.
      * @return the Sku object itself.
@@ -125,7 +126,7 @@ public final class Sku {
     }
 
     /**
-     * Get the capacity property: The capacity of the resource.
+     * Get the capacity property: Gets or sets the capacity of the resource.
      *
      * @return the capacity value.
      */
@@ -134,7 +135,7 @@ public final class Sku {
     }
 
     /**
-     * Set the capacity property: The capacity of the resource.
+     * Set the capacity property: Gets or sets the capacity of the resource.
      *
      * @param capacity the capacity value to set.
      * @return the Sku object itself.
@@ -151,8 +152,10 @@ public final class Sku {
      */
     public void validate() {
         if (name() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(new IllegalArgumentException("Missing required property name in model Sku"));
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(Sku.class);
 }
