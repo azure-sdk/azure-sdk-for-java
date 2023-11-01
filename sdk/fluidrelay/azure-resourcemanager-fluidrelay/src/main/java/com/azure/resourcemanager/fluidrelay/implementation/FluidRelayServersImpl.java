@@ -30,15 +30,6 @@ public final class FluidRelayServersImpl implements FluidRelayServers {
         this.serviceManager = serviceManager;
     }
 
-    public FluidRelayServer getByResourceGroup(String resourceGroup, String fluidRelayServerName) {
-        FluidRelayServerInner inner = this.serviceClient().getByResourceGroup(resourceGroup, fluidRelayServerName);
-        if (inner != null) {
-            return new FluidRelayServerImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<FluidRelayServer> getByResourceGroupWithResponse(
         String resourceGroup, String fluidRelayServerName, Context context) {
         Response<FluidRelayServerInner> inner =
@@ -54,23 +45,22 @@ public final class FluidRelayServersImpl implements FluidRelayServers {
         }
     }
 
-    public void deleteByResourceGroup(String resourceGroup, String fluidRelayServerName) {
-        this.serviceClient().delete(resourceGroup, fluidRelayServerName);
-    }
-
-    public Response<Void> deleteWithResponse(String resourceGroup, String fluidRelayServerName, Context context) {
-        return this.serviceClient().deleteWithResponse(resourceGroup, fluidRelayServerName, context);
-    }
-
-    public FluidRelayServerKeys regenerateKey(
-        String resourceGroup, String fluidRelayServerName, RegenerateKeyRequest parameters) {
-        FluidRelayServerKeysInner inner =
-            this.serviceClient().regenerateKey(resourceGroup, fluidRelayServerName, parameters);
+    public FluidRelayServer getByResourceGroup(String resourceGroup, String fluidRelayServerName) {
+        FluidRelayServerInner inner = this.serviceClient().getByResourceGroup(resourceGroup, fluidRelayServerName);
         if (inner != null) {
-            return new FluidRelayServerKeysImpl(inner, this.manager());
+            return new FluidRelayServerImpl(inner, this.manager());
         } else {
             return null;
         }
+    }
+
+    public Response<Void> deleteByResourceGroupWithResponse(
+        String resourceGroup, String fluidRelayServerName, Context context) {
+        return this.serviceClient().deleteWithResponse(resourceGroup, fluidRelayServerName, context);
+    }
+
+    public void deleteByResourceGroup(String resourceGroup, String fluidRelayServerName) {
+        this.serviceClient().delete(resourceGroup, fluidRelayServerName);
     }
 
     public Response<FluidRelayServerKeys> regenerateKeyWithResponse(
@@ -88,8 +78,10 @@ public final class FluidRelayServersImpl implements FluidRelayServers {
         }
     }
 
-    public FluidRelayServerKeys listKeys(String resourceGroup, String fluidRelayServerName) {
-        FluidRelayServerKeysInner inner = this.serviceClient().listKeys(resourceGroup, fluidRelayServerName);
+    public FluidRelayServerKeys regenerateKey(
+        String resourceGroup, String fluidRelayServerName, RegenerateKeyRequest parameters) {
+        FluidRelayServerKeysInner inner =
+            this.serviceClient().regenerateKey(resourceGroup, fluidRelayServerName, parameters);
         if (inner != null) {
             return new FluidRelayServerKeysImpl(inner, this.manager());
         } else {
@@ -107,6 +99,15 @@ public final class FluidRelayServersImpl implements FluidRelayServers {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new FluidRelayServerKeysImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public FluidRelayServerKeys listKeys(String resourceGroup, String fluidRelayServerName) {
+        FluidRelayServerKeysInner inner = this.serviceClient().listKeys(resourceGroup, fluidRelayServerName);
+        if (inner != null) {
+            return new FluidRelayServerKeysImpl(inner, this.manager());
         } else {
             return null;
         }
@@ -192,7 +193,7 @@ public final class FluidRelayServersImpl implements FluidRelayServers {
                             .format(
                                 "The resource ID '%s' is not valid. Missing path segment 'fluidRelayServers'.", id)));
         }
-        this.deleteWithResponse(resourceGroup, fluidRelayServerName, Context.NONE);
+        this.deleteByResourceGroupWithResponse(resourceGroup, fluidRelayServerName, Context.NONE);
     }
 
     public Response<Void> deleteByIdWithResponse(String id, Context context) {
@@ -213,7 +214,7 @@ public final class FluidRelayServersImpl implements FluidRelayServers {
                             .format(
                                 "The resource ID '%s' is not valid. Missing path segment 'fluidRelayServers'.", id)));
         }
-        return this.deleteWithResponse(resourceGroup, fluidRelayServerName, context);
+        return this.deleteByResourceGroupWithResponse(resourceGroup, fluidRelayServerName, context);
     }
 
     private FluidRelayServersClient serviceClient() {

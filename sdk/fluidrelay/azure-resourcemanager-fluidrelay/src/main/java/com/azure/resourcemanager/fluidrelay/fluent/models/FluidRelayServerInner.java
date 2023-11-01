@@ -36,6 +36,10 @@ public final class FluidRelayServerInner extends Resource {
     @JsonProperty(value = "identity")
     private Identity identity;
 
+    /** Creates an instance of FluidRelayServerInner class. */
+    public FluidRelayServerInner() {
+    }
+
     /**
      * Get the innerProperties property: The resource-specific properties for this resource.
      *

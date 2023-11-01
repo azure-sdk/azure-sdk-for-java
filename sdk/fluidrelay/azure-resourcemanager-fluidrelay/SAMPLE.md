@@ -24,8 +24,6 @@
 ### FluidRelayContainers_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for FluidRelayContainers Delete. */
 public final class FluidRelayContainersDeleteSamples {
     /*
@@ -39,7 +37,8 @@ public final class FluidRelayContainersDeleteSamples {
     public static void deleteAFluidRelayContainer(com.azure.resourcemanager.fluidrelay.FluidRelayManager manager) {
         manager
             .fluidRelayContainers()
-            .deleteWithResponse("myResourceGroup", "myFluidRelayServer", "myFluidRelayContainer", Context.NONE);
+            .deleteWithResponse(
+                "myResourceGroup", "myFluidRelayServer", "myFluidRelayContainer", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -47,8 +46,6 @@ public final class FluidRelayContainersDeleteSamples {
 ### FluidRelayContainers_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for FluidRelayContainers Get. */
 public final class FluidRelayContainersGetSamples {
     /*
@@ -62,7 +59,8 @@ public final class FluidRelayContainersGetSamples {
     public static void getFluidRelayContainerDetails(com.azure.resourcemanager.fluidrelay.FluidRelayManager manager) {
         manager
             .fluidRelayContainers()
-            .getWithResponse("myResourceGroup", "myFluidRelayServer", "myFluidRelayContainer", Context.NONE);
+            .getWithResponse(
+                "myResourceGroup", "myFluidRelayServer", "myFluidRelayContainer", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -70,8 +68,6 @@ public final class FluidRelayContainersGetSamples {
 ### FluidRelayContainers_ListByFluidRelayServers
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for FluidRelayContainers ListByFluidRelayServers. */
 public final class FluidRelayContainersListByFluidRelayServersSamples {
     /*
@@ -84,7 +80,9 @@ public final class FluidRelayContainersListByFluidRelayServersSamples {
      */
     public static void listAllFluidRelayContainersInAFluidRelayServer(
         com.azure.resourcemanager.fluidrelay.FluidRelayManager manager) {
-        manager.fluidRelayContainers().listByFluidRelayServers("myResourceGroup", "myFluidRelayServer", Context.NONE);
+        manager
+            .fluidRelayContainers()
+            .listByFluidRelayServers("myResourceGroup", "myFluidRelayServer", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -92,8 +90,6 @@ public final class FluidRelayContainersListByFluidRelayServersSamples {
 ### FluidRelayOperations_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for FluidRelayOperations List. */
 public final class FluidRelayOperationsListSamples {
     /*
@@ -105,7 +101,7 @@ public final class FluidRelayOperationsListSamples {
      * @param manager Entry point to FluidRelayManager.
      */
     public static void listFluidRelayServerOperations(com.azure.resourcemanager.fluidrelay.FluidRelayManager manager) {
-        manager.fluidRelayOperations().list(Context.NONE);
+        manager.fluidRelayOperations().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -205,11 +201,12 @@ public final class FluidRelayServersCreateOrUpdateSamples {
                                     .withIdentityType(CmkIdentityType.USER_ASSIGNED)
                                     .withUserAssignedIdentityResourceId(
                                         "/subscriptions/xxxx-xxxx-xxxx-xxxx/resourceGroups/myResourceGroup/providers/Microsoft.ManagedIdentity/userAssignedIdentities/identityForCMK"))
-                            .withKeyEncryptionKeyUrl("https://contosovault.vault.azure.net/keys/contosokek")))
+                            .withKeyEncryptionKeyUrl("fakeTokenPlaceholder")))
             .withStoragesku(StorageSku.BASIC)
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -226,8 +223,6 @@ public final class FluidRelayServersCreateOrUpdateSamples {
 ### FluidRelayServers_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for FluidRelayServers Delete. */
 public final class FluidRelayServersDeleteSamples {
     /*
@@ -239,7 +234,10 @@ public final class FluidRelayServersDeleteSamples {
      * @param manager Entry point to FluidRelayManager.
      */
     public static void deleteAFluidRelayServer(com.azure.resourcemanager.fluidrelay.FluidRelayManager manager) {
-        manager.fluidRelayServers().deleteWithResponse("myResourceGroup", "myFluidRelayServer", Context.NONE);
+        manager
+            .fluidRelayServers()
+            .deleteByResourceGroupWithResponse(
+                "myResourceGroup", "myFluidRelayServer", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -247,8 +245,6 @@ public final class FluidRelayServersDeleteSamples {
 ### FluidRelayServers_GetByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for FluidRelayServers GetByResourceGroup. */
 public final class FluidRelayServersGetByResourceGroupSamples {
     /*
@@ -262,7 +258,7 @@ public final class FluidRelayServersGetByResourceGroupSamples {
     public static void getFluidRelayServerDetails(com.azure.resourcemanager.fluidrelay.FluidRelayManager manager) {
         manager
             .fluidRelayServers()
-            .getByResourceGroupWithResponse("myResourceGroup", "myFluidRelayServer", Context.NONE);
+            .getByResourceGroupWithResponse("myResourceGroup", "myFluidRelayServer", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -270,8 +266,6 @@ public final class FluidRelayServersGetByResourceGroupSamples {
 ### FluidRelayServers_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for FluidRelayServers List. */
 public final class FluidRelayServersListSamples {
     /*
@@ -284,7 +278,7 @@ public final class FluidRelayServersListSamples {
      */
     public static void listAllFluidRelayServersInASubscription(
         com.azure.resourcemanager.fluidrelay.FluidRelayManager manager) {
-        manager.fluidRelayServers().list(Context.NONE);
+        manager.fluidRelayServers().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -292,8 +286,6 @@ public final class FluidRelayServersListSamples {
 ### FluidRelayServers_ListByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for FluidRelayServers ListByResourceGroup. */
 public final class FluidRelayServersListByResourceGroupSamples {
     /*
@@ -306,7 +298,7 @@ public final class FluidRelayServersListByResourceGroupSamples {
      */
     public static void listAllFluidRelayServersInAResourceGroup(
         com.azure.resourcemanager.fluidrelay.FluidRelayManager manager) {
-        manager.fluidRelayServers().listByResourceGroup("myResourceGroup", Context.NONE);
+        manager.fluidRelayServers().listByResourceGroup("myResourceGroup", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -314,8 +306,6 @@ public final class FluidRelayServersListByResourceGroupSamples {
 ### FluidRelayServers_ListKeys
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for FluidRelayServers ListKeys. */
 public final class FluidRelayServersListKeysSamples {
     /*
@@ -327,7 +317,9 @@ public final class FluidRelayServersListKeysSamples {
      * @param manager Entry point to FluidRelayManager.
      */
     public static void getKeysForAFluidRelayServer(com.azure.resourcemanager.fluidrelay.FluidRelayManager manager) {
-        manager.fluidRelayServers().listKeysWithResponse("myResourceGroup", "myFluidRelayServer", Context.NONE);
+        manager
+            .fluidRelayServers()
+            .listKeysWithResponse("myResourceGroup", "myFluidRelayServer", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -335,7 +327,6 @@ public final class FluidRelayServersListKeysSamples {
 ### FluidRelayServers_RegenerateKey
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.fluidrelay.models.KeyName;
 import com.azure.resourcemanager.fluidrelay.models.RegenerateKeyRequest;
 
@@ -357,7 +348,7 @@ public final class FluidRelayServersRegenerateKeySamples {
                 "myResourceGroup",
                 "myFluidRelayServer",
                 new RegenerateKeyRequest().withKeyName(KeyName.KEY1),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -365,7 +356,6 @@ public final class FluidRelayServersRegenerateKeySamples {
 ### FluidRelayServers_Update
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.fluidrelay.models.FluidRelayServer;
 import java.util.HashMap;
 import java.util.Map;
@@ -384,11 +374,13 @@ public final class FluidRelayServersUpdateSamples {
         FluidRelayServer resource =
             manager
                 .fluidRelayServers()
-                .getByResourceGroupWithResponse("myResourceGroup", "myFluidRelayServer", Context.NONE)
+                .getByResourceGroupWithResponse(
+                    "myResourceGroup", "myFluidRelayServer", com.azure.core.util.Context.NONE)
                 .getValue();
         resource.update().withTags(mapOf("Category", "sales")).apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
