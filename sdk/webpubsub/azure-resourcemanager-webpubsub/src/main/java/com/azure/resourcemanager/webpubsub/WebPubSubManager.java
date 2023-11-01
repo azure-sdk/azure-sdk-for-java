@@ -239,7 +239,7 @@ public final class WebPubSubManager {
                 .append("-")
                 .append("com.azure.resourcemanager.webpubsub")
                 .append("/")
-                .append("1.1.0-beta.2");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
