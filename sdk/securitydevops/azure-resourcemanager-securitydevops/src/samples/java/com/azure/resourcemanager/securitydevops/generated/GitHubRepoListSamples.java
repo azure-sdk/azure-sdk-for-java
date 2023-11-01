@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.securitydevops.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for GitHubRepo List. */
 public final class GitHubRepoListSamples {
     /*
@@ -17,6 +15,6 @@ public final class GitHubRepoListSamples {
      * @param manager Entry point to SecurityDevOpsManager.
      */
     public static void gitHubRepoList(com.azure.resourcemanager.securitydevops.SecurityDevOpsManager manager) {
-        manager.gitHubRepoes().list("westusrg", "testconnector", "Azure", Context.NONE);
+        manager.gitHubRepoes().list("westusrg", "testconnector", "Azure", com.azure.core.util.Context.NONE);
     }
 }

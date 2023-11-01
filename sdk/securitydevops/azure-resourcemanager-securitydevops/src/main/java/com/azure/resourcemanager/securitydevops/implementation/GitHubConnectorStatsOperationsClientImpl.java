@@ -54,11 +54,10 @@ public final class GitHubConnectorStatsOperationsClientImpl implements GitHubCon
      */
     @Host("{$host}")
     @ServiceInterface(name = "MicrosoftSecurityDev")
-    private interface GitHubConnectorStatsOperationsService {
+    public interface GitHubConnectorStatsOperationsService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SecurityDevOps"
-                + "/gitHubConnectors/{gitHubConnectorName}/stats")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SecurityDevOps/gitHubConnectors/{gitHubConnectorName}/stats")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<GitHubConnectorStatsListResponseInner>> get(

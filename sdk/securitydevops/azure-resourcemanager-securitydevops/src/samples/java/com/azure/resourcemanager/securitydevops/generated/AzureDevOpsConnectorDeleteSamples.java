@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.securitydevops.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for AzureDevOpsConnector Delete. */
 public final class AzureDevOpsConnectorDeleteSamples {
     /*
@@ -18,6 +16,6 @@ public final class AzureDevOpsConnectorDeleteSamples {
      */
     public static void azureDevOpsConnectorDelete(
         com.azure.resourcemanager.securitydevops.SecurityDevOpsManager manager) {
-        manager.azureDevOpsConnectors().delete("westusrg", "testconnector", Context.NONE);
+        manager.azureDevOpsConnectors().delete("westusrg", "testconnector", com.azure.core.util.Context.NONE);
     }
 }

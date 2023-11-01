@@ -8,7 +8,10 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for ActionableRemediationState. */
+/**
+ * ActionableRemediation Setting. None - the setting was never set. Enabled - ActionableRemediation is enabled. Disabled
+ * - ActionableRemediation is disabled.
+ */
 public final class ActionableRemediationState extends ExpandableStringEnum<ActionableRemediationState> {
     /** Static value None for ActionableRemediationState. */
     public static final ActionableRemediationState NONE = fromString("None");
@@ -18,6 +21,15 @@ public final class ActionableRemediationState extends ExpandableStringEnum<Actio
 
     /** Static value Enabled for ActionableRemediationState. */
     public static final ActionableRemediationState ENABLED = fromString("Enabled");
+
+    /**
+     * Creates a new instance of ActionableRemediationState value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public ActionableRemediationState() {
+    }
 
     /**
      * Creates or finds a ActionableRemediationState from its string representation.

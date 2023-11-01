@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.securitydevops.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.securitydevops.models.GitHubRepo;
 
 /** Samples for GitHubRepo Update. */
@@ -21,7 +20,8 @@ public final class GitHubRepoUpdateSamples {
         GitHubRepo resource =
             manager
                 .gitHubRepoes()
-                .getWithResponse("westusrg", "testconnector", "Azure", "azure-rest-api-specs", Context.NONE)
+                .getWithResponse(
+                    "westusrg", "testconnector", "Azure", "azure-rest-api-specs", com.azure.core.util.Context.NONE)
                 .getValue();
         resource.update().apply();
     }

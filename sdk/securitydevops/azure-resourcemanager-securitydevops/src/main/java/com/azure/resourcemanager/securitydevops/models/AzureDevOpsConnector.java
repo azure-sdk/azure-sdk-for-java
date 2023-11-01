@@ -96,11 +96,13 @@ public interface AzureDevOpsConnector {
             DefinitionStages.WithResourceGroup,
             DefinitionStages.WithCreate {
     }
+
     /** The AzureDevOpsConnector definition stages. */
     interface DefinitionStages {
         /** The first stage of the AzureDevOpsConnector definition. */
         interface Blank extends WithLocation {
         }
+
         /** The stage of the AzureDevOpsConnector definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -119,6 +121,7 @@ public interface AzureDevOpsConnector {
              */
             WithResourceGroup withRegion(String location);
         }
+
         /** The stage of the AzureDevOpsConnector definition allowing to specify parent resource. */
         interface WithResourceGroup {
             /**
@@ -129,6 +132,7 @@ public interface AzureDevOpsConnector {
              */
             WithCreate withExistingResourceGroup(String resourceGroupName);
         }
+
         /**
          * The stage of the AzureDevOpsConnector definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
@@ -149,6 +153,7 @@ public interface AzureDevOpsConnector {
              */
             AzureDevOpsConnector create(Context context);
         }
+
         /** The stage of the AzureDevOpsConnector definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -159,6 +164,7 @@ public interface AzureDevOpsConnector {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
         /** The stage of the AzureDevOpsConnector definition allowing to specify properties. */
         interface WithProperties {
             /**
@@ -170,6 +176,7 @@ public interface AzureDevOpsConnector {
             WithCreate withProperties(AzureDevOpsConnectorProperties properties);
         }
     }
+
     /**
      * Begins update for the AzureDevOpsConnector resource.
      *
@@ -194,6 +201,7 @@ public interface AzureDevOpsConnector {
          */
         AzureDevOpsConnector apply(Context context);
     }
+
     /** The AzureDevOpsConnector update stages. */
     interface UpdateStages {
         /** The stage of the AzureDevOpsConnector update allowing to specify tags. */
@@ -206,6 +214,7 @@ public interface AzureDevOpsConnector {
              */
             Update withTags(Map<String, String> tags);
         }
+
         /** The stage of the AzureDevOpsConnector update allowing to specify properties. */
         interface WithProperties {
             /**
@@ -217,6 +226,7 @@ public interface AzureDevOpsConnector {
             Update withProperties(AzureDevOpsConnectorProperties properties);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

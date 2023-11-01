@@ -95,7 +95,7 @@ public final class AzureDevOpsConnectorCreateOrUpdateSamples {
             .withExistingResourceGroup("westusrg")
             .withProperties(
                 new AzureDevOpsConnectorProperties()
-                    .withAuthorization(new AuthorizationInfo().withCode("00000000000000000000"))
+                    .withAuthorization(new AuthorizationInfo().withCode("fakeTokenPlaceholder"))
                     .withOrgs(
                         Arrays
                             .asList(
@@ -115,8 +115,6 @@ public final class AzureDevOpsConnectorCreateOrUpdateSamples {
 ### AzureDevOpsConnector_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for AzureDevOpsConnector Delete. */
 public final class AzureDevOpsConnectorDeleteSamples {
     /*
@@ -129,7 +127,7 @@ public final class AzureDevOpsConnectorDeleteSamples {
      */
     public static void azureDevOpsConnectorDelete(
         com.azure.resourcemanager.securitydevops.SecurityDevOpsManager manager) {
-        manager.azureDevOpsConnectors().delete("westusrg", "testconnector", Context.NONE);
+        manager.azureDevOpsConnectors().delete("westusrg", "testconnector", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -137,8 +135,6 @@ public final class AzureDevOpsConnectorDeleteSamples {
 ### AzureDevOpsConnector_GetByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for AzureDevOpsConnector GetByResourceGroup. */
 public final class AzureDevOpsConnectorGetByResourceGroupSamples {
     /*
@@ -150,7 +146,9 @@ public final class AzureDevOpsConnectorGetByResourceGroupSamples {
      * @param manager Entry point to SecurityDevOpsManager.
      */
     public static void azureDevOpsConnectorGet(com.azure.resourcemanager.securitydevops.SecurityDevOpsManager manager) {
-        manager.azureDevOpsConnectors().getByResourceGroupWithResponse("westusrg", "testconnector", Context.NONE);
+        manager
+            .azureDevOpsConnectors()
+            .getByResourceGroupWithResponse("westusrg", "testconnector", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -158,8 +156,6 @@ public final class AzureDevOpsConnectorGetByResourceGroupSamples {
 ### AzureDevOpsConnector_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for AzureDevOpsConnector List. */
 public final class AzureDevOpsConnectorListSamples {
     /*
@@ -172,7 +168,7 @@ public final class AzureDevOpsConnectorListSamples {
      */
     public static void azureDevOpsConnectorListBySubscription(
         com.azure.resourcemanager.securitydevops.SecurityDevOpsManager manager) {
-        manager.azureDevOpsConnectors().list(Context.NONE);
+        manager.azureDevOpsConnectors().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -180,8 +176,6 @@ public final class AzureDevOpsConnectorListSamples {
 ### AzureDevOpsConnector_ListByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for AzureDevOpsConnector ListByResourceGroup. */
 public final class AzureDevOpsConnectorListByResourceGroupSamples {
     /*
@@ -194,7 +188,7 @@ public final class AzureDevOpsConnectorListByResourceGroupSamples {
      */
     public static void azureDevOpsConnectorListByResourceGroup(
         com.azure.resourcemanager.securitydevops.SecurityDevOpsManager manager) {
-        manager.azureDevOpsConnectors().listByResourceGroup("westusrg", Context.NONE);
+        manager.azureDevOpsConnectors().listByResourceGroup("westusrg", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -202,7 +196,6 @@ public final class AzureDevOpsConnectorListByResourceGroupSamples {
 ### AzureDevOpsConnector_Update
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.securitydevops.models.AzureDevOpsConnector;
 import java.util.HashMap;
 import java.util.Map;
@@ -222,11 +215,12 @@ public final class AzureDevOpsConnectorUpdateSamples {
         AzureDevOpsConnector resource =
             manager
                 .azureDevOpsConnectors()
-                .getByResourceGroupWithResponse("westusrg", "testconnector", Context.NONE)
+                .getByResourceGroupWithResponse("westusrg", "testconnector", com.azure.core.util.Context.NONE)
                 .getValue();
         resource.update().withTags(mapOf("client", "dev-client", "env", "dev")).apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -243,8 +237,6 @@ public final class AzureDevOpsConnectorUpdateSamples {
 ### AzureDevOpsConnectorStatsOperation_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for AzureDevOpsConnectorStatsOperation Get. */
 public final class AzureDevOpsConnectorStatsOperationGetSamples {
     /*
@@ -257,7 +249,9 @@ public final class AzureDevOpsConnectorStatsOperationGetSamples {
      */
     public static void azureDevOpsConnectorStatsGet(
         com.azure.resourcemanager.securitydevops.SecurityDevOpsManager manager) {
-        manager.azureDevOpsConnectorStatsOperations().getWithResponse("westusrg", "testconnector", Context.NONE);
+        manager
+            .azureDevOpsConnectorStatsOperations()
+            .getWithResponse("westusrg", "testconnector", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -293,8 +287,6 @@ public final class AzureDevOpsOrgCreateOrUpdateSamples {
 ### AzureDevOpsOrg_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for AzureDevOpsOrg Get. */
 public final class AzureDevOpsOrgGetSamples {
     /*
@@ -306,7 +298,9 @@ public final class AzureDevOpsOrgGetSamples {
      * @param manager Entry point to SecurityDevOpsManager.
      */
     public static void azureDevOpsOrgGet(com.azure.resourcemanager.securitydevops.SecurityDevOpsManager manager) {
-        manager.azureDevOpsOrgs().getWithResponse("westusrg", "testconnector", "myOrg", Context.NONE);
+        manager
+            .azureDevOpsOrgs()
+            .getWithResponse("westusrg", "testconnector", "myOrg", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -314,8 +308,6 @@ public final class AzureDevOpsOrgGetSamples {
 ### AzureDevOpsOrg_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for AzureDevOpsOrg List. */
 public final class AzureDevOpsOrgListSamples {
     /*
@@ -327,7 +319,7 @@ public final class AzureDevOpsOrgListSamples {
      * @param manager Entry point to SecurityDevOpsManager.
      */
     public static void azureDevOpsOrgList(com.azure.resourcemanager.securitydevops.SecurityDevOpsManager manager) {
-        manager.azureDevOpsOrgs().list("westusrg", "testconnector", Context.NONE);
+        manager.azureDevOpsOrgs().list("westusrg", "testconnector", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -335,7 +327,6 @@ public final class AzureDevOpsOrgListSamples {
 ### AzureDevOpsOrg_Update
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.securitydevops.models.AutoDiscovery;
 import com.azure.resourcemanager.securitydevops.models.AzureDevOpsOrg;
 import com.azure.resourcemanager.securitydevops.models.AzureDevOpsOrgProperties;
@@ -352,7 +343,10 @@ public final class AzureDevOpsOrgUpdateSamples {
      */
     public static void azureDevOpsOrgUpdate(com.azure.resourcemanager.securitydevops.SecurityDevOpsManager manager) {
         AzureDevOpsOrg resource =
-            manager.azureDevOpsOrgs().getWithResponse("westusrg", "testconnector", "myOrg", Context.NONE).getValue();
+            manager
+                .azureDevOpsOrgs()
+                .getWithResponse("westusrg", "testconnector", "myOrg", com.azure.core.util.Context.NONE)
+                .getValue();
         resource
             .update()
             .withProperties(new AzureDevOpsOrgProperties().withAutoDiscovery(AutoDiscovery.DISABLED))
@@ -392,8 +386,6 @@ public final class AzureDevOpsProjectCreateOrUpdateSamples {
 ### AzureDevOpsProject_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for AzureDevOpsProject Get. */
 public final class AzureDevOpsProjectGetSamples {
     /*
@@ -405,7 +397,9 @@ public final class AzureDevOpsProjectGetSamples {
      * @param manager Entry point to SecurityDevOpsManager.
      */
     public static void azureDevOpsProjectGet(com.azure.resourcemanager.securitydevops.SecurityDevOpsManager manager) {
-        manager.azureDevOpsProjects().getWithResponse("westusrg", "testconnector", "myOrg", "myProject", Context.NONE);
+        manager
+            .azureDevOpsProjects()
+            .getWithResponse("westusrg", "testconnector", "myOrg", "myProject", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -413,8 +407,6 @@ public final class AzureDevOpsProjectGetSamples {
 ### AzureDevOpsProject_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for AzureDevOpsProject List. */
 public final class AzureDevOpsProjectListSamples {
     /*
@@ -426,7 +418,7 @@ public final class AzureDevOpsProjectListSamples {
      * @param manager Entry point to SecurityDevOpsManager.
      */
     public static void azureDevOpsProjectList(com.azure.resourcemanager.securitydevops.SecurityDevOpsManager manager) {
-        manager.azureDevOpsProjects().list("westusrg", "testconnector", "myOrg", Context.NONE);
+        manager.azureDevOpsProjects().list("westusrg", "testconnector", "myOrg", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -434,7 +426,6 @@ public final class AzureDevOpsProjectListSamples {
 ### AzureDevOpsProject_Update
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.securitydevops.models.AutoDiscovery;
 import com.azure.resourcemanager.securitydevops.models.AzureDevOpsProject;
 import com.azure.resourcemanager.securitydevops.models.AzureDevOpsProjectProperties;
@@ -454,7 +445,7 @@ public final class AzureDevOpsProjectUpdateSamples {
         AzureDevOpsProject resource =
             manager
                 .azureDevOpsProjects()
-                .getWithResponse("westusrg", "testconnector", "myOrg", "myProject", Context.NONE)
+                .getWithResponse("westusrg", "testconnector", "myOrg", "myProject", com.azure.core.util.Context.NONE)
                 .getValue();
         resource
             .update()
@@ -492,8 +483,6 @@ public final class AzureDevOpsRepoCreateOrUpdateSamples {
             .withExistingProject("westusrg", "testconnector", "myOrg", "myProject")
             .withProperties(
                 new AzureDevOpsRepoProperties()
-                    .withRepoId("00000000-0000-0000-0000-000000000000")
-                    .withRepoUrl("https://dev.azure.com/myOrg/myProject/_git/myRepo")
                     .withActionableRemediation(
                         new ActionableRemediation()
                             .withState(ActionableRemediationState.ENABLED)
@@ -508,8 +497,6 @@ public final class AzureDevOpsRepoCreateOrUpdateSamples {
 ### AzureDevOpsRepo_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for AzureDevOpsRepo Get. */
 public final class AzureDevOpsRepoGetSamples {
     /*
@@ -523,7 +510,8 @@ public final class AzureDevOpsRepoGetSamples {
     public static void azureDevOpsRepoGet(com.azure.resourcemanager.securitydevops.SecurityDevOpsManager manager) {
         manager
             .azureDevOpsRepoes()
-            .getWithResponse("westusrg", "testconnector", "myOrg", "myProject", "myRepo", Context.NONE);
+            .getWithResponse(
+                "westusrg", "testconnector", "myOrg", "myProject", "myRepo", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -531,8 +519,6 @@ public final class AzureDevOpsRepoGetSamples {
 ### AzureDevOpsRepo_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for AzureDevOpsRepo List. */
 public final class AzureDevOpsRepoListSamples {
     /*
@@ -544,7 +530,9 @@ public final class AzureDevOpsRepoListSamples {
      * @param manager Entry point to SecurityDevOpsManager.
      */
     public static void azureDevOpsRepoList(com.azure.resourcemanager.securitydevops.SecurityDevOpsManager manager) {
-        manager.azureDevOpsRepoes().list("westusrg", "testconnector", "myOrg", "myProject", Context.NONE);
+        manager
+            .azureDevOpsRepoes()
+            .list("westusrg", "testconnector", "myOrg", "myProject", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -552,8 +540,6 @@ public final class AzureDevOpsRepoListSamples {
 ### AzureDevOpsRepo_ListByConnector
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for AzureDevOpsRepo ListByConnector. */
 public final class AzureDevOpsRepoListByConnectorSamples {
     /*
@@ -566,7 +552,7 @@ public final class AzureDevOpsRepoListByConnectorSamples {
      */
     public static void azureDevOpsRepoListByConnector(
         com.azure.resourcemanager.securitydevops.SecurityDevOpsManager manager) {
-        manager.azureDevOpsRepoes().listByConnector("westusrg", "testconnector", Context.NONE);
+        manager.azureDevOpsRepoes().listByConnector("westusrg", "testconnector", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -574,7 +560,6 @@ public final class AzureDevOpsRepoListByConnectorSamples {
 ### AzureDevOpsRepo_Update
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.securitydevops.models.AzureDevOpsRepo;
 
 /** Samples for AzureDevOpsRepo Update. */
@@ -591,7 +576,8 @@ public final class AzureDevOpsRepoUpdateSamples {
         AzureDevOpsRepo resource =
             manager
                 .azureDevOpsRepoes()
-                .getWithResponse("westusrg", "testconnector", "myOrg", "myProject", "myRepo", Context.NONE)
+                .getWithResponse(
+                    "westusrg", "testconnector", "myOrg", "myProject", "myRepo", com.azure.core.util.Context.NONE)
                 .getValue();
         resource.update().apply();
     }
@@ -620,7 +606,7 @@ public final class GitHubConnectorCreateOrUpdateSamples {
             .define("testconnector")
             .withRegion("West US")
             .withExistingResourceGroup("westusrg")
-            .withProperties(new GitHubConnectorProperties().withCode("00000000000000000000"))
+            .withProperties(new GitHubConnectorProperties().withCode("fakeTokenPlaceholder"))
             .create();
     }
 }
@@ -629,8 +615,6 @@ public final class GitHubConnectorCreateOrUpdateSamples {
 ### GitHubConnector_Delete
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for GitHubConnector Delete. */
 public final class GitHubConnectorDeleteSamples {
     /*
@@ -642,7 +626,7 @@ public final class GitHubConnectorDeleteSamples {
      * @param manager Entry point to SecurityDevOpsManager.
      */
     public static void gitHubConnectorDelete(com.azure.resourcemanager.securitydevops.SecurityDevOpsManager manager) {
-        manager.gitHubConnectors().delete("westusrg", "testconnector", Context.NONE);
+        manager.gitHubConnectors().delete("westusrg", "testconnector", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -650,8 +634,6 @@ public final class GitHubConnectorDeleteSamples {
 ### GitHubConnector_GetByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for GitHubConnector GetByResourceGroup. */
 public final class GitHubConnectorGetByResourceGroupSamples {
     /*
@@ -663,7 +645,9 @@ public final class GitHubConnectorGetByResourceGroupSamples {
      * @param manager Entry point to SecurityDevOpsManager.
      */
     public static void gitHubConnectorGet(com.azure.resourcemanager.securitydevops.SecurityDevOpsManager manager) {
-        manager.gitHubConnectors().getByResourceGroupWithResponse("westusrg", "testconnector", Context.NONE);
+        manager
+            .gitHubConnectors()
+            .getByResourceGroupWithResponse("westusrg", "testconnector", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -671,8 +655,6 @@ public final class GitHubConnectorGetByResourceGroupSamples {
 ### GitHubConnector_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for GitHubConnector List. */
 public final class GitHubConnectorListSamples {
     /*
@@ -685,7 +667,7 @@ public final class GitHubConnectorListSamples {
      */
     public static void gitHubConnectorListBySubscription(
         com.azure.resourcemanager.securitydevops.SecurityDevOpsManager manager) {
-        manager.gitHubConnectors().list(Context.NONE);
+        manager.gitHubConnectors().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -693,8 +675,6 @@ public final class GitHubConnectorListSamples {
 ### GitHubConnector_ListByResourceGroup
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for GitHubConnector ListByResourceGroup. */
 public final class GitHubConnectorListByResourceGroupSamples {
     /*
@@ -707,7 +687,7 @@ public final class GitHubConnectorListByResourceGroupSamples {
      */
     public static void gitHubConnectorListByResourceGroup(
         com.azure.resourcemanager.securitydevops.SecurityDevOpsManager manager) {
-        manager.gitHubConnectors().listByResourceGroup("westusrg", Context.NONE);
+        manager.gitHubConnectors().listByResourceGroup("westusrg", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -715,7 +695,6 @@ public final class GitHubConnectorListByResourceGroupSamples {
 ### GitHubConnector_Update
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.securitydevops.models.GitHubConnector;
 import java.util.HashMap;
 import java.util.Map;
@@ -734,11 +713,12 @@ public final class GitHubConnectorUpdateSamples {
         GitHubConnector resource =
             manager
                 .gitHubConnectors()
-                .getByResourceGroupWithResponse("westusrg", "testconnector", Context.NONE)
+                .getByResourceGroupWithResponse("westusrg", "testconnector", com.azure.core.util.Context.NONE)
                 .getValue();
         resource.update().withTags(mapOf("client", "dev-client", "env", "dev")).apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -755,8 +735,6 @@ public final class GitHubConnectorUpdateSamples {
 ### GitHubConnectorStatsOperation_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for GitHubConnectorStatsOperation Get. */
 public final class GitHubConnectorStatsOperationGetSamples {
     /*
@@ -768,7 +746,9 @@ public final class GitHubConnectorStatsOperationGetSamples {
      * @param manager Entry point to SecurityDevOpsManager.
      */
     public static void gitHubConnectorStatsGet(com.azure.resourcemanager.securitydevops.SecurityDevOpsManager manager) {
-        manager.gitHubConnectorStatsOperations().getWithResponse("westusrg", "testconnector", Context.NONE);
+        manager
+            .gitHubConnectorStatsOperations()
+            .getWithResponse("westusrg", "testconnector", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -796,8 +776,6 @@ public final class GitHubOwnerCreateOrUpdateSamples {
 ### GitHubOwner_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for GitHubOwner Get. */
 public final class GitHubOwnerGetSamples {
     /*
@@ -809,7 +787,7 @@ public final class GitHubOwnerGetSamples {
      * @param manager Entry point to SecurityDevOpsManager.
      */
     public static void gitHubOwnerGet(com.azure.resourcemanager.securitydevops.SecurityDevOpsManager manager) {
-        manager.gitHubOwners().getWithResponse("westusrg", "testconnector", "Azure", Context.NONE);
+        manager.gitHubOwners().getWithResponse("westusrg", "testconnector", "Azure", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -817,8 +795,6 @@ public final class GitHubOwnerGetSamples {
 ### GitHubOwner_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for GitHubOwner List. */
 public final class GitHubOwnerListSamples {
     /*
@@ -830,7 +806,7 @@ public final class GitHubOwnerListSamples {
      * @param manager Entry point to SecurityDevOpsManager.
      */
     public static void gitHubOwnerList(com.azure.resourcemanager.securitydevops.SecurityDevOpsManager manager) {
-        manager.gitHubOwners().list("westusrg", "testconnector", Context.NONE);
+        manager.gitHubOwners().list("westusrg", "testconnector", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -838,7 +814,6 @@ public final class GitHubOwnerListSamples {
 ### GitHubOwner_Update
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.securitydevops.models.GitHubOwner;
 
 /** Samples for GitHubOwner Update. */
@@ -853,7 +828,10 @@ public final class GitHubOwnerUpdateSamples {
      */
     public static void gitHubOwnerUpdate(com.azure.resourcemanager.securitydevops.SecurityDevOpsManager manager) {
         GitHubOwner resource =
-            manager.gitHubOwners().getWithResponse("westusrg", "testconnector", "Azure", Context.NONE).getValue();
+            manager
+                .gitHubOwners()
+                .getWithResponse("westusrg", "testconnector", "Azure", com.azure.core.util.Context.NONE)
+                .getValue();
         resource.update().apply();
     }
 }
@@ -886,8 +864,6 @@ public final class GitHubRepoCreateOrUpdateSamples {
 ### GitHubRepo_Get
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for GitHubRepo Get. */
 public final class GitHubRepoGetSamples {
     /*
@@ -899,7 +875,9 @@ public final class GitHubRepoGetSamples {
      * @param manager Entry point to SecurityDevOpsManager.
      */
     public static void gitHubRepoGet(com.azure.resourcemanager.securitydevops.SecurityDevOpsManager manager) {
-        manager.gitHubRepoes().getWithResponse("westusrg", "testconnector", "Azure", "39093389", Context.NONE);
+        manager
+            .gitHubRepoes()
+            .getWithResponse("westusrg", "testconnector", "Azure", "39093389", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -907,8 +885,6 @@ public final class GitHubRepoGetSamples {
 ### GitHubRepo_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for GitHubRepo List. */
 public final class GitHubRepoListSamples {
     /*
@@ -920,7 +896,7 @@ public final class GitHubRepoListSamples {
      * @param manager Entry point to SecurityDevOpsManager.
      */
     public static void gitHubRepoList(com.azure.resourcemanager.securitydevops.SecurityDevOpsManager manager) {
-        manager.gitHubRepoes().list("westusrg", "testconnector", "Azure", Context.NONE);
+        manager.gitHubRepoes().list("westusrg", "testconnector", "Azure", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -928,8 +904,6 @@ public final class GitHubRepoListSamples {
 ### GitHubRepo_ListByConnector
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for GitHubRepo ListByConnector. */
 public final class GitHubRepoListByConnectorSamples {
     /*
@@ -942,7 +916,7 @@ public final class GitHubRepoListByConnectorSamples {
      */
     public static void gitHubRepoListByConnector(
         com.azure.resourcemanager.securitydevops.SecurityDevOpsManager manager) {
-        manager.gitHubRepoes().listByConnector("westusrg", "testconnector", Context.NONE);
+        manager.gitHubRepoes().listByConnector("westusrg", "testconnector", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -950,7 +924,6 @@ public final class GitHubRepoListByConnectorSamples {
 ### GitHubRepo_Update
 
 ```java
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.securitydevops.models.GitHubRepo;
 
 /** Samples for GitHubRepo Update. */
@@ -967,7 +940,8 @@ public final class GitHubRepoUpdateSamples {
         GitHubRepo resource =
             manager
                 .gitHubRepoes()
-                .getWithResponse("westusrg", "testconnector", "Azure", "azure-rest-api-specs", Context.NONE)
+                .getWithResponse(
+                    "westusrg", "testconnector", "Azure", "azure-rest-api-specs", com.azure.core.util.Context.NONE)
                 .getValue();
         resource.update().apply();
     }
@@ -977,8 +951,6 @@ public final class GitHubRepoUpdateSamples {
 ### Operations_List
 
 ```java
-import com.azure.core.util.Context;
-
 /** Samples for Operations List. */
 public final class OperationsListSamples {
     /*
@@ -990,7 +962,7 @@ public final class OperationsListSamples {
      * @param manager Entry point to SecurityDevOpsManager.
      */
     public static void operationsList(com.azure.resourcemanager.securitydevops.SecurityDevOpsManager manager) {
-        manager.operations().list(Context.NONE);
+        manager.operations().list(com.azure.core.util.Context.NONE);
     }
 }
 ```

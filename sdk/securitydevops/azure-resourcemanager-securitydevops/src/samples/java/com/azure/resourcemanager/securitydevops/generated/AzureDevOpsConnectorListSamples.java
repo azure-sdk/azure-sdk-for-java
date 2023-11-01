@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.securitydevops.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for AzureDevOpsConnector List. */
 public final class AzureDevOpsConnectorListSamples {
     /*
@@ -18,6 +16,6 @@ public final class AzureDevOpsConnectorListSamples {
      */
     public static void azureDevOpsConnectorListBySubscription(
         com.azure.resourcemanager.securitydevops.SecurityDevOpsManager manager) {
-        manager.azureDevOpsConnectors().list(Context.NONE);
+        manager.azureDevOpsConnectors().list(com.azure.core.util.Context.NONE);
     }
 }
