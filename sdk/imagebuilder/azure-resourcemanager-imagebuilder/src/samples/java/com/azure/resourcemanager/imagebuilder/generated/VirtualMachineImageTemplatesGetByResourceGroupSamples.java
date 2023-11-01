@@ -7,7 +7,7 @@ package com.azure.resourcemanager.imagebuilder.generated;
 /** Samples for VirtualMachineImageTemplates GetByResourceGroup. */
 public final class VirtualMachineImageTemplatesGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2022-07-01/examples/GetImageTemplate.json
+     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2023-07-01/examples/GetImageTemplate.json
      */
     /**
      * Sample code: Retrieve an Image Template.
