@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The type of the owner the incident is assigned to. */
+/** The type of the owner the hunt is assigned to. */
 public final class OwnerType extends ExpandableStringEnum<OwnerType> {
     /** Static value Unknown for OwnerType. */
     public static final OwnerType UNKNOWN = fromString("Unknown");
@@ -18,6 +18,15 @@ public final class OwnerType extends ExpandableStringEnum<OwnerType> {
 
     /** Static value Group for OwnerType. */
     public static final OwnerType GROUP = fromString("Group");
+
+    /**
+     * Creates a new instance of OwnerType value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public OwnerType() {
+    }
 
     /**
      * Creates or finds a OwnerType from its string representation.

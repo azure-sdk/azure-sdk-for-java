@@ -24,6 +24,10 @@ public final class ProcessEntity extends EntityInner {
     @JsonProperty(value = "properties")
     private ProcessEntityProperties innerProperties;
 
+    /** Creates an instance of ProcessEntity class. */
+    public ProcessEntity() {
+    }
+
     /**
      * Get the innerProperties property: Process entity properties.
      *

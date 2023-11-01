@@ -23,6 +23,10 @@ public final class TiTaxiiDataConnector extends DataConnectorInner {
     @JsonProperty(value = "properties")
     private TiTaxiiDataConnectorProperties innerProperties;
 
+    /** Creates an instance of TiTaxiiDataConnector class. */
+    public TiTaxiiDataConnector() {
+    }
+
     /**
      * Get the innerProperties property: Threat intelligence TAXII data connector properties.
      *

@@ -20,6 +20,15 @@ public final class FileFormat extends ExpandableStringEnum<FileFormat> {
     public static final FileFormat UNSPECIFIED = fromString("Unspecified");
 
     /**
+     * Creates a new instance of FileFormat value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public FileFormat() {
+    }
+
+    /**
      * Creates or finds a FileFormat from its string representation.
      *
      * @param name a name to look for.

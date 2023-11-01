@@ -29,6 +29,10 @@ public final class AutomationRulePropertyArrayValuesCondition {
     @JsonProperty(value = "itemConditions")
     private List<AutomationRuleCondition> itemConditions;
 
+    /** Creates an instance of AutomationRulePropertyArrayValuesCondition class. */
+    public AutomationRulePropertyArrayValuesCondition() {
+    }
+
     /**
      * Get the arrayType property: The arrayType property.
      *

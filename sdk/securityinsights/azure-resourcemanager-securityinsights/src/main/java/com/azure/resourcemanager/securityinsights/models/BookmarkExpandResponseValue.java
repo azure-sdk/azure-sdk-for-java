@@ -24,6 +24,10 @@ public final class BookmarkExpandResponseValue {
     @JsonProperty(value = "edges")
     private List<ConnectedEntity> edges;
 
+    /** Creates an instance of BookmarkExpandResponseValue class. */
+    public BookmarkExpandResponseValue() {
+    }
+
     /**
      * Get the entities property: Array of the expansion result entities.
      *

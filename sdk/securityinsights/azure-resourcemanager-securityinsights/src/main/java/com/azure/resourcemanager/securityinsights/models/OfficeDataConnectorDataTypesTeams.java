@@ -9,6 +9,10 @@ import com.azure.core.annotation.Fluent;
 /** Teams data type connection. */
 @Fluent
 public final class OfficeDataConnectorDataTypesTeams extends DataConnectorDataTypeCommon {
+    /** Creates an instance of OfficeDataConnectorDataTypesTeams class. */
+    public OfficeDataConnectorDataTypesTeams() {
+    }
+
     /** {@inheritDoc} */
     @Override
     public OfficeDataConnectorDataTypesTeams withState(DataTypeState state) {

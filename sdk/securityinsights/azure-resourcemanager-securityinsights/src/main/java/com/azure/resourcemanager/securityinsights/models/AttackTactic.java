@@ -62,6 +62,15 @@ public final class AttackTactic extends ExpandableStringEnum<AttackTactic> {
     public static final AttackTactic INHIBIT_RESPONSE_FUNCTION = fromString("InhibitResponseFunction");
 
     /**
+     * Creates a new instance of AttackTactic value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public AttackTactic() {
+    }
+
+    /**
      * Creates or finds a AttackTactic from its string representation.
      *
      * @param name a name to look for.

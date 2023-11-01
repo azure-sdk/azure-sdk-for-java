@@ -31,17 +31,6 @@ public final class ThreatIntelligenceIndicatorsImpl implements ThreatIntelligenc
         this.serviceManager = serviceManager;
     }
 
-    public ThreatIntelligenceInformation createIndicator(
-        String resourceGroupName, String workspaceName, ThreatIntelligenceIndicatorModel threatIntelligenceProperties) {
-        ThreatIntelligenceInformationInner inner =
-            this.serviceClient().createIndicator(resourceGroupName, workspaceName, threatIntelligenceProperties);
-        if (inner != null) {
-            return new ThreatIntelligenceInformationImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<ThreatIntelligenceInformation> createIndicatorWithResponse(
         String resourceGroupName,
         String workspaceName,
@@ -62,8 +51,10 @@ public final class ThreatIntelligenceIndicatorsImpl implements ThreatIntelligenc
         }
     }
 
-    public ThreatIntelligenceInformation get(String resourceGroupName, String workspaceName, String name) {
-        ThreatIntelligenceInformationInner inner = this.serviceClient().get(resourceGroupName, workspaceName, name);
+    public ThreatIntelligenceInformation createIndicator(
+        String resourceGroupName, String workspaceName, ThreatIntelligenceIndicatorModel threatIntelligenceProperties) {
+        ThreatIntelligenceInformationInner inner =
+            this.serviceClient().createIndicator(resourceGroupName, workspaceName, threatIntelligenceProperties);
         if (inner != null) {
             return new ThreatIntelligenceInformationImpl(inner, this.manager());
         } else {
@@ -86,13 +77,8 @@ public final class ThreatIntelligenceIndicatorsImpl implements ThreatIntelligenc
         }
     }
 
-    public ThreatIntelligenceInformation create(
-        String resourceGroupName,
-        String workspaceName,
-        String name,
-        ThreatIntelligenceIndicatorModel threatIntelligenceProperties) {
-        ThreatIntelligenceInformationInner inner =
-            this.serviceClient().create(resourceGroupName, workspaceName, name, threatIntelligenceProperties);
+    public ThreatIntelligenceInformation get(String resourceGroupName, String workspaceName, String name) {
+        ThreatIntelligenceInformationInner inner = this.serviceClient().get(resourceGroupName, workspaceName, name);
         if (inner != null) {
             return new ThreatIntelligenceInformationImpl(inner, this.manager());
         } else {
@@ -121,13 +107,27 @@ public final class ThreatIntelligenceIndicatorsImpl implements ThreatIntelligenc
         }
     }
 
-    public void delete(String resourceGroupName, String workspaceName, String name) {
-        this.serviceClient().delete(resourceGroupName, workspaceName, name);
+    public ThreatIntelligenceInformation create(
+        String resourceGroupName,
+        String workspaceName,
+        String name,
+        ThreatIntelligenceIndicatorModel threatIntelligenceProperties) {
+        ThreatIntelligenceInformationInner inner =
+            this.serviceClient().create(resourceGroupName, workspaceName, name, threatIntelligenceProperties);
+        if (inner != null) {
+            return new ThreatIntelligenceInformationImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public Response<Void> deleteWithResponse(
         String resourceGroupName, String workspaceName, String name, Context context) {
         return this.serviceClient().deleteWithResponse(resourceGroupName, workspaceName, name, context);
+    }
+
+    public void delete(String resourceGroupName, String workspaceName, String name) {
+        this.serviceClient().delete(resourceGroupName, workspaceName, name);
     }
 
     public PagedIterable<ThreatIntelligenceInformation> queryIndicators(
@@ -151,14 +151,6 @@ public final class ThreatIntelligenceIndicatorsImpl implements ThreatIntelligenc
         return Utils.mapPage(inner, inner1 -> new ThreatIntelligenceInformationImpl(inner1, this.manager()));
     }
 
-    public void appendTags(
-        String resourceGroupName,
-        String workspaceName,
-        String name,
-        ThreatIntelligenceAppendTags threatIntelligenceAppendTags) {
-        this.serviceClient().appendTags(resourceGroupName, workspaceName, name, threatIntelligenceAppendTags);
-    }
-
     public Response<Void> appendTagsWithResponse(
         String resourceGroupName,
         String workspaceName,
@@ -170,18 +162,12 @@ public final class ThreatIntelligenceIndicatorsImpl implements ThreatIntelligenc
             .appendTagsWithResponse(resourceGroupName, workspaceName, name, threatIntelligenceAppendTags, context);
     }
 
-    public ThreatIntelligenceInformation replaceTags(
+    public void appendTags(
         String resourceGroupName,
         String workspaceName,
         String name,
-        ThreatIntelligenceIndicatorModel threatIntelligenceReplaceTags) {
-        ThreatIntelligenceInformationInner inner =
-            this.serviceClient().replaceTags(resourceGroupName, workspaceName, name, threatIntelligenceReplaceTags);
-        if (inner != null) {
-            return new ThreatIntelligenceInformationImpl(inner, this.manager());
-        } else {
-            return null;
-        }
+        ThreatIntelligenceAppendTags threatIntelligenceAppendTags) {
+        this.serviceClient().appendTags(resourceGroupName, workspaceName, name, threatIntelligenceAppendTags);
     }
 
     public Response<ThreatIntelligenceInformation> replaceTagsWithResponse(
@@ -201,6 +187,20 @@ public final class ThreatIntelligenceIndicatorsImpl implements ThreatIntelligenc
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new ThreatIntelligenceInformationImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public ThreatIntelligenceInformation replaceTags(
+        String resourceGroupName,
+        String workspaceName,
+        String name,
+        ThreatIntelligenceIndicatorModel threatIntelligenceReplaceTags) {
+        ThreatIntelligenceInformationInner inner =
+            this.serviceClient().replaceTags(resourceGroupName, workspaceName, name, threatIntelligenceReplaceTags);
+        if (inner != null) {
+            return new ThreatIntelligenceInformationImpl(inner, this.manager());
         } else {
             return null;
         }

@@ -24,6 +24,10 @@ public final class RegistryKeyEntityProperties extends EntityCommonProperties {
     @JsonProperty(value = "key", access = JsonProperty.Access.WRITE_ONLY)
     private String key;
 
+    /** Creates an instance of RegistryKeyEntityProperties class. */
+    public RegistryKeyEntityProperties() {
+    }
+
     /**
      * Get the hive property: the hive that holds the registry key.
      *

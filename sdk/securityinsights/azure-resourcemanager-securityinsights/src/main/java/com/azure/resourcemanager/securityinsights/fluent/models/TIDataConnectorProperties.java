@@ -26,6 +26,10 @@ public final class TIDataConnectorProperties extends DataConnectorTenantId {
     @JsonProperty(value = "dataTypes", required = true)
     private TIDataConnectorDataTypes dataTypes;
 
+    /** Creates an instance of TIDataConnectorProperties class. */
+    public TIDataConnectorProperties() {
+    }
+
     /**
      * Get the tipLookbackPeriod property: The lookback period for the feed to be imported.
      *

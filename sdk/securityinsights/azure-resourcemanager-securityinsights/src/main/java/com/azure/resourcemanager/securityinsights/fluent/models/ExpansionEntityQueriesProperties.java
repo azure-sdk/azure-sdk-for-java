@@ -48,6 +48,10 @@ public final class ExpansionEntityQueriesProperties {
     @JsonProperty(value = "queryTemplate")
     private String queryTemplate;
 
+    /** Creates an instance of ExpansionEntityQueriesProperties class. */
+    public ExpansionEntityQueriesProperties() {
+    }
+
     /**
      * Get the dataSources property: List of the data sources that are required to run the query.
      *
