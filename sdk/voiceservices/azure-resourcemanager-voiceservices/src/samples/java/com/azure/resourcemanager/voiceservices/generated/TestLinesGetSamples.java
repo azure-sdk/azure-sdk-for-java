@@ -7,7 +7,7 @@ package com.azure.resourcemanager.voiceservices.generated;
 /** Samples for TestLines Get. */
 public final class TestLinesGetSamples {
     /*
-     * x-ms-original-file: specification/voiceservices/resource-manager/Microsoft.VoiceServices/stable/2023-01-31/examples/TestLines_Get.json
+     * x-ms-original-file: specification/voiceservices/resource-manager/Microsoft.VoiceServices/stable/2023-09-01/examples/TestLines_Get.json
      */
     /**
      * Sample code: GetTestLineResource.

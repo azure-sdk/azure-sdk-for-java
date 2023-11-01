@@ -110,11 +110,13 @@ public interface TestLine {
             DefinitionStages.WithParentResource,
             DefinitionStages.WithCreate {
     }
+
     /** The TestLine definition stages. */
     interface DefinitionStages {
         /** The first stage of the TestLine definition. */
         interface Blank extends WithLocation {
         }
+
         /** The stage of the TestLine definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -133,6 +135,7 @@ public interface TestLine {
              */
             WithParentResource withRegion(String location);
         }
+
         /** The stage of the TestLine definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -144,6 +147,7 @@ public interface TestLine {
              */
             WithCreate withExistingCommunicationsGateway(String resourceGroupName, String communicationsGatewayName);
         }
+
         /**
          * The stage of the TestLine definition which contains all the minimum required properties for the resource to
          * be created, but also allows for any other optional properties to be specified.
@@ -165,6 +169,7 @@ public interface TestLine {
              */
             TestLine create(Context context);
         }
+
         /** The stage of the TestLine definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -175,6 +180,7 @@ public interface TestLine {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
         /** The stage of the TestLine definition allowing to specify phoneNumber. */
         interface WithPhoneNumber {
             /**
@@ -185,6 +191,7 @@ public interface TestLine {
              */
             WithCreate withPhoneNumber(String phoneNumber);
         }
+
         /** The stage of the TestLine definition allowing to specify purpose. */
         interface WithPurpose {
             /**
@@ -196,6 +203,7 @@ public interface TestLine {
             WithCreate withPurpose(TestLinePurpose purpose);
         }
     }
+
     /**
      * Begins update for the TestLine resource.
      *
@@ -220,6 +228,7 @@ public interface TestLine {
          */
         TestLine apply(Context context);
     }
+
     /** The TestLine update stages. */
     interface UpdateStages {
         /** The stage of the TestLine update allowing to specify tags. */
@@ -233,6 +242,7 @@ public interface TestLine {
             Update withTags(Map<String, String> tags);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

@@ -150,6 +150,43 @@ public interface TestLinesClient {
         Context context);
 
     /**
+     * Update a TestLine.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param communicationsGatewayName Unique identifier for this deployment.
+     * @param testLineName Unique identifier for this test line.
+     * @param properties The resource properties to be updated.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a TestLine resource along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<TestLineInner> updateWithResponse(
+        String resourceGroupName,
+        String communicationsGatewayName,
+        String testLineName,
+        TestLineUpdate properties,
+        Context context);
+
+    /**
+     * Update a TestLine.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param communicationsGatewayName Unique identifier for this deployment.
+     * @param testLineName Unique identifier for this test line.
+     * @param properties The resource properties to be updated.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a TestLine resource.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    TestLineInner update(
+        String resourceGroupName, String communicationsGatewayName, String testLineName, TestLineUpdate properties);
+
+    /**
      * Delete a TestLine.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -206,41 +243,4 @@ public interface TestLinesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     void delete(String resourceGroupName, String communicationsGatewayName, String testLineName, Context context);
-
-    /**
-     * Update a TestLine.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param communicationsGatewayName Unique identifier for this deployment.
-     * @param testLineName Unique identifier for this test line.
-     * @param properties The resource properties to be updated.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a TestLine resource along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<TestLineInner> updateWithResponse(
-        String resourceGroupName,
-        String communicationsGatewayName,
-        String testLineName,
-        TestLineUpdate properties,
-        Context context);
-
-    /**
-     * Update a TestLine.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param communicationsGatewayName Unique identifier for this deployment.
-     * @param testLineName Unique identifier for this test line.
-     * @param properties The resource properties to be updated.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a TestLine resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    TestLineInner update(
-        String resourceGroupName, String communicationsGatewayName, String testLineName, TestLineUpdate properties);
 }

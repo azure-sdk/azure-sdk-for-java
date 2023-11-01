@@ -215,7 +215,7 @@ public final class VoiceServicesManager {
                 .append("-")
                 .append("com.azure.resourcemanager.voiceservices")
                 .append("/")
-                .append("1.0.0");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -322,8 +322,10 @@ public final class VoiceServicesManager {
     }
 
     /**
-     * @return Wrapped service client MicrosoftVoiceServices providing direct access to the underlying auto-generated
-     *     API implementation, based on Azure REST API.
+     * Gets wrapped service client MicrosoftVoiceServices providing direct access to the underlying auto-generated API
+     * implementation, based on Azure REST API.
+     *
+     * @return Wrapped service client MicrosoftVoiceServices.
      */
     public MicrosoftVoiceServices serviceClient() {
         return this.clientObject;

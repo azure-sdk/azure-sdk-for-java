@@ -13,6 +13,18 @@ import java.util.Map;
 @Fluent
 public final class CommunicationsGatewayUpdate {
     /*
+     * The managed service identities assigned to this resource.
+     */
+    @JsonProperty(value = "identity")
+    private ManagedServiceIdentity identity;
+
+    /*
+     * The SKU (Stock Keeping Unit) assigned to this resource.
+     */
+    @JsonProperty(value = "sku")
+    private Sku sku;
+
+    /*
      * Resource tags.
      */
     @JsonProperty(value = "tags")
@@ -21,6 +33,46 @@ public final class CommunicationsGatewayUpdate {
 
     /** Creates an instance of CommunicationsGatewayUpdate class. */
     public CommunicationsGatewayUpdate() {
+    }
+
+    /**
+     * Get the identity property: The managed service identities assigned to this resource.
+     *
+     * @return the identity value.
+     */
+    public ManagedServiceIdentity identity() {
+        return this.identity;
+    }
+
+    /**
+     * Set the identity property: The managed service identities assigned to this resource.
+     *
+     * @param identity the identity value to set.
+     * @return the CommunicationsGatewayUpdate object itself.
+     */
+    public CommunicationsGatewayUpdate withIdentity(ManagedServiceIdentity identity) {
+        this.identity = identity;
+        return this;
+    }
+
+    /**
+     * Get the sku property: The SKU (Stock Keeping Unit) assigned to this resource.
+     *
+     * @return the sku value.
+     */
+    public Sku sku() {
+        return this.sku;
+    }
+
+    /**
+     * Set the sku property: The SKU (Stock Keeping Unit) assigned to this resource.
+     *
+     * @param sku the sku value to set.
+     * @return the CommunicationsGatewayUpdate object itself.
+     */
+    public CommunicationsGatewayUpdate withSku(Sku sku) {
+        this.sku = sku;
+        return this;
     }
 
     /**
@@ -49,5 +101,11 @@ public final class CommunicationsGatewayUpdate {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (identity() != null) {
+            identity().validate();
+        }
+        if (sku() != null) {
+            sku().validate();
+        }
     }
 }
