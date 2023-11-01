@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.managednetworkfabric.models;
 
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.managednetworkfabric.fluent.models.NetworkToNetworkInterconnectInner;
 
@@ -29,6 +30,13 @@ public interface NetworkToNetworkInterconnect {
      * @return the type value.
      */
     String type();
+
+    /**
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     *
+     * @return the systemData value.
+     */
+    SystemData systemData();
 
     /**
      * Gets the nniType property: Type of NNI used. Example: CE | NPB.

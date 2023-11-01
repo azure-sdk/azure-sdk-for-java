@@ -24,6 +24,12 @@ public class AccessControlListPatchableProperties {
     private String aclsUrl;
 
     /*
+     * Default action that needs to be applied when no condition is matched. Example: Permit | Deny.
+     */
+    @JsonProperty(value = "defaultAction")
+    private CommunityActionTypes defaultAction;
+
+    /*
      * List of match configurations.
      */
     @JsonProperty(value = "matchConfigurations")
@@ -76,6 +82,28 @@ public class AccessControlListPatchableProperties {
      */
     public AccessControlListPatchableProperties withAclsUrl(String aclsUrl) {
         this.aclsUrl = aclsUrl;
+        return this;
+    }
+
+    /**
+     * Get the defaultAction property: Default action that needs to be applied when no condition is matched. Example:
+     * Permit | Deny.
+     *
+     * @return the defaultAction value.
+     */
+    public CommunityActionTypes defaultAction() {
+        return this.defaultAction;
+    }
+
+    /**
+     * Set the defaultAction property: Default action that needs to be applied when no condition is matched. Example:
+     * Permit | Deny.
+     *
+     * @param defaultAction the defaultAction value to set.
+     * @return the AccessControlListPatchableProperties object itself.
+     */
+    public AccessControlListPatchableProperties withDefaultAction(CommunityActionTypes defaultAction) {
+        this.defaultAction = defaultAction;
         return this;
     }
 

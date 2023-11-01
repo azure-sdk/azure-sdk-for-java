@@ -8,6 +8,7 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.managednetworkfabric.models.AccessControlListMatchConfiguration;
 import com.azure.resourcemanager.managednetworkfabric.models.AccessControlListPatchableProperties;
 import com.azure.resourcemanager.managednetworkfabric.models.CommonDynamicMatchConfiguration;
+import com.azure.resourcemanager.managednetworkfabric.models.CommunityActionTypes;
 import com.azure.resourcemanager.managednetworkfabric.models.ConfigurationType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
@@ -56,6 +57,13 @@ public final class AccessControlListPatchProperties extends AccessControlListPat
     @Override
     public AccessControlListPatchProperties withAclsUrl(String aclsUrl) {
         super.withAclsUrl(aclsUrl);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public AccessControlListPatchProperties withDefaultAction(CommunityActionTypes defaultAction) {
+        super.withDefaultAction(defaultAction);
         return this;
     }
 

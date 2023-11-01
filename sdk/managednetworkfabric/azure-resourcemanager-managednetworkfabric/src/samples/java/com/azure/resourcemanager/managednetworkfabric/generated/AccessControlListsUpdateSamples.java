@@ -11,6 +11,7 @@ import com.azure.resourcemanager.managednetworkfabric.models.AccessControlListMa
 import com.azure.resourcemanager.managednetworkfabric.models.AccessControlListPortCondition;
 import com.azure.resourcemanager.managednetworkfabric.models.AclActionType;
 import com.azure.resourcemanager.managednetworkfabric.models.CommonDynamicMatchConfiguration;
+import com.azure.resourcemanager.managednetworkfabric.models.CommunityActionTypes;
 import com.azure.resourcemanager.managednetworkfabric.models.ConfigurationType;
 import com.azure.resourcemanager.managednetworkfabric.models.IpAddressType;
 import com.azure.resourcemanager.managednetworkfabric.models.IpGroupProperties;
@@ -49,6 +50,7 @@ public final class AccessControlListsUpdateSamples {
             .withAnnotation("annotation")
             .withConfigurationType(ConfigurationType.FILE)
             .withAclsUrl("https://microsoft.com/a")
+            .withDefaultAction(CommunityActionTypes.PERMIT)
             .withMatchConfigurations(
                 Arrays
                     .asList(
@@ -116,6 +118,7 @@ public final class AccessControlListsUpdateSamples {
             .apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

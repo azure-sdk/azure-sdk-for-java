@@ -29,7 +29,7 @@ public final class NetworkFabricProperties extends AnnotationResource {
     /*
      * The version of Network Fabric.
      */
-    @JsonProperty(value = "fabricVersion", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "fabricVersion")
     private String fabricVersion;
 
     /*
@@ -159,6 +159,17 @@ public final class NetworkFabricProperties extends AnnotationResource {
      */
     public String fabricVersion() {
         return this.fabricVersion;
+    }
+
+    /**
+     * Set the fabricVersion property: The version of Network Fabric.
+     *
+     * @param fabricVersion the fabricVersion value to set.
+     * @return the NetworkFabricProperties object itself.
+     */
+    public NetworkFabricProperties withFabricVersion(String fabricVersion) {
+        this.fabricVersion = fabricVersion;
+        return this;
     }
 
     /**
