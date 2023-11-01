@@ -128,11 +128,13 @@ public interface SecurityConnector {
             DefinitionStages.WithResourceGroup,
             DefinitionStages.WithCreate {
     }
+
     /** The SecurityConnector definition stages. */
     interface DefinitionStages {
         /** The first stage of the SecurityConnector definition. */
         interface Blank extends WithLocation {
         }
+
         /** The stage of the SecurityConnector definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -151,6 +153,7 @@ public interface SecurityConnector {
              */
             WithResourceGroup withRegion(String location);
         }
+
         /** The stage of the SecurityConnector definition allowing to specify parent resource. */
         interface WithResourceGroup {
             /**
@@ -162,6 +165,7 @@ public interface SecurityConnector {
              */
             WithCreate withExistingResourceGroup(String resourceGroupName);
         }
+
         /**
          * The stage of the SecurityConnector definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
@@ -187,6 +191,7 @@ public interface SecurityConnector {
              */
             SecurityConnector create(Context context);
         }
+
         /** The stage of the SecurityConnector definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -197,6 +202,7 @@ public interface SecurityConnector {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
         /** The stage of the SecurityConnector definition allowing to specify hierarchyIdentifier. */
         interface WithHierarchyIdentifier {
             /**
@@ -209,6 +215,7 @@ public interface SecurityConnector {
              */
             WithCreate withHierarchyIdentifier(String hierarchyIdentifier);
         }
+
         /** The stage of the SecurityConnector definition allowing to specify environmentName. */
         interface WithEnvironmentName {
             /**
@@ -219,6 +226,7 @@ public interface SecurityConnector {
              */
             WithCreate withEnvironmentName(CloudName environmentName);
         }
+
         /** The stage of the SecurityConnector definition allowing to specify offerings. */
         interface WithOfferings {
             /**
@@ -229,6 +237,7 @@ public interface SecurityConnector {
              */
             WithCreate withOfferings(List<CloudOffering> offerings);
         }
+
         /** The stage of the SecurityConnector definition allowing to specify environmentData. */
         interface WithEnvironmentData {
             /**
@@ -240,6 +249,7 @@ public interface SecurityConnector {
             WithCreate withEnvironmentData(EnvironmentData environmentData);
         }
     }
+
     /**
      * Begins update for the SecurityConnector resource.
      *
@@ -269,6 +279,7 @@ public interface SecurityConnector {
          */
         SecurityConnector apply(Context context);
     }
+
     /** The SecurityConnector update stages. */
     interface UpdateStages {
         /** The stage of the SecurityConnector update allowing to specify tags. */
@@ -281,6 +292,7 @@ public interface SecurityConnector {
              */
             Update withTags(Map<String, String> tags);
         }
+
         /** The stage of the SecurityConnector update allowing to specify hierarchyIdentifier. */
         interface WithHierarchyIdentifier {
             /**
@@ -293,6 +305,7 @@ public interface SecurityConnector {
              */
             Update withHierarchyIdentifier(String hierarchyIdentifier);
         }
+
         /** The stage of the SecurityConnector update allowing to specify environmentName. */
         interface WithEnvironmentName {
             /**
@@ -303,6 +316,7 @@ public interface SecurityConnector {
              */
             Update withEnvironmentName(CloudName environmentName);
         }
+
         /** The stage of the SecurityConnector update allowing to specify offerings. */
         interface WithOfferings {
             /**
@@ -313,6 +327,7 @@ public interface SecurityConnector {
              */
             Update withOfferings(List<CloudOffering> offerings);
         }
+
         /** The stage of the SecurityConnector update allowing to specify environmentData. */
         interface WithEnvironmentData {
             /**
@@ -324,6 +339,7 @@ public interface SecurityConnector {
             Update withEnvironmentData(EnvironmentData environmentData);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

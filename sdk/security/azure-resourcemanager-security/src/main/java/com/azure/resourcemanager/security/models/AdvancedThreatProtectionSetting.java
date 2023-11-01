@@ -47,11 +47,13 @@ public interface AdvancedThreatProtectionSetting {
     /** The entirety of the AdvancedThreatProtectionSetting definition. */
     interface Definition extends DefinitionStages.Blank, DefinitionStages.WithScope, DefinitionStages.WithCreate {
     }
+
     /** The AdvancedThreatProtectionSetting definition stages. */
     interface DefinitionStages {
         /** The first stage of the AdvancedThreatProtectionSetting definition. */
         interface Blank extends WithScope {
         }
+
         /** The stage of the AdvancedThreatProtectionSetting definition allowing to specify parent resource. */
         interface WithScope {
             /**
@@ -62,6 +64,7 @@ public interface AdvancedThreatProtectionSetting {
              */
             WithCreate withExistingResourceId(String resourceId);
         }
+
         /**
          * The stage of the AdvancedThreatProtectionSetting definition which contains all the minimum required
          * properties for the resource to be created, but also allows for any other optional properties to be specified.
@@ -82,6 +85,7 @@ public interface AdvancedThreatProtectionSetting {
              */
             AdvancedThreatProtectionSetting create(Context context);
         }
+
         /** The stage of the AdvancedThreatProtectionSetting definition allowing to specify isEnabled. */
         interface WithIsEnabled {
             /**
@@ -93,6 +97,7 @@ public interface AdvancedThreatProtectionSetting {
             WithCreate withIsEnabled(Boolean isEnabled);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

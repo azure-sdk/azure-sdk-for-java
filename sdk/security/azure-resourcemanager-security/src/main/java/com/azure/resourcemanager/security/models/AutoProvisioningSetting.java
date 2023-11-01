@@ -47,11 +47,13 @@ public interface AutoProvisioningSetting {
     /** The entirety of the AutoProvisioningSetting definition. */
     interface Definition extends DefinitionStages.Blank, DefinitionStages.WithCreate {
     }
+
     /** The AutoProvisioningSetting definition stages. */
     interface DefinitionStages {
         /** The first stage of the AutoProvisioningSetting definition. */
         interface Blank extends WithCreate {
         }
+
         /**
          * The stage of the AutoProvisioningSetting definition which contains all the minimum required properties for
          * the resource to be created, but also allows for any other optional properties to be specified.
@@ -72,6 +74,7 @@ public interface AutoProvisioningSetting {
              */
             AutoProvisioningSetting create(Context context);
         }
+
         /** The stage of the AutoProvisioningSetting definition allowing to specify autoProvision. */
         interface WithAutoProvision {
             /**
@@ -83,6 +86,7 @@ public interface AutoProvisioningSetting {
             WithCreate withAutoProvision(AutoProvision autoProvision);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *
