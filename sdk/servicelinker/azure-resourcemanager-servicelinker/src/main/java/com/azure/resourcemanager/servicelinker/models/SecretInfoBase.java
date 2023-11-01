@@ -23,6 +23,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 })
 @Immutable
 public class SecretInfoBase {
+    /** Creates an instance of SecretInfoBase class. */
+    public SecretInfoBase() {
+    }
+
     /**
      * Validates the instance.
      *

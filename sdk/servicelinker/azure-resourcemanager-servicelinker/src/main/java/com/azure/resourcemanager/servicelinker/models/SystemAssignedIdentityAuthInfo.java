@@ -4,15 +4,101 @@
 
 package com.azure.resourcemanager.servicelinker.models;
 
-import com.azure.core.annotation.Immutable;
+import com.azure.core.annotation.Fluent;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
+import java.util.List;
 
 /** The authentication info when authType is systemAssignedIdentity. */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "authType")
 @JsonTypeName("systemAssignedIdentity")
-@Immutable
+@Fluent
 public final class SystemAssignedIdentityAuthInfo extends AuthInfoBase {
+    /*
+     * Indicates whether to clean up previous operation when Linker is updating or deleting
+     */
+    @JsonProperty(value = "deleteOrUpdateBehavior")
+    private DeleteOrUpdateBehavior deleteOrUpdateBehavior;
+
+    /*
+     * Optional, this value specifies the Azure role to be assigned
+     */
+    @JsonProperty(value = "roles")
+    private List<String> roles;
+
+    /*
+     * Username created in the database which is mapped to a user in AAD.
+     */
+    @JsonProperty(value = "userName")
+    private String username;
+
+    /** Creates an instance of SystemAssignedIdentityAuthInfo class. */
+    public SystemAssignedIdentityAuthInfo() {
+    }
+
+    /**
+     * Get the deleteOrUpdateBehavior property: Indicates whether to clean up previous operation when Linker is updating
+     * or deleting.
+     *
+     * @return the deleteOrUpdateBehavior value.
+     */
+    public DeleteOrUpdateBehavior deleteOrUpdateBehavior() {
+        return this.deleteOrUpdateBehavior;
+    }
+
+    /**
+     * Set the deleteOrUpdateBehavior property: Indicates whether to clean up previous operation when Linker is updating
+     * or deleting.
+     *
+     * @param deleteOrUpdateBehavior the deleteOrUpdateBehavior value to set.
+     * @return the SystemAssignedIdentityAuthInfo object itself.
+     */
+    public SystemAssignedIdentityAuthInfo withDeleteOrUpdateBehavior(DeleteOrUpdateBehavior deleteOrUpdateBehavior) {
+        this.deleteOrUpdateBehavior = deleteOrUpdateBehavior;
+        return this;
+    }
+
+    /**
+     * Get the roles property: Optional, this value specifies the Azure role to be assigned.
+     *
+     * @return the roles value.
+     */
+    public List<String> roles() {
+        return this.roles;
+    }
+
+    /**
+     * Set the roles property: Optional, this value specifies the Azure role to be assigned.
+     *
+     * @param roles the roles value to set.
+     * @return the SystemAssignedIdentityAuthInfo object itself.
+     */
+    public SystemAssignedIdentityAuthInfo withRoles(List<String> roles) {
+        this.roles = roles;
+        return this;
+    }
+
+    /**
+     * Get the username property: Username created in the database which is mapped to a user in AAD.
+     *
+     * @return the username value.
+     */
+    public String username() {
+        return this.username;
+    }
+
+    /**
+     * Set the username property: Username created in the database which is mapped to a user in AAD.
+     *
+     * @param username the username value to set.
+     * @return the SystemAssignedIdentityAuthInfo object itself.
+     */
+    public SystemAssignedIdentityAuthInfo withUsername(String username) {
+        this.username = username;
+        return this;
+    }
+
     /**
      * Validates the instance.
      *

@@ -22,6 +22,28 @@ public final class SourceConfiguration {
     @JsonProperty(value = "value")
     private String value;
 
+    /*
+     * The type of setting
+     */
+    @JsonProperty(value = "configType", access = JsonProperty.Access.WRITE_ONLY)
+    private LinkerConfigurationType configType;
+
+    /*
+     * The identity for key vault reference, system or user-assigned managed identity ID
+     */
+    @JsonProperty(value = "keyVaultReferenceIdentity")
+    private String keyVaultReferenceIdentity;
+
+    /*
+     * Descriptive information for the configuration
+     */
+    @JsonProperty(value = "description")
+    private String description;
+
+    /** Creates an instance of SourceConfiguration class. */
+    public SourceConfiguration() {
+    }
+
     /**
      * Get the name property: The name of setting.
      *
@@ -59,6 +81,57 @@ public final class SourceConfiguration {
      */
     public SourceConfiguration withValue(String value) {
         this.value = value;
+        return this;
+    }
+
+    /**
+     * Get the configType property: The type of setting.
+     *
+     * @return the configType value.
+     */
+    public LinkerConfigurationType configType() {
+        return this.configType;
+    }
+
+    /**
+     * Get the keyVaultReferenceIdentity property: The identity for key vault reference, system or user-assigned managed
+     * identity ID.
+     *
+     * @return the keyVaultReferenceIdentity value.
+     */
+    public String keyVaultReferenceIdentity() {
+        return this.keyVaultReferenceIdentity;
+    }
+
+    /**
+     * Set the keyVaultReferenceIdentity property: The identity for key vault reference, system or user-assigned managed
+     * identity ID.
+     *
+     * @param keyVaultReferenceIdentity the keyVaultReferenceIdentity value to set.
+     * @return the SourceConfiguration object itself.
+     */
+    public SourceConfiguration withKeyVaultReferenceIdentity(String keyVaultReferenceIdentity) {
+        this.keyVaultReferenceIdentity = keyVaultReferenceIdentity;
+        return this;
+    }
+
+    /**
+     * Get the description property: Descriptive information for the configuration.
+     *
+     * @return the description value.
+     */
+    public String description() {
+        return this.description;
+    }
+
+    /**
+     * Set the description property: Descriptive information for the configuration.
+     *
+     * @param description the description value to set.
+     * @return the SourceConfiguration object itself.
+     */
+    public SourceConfiguration withDescription(String description) {
+        this.description = description;
         return this;
     }
 

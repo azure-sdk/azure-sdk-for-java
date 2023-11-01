@@ -20,6 +20,10 @@ public final class ConfluentSchemaRegistry extends TargetServiceBase {
     @JsonProperty(value = "endpoint")
     private String endpoint;
 
+    /** Creates an instance of ConfluentSchemaRegistry class. */
+    public ConfluentSchemaRegistry() {
+    }
+
     /**
      * Get the endpoint property: The endpoint of service.
      *
