@@ -60,6 +60,26 @@ public class AzureWorkloadRestoreRequest extends RestoreRequest {
     private RecoveryMode recoveryMode;
 
     /*
+     * Defines the Resource group of the Target VM
+     */
+    @JsonProperty(value = "targetResourceGroupName")
+    private String targetResourceGroupName;
+
+    /*
+     * User Assigned managed identity details
+     * Currently used for snapshot.
+     */
+    @JsonProperty(value = "userAssignedManagedIdentityDetails")
+    private UserAssignedManagedIdentityDetails userAssignedManagedIdentityDetails;
+
+    /*
+     * Additional details for snapshot recovery
+     * Currently used for snapshot for SAP Hana.
+     */
+    @JsonProperty(value = "snapshotRestoreParameters")
+    private SnapshotRestoreParameters snapshotRestoreParameters;
+
+    /*
      * This is the complete ARM Id of the target VM
      * For e.g. /subscriptions/{subId}/resourcegroups/{rg}/provider/Microsoft.Compute/virtualmachines/{vm}
      */
@@ -173,6 +193,72 @@ public class AzureWorkloadRestoreRequest extends RestoreRequest {
     }
 
     /**
+     * Get the targetResourceGroupName property: Defines the Resource group of the Target VM.
+     *
+     * @return the targetResourceGroupName value.
+     */
+    public String targetResourceGroupName() {
+        return this.targetResourceGroupName;
+    }
+
+    /**
+     * Set the targetResourceGroupName property: Defines the Resource group of the Target VM.
+     *
+     * @param targetResourceGroupName the targetResourceGroupName value to set.
+     * @return the AzureWorkloadRestoreRequest object itself.
+     */
+    public AzureWorkloadRestoreRequest withTargetResourceGroupName(String targetResourceGroupName) {
+        this.targetResourceGroupName = targetResourceGroupName;
+        return this;
+    }
+
+    /**
+     * Get the userAssignedManagedIdentityDetails property: User Assigned managed identity details Currently used for
+     * snapshot.
+     *
+     * @return the userAssignedManagedIdentityDetails value.
+     */
+    public UserAssignedManagedIdentityDetails userAssignedManagedIdentityDetails() {
+        return this.userAssignedManagedIdentityDetails;
+    }
+
+    /**
+     * Set the userAssignedManagedIdentityDetails property: User Assigned managed identity details Currently used for
+     * snapshot.
+     *
+     * @param userAssignedManagedIdentityDetails the userAssignedManagedIdentityDetails value to set.
+     * @return the AzureWorkloadRestoreRequest object itself.
+     */
+    public AzureWorkloadRestoreRequest withUserAssignedManagedIdentityDetails(
+        UserAssignedManagedIdentityDetails userAssignedManagedIdentityDetails) {
+        this.userAssignedManagedIdentityDetails = userAssignedManagedIdentityDetails;
+        return this;
+    }
+
+    /**
+     * Get the snapshotRestoreParameters property: Additional details for snapshot recovery Currently used for snapshot
+     * for SAP Hana.
+     *
+     * @return the snapshotRestoreParameters value.
+     */
+    public SnapshotRestoreParameters snapshotRestoreParameters() {
+        return this.snapshotRestoreParameters;
+    }
+
+    /**
+     * Set the snapshotRestoreParameters property: Additional details for snapshot recovery Currently used for snapshot
+     * for SAP Hana.
+     *
+     * @param snapshotRestoreParameters the snapshotRestoreParameters value to set.
+     * @return the AzureWorkloadRestoreRequest object itself.
+     */
+    public AzureWorkloadRestoreRequest withSnapshotRestoreParameters(
+        SnapshotRestoreParameters snapshotRestoreParameters) {
+        this.snapshotRestoreParameters = snapshotRestoreParameters;
+        return this;
+    }
+
+    /**
      * Get the targetVirtualMachineId property: This is the complete ARM Id of the target VM For e.g.
      * /subscriptions/{subId}/resourcegroups/{rg}/provider/Microsoft.Compute/virtualmachines/{vm}.
      *
@@ -204,6 +290,12 @@ public class AzureWorkloadRestoreRequest extends RestoreRequest {
         super.validate();
         if (targetInfo() != null) {
             targetInfo().validate();
+        }
+        if (userAssignedManagedIdentityDetails() != null) {
+            userAssignedManagedIdentityDetails().validate();
+        }
+        if (snapshotRestoreParameters() != null) {
+            snapshotRestoreParameters().validate();
         }
     }
 }

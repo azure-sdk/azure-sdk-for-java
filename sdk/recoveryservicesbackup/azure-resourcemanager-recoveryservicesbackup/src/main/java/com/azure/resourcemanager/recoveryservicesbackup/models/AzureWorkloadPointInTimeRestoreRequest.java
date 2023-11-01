@@ -83,6 +83,29 @@ public final class AzureWorkloadPointInTimeRestoreRequest extends AzureWorkloadR
 
     /** {@inheritDoc} */
     @Override
+    public AzureWorkloadPointInTimeRestoreRequest withTargetResourceGroupName(String targetResourceGroupName) {
+        super.withTargetResourceGroupName(targetResourceGroupName);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public AzureWorkloadPointInTimeRestoreRequest withUserAssignedManagedIdentityDetails(
+        UserAssignedManagedIdentityDetails userAssignedManagedIdentityDetails) {
+        super.withUserAssignedManagedIdentityDetails(userAssignedManagedIdentityDetails);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public AzureWorkloadPointInTimeRestoreRequest withSnapshotRestoreParameters(
+        SnapshotRestoreParameters snapshotRestoreParameters) {
+        super.withSnapshotRestoreParameters(snapshotRestoreParameters);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public AzureWorkloadPointInTimeRestoreRequest withTargetVirtualMachineId(String targetVirtualMachineId) {
         super.withTargetVirtualMachineId(targetVirtualMachineId);
         return this;

@@ -26,7 +26,7 @@ import com.azure.core.util.FluxUtil;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.recoveryservicesbackup.fluent.ValidateOperationsClient;
-import com.azure.resourcemanager.recoveryservicesbackup.models.ValidateOperationRequest;
+import com.azure.resourcemanager.recoveryservicesbackup.models.ValidateOperationRequestResource;
 import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -68,7 +68,7 @@ public final class ValidateOperationsClientImpl implements ValidateOperationsCli
             @PathParam("vaultName") String vaultName,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("subscriptionId") String subscriptionId,
-            @BodyParam("application/json") ValidateOperationRequest parameters,
+            @BodyParam("application/json") ValidateOperationRequestResource parameters,
             @HeaderParam("Accept") String accept,
             Context context);
     }
@@ -87,7 +87,7 @@ public final class ValidateOperationsClientImpl implements ValidateOperationsCli
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> triggerWithResponseAsync(
-        String vaultName, String resourceGroupName, ValidateOperationRequest parameters) {
+        String vaultName, String resourceGroupName, ValidateOperationRequestResource parameters) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -144,7 +144,7 @@ public final class ValidateOperationsClientImpl implements ValidateOperationsCli
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> triggerWithResponseAsync(
-        String vaultName, String resourceGroupName, ValidateOperationRequest parameters, Context context) {
+        String vaultName, String resourceGroupName, ValidateOperationRequestResource parameters, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -197,7 +197,7 @@ public final class ValidateOperationsClientImpl implements ValidateOperationsCli
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginTriggerAsync(
-        String vaultName, String resourceGroupName, ValidateOperationRequest parameters) {
+        String vaultName, String resourceGroupName, ValidateOperationRequestResource parameters) {
         Mono<Response<Flux<ByteBuffer>>> mono = triggerWithResponseAsync(vaultName, resourceGroupName, parameters);
         return this
             .client
@@ -220,7 +220,7 @@ public final class ValidateOperationsClientImpl implements ValidateOperationsCli
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginTriggerAsync(
-        String vaultName, String resourceGroupName, ValidateOperationRequest parameters, Context context) {
+        String vaultName, String resourceGroupName, ValidateOperationRequestResource parameters, Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono =
             triggerWithResponseAsync(vaultName, resourceGroupName, parameters, context);
@@ -243,7 +243,7 @@ public final class ValidateOperationsClientImpl implements ValidateOperationsCli
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginTrigger(
-        String vaultName, String resourceGroupName, ValidateOperationRequest parameters) {
+        String vaultName, String resourceGroupName, ValidateOperationRequestResource parameters) {
         return this.beginTriggerAsync(vaultName, resourceGroupName, parameters).getSyncPoller();
     }
 
@@ -262,7 +262,7 @@ public final class ValidateOperationsClientImpl implements ValidateOperationsCli
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginTrigger(
-        String vaultName, String resourceGroupName, ValidateOperationRequest parameters, Context context) {
+        String vaultName, String resourceGroupName, ValidateOperationRequestResource parameters, Context context) {
         return this.beginTriggerAsync(vaultName, resourceGroupName, parameters, context).getSyncPoller();
     }
 
@@ -279,7 +279,8 @@ public final class ValidateOperationsClientImpl implements ValidateOperationsCli
      * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> triggerAsync(String vaultName, String resourceGroupName, ValidateOperationRequest parameters) {
+    private Mono<Void> triggerAsync(
+        String vaultName, String resourceGroupName, ValidateOperationRequestResource parameters) {
         return beginTriggerAsync(vaultName, resourceGroupName, parameters)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
@@ -300,7 +301,7 @@ public final class ValidateOperationsClientImpl implements ValidateOperationsCli
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> triggerAsync(
-        String vaultName, String resourceGroupName, ValidateOperationRequest parameters, Context context) {
+        String vaultName, String resourceGroupName, ValidateOperationRequestResource parameters, Context context) {
         return beginTriggerAsync(vaultName, resourceGroupName, parameters, context)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
@@ -318,7 +319,7 @@ public final class ValidateOperationsClientImpl implements ValidateOperationsCli
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void trigger(String vaultName, String resourceGroupName, ValidateOperationRequest parameters) {
+    public void trigger(String vaultName, String resourceGroupName, ValidateOperationRequestResource parameters) {
         triggerAsync(vaultName, resourceGroupName, parameters).block();
     }
 
@@ -336,7 +337,7 @@ public final class ValidateOperationsClientImpl implements ValidateOperationsCli
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public void trigger(
-        String vaultName, String resourceGroupName, ValidateOperationRequest parameters, Context context) {
+        String vaultName, String resourceGroupName, ValidateOperationRequestResource parameters, Context context) {
         triggerAsync(vaultName, resourceGroupName, parameters, context).block();
     }
 }

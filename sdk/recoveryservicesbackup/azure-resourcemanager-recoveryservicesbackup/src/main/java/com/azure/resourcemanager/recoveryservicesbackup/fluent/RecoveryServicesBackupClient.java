@@ -393,4 +393,25 @@ public interface RecoveryServicesBackupClient {
      * @return the ResourceGuardProxyOperationsClient object.
      */
     ResourceGuardProxyOperationsClient getResourceGuardProxyOperations();
+
+    /**
+     * Gets the FetchTieringCostsClient object to access its operations.
+     *
+     * @return the FetchTieringCostsClient object.
+     */
+    FetchTieringCostsClient getFetchTieringCosts();
+
+    /**
+     * Gets the GetTieringCostOperationResultsClient object to access its operations.
+     *
+     * @return the GetTieringCostOperationResultsClient object.
+     */
+    GetTieringCostOperationResultsClient getGetTieringCostOperationResults();
+
+    /**
+     * Gets the TieringCostOperationStatusClient object to access its operations.
+     *
+     * @return the TieringCostOperationStatusClient object.
+     */
+    TieringCostOperationStatusClient getTieringCostOperationStatus();
 }

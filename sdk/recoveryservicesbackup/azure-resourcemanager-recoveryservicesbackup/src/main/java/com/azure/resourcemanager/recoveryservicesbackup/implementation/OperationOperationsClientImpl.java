@@ -24,7 +24,7 @@ import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
 import com.azure.resourcemanager.recoveryservicesbackup.fluent.OperationOperationsClient;
 import com.azure.resourcemanager.recoveryservicesbackup.fluent.models.ValidateOperationsResponseInner;
-import com.azure.resourcemanager.recoveryservicesbackup.models.ValidateOperationRequest;
+import com.azure.resourcemanager.recoveryservicesbackup.models.ValidateOperationRequestResource;
 import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in OperationOperationsClient. */
@@ -64,7 +64,7 @@ public final class OperationOperationsClientImpl implements OperationOperationsC
             @PathParam("vaultName") String vaultName,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("subscriptionId") String subscriptionId,
-            @BodyParam("application/json") ValidateOperationRequest parameters,
+            @BodyParam("application/json") ValidateOperationRequestResource parameters,
             @HeaderParam("Accept") String accept,
             Context context);
     }
@@ -82,7 +82,7 @@ public final class OperationOperationsClientImpl implements OperationOperationsC
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ValidateOperationsResponseInner>> validateWithResponseAsync(
-        String vaultName, String resourceGroupName, ValidateOperationRequest parameters) {
+        String vaultName, String resourceGroupName, ValidateOperationRequestResource parameters) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -138,7 +138,7 @@ public final class OperationOperationsClientImpl implements OperationOperationsC
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ValidateOperationsResponseInner>> validateWithResponseAsync(
-        String vaultName, String resourceGroupName, ValidateOperationRequest parameters, Context context) {
+        String vaultName, String resourceGroupName, ValidateOperationRequestResource parameters, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -190,7 +190,7 @@ public final class OperationOperationsClientImpl implements OperationOperationsC
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ValidateOperationsResponseInner> validateAsync(
-        String vaultName, String resourceGroupName, ValidateOperationRequest parameters) {
+        String vaultName, String resourceGroupName, ValidateOperationRequestResource parameters) {
         return validateWithResponseAsync(vaultName, resourceGroupName, parameters)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
@@ -209,7 +209,7 @@ public final class OperationOperationsClientImpl implements OperationOperationsC
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<ValidateOperationsResponseInner> validateWithResponse(
-        String vaultName, String resourceGroupName, ValidateOperationRequest parameters, Context context) {
+        String vaultName, String resourceGroupName, ValidateOperationRequestResource parameters, Context context) {
         return validateWithResponseAsync(vaultName, resourceGroupName, parameters, context).block();
     }
 
@@ -226,7 +226,7 @@ public final class OperationOperationsClientImpl implements OperationOperationsC
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public ValidateOperationsResponseInner validate(
-        String vaultName, String resourceGroupName, ValidateOperationRequest parameters) {
+        String vaultName, String resourceGroupName, ValidateOperationRequestResource parameters) {
         return validateWithResponse(vaultName, resourceGroupName, parameters, Context.NONE).getValue();
     }
 }
