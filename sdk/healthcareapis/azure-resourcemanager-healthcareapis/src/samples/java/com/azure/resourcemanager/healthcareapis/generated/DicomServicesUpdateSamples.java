@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.healthcareapis.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.healthcareapis.models.DicomService;
 import java.util.HashMap;
 import java.util.Map;
@@ -12,7 +11,7 @@ import java.util.Map;
 /** Samples for DicomServices Update. */
 public final class DicomServicesUpdateSamples {
     /*
-     * x-ms-original-file: specification/healthcareapis/resource-manager/Microsoft.HealthcareApis/stable/2021-11-01/examples/dicomservices/DicomServices_Patch.json
+     * x-ms-original-file: specification/healthcareapis/resource-manager/Microsoft.HealthcareApis/stable/2023-11-01/examples/dicomservices/DicomServices_Patch.json
      */
     /**
      * Sample code: Update a dicomservice.
@@ -21,10 +20,14 @@ public final class DicomServicesUpdateSamples {
      */
     public static void updateADicomservice(com.azure.resourcemanager.healthcareapis.HealthcareApisManager manager) {
         DicomService resource =
-            manager.dicomServices().getWithResponse("testRG", "workspace1", "blue", Context.NONE).getValue();
-        resource.update().withTags(mapOf("tagKey", "tagValue")).apply();
+            manager
+                .dicomServices()
+                .getWithResponse("testRG", "workspace1", "blue", com.azure.core.util.Context.NONE)
+                .getValue();
+        resource.update().withTags(mapOf("tagKey", "fakeTokenPlaceholder")).apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

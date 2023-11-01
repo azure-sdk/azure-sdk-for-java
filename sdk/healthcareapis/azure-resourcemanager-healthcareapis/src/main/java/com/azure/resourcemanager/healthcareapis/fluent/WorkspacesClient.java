@@ -68,19 +68,6 @@ public interface WorkspacesClient {
      *
      * @param resourceGroupName The name of the resource group that contains the service instance.
      * @param workspaceName The name of workspace resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the properties of the specified workspace.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    WorkspaceInner getByResourceGroup(String resourceGroupName, String workspaceName);
-
-    /**
-     * Gets the properties of the specified workspace.
-     *
-     * @param resourceGroupName The name of the resource group that contains the service instance.
-     * @param workspaceName The name of workspace resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -90,6 +77,19 @@ public interface WorkspacesClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<WorkspaceInner> getByResourceGroupWithResponse(
         String resourceGroupName, String workspaceName, Context context);
+
+    /**
+     * Gets the properties of the specified workspace.
+     *
+     * @param resourceGroupName The name of the resource group that contains the service instance.
+     * @param workspaceName The name of workspace resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the properties of the specified workspace.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    WorkspaceInner getByResourceGroup(String resourceGroupName, String workspaceName);
 
     /**
      * Creates or updates a workspace resource with the specified parameters.

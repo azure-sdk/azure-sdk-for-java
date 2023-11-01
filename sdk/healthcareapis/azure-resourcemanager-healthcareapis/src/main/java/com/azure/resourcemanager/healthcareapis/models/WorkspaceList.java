@@ -24,6 +24,10 @@ public final class WorkspaceList {
     @JsonProperty(value = "value")
     private List<WorkspaceInner> value;
 
+    /** Creates an instance of WorkspaceList class. */
+    public WorkspaceList() {
+    }
+
     /**
      * Get the nextLink property: The link used to get the next page.
      *

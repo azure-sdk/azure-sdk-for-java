@@ -4,12 +4,10 @@
 
 package com.azure.resourcemanager.healthcareapis.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for Services GetByResourceGroup. */
 public final class ServicesGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/healthcareapis/resource-manager/Microsoft.HealthcareApis/stable/2021-11-01/examples/legacy/ServiceGet.json
+     * x-ms-original-file: specification/healthcareapis/resource-manager/Microsoft.HealthcareApis/stable/2023-11-01/examples/legacy/ServiceGet.json
      */
     /**
      * Sample code: Get metadata.
@@ -17,6 +15,19 @@ public final class ServicesGetByResourceGroupSamples {
      * @param manager Entry point to HealthcareApisManager.
      */
     public static void getMetadata(com.azure.resourcemanager.healthcareapis.HealthcareApisManager manager) {
-        manager.services().getByResourceGroupWithResponse("rg1", "service1", Context.NONE);
+        manager.services().getByResourceGroupWithResponse("rg1", "service1", com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/healthcareapis/resource-manager/Microsoft.HealthcareApis/stable/2023-11-01/examples/legacy/ServiceGetInDataSovereignRegionWithCmkEnabled.json
+     */
+    /**
+     * Sample code: Get metadata for CMK enabled service in data sovereign region.
+     *
+     * @param manager Entry point to HealthcareApisManager.
+     */
+    public static void getMetadataForCMKEnabledServiceInDataSovereignRegion(
+        com.azure.resourcemanager.healthcareapis.HealthcareApisManager manager) {
+        manager.services().getByResourceGroupWithResponse("rg1", "service1", com.azure.core.util.Context.NONE);
     }
 }

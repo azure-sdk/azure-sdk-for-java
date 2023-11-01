@@ -38,15 +38,6 @@ public final class FhirServicesImpl implements FhirServices {
         return Utils.mapPage(inner, inner1 -> new FhirServiceImpl(inner1, this.manager()));
     }
 
-    public FhirService get(String resourceGroupName, String workspaceName, String fhirServiceName) {
-        FhirServiceInner inner = this.serviceClient().get(resourceGroupName, workspaceName, fhirServiceName);
-        if (inner != null) {
-            return new FhirServiceImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<FhirService> getWithResponse(
         String resourceGroupName, String workspaceName, String fhirServiceName, Context context) {
         Response<FhirServiceInner> inner =
@@ -57,6 +48,15 @@ public final class FhirServicesImpl implements FhirServices {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new FhirServiceImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public FhirService get(String resourceGroupName, String workspaceName, String fhirServiceName) {
+        FhirServiceInner inner = this.serviceClient().get(resourceGroupName, workspaceName, fhirServiceName);
+        if (inner != null) {
+            return new FhirServiceImpl(inner, this.manager());
         } else {
             return null;
         }
