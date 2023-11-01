@@ -23,6 +23,8 @@ import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.newrelicobservability.fluent.AccountsClient;
+import com.azure.resourcemanager.newrelicobservability.fluent.BillingInfoesClient;
+import com.azure.resourcemanager.newrelicobservability.fluent.ConnectedPartnerResourcesClient;
 import com.azure.resourcemanager.newrelicobservability.fluent.MonitorsClient;
 import com.azure.resourcemanager.newrelicobservability.fluent.NewRelicObservability;
 import com.azure.resourcemanager.newrelicobservability.fluent.OperationsClient;
@@ -173,6 +175,30 @@ public final class NewRelicObservabilityImpl implements NewRelicObservability {
         return this.plans;
     }
 
+    /** The BillingInfoesClient object to access its operations. */
+    private final BillingInfoesClient billingInfoes;
+
+    /**
+     * Gets the BillingInfoesClient object to access its operations.
+     *
+     * @return the BillingInfoesClient object.
+     */
+    public BillingInfoesClient getBillingInfoes() {
+        return this.billingInfoes;
+    }
+
+    /** The ConnectedPartnerResourcesClient object to access its operations. */
+    private final ConnectedPartnerResourcesClient connectedPartnerResources;
+
+    /**
+     * Gets the ConnectedPartnerResourcesClient object to access its operations.
+     *
+     * @return the ConnectedPartnerResourcesClient object.
+     */
+    public ConnectedPartnerResourcesClient getConnectedPartnerResources() {
+        return this.connectedPartnerResources;
+    }
+
     /** The TagRulesClient object to access its operations. */
     private final TagRulesClient tagRules;
 
@@ -207,12 +233,14 @@ public final class NewRelicObservabilityImpl implements NewRelicObservability {
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2022-07-01";
+        this.apiVersion = "2023-10-01-preview";
         this.operations = new OperationsClientImpl(this);
         this.accounts = new AccountsClientImpl(this);
         this.monitors = new MonitorsClientImpl(this);
         this.organizations = new OrganizationsClientImpl(this);
         this.plans = new PlansClientImpl(this);
+        this.billingInfoes = new BillingInfoesClientImpl(this);
+        this.connectedPartnerResources = new ConnectedPartnerResourcesClientImpl(this);
         this.tagRules = new TagRulesClientImpl(this);
     }
 
