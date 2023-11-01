@@ -23,6 +23,7 @@ import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
 import com.azure.resourcemanager.elastic.fluent.OrganizationsClient;
+import com.azure.resourcemanager.elastic.fluent.models.ElasticOrganizationToAzureSubscriptionMappingResponseInner;
 import com.azure.resourcemanager.elastic.fluent.models.UserApiKeyResponseInner;
 import com.azure.resourcemanager.elastic.models.UserEmailId;
 import reactor.core.publisher.Mono;
@@ -62,6 +63,18 @@ public final class OrganizationsClientImpl implements OrganizationsClient {
             @QueryParam("api-version") String apiVersion,
             @PathParam("subscriptionId") String subscriptionId,
             @BodyParam("application/json") UserEmailId body,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
+        @Post(
+            "/subscriptions/{subscriptionId}/providers/Microsoft.Elastic/getElasticOrganizationToAzureSubscriptionMapping")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<ElasticOrganizationToAzureSubscriptionMappingResponseInner>> getElasticToAzureSubscriptionMapping(
+            @HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion,
+            @PathParam("subscriptionId") String subscriptionId,
             @HeaderParam("Accept") String accept,
             Context context);
     }
@@ -195,5 +208,120 @@ public final class OrganizationsClientImpl implements OrganizationsClient {
     public UserApiKeyResponseInner getApiKey() {
         final UserEmailId body = null;
         return getApiKeyWithResponse(body, Context.NONE).getValue();
+    }
+
+    /**
+     * Get Elastic Organization To Azure Subscription Mapping details for the logged-in user.
+     *
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return elastic Organization To Azure Subscription Mapping details for the logged-in user along with {@link
+     *     Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<ElasticOrganizationToAzureSubscriptionMappingResponseInner>>
+        getElasticToAzureSubscriptionMappingWithResponseAsync() {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service
+                        .getElasticToAzureSubscriptionMapping(
+                            this.client.getEndpoint(),
+                            this.client.getApiVersion(),
+                            this.client.getSubscriptionId(),
+                            accept,
+                            context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Get Elastic Organization To Azure Subscription Mapping details for the logged-in user.
+     *
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return elastic Organization To Azure Subscription Mapping details for the logged-in user along with {@link
+     *     Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<ElasticOrganizationToAzureSubscriptionMappingResponseInner>>
+        getElasticToAzureSubscriptionMappingWithResponseAsync(Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .getElasticToAzureSubscriptionMapping(
+                this.client.getEndpoint(),
+                this.client.getApiVersion(),
+                this.client.getSubscriptionId(),
+                accept,
+                context);
+    }
+
+    /**
+     * Get Elastic Organization To Azure Subscription Mapping details for the logged-in user.
+     *
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return elastic Organization To Azure Subscription Mapping details for the logged-in user on successful
+     *     completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<ElasticOrganizationToAzureSubscriptionMappingResponseInner>
+        getElasticToAzureSubscriptionMappingAsync() {
+        return getElasticToAzureSubscriptionMappingWithResponseAsync().flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Get Elastic Organization To Azure Subscription Mapping details for the logged-in user.
+     *
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return elastic Organization To Azure Subscription Mapping details for the logged-in user along with {@link
+     *     Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<ElasticOrganizationToAzureSubscriptionMappingResponseInner>
+        getElasticToAzureSubscriptionMappingWithResponse(Context context) {
+        return getElasticToAzureSubscriptionMappingWithResponseAsync(context).block();
+    }
+
+    /**
+     * Get Elastic Organization To Azure Subscription Mapping details for the logged-in user.
+     *
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return elastic Organization To Azure Subscription Mapping details for the logged-in user.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ElasticOrganizationToAzureSubscriptionMappingResponseInner getElasticToAzureSubscriptionMapping() {
+        return getElasticToAzureSubscriptionMappingWithResponse(Context.NONE).getValue();
     }
 }
