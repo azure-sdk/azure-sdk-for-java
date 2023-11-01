@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.sphere.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.sphere.fluent.models.ImageInner;
 import com.azure.resourcemanager.sphere.models.Image;
@@ -26,6 +27,10 @@ public final class ImageImpl implements Image, Image.Definition, Image.Update {
 
     public String type() {
         return this.innerModel().type();
+    }
+
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public String image() {
