@@ -20,6 +20,15 @@ public final class PermissionProviderScope extends ExpandableStringEnum<Permissi
     public static final PermissionProviderScope WORKSPACE = fromString("Workspace");
 
     /**
+     * Creates a new instance of PermissionProviderScope value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public PermissionProviderScope() {
+    }
+
+    /**
      * Creates or finds a PermissionProviderScope from its string representation.
      *
      * @param name a name to look for.

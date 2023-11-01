@@ -9,6 +9,10 @@ import com.azure.core.annotation.Fluent;
 /** Customs permissions required for the connector. */
 @Fluent
 public class Customs extends CustomsPermission {
+    /** Creates an instance of Customs class. */
+    public Customs() {
+    }
+
     /** {@inheritDoc} */
     @Override
     public Customs withName(String name) {

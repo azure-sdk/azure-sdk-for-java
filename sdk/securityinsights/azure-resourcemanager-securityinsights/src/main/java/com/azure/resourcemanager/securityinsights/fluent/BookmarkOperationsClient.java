@@ -20,22 +20,6 @@ public interface BookmarkOperationsClient {
      * @param workspaceName The name of the workspace.
      * @param bookmarkId Bookmark ID.
      * @param parameters The parameters required to execute an expand operation on the given bookmark.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the entity expansion result operation response.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    BookmarkExpandResponseInner expand(
-        String resourceGroupName, String workspaceName, String bookmarkId, BookmarkExpandParameters parameters);
-
-    /**
-     * Expand an bookmark.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param bookmarkId Bookmark ID.
-     * @param parameters The parameters required to execute an expand operation on the given bookmark.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -49,4 +33,20 @@ public interface BookmarkOperationsClient {
         String bookmarkId,
         BookmarkExpandParameters parameters,
         Context context);
+
+    /**
+     * Expand an bookmark.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param bookmarkId Bookmark ID.
+     * @param parameters The parameters required to execute an expand operation on the given bookmark.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the entity expansion result operation response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    BookmarkExpandResponseInner expand(
+        String resourceGroupName, String workspaceName, String bookmarkId, BookmarkExpandParameters parameters);
 }

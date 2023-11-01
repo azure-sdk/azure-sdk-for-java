@@ -177,11 +177,13 @@ public interface Bookmark {
     interface Definition
         extends DefinitionStages.Blank, DefinitionStages.WithParentResource, DefinitionStages.WithCreate {
     }
+
     /** The Bookmark definition stages. */
     interface DefinitionStages {
         /** The first stage of the Bookmark definition. */
         interface Blank extends WithParentResource {
         }
+
         /** The stage of the Bookmark definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -193,6 +195,7 @@ public interface Bookmark {
              */
             WithCreate withExistingWorkspace(String resourceGroupName, String workspaceName);
         }
+
         /**
          * The stage of the Bookmark definition which contains all the minimum required properties for the resource to
          * be created, but also allows for any other optional properties to be specified.
@@ -230,6 +233,7 @@ public interface Bookmark {
              */
             Bookmark create(Context context);
         }
+
         /** The stage of the Bookmark definition allowing to specify etag. */
         interface WithEtag {
             /**
@@ -240,6 +244,7 @@ public interface Bookmark {
              */
             WithCreate withEtag(String etag);
         }
+
         /** The stage of the Bookmark definition allowing to specify created. */
         interface WithCreated {
             /**
@@ -250,6 +255,7 @@ public interface Bookmark {
              */
             WithCreate withCreated(OffsetDateTime created);
         }
+
         /** The stage of the Bookmark definition allowing to specify createdBy. */
         interface WithCreatedBy {
             /**
@@ -260,6 +266,7 @@ public interface Bookmark {
              */
             WithCreate withCreatedBy(UserInfo createdBy);
         }
+
         /** The stage of the Bookmark definition allowing to specify displayName. */
         interface WithDisplayName {
             /**
@@ -270,6 +277,7 @@ public interface Bookmark {
              */
             WithCreate withDisplayName(String displayName);
         }
+
         /** The stage of the Bookmark definition allowing to specify labels. */
         interface WithLabels {
             /**
@@ -280,6 +288,7 @@ public interface Bookmark {
              */
             WithCreate withLabels(List<String> labels);
         }
+
         /** The stage of the Bookmark definition allowing to specify notes. */
         interface WithNotes {
             /**
@@ -290,6 +299,7 @@ public interface Bookmark {
              */
             WithCreate withNotes(String notes);
         }
+
         /** The stage of the Bookmark definition allowing to specify query. */
         interface WithQuery {
             /**
@@ -300,6 +310,7 @@ public interface Bookmark {
              */
             WithCreate withQuery(String query);
         }
+
         /** The stage of the Bookmark definition allowing to specify queryResult. */
         interface WithQueryResult {
             /**
@@ -310,6 +321,7 @@ public interface Bookmark {
              */
             WithCreate withQueryResult(String queryResult);
         }
+
         /** The stage of the Bookmark definition allowing to specify updated. */
         interface WithUpdated {
             /**
@@ -320,6 +332,7 @@ public interface Bookmark {
              */
             WithCreate withUpdated(OffsetDateTime updated);
         }
+
         /** The stage of the Bookmark definition allowing to specify updatedBy. */
         interface WithUpdatedBy {
             /**
@@ -330,6 +343,7 @@ public interface Bookmark {
              */
             WithCreate withUpdatedBy(UserInfo updatedBy);
         }
+
         /** The stage of the Bookmark definition allowing to specify eventTime. */
         interface WithEventTime {
             /**
@@ -340,6 +354,7 @@ public interface Bookmark {
              */
             WithCreate withEventTime(OffsetDateTime eventTime);
         }
+
         /** The stage of the Bookmark definition allowing to specify queryStartTime. */
         interface WithQueryStartTime {
             /**
@@ -350,6 +365,7 @@ public interface Bookmark {
              */
             WithCreate withQueryStartTime(OffsetDateTime queryStartTime);
         }
+
         /** The stage of the Bookmark definition allowing to specify queryEndTime. */
         interface WithQueryEndTime {
             /**
@@ -360,6 +376,7 @@ public interface Bookmark {
              */
             WithCreate withQueryEndTime(OffsetDateTime queryEndTime);
         }
+
         /** The stage of the Bookmark definition allowing to specify incidentInfo. */
         interface WithIncidentInfo {
             /**
@@ -370,6 +387,7 @@ public interface Bookmark {
              */
             WithCreate withIncidentInfo(IncidentInfo incidentInfo);
         }
+
         /** The stage of the Bookmark definition allowing to specify entityMappings. */
         interface WithEntityMappings {
             /**
@@ -380,6 +398,7 @@ public interface Bookmark {
              */
             WithCreate withEntityMappings(List<BookmarkEntityMappings> entityMappings);
         }
+
         /** The stage of the Bookmark definition allowing to specify tactics. */
         interface WithTactics {
             /**
@@ -390,6 +409,7 @@ public interface Bookmark {
              */
             WithCreate withTactics(List<AttackTactic> tactics);
         }
+
         /** The stage of the Bookmark definition allowing to specify techniques. */
         interface WithTechniques {
             /**
@@ -401,6 +421,7 @@ public interface Bookmark {
             WithCreate withTechniques(List<String> techniques);
         }
     }
+
     /**
      * Begins update for the Bookmark resource.
      *
@@ -442,6 +463,7 @@ public interface Bookmark {
          */
         Bookmark apply(Context context);
     }
+
     /** The Bookmark update stages. */
     interface UpdateStages {
         /** The stage of the Bookmark update allowing to specify etag. */
@@ -454,6 +476,7 @@ public interface Bookmark {
              */
             Update withEtag(String etag);
         }
+
         /** The stage of the Bookmark update allowing to specify created. */
         interface WithCreated {
             /**
@@ -464,6 +487,7 @@ public interface Bookmark {
              */
             Update withCreated(OffsetDateTime created);
         }
+
         /** The stage of the Bookmark update allowing to specify createdBy. */
         interface WithCreatedBy {
             /**
@@ -474,6 +498,7 @@ public interface Bookmark {
              */
             Update withCreatedBy(UserInfo createdBy);
         }
+
         /** The stage of the Bookmark update allowing to specify displayName. */
         interface WithDisplayName {
             /**
@@ -484,6 +509,7 @@ public interface Bookmark {
              */
             Update withDisplayName(String displayName);
         }
+
         /** The stage of the Bookmark update allowing to specify labels. */
         interface WithLabels {
             /**
@@ -494,6 +520,7 @@ public interface Bookmark {
              */
             Update withLabels(List<String> labels);
         }
+
         /** The stage of the Bookmark update allowing to specify notes. */
         interface WithNotes {
             /**
@@ -504,6 +531,7 @@ public interface Bookmark {
              */
             Update withNotes(String notes);
         }
+
         /** The stage of the Bookmark update allowing to specify query. */
         interface WithQuery {
             /**
@@ -514,6 +542,7 @@ public interface Bookmark {
              */
             Update withQuery(String query);
         }
+
         /** The stage of the Bookmark update allowing to specify queryResult. */
         interface WithQueryResult {
             /**
@@ -524,6 +553,7 @@ public interface Bookmark {
              */
             Update withQueryResult(String queryResult);
         }
+
         /** The stage of the Bookmark update allowing to specify updated. */
         interface WithUpdated {
             /**
@@ -534,6 +564,7 @@ public interface Bookmark {
              */
             Update withUpdated(OffsetDateTime updated);
         }
+
         /** The stage of the Bookmark update allowing to specify updatedBy. */
         interface WithUpdatedBy {
             /**
@@ -544,6 +575,7 @@ public interface Bookmark {
              */
             Update withUpdatedBy(UserInfo updatedBy);
         }
+
         /** The stage of the Bookmark update allowing to specify eventTime. */
         interface WithEventTime {
             /**
@@ -554,6 +586,7 @@ public interface Bookmark {
              */
             Update withEventTime(OffsetDateTime eventTime);
         }
+
         /** The stage of the Bookmark update allowing to specify queryStartTime. */
         interface WithQueryStartTime {
             /**
@@ -564,6 +597,7 @@ public interface Bookmark {
              */
             Update withQueryStartTime(OffsetDateTime queryStartTime);
         }
+
         /** The stage of the Bookmark update allowing to specify queryEndTime. */
         interface WithQueryEndTime {
             /**
@@ -574,6 +608,7 @@ public interface Bookmark {
              */
             Update withQueryEndTime(OffsetDateTime queryEndTime);
         }
+
         /** The stage of the Bookmark update allowing to specify incidentInfo. */
         interface WithIncidentInfo {
             /**
@@ -584,6 +619,7 @@ public interface Bookmark {
              */
             Update withIncidentInfo(IncidentInfo incidentInfo);
         }
+
         /** The stage of the Bookmark update allowing to specify entityMappings. */
         interface WithEntityMappings {
             /**
@@ -594,6 +630,7 @@ public interface Bookmark {
              */
             Update withEntityMappings(List<BookmarkEntityMappings> entityMappings);
         }
+
         /** The stage of the Bookmark update allowing to specify tactics. */
         interface WithTactics {
             /**
@@ -604,6 +641,7 @@ public interface Bookmark {
              */
             Update withTactics(List<AttackTactic> tactics);
         }
+
         /** The stage of the Bookmark update allowing to specify techniques. */
         interface WithTechniques {
             /**
@@ -615,6 +653,7 @@ public interface Bookmark {
             Update withTechniques(List<String> techniques);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

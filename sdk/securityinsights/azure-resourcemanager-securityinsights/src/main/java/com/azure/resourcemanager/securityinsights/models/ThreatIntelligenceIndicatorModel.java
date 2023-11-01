@@ -24,6 +24,10 @@ public final class ThreatIntelligenceIndicatorModel extends ThreatIntelligenceIn
     @JsonProperty(value = "properties")
     private ThreatIntelligenceIndicatorProperties innerProperties;
 
+    /** Creates an instance of ThreatIntelligenceIndicatorModel class. */
+    public ThreatIntelligenceIndicatorModel() {
+    }
+
     /**
      * Get the innerProperties property: Threat Intelligence Entity properties.
      *

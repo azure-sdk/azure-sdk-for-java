@@ -12,13 +12,23 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class MtpDataConnectorDataTypes {
     /*
-     * Data type for Microsoft Threat Protection Platforms data connector.
+     * Incidents data type for Microsoft Threat Protection Platforms data connector.
      */
     @JsonProperty(value = "incidents", required = true)
     private MtpDataConnectorDataTypesIncidents incidents;
 
+    /*
+     * Alerts data type for Microsoft Threat Protection Platforms data connector.
+     */
+    @JsonProperty(value = "alerts")
+    private MtpDataConnectorDataTypesAlerts alerts;
+
+    /** Creates an instance of MtpDataConnectorDataTypes class. */
+    public MtpDataConnectorDataTypes() {
+    }
+
     /**
-     * Get the incidents property: Data type for Microsoft Threat Protection Platforms data connector.
+     * Get the incidents property: Incidents data type for Microsoft Threat Protection Platforms data connector.
      *
      * @return the incidents value.
      */
@@ -27,13 +37,33 @@ public final class MtpDataConnectorDataTypes {
     }
 
     /**
-     * Set the incidents property: Data type for Microsoft Threat Protection Platforms data connector.
+     * Set the incidents property: Incidents data type for Microsoft Threat Protection Platforms data connector.
      *
      * @param incidents the incidents value to set.
      * @return the MtpDataConnectorDataTypes object itself.
      */
     public MtpDataConnectorDataTypes withIncidents(MtpDataConnectorDataTypesIncidents incidents) {
         this.incidents = incidents;
+        return this;
+    }
+
+    /**
+     * Get the alerts property: Alerts data type for Microsoft Threat Protection Platforms data connector.
+     *
+     * @return the alerts value.
+     */
+    public MtpDataConnectorDataTypesAlerts alerts() {
+        return this.alerts;
+    }
+
+    /**
+     * Set the alerts property: Alerts data type for Microsoft Threat Protection Platforms data connector.
+     *
+     * @param alerts the alerts value to set.
+     * @return the MtpDataConnectorDataTypes object itself.
+     */
+    public MtpDataConnectorDataTypes withAlerts(MtpDataConnectorDataTypesAlerts alerts) {
+        this.alerts = alerts;
         return this;
     }
 
@@ -50,6 +80,9 @@ public final class MtpDataConnectorDataTypes {
                         "Missing required property incidents in model MtpDataConnectorDataTypes"));
         } else {
             incidents().validate();
+        }
+        if (alerts() != null) {
+            alerts().validate();
         }
     }
 

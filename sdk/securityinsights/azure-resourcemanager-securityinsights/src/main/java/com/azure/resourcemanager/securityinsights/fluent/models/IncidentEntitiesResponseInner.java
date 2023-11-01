@@ -24,6 +24,10 @@ public final class IncidentEntitiesResponseInner {
     @JsonProperty(value = "metaData")
     private List<IncidentEntitiesResultsMetadata> metadata;
 
+    /** Creates an instance of IncidentEntitiesResponseInner class. */
+    public IncidentEntitiesResponseInner() {
+    }
+
     /**
      * Get the entities property: Array of the incident related entities.
      *

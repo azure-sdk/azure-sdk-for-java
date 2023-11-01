@@ -18,6 +18,10 @@ public final class EntityAnalyticsProperties {
     @JsonProperty(value = "entityProviders")
     private List<EntityProviders> entityProviders;
 
+    /** Creates an instance of EntityAnalyticsProperties class. */
+    public EntityAnalyticsProperties() {
+    }
+
     /**
      * Get the entityProviders property: The relevant entity providers that are synced.
      *

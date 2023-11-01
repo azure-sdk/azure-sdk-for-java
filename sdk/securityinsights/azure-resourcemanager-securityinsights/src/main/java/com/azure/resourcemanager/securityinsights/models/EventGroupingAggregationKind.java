@@ -17,6 +17,15 @@ public final class EventGroupingAggregationKind extends ExpandableStringEnum<Eve
     public static final EventGroupingAggregationKind ALERT_PER_RESULT = fromString("AlertPerResult");
 
     /**
+     * Creates a new instance of EventGroupingAggregationKind value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public EventGroupingAggregationKind() {
+    }
+
+    /**
      * Creates or finds a EventGroupingAggregationKind from its string representation.
      *
      * @param name a name to look for.

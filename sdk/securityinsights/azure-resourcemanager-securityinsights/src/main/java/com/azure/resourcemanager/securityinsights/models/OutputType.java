@@ -23,6 +23,15 @@ public final class OutputType extends ExpandableStringEnum<OutputType> {
     public static final OutputType ENTITY = fromString("Entity");
 
     /**
+     * Creates a new instance of OutputType value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public OutputType() {
+    }
+
+    /**
      * Creates or finds a OutputType from its string representation.
      *
      * @param name a name to look for.

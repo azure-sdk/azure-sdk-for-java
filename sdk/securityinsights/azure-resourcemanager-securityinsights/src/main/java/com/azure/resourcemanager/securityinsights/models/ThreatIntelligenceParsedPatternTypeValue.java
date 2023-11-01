@@ -22,6 +22,10 @@ public final class ThreatIntelligenceParsedPatternTypeValue {
     @JsonProperty(value = "value")
     private String value;
 
+    /** Creates an instance of ThreatIntelligenceParsedPatternTypeValue class. */
+    public ThreatIntelligenceParsedPatternTypeValue() {
+    }
+
     /**
      * Get the valueType property: Type of the value.
      *
