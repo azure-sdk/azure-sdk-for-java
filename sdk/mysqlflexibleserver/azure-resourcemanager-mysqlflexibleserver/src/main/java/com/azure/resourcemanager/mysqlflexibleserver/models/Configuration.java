@@ -32,7 +32,7 @@ public interface Configuration {
     String type();
 
     /**
-     * Gets the systemData property: The system metadata relating to this resource.
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      *
      * @return the systemData value.
      */
@@ -133,11 +133,13 @@ public interface Configuration {
     interface Definition
         extends DefinitionStages.Blank, DefinitionStages.WithParentResource, DefinitionStages.WithCreate {
     }
+
     /** The Configuration definition stages. */
     interface DefinitionStages {
         /** The first stage of the Configuration definition. */
         interface Blank extends WithParentResource {
         }
+
         /** The stage of the Configuration definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -149,6 +151,7 @@ public interface Configuration {
              */
             WithCreate withExistingFlexibleServer(String resourceGroupName, String serverName);
         }
+
         /**
          * The stage of the Configuration definition which contains all the minimum required properties for the resource
          * to be created, but also allows for any other optional properties to be specified.
@@ -170,6 +173,7 @@ public interface Configuration {
              */
             Configuration create(Context context);
         }
+
         /** The stage of the Configuration definition allowing to specify value. */
         interface WithValue {
             /**
@@ -180,6 +184,7 @@ public interface Configuration {
              */
             WithCreate withValue(String value);
         }
+
         /** The stage of the Configuration definition allowing to specify currentValue. */
         interface WithCurrentValue {
             /**
@@ -190,6 +195,7 @@ public interface Configuration {
              */
             WithCreate withCurrentValue(String currentValue);
         }
+
         /** The stage of the Configuration definition allowing to specify source. */
         interface WithSource {
             /**
@@ -201,6 +207,7 @@ public interface Configuration {
             WithCreate withSource(ConfigurationSource source);
         }
     }
+
     /**
      * Begins update for the Configuration resource.
      *
@@ -225,6 +232,7 @@ public interface Configuration {
          */
         Configuration apply(Context context);
     }
+
     /** The Configuration update stages. */
     interface UpdateStages {
         /** The stage of the Configuration update allowing to specify value. */
@@ -237,6 +245,7 @@ public interface Configuration {
              */
             Update withValue(String value);
         }
+
         /** The stage of the Configuration update allowing to specify currentValue. */
         interface WithCurrentValue {
             /**
@@ -247,6 +256,7 @@ public interface Configuration {
              */
             Update withCurrentValue(String currentValue);
         }
+
         /** The stage of the Configuration update allowing to specify source. */
         interface WithSource {
             /**
@@ -258,6 +268,7 @@ public interface Configuration {
             Update withSource(ConfigurationSource source);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

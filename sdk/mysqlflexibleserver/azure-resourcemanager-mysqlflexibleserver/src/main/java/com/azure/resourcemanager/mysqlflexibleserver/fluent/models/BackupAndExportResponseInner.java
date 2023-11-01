@@ -6,6 +6,7 @@ package com.azure.resourcemanager.mysqlflexibleserver.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
+import com.azure.core.management.SystemData;
 import com.azure.core.management.exception.ManagementError;
 import com.azure.resourcemanager.mysqlflexibleserver.models.OperationStatus;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -45,9 +46,13 @@ public final class BackupAndExportResponseInner extends ProxyResource {
     private BackupAndExportResponseProperties innerProperties;
 
     /*
-     * Error Response
-     *
-     * The BackupAndExport operation error response.
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
+
+    /*
+     * The error object.
      */
     @JsonProperty(value = "error")
     private ManagementError error;
@@ -146,9 +151,16 @@ public final class BackupAndExportResponseInner extends ProxyResource {
     }
 
     /**
-     * Get the error property: Error Response
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      *
-     * <p>The BackupAndExport operation error response.
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
+    }
+
+    /**
+     * Get the error property: The error object.
      *
      * @return the error value.
      */
@@ -157,9 +169,7 @@ public final class BackupAndExportResponseInner extends ProxyResource {
     }
 
     /**
-     * Set the error property: Error Response
-     *
-     * <p>The BackupAndExport operation error response.
+     * Set the error property: The error object.
      *
      * @param error the error value to set.
      * @return the BackupAndExportResponseInner object itself.

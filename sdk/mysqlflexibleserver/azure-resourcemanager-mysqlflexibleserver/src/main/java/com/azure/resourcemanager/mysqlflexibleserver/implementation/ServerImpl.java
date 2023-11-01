@@ -12,9 +12,12 @@ import com.azure.resourcemanager.mysqlflexibleserver.models.Backup;
 import com.azure.resourcemanager.mysqlflexibleserver.models.CreateMode;
 import com.azure.resourcemanager.mysqlflexibleserver.models.DataEncryption;
 import com.azure.resourcemanager.mysqlflexibleserver.models.HighAvailability;
-import com.azure.resourcemanager.mysqlflexibleserver.models.Identity;
+import com.azure.resourcemanager.mysqlflexibleserver.models.ImportSourceProperties;
 import com.azure.resourcemanager.mysqlflexibleserver.models.MaintenanceWindow;
+import com.azure.resourcemanager.mysqlflexibleserver.models.MySqlServerIdentity;
+import com.azure.resourcemanager.mysqlflexibleserver.models.MySqlServerSku;
 import com.azure.resourcemanager.mysqlflexibleserver.models.Network;
+import com.azure.resourcemanager.mysqlflexibleserver.models.PrivateEndpointConnection;
 import com.azure.resourcemanager.mysqlflexibleserver.models.ReplicationRole;
 import com.azure.resourcemanager.mysqlflexibleserver.models.Server;
 import com.azure.resourcemanager.mysqlflexibleserver.models.ServerForUpdate;
@@ -22,10 +25,10 @@ import com.azure.resourcemanager.mysqlflexibleserver.models.ServerGtidSetParamet
 import com.azure.resourcemanager.mysqlflexibleserver.models.ServerRestartParameter;
 import com.azure.resourcemanager.mysqlflexibleserver.models.ServerState;
 import com.azure.resourcemanager.mysqlflexibleserver.models.ServerVersion;
-import com.azure.resourcemanager.mysqlflexibleserver.models.Sku;
 import com.azure.resourcemanager.mysqlflexibleserver.models.Storage;
 import java.time.OffsetDateTime;
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 public final class ServerImpl implements Server, Server.Definition, Server.Update {
@@ -58,11 +61,11 @@ public final class ServerImpl implements Server, Server.Definition, Server.Updat
         }
     }
 
-    public Identity identity() {
+    public MySqlServerIdentity identity() {
         return this.innerModel().identity();
     }
 
-    public Sku sku() {
+    public MySqlServerSku sku() {
         return this.innerModel().sku();
     }
 
@@ -134,8 +137,21 @@ public final class ServerImpl implements Server, Server.Definition, Server.Updat
         return this.innerModel().network();
     }
 
+    public List<PrivateEndpointConnection> privateEndpointConnections() {
+        List<PrivateEndpointConnection> inner = this.innerModel().privateEndpointConnections();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
     public MaintenanceWindow maintenanceWindow() {
         return this.innerModel().maintenanceWindow();
+    }
+
+    public ImportSourceProperties importSourceProperties() {
+        return this.innerModel().importSourceProperties();
     }
 
     public Region region() {
@@ -303,7 +319,7 @@ public final class ServerImpl implements Server, Server.Definition, Server.Updat
         }
     }
 
-    public ServerImpl withIdentity(Identity identity) {
+    public ServerImpl withIdentity(MySqlServerIdentity identity) {
         if (isInCreateMode()) {
             this.innerModel().withIdentity(identity);
             return this;
@@ -313,7 +329,7 @@ public final class ServerImpl implements Server, Server.Definition, Server.Updat
         }
     }
 
-    public ServerImpl withSku(Sku sku) {
+    public ServerImpl withSku(MySqlServerSku sku) {
         if (isInCreateMode()) {
             this.innerModel().withSku(sku);
             return this;
@@ -426,6 +442,11 @@ public final class ServerImpl implements Server, Server.Definition, Server.Updat
             this.updateParameters.withNetwork(network);
             return this;
         }
+    }
+
+    public ServerImpl withImportSourceProperties(ImportSourceProperties importSourceProperties) {
+        this.innerModel().withImportSourceProperties(importSourceProperties);
+        return this;
     }
 
     public ServerImpl withMaintenanceWindow(MaintenanceWindow maintenanceWindow) {
