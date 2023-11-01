@@ -23,6 +23,7 @@ import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.resourcegraph.fluent.OperationsClient;
+import com.azure.resourcemanager.resourcegraph.fluent.QueriesClient;
 import com.azure.resourcemanager.resourcegraph.fluent.ResourceGraphClient;
 import com.azure.resourcemanager.resourcegraph.fluent.ResourceProvidersClient;
 import java.io.IOException;
@@ -49,16 +50,16 @@ public final class ResourceGraphClientImpl implements ResourceGraphClient {
         return this.endpoint;
     }
 
-    /** Api Version. */
-    private final String apiVersion;
+    /** server parameter. */
+    private final String endpoint;
 
     /**
-     * Gets Api Version.
+     * Gets server parameter.
      *
-     * @return the apiVersion value.
+     * @return the endpoint value.
      */
-    public String getApiVersion() {
-        return this.apiVersion;
+    public String getEndpoint() {
+        return this.endpoint;
     }
 
     /** The HTTP pipeline to send requests through. */
@@ -97,6 +98,18 @@ public final class ResourceGraphClientImpl implements ResourceGraphClient {
         return this.defaultPollInterval;
     }
 
+    /** The QueriesClient object to access its operations. */
+    private final QueriesClient queries;
+
+    /**
+     * Gets the QueriesClient object to access its operations.
+     *
+     * @return the QueriesClient object.
+     */
+    public QueriesClient getQueries() {
+        return this.queries;
+    }
+
     /** The ResourceProvidersClient object to access its operations. */
     private final ResourceProvidersClient resourceProviders;
 
@@ -129,18 +142,21 @@ public final class ResourceGraphClientImpl implements ResourceGraphClient {
      * @param defaultPollInterval The default poll interval for long-running operation.
      * @param environment The Azure environment.
      * @param endpoint server parameter.
+     * @param endpoint server parameter.
      */
     ResourceGraphClientImpl(
         HttpPipeline httpPipeline,
         SerializerAdapter serializerAdapter,
         Duration defaultPollInterval,
         AzureEnvironment environment,
+        String endpoint,
         String endpoint) {
         this.httpPipeline = httpPipeline;
         this.serializerAdapter = serializerAdapter;
         this.defaultPollInterval = defaultPollInterval;
         this.endpoint = endpoint;
-        this.apiVersion = "2021-03-01";
+        this.endpoint = endpoint;
+        this.queries = new QueriesClientImpl(this);
         this.resourceProviders = new ResourceProvidersClientImpl(this);
         this.operations = new OperationsClientImpl(this);
     }

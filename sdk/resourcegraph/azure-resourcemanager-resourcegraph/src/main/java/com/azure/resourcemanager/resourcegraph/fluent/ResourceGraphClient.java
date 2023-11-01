@@ -17,11 +17,11 @@ public interface ResourceGraphClient {
     String getEndpoint();
 
     /**
-     * Gets Api Version.
+     * Gets server parameter.
      *
-     * @return the apiVersion value.
+     * @return the endpoint value.
      */
-    String getApiVersion();
+    String getEndpoint();
 
     /**
      * Gets The HTTP pipeline to send requests through.
@@ -36,6 +36,13 @@ public interface ResourceGraphClient {
      * @return the defaultPollInterval value.
      */
     Duration getDefaultPollInterval();
+
+    /**
+     * Gets the QueriesClient object to access its operations.
+     *
+     * @return the QueriesClient object.
+     */
+    QueriesClient getQueries();
 
     /**
      * Gets the ResourceProvidersClient object to access its operations.
