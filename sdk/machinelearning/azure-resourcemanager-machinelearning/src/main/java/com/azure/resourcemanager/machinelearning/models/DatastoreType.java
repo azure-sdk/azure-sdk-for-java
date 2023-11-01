@@ -22,6 +22,12 @@ public final class DatastoreType extends ExpandableStringEnum<DatastoreType> {
     /** Static value AzureFile for DatastoreType. */
     public static final DatastoreType AZURE_FILE = fromString("AzureFile");
 
+    /** Static value Hdfs for DatastoreType. */
+    public static final DatastoreType HDFS = fromString("Hdfs");
+
+    /** Static value OneLake for DatastoreType. */
+    public static final DatastoreType ONE_LAKE = fromString("OneLake");
+
     /**
      * Creates a new instance of DatastoreType value.
      *

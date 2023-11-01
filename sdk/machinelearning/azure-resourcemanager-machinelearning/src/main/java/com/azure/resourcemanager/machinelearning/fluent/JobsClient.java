@@ -13,6 +13,7 @@ import com.azure.core.util.Context;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.machinelearning.fluent.models.JobBaseInner;
 import com.azure.resourcemanager.machinelearning.models.ListViewType;
+import com.azure.resourcemanager.machinelearning.models.PartialJobBasePartialResource;
 
 /** An instance of this class provides access to all the operations defined in JobsClient. */
 public interface JobsClient {
@@ -38,6 +39,10 @@ public interface JobsClient {
      * @param jobType Type of job to be returned.
      * @param tag Jobs returned will have this tag key.
      * @param listViewType View type for including/excluding (for example) archived entities.
+     * @param assetName Asset name the job's named output is registered with.
+     * @param scheduled Indicator whether the job is scheduled job.
+     * @param scheduleId The scheduled id for listing the job triggered from.
+     * @param properties Comma-separated list of property names (and optionally values). Example: prop1,prop2=value2.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -52,6 +57,10 @@ public interface JobsClient {
         String jobType,
         String tag,
         ListViewType listViewType,
+        String assetName,
+        Boolean scheduled,
+        String scheduleId,
+        String properties,
         Context context);
 
     /**
@@ -139,6 +148,38 @@ public interface JobsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     JobBaseInner get(String resourceGroupName, String workspaceName, String id);
+
+    /**
+     * Updates a Job.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param id The name and identifier for the Job. This is case-sensitive.
+     * @param body Job definition to apply during the operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return azure Resource Manager resource envelope along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<JobBaseInner> updateWithResponse(
+        String resourceGroupName, String workspaceName, String id, PartialJobBasePartialResource body, Context context);
+
+    /**
+     * Updates a Job.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param id The name and identifier for the Job. This is case-sensitive.
+     * @param body Job definition to apply during the operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return azure Resource Manager resource envelope.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    JobBaseInner update(String resourceGroupName, String workspaceName, String id, PartialJobBasePartialResource body);
 
     /**
      * Creates and executes a Job.
