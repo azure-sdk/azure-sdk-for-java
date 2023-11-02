@@ -52,6 +52,18 @@ public final class NginxDeploymentProperties {
     @JsonProperty(value = "logging")
     private NginxLogging logging;
 
+    /*
+     * The scalingProperties property.
+     */
+    @JsonProperty(value = "scalingProperties")
+    private NginxDeploymentScalingProperties scalingProperties;
+
+    /*
+     * The userProfile property.
+     */
+    @JsonProperty(value = "userProfile")
+    private NginxDeploymentUserProfile userProfile;
+
     /** Creates an instance of NginxDeploymentProperties class. */
     public NginxDeploymentProperties() {
     }
@@ -166,6 +178,46 @@ public final class NginxDeploymentProperties {
     }
 
     /**
+     * Get the scalingProperties property: The scalingProperties property.
+     *
+     * @return the scalingProperties value.
+     */
+    public NginxDeploymentScalingProperties scalingProperties() {
+        return this.scalingProperties;
+    }
+
+    /**
+     * Set the scalingProperties property: The scalingProperties property.
+     *
+     * @param scalingProperties the scalingProperties value to set.
+     * @return the NginxDeploymentProperties object itself.
+     */
+    public NginxDeploymentProperties withScalingProperties(NginxDeploymentScalingProperties scalingProperties) {
+        this.scalingProperties = scalingProperties;
+        return this;
+    }
+
+    /**
+     * Get the userProfile property: The userProfile property.
+     *
+     * @return the userProfile value.
+     */
+    public NginxDeploymentUserProfile userProfile() {
+        return this.userProfile;
+    }
+
+    /**
+     * Set the userProfile property: The userProfile property.
+     *
+     * @param userProfile the userProfile value to set.
+     * @return the NginxDeploymentProperties object itself.
+     */
+    public NginxDeploymentProperties withUserProfile(NginxDeploymentUserProfile userProfile) {
+        this.userProfile = userProfile;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -176,6 +228,12 @@ public final class NginxDeploymentProperties {
         }
         if (logging() != null) {
             logging().validate();
+        }
+        if (scalingProperties() != null) {
+            scalingProperties().validate();
+        }
+        if (userProfile() != null) {
+            userProfile().validate();
         }
     }
 }
