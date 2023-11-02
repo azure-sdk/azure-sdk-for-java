@@ -29,7 +29,6 @@ import com.azure.resourcemanager.redisenterprise.fluent.PrivateEndpointConnectio
 import com.azure.resourcemanager.redisenterprise.fluent.PrivateLinkResourcesClient;
 import com.azure.resourcemanager.redisenterprise.fluent.RedisEnterpriseManagementClient;
 import com.azure.resourcemanager.redisenterprise.fluent.RedisEnterprisesClient;
-import com.azure.resourcemanager.redisenterprise.fluent.SkusClient;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.nio.ByteBuffer;
@@ -186,18 +185,6 @@ public final class RedisEnterpriseManagementClientImpl implements RedisEnterpris
         return this.privateLinkResources;
     }
 
-    /** The SkusClient object to access its operations. */
-    private final SkusClient skus;
-
-    /**
-     * Gets the SkusClient object to access its operations.
-     *
-     * @return the SkusClient object.
-     */
-    public SkusClient getSkus() {
-        return this.skus;
-    }
-
     /**
      * Initializes an instance of RedisEnterpriseManagementClient client.
      *
@@ -220,14 +207,13 @@ public final class RedisEnterpriseManagementClientImpl implements RedisEnterpris
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2023-03-01-preview";
+        this.apiVersion = "2023-11-01";
         this.operations = new OperationsClientImpl(this);
         this.operationsStatus = new OperationsStatusClientImpl(this);
         this.redisEnterprises = new RedisEnterprisesClientImpl(this);
         this.databases = new DatabasesClientImpl(this);
         this.privateEndpointConnections = new PrivateEndpointConnectionsClientImpl(this);
         this.privateLinkResources = new PrivateLinkResourcesClientImpl(this);
-        this.skus = new SkusClientImpl(this);
     }
 
     /**

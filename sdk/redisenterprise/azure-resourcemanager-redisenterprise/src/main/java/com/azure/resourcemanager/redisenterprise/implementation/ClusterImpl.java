@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.redisenterprise.implementation;
 
 import com.azure.core.management.Region;
-import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.redisenterprise.fluent.models.ClusterInner;
 import com.azure.resourcemanager.redisenterprise.fluent.models.PrivateEndpointConnectionInner;
@@ -68,10 +67,6 @@ public final class ClusterImpl implements Cluster, Cluster.Definition, Cluster.U
 
     public ManagedServiceIdentity identity() {
         return this.innerModel().identity();
-    }
-
-    public SystemData systemData() {
-        return this.innerModel().systemData();
     }
 
     public TlsVersion minimumTlsVersion() {

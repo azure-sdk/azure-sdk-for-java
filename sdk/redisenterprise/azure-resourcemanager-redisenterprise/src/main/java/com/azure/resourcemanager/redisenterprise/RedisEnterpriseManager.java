@@ -31,14 +31,12 @@ import com.azure.resourcemanager.redisenterprise.implementation.PrivateEndpointC
 import com.azure.resourcemanager.redisenterprise.implementation.PrivateLinkResourcesImpl;
 import com.azure.resourcemanager.redisenterprise.implementation.RedisEnterpriseManagementClientBuilder;
 import com.azure.resourcemanager.redisenterprise.implementation.RedisEnterprisesImpl;
-import com.azure.resourcemanager.redisenterprise.implementation.SkusImpl;
 import com.azure.resourcemanager.redisenterprise.models.Databases;
 import com.azure.resourcemanager.redisenterprise.models.Operations;
 import com.azure.resourcemanager.redisenterprise.models.OperationsStatus;
 import com.azure.resourcemanager.redisenterprise.models.PrivateEndpointConnections;
 import com.azure.resourcemanager.redisenterprise.models.PrivateLinkResources;
 import com.azure.resourcemanager.redisenterprise.models.RedisEnterprises;
-import com.azure.resourcemanager.redisenterprise.models.Skus;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -59,8 +57,6 @@ public final class RedisEnterpriseManager {
     private PrivateEndpointConnections privateEndpointConnections;
 
     private PrivateLinkResources privateLinkResources;
-
-    private Skus skus;
 
     private final RedisEnterpriseManagementClient clientObject;
 
@@ -227,7 +223,7 @@ public final class RedisEnterpriseManager {
                 .append("-")
                 .append("com.azure.resourcemanager.redisenterprise")
                 .append("/")
-                .append("1.1.0-beta.3");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -358,20 +354,10 @@ public final class RedisEnterpriseManager {
     }
 
     /**
-     * Gets the resource collection API of Skus.
+     * Gets wrapped service client RedisEnterpriseManagementClient providing direct access to the underlying
+     * auto-generated API implementation, based on Azure REST API.
      *
-     * @return Resource collection API of Skus.
-     */
-    public Skus skus() {
-        if (this.skus == null) {
-            this.skus = new SkusImpl(clientObject.getSkus(), this);
-        }
-        return skus;
-    }
-
-    /**
-     * @return Wrapped service client RedisEnterpriseManagementClient providing direct access to the underlying
-     *     auto-generated API implementation, based on Azure REST API.
+     * @return Wrapped service client RedisEnterpriseManagementClient.
      */
     public RedisEnterpriseManagementClient serviceClient() {
         return this.clientObject;
