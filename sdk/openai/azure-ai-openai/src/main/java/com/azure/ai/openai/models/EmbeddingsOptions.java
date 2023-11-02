@@ -27,7 +27,7 @@ public final class EmbeddingsOptions {
     /*
      * The model name to provide as part of this embeddings request.
      * Not applicable to Azure OpenAI, where deployment information should be included in the Azure
-     * resource URI that's connected to.
+     * resource URI that's connected to..
      */
     @Generated
     @JsonProperty(value = "model")
@@ -81,7 +81,7 @@ public final class EmbeddingsOptions {
 
     /**
      * Get the model property: The model name to provide as part of this embeddings request. Not applicable to Azure
-     * OpenAI, where deployment information should be included in the Azure resource URI that's connected to.
+     * OpenAI, where deployment information should be included in the Azure resource URI that's connected to..
      *
      * @return the model value.
      */
@@ -92,7 +92,7 @@ public final class EmbeddingsOptions {
 
     /**
      * Set the model property: The model name to provide as part of this embeddings request. Not applicable to Azure
-     * OpenAI, where deployment information should be included in the Azure resource URI that's connected to.
+     * OpenAI, where deployment information should be included in the Azure resource URI that's connected to..
      *
      * @param model the model value to set.
      * @return the EmbeddingsOptions object itself.
