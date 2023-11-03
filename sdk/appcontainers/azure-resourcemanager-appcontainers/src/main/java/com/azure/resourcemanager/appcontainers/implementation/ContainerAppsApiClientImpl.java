@@ -41,12 +41,14 @@ import com.azure.resourcemanager.appcontainers.fluent.JobsClient;
 import com.azure.resourcemanager.appcontainers.fluent.JobsExecutionsClient;
 import com.azure.resourcemanager.appcontainers.fluent.ManagedCertificatesClient;
 import com.azure.resourcemanager.appcontainers.fluent.ManagedEnvironmentDiagnosticsClient;
+import com.azure.resourcemanager.appcontainers.fluent.ManagedEnvironmentUsagesClient;
 import com.azure.resourcemanager.appcontainers.fluent.ManagedEnvironmentsClient;
 import com.azure.resourcemanager.appcontainers.fluent.ManagedEnvironmentsDiagnosticsClient;
 import com.azure.resourcemanager.appcontainers.fluent.ManagedEnvironmentsStoragesClient;
 import com.azure.resourcemanager.appcontainers.fluent.NamespacesClient;
 import com.azure.resourcemanager.appcontainers.fluent.OperationsClient;
 import com.azure.resourcemanager.appcontainers.fluent.ResourceProvidersClient;
+import com.azure.resourcemanager.appcontainers.fluent.UsagesClient;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.nio.ByteBuffer;
@@ -419,6 +421,30 @@ public final class ContainerAppsApiClientImpl implements ContainerAppsApiClient 
         return this.containerAppsSourceControls;
     }
 
+    /** The UsagesClient object to access its operations. */
+    private final UsagesClient usages;
+
+    /**
+     * Gets the UsagesClient object to access its operations.
+     *
+     * @return the UsagesClient object.
+     */
+    public UsagesClient getUsages() {
+        return this.usages;
+    }
+
+    /** The ManagedEnvironmentUsagesClient object to access its operations. */
+    private final ManagedEnvironmentUsagesClient managedEnvironmentUsages;
+
+    /**
+     * Gets the ManagedEnvironmentUsagesClient object to access its operations.
+     *
+     * @return the ManagedEnvironmentUsagesClient object.
+     */
+    public ManagedEnvironmentUsagesClient getManagedEnvironmentUsages() {
+        return this.managedEnvironmentUsages;
+    }
+
     /**
      * Initializes an instance of ContainerAppsApiClient client.
      *
@@ -441,7 +467,7 @@ public final class ContainerAppsApiClientImpl implements ContainerAppsApiClient 
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2023-05-01";
+        this.apiVersion = "2023-05-02-preview";
         this.containerAppsAuthConfigs = new ContainerAppsAuthConfigsClientImpl(this);
         this.availableWorkloadProfiles = new AvailableWorkloadProfilesClientImpl(this);
         this.billingMeters = new BillingMetersClientImpl(this);
@@ -466,6 +492,8 @@ public final class ContainerAppsApiClientImpl implements ContainerAppsApiClient 
         this.daprComponents = new DaprComponentsClientImpl(this);
         this.managedEnvironmentsStorages = new ManagedEnvironmentsStoragesClientImpl(this);
         this.containerAppsSourceControls = new ContainerAppsSourceControlsClientImpl(this);
+        this.usages = new UsagesClientImpl(this);
+        this.managedEnvironmentUsages = new ManagedEnvironmentUsagesClientImpl(this);
     }
 
     /**

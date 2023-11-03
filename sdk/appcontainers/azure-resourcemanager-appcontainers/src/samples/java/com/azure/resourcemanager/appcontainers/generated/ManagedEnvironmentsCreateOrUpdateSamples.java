@@ -16,7 +16,7 @@ import java.util.Arrays;
 /** Samples for ManagedEnvironments CreateOrUpdate. */
 public final class ManagedEnvironmentsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2023-05-01/examples/ManagedEnvironments_CustomInfrastructureResourceGroup_Create.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2023-05-02-preview/examples/ManagedEnvironments_CustomInfrastructureResourceGroup_Create.json
      */
     /**
      * Sample code: Create environment with custom infrastructureResourceGroup.
@@ -70,7 +70,7 @@ public final class ManagedEnvironmentsCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2023-05-01/examples/ManagedEnvironments_CreateOrUpdate.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2023-05-02-preview/examples/ManagedEnvironments_CreateOrUpdate.json
      */
     /**
      * Sample code: Create environments.
