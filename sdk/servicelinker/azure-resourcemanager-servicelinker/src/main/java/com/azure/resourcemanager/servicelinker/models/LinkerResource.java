@@ -33,7 +33,7 @@ public interface LinkerResource {
     String type();
 
     /**
-     * Gets the systemData property: The system data.
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      *
      * @return the systemData value.
      */
@@ -89,6 +89,28 @@ public interface LinkerResource {
     String scope();
 
     /**
+     * Gets the publicNetworkSolution property: The network solution.
+     *
+     * @return the publicNetworkSolution value.
+     */
+    PublicNetworkSolution publicNetworkSolution();
+
+    /**
+     * Gets the configurationInfo property: The connection information consumed by applications, including secrets,
+     * connection strings.
+     *
+     * @return the configurationInfo value.
+     */
+    ConfigurationInfo configurationInfo();
+
+    /**
+     * Gets the name of the resource group.
+     *
+     * @return the name of the resource group.
+     */
+    String resourceGroupName();
+
+    /**
      * Gets the inner com.azure.resourcemanager.servicelinker.fluent.models.LinkerResourceInner object.
      *
      * @return the inner object.
@@ -96,23 +118,29 @@ public interface LinkerResource {
     LinkerResourceInner innerModel();
 
     /** The entirety of the LinkerResource definition. */
-    interface Definition extends DefinitionStages.Blank, DefinitionStages.WithScopeStage, DefinitionStages.WithCreate {
+    interface Definition
+        extends DefinitionStages.Blank, DefinitionStages.WithParentResource, DefinitionStages.WithCreate {
     }
+
     /** The LinkerResource definition stages. */
     interface DefinitionStages {
         /** The first stage of the LinkerResource definition. */
-        interface Blank extends WithScopeStage {
+        interface Blank extends WithParentResource {
         }
+
         /** The stage of the LinkerResource definition allowing to specify parent resource. */
-        interface WithScopeStage {
+        interface WithParentResource {
             /**
-             * Specifies resourceUri.
+             * Specifies subscriptionId, resourceGroupName, location.
              *
-             * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
+             * @param subscriptionId The ID of the target subscription.
+             * @param resourceGroupName The name of the resource group. The name is case insensitive.
+             * @param location The name of Azure region.
              * @return the next definition stage.
              */
-            WithCreate withExistingResourceUri(String resourceUri);
+            WithCreate withExistingLocation(String subscriptionId, String resourceGroupName, String location);
         }
+
         /**
          * The stage of the LinkerResource definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
@@ -123,7 +151,9 @@ public interface LinkerResource {
                 DefinitionStages.WithClientType,
                 DefinitionStages.WithVNetSolution,
                 DefinitionStages.WithSecretStore,
-                DefinitionStages.WithScope {
+                DefinitionStages.WithScope,
+                DefinitionStages.WithPublicNetworkSolution,
+                DefinitionStages.WithConfigurationInfo {
             /**
              * Executes the create request.
              *
@@ -139,6 +169,7 @@ public interface LinkerResource {
              */
             LinkerResource create(Context context);
         }
+
         /** The stage of the LinkerResource definition allowing to specify targetService. */
         interface WithTargetService {
             /**
@@ -149,6 +180,7 @@ public interface LinkerResource {
              */
             WithCreate withTargetService(TargetServiceBase targetService);
         }
+
         /** The stage of the LinkerResource definition allowing to specify authInfo. */
         interface WithAuthInfo {
             /**
@@ -159,6 +191,7 @@ public interface LinkerResource {
              */
             WithCreate withAuthInfo(AuthInfoBase authInfo);
         }
+
         /** The stage of the LinkerResource definition allowing to specify clientType. */
         interface WithClientType {
             /**
@@ -169,6 +202,7 @@ public interface LinkerResource {
              */
             WithCreate withClientType(ClientType clientType);
         }
+
         /** The stage of the LinkerResource definition allowing to specify vNetSolution. */
         interface WithVNetSolution {
             /**
@@ -179,6 +213,7 @@ public interface LinkerResource {
              */
             WithCreate withVNetSolution(VNetSolution vNetSolution);
         }
+
         /** The stage of the LinkerResource definition allowing to specify secretStore. */
         interface WithSecretStore {
             /**
@@ -189,6 +224,7 @@ public interface LinkerResource {
              */
             WithCreate withSecretStore(SecretStore secretStore);
         }
+
         /** The stage of the LinkerResource definition allowing to specify scope. */
         interface WithScope {
             /**
@@ -199,7 +235,32 @@ public interface LinkerResource {
              */
             WithCreate withScope(String scope);
         }
+
+        /** The stage of the LinkerResource definition allowing to specify publicNetworkSolution. */
+        interface WithPublicNetworkSolution {
+            /**
+             * Specifies the publicNetworkSolution property: The network solution..
+             *
+             * @param publicNetworkSolution The network solution.
+             * @return the next definition stage.
+             */
+            WithCreate withPublicNetworkSolution(PublicNetworkSolution publicNetworkSolution);
+        }
+
+        /** The stage of the LinkerResource definition allowing to specify configurationInfo. */
+        interface WithConfigurationInfo {
+            /**
+             * Specifies the configurationInfo property: The connection information consumed by applications, including
+             * secrets, connection strings..
+             *
+             * @param configurationInfo The connection information consumed by applications, including secrets,
+             *     connection strings.
+             * @return the next definition stage.
+             */
+            WithCreate withConfigurationInfo(ConfigurationInfo configurationInfo);
+        }
     }
+
     /**
      * Begins update for the LinkerResource resource.
      *
@@ -214,7 +275,9 @@ public interface LinkerResource {
             UpdateStages.WithClientType,
             UpdateStages.WithVNetSolution,
             UpdateStages.WithSecretStore,
-            UpdateStages.WithScope {
+            UpdateStages.WithScope,
+            UpdateStages.WithPublicNetworkSolution,
+            UpdateStages.WithConfigurationInfo {
         /**
          * Executes the update request.
          *
@@ -230,6 +293,7 @@ public interface LinkerResource {
          */
         LinkerResource apply(Context context);
     }
+
     /** The LinkerResource update stages. */
     interface UpdateStages {
         /** The stage of the LinkerResource update allowing to specify targetService. */
@@ -242,6 +306,7 @@ public interface LinkerResource {
              */
             Update withTargetService(TargetServiceBase targetService);
         }
+
         /** The stage of the LinkerResource update allowing to specify authInfo. */
         interface WithAuthInfo {
             /**
@@ -252,6 +317,7 @@ public interface LinkerResource {
              */
             Update withAuthInfo(AuthInfoBase authInfo);
         }
+
         /** The stage of the LinkerResource update allowing to specify clientType. */
         interface WithClientType {
             /**
@@ -262,6 +328,7 @@ public interface LinkerResource {
              */
             Update withClientType(ClientType clientType);
         }
+
         /** The stage of the LinkerResource update allowing to specify vNetSolution. */
         interface WithVNetSolution {
             /**
@@ -272,6 +339,7 @@ public interface LinkerResource {
              */
             Update withVNetSolution(VNetSolution vNetSolution);
         }
+
         /** The stage of the LinkerResource update allowing to specify secretStore. */
         interface WithSecretStore {
             /**
@@ -282,6 +350,7 @@ public interface LinkerResource {
              */
             Update withSecretStore(SecretStore secretStore);
         }
+
         /** The stage of the LinkerResource update allowing to specify scope. */
         interface WithScope {
             /**
@@ -292,7 +361,32 @@ public interface LinkerResource {
              */
             Update withScope(String scope);
         }
+
+        /** The stage of the LinkerResource update allowing to specify publicNetworkSolution. */
+        interface WithPublicNetworkSolution {
+            /**
+             * Specifies the publicNetworkSolution property: The network solution..
+             *
+             * @param publicNetworkSolution The network solution.
+             * @return the next definition stage.
+             */
+            Update withPublicNetworkSolution(PublicNetworkSolution publicNetworkSolution);
+        }
+
+        /** The stage of the LinkerResource update allowing to specify configurationInfo. */
+        interface WithConfigurationInfo {
+            /**
+             * Specifies the configurationInfo property: The connection information consumed by applications, including
+             * secrets, connection strings..
+             *
+             * @param configurationInfo The connection information consumed by applications, including secrets,
+             *     connection strings.
+             * @return the next definition stage.
+             */
+            Update withConfigurationInfo(ConfigurationInfo configurationInfo);
+        }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *
@@ -309,37 +403,29 @@ public interface LinkerResource {
     LinkerResource refresh(Context context);
 
     /**
-     * Validate a link.
+     * Validate a Connector.
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the validation operation result for a linker.
+     * @return the validation operation result for a Linker.
      */
     ValidateOperationResult validate();
 
     /**
-     * Validate a link.
+     * Validate a Connector.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the validation operation result for a linker.
+     * @return the validation operation result for a Linker.
      */
     ValidateOperationResult validate(Context context);
 
     /**
-     * list source configurations for a linker.
+     * Generate configurations for a Connector.
      *
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return configurations for source resource, include appSettings, connectionString and serviceBindings.
-     */
-    SourceConfigurationResult listConfigurations();
-
-    /**
-     * list source configurations for a linker.
-     *
+     * @param parameters Connection Info, including format, secret store, etc.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -347,5 +433,14 @@ public interface LinkerResource {
      * @return configurations for source resource, include appSettings, connectionString and serviceBindings along with
      *     {@link Response}.
      */
-    Response<SourceConfigurationResult> listConfigurationsWithResponse(Context context);
+    Response<ConfigurationResult> generateConfigurationsWithResponse(ConfigurationInfo parameters, Context context);
+
+    /**
+     * Generate configurations for a Connector.
+     *
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return configurations for source resource, include appSettings, connectionString and serviceBindings.
+     */
+    ConfigurationResult generateConfigurations();
 }

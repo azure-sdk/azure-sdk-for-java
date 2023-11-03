@@ -17,14 +17,20 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     defaultImpl = AuthInfoBase.class)
 @JsonTypeName("AuthInfoBase")
 @JsonSubTypes({
+    @JsonSubTypes.Type(name = "accessKey", value = AccessKeyInfoBase.class),
     @JsonSubTypes.Type(name = "secret", value = SecretAuthInfo.class),
     @JsonSubTypes.Type(name = "userAssignedIdentity", value = UserAssignedIdentityAuthInfo.class),
     @JsonSubTypes.Type(name = "systemAssignedIdentity", value = SystemAssignedIdentityAuthInfo.class),
     @JsonSubTypes.Type(name = "servicePrincipalSecret", value = ServicePrincipalSecretAuthInfo.class),
-    @JsonSubTypes.Type(name = "servicePrincipalCertificate", value = ServicePrincipalCertificateAuthInfo.class)
+    @JsonSubTypes.Type(name = "servicePrincipalCertificate", value = ServicePrincipalCertificateAuthInfo.class),
+    @JsonSubTypes.Type(name = "userAccount", value = UserAccountAuthInfo.class)
 })
 @Immutable
 public class AuthInfoBase {
+    /** Creates an instance of AuthInfoBase class. */
+    public AuthInfoBase() {
+    }
+
     /**
      * Validates the instance.
      *
