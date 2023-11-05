@@ -4,11 +4,18 @@
 
 package com.azure.resourcemanager.appcontainers.generated;
 
+import com.azure.resourcemanager.appcontainers.models.AppInsightsConfiguration;
 import com.azure.resourcemanager.appcontainers.models.AppLogsConfiguration;
 import com.azure.resourcemanager.appcontainers.models.CustomDomainConfiguration;
+import com.azure.resourcemanager.appcontainers.models.DataDogConfiguration;
+import com.azure.resourcemanager.appcontainers.models.DestinationsConfiguration;
 import com.azure.resourcemanager.appcontainers.models.LogAnalyticsConfiguration;
+import com.azure.resourcemanager.appcontainers.models.LogsConfiguration;
 import com.azure.resourcemanager.appcontainers.models.ManagedEnvironmentPropertiesPeerAuthentication;
+import com.azure.resourcemanager.appcontainers.models.MetricsConfiguration;
 import com.azure.resourcemanager.appcontainers.models.Mtls;
+import com.azure.resourcemanager.appcontainers.models.OpenTelemetryConfiguration;
+import com.azure.resourcemanager.appcontainers.models.TracesConfiguration;
 import com.azure.resourcemanager.appcontainers.models.VnetConfiguration;
 import com.azure.resourcemanager.appcontainers.models.WorkloadProfile;
 import java.util.Arrays;
@@ -16,7 +23,7 @@ import java.util.Arrays;
 /** Samples for ManagedEnvironments CreateOrUpdate. */
 public final class ManagedEnvironmentsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2023-05-01/examples/ManagedEnvironments_CustomInfrastructureResourceGroup_Create.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2023-08-01-preview/examples/ManagedEnvironments_CustomInfrastructureResourceGroup_Create.json
      */
     /**
      * Sample code: Create environment with custom infrastructureResourceGroup.
@@ -70,7 +77,7 @@ public final class ManagedEnvironmentsCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2023-05-01/examples/ManagedEnvironments_CreateOrUpdate.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2023-08-01-preview/examples/ManagedEnvironments_CreateOrUpdate.json
      */
     /**
      * Sample code: Create environments.
@@ -92,7 +99,23 @@ public final class ManagedEnvironmentsCreateOrUpdateSamples {
             .withAppLogsConfiguration(
                 new AppLogsConfiguration()
                     .withLogAnalyticsConfiguration(
-                        new LogAnalyticsConfiguration().withCustomerId("string").withSharedKey("fakeTokenPlaceholder")))
+                        new LogAnalyticsConfiguration()
+                            .withCustomerId("string")
+                            .withSharedKey("fakeTokenPlaceholder")
+                            .withDynamicJsonColumns(true)))
+            .withAppInsightsConfiguration(
+                new AppInsightsConfiguration()
+                    .withConnectionString(
+                        "InstrumentationKey=00000000-0000-0000-0000-000000000000;IngestionEndpoint=https://eastus-8.in.applicationinsights.azure.com/;LiveEndpoint=https://eastus.livediagnostics.monitor.azure.com/"))
+            .withOpenTelemetryConfiguration(
+                new OpenTelemetryConfiguration()
+                    .withDestinationsConfiguration(
+                        new DestinationsConfiguration()
+                            .withDataDogConfiguration(
+                                new DataDogConfiguration().withSite("string").withKey("fakeTokenPlaceholder")))
+                    .withTracesConfiguration(new TracesConfiguration().withDestinations(Arrays.asList("appInsights")))
+                    .withLogsConfiguration(new LogsConfiguration().withDestinations(Arrays.asList("appInsights")))
+                    .withMetricsConfiguration(new MetricsConfiguration().withDestinations(Arrays.asList("dataDog"))))
             .withZoneRedundant(true)
             .withCustomDomainConfiguration(
                 new CustomDomainConfiguration()
