@@ -65,11 +65,10 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "NginxManagementClien")
-    private interface DeploymentsService {
+    public interface DeploymentsService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Nginx.NginxPlus"
-                + "/nginxDeployments/{deploymentName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Nginx.NginxPlus/nginxDeployments/{deploymentName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<NginxDeploymentInner>> getByResourceGroup(
@@ -83,8 +82,7 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Nginx.NginxPlus"
-                + "/nginxDeployments/{deploymentName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Nginx.NginxPlus/nginxDeployments/{deploymentName}")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
@@ -99,8 +97,7 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
 
         @Headers({"Content-Type: application/json"})
         @Patch(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Nginx.NginxPlus"
-                + "/nginxDeployments/{deploymentName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Nginx.NginxPlus/nginxDeployments/{deploymentName}")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> update(
@@ -115,8 +112,7 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Nginx.NginxPlus"
-                + "/nginxDeployments/{deploymentName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Nginx.NginxPlus/nginxDeployments/{deploymentName}")
         @ExpectedResponses({200, 202, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(
@@ -141,8 +137,7 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Nginx.NginxPlus"
-                + "/nginxDeployments")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Nginx.NginxPlus/nginxDeployments")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<NginxDeploymentListResponse>> listByResourceGroup(
@@ -175,14 +170,14 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
     }
 
     /**
-     * Get the Nginx deployment.
+     * Get the NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Nginx deployment along with {@link Response} on successful completion of {@link Mono}.
+     * @return the NGINX deployment along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<NginxDeploymentInner>> getByResourceGroupWithResponseAsync(
@@ -223,15 +218,15 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
     }
 
     /**
-     * Get the Nginx deployment.
+     * Get the NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Nginx deployment along with {@link Response} on successful completion of {@link Mono}.
+     * @return the NGINX deployment along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<NginxDeploymentInner>> getByResourceGroupWithResponseAsync(
@@ -269,14 +264,14 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
     }
 
     /**
-     * Get the Nginx deployment.
+     * Get the NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Nginx deployment on successful completion of {@link Mono}.
+     * @return the NGINX deployment on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<NginxDeploymentInner> getByResourceGroupAsync(String resourceGroupName, String deploymentName) {
@@ -285,15 +280,15 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
     }
 
     /**
-     * Get the Nginx deployment.
+     * Get the NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Nginx deployment along with {@link Response}.
+     * @return the NGINX deployment along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<NginxDeploymentInner> getByResourceGroupWithResponse(
@@ -302,14 +297,14 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
     }
 
     /**
-     * Get the Nginx deployment.
+     * Get the NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Nginx deployment.
+     * @return the NGINX deployment.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public NginxDeploymentInner getByResourceGroup(String resourceGroupName, String deploymentName) {
@@ -317,10 +312,10 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
     }
 
     /**
-     * Create or update the Nginx deployment.
+     * Create or update the NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param body The body parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -370,10 +365,10 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
     }
 
     /**
-     * Create or update the Nginx deployment.
+     * Create or update the NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param body The body parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -421,10 +416,10 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
     }
 
     /**
-     * Create or update the Nginx deployment.
+     * Create or update the NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param body The body parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -447,10 +442,10 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
     }
 
     /**
-     * Create or update the Nginx deployment.
+     * Create or update the NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -473,10 +468,10 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
     }
 
     /**
-     * Create or update the Nginx deployment.
+     * Create or update the NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param body The body parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -497,10 +492,10 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
     }
 
     /**
-     * Create or update the Nginx deployment.
+     * Create or update the NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -510,14 +505,14 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
     public SyncPoller<PollResult<NginxDeploymentInner>, NginxDeploymentInner> beginCreateOrUpdate(
         String resourceGroupName, String deploymentName) {
         final NginxDeploymentInner body = null;
-        return beginCreateOrUpdateAsync(resourceGroupName, deploymentName, body).getSyncPoller();
+        return this.beginCreateOrUpdateAsync(resourceGroupName, deploymentName, body).getSyncPoller();
     }
 
     /**
-     * Create or update the Nginx deployment.
+     * Create or update the NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param body The body parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -528,14 +523,14 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<NginxDeploymentInner>, NginxDeploymentInner> beginCreateOrUpdate(
         String resourceGroupName, String deploymentName, NginxDeploymentInner body, Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, deploymentName, body, context).getSyncPoller();
+        return this.beginCreateOrUpdateAsync(resourceGroupName, deploymentName, body, context).getSyncPoller();
     }
 
     /**
-     * Create or update the Nginx deployment.
+     * Create or update the NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param body The body parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -551,10 +546,10 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
     }
 
     /**
-     * Create or update the Nginx deployment.
+     * Create or update the NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -569,10 +564,10 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
     }
 
     /**
-     * Create or update the Nginx deployment.
+     * Create or update the NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param body The body parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -589,10 +584,10 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
     }
 
     /**
-     * Create or update the Nginx deployment.
+     * Create or update the NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -605,10 +600,10 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
     }
 
     /**
-     * Create or update the Nginx deployment.
+     * Create or update the NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param body The body parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -623,10 +618,10 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
     }
 
     /**
-     * Update the Nginx deployment.
+     * Update the NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param body The body parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -676,10 +671,10 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
     }
 
     /**
-     * Update the Nginx deployment.
+     * Update the NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param body The body parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -727,10 +722,10 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
     }
 
     /**
-     * Update the Nginx deployment.
+     * Update the NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param body The body parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -752,10 +747,10 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
     }
 
     /**
-     * Update the Nginx deployment.
+     * Update the NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -777,10 +772,10 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
     }
 
     /**
-     * Update the Nginx deployment.
+     * Update the NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param body The body parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -801,10 +796,10 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
     }
 
     /**
-     * Update the Nginx deployment.
+     * Update the NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -814,14 +809,14 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
     public SyncPoller<PollResult<NginxDeploymentInner>, NginxDeploymentInner> beginUpdate(
         String resourceGroupName, String deploymentName) {
         final NginxDeploymentUpdateParameters body = null;
-        return beginUpdateAsync(resourceGroupName, deploymentName, body).getSyncPoller();
+        return this.beginUpdateAsync(resourceGroupName, deploymentName, body).getSyncPoller();
     }
 
     /**
-     * Update the Nginx deployment.
+     * Update the NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param body The body parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -832,14 +827,14 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<NginxDeploymentInner>, NginxDeploymentInner> beginUpdate(
         String resourceGroupName, String deploymentName, NginxDeploymentUpdateParameters body, Context context) {
-        return beginUpdateAsync(resourceGroupName, deploymentName, body, context).getSyncPoller();
+        return this.beginUpdateAsync(resourceGroupName, deploymentName, body, context).getSyncPoller();
     }
 
     /**
-     * Update the Nginx deployment.
+     * Update the NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param body The body parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -855,10 +850,10 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
     }
 
     /**
-     * Update the Nginx deployment.
+     * Update the NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -873,10 +868,10 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
     }
 
     /**
-     * Update the Nginx deployment.
+     * Update the NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param body The body parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -893,10 +888,10 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
     }
 
     /**
-     * Update the Nginx deployment.
+     * Update the NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -909,10 +904,10 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
     }
 
     /**
-     * Update the Nginx deployment.
+     * Update the NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param body The body parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -927,10 +922,10 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
     }
 
     /**
-     * Delete the Nginx deployment resource.
+     * Delete the NGINX deployment resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -974,10 +969,10 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
     }
 
     /**
-     * Delete the Nginx deployment resource.
+     * Delete the NGINX deployment resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1020,10 +1015,10 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
     }
 
     /**
-     * Delete the Nginx deployment resource.
+     * Delete the NGINX deployment resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1039,10 +1034,10 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
     }
 
     /**
-     * Delete the Nginx deployment resource.
+     * Delete the NGINX deployment resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1060,10 +1055,10 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
     }
 
     /**
-     * Delete the Nginx deployment resource.
+     * Delete the NGINX deployment resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1071,14 +1066,14 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String deploymentName) {
-        return beginDeleteAsync(resourceGroupName, deploymentName).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, deploymentName).getSyncPoller();
     }
 
     /**
-     * Delete the Nginx deployment resource.
+     * Delete the NGINX deployment resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1088,14 +1083,14 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String deploymentName, Context context) {
-        return beginDeleteAsync(resourceGroupName, deploymentName, context).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, deploymentName, context).getSyncPoller();
     }
 
     /**
-     * Delete the Nginx deployment resource.
+     * Delete the NGINX deployment resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1109,10 +1104,10 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
     }
 
     /**
-     * Delete the Nginx deployment resource.
+     * Delete the NGINX deployment resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1127,10 +1122,10 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
     }
 
     /**
-     * Delete the Nginx deployment resource.
+     * Delete the NGINX deployment resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1141,10 +1136,10 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
     }
 
     /**
-     * Delete the Nginx deployment resource.
+     * Delete the NGINX deployment resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1156,7 +1151,7 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
     }
 
     /**
-     * List the Nginx deployments resources.
+     * List the NGINX deployments resources.
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1200,7 +1195,7 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
     }
 
     /**
-     * List the Nginx deployments resources.
+     * List the NGINX deployments resources.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1243,7 +1238,7 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
     }
 
     /**
-     * List the Nginx deployments resources.
+     * List the NGINX deployments resources.
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1255,7 +1250,7 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
     }
 
     /**
-     * List the Nginx deployments resources.
+     * List the NGINX deployments resources.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1270,7 +1265,7 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
     }
 
     /**
-     * List the Nginx deployments resources.
+     * List the NGINX deployments resources.
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1282,7 +1277,7 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
     }
 
     /**
-     * List the Nginx deployments resources.
+     * List the NGINX deployments resources.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1296,7 +1291,7 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
     }
 
     /**
-     * List all Nginx deployments under the specified resource group.
+     * List all NGINX deployments under the specified resource group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1347,7 +1342,7 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
     }
 
     /**
-     * List all Nginx deployments under the specified resource group.
+     * List all NGINX deployments under the specified resource group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
@@ -1397,7 +1392,7 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
     }
 
     /**
-     * List all Nginx deployments under the specified resource group.
+     * List all NGINX deployments under the specified resource group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1413,7 +1408,7 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
     }
 
     /**
-     * List all Nginx deployments under the specified resource group.
+     * List all NGINX deployments under the specified resource group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
@@ -1430,7 +1425,7 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
     }
 
     /**
-     * List all Nginx deployments under the specified resource group.
+     * List all NGINX deployments under the specified resource group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1444,7 +1439,7 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
     }
 
     /**
-     * List all Nginx deployments under the specified resource group.
+     * List all NGINX deployments under the specified resource group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.

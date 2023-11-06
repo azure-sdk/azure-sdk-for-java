@@ -5,20 +5,25 @@
 package com.azure.resourcemanager.nginx.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.management.Resource;
+import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.nginx.models.NginxConfigurationProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Map;
 
 /** The NginxConfiguration model. */
 @Fluent
-public final class NginxConfigurationInner extends Resource {
+public final class NginxConfigurationInner extends ProxyResource {
     /*
      * The properties property.
      */
     @JsonProperty(value = "properties")
     private NginxConfigurationProperties properties;
+
+    /*
+     * The location property.
+     */
+    @JsonProperty(value = "location")
+    private String location;
 
     /*
      * Metadata pertaining to creation and last modification of the resource.
@@ -51,26 +56,32 @@ public final class NginxConfigurationInner extends Resource {
     }
 
     /**
+     * Get the location property: The location property.
+     *
+     * @return the location value.
+     */
+    public String location() {
+        return this.location;
+    }
+
+    /**
+     * Set the location property: The location property.
+     *
+     * @param location the location value to set.
+     * @return the NginxConfigurationInner object itself.
+     */
+    public NginxConfigurationInner withLocation(String location) {
+        this.location = location;
+        return this;
+    }
+
+    /**
      * Get the systemData property: Metadata pertaining to creation and last modification of the resource.
      *
      * @return the systemData value.
      */
     public SystemData systemData() {
         return this.systemData;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public NginxConfigurationInner withLocation(String location) {
-        super.withLocation(location);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public NginxConfigurationInner withTags(Map<String, String> tags) {
-        super.withTags(tags);
-        return this;
     }
 
     /**

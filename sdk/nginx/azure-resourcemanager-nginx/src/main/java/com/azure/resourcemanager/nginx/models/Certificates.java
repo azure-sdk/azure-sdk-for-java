@@ -11,38 +11,38 @@ import com.azure.core.util.Context;
 /** Resource collection API of Certificates. */
 public interface Certificates {
     /**
-     * Get a certificate of given Nginx deployment.
+     * Get a certificate of given NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param certificateName The name of certificate.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a certificate of given Nginx deployment along with {@link Response}.
+     * @return a certificate of given NGINX deployment along with {@link Response}.
      */
     Response<NginxCertificate> getWithResponse(
         String resourceGroupName, String deploymentName, String certificateName, Context context);
 
     /**
-     * Get a certificate of given Nginx deployment.
+     * Get a certificate of given NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param certificateName The name of certificate.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a certificate of given Nginx deployment.
+     * @return a certificate of given NGINX deployment.
      */
     NginxCertificate get(String resourceGroupName, String deploymentName, String certificateName);
 
     /**
-     * Deletes a certificate from the nginx deployment.
+     * Deletes a certificate from the NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param certificateName The name of certificate.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -51,10 +51,10 @@ public interface Certificates {
     void delete(String resourceGroupName, String deploymentName, String certificateName);
 
     /**
-     * Deletes a certificate from the nginx deployment.
+     * Deletes a certificate from the NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param certificateName The name of certificate.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -64,10 +64,10 @@ public interface Certificates {
     void delete(String resourceGroupName, String deploymentName, String certificateName, Context context);
 
     /**
-     * List all certificates of given Nginx deployment.
+     * List all certificates of given NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -76,10 +76,10 @@ public interface Certificates {
     PagedIterable<NginxCertificate> list(String resourceGroupName, String deploymentName);
 
     /**
-     * List all certificates of given Nginx deployment.
+     * List all certificates of given NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -89,30 +89,30 @@ public interface Certificates {
     PagedIterable<NginxCertificate> list(String resourceGroupName, String deploymentName, Context context);
 
     /**
-     * Get a certificate of given Nginx deployment.
+     * Get a certificate of given NGINX deployment.
      *
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a certificate of given Nginx deployment along with {@link Response}.
+     * @return a certificate of given NGINX deployment along with {@link Response}.
      */
     NginxCertificate getById(String id);
 
     /**
-     * Get a certificate of given Nginx deployment.
+     * Get a certificate of given NGINX deployment.
      *
      * @param id the resource ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a certificate of given Nginx deployment along with {@link Response}.
+     * @return a certificate of given NGINX deployment along with {@link Response}.
      */
     Response<NginxCertificate> getByIdWithResponse(String id, Context context);
 
     /**
-     * Deletes a certificate from the nginx deployment.
+     * Deletes a certificate from the NGINX deployment.
      *
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -122,7 +122,7 @@ public interface Certificates {
     void deleteById(String id);
 
     /**
-     * Deletes a certificate from the nginx deployment.
+     * Deletes a certificate from the NGINX deployment.
      *
      * @param id the resource ID.
      * @param context The context to associate with this operation.

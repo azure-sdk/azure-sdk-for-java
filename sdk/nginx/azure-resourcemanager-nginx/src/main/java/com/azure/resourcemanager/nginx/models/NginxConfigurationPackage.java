@@ -6,6 +6,7 @@ package com.azure.resourcemanager.nginx.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 
 /** The NginxConfigurationPackage model. */
 @Fluent
@@ -15,6 +16,12 @@ public final class NginxConfigurationPackage {
      */
     @JsonProperty(value = "data")
     private String data;
+
+    /*
+     * The protectedFiles property.
+     */
+    @JsonProperty(value = "protectedFiles")
+    private List<String> protectedFiles;
 
     /** Creates an instance of NginxConfigurationPackage class. */
     public NginxConfigurationPackage() {
@@ -37,6 +44,26 @@ public final class NginxConfigurationPackage {
      */
     public NginxConfigurationPackage withData(String data) {
         this.data = data;
+        return this;
+    }
+
+    /**
+     * Get the protectedFiles property: The protectedFiles property.
+     *
+     * @return the protectedFiles value.
+     */
+    public List<String> protectedFiles() {
+        return this.protectedFiles;
+    }
+
+    /**
+     * Set the protectedFiles property: The protectedFiles property.
+     *
+     * @param protectedFiles the protectedFiles value to set.
+     * @return the NginxConfigurationPackage object itself.
+     */
+    public NginxConfigurationPackage withProtectedFiles(List<String> protectedFiles) {
+        this.protectedFiles = protectedFiles;
         return this;
     }
 
