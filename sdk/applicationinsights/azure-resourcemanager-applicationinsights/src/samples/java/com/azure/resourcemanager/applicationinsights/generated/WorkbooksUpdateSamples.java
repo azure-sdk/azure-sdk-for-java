@@ -9,7 +9,7 @@ import com.azure.resourcemanager.applicationinsights.models.Workbook;
 /** Samples for Workbooks Update. */
 public final class WorkbooksUpdateSamples {
     /*
-     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2022-04-01/examples/WorkbookUpdate.json
+     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2023-06-01/examples/WorkbookUpdate.json
      */
     /**
      * Sample code: WorkbookUpdate.
@@ -32,7 +32,7 @@ public final class WorkbooksUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2022-04-01/examples/WorkbookManagedUpdate.json
+     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2023-06-01/examples/WorkbookManagedUpdate.json
      */
     /**
      * Sample code: WorkbookManagedUpdate.

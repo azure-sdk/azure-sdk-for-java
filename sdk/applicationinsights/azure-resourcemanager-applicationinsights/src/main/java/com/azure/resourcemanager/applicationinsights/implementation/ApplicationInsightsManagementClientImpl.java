@@ -29,6 +29,7 @@ import com.azure.resourcemanager.applicationinsights.fluent.ApplicationInsightsM
 import com.azure.resourcemanager.applicationinsights.fluent.ComponentAvailableFeaturesClient;
 import com.azure.resourcemanager.applicationinsights.fluent.ComponentCurrentBillingFeaturesClient;
 import com.azure.resourcemanager.applicationinsights.fluent.ComponentFeatureCapabilitiesClient;
+import com.azure.resourcemanager.applicationinsights.fluent.ComponentLinkedStorageAccountsOperationsClient;
 import com.azure.resourcemanager.applicationinsights.fluent.ComponentQuotaStatusClient;
 import com.azure.resourcemanager.applicationinsights.fluent.ComponentsClient;
 import com.azure.resourcemanager.applicationinsights.fluent.ExportConfigurationsClient;
@@ -342,6 +343,18 @@ public final class ApplicationInsightsManagementClientImpl implements Applicatio
         return this.liveTokens;
     }
 
+    /** The ComponentLinkedStorageAccountsOperationsClient object to access its operations. */
+    private final ComponentLinkedStorageAccountsOperationsClient componentLinkedStorageAccountsOperations;
+
+    /**
+     * Gets the ComponentLinkedStorageAccountsOperationsClient object to access its operations.
+     *
+     * @return the ComponentLinkedStorageAccountsOperationsClient object.
+     */
+    public ComponentLinkedStorageAccountsOperationsClient getComponentLinkedStorageAccountsOperations() {
+        return this.componentLinkedStorageAccountsOperations;
+    }
+
     /**
      * Initializes an instance of ApplicationInsightsManagementClient client.
      *
@@ -383,6 +396,7 @@ public final class ApplicationInsightsManagementClientImpl implements Applicatio
         this.myWorkbooks = new MyWorkbooksClientImpl(this);
         this.workbooks = new WorkbooksClientImpl(this);
         this.liveTokens = new LiveTokensClientImpl(this);
+        this.componentLinkedStorageAccountsOperations = new ComponentLinkedStorageAccountsOperationsClientImpl(this);
     }
 
     /**

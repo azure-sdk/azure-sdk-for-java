@@ -169,4 +169,11 @@ public interface ApplicationInsightsManagementClient {
      * @return the LiveTokensClient object.
      */
     LiveTokensClient getLiveTokens();
+
+    /**
+     * Gets the ComponentLinkedStorageAccountsOperationsClient object to access its operations.
+     *
+     * @return the ComponentLinkedStorageAccountsOperationsClient object.
+     */
+    ComponentLinkedStorageAccountsOperationsClient getComponentLinkedStorageAccountsOperations();
 }
