@@ -48,7 +48,13 @@ public final class ManagedCcfProperties {
     private DeploymentType deploymentType;
 
     /*
-     * Provisioning state of Ledger Resource
+     * Object representing RunningState for Managed CCF.
+     */
+    @JsonProperty(value = "runningState")
+    private RunningState runningState;
+
+    /*
+     * Provisioning state of Managed CCF Resource
      */
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ProvisioningState provisioningState;
@@ -138,7 +144,27 @@ public final class ManagedCcfProperties {
     }
 
     /**
-     * Get the provisioningState property: Provisioning state of Ledger Resource.
+     * Get the runningState property: Object representing RunningState for Managed CCF.
+     *
+     * @return the runningState value.
+     */
+    public RunningState runningState() {
+        return this.runningState;
+    }
+
+    /**
+     * Set the runningState property: Object representing RunningState for Managed CCF.
+     *
+     * @param runningState the runningState value to set.
+     * @return the ManagedCcfProperties object itself.
+     */
+    public ManagedCcfProperties withRunningState(RunningState runningState) {
+        this.runningState = runningState;
+        return this;
+    }
+
+    /**
+     * Get the provisioningState property: Provisioning state of Managed CCF Resource.
      *
      * @return the provisioningState value.
      */
