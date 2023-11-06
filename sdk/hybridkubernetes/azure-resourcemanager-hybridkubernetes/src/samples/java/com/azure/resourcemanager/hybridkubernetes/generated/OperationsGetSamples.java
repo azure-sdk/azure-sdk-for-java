@@ -7,7 +7,7 @@ package com.azure.resourcemanager.hybridkubernetes.generated;
 /** Samples for Operations Get. */
 public final class OperationsGetSamples {
     /*
-     * x-ms-original-file: specification/hybridkubernetes/resource-manager/Microsoft.Kubernetes/stable/2021-10-01/examples/ListConnectedClusterOperationsExample.json
+     * x-ms-original-file: specification/hybridkubernetes/resource-manager/Microsoft.Kubernetes/preview/2023-11-01-preview/examples/ListConnectedClusterOperationsExample.json
      */
     /**
      * Sample code: ListConnectedClusterOperationsExample.
