@@ -50,18 +50,14 @@
 - [List](#allowedconnections_list)
 - [ListByHomeRegion](#allowedconnections_listbyhomeregion)
 
-## ApiCollection
+## ApiCollections
 
-- [Get](#apicollection_get)
-- [List](#apicollection_list)
-
-## ApiCollectionOffboarding
-
-- [Delete](#apicollectionoffboarding_delete)
-
-## ApiCollectionOnboarding
-
-- [Create](#apicollectiononboarding_create)
+- [GetByAzureApiManagementService](#apicollections_getbyazureapimanagementservice)
+- [List](#apicollections_list)
+- [ListByAzureApiManagementService](#apicollections_listbyazureapimanagementservice)
+- [ListByResourceGroup](#apicollections_listbyresourcegroup)
+- [OffboardAzureApiManagementApi](#apicollections_offboardazureapimanagementapi)
+- [OnboardAzureApiManagementApi](#apicollections_onboardazureapimanagementapi)
 
 ## ApplicationOperation
 
@@ -104,6 +100,28 @@
 - [ListByResourceGroup](#automations_listbyresourcegroup)
 - [Validate](#automations_validate)
 
+## AzureDevOpsOrgs
+
+- [CreateOrUpdate](#azuredevopsorgs_createorupdate)
+- [Get](#azuredevopsorgs_get)
+- [List](#azuredevopsorgs_list)
+- [ListAvailable](#azuredevopsorgs_listavailable)
+- [Update](#azuredevopsorgs_update)
+
+## AzureDevOpsProjects
+
+- [CreateOrUpdate](#azuredevopsprojects_createorupdate)
+- [Get](#azuredevopsprojects_get)
+- [List](#azuredevopsprojects_list)
+- [Update](#azuredevopsprojects_update)
+
+## AzureDevOpsRepos
+
+- [CreateOrUpdate](#azuredevopsrepos_createorupdate)
+- [Get](#azuredevopsrepos_get)
+- [List](#azuredevopsrepos_list)
+- [Update](#azuredevopsrepos_update)
+
 ## ComplianceResults
 
 - [Get](#complianceresults_get)
@@ -137,6 +155,23 @@
 - [List](#customentitystoreassignments_list)
 - [ListByResourceGroup](#customentitystoreassignments_listbyresourcegroup)
 
+## DefenderForStorage
+
+- [Create](#defenderforstorage_create)
+- [Get](#defenderforstorage_get)
+
+## DevOpsConfigurations
+
+- [CreateOrUpdate](#devopsconfigurations_createorupdate)
+- [Delete](#devopsconfigurations_delete)
+- [Get](#devopsconfigurations_get)
+- [List](#devopsconfigurations_list)
+- [Update](#devopsconfigurations_update)
+
+## DevOpsOperationResults
+
+- [Get](#devopsoperationresults_get)
+
 ## DeviceSecurityGroups
 
 - [CreateOrUpdate](#devicesecuritygroups_createorupdate)
@@ -156,6 +191,32 @@
 - [List](#externalsecuritysolutions_list)
 - [ListByHomeRegion](#externalsecuritysolutions_listbyhomeregion)
 
+## GitHubOwners
+
+- [Get](#githubowners_get)
+- [List](#githubowners_list)
+- [ListAvailable](#githubowners_listavailable)
+
+## GitHubRepos
+
+- [Get](#githubrepos_get)
+- [List](#githubrepos_list)
+
+## GitLabGroups
+
+- [Get](#gitlabgroups_get)
+- [List](#gitlabgroups_list)
+- [ListAvailable](#gitlabgroups_listavailable)
+
+## GitLabProjects
+
+- [Get](#gitlabprojects_get)
+- [List](#gitlabprojects_list)
+
+## GitLabSubgroups
+
+- [List](#gitlabsubgroups_list)
+
 ## GovernanceAssignments
 
 - [CreateOrUpdate](#governanceassignments_createorupdate)
@@ -172,12 +233,9 @@
 - [List](#governancerules_list)
 - [OperationResults](#governancerules_operationresults)
 
-## HealthReportOperation
-
-- [Get](#healthreportoperation_get)
-
 ## HealthReports
 
+- [Get](#healthreports_get)
 - [List](#healthreports_list)
 
 ## InformationProtectionPolicies
@@ -185,15 +243,6 @@
 - [CreateOrUpdate](#informationprotectionpolicies_createorupdate)
 - [Get](#informationprotectionpolicies_get)
 - [List](#informationprotectionpolicies_list)
-
-## IngestionSettings
-
-- [Create](#ingestionsettings_create)
-- [Delete](#ingestionsettings_delete)
-- [Get](#ingestionsettings_get)
-- [List](#ingestionsettings_list)
-- [ListConnectionStrings](#ingestionsettings_listconnectionstrings)
-- [ListTokens](#ingestionsettings_listtokens)
 
 ## IotSecuritySolution
 
@@ -262,6 +311,11 @@
 - [Get](#regulatorycompliancestandards_get)
 - [List](#regulatorycompliancestandards_list)
 
+## ResourceProvider
+
+- [GetSensitivitySettings](#resourceprovider_getsensitivitysettings)
+- [UpdateSensitivitySettings](#resourceprovider_updatesensitivitysettings)
+
 ## SecureScoreControlDefinitions
 
 - [List](#securescorecontroldefinitions_list)
@@ -320,12 +374,23 @@
 - [List](#securitysolutionsreferencedata_list)
 - [ListByHomeRegion](#securitysolutionsreferencedata_listbyhomeregion)
 
+## SensitivitySettings
+
+- [List](#sensitivitysettings_list)
+
 ## ServerVulnerabilityAssessment
 
 - [CreateOrUpdate](#servervulnerabilityassessment_createorupdate)
 - [Delete](#servervulnerabilityassessment_delete)
 - [Get](#servervulnerabilityassessment_get)
 - [ListByExtendedResource](#servervulnerabilityassessment_listbyextendedresource)
+
+## ServerVulnerabilityAssessmentsSettings
+
+- [CreateOrUpdate](#servervulnerabilityassessmentssettings_createorupdate)
+- [Delete](#servervulnerabilityassessmentssettings_delete)
+- [Get](#servervulnerabilityassessmentssettings_get)
+- [List](#servervulnerabilityassessmentssettings_list)
 
 ## Settings
 
@@ -1239,6 +1304,7 @@ public final class AlertsSuppressionRulesUpdateSamples {
                 com.azure.core.util.Context.NONE);
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -1315,86 +1381,134 @@ public final class AllowedConnectionsListByHomeRegionSamples {
 }
 ```
 
-### ApiCollection_Get
+### ApiCollections_GetByAzureApiManagementService
 
 ```java
-/** Samples for ApiCollection Get. */
-public final class ApiCollectionGetSamples {
+/** Samples for ApiCollections GetByAzureApiManagementService. */
+public final class ApiCollectionsGetByAzureApiManagementServiceSamples {
     /*
-     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2022-11-20-preview/examples/ApiCollections/APICollection_Get_example.json
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/stable/2023-11-15/examples/ApiCollections/APICollections_GetByAzureApiManagementService_example.json
      */
     /**
-     * Sample code: Gets an Azure API Management API if it has been onboarded to Defender for APIs.
+     * Sample code: Gets an Azure API Management API if it has been onboarded to Microsoft Defender for APIs.
      *
      * @param manager Entry point to SecurityManager.
      */
-    public static void getsAnAzureAPIManagementAPIIfItHasBeenOnboardedToDefenderForAPIs(
-        com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.apiCollections().getWithResponse("rg1", "apimService1", "echo-api", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### ApiCollection_List
-
-```java
-/** Samples for ApiCollection List. */
-public final class ApiCollectionListSamples {
-    /*
-     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2022-11-20-preview/examples/ApiCollections/APICollection_List_example.json
-     */
-    /**
-     * Sample code: Gets a list of Azure API Management APIs that have been onboarded to Defender for APIs.
-     *
-     * @param manager Entry point to SecurityManager.
-     */
-    public static void getsAListOfAzureAPIManagementAPIsThatHaveBeenOnboardedToDefenderForAPIs(
-        com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.apiCollections().list("rg1", "apimService1", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### ApiCollectionOffboarding_Delete
-
-```java
-/** Samples for ApiCollectionOffboarding Delete. */
-public final class ApiCollectionOffboardingDeleteSamples {
-    /*
-     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2022-11-20-preview/examples/ApiCollections/APICollectionOffboarding_Delete_example.json
-     */
-    /**
-     * Sample code: Delete a security recommendation task on a resource.
-     *
-     * @param manager Entry point to SecurityManager.
-     */
-    public static void deleteASecurityRecommendationTaskOnAResource(
+    public static void getsAnAzureAPIManagementAPIIfItHasBeenOnboardedToMicrosoftDefenderForAPIs(
         com.azure.resourcemanager.security.SecurityManager manager) {
         manager
-            .apiCollectionOffboardings()
-            .deleteWithResponse("rg1", "apimService1", "echo-api", com.azure.core.util.Context.NONE);
+            .apiCollections()
+            .getByAzureApiManagementServiceWithResponse(
+                "rg1", "apimService1", "echo-api", com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### ApiCollectionOnboarding_Create
+### ApiCollections_List
 
 ```java
-/** Samples for ApiCollectionOnboarding Create. */
-public final class ApiCollectionOnboardingCreateSamples {
+/** Samples for ApiCollections List. */
+public final class ApiCollectionsListSamples {
     /*
-     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2022-11-20-preview/examples/ApiCollections/APICollectionOnboarding_Create_example.json
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/stable/2023-11-15/examples/ApiCollections/APICollections_ListBySubscription_example.json
      */
     /**
-     * Sample code: Onboard an Azure API Management API to Defender for APIs.
+     * Sample code: Gets a list of API collections within a subscription that have been onboarded to Microsoft Defender
+     * for APIs.
      *
      * @param manager Entry point to SecurityManager.
      */
-    public static void onboardAnAzureAPIManagementAPIToDefenderForAPIs(
+    public static void getsAListOfAPICollectionsWithinASubscriptionThatHaveBeenOnboardedToMicrosoftDefenderForAPIs(
+        com.azure.resourcemanager.security.SecurityManager manager) {
+        manager.apiCollections().list(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ApiCollections_ListByAzureApiManagementService
+
+```java
+/** Samples for ApiCollections ListByAzureApiManagementService. */
+public final class ApiCollectionsListByAzureApiManagementServiceSamples {
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/stable/2023-11-15/examples/ApiCollections/APICollections_ListByAzureApiManagementService_example.json
+     */
+    /**
+     * Sample code: Gets a list of Azure API Management APIs that have been onboarded to Microsoft Defender for APIs.
+     *
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void getsAListOfAzureAPIManagementAPIsThatHaveBeenOnboardedToMicrosoftDefenderForAPIs(
         com.azure.resourcemanager.security.SecurityManager manager) {
         manager
-            .apiCollectionOnboardings()
-            .createWithResponse("rg1", "apimService1", "echo-api", com.azure.core.util.Context.NONE);
+            .apiCollections()
+            .listByAzureApiManagementService("rg1", "apimService1", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ApiCollections_ListByResourceGroup
+
+```java
+/** Samples for ApiCollections ListByResourceGroup. */
+public final class ApiCollectionsListByResourceGroupSamples {
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/stable/2023-11-15/examples/ApiCollections/APICollections_ListByResourceGroup_example.json
+     */
+    /**
+     * Sample code: Gets a list of API collections within a resource group that have been onboarded to Microsoft
+     * Defender for APIs.
+     *
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void getsAListOfAPICollectionsWithinAResourceGroupThatHaveBeenOnboardedToMicrosoftDefenderForAPIs(
+        com.azure.resourcemanager.security.SecurityManager manager) {
+        manager.apiCollections().listByResourceGroup("rg1", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ApiCollections_OffboardAzureApiManagementApi
+
+```java
+/** Samples for ApiCollections OffboardAzureApiManagementApi. */
+public final class ApiCollectionsOffboardAzureApiManagementApiSamples {
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/stable/2023-11-15/examples/ApiCollections/APICollections_OffboardAzureApiManagementApi_example.json
+     */
+    /**
+     * Sample code: Offboard an Azure API Management API from Microsoft Defender for APIs.
+     *
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void offboardAnAzureAPIManagementAPIFromMicrosoftDefenderForAPIs(
+        com.azure.resourcemanager.security.SecurityManager manager) {
+        manager
+            .apiCollections()
+            .offboardAzureApiManagementApiWithResponse(
+                "rg1", "apimService1", "echo-api", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ApiCollections_OnboardAzureApiManagementApi
+
+```java
+/** Samples for ApiCollections OnboardAzureApiManagementApi. */
+public final class ApiCollectionsOnboardAzureApiManagementApiSamples {
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/stable/2023-11-15/examples/ApiCollections/APICollections_OnboardAzureApiManagementApi_example.json
+     */
+    /**
+     * Sample code: Onboard an Azure API Management API to Microsoft Defender for APIs.
+     *
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void onboardAnAzureAPIManagementAPIToMicrosoftDefenderForAPIs(
+        com.azure.resourcemanager.security.SecurityManager manager) {
+        manager
+            .apiCollections()
+            .onboardAzureApiManagementApi("rg1", "apimService1", "echo-api", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2009,6 +2123,7 @@ public final class AutomationsCreateOrUpdateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -2182,6 +2297,7 @@ public final class AutomationsValidateSamples {
                 com.azure.core.util.Context.NONE);
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -2191,6 +2307,388 @@ public final class AutomationsValidateSamples {
             map.put(key, value);
         }
         return map;
+    }
+}
+```
+
+### AzureDevOpsOrgs_CreateOrUpdate
+
+```java
+import com.azure.resourcemanager.security.models.ActionableRemediation;
+import com.azure.resourcemanager.security.models.ActionableRemediationState;
+import com.azure.resourcemanager.security.models.AzureDevOpsOrgProperties;
+import com.azure.resourcemanager.security.models.OnboardingState;
+
+/** Samples for AzureDevOpsOrgs CreateOrUpdate. */
+public final class AzureDevOpsOrgsCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-09-01-preview/examples/SecurityConnectorsDevOps/CreateOrUpdateAzureDevOpsOrgs_example.json
+     */
+    /**
+     * Sample code: CreateOrUpdate_AzureDevOpsOrgs.
+     *
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void createOrUpdateAzureDevOpsOrgs(com.azure.resourcemanager.security.SecurityManager manager) {
+        manager
+            .azureDevOpsOrgs()
+            .define("myAzDevOpsOrg")
+            .withExistingSecurityConnector("myRg", "mySecurityConnectorName")
+            .withProperties(
+                new AzureDevOpsOrgProperties()
+                    .withOnboardingState(OnboardingState.NOT_APPLICABLE)
+                    .withActionableRemediation(
+                        new ActionableRemediation().withState(ActionableRemediationState.ENABLED)))
+            .create();
+    }
+}
+```
+
+### AzureDevOpsOrgs_Get
+
+```java
+/** Samples for AzureDevOpsOrgs Get. */
+public final class AzureDevOpsOrgsGetSamples {
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-09-01-preview/examples/SecurityConnectorsDevOps/GetAzureDevOpsOrgs_example.json
+     */
+    /**
+     * Sample code: Get_AzureDevOpsOrgs.
+     *
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void getAzureDevOpsOrgs(com.azure.resourcemanager.security.SecurityManager manager) {
+        manager
+            .azureDevOpsOrgs()
+            .getWithResponse("myRg", "mySecurityConnectorName", "myAzDevOpsOrg", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### AzureDevOpsOrgs_List
+
+```java
+/** Samples for AzureDevOpsOrgs List. */
+public final class AzureDevOpsOrgsListSamples {
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-09-01-preview/examples/SecurityConnectorsDevOps/ListAzureDevOpsOrgs_example.json
+     */
+    /**
+     * Sample code: List_AzureDevOpsOrgs.
+     *
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void listAzureDevOpsOrgs(com.azure.resourcemanager.security.SecurityManager manager) {
+        manager.azureDevOpsOrgs().list("myRg", "mySecurityConnectorName", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### AzureDevOpsOrgs_ListAvailable
+
+```java
+/** Samples for AzureDevOpsOrgs ListAvailable. */
+public final class AzureDevOpsOrgsListAvailableSamples {
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-09-01-preview/examples/SecurityConnectorsDevOps/ListAvailableAzureDevOpsOrgs_example.json
+     */
+    /**
+     * Sample code: ListAvailable_AzureDevOpsOrgs.
+     *
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void listAvailableAzureDevOpsOrgs(com.azure.resourcemanager.security.SecurityManager manager) {
+        manager
+            .azureDevOpsOrgs()
+            .listAvailableWithResponse("myRg", "mySecurityConnectorName", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### AzureDevOpsOrgs_Update
+
+```java
+import com.azure.resourcemanager.security.models.ActionableRemediation;
+import com.azure.resourcemanager.security.models.ActionableRemediationState;
+import com.azure.resourcemanager.security.models.AzureDevOpsOrg;
+import com.azure.resourcemanager.security.models.AzureDevOpsOrgProperties;
+import com.azure.resourcemanager.security.models.OnboardingState;
+
+/** Samples for AzureDevOpsOrgs Update. */
+public final class AzureDevOpsOrgsUpdateSamples {
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-09-01-preview/examples/SecurityConnectorsDevOps/UpdateAzureDevOpsOrgs_example.json
+     */
+    /**
+     * Sample code: Update_AzureDevOpsOrgs.
+     *
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void updateAzureDevOpsOrgs(com.azure.resourcemanager.security.SecurityManager manager) {
+        AzureDevOpsOrg resource =
+            manager
+                .azureDevOpsOrgs()
+                .getWithResponse("myRg", "mySecurityConnectorName", "myAzDevOpsOrg", com.azure.core.util.Context.NONE)
+                .getValue();
+        resource
+            .update()
+            .withProperties(
+                new AzureDevOpsOrgProperties()
+                    .withOnboardingState(OnboardingState.NOT_APPLICABLE)
+                    .withActionableRemediation(
+                        new ActionableRemediation().withState(ActionableRemediationState.ENABLED)))
+            .apply();
+    }
+}
+```
+
+### AzureDevOpsProjects_CreateOrUpdate
+
+```java
+import com.azure.resourcemanager.security.models.ActionableRemediation;
+import com.azure.resourcemanager.security.models.ActionableRemediationState;
+import com.azure.resourcemanager.security.models.AzureDevOpsProjectProperties;
+import com.azure.resourcemanager.security.models.OnboardingState;
+
+/** Samples for AzureDevOpsProjects CreateOrUpdate. */
+public final class AzureDevOpsProjectsCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-09-01-preview/examples/SecurityConnectorsDevOps/CreateOrUpdateAzureDevOpsProjects_example.json
+     */
+    /**
+     * Sample code: CreateOrUpdate_AzureDevOpsProjects.
+     *
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void createOrUpdateAzureDevOpsProjects(com.azure.resourcemanager.security.SecurityManager manager) {
+        manager
+            .azureDevOpsProjects()
+            .define("myAzDevOpsProject")
+            .withExistingAzureDevOpsOrg("myRg", "mySecurityConnectorName", "myAzDevOpsOrg")
+            .withProperties(
+                new AzureDevOpsProjectProperties()
+                    .withOnboardingState(OnboardingState.NOT_APPLICABLE)
+                    .withActionableRemediation(
+                        new ActionableRemediation().withState(ActionableRemediationState.ENABLED)))
+            .create();
+    }
+}
+```
+
+### AzureDevOpsProjects_Get
+
+```java
+/** Samples for AzureDevOpsProjects Get. */
+public final class AzureDevOpsProjectsGetSamples {
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-09-01-preview/examples/SecurityConnectorsDevOps/GetAzureDevOpsProjects_example.json
+     */
+    /**
+     * Sample code: Get_AzureDevOpsProjects.
+     *
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void getAzureDevOpsProjects(com.azure.resourcemanager.security.SecurityManager manager) {
+        manager
+            .azureDevOpsProjects()
+            .getWithResponse(
+                "myRg",
+                "mySecurityConnectorName",
+                "myAzDevOpsOrg",
+                "myAzDevOpsProject",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### AzureDevOpsProjects_List
+
+```java
+/** Samples for AzureDevOpsProjects List. */
+public final class AzureDevOpsProjectsListSamples {
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-09-01-preview/examples/SecurityConnectorsDevOps/ListAzureDevOpsProjects_example.json
+     */
+    /**
+     * Sample code: List_AzureDevOpsProjects.
+     *
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void listAzureDevOpsProjects(com.azure.resourcemanager.security.SecurityManager manager) {
+        manager
+            .azureDevOpsProjects()
+            .list("myRg", "mySecurityConnectorName", "myAzDevOpsOrg", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### AzureDevOpsProjects_Update
+
+```java
+import com.azure.resourcemanager.security.models.ActionableRemediation;
+import com.azure.resourcemanager.security.models.ActionableRemediationState;
+import com.azure.resourcemanager.security.models.AzureDevOpsProject;
+import com.azure.resourcemanager.security.models.AzureDevOpsProjectProperties;
+import com.azure.resourcemanager.security.models.OnboardingState;
+
+/** Samples for AzureDevOpsProjects Update. */
+public final class AzureDevOpsProjectsUpdateSamples {
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-09-01-preview/examples/SecurityConnectorsDevOps/UpdateAzureDevOpsProjects_example.json
+     */
+    /**
+     * Sample code: Update_AzureDevOpsProjects.
+     *
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void updateAzureDevOpsProjects(com.azure.resourcemanager.security.SecurityManager manager) {
+        AzureDevOpsProject resource =
+            manager
+                .azureDevOpsProjects()
+                .getWithResponse(
+                    "myRg",
+                    "mySecurityConnectorName",
+                    "myAzDevOpsOrg",
+                    "myAzDevOpsProject",
+                    com.azure.core.util.Context.NONE)
+                .getValue();
+        resource
+            .update()
+            .withProperties(
+                new AzureDevOpsProjectProperties()
+                    .withOnboardingState(OnboardingState.NOT_APPLICABLE)
+                    .withActionableRemediation(
+                        new ActionableRemediation().withState(ActionableRemediationState.ENABLED)))
+            .apply();
+    }
+}
+```
+
+### AzureDevOpsRepos_CreateOrUpdate
+
+```java
+import com.azure.resourcemanager.security.models.ActionableRemediation;
+import com.azure.resourcemanager.security.models.ActionableRemediationState;
+import com.azure.resourcemanager.security.models.AzureDevOpsRepositoryProperties;
+import com.azure.resourcemanager.security.models.OnboardingState;
+
+/** Samples for AzureDevOpsRepos CreateOrUpdate. */
+public final class AzureDevOpsReposCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-09-01-preview/examples/SecurityConnectorsDevOps/CreateOrUpdateAzureDevOpsRepos_example.json
+     */
+    /**
+     * Sample code: CreateOrUpdate_AzureDevOpsRepos.
+     *
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void createOrUpdateAzureDevOpsRepos(com.azure.resourcemanager.security.SecurityManager manager) {
+        manager
+            .azureDevOpsRepos()
+            .define("myAzDevOpsRepo")
+            .withExistingProject("myRg", "mySecurityConnectorName", "myAzDevOpsOrg", "myAzDevOpsProject")
+            .withProperties(
+                new AzureDevOpsRepositoryProperties()
+                    .withOnboardingState(OnboardingState.NOT_APPLICABLE)
+                    .withActionableRemediation(
+                        new ActionableRemediation().withState(ActionableRemediationState.ENABLED)))
+            .create();
+    }
+}
+```
+
+### AzureDevOpsRepos_Get
+
+```java
+/** Samples for AzureDevOpsRepos Get. */
+public final class AzureDevOpsReposGetSamples {
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-09-01-preview/examples/SecurityConnectorsDevOps/GetAzureDevOpsRepos_example.json
+     */
+    /**
+     * Sample code: Get_AzureDevOpsRepos.
+     *
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void getAzureDevOpsRepos(com.azure.resourcemanager.security.SecurityManager manager) {
+        manager
+            .azureDevOpsRepos()
+            .getWithResponse(
+                "myRg",
+                "mySecurityConnectorName",
+                "myAzDevOpsOrg",
+                "myAzDevOpsProject",
+                "myAzDevOpsRepo",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### AzureDevOpsRepos_List
+
+```java
+/** Samples for AzureDevOpsRepos List. */
+public final class AzureDevOpsReposListSamples {
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-09-01-preview/examples/SecurityConnectorsDevOps/ListAzureDevOpsRepos_example.json
+     */
+    /**
+     * Sample code: List_AzureDevOpsRepos.
+     *
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void listAzureDevOpsRepos(com.azure.resourcemanager.security.SecurityManager manager) {
+        manager
+            .azureDevOpsRepos()
+            .list(
+                "myRg",
+                "mySecurityConnectorName",
+                "myAzDevOpsOrg",
+                "myAzDevOpsProject",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### AzureDevOpsRepos_Update
+
+```java
+import com.azure.resourcemanager.security.models.ActionableRemediation;
+import com.azure.resourcemanager.security.models.ActionableRemediationState;
+import com.azure.resourcemanager.security.models.AzureDevOpsRepository;
+import com.azure.resourcemanager.security.models.AzureDevOpsRepositoryProperties;
+import com.azure.resourcemanager.security.models.OnboardingState;
+
+/** Samples for AzureDevOpsRepos Update. */
+public final class AzureDevOpsReposUpdateSamples {
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-09-01-preview/examples/SecurityConnectorsDevOps/UpdateAzureDevOpsRepos_example.json
+     */
+    /**
+     * Sample code: Update_AzureDevOpsRepos.
+     *
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void updateAzureDevOpsRepos(com.azure.resourcemanager.security.SecurityManager manager) {
+        AzureDevOpsRepository resource =
+            manager
+                .azureDevOpsRepos()
+                .getWithResponse(
+                    "myRg",
+                    "mySecurityConnectorName",
+                    "myAzDevOpsOrg",
+                    "myAzDevOpsProject",
+                    "myAzDevOpsRepo",
+                    com.azure.core.util.Context.NONE)
+                .getValue();
+        resource
+            .update()
+            .withProperties(
+                new AzureDevOpsRepositoryProperties()
+                    .withOnboardingState(OnboardingState.NOT_APPLICABLE)
+                    .withActionableRemediation(
+                        new ActionableRemediation().withState(ActionableRemediationState.ENABLED)))
+            .apply();
     }
 }
 ```
@@ -2678,6 +3176,282 @@ public final class CustomEntityStoreAssignmentsListByResourceGroupSamples {
 }
 ```
 
+### DefenderForStorage_Create
+
+```java
+import com.azure.resourcemanager.security.models.SettingNameAutoGenerated;
+
+/** Samples for DefenderForStorage Create. */
+public final class DefenderForStorageCreateSamples {
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2022-12-01-preview/examples/DefenderForStorage/PutDefenderForStorageSettings_example.json
+     */
+    /**
+     * Sample code: Creates or updates the Defender for Storage settings on a specified resource.
+     *
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void createsOrUpdatesTheDefenderForStorageSettingsOnASpecifiedResource(
+        com.azure.resourcemanager.security.SecurityManager manager) {
+        manager
+            .defenderForStorages()
+            .define(SettingNameAutoGenerated.CURRENT)
+            .withExistingResourceId(
+                "subscriptions/20ff7fc3-e762-44dd-bd96-b71116dcdc23/resourceGroups/SampleRG/providers/Microsoft.Storage/storageAccounts/samplestorageaccount")
+            .withIsEnabled(true)
+            .withOverrideSubscriptionLevelSettings(true)
+            .withScanResultsEventGridTopicResourceId(
+                "/subscriptions/20ff7fc3-e762-44dd-bd96-b71116dcdc23/resourceGroups/SampleRG/providers/Microsoft.EventGrid/topics/sampletopic")
+            .withIsEnabledMalwareScanningIsEnabled(true)
+            .withCapGBPerMonth(-1)
+            .withIsEnabledSensitiveDataDiscoveryIsEnabled(true)
+            .create();
+    }
+}
+```
+
+### DefenderForStorage_Get
+
+```java
+import com.azure.resourcemanager.security.models.SettingNameAutoGenerated;
+
+/** Samples for DefenderForStorage Get. */
+public final class DefenderForStorageGetSamples {
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2022-12-01-preview/examples/DefenderForStorage/GetDefenderForStorageSettings_example.json
+     */
+    /**
+     * Sample code: Gets the Defender for Storage settings for the specified resource.
+     *
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void getsTheDefenderForStorageSettingsForTheSpecifiedResource(
+        com.azure.resourcemanager.security.SecurityManager manager) {
+        manager
+            .defenderForStorages()
+            .getWithResponse(
+                "subscriptions/20ff7fc3-e762-44dd-bd96-b71116dcdc23/resourceGroups/SampleRG/providers/Microsoft.Storage/storageAccounts/samplestorageaccount",
+                SettingNameAutoGenerated.CURRENT,
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### DevOpsConfigurations_CreateOrUpdate
+
+```java
+import com.azure.resourcemanager.security.fluent.models.DevOpsConfigurationInner;
+import com.azure.resourcemanager.security.models.Authorization;
+import com.azure.resourcemanager.security.models.AutoDiscovery;
+import com.azure.resourcemanager.security.models.DevOpsConfigurationProperties;
+import java.util.Arrays;
+
+/** Samples for DevOpsConfigurations CreateOrUpdate. */
+public final class DevOpsConfigurationsCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-09-01-preview/examples/SecurityConnectorsDevOps/CreateOrUpdateDevOpsConfigurationsOnboardCurrentAndFuture_example.json
+     */
+    /**
+     * Sample code: CreateOrUpdate_DevOpsConfigurations_OnboardCurrentAndFuture.
+     *
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void createOrUpdateDevOpsConfigurationsOnboardCurrentAndFuture(
+        com.azure.resourcemanager.security.SecurityManager manager) {
+        manager
+            .devOpsConfigurations()
+            .createOrUpdate(
+                "myRg",
+                "mySecurityConnectorName",
+                new DevOpsConfigurationInner()
+                    .withProperties(
+                        new DevOpsConfigurationProperties()
+                            .withAuthorization(new Authorization().withCode("fakeTokenPlaceholder"))
+                            .withAutoDiscovery(AutoDiscovery.ENABLED)),
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-09-01-preview/examples/SecurityConnectorsDevOps/CreateOrUpdateDevOpsConfigurationsOnboardCurrentOnly_example.json
+     */
+    /**
+     * Sample code: CreateOrUpdate_DevOpsConfigurations_OnboardCurrentOnly.
+     *
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void createOrUpdateDevOpsConfigurationsOnboardCurrentOnly(
+        com.azure.resourcemanager.security.SecurityManager manager) {
+        manager
+            .devOpsConfigurations()
+            .createOrUpdate(
+                "myRg",
+                "mySecurityConnectorName",
+                new DevOpsConfigurationInner()
+                    .withProperties(
+                        new DevOpsConfigurationProperties()
+                            .withAuthorization(new Authorization().withCode("fakeTokenPlaceholder"))
+                            .withAutoDiscovery(AutoDiscovery.DISABLED)),
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-09-01-preview/examples/SecurityConnectorsDevOps/CreateOrUpdateDevOpsConfigurationsOnboardSelected_example.json
+     */
+    /**
+     * Sample code: CreateOrUpdate_DevOpsConfigurations_OnboardSelected.
+     *
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void createOrUpdateDevOpsConfigurationsOnboardSelected(
+        com.azure.resourcemanager.security.SecurityManager manager) {
+        manager
+            .devOpsConfigurations()
+            .createOrUpdate(
+                "myRg",
+                "mySecurityConnectorName",
+                new DevOpsConfigurationInner()
+                    .withProperties(
+                        new DevOpsConfigurationProperties()
+                            .withAuthorization(new Authorization().withCode("fakeTokenPlaceholder"))
+                            .withAutoDiscovery(AutoDiscovery.DISABLED)
+                            .withTopLevelInventoryList(Arrays.asList("org1", "org2"))),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### DevOpsConfigurations_Delete
+
+```java
+/** Samples for DevOpsConfigurations Delete. */
+public final class DevOpsConfigurationsDeleteSamples {
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-09-01-preview/examples/SecurityConnectorsDevOps/DeleteDevOpsConfigurations_example.json
+     */
+    /**
+     * Sample code: Delete_DevOpsConfigurations.
+     *
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void deleteDevOpsConfigurations(com.azure.resourcemanager.security.SecurityManager manager) {
+        manager.devOpsConfigurations().delete("myRg", "mySecurityConnectorName", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### DevOpsConfigurations_Get
+
+```java
+/** Samples for DevOpsConfigurations Get. */
+public final class DevOpsConfigurationsGetSamples {
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-09-01-preview/examples/SecurityConnectorsDevOps/GetDevOpsConfigurations_example.json
+     */
+    /**
+     * Sample code: Get_DevOpsConfigurations.
+     *
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void getDevOpsConfigurations(com.azure.resourcemanager.security.SecurityManager manager) {
+        manager
+            .devOpsConfigurations()
+            .getWithResponse("myRg", "mySecurityConnectorName", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### DevOpsConfigurations_List
+
+```java
+/** Samples for DevOpsConfigurations List. */
+public final class DevOpsConfigurationsListSamples {
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-09-01-preview/examples/SecurityConnectorsDevOps/ListDevOpsConfigurations_example.json
+     */
+    /**
+     * Sample code: List_DevOpsConfigurations.
+     *
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void listDevOpsConfigurations(com.azure.resourcemanager.security.SecurityManager manager) {
+        manager.devOpsConfigurations().list("myRg", "mySecurityConnectorName", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### DevOpsConfigurations_Update
+
+```java
+import com.azure.resourcemanager.security.fluent.models.DevOpsConfigurationInner;
+import com.azure.resourcemanager.security.models.AutoDiscovery;
+import com.azure.resourcemanager.security.models.DevOpsConfigurationProperties;
+
+/** Samples for DevOpsConfigurations Update. */
+public final class DevOpsConfigurationsUpdateSamples {
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-09-01-preview/examples/SecurityConnectorsDevOps/UpdateDevOpsConfigurations_example.json
+     */
+    /**
+     * Sample code: Update_DevOpsConfigurations.
+     *
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void updateDevOpsConfigurations(com.azure.resourcemanager.security.SecurityManager manager) {
+        manager
+            .devOpsConfigurations()
+            .update(
+                "myRg",
+                "mySecurityConnectorName",
+                new DevOpsConfigurationInner()
+                    .withProperties(new DevOpsConfigurationProperties().withAutoDiscovery(AutoDiscovery.ENABLED)),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### DevOpsOperationResults_Get
+
+```java
+/** Samples for DevOpsOperationResults Get. */
+public final class DevOpsOperationResultsGetSamples {
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-09-01-preview/examples/SecurityConnectorsDevOps/GetDevOpsOperationResultsFailed_example.json
+     */
+    /**
+     * Sample code: Get_DevOpsOperationResults_Failed.
+     *
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void getDevOpsOperationResultsFailed(com.azure.resourcemanager.security.SecurityManager manager) {
+        manager
+            .devOpsOperationResults()
+            .getWithResponse(
+                "myRg",
+                "mySecurityConnectorName",
+                "8d4caace-e7b3-4b3e-af99-73f76829ebcf",
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-09-01-preview/examples/SecurityConnectorsDevOps/GetDevOpsOperationResultsSucceeded_example.json
+     */
+    /**
+     * Sample code: Get_DevOpsOperationResults_Succeeded.
+     *
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void getDevOpsOperationResultsSucceeded(com.azure.resourcemanager.security.SecurityManager manager) {
+        manager
+            .devOpsOperationResults()
+            .getWithResponse(
+                "myRg",
+                "mySecurityConnectorName",
+                "4e826cf1-5c36-4808-a7d2-fb4f5170978b",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
 ### DeviceSecurityGroups_CreateOrUpdate
 
 ```java
@@ -2911,6 +3685,240 @@ public final class ExternalSecuritySolutionsListByHomeRegionSamples {
     public static void getExternalSecuritySolutionsOnASubscriptionFromSecurityDataLocation(
         com.azure.resourcemanager.security.SecurityManager manager) {
         manager.externalSecuritySolutions().listByHomeRegion("centralus", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### GitHubOwners_Get
+
+```java
+/** Samples for GitHubOwners Get. */
+public final class GitHubOwnersGetSamples {
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-09-01-preview/examples/SecurityConnectorsDevOps/GetGitHubOwners_example.json
+     */
+    /**
+     * Sample code: Get_GitHubOwners.
+     *
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void getGitHubOwners(com.azure.resourcemanager.security.SecurityManager manager) {
+        manager
+            .gitHubOwners()
+            .getWithResponse("myRg", "mySecurityConnectorName", "myGitHubOwner", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### GitHubOwners_List
+
+```java
+/** Samples for GitHubOwners List. */
+public final class GitHubOwnersListSamples {
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-09-01-preview/examples/SecurityConnectorsDevOps/ListGitHubOwners_example.json
+     */
+    /**
+     * Sample code: List_GitHubOwners.
+     *
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void listGitHubOwners(com.azure.resourcemanager.security.SecurityManager manager) {
+        manager.gitHubOwners().list("myRg", "mySecurityConnectorName", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### GitHubOwners_ListAvailable
+
+```java
+/** Samples for GitHubOwners ListAvailable. */
+public final class GitHubOwnersListAvailableSamples {
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-09-01-preview/examples/SecurityConnectorsDevOps/ListAvailableGitHubOwners_example.json
+     */
+    /**
+     * Sample code: ListAvailable_GitHubOwners.
+     *
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void listAvailableGitHubOwners(com.azure.resourcemanager.security.SecurityManager manager) {
+        manager
+            .gitHubOwners()
+            .listAvailableWithResponse("myRg", "mySecurityConnectorName", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### GitHubRepos_Get
+
+```java
+/** Samples for GitHubRepos Get. */
+public final class GitHubReposGetSamples {
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-09-01-preview/examples/SecurityConnectorsDevOps/GetGitHubRepos_example.json
+     */
+    /**
+     * Sample code: Get_GitHubRepos.
+     *
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void getGitHubRepos(com.azure.resourcemanager.security.SecurityManager manager) {
+        manager
+            .gitHubRepos()
+            .getWithResponse(
+                "myRg", "mySecurityConnectorName", "myGitHubOwner", "myGitHubRepo", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### GitHubRepos_List
+
+```java
+/** Samples for GitHubRepos List. */
+public final class GitHubReposListSamples {
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-09-01-preview/examples/SecurityConnectorsDevOps/ListGitHubRepos_example.json
+     */
+    /**
+     * Sample code: List_GitHubRepos.
+     *
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void listGitHubRepos(com.azure.resourcemanager.security.SecurityManager manager) {
+        manager
+            .gitHubRepos()
+            .list("myRg", "mySecurityConnectorName", "myGitHubOwner", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### GitLabGroups_Get
+
+```java
+/** Samples for GitLabGroups Get. */
+public final class GitLabGroupsGetSamples {
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-09-01-preview/examples/SecurityConnectorsDevOps/GetGitLabGroups_example.json
+     */
+    /**
+     * Sample code: Get_GitLabGroups.
+     *
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void getGitLabGroups(com.azure.resourcemanager.security.SecurityManager manager) {
+        manager
+            .gitLabGroups()
+            .getWithResponse(
+                "myRg", "mySecurityConnectorName", "myGitLabGroup$mySubGroup", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### GitLabGroups_List
+
+```java
+/** Samples for GitLabGroups List. */
+public final class GitLabGroupsListSamples {
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-09-01-preview/examples/SecurityConnectorsDevOps/ListGitLabGroups_example.json
+     */
+    /**
+     * Sample code: List_GitLabGroups.
+     *
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void listGitLabGroups(com.azure.resourcemanager.security.SecurityManager manager) {
+        manager.gitLabGroups().list("myRg", "mySecurityConnectorName", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### GitLabGroups_ListAvailable
+
+```java
+/** Samples for GitLabGroups ListAvailable. */
+public final class GitLabGroupsListAvailableSamples {
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-09-01-preview/examples/SecurityConnectorsDevOps/ListAvailableGitLabGroups_example.json
+     */
+    /**
+     * Sample code: ListAvailable_GitLabGroups.
+     *
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void listAvailableGitLabGroups(com.azure.resourcemanager.security.SecurityManager manager) {
+        manager
+            .gitLabGroups()
+            .listAvailableWithResponse("myRg", "mySecurityConnectorName", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### GitLabProjects_Get
+
+```java
+/** Samples for GitLabProjects Get. */
+public final class GitLabProjectsGetSamples {
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-09-01-preview/examples/SecurityConnectorsDevOps/GetGitLabProjects_example.json
+     */
+    /**
+     * Sample code: Get_GitLabProjects.
+     *
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void getGitLabProjects(com.azure.resourcemanager.security.SecurityManager manager) {
+        manager
+            .gitLabProjects()
+            .getWithResponse(
+                "myRg",
+                "mySecurityConnectorName",
+                "myGitLabGroup$mySubGroup",
+                "myGitLabProject",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### GitLabProjects_List
+
+```java
+/** Samples for GitLabProjects List. */
+public final class GitLabProjectsListSamples {
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-09-01-preview/examples/SecurityConnectorsDevOps/ListGitLabProjects_example.json
+     */
+    /**
+     * Sample code: List_GitLabProjects.
+     *
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void listGitLabProjects(com.azure.resourcemanager.security.SecurityManager manager) {
+        manager
+            .gitLabProjects()
+            .list("myRg", "mySecurityConnectorName", "myGitLabGroup$mySubGroup", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### GitLabSubgroups_List
+
+```java
+/** Samples for GitLabSubgroups List. */
+public final class GitLabSubgroupsListSamples {
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-09-01-preview/examples/SecurityConnectorsDevOps/ListGitLabSubgroups_example.json
+     */
+    /**
+     * Sample code: List_GitLabSubgroups.
+     *
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void listGitLabSubgroups(com.azure.resourcemanager.security.SecurityManager manager) {
+        manager
+            .gitLabSubgroups()
+            .listWithResponse("myRg", "mySecurityConnectorName", "myGitLabGroup", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -3488,13 +4496,13 @@ public final class GovernanceRulesOperationResultsSamples {
 }
 ```
 
-### HealthReportOperation_Get
+### HealthReports_Get
 
 ```java
-/** Samples for HealthReportOperation Get. */
-public final class HealthReportOperationGetSamples {
+/** Samples for HealthReports Get. */
+public final class HealthReportsGetSamples {
     /*
-     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-02-01-preview/examples/HealthReports/GetHealthReport_example.json
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-05-01-preview/examples/HealthReports/GetHealthReports_example.json
      */
     /**
      * Sample code: Get health report of resource.
@@ -3503,7 +4511,7 @@ public final class HealthReportOperationGetSamples {
      */
     public static void getHealthReportOfResource(com.azure.resourcemanager.security.SecurityManager manager) {
         manager
-            .healthReportOperations()
+            .healthReports()
             .getWithResponse(
                 "subscriptions/a1efb6ca-fbc5-4782-9aaa-5c7daded1ce2/resourcegroups/E2E-IBB0WX/providers/Microsoft.Security/securityconnectors/AwsConnectorAllOfferings",
                 "909c629a-bf39-4521-8e4f-10b443a0bc02",
@@ -3518,7 +4526,7 @@ public final class HealthReportOperationGetSamples {
 /** Samples for HealthReports List. */
 public final class HealthReportsListSamples {
     /*
-     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-02-01-preview/examples/HealthReports/ListHealthReports_example.json
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-05-01-preview/examples/HealthReports/ListHealthReports_example.json
      */
     /**
      * Sample code: List health reports.
@@ -3602,6 +4610,7 @@ public final class InformationProtectionPoliciesCreateOrUpdateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -3683,123 +4692,6 @@ public final class InformationProtectionPoliciesListSamples {
 }
 ```
 
-### IngestionSettings_Create
-
-```java
-/** Samples for IngestionSettings Create. */
-public final class IngestionSettingsCreateSamples {
-    /*
-     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2021-01-15-preview/examples/IngestionSettings/CreateIngestionSetting_example.json
-     */
-    /**
-     * Sample code: Create an ingestion setting for subscription.
-     *
-     * @param manager Entry point to SecurityManager.
-     */
-    public static void createAnIngestionSettingForSubscription(
-        com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.ingestionSettings().define("default").create();
-    }
-}
-```
-
-### IngestionSettings_Delete
-
-```java
-/** Samples for IngestionSettings Delete. */
-public final class IngestionSettingsDeleteSamples {
-    /*
-     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2021-01-15-preview/examples/IngestionSettings/DeleteIngestionSetting_example.json
-     */
-    /**
-     * Sample code: Delete an ingestion setting for the subscription.
-     *
-     * @param manager Entry point to SecurityManager.
-     */
-    public static void deleteAnIngestionSettingForTheSubscription(
-        com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.ingestionSettings().deleteWithResponse("default", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### IngestionSettings_Get
-
-```java
-/** Samples for IngestionSettings Get. */
-public final class IngestionSettingsGetSamples {
-    /*
-     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2021-01-15-preview/examples/IngestionSettings/GetIngestionSetting_example.json
-     */
-    /**
-     * Sample code: Get a ingestion setting on subscription.
-     *
-     * @param manager Entry point to SecurityManager.
-     */
-    public static void getAIngestionSettingOnSubscription(com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.ingestionSettings().getWithResponse("default", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### IngestionSettings_List
-
-```java
-/** Samples for IngestionSettings List. */
-public final class IngestionSettingsListSamples {
-    /*
-     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2021-01-15-preview/examples/IngestionSettings/GetIngestionSettings_example.json
-     */
-    /**
-     * Sample code: Get ingestion settings on subscription.
-     *
-     * @param manager Entry point to SecurityManager.
-     */
-    public static void getIngestionSettingsOnSubscription(com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.ingestionSettings().list(com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### IngestionSettings_ListConnectionStrings
-
-```java
-/** Samples for IngestionSettings ListConnectionStrings. */
-public final class IngestionSettingsListConnectionStringsSamples {
-    /*
-     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2021-01-15-preview/examples/IngestionSettings/ListConnectionStrings_example.json
-     */
-    /**
-     * Sample code: List connection strings for ingesting security data and logs.
-     *
-     * @param manager Entry point to SecurityManager.
-     */
-    public static void listConnectionStringsForIngestingSecurityDataAndLogs(
-        com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.ingestionSettings().listConnectionStringsWithResponse("default", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### IngestionSettings_ListTokens
-
-```java
-/** Samples for IngestionSettings ListTokens. */
-public final class IngestionSettingsListTokensSamples {
-    /*
-     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2021-01-15-preview/examples/IngestionSettings/ListTokensIngestionSetting_example.json
-     */
-    /**
-     * Sample code: List ingestion setting tokens.
-     *
-     * @param manager Entry point to SecurityManager.
-     */
-    public static void listIngestionSettingTokens(com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.ingestionSettings().listTokensWithResponse("default", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
 ### IotSecuritySolution_CreateOrUpdate
 
 ```java
@@ -3857,6 +4749,7 @@ public final class IotSecuritySolutionCreateOrUpdateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -4036,6 +4929,7 @@ public final class IotSecuritySolutionUpdateSamples {
             .apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -4784,6 +5678,60 @@ public final class RegulatoryComplianceStandardsListSamples {
 }
 ```
 
+### ResourceProvider_GetSensitivitySettings
+
+```java
+/** Samples for ResourceProvider GetSensitivitySettings. */
+public final class ResourceProviderGetSensitivitySettingsSamples {
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-02-15-preview/examples/SensitivitySettings/GetSensitivitySettings_example.json
+     */
+    /**
+     * Sample code: Get sensitivity settings.
+     *
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void getSensitivitySettings(com.azure.resourcemanager.security.SecurityManager manager) {
+        manager.resourceProviders().getSensitivitySettingsWithResponse(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ResourceProvider_UpdateSensitivitySettings
+
+```java
+import com.azure.resourcemanager.security.models.UpdateSensitivitySettingsRequest;
+import java.util.Arrays;
+import java.util.UUID;
+
+/** Samples for ResourceProvider UpdateSensitivitySettings. */
+public final class ResourceProviderUpdateSensitivitySettingsSamples {
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-02-15-preview/examples/SensitivitySettings/PutSensitivitySettings_example.json
+     */
+    /**
+     * Sample code: Update sensitivity settings.
+     *
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void updateSensitivitySettings(com.azure.resourcemanager.security.SecurityManager manager) {
+        manager
+            .resourceProviders()
+            .updateSensitivitySettingsWithResponse(
+                new UpdateSensitivitySettingsRequest()
+                    .withSensitiveInfoTypesIds(
+                        Arrays
+                            .asList(
+                                UUID.fromString("f2f8a7a1-28c0-404b-9ab4-30a0a7af18cb"),
+                                UUID.fromString("b452f22b-f87d-4f48-8490-ecf0873325b5"),
+                                UUID.fromString("d59ee8b6-2618-404b-a5e7-aa377cd67543")))
+                    .withSensitivityThresholdLabelOrder(2.0F)
+                    .withSensitivityThresholdLabelId(UUID.fromString("f2f8a7a1-28c0-404b-9ab4-30a0a7af18cb")),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
 ### SecureScoreControlDefinitions_List
 
 ```java
@@ -5051,7 +5999,7 @@ import java.util.Map;
 /** Samples for SecurityConnectors CreateOrUpdate. */
 public final class SecurityConnectorsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-03-01-preview/examples/SecurityConnectors/PutSecurityConnector_example.json
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-10-01-preview/examples/SecurityConnectors/PutSecurityConnector_example.json
      */
     /**
      * Sample code: Create or update a security connector.
@@ -5074,10 +6022,11 @@ public final class SecurityConnectorsCreateOrUpdateSamples {
                             .withNativeCloudConnection(
                                 new CspmMonitorAwsOfferingNativeCloudConnection()
                                     .withCloudRoleArn("arn:aws:iam::00000000:role/ASCMonitor"))))
-            .withEnvironmentData(new AwsEnvironmentData())
+            .withEnvironmentData(new AwsEnvironmentData().withScanInterval(4L))
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -5097,7 +6046,7 @@ public final class SecurityConnectorsCreateOrUpdateSamples {
 /** Samples for SecurityConnectors Delete. */
 public final class SecurityConnectorsDeleteSamples {
     /*
-     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-03-01-preview/examples/SecurityConnectors/DeleteSecurityConnector_example.json
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-10-01-preview/examples/SecurityConnectors/DeleteSecurityConnector_example.json
      */
     /**
      * Sample code: Delete a security connector.
@@ -5118,7 +6067,7 @@ public final class SecurityConnectorsDeleteSamples {
 /** Samples for SecurityConnectors GetByResourceGroup. */
 public final class SecurityConnectorsGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-03-01-preview/examples/SecurityConnectors/GetSecurityConnectorSingleResource_example.json
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-10-01-preview/examples/SecurityConnectors/GetSecurityConnectorSingleResource_example.json
      */
     /**
      * Sample code: Retrieve a security connector.
@@ -5140,7 +6089,7 @@ public final class SecurityConnectorsGetByResourceGroupSamples {
 /** Samples for SecurityConnectors List. */
 public final class SecurityConnectorsListSamples {
     /*
-     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-03-01-preview/examples/SecurityConnectors/GetSecurityConnectorsSubscription_example.json
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-10-01-preview/examples/SecurityConnectors/GetSecurityConnectorsSubscription_example.json
      */
     /**
      * Sample code: List all security connectors of a specified subscription.
@@ -5160,7 +6109,7 @@ public final class SecurityConnectorsListSamples {
 /** Samples for SecurityConnectors ListByResourceGroup. */
 public final class SecurityConnectorsListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-03-01-preview/examples/SecurityConnectors/GetSecurityConnectorsResourceGroup_example.json
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-10-01-preview/examples/SecurityConnectors/GetSecurityConnectorsResourceGroup_example.json
      */
     /**
      * Sample code: List all security connectors of a specified resource group.
@@ -5189,7 +6138,7 @@ import java.util.Map;
 /** Samples for SecurityConnectors Update. */
 public final class SecurityConnectorsUpdateSamples {
     /*
-     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-03-01-preview/examples/SecurityConnectors/PatchSecurityConnector_example.json
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-10-01-preview/examples/SecurityConnectors/PatchSecurityConnector_example.json
      */
     /**
      * Sample code: Update a security connector.
@@ -5219,6 +6168,7 @@ public final class SecurityConnectorsUpdateSamples {
             .apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -5497,6 +6447,25 @@ public final class SecuritySolutionsReferenceDataListByHomeRegionSamples {
 }
 ```
 
+### SensitivitySettings_List
+
+```java
+/** Samples for SensitivitySettings List. */
+public final class SensitivitySettingsListSamples {
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2023-02-15-preview/examples/SensitivitySettings/GetSensitivitySettingsList_example.json
+     */
+    /**
+     * Sample code: Get sensitivity settings list.
+     *
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void getSensitivitySettingsList(com.azure.resourcemanager.security.SecurityManager manager) {
+        manager.sensitivitySettings().listWithResponse(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
 ### ServerVulnerabilityAssessment_CreateOrUpdate
 
 ```java
@@ -5591,6 +6560,107 @@ public final class ServerVulnerabilityAssessmentListByExtendedResourceSamples {
             .serverVulnerabilityAssessments()
             .listByExtendedResourceWithResponse(
                 "rg1", "Microsoft.Compute", "virtualMachines", "vm1", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ServerVulnerabilityAssessmentsSettings_CreateOrUpdate
+
+```java
+import com.azure.resourcemanager.security.models.AzureServersSetting;
+import com.azure.resourcemanager.security.models.ServerVulnerabilityAssessmentsAzureSettingSelectedProvider;
+import com.azure.resourcemanager.security.models.ServerVulnerabilityAssessmentsSettingKindName;
+
+/** Samples for ServerVulnerabilityAssessmentsSettings CreateOrUpdate. */
+public final class ServerVulnerabilityAssessmentsSettingsCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/stable/2023-05-01/examples/ServerVulnerabilityAssessmentsSettings/PutServerVulnerabilityAssessmentsSetting_example.json
+     */
+    /**
+     * Sample code: Set a server vulnerability assessments setting of the kind settingKind on the subscription.
+     *
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void setAServerVulnerabilityAssessmentsSettingOfTheKindSettingKindOnTheSubscription(
+        com.azure.resourcemanager.security.SecurityManager manager) {
+        manager
+            .serverVulnerabilityAssessmentsSettings()
+            .createOrUpdateWithResponse(
+                ServerVulnerabilityAssessmentsSettingKindName.AZURE_SERVERS_SETTING,
+                new AzureServersSetting()
+                    .withSelectedProvider(ServerVulnerabilityAssessmentsAzureSettingSelectedProvider.MDE_TVM),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ServerVulnerabilityAssessmentsSettings_Delete
+
+```java
+import com.azure.resourcemanager.security.models.ServerVulnerabilityAssessmentsSettingKindName;
+
+/** Samples for ServerVulnerabilityAssessmentsSettings Delete. */
+public final class ServerVulnerabilityAssessmentsSettingsDeleteSamples {
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/stable/2023-05-01/examples/ServerVulnerabilityAssessmentsSettings/DeleteServerVulnerabilityAssessmentsSetting_example.json
+     */
+    /**
+     * Sample code: Delete the server vulnerability assessments setting of the kind settingKind from the subscription.
+     *
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void deleteTheServerVulnerabilityAssessmentsSettingOfTheKindSettingKindFromTheSubscription(
+        com.azure.resourcemanager.security.SecurityManager manager) {
+        manager
+            .serverVulnerabilityAssessmentsSettings()
+            .deleteWithResponse(
+                ServerVulnerabilityAssessmentsSettingKindName.AZURE_SERVERS_SETTING, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ServerVulnerabilityAssessmentsSettings_Get
+
+```java
+import com.azure.resourcemanager.security.models.ServerVulnerabilityAssessmentsSettingKindName;
+
+/** Samples for ServerVulnerabilityAssessmentsSettings Get. */
+public final class ServerVulnerabilityAssessmentsSettingsGetSamples {
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/stable/2023-05-01/examples/ServerVulnerabilityAssessmentsSettings/GetServerVulnerabilityAssessmentsSetting_example.json
+     */
+    /**
+     * Sample code: Get the server vulnerability assessments setting of the kind settingKind that is set on the
+     * subscription.
+     *
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void getTheServerVulnerabilityAssessmentsSettingOfTheKindSettingKindThatIsSetOnTheSubscription(
+        com.azure.resourcemanager.security.SecurityManager manager) {
+        manager
+            .serverVulnerabilityAssessmentsSettings()
+            .getWithResponse(
+                ServerVulnerabilityAssessmentsSettingKindName.AZURE_SERVERS_SETTING, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ServerVulnerabilityAssessmentsSettings_List
+
+```java
+/** Samples for ServerVulnerabilityAssessmentsSettings List. */
+public final class ServerVulnerabilityAssessmentsSettingsListSamples {
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/stable/2023-05-01/examples/ServerVulnerabilityAssessmentsSettings/ListServerVulnerabilityAssessmentsSettings_example.json
+     */
+    /**
+     * Sample code: List the server vulnerability assessments settings set on the subscription.
+     *
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void listTheServerVulnerabilityAssessmentsSettingsSetOnTheSubscription(
+        com.azure.resourcemanager.security.SecurityManager manager) {
+        manager.serverVulnerabilityAssessmentsSettings().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -5785,6 +6855,7 @@ public final class SqlVulnerabilityAssessmentBaselineRulesAddSamples {
                 com.azure.core.util.Context.NONE);
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

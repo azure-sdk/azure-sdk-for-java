@@ -67,7 +67,7 @@ public final class AlertsSuppressionRuleInner extends ProxyResource {
 
     /**
      * Get the expirationDateUtc property: Expiration date of the rule, if value is not provided or provided as null
-     * this field will default to the maximum allowed expiration date.
+     * there will no expiration at all.
      *
      * @return the expirationDateUtc value.
      */
@@ -77,7 +77,7 @@ public final class AlertsSuppressionRuleInner extends ProxyResource {
 
     /**
      * Set the expirationDateUtc property: Expiration date of the rule, if value is not provided or provided as null
-     * this field will default to the maximum allowed expiration date.
+     * there will no expiration at all.
      *
      * @param expirationDateUtc the expirationDateUtc value to set.
      * @return the AlertsSuppressionRuleInner object itself.

@@ -27,8 +27,7 @@ public final class AlertsSuppressionRuleProperties {
     private OffsetDateTime lastModifiedUtc;
 
     /*
-     * Expiration date of the rule, if value is not provided or provided as null this field will default to the maximum
-     * allowed expiration date.
+     * Expiration date of the rule, if value is not provided or provided as null there will no expiration at all
      */
     @JsonProperty(value = "expirationDateUtc")
     private OffsetDateTime expirationDateUtc;
@@ -92,7 +91,7 @@ public final class AlertsSuppressionRuleProperties {
 
     /**
      * Get the expirationDateUtc property: Expiration date of the rule, if value is not provided or provided as null
-     * this field will default to the maximum allowed expiration date.
+     * there will no expiration at all.
      *
      * @return the expirationDateUtc value.
      */
@@ -102,7 +101,7 @@ public final class AlertsSuppressionRuleProperties {
 
     /**
      * Set the expirationDateUtc property: Expiration date of the rule, if value is not provided or provided as null
-     * this field will default to the maximum allowed expiration date.
+     * there will no expiration at all.
      *
      * @param expirationDateUtc the expirationDateUtc value to set.
      * @return the AlertsSuppressionRuleProperties object itself.
