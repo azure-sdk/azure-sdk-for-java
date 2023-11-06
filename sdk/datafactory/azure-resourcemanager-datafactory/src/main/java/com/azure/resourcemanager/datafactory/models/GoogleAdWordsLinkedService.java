@@ -67,8 +67,8 @@ public final class GoogleAdWordsLinkedService extends LinkedService {
     }
 
     /**
-     * Get the connectionProperties property: Properties used to connect to GoogleAds. It is mutually exclusive with any
-     * other properties in the linked service. Type: object.
+     * Get the connectionProperties property: (Deprecated) Properties used to connect to GoogleAds. It is mutually
+     * exclusive with any other properties in the linked service. Type: object.
      *
      * @return the connectionProperties value.
      */
@@ -77,8 +77,8 @@ public final class GoogleAdWordsLinkedService extends LinkedService {
     }
 
     /**
-     * Set the connectionProperties property: Properties used to connect to GoogleAds. It is mutually exclusive with any
-     * other properties in the linked service. Type: object.
+     * Set the connectionProperties property: (Deprecated) Properties used to connect to GoogleAds. It is mutually
+     * exclusive with any other properties in the linked service. Type: object.
      *
      * @param connectionProperties the connectionProperties value to set.
      * @return the GoogleAdWordsLinkedService object itself.
@@ -265,8 +265,9 @@ public final class GoogleAdWordsLinkedService extends LinkedService {
     }
 
     /**
-     * Get the keyFilePath property: The full path to the .p12 key file that is used to authenticate the service account
-     * email address and can only be used on self-hosted IR. Type: string (or Expression with resultType string).
+     * Get the keyFilePath property: (Deprecated) The full path to the .p12 key file that is used to authenticate the
+     * service account email address and can only be used on self-hosted IR. Type: string (or Expression with resultType
+     * string).
      *
      * @return the keyFilePath value.
      */
@@ -275,8 +276,9 @@ public final class GoogleAdWordsLinkedService extends LinkedService {
     }
 
     /**
-     * Set the keyFilePath property: The full path to the .p12 key file that is used to authenticate the service account
-     * email address and can only be used on self-hosted IR. Type: string (or Expression with resultType string).
+     * Set the keyFilePath property: (Deprecated) The full path to the .p12 key file that is used to authenticate the
+     * service account email address and can only be used on self-hosted IR. Type: string (or Expression with resultType
+     * string).
      *
      * @param keyFilePath the keyFilePath value to set.
      * @return the GoogleAdWordsLinkedService object itself.
@@ -290,9 +292,10 @@ public final class GoogleAdWordsLinkedService extends LinkedService {
     }
 
     /**
-     * Get the trustedCertPath property: The full path of the .pem file containing trusted CA certificates for verifying
-     * the server when connecting over SSL. This property can only be set when using SSL on self-hosted IR. The default
-     * value is the cacerts.pem file installed with the IR. Type: string (or Expression with resultType string).
+     * Get the trustedCertPath property: (Deprecated) The full path of the .pem file containing trusted CA certificates
+     * for verifying the server when connecting over SSL. This property can only be set when using SSL on self-hosted
+     * IR. The default value is the cacerts.pem file installed with the IR. Type: string (or Expression with resultType
+     * string).
      *
      * @return the trustedCertPath value.
      */
@@ -301,9 +304,10 @@ public final class GoogleAdWordsLinkedService extends LinkedService {
     }
 
     /**
-     * Set the trustedCertPath property: The full path of the .pem file containing trusted CA certificates for verifying
-     * the server when connecting over SSL. This property can only be set when using SSL on self-hosted IR. The default
-     * value is the cacerts.pem file installed with the IR. Type: string (or Expression with resultType string).
+     * Set the trustedCertPath property: (Deprecated) The full path of the .pem file containing trusted CA certificates
+     * for verifying the server when connecting over SSL. This property can only be set when using SSL on self-hosted
+     * IR. The default value is the cacerts.pem file installed with the IR. Type: string (or Expression with resultType
+     * string).
      *
      * @param trustedCertPath the trustedCertPath value to set.
      * @return the GoogleAdWordsLinkedService object itself.
@@ -317,8 +321,9 @@ public final class GoogleAdWordsLinkedService extends LinkedService {
     }
 
     /**
-     * Get the useSystemTrustStore property: Specifies whether to use a CA certificate from the system trust store or
-     * from a specified PEM file. The default value is false. Type: boolean (or Expression with resultType boolean).
+     * Get the useSystemTrustStore property: (Deprecated) Specifies whether to use a CA certificate from the system
+     * trust store or from a specified PEM file. The default value is false. Type: boolean (or Expression with
+     * resultType boolean).
      *
      * @return the useSystemTrustStore value.
      */
@@ -327,8 +332,9 @@ public final class GoogleAdWordsLinkedService extends LinkedService {
     }
 
     /**
-     * Set the useSystemTrustStore property: Specifies whether to use a CA certificate from the system trust store or
-     * from a specified PEM file. The default value is false. Type: boolean (or Expression with resultType boolean).
+     * Set the useSystemTrustStore property: (Deprecated) Specifies whether to use a CA certificate from the system
+     * trust store or from a specified PEM file. The default value is false. Type: boolean (or Expression with
+     * resultType boolean).
      *
      * @param useSystemTrustStore the useSystemTrustStore value to set.
      * @return the GoogleAdWordsLinkedService object itself.
@@ -338,6 +344,110 @@ public final class GoogleAdWordsLinkedService extends LinkedService {
             this.innerTypeProperties = new GoogleAdWordsLinkedServiceTypeProperties();
         }
         this.innerTypeProperties().withUseSystemTrustStore(useSystemTrustStore);
+        return this;
+    }
+
+    /**
+     * Get the privateKey property: The private key that is used to authenticate the service account email address and
+     * can only be used on self-hosted IR.
+     *
+     * @return the privateKey value.
+     */
+    public SecretBase privateKey() {
+        return this.innerTypeProperties() == null ? null : this.innerTypeProperties().privateKey();
+    }
+
+    /**
+     * Set the privateKey property: The private key that is used to authenticate the service account email address and
+     * can only be used on self-hosted IR.
+     *
+     * @param privateKey the privateKey value to set.
+     * @return the GoogleAdWordsLinkedService object itself.
+     */
+    public GoogleAdWordsLinkedService withPrivateKey(SecretBase privateKey) {
+        if (this.innerTypeProperties() == null) {
+            this.innerTypeProperties = new GoogleAdWordsLinkedServiceTypeProperties();
+        }
+        this.innerTypeProperties().withPrivateKey(privateKey);
+        return this;
+    }
+
+    /**
+     * Get the loginCustomerId property: The customer ID of the Google Ads Manager account through which you want to
+     * fetch report data of specific Customer. Type: string (or Expression with resultType string).
+     *
+     * @return the loginCustomerId value.
+     */
+    public Object loginCustomerId() {
+        return this.innerTypeProperties() == null ? null : this.innerTypeProperties().loginCustomerId();
+    }
+
+    /**
+     * Set the loginCustomerId property: The customer ID of the Google Ads Manager account through which you want to
+     * fetch report data of specific Customer. Type: string (or Expression with resultType string).
+     *
+     * @param loginCustomerId the loginCustomerId value to set.
+     * @return the GoogleAdWordsLinkedService object itself.
+     */
+    public GoogleAdWordsLinkedService withLoginCustomerId(Object loginCustomerId) {
+        if (this.innerTypeProperties() == null) {
+            this.innerTypeProperties = new GoogleAdWordsLinkedServiceTypeProperties();
+        }
+        this.innerTypeProperties().withLoginCustomerId(loginCustomerId);
+        return this;
+    }
+
+    /**
+     * Get the googleAdsApiVersion property: The Google Ads API major version such as v14. The supported major versions
+     * could be found on https://developers.google.com/google-ads/api/docs/release-notes. Type: string (or Expression
+     * with resultType string).
+     *
+     * @return the googleAdsApiVersion value.
+     */
+    public Object googleAdsApiVersion() {
+        return this.innerTypeProperties() == null ? null : this.innerTypeProperties().googleAdsApiVersion();
+    }
+
+    /**
+     * Set the googleAdsApiVersion property: The Google Ads API major version such as v14. The supported major versions
+     * could be found on https://developers.google.com/google-ads/api/docs/release-notes. Type: string (or Expression
+     * with resultType string).
+     *
+     * @param googleAdsApiVersion the googleAdsApiVersion value to set.
+     * @return the GoogleAdWordsLinkedService object itself.
+     */
+    public GoogleAdWordsLinkedService withGoogleAdsApiVersion(Object googleAdsApiVersion) {
+        if (this.innerTypeProperties() == null) {
+            this.innerTypeProperties = new GoogleAdWordsLinkedServiceTypeProperties();
+        }
+        this.innerTypeProperties().withGoogleAdsApiVersion(googleAdsApiVersion);
+        return this;
+    }
+
+    /**
+     * Get the supportLegacyDataTypes property: Specifies whether to use the legacy data type mappings, which maps
+     * float, int32 and int64 from Google to string. Do not set this to true unless you want to keep backward
+     * compatibility with legacy driver's data type mappings. Type: boolean (or Expression with resultType boolean).
+     *
+     * @return the supportLegacyDataTypes value.
+     */
+    public Object supportLegacyDataTypes() {
+        return this.innerTypeProperties() == null ? null : this.innerTypeProperties().supportLegacyDataTypes();
+    }
+
+    /**
+     * Set the supportLegacyDataTypes property: Specifies whether to use the legacy data type mappings, which maps
+     * float, int32 and int64 from Google to string. Do not set this to true unless you want to keep backward
+     * compatibility with legacy driver's data type mappings. Type: boolean (or Expression with resultType boolean).
+     *
+     * @param supportLegacyDataTypes the supportLegacyDataTypes value to set.
+     * @return the GoogleAdWordsLinkedService object itself.
+     */
+    public GoogleAdWordsLinkedService withSupportLegacyDataTypes(Object supportLegacyDataTypes) {
+        if (this.innerTypeProperties() == null) {
+            this.innerTypeProperties = new GoogleAdWordsLinkedServiceTypeProperties();
+        }
+        this.innerTypeProperties().withSupportLegacyDataTypes(supportLegacyDataTypes);
         return this;
     }
 
