@@ -38,6 +38,13 @@ public interface ServiceLinkerManagementClient {
     Duration getDefaultPollInterval();
 
     /**
+     * Gets the ConnectorsClient object to access its operations.
+     *
+     * @return the ConnectorsClient object.
+     */
+    ConnectorsClient getConnectors();
+
+    /**
      * Gets the LinkersClient object to access its operations.
      *
      * @return the LinkersClient object.
@@ -45,9 +52,23 @@ public interface ServiceLinkerManagementClient {
     LinkersClient getLinkers();
 
     /**
+     * Gets the LinkersOperationsClient object to access its operations.
+     *
+     * @return the LinkersOperationsClient object.
+     */
+    LinkersOperationsClient getLinkersOperations();
+
+    /**
      * Gets the OperationsClient object to access its operations.
      *
      * @return the OperationsClient object.
      */
     OperationsClient getOperations();
+
+    /**
+     * Gets the ConfigurationNamesOperationsClient object to access its operations.
+     *
+     * @return the ConfigurationNamesOperationsClient object.
+     */
+    ConfigurationNamesOperationsClient getConfigurationNamesOperations();
 }
