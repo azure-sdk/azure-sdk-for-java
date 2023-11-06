@@ -35,7 +35,8 @@ import java.util.Map;
     @JsonSubTypes.Type(name = "FtpReadSettings", value = FtpReadSettings.class),
     @JsonSubTypes.Type(name = "SftpReadSettings", value = SftpReadSettings.class),
     @JsonSubTypes.Type(name = "HttpReadSettings", value = HttpReadSettings.class),
-    @JsonSubTypes.Type(name = "HdfsReadSettings", value = HdfsReadSettings.class)
+    @JsonSubTypes.Type(name = "HdfsReadSettings", value = HdfsReadSettings.class),
+    @JsonSubTypes.Type(name = "LakeHouseReadSettings", value = LakeHouseReadSettings.class)
 })
 @Fluent
 public class StoreReadSettings {

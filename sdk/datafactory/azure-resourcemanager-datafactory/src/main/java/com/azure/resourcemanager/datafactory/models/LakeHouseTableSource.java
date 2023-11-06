@@ -9,22 +9,22 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** A copy activity Parquet source. */
+/** A copy activity source for Microsoft Fabric LakeHouse Table. */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
-@JsonTypeName("ParquetSource")
+@JsonTypeName("LakeHouseTableSource")
 @Fluent
-public final class ParquetSource extends CopySource {
+public final class LakeHouseTableSource extends CopySource {
     /*
-     * Parquet store settings.
+     * Query an older snapshot by timestamp. Type: string (or Expression with resultType string).
      */
-    @JsonProperty(value = "storeSettings")
-    private StoreReadSettings storeSettings;
+    @JsonProperty(value = "timestampAsOf")
+    private Object timestampAsOf;
 
     /*
-     * Parquet format settings.
+     * Query an older snapshot by version. Type: integer (or Expression with resultType integer).
      */
-    @JsonProperty(value = "formatSettings")
-    private ParquetReadSettings formatSettings;
+    @JsonProperty(value = "versionAsOf")
+    private Object versionAsOf;
 
     /*
      * Specifies the additional columns to be added to source data. Type: array of objects(AdditionalColumns) (or
@@ -33,47 +33,51 @@ public final class ParquetSource extends CopySource {
     @JsonProperty(value = "additionalColumns")
     private Object additionalColumns;
 
-    /** Creates an instance of ParquetSource class. */
-    public ParquetSource() {
+    /** Creates an instance of LakeHouseTableSource class. */
+    public LakeHouseTableSource() {
     }
 
     /**
-     * Get the storeSettings property: Parquet store settings.
+     * Get the timestampAsOf property: Query an older snapshot by timestamp. Type: string (or Expression with resultType
+     * string).
      *
-     * @return the storeSettings value.
+     * @return the timestampAsOf value.
      */
-    public StoreReadSettings storeSettings() {
-        return this.storeSettings;
+    public Object timestampAsOf() {
+        return this.timestampAsOf;
     }
 
     /**
-     * Set the storeSettings property: Parquet store settings.
+     * Set the timestampAsOf property: Query an older snapshot by timestamp. Type: string (or Expression with resultType
+     * string).
      *
-     * @param storeSettings the storeSettings value to set.
-     * @return the ParquetSource object itself.
+     * @param timestampAsOf the timestampAsOf value to set.
+     * @return the LakeHouseTableSource object itself.
      */
-    public ParquetSource withStoreSettings(StoreReadSettings storeSettings) {
-        this.storeSettings = storeSettings;
+    public LakeHouseTableSource withTimestampAsOf(Object timestampAsOf) {
+        this.timestampAsOf = timestampAsOf;
         return this;
     }
 
     /**
-     * Get the formatSettings property: Parquet format settings.
+     * Get the versionAsOf property: Query an older snapshot by version. Type: integer (or Expression with resultType
+     * integer).
      *
-     * @return the formatSettings value.
+     * @return the versionAsOf value.
      */
-    public ParquetReadSettings formatSettings() {
-        return this.formatSettings;
+    public Object versionAsOf() {
+        return this.versionAsOf;
     }
 
     /**
-     * Set the formatSettings property: Parquet format settings.
+     * Set the versionAsOf property: Query an older snapshot by version. Type: integer (or Expression with resultType
+     * integer).
      *
-     * @param formatSettings the formatSettings value to set.
-     * @return the ParquetSource object itself.
+     * @param versionAsOf the versionAsOf value to set.
+     * @return the LakeHouseTableSource object itself.
      */
-    public ParquetSource withFormatSettings(ParquetReadSettings formatSettings) {
-        this.formatSettings = formatSettings;
+    public LakeHouseTableSource withVersionAsOf(Object versionAsOf) {
+        this.versionAsOf = versionAsOf;
         return this;
     }
 
@@ -92,37 +96,37 @@ public final class ParquetSource extends CopySource {
      * objects(AdditionalColumns) (or Expression with resultType array of objects).
      *
      * @param additionalColumns the additionalColumns value to set.
-     * @return the ParquetSource object itself.
+     * @return the LakeHouseTableSource object itself.
      */
-    public ParquetSource withAdditionalColumns(Object additionalColumns) {
+    public LakeHouseTableSource withAdditionalColumns(Object additionalColumns) {
         this.additionalColumns = additionalColumns;
         return this;
     }
 
     /** {@inheritDoc} */
     @Override
-    public ParquetSource withSourceRetryCount(Object sourceRetryCount) {
+    public LakeHouseTableSource withSourceRetryCount(Object sourceRetryCount) {
         super.withSourceRetryCount(sourceRetryCount);
         return this;
     }
 
     /** {@inheritDoc} */
     @Override
-    public ParquetSource withSourceRetryWait(Object sourceRetryWait) {
+    public LakeHouseTableSource withSourceRetryWait(Object sourceRetryWait) {
         super.withSourceRetryWait(sourceRetryWait);
         return this;
     }
 
     /** {@inheritDoc} */
     @Override
-    public ParquetSource withMaxConcurrentConnections(Object maxConcurrentConnections) {
+    public LakeHouseTableSource withMaxConcurrentConnections(Object maxConcurrentConnections) {
         super.withMaxConcurrentConnections(maxConcurrentConnections);
         return this;
     }
 
     /** {@inheritDoc} */
     @Override
-    public ParquetSource withDisableMetricsCollection(Object disableMetricsCollection) {
+    public LakeHouseTableSource withDisableMetricsCollection(Object disableMetricsCollection) {
         super.withDisableMetricsCollection(disableMetricsCollection);
         return this;
     }
@@ -135,11 +139,5 @@ public final class ParquetSource extends CopySource {
     @Override
     public void validate() {
         super.validate();
-        if (storeSettings() != null) {
-            storeSettings().validate();
-        }
-        if (formatSettings() != null) {
-            formatSettings().validate();
-        }
     }
 }

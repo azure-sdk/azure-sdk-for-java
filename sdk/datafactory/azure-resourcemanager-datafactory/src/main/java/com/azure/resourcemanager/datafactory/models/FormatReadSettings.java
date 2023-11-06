@@ -22,6 +22,7 @@ import java.util.Map;
     defaultImpl = FormatReadSettings.class)
 @JsonTypeName("FormatReadSettings")
 @JsonSubTypes({
+    @JsonSubTypes.Type(name = "ParquetReadSettings", value = ParquetReadSettings.class),
     @JsonSubTypes.Type(name = "DelimitedTextReadSettings", value = DelimitedTextReadSettings.class),
     @JsonSubTypes.Type(name = "JsonReadSettings", value = JsonReadSettings.class),
     @JsonSubTypes.Type(name = "XmlReadSettings", value = XmlReadSettings.class),
