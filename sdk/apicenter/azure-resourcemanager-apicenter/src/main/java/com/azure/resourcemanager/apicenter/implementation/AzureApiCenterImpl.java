@@ -22,9 +22,16 @@ import com.azure.core.util.polling.LongRunningOperationStatus;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
+import com.azure.resourcemanager.apicenter.fluent.ApiDefinitionsClient;
+import com.azure.resourcemanager.apicenter.fluent.ApiVersionsClient;
+import com.azure.resourcemanager.apicenter.fluent.ApisClient;
 import com.azure.resourcemanager.apicenter.fluent.AzureApiCenter;
+import com.azure.resourcemanager.apicenter.fluent.DeploymentsClient;
+import com.azure.resourcemanager.apicenter.fluent.EnvironmentsClient;
+import com.azure.resourcemanager.apicenter.fluent.MetadataSchemasClient;
 import com.azure.resourcemanager.apicenter.fluent.OperationsClient;
 import com.azure.resourcemanager.apicenter.fluent.ServicesClient;
+import com.azure.resourcemanager.apicenter.fluent.WorkspacesClient;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.nio.ByteBuffer;
@@ -37,11 +44,11 @@ import reactor.core.publisher.Mono;
 /** Initializes a new instance of the AzureApiCenterImpl type. */
 @ServiceClient(builder = AzureApiCenterBuilder.class)
 public final class AzureApiCenterImpl implements AzureApiCenter {
-    /** The ID of the target subscription. */
+    /** The ID of the target subscription. The value must be an UUID. */
     private final String subscriptionId;
 
     /**
-     * Gets The ID of the target subscription.
+     * Gets The ID of the target subscription. The value must be an UUID.
      *
      * @return the subscriptionId value.
      */
@@ -133,6 +140,90 @@ public final class AzureApiCenterImpl implements AzureApiCenter {
         return this.services;
     }
 
+    /** The MetadataSchemasClient object to access its operations. */
+    private final MetadataSchemasClient metadataSchemas;
+
+    /**
+     * Gets the MetadataSchemasClient object to access its operations.
+     *
+     * @return the MetadataSchemasClient object.
+     */
+    public MetadataSchemasClient getMetadataSchemas() {
+        return this.metadataSchemas;
+    }
+
+    /** The WorkspacesClient object to access its operations. */
+    private final WorkspacesClient workspaces;
+
+    /**
+     * Gets the WorkspacesClient object to access its operations.
+     *
+     * @return the WorkspacesClient object.
+     */
+    public WorkspacesClient getWorkspaces() {
+        return this.workspaces;
+    }
+
+    /** The ApisClient object to access its operations. */
+    private final ApisClient apis;
+
+    /**
+     * Gets the ApisClient object to access its operations.
+     *
+     * @return the ApisClient object.
+     */
+    public ApisClient getApis() {
+        return this.apis;
+    }
+
+    /** The ApiVersionsClient object to access its operations. */
+    private final ApiVersionsClient apiVersions;
+
+    /**
+     * Gets the ApiVersionsClient object to access its operations.
+     *
+     * @return the ApiVersionsClient object.
+     */
+    public ApiVersionsClient getApiVersions() {
+        return this.apiVersions;
+    }
+
+    /** The ApiDefinitionsClient object to access its operations. */
+    private final ApiDefinitionsClient apiDefinitions;
+
+    /**
+     * Gets the ApiDefinitionsClient object to access its operations.
+     *
+     * @return the ApiDefinitionsClient object.
+     */
+    public ApiDefinitionsClient getApiDefinitions() {
+        return this.apiDefinitions;
+    }
+
+    /** The DeploymentsClient object to access its operations. */
+    private final DeploymentsClient deployments;
+
+    /**
+     * Gets the DeploymentsClient object to access its operations.
+     *
+     * @return the DeploymentsClient object.
+     */
+    public DeploymentsClient getDeployments() {
+        return this.deployments;
+    }
+
+    /** The EnvironmentsClient object to access its operations. */
+    private final EnvironmentsClient environments;
+
+    /**
+     * Gets the EnvironmentsClient object to access its operations.
+     *
+     * @return the EnvironmentsClient object.
+     */
+    public EnvironmentsClient getEnvironments() {
+        return this.environments;
+    }
+
     /**
      * Initializes an instance of AzureApiCenter client.
      *
@@ -140,7 +231,7 @@ public final class AzureApiCenterImpl implements AzureApiCenter {
      * @param serializerAdapter The serializer to serialize an object into a string.
      * @param defaultPollInterval The default poll interval for long-running operation.
      * @param environment The Azure environment.
-     * @param subscriptionId The ID of the target subscription.
+     * @param subscriptionId The ID of the target subscription. The value must be an UUID.
      * @param endpoint server parameter.
      */
     AzureApiCenterImpl(
@@ -155,9 +246,16 @@ public final class AzureApiCenterImpl implements AzureApiCenter {
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2023-07-01-preview";
+        this.apiVersion = "2024-03-01";
         this.operations = new OperationsClientImpl(this);
         this.services = new ServicesClientImpl(this);
+        this.metadataSchemas = new MetadataSchemasClientImpl(this);
+        this.workspaces = new WorkspacesClientImpl(this);
+        this.apis = new ApisClientImpl(this);
+        this.apiVersions = new ApiVersionsClientImpl(this);
+        this.apiDefinitions = new ApiDefinitionsClientImpl(this);
+        this.deployments = new DeploymentsClientImpl(this);
+        this.environments = new EnvironmentsClientImpl(this);
     }
 
     /**

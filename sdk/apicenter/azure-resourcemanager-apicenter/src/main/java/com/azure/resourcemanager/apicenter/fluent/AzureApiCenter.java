@@ -10,7 +10,7 @@ import java.time.Duration;
 /** The interface for AzureApiCenter class. */
 public interface AzureApiCenter {
     /**
-     * Gets The ID of the target subscription.
+     * Gets The ID of the target subscription. The value must be an UUID.
      *
      * @return the subscriptionId value.
      */
@@ -57,4 +57,53 @@ public interface AzureApiCenter {
      * @return the ServicesClient object.
      */
     ServicesClient getServices();
+
+    /**
+     * Gets the MetadataSchemasClient object to access its operations.
+     *
+     * @return the MetadataSchemasClient object.
+     */
+    MetadataSchemasClient getMetadataSchemas();
+
+    /**
+     * Gets the WorkspacesClient object to access its operations.
+     *
+     * @return the WorkspacesClient object.
+     */
+    WorkspacesClient getWorkspaces();
+
+    /**
+     * Gets the ApisClient object to access its operations.
+     *
+     * @return the ApisClient object.
+     */
+    ApisClient getApis();
+
+    /**
+     * Gets the ApiVersionsClient object to access its operations.
+     *
+     * @return the ApiVersionsClient object.
+     */
+    ApiVersionsClient getApiVersions();
+
+    /**
+     * Gets the ApiDefinitionsClient object to access its operations.
+     *
+     * @return the ApiDefinitionsClient object.
+     */
+    ApiDefinitionsClient getApiDefinitions();
+
+    /**
+     * Gets the DeploymentsClient object to access its operations.
+     *
+     * @return the DeploymentsClient object.
+     */
+    DeploymentsClient getDeployments();
+
+    /**
+     * Gets the EnvironmentsClient object to access its operations.
+     *
+     * @return the EnvironmentsClient object.
+     */
+    EnvironmentsClient getEnvironments();
 }

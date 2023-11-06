@@ -14,6 +14,7 @@ import com.azure.core.annotation.Host;
 import com.azure.core.annotation.HostParam;
 import com.azure.core.annotation.Patch;
 import com.azure.core.annotation.PathParam;
+import com.azure.core.annotation.Post;
 import com.azure.core.annotation.Put;
 import com.azure.core.annotation.QueryParam;
 import com.azure.core.annotation.ReturnType;
@@ -30,7 +31,9 @@ import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
 import com.azure.resourcemanager.apicenter.fluent.ServicesClient;
+import com.azure.resourcemanager.apicenter.fluent.models.MetadataSchemaExportResultInner;
 import com.azure.resourcemanager.apicenter.fluent.models.ServiceInner;
+import com.azure.resourcemanager.apicenter.models.MetadataSchemaExportRequest;
 import com.azure.resourcemanager.apicenter.models.ServiceCollection;
 import com.azure.resourcemanager.apicenter.models.ServiceUpdate;
 import reactor.core.publisher.Mono;
@@ -109,7 +112,7 @@ public final class ServicesClientImpl implements ServicesClient {
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("serviceName") String serviceName,
-            @BodyParam("application/json") ServiceInner resource,
+            @BodyParam("application/json") ServiceInner payload,
             @HeaderParam("Accept") String accept,
             Context context);
 
@@ -124,7 +127,7 @@ public final class ServicesClientImpl implements ServicesClient {
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("serviceName") String serviceName,
-            @BodyParam("application/json") ServiceUpdate parameters,
+            @BodyParam("application/json") ServiceUpdate payload,
             @HeaderParam("Accept") String accept,
             Context context);
 
@@ -139,6 +142,21 @@ public final class ServicesClientImpl implements ServicesClient {
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("serviceName") String serviceName,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
+        @Post(
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiCenter/services/{serviceName}/exportMetadataSchema")
+        @ExpectedResponses({200, 202})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<MetadataSchemaExportResultInner>> exportMetadataSchema(
+            @HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("serviceName") String serviceName,
+            @QueryParam("api-version") String apiVersion,
+            @BodyParam("application/json") MetadataSchemaExportRequest payload,
             @HeaderParam("Accept") String accept,
             Context context);
 
@@ -307,7 +325,7 @@ public final class ServicesClientImpl implements ServicesClient {
     }
 
     /**
-     * Lists services within a resource group.
+     * Returns a collection of services within the resource group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -359,7 +377,7 @@ public final class ServicesClientImpl implements ServicesClient {
     }
 
     /**
-     * Lists services within a resource group.
+     * Returns a collection of services within the resource group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
@@ -410,7 +428,7 @@ public final class ServicesClientImpl implements ServicesClient {
     }
 
     /**
-     * Lists services within a resource group.
+     * Returns a collection of services within the resource group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -426,7 +444,7 @@ public final class ServicesClientImpl implements ServicesClient {
     }
 
     /**
-     * Lists services within a resource group.
+     * Returns a collection of services within the resource group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
@@ -443,7 +461,7 @@ public final class ServicesClientImpl implements ServicesClient {
     }
 
     /**
-     * Lists services within a resource group.
+     * Returns a collection of services within the resource group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -457,7 +475,7 @@ public final class ServicesClientImpl implements ServicesClient {
     }
 
     /**
-     * Lists services within a resource group.
+     * Returns a collection of services within the resource group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
@@ -472,14 +490,16 @@ public final class ServicesClientImpl implements ServicesClient {
     }
 
     /**
-     * Get service.
+     * Get service
+     *
+     * <p>Returns details of the service.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param serviceName Service name.
+     * @param serviceName The name of Azure API Center service.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return service along with {@link Response} on successful completion of {@link Mono}.
+     * @return the service entity along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ServiceInner>> getByResourceGroupWithResponseAsync(
@@ -520,15 +540,17 @@ public final class ServicesClientImpl implements ServicesClient {
     }
 
     /**
-     * Get service.
+     * Get service
+     *
+     * <p>Returns details of the service.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param serviceName Service name.
+     * @param serviceName The name of Azure API Center service.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return service along with {@link Response} on successful completion of {@link Mono}.
+     * @return the service entity along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ServiceInner>> getByResourceGroupWithResponseAsync(
@@ -566,14 +588,16 @@ public final class ServicesClientImpl implements ServicesClient {
     }
 
     /**
-     * Get service.
+     * Get service
+     *
+     * <p>Returns details of the service.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param serviceName Service name.
+     * @param serviceName The name of Azure API Center service.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return service on successful completion of {@link Mono}.
+     * @return the service entity on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ServiceInner> getByResourceGroupAsync(String resourceGroupName, String serviceName) {
@@ -582,15 +606,17 @@ public final class ServicesClientImpl implements ServicesClient {
     }
 
     /**
-     * Get service.
+     * Get service
+     *
+     * <p>Returns details of the service.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param serviceName Service name.
+     * @param serviceName The name of Azure API Center service.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return service along with {@link Response}.
+     * @return the service entity along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<ServiceInner> getByResourceGroupWithResponse(
@@ -599,14 +625,16 @@ public final class ServicesClientImpl implements ServicesClient {
     }
 
     /**
-     * Get service.
+     * Get service
+     *
+     * <p>Returns details of the service.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param serviceName Service name.
+     * @param serviceName The name of Azure API Center service.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return service.
+     * @return the service entity.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public ServiceInner getByResourceGroup(String resourceGroupName, String serviceName) {
@@ -614,11 +642,13 @@ public final class ServicesClientImpl implements ServicesClient {
     }
 
     /**
-     * Create or update service.
+     * Create or update service
+     *
+     * <p>Creates new or updates existing API.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param serviceName Service name.
-     * @param resource The service entity.
+     * @param serviceName The name of Azure API Center service.
+     * @param payload The service entity.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -626,7 +656,7 @@ public final class ServicesClientImpl implements ServicesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ServiceInner>> createOrUpdateWithResponseAsync(
-        String resourceGroupName, String serviceName, ServiceInner resource) {
+        String resourceGroupName, String serviceName, ServiceInner payload) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -646,8 +676,8 @@ public final class ServicesClientImpl implements ServicesClient {
         if (serviceName == null) {
             return Mono.error(new IllegalArgumentException("Parameter serviceName is required and cannot be null."));
         }
-        if (resource != null) {
-            resource.validate();
+        if (payload != null) {
+            payload.validate();
         }
         final String accept = "application/json";
         return FluxUtil
@@ -660,18 +690,20 @@ public final class ServicesClientImpl implements ServicesClient {
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             serviceName,
-                            resource,
+                            payload,
                             accept,
                             context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Create or update service.
+     * Create or update service
+     *
+     * <p>Creates new or updates existing API.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param serviceName Service name.
-     * @param resource The service entity.
+     * @param serviceName The name of Azure API Center service.
+     * @param payload The service entity.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -680,7 +712,7 @@ public final class ServicesClientImpl implements ServicesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ServiceInner>> createOrUpdateWithResponseAsync(
-        String resourceGroupName, String serviceName, ServiceInner resource, Context context) {
+        String resourceGroupName, String serviceName, ServiceInner payload, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -700,8 +732,8 @@ public final class ServicesClientImpl implements ServicesClient {
         if (serviceName == null) {
             return Mono.error(new IllegalArgumentException("Parameter serviceName is required and cannot be null."));
         }
-        if (resource != null) {
-            resource.validate();
+        if (payload != null) {
+            payload.validate();
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
@@ -712,16 +744,18 @@ public final class ServicesClientImpl implements ServicesClient {
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 serviceName,
-                resource,
+                payload,
                 accept,
                 context);
     }
 
     /**
-     * Create or update service.
+     * Create or update service
+     *
+     * <p>Creates new or updates existing API.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param serviceName Service name.
+     * @param serviceName The name of Azure API Center service.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -729,17 +763,19 @@ public final class ServicesClientImpl implements ServicesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ServiceInner> createOrUpdateAsync(String resourceGroupName, String serviceName) {
-        final ServiceInner resource = null;
-        return createOrUpdateWithResponseAsync(resourceGroupName, serviceName, resource)
+        final ServiceInner payload = null;
+        return createOrUpdateWithResponseAsync(resourceGroupName, serviceName, payload)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Create or update service.
+     * Create or update service
+     *
+     * <p>Creates new or updates existing API.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param serviceName Service name.
-     * @param resource The service entity.
+     * @param serviceName The name of Azure API Center service.
+     * @param payload The service entity.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -748,15 +784,17 @@ public final class ServicesClientImpl implements ServicesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<ServiceInner> createOrUpdateWithResponse(
-        String resourceGroupName, String serviceName, ServiceInner resource, Context context) {
-        return createOrUpdateWithResponseAsync(resourceGroupName, serviceName, resource, context).block();
+        String resourceGroupName, String serviceName, ServiceInner payload, Context context) {
+        return createOrUpdateWithResponseAsync(resourceGroupName, serviceName, payload, context).block();
     }
 
     /**
-     * Create or update service.
+     * Create or update service
+     *
+     * <p>Creates new or updates existing API.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param serviceName Service name.
+     * @param serviceName The name of Azure API Center service.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -764,16 +802,18 @@ public final class ServicesClientImpl implements ServicesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public ServiceInner createOrUpdate(String resourceGroupName, String serviceName) {
-        final ServiceInner resource = null;
-        return createOrUpdateWithResponse(resourceGroupName, serviceName, resource, Context.NONE).getValue();
+        final ServiceInner payload = null;
+        return createOrUpdateWithResponse(resourceGroupName, serviceName, payload, Context.NONE).getValue();
     }
 
     /**
-     * Update service.
+     * Update service
+     *
+     * <p>Updates existing service.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param serviceName Service name.
-     * @param parameters The service properties to be updated.
+     * @param serviceName The name of Azure API Center service.
+     * @param payload The service properties to be updated.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -781,7 +821,7 @@ public final class ServicesClientImpl implements ServicesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ServiceInner>> updateWithResponseAsync(
-        String resourceGroupName, String serviceName, ServiceUpdate parameters) {
+        String resourceGroupName, String serviceName, ServiceUpdate payload) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -801,8 +841,8 @@ public final class ServicesClientImpl implements ServicesClient {
         if (serviceName == null) {
             return Mono.error(new IllegalArgumentException("Parameter serviceName is required and cannot be null."));
         }
-        if (parameters != null) {
-            parameters.validate();
+        if (payload != null) {
+            payload.validate();
         }
         final String accept = "application/json";
         return FluxUtil
@@ -815,18 +855,20 @@ public final class ServicesClientImpl implements ServicesClient {
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             serviceName,
-                            parameters,
+                            payload,
                             accept,
                             context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Update service.
+     * Update service
+     *
+     * <p>Updates existing service.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param serviceName Service name.
-     * @param parameters The service properties to be updated.
+     * @param serviceName The name of Azure API Center service.
+     * @param payload The service properties to be updated.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -835,7 +877,7 @@ public final class ServicesClientImpl implements ServicesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ServiceInner>> updateWithResponseAsync(
-        String resourceGroupName, String serviceName, ServiceUpdate parameters, Context context) {
+        String resourceGroupName, String serviceName, ServiceUpdate payload, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -855,8 +897,8 @@ public final class ServicesClientImpl implements ServicesClient {
         if (serviceName == null) {
             return Mono.error(new IllegalArgumentException("Parameter serviceName is required and cannot be null."));
         }
-        if (parameters != null) {
-            parameters.validate();
+        if (payload != null) {
+            payload.validate();
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
@@ -867,16 +909,18 @@ public final class ServicesClientImpl implements ServicesClient {
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 serviceName,
-                parameters,
+                payload,
                 accept,
                 context);
     }
 
     /**
-     * Update service.
+     * Update service
+     *
+     * <p>Updates existing service.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param serviceName Service name.
+     * @param serviceName The name of Azure API Center service.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -884,17 +928,19 @@ public final class ServicesClientImpl implements ServicesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ServiceInner> updateAsync(String resourceGroupName, String serviceName) {
-        final ServiceUpdate parameters = null;
-        return updateWithResponseAsync(resourceGroupName, serviceName, parameters)
+        final ServiceUpdate payload = null;
+        return updateWithResponseAsync(resourceGroupName, serviceName, payload)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Update service.
+     * Update service
+     *
+     * <p>Updates existing service.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param serviceName Service name.
-     * @param parameters The service properties to be updated.
+     * @param serviceName The name of Azure API Center service.
+     * @param payload The service properties to be updated.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -903,15 +949,17 @@ public final class ServicesClientImpl implements ServicesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<ServiceInner> updateWithResponse(
-        String resourceGroupName, String serviceName, ServiceUpdate parameters, Context context) {
-        return updateWithResponseAsync(resourceGroupName, serviceName, parameters, context).block();
+        String resourceGroupName, String serviceName, ServiceUpdate payload, Context context) {
+        return updateWithResponseAsync(resourceGroupName, serviceName, payload, context).block();
     }
 
     /**
-     * Update service.
+     * Update service
+     *
+     * <p>Updates existing service.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param serviceName Service name.
+     * @param serviceName The name of Azure API Center service.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -919,15 +967,17 @@ public final class ServicesClientImpl implements ServicesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public ServiceInner update(String resourceGroupName, String serviceName) {
-        final ServiceUpdate parameters = null;
-        return updateWithResponse(resourceGroupName, serviceName, parameters, Context.NONE).getValue();
+        final ServiceUpdate payload = null;
+        return updateWithResponse(resourceGroupName, serviceName, payload, Context.NONE).getValue();
     }
 
     /**
-     * Delete service.
+     * Delete service
+     *
+     * <p>Deletes specified service.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param serviceName Service name.
+     * @param serviceName The name of Azure API Center service.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -971,10 +1021,12 @@ public final class ServicesClientImpl implements ServicesClient {
     }
 
     /**
-     * Delete service.
+     * Delete service
+     *
+     * <p>Deletes specified service.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param serviceName Service name.
+     * @param serviceName The name of Azure API Center service.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1017,10 +1069,12 @@ public final class ServicesClientImpl implements ServicesClient {
     }
 
     /**
-     * Delete service.
+     * Delete service
+     *
+     * <p>Deletes specified service.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param serviceName Service name.
+     * @param serviceName The name of Azure API Center service.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1032,10 +1086,12 @@ public final class ServicesClientImpl implements ServicesClient {
     }
 
     /**
-     * Delete service.
+     * Delete service
+     *
+     * <p>Deletes specified service.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param serviceName Service name.
+     * @param serviceName The name of Azure API Center service.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1048,10 +1104,12 @@ public final class ServicesClientImpl implements ServicesClient {
     }
 
     /**
-     * Delete service.
+     * Delete service
+     *
+     * <p>Deletes specified service.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param serviceName Service name.
+     * @param serviceName The name of Azure API Center service.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1059,6 +1117,177 @@ public final class ServicesClientImpl implements ServicesClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public void delete(String resourceGroupName, String serviceName) {
         deleteWithResponse(resourceGroupName, serviceName, Context.NONE);
+    }
+
+    /**
+     * Export effective metadata schema
+     *
+     * <p>Exports the effective metadata schema.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param serviceName The name of Azure API Center service.
+     * @param payload The metadata schema request details.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the metadata schema export result along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<MetadataSchemaExportResultInner>> exportMetadataSchemaWithResponseAsync(
+        String resourceGroupName, String serviceName, MetadataSchemaExportRequest payload) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (serviceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter serviceName is required and cannot be null."));
+        }
+        if (payload == null) {
+            return Mono.error(new IllegalArgumentException("Parameter payload is required and cannot be null."));
+        } else {
+            payload.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service
+                        .exportMetadataSchema(
+                            this.client.getEndpoint(),
+                            this.client.getSubscriptionId(),
+                            resourceGroupName,
+                            serviceName,
+                            this.client.getApiVersion(),
+                            payload,
+                            accept,
+                            context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Export effective metadata schema
+     *
+     * <p>Exports the effective metadata schema.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param serviceName The name of Azure API Center service.
+     * @param payload The metadata schema request details.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the metadata schema export result along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<MetadataSchemaExportResultInner>> exportMetadataSchemaWithResponseAsync(
+        String resourceGroupName, String serviceName, MetadataSchemaExportRequest payload, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (serviceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter serviceName is required and cannot be null."));
+        }
+        if (payload == null) {
+            return Mono.error(new IllegalArgumentException("Parameter payload is required and cannot be null."));
+        } else {
+            payload.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .exportMetadataSchema(
+                this.client.getEndpoint(),
+                this.client.getSubscriptionId(),
+                resourceGroupName,
+                serviceName,
+                this.client.getApiVersion(),
+                payload,
+                accept,
+                context);
+    }
+
+    /**
+     * Export effective metadata schema
+     *
+     * <p>Exports the effective metadata schema.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param serviceName The name of Azure API Center service.
+     * @param payload The metadata schema request details.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the metadata schema export result on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<MetadataSchemaExportResultInner> exportMetadataSchemaAsync(
+        String resourceGroupName, String serviceName, MetadataSchemaExportRequest payload) {
+        return exportMetadataSchemaWithResponseAsync(resourceGroupName, serviceName, payload)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Export effective metadata schema
+     *
+     * <p>Exports the effective metadata schema.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param serviceName The name of Azure API Center service.
+     * @param payload The metadata schema request details.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the metadata schema export result along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<MetadataSchemaExportResultInner> exportMetadataSchemaWithResponse(
+        String resourceGroupName, String serviceName, MetadataSchemaExportRequest payload, Context context) {
+        return exportMetadataSchemaWithResponseAsync(resourceGroupName, serviceName, payload, context).block();
+    }
+
+    /**
+     * Export effective metadata schema
+     *
+     * <p>Exports the effective metadata schema.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param serviceName The name of Azure API Center service.
+     * @param payload The metadata schema request details.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the metadata schema export result.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public MetadataSchemaExportResultInner exportMetadataSchema(
+        String resourceGroupName, String serviceName, MetadataSchemaExportRequest payload) {
+        return exportMetadataSchemaWithResponse(resourceGroupName, serviceName, payload, Context.NONE).getValue();
     }
 
     /**

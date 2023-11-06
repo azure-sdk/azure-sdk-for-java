@@ -31,7 +31,7 @@ public interface Services {
     PagedIterable<Service> list(Context context);
 
     /**
-     * Lists services within a resource group.
+     * Returns a collection of services within the resource group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -42,7 +42,7 @@ public interface Services {
     PagedIterable<Service> listByResourceGroup(String resourceGroupName);
 
     /**
-     * Lists services within a resource group.
+     * Returns a collection of services within the resource group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
@@ -54,35 +54,41 @@ public interface Services {
     PagedIterable<Service> listByResourceGroup(String resourceGroupName, Context context);
 
     /**
-     * Get service.
+     * Get service
+     *
+     * <p>Returns details of the service.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param serviceName Service name.
+     * @param serviceName The name of Azure API Center service.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return service along with {@link Response}.
+     * @return the service entity along with {@link Response}.
      */
     Response<Service> getByResourceGroupWithResponse(String resourceGroupName, String serviceName, Context context);
 
     /**
-     * Get service.
+     * Get service
+     *
+     * <p>Returns details of the service.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param serviceName Service name.
+     * @param serviceName The name of Azure API Center service.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return service.
+     * @return the service entity.
      */
     Service getByResourceGroup(String resourceGroupName, String serviceName);
 
     /**
-     * Delete service.
+     * Delete service
+     *
+     * <p>Deletes specified service.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param serviceName Service name.
+     * @param serviceName The name of Azure API Center service.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -92,10 +98,12 @@ public interface Services {
     Response<Void> deleteByResourceGroupWithResponse(String resourceGroupName, String serviceName, Context context);
 
     /**
-     * Delete service.
+     * Delete service
+     *
+     * <p>Deletes specified service.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param serviceName Service name.
+     * @param serviceName The name of Azure API Center service.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -103,30 +111,69 @@ public interface Services {
     void deleteByResourceGroup(String resourceGroupName, String serviceName);
 
     /**
-     * Get service.
+     * Export effective metadata schema
+     *
+     * <p>Exports the effective metadata schema.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param serviceName The name of Azure API Center service.
+     * @param payload The metadata schema request details.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the metadata schema export result along with {@link Response}.
+     */
+    Response<MetadataSchemaExportResult> exportMetadataSchemaWithResponse(
+        String resourceGroupName, String serviceName, MetadataSchemaExportRequest payload, Context context);
+
+    /**
+     * Export effective metadata schema
+     *
+     * <p>Exports the effective metadata schema.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param serviceName The name of Azure API Center service.
+     * @param payload The metadata schema request details.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the metadata schema export result.
+     */
+    MetadataSchemaExportResult exportMetadataSchema(
+        String resourceGroupName, String serviceName, MetadataSchemaExportRequest payload);
+
+    /**
+     * Get service
+     *
+     * <p>Returns details of the service.
      *
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return service along with {@link Response}.
+     * @return the service entity along with {@link Response}.
      */
     Service getById(String id);
 
     /**
-     * Get service.
+     * Get service
+     *
+     * <p>Returns details of the service.
      *
      * @param id the resource ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return service along with {@link Response}.
+     * @return the service entity along with {@link Response}.
      */
     Response<Service> getByIdWithResponse(String id, Context context);
 
     /**
-     * Delete service.
+     * Delete service
+     *
+     * <p>Deletes specified service.
      *
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -136,7 +183,9 @@ public interface Services {
     void deleteById(String id);
 
     /**
-     * Delete service.
+     * Delete service
+     *
+     * <p>Deletes specified service.
      *
      * @param id the resource ID.
      * @param context The context to associate with this operation.
