@@ -103,11 +103,13 @@ public interface JitNetworkAccessPolicy {
             DefinitionStages.WithVirtualMachines,
             DefinitionStages.WithCreate {
     }
+
     /** The JitNetworkAccessPolicy definition stages. */
     interface DefinitionStages {
         /** The first stage of the JitNetworkAccessPolicy definition. */
         interface Blank extends WithParentResource {
         }
+
         /** The stage of the JitNetworkAccessPolicy definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -121,6 +123,7 @@ public interface JitNetworkAccessPolicy {
              */
             WithVirtualMachines withExistingLocation(String resourceGroupName, String ascLocation);
         }
+
         /** The stage of the JitNetworkAccessPolicy definition allowing to specify virtualMachines. */
         interface WithVirtualMachines {
             /**
@@ -132,6 +135,7 @@ public interface JitNetworkAccessPolicy {
              */
             WithCreate withVirtualMachines(List<JitNetworkAccessPolicyVirtualMachine> virtualMachines);
         }
+
         /**
          * The stage of the JitNetworkAccessPolicy definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
@@ -152,6 +156,7 @@ public interface JitNetworkAccessPolicy {
              */
             JitNetworkAccessPolicy create(Context context);
         }
+
         /** The stage of the JitNetworkAccessPolicy definition allowing to specify kind. */
         interface WithKind {
             /**
@@ -162,6 +167,7 @@ public interface JitNetworkAccessPolicy {
              */
             WithCreate withKind(String kind);
         }
+
         /** The stage of the JitNetworkAccessPolicy definition allowing to specify requests. */
         interface WithRequests {
             /**
@@ -173,6 +179,7 @@ public interface JitNetworkAccessPolicy {
             WithCreate withRequests(List<JitNetworkAccessRequestInner> requests);
         }
     }
+
     /**
      * Begins update for the JitNetworkAccessPolicy resource.
      *
@@ -197,6 +204,7 @@ public interface JitNetworkAccessPolicy {
          */
         JitNetworkAccessPolicy apply(Context context);
     }
+
     /** The JitNetworkAccessPolicy update stages. */
     interface UpdateStages {
         /** The stage of the JitNetworkAccessPolicy update allowing to specify kind. */
@@ -209,6 +217,7 @@ public interface JitNetworkAccessPolicy {
              */
             Update withKind(String kind);
         }
+
         /** The stage of the JitNetworkAccessPolicy update allowing to specify virtualMachines. */
         interface WithVirtualMachines {
             /**
@@ -220,6 +229,7 @@ public interface JitNetworkAccessPolicy {
              */
             Update withVirtualMachines(List<JitNetworkAccessPolicyVirtualMachine> virtualMachines);
         }
+
         /** The stage of the JitNetworkAccessPolicy update allowing to specify requests. */
         interface WithRequests {
             /**
@@ -231,6 +241,7 @@ public interface JitNetworkAccessPolicy {
             Update withRequests(List<JitNetworkAccessRequestInner> requests);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *
