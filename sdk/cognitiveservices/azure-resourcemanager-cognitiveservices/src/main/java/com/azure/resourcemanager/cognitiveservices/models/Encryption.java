@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Properties to configure Encryption. */
 @Fluent
-public final class Encryption {
+public class Encryption {
     /*
      * Properties of KeyVault
      */
