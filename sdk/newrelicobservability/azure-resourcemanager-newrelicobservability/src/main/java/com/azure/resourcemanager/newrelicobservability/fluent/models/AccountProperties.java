@@ -29,7 +29,7 @@ public final class AccountProperties {
     private String accountName;
 
     /*
-     * region
+     * Region where New Relic account is present
      */
     @JsonProperty(value = "region")
     private String region;
@@ -99,7 +99,7 @@ public final class AccountProperties {
     }
 
     /**
-     * Get the region property: region.
+     * Get the region property: Region where New Relic account is present.
      *
      * @return the region value.
      */
@@ -108,7 +108,7 @@ public final class AccountProperties {
     }
 
     /**
-     * Set the region property: region.
+     * Set the region property: Region where New Relic account is present.
      *
      * @param region the region value to set.
      * @return the AccountProperties object itself.
