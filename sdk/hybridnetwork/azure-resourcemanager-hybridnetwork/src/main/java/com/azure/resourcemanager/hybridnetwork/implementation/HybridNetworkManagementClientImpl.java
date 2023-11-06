@@ -22,17 +22,22 @@ import com.azure.core.util.polling.LongRunningOperationStatus;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
-import com.azure.resourcemanager.hybridnetwork.fluent.DevicesClient;
+import com.azure.resourcemanager.hybridnetwork.fluent.ArtifactManifestsClient;
+import com.azure.resourcemanager.hybridnetwork.fluent.ArtifactStoresClient;
+import com.azure.resourcemanager.hybridnetwork.fluent.ComponentsClient;
+import com.azure.resourcemanager.hybridnetwork.fluent.ConfigurationGroupSchemasClient;
+import com.azure.resourcemanager.hybridnetwork.fluent.ConfigurationGroupValuesClient;
 import com.azure.resourcemanager.hybridnetwork.fluent.HybridNetworkManagementClient;
-import com.azure.resourcemanager.hybridnetwork.fluent.NetworkFunctionVendorSkusClient;
-import com.azure.resourcemanager.hybridnetwork.fluent.NetworkFunctionVendorsClient;
+import com.azure.resourcemanager.hybridnetwork.fluent.NetworkFunctionDefinitionGroupsClient;
+import com.azure.resourcemanager.hybridnetwork.fluent.NetworkFunctionDefinitionVersionsClient;
 import com.azure.resourcemanager.hybridnetwork.fluent.NetworkFunctionsClient;
+import com.azure.resourcemanager.hybridnetwork.fluent.NetworkServiceDesignGroupsClient;
+import com.azure.resourcemanager.hybridnetwork.fluent.NetworkServiceDesignVersionsClient;
 import com.azure.resourcemanager.hybridnetwork.fluent.OperationsClient;
-import com.azure.resourcemanager.hybridnetwork.fluent.RoleInstancesClient;
-import com.azure.resourcemanager.hybridnetwork.fluent.VendorNetworkFunctionsClient;
-import com.azure.resourcemanager.hybridnetwork.fluent.VendorSkuPreviewsClient;
-import com.azure.resourcemanager.hybridnetwork.fluent.VendorSkusClient;
-import com.azure.resourcemanager.hybridnetwork.fluent.VendorsClient;
+import com.azure.resourcemanager.hybridnetwork.fluent.ProxyArtifactsClient;
+import com.azure.resourcemanager.hybridnetwork.fluent.PublishersClient;
+import com.azure.resourcemanager.hybridnetwork.fluent.SiteNetworkServicesClient;
+import com.azure.resourcemanager.hybridnetwork.fluent.SitesClient;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.nio.ByteBuffer;
@@ -117,6 +122,30 @@ public final class HybridNetworkManagementClientImpl implements HybridNetworkMan
         return this.defaultPollInterval;
     }
 
+    /** The ConfigurationGroupSchemasClient object to access its operations. */
+    private final ConfigurationGroupSchemasClient configurationGroupSchemas;
+
+    /**
+     * Gets the ConfigurationGroupSchemasClient object to access its operations.
+     *
+     * @return the ConfigurationGroupSchemasClient object.
+     */
+    public ConfigurationGroupSchemasClient getConfigurationGroupSchemas() {
+        return this.configurationGroupSchemas;
+    }
+
+    /** The ConfigurationGroupValuesClient object to access its operations. */
+    private final ConfigurationGroupValuesClient configurationGroupValues;
+
+    /**
+     * Gets the ConfigurationGroupValuesClient object to access its operations.
+     *
+     * @return the ConfigurationGroupValuesClient object.
+     */
+    public ConfigurationGroupValuesClient getConfigurationGroupValues() {
+        return this.configurationGroupValues;
+    }
+
     /** The NetworkFunctionsClient object to access its operations. */
     private final NetworkFunctionsClient networkFunctions;
 
@@ -129,16 +158,64 @@ public final class HybridNetworkManagementClientImpl implements HybridNetworkMan
         return this.networkFunctions;
     }
 
-    /** The DevicesClient object to access its operations. */
-    private final DevicesClient devices;
+    /** The ComponentsClient object to access its operations. */
+    private final ComponentsClient components;
 
     /**
-     * Gets the DevicesClient object to access its operations.
+     * Gets the ComponentsClient object to access its operations.
      *
-     * @return the DevicesClient object.
+     * @return the ComponentsClient object.
      */
-    public DevicesClient getDevices() {
-        return this.devices;
+    public ComponentsClient getComponents() {
+        return this.components;
+    }
+
+    /** The NetworkFunctionDefinitionGroupsClient object to access its operations. */
+    private final NetworkFunctionDefinitionGroupsClient networkFunctionDefinitionGroups;
+
+    /**
+     * Gets the NetworkFunctionDefinitionGroupsClient object to access its operations.
+     *
+     * @return the NetworkFunctionDefinitionGroupsClient object.
+     */
+    public NetworkFunctionDefinitionGroupsClient getNetworkFunctionDefinitionGroups() {
+        return this.networkFunctionDefinitionGroups;
+    }
+
+    /** The NetworkFunctionDefinitionVersionsClient object to access its operations. */
+    private final NetworkFunctionDefinitionVersionsClient networkFunctionDefinitionVersions;
+
+    /**
+     * Gets the NetworkFunctionDefinitionVersionsClient object to access its operations.
+     *
+     * @return the NetworkFunctionDefinitionVersionsClient object.
+     */
+    public NetworkFunctionDefinitionVersionsClient getNetworkFunctionDefinitionVersions() {
+        return this.networkFunctionDefinitionVersions;
+    }
+
+    /** The NetworkServiceDesignGroupsClient object to access its operations. */
+    private final NetworkServiceDesignGroupsClient networkServiceDesignGroups;
+
+    /**
+     * Gets the NetworkServiceDesignGroupsClient object to access its operations.
+     *
+     * @return the NetworkServiceDesignGroupsClient object.
+     */
+    public NetworkServiceDesignGroupsClient getNetworkServiceDesignGroups() {
+        return this.networkServiceDesignGroups;
+    }
+
+    /** The NetworkServiceDesignVersionsClient object to access its operations. */
+    private final NetworkServiceDesignVersionsClient networkServiceDesignVersions;
+
+    /**
+     * Gets the NetworkServiceDesignVersionsClient object to access its operations.
+     *
+     * @return the NetworkServiceDesignVersionsClient object.
+     */
+    public NetworkServiceDesignVersionsClient getNetworkServiceDesignVersions() {
+        return this.networkServiceDesignVersions;
     }
 
     /** The OperationsClient object to access its operations. */
@@ -153,88 +230,76 @@ public final class HybridNetworkManagementClientImpl implements HybridNetworkMan
         return this.operations;
     }
 
-    /** The VendorsClient object to access its operations. */
-    private final VendorsClient vendors;
+    /** The PublishersClient object to access its operations. */
+    private final PublishersClient publishers;
 
     /**
-     * Gets the VendorsClient object to access its operations.
+     * Gets the PublishersClient object to access its operations.
      *
-     * @return the VendorsClient object.
+     * @return the PublishersClient object.
      */
-    public VendorsClient getVendors() {
-        return this.vendors;
+    public PublishersClient getPublishers() {
+        return this.publishers;
     }
 
-    /** The VendorSkusClient object to access its operations. */
-    private final VendorSkusClient vendorSkus;
+    /** The ArtifactStoresClient object to access its operations. */
+    private final ArtifactStoresClient artifactStores;
 
     /**
-     * Gets the VendorSkusClient object to access its operations.
+     * Gets the ArtifactStoresClient object to access its operations.
      *
-     * @return the VendorSkusClient object.
+     * @return the ArtifactStoresClient object.
      */
-    public VendorSkusClient getVendorSkus() {
-        return this.vendorSkus;
+    public ArtifactStoresClient getArtifactStores() {
+        return this.artifactStores;
     }
 
-    /** The VendorSkuPreviewsClient object to access its operations. */
-    private final VendorSkuPreviewsClient vendorSkuPreviews;
+    /** The ArtifactManifestsClient object to access its operations. */
+    private final ArtifactManifestsClient artifactManifests;
 
     /**
-     * Gets the VendorSkuPreviewsClient object to access its operations.
+     * Gets the ArtifactManifestsClient object to access its operations.
      *
-     * @return the VendorSkuPreviewsClient object.
+     * @return the ArtifactManifestsClient object.
      */
-    public VendorSkuPreviewsClient getVendorSkuPreviews() {
-        return this.vendorSkuPreviews;
+    public ArtifactManifestsClient getArtifactManifests() {
+        return this.artifactManifests;
     }
 
-    /** The NetworkFunctionVendorsClient object to access its operations. */
-    private final NetworkFunctionVendorsClient networkFunctionVendors;
+    /** The ProxyArtifactsClient object to access its operations. */
+    private final ProxyArtifactsClient proxyArtifacts;
 
     /**
-     * Gets the NetworkFunctionVendorsClient object to access its operations.
+     * Gets the ProxyArtifactsClient object to access its operations.
      *
-     * @return the NetworkFunctionVendorsClient object.
+     * @return the ProxyArtifactsClient object.
      */
-    public NetworkFunctionVendorsClient getNetworkFunctionVendors() {
-        return this.networkFunctionVendors;
+    public ProxyArtifactsClient getProxyArtifacts() {
+        return this.proxyArtifacts;
     }
 
-    /** The NetworkFunctionVendorSkusClient object to access its operations. */
-    private final NetworkFunctionVendorSkusClient networkFunctionVendorSkus;
+    /** The SitesClient object to access its operations. */
+    private final SitesClient sites;
 
     /**
-     * Gets the NetworkFunctionVendorSkusClient object to access its operations.
+     * Gets the SitesClient object to access its operations.
      *
-     * @return the NetworkFunctionVendorSkusClient object.
+     * @return the SitesClient object.
      */
-    public NetworkFunctionVendorSkusClient getNetworkFunctionVendorSkus() {
-        return this.networkFunctionVendorSkus;
+    public SitesClient getSites() {
+        return this.sites;
     }
 
-    /** The VendorNetworkFunctionsClient object to access its operations. */
-    private final VendorNetworkFunctionsClient vendorNetworkFunctions;
+    /** The SiteNetworkServicesClient object to access its operations. */
+    private final SiteNetworkServicesClient siteNetworkServices;
 
     /**
-     * Gets the VendorNetworkFunctionsClient object to access its operations.
+     * Gets the SiteNetworkServicesClient object to access its operations.
      *
-     * @return the VendorNetworkFunctionsClient object.
+     * @return the SiteNetworkServicesClient object.
      */
-    public VendorNetworkFunctionsClient getVendorNetworkFunctions() {
-        return this.vendorNetworkFunctions;
-    }
-
-    /** The RoleInstancesClient object to access its operations. */
-    private final RoleInstancesClient roleInstances;
-
-    /**
-     * Gets the RoleInstancesClient object to access its operations.
-     *
-     * @return the RoleInstancesClient object.
-     */
-    public RoleInstancesClient getRoleInstances() {
-        return this.roleInstances;
+    public SiteNetworkServicesClient getSiteNetworkServices() {
+        return this.siteNetworkServices;
     }
 
     /**
@@ -259,17 +324,22 @@ public final class HybridNetworkManagementClientImpl implements HybridNetworkMan
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2021-05-01";
+        this.apiVersion = "2023-09-01";
+        this.configurationGroupSchemas = new ConfigurationGroupSchemasClientImpl(this);
+        this.configurationGroupValues = new ConfigurationGroupValuesClientImpl(this);
         this.networkFunctions = new NetworkFunctionsClientImpl(this);
-        this.devices = new DevicesClientImpl(this);
+        this.components = new ComponentsClientImpl(this);
+        this.networkFunctionDefinitionGroups = new NetworkFunctionDefinitionGroupsClientImpl(this);
+        this.networkFunctionDefinitionVersions = new NetworkFunctionDefinitionVersionsClientImpl(this);
+        this.networkServiceDesignGroups = new NetworkServiceDesignGroupsClientImpl(this);
+        this.networkServiceDesignVersions = new NetworkServiceDesignVersionsClientImpl(this);
         this.operations = new OperationsClientImpl(this);
-        this.vendors = new VendorsClientImpl(this);
-        this.vendorSkus = new VendorSkusClientImpl(this);
-        this.vendorSkuPreviews = new VendorSkuPreviewsClientImpl(this);
-        this.networkFunctionVendors = new NetworkFunctionVendorsClientImpl(this);
-        this.networkFunctionVendorSkus = new NetworkFunctionVendorSkusClientImpl(this);
-        this.vendorNetworkFunctions = new VendorNetworkFunctionsClientImpl(this);
-        this.roleInstances = new RoleInstancesClientImpl(this);
+        this.publishers = new PublishersClientImpl(this);
+        this.artifactStores = new ArtifactStoresClientImpl(this);
+        this.artifactManifests = new ArtifactManifestsClientImpl(this);
+        this.proxyArtifacts = new ProxyArtifactsClientImpl(this);
+        this.sites = new SitesClientImpl(this);
+        this.siteNetworkServices = new SiteNetworkServicesClientImpl(this);
     }
 
     /**

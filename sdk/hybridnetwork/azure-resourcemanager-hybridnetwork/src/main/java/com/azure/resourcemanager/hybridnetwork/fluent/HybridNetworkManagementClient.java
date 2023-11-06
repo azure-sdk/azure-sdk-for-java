@@ -45,6 +45,20 @@ public interface HybridNetworkManagementClient {
     Duration getDefaultPollInterval();
 
     /**
+     * Gets the ConfigurationGroupSchemasClient object to access its operations.
+     *
+     * @return the ConfigurationGroupSchemasClient object.
+     */
+    ConfigurationGroupSchemasClient getConfigurationGroupSchemas();
+
+    /**
+     * Gets the ConfigurationGroupValuesClient object to access its operations.
+     *
+     * @return the ConfigurationGroupValuesClient object.
+     */
+    ConfigurationGroupValuesClient getConfigurationGroupValues();
+
+    /**
      * Gets the NetworkFunctionsClient object to access its operations.
      *
      * @return the NetworkFunctionsClient object.
@@ -52,11 +66,39 @@ public interface HybridNetworkManagementClient {
     NetworkFunctionsClient getNetworkFunctions();
 
     /**
-     * Gets the DevicesClient object to access its operations.
+     * Gets the ComponentsClient object to access its operations.
      *
-     * @return the DevicesClient object.
+     * @return the ComponentsClient object.
      */
-    DevicesClient getDevices();
+    ComponentsClient getComponents();
+
+    /**
+     * Gets the NetworkFunctionDefinitionGroupsClient object to access its operations.
+     *
+     * @return the NetworkFunctionDefinitionGroupsClient object.
+     */
+    NetworkFunctionDefinitionGroupsClient getNetworkFunctionDefinitionGroups();
+
+    /**
+     * Gets the NetworkFunctionDefinitionVersionsClient object to access its operations.
+     *
+     * @return the NetworkFunctionDefinitionVersionsClient object.
+     */
+    NetworkFunctionDefinitionVersionsClient getNetworkFunctionDefinitionVersions();
+
+    /**
+     * Gets the NetworkServiceDesignGroupsClient object to access its operations.
+     *
+     * @return the NetworkServiceDesignGroupsClient object.
+     */
+    NetworkServiceDesignGroupsClient getNetworkServiceDesignGroups();
+
+    /**
+     * Gets the NetworkServiceDesignVersionsClient object to access its operations.
+     *
+     * @return the NetworkServiceDesignVersionsClient object.
+     */
+    NetworkServiceDesignVersionsClient getNetworkServiceDesignVersions();
 
     /**
      * Gets the OperationsClient object to access its operations.
@@ -66,51 +108,44 @@ public interface HybridNetworkManagementClient {
     OperationsClient getOperations();
 
     /**
-     * Gets the VendorsClient object to access its operations.
+     * Gets the PublishersClient object to access its operations.
      *
-     * @return the VendorsClient object.
+     * @return the PublishersClient object.
      */
-    VendorsClient getVendors();
+    PublishersClient getPublishers();
 
     /**
-     * Gets the VendorSkusClient object to access its operations.
+     * Gets the ArtifactStoresClient object to access its operations.
      *
-     * @return the VendorSkusClient object.
+     * @return the ArtifactStoresClient object.
      */
-    VendorSkusClient getVendorSkus();
+    ArtifactStoresClient getArtifactStores();
 
     /**
-     * Gets the VendorSkuPreviewsClient object to access its operations.
+     * Gets the ArtifactManifestsClient object to access its operations.
      *
-     * @return the VendorSkuPreviewsClient object.
+     * @return the ArtifactManifestsClient object.
      */
-    VendorSkuPreviewsClient getVendorSkuPreviews();
+    ArtifactManifestsClient getArtifactManifests();
 
     /**
-     * Gets the NetworkFunctionVendorsClient object to access its operations.
+     * Gets the ProxyArtifactsClient object to access its operations.
      *
-     * @return the NetworkFunctionVendorsClient object.
+     * @return the ProxyArtifactsClient object.
      */
-    NetworkFunctionVendorsClient getNetworkFunctionVendors();
+    ProxyArtifactsClient getProxyArtifacts();
 
     /**
-     * Gets the NetworkFunctionVendorSkusClient object to access its operations.
+     * Gets the SitesClient object to access its operations.
      *
-     * @return the NetworkFunctionVendorSkusClient object.
+     * @return the SitesClient object.
      */
-    NetworkFunctionVendorSkusClient getNetworkFunctionVendorSkus();
+    SitesClient getSites();
 
     /**
-     * Gets the VendorNetworkFunctionsClient object to access its operations.
+     * Gets the SiteNetworkServicesClient object to access its operations.
      *
-     * @return the VendorNetworkFunctionsClient object.
+     * @return the SiteNetworkServicesClient object.
      */
-    VendorNetworkFunctionsClient getVendorNetworkFunctions();
-
-    /**
-     * Gets the RoleInstancesClient object to access its operations.
-     *
-     * @return the RoleInstancesClient object.
-     */
-    RoleInstancesClient getRoleInstances();
+    SiteNetworkServicesClient getSiteNetworkServices();
 }
