@@ -227,7 +227,7 @@ public final class ServiceFabricManager {
                 .append("-")
                 .append("com.azure.resourcemanager.servicefabric")
                 .append("/")
-                .append("1.0.0-beta.3");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -370,8 +370,10 @@ public final class ServiceFabricManager {
     }
 
     /**
-     * @return Wrapped service client ServiceFabricManagementClient providing direct access to the underlying
-     *     auto-generated API implementation, based on Azure REST API.
+     * Gets wrapped service client ServiceFabricManagementClient providing direct access to the underlying
+     * auto-generated API implementation, based on Azure REST API.
+     *
+     * @return Wrapped service client ServiceFabricManagementClient.
      */
     public ServiceFabricManagementClient serviceClient() {
         return this.clientObject;

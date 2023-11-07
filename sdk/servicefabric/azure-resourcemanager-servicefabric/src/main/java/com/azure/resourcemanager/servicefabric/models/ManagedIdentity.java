@@ -11,7 +11,7 @@ import java.util.Map;
 
 /** Describes the managed identities for an Azure resource. */
 @Fluent
-public class ManagedIdentity {
+public final class ManagedIdentity {
     /*
      * The principal id of the managed identity. This property will only be provided for a system assigned identity.
      */

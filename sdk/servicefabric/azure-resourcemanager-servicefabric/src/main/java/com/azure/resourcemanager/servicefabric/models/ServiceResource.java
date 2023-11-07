@@ -100,11 +100,13 @@ public interface ServiceResource {
     interface Definition
         extends DefinitionStages.Blank, DefinitionStages.WithParentResource, DefinitionStages.WithCreate {
     }
+
     /** The ServiceResource definition stages. */
     interface DefinitionStages {
         /** The first stage of the ServiceResource definition. */
         interface Blank extends WithParentResource {
         }
+
         /** The stage of the ServiceResource definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -117,6 +119,7 @@ public interface ServiceResource {
              */
             WithCreate withExistingApplication(String resourceGroupName, String clusterName, String applicationName);
         }
+
         /**
          * The stage of the ServiceResource definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
@@ -138,6 +141,7 @@ public interface ServiceResource {
              */
             ServiceResource create(Context context);
         }
+
         /** The stage of the ServiceResource definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -156,6 +160,7 @@ public interface ServiceResource {
              */
             WithCreate withRegion(String location);
         }
+
         /** The stage of the ServiceResource definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -166,6 +171,7 @@ public interface ServiceResource {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
         /** The stage of the ServiceResource definition allowing to specify properties. */
         interface WithProperties {
             /**
@@ -177,6 +183,7 @@ public interface ServiceResource {
             WithCreate withProperties(ServiceResourceProperties properties);
         }
     }
+
     /**
      * Begins update for the ServiceResource resource.
      *
@@ -201,6 +208,7 @@ public interface ServiceResource {
          */
         ServiceResource apply(Context context);
     }
+
     /** The ServiceResource update stages. */
     interface UpdateStages {
         /** The stage of the ServiceResource update allowing to specify properties. */
@@ -214,6 +222,7 @@ public interface ServiceResource {
             Update withProperties(ServiceResourceUpdateProperties properties);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

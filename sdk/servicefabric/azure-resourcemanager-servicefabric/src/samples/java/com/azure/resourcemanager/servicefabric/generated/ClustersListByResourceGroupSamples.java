@@ -16,6 +16,6 @@ public final class ClustersListByResourceGroupSamples {
      */
     public static void listClusterByResourceGroup(
         com.azure.resourcemanager.servicefabric.ServiceFabricManager manager) {
-        manager.clusters().listByResourceGroupWithResponse("resRg", com.azure.core.util.Context.NONE);
+        manager.clusters().listByResourceGroup("resRg", com.azure.core.util.Context.NONE);
     }
 }

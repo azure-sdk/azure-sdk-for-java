@@ -6,12 +6,12 @@ package com.azure.resourcemanager.servicefabric.fluent;
 
 import com.azure.core.annotation.ReturnType;
 import com.azure.core.annotation.ServiceMethod;
+import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.servicefabric.fluent.models.ApplicationTypeVersionResourceInner;
-import com.azure.resourcemanager.servicefabric.fluent.models.ApplicationTypeVersionResourceListInner;
 
 /** An instance of this class provides access to all the operations defined in ApplicationTypeVersionsClient. */
 public interface ApplicationTypeVersionsClient {
@@ -237,16 +237,15 @@ public interface ApplicationTypeVersionsClient {
      * @param resourceGroupName The name of the resource group.
      * @param clusterName The name of the cluster resource.
      * @param applicationTypeName The name of the application type name resource.
-     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return all application type version resources created or in the process of being created in the Service Fabric
-     *     application type name resource along with {@link Response}.
+     *     application type name resource as paginated response with {@link PagedIterable}.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<ApplicationTypeVersionResourceListInner> listWithResponse(
-        String resourceGroupName, String clusterName, String applicationTypeName, Context context);
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<ApplicationTypeVersionResourceInner> list(
+        String resourceGroupName, String clusterName, String applicationTypeName);
 
     /**
      * Gets the list of application type version resources created in the specified Service Fabric application type name
@@ -258,13 +257,14 @@ public interface ApplicationTypeVersionsClient {
      * @param resourceGroupName The name of the resource group.
      * @param clusterName The name of the cluster resource.
      * @param applicationTypeName The name of the application type name resource.
+     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return all application type version resources created or in the process of being created in the Service Fabric
-     *     application type name resource.
+     *     application type name resource as paginated response with {@link PagedIterable}.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    ApplicationTypeVersionResourceListInner list(
-        String resourceGroupName, String clusterName, String applicationTypeName);
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<ApplicationTypeVersionResourceInner> list(
+        String resourceGroupName, String clusterName, String applicationTypeName, Context context);
 }

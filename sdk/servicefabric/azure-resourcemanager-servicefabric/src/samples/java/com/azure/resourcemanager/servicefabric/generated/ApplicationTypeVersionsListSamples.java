@@ -16,8 +16,6 @@ public final class ApplicationTypeVersionsListSamples {
      */
     public static void getAListOfApplicationTypeVersionResources(
         com.azure.resourcemanager.servicefabric.ServiceFabricManager manager) {
-        manager
-            .applicationTypeVersions()
-            .listWithResponse("resRg", "myCluster", "myAppType", com.azure.core.util.Context.NONE);
+        manager.applicationTypeVersions().list("resRg", "myCluster", "myAppType", com.azure.core.util.Context.NONE);
     }
 }

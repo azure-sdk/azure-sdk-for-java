@@ -15,6 +15,6 @@ public final class ClustersListSamples {
      * @param manager Entry point to ServiceFabricManager.
      */
     public static void listClusters(com.azure.resourcemanager.servicefabric.ServiceFabricManager manager) {
-        manager.clusters().listWithResponse(com.azure.core.util.Context.NONE);
+        manager.clusters().list(com.azure.core.util.Context.NONE);
     }
 }

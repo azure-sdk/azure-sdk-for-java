@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.servicefabric.models;
 
+import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 
@@ -76,14 +77,13 @@ public interface Clusters {
      * <p>Gets all Service Fabric cluster resources created or in the process of being created in the resource group.
      *
      * @param resourceGroupName The name of the resource group.
-     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all Service Fabric cluster resources created or in the process of being created in the resource group
-     *     along with {@link Response}.
+     * @return all Service Fabric cluster resources created or in the process of being created in the resource group as
+     *     paginated response with {@link PagedIterable}.
      */
-    Response<ClusterListResult> listByResourceGroupWithResponse(String resourceGroupName, Context context);
+    PagedIterable<Cluster> listByResourceGroup(String resourceGroupName);
 
     /**
      * Gets the list of Service Fabric cluster resources created in the specified resource group.
@@ -91,12 +91,26 @@ public interface Clusters {
      * <p>Gets all Service Fabric cluster resources created or in the process of being created in the resource group.
      *
      * @param resourceGroupName The name of the resource group.
+     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all Service Fabric cluster resources created or in the process of being created in the resource group.
+     * @return all Service Fabric cluster resources created or in the process of being created in the resource group as
+     *     paginated response with {@link PagedIterable}.
      */
-    ClusterListResult listByResourceGroup(String resourceGroupName);
+    PagedIterable<Cluster> listByResourceGroup(String resourceGroupName, Context context);
+
+    /**
+     * Gets the list of Service Fabric cluster resources created in the specified subscription.
+     *
+     * <p>Gets all Service Fabric cluster resources created or in the process of being created in the subscription.
+     *
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return all Service Fabric cluster resources created or in the process of being created in the subscription as
+     *     paginated response with {@link PagedIterable}.
+     */
+    PagedIterable<Cluster> list();
 
     /**
      * Gets the list of Service Fabric cluster resources created in the specified subscription.
@@ -107,21 +121,10 @@ public interface Clusters {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all Service Fabric cluster resources created or in the process of being created in the subscription along
-     *     with {@link Response}.
+     * @return all Service Fabric cluster resources created or in the process of being created in the subscription as
+     *     paginated response with {@link PagedIterable}.
      */
-    Response<ClusterListResult> listWithResponse(Context context);
-
-    /**
-     * Gets the list of Service Fabric cluster resources created in the specified subscription.
-     *
-     * <p>Gets all Service Fabric cluster resources created or in the process of being created in the subscription.
-     *
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all Service Fabric cluster resources created or in the process of being created in the subscription.
-     */
-    ClusterListResult list();
+    PagedIterable<Cluster> list(Context context);
 
     /**
      * Operation to get the minimum and maximum upgradable version from the current cluster version, or the required
