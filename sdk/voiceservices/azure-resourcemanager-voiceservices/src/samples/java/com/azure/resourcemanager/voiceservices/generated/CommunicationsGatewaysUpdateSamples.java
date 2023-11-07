@@ -9,7 +9,7 @@ import com.azure.resourcemanager.voiceservices.models.CommunicationsGateway;
 /** Samples for CommunicationsGateways Update. */
 public final class CommunicationsGatewaysUpdateSamples {
     /*
-     * x-ms-original-file: specification/voiceservices/resource-manager/Microsoft.VoiceServices/stable/2023-01-31/examples/CommunicationsGateways_Update.json
+     * x-ms-original-file: specification/voiceservices/resource-manager/Microsoft.VoiceServices/stable/2023-09-01/examples/CommunicationsGateways_Update.json
      */
     /**
      * Sample code: UpdateCommunicationsGatewayResource.
