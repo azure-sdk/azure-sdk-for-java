@@ -100,6 +100,13 @@ public interface ImageTemplate {
     List<ImageTemplateDistributor> distribute();
 
     /**
+     * Gets the errorHandling property: Error handling options upon a build failure.
+     *
+     * @return the errorHandling value.
+     */
+    ImageTemplatePropertiesErrorHandling errorHandling();
+
+    /**
      * Gets the provisioningState property: Provisioning state of the resource.
      *
      * @return the provisioningState value.
@@ -193,11 +200,13 @@ public interface ImageTemplate {
             DefinitionStages.WithIdentity,
             DefinitionStages.WithCreate {
     }
+
     /** The ImageTemplate definition stages. */
     interface DefinitionStages {
         /** The first stage of the ImageTemplate definition. */
         interface Blank extends WithLocation {
         }
+
         /** The stage of the ImageTemplate definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -216,6 +225,7 @@ public interface ImageTemplate {
              */
             WithResourceGroup withRegion(String location);
         }
+
         /** The stage of the ImageTemplate definition allowing to specify parent resource. */
         interface WithResourceGroup {
             /**
@@ -226,6 +236,7 @@ public interface ImageTemplate {
              */
             WithIdentity withExistingResourceGroup(String resourceGroupName);
         }
+
         /** The stage of the ImageTemplate definition allowing to specify identity. */
         interface WithIdentity {
             /**
@@ -236,6 +247,7 @@ public interface ImageTemplate {
              */
             WithCreate withIdentity(ImageTemplateIdentity identity);
         }
+
         /**
          * The stage of the ImageTemplate definition which contains all the minimum required properties for the resource
          * to be created, but also allows for any other optional properties to be specified.
@@ -247,6 +259,7 @@ public interface ImageTemplate {
                 DefinitionStages.WithOptimize,
                 DefinitionStages.WithValidation,
                 DefinitionStages.WithDistribute,
+                DefinitionStages.WithErrorHandling,
                 DefinitionStages.WithBuildTimeoutInMinutes,
                 DefinitionStages.WithVmProfile,
                 DefinitionStages.WithStagingResourceGroup {
@@ -265,6 +278,7 @@ public interface ImageTemplate {
              */
             ImageTemplate create(Context context);
         }
+
         /** The stage of the ImageTemplate definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -275,6 +289,7 @@ public interface ImageTemplate {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
         /** The stage of the ImageTemplate definition allowing to specify source. */
         interface WithSource {
             /**
@@ -285,6 +300,7 @@ public interface ImageTemplate {
              */
             WithCreate withSource(ImageTemplateSource source);
         }
+
         /** The stage of the ImageTemplate definition allowing to specify customize. */
         interface WithCustomize {
             /**
@@ -297,6 +313,7 @@ public interface ImageTemplate {
              */
             WithCreate withCustomize(List<ImageTemplateCustomizer> customize);
         }
+
         /** The stage of the ImageTemplate definition allowing to specify optimize. */
         interface WithOptimize {
             /**
@@ -307,6 +324,7 @@ public interface ImageTemplate {
              */
             WithCreate withOptimize(ImageTemplatePropertiesOptimize optimize);
         }
+
         /** The stage of the ImageTemplate definition allowing to specify validation. */
         interface WithValidation {
             /**
@@ -318,6 +336,7 @@ public interface ImageTemplate {
              */
             WithCreate withValidation(ImageTemplatePropertiesValidate validation);
         }
+
         /** The stage of the ImageTemplate definition allowing to specify distribute. */
         interface WithDistribute {
             /**
@@ -328,6 +347,18 @@ public interface ImageTemplate {
              */
             WithCreate withDistribute(List<ImageTemplateDistributor> distribute);
         }
+
+        /** The stage of the ImageTemplate definition allowing to specify errorHandling. */
+        interface WithErrorHandling {
+            /**
+             * Specifies the errorHandling property: Error handling options upon a build failure.
+             *
+             * @param errorHandling Error handling options upon a build failure.
+             * @return the next definition stage.
+             */
+            WithCreate withErrorHandling(ImageTemplatePropertiesErrorHandling errorHandling);
+        }
+
         /** The stage of the ImageTemplate definition allowing to specify buildTimeoutInMinutes. */
         interface WithBuildTimeoutInMinutes {
             /**
@@ -342,6 +373,7 @@ public interface ImageTemplate {
              */
             WithCreate withBuildTimeoutInMinutes(Integer buildTimeoutInMinutes);
         }
+
         /** The stage of the ImageTemplate definition allowing to specify vmProfile. */
         interface WithVmProfile {
             /**
@@ -352,6 +384,7 @@ public interface ImageTemplate {
              */
             WithCreate withVmProfile(ImageTemplateVmProfile vmProfile);
         }
+
         /** The stage of the ImageTemplate definition allowing to specify stagingResourceGroup. */
         interface WithStagingResourceGroup {
             /**
@@ -377,6 +410,7 @@ public interface ImageTemplate {
             WithCreate withStagingResourceGroup(String stagingResourceGroup);
         }
     }
+
     /**
      * Begins update for the ImageTemplate resource.
      *
@@ -385,7 +419,7 @@ public interface ImageTemplate {
     ImageTemplate.Update update();
 
     /** The template for ImageTemplate update. */
-    interface Update extends UpdateStages.WithTags, UpdateStages.WithIdentity {
+    interface Update extends UpdateStages.WithTags, UpdateStages.WithIdentity, UpdateStages.WithProperties {
         /**
          * Executes the update request.
          *
@@ -401,6 +435,7 @@ public interface ImageTemplate {
          */
         ImageTemplate apply(Context context);
     }
+
     /** The ImageTemplate update stages. */
     interface UpdateStages {
         /** The stage of the ImageTemplate update allowing to specify tags. */
@@ -413,6 +448,7 @@ public interface ImageTemplate {
              */
             Update withTags(Map<String, String> tags);
         }
+
         /** The stage of the ImageTemplate update allowing to specify identity. */
         interface WithIdentity {
             /**
@@ -423,7 +459,19 @@ public interface ImageTemplate {
              */
             Update withIdentity(ImageTemplateIdentity identity);
         }
+
+        /** The stage of the ImageTemplate update allowing to specify properties. */
+        interface WithProperties {
+            /**
+             * Specifies the properties property: Parameters for updating an image template..
+             *
+             * @param properties Parameters for updating an image template.
+             * @return the next definition stage.
+             */
+            Update withProperties(ImageTemplateUpdateParametersProperties properties);
+        }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *
