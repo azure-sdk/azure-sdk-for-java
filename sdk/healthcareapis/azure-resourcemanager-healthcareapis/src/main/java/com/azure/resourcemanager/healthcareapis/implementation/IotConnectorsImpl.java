@@ -40,15 +40,6 @@ public final class IotConnectorsImpl implements IotConnectors {
         return Utils.mapPage(inner, inner1 -> new IotConnectorImpl(inner1, this.manager()));
     }
 
-    public IotConnector get(String resourceGroupName, String workspaceName, String iotConnectorName) {
-        IotConnectorInner inner = this.serviceClient().get(resourceGroupName, workspaceName, iotConnectorName);
-        if (inner != null) {
-            return new IotConnectorImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<IotConnector> getWithResponse(
         String resourceGroupName, String workspaceName, String iotConnectorName, Context context) {
         Response<IotConnectorInner> inner =
@@ -59,6 +50,15 @@ public final class IotConnectorsImpl implements IotConnectors {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new IotConnectorImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public IotConnector get(String resourceGroupName, String workspaceName, String iotConnectorName) {
+        IotConnectorInner inner = this.serviceClient().get(resourceGroupName, workspaceName, iotConnectorName);
+        if (inner != null) {
+            return new IotConnectorImpl(inner, this.manager());
         } else {
             return null;
         }

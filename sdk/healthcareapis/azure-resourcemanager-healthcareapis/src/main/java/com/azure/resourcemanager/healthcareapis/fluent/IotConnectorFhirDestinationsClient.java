@@ -21,22 +21,6 @@ public interface IotConnectorFhirDestinationsClient {
      * @param workspaceName The name of workspace resource.
      * @param iotConnectorName The name of IoT Connector resource.
      * @param fhirDestinationName The name of IoT Connector FHIR destination resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the properties of the specified Iot Connector FHIR destination.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    IotFhirDestinationInner get(
-        String resourceGroupName, String workspaceName, String iotConnectorName, String fhirDestinationName);
-
-    /**
-     * Gets the properties of the specified Iot Connector FHIR destination.
-     *
-     * @param resourceGroupName The name of the resource group that contains the service instance.
-     * @param workspaceName The name of workspace resource.
-     * @param iotConnectorName The name of IoT Connector resource.
-     * @param fhirDestinationName The name of IoT Connector FHIR destination resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -50,6 +34,22 @@ public interface IotConnectorFhirDestinationsClient {
         String iotConnectorName,
         String fhirDestinationName,
         Context context);
+
+    /**
+     * Gets the properties of the specified Iot Connector FHIR destination.
+     *
+     * @param resourceGroupName The name of the resource group that contains the service instance.
+     * @param workspaceName The name of workspace resource.
+     * @param iotConnectorName The name of IoT Connector resource.
+     * @param fhirDestinationName The name of IoT Connector FHIR destination resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the properties of the specified Iot Connector FHIR destination.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    IotFhirDestinationInner get(
+        String resourceGroupName, String workspaceName, String iotConnectorName, String fhirDestinationName);
 
     /**
      * Creates or updates an IoT Connector FHIR destination resource with the specified parameters.
