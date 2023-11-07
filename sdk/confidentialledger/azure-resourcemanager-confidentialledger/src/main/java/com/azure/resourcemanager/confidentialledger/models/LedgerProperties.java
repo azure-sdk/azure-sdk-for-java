@@ -58,6 +58,12 @@ public final class LedgerProperties {
     private ProvisioningState provisioningState;
 
     /*
+     * SKU associated with the ledger
+     */
+    @JsonProperty(value = "ledgerSku")
+    private LedgerSku ledgerSku;
+
+    /*
      * Array of all AAD based Security Principals.
      */
     @JsonProperty(value = "aadBasedSecurityPrincipals")
@@ -156,6 +162,26 @@ public final class LedgerProperties {
      */
     public ProvisioningState provisioningState() {
         return this.provisioningState;
+    }
+
+    /**
+     * Get the ledgerSku property: SKU associated with the ledger.
+     *
+     * @return the ledgerSku value.
+     */
+    public LedgerSku ledgerSku() {
+        return this.ledgerSku;
+    }
+
+    /**
+     * Set the ledgerSku property: SKU associated with the ledger.
+     *
+     * @param ledgerSku the ledgerSku value to set.
+     * @return the LedgerProperties object itself.
+     */
+    public LedgerProperties withLedgerSku(LedgerSku ledgerSku) {
+        this.ledgerSku = ledgerSku;
+        return this;
     }
 
     /**
