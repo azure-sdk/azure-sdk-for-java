@@ -34,6 +34,8 @@ import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.appcontainers.fluent.JobsClient;
 import com.azure.resourcemanager.appcontainers.fluent.models.ContainerAppJobExecutionsInner;
+import com.azure.resourcemanager.appcontainers.fluent.models.DiagnosticsCollectionInner;
+import com.azure.resourcemanager.appcontainers.fluent.models.DiagnosticsInner;
 import com.azure.resourcemanager.appcontainers.fluent.models.JobExecutionBaseInner;
 import com.azure.resourcemanager.appcontainers.fluent.models.JobInner;
 import com.azure.resourcemanager.appcontainers.fluent.models.JobSecretsCollectionInner;
@@ -70,6 +72,50 @@ public final class JobsClientImpl implements JobsClient {
     @Host("{$host}")
     @ServiceInterface(name = "ContainerAppsApiClie")
     public interface JobsService {
+        @Headers({"Content-Type: application/json"})
+        @Get(
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/jobs/{jobName}/detectors")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(DefaultErrorResponseErrorException.class)
+        Mono<Response<DiagnosticsCollectionInner>> listDetectors(
+            @HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("jobName") String jobName,
+            @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
+        @Get(
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/jobs/{jobName}/detectors/{detectorName}")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(DefaultErrorResponseErrorException.class)
+        Mono<Response<DiagnosticsInner>> getDetector(
+            @HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("jobName") String jobName,
+            @PathParam("detectorName") String detectorName,
+            @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
+        @Get(
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/jobs/{jobName}/detectorProperties/{apiName}")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(DefaultErrorResponseErrorException.class)
+        Mono<Response<JobInner>> proxyGet(
+            @HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("jobName") String jobName,
+            @PathParam("apiName") String apiName,
+            @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
         @Headers({"Content-Type: application/json"})
         @Get("/subscriptions/{subscriptionId}/providers/Microsoft.App/jobs")
         @ExpectedResponses({200})
@@ -228,6 +274,482 @@ public final class JobsClientImpl implements JobsClient {
             @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept,
             Context context);
+    }
+
+    /**
+     * Get the list of diagnostics for a given Container App Job.
+     *
+     * <p>Get the list of diagnostics for a Container App Job.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param jobName Job Name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of diagnostics for a Container App Job along with {@link Response} on successful completion of
+     *     {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<DiagnosticsCollectionInner>> listDetectorsWithResponseAsync(
+        String resourceGroupName, String jobName) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (jobName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter jobName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service
+                        .listDetectors(
+                            this.client.getEndpoint(),
+                            this.client.getSubscriptionId(),
+                            resourceGroupName,
+                            jobName,
+                            this.client.getApiVersion(),
+                            accept,
+                            context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Get the list of diagnostics for a given Container App Job.
+     *
+     * <p>Get the list of diagnostics for a Container App Job.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param jobName Job Name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of diagnostics for a Container App Job along with {@link Response} on successful completion of
+     *     {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<DiagnosticsCollectionInner>> listDetectorsWithResponseAsync(
+        String resourceGroupName, String jobName, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (jobName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter jobName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .listDetectors(
+                this.client.getEndpoint(),
+                this.client.getSubscriptionId(),
+                resourceGroupName,
+                jobName,
+                this.client.getApiVersion(),
+                accept,
+                context);
+    }
+
+    /**
+     * Get the list of diagnostics for a given Container App Job.
+     *
+     * <p>Get the list of diagnostics for a Container App Job.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param jobName Job Name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of diagnostics for a Container App Job on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<DiagnosticsCollectionInner> listDetectorsAsync(String resourceGroupName, String jobName) {
+        return listDetectorsWithResponseAsync(resourceGroupName, jobName)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Get the list of diagnostics for a given Container App Job.
+     *
+     * <p>Get the list of diagnostics for a Container App Job.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param jobName Job Name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of diagnostics for a Container App Job along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<DiagnosticsCollectionInner> listDetectorsWithResponse(
+        String resourceGroupName, String jobName, Context context) {
+        return listDetectorsWithResponseAsync(resourceGroupName, jobName, context).block();
+    }
+
+    /**
+     * Get the list of diagnostics for a given Container App Job.
+     *
+     * <p>Get the list of diagnostics for a Container App Job.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param jobName Job Name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of diagnostics for a Container App Job.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public DiagnosticsCollectionInner listDetectors(String resourceGroupName, String jobName) {
+        return listDetectorsWithResponse(resourceGroupName, jobName, Context.NONE).getValue();
+    }
+
+    /**
+     * Get the diagnostics data for a given Container App Job.
+     *
+     * <p>Get the diagnostics data for a Container App Job.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param jobName Job Name.
+     * @param detectorName Name of the Container App Job detector.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the diagnostics data for a Container App Job along with {@link Response} on successful completion of
+     *     {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<DiagnosticsInner>> getDetectorWithResponseAsync(
+        String resourceGroupName, String jobName, String detectorName) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (jobName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter jobName is required and cannot be null."));
+        }
+        if (detectorName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter detectorName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service
+                        .getDetector(
+                            this.client.getEndpoint(),
+                            this.client.getSubscriptionId(),
+                            resourceGroupName,
+                            jobName,
+                            detectorName,
+                            this.client.getApiVersion(),
+                            accept,
+                            context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Get the diagnostics data for a given Container App Job.
+     *
+     * <p>Get the diagnostics data for a Container App Job.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param jobName Job Name.
+     * @param detectorName Name of the Container App Job detector.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the diagnostics data for a Container App Job along with {@link Response} on successful completion of
+     *     {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<DiagnosticsInner>> getDetectorWithResponseAsync(
+        String resourceGroupName, String jobName, String detectorName, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (jobName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter jobName is required and cannot be null."));
+        }
+        if (detectorName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter detectorName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .getDetector(
+                this.client.getEndpoint(),
+                this.client.getSubscriptionId(),
+                resourceGroupName,
+                jobName,
+                detectorName,
+                this.client.getApiVersion(),
+                accept,
+                context);
+    }
+
+    /**
+     * Get the diagnostics data for a given Container App Job.
+     *
+     * <p>Get the diagnostics data for a Container App Job.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param jobName Job Name.
+     * @param detectorName Name of the Container App Job detector.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the diagnostics data for a Container App Job on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<DiagnosticsInner> getDetectorAsync(String resourceGroupName, String jobName, String detectorName) {
+        return getDetectorWithResponseAsync(resourceGroupName, jobName, detectorName)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Get the diagnostics data for a given Container App Job.
+     *
+     * <p>Get the diagnostics data for a Container App Job.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param jobName Job Name.
+     * @param detectorName Name of the Container App Job detector.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the diagnostics data for a Container App Job along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<DiagnosticsInner> getDetectorWithResponse(
+        String resourceGroupName, String jobName, String detectorName, Context context) {
+        return getDetectorWithResponseAsync(resourceGroupName, jobName, detectorName, context).block();
+    }
+
+    /**
+     * Get the diagnostics data for a given Container App Job.
+     *
+     * <p>Get the diagnostics data for a Container App Job.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param jobName Job Name.
+     * @param detectorName Name of the Container App Job detector.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the diagnostics data for a Container App Job.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public DiagnosticsInner getDetector(String resourceGroupName, String jobName, String detectorName) {
+        return getDetectorWithResponse(resourceGroupName, jobName, detectorName, Context.NONE).getValue();
+    }
+
+    /**
+     * Get the properties for a given Container App Job.
+     *
+     * <p>Get the properties of a Container App Job.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param jobName Job Name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the properties of a Container App Job along with {@link Response} on successful completion of {@link
+     *     Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<JobInner>> proxyGetWithResponseAsync(String resourceGroupName, String jobName) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (jobName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter jobName is required and cannot be null."));
+        }
+        final String apiName = "rootApi";
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service
+                        .proxyGet(
+                            this.client.getEndpoint(),
+                            this.client.getSubscriptionId(),
+                            resourceGroupName,
+                            jobName,
+                            apiName,
+                            this.client.getApiVersion(),
+                            accept,
+                            context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Get the properties for a given Container App Job.
+     *
+     * <p>Get the properties of a Container App Job.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param jobName Job Name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the properties of a Container App Job along with {@link Response} on successful completion of {@link
+     *     Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<JobInner>> proxyGetWithResponseAsync(
+        String resourceGroupName, String jobName, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (jobName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter jobName is required and cannot be null."));
+        }
+        final String apiName = "rootApi";
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .proxyGet(
+                this.client.getEndpoint(),
+                this.client.getSubscriptionId(),
+                resourceGroupName,
+                jobName,
+                apiName,
+                this.client.getApiVersion(),
+                accept,
+                context);
+    }
+
+    /**
+     * Get the properties for a given Container App Job.
+     *
+     * <p>Get the properties of a Container App Job.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param jobName Job Name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the properties of a Container App Job on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<JobInner> proxyGetAsync(String resourceGroupName, String jobName) {
+        return proxyGetWithResponseAsync(resourceGroupName, jobName).flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Get the properties for a given Container App Job.
+     *
+     * <p>Get the properties of a Container App Job.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param jobName Job Name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the properties of a Container App Job along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<JobInner> proxyGetWithResponse(String resourceGroupName, String jobName, Context context) {
+        return proxyGetWithResponseAsync(resourceGroupName, jobName, context).block();
+    }
+
+    /**
+     * Get the properties for a given Container App Job.
+     *
+     * <p>Get the properties of a Container App Job.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param jobName Job Name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the properties of a Container App Job.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public JobInner proxyGet(String resourceGroupName, String jobName) {
+        return proxyGetWithResponse(resourceGroupName, jobName, Context.NONE).getValue();
     }
 
     /**

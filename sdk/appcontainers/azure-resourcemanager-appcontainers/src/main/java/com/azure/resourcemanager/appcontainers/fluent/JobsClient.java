@@ -12,6 +12,8 @@ import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.appcontainers.fluent.models.ContainerAppJobExecutionsInner;
+import com.azure.resourcemanager.appcontainers.fluent.models.DiagnosticsCollectionInner;
+import com.azure.resourcemanager.appcontainers.fluent.models.DiagnosticsInner;
 import com.azure.resourcemanager.appcontainers.fluent.models.JobExecutionBaseInner;
 import com.azure.resourcemanager.appcontainers.fluent.models.JobInner;
 import com.azure.resourcemanager.appcontainers.fluent.models.JobSecretsCollectionInner;
@@ -20,6 +22,109 @@ import com.azure.resourcemanager.appcontainers.models.JobPatchProperties;
 
 /** An instance of this class provides access to all the operations defined in JobsClient. */
 public interface JobsClient {
+    /**
+     * Get the list of diagnostics for a given Container App Job.
+     *
+     * <p>Get the list of diagnostics for a Container App Job.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param jobName Job Name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.resourcemanager.appcontainers.models.DefaultErrorResponseErrorException thrown if the request
+     *     is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of diagnostics for a Container App Job along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<DiagnosticsCollectionInner> listDetectorsWithResponse(
+        String resourceGroupName, String jobName, Context context);
+
+    /**
+     * Get the list of diagnostics for a given Container App Job.
+     *
+     * <p>Get the list of diagnostics for a Container App Job.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param jobName Job Name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.resourcemanager.appcontainers.models.DefaultErrorResponseErrorException thrown if the request
+     *     is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of diagnostics for a Container App Job.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    DiagnosticsCollectionInner listDetectors(String resourceGroupName, String jobName);
+
+    /**
+     * Get the diagnostics data for a given Container App Job.
+     *
+     * <p>Get the diagnostics data for a Container App Job.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param jobName Job Name.
+     * @param detectorName Name of the Container App Job detector.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.resourcemanager.appcontainers.models.DefaultErrorResponseErrorException thrown if the request
+     *     is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the diagnostics data for a Container App Job along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<DiagnosticsInner> getDetectorWithResponse(
+        String resourceGroupName, String jobName, String detectorName, Context context);
+
+    /**
+     * Get the diagnostics data for a given Container App Job.
+     *
+     * <p>Get the diagnostics data for a Container App Job.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param jobName Job Name.
+     * @param detectorName Name of the Container App Job detector.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.resourcemanager.appcontainers.models.DefaultErrorResponseErrorException thrown if the request
+     *     is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the diagnostics data for a Container App Job.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    DiagnosticsInner getDetector(String resourceGroupName, String jobName, String detectorName);
+
+    /**
+     * Get the properties for a given Container App Job.
+     *
+     * <p>Get the properties of a Container App Job.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param jobName Job Name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.resourcemanager.appcontainers.models.DefaultErrorResponseErrorException thrown if the request
+     *     is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the properties of a Container App Job along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<JobInner> proxyGetWithResponse(String resourceGroupName, String jobName, Context context);
+
+    /**
+     * Get the properties for a given Container App Job.
+     *
+     * <p>Get the properties of a Container App Job.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param jobName Job Name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.resourcemanager.appcontainers.models.DefaultErrorResponseErrorException thrown if the request
+     *     is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the properties of a Container App Job.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    JobInner proxyGet(String resourceGroupName, String jobName);
+
     /**
      * Get the Container Apps Jobs in a given subscription.
      *
