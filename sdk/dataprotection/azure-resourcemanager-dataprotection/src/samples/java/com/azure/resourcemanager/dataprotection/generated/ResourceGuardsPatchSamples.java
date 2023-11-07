@@ -11,7 +11,7 @@ import java.util.Map;
 /** Samples for ResourceGuards Patch. */
 public final class ResourceGuardsPatchSamples {
     /*
-     * x-ms-original-file: specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2023-05-01/examples/ResourceGuardCRUD/PatchResourceGuard.json
+     * x-ms-original-file: specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2023-08-01/examples/ResourceGuardCRUD/PatchResourceGuard.json
      */
     /**
      * Sample code: Patch ResourceGuard.
@@ -28,6 +28,7 @@ public final class ResourceGuardsPatchSamples {
         resource.update().withTags(mapOf("newKey", "fakeTokenPlaceholder")).apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

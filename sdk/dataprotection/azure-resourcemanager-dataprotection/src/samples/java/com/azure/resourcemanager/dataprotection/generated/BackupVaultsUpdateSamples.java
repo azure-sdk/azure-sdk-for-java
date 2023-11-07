@@ -15,7 +15,7 @@ import java.util.Map;
 /** Samples for BackupVaults Update. */
 public final class BackupVaultsUpdateSamples {
     /*
-     * x-ms-original-file: specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2023-05-01/examples/VaultCRUD/PatchBackupVault.json
+     * x-ms-original-file: specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2023-08-01/examples/VaultCRUD/PatchBackupVault.json
      */
     /**
      * Sample code: Patch BackupVault.
@@ -41,6 +41,7 @@ public final class BackupVaultsUpdateSamples {
             .apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
