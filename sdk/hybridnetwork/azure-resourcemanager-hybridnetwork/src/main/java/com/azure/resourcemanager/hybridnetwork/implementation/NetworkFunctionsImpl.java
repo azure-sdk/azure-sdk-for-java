@@ -11,6 +11,7 @@ import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.hybridnetwork.fluent.NetworkFunctionsClient;
 import com.azure.resourcemanager.hybridnetwork.fluent.models.NetworkFunctionInner;
+import com.azure.resourcemanager.hybridnetwork.models.ExecuteRequestParameters;
 import com.azure.resourcemanager.hybridnetwork.models.NetworkFunction;
 import com.azure.resourcemanager.hybridnetwork.models.NetworkFunctions;
 
@@ -79,6 +80,16 @@ public final class NetworkFunctionsImpl implements NetworkFunctions {
         PagedIterable<NetworkFunctionInner> inner =
             this.serviceClient().listByResourceGroup(resourceGroupName, context);
         return Utils.mapPage(inner, inner1 -> new NetworkFunctionImpl(inner1, this.manager()));
+    }
+
+    public void executeRequest(
+        String resourceGroupName, String networkFunctionName, ExecuteRequestParameters parameters) {
+        this.serviceClient().executeRequest(resourceGroupName, networkFunctionName, parameters);
+    }
+
+    public void executeRequest(
+        String resourceGroupName, String networkFunctionName, ExecuteRequestParameters parameters, Context context) {
+        this.serviceClient().executeRequest(resourceGroupName, networkFunctionName, parameters, context);
     }
 
     public NetworkFunction getById(String id) {
