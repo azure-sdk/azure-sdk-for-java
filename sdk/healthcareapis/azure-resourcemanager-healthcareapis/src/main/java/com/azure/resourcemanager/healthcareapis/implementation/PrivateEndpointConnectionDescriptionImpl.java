@@ -49,6 +49,10 @@ public final class PrivateEndpointConnectionDescriptionImpl
         return this.innerModel().systemData();
     }
 
+    public String resourceGroupName() {
+        return resourceGroupName;
+    }
+
     public PrivateEndpointConnectionDescriptionInner innerModel() {
         return this.innerObject;
     }

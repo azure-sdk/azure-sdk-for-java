@@ -17,7 +17,7 @@ import java.util.Map;
 /** Samples for IotConnectors CreateOrUpdate. */
 public final class IotConnectorsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/healthcareapis/resource-manager/Microsoft.HealthcareApis/stable/2021-11-01/examples/iotconnectors/iotconnector_Create.json
+     * x-ms-original-file: specification/healthcareapis/resource-manager/Microsoft.HealthcareApis/stable/2023-09-06/examples/iotconnectors/iotconnector_Create.json
      */
     /**
      * Sample code: Create an IoT Connector.
@@ -50,6 +50,7 @@ public final class IotConnectorsCreateOrUpdateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

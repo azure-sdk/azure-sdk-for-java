@@ -26,6 +26,10 @@ public final class WorkspaceInner extends TaggedResource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
+    /** Creates an instance of WorkspaceInner class. */
+    public WorkspaceInner() {
+    }
+
     /**
      * Get the properties property: Workspaces resource specific properties.
      *

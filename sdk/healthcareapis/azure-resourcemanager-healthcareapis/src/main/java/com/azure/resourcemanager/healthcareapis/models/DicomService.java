@@ -84,6 +84,13 @@ public interface DicomService {
     DicomServiceAuthenticationConfiguration authenticationConfiguration();
 
     /**
+     * Gets the corsConfiguration property: Dicom Service Cors configuration.
+     *
+     * @return the corsConfiguration value.
+     */
+    CorsConfiguration corsConfiguration();
+
+    /**
      * Gets the serviceUrl property: The url of the Dicom Services.
      *
      * @return the serviceUrl value.
@@ -107,6 +114,13 @@ public interface DicomService {
     PublicNetworkAccess publicNetworkAccess();
 
     /**
+     * Gets the eventState property: DICOM Service event support status.
+     *
+     * @return the eventState value.
+     */
+    ServiceEventState eventState();
+
+    /**
      * Gets the region of the resource.
      *
      * @return the region of the resource.
@@ -121,6 +135,13 @@ public interface DicomService {
     String regionName();
 
     /**
+     * Gets the name of the resource group.
+     *
+     * @return the name of the resource group.
+     */
+    String resourceGroupName();
+
+    /**
      * Gets the inner com.azure.resourcemanager.healthcareapis.fluent.models.DicomServiceInner object.
      *
      * @return the inner object.
@@ -131,11 +152,13 @@ public interface DicomService {
     interface Definition
         extends DefinitionStages.Blank, DefinitionStages.WithParentResource, DefinitionStages.WithCreate {
     }
+
     /** The DicomService definition stages. */
     interface DefinitionStages {
         /** The first stage of the DicomService definition. */
         interface Blank extends WithParentResource {
         }
+
         /** The stage of the DicomService definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -147,6 +170,7 @@ public interface DicomService {
              */
             WithCreate withExistingWorkspace(String resourceGroupName, String workspaceName);
         }
+
         /**
          * The stage of the DicomService definition which contains all the minimum required properties for the resource
          * to be created, but also allows for any other optional properties to be specified.
@@ -157,6 +181,7 @@ public interface DicomService {
                 DefinitionStages.WithEtag,
                 DefinitionStages.WithIdentity,
                 DefinitionStages.WithAuthenticationConfiguration,
+                DefinitionStages.WithCorsConfiguration,
                 DefinitionStages.WithPublicNetworkAccess {
             /**
              * Executes the create request.
@@ -173,6 +198,7 @@ public interface DicomService {
              */
             DicomService create(Context context);
         }
+
         /** The stage of the DicomService definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -191,6 +217,7 @@ public interface DicomService {
              */
             WithCreate withRegion(String location);
         }
+
         /** The stage of the DicomService definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -201,6 +228,7 @@ public interface DicomService {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
         /** The stage of the DicomService definition allowing to specify etag. */
         interface WithEtag {
             /**
@@ -212,6 +240,7 @@ public interface DicomService {
              */
             WithCreate withEtag(String etag);
         }
+
         /** The stage of the DicomService definition allowing to specify identity. */
         interface WithIdentity {
             /**
@@ -223,6 +252,7 @@ public interface DicomService {
              */
             WithCreate withIdentity(ServiceManagedIdentityIdentity identity);
         }
+
         /** The stage of the DicomService definition allowing to specify authenticationConfiguration. */
         interface WithAuthenticationConfiguration {
             /**
@@ -234,6 +264,18 @@ public interface DicomService {
             WithCreate withAuthenticationConfiguration(
                 DicomServiceAuthenticationConfiguration authenticationConfiguration);
         }
+
+        /** The stage of the DicomService definition allowing to specify corsConfiguration. */
+        interface WithCorsConfiguration {
+            /**
+             * Specifies the corsConfiguration property: Dicom Service Cors configuration..
+             *
+             * @param corsConfiguration Dicom Service Cors configuration.
+             * @return the next definition stage.
+             */
+            WithCreate withCorsConfiguration(CorsConfiguration corsConfiguration);
+        }
+
         /** The stage of the DicomService definition allowing to specify publicNetworkAccess. */
         interface WithPublicNetworkAccess {
             /**
@@ -247,6 +289,7 @@ public interface DicomService {
             WithCreate withPublicNetworkAccess(PublicNetworkAccess publicNetworkAccess);
         }
     }
+
     /**
      * Begins update for the DicomService resource.
      *
@@ -271,6 +314,7 @@ public interface DicomService {
          */
         DicomService apply(Context context);
     }
+
     /** The DicomService update stages. */
     interface UpdateStages {
         /** The stage of the DicomService update allowing to specify tags. */
@@ -283,6 +327,7 @@ public interface DicomService {
              */
             Update withTags(Map<String, String> tags);
         }
+
         /** The stage of the DicomService update allowing to specify identity. */
         interface WithIdentity {
             /**
@@ -295,6 +340,7 @@ public interface DicomService {
             Update withIdentity(ServiceManagedIdentityIdentity identity);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

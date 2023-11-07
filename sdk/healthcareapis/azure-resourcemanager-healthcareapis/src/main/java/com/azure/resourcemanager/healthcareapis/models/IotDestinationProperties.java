@@ -16,6 +16,10 @@ public class IotDestinationProperties {
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ProvisioningState provisioningState;
 
+    /** Creates an instance of IotDestinationProperties class. */
+    public IotDestinationProperties() {
+    }
+
     /**
      * Get the provisioningState property: The provisioning state.
      *
