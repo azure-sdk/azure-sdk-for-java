@@ -17,6 +17,15 @@ public final class NginxPrivateIpAllocationMethod extends ExpandableStringEnum<N
     public static final NginxPrivateIpAllocationMethod DYNAMIC = fromString("Dynamic");
 
     /**
+     * Creates a new instance of NginxPrivateIpAllocationMethod value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public NginxPrivateIpAllocationMethod() {
+    }
+
+    /**
      * Creates or finds a NginxPrivateIpAllocationMethod from its string representation.
      *
      * @param name a name to look for.

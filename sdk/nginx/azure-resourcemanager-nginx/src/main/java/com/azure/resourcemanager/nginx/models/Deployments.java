@@ -11,36 +11,36 @@ import com.azure.core.util.Context;
 /** Resource collection API of Deployments. */
 public interface Deployments {
     /**
-     * Get the Nginx deployment.
+     * Get the NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Nginx deployment along with {@link Response}.
+     * @return the NGINX deployment along with {@link Response}.
      */
     Response<NginxDeployment> getByResourceGroupWithResponse(
         String resourceGroupName, String deploymentName, Context context);
 
     /**
-     * Get the Nginx deployment.
+     * Get the NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Nginx deployment.
+     * @return the NGINX deployment.
      */
     NginxDeployment getByResourceGroup(String resourceGroupName, String deploymentName);
 
     /**
-     * Delete the Nginx deployment resource.
+     * Delete the NGINX deployment resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -48,10 +48,10 @@ public interface Deployments {
     void deleteByResourceGroup(String resourceGroupName, String deploymentName);
 
     /**
-     * Delete the Nginx deployment resource.
+     * Delete the NGINX deployment resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -60,7 +60,7 @@ public interface Deployments {
     void delete(String resourceGroupName, String deploymentName, Context context);
 
     /**
-     * List the Nginx deployments resources.
+     * List the NGINX deployments resources.
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -69,7 +69,7 @@ public interface Deployments {
     PagedIterable<NginxDeployment> list();
 
     /**
-     * List the Nginx deployments resources.
+     * List the NGINX deployments resources.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -80,7 +80,7 @@ public interface Deployments {
     PagedIterable<NginxDeployment> list(Context context);
 
     /**
-     * List all Nginx deployments under the specified resource group.
+     * List all NGINX deployments under the specified resource group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -91,7 +91,7 @@ public interface Deployments {
     PagedIterable<NginxDeployment> listByResourceGroup(String resourceGroupName);
 
     /**
-     * List all Nginx deployments under the specified resource group.
+     * List all NGINX deployments under the specified resource group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
@@ -103,30 +103,30 @@ public interface Deployments {
     PagedIterable<NginxDeployment> listByResourceGroup(String resourceGroupName, Context context);
 
     /**
-     * Get the Nginx deployment.
+     * Get the NGINX deployment.
      *
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Nginx deployment along with {@link Response}.
+     * @return the NGINX deployment along with {@link Response}.
      */
     NginxDeployment getById(String id);
 
     /**
-     * Get the Nginx deployment.
+     * Get the NGINX deployment.
      *
      * @param id the resource ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Nginx deployment along with {@link Response}.
+     * @return the NGINX deployment along with {@link Response}.
      */
     Response<NginxDeployment> getByIdWithResponse(String id, Context context);
 
     /**
-     * Delete the Nginx deployment resource.
+     * Delete the NGINX deployment resource.
      *
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -136,7 +136,7 @@ public interface Deployments {
     void deleteById(String id);
 
     /**
-     * Delete the Nginx deployment resource.
+     * Delete the NGINX deployment resource.
      *
      * @param id the resource ID.
      * @param context The context to associate with this operation.

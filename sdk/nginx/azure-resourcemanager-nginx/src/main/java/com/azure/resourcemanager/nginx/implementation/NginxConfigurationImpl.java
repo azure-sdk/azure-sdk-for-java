@@ -10,8 +10,6 @@ import com.azure.core.util.Context;
 import com.azure.resourcemanager.nginx.fluent.models.NginxConfigurationInner;
 import com.azure.resourcemanager.nginx.models.NginxConfiguration;
 import com.azure.resourcemanager.nginx.models.NginxConfigurationProperties;
-import java.util.Collections;
-import java.util.Map;
 
 public final class NginxConfigurationImpl
     implements NginxConfiguration, NginxConfiguration.Definition, NginxConfiguration.Update {
@@ -31,21 +29,12 @@ public final class NginxConfigurationImpl
         return this.innerModel().type();
     }
 
-    public String location() {
-        return this.innerModel().location();
-    }
-
-    public Map<String, String> tags() {
-        Map<String, String> inner = this.innerModel().tags();
-        if (inner != null) {
-            return Collections.unmodifiableMap(inner);
-        } else {
-            return Collections.emptyMap();
-        }
-    }
-
     public NginxConfigurationProperties properties() {
         return this.innerModel().properties();
+    }
+
+    public String location() {
+        return this.innerModel().location();
     }
 
     public SystemData systemData() {
@@ -166,11 +155,6 @@ public final class NginxConfigurationImpl
 
     public NginxConfigurationImpl withRegion(String location) {
         this.innerModel().withLocation(location);
-        return this;
-    }
-
-    public NginxConfigurationImpl withTags(Map<String, String> tags) {
-        this.innerModel().withTags(tags);
         return this;
     }
 
