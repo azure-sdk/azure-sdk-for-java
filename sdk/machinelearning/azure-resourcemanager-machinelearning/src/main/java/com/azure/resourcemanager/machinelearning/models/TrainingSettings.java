@@ -55,6 +55,15 @@ public class TrainingSettings {
     @JsonProperty(value = "stackEnsembleSettings")
     private StackEnsembleSettings stackEnsembleSettings;
 
+    /*
+     * TrainingMode mode - Setting to 'auto' is same as setting it to 'non-distributed' for now, however in the future
+     * may result in mixed mode or heuristics based mode selection. Default is 'auto'.
+     * If 'Distributed' then only distributed featurization is used and distributed algorithms are chosen.
+     * If 'NonDistributed' then only non distributed algorithms are chosen.
+     */
+    @JsonProperty(value = "trainingMode")
+    private TrainingMode trainingMode;
+
     /** Creates an instance of TrainingSettings class. */
     public TrainingSettings() {
     }
@@ -200,6 +209,32 @@ public class TrainingSettings {
      */
     public TrainingSettings withStackEnsembleSettings(StackEnsembleSettings stackEnsembleSettings) {
         this.stackEnsembleSettings = stackEnsembleSettings;
+        return this;
+    }
+
+    /**
+     * Get the trainingMode property: TrainingMode mode - Setting to 'auto' is same as setting it to 'non-distributed'
+     * for now, however in the future may result in mixed mode or heuristics based mode selection. Default is 'auto'. If
+     * 'Distributed' then only distributed featurization is used and distributed algorithms are chosen. If
+     * 'NonDistributed' then only non distributed algorithms are chosen.
+     *
+     * @return the trainingMode value.
+     */
+    public TrainingMode trainingMode() {
+        return this.trainingMode;
+    }
+
+    /**
+     * Set the trainingMode property: TrainingMode mode - Setting to 'auto' is same as setting it to 'non-distributed'
+     * for now, however in the future may result in mixed mode or heuristics based mode selection. Default is 'auto'. If
+     * 'Distributed' then only distributed featurization is used and distributed algorithms are chosen. If
+     * 'NonDistributed' then only non distributed algorithms are chosen.
+     *
+     * @param trainingMode the trainingMode value to set.
+     * @return the TrainingSettings object itself.
+     */
+    public TrainingSettings withTrainingMode(TrainingMode trainingMode) {
+        this.trainingMode = trainingMode;
         return this;
     }
 

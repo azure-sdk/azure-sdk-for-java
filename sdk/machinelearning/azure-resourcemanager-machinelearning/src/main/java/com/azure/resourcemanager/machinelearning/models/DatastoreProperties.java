@@ -23,7 +23,9 @@ import java.util.Map;
     @JsonSubTypes.Type(name = "AzureBlob", value = AzureBlobDatastore.class),
     @JsonSubTypes.Type(name = "AzureDataLakeGen1", value = AzureDataLakeGen1Datastore.class),
     @JsonSubTypes.Type(name = "AzureDataLakeGen2", value = AzureDataLakeGen2Datastore.class),
-    @JsonSubTypes.Type(name = "AzureFile", value = AzureFileDatastore.class)
+    @JsonSubTypes.Type(name = "AzureFile", value = AzureFileDatastore.class),
+    @JsonSubTypes.Type(name = "Hdfs", value = HdfsDatastore.class),
+    @JsonSubTypes.Type(name = "OneLake", value = OneLakeDatastore.class)
 })
 @Fluent
 public class DatastoreProperties extends ResourceBase {
@@ -32,6 +34,12 @@ public class DatastoreProperties extends ResourceBase {
      */
     @JsonProperty(value = "credentials", required = true)
     private DatastoreCredentials credentials;
+
+    /*
+     * Intellectual Property details.
+     */
+    @JsonProperty(value = "intellectualProperty")
+    private IntellectualProperty intellectualProperty;
 
     /*
      * Readonly property to indicate if datastore is the workspace default datastore
@@ -60,6 +68,26 @@ public class DatastoreProperties extends ResourceBase {
      */
     public DatastoreProperties withCredentials(DatastoreCredentials credentials) {
         this.credentials = credentials;
+        return this;
+    }
+
+    /**
+     * Get the intellectualProperty property: Intellectual Property details.
+     *
+     * @return the intellectualProperty value.
+     */
+    public IntellectualProperty intellectualProperty() {
+        return this.intellectualProperty;
+    }
+
+    /**
+     * Set the intellectualProperty property: Intellectual Property details.
+     *
+     * @param intellectualProperty the intellectualProperty value to set.
+     * @return the DatastoreProperties object itself.
+     */
+    public DatastoreProperties withIntellectualProperty(IntellectualProperty intellectualProperty) {
+        this.intellectualProperty = intellectualProperty;
         return this;
     }
 
@@ -107,6 +135,9 @@ public class DatastoreProperties extends ResourceBase {
                     new IllegalArgumentException("Missing required property credentials in model DatastoreProperties"));
         } else {
             credentials().validate();
+        }
+        if (intellectualProperty() != null) {
+            intellectualProperty().validate();
         }
     }
 

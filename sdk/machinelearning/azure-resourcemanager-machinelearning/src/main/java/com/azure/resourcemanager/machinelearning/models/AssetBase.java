@@ -12,13 +12,21 @@ import java.util.Map;
 @Fluent
 public class AssetBase extends ResourceBase {
     /*
-     * If the name version are system generated (anonymous registration).
+     * Specifies the lifecycle setting of managed data asset.
+     */
+    @JsonProperty(value = "autoDeleteSetting")
+    private AutoDeleteSetting autoDeleteSetting;
+
+    /*
+     * If the name version are system generated (anonymous registration). For types where Stage is defined, when Stage
+     * is provided it will be used to populate IsAnonymous
      */
     @JsonProperty(value = "isAnonymous")
     private Boolean isAnonymous;
 
     /*
-     * Is the asset archived?
+     * Is the asset archived? For types where Stage is defined, when Stage is provided it will be used to populate
+     * IsArchived
      */
     @JsonProperty(value = "isArchived")
     private Boolean isArchived;
@@ -28,7 +36,28 @@ public class AssetBase extends ResourceBase {
     }
 
     /**
-     * Get the isAnonymous property: If the name version are system generated (anonymous registration).
+     * Get the autoDeleteSetting property: Specifies the lifecycle setting of managed data asset.
+     *
+     * @return the autoDeleteSetting value.
+     */
+    public AutoDeleteSetting autoDeleteSetting() {
+        return this.autoDeleteSetting;
+    }
+
+    /**
+     * Set the autoDeleteSetting property: Specifies the lifecycle setting of managed data asset.
+     *
+     * @param autoDeleteSetting the autoDeleteSetting value to set.
+     * @return the AssetBase object itself.
+     */
+    public AssetBase withAutoDeleteSetting(AutoDeleteSetting autoDeleteSetting) {
+        this.autoDeleteSetting = autoDeleteSetting;
+        return this;
+    }
+
+    /**
+     * Get the isAnonymous property: If the name version are system generated (anonymous registration). For types where
+     * Stage is defined, when Stage is provided it will be used to populate IsAnonymous.
      *
      * @return the isAnonymous value.
      */
@@ -37,7 +66,8 @@ public class AssetBase extends ResourceBase {
     }
 
     /**
-     * Set the isAnonymous property: If the name version are system generated (anonymous registration).
+     * Set the isAnonymous property: If the name version are system generated (anonymous registration). For types where
+     * Stage is defined, when Stage is provided it will be used to populate IsAnonymous.
      *
      * @param isAnonymous the isAnonymous value to set.
      * @return the AssetBase object itself.
@@ -48,7 +78,8 @@ public class AssetBase extends ResourceBase {
     }
 
     /**
-     * Get the isArchived property: Is the asset archived?.
+     * Get the isArchived property: Is the asset archived? For types where Stage is defined, when Stage is provided it
+     * will be used to populate IsArchived.
      *
      * @return the isArchived value.
      */
@@ -57,7 +88,8 @@ public class AssetBase extends ResourceBase {
     }
 
     /**
-     * Set the isArchived property: Is the asset archived?.
+     * Set the isArchived property: Is the asset archived? For types where Stage is defined, when Stage is provided it
+     * will be used to populate IsArchived.
      *
      * @param isArchived the isArchived value to set.
      * @return the AssetBase object itself.
@@ -96,5 +128,8 @@ public class AssetBase extends ResourceBase {
     @Override
     public void validate() {
         super.validate();
+        if (autoDeleteSetting() != null) {
+            autoDeleteSetting().validate();
+        }
     }
 }
