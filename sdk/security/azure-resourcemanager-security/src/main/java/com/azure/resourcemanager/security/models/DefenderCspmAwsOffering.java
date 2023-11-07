@@ -32,6 +32,24 @@ public final class DefenderCspmAwsOffering extends CloudOffering {
     @JsonProperty(value = "databasesDspm")
     private DefenderCspmAwsOfferingDatabasesDspm databasesDspm;
 
+    /*
+     * Defenders CSPM Cloud infrastructure entitlement management (CIEM) offering configurations
+     */
+    @JsonProperty(value = "ciem")
+    private DefenderCspmAwsOfferingCiem ciem;
+
+    /*
+     * The Microsoft Defender container image assessment configuration
+     */
+    @JsonProperty(value = "mdcContainersImageAssessment")
+    private DefenderCspmAwsOfferingMdcContainersImageAssessment mdcContainersImageAssessment;
+
+    /*
+     * The Microsoft Defender container agentless discovery K8s configuration
+     */
+    @JsonProperty(value = "mdcContainersAgentlessDiscoveryK8s")
+    private DefenderCspmAwsOfferingMdcContainersAgentlessDiscoveryK8S mdcContainersAgentlessDiscoveryK8S;
+
     /** Creates an instance of DefenderCspmAwsOffering class. */
     public DefenderCspmAwsOffering() {
     }
@@ -98,6 +116,70 @@ public final class DefenderCspmAwsOffering extends CloudOffering {
     }
 
     /**
+     * Get the ciem property: Defenders CSPM Cloud infrastructure entitlement management (CIEM) offering configurations.
+     *
+     * @return the ciem value.
+     */
+    public DefenderCspmAwsOfferingCiem ciem() {
+        return this.ciem;
+    }
+
+    /**
+     * Set the ciem property: Defenders CSPM Cloud infrastructure entitlement management (CIEM) offering configurations.
+     *
+     * @param ciem the ciem value to set.
+     * @return the DefenderCspmAwsOffering object itself.
+     */
+    public DefenderCspmAwsOffering withCiem(DefenderCspmAwsOfferingCiem ciem) {
+        this.ciem = ciem;
+        return this;
+    }
+
+    /**
+     * Get the mdcContainersImageAssessment property: The Microsoft Defender container image assessment configuration.
+     *
+     * @return the mdcContainersImageAssessment value.
+     */
+    public DefenderCspmAwsOfferingMdcContainersImageAssessment mdcContainersImageAssessment() {
+        return this.mdcContainersImageAssessment;
+    }
+
+    /**
+     * Set the mdcContainersImageAssessment property: The Microsoft Defender container image assessment configuration.
+     *
+     * @param mdcContainersImageAssessment the mdcContainersImageAssessment value to set.
+     * @return the DefenderCspmAwsOffering object itself.
+     */
+    public DefenderCspmAwsOffering withMdcContainersImageAssessment(
+        DefenderCspmAwsOfferingMdcContainersImageAssessment mdcContainersImageAssessment) {
+        this.mdcContainersImageAssessment = mdcContainersImageAssessment;
+        return this;
+    }
+
+    /**
+     * Get the mdcContainersAgentlessDiscoveryK8S property: The Microsoft Defender container agentless discovery K8s
+     * configuration.
+     *
+     * @return the mdcContainersAgentlessDiscoveryK8S value.
+     */
+    public DefenderCspmAwsOfferingMdcContainersAgentlessDiscoveryK8S mdcContainersAgentlessDiscoveryK8S() {
+        return this.mdcContainersAgentlessDiscoveryK8S;
+    }
+
+    /**
+     * Set the mdcContainersAgentlessDiscoveryK8S property: The Microsoft Defender container agentless discovery K8s
+     * configuration.
+     *
+     * @param mdcContainersAgentlessDiscoveryK8S the mdcContainersAgentlessDiscoveryK8S value to set.
+     * @return the DefenderCspmAwsOffering object itself.
+     */
+    public DefenderCspmAwsOffering withMdcContainersAgentlessDiscoveryK8S(
+        DefenderCspmAwsOfferingMdcContainersAgentlessDiscoveryK8S mdcContainersAgentlessDiscoveryK8S) {
+        this.mdcContainersAgentlessDiscoveryK8S = mdcContainersAgentlessDiscoveryK8S;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -113,6 +195,15 @@ public final class DefenderCspmAwsOffering extends CloudOffering {
         }
         if (databasesDspm() != null) {
             databasesDspm().validate();
+        }
+        if (ciem() != null) {
+            ciem().validate();
+        }
+        if (mdcContainersImageAssessment() != null) {
+            mdcContainersImageAssessment().validate();
+        }
+        if (mdcContainersAgentlessDiscoveryK8S() != null) {
+            mdcContainersAgentlessDiscoveryK8S().validate();
         }
     }
 }
