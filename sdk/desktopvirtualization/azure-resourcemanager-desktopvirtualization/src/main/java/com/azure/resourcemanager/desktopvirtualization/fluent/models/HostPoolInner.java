@@ -382,6 +382,15 @@ public final class HostPoolInner extends ResourceModelWithAllowedPropertySet {
     }
 
     /**
+     * Get the appAttachPackageReferences property: List of App Attach Package links.
+     *
+     * @return the appAttachPackageReferences value.
+     */
+    public List<String> appAttachPackageReferences() {
+        return this.innerProperties() == null ? null : this.innerProperties().appAttachPackageReferences();
+    }
+
+    /**
      * Get the ssoadfsAuthority property: URL to customer ADFS server for signing WVD SSO certificates.
      *
      * @return the ssoadfsAuthority value.

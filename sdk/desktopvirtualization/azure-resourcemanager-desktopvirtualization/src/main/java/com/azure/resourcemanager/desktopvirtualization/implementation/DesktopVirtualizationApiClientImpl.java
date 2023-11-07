@@ -22,6 +22,8 @@ import com.azure.core.util.polling.LongRunningOperationStatus;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
+import com.azure.resourcemanager.desktopvirtualization.fluent.AppAttachPackageInfoesClient;
+import com.azure.resourcemanager.desktopvirtualization.fluent.AppAttachPackagesClient;
 import com.azure.resourcemanager.desktopvirtualization.fluent.ApplicationGroupsClient;
 import com.azure.resourcemanager.desktopvirtualization.fluent.ApplicationsClient;
 import com.azure.resourcemanager.desktopvirtualization.fluent.DesktopVirtualizationApiClient;
@@ -303,6 +305,18 @@ public final class DesktopVirtualizationApiClientImpl implements DesktopVirtuali
         return this.msixPackages;
     }
 
+    /** The AppAttachPackageInfoesClient object to access its operations. */
+    private final AppAttachPackageInfoesClient appAttachPackageInfoes;
+
+    /**
+     * Gets the AppAttachPackageInfoesClient object to access its operations.
+     *
+     * @return the AppAttachPackageInfoesClient object.
+     */
+    public AppAttachPackageInfoesClient getAppAttachPackageInfoes() {
+        return this.appAttachPackageInfoes;
+    }
+
     /** The MsixImagesClient object to access its operations. */
     private final MsixImagesClient msixImages;
 
@@ -313,6 +327,18 @@ public final class DesktopVirtualizationApiClientImpl implements DesktopVirtuali
      */
     public MsixImagesClient getMsixImages() {
         return this.msixImages;
+    }
+
+    /** The AppAttachPackagesClient object to access its operations. */
+    private final AppAttachPackagesClient appAttachPackages;
+
+    /**
+     * Gets the AppAttachPackagesClient object to access its operations.
+     *
+     * @return the AppAttachPackagesClient object.
+     */
+    public AppAttachPackagesClient getAppAttachPackages() {
+        return this.appAttachPackages;
     }
 
     /**
@@ -337,7 +363,7 @@ public final class DesktopVirtualizationApiClientImpl implements DesktopVirtuali
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2023-09-05";
+        this.apiVersion = "2023-10-04-preview";
         this.operations = new OperationsClientImpl(this);
         this.workspaces = new WorkspacesClientImpl(this);
         this.privateEndpointConnections = new PrivateEndpointConnectionsClientImpl(this);
@@ -353,7 +379,9 @@ public final class DesktopVirtualizationApiClientImpl implements DesktopVirtuali
         this.userSessions = new UserSessionsClientImpl(this);
         this.sessionHosts = new SessionHostsClientImpl(this);
         this.msixPackages = new MsixPackagesClientImpl(this);
+        this.appAttachPackageInfoes = new AppAttachPackageInfoesClientImpl(this);
         this.msixImages = new MsixImagesClientImpl(this);
+        this.appAttachPackages = new AppAttachPackagesClientImpl(this);
     }
 
     /**

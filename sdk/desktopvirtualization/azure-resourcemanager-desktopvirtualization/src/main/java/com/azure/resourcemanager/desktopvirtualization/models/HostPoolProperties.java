@@ -101,6 +101,13 @@ public interface HostPoolProperties {
     List<String> applicationGroupReferences();
 
     /**
+     * Gets the appAttachPackageReferences property: List of App Attach Package links.
+     *
+     * @return the appAttachPackageReferences value.
+     */
+    List<String> appAttachPackageReferences();
+
+    /**
      * Gets the ssoadfsAuthority property: URL to customer ADFS server for signing WVD SSO certificates.
      *
      * @return the ssoadfsAuthority value.
