@@ -83,6 +83,29 @@ public final class AzureWorkloadSapHanaRestoreWithRehydrateRequest extends Azure
 
     /** {@inheritDoc} */
     @Override
+    public AzureWorkloadSapHanaRestoreWithRehydrateRequest withTargetResourceGroupName(String targetResourceGroupName) {
+        super.withTargetResourceGroupName(targetResourceGroupName);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public AzureWorkloadSapHanaRestoreWithRehydrateRequest withUserAssignedManagedIdentityDetails(
+        UserAssignedManagedIdentityDetails userAssignedManagedIdentityDetails) {
+        super.withUserAssignedManagedIdentityDetails(userAssignedManagedIdentityDetails);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public AzureWorkloadSapHanaRestoreWithRehydrateRequest withSnapshotRestoreParameters(
+        SnapshotRestoreParameters snapshotRestoreParameters) {
+        super.withSnapshotRestoreParameters(snapshotRestoreParameters);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public AzureWorkloadSapHanaRestoreWithRehydrateRequest withTargetVirtualMachineId(String targetVirtualMachineId) {
         super.withTargetVirtualMachineId(targetVirtualMachineId);
         return this;

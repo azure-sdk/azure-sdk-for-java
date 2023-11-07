@@ -34,6 +34,12 @@ public final class AzureFileShareProtectionPolicy extends ProtectionPolicy {
     private RetentionPolicy retentionPolicy;
 
     /*
+     * Retention policy with the details on hardened backup copy retention ranges.
+     */
+    @JsonProperty(value = "vaultRetentionPolicy")
+    private VaultRetentionPolicy vaultRetentionPolicy;
+
+    /*
      * TimeZone optional input as string. For example: TimeZone = "Pacific Standard Time".
      */
     @JsonProperty(value = "timeZone")
@@ -104,6 +110,28 @@ public final class AzureFileShareProtectionPolicy extends ProtectionPolicy {
     }
 
     /**
+     * Get the vaultRetentionPolicy property: Retention policy with the details on hardened backup copy retention
+     * ranges.
+     *
+     * @return the vaultRetentionPolicy value.
+     */
+    public VaultRetentionPolicy vaultRetentionPolicy() {
+        return this.vaultRetentionPolicy;
+    }
+
+    /**
+     * Set the vaultRetentionPolicy property: Retention policy with the details on hardened backup copy retention
+     * ranges.
+     *
+     * @param vaultRetentionPolicy the vaultRetentionPolicy value to set.
+     * @return the AzureFileShareProtectionPolicy object itself.
+     */
+    public AzureFileShareProtectionPolicy withVaultRetentionPolicy(VaultRetentionPolicy vaultRetentionPolicy) {
+        this.vaultRetentionPolicy = vaultRetentionPolicy;
+        return this;
+    }
+
+    /**
      * Get the timeZone property: TimeZone optional input as string. For example: TimeZone = "Pacific Standard Time".
      *
      * @return the timeZone value.
@@ -151,6 +179,9 @@ public final class AzureFileShareProtectionPolicy extends ProtectionPolicy {
         }
         if (retentionPolicy() != null) {
             retentionPolicy().validate();
+        }
+        if (vaultRetentionPolicy() != null) {
+            vaultRetentionPolicy().validate();
         }
     }
 }

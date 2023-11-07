@@ -44,6 +44,8 @@ import com.azure.resourcemanager.recoveryservicesbackup.implementation.BmsPrepar
 import com.azure.resourcemanager.recoveryservicesbackup.implementation.DeletedProtectionContainersImpl;
 import com.azure.resourcemanager.recoveryservicesbackup.implementation.ExportJobsOperationResultsImpl;
 import com.azure.resourcemanager.recoveryservicesbackup.implementation.FeatureSupportsImpl;
+import com.azure.resourcemanager.recoveryservicesbackup.implementation.FetchTieringCostsImpl;
+import com.azure.resourcemanager.recoveryservicesbackup.implementation.GetTieringCostOperationResultsImpl;
 import com.azure.resourcemanager.recoveryservicesbackup.implementation.ItemLevelRecoveryConnectionsImpl;
 import com.azure.resourcemanager.recoveryservicesbackup.implementation.JobCancellationsImpl;
 import com.azure.resourcemanager.recoveryservicesbackup.implementation.JobDetailsImpl;
@@ -72,6 +74,7 @@ import com.azure.resourcemanager.recoveryservicesbackup.implementation.ResourceG
 import com.azure.resourcemanager.recoveryservicesbackup.implementation.ResourceProvidersImpl;
 import com.azure.resourcemanager.recoveryservicesbackup.implementation.RestoresImpl;
 import com.azure.resourcemanager.recoveryservicesbackup.implementation.SecurityPINsImpl;
+import com.azure.resourcemanager.recoveryservicesbackup.implementation.TieringCostOperationStatusImpl;
 import com.azure.resourcemanager.recoveryservicesbackup.implementation.ValidateOperationResultsImpl;
 import com.azure.resourcemanager.recoveryservicesbackup.implementation.ValidateOperationStatusesImpl;
 import com.azure.resourcemanager.recoveryservicesbackup.implementation.ValidateOperationsImpl;
@@ -95,6 +98,8 @@ import com.azure.resourcemanager.recoveryservicesbackup.models.BmsPrepareDataMov
 import com.azure.resourcemanager.recoveryservicesbackup.models.DeletedProtectionContainers;
 import com.azure.resourcemanager.recoveryservicesbackup.models.ExportJobsOperationResults;
 import com.azure.resourcemanager.recoveryservicesbackup.models.FeatureSupports;
+import com.azure.resourcemanager.recoveryservicesbackup.models.FetchTieringCosts;
+import com.azure.resourcemanager.recoveryservicesbackup.models.GetTieringCostOperationResults;
 import com.azure.resourcemanager.recoveryservicesbackup.models.ItemLevelRecoveryConnections;
 import com.azure.resourcemanager.recoveryservicesbackup.models.JobCancellations;
 import com.azure.resourcemanager.recoveryservicesbackup.models.JobDetails;
@@ -122,6 +127,7 @@ import com.azure.resourcemanager.recoveryservicesbackup.models.ResourceGuardProx
 import com.azure.resourcemanager.recoveryservicesbackup.models.ResourceProviders;
 import com.azure.resourcemanager.recoveryservicesbackup.models.Restores;
 import com.azure.resourcemanager.recoveryservicesbackup.models.SecurityPINs;
+import com.azure.resourcemanager.recoveryservicesbackup.models.TieringCostOperationStatus;
 import com.azure.resourcemanager.recoveryservicesbackup.models.ValidateOperationResults;
 import com.azure.resourcemanager.recoveryservicesbackup.models.ValidateOperationStatuses;
 import com.azure.resourcemanager.recoveryservicesbackup.models.ValidateOperations;
@@ -233,6 +239,12 @@ public final class RecoveryServicesBackupManager {
     private ResourceGuardProxies resourceGuardProxies;
 
     private ResourceGuardProxyOperations resourceGuardProxyOperations;
+
+    private FetchTieringCosts fetchTieringCosts;
+
+    private GetTieringCostOperationResults getTieringCostOperationResults;
+
+    private TieringCostOperationStatus tieringCostOperationStatus;
 
     private final RecoveryServicesBackupClient clientObject;
 
@@ -401,7 +413,7 @@ public final class RecoveryServicesBackupManager {
                 .append("-")
                 .append("com.azure.resourcemanager.recoveryservicesbackup")
                 .append("/")
-                .append("1.2.0");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -1082,6 +1094,44 @@ public final class RecoveryServicesBackupManager {
                 new ResourceGuardProxyOperationsImpl(clientObject.getResourceGuardProxyOperations(), this);
         }
         return resourceGuardProxyOperations;
+    }
+
+    /**
+     * Gets the resource collection API of FetchTieringCosts.
+     *
+     * @return Resource collection API of FetchTieringCosts.
+     */
+    public FetchTieringCosts fetchTieringCosts() {
+        if (this.fetchTieringCosts == null) {
+            this.fetchTieringCosts = new FetchTieringCostsImpl(clientObject.getFetchTieringCosts(), this);
+        }
+        return fetchTieringCosts;
+    }
+
+    /**
+     * Gets the resource collection API of GetTieringCostOperationResults.
+     *
+     * @return Resource collection API of GetTieringCostOperationResults.
+     */
+    public GetTieringCostOperationResults getTieringCostOperationResults() {
+        if (this.getTieringCostOperationResults == null) {
+            this.getTieringCostOperationResults =
+                new GetTieringCostOperationResultsImpl(clientObject.getGetTieringCostOperationResults(), this);
+        }
+        return getTieringCostOperationResults;
+    }
+
+    /**
+     * Gets the resource collection API of TieringCostOperationStatus.
+     *
+     * @return Resource collection API of TieringCostOperationStatus.
+     */
+    public TieringCostOperationStatus tieringCostOperationStatus() {
+        if (this.tieringCostOperationStatus == null) {
+            this.tieringCostOperationStatus =
+                new TieringCostOperationStatusImpl(clientObject.getTieringCostOperationStatus(), this);
+        }
+        return tieringCostOperationStatus;
     }
 
     /**

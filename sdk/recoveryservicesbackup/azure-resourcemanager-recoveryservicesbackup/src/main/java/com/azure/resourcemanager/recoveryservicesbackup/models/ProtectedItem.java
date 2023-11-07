@@ -132,6 +132,12 @@ public class ProtectedItem {
     @JsonProperty(value = "softDeleteRetentionPeriodInDays")
     private Integer softDeleteRetentionPeriod;
 
+    /*
+     * ID of the vault which protects this item
+     */
+    @JsonProperty(value = "vaultId", access = JsonProperty.Access.WRITE_ONLY)
+    private String vaultId;
+
     /** Creates an instance of ProtectedItem class. */
     public ProtectedItem() {
     }
@@ -462,6 +468,15 @@ public class ProtectedItem {
     public ProtectedItem withSoftDeleteRetentionPeriod(Integer softDeleteRetentionPeriod) {
         this.softDeleteRetentionPeriod = softDeleteRetentionPeriod;
         return this;
+    }
+
+    /**
+     * Get the vaultId property: ID of the vault which protects this item.
+     *
+     * @return the vaultId value.
+     */
+    public String vaultId() {
+        return this.vaultId;
     }
 
     /**

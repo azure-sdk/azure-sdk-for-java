@@ -11,7 +11,7 @@ import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.recoveryservicesbackup.fluent.OperationOperationsClient;
 import com.azure.resourcemanager.recoveryservicesbackup.fluent.models.ValidateOperationsResponseInner;
 import com.azure.resourcemanager.recoveryservicesbackup.models.OperationOperations;
-import com.azure.resourcemanager.recoveryservicesbackup.models.ValidateOperationRequest;
+import com.azure.resourcemanager.recoveryservicesbackup.models.ValidateOperationRequestResource;
 import com.azure.resourcemanager.recoveryservicesbackup.models.ValidateOperationsResponse;
 
 public final class OperationOperationsImpl implements OperationOperations {
@@ -29,7 +29,7 @@ public final class OperationOperationsImpl implements OperationOperations {
     }
 
     public Response<ValidateOperationsResponse> validateWithResponse(
-        String vaultName, String resourceGroupName, ValidateOperationRequest parameters, Context context) {
+        String vaultName, String resourceGroupName, ValidateOperationRequestResource parameters, Context context) {
         Response<ValidateOperationsResponseInner> inner =
             this.serviceClient().validateWithResponse(vaultName, resourceGroupName, parameters, context);
         if (inner != null) {
@@ -44,7 +44,7 @@ public final class OperationOperationsImpl implements OperationOperations {
     }
 
     public ValidateOperationsResponse validate(
-        String vaultName, String resourceGroupName, ValidateOperationRequest parameters) {
+        String vaultName, String resourceGroupName, ValidateOperationRequestResource parameters) {
         ValidateOperationsResponseInner inner = this.serviceClient().validate(vaultName, resourceGroupName, parameters);
         if (inner != null) {
             return new ValidateOperationsResponseImpl(inner, this.manager());
