@@ -19,6 +19,15 @@ public final class RecoveryMode extends ExpandableStringEnum<RecoveryMode> {
     /** Static value WorkloadRecovery for RecoveryMode. */
     public static final RecoveryMode WORKLOAD_RECOVERY = fromString("WorkloadRecovery");
 
+    /** Static value SnapshotAttach for RecoveryMode. */
+    public static final RecoveryMode SNAPSHOT_ATTACH = fromString("SnapshotAttach");
+
+    /** Static value RecoveryUsingSnapshot for RecoveryMode. */
+    public static final RecoveryMode RECOVERY_USING_SNAPSHOT = fromString("RecoveryUsingSnapshot");
+
+    /** Static value SnapshotAttachAndRecover for RecoveryMode. */
+    public static final RecoveryMode SNAPSHOT_ATTACH_AND_RECOVER = fromString("SnapshotAttachAndRecover");
+
     /**
      * Creates a new instance of RecoveryMode value.
      *

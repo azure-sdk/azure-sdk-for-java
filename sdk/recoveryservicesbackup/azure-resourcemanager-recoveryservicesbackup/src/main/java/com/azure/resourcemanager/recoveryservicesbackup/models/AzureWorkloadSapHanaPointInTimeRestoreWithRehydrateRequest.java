@@ -92,6 +92,30 @@ public final class AzureWorkloadSapHanaPointInTimeRestoreWithRehydrateRequest
 
     /** {@inheritDoc} */
     @Override
+    public AzureWorkloadSapHanaPointInTimeRestoreWithRehydrateRequest withTargetResourceGroupName(
+        String targetResourceGroupName) {
+        super.withTargetResourceGroupName(targetResourceGroupName);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public AzureWorkloadSapHanaPointInTimeRestoreWithRehydrateRequest withUserAssignedManagedIdentityDetails(
+        UserAssignedManagedIdentityDetails userAssignedManagedIdentityDetails) {
+        super.withUserAssignedManagedIdentityDetails(userAssignedManagedIdentityDetails);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public AzureWorkloadSapHanaPointInTimeRestoreWithRehydrateRequest withSnapshotRestoreParameters(
+        SnapshotRestoreParameters snapshotRestoreParameters) {
+        super.withSnapshotRestoreParameters(snapshotRestoreParameters);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public AzureWorkloadSapHanaPointInTimeRestoreWithRehydrateRequest withTargetVirtualMachineId(
         String targetVirtualMachineId) {
         super.withTargetVirtualMachineId(targetVirtualMachineId);

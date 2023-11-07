@@ -19,7 +19,7 @@ public interface ValidateOperations {
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
-    void trigger(String vaultName, String resourceGroupName, ValidateOperationRequest parameters);
+    void trigger(String vaultName, String resourceGroupName, ValidateOperationRequestResource parameters);
 
     /**
      * Validate operation for specified backed up item in the form of an asynchronous operation. Returns tracking
@@ -33,5 +33,6 @@ public interface ValidateOperations {
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
-    void trigger(String vaultName, String resourceGroupName, ValidateOperationRequest parameters, Context context);
+    void trigger(
+        String vaultName, String resourceGroupName, ValidateOperationRequestResource parameters, Context context);
 }
