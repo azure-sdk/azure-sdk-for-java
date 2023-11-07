@@ -14,7 +14,7 @@ import java.util.Map;
 @Fluent
 public final class BatchEndpointProperties extends EndpointPropertiesBaseInner {
     /*
-     * Default values for Batch Endpoint
+     * Default values for Batch Endpoint.
      */
     @JsonProperty(value = "defaults")
     private BatchEndpointDefaults defaults;

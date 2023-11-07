@@ -18,14 +18,14 @@ import java.util.Map;
 /** Samples for BatchEndpoints CreateOrUpdate. */
 public final class BatchEndpointsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/BatchEndpoint/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2023-08-01-preview/examples/Workspace/BatchEndpoint/createOrUpdate.json
      */
     /**
-     * Sample code: CreateOrUpdate Batch Endpoint.
+     * Sample code: CreateOrUpdate Workspace Batch Endpoint.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void createOrUpdateBatchEndpoint(
+    public static void createOrUpdateWorkspaceBatchEndpoint(
         com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager
             .batchEndpoints()
@@ -54,6 +54,7 @@ public final class BatchEndpointsCreateOrUpdateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
