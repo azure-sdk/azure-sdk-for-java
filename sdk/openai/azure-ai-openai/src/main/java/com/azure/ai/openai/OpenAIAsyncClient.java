@@ -15,6 +15,7 @@ import com.azure.ai.openai.implementation.MultipartDataSerializationResult;
 import com.azure.ai.openai.implementation.NonAzureOpenAIClientImpl;
 import com.azure.ai.openai.implementation.OpenAIClientImpl;
 import com.azure.ai.openai.implementation.OpenAIServerSentEvents;
+import com.azure.ai.openai.implementation.models.BatchImageGenerationOperationResponse;
 import com.azure.ai.openai.models.AudioTranscription;
 import com.azure.ai.openai.models.AudioTranscriptionOptions;
 import com.azure.ai.openai.models.AudioTranslation;
@@ -26,6 +27,7 @@ import com.azure.ai.openai.models.CompletionsOptions;
 import com.azure.ai.openai.models.Embeddings;
 import com.azure.ai.openai.models.EmbeddingsOptions;
 import com.azure.ai.openai.models.ImageGenerationOptions;
+import com.azure.ai.openai.models.ImageGenerations;
 import com.azure.ai.openai.models.ImageOperationResponse;
 import com.azure.ai.openai.models.ImageResponse;
 import com.azure.core.annotation.Generated;
@@ -760,10 +762,13 @@ public final class OpenAIAsyncClient {
      *
      * <pre>{@code
      * {
+     *     model: String (Optional)
      *     prompt: String (Required)
      *     n: Integer (Optional)
-     *     size: String(256x256/512x512/1024x1024) (Optional)
+     *     size: String(256x256/512x512/1024x1024/1792x1024/1024x1792) (Optional)
      *     response_format: String(url/b64_json) (Optional)
+     *     quality: String(standard/hd) (Optional)
+     *     style: String(natural/vivid) (Optional)
      *     user: String (Optional)
      * }
      * }</pre>
@@ -777,7 +782,13 @@ public final class OpenAIAsyncClient {
      *     expires: Long (Optional)
      *     result (Optional): {
      *         created: long (Required)
-     *         data: DataModelBase (Required)
+     *         data (Required): [
+     *              (Required){
+     *                 url: String (Optional)
+     *                 b64_json: String (Optional)
+     *                 revised_prompt: String (Optional)
+     *             }
+     *         ]
      *     }
      *     status: String(notRunning/running/succeeded/canceled/failed) (Required)
      *     error (Optional): {
@@ -808,8 +819,6 @@ public final class OpenAIAsyncClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     PollerFlux<BinaryData, BinaryData> beginBeginAzureBatchImageGeneration(
             BinaryData imageGenerationOptions, RequestOptions requestOptions) {
-        // Convenience API is not generated, as operation 'beginAzureBatchImageGeneration' refers Union 'ImageLocation[]
-        // | ImagePayload[]'
         return this.serviceClient.beginBeginAzureBatchImageGenerationAsync(imageGenerationOptions, requestOptions);
     }
 
@@ -1506,5 +1515,106 @@ public final class OpenAIAsyncClient {
                         deploymentOrModelName, BinaryData.fromObject(audioTranslationOptions), requestOptions)
                 .flatMap(FluxUtil::toMono)
                 .map(protocolMethodData -> protocolMethodData.toObject(String.class));
+    }
+
+    /**
+     * Creates an image given a prompt.
+     *
+     * <p><strong>Request Body Schema</strong>
+     *
+     * <pre>{@code
+     * {
+     *     model: String (Optional)
+     *     prompt: String (Required)
+     *     n: Integer (Optional)
+     *     size: String(256x256/512x512/1024x1024/1792x1024/1024x1792) (Optional)
+     *     response_format: String(url/b64_json) (Optional)
+     *     quality: String(standard/hd) (Optional)
+     *     style: String(natural/vivid) (Optional)
+     *     user: String (Optional)
+     * }
+     * }</pre>
+     *
+     * <p><strong>Response Body Schema</strong>
+     *
+     * <pre>{@code
+     * {
+     *     created: long (Required)
+     *     data (Required): [
+     *          (Required){
+     *             url: String (Optional)
+     *             b64_json: String (Optional)
+     *             revised_prompt: String (Optional)
+     *         }
+     *     ]
+     * }
+     * }</pre>
+     *
+     * @param deploymentOrModelName Specifies either the model deployment name (when using Azure OpenAI) or model name
+     *     (when using non-Azure OpenAI) to use for this request.
+     * @param imageGenerationOptions Represents the request data used to generate images.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the result of a successful image generation operation along with {@link Response} on successful
+     *     completion of {@link Mono}.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<BinaryData>> getImageGenerationsWithResponse(
+            String deploymentOrModelName, BinaryData imageGenerationOptions, RequestOptions requestOptions) {
+        return this.serviceClient.getImageGenerationsWithResponseAsync(
+                deploymentOrModelName, imageGenerationOptions, requestOptions);
+    }
+
+    /**
+     * Creates an image given a prompt.
+     *
+     * @param deploymentOrModelName Specifies either the model deployment name (when using Azure OpenAI) or model name
+     *     (when using non-Azure OpenAI) to use for this request.
+     * @param imageGenerationOptions Represents the request data used to generate images.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the result of a successful image generation operation on successful completion of {@link Mono}.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<ImageGenerations> getImageGenerations(
+            String deploymentOrModelName, ImageGenerationOptions imageGenerationOptions) {
+        // Generated convenience method for getImageGenerationsWithResponse
+        RequestOptions requestOptions = new RequestOptions();
+        return getImageGenerationsWithResponse(
+                        deploymentOrModelName, BinaryData.fromObject(imageGenerationOptions), requestOptions)
+                .flatMap(FluxUtil::toMono)
+                .map(protocolMethodData -> protocolMethodData.toObject(ImageGenerations.class));
+    }
+
+    /**
+     * Starts the generation of a batch of images from a text caption.
+     *
+     * @param imageGenerationOptions Represents the request data used to generate images.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of a polling status update or final response payload for an image
+     *     operation.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    PollerFlux<BatchImageGenerationOperationResponse, ImageGenerations> beginBeginAzureBatchImageGeneration(
+            ImageGenerationOptions imageGenerationOptions) {
+        // Generated convenience method for beginBeginAzureBatchImageGenerationWithModel
+        RequestOptions requestOptions = new RequestOptions();
+        return serviceClient.beginBeginAzureBatchImageGenerationWithModelAsync(
+                BinaryData.fromObject(imageGenerationOptions), requestOptions);
     }
 }
