@@ -150,13 +150,6 @@ public interface ApplicationInsightsManagementClient {
     WorkbookTemplatesClient getWorkbookTemplates();
 
     /**
-     * Gets the MyWorkbooksClient object to access its operations.
-     *
-     * @return the MyWorkbooksClient object.
-     */
-    MyWorkbooksClient getMyWorkbooks();
-
-    /**
      * Gets the WorkbooksClient object to access its operations.
      *
      * @return the WorkbooksClient object.
@@ -169,4 +162,11 @@ public interface ApplicationInsightsManagementClient {
      * @return the LiveTokensClient object.
      */
     LiveTokensClient getLiveTokens();
+
+    /**
+     * Gets the ComponentLinkedStorageAccountsOperationsClient object to access its operations.
+     *
+     * @return the ComponentLinkedStorageAccountsOperationsClient object.
+     */
+    ComponentLinkedStorageAccountsOperationsClient getComponentLinkedStorageAccountsOperations();
 }
