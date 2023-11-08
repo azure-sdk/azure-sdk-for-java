@@ -19,6 +19,9 @@ public final class DistributionType extends ExpandableStringEnum<DistributionTyp
     /** Static value Mpi for DistributionType. */
     public static final DistributionType MPI = fromString("Mpi");
 
+    /** Static value Ray for DistributionType. */
+    public static final DistributionType RAY = fromString("Ray");
+
     /**
      * Creates a new instance of DistributionType value.
      *

@@ -2,7 +2,7 @@
 
 Azure Resource Manager Machine Learning client library for Java.
 
-This package contains Microsoft Azure SDK for Machine Learning Management SDK. These APIs allow end users to operate on Azure Machine Learning Workspace resources. Package tag package-2022-10. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
+This package contains Microsoft Azure SDK for Machine Learning Management SDK. These APIs allow end users to operate on Azure Machine Learning Workspace resources. Package tag package-preview-2023-08. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ## We'd love to hear your feedback
 
@@ -32,7 +32,7 @@ Various documentation is available to help you get started
 <dependency>
     <groupId>com.azure.resourcemanager</groupId>
     <artifactId>azure-resourcemanager-machinelearning</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0-beta.1</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -45,7 +45,7 @@ Azure Management Libraries require a `TokenCredential` implementation for authen
 
 ### Authentication
 
-By default, Azure Active Directory token authentication depends on correct configuration of the following environment variables.
+By default, Microsoft Entra ID token authentication depends on correct configuration of the following environment variables.
 
 - `AZURE_CLIENT_ID` for Azure client ID.
 - `AZURE_TENANT_ID` for Azure tenant ID.
@@ -74,6 +74,49 @@ See [API design][design] for general introduction on design and key concepts on 
 
 ## Examples
 
+```java
+workspace = machineLearningManager.workspaces()
+    .define(workspaceName)
+    .withExistingResourceGroup(resourceGroupName)
+    .withRegion(REGION)
+    .withSku(new Sku().withName("Basic").withTier(SkuTier.BASIC))
+    .withIdentity(new ManagedServiceIdentity().withType(ManagedServiceIdentityType.SYSTEM_ASSIGNED))
+    .withFriendlyName(workspaceName)
+    .withStorageAccount(
+        storageManager.storageAccounts()
+            .define(storageName)
+            .withRegion(REGION)
+            .withExistingResourceGroup(resourceGroupName)
+            .withSku(StorageAccountSkuType.STANDARD_LRS)
+            .withMinimumTlsVersion(MinimumTlsVersion.TLS1_0)
+            .withHnsEnabled(false)
+            .withAccessFromAzureServices()
+            .withOnlyHttpsTraffic()
+            .withBlobStorageAccountKind().withAccessTier(AccessTier.HOT)
+            .create()
+            .id())
+    .withKeyVault(
+        keyVaultManager.vaults()
+            .define(keyVaultName)
+            .withRegion(REGION)
+            .withExistingResourceGroup(resourceGroupName)
+            .withEmptyAccessPolicy()
+            .withSku(SkuName.STANDARD)
+            .withDeploymentDisabled()
+            .withAccessFromAllNetworks()
+            .create()
+            .id())
+    .withApplicationInsights(
+        applicationInsightsManager.components()
+            .define(insightName)
+            .withRegion(REGION)
+            .withExistingResourceGroup(resourceGroupName)
+            .withKind("web")
+            .withApplicationType(ApplicationType.WEB)
+            .create()
+            .id())
+    .create();
+```
 [Code snippets and samples](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/machinelearning/azure-resourcemanager-machinelearning/SAMPLE.md)
 
 
@@ -94,7 +137,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 <!-- LINKS -->
 [survey]: https://microsoft.qualtrics.com/jfe/form/SV_ehN0lIk2FKEBkwd?Q_CHL=DOCS
 [docs]: https://azure.github.io/azure-sdk-for-java/
-[jdk]: https://docs.microsoft.com/java/azure/jdk/
+[jdk]: https://learn.microsoft.com/azure/developer/java/fundamentals/
 [azure_subscription]: https://azure.microsoft.com/free/
 [azure_identity]: https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/identity/azure-identity
 [azure_core_http_netty]: https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/core/azure-core-http-netty
@@ -103,3 +146,5 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [cg]: https://github.com/Azure/azure-sdk-for-java/blob/main/CONTRIBUTING.md
 [coc]: https://opensource.microsoft.com/codeofconduct/
 [coc_faq]: https://opensource.microsoft.com/codeofconduct/faq/
+
+![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fmachinelearning%2Fazure-resourcemanager-machinelearning%2FREADME.png)
