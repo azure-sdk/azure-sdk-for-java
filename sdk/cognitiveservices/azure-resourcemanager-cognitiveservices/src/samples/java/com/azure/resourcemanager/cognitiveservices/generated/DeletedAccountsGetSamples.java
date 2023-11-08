@@ -7,7 +7,7 @@ package com.azure.resourcemanager.cognitiveservices.generated;
 /** Samples for DeletedAccounts Get. */
 public final class DeletedAccountsGetSamples {
     /*
-     * x-ms-original-file: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/stable/2023-05-01/examples/GetDeletedAccount.json
+     * x-ms-original-file: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/preview/2023-10-01-preview/examples/GetDeletedAccount.json
      */
     /**
      * Sample code: Get Account.

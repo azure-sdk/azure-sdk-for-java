@@ -7,7 +7,7 @@ package com.azure.resourcemanager.cognitiveservices.generated;
 /** Samples for CommitmentPlans GetAssociation. */
 public final class CommitmentPlansGetAssociationSamples {
     /*
-     * x-ms-original-file: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/stable/2023-05-01/examples/GetSharedCommitmentPlanAssociation.json
+     * x-ms-original-file: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/preview/2023-10-01-preview/examples/GetSharedCommitmentPlanAssociation.json
      */
     /**
      * Sample code: GetCommitmentPlan.
