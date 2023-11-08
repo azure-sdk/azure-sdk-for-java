@@ -121,20 +121,6 @@ public final class CommunicationsGatewaysClientImpl implements CommunicationsGat
             Context context);
 
         @Headers({"Content-Type: application/json"})
-        @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VoiceServices/communicationsGateways/{communicationsGatewayName}")
-        @ExpectedResponses({200, 202, 204})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> delete(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("communicationsGatewayName") String communicationsGatewayName,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Content-Type: application/json"})
         @Patch(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VoiceServices/communicationsGateways/{communicationsGatewayName}")
         @ExpectedResponses({200})
@@ -146,6 +132,20 @@ public final class CommunicationsGatewaysClientImpl implements CommunicationsGat
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("communicationsGatewayName") String communicationsGatewayName,
             @BodyParam("application/json") CommunicationsGatewayUpdate properties,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
+        @Delete(
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VoiceServices/communicationsGateways/{communicationsGatewayName}")
+        @ExpectedResponses({200, 202, 204})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Flux<ByteBuffer>>> delete(
+            @HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("communicationsGatewayName") String communicationsGatewayName,
             @HeaderParam("Accept") String accept,
             Context context);
 
@@ -923,6 +923,179 @@ public final class CommunicationsGatewaysClientImpl implements CommunicationsGat
     }
 
     /**
+     * Update a CommunicationsGateway.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param communicationsGatewayName Unique identifier for this deployment.
+     * @param properties The resource properties to be updated.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a CommunicationsGateway resource along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<CommunicationsGatewayInner>> updateWithResponseAsync(
+        String resourceGroupName, String communicationsGatewayName, CommunicationsGatewayUpdate properties) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (communicationsGatewayName == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter communicationsGatewayName is required and cannot be null."));
+        }
+        if (properties == null) {
+            return Mono.error(new IllegalArgumentException("Parameter properties is required and cannot be null."));
+        } else {
+            properties.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service
+                        .update(
+                            this.client.getEndpoint(),
+                            this.client.getApiVersion(),
+                            this.client.getSubscriptionId(),
+                            resourceGroupName,
+                            communicationsGatewayName,
+                            properties,
+                            accept,
+                            context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Update a CommunicationsGateway.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param communicationsGatewayName Unique identifier for this deployment.
+     * @param properties The resource properties to be updated.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a CommunicationsGateway resource along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<CommunicationsGatewayInner>> updateWithResponseAsync(
+        String resourceGroupName,
+        String communicationsGatewayName,
+        CommunicationsGatewayUpdate properties,
+        Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (communicationsGatewayName == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter communicationsGatewayName is required and cannot be null."));
+        }
+        if (properties == null) {
+            return Mono.error(new IllegalArgumentException("Parameter properties is required and cannot be null."));
+        } else {
+            properties.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .update(
+                this.client.getEndpoint(),
+                this.client.getApiVersion(),
+                this.client.getSubscriptionId(),
+                resourceGroupName,
+                communicationsGatewayName,
+                properties,
+                accept,
+                context);
+    }
+
+    /**
+     * Update a CommunicationsGateway.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param communicationsGatewayName Unique identifier for this deployment.
+     * @param properties The resource properties to be updated.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a CommunicationsGateway resource on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<CommunicationsGatewayInner> updateAsync(
+        String resourceGroupName, String communicationsGatewayName, CommunicationsGatewayUpdate properties) {
+        return updateWithResponseAsync(resourceGroupName, communicationsGatewayName, properties)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Update a CommunicationsGateway.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param communicationsGatewayName Unique identifier for this deployment.
+     * @param properties The resource properties to be updated.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a CommunicationsGateway resource along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<CommunicationsGatewayInner> updateWithResponse(
+        String resourceGroupName,
+        String communicationsGatewayName,
+        CommunicationsGatewayUpdate properties,
+        Context context) {
+        return updateWithResponseAsync(resourceGroupName, communicationsGatewayName, properties, context).block();
+    }
+
+    /**
+     * Update a CommunicationsGateway.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param communicationsGatewayName Unique identifier for this deployment.
+     * @param properties The resource properties to be updated.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a CommunicationsGateway resource.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public CommunicationsGatewayInner update(
+        String resourceGroupName, String communicationsGatewayName, CommunicationsGatewayUpdate properties) {
+        return updateWithResponse(resourceGroupName, communicationsGatewayName, properties, Context.NONE).getValue();
+    }
+
+    /**
      * Delete a CommunicationsGateway.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -1158,179 +1331,6 @@ public final class CommunicationsGatewaysClientImpl implements CommunicationsGat
     @ServiceMethod(returns = ReturnType.SINGLE)
     public void delete(String resourceGroupName, String communicationsGatewayName, Context context) {
         deleteAsync(resourceGroupName, communicationsGatewayName, context).block();
-    }
-
-    /**
-     * Update a CommunicationsGateway.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param communicationsGatewayName Unique identifier for this deployment.
-     * @param properties The resource properties to be updated.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a CommunicationsGateway resource along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<CommunicationsGatewayInner>> updateWithResponseAsync(
-        String resourceGroupName, String communicationsGatewayName, CommunicationsGatewayUpdate properties) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (communicationsGatewayName == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter communicationsGatewayName is required and cannot be null."));
-        }
-        if (properties == null) {
-            return Mono.error(new IllegalArgumentException("Parameter properties is required and cannot be null."));
-        } else {
-            properties.validate();
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .update(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            communicationsGatewayName,
-                            properties,
-                            accept,
-                            context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Update a CommunicationsGateway.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param communicationsGatewayName Unique identifier for this deployment.
-     * @param properties The resource properties to be updated.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a CommunicationsGateway resource along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<CommunicationsGatewayInner>> updateWithResponseAsync(
-        String resourceGroupName,
-        String communicationsGatewayName,
-        CommunicationsGatewayUpdate properties,
-        Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (communicationsGatewayName == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter communicationsGatewayName is required and cannot be null."));
-        }
-        if (properties == null) {
-            return Mono.error(new IllegalArgumentException("Parameter properties is required and cannot be null."));
-        } else {
-            properties.validate();
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .update(
-                this.client.getEndpoint(),
-                this.client.getApiVersion(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                communicationsGatewayName,
-                properties,
-                accept,
-                context);
-    }
-
-    /**
-     * Update a CommunicationsGateway.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param communicationsGatewayName Unique identifier for this deployment.
-     * @param properties The resource properties to be updated.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a CommunicationsGateway resource on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<CommunicationsGatewayInner> updateAsync(
-        String resourceGroupName, String communicationsGatewayName, CommunicationsGatewayUpdate properties) {
-        return updateWithResponseAsync(resourceGroupName, communicationsGatewayName, properties)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Update a CommunicationsGateway.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param communicationsGatewayName Unique identifier for this deployment.
-     * @param properties The resource properties to be updated.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a CommunicationsGateway resource along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<CommunicationsGatewayInner> updateWithResponse(
-        String resourceGroupName,
-        String communicationsGatewayName,
-        CommunicationsGatewayUpdate properties,
-        Context context) {
-        return updateWithResponseAsync(resourceGroupName, communicationsGatewayName, properties, context).block();
-    }
-
-    /**
-     * Update a CommunicationsGateway.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param communicationsGatewayName Unique identifier for this deployment.
-     * @param properties The resource properties to be updated.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a CommunicationsGateway resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public CommunicationsGatewayInner update(
-        String resourceGroupName, String communicationsGatewayName, CommunicationsGatewayUpdate properties) {
-        return updateWithResponse(resourceGroupName, communicationsGatewayName, properties, Context.NONE).getValue();
     }
 
     /**

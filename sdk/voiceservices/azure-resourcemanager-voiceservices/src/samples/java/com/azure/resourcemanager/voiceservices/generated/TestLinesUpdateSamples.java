@@ -9,7 +9,7 @@ import com.azure.resourcemanager.voiceservices.models.TestLine;
 /** Samples for TestLines Update. */
 public final class TestLinesUpdateSamples {
     /*
-     * x-ms-original-file: specification/voiceservices/resource-manager/Microsoft.VoiceServices/stable/2023-01-31/examples/TestLines_Update.json
+     * x-ms-original-file: specification/voiceservices/resource-manager/Microsoft.VoiceServices/stable/2023-09-01/examples/TestLines_Update.json
      */
     /**
      * Sample code: UpdateTestLineResource.

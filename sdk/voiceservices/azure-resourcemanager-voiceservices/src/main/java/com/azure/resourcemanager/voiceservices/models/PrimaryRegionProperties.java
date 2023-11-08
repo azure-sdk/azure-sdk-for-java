@@ -25,13 +25,13 @@ public final class PrimaryRegionProperties {
     private List<String> esrpAddresses;
 
     /*
-     * The allowed source IP address or CIDR ranges for signaling
+     * The allowed source IP addresses or CIDR ranges for signaling
      */
     @JsonProperty(value = "allowedSignalingSourceAddressPrefixes")
     private List<String> allowedSignalingSourceAddressPrefixes;
 
     /*
-     * The allowed source IP address or CIDR ranges for media
+     * The allowed source IP addresses or CIDR ranges for media
      */
     @JsonProperty(value = "allowedMediaSourceAddressPrefixes")
     private List<String> allowedMediaSourceAddressPrefixes;
@@ -81,7 +81,7 @@ public final class PrimaryRegionProperties {
     }
 
     /**
-     * Get the allowedSignalingSourceAddressPrefixes property: The allowed source IP address or CIDR ranges for
+     * Get the allowedSignalingSourceAddressPrefixes property: The allowed source IP addresses or CIDR ranges for
      * signaling.
      *
      * @return the allowedSignalingSourceAddressPrefixes value.
@@ -91,7 +91,7 @@ public final class PrimaryRegionProperties {
     }
 
     /**
-     * Set the allowedSignalingSourceAddressPrefixes property: The allowed source IP address or CIDR ranges for
+     * Set the allowedSignalingSourceAddressPrefixes property: The allowed source IP addresses or CIDR ranges for
      * signaling.
      *
      * @param allowedSignalingSourceAddressPrefixes the allowedSignalingSourceAddressPrefixes value to set.
@@ -104,7 +104,7 @@ public final class PrimaryRegionProperties {
     }
 
     /**
-     * Get the allowedMediaSourceAddressPrefixes property: The allowed source IP address or CIDR ranges for media.
+     * Get the allowedMediaSourceAddressPrefixes property: The allowed source IP addresses or CIDR ranges for media.
      *
      * @return the allowedMediaSourceAddressPrefixes value.
      */
@@ -113,7 +113,7 @@ public final class PrimaryRegionProperties {
     }
 
     /**
-     * Set the allowedMediaSourceAddressPrefixes property: The allowed source IP address or CIDR ranges for media.
+     * Set the allowedMediaSourceAddressPrefixes property: The allowed source IP addresses or CIDR ranges for media.
      *
      * @param allowedMediaSourceAddressPrefixes the allowedMediaSourceAddressPrefixes value to set.
      * @return the PrimaryRegionProperties object itself.
