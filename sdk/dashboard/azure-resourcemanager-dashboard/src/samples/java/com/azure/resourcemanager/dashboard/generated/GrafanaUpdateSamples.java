@@ -4,13 +4,19 @@
 
 package com.azure.resourcemanager.dashboard.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.dashboard.models.ApiKey;
 import com.azure.resourcemanager.dashboard.models.AzureMonitorWorkspaceIntegration;
 import com.azure.resourcemanager.dashboard.models.DeterministicOutboundIp;
+import com.azure.resourcemanager.dashboard.models.EnterpriseConfigurations;
+import com.azure.resourcemanager.dashboard.models.GrafanaConfigurations;
 import com.azure.resourcemanager.dashboard.models.GrafanaIntegrations;
+import com.azure.resourcemanager.dashboard.models.GrafanaPlugin;
 import com.azure.resourcemanager.dashboard.models.ManagedGrafana;
 import com.azure.resourcemanager.dashboard.models.ManagedGrafanaPropertiesUpdateParameters;
+import com.azure.resourcemanager.dashboard.models.MarketplaceAutoRenew;
+import com.azure.resourcemanager.dashboard.models.ResourceSku;
+import com.azure.resourcemanager.dashboard.models.Smtp;
+import com.azure.resourcemanager.dashboard.models.StartTlsPolicy;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -18,7 +24,7 @@ import java.util.Map;
 /** Samples for Grafana Update. */
 public final class GrafanaUpdateSamples {
     /*
-     * x-ms-original-file: specification/dashboard/resource-manager/Microsoft.Dashboard/stable/2022-08-01/examples/Grafana_Update.json
+     * x-ms-original-file: specification/dashboard/resource-manager/Microsoft.Dashboard/stable/2023-09-01/examples/Grafana_Update.json
      */
     /**
      * Sample code: Grafana_Update.
@@ -29,11 +35,12 @@ public final class GrafanaUpdateSamples {
         ManagedGrafana resource =
             manager
                 .grafanas()
-                .getByResourceGroupWithResponse("myResourceGroup", "myWorkspace", Context.NONE)
+                .getByResourceGroupWithResponse("myResourceGroup", "myWorkspace", com.azure.core.util.Context.NONE)
                 .getValue();
         resource
             .update()
             .withTags(mapOf("Environment", "Dev 2"))
+            .withSku(new ResourceSku().withName("Standard"))
             .withProperties(
                 new ManagedGrafanaPropertiesUpdateParameters()
                     .withApiKey(ApiKey.ENABLED)
@@ -45,10 +52,29 @@ public final class GrafanaUpdateSamples {
                                     .asList(
                                         new AzureMonitorWorkspaceIntegration()
                                             .withAzureMonitorWorkspaceResourceId(
-                                                "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/myResourceGroup/providers/microsoft.monitor/accounts/myAzureMonitorWorkspace")))))
+                                                "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/myResourceGroup/providers/microsoft.monitor/accounts/myAzureMonitorWorkspace"))))
+                    .withEnterpriseConfigurations(
+                        new EnterpriseConfigurations()
+                            .withMarketplacePlanId("myPlanId")
+                            .withMarketplaceAutoRenew(MarketplaceAutoRenew.ENABLED))
+                    .withGrafanaConfigurations(
+                        new GrafanaConfigurations()
+                            .withSmtp(
+                                new Smtp()
+                                    .withEnabled(true)
+                                    .withHost("smtp.sendemail.com:587")
+                                    .withUser("username")
+                                    .withPassword("fakeTokenPlaceholder")
+                                    .withFromAddress("test@sendemail.com")
+                                    .withFromName("emailsender")
+                                    .withStartTlsPolicy(StartTlsPolicy.OPPORTUNISTIC_START_TLS)
+                                    .withSkipVerify(true)))
+                    .withGrafanaPlugins(mapOf("sample-plugin-id", new GrafanaPlugin()))
+                    .withGrafanaMajorVersion("9"))
             .apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
