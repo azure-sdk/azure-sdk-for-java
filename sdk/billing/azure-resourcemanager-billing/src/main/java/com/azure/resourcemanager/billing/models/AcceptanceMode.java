@@ -10,6 +10,9 @@ import java.util.Collection;
 
 /** The mode of acceptance for an agreement. */
 public final class AcceptanceMode extends ExpandableStringEnum<AcceptanceMode> {
+    /** Static value Other for AcceptanceMode. */
+    public static final AcceptanceMode OTHER = fromString("Other");
+
     /** Static value ClickToAccept for AcceptanceMode. */
     public static final AcceptanceMode CLICK_TO_ACCEPT = fromString("ClickToAccept");
 
@@ -18,6 +21,15 @@ public final class AcceptanceMode extends ExpandableStringEnum<AcceptanceMode> {
 
     /** Static value ESignOffline for AcceptanceMode. */
     public static final AcceptanceMode ESIGN_OFFLINE = fromString("ESignOffline");
+
+    /** Static value PhysicalSign for AcceptanceMode. */
+    public static final AcceptanceMode PHYSICAL_SIGN = fromString("PhysicalSign");
+
+    /** Static value Offline for AcceptanceMode. */
+    public static final AcceptanceMode OFFLINE = fromString("Offline");
+
+    /** Static value Implicit for AcceptanceMode. */
+    public static final AcceptanceMode IMPLICIT = fromString("Implicit");
 
     /**
      * Creates a new instance of AcceptanceMode value.
