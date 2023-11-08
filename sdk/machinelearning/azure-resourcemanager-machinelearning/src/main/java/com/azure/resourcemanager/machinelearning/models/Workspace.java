@@ -8,6 +8,7 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
+import com.azure.resourcemanager.machinelearning.fluent.models.ManagedNetworkSettingsInner;
 import com.azure.resourcemanager.machinelearning.fluent.models.WorkspaceInner;
 import java.util.List;
 import java.util.Map;
@@ -36,32 +37,40 @@ public interface Workspace {
     String type();
 
     /**
-     * Gets the identity property: The identity of the resource.
+     * Gets the identity property: Managed service identity (system assigned and/or user assigned identities).
      *
      * @return the identity value.
      */
     ManagedServiceIdentity identity();
 
     /**
-     * Gets the location property: Specifies the location of the resource.
+     * Gets the kind property: The kind property.
+     *
+     * @return the kind value.
+     */
+    String kind();
+
+    /**
+     * Gets the location property: The location property.
      *
      * @return the location value.
      */
     String location();
 
     /**
-     * Gets the tags property: Contains resource tags defined as key/value pairs.
-     *
-     * @return the tags value.
-     */
-    Map<String, String> tags();
-
-    /**
-     * Gets the sku property: The sku of the workspace.
+     * Gets the sku property: Optional. This field is required to be implemented by the RP because AML is supporting
+     * more than one tier.
      *
      * @return the sku value.
      */
     Sku sku();
+
+    /**
+     * Gets the tags property: Dictionary of &lt;string&gt;.
+     *
+     * @return the tags value.
+     */
+    Map<String, String> tags();
 
     /**
      * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
@@ -69,110 +78,6 @@ public interface Workspace {
      * @return the systemData value.
      */
     SystemData systemData();
-
-    /**
-     * Gets the workspaceId property: The immutable id associated with this workspace.
-     *
-     * @return the workspaceId value.
-     */
-    String workspaceId();
-
-    /**
-     * Gets the description property: The description of this workspace.
-     *
-     * @return the description value.
-     */
-    String description();
-
-    /**
-     * Gets the friendlyName property: The friendly name for this workspace. This name in mutable.
-     *
-     * @return the friendlyName value.
-     */
-    String friendlyName();
-
-    /**
-     * Gets the keyVault property: ARM id of the key vault associated with this workspace. This cannot be changed once
-     * the workspace has been created.
-     *
-     * @return the keyVault value.
-     */
-    String keyVault();
-
-    /**
-     * Gets the applicationInsights property: ARM id of the application insights associated with this workspace.
-     *
-     * @return the applicationInsights value.
-     */
-    String applicationInsights();
-
-    /**
-     * Gets the containerRegistry property: ARM id of the container registry associated with this workspace.
-     *
-     * @return the containerRegistry value.
-     */
-    String containerRegistry();
-
-    /**
-     * Gets the storageAccount property: ARM id of the storage account associated with this workspace. This cannot be
-     * changed once the workspace has been created.
-     *
-     * @return the storageAccount value.
-     */
-    String storageAccount();
-
-    /**
-     * Gets the discoveryUrl property: Url for the discovery service to identify regional endpoints for machine learning
-     * experimentation services.
-     *
-     * @return the discoveryUrl value.
-     */
-    String discoveryUrl();
-
-    /**
-     * Gets the provisioningState property: The current deployment state of workspace resource. The provisioningState is
-     * to indicate states for resource provisioning.
-     *
-     * @return the provisioningState value.
-     */
-    ProvisioningState provisioningState();
-
-    /**
-     * Gets the encryption property: The encryption settings of Azure ML workspace.
-     *
-     * @return the encryption value.
-     */
-    EncryptionProperty encryption();
-
-    /**
-     * Gets the hbiWorkspace property: The flag to signal HBI data in the workspace and reduce diagnostic data collected
-     * by the service.
-     *
-     * @return the hbiWorkspace value.
-     */
-    Boolean hbiWorkspace();
-
-    /**
-     * Gets the serviceProvisionedResourceGroup property: The name of the managed resource group created by workspace RP
-     * in customer subscription if the workspace is CMK workspace.
-     *
-     * @return the serviceProvisionedResourceGroup value.
-     */
-    String serviceProvisionedResourceGroup();
-
-    /**
-     * Gets the privateLinkCount property: Count of private connections in the workspace.
-     *
-     * @return the privateLinkCount value.
-     */
-    Integer privateLinkCount();
-
-    /**
-     * Gets the imageBuildCompute property: The compute name for image build.
-     *
-     * @return the imageBuildCompute value.
-     */
-    String imageBuildCompute();
 
     /**
      * Gets the allowPublicAccessWhenBehindVnet property: The flag to indicate whether to allow public access when
@@ -183,62 +88,126 @@ public interface Workspace {
     Boolean allowPublicAccessWhenBehindVnet();
 
     /**
-     * Gets the publicNetworkAccess property: Whether requests from Public Network are allowed.
+     * Gets the applicationInsights property: ARM id of the application insights associated with this workspace.
      *
-     * @return the publicNetworkAccess value.
+     * @return the applicationInsights value.
      */
-    PublicNetworkAccess publicNetworkAccess();
+    String applicationInsights();
 
     /**
-     * Gets the privateEndpointConnections property: The list of private endpoint connections in the workspace.
+     * Gets the associatedWorkspaces property: The associatedWorkspaces property.
      *
-     * @return the privateEndpointConnections value.
+     * @return the associatedWorkspaces value.
      */
-    List<PrivateEndpointConnection> privateEndpointConnections();
+    List<String> associatedWorkspaces();
 
     /**
-     * Gets the sharedPrivateLinkResources property: The list of shared private link resources in this workspace.
+     * Gets the containerRegistries property: The containerRegistries property.
      *
-     * @return the sharedPrivateLinkResources value.
+     * @return the containerRegistries value.
      */
-    List<SharedPrivateLinkResource> sharedPrivateLinkResources();
+    List<String> containerRegistries();
 
     /**
-     * Gets the notebookInfo property: The notebook info of Azure ML workspace.
+     * Gets the containerRegistry property: ARM id of the container registry associated with this workspace.
      *
-     * @return the notebookInfo value.
+     * @return the containerRegistry value.
      */
-    NotebookResourceInfo notebookInfo();
+    String containerRegistry();
 
     /**
-     * Gets the serviceManagedResourcesSettings property: The service managed resource settings.
+     * Gets the description property: The description of this workspace.
      *
-     * @return the serviceManagedResourcesSettings value.
+     * @return the description value.
      */
-    ServiceManagedResourcesSettings serviceManagedResourcesSettings();
+    String description();
 
     /**
-     * Gets the primaryUserAssignedIdentity property: The user assigned identity resource id that represents the
-     * workspace identity.
+     * Gets the discoveryUrl property: Url for the discovery service to identify regional endpoints for machine learning
+     * experimentation services.
      *
-     * @return the primaryUserAssignedIdentity value.
+     * @return the discoveryUrl value.
      */
-    String primaryUserAssignedIdentity();
+    String discoveryUrl();
 
     /**
-     * Gets the tenantId property: The tenant id associated with this workspace.
+     * Gets the enableDataIsolation property: The enableDataIsolation property.
      *
-     * @return the tenantId value.
+     * @return the enableDataIsolation value.
      */
-    String tenantId();
+    Boolean enableDataIsolation();
 
     /**
-     * Gets the storageHnsEnabled property: If the storage associated with the workspace has hierarchical namespace(HNS)
-     * enabled.
+     * Gets the encryption property: The encryption property.
      *
-     * @return the storageHnsEnabled value.
+     * @return the encryption value.
      */
-    Boolean storageHnsEnabled();
+    EncryptionProperty encryption();
+
+    /**
+     * Gets the existingWorkspaces property: The existingWorkspaces property.
+     *
+     * @return the existingWorkspaces value.
+     */
+    List<String> existingWorkspaces();
+
+    /**
+     * Gets the featureStoreSettings property: Settings for feature store type workspace.
+     *
+     * @return the featureStoreSettings value.
+     */
+    FeatureStoreSettings featureStoreSettings();
+
+    /**
+     * Gets the friendlyName property: The friendly name for this workspace. This name in mutable.
+     *
+     * @return the friendlyName value.
+     */
+    String friendlyName();
+
+    /**
+     * Gets the hbiWorkspace property: The flag to signal HBI data in the workspace and reduce diagnostic data collected
+     * by the service.
+     *
+     * @return the hbiWorkspace value.
+     */
+    Boolean hbiWorkspace();
+
+    /**
+     * Gets the hubResourceId property: The hubResourceId property.
+     *
+     * @return the hubResourceId value.
+     */
+    String hubResourceId();
+
+    /**
+     * Gets the imageBuildCompute property: The compute name for image build.
+     *
+     * @return the imageBuildCompute value.
+     */
+    String imageBuildCompute();
+
+    /**
+     * Gets the keyVault property: ARM id of the key vault associated with this workspace. This cannot be changed once
+     * the workspace has been created.
+     *
+     * @return the keyVault value.
+     */
+    String keyVault();
+
+    /**
+     * Gets the keyVaults property: The keyVaults property.
+     *
+     * @return the keyVaults value.
+     */
+    List<String> keyVaults();
+
+    /**
+     * Gets the managedNetwork property: Managed Network settings for a machine learning workspace.
+     *
+     * @return the managedNetwork value.
+     */
+    ManagedNetworkSettings managedNetwork();
 
     /**
      * Gets the mlFlowTrackingUri property: The URI associated with this workspace that machine learning flow must point
@@ -249,12 +218,144 @@ public interface Workspace {
     String mlFlowTrackingUri();
 
     /**
+     * Gets the notebookInfo property: The notebook info of Azure ML workspace.
+     *
+     * @return the notebookInfo value.
+     */
+    NotebookResourceInfo notebookInfo();
+
+    /**
+     * Gets the primaryUserAssignedIdentity property: The user assigned identity resource id that represents the
+     * workspace identity.
+     *
+     * @return the primaryUserAssignedIdentity value.
+     */
+    String primaryUserAssignedIdentity();
+
+    /**
+     * Gets the privateEndpointConnections property: The list of private endpoint connections in the workspace.
+     *
+     * @return the privateEndpointConnections value.
+     */
+    List<PrivateEndpointConnection> privateEndpointConnections();
+
+    /**
+     * Gets the privateLinkCount property: Count of private connections in the workspace.
+     *
+     * @return the privateLinkCount value.
+     */
+    Integer privateLinkCount();
+
+    /**
+     * Gets the provisioningState property: The current deployment state of workspace resource. The provisioningState is
+     * to indicate states for resource provisioning.
+     *
+     * @return the provisioningState value.
+     */
+    ProvisioningState provisioningState();
+
+    /**
+     * Gets the publicNetworkAccess property: Whether requests from Public Network are allowed.
+     *
+     * @return the publicNetworkAccess value.
+     */
+    PublicNetworkAccessType publicNetworkAccess();
+
+    /**
+     * Gets the serverlessComputeSettings property: Settings for serverless compute created in the workspace.
+     *
+     * @return the serverlessComputeSettings value.
+     */
+    ServerlessComputeSettings serverlessComputeSettings();
+
+    /**
+     * Gets the serviceManagedResourcesSettings property: The service managed resource settings.
+     *
+     * @return the serviceManagedResourcesSettings value.
+     */
+    ServiceManagedResourcesSettings serviceManagedResourcesSettings();
+
+    /**
+     * Gets the serviceProvisionedResourceGroup property: The name of the managed resource group created by workspace RP
+     * in customer subscription if the workspace is CMK workspace.
+     *
+     * @return the serviceProvisionedResourceGroup value.
+     */
+    String serviceProvisionedResourceGroup();
+
+    /**
+     * Gets the sharedPrivateLinkResources property: The list of shared private link resources in this workspace.
+     *
+     * @return the sharedPrivateLinkResources value.
+     */
+    List<SharedPrivateLinkResource> sharedPrivateLinkResources();
+
+    /**
+     * Gets the softDeleteRetentionInDays property: Retention time in days after workspace get soft deleted.
+     *
+     * @return the softDeleteRetentionInDays value.
+     */
+    Integer softDeleteRetentionInDays();
+
+    /**
+     * Gets the storageAccount property: ARM id of the storage account associated with this workspace. This cannot be
+     * changed once the workspace has been created.
+     *
+     * @return the storageAccount value.
+     */
+    String storageAccount();
+
+    /**
+     * Gets the storageAccounts property: The storageAccounts property.
+     *
+     * @return the storageAccounts value.
+     */
+    List<String> storageAccounts();
+
+    /**
+     * Gets the storageHnsEnabled property: If the storage associated with the workspace has hierarchical namespace(HNS)
+     * enabled.
+     *
+     * @return the storageHnsEnabled value.
+     */
+    Boolean storageHnsEnabled();
+
+    /**
+     * Gets the systemDatastoresAuthMode property: The auth mode used for accessing the system datastores of the
+     * workspace.
+     *
+     * @return the systemDatastoresAuthMode value.
+     */
+    String systemDatastoresAuthMode();
+
+    /**
+     * Gets the tenantId property: The tenant id associated with this workspace.
+     *
+     * @return the tenantId value.
+     */
+    String tenantId();
+
+    /**
      * Gets the v1LegacyMode property: Enabling v1_legacy_mode may prevent you from using features provided by the v2
      * API.
      *
      * @return the v1LegacyMode value.
      */
     Boolean v1LegacyMode();
+
+    /**
+     * Gets the workspaceHubConfig property: WorkspaceHub's configuration object.
+     *
+     * @return the workspaceHubConfig value.
+     */
+    WorkspaceHubConfig workspaceHubConfig();
+
+    /**
+     * Gets the workspaceId property: The immutable id associated with this workspace.
+     *
+     * @return the workspaceId value.
+     */
+    String workspaceId();
 
     /**
      * Gets the region of the resource.
@@ -288,11 +389,13 @@ public interface Workspace {
     interface Definition
         extends DefinitionStages.Blank, DefinitionStages.WithResourceGroup, DefinitionStages.WithCreate {
     }
+
     /** The Workspace definition stages. */
     interface DefinitionStages {
         /** The first stage of the Workspace definition. */
         interface Blank extends WithResourceGroup {
         }
+
         /** The stage of the Workspace definition allowing to specify parent resource. */
         interface WithResourceGroup {
             /**
@@ -303,6 +406,7 @@ public interface Workspace {
              */
             WithCreate withExistingResourceGroup(String resourceGroupName);
         }
+
         /**
          * The stage of the Workspace definition which contains all the minimum required properties for the resource to
          * be created, but also allows for any other optional properties to be specified.
@@ -311,23 +415,37 @@ public interface Workspace {
             extends DefinitionStages.WithLocation,
                 DefinitionStages.WithTags,
                 DefinitionStages.WithIdentity,
+                DefinitionStages.WithKind,
                 DefinitionStages.WithSku,
-                DefinitionStages.WithDescription,
-                DefinitionStages.WithFriendlyName,
-                DefinitionStages.WithKeyVault,
-                DefinitionStages.WithApplicationInsights,
-                DefinitionStages.WithContainerRegistry,
-                DefinitionStages.WithStorageAccount,
-                DefinitionStages.WithDiscoveryUrl,
-                DefinitionStages.WithEncryption,
-                DefinitionStages.WithHbiWorkspace,
-                DefinitionStages.WithImageBuildCompute,
                 DefinitionStages.WithAllowPublicAccessWhenBehindVnet,
-                DefinitionStages.WithPublicNetworkAccess,
-                DefinitionStages.WithSharedPrivateLinkResources,
-                DefinitionStages.WithServiceManagedResourcesSettings,
+                DefinitionStages.WithApplicationInsights,
+                DefinitionStages.WithAssociatedWorkspaces,
+                DefinitionStages.WithContainerRegistries,
+                DefinitionStages.WithContainerRegistry,
+                DefinitionStages.WithDescription,
+                DefinitionStages.WithDiscoveryUrl,
+                DefinitionStages.WithEnableDataIsolation,
+                DefinitionStages.WithEncryption,
+                DefinitionStages.WithExistingWorkspaces,
+                DefinitionStages.WithFeatureStoreSettings,
+                DefinitionStages.WithFriendlyName,
+                DefinitionStages.WithHbiWorkspace,
+                DefinitionStages.WithHubResourceId,
+                DefinitionStages.WithImageBuildCompute,
+                DefinitionStages.WithKeyVault,
+                DefinitionStages.WithKeyVaults,
+                DefinitionStages.WithManagedNetwork,
                 DefinitionStages.WithPrimaryUserAssignedIdentity,
-                DefinitionStages.WithV1LegacyMode {
+                DefinitionStages.WithPublicNetworkAccess,
+                DefinitionStages.WithServerlessComputeSettings,
+                DefinitionStages.WithServiceManagedResourcesSettings,
+                DefinitionStages.WithSharedPrivateLinkResources,
+                DefinitionStages.WithSoftDeleteRetentionInDays,
+                DefinitionStages.WithStorageAccount,
+                DefinitionStages.WithStorageAccounts,
+                DefinitionStages.WithSystemDatastoresAuthMode,
+                DefinitionStages.WithV1LegacyMode,
+                DefinitionStages.WithWorkspaceHubConfig {
             /**
              * Executes the create request.
              *
@@ -343,12 +461,13 @@ public interface Workspace {
              */
             Workspace create(Context context);
         }
+
         /** The stage of the Workspace definition allowing to specify location. */
         interface WithLocation {
             /**
              * Specifies the region for the resource.
              *
-             * @param location Specifies the location of the resource.
+             * @param location The location property.
              * @return the next definition stage.
              */
             WithCreate withRegion(Region location);
@@ -356,151 +475,59 @@ public interface Workspace {
             /**
              * Specifies the region for the resource.
              *
-             * @param location Specifies the location of the resource.
+             * @param location The location property.
              * @return the next definition stage.
              */
             WithCreate withRegion(String location);
         }
+
         /** The stage of the Workspace definition allowing to specify tags. */
         interface WithTags {
             /**
-             * Specifies the tags property: Contains resource tags defined as key/value pairs..
+             * Specifies the tags property: Dictionary of &lt;string&gt;.
              *
-             * @param tags Contains resource tags defined as key/value pairs.
+             * @param tags Dictionary of &lt;string&gt;.
              * @return the next definition stage.
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
         /** The stage of the Workspace definition allowing to specify identity. */
         interface WithIdentity {
             /**
-             * Specifies the identity property: The identity of the resource..
+             * Specifies the identity property: Managed service identity (system assigned and/or user assigned
+             * identities).
              *
-             * @param identity The identity of the resource.
+             * @param identity Managed service identity (system assigned and/or user assigned identities).
              * @return the next definition stage.
              */
             WithCreate withIdentity(ManagedServiceIdentity identity);
         }
+
+        /** The stage of the Workspace definition allowing to specify kind. */
+        interface WithKind {
+            /**
+             * Specifies the kind property: The kind property..
+             *
+             * @param kind The kind property.
+             * @return the next definition stage.
+             */
+            WithCreate withKind(String kind);
+        }
+
         /** The stage of the Workspace definition allowing to specify sku. */
         interface WithSku {
             /**
-             * Specifies the sku property: The sku of the workspace..
+             * Specifies the sku property: Optional. This field is required to be implemented by the RP because AML is
+             * supporting more than one tier.
              *
-             * @param sku The sku of the workspace.
+             * @param sku Optional. This field is required to be implemented by the RP because AML is supporting more
+             *     than one tier.
              * @return the next definition stage.
              */
             WithCreate withSku(Sku sku);
         }
-        /** The stage of the Workspace definition allowing to specify description. */
-        interface WithDescription {
-            /**
-             * Specifies the description property: The description of this workspace..
-             *
-             * @param description The description of this workspace.
-             * @return the next definition stage.
-             */
-            WithCreate withDescription(String description);
-        }
-        /** The stage of the Workspace definition allowing to specify friendlyName. */
-        interface WithFriendlyName {
-            /**
-             * Specifies the friendlyName property: The friendly name for this workspace. This name in mutable.
-             *
-             * @param friendlyName The friendly name for this workspace. This name in mutable.
-             * @return the next definition stage.
-             */
-            WithCreate withFriendlyName(String friendlyName);
-        }
-        /** The stage of the Workspace definition allowing to specify keyVault. */
-        interface WithKeyVault {
-            /**
-             * Specifies the keyVault property: ARM id of the key vault associated with this workspace. This cannot be
-             * changed once the workspace has been created.
-             *
-             * @param keyVault ARM id of the key vault associated with this workspace. This cannot be changed once the
-             *     workspace has been created.
-             * @return the next definition stage.
-             */
-            WithCreate withKeyVault(String keyVault);
-        }
-        /** The stage of the Workspace definition allowing to specify applicationInsights. */
-        interface WithApplicationInsights {
-            /**
-             * Specifies the applicationInsights property: ARM id of the application insights associated with this
-             * workspace..
-             *
-             * @param applicationInsights ARM id of the application insights associated with this workspace.
-             * @return the next definition stage.
-             */
-            WithCreate withApplicationInsights(String applicationInsights);
-        }
-        /** The stage of the Workspace definition allowing to specify containerRegistry. */
-        interface WithContainerRegistry {
-            /**
-             * Specifies the containerRegistry property: ARM id of the container registry associated with this
-             * workspace..
-             *
-             * @param containerRegistry ARM id of the container registry associated with this workspace.
-             * @return the next definition stage.
-             */
-            WithCreate withContainerRegistry(String containerRegistry);
-        }
-        /** The stage of the Workspace definition allowing to specify storageAccount. */
-        interface WithStorageAccount {
-            /**
-             * Specifies the storageAccount property: ARM id of the storage account associated with this workspace. This
-             * cannot be changed once the workspace has been created.
-             *
-             * @param storageAccount ARM id of the storage account associated with this workspace. This cannot be
-             *     changed once the workspace has been created.
-             * @return the next definition stage.
-             */
-            WithCreate withStorageAccount(String storageAccount);
-        }
-        /** The stage of the Workspace definition allowing to specify discoveryUrl. */
-        interface WithDiscoveryUrl {
-            /**
-             * Specifies the discoveryUrl property: Url for the discovery service to identify regional endpoints for
-             * machine learning experimentation services.
-             *
-             * @param discoveryUrl Url for the discovery service to identify regional endpoints for machine learning
-             *     experimentation services.
-             * @return the next definition stage.
-             */
-            WithCreate withDiscoveryUrl(String discoveryUrl);
-        }
-        /** The stage of the Workspace definition allowing to specify encryption. */
-        interface WithEncryption {
-            /**
-             * Specifies the encryption property: The encryption settings of Azure ML workspace..
-             *
-             * @param encryption The encryption settings of Azure ML workspace.
-             * @return the next definition stage.
-             */
-            WithCreate withEncryption(EncryptionProperty encryption);
-        }
-        /** The stage of the Workspace definition allowing to specify hbiWorkspace. */
-        interface WithHbiWorkspace {
-            /**
-             * Specifies the hbiWorkspace property: The flag to signal HBI data in the workspace and reduce diagnostic
-             * data collected by the service.
-             *
-             * @param hbiWorkspace The flag to signal HBI data in the workspace and reduce diagnostic data collected by
-             *     the service.
-             * @return the next definition stage.
-             */
-            WithCreate withHbiWorkspace(Boolean hbiWorkspace);
-        }
-        /** The stage of the Workspace definition allowing to specify imageBuildCompute. */
-        interface WithImageBuildCompute {
-            /**
-             * Specifies the imageBuildCompute property: The compute name for image build.
-             *
-             * @param imageBuildCompute The compute name for image build.
-             * @return the next definition stage.
-             */
-            WithCreate withImageBuildCompute(String imageBuildCompute);
-        }
+
         /** The stage of the Workspace definition allowing to specify allowPublicAccessWhenBehindVnet. */
         interface WithAllowPublicAccessWhenBehindVnet {
             /**
@@ -513,38 +540,202 @@ public interface Workspace {
              */
             WithCreate withAllowPublicAccessWhenBehindVnet(Boolean allowPublicAccessWhenBehindVnet);
         }
-        /** The stage of the Workspace definition allowing to specify publicNetworkAccess. */
-        interface WithPublicNetworkAccess {
+
+        /** The stage of the Workspace definition allowing to specify applicationInsights. */
+        interface WithApplicationInsights {
             /**
-             * Specifies the publicNetworkAccess property: Whether requests from Public Network are allowed..
-             *
-             * @param publicNetworkAccess Whether requests from Public Network are allowed.
-             * @return the next definition stage.
-             */
-            WithCreate withPublicNetworkAccess(PublicNetworkAccess publicNetworkAccess);
-        }
-        /** The stage of the Workspace definition allowing to specify sharedPrivateLinkResources. */
-        interface WithSharedPrivateLinkResources {
-            /**
-             * Specifies the sharedPrivateLinkResources property: The list of shared private link resources in this
+             * Specifies the applicationInsights property: ARM id of the application insights associated with this
              * workspace..
              *
-             * @param sharedPrivateLinkResources The list of shared private link resources in this workspace.
+             * @param applicationInsights ARM id of the application insights associated with this workspace.
              * @return the next definition stage.
              */
-            WithCreate withSharedPrivateLinkResources(List<SharedPrivateLinkResource> sharedPrivateLinkResources);
+            WithCreate withApplicationInsights(String applicationInsights);
         }
-        /** The stage of the Workspace definition allowing to specify serviceManagedResourcesSettings. */
-        interface WithServiceManagedResourcesSettings {
+
+        /** The stage of the Workspace definition allowing to specify associatedWorkspaces. */
+        interface WithAssociatedWorkspaces {
             /**
-             * Specifies the serviceManagedResourcesSettings property: The service managed resource settings..
+             * Specifies the associatedWorkspaces property: The associatedWorkspaces property..
              *
-             * @param serviceManagedResourcesSettings The service managed resource settings.
+             * @param associatedWorkspaces The associatedWorkspaces property.
              * @return the next definition stage.
              */
-            WithCreate withServiceManagedResourcesSettings(
-                ServiceManagedResourcesSettings serviceManagedResourcesSettings);
+            WithCreate withAssociatedWorkspaces(List<String> associatedWorkspaces);
         }
+
+        /** The stage of the Workspace definition allowing to specify containerRegistries. */
+        interface WithContainerRegistries {
+            /**
+             * Specifies the containerRegistries property: The containerRegistries property..
+             *
+             * @param containerRegistries The containerRegistries property.
+             * @return the next definition stage.
+             */
+            WithCreate withContainerRegistries(List<String> containerRegistries);
+        }
+
+        /** The stage of the Workspace definition allowing to specify containerRegistry. */
+        interface WithContainerRegistry {
+            /**
+             * Specifies the containerRegistry property: ARM id of the container registry associated with this
+             * workspace..
+             *
+             * @param containerRegistry ARM id of the container registry associated with this workspace.
+             * @return the next definition stage.
+             */
+            WithCreate withContainerRegistry(String containerRegistry);
+        }
+
+        /** The stage of the Workspace definition allowing to specify description. */
+        interface WithDescription {
+            /**
+             * Specifies the description property: The description of this workspace..
+             *
+             * @param description The description of this workspace.
+             * @return the next definition stage.
+             */
+            WithCreate withDescription(String description);
+        }
+
+        /** The stage of the Workspace definition allowing to specify discoveryUrl. */
+        interface WithDiscoveryUrl {
+            /**
+             * Specifies the discoveryUrl property: Url for the discovery service to identify regional endpoints for
+             * machine learning experimentation services.
+             *
+             * @param discoveryUrl Url for the discovery service to identify regional endpoints for machine learning
+             *     experimentation services.
+             * @return the next definition stage.
+             */
+            WithCreate withDiscoveryUrl(String discoveryUrl);
+        }
+
+        /** The stage of the Workspace definition allowing to specify enableDataIsolation. */
+        interface WithEnableDataIsolation {
+            /**
+             * Specifies the enableDataIsolation property: The enableDataIsolation property..
+             *
+             * @param enableDataIsolation The enableDataIsolation property.
+             * @return the next definition stage.
+             */
+            WithCreate withEnableDataIsolation(Boolean enableDataIsolation);
+        }
+
+        /** The stage of the Workspace definition allowing to specify encryption. */
+        interface WithEncryption {
+            /**
+             * Specifies the encryption property: The encryption property..
+             *
+             * @param encryption The encryption property.
+             * @return the next definition stage.
+             */
+            WithCreate withEncryption(EncryptionProperty encryption);
+        }
+
+        /** The stage of the Workspace definition allowing to specify existingWorkspaces. */
+        interface WithExistingWorkspaces {
+            /**
+             * Specifies the existingWorkspaces property: The existingWorkspaces property..
+             *
+             * @param existingWorkspaces The existingWorkspaces property.
+             * @return the next definition stage.
+             */
+            WithCreate withExistingWorkspaces(List<String> existingWorkspaces);
+        }
+
+        /** The stage of the Workspace definition allowing to specify featureStoreSettings. */
+        interface WithFeatureStoreSettings {
+            /**
+             * Specifies the featureStoreSettings property: Settings for feature store type workspace..
+             *
+             * @param featureStoreSettings Settings for feature store type workspace.
+             * @return the next definition stage.
+             */
+            WithCreate withFeatureStoreSettings(FeatureStoreSettings featureStoreSettings);
+        }
+
+        /** The stage of the Workspace definition allowing to specify friendlyName. */
+        interface WithFriendlyName {
+            /**
+             * Specifies the friendlyName property: The friendly name for this workspace. This name in mutable.
+             *
+             * @param friendlyName The friendly name for this workspace. This name in mutable.
+             * @return the next definition stage.
+             */
+            WithCreate withFriendlyName(String friendlyName);
+        }
+
+        /** The stage of the Workspace definition allowing to specify hbiWorkspace. */
+        interface WithHbiWorkspace {
+            /**
+             * Specifies the hbiWorkspace property: The flag to signal HBI data in the workspace and reduce diagnostic
+             * data collected by the service.
+             *
+             * @param hbiWorkspace The flag to signal HBI data in the workspace and reduce diagnostic data collected by
+             *     the service.
+             * @return the next definition stage.
+             */
+            WithCreate withHbiWorkspace(Boolean hbiWorkspace);
+        }
+
+        /** The stage of the Workspace definition allowing to specify hubResourceId. */
+        interface WithHubResourceId {
+            /**
+             * Specifies the hubResourceId property: The hubResourceId property..
+             *
+             * @param hubResourceId The hubResourceId property.
+             * @return the next definition stage.
+             */
+            WithCreate withHubResourceId(String hubResourceId);
+        }
+
+        /** The stage of the Workspace definition allowing to specify imageBuildCompute. */
+        interface WithImageBuildCompute {
+            /**
+             * Specifies the imageBuildCompute property: The compute name for image build.
+             *
+             * @param imageBuildCompute The compute name for image build.
+             * @return the next definition stage.
+             */
+            WithCreate withImageBuildCompute(String imageBuildCompute);
+        }
+
+        /** The stage of the Workspace definition allowing to specify keyVault. */
+        interface WithKeyVault {
+            /**
+             * Specifies the keyVault property: ARM id of the key vault associated with this workspace. This cannot be
+             * changed once the workspace has been created.
+             *
+             * @param keyVault ARM id of the key vault associated with this workspace. This cannot be changed once the
+             *     workspace has been created.
+             * @return the next definition stage.
+             */
+            WithCreate withKeyVault(String keyVault);
+        }
+
+        /** The stage of the Workspace definition allowing to specify keyVaults. */
+        interface WithKeyVaults {
+            /**
+             * Specifies the keyVaults property: The keyVaults property..
+             *
+             * @param keyVaults The keyVaults property.
+             * @return the next definition stage.
+             */
+            WithCreate withKeyVaults(List<String> keyVaults);
+        }
+
+        /** The stage of the Workspace definition allowing to specify managedNetwork. */
+        interface WithManagedNetwork {
+            /**
+             * Specifies the managedNetwork property: Managed Network settings for a machine learning workspace..
+             *
+             * @param managedNetwork Managed Network settings for a machine learning workspace.
+             * @return the next definition stage.
+             */
+            WithCreate withManagedNetwork(ManagedNetworkSettingsInner managedNetwork);
+        }
+
         /** The stage of the Workspace definition allowing to specify primaryUserAssignedIdentity. */
         interface WithPrimaryUserAssignedIdentity {
             /**
@@ -557,6 +748,102 @@ public interface Workspace {
              */
             WithCreate withPrimaryUserAssignedIdentity(String primaryUserAssignedIdentity);
         }
+
+        /** The stage of the Workspace definition allowing to specify publicNetworkAccess. */
+        interface WithPublicNetworkAccess {
+            /**
+             * Specifies the publicNetworkAccess property: Whether requests from Public Network are allowed..
+             *
+             * @param publicNetworkAccess Whether requests from Public Network are allowed.
+             * @return the next definition stage.
+             */
+            WithCreate withPublicNetworkAccess(PublicNetworkAccessType publicNetworkAccess);
+        }
+
+        /** The stage of the Workspace definition allowing to specify serverlessComputeSettings. */
+        interface WithServerlessComputeSettings {
+            /**
+             * Specifies the serverlessComputeSettings property: Settings for serverless compute created in the
+             * workspace.
+             *
+             * @param serverlessComputeSettings Settings for serverless compute created in the workspace.
+             * @return the next definition stage.
+             */
+            WithCreate withServerlessComputeSettings(ServerlessComputeSettings serverlessComputeSettings);
+        }
+
+        /** The stage of the Workspace definition allowing to specify serviceManagedResourcesSettings. */
+        interface WithServiceManagedResourcesSettings {
+            /**
+             * Specifies the serviceManagedResourcesSettings property: The service managed resource settings..
+             *
+             * @param serviceManagedResourcesSettings The service managed resource settings.
+             * @return the next definition stage.
+             */
+            WithCreate withServiceManagedResourcesSettings(
+                ServiceManagedResourcesSettings serviceManagedResourcesSettings);
+        }
+
+        /** The stage of the Workspace definition allowing to specify sharedPrivateLinkResources. */
+        interface WithSharedPrivateLinkResources {
+            /**
+             * Specifies the sharedPrivateLinkResources property: The list of shared private link resources in this
+             * workspace..
+             *
+             * @param sharedPrivateLinkResources The list of shared private link resources in this workspace.
+             * @return the next definition stage.
+             */
+            WithCreate withSharedPrivateLinkResources(List<SharedPrivateLinkResource> sharedPrivateLinkResources);
+        }
+
+        /** The stage of the Workspace definition allowing to specify softDeleteRetentionInDays. */
+        interface WithSoftDeleteRetentionInDays {
+            /**
+             * Specifies the softDeleteRetentionInDays property: Retention time in days after workspace get soft
+             * deleted..
+             *
+             * @param softDeleteRetentionInDays Retention time in days after workspace get soft deleted.
+             * @return the next definition stage.
+             */
+            WithCreate withSoftDeleteRetentionInDays(Integer softDeleteRetentionInDays);
+        }
+
+        /** The stage of the Workspace definition allowing to specify storageAccount. */
+        interface WithStorageAccount {
+            /**
+             * Specifies the storageAccount property: ARM id of the storage account associated with this workspace. This
+             * cannot be changed once the workspace has been created.
+             *
+             * @param storageAccount ARM id of the storage account associated with this workspace. This cannot be
+             *     changed once the workspace has been created.
+             * @return the next definition stage.
+             */
+            WithCreate withStorageAccount(String storageAccount);
+        }
+
+        /** The stage of the Workspace definition allowing to specify storageAccounts. */
+        interface WithStorageAccounts {
+            /**
+             * Specifies the storageAccounts property: The storageAccounts property..
+             *
+             * @param storageAccounts The storageAccounts property.
+             * @return the next definition stage.
+             */
+            WithCreate withStorageAccounts(List<String> storageAccounts);
+        }
+
+        /** The stage of the Workspace definition allowing to specify systemDatastoresAuthMode. */
+        interface WithSystemDatastoresAuthMode {
+            /**
+             * Specifies the systemDatastoresAuthMode property: The auth mode used for accessing the system datastores
+             * of the workspace..
+             *
+             * @param systemDatastoresAuthMode The auth mode used for accessing the system datastores of the workspace.
+             * @return the next definition stage.
+             */
+            WithCreate withSystemDatastoresAuthMode(String systemDatastoresAuthMode);
+        }
+
         /** The stage of the Workspace definition allowing to specify v1LegacyMode. */
         interface WithV1LegacyMode {
             /**
@@ -568,7 +855,19 @@ public interface Workspace {
              */
             WithCreate withV1LegacyMode(Boolean v1LegacyMode);
         }
+
+        /** The stage of the Workspace definition allowing to specify workspaceHubConfig. */
+        interface WithWorkspaceHubConfig {
+            /**
+             * Specifies the workspaceHubConfig property: WorkspaceHub's configuration object..
+             *
+             * @param workspaceHubConfig WorkspaceHub's configuration object.
+             * @return the next definition stage.
+             */
+            WithCreate withWorkspaceHubConfig(WorkspaceHubConfig workspaceHubConfig);
+        }
     }
+
     /**
      * Begins update for the Workspace resource.
      *
@@ -579,16 +878,23 @@ public interface Workspace {
     /** The template for Workspace update. */
     interface Update
         extends UpdateStages.WithTags,
-            UpdateStages.WithSku,
             UpdateStages.WithIdentity,
+            UpdateStages.WithSku,
+            UpdateStages.WithApplicationInsights,
+            UpdateStages.WithContainerRegistry,
             UpdateStages.WithDescription,
+            UpdateStages.WithEnableDataIsolation,
+            UpdateStages.WithEncryption,
+            UpdateStages.WithFeatureStoreSettings,
             UpdateStages.WithFriendlyName,
             UpdateStages.WithImageBuildCompute,
-            UpdateStages.WithServiceManagedResourcesSettings,
+            UpdateStages.WithManagedNetwork,
             UpdateStages.WithPrimaryUserAssignedIdentity,
             UpdateStages.WithPublicNetworkAccess,
-            UpdateStages.WithApplicationInsights,
-            UpdateStages.WithContainerRegistry {
+            UpdateStages.WithServerlessComputeSettings,
+            UpdateStages.WithServiceManagedResourcesSettings,
+            UpdateStages.WithSoftDeleteRetentionInDays,
+            UpdateStages.WithV1LegacyMode {
         /**
          * Executes the update request.
          *
@@ -604,6 +910,7 @@ public interface Workspace {
          */
         Workspace apply(Context context);
     }
+
     /** The Workspace update stages. */
     interface UpdateStages {
         /** The stage of the Workspace update allowing to specify tags. */
@@ -616,26 +923,56 @@ public interface Workspace {
              */
             Update withTags(Map<String, String> tags);
         }
-        /** The stage of the Workspace update allowing to specify sku. */
-        interface WithSku {
-            /**
-             * Specifies the sku property: The sku of the workspace..
-             *
-             * @param sku The sku of the workspace.
-             * @return the next definition stage.
-             */
-            Update withSku(Sku sku);
-        }
+
         /** The stage of the Workspace update allowing to specify identity. */
         interface WithIdentity {
             /**
-             * Specifies the identity property: The identity of the resource..
+             * Specifies the identity property: Managed service identity (system assigned and/or user assigned
+             * identities).
              *
-             * @param identity The identity of the resource.
+             * @param identity Managed service identity (system assigned and/or user assigned identities).
              * @return the next definition stage.
              */
             Update withIdentity(ManagedServiceIdentity identity);
         }
+
+        /** The stage of the Workspace update allowing to specify sku. */
+        interface WithSku {
+            /**
+             * Specifies the sku property: Optional. This field is required to be implemented by the RP because AML is
+             * supporting more than one tier.
+             *
+             * @param sku Optional. This field is required to be implemented by the RP because AML is supporting more
+             *     than one tier.
+             * @return the next definition stage.
+             */
+            Update withSku(Sku sku);
+        }
+
+        /** The stage of the Workspace update allowing to specify applicationInsights. */
+        interface WithApplicationInsights {
+            /**
+             * Specifies the applicationInsights property: ARM id of the application insights associated with this
+             * workspace..
+             *
+             * @param applicationInsights ARM id of the application insights associated with this workspace.
+             * @return the next definition stage.
+             */
+            Update withApplicationInsights(String applicationInsights);
+        }
+
+        /** The stage of the Workspace update allowing to specify containerRegistry. */
+        interface WithContainerRegistry {
+            /**
+             * Specifies the containerRegistry property: ARM id of the container registry associated with this
+             * workspace..
+             *
+             * @param containerRegistry ARM id of the container registry associated with this workspace.
+             * @return the next definition stage.
+             */
+            Update withContainerRegistry(String containerRegistry);
+        }
+
         /** The stage of the Workspace update allowing to specify description. */
         interface WithDescription {
             /**
@@ -646,16 +983,51 @@ public interface Workspace {
              */
             Update withDescription(String description);
         }
+
+        /** The stage of the Workspace update allowing to specify enableDataIsolation. */
+        interface WithEnableDataIsolation {
+            /**
+             * Specifies the enableDataIsolation property: The enableDataIsolation property..
+             *
+             * @param enableDataIsolation The enableDataIsolation property.
+             * @return the next definition stage.
+             */
+            Update withEnableDataIsolation(Boolean enableDataIsolation);
+        }
+
+        /** The stage of the Workspace update allowing to specify encryption. */
+        interface WithEncryption {
+            /**
+             * Specifies the encryption property: The encryption property..
+             *
+             * @param encryption The encryption property.
+             * @return the next definition stage.
+             */
+            Update withEncryption(EncryptionUpdateProperties encryption);
+        }
+
+        /** The stage of the Workspace update allowing to specify featureStoreSettings. */
+        interface WithFeatureStoreSettings {
+            /**
+             * Specifies the featureStoreSettings property: Settings for feature store type workspace..
+             *
+             * @param featureStoreSettings Settings for feature store type workspace.
+             * @return the next definition stage.
+             */
+            Update withFeatureStoreSettings(FeatureStoreSettings featureStoreSettings);
+        }
+
         /** The stage of the Workspace update allowing to specify friendlyName. */
         interface WithFriendlyName {
             /**
-             * Specifies the friendlyName property: The friendly name for this workspace..
+             * Specifies the friendlyName property: The friendly name for this workspace. This name in mutable.
              *
-             * @param friendlyName The friendly name for this workspace.
+             * @param friendlyName The friendly name for this workspace. This name in mutable.
              * @return the next definition stage.
              */
             Update withFriendlyName(String friendlyName);
         }
+
         /** The stage of the Workspace update allowing to specify imageBuildCompute. */
         interface WithImageBuildCompute {
             /**
@@ -666,16 +1038,18 @@ public interface Workspace {
              */
             Update withImageBuildCompute(String imageBuildCompute);
         }
-        /** The stage of the Workspace update allowing to specify serviceManagedResourcesSettings. */
-        interface WithServiceManagedResourcesSettings {
+
+        /** The stage of the Workspace update allowing to specify managedNetwork. */
+        interface WithManagedNetwork {
             /**
-             * Specifies the serviceManagedResourcesSettings property: The service managed resource settings..
+             * Specifies the managedNetwork property: Managed Network settings for a machine learning workspace..
              *
-             * @param serviceManagedResourcesSettings The service managed resource settings.
+             * @param managedNetwork Managed Network settings for a machine learning workspace.
              * @return the next definition stage.
              */
-            Update withServiceManagedResourcesSettings(ServiceManagedResourcesSettings serviceManagedResourcesSettings);
+            Update withManagedNetwork(ManagedNetworkSettingsInner managedNetwork);
         }
+
         /** The stage of the Workspace update allowing to specify primaryUserAssignedIdentity. */
         interface WithPrimaryUserAssignedIdentity {
             /**
@@ -688,6 +1062,7 @@ public interface Workspace {
              */
             Update withPrimaryUserAssignedIdentity(String primaryUserAssignedIdentity);
         }
+
         /** The stage of the Workspace update allowing to specify publicNetworkAccess. */
         interface WithPublicNetworkAccess {
             /**
@@ -696,31 +1071,57 @@ public interface Workspace {
              * @param publicNetworkAccess Whether requests from Public Network are allowed.
              * @return the next definition stage.
              */
-            Update withPublicNetworkAccess(PublicNetworkAccess publicNetworkAccess);
+            Update withPublicNetworkAccess(PublicNetworkAccessType publicNetworkAccess);
         }
-        /** The stage of the Workspace update allowing to specify applicationInsights. */
-        interface WithApplicationInsights {
+
+        /** The stage of the Workspace update allowing to specify serverlessComputeSettings. */
+        interface WithServerlessComputeSettings {
             /**
-             * Specifies the applicationInsights property: ARM id of the application insights associated with this
-             * workspace..
+             * Specifies the serverlessComputeSettings property: Settings for serverless compute created in the
+             * workspace.
              *
-             * @param applicationInsights ARM id of the application insights associated with this workspace.
+             * @param serverlessComputeSettings Settings for serverless compute created in the workspace.
              * @return the next definition stage.
              */
-            Update withApplicationInsights(String applicationInsights);
+            Update withServerlessComputeSettings(ServerlessComputeSettings serverlessComputeSettings);
         }
-        /** The stage of the Workspace update allowing to specify containerRegistry. */
-        interface WithContainerRegistry {
+
+        /** The stage of the Workspace update allowing to specify serviceManagedResourcesSettings. */
+        interface WithServiceManagedResourcesSettings {
             /**
-             * Specifies the containerRegistry property: ARM id of the container registry associated with this
-             * workspace..
+             * Specifies the serviceManagedResourcesSettings property: The service managed resource settings..
              *
-             * @param containerRegistry ARM id of the container registry associated with this workspace.
+             * @param serviceManagedResourcesSettings The service managed resource settings.
              * @return the next definition stage.
              */
-            Update withContainerRegistry(String containerRegistry);
+            Update withServiceManagedResourcesSettings(ServiceManagedResourcesSettings serviceManagedResourcesSettings);
+        }
+
+        /** The stage of the Workspace update allowing to specify softDeleteRetentionInDays. */
+        interface WithSoftDeleteRetentionInDays {
+            /**
+             * Specifies the softDeleteRetentionInDays property: Retention time in days after workspace get soft
+             * deleted..
+             *
+             * @param softDeleteRetentionInDays Retention time in days after workspace get soft deleted.
+             * @return the next definition stage.
+             */
+            Update withSoftDeleteRetentionInDays(Integer softDeleteRetentionInDays);
+        }
+
+        /** The stage of the Workspace update allowing to specify v1LegacyMode. */
+        interface WithV1LegacyMode {
+            /**
+             * Specifies the v1LegacyMode property: Enabling v1_legacy_mode may prevent you from using features provided
+             * by the v2 API..
+             *
+             * @param v1LegacyMode Enabling v1_legacy_mode may prevent you from using features provided by the v2 API.
+             * @return the next definition stage.
+             */
+            Update withV1LegacyMode(Boolean v1LegacyMode);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *
@@ -748,14 +1149,14 @@ public interface Workspace {
     /**
      * Diagnose workspace setup issue.
      *
-     * @param parameters The parameter of diagnosing workspace health.
+     * @param body The parameter of diagnosing workspace health.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response.
      */
-    DiagnoseResponseResult diagnose(DiagnoseWorkspaceParameters parameters, Context context);
+    DiagnoseResponseResult diagnose(DiagnoseWorkspaceParameters body, Context context);
 
     /**
      * Lists all the keys associated with this workspace. This includes keys for the storage account, app insights and
@@ -780,87 +1181,27 @@ public interface Workspace {
     ListWorkspaceKeysResult listKeys();
 
     /**
-     * Resync all the keys associated with this workspace. This includes keys for the storage account, app insights and
-     * password for container registry.
-     *
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void resyncKeys();
-
-    /**
-     * Resync all the keys associated with this workspace. This includes keys for the storage account, app insights and
-     * password for container registry.
+     * Get Azure Machine Learning Workspace notebook access token.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void resyncKeys(Context context);
-
-    /**
-     * return notebook access token and refresh token.
-     *
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response}.
+     * @return azure Machine Learning Workspace notebook access token along with {@link Response}.
      */
     Response<NotebookAccessTokenResult> listNotebookAccessTokenWithResponse(Context context);
 
     /**
-     * return notebook access token and refresh token.
+     * Get Azure Machine Learning Workspace notebook access token.
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return azure Machine Learning Workspace notebook access token.
      */
     NotebookAccessTokenResult listNotebookAccessToken();
 
     /**
-     * Prepare a notebook.
-     *
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
-     */
-    NotebookResourceInfo prepareNotebook();
-
-    /**
-     * Prepare a notebook.
-     *
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
-     */
-    NotebookResourceInfo prepareNotebook(Context context);
-
-    /**
-     * List storage account keys of a workspace.
-     *
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response}.
-     */
-    Response<ListStorageAccountKeysResult> listStorageAccountKeysWithResponse(Context context);
-
-    /**
-     * List storage account keys of a workspace.
-     *
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
-     */
-    ListStorageAccountKeysResult listStorageAccountKeys();
-
-    /**
-     * List keys of a notebook.
+     * Lists keys of Azure Machine Learning Workspaces notebook.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -871,11 +1212,71 @@ public interface Workspace {
     Response<ListNotebookKeysResult> listNotebookKeysWithResponse(Context context);
 
     /**
-     * List keys of a notebook.
+     * Lists keys of Azure Machine Learning Workspaces notebook.
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response.
      */
     ListNotebookKeysResult listNotebookKeys();
+
+    /**
+     * Lists keys of Azure Machine Learning Workspace's storage account.
+     *
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response}.
+     */
+    Response<ListStorageAccountKeysResult> listStorageAccountKeysWithResponse(Context context);
+
+    /**
+     * Lists keys of Azure Machine Learning Workspace's storage account.
+     *
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    ListStorageAccountKeysResult listStorageAccountKeys();
+
+    /**
+     * Prepare Azure Machine Learning Workspace's notebook resource.
+     *
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    NotebookResourceInfo prepareNotebook();
+
+    /**
+     * Prepare Azure Machine Learning Workspace's notebook resource.
+     *
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    NotebookResourceInfo prepareNotebook(Context context);
+
+    /**
+     * Resync all the keys associated with this workspace.This includes keys for the storage account, app insights and
+     * password for container registry.
+     *
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void resyncKeys();
+
+    /**
+     * Resync all the keys associated with this workspace.This includes keys for the storage account, app insights and
+     * password for container registry.
+     *
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void resyncKeys(Context context);
 }

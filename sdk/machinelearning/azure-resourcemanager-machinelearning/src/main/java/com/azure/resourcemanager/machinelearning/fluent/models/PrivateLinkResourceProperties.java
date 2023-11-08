@@ -14,13 +14,13 @@ public final class PrivateLinkResourceProperties {
     /*
      * The private link resource group id.
      */
-    @JsonProperty(value = "groupId", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "groupId")
     private String groupId;
 
     /*
      * The private link resource required member names.
      */
-    @JsonProperty(value = "requiredMembers", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "requiredMembers")
     private List<String> requiredMembers;
 
     /*
@@ -43,12 +43,34 @@ public final class PrivateLinkResourceProperties {
     }
 
     /**
+     * Set the groupId property: The private link resource group id.
+     *
+     * @param groupId the groupId value to set.
+     * @return the PrivateLinkResourceProperties object itself.
+     */
+    public PrivateLinkResourceProperties withGroupId(String groupId) {
+        this.groupId = groupId;
+        return this;
+    }
+
+    /**
      * Get the requiredMembers property: The private link resource required member names.
      *
      * @return the requiredMembers value.
      */
     public List<String> requiredMembers() {
         return this.requiredMembers;
+    }
+
+    /**
+     * Set the requiredMembers property: The private link resource required member names.
+     *
+     * @param requiredMembers the requiredMembers value to set.
+     * @return the PrivateLinkResourceProperties object itself.
+     */
+    public PrivateLinkResourceProperties withRequiredMembers(List<String> requiredMembers) {
+        this.requiredMembers = requiredMembers;
+        return this;
     }
 
     /**
