@@ -14,7 +14,7 @@ import java.util.Arrays;
 /** Samples for ScalingPlanPersonalSchedules Create. */
 public final class ScalingPlanPersonalSchedulesCreateSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2023-09-05/examples/ScalingPlanPersonalSchedule_Create.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2023-10-04-preview/examples/ScalingPlanPersonalSchedule_Create.json
      */
     /**
      * Sample code: ScalingPlanPersonalSchedules_Create.

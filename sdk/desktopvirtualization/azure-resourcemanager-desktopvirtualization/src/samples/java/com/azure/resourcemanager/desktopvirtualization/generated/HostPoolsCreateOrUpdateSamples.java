@@ -23,7 +23,7 @@ import java.util.Map;
 /** Samples for HostPools CreateOrUpdate. */
 public final class HostPoolsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2023-09-05/examples/HostPool_Create.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2023-10-04-preview/examples/HostPool_Create.json
      */
     /**
      * Sample code: HostPool_Create.

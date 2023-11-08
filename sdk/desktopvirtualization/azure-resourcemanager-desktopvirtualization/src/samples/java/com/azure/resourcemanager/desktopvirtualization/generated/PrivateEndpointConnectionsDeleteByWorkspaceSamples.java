@@ -7,7 +7,7 @@ package com.azure.resourcemanager.desktopvirtualization.generated;
 /** Samples for PrivateEndpointConnections DeleteByWorkspace. */
 public final class PrivateEndpointConnectionsDeleteByWorkspaceSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2023-09-05/examples/PrivateEndpointConnection_DeleteByWorkspace.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2023-10-04-preview/examples/PrivateEndpointConnection_DeleteByWorkspace.json
      */
     /**
      * Sample code: PrivateEndpointConnection_DeleteByWorkspace.
