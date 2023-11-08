@@ -39,6 +39,12 @@ public final class SubProtectionPolicy {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, TieringPolicy> tieringPolicy;
 
+    /*
+     * Snapshot Backup related fields for WorkloadType SaPHanaSystem
+     */
+    @JsonProperty(value = "snapshotBackupAdditionalDetails")
+    private SnapshotBackupAdditionalDetails snapshotBackupAdditionalDetails;
+
     /** Creates an instance of SubProtectionPolicy class. */
     public SubProtectionPolicy() {
     }
@@ -126,6 +132,27 @@ public final class SubProtectionPolicy {
     }
 
     /**
+     * Get the snapshotBackupAdditionalDetails property: Snapshot Backup related fields for WorkloadType SaPHanaSystem.
+     *
+     * @return the snapshotBackupAdditionalDetails value.
+     */
+    public SnapshotBackupAdditionalDetails snapshotBackupAdditionalDetails() {
+        return this.snapshotBackupAdditionalDetails;
+    }
+
+    /**
+     * Set the snapshotBackupAdditionalDetails property: Snapshot Backup related fields for WorkloadType SaPHanaSystem.
+     *
+     * @param snapshotBackupAdditionalDetails the snapshotBackupAdditionalDetails value to set.
+     * @return the SubProtectionPolicy object itself.
+     */
+    public SubProtectionPolicy withSnapshotBackupAdditionalDetails(
+        SnapshotBackupAdditionalDetails snapshotBackupAdditionalDetails) {
+        this.snapshotBackupAdditionalDetails = snapshotBackupAdditionalDetails;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -146,6 +173,9 @@ public final class SubProtectionPolicy {
                             e.validate();
                         }
                     });
+        }
+        if (snapshotBackupAdditionalDetails() != null) {
+            snapshotBackupAdditionalDetails().validate();
         }
     }
 }

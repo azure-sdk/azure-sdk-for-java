@@ -9,7 +9,7 @@ import com.azure.core.annotation.ServiceMethod;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.recoveryservicesbackup.fluent.models.ValidateOperationsResponseInner;
-import com.azure.resourcemanager.recoveryservicesbackup.models.ValidateOperationRequest;
+import com.azure.resourcemanager.recoveryservicesbackup.models.ValidateOperationRequestResource;
 
 /** An instance of this class provides access to all the operations defined in OperationOperationsClient. */
 public interface OperationOperationsClient {
@@ -27,7 +27,7 @@ public interface OperationOperationsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ValidateOperationsResponseInner> validateWithResponse(
-        String vaultName, String resourceGroupName, ValidateOperationRequest parameters, Context context);
+        String vaultName, String resourceGroupName, ValidateOperationRequestResource parameters, Context context);
 
     /**
      * Validate operation for specified backed up item. This is a synchronous operation.
@@ -42,5 +42,5 @@ public interface OperationOperationsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     ValidateOperationsResponseInner validate(
-        String vaultName, String resourceGroupName, ValidateOperationRequest parameters);
+        String vaultName, String resourceGroupName, ValidateOperationRequestResource parameters);
 }

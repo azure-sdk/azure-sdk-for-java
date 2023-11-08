@@ -116,6 +116,30 @@ public final class AzureWorkloadSqlPointInTimeRestoreWithRehydrateRequest
 
     /** {@inheritDoc} */
     @Override
+    public AzureWorkloadSqlPointInTimeRestoreWithRehydrateRequest withTargetResourceGroupName(
+        String targetResourceGroupName) {
+        super.withTargetResourceGroupName(targetResourceGroupName);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public AzureWorkloadSqlPointInTimeRestoreWithRehydrateRequest withUserAssignedManagedIdentityDetails(
+        UserAssignedManagedIdentityDetails userAssignedManagedIdentityDetails) {
+        super.withUserAssignedManagedIdentityDetails(userAssignedManagedIdentityDetails);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public AzureWorkloadSqlPointInTimeRestoreWithRehydrateRequest withSnapshotRestoreParameters(
+        SnapshotRestoreParameters snapshotRestoreParameters) {
+        super.withSnapshotRestoreParameters(snapshotRestoreParameters);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public AzureWorkloadSqlPointInTimeRestoreWithRehydrateRequest withTargetVirtualMachineId(
         String targetVirtualMachineId) {
         super.withTargetVirtualMachineId(targetVirtualMachineId);

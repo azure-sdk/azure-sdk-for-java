@@ -9,7 +9,7 @@ import com.azure.core.annotation.ServiceMethod;
 import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.polling.SyncPoller;
-import com.azure.resourcemanager.recoveryservicesbackup.models.ValidateOperationRequest;
+import com.azure.resourcemanager.recoveryservicesbackup.models.ValidateOperationRequestResource;
 
 /** An instance of this class provides access to all the operations defined in ValidateOperationsClient. */
 public interface ValidateOperationsClient {
@@ -27,7 +27,7 @@ public interface ValidateOperationsClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginTrigger(
-        String vaultName, String resourceGroupName, ValidateOperationRequest parameters);
+        String vaultName, String resourceGroupName, ValidateOperationRequestResource parameters);
 
     /**
      * Validate operation for specified backed up item in the form of an asynchronous operation. Returns tracking
@@ -44,7 +44,7 @@ public interface ValidateOperationsClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginTrigger(
-        String vaultName, String resourceGroupName, ValidateOperationRequest parameters, Context context);
+        String vaultName, String resourceGroupName, ValidateOperationRequestResource parameters, Context context);
 
     /**
      * Validate operation for specified backed up item in the form of an asynchronous operation. Returns tracking
@@ -58,7 +58,7 @@ public interface ValidateOperationsClient {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    void trigger(String vaultName, String resourceGroupName, ValidateOperationRequest parameters);
+    void trigger(String vaultName, String resourceGroupName, ValidateOperationRequestResource parameters);
 
     /**
      * Validate operation for specified backed up item in the form of an asynchronous operation. Returns tracking
@@ -73,5 +73,6 @@ public interface ValidateOperationsClient {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    void trigger(String vaultName, String resourceGroupName, ValidateOperationRequest parameters, Context context);
+    void trigger(
+        String vaultName, String resourceGroupName, ValidateOperationRequestResource parameters, Context context);
 }
