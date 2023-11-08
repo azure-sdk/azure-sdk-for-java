@@ -24,6 +24,7 @@ import com.azure.resourcemanager.hdinsight.containers.models.ScheduleBasedConfig
 import com.azure.resourcemanager.hdinsight.containers.models.ScheduleDay;
 import com.azure.resourcemanager.hdinsight.containers.models.SparkProfile;
 import com.azure.resourcemanager.hdinsight.containers.models.SshProfile;
+import com.azure.resourcemanager.hdinsight.containers.models.TrinoProfile;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -127,15 +128,18 @@ public final class ClustersCreateSamples {
             .define("cluster1")
             .withRegion("West US 2")
             .withExistingClusterpool("hiloResourcegroup", "clusterpool1")
-            .withClusterType("kafka")
+            .withClusterType("Trino")
             .withComputeProfile(
                 new ComputeProfile()
                     .withNodes(
-                        Arrays.asList(new NodeProfile().withType("worker").withVmSize("Standard_D3_v2").withCount(4))))
+                        Arrays
+                            .asList(
+                                new NodeProfile().withType("Head").withVmSize("Standard_E8as_v5").withCount(2),
+                                new NodeProfile().withType("Worker").withVmSize("Standard_E8as_v5").withCount(3))))
             .withClusterProfile(
                 new ClusterProfile()
-                    .withClusterVersion("1.0.1")
-                    .withOssVersion("2.4.1")
+                    .withClusterVersion("1.0.6")
+                    .withOssVersion("0.410.0")
                     .withIdentityProfile(
                         new IdentityProfile()
                             .withMsiResourceId(
@@ -192,7 +196,7 @@ public final class ClustersCreateSamples {
                                                         new ComparisonRule()
                                                             .withOperator(ComparisonOperator.LESS_THAN)
                                                             .withThreshold(20f))))))
-                    .withKafkaProfile(mapOf()))
+                    .withTrinoProfile(new TrinoProfile()))
             .create();
     }
 
