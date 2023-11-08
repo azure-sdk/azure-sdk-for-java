@@ -28,11 +28,12 @@ public final class SapVirtualInstancesUpdateSamples {
                 .getValue();
         resource
             .update()
-            .withTags(mapOf("key1", "svi1"))
+            .withTags(mapOf("key1", "fakeTokenPlaceholder"))
             .withIdentity(new UserAssignedServiceIdentity().withType(ManagedServiceIdentityType.NONE))
             .apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

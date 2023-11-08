@@ -4,6 +4,14 @@
 
 package com.azure.resourcemanager.workloads.generated;
 
+import com.azure.resourcemanager.workloads.models.SapDatabaseScaleMethod;
+import com.azure.resourcemanager.workloads.models.SapDatabaseType;
+import com.azure.resourcemanager.workloads.models.SapDeploymentType;
+import com.azure.resourcemanager.workloads.models.SapEnvironmentType;
+import com.azure.resourcemanager.workloads.models.SapHighAvailabilityType;
+import com.azure.resourcemanager.workloads.models.SapProductType;
+import com.azure.resourcemanager.workloads.models.SapSizingRecommendationRequest;
+
 /** Samples for ResourceProvider SapSizingRecommendations. */
 public final class ResourceProviderSapSizingRecommendationsSamples {
     /*
@@ -18,7 +26,18 @@ public final class ResourceProviderSapSizingRecommendationsSamples {
         com.azure.resourcemanager.workloads.WorkloadsManager manager) {
         manager
             .resourceProviders()
-            .sapSizingRecommendationsWithResponse("centralus", null, com.azure.core.util.Context.NONE);
+            .sapSizingRecommendationsWithResponse(
+                "centralus",
+                new SapSizingRecommendationRequest()
+                    .withAppLocation("eastus")
+                    .withEnvironment(SapEnvironmentType.PROD)
+                    .withSapProduct(SapProductType.S4HANA)
+                    .withDeploymentType(SapDeploymentType.THREE_TIER)
+                    .withSaps(20000L)
+                    .withDbMemory(1024L)
+                    .withDatabaseType(SapDatabaseType.HANA)
+                    .withDbScaleMethod(SapDatabaseScaleMethod.SCALE_UP),
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -33,7 +52,18 @@ public final class ResourceProviderSapSizingRecommendationsSamples {
         com.azure.resourcemanager.workloads.WorkloadsManager manager) {
         manager
             .resourceProviders()
-            .sapSizingRecommendationsWithResponse("centralus", null, com.azure.core.util.Context.NONE);
+            .sapSizingRecommendationsWithResponse(
+                "centralus",
+                new SapSizingRecommendationRequest()
+                    .withAppLocation("eastus")
+                    .withEnvironment(SapEnvironmentType.NON_PROD)
+                    .withSapProduct(SapProductType.S4HANA)
+                    .withDeploymentType(SapDeploymentType.SINGLE_SERVER)
+                    .withSaps(60000L)
+                    .withDbMemory(2000L)
+                    .withDatabaseType(SapDatabaseType.HANA)
+                    .withDbScaleMethod(SapDatabaseScaleMethod.SCALE_UP),
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -48,7 +78,19 @@ public final class ResourceProviderSapSizingRecommendationsSamples {
         com.azure.resourcemanager.workloads.WorkloadsManager manager) {
         manager
             .resourceProviders()
-            .sapSizingRecommendationsWithResponse("centralus", null, com.azure.core.util.Context.NONE);
+            .sapSizingRecommendationsWithResponse(
+                "centralus",
+                new SapSizingRecommendationRequest()
+                    .withAppLocation("eastus")
+                    .withEnvironment(SapEnvironmentType.PROD)
+                    .withSapProduct(SapProductType.S4HANA)
+                    .withDeploymentType(SapDeploymentType.THREE_TIER)
+                    .withSaps(75000L)
+                    .withDbMemory(1024L)
+                    .withDatabaseType(SapDatabaseType.HANA)
+                    .withDbScaleMethod(SapDatabaseScaleMethod.SCALE_UP)
+                    .withHighAvailabilityType(SapHighAvailabilityType.AVAILABILITY_ZONE),
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -63,6 +105,18 @@ public final class ResourceProviderSapSizingRecommendationsSamples {
         com.azure.resourcemanager.workloads.WorkloadsManager manager) {
         manager
             .resourceProviders()
-            .sapSizingRecommendationsWithResponse("centralus", null, com.azure.core.util.Context.NONE);
+            .sapSizingRecommendationsWithResponse(
+                "centralus",
+                new SapSizingRecommendationRequest()
+                    .withAppLocation("eastus")
+                    .withEnvironment(SapEnvironmentType.PROD)
+                    .withSapProduct(SapProductType.S4HANA)
+                    .withDeploymentType(SapDeploymentType.THREE_TIER)
+                    .withSaps(75000L)
+                    .withDbMemory(1024L)
+                    .withDatabaseType(SapDatabaseType.HANA)
+                    .withDbScaleMethod(SapDatabaseScaleMethod.SCALE_UP)
+                    .withHighAvailabilityType(SapHighAvailabilityType.AVAILABILITY_SET),
+                com.azure.core.util.Context.NONE);
     }
 }
