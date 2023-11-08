@@ -116,7 +116,7 @@ public final class AccountResourceInner extends ProxyResource {
     }
 
     /**
-     * Get the region property: region.
+     * Get the region property: Region where New Relic account is present.
      *
      * @return the region value.
      */
@@ -125,7 +125,7 @@ public final class AccountResourceInner extends ProxyResource {
     }
 
     /**
-     * Set the region property: region.
+     * Set the region property: Region where New Relic account is present.
      *
      * @param region the region value to set.
      * @return the AccountResourceInner object itself.
