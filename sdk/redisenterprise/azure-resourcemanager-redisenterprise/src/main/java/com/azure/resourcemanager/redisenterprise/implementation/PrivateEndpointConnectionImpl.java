@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.redisenterprise.implementation;
 
-import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.redisenterprise.fluent.models.PrivateEndpointConnectionInner;
 import com.azure.resourcemanager.redisenterprise.models.PrivateEndpoint;
@@ -28,10 +27,6 @@ public final class PrivateEndpointConnectionImpl
 
     public String type() {
         return this.innerModel().type();
-    }
-
-    public SystemData systemData() {
-        return this.innerModel().systemData();
     }
 
     public PrivateEndpoint privateEndpoint() {

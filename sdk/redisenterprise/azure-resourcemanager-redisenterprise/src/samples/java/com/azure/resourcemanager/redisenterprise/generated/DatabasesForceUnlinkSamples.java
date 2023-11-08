@@ -10,7 +10,7 @@ import java.util.Arrays;
 /** Samples for Databases ForceUnlink. */
 public final class DatabasesForceUnlinkSamples {
     /*
-     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2023-03-01-preview/examples/RedisEnterpriseDatabasesForceUnlink.json
+     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/stable/2023-11-01/examples/RedisEnterpriseDatabasesForceUnlink.json
      */
     /**
      * Sample code: How to unlink a database during a regional outage.

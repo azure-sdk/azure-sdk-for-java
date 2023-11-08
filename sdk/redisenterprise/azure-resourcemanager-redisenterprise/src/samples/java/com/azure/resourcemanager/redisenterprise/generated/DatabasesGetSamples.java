@@ -7,7 +7,7 @@ package com.azure.resourcemanager.redisenterprise.generated;
 /** Samples for Databases Get. */
 public final class DatabasesGetSamples {
     /*
-     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2023-03-01-preview/examples/RedisEnterpriseDatabasesGet.json
+     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/stable/2023-11-01/examples/RedisEnterpriseDatabasesGet.json
      */
     /**
      * Sample code: RedisEnterpriseDatabasesGet.
