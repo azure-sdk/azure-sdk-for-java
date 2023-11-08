@@ -1,0 +1,606 @@
+[ {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.SapSizingRecommendationRequest",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.fluent.models.SapSizingRecommendationResultInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.SapSupportedSkusRequest",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.fluent.models.SapSupportedResourceSkusResultInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.SapSupportedSku",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.SapDiskConfigurationsRequest",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.fluent.models.SapDiskConfigurationsResultInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.SapDiskConfiguration",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.DiskVolumeConfiguration",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.DiskSku",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.DiskDetails",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.SapAvailabilityZoneDetailsRequest",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.fluent.models.SapAvailabilityZoneDetailsResultInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.SapAvailabilityZonePair",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.fluent.models.SapVirtualInstanceInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.UserAssignedServiceIdentity",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.UserAssignedIdentity",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.fluent.models.SapVirtualInstanceProperties",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.SapConfiguration",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.ManagedRGConfiguration",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.SapVirtualInstanceError",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.ErrorDefinition",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.UpdateSapVirtualInstanceRequest",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.UpdateSapVirtualInstanceProperties",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.SapVirtualInstanceList",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.fluent.models.SapCentralServerInstanceInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.fluent.models.SapCentralServerProperties",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.MessageServerProperties",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.EnqueueServerProperties",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.GatewayServerProperties",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.EnqueueReplicationServerProperties",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.LoadBalancerDetails",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.CentralServerVmDetails",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.StorageInformation",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.UpdateSapCentralInstanceRequest",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.SapCentralInstanceList",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.fluent.models.SapDatabaseInstanceInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.fluent.models.SapDatabaseProperties",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.DatabaseVmDetails",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.UpdateSapDatabaseInstanceRequest",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.SapDatabaseInstanceList",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.fluent.models.SapApplicationServerInstanceInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.fluent.models.SapApplicationServerProperties",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.ApplicationServerVmDetails",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.UpdateSapApplicationInstanceRequest",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.SapApplicationServerInstanceList",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.StartRequest",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.fluent.models.OperationStatusResultInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.StopRequest",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.OperationListResult",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.fluent.models.OperationInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.OperationDisplay",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.ImageReference",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.WindowsConfiguration",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.OSConfiguration",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.SshPublicKey",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.SshConfiguration",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.LinuxConfiguration",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.SshKeyPair",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.OSProfile",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.SingleServerRecommendationResult",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.ThreeTierRecommendationResult",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.DiskConfiguration",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.VirtualMachineConfiguration",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.SingleServerConfiguration",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.NetworkConfiguration",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.SingleServerCustomResourceNames",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.InfrastructureConfiguration",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.CentralServerConfiguration",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.DatabaseConfiguration",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.ApplicationServerConfiguration",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.HighAvailabilityConfiguration",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.SkipFileShareConfiguration",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.FileShareConfiguration",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.CreateAndMountFileShareConfiguration",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.MountFileShareConfiguration",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.StorageConfiguration",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.ThreeTierConfiguration",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.ThreeTierCustomResourceNames",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.SingleServerFullResourceNames",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.VirtualMachineResourceNames",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.NetworkInterfaceResourceNames",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.ThreeTierFullResourceNames",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.CentralServerFullResourceNames",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.LoadBalancerResourceNames",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.ApplicationServerFullResourceNames",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.DatabaseServerFullResourceNames",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.SharedStorageResourceNames",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.SoftwareConfiguration",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.ServiceInitiatedSoftwareConfiguration",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.HighAvailabilitySoftwareConfiguration",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.SapInstallWithoutOSConfigSoftwareConfiguration",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.ExternalInstallationSoftwareConfiguration",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.DiscoveryConfiguration",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.DeploymentConfiguration",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.DeploymentWithOSConfiguration",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.OsSapConfiguration",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.DeployerVmPackages",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.SapEnvironmentType",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.SapProductType",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.SapDeploymentType",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.SapDatabaseType",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.SapDatabaseScaleMethod",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.SapHighAvailabilityType",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.DiskSkuName",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.ManagedServiceIdentityType",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.ManagedResourcesNetworkAccessType",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.SapConfigurationType",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.SapVirtualInstanceStatus",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.SapHealthState",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.SapVirtualInstanceState",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.SapVirtualInstanceProvisioningState",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.EnqueueReplicationServerType",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.CentralServerVirtualMachineType",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.ApplicationServerVirtualMachineType",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.Origin",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.ActionType",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.OSType",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.NamingPatternType",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.ConfigurationType",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.workloadsmicrosoftworkloadssapvirtualinstance.models.SapSoftwareInstallationType",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+} ]
