@@ -9,7 +9,7 @@ import com.azure.resourcemanager.imagebuilder.models.SourceImageTriggerPropertie
 /** Samples for Triggers CreateOrUpdate. */
 public final class TriggersCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2022-07-01/examples/CreateSourceImageTrigger.json
+     * x-ms-original-file: specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2023-07-01/examples/CreateSourceImageTrigger.json
      */
     /**
      * Sample code: Create or update a source image type trigger.

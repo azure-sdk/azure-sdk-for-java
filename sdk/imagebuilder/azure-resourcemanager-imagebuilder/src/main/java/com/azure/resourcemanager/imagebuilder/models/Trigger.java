@@ -63,11 +63,13 @@ public interface Trigger {
     interface Definition
         extends DefinitionStages.Blank, DefinitionStages.WithParentResource, DefinitionStages.WithCreate {
     }
+
     /** The Trigger definition stages. */
     interface DefinitionStages {
         /** The first stage of the Trigger definition. */
         interface Blank extends WithParentResource {
         }
+
         /** The stage of the Trigger definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -79,6 +81,7 @@ public interface Trigger {
              */
             WithCreate withExistingImageTemplate(String resourceGroupName, String imageTemplateName);
         }
+
         /**
          * The stage of the Trigger definition which contains all the minimum required properties for the resource to be
          * created, but also allows for any other optional properties to be specified.
@@ -99,6 +102,7 @@ public interface Trigger {
              */
             Trigger create(Context context);
         }
+
         /** The stage of the Trigger definition allowing to specify properties. */
         interface WithProperties {
             /**
@@ -110,6 +114,7 @@ public interface Trigger {
             WithCreate withProperties(TriggerProperties properties);
         }
     }
+
     /**
      * Begins update for the Trigger resource.
      *
@@ -134,6 +139,7 @@ public interface Trigger {
          */
         Trigger apply(Context context);
     }
+
     /** The Trigger update stages. */
     interface UpdateStages {
         /** The stage of the Trigger update allowing to specify properties. */
@@ -147,6 +153,7 @@ public interface Trigger {
             Update withProperties(TriggerProperties properties);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

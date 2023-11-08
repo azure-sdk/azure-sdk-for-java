@@ -211,7 +211,7 @@ public final class ImageBuilderManager {
                 .append("-")
                 .append("com.azure.resourcemanager.imagebuilder")
                 .append("/")
-                .append("1.0.0-beta.4");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -306,8 +306,10 @@ public final class ImageBuilderManager {
     }
 
     /**
-     * @return Wrapped service client ImageBuilderClient providing direct access to the underlying auto-generated API
-     *     implementation, based on Azure REST API.
+     * Gets wrapped service client ImageBuilderClient providing direct access to the underlying auto-generated API
+     * implementation, based on Azure REST API.
+     *
+     * @return Wrapped service client ImageBuilderClient.
      */
     public ImageBuilderClient serviceClient() {
         return this.clientObject;

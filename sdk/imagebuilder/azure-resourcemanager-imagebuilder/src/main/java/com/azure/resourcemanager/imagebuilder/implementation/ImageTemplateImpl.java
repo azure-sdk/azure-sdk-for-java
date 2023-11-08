@@ -13,10 +13,12 @@ import com.azure.resourcemanager.imagebuilder.models.ImageTemplateCustomizer;
 import com.azure.resourcemanager.imagebuilder.models.ImageTemplateDistributor;
 import com.azure.resourcemanager.imagebuilder.models.ImageTemplateIdentity;
 import com.azure.resourcemanager.imagebuilder.models.ImageTemplateLastRunStatus;
+import com.azure.resourcemanager.imagebuilder.models.ImageTemplatePropertiesErrorHandling;
 import com.azure.resourcemanager.imagebuilder.models.ImageTemplatePropertiesOptimize;
 import com.azure.resourcemanager.imagebuilder.models.ImageTemplatePropertiesValidate;
 import com.azure.resourcemanager.imagebuilder.models.ImageTemplateSource;
 import com.azure.resourcemanager.imagebuilder.models.ImageTemplateUpdateParameters;
+import com.azure.resourcemanager.imagebuilder.models.ImageTemplateUpdateParametersProperties;
 import com.azure.resourcemanager.imagebuilder.models.ImageTemplateVmProfile;
 import com.azure.resourcemanager.imagebuilder.models.ProvisioningError;
 import com.azure.resourcemanager.imagebuilder.models.ProvisioningState;
@@ -90,6 +92,10 @@ public final class ImageTemplateImpl implements ImageTemplate, ImageTemplate.Def
         } else {
             return Collections.emptyList();
         }
+    }
+
+    public ImageTemplatePropertiesErrorHandling errorHandling() {
+        return this.innerModel().errorHandling();
     }
 
     public ProvisioningState provisioningState() {
@@ -297,6 +303,11 @@ public final class ImageTemplateImpl implements ImageTemplate, ImageTemplate.Def
         return this;
     }
 
+    public ImageTemplateImpl withErrorHandling(ImageTemplatePropertiesErrorHandling errorHandling) {
+        this.innerModel().withErrorHandling(errorHandling);
+        return this;
+    }
+
     public ImageTemplateImpl withBuildTimeoutInMinutes(Integer buildTimeoutInMinutes) {
         this.innerModel().withBuildTimeoutInMinutes(buildTimeoutInMinutes);
         return this;
@@ -309,6 +320,11 @@ public final class ImageTemplateImpl implements ImageTemplate, ImageTemplate.Def
 
     public ImageTemplateImpl withStagingResourceGroup(String stagingResourceGroup) {
         this.innerModel().withStagingResourceGroup(stagingResourceGroup);
+        return this;
+    }
+
+    public ImageTemplateImpl withProperties(ImageTemplateUpdateParametersProperties properties) {
+        this.updateParameters.withProperties(properties);
         return this;
     }
 
