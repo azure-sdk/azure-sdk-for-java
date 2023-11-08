@@ -74,6 +74,18 @@ public final class DefenderForContainersAwsOffering extends CloudOffering {
     @JsonProperty(value = "scubaExternalId")
     private String scubaExternalId;
 
+    /*
+     * The Microsoft Defender container image assessment configuration
+     */
+    @JsonProperty(value = "mdcContainersImageAssessment")
+    private DefenderForContainersAwsOfferingMdcContainersImageAssessment mdcContainersImageAssessment;
+
+    /*
+     * The Microsoft Defender container agentless discovery K8s configuration
+     */
+    @JsonProperty(value = "mdcContainersAgentlessDiscoveryK8s")
+    private DefenderForContainersAwsOfferingMdcContainersAgentlessDiscoveryK8S mdcContainersAgentlessDiscoveryK8S;
+
     /** Creates an instance of DefenderForContainersAwsOffering class. */
     public DefenderForContainersAwsOffering() {
     }
@@ -287,6 +299,50 @@ public final class DefenderForContainersAwsOffering extends CloudOffering {
     }
 
     /**
+     * Get the mdcContainersImageAssessment property: The Microsoft Defender container image assessment configuration.
+     *
+     * @return the mdcContainersImageAssessment value.
+     */
+    public DefenderForContainersAwsOfferingMdcContainersImageAssessment mdcContainersImageAssessment() {
+        return this.mdcContainersImageAssessment;
+    }
+
+    /**
+     * Set the mdcContainersImageAssessment property: The Microsoft Defender container image assessment configuration.
+     *
+     * @param mdcContainersImageAssessment the mdcContainersImageAssessment value to set.
+     * @return the DefenderForContainersAwsOffering object itself.
+     */
+    public DefenderForContainersAwsOffering withMdcContainersImageAssessment(
+        DefenderForContainersAwsOfferingMdcContainersImageAssessment mdcContainersImageAssessment) {
+        this.mdcContainersImageAssessment = mdcContainersImageAssessment;
+        return this;
+    }
+
+    /**
+     * Get the mdcContainersAgentlessDiscoveryK8S property: The Microsoft Defender container agentless discovery K8s
+     * configuration.
+     *
+     * @return the mdcContainersAgentlessDiscoveryK8S value.
+     */
+    public DefenderForContainersAwsOfferingMdcContainersAgentlessDiscoveryK8S mdcContainersAgentlessDiscoveryK8S() {
+        return this.mdcContainersAgentlessDiscoveryK8S;
+    }
+
+    /**
+     * Set the mdcContainersAgentlessDiscoveryK8S property: The Microsoft Defender container agentless discovery K8s
+     * configuration.
+     *
+     * @param mdcContainersAgentlessDiscoveryK8S the mdcContainersAgentlessDiscoveryK8S value to set.
+     * @return the DefenderForContainersAwsOffering object itself.
+     */
+    public DefenderForContainersAwsOffering withMdcContainersAgentlessDiscoveryK8S(
+        DefenderForContainersAwsOfferingMdcContainersAgentlessDiscoveryK8S mdcContainersAgentlessDiscoveryK8S) {
+        this.mdcContainersAgentlessDiscoveryK8S = mdcContainersAgentlessDiscoveryK8S;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -311,6 +367,12 @@ public final class DefenderForContainersAwsOffering extends CloudOffering {
         }
         if (containerVulnerabilityAssessmentTask() != null) {
             containerVulnerabilityAssessmentTask().validate();
+        }
+        if (mdcContainersImageAssessment() != null) {
+            mdcContainersImageAssessment().validate();
+        }
+        if (mdcContainersAgentlessDiscoveryK8S() != null) {
+            mdcContainersAgentlessDiscoveryK8S().validate();
         }
     }
 }

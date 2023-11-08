@@ -70,11 +70,13 @@ public interface SecurityContact {
     /** The entirety of the SecurityContact definition. */
     interface Definition extends DefinitionStages.Blank, DefinitionStages.WithCreate {
     }
+
     /** The SecurityContact definition stages. */
     interface DefinitionStages {
         /** The first stage of the SecurityContact definition. */
         interface Blank extends WithCreate {
         }
+
         /**
          * The stage of the SecurityContact definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
@@ -99,6 +101,7 @@ public interface SecurityContact {
              */
             SecurityContact create(Context context);
         }
+
         /** The stage of the SecurityContact definition allowing to specify emails. */
         interface WithEmails {
             /**
@@ -111,6 +114,7 @@ public interface SecurityContact {
              */
             WithCreate withEmails(String emails);
         }
+
         /** The stage of the SecurityContact definition allowing to specify phone. */
         interface WithPhone {
             /**
@@ -121,6 +125,7 @@ public interface SecurityContact {
              */
             WithCreate withPhone(String phone);
         }
+
         /** The stage of the SecurityContact definition allowing to specify alertNotifications. */
         interface WithAlertNotifications {
             /**
@@ -132,6 +137,7 @@ public interface SecurityContact {
              */
             WithCreate withAlertNotifications(SecurityContactPropertiesAlertNotifications alertNotifications);
         }
+
         /** The stage of the SecurityContact definition allowing to specify notificationsByRole. */
         interface WithNotificationsByRole {
             /**
@@ -145,6 +151,7 @@ public interface SecurityContact {
             WithCreate withNotificationsByRole(SecurityContactPropertiesNotificationsByRole notificationsByRole);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

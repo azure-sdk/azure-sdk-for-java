@@ -33,6 +33,12 @@ public final class AwsEnvironmentData extends EnvironmentData {
     @JsonProperty(value = "accountName", access = JsonProperty.Access.WRITE_ONLY)
     private String accountName;
 
+    /*
+     * Scan interval in hours (value should be between 1-hour to 24-hours)
+     */
+    @JsonProperty(value = "scanInterval")
+    private Long scanInterval;
+
     /** Creates an instance of AwsEnvironmentData class. */
     public AwsEnvironmentData() {
     }
@@ -84,6 +90,26 @@ public final class AwsEnvironmentData extends EnvironmentData {
      */
     public String accountName() {
         return this.accountName;
+    }
+
+    /**
+     * Get the scanInterval property: Scan interval in hours (value should be between 1-hour to 24-hours).
+     *
+     * @return the scanInterval value.
+     */
+    public Long scanInterval() {
+        return this.scanInterval;
+    }
+
+    /**
+     * Set the scanInterval property: Scan interval in hours (value should be between 1-hour to 24-hours).
+     *
+     * @param scanInterval the scanInterval value to set.
+     * @return the AwsEnvironmentData object itself.
+     */
+    public AwsEnvironmentData withScanInterval(Long scanInterval) {
+        this.scanInterval = scanInterval;
+        return this;
     }
 
     /**

@@ -11,6 +11,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 /** The resource of the configuration or data needed to onboard the machine to MDE. */
 @Fluent
 public final class MdeOnboardingDataInner extends ProxyResource {
+    private static final byte[] EMPTY_BYTE_ARRAY = new byte[0];
+
     /*
      * Properties of the MDE configuration or data parameter needed to onboard the machine to MDE
      */
@@ -38,7 +40,7 @@ public final class MdeOnboardingDataInner extends ProxyResource {
      * @return the onboardingPackageWindows value.
      */
     public byte[] onboardingPackageWindows() {
-        return this.innerProperties() == null ? new byte[0] : this.innerProperties().onboardingPackageWindows();
+        return this.innerProperties() == null ? EMPTY_BYTE_ARRAY : this.innerProperties().onboardingPackageWindows();
     }
 
     /**
@@ -63,7 +65,7 @@ public final class MdeOnboardingDataInner extends ProxyResource {
      * @return the onboardingPackageLinux value.
      */
     public byte[] onboardingPackageLinux() {
-        return this.innerProperties() == null ? new byte[0] : this.innerProperties().onboardingPackageLinux();
+        return this.innerProperties() == null ? EMPTY_BYTE_ARRAY : this.innerProperties().onboardingPackageLinux();
     }
 
     /**
