@@ -9,9 +9,10 @@ import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.mysqlflexibleserver.models.DataEncryption;
 import com.azure.resourcemanager.mysqlflexibleserver.models.DataEncryptionType;
 import com.azure.resourcemanager.mysqlflexibleserver.models.EnableStatusEnum;
-import com.azure.resourcemanager.mysqlflexibleserver.models.Identity;
 import com.azure.resourcemanager.mysqlflexibleserver.models.MaintenanceWindow;
 import com.azure.resourcemanager.mysqlflexibleserver.models.ManagedServiceIdentityType;
+import com.azure.resourcemanager.mysqlflexibleserver.models.MySqlServerIdentity;
+import com.azure.resourcemanager.mysqlflexibleserver.models.Network;
 import com.azure.resourcemanager.mysqlflexibleserver.models.Server;
 import com.azure.resourcemanager.mysqlflexibleserver.models.Storage;
 import java.io.IOException;
@@ -21,7 +22,7 @@ import java.util.Map;
 /** Samples for Servers Update. */
 public final class ServersUpdateSamples {
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/preview/2022-09-30-preview/examples/ServerUpdateWithCustomerMaintenanceWindow.json
+     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/preview/2023-10-01-preview/examples/ServerUpdateWithCustomerMaintenanceWindow.json
      */
     /**
      * Sample code: Update server customer maintenance window.
@@ -47,7 +48,7 @@ public final class ServersUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/preview/2022-09-30-preview/examples/ServerUpdateWithBYOK.json
+     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/preview/2023-10-01-preview/examples/ServerUpdateWithBYOK.json
      */
     /**
      * Sample code: Update server with byok.
@@ -64,7 +65,7 @@ public final class ServersUpdateSamples {
         resource
             .update()
             .withIdentity(
-                new Identity()
+                new MySqlServerIdentity()
                     .withType(ManagedServiceIdentityType.USER_ASSIGNED)
                     .withUserAssignedIdentities(
                         mapOf(
@@ -85,7 +86,7 @@ public final class ServersUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/preview/2022-09-30-preview/examples/ServerUpdate.json
+     * x-ms-original-file: specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/preview/2023-10-01-preview/examples/ServerUpdate.json
      */
     /**
      * Sample code: Update a server.
@@ -106,9 +107,11 @@ public final class ServersUpdateSamples {
                     .withIops(200)
                     .withAutoGrow(EnableStatusEnum.DISABLED)
                     .withAutoIoScaling(EnableStatusEnum.DISABLED))
+            .withNetwork(new Network().withPublicNetworkAccess(EnableStatusEnum.DISABLED))
             .apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

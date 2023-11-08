@@ -10,7 +10,7 @@ import java.time.Duration;
 /** The interface for MySqlManagementClient class. */
 public interface MySqlManagementClient {
     /**
-     * Gets The ID of the target subscription.
+     * Gets The ID of the target subscription. The value must be an UUID.
      *
      * @return the subscriptionId value.
      */
@@ -94,6 +94,13 @@ public interface MySqlManagementClient {
     ReplicasClient getReplicas();
 
     /**
+     * Gets the ServersMigrationsClient object to access its operations.
+     *
+     * @return the ServersMigrationsClient object.
+     */
+    ServersMigrationsClient getServersMigrations();
+
+    /**
      * Gets the LogFilesClient object to access its operations.
      *
      * @return the LogFilesClient object.
@@ -106,6 +113,13 @@ public interface MySqlManagementClient {
      * @return the LocationBasedCapabilitiesClient object.
      */
     LocationBasedCapabilitiesClient getLocationBasedCapabilities();
+
+    /**
+     * Gets the LocationBasedCapabilitySetsClient object to access its operations.
+     *
+     * @return the LocationBasedCapabilitySetsClient object.
+     */
+    LocationBasedCapabilitySetsClient getLocationBasedCapabilitySets();
 
     /**
      * Gets the CheckVirtualNetworkSubnetUsagesClient object to access its operations.
@@ -129,6 +143,13 @@ public interface MySqlManagementClient {
     CheckNameAvailabilityWithoutLocationsClient getCheckNameAvailabilityWithoutLocations();
 
     /**
+     * Gets the OperationResultsClient object to access its operations.
+     *
+     * @return the OperationResultsClient object.
+     */
+    OperationResultsClient getOperationResults();
+
+    /**
      * Gets the GetPrivateDnsZoneSuffixesClient object to access its operations.
      *
      * @return the GetPrivateDnsZoneSuffixesClient object.
@@ -141,4 +162,11 @@ public interface MySqlManagementClient {
      * @return the OperationsClient object.
      */
     OperationsClient getOperations();
+
+    /**
+     * Gets the AdvancedThreatProtectionSettingsClient object to access its operations.
+     *
+     * @return the AdvancedThreatProtectionSettingsClient object.
+     */
+    AdvancedThreatProtectionSettingsClient getAdvancedThreatProtectionSettings();
 }

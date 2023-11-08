@@ -108,7 +108,7 @@ public final class LocationBasedCapabilitiesClientImpl implements LocationBasedC
         if (locationName == null) {
             return Mono.error(new IllegalArgumentException("Parameter locationName is required and cannot be null."));
         }
-        final String apiVersion = "2021-12-01-preview";
+        final String apiVersion = "2023-06-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -161,7 +161,7 @@ public final class LocationBasedCapabilitiesClientImpl implements LocationBasedC
         if (locationName == null) {
             return Mono.error(new IllegalArgumentException("Parameter locationName is required and cannot be null."));
         }
-        final String apiVersion = "2021-12-01-preview";
+        final String apiVersion = "2023-06-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service

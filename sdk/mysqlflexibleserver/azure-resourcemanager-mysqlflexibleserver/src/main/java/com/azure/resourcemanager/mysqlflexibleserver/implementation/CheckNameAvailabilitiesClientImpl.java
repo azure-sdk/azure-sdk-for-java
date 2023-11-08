@@ -105,7 +105,7 @@ public final class CheckNameAvailabilitiesClientImpl implements CheckNameAvailab
         } else {
             nameAvailabilityRequest.validate();
         }
-        final String apiVersion = "2021-12-01-preview";
+        final String apiVersion = "2023-06-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -159,7 +159,7 @@ public final class CheckNameAvailabilitiesClientImpl implements CheckNameAvailab
         } else {
             nameAvailabilityRequest.validate();
         }
-        final String apiVersion = "2021-12-01-preview";
+        final String apiVersion = "2023-06-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
