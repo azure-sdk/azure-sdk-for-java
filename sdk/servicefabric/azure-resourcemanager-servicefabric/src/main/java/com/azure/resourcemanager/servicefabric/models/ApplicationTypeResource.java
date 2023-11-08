@@ -101,11 +101,13 @@ public interface ApplicationTypeResource {
     interface Definition
         extends DefinitionStages.Blank, DefinitionStages.WithParentResource, DefinitionStages.WithCreate {
     }
+
     /** The ApplicationTypeResource definition stages. */
     interface DefinitionStages {
         /** The first stage of the ApplicationTypeResource definition. */
         interface Blank extends WithParentResource {
         }
+
         /** The stage of the ApplicationTypeResource definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -117,6 +119,7 @@ public interface ApplicationTypeResource {
              */
             WithCreate withExistingCluster(String resourceGroupName, String clusterName);
         }
+
         /**
          * The stage of the ApplicationTypeResource definition which contains all the minimum required properties for
          * the resource to be created, but also allows for any other optional properties to be specified.
@@ -137,6 +140,7 @@ public interface ApplicationTypeResource {
              */
             ApplicationTypeResource create(Context context);
         }
+
         /** The stage of the ApplicationTypeResource definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -155,6 +159,7 @@ public interface ApplicationTypeResource {
              */
             WithCreate withRegion(String location);
         }
+
         /** The stage of the ApplicationTypeResource definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -166,6 +171,7 @@ public interface ApplicationTypeResource {
             WithCreate withTags(Map<String, String> tags);
         }
     }
+
     /**
      * Begins update for the ApplicationTypeResource resource.
      *
@@ -190,9 +196,11 @@ public interface ApplicationTypeResource {
          */
         ApplicationTypeResource apply(Context context);
     }
+
     /** The ApplicationTypeResource update stages. */
     interface UpdateStages {
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

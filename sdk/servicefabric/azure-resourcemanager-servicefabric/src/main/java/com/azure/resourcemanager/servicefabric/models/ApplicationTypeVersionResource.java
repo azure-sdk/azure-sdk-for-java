@@ -116,11 +116,13 @@ public interface ApplicationTypeVersionResource {
     interface Definition
         extends DefinitionStages.Blank, DefinitionStages.WithParentResource, DefinitionStages.WithCreate {
     }
+
     /** The ApplicationTypeVersionResource definition stages. */
     interface DefinitionStages {
         /** The first stage of the ApplicationTypeVersionResource definition. */
         interface Blank extends WithParentResource {
         }
+
         /** The stage of the ApplicationTypeVersionResource definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -134,6 +136,7 @@ public interface ApplicationTypeVersionResource {
             WithCreate withExistingApplicationType(
                 String resourceGroupName, String clusterName, String applicationTypeName);
         }
+
         /**
          * The stage of the ApplicationTypeVersionResource definition which contains all the minimum required properties
          * for the resource to be created, but also allows for any other optional properties to be specified.
@@ -155,6 +158,7 @@ public interface ApplicationTypeVersionResource {
              */
             ApplicationTypeVersionResource create(Context context);
         }
+
         /** The stage of the ApplicationTypeVersionResource definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -173,6 +177,7 @@ public interface ApplicationTypeVersionResource {
              */
             WithCreate withRegion(String location);
         }
+
         /** The stage of the ApplicationTypeVersionResource definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -183,6 +188,7 @@ public interface ApplicationTypeVersionResource {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
         /** The stage of the ApplicationTypeVersionResource definition allowing to specify appPackageUrl. */
         interface WithAppPackageUrl {
             /**
@@ -194,6 +200,7 @@ public interface ApplicationTypeVersionResource {
             WithCreate withAppPackageUrl(String appPackageUrl);
         }
     }
+
     /**
      * Begins update for the ApplicationTypeVersionResource resource.
      *
@@ -218,6 +225,7 @@ public interface ApplicationTypeVersionResource {
          */
         ApplicationTypeVersionResource apply(Context context);
     }
+
     /** The ApplicationTypeVersionResource update stages. */
     interface UpdateStages {
         /** The stage of the ApplicationTypeVersionResource update allowing to specify appPackageUrl. */
@@ -231,6 +239,7 @@ public interface ApplicationTypeVersionResource {
             Update withAppPackageUrl(String appPackageUrl);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *
