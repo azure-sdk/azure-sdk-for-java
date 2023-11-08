@@ -13,8 +13,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class GoogleAdWordsLinkedServiceTypeProperties {
     /*
-     * Properties used to connect to GoogleAds. It is mutually exclusive with any other properties in the linked
-     * service. Type: object.
+     * (Deprecated) Properties used to connect to GoogleAds. It is mutually exclusive with any other properties in the
+     * linked service. Type: object.
      */
     @JsonProperty(value = "connectionProperties")
     private Object connectionProperties;
@@ -66,26 +66,56 @@ public final class GoogleAdWordsLinkedServiceTypeProperties {
     private Object email;
 
     /*
-     * The full path to the .p12 key file that is used to authenticate the service account email address and can only
-     * be used on self-hosted IR. Type: string (or Expression with resultType string).
+     * (Deprecated) The full path to the .p12 key file that is used to authenticate the service account email address
+     * and can only be used on self-hosted IR. Type: string (or Expression with resultType string).
      */
     @JsonProperty(value = "keyFilePath")
     private Object keyFilePath;
 
     /*
-     * The full path of the .pem file containing trusted CA certificates for verifying the server when connecting over
-     * SSL. This property can only be set when using SSL on self-hosted IR. The default value is the cacerts.pem file
-     * installed with the IR. Type: string (or Expression with resultType string).
+     * (Deprecated) The full path of the .pem file containing trusted CA certificates for verifying the server when
+     * connecting over SSL. This property can only be set when using SSL on self-hosted IR. The default value is the
+     * cacerts.pem file installed with the IR. Type: string (or Expression with resultType string).
      */
     @JsonProperty(value = "trustedCertPath")
     private Object trustedCertPath;
 
     /*
-     * Specifies whether to use a CA certificate from the system trust store or from a specified PEM file. The default
-     * value is false. Type: boolean (or Expression with resultType boolean).
+     * (Deprecated) Specifies whether to use a CA certificate from the system trust store or from a specified PEM file.
+     * The default value is false. Type: boolean (or Expression with resultType boolean).
      */
     @JsonProperty(value = "useSystemTrustStore")
     private Object useSystemTrustStore;
+
+    /*
+     * The private key that is used to authenticate the service account email address and can only be used on
+     * self-hosted IR.
+     */
+    @JsonProperty(value = "privateKey")
+    private SecretBase privateKey;
+
+    /*
+     * The customer ID of the Google Ads Manager account through which you want to fetch report data of specific
+     * Customer. Type: string (or Expression with resultType string).
+     */
+    @JsonProperty(value = "loginCustomerID")
+    private Object loginCustomerId;
+
+    /*
+     * The Google Ads API major version such as v14. The supported major versions could be found on
+     * https://developers.google.com/google-ads/api/docs/release-notes. Type: string (or Expression with resultType
+     * string).
+     */
+    @JsonProperty(value = "googleAdsApiVersion")
+    private Object googleAdsApiVersion;
+
+    /*
+     * Specifies whether to use the legacy data type mappings, which maps float, int32 and int64 from Google to string.
+     * Do not set this to true unless you want to keep backward compatibility with legacy driver's data type mappings.
+     * Type: boolean (or Expression with resultType boolean).
+     */
+    @JsonProperty(value = "supportLegacyDataTypes")
+    private Object supportLegacyDataTypes;
 
     /*
      * The encrypted credential used for authentication. Credentials are encrypted using the integration runtime
@@ -99,8 +129,8 @@ public final class GoogleAdWordsLinkedServiceTypeProperties {
     }
 
     /**
-     * Get the connectionProperties property: Properties used to connect to GoogleAds. It is mutually exclusive with any
-     * other properties in the linked service. Type: object.
+     * Get the connectionProperties property: (Deprecated) Properties used to connect to GoogleAds. It is mutually
+     * exclusive with any other properties in the linked service. Type: object.
      *
      * @return the connectionProperties value.
      */
@@ -109,8 +139,8 @@ public final class GoogleAdWordsLinkedServiceTypeProperties {
     }
 
     /**
-     * Set the connectionProperties property: Properties used to connect to GoogleAds. It is mutually exclusive with any
-     * other properties in the linked service. Type: object.
+     * Set the connectionProperties property: (Deprecated) Properties used to connect to GoogleAds. It is mutually
+     * exclusive with any other properties in the linked service. Type: object.
      *
      * @param connectionProperties the connectionProperties value to set.
      * @return the GoogleAdWordsLinkedServiceTypeProperties object itself.
@@ -274,8 +304,9 @@ public final class GoogleAdWordsLinkedServiceTypeProperties {
     }
 
     /**
-     * Get the keyFilePath property: The full path to the .p12 key file that is used to authenticate the service account
-     * email address and can only be used on self-hosted IR. Type: string (or Expression with resultType string).
+     * Get the keyFilePath property: (Deprecated) The full path to the .p12 key file that is used to authenticate the
+     * service account email address and can only be used on self-hosted IR. Type: string (or Expression with resultType
+     * string).
      *
      * @return the keyFilePath value.
      */
@@ -284,8 +315,9 @@ public final class GoogleAdWordsLinkedServiceTypeProperties {
     }
 
     /**
-     * Set the keyFilePath property: The full path to the .p12 key file that is used to authenticate the service account
-     * email address and can only be used on self-hosted IR. Type: string (or Expression with resultType string).
+     * Set the keyFilePath property: (Deprecated) The full path to the .p12 key file that is used to authenticate the
+     * service account email address and can only be used on self-hosted IR. Type: string (or Expression with resultType
+     * string).
      *
      * @param keyFilePath the keyFilePath value to set.
      * @return the GoogleAdWordsLinkedServiceTypeProperties object itself.
@@ -296,9 +328,10 @@ public final class GoogleAdWordsLinkedServiceTypeProperties {
     }
 
     /**
-     * Get the trustedCertPath property: The full path of the .pem file containing trusted CA certificates for verifying
-     * the server when connecting over SSL. This property can only be set when using SSL on self-hosted IR. The default
-     * value is the cacerts.pem file installed with the IR. Type: string (or Expression with resultType string).
+     * Get the trustedCertPath property: (Deprecated) The full path of the .pem file containing trusted CA certificates
+     * for verifying the server when connecting over SSL. This property can only be set when using SSL on self-hosted
+     * IR. The default value is the cacerts.pem file installed with the IR. Type: string (or Expression with resultType
+     * string).
      *
      * @return the trustedCertPath value.
      */
@@ -307,9 +340,10 @@ public final class GoogleAdWordsLinkedServiceTypeProperties {
     }
 
     /**
-     * Set the trustedCertPath property: The full path of the .pem file containing trusted CA certificates for verifying
-     * the server when connecting over SSL. This property can only be set when using SSL on self-hosted IR. The default
-     * value is the cacerts.pem file installed with the IR. Type: string (or Expression with resultType string).
+     * Set the trustedCertPath property: (Deprecated) The full path of the .pem file containing trusted CA certificates
+     * for verifying the server when connecting over SSL. This property can only be set when using SSL on self-hosted
+     * IR. The default value is the cacerts.pem file installed with the IR. Type: string (or Expression with resultType
+     * string).
      *
      * @param trustedCertPath the trustedCertPath value to set.
      * @return the GoogleAdWordsLinkedServiceTypeProperties object itself.
@@ -320,8 +354,9 @@ public final class GoogleAdWordsLinkedServiceTypeProperties {
     }
 
     /**
-     * Get the useSystemTrustStore property: Specifies whether to use a CA certificate from the system trust store or
-     * from a specified PEM file. The default value is false. Type: boolean (or Expression with resultType boolean).
+     * Get the useSystemTrustStore property: (Deprecated) Specifies whether to use a CA certificate from the system
+     * trust store or from a specified PEM file. The default value is false. Type: boolean (or Expression with
+     * resultType boolean).
      *
      * @return the useSystemTrustStore value.
      */
@@ -330,14 +365,107 @@ public final class GoogleAdWordsLinkedServiceTypeProperties {
     }
 
     /**
-     * Set the useSystemTrustStore property: Specifies whether to use a CA certificate from the system trust store or
-     * from a specified PEM file. The default value is false. Type: boolean (or Expression with resultType boolean).
+     * Set the useSystemTrustStore property: (Deprecated) Specifies whether to use a CA certificate from the system
+     * trust store or from a specified PEM file. The default value is false. Type: boolean (or Expression with
+     * resultType boolean).
      *
      * @param useSystemTrustStore the useSystemTrustStore value to set.
      * @return the GoogleAdWordsLinkedServiceTypeProperties object itself.
      */
     public GoogleAdWordsLinkedServiceTypeProperties withUseSystemTrustStore(Object useSystemTrustStore) {
         this.useSystemTrustStore = useSystemTrustStore;
+        return this;
+    }
+
+    /**
+     * Get the privateKey property: The private key that is used to authenticate the service account email address and
+     * can only be used on self-hosted IR.
+     *
+     * @return the privateKey value.
+     */
+    public SecretBase privateKey() {
+        return this.privateKey;
+    }
+
+    /**
+     * Set the privateKey property: The private key that is used to authenticate the service account email address and
+     * can only be used on self-hosted IR.
+     *
+     * @param privateKey the privateKey value to set.
+     * @return the GoogleAdWordsLinkedServiceTypeProperties object itself.
+     */
+    public GoogleAdWordsLinkedServiceTypeProperties withPrivateKey(SecretBase privateKey) {
+        this.privateKey = privateKey;
+        return this;
+    }
+
+    /**
+     * Get the loginCustomerId property: The customer ID of the Google Ads Manager account through which you want to
+     * fetch report data of specific Customer. Type: string (or Expression with resultType string).
+     *
+     * @return the loginCustomerId value.
+     */
+    public Object loginCustomerId() {
+        return this.loginCustomerId;
+    }
+
+    /**
+     * Set the loginCustomerId property: The customer ID of the Google Ads Manager account through which you want to
+     * fetch report data of specific Customer. Type: string (or Expression with resultType string).
+     *
+     * @param loginCustomerId the loginCustomerId value to set.
+     * @return the GoogleAdWordsLinkedServiceTypeProperties object itself.
+     */
+    public GoogleAdWordsLinkedServiceTypeProperties withLoginCustomerId(Object loginCustomerId) {
+        this.loginCustomerId = loginCustomerId;
+        return this;
+    }
+
+    /**
+     * Get the googleAdsApiVersion property: The Google Ads API major version such as v14. The supported major versions
+     * could be found on https://developers.google.com/google-ads/api/docs/release-notes. Type: string (or Expression
+     * with resultType string).
+     *
+     * @return the googleAdsApiVersion value.
+     */
+    public Object googleAdsApiVersion() {
+        return this.googleAdsApiVersion;
+    }
+
+    /**
+     * Set the googleAdsApiVersion property: The Google Ads API major version such as v14. The supported major versions
+     * could be found on https://developers.google.com/google-ads/api/docs/release-notes. Type: string (or Expression
+     * with resultType string).
+     *
+     * @param googleAdsApiVersion the googleAdsApiVersion value to set.
+     * @return the GoogleAdWordsLinkedServiceTypeProperties object itself.
+     */
+    public GoogleAdWordsLinkedServiceTypeProperties withGoogleAdsApiVersion(Object googleAdsApiVersion) {
+        this.googleAdsApiVersion = googleAdsApiVersion;
+        return this;
+    }
+
+    /**
+     * Get the supportLegacyDataTypes property: Specifies whether to use the legacy data type mappings, which maps
+     * float, int32 and int64 from Google to string. Do not set this to true unless you want to keep backward
+     * compatibility with legacy driver's data type mappings. Type: boolean (or Expression with resultType boolean).
+     *
+     * @return the supportLegacyDataTypes value.
+     */
+    public Object supportLegacyDataTypes() {
+        return this.supportLegacyDataTypes;
+    }
+
+    /**
+     * Set the supportLegacyDataTypes property: Specifies whether to use the legacy data type mappings, which maps
+     * float, int32 and int64 from Google to string. Do not set this to true unless you want to keep backward
+     * compatibility with legacy driver's data type mappings. Type: boolean (or Expression with resultType boolean).
+     *
+     * @param supportLegacyDataTypes the supportLegacyDataTypes value to set.
+     * @return the GoogleAdWordsLinkedServiceTypeProperties object itself.
+     */
+    public GoogleAdWordsLinkedServiceTypeProperties withSupportLegacyDataTypes(Object supportLegacyDataTypes) {
+        this.supportLegacyDataTypes = supportLegacyDataTypes;
         return this;
     }
 
@@ -377,6 +505,9 @@ public final class GoogleAdWordsLinkedServiceTypeProperties {
         }
         if (clientSecret() != null) {
             clientSecret().validate();
+        }
+        if (privateKey() != null) {
+            privateKey().validate();
         }
     }
 }

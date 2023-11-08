@@ -61,7 +61,8 @@ import java.util.Map;
     @JsonSubTypes.Type(name = "SalesforceServiceCloudSink", value = SalesforceServiceCloudSink.class),
     @JsonSubTypes.Type(name = "MongoDbAtlasSink", value = MongoDbAtlasSink.class),
     @JsonSubTypes.Type(name = "MongoDbV2Sink", value = MongoDbV2Sink.class),
-    @JsonSubTypes.Type(name = "CosmosDbMongoDbApiSink", value = CosmosDbMongoDbApiSink.class)
+    @JsonSubTypes.Type(name = "CosmosDbMongoDbApiSink", value = CosmosDbMongoDbApiSink.class),
+    @JsonSubTypes.Type(name = "LakeHouseTableSink", value = LakeHouseTableSink.class)
 })
 @Fluent
 public class CopySink {
