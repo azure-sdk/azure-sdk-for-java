@@ -10,6 +10,10 @@ import java.util.Map;
 /** Workspace patch properties. */
 @Fluent
 public final class WorkspacePatchResource extends ResourceTags {
+    /** Creates an instance of WorkspacePatchResource class. */
+    public WorkspacePatchResource() {
+    }
+
     /** {@inheritDoc} */
     @Override
     public WorkspacePatchResource withTags(Map<String, String> tags) {

@@ -26,6 +26,10 @@ public final class ServicesPatchDescription {
     @JsonProperty(value = "properties")
     private ServicesPropertiesUpdateParameters innerProperties;
 
+    /** Creates an instance of ServicesPatchDescription class. */
+    public ServicesPatchDescription() {
+    }
+
     /**
      * Get the tags property: Instance tags.
      *
