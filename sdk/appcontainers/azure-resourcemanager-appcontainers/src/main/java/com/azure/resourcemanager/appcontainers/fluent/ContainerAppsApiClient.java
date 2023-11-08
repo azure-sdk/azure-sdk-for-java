@@ -10,7 +10,7 @@ import java.time.Duration;
 /** The interface for ContainerAppsApiClient class. */
 public interface ContainerAppsApiClient {
     /**
-     * Gets The ID of the target subscription.
+     * Gets The ID of the target subscription. The value must be an UUID.
      *
      * @return the subscriptionId value.
      */
@@ -45,6 +45,13 @@ public interface ContainerAppsApiClient {
     Duration getDefaultPollInterval();
 
     /**
+     * Gets the AppResilienciesClient object to access its operations.
+     *
+     * @return the AppResilienciesClient object.
+     */
+    AppResilienciesClient getAppResiliencies();
+
+    /**
      * Gets the ContainerAppsAuthConfigsClient object to access its operations.
      *
      * @return the ContainerAppsAuthConfigsClient object.
@@ -64,6 +71,20 @@ public interface ContainerAppsApiClient {
      * @return the BillingMetersClient object.
      */
     BillingMetersClient getBillingMeters();
+
+    /**
+     * Gets the BuildersClient object to access its operations.
+     *
+     * @return the BuildersClient object.
+     */
+    BuildersClient getBuilders();
+
+    /**
+     * Gets the BuildsClient object to access its operations.
+     *
+     * @return the BuildsClient object.
+     */
+    BuildsClient getBuilds();
 
     /**
      * Gets the ConnectedEnvironmentsClient object to access its operations.
@@ -136,18 +157,18 @@ public interface ContainerAppsApiClient {
     ManagedEnvironmentsDiagnosticsClient getManagedEnvironmentsDiagnostics();
 
     /**
-     * Gets the OperationsClient object to access its operations.
-     *
-     * @return the OperationsClient object.
-     */
-    OperationsClient getOperations();
-
-    /**
      * Gets the JobsClient object to access its operations.
      *
      * @return the JobsClient object.
      */
     JobsClient getJobs();
+
+    /**
+     * Gets the OperationsClient object to access its operations.
+     *
+     * @return the OperationsClient object.
+     */
+    OperationsClient getOperations();
 
     /**
      * Gets the JobsExecutionsClient object to access its operations.
@@ -199,6 +220,20 @@ public interface ContainerAppsApiClient {
     DaprComponentsClient getDaprComponents();
 
     /**
+     * Gets the DaprComponentResiliencyPoliciesClient object to access its operations.
+     *
+     * @return the DaprComponentResiliencyPoliciesClient object.
+     */
+    DaprComponentResiliencyPoliciesClient getDaprComponentResiliencyPolicies();
+
+    /**
+     * Gets the DaprSubscriptionsClient object to access its operations.
+     *
+     * @return the DaprSubscriptionsClient object.
+     */
+    DaprSubscriptionsClient getDaprSubscriptions();
+
+    /**
      * Gets the ManagedEnvironmentsStoragesClient object to access its operations.
      *
      * @return the ManagedEnvironmentsStoragesClient object.
@@ -211,4 +246,18 @@ public interface ContainerAppsApiClient {
      * @return the ContainerAppsSourceControlsClient object.
      */
     ContainerAppsSourceControlsClient getContainerAppsSourceControls();
+
+    /**
+     * Gets the UsagesClient object to access its operations.
+     *
+     * @return the UsagesClient object.
+     */
+    UsagesClient getUsages();
+
+    /**
+     * Gets the ManagedEnvironmentUsagesClient object to access its operations.
+     *
+     * @return the ManagedEnvironmentUsagesClient object.
+     */
+    ManagedEnvironmentUsagesClient getManagedEnvironmentUsages();
 }

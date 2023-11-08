@@ -10,6 +10,7 @@ import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.appcontainers.fluent.models.JobInner;
 import com.azure.resourcemanager.appcontainers.models.ContainerAppJobExecutions;
+import com.azure.resourcemanager.appcontainers.models.ExtendedLocation;
 import com.azure.resourcemanager.appcontainers.models.Job;
 import com.azure.resourcemanager.appcontainers.models.JobConfiguration;
 import com.azure.resourcemanager.appcontainers.models.JobExecutionBase;
@@ -52,6 +53,10 @@ public final class JobImpl implements Job, Job.Definition, Job.Update {
         } else {
             return Collections.emptyMap();
         }
+    }
+
+    public ExtendedLocation extendedLocation() {
+        return this.innerModel().extendedLocation();
     }
 
     public ManagedServiceIdentity identity() {
@@ -237,6 +242,16 @@ public final class JobImpl implements Job, Job.Definition, Job.Update {
             return this;
         } else {
             this.updateJobEnvelope.withTags(tags);
+            return this;
+        }
+    }
+
+    public JobImpl withExtendedLocation(ExtendedLocation extendedLocation) {
+        if (isInCreateMode()) {
+            this.innerModel().withExtendedLocation(extendedLocation);
+            return this;
+        } else {
+            this.updateJobEnvelope.withExtendedLocation(extendedLocation);
             return this;
         }
     }
