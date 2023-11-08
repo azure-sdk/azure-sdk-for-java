@@ -1,6 +1,8 @@
 # Release History
 
-## 1.1.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2023-11-08)
+
+- Azure Resource Manager ApplicationInsights client library for Java. This package contains Microsoft Azure SDK for ApplicationInsights Management SDK. Composite Swagger for Application Insights Management Client. Package tag package-2023-10-01-only. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Features Added
 
