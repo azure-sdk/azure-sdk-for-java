@@ -63,11 +63,10 @@ public final class ConfigurationsClientImpl implements ConfigurationsClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "NginxManagementClien")
-    private interface ConfigurationsService {
+    public interface ConfigurationsService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Nginx.NginxPlus"
-                + "/nginxDeployments/{deploymentName}/configurations")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Nginx.NginxPlus/nginxDeployments/{deploymentName}/configurations")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<NginxConfigurationListResponse>> list(
@@ -81,8 +80,7 @@ public final class ConfigurationsClientImpl implements ConfigurationsClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Nginx.NginxPlus"
-                + "/nginxDeployments/{deploymentName}/configurations/{configurationName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Nginx.NginxPlus/nginxDeployments/{deploymentName}/configurations/{configurationName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<NginxConfigurationInner>> get(
@@ -97,8 +95,7 @@ public final class ConfigurationsClientImpl implements ConfigurationsClient {
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Nginx.NginxPlus"
-                + "/nginxDeployments/{deploymentName}/configurations/{configurationName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Nginx.NginxPlus/nginxDeployments/{deploymentName}/configurations/{configurationName}")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
@@ -114,8 +111,7 @@ public final class ConfigurationsClientImpl implements ConfigurationsClient {
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Nginx.NginxPlus"
-                + "/nginxDeployments/{deploymentName}/configurations/{configurationName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Nginx.NginxPlus/nginxDeployments/{deploymentName}/configurations/{configurationName}")
         @ExpectedResponses({200, 202, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(
@@ -140,10 +136,10 @@ public final class ConfigurationsClientImpl implements ConfigurationsClient {
     }
 
     /**
-     * List the Nginx configuration of given Nginx deployment.
+     * List the NGINX configuration of given NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -197,10 +193,10 @@ public final class ConfigurationsClientImpl implements ConfigurationsClient {
     }
 
     /**
-     * List the Nginx configuration of given Nginx deployment.
+     * List the NGINX configuration of given NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -252,10 +248,10 @@ public final class ConfigurationsClientImpl implements ConfigurationsClient {
     }
 
     /**
-     * List the Nginx configuration of given Nginx deployment.
+     * List the NGINX configuration of given NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -269,10 +265,10 @@ public final class ConfigurationsClientImpl implements ConfigurationsClient {
     }
 
     /**
-     * List the Nginx configuration of given Nginx deployment.
+     * List the NGINX configuration of given NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -288,10 +284,10 @@ public final class ConfigurationsClientImpl implements ConfigurationsClient {
     }
 
     /**
-     * List the Nginx configuration of given Nginx deployment.
+     * List the NGINX configuration of given NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -303,10 +299,10 @@ public final class ConfigurationsClientImpl implements ConfigurationsClient {
     }
 
     /**
-     * List the Nginx configuration of given Nginx deployment.
+     * List the NGINX configuration of given NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -320,16 +316,16 @@ public final class ConfigurationsClientImpl implements ConfigurationsClient {
     }
 
     /**
-     * Get the Nginx configuration of given Nginx deployment.
+     * Get the NGINX configuration of given NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param configurationName The name of configuration, only 'default' is supported value due to the singleton of
-     *     Nginx conf.
+     *     NGINX conf.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Nginx configuration of given Nginx deployment along with {@link Response} on successful completion of
+     * @return the NGINX configuration of given NGINX deployment along with {@link Response} on successful completion of
      *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -376,17 +372,17 @@ public final class ConfigurationsClientImpl implements ConfigurationsClient {
     }
 
     /**
-     * Get the Nginx configuration of given Nginx deployment.
+     * Get the NGINX configuration of given NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param configurationName The name of configuration, only 'default' is supported value due to the singleton of
-     *     Nginx conf.
+     *     NGINX conf.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Nginx configuration of given Nginx deployment along with {@link Response} on successful completion of
+     * @return the NGINX configuration of given NGINX deployment along with {@link Response} on successful completion of
      *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -430,16 +426,16 @@ public final class ConfigurationsClientImpl implements ConfigurationsClient {
     }
 
     /**
-     * Get the Nginx configuration of given Nginx deployment.
+     * Get the NGINX configuration of given NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param configurationName The name of configuration, only 'default' is supported value due to the singleton of
-     *     Nginx conf.
+     *     NGINX conf.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Nginx configuration of given Nginx deployment on successful completion of {@link Mono}.
+     * @return the NGINX configuration of given NGINX deployment on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<NginxConfigurationInner> getAsync(
@@ -449,17 +445,17 @@ public final class ConfigurationsClientImpl implements ConfigurationsClient {
     }
 
     /**
-     * Get the Nginx configuration of given Nginx deployment.
+     * Get the NGINX configuration of given NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param configurationName The name of configuration, only 'default' is supported value due to the singleton of
-     *     Nginx conf.
+     *     NGINX conf.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Nginx configuration of given Nginx deployment along with {@link Response}.
+     * @return the NGINX configuration of given NGINX deployment along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<NginxConfigurationInner> getWithResponse(
@@ -468,16 +464,16 @@ public final class ConfigurationsClientImpl implements ConfigurationsClient {
     }
 
     /**
-     * Get the Nginx configuration of given Nginx deployment.
+     * Get the NGINX configuration of given NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param configurationName The name of configuration, only 'default' is supported value due to the singleton of
-     *     Nginx conf.
+     *     NGINX conf.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Nginx configuration of given Nginx deployment.
+     * @return the NGINX configuration of given NGINX deployment.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public NginxConfigurationInner get(String resourceGroupName, String deploymentName, String configurationName) {
@@ -485,13 +481,13 @@ public final class ConfigurationsClientImpl implements ConfigurationsClient {
     }
 
     /**
-     * Create or update the Nginx configuration for given Nginx deployment.
+     * Create or update the NGINX configuration for given NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param configurationName The name of configuration, only 'default' is supported value due to the singleton of
-     *     Nginx conf.
-     * @param body The Nginx configuration.
+     *     NGINX conf.
+     * @param body The NGINX configuration.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -545,13 +541,13 @@ public final class ConfigurationsClientImpl implements ConfigurationsClient {
     }
 
     /**
-     * Create or update the Nginx configuration for given Nginx deployment.
+     * Create or update the NGINX configuration for given NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param configurationName The name of configuration, only 'default' is supported value due to the singleton of
-     *     Nginx conf.
-     * @param body The Nginx configuration.
+     *     NGINX conf.
+     * @param body The NGINX configuration.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -607,13 +603,13 @@ public final class ConfigurationsClientImpl implements ConfigurationsClient {
     }
 
     /**
-     * Create or update the Nginx configuration for given Nginx deployment.
+     * Create or update the NGINX configuration for given NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param configurationName The name of configuration, only 'default' is supported value due to the singleton of
-     *     Nginx conf.
-     * @param body The Nginx configuration.
+     *     NGINX conf.
+     * @param body The NGINX configuration.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -635,12 +631,12 @@ public final class ConfigurationsClientImpl implements ConfigurationsClient {
     }
 
     /**
-     * Create or update the Nginx configuration for given Nginx deployment.
+     * Create or update the NGINX configuration for given NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param configurationName The name of configuration, only 'default' is supported value due to the singleton of
-     *     Nginx conf.
+     *     NGINX conf.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -663,13 +659,13 @@ public final class ConfigurationsClientImpl implements ConfigurationsClient {
     }
 
     /**
-     * Create or update the Nginx configuration for given Nginx deployment.
+     * Create or update the NGINX configuration for given NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param configurationName The name of configuration, only 'default' is supported value due to the singleton of
-     *     Nginx conf.
-     * @param body The Nginx configuration.
+     *     NGINX conf.
+     * @param body The NGINX configuration.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -697,12 +693,12 @@ public final class ConfigurationsClientImpl implements ConfigurationsClient {
     }
 
     /**
-     * Create or update the Nginx configuration for given Nginx deployment.
+     * Create or update the NGINX configuration for given NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param configurationName The name of configuration, only 'default' is supported value due to the singleton of
-     *     Nginx conf.
+     *     NGINX conf.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -712,17 +708,19 @@ public final class ConfigurationsClientImpl implements ConfigurationsClient {
     public SyncPoller<PollResult<NginxConfigurationInner>, NginxConfigurationInner> beginCreateOrUpdate(
         String resourceGroupName, String deploymentName, String configurationName) {
         final NginxConfigurationInner body = null;
-        return beginCreateOrUpdateAsync(resourceGroupName, deploymentName, configurationName, body).getSyncPoller();
+        return this
+            .beginCreateOrUpdateAsync(resourceGroupName, deploymentName, configurationName, body)
+            .getSyncPoller();
     }
 
     /**
-     * Create or update the Nginx configuration for given Nginx deployment.
+     * Create or update the NGINX configuration for given NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param configurationName The name of configuration, only 'default' is supported value due to the singleton of
-     *     Nginx conf.
-     * @param body The Nginx configuration.
+     *     NGINX conf.
+     * @param body The NGINX configuration.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -736,18 +734,19 @@ public final class ConfigurationsClientImpl implements ConfigurationsClient {
         String configurationName,
         NginxConfigurationInner body,
         Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, deploymentName, configurationName, body, context)
+        return this
+            .beginCreateOrUpdateAsync(resourceGroupName, deploymentName, configurationName, body, context)
             .getSyncPoller();
     }
 
     /**
-     * Create or update the Nginx configuration for given Nginx deployment.
+     * Create or update the NGINX configuration for given NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param configurationName The name of configuration, only 'default' is supported value due to the singleton of
-     *     Nginx conf.
-     * @param body The Nginx configuration.
+     *     NGINX conf.
+     * @param body The NGINX configuration.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -762,12 +761,12 @@ public final class ConfigurationsClientImpl implements ConfigurationsClient {
     }
 
     /**
-     * Create or update the Nginx configuration for given Nginx deployment.
+     * Create or update the NGINX configuration for given NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param configurationName The name of configuration, only 'default' is supported value due to the singleton of
-     *     Nginx conf.
+     *     NGINX conf.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -783,13 +782,13 @@ public final class ConfigurationsClientImpl implements ConfigurationsClient {
     }
 
     /**
-     * Create or update the Nginx configuration for given Nginx deployment.
+     * Create or update the NGINX configuration for given NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param configurationName The name of configuration, only 'default' is supported value due to the singleton of
-     *     Nginx conf.
-     * @param body The Nginx configuration.
+     *     NGINX conf.
+     * @param body The NGINX configuration.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -809,12 +808,12 @@ public final class ConfigurationsClientImpl implements ConfigurationsClient {
     }
 
     /**
-     * Create or update the Nginx configuration for given Nginx deployment.
+     * Create or update the NGINX configuration for given NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param configurationName The name of configuration, only 'default' is supported value due to the singleton of
-     *     Nginx conf.
+     *     NGINX conf.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -828,13 +827,13 @@ public final class ConfigurationsClientImpl implements ConfigurationsClient {
     }
 
     /**
-     * Create or update the Nginx configuration for given Nginx deployment.
+     * Create or update the NGINX configuration for given NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param configurationName The name of configuration, only 'default' is supported value due to the singleton of
-     *     Nginx conf.
-     * @param body The Nginx configuration.
+     *     NGINX conf.
+     * @param body The NGINX configuration.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -852,12 +851,12 @@ public final class ConfigurationsClientImpl implements ConfigurationsClient {
     }
 
     /**
-     * Reset the Nginx configuration of given Nginx deployment to default.
+     * Reset the NGINX configuration of given NGINX deployment to default.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param configurationName The name of configuration, only 'default' is supported value due to the singleton of
-     *     Nginx conf.
+     *     NGINX conf.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -907,12 +906,12 @@ public final class ConfigurationsClientImpl implements ConfigurationsClient {
     }
 
     /**
-     * Reset the Nginx configuration of given Nginx deployment to default.
+     * Reset the NGINX configuration of given NGINX deployment to default.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param configurationName The name of configuration, only 'default' is supported value due to the singleton of
-     *     Nginx conf.
+     *     NGINX conf.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -960,12 +959,12 @@ public final class ConfigurationsClientImpl implements ConfigurationsClient {
     }
 
     /**
-     * Reset the Nginx configuration of given Nginx deployment to default.
+     * Reset the NGINX configuration of given NGINX deployment to default.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param configurationName The name of configuration, only 'default' is supported value due to the singleton of
-     *     Nginx conf.
+     *     NGINX conf.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -983,12 +982,12 @@ public final class ConfigurationsClientImpl implements ConfigurationsClient {
     }
 
     /**
-     * Reset the Nginx configuration of given Nginx deployment to default.
+     * Reset the NGINX configuration of given NGINX deployment to default.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param configurationName The name of configuration, only 'default' is supported value due to the singleton of
-     *     Nginx conf.
+     *     NGINX conf.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1007,12 +1006,12 @@ public final class ConfigurationsClientImpl implements ConfigurationsClient {
     }
 
     /**
-     * Reset the Nginx configuration of given Nginx deployment to default.
+     * Reset the NGINX configuration of given NGINX deployment to default.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param configurationName The name of configuration, only 'default' is supported value due to the singleton of
-     *     Nginx conf.
+     *     NGINX conf.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1021,16 +1020,16 @@ public final class ConfigurationsClientImpl implements ConfigurationsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String deploymentName, String configurationName) {
-        return beginDeleteAsync(resourceGroupName, deploymentName, configurationName).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, deploymentName, configurationName).getSyncPoller();
     }
 
     /**
-     * Reset the Nginx configuration of given Nginx deployment to default.
+     * Reset the NGINX configuration of given NGINX deployment to default.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param configurationName The name of configuration, only 'default' is supported value due to the singleton of
-     *     Nginx conf.
+     *     NGINX conf.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1040,16 +1039,16 @@ public final class ConfigurationsClientImpl implements ConfigurationsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String deploymentName, String configurationName, Context context) {
-        return beginDeleteAsync(resourceGroupName, deploymentName, configurationName, context).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, deploymentName, configurationName, context).getSyncPoller();
     }
 
     /**
-     * Reset the Nginx configuration of given Nginx deployment to default.
+     * Reset the NGINX configuration of given NGINX deployment to default.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param configurationName The name of configuration, only 'default' is supported value due to the singleton of
-     *     Nginx conf.
+     *     NGINX conf.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1063,12 +1062,12 @@ public final class ConfigurationsClientImpl implements ConfigurationsClient {
     }
 
     /**
-     * Reset the Nginx configuration of given Nginx deployment to default.
+     * Reset the NGINX configuration of given NGINX deployment to default.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param configurationName The name of configuration, only 'default' is supported value due to the singleton of
-     *     Nginx conf.
+     *     NGINX conf.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1084,12 +1083,12 @@ public final class ConfigurationsClientImpl implements ConfigurationsClient {
     }
 
     /**
-     * Reset the Nginx configuration of given Nginx deployment to default.
+     * Reset the NGINX configuration of given NGINX deployment to default.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param configurationName The name of configuration, only 'default' is supported value due to the singleton of
-     *     Nginx conf.
+     *     NGINX conf.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1100,12 +1099,12 @@ public final class ConfigurationsClientImpl implements ConfigurationsClient {
     }
 
     /**
-     * Reset the Nginx configuration of given Nginx deployment to default.
+     * Reset the NGINX configuration of given NGINX deployment to default.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param configurationName The name of configuration, only 'default' is supported value due to the singleton of
-     *     Nginx conf.
+     *     NGINX conf.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

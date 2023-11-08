@@ -55,7 +55,7 @@ public final class OperationsClientImpl implements OperationsClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "NginxManagementClien")
-    private interface OperationsService {
+    public interface OperationsService {
         @Headers({"Content-Type: application/json"})
         @Get("/providers/Nginx.NginxPlus/operations")
         @ExpectedResponses({200})
@@ -78,7 +78,7 @@ public final class OperationsClientImpl implements OperationsClient {
     }
 
     /**
-     * List all operations provided by Nginx.NginxPlus for the 2022-08-01 api version.
+     * List all operations provided by Nginx.NginxPlus for the 2023-04-01 api version.
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -110,7 +110,7 @@ public final class OperationsClientImpl implements OperationsClient {
     }
 
     /**
-     * List all operations provided by Nginx.NginxPlus for the 2022-08-01 api version.
+     * List all operations provided by Nginx.NginxPlus for the 2023-04-01 api version.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -143,7 +143,7 @@ public final class OperationsClientImpl implements OperationsClient {
     }
 
     /**
-     * List all operations provided by Nginx.NginxPlus for the 2022-08-01 api version.
+     * List all operations provided by Nginx.NginxPlus for the 2023-04-01 api version.
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -155,7 +155,7 @@ public final class OperationsClientImpl implements OperationsClient {
     }
 
     /**
-     * List all operations provided by Nginx.NginxPlus for the 2022-08-01 api version.
+     * List all operations provided by Nginx.NginxPlus for the 2023-04-01 api version.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -170,7 +170,7 @@ public final class OperationsClientImpl implements OperationsClient {
     }
 
     /**
-     * List all operations provided by Nginx.NginxPlus for the 2022-08-01 api version.
+     * List all operations provided by Nginx.NginxPlus for the 2023-04-01 api version.
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -183,7 +183,7 @@ public final class OperationsClientImpl implements OperationsClient {
     }
 
     /**
-     * List all operations provided by Nginx.NginxPlus for the 2022-08-01 api version.
+     * List all operations provided by Nginx.NginxPlus for the 2023-04-01 api version.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.

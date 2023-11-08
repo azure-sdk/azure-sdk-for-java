@@ -63,11 +63,10 @@ public final class CertificatesClientImpl implements CertificatesClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "NginxManagementClien")
-    private interface CertificatesService {
+    public interface CertificatesService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Nginx.NginxPlus"
-                + "/nginxDeployments/{deploymentName}/certificates/{certificateName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Nginx.NginxPlus/nginxDeployments/{deploymentName}/certificates/{certificateName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<NginxCertificateInner>> get(
@@ -82,8 +81,7 @@ public final class CertificatesClientImpl implements CertificatesClient {
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Nginx.NginxPlus"
-                + "/nginxDeployments/{deploymentName}/certificates/{certificateName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Nginx.NginxPlus/nginxDeployments/{deploymentName}/certificates/{certificateName}")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
@@ -99,8 +97,7 @@ public final class CertificatesClientImpl implements CertificatesClient {
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Nginx.NginxPlus"
-                + "/nginxDeployments/{deploymentName}/certificates/{certificateName}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Nginx.NginxPlus/nginxDeployments/{deploymentName}/certificates/{certificateName}")
         @ExpectedResponses({200, 202, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(
@@ -115,8 +112,7 @@ public final class CertificatesClientImpl implements CertificatesClient {
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Nginx.NginxPlus"
-                + "/nginxDeployments/{deploymentName}/certificates")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Nginx.NginxPlus/nginxDeployments/{deploymentName}/certificates")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<NginxCertificateListResponse>> list(
@@ -140,15 +136,15 @@ public final class CertificatesClientImpl implements CertificatesClient {
     }
 
     /**
-     * Get a certificate of given Nginx deployment.
+     * Get a certificate of given NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param certificateName The name of certificate.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a certificate of given Nginx deployment along with {@link Response} on successful completion of {@link
+     * @return a certificate of given NGINX deployment along with {@link Response} on successful completion of {@link
      *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -195,16 +191,16 @@ public final class CertificatesClientImpl implements CertificatesClient {
     }
 
     /**
-     * Get a certificate of given Nginx deployment.
+     * Get a certificate of given NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param certificateName The name of certificate.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a certificate of given Nginx deployment along with {@link Response} on successful completion of {@link
+     * @return a certificate of given NGINX deployment along with {@link Response} on successful completion of {@link
      *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -248,15 +244,15 @@ public final class CertificatesClientImpl implements CertificatesClient {
     }
 
     /**
-     * Get a certificate of given Nginx deployment.
+     * Get a certificate of given NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param certificateName The name of certificate.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a certificate of given Nginx deployment on successful completion of {@link Mono}.
+     * @return a certificate of given NGINX deployment on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<NginxCertificateInner> getAsync(
@@ -266,16 +262,16 @@ public final class CertificatesClientImpl implements CertificatesClient {
     }
 
     /**
-     * Get a certificate of given Nginx deployment.
+     * Get a certificate of given NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param certificateName The name of certificate.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a certificate of given Nginx deployment along with {@link Response}.
+     * @return a certificate of given NGINX deployment along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<NginxCertificateInner> getWithResponse(
@@ -284,15 +280,15 @@ public final class CertificatesClientImpl implements CertificatesClient {
     }
 
     /**
-     * Get a certificate of given Nginx deployment.
+     * Get a certificate of given NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param certificateName The name of certificate.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a certificate of given Nginx deployment.
+     * @return a certificate of given NGINX deployment.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public NginxCertificateInner get(String resourceGroupName, String deploymentName, String certificateName) {
@@ -300,10 +296,10 @@ public final class CertificatesClientImpl implements CertificatesClient {
     }
 
     /**
-     * Create or update the Nginx certificates for given Nginx deployment.
+     * Create or update the NGINX certificates for given NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param certificateName The name of certificate.
      * @param body The certificate.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -359,10 +355,10 @@ public final class CertificatesClientImpl implements CertificatesClient {
     }
 
     /**
-     * Create or update the Nginx certificates for given Nginx deployment.
+     * Create or update the NGINX certificates for given NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param certificateName The name of certificate.
      * @param body The certificate.
      * @param context The context to associate with this operation.
@@ -420,10 +416,10 @@ public final class CertificatesClientImpl implements CertificatesClient {
     }
 
     /**
-     * Create or update the Nginx certificates for given Nginx deployment.
+     * Create or update the NGINX certificates for given NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param certificateName The name of certificate.
      * @param body The certificate.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -447,10 +443,10 @@ public final class CertificatesClientImpl implements CertificatesClient {
     }
 
     /**
-     * Create or update the Nginx certificates for given Nginx deployment.
+     * Create or update the NGINX certificates for given NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param certificateName The name of certificate.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -474,10 +470,10 @@ public final class CertificatesClientImpl implements CertificatesClient {
     }
 
     /**
-     * Create or update the Nginx certificates for given Nginx deployment.
+     * Create or update the NGINX certificates for given NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param certificateName The name of certificate.
      * @param body The certificate.
      * @param context The context to associate with this operation.
@@ -503,10 +499,10 @@ public final class CertificatesClientImpl implements CertificatesClient {
     }
 
     /**
-     * Create or update the Nginx certificates for given Nginx deployment.
+     * Create or update the NGINX certificates for given NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param certificateName The name of certificate.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -517,14 +513,14 @@ public final class CertificatesClientImpl implements CertificatesClient {
     public SyncPoller<PollResult<NginxCertificateInner>, NginxCertificateInner> beginCreateOrUpdate(
         String resourceGroupName, String deploymentName, String certificateName) {
         final NginxCertificateInner body = null;
-        return beginCreateOrUpdateAsync(resourceGroupName, deploymentName, certificateName, body).getSyncPoller();
+        return this.beginCreateOrUpdateAsync(resourceGroupName, deploymentName, certificateName, body).getSyncPoller();
     }
 
     /**
-     * Create or update the Nginx certificates for given Nginx deployment.
+     * Create or update the NGINX certificates for given NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param certificateName The name of certificate.
      * @param body The certificate.
      * @param context The context to associate with this operation.
@@ -540,15 +536,16 @@ public final class CertificatesClientImpl implements CertificatesClient {
         String certificateName,
         NginxCertificateInner body,
         Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, deploymentName, certificateName, body, context)
+        return this
+            .beginCreateOrUpdateAsync(resourceGroupName, deploymentName, certificateName, body, context)
             .getSyncPoller();
     }
 
     /**
-     * Create or update the Nginx certificates for given Nginx deployment.
+     * Create or update the NGINX certificates for given NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param certificateName The name of certificate.
      * @param body The certificate.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -565,10 +562,10 @@ public final class CertificatesClientImpl implements CertificatesClient {
     }
 
     /**
-     * Create or update the Nginx certificates for given Nginx deployment.
+     * Create or update the NGINX certificates for given NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param certificateName The name of certificate.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -585,10 +582,10 @@ public final class CertificatesClientImpl implements CertificatesClient {
     }
 
     /**
-     * Create or update the Nginx certificates for given Nginx deployment.
+     * Create or update the NGINX certificates for given NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param certificateName The name of certificate.
      * @param body The certificate.
      * @param context The context to associate with this operation.
@@ -610,10 +607,10 @@ public final class CertificatesClientImpl implements CertificatesClient {
     }
 
     /**
-     * Create or update the Nginx certificates for given Nginx deployment.
+     * Create or update the NGINX certificates for given NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param certificateName The name of certificate.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -628,10 +625,10 @@ public final class CertificatesClientImpl implements CertificatesClient {
     }
 
     /**
-     * Create or update the Nginx certificates for given Nginx deployment.
+     * Create or update the NGINX certificates for given NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param certificateName The name of certificate.
      * @param body The certificate.
      * @param context The context to associate with this operation.
@@ -651,10 +648,10 @@ public final class CertificatesClientImpl implements CertificatesClient {
     }
 
     /**
-     * Deletes a certificate from the nginx deployment.
+     * Deletes a certificate from the NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param certificateName The name of certificate.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -705,10 +702,10 @@ public final class CertificatesClientImpl implements CertificatesClient {
     }
 
     /**
-     * Deletes a certificate from the nginx deployment.
+     * Deletes a certificate from the NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param certificateName The name of certificate.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -757,10 +754,10 @@ public final class CertificatesClientImpl implements CertificatesClient {
     }
 
     /**
-     * Deletes a certificate from the nginx deployment.
+     * Deletes a certificate from the NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param certificateName The name of certificate.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -779,10 +776,10 @@ public final class CertificatesClientImpl implements CertificatesClient {
     }
 
     /**
-     * Deletes a certificate from the nginx deployment.
+     * Deletes a certificate from the NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param certificateName The name of certificate.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -802,10 +799,10 @@ public final class CertificatesClientImpl implements CertificatesClient {
     }
 
     /**
-     * Deletes a certificate from the nginx deployment.
+     * Deletes a certificate from the NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param certificateName The name of certificate.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -815,14 +812,14 @@ public final class CertificatesClientImpl implements CertificatesClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String deploymentName, String certificateName) {
-        return beginDeleteAsync(resourceGroupName, deploymentName, certificateName).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, deploymentName, certificateName).getSyncPoller();
     }
 
     /**
-     * Deletes a certificate from the nginx deployment.
+     * Deletes a certificate from the NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param certificateName The name of certificate.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -833,14 +830,14 @@ public final class CertificatesClientImpl implements CertificatesClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String deploymentName, String certificateName, Context context) {
-        return beginDeleteAsync(resourceGroupName, deploymentName, certificateName, context).getSyncPoller();
+        return this.beginDeleteAsync(resourceGroupName, deploymentName, certificateName, context).getSyncPoller();
     }
 
     /**
-     * Deletes a certificate from the nginx deployment.
+     * Deletes a certificate from the NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param certificateName The name of certificate.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -855,10 +852,10 @@ public final class CertificatesClientImpl implements CertificatesClient {
     }
 
     /**
-     * Deletes a certificate from the nginx deployment.
+     * Deletes a certificate from the NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param certificateName The name of certificate.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -875,10 +872,10 @@ public final class CertificatesClientImpl implements CertificatesClient {
     }
 
     /**
-     * Deletes a certificate from the nginx deployment.
+     * Deletes a certificate from the NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param certificateName The name of certificate.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -890,10 +887,10 @@ public final class CertificatesClientImpl implements CertificatesClient {
     }
 
     /**
-     * Deletes a certificate from the nginx deployment.
+     * Deletes a certificate from the NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param certificateName The name of certificate.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -906,10 +903,10 @@ public final class CertificatesClientImpl implements CertificatesClient {
     }
 
     /**
-     * List all certificates of given Nginx deployment.
+     * List all certificates of given NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -963,10 +960,10 @@ public final class CertificatesClientImpl implements CertificatesClient {
     }
 
     /**
-     * List all certificates of given Nginx deployment.
+     * List all certificates of given NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1018,10 +1015,10 @@ public final class CertificatesClientImpl implements CertificatesClient {
     }
 
     /**
-     * List all certificates of given Nginx deployment.
+     * List all certificates of given NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1035,10 +1032,10 @@ public final class CertificatesClientImpl implements CertificatesClient {
     }
 
     /**
-     * List all certificates of given Nginx deployment.
+     * List all certificates of given NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1054,10 +1051,10 @@ public final class CertificatesClientImpl implements CertificatesClient {
     }
 
     /**
-     * List all certificates of given Nginx deployment.
+     * List all certificates of given NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1069,10 +1066,10 @@ public final class CertificatesClientImpl implements CertificatesClient {
     }
 
     /**
-     * List all certificates of given Nginx deployment.
+     * List all certificates of given NGINX deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted Nginx deployment.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

@@ -8,7 +8,6 @@ import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.nginx.fluent.models.NginxConfigurationInner;
-import java.util.Map;
 
 /** An immutable client-side representation of NginxConfiguration. */
 public interface NginxConfiguration {
@@ -34,25 +33,18 @@ public interface NginxConfiguration {
     String type();
 
     /**
-     * Gets the location property: The geo-location where the resource lives.
-     *
-     * @return the location value.
-     */
-    String location();
-
-    /**
-     * Gets the tags property: Resource tags.
-     *
-     * @return the tags value.
-     */
-    Map<String, String> tags();
-
-    /**
      * Gets the properties property: The properties property.
      *
      * @return the properties value.
      */
     NginxConfigurationProperties properties();
+
+    /**
+     * Gets the location property: The location property.
+     *
+     * @return the location value.
+     */
+    String location();
 
     /**
      * Gets the systemData property: Metadata pertaining to creation and last modification of the resource.
@@ -91,50 +83,32 @@ public interface NginxConfiguration {
 
     /** The entirety of the NginxConfiguration definition. */
     interface Definition
-        extends DefinitionStages.Blank,
-            DefinitionStages.WithLocation,
-            DefinitionStages.WithParentResource,
-            DefinitionStages.WithCreate {
+        extends DefinitionStages.Blank, DefinitionStages.WithParentResource, DefinitionStages.WithCreate {
     }
+
     /** The NginxConfiguration definition stages. */
     interface DefinitionStages {
         /** The first stage of the NginxConfiguration definition. */
-        interface Blank extends WithLocation {
+        interface Blank extends WithParentResource {
         }
-        /** The stage of the NginxConfiguration definition allowing to specify location. */
-        interface WithLocation {
-            /**
-             * Specifies the region for the resource.
-             *
-             * @param location The geo-location where the resource lives.
-             * @return the next definition stage.
-             */
-            WithParentResource withRegion(Region location);
 
-            /**
-             * Specifies the region for the resource.
-             *
-             * @param location The geo-location where the resource lives.
-             * @return the next definition stage.
-             */
-            WithParentResource withRegion(String location);
-        }
         /** The stage of the NginxConfiguration definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
              * Specifies resourceGroupName, deploymentName.
              *
              * @param resourceGroupName The name of the resource group. The name is case insensitive.
-             * @param deploymentName The name of targeted Nginx deployment.
+             * @param deploymentName The name of targeted NGINX deployment.
              * @return the next definition stage.
              */
             WithCreate withExistingNginxDeployment(String resourceGroupName, String deploymentName);
         }
+
         /**
          * The stage of the NginxConfiguration definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithProperties {
+        interface WithCreate extends DefinitionStages.WithLocation, DefinitionStages.WithProperties {
             /**
              * Executes the create request.
              *
@@ -150,16 +124,26 @@ public interface NginxConfiguration {
              */
             NginxConfiguration create(Context context);
         }
-        /** The stage of the NginxConfiguration definition allowing to specify tags. */
-        interface WithTags {
+
+        /** The stage of the NginxConfiguration definition allowing to specify location. */
+        interface WithLocation {
             /**
-             * Specifies the tags property: Resource tags..
+             * Specifies the region for the resource.
              *
-             * @param tags Resource tags.
+             * @param location The location property.
              * @return the next definition stage.
              */
-            WithCreate withTags(Map<String, String> tags);
+            WithCreate withRegion(Region location);
+
+            /**
+             * Specifies the region for the resource.
+             *
+             * @param location The location property.
+             * @return the next definition stage.
+             */
+            WithCreate withRegion(String location);
         }
+
         /** The stage of the NginxConfiguration definition allowing to specify properties. */
         interface WithProperties {
             /**
@@ -171,6 +155,7 @@ public interface NginxConfiguration {
             WithCreate withProperties(NginxConfigurationProperties properties);
         }
     }
+
     /**
      * Begins update for the NginxConfiguration resource.
      *
@@ -179,7 +164,7 @@ public interface NginxConfiguration {
     NginxConfiguration.Update update();
 
     /** The template for NginxConfiguration update. */
-    interface Update extends UpdateStages.WithTags, UpdateStages.WithProperties {
+    interface Update extends UpdateStages.WithProperties {
         /**
          * Executes the update request.
          *
@@ -195,18 +180,9 @@ public interface NginxConfiguration {
          */
         NginxConfiguration apply(Context context);
     }
+
     /** The NginxConfiguration update stages. */
     interface UpdateStages {
-        /** The stage of the NginxConfiguration update allowing to specify tags. */
-        interface WithTags {
-            /**
-             * Specifies the tags property: Resource tags..
-             *
-             * @param tags Resource tags.
-             * @return the next definition stage.
-             */
-            Update withTags(Map<String, String> tags);
-        }
         /** The stage of the NginxConfiguration update allowing to specify properties. */
         interface WithProperties {
             /**
@@ -218,6 +194,7 @@ public interface NginxConfiguration {
             Update withProperties(NginxConfigurationProperties properties);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

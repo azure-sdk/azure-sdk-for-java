@@ -4,13 +4,12 @@
 
 package com.azure.resourcemanager.nginx.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.nginx.models.NginxDeployment;
 
 /** Samples for Deployments Update. */
 public final class DeploymentsUpdateSamples {
     /*
-     * x-ms-original-file: specification/nginx/resource-manager/NGINX.NGINXPLUS/stable/2022-08-01/examples/Deployments_Update.json
+     * x-ms-original-file: specification/nginx/resource-manager/NGINX.NGINXPLUS/stable/2023-04-01/examples/Deployments_Update.json
      */
     /**
      * Sample code: Deployments_Update.
@@ -21,7 +20,7 @@ public final class DeploymentsUpdateSamples {
         NginxDeployment resource =
             manager
                 .deployments()
-                .getByResourceGroupWithResponse("myResourceGroup", "myDeployment", Context.NONE)
+                .getByResourceGroupWithResponse("myResourceGroup", "myDeployment", com.azure.core.util.Context.NONE)
                 .getValue();
         resource.update().apply();
     }
