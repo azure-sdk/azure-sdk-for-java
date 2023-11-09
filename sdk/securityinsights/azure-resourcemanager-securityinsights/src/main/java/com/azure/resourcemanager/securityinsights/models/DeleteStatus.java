@@ -20,6 +20,15 @@ public final class DeleteStatus extends ExpandableStringEnum<DeleteStatus> {
     public static final DeleteStatus UNSPECIFIED = fromString("Unspecified");
 
     /**
+     * Creates a new instance of DeleteStatus value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public DeleteStatus() {
+    }
+
+    /**
      * Creates or finds a DeleteStatus from its string representation.
      *
      * @param name a name to look for.

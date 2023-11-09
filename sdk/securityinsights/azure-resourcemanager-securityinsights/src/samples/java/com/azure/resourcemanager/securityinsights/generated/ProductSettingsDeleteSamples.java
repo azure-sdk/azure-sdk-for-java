@@ -4,12 +4,10 @@
 
 package com.azure.resourcemanager.securityinsights.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for ProductSettings Delete. */
 public final class ProductSettingsDeleteSamples {
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/settings/DeleteEyesOnSetting.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2023-10-01-preview/examples/settings/DeleteEyesOnSetting.json
      */
     /**
      * Sample code: Delete EyesOn settings.
@@ -18,6 +16,6 @@ public final class ProductSettingsDeleteSamples {
      */
     public static void deleteEyesOnSettings(
         com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
-        manager.productSettings().deleteWithResponse("myRg", "myWorkspace", "EyesOn", Context.NONE);
+        manager.productSettings().deleteWithResponse("myRg", "myWorkspace", "EyesOn", com.azure.core.util.Context.NONE);
     }
 }

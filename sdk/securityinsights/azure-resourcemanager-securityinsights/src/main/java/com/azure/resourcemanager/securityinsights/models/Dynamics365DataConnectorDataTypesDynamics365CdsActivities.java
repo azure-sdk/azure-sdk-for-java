@@ -9,6 +9,10 @@ import com.azure.core.annotation.Fluent;
 /** Common Data Service data type connection. */
 @Fluent
 public final class Dynamics365DataConnectorDataTypesDynamics365CdsActivities extends DataConnectorDataTypeCommon {
+    /** Creates an instance of Dynamics365DataConnectorDataTypesDynamics365CdsActivities class. */
+    public Dynamics365DataConnectorDataTypesDynamics365CdsActivities() {
+    }
+
     /** {@inheritDoc} */
     @Override
     public Dynamics365DataConnectorDataTypesDynamics365CdsActivities withState(DataTypeState state) {

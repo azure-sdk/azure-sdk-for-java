@@ -10,6 +10,8 @@ import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.securityinsights.fluent.models.SourceControlInner;
+import com.azure.resourcemanager.securityinsights.fluent.models.WarningInner;
+import com.azure.resourcemanager.securityinsights.models.RepositoryAccessProperties;
 
 /** An instance of this class provides access to all the operations defined in SourceControlsOperationsClient. */
 public interface SourceControlsOperationsClient {
@@ -46,20 +48,6 @@ public interface SourceControlsOperationsClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param sourceControlId Source control Id.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a source control byt its identifier.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    SourceControlInner get(String resourceGroupName, String workspaceName, String sourceControlId);
-
-    /**
-     * Gets a source control byt its identifier.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param sourceControlId Source control Id.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -71,7 +59,7 @@ public interface SourceControlsOperationsClient {
         String resourceGroupName, String workspaceName, String sourceControlId, Context context);
 
     /**
-     * Delete a source control.
+     * Gets a source control byt its identifier.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -79,41 +67,10 @@ public interface SourceControlsOperationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a source control byt its identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    void delete(String resourceGroupName, String workspaceName, String sourceControlId);
-
-    /**
-     * Delete a source control.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param sourceControlId Source control Id.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<Void> deleteWithResponse(
-        String resourceGroupName, String workspaceName, String sourceControlId, Context context);
-
-    /**
-     * Creates a source control.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param sourceControlId Source control Id.
-     * @param sourceControl The SourceControl.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a SourceControl in Azure Security Insights.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    SourceControlInner create(
-        String resourceGroupName, String workspaceName, String sourceControlId, SourceControlInner sourceControl);
+    SourceControlInner get(String resourceGroupName, String workspaceName, String sourceControlId);
 
     /**
      * Creates a source control.
@@ -135,4 +92,60 @@ public interface SourceControlsOperationsClient {
         String sourceControlId,
         SourceControlInner sourceControl,
         Context context);
+
+    /**
+     * Creates a source control.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param sourceControlId Source control Id.
+     * @param sourceControl The SourceControl.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return represents a SourceControl in Azure Security Insights.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    SourceControlInner create(
+        String resourceGroupName, String workspaceName, String sourceControlId, SourceControlInner sourceControl);
+
+    /**
+     * Delete a source control.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param sourceControlId Source control Id.
+     * @param repositoryAccess The repository access credentials.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return warning response structure along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<WarningInner> deleteWithResponse(
+        String resourceGroupName,
+        String workspaceName,
+        String sourceControlId,
+        RepositoryAccessProperties repositoryAccess,
+        Context context);
+
+    /**
+     * Delete a source control.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param sourceControlId Source control Id.
+     * @param repositoryAccess The repository access credentials.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return warning response structure.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    WarningInner delete(
+        String resourceGroupName,
+        String workspaceName,
+        String sourceControlId,
+        RepositoryAccessProperties repositoryAccess);
 }

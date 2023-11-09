@@ -10,7 +10,7 @@ import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.securityinsights.fluent.SourceControlsClient;
 import com.azure.resourcemanager.securityinsights.fluent.models.RepoInner;
 import com.azure.resourcemanager.securityinsights.models.Repo;
-import com.azure.resourcemanager.securityinsights.models.RepoType;
+import com.azure.resourcemanager.securityinsights.models.RepositoryAccessProperties;
 import com.azure.resourcemanager.securityinsights.models.SourceControls;
 
 public final class SourceControlsImpl implements SourceControls {
@@ -27,16 +27,17 @@ public final class SourceControlsImpl implements SourceControls {
         this.serviceManager = serviceManager;
     }
 
-    public PagedIterable<Repo> listRepositories(String resourceGroupName, String workspaceName, RepoType repoType) {
+    public PagedIterable<Repo> listRepositories(
+        String resourceGroupName, String workspaceName, RepositoryAccessProperties repositoryAccess) {
         PagedIterable<RepoInner> inner =
-            this.serviceClient().listRepositories(resourceGroupName, workspaceName, repoType);
+            this.serviceClient().listRepositories(resourceGroupName, workspaceName, repositoryAccess);
         return Utils.mapPage(inner, inner1 -> new RepoImpl(inner1, this.manager()));
     }
 
     public PagedIterable<Repo> listRepositories(
-        String resourceGroupName, String workspaceName, RepoType repoType, Context context) {
+        String resourceGroupName, String workspaceName, RepositoryAccessProperties repositoryAccess, Context context) {
         PagedIterable<RepoInner> inner =
-            this.serviceClient().listRepositories(resourceGroupName, workspaceName, repoType, context);
+            this.serviceClient().listRepositories(resourceGroupName, workspaceName, repositoryAccess, context);
         return Utils.mapPage(inner, inner1 -> new RepoImpl(inner1, this.manager()));
     }
 

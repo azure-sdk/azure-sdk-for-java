@@ -17,6 +17,15 @@ public final class EntityProviders extends ExpandableStringEnum<EntityProviders>
     public static final EntityProviders AZURE_ACTIVE_DIRECTORY = fromString("AzureActiveDirectory");
 
     /**
+     * Creates a new instance of EntityProviders value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public EntityProviders() {
+    }
+
+    /**
      * Creates or finds a EntityProviders from its string representation.
      *
      * @param name a name to look for.

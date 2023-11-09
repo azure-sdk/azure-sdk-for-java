@@ -36,6 +36,15 @@ public final class AutomationRulePropertyConditionSupportedOperator
     public static final AutomationRulePropertyConditionSupportedOperator NOT_ENDS_WITH = fromString("NotEndsWith");
 
     /**
+     * Creates a new instance of AutomationRulePropertyConditionSupportedOperator value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public AutomationRulePropertyConditionSupportedOperator() {
+    }
+
+    /**
      * Creates or finds a AutomationRulePropertyConditionSupportedOperator from its string representation.
      *
      * @param name a name to look for.

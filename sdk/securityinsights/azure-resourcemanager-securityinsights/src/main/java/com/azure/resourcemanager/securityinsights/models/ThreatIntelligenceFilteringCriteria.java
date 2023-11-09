@@ -89,6 +89,10 @@ public final class ThreatIntelligenceFilteringCriteria {
     @JsonProperty(value = "skipToken")
     private String skipToken;
 
+    /** Creates an instance of ThreatIntelligenceFilteringCriteria class. */
+    public ThreatIntelligenceFilteringCriteria() {
+    }
+
     /**
      * Get the pageSize property: Page size.
      *

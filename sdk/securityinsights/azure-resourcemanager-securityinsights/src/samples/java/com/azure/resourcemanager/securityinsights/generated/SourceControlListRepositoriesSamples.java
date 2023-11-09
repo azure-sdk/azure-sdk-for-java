@@ -4,13 +4,13 @@
 
 package com.azure.resourcemanager.securityinsights.generated;
 
-import com.azure.core.util.Context;
-import com.azure.resourcemanager.securityinsights.models.RepoType;
+import com.azure.resourcemanager.securityinsights.models.RepositoryAccessKind;
+import com.azure.resourcemanager.securityinsights.models.RepositoryAccessProperties;
 
 /** Samples for SourceControl ListRepositories. */
 public final class SourceControlListRepositoriesSamples {
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/repositories/GetRepositories.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2023-10-01-preview/examples/repositories/GetRepositories.json
      */
     /**
      * Sample code: Get repository list.
@@ -18,6 +18,16 @@ public final class SourceControlListRepositoriesSamples {
      * @param manager Entry point to SecurityInsightsManager.
      */
     public static void getRepositoryList(com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
-        manager.sourceControls().listRepositories("myRg", "myWorkspace", RepoType.GITHUB, Context.NONE);
+        manager
+            .sourceControls()
+            .listRepositories(
+                "myRg",
+                "myWorkspace",
+                new RepositoryAccessProperties()
+                    .withKind(RepositoryAccessKind.OAUTH)
+                    .withCode("fakeTokenPlaceholder")
+                    .withState("state")
+                    .withClientId("54b3c2c0-1f48-4a1c-af9f-6399c3240b73"),
+                com.azure.core.util.Context.NONE);
     }
 }

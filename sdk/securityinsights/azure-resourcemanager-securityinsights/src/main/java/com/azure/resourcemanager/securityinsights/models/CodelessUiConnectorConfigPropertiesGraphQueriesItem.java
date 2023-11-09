@@ -9,6 +9,10 @@ import com.azure.core.annotation.Fluent;
 /** The CodelessUiConnectorConfigPropertiesGraphQueriesItem model. */
 @Fluent
 public final class CodelessUiConnectorConfigPropertiesGraphQueriesItem extends GraphQueries {
+    /** Creates an instance of CodelessUiConnectorConfigPropertiesGraphQueriesItem class. */
+    public CodelessUiConnectorConfigPropertiesGraphQueriesItem() {
+    }
+
     /** {@inheritDoc} */
     @Override
     public CodelessUiConnectorConfigPropertiesGraphQueriesItem withMetricName(String metricName) {
