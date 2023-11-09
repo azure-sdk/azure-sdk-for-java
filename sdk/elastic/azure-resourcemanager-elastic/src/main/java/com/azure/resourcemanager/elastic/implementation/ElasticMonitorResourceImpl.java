@@ -12,6 +12,7 @@ import com.azure.resourcemanager.elastic.models.ElasticMonitorResource;
 import com.azure.resourcemanager.elastic.models.ElasticMonitorResourceUpdateParameters;
 import com.azure.resourcemanager.elastic.models.IdentityProperties;
 import com.azure.resourcemanager.elastic.models.MonitorProperties;
+import com.azure.resourcemanager.elastic.models.PlanDetails;
 import com.azure.resourcemanager.elastic.models.ResourceSku;
 import java.util.Collections;
 import java.util.Map;
@@ -49,6 +50,10 @@ public final class ElasticMonitorResourceImpl
 
     public ResourceSku sku() {
         return this.innerModel().sku();
+    }
+
+    public PlanDetails planDetails() {
+        return this.innerModel().planDetails();
     }
 
     public MonitorProperties properties() {
@@ -193,6 +198,11 @@ public final class ElasticMonitorResourceImpl
 
     public ElasticMonitorResourceImpl withSku(ResourceSku sku) {
         this.innerModel().withSku(sku);
+        return this;
+    }
+
+    public ElasticMonitorResourceImpl withPlanDetails(PlanDetails planDetails) {
+        this.innerModel().withPlanDetails(planDetails);
         return this;
     }
 

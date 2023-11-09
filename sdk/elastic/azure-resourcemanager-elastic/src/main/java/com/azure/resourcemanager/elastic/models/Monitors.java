@@ -33,7 +33,7 @@ public interface Monitors {
     /**
      * List all monitors under the specified resource group.
      *
-     * @param resourceGroupName The name of the resource group to which the Elastic resource belongs.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -44,7 +44,7 @@ public interface Monitors {
     /**
      * List all monitors under the specified resource group.
      *
-     * @param resourceGroupName The name of the resource group to which the Elastic resource belongs.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -56,7 +56,7 @@ public interface Monitors {
     /**
      * Get the properties of a specific monitor resource.
      *
-     * @param resourceGroupName The name of the resource group to which the Elastic resource belongs.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param monitorName Monitor resource name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -70,7 +70,7 @@ public interface Monitors {
     /**
      * Get the properties of a specific monitor resource.
      *
-     * @param resourceGroupName The name of the resource group to which the Elastic resource belongs.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param monitorName Monitor resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -82,7 +82,7 @@ public interface Monitors {
     /**
      * Delete a monitor resource.
      *
-     * @param resourceGroupName The name of the resource group to which the Elastic resource belongs.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param monitorName Monitor resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -93,7 +93,7 @@ public interface Monitors {
     /**
      * Delete a monitor resource.
      *
-     * @param resourceGroupName The name of the resource group to which the Elastic resource belongs.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param monitorName Monitor resource name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.

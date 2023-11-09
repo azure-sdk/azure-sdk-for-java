@@ -9,6 +9,7 @@ import com.azure.core.management.Resource;
 import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.elastic.models.IdentityProperties;
 import com.azure.resourcemanager.elastic.models.MonitorProperties;
+import com.azure.resourcemanager.elastic.models.PlanDetails;
 import com.azure.resourcemanager.elastic.models.ResourceSku;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
@@ -21,6 +22,12 @@ public final class ElasticMonitorResourceInner extends Resource {
      */
     @JsonProperty(value = "sku")
     private ResourceSku sku;
+
+    /*
+     * Plan details of the monitor resource.
+     */
+    @JsonProperty(value = "planDetails")
+    private PlanDetails planDetails;
 
     /*
      * Properties of the monitor resource.
@@ -61,6 +68,26 @@ public final class ElasticMonitorResourceInner extends Resource {
      */
     public ElasticMonitorResourceInner withSku(ResourceSku sku) {
         this.sku = sku;
+        return this;
+    }
+
+    /**
+     * Get the planDetails property: Plan details of the monitor resource.
+     *
+     * @return the planDetails value.
+     */
+    public PlanDetails planDetails() {
+        return this.planDetails;
+    }
+
+    /**
+     * Set the planDetails property: Plan details of the monitor resource.
+     *
+     * @param planDetails the planDetails value to set.
+     * @return the ElasticMonitorResourceInner object itself.
+     */
+    public ElasticMonitorResourceInner withPlanDetails(PlanDetails planDetails) {
+        this.planDetails = planDetails;
         return this;
     }
 
@@ -135,6 +162,9 @@ public final class ElasticMonitorResourceInner extends Resource {
     public void validate() {
         if (sku() != null) {
             sku().validate();
+        }
+        if (planDetails() != null) {
+            planDetails().validate();
         }
         if (properties() != null) {
             properties().validate();

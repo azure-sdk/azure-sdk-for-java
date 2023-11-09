@@ -7,7 +7,7 @@ package com.azure.resourcemanager.elastic.generated;
 /** Samples for ExternalUser CreateOrUpdate. */
 public final class ExternalUserCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/elastic/resource-manager/Microsoft.Elastic/preview/2023-02-01-preview/examples/ExternalUserInfo.json
+     * x-ms-original-file: specification/elastic/resource-manager/Microsoft.Elastic/preview/2023-11-01-preview/examples/ExternalUserInfo.json
      */
     /**
      * Sample code: ExternalUser_CreateOrUpdate.

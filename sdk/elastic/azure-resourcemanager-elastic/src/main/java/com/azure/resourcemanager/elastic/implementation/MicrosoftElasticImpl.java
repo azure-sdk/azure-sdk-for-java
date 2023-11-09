@@ -24,6 +24,8 @@ import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.elastic.fluent.AllTrafficFiltersClient;
 import com.azure.resourcemanager.elastic.fluent.AssociateTrafficFiltersClient;
+import com.azure.resourcemanager.elastic.fluent.BillingInfoesClient;
+import com.azure.resourcemanager.elastic.fluent.ConnectedPartnerResourcesClient;
 import com.azure.resourcemanager.elastic.fluent.CreateAndAssociateIpFiltersClient;
 import com.azure.resourcemanager.elastic.fluent.CreateAndAssociatePLFiltersClient;
 import com.azure.resourcemanager.elastic.fluent.DeploymentInfoesClient;
@@ -56,11 +58,11 @@ import reactor.core.publisher.Mono;
 /** Initializes a new instance of the MicrosoftElasticImpl type. */
 @ServiceClient(builder = MicrosoftElasticBuilder.class)
 public final class MicrosoftElasticImpl implements MicrosoftElastic {
-    /** The Azure subscription ID. This is a GUID-formatted string (e.g. 00000000-0000-0000-0000-000000000000). */
+    /** The ID of the target subscription. The value must be an UUID. */
     private final String subscriptionId;
 
     /**
-     * Gets The Azure subscription ID. This is a GUID-formatted string (e.g. 00000000-0000-0000-0000-000000000000).
+     * Gets The ID of the target subscription. The value must be an UUID.
      *
      * @return the subscriptionId value.
      */
@@ -198,6 +200,30 @@ public final class MicrosoftElasticImpl implements MicrosoftElastic {
      */
     public ExternalUsersClient getExternalUsers() {
         return this.externalUsers;
+    }
+
+    /** The BillingInfoesClient object to access its operations. */
+    private final BillingInfoesClient billingInfoes;
+
+    /**
+     * Gets the BillingInfoesClient object to access its operations.
+     *
+     * @return the BillingInfoesClient object.
+     */
+    public BillingInfoesClient getBillingInfoes() {
+        return this.billingInfoes;
+    }
+
+    /** The ConnectedPartnerResourcesClient object to access its operations. */
+    private final ConnectedPartnerResourcesClient connectedPartnerResources;
+
+    /**
+     * Gets the ConnectedPartnerResourcesClient object to access its operations.
+     *
+     * @return the ConnectedPartnerResourcesClient object.
+     */
+    public ConnectedPartnerResourcesClient getConnectedPartnerResources() {
+        return this.connectedPartnerResources;
     }
 
     /** The TagRulesClient object to access its operations. */
@@ -387,8 +413,7 @@ public final class MicrosoftElasticImpl implements MicrosoftElastic {
      * @param serializerAdapter The serializer to serialize an object into a string.
      * @param defaultPollInterval The default poll interval for long-running operation.
      * @param environment The Azure environment.
-     * @param subscriptionId The Azure subscription ID. This is a GUID-formatted string (e.g.
-     *     00000000-0000-0000-0000-000000000000).
+     * @param subscriptionId The ID of the target subscription. The value must be an UUID.
      * @param endpoint server parameter.
      */
     MicrosoftElasticImpl(
@@ -403,13 +428,15 @@ public final class MicrosoftElasticImpl implements MicrosoftElastic {
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2023-02-01-preview";
+        this.apiVersion = "2023-11-01-preview";
         this.operations = new OperationsClientImpl(this);
         this.monitors = new MonitorsClientImpl(this);
         this.elasticVersions = new ElasticVersionsClientImpl(this);
         this.monitoredResources = new MonitoredResourcesClientImpl(this);
         this.deploymentInfoes = new DeploymentInfoesClientImpl(this);
         this.externalUsers = new ExternalUsersClientImpl(this);
+        this.billingInfoes = new BillingInfoesClientImpl(this);
+        this.connectedPartnerResources = new ConnectedPartnerResourcesClientImpl(this);
         this.tagRules = new TagRulesClientImpl(this);
         this.vMHosts = new VMHostsClientImpl(this);
         this.vMIngestions = new VMIngestionsClientImpl(this);

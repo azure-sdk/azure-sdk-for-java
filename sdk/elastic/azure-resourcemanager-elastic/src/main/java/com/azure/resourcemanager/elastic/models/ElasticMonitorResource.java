@@ -55,6 +55,13 @@ public interface ElasticMonitorResource {
     ResourceSku sku();
 
     /**
+     * Gets the planDetails property: Plan details of the monitor resource.
+     *
+     * @return the planDetails value.
+     */
+    PlanDetails planDetails();
+
+    /**
      * Gets the properties property: Properties of the monitor resource.
      *
      * @return the properties value.
@@ -110,11 +117,13 @@ public interface ElasticMonitorResource {
             DefinitionStages.WithResourceGroup,
             DefinitionStages.WithCreate {
     }
+
     /** The ElasticMonitorResource definition stages. */
     interface DefinitionStages {
         /** The first stage of the ElasticMonitorResource definition. */
         interface Blank extends WithLocation {
         }
+
         /** The stage of the ElasticMonitorResource definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -133,16 +142,18 @@ public interface ElasticMonitorResource {
              */
             WithResourceGroup withRegion(String location);
         }
+
         /** The stage of the ElasticMonitorResource definition allowing to specify parent resource. */
         interface WithResourceGroup {
             /**
              * Specifies resourceGroupName.
              *
-             * @param resourceGroupName The name of the resource group to which the Elastic resource belongs.
+             * @param resourceGroupName The name of the resource group. The name is case insensitive.
              * @return the next definition stage.
              */
             WithCreate withExistingResourceGroup(String resourceGroupName);
         }
+
         /**
          * The stage of the ElasticMonitorResource definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
@@ -150,6 +161,7 @@ public interface ElasticMonitorResource {
         interface WithCreate
             extends DefinitionStages.WithTags,
                 DefinitionStages.WithSku,
+                DefinitionStages.WithPlanDetails,
                 DefinitionStages.WithProperties,
                 DefinitionStages.WithIdentity {
             /**
@@ -167,6 +179,7 @@ public interface ElasticMonitorResource {
              */
             ElasticMonitorResource create(Context context);
         }
+
         /** The stage of the ElasticMonitorResource definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -177,6 +190,7 @@ public interface ElasticMonitorResource {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
         /** The stage of the ElasticMonitorResource definition allowing to specify sku. */
         interface WithSku {
             /**
@@ -187,6 +201,18 @@ public interface ElasticMonitorResource {
              */
             WithCreate withSku(ResourceSku sku);
         }
+
+        /** The stage of the ElasticMonitorResource definition allowing to specify planDetails. */
+        interface WithPlanDetails {
+            /**
+             * Specifies the planDetails property: Plan details of the monitor resource..
+             *
+             * @param planDetails Plan details of the monitor resource.
+             * @return the next definition stage.
+             */
+            WithCreate withPlanDetails(PlanDetails planDetails);
+        }
+
         /** The stage of the ElasticMonitorResource definition allowing to specify properties. */
         interface WithProperties {
             /**
@@ -197,6 +223,7 @@ public interface ElasticMonitorResource {
              */
             WithCreate withProperties(MonitorProperties properties);
         }
+
         /** The stage of the ElasticMonitorResource definition allowing to specify identity. */
         interface WithIdentity {
             /**
@@ -208,6 +235,7 @@ public interface ElasticMonitorResource {
             WithCreate withIdentity(IdentityProperties identity);
         }
     }
+
     /**
      * Begins update for the ElasticMonitorResource resource.
      *
@@ -232,6 +260,7 @@ public interface ElasticMonitorResource {
          */
         ElasticMonitorResource apply(Context context);
     }
+
     /** The ElasticMonitorResource update stages. */
     interface UpdateStages {
         /** The stage of the ElasticMonitorResource update allowing to specify tags. */
@@ -245,6 +274,7 @@ public interface ElasticMonitorResource {
             Update withTags(Map<String, String> tags);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

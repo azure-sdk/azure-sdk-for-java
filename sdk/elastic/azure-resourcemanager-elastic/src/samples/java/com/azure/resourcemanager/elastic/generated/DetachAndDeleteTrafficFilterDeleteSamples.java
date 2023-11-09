@@ -7,7 +7,7 @@ package com.azure.resourcemanager.elastic.generated;
 /** Samples for DetachAndDeleteTrafficFilter Delete. */
 public final class DetachAndDeleteTrafficFilterDeleteSamples {
     /*
-     * x-ms-original-file: specification/elastic/resource-manager/Microsoft.Elastic/preview/2023-02-01-preview/examples/DetachAndDeleteTrafficFilter_Delete.json
+     * x-ms-original-file: specification/elastic/resource-manager/Microsoft.Elastic/preview/2023-11-01-preview/examples/DetachAndDeleteTrafficFilter_Delete.json
      */
     /**
      * Sample code: DetachAndDeleteTrafficFilter_Delete.
