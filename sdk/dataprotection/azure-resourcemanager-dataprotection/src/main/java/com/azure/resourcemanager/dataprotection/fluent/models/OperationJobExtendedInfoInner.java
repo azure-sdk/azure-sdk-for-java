@@ -20,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @Fluent
 public final class OperationJobExtendedInfoInner extends OperationExtendedInfo {
     /*
-     * Arm Id of the job created for this operation.
+     * Name or Arm Id of the job created for this operation.
      */
     @JsonProperty(value = "jobId")
     private String jobId;
@@ -30,7 +30,7 @@ public final class OperationJobExtendedInfoInner extends OperationExtendedInfo {
     }
 
     /**
-     * Get the jobId property: Arm Id of the job created for this operation.
+     * Get the jobId property: Name or Arm Id of the job created for this operation.
      *
      * @return the jobId value.
      */
@@ -39,7 +39,7 @@ public final class OperationJobExtendedInfoInner extends OperationExtendedInfo {
     }
 
     /**
-     * Set the jobId property: Arm Id of the job created for this operation.
+     * Set the jobId property: Name or Arm Id of the job created for this operation.
      *
      * @param jobId the jobId value to set.
      * @return the OperationJobExtendedInfoInner object itself.

@@ -56,6 +56,12 @@ public final class JobExtendedInfo {
     @JsonProperty(value = "targetRecoverPoint", access = JsonProperty.Access.WRITE_ONLY)
     private RestoreJobRecoveryPointDetails targetRecoverPoint;
 
+    /*
+     * A List, detailing the warnings related to the job
+     */
+    @JsonProperty(value = "warningDetails", access = JsonProperty.Access.WRITE_ONLY)
+    private List<UserFacingWarningDetail> warningDetails;
+
     /** Creates an instance of JobExtendedInfo class. */
     public JobExtendedInfo() {
     }
@@ -135,6 +141,15 @@ public final class JobExtendedInfo {
     }
 
     /**
+     * Get the warningDetails property: A List, detailing the warnings related to the job.
+     *
+     * @return the warningDetails value.
+     */
+    public List<UserFacingWarningDetail> warningDetails() {
+        return this.warningDetails;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -148,6 +163,9 @@ public final class JobExtendedInfo {
         }
         if (targetRecoverPoint() != null) {
             targetRecoverPoint().validate();
+        }
+        if (warningDetails() != null) {
+            warningDetails().forEach(e -> e.validate());
         }
     }
 }
