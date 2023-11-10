@@ -15,7 +15,7 @@ public interface DataControllers {
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated response with {@link PagedIterable}.
+     * @return a list of data controllers as paginated response with {@link PagedIterable}.
      */
     PagedIterable<DataControllerResource> list();
 
@@ -26,7 +26,7 @@ public interface DataControllers {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated response with {@link PagedIterable}.
+     * @return a list of data controllers as paginated response with {@link PagedIterable}.
      */
     PagedIterable<DataControllerResource> list(Context context);
 
@@ -37,7 +37,7 @@ public interface DataControllers {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated response with {@link PagedIterable}.
+     * @return a list of data controllers as paginated response with {@link PagedIterable}.
      */
     PagedIterable<DataControllerResource> listByResourceGroup(String resourceGroupName);
 
@@ -49,7 +49,7 @@ public interface DataControllers {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated response with {@link PagedIterable}.
+     * @return a list of data controllers as paginated response with {@link PagedIterable}.
      */
     PagedIterable<DataControllerResource> listByResourceGroup(String resourceGroupName, Context context);
 
@@ -57,7 +57,7 @@ public interface DataControllers {
      * Deletes a dataController resource.
      *
      * @param resourceGroupName The name of the Azure resource group.
-     * @param dataControllerName The dataControllerName parameter.
+     * @param dataControllerName The name of the data controller.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -68,7 +68,7 @@ public interface DataControllers {
      * Deletes a dataController resource.
      *
      * @param resourceGroupName The name of the Azure resource group.
-     * @param dataControllerName The dataControllerName parameter.
+     * @param dataControllerName The name of the data controller.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -80,7 +80,7 @@ public interface DataControllers {
      * Retrieves a dataController resource.
      *
      * @param resourceGroupName The name of the Azure resource group.
-     * @param dataControllerName The dataControllerName parameter.
+     * @param dataControllerName The name of the data controller.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -94,7 +94,7 @@ public interface DataControllers {
      * Retrieves a dataController resource.
      *
      * @param resourceGroupName The name of the Azure resource group.
-     * @param dataControllerName The dataControllerName parameter.
+     * @param dataControllerName The name of the data controller.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.

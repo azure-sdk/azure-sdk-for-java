@@ -19,6 +19,12 @@ public final class SqlServerInstanceUpdate {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> tags;
 
+    /*
+     * null
+     */
+    @JsonProperty(value = "properties")
+    private SqlServerInstanceUpdateProperties properties;
+
     /** Creates an instance of SqlServerInstanceUpdate class. */
     public SqlServerInstanceUpdate() {
     }
@@ -44,10 +50,33 @@ public final class SqlServerInstanceUpdate {
     }
 
     /**
+     * Get the properties property: null.
+     *
+     * @return the properties value.
+     */
+    public SqlServerInstanceUpdateProperties properties() {
+        return this.properties;
+    }
+
+    /**
+     * Set the properties property: null.
+     *
+     * @param properties the properties value to set.
+     * @return the SqlServerInstanceUpdate object itself.
+     */
+    public SqlServerInstanceUpdate withProperties(SqlServerInstanceUpdateProperties properties) {
+        this.properties = properties;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (properties() != null) {
+            properties().validate();
+        }
     }
 }

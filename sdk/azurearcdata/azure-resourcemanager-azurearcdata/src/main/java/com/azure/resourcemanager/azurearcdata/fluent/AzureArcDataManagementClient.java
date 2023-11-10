@@ -59,6 +59,13 @@ public interface AzureArcDataManagementClient {
     SqlManagedInstancesClient getSqlManagedInstances();
 
     /**
+     * Gets the FailoverGroupsClient object to access its operations.
+     *
+     * @return the FailoverGroupsClient object.
+     */
+    FailoverGroupsClient getFailoverGroups();
+
+    /**
      * Gets the SqlServerInstancesClient object to access its operations.
      *
      * @return the SqlServerInstancesClient object.
@@ -71,4 +78,32 @@ public interface AzureArcDataManagementClient {
      * @return the DataControllersClient object.
      */
     DataControllersClient getDataControllers();
+
+    /**
+     * Gets the ActiveDirectoryConnectorsClient object to access its operations.
+     *
+     * @return the ActiveDirectoryConnectorsClient object.
+     */
+    ActiveDirectoryConnectorsClient getActiveDirectoryConnectors();
+
+    /**
+     * Gets the PostgresInstancesClient object to access its operations.
+     *
+     * @return the PostgresInstancesClient object.
+     */
+    PostgresInstancesClient getPostgresInstances();
+
+    /**
+     * Gets the SqlServerAvailabilityGroupsClient object to access its operations.
+     *
+     * @return the SqlServerAvailabilityGroupsClient object.
+     */
+    SqlServerAvailabilityGroupsClient getSqlServerAvailabilityGroups();
+
+    /**
+     * Gets the SqlServerDatabasesClient object to access its operations.
+     *
+     * @return the SqlServerDatabasesClient object.
+     */
+    SqlServerDatabasesClient getSqlServerDatabases();
 }

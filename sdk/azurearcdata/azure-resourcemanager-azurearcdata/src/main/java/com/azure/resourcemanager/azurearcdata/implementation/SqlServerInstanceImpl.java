@@ -4,14 +4,18 @@
 
 package com.azure.resourcemanager.azurearcdata.implementation;
 
+import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.azurearcdata.fluent.models.SqlServerInstanceInner;
 import com.azure.resourcemanager.azurearcdata.models.SqlServerInstance;
 import com.azure.resourcemanager.azurearcdata.models.SqlServerInstanceProperties;
+import com.azure.resourcemanager.azurearcdata.models.SqlServerInstanceTelemetryRequest;
 import com.azure.resourcemanager.azurearcdata.models.SqlServerInstanceUpdate;
+import com.azure.resourcemanager.azurearcdata.models.SqlServerInstanceUpdateProperties;
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 public final class SqlServerInstanceImpl
@@ -161,6 +165,20 @@ public final class SqlServerInstanceImpl
         return this;
     }
 
+    public PagedIterable<List<String>> getTelemetry(
+        SqlServerInstanceTelemetryRequest sqlServerInstanceTelemetryRequest) {
+        return serviceManager
+            .sqlServerInstances()
+            .getTelemetry(resourceGroupName, sqlServerInstanceName, sqlServerInstanceTelemetryRequest);
+    }
+
+    public PagedIterable<List<String>> getTelemetry(
+        SqlServerInstanceTelemetryRequest sqlServerInstanceTelemetryRequest, Context context) {
+        return serviceManager
+            .sqlServerInstances()
+            .getTelemetry(resourceGroupName, sqlServerInstanceName, sqlServerInstanceTelemetryRequest, context);
+    }
+
     public SqlServerInstanceImpl withRegion(Region location) {
         this.innerModel().withLocation(location.toString());
         return this;
@@ -183,6 +201,11 @@ public final class SqlServerInstanceImpl
 
     public SqlServerInstanceImpl withProperties(SqlServerInstanceProperties properties) {
         this.innerModel().withProperties(properties);
+        return this;
+    }
+
+    public SqlServerInstanceImpl withProperties(SqlServerInstanceUpdateProperties properties) {
+        this.updateParameters.withProperties(properties);
         return this;
     }
 

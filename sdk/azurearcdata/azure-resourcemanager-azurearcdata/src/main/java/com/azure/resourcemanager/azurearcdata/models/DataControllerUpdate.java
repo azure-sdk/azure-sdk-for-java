@@ -19,6 +19,12 @@ public final class DataControllerUpdate {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> tags;
 
+    /*
+     * The data controller's properties
+     */
+    @JsonProperty(value = "properties")
+    private DataControllerProperties properties;
+
     /** Creates an instance of DataControllerUpdate class. */
     public DataControllerUpdate() {
     }
@@ -44,10 +50,33 @@ public final class DataControllerUpdate {
     }
 
     /**
+     * Get the properties property: The data controller's properties.
+     *
+     * @return the properties value.
+     */
+    public DataControllerProperties properties() {
+        return this.properties;
+    }
+
+    /**
+     * Set the properties property: The data controller's properties.
+     *
+     * @param properties the properties value to set.
+     * @return the DataControllerUpdate object itself.
+     */
+    public DataControllerUpdate withProperties(DataControllerProperties properties) {
+        this.properties = properties;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (properties() != null) {
+            properties().validate();
+        }
     }
 }

@@ -11,7 +11,7 @@ import java.util.Map;
 /** Samples for DataControllers PatchDataController. */
 public final class DataControllersPatchDataControllerSamples {
     /*
-     * x-ms-original-file: specification/azurearcdata/resource-manager/Microsoft.AzureArcData/stable/2021-08-01/examples/UpdateDataController.json
+     * x-ms-original-file: specification/azurearcdata/resource-manager/Microsoft.AzureArcData/preview/2023-11-01-preview/examples/UpdateDataController.json
      */
     /**
      * Sample code: Updates a dataController tags.
@@ -27,6 +27,7 @@ public final class DataControllersPatchDataControllerSamples {
         resource.update().withTags(mapOf("mytag", "myval")).apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

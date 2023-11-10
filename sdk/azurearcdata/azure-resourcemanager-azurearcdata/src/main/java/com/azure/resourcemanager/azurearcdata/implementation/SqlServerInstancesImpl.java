@@ -12,7 +12,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.azurearcdata.fluent.SqlServerInstancesClient;
 import com.azure.resourcemanager.azurearcdata.fluent.models.SqlServerInstanceInner;
 import com.azure.resourcemanager.azurearcdata.models.SqlServerInstance;
+import com.azure.resourcemanager.azurearcdata.models.SqlServerInstanceTelemetryRequest;
 import com.azure.resourcemanager.azurearcdata.models.SqlServerInstances;
+import java.util.List;
 
 public final class SqlServerInstancesImpl implements SqlServerInstances {
     private static final ClientLogger LOGGER = new ClientLogger(SqlServerInstancesImpl.class);
@@ -80,6 +82,25 @@ public final class SqlServerInstancesImpl implements SqlServerInstances {
 
     public void delete(String resourceGroupName, String sqlServerInstanceName, Context context) {
         this.serviceClient().delete(resourceGroupName, sqlServerInstanceName, context);
+    }
+
+    public PagedIterable<List<String>> getTelemetry(
+        String resourceGroupName,
+        String sqlServerInstanceName,
+        SqlServerInstanceTelemetryRequest sqlServerInstanceTelemetryRequest) {
+        return this
+            .serviceClient()
+            .getTelemetry(resourceGroupName, sqlServerInstanceName, sqlServerInstanceTelemetryRequest);
+    }
+
+    public PagedIterable<List<String>> getTelemetry(
+        String resourceGroupName,
+        String sqlServerInstanceName,
+        SqlServerInstanceTelemetryRequest sqlServerInstanceTelemetryRequest,
+        Context context) {
+        return this
+            .serviceClient()
+            .getTelemetry(resourceGroupName, sqlServerInstanceName, sqlServerInstanceTelemetryRequest, context);
     }
 
     public SqlServerInstance getById(String id) {

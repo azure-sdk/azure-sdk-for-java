@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.azurearcdata.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
@@ -27,7 +26,7 @@ public final class SqlServerInstanceProperties {
     /*
      * ARM Resource id of the container resource (Azure Arc for Servers).
      */
-    @JsonProperty(value = "containerResourceId", required = true)
+    @JsonProperty(value = "containerResourceId", access = JsonProperty.Access.WRITE_ONLY)
     private String containerResourceId;
 
     /*
@@ -39,31 +38,37 @@ public final class SqlServerInstanceProperties {
     /*
      * The number of logical processors used by the SQL Server instance.
      */
-    @JsonProperty(value = "vCore")
+    @JsonProperty(value = "vCore", access = JsonProperty.Access.WRITE_ONLY)
     private String vCore;
+
+    /*
+     * The number of total cores of the Operating System Environment (OSE) hosting the SQL Server instance.
+     */
+    @JsonProperty(value = "cores")
+    private String cores;
 
     /*
      * The cloud connectivity status.
      */
-    @JsonProperty(value = "status", required = true)
+    @JsonProperty(value = "status", access = JsonProperty.Access.WRITE_ONLY)
     private ConnectionStatus status;
 
     /*
      * SQL Server update level.
      */
-    @JsonProperty(value = "patchLevel")
+    @JsonProperty(value = "patchLevel", access = JsonProperty.Access.WRITE_ONLY)
     private String patchLevel;
 
     /*
      * SQL Server collation.
      */
-    @JsonProperty(value = "collation")
+    @JsonProperty(value = "collation", access = JsonProperty.Access.WRITE_ONLY)
     private String collation;
 
     /*
      * SQL Server current version.
      */
-    @JsonProperty(value = "currentVersion")
+    @JsonProperty(value = "currentVersion", access = JsonProperty.Access.WRITE_ONLY)
     private String currentVersion;
 
     /*
@@ -75,44 +80,93 @@ public final class SqlServerInstanceProperties {
     /*
      * Dynamic TCP ports used by SQL Server.
      */
-    @JsonProperty(value = "tcpDynamicPorts")
+    @JsonProperty(value = "tcpDynamicPorts", access = JsonProperty.Access.WRITE_ONLY)
     private String tcpDynamicPorts;
 
     /*
      * Static TCP ports used by SQL Server.
      */
-    @JsonProperty(value = "tcpStaticPorts")
+    @JsonProperty(value = "tcpStaticPorts", access = JsonProperty.Access.WRITE_ONLY)
     private String tcpStaticPorts;
 
     /*
      * SQL Server product ID.
      */
-    @JsonProperty(value = "productId")
+    @JsonProperty(value = "productId", access = JsonProperty.Access.WRITE_ONLY)
     private String productId;
 
     /*
      * SQL Server license type.
      */
-    @JsonProperty(value = "licenseType")
+    @JsonProperty(value = "licenseType", access = JsonProperty.Access.WRITE_ONLY)
     private ArcSqlServerLicenseType licenseType;
 
     /*
      * Timestamp of last Azure Defender status update.
      */
-    @JsonProperty(value = "azureDefenderStatusLastUpdated")
+    @JsonProperty(value = "azureDefenderStatusLastUpdated", access = JsonProperty.Access.WRITE_ONLY)
     private OffsetDateTime azureDefenderStatusLastUpdated;
 
     /*
      * Status of Azure Defender.
      */
-    @JsonProperty(value = "azureDefenderStatus")
+    @JsonProperty(value = "azureDefenderStatus", access = JsonProperty.Access.WRITE_ONLY)
     private DefenderStatus azureDefenderStatus;
 
     /*
-     * The provisioningState property.
+     * The provisioning state of the Arc-enabled SQL Server resource.
      */
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private String provisioningState;
+
+    /*
+     * The time when last successful inventory upload was performed.
+     */
+    @JsonProperty(value = "lastInventoryUploadTime", access = JsonProperty.Access.WRITE_ONLY)
+    private OffsetDateTime lastInventoryUploadTime;
+
+    /*
+     * The time when last successful usage upload was performed.
+     */
+    @JsonProperty(value = "lastUsageUploadTime", access = JsonProperty.Access.WRITE_ONLY)
+    private OffsetDateTime lastUsageUploadTime;
+
+    /*
+     * Type of host for Azure Arc SQL Server
+     */
+    @JsonProperty(value = "hostType")
+    private HostType hostType;
+
+    /*
+     * The role of the SQL Server, based on availability.
+     */
+    @JsonProperty(value = "alwaysOnRole", access = JsonProperty.Access.WRITE_ONLY)
+    private AlwaysOnRole alwaysOnRole;
+
+    /*
+     * Failover Cluster Instance properties.
+     */
+    @JsonProperty(value = "failoverCluster")
+    private FailoverCluster failoverCluster;
+
+    /*
+     * The backup profile for the SQL server.
+     */
+    @JsonProperty(value = "backupPolicy")
+    private BackupPolicy backupPolicy;
+
+    /*
+     * Upgrade Action for this resource is locked until it expires. The Expiration time indicated by this value. It is
+     * not locked when it is empty.
+     */
+    @JsonProperty(value = "upgradeLockedUntil")
+    private OffsetDateTime upgradeLockedUntil;
+
+    /*
+     * The monitoring configuration.
+     */
+    @JsonProperty(value = "monitoring")
+    private Monitoring monitoring;
 
     /** Creates an instance of SqlServerInstanceProperties class. */
     public SqlServerInstanceProperties() {
@@ -168,17 +222,6 @@ public final class SqlServerInstanceProperties {
     }
 
     /**
-     * Set the containerResourceId property: ARM Resource id of the container resource (Azure Arc for Servers).
-     *
-     * @param containerResourceId the containerResourceId value to set.
-     * @return the SqlServerInstanceProperties object itself.
-     */
-    public SqlServerInstanceProperties withContainerResourceId(String containerResourceId) {
-        this.containerResourceId = containerResourceId;
-        return this;
-    }
-
-    /**
      * Get the createTime property: The time when the resource was created.
      *
      * @return the createTime value.
@@ -197,13 +240,24 @@ public final class SqlServerInstanceProperties {
     }
 
     /**
-     * Set the vCore property: The number of logical processors used by the SQL Server instance.
+     * Get the cores property: The number of total cores of the Operating System Environment (OSE) hosting the SQL
+     * Server instance.
      *
-     * @param vCore the vCore value to set.
+     * @return the cores value.
+     */
+    public String cores() {
+        return this.cores;
+    }
+
+    /**
+     * Set the cores property: The number of total cores of the Operating System Environment (OSE) hosting the SQL
+     * Server instance.
+     *
+     * @param cores the cores value to set.
      * @return the SqlServerInstanceProperties object itself.
      */
-    public SqlServerInstanceProperties withVCore(String vCore) {
-        this.vCore = vCore;
+    public SqlServerInstanceProperties withCores(String cores) {
+        this.cores = cores;
         return this;
     }
 
@@ -217,34 +271,12 @@ public final class SqlServerInstanceProperties {
     }
 
     /**
-     * Set the status property: The cloud connectivity status.
-     *
-     * @param status the status value to set.
-     * @return the SqlServerInstanceProperties object itself.
-     */
-    public SqlServerInstanceProperties withStatus(ConnectionStatus status) {
-        this.status = status;
-        return this;
-    }
-
-    /**
      * Get the patchLevel property: SQL Server update level.
      *
      * @return the patchLevel value.
      */
     public String patchLevel() {
         return this.patchLevel;
-    }
-
-    /**
-     * Set the patchLevel property: SQL Server update level.
-     *
-     * @param patchLevel the patchLevel value to set.
-     * @return the SqlServerInstanceProperties object itself.
-     */
-    public SqlServerInstanceProperties withPatchLevel(String patchLevel) {
-        this.patchLevel = patchLevel;
-        return this;
     }
 
     /**
@@ -257,34 +289,12 @@ public final class SqlServerInstanceProperties {
     }
 
     /**
-     * Set the collation property: SQL Server collation.
-     *
-     * @param collation the collation value to set.
-     * @return the SqlServerInstanceProperties object itself.
-     */
-    public SqlServerInstanceProperties withCollation(String collation) {
-        this.collation = collation;
-        return this;
-    }
-
-    /**
      * Get the currentVersion property: SQL Server current version.
      *
      * @return the currentVersion value.
      */
     public String currentVersion() {
         return this.currentVersion;
-    }
-
-    /**
-     * Set the currentVersion property: SQL Server current version.
-     *
-     * @param currentVersion the currentVersion value to set.
-     * @return the SqlServerInstanceProperties object itself.
-     */
-    public SqlServerInstanceProperties withCurrentVersion(String currentVersion) {
-        this.currentVersion = currentVersion;
-        return this;
     }
 
     /**
@@ -317,34 +327,12 @@ public final class SqlServerInstanceProperties {
     }
 
     /**
-     * Set the tcpDynamicPorts property: Dynamic TCP ports used by SQL Server.
-     *
-     * @param tcpDynamicPorts the tcpDynamicPorts value to set.
-     * @return the SqlServerInstanceProperties object itself.
-     */
-    public SqlServerInstanceProperties withTcpDynamicPorts(String tcpDynamicPorts) {
-        this.tcpDynamicPorts = tcpDynamicPorts;
-        return this;
-    }
-
-    /**
      * Get the tcpStaticPorts property: Static TCP ports used by SQL Server.
      *
      * @return the tcpStaticPorts value.
      */
     public String tcpStaticPorts() {
         return this.tcpStaticPorts;
-    }
-
-    /**
-     * Set the tcpStaticPorts property: Static TCP ports used by SQL Server.
-     *
-     * @param tcpStaticPorts the tcpStaticPorts value to set.
-     * @return the SqlServerInstanceProperties object itself.
-     */
-    public SqlServerInstanceProperties withTcpStaticPorts(String tcpStaticPorts) {
-        this.tcpStaticPorts = tcpStaticPorts;
-        return this;
     }
 
     /**
@@ -357,34 +345,12 @@ public final class SqlServerInstanceProperties {
     }
 
     /**
-     * Set the productId property: SQL Server product ID.
-     *
-     * @param productId the productId value to set.
-     * @return the SqlServerInstanceProperties object itself.
-     */
-    public SqlServerInstanceProperties withProductId(String productId) {
-        this.productId = productId;
-        return this;
-    }
-
-    /**
      * Get the licenseType property: SQL Server license type.
      *
      * @return the licenseType value.
      */
     public ArcSqlServerLicenseType licenseType() {
         return this.licenseType;
-    }
-
-    /**
-     * Set the licenseType property: SQL Server license type.
-     *
-     * @param licenseType the licenseType value to set.
-     * @return the SqlServerInstanceProperties object itself.
-     */
-    public SqlServerInstanceProperties withLicenseType(ArcSqlServerLicenseType licenseType) {
-        this.licenseType = licenseType;
-        return this;
     }
 
     /**
@@ -397,18 +363,6 @@ public final class SqlServerInstanceProperties {
     }
 
     /**
-     * Set the azureDefenderStatusLastUpdated property: Timestamp of last Azure Defender status update.
-     *
-     * @param azureDefenderStatusLastUpdated the azureDefenderStatusLastUpdated value to set.
-     * @return the SqlServerInstanceProperties object itself.
-     */
-    public SqlServerInstanceProperties withAzureDefenderStatusLastUpdated(
-        OffsetDateTime azureDefenderStatusLastUpdated) {
-        this.azureDefenderStatusLastUpdated = azureDefenderStatusLastUpdated;
-        return this;
-    }
-
-    /**
      * Get the azureDefenderStatus property: Status of Azure Defender.
      *
      * @return the azureDefenderStatus value.
@@ -418,18 +372,7 @@ public final class SqlServerInstanceProperties {
     }
 
     /**
-     * Set the azureDefenderStatus property: Status of Azure Defender.
-     *
-     * @param azureDefenderStatus the azureDefenderStatus value to set.
-     * @return the SqlServerInstanceProperties object itself.
-     */
-    public SqlServerInstanceProperties withAzureDefenderStatus(DefenderStatus azureDefenderStatus) {
-        this.azureDefenderStatus = azureDefenderStatus;
-        return this;
-    }
-
-    /**
-     * Get the provisioningState property: The provisioningState property.
+     * Get the provisioningState property: The provisioning state of the Arc-enabled SQL Server resource.
      *
      * @return the provisioningState value.
      */
@@ -438,24 +381,148 @@ public final class SqlServerInstanceProperties {
     }
 
     /**
+     * Get the lastInventoryUploadTime property: The time when last successful inventory upload was performed.
+     *
+     * @return the lastInventoryUploadTime value.
+     */
+    public OffsetDateTime lastInventoryUploadTime() {
+        return this.lastInventoryUploadTime;
+    }
+
+    /**
+     * Get the lastUsageUploadTime property: The time when last successful usage upload was performed.
+     *
+     * @return the lastUsageUploadTime value.
+     */
+    public OffsetDateTime lastUsageUploadTime() {
+        return this.lastUsageUploadTime;
+    }
+
+    /**
+     * Get the hostType property: Type of host for Azure Arc SQL Server.
+     *
+     * @return the hostType value.
+     */
+    public HostType hostType() {
+        return this.hostType;
+    }
+
+    /**
+     * Set the hostType property: Type of host for Azure Arc SQL Server.
+     *
+     * @param hostType the hostType value to set.
+     * @return the SqlServerInstanceProperties object itself.
+     */
+    public SqlServerInstanceProperties withHostType(HostType hostType) {
+        this.hostType = hostType;
+        return this;
+    }
+
+    /**
+     * Get the alwaysOnRole property: The role of the SQL Server, based on availability.
+     *
+     * @return the alwaysOnRole value.
+     */
+    public AlwaysOnRole alwaysOnRole() {
+        return this.alwaysOnRole;
+    }
+
+    /**
+     * Get the failoverCluster property: Failover Cluster Instance properties.
+     *
+     * @return the failoverCluster value.
+     */
+    public FailoverCluster failoverCluster() {
+        return this.failoverCluster;
+    }
+
+    /**
+     * Set the failoverCluster property: Failover Cluster Instance properties.
+     *
+     * @param failoverCluster the failoverCluster value to set.
+     * @return the SqlServerInstanceProperties object itself.
+     */
+    public SqlServerInstanceProperties withFailoverCluster(FailoverCluster failoverCluster) {
+        this.failoverCluster = failoverCluster;
+        return this;
+    }
+
+    /**
+     * Get the backupPolicy property: The backup profile for the SQL server.
+     *
+     * @return the backupPolicy value.
+     */
+    public BackupPolicy backupPolicy() {
+        return this.backupPolicy;
+    }
+
+    /**
+     * Set the backupPolicy property: The backup profile for the SQL server.
+     *
+     * @param backupPolicy the backupPolicy value to set.
+     * @return the SqlServerInstanceProperties object itself.
+     */
+    public SqlServerInstanceProperties withBackupPolicy(BackupPolicy backupPolicy) {
+        this.backupPolicy = backupPolicy;
+        return this;
+    }
+
+    /**
+     * Get the upgradeLockedUntil property: Upgrade Action for this resource is locked until it expires. The Expiration
+     * time indicated by this value. It is not locked when it is empty.
+     *
+     * @return the upgradeLockedUntil value.
+     */
+    public OffsetDateTime upgradeLockedUntil() {
+        return this.upgradeLockedUntil;
+    }
+
+    /**
+     * Set the upgradeLockedUntil property: Upgrade Action for this resource is locked until it expires. The Expiration
+     * time indicated by this value. It is not locked when it is empty.
+     *
+     * @param upgradeLockedUntil the upgradeLockedUntil value to set.
+     * @return the SqlServerInstanceProperties object itself.
+     */
+    public SqlServerInstanceProperties withUpgradeLockedUntil(OffsetDateTime upgradeLockedUntil) {
+        this.upgradeLockedUntil = upgradeLockedUntil;
+        return this;
+    }
+
+    /**
+     * Get the monitoring property: The monitoring configuration.
+     *
+     * @return the monitoring value.
+     */
+    public Monitoring monitoring() {
+        return this.monitoring;
+    }
+
+    /**
+     * Set the monitoring property: The monitoring configuration.
+     *
+     * @param monitoring the monitoring value to set.
+     * @return the SqlServerInstanceProperties object itself.
+     */
+    public SqlServerInstanceProperties withMonitoring(Monitoring monitoring) {
+        this.monitoring = monitoring;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (containerResourceId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property containerResourceId in model SqlServerInstanceProperties"));
+        if (failoverCluster() != null) {
+            failoverCluster().validate();
         }
-        if (status() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property status in model SqlServerInstanceProperties"));
+        if (backupPolicy() != null) {
+            backupPolicy().validate();
+        }
+        if (monitoring() != null) {
+            monitoring().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(SqlServerInstanceProperties.class);
 }

@@ -4,25 +4,34 @@
 
 package com.azure.resourcemanager.azurearcdata.generated;
 
+import com.azure.resourcemanager.azurearcdata.models.ActiveDirectoryInformation;
 import com.azure.resourcemanager.azurearcdata.models.ArcSqlManagedInstanceLicenseType;
 import com.azure.resourcemanager.azurearcdata.models.BasicLoginInformation;
 import com.azure.resourcemanager.azurearcdata.models.ExtendedLocation;
 import com.azure.resourcemanager.azurearcdata.models.ExtendedLocationTypes;
+import com.azure.resourcemanager.azurearcdata.models.K8SActiveDirectory;
+import com.azure.resourcemanager.azurearcdata.models.K8SActiveDirectoryConnector;
+import com.azure.resourcemanager.azurearcdata.models.K8SNetworkSettings;
 import com.azure.resourcemanager.azurearcdata.models.K8SResourceRequirements;
 import com.azure.resourcemanager.azurearcdata.models.K8SScheduling;
 import com.azure.resourcemanager.azurearcdata.models.K8SSchedulingOptions;
+import com.azure.resourcemanager.azurearcdata.models.K8SSecurity;
+import com.azure.resourcemanager.azurearcdata.models.K8SSettings;
+import com.azure.resourcemanager.azurearcdata.models.K8StransparentDataEncryption;
+import com.azure.resourcemanager.azurearcdata.models.KeytabInformation;
 import com.azure.resourcemanager.azurearcdata.models.SqlManagedInstanceK8SRaw;
 import com.azure.resourcemanager.azurearcdata.models.SqlManagedInstanceK8SSpec;
 import com.azure.resourcemanager.azurearcdata.models.SqlManagedInstanceProperties;
 import com.azure.resourcemanager.azurearcdata.models.SqlManagedInstanceSku;
 import com.azure.resourcemanager.azurearcdata.models.SqlManagedInstanceSkuTier;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 /** Samples for SqlManagedInstances Create. */
 public final class SqlManagedInstancesCreateSamples {
     /*
-     * x-ms-original-file: specification/azurearcdata/resource-manager/Microsoft.AzureArcData/stable/2021-08-01/examples/CreateOrUpdateSqlManagedInstance.json
+     * x-ms-original-file: specification/azurearcdata/resource-manager/Microsoft.AzureArcData/preview/2023-11-01-preview/examples/CreateOrUpdateSqlManagedInstance.json
      */
     /**
      * Sample code: Create or update a SQL Managed Instance.
@@ -71,10 +80,41 @@ public final class SqlManagedInstancesCreateSamples {
                                                     .withAdditionalProperties(mapOf()))
                                             .withAdditionalProperties(mapOf()))
                                     .withReplicas(1)
+                                    .withSecurity(
+                                        new K8SSecurity()
+                                            .withAdminLoginSecret("fakeTokenPlaceholder")
+                                            .withServiceCertificateSecret("fakeTokenPlaceholder")
+                                            .withActiveDirectory(
+                                                new K8SActiveDirectory()
+                                                    .withConnector(
+                                                        new K8SActiveDirectoryConnector()
+                                                            .withName("Name of connector")
+                                                            .withNamespace("Namespace of connector"))
+                                                    .withAccountName("Account name")
+                                                    .withKeytabSecret("fakeTokenPlaceholder")
+                                                    .withEncryptionTypes(
+                                                        Arrays
+                                                            .asList(
+                                                                "Encryption type item1, Encryption type item2,...")))
+                                            .withTransparentDataEncryption(
+                                                new K8StransparentDataEncryption().withMode("SystemManaged"))
+                                            .withAdditionalProperties(mapOf()))
+                                    .withSettings(
+                                        new K8SSettings()
+                                            .withNetwork(
+                                                new K8SNetworkSettings()
+                                                    .withForceencryption(0)
+                                                    .withTlsciphers(
+                                                        "ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-SHA256:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES128-SHA256:ECDHE-RSA-AES256-SHA384")
+                                                    .withTlsprotocols("1.2"))
+                                            .withAdditionalProperties(mapOf()))
                                     .withAdditionalProperties(mapOf()))
                             .withAdditionalProperties(mapOf("additionalProperty", 1234)))
                     .withBasicLoginInformation(
                         new BasicLoginInformation().withUsername("username").withPassword("fakeTokenPlaceholder"))
+                    .withActiveDirectoryInformation(
+                        new ActiveDirectoryInformation()
+                            .withKeytabInformation(new KeytabInformation().withKeytab("fakeTokenPlaceholder")))
                     .withLicenseType(ArcSqlManagedInstanceLicenseType.LICENSE_INCLUDED)
                     .withClusterId(
                         "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/testrg/providers/Microsoft.Kubernetes/connectedClusters/connectedk8s")
@@ -90,6 +130,7 @@ public final class SqlManagedInstancesCreateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

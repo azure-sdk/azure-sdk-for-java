@@ -11,7 +11,7 @@ import java.util.Map;
 /** Samples for SqlServerInstances Update. */
 public final class SqlServerInstancesUpdateSamples {
     /*
-     * x-ms-original-file: specification/azurearcdata/resource-manager/Microsoft.AzureArcData/stable/2021-08-01/examples/UpdateSqlServerInstance.json
+     * x-ms-original-file: specification/azurearcdata/resource-manager/Microsoft.AzureArcData/preview/2023-11-01-preview/examples/UpdateSqlServerInstance.json
      */
     /**
      * Sample code: Updates a SQL Server Instance tags.
@@ -28,6 +28,7 @@ public final class SqlServerInstancesUpdateSamples {
         resource.update().withTags(mapOf("mytag", "myval")).apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

@@ -4,20 +4,20 @@
 
 package com.azure.resourcemanager.azurearcdata.generated;
 
-import com.azure.resourcemanager.azurearcdata.models.ArcSqlServerLicenseType;
-import com.azure.resourcemanager.azurearcdata.models.ConnectionStatus;
-import com.azure.resourcemanager.azurearcdata.models.DefenderStatus;
+import com.azure.resourcemanager.azurearcdata.models.BackupPolicy;
+import com.azure.resourcemanager.azurearcdata.models.DifferentialBackupHours;
 import com.azure.resourcemanager.azurearcdata.models.EditionType;
+import com.azure.resourcemanager.azurearcdata.models.HostType;
+import com.azure.resourcemanager.azurearcdata.models.Monitoring;
 import com.azure.resourcemanager.azurearcdata.models.SqlServerInstanceProperties;
 import com.azure.resourcemanager.azurearcdata.models.SqlVersion;
-import java.time.OffsetDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
 /** Samples for SqlServerInstances Create. */
 public final class SqlServerInstancesCreateSamples {
     /*
-     * x-ms-original-file: specification/azurearcdata/resource-manager/Microsoft.AzureArcData/stable/2021-08-01/examples/CreateOrUpdateSqlServerInstance.json
+     * x-ms-original-file: specification/azurearcdata/resource-manager/Microsoft.AzureArcData/preview/2023-11-01-preview/examples/CreateOrUpdateSqlServerInstance.json
      */
     /**
      * Sample code: Updates a SQL Server Instance tags.
@@ -34,24 +34,22 @@ public final class SqlServerInstancesCreateSamples {
             .withTags(mapOf("mytag", "myval"))
             .withProperties(
                 new SqlServerInstanceProperties()
-                    .withVersion(SqlVersion.SQL_SERVER_2017)
+                    .withVersion(SqlVersion.SQL_SERVER_2012)
                     .withEdition(EditionType.DEVELOPER)
-                    .withContainerResourceId("Arc Machine Name")
-                    .withVCore("4")
-                    .withStatus(ConnectionStatus.CONNECTED)
-                    .withPatchLevel("patchlevel")
-                    .withCollation("collation")
-                    .withCurrentVersion("2008 R2")
+                    .withCores("4")
                     .withInstanceName("name of instance")
-                    .withTcpDynamicPorts("1433")
-                    .withTcpStaticPorts("1433")
-                    .withProductId("sql id")
-                    .withLicenseType(ArcSqlServerLicenseType.FREE)
-                    .withAzureDefenderStatusLastUpdated(OffsetDateTime.parse("2020-01-02T17:18:19.1234567Z"))
-                    .withAzureDefenderStatus(DefenderStatus.PROTECTED))
+                    .withHostType(HostType.PHYSICAL_SERVER)
+                    .withBackupPolicy(
+                        new BackupPolicy()
+                            .withRetentionPeriodDays(1)
+                            .withFullBackupDays(1)
+                            .withDifferentialBackupHours(DifferentialBackupHours.ONE_TWO)
+                            .withTransactionLogBackupMinutes(30))
+                    .withMonitoring(new Monitoring().withEnabled(false)))
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

@@ -7,6 +7,7 @@ package com.azure.resourcemanager.azurearcdata.models;
 import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
+import java.util.List;
 
 /** Resource collection API of SqlServerInstances. */
 public interface SqlServerInstances {
@@ -87,7 +88,7 @@ public interface SqlServerInstances {
      * Deletes a SQL Server Instance resource.
      *
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlServerInstanceName The name of SQL Server Instance.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -98,13 +99,49 @@ public interface SqlServerInstances {
      * Deletes a SQL Server Instance resource.
      *
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlServerInstanceName The name of SQL Server Instance.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     void delete(String resourceGroupName, String sqlServerInstanceName, Context context);
+
+    /**
+     * Retrieves SQL Server instance telemetry.
+     *
+     * @param resourceGroupName The name of the Azure resource group.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
+     * @param sqlServerInstanceTelemetryRequest Contains the parameters to get SQL Server instance telemetry.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a section of the telemetry response for the SQL Server instance as paginated response with {@link
+     *     PagedIterable}.
+     */
+    PagedIterable<List<String>> getTelemetry(
+        String resourceGroupName,
+        String sqlServerInstanceName,
+        SqlServerInstanceTelemetryRequest sqlServerInstanceTelemetryRequest);
+
+    /**
+     * Retrieves SQL Server instance telemetry.
+     *
+     * @param resourceGroupName The name of the Azure resource group.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
+     * @param sqlServerInstanceTelemetryRequest Contains the parameters to get SQL Server instance telemetry.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a section of the telemetry response for the SQL Server instance as paginated response with {@link
+     *     PagedIterable}.
+     */
+    PagedIterable<List<String>> getTelemetry(
+        String resourceGroupName,
+        String sqlServerInstanceName,
+        SqlServerInstanceTelemetryRequest sqlServerInstanceTelemetryRequest,
+        Context context);
 
     /**
      * Retrieves a SQL Server Instance resource.

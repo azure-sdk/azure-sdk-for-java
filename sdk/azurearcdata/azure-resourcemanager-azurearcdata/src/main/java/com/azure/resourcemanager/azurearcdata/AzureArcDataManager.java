@@ -24,14 +24,24 @@ import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.util.Configuration;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.azurearcdata.fluent.AzureArcDataManagementClient;
+import com.azure.resourcemanager.azurearcdata.implementation.ActiveDirectoryConnectorsImpl;
 import com.azure.resourcemanager.azurearcdata.implementation.AzureArcDataManagementClientBuilder;
 import com.azure.resourcemanager.azurearcdata.implementation.DataControllersImpl;
+import com.azure.resourcemanager.azurearcdata.implementation.FailoverGroupsImpl;
 import com.azure.resourcemanager.azurearcdata.implementation.OperationsImpl;
+import com.azure.resourcemanager.azurearcdata.implementation.PostgresInstancesImpl;
 import com.azure.resourcemanager.azurearcdata.implementation.SqlManagedInstancesImpl;
+import com.azure.resourcemanager.azurearcdata.implementation.SqlServerAvailabilityGroupsImpl;
+import com.azure.resourcemanager.azurearcdata.implementation.SqlServerDatabasesImpl;
 import com.azure.resourcemanager.azurearcdata.implementation.SqlServerInstancesImpl;
+import com.azure.resourcemanager.azurearcdata.models.ActiveDirectoryConnectors;
 import com.azure.resourcemanager.azurearcdata.models.DataControllers;
+import com.azure.resourcemanager.azurearcdata.models.FailoverGroups;
 import com.azure.resourcemanager.azurearcdata.models.Operations;
+import com.azure.resourcemanager.azurearcdata.models.PostgresInstances;
 import com.azure.resourcemanager.azurearcdata.models.SqlManagedInstances;
+import com.azure.resourcemanager.azurearcdata.models.SqlServerAvailabilityGroups;
+import com.azure.resourcemanager.azurearcdata.models.SqlServerDatabases;
 import com.azure.resourcemanager.azurearcdata.models.SqlServerInstances;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
@@ -49,9 +59,19 @@ public final class AzureArcDataManager {
 
     private SqlManagedInstances sqlManagedInstances;
 
+    private FailoverGroups failoverGroups;
+
     private SqlServerInstances sqlServerInstances;
 
     private DataControllers dataControllers;
+
+    private ActiveDirectoryConnectors activeDirectoryConnectors;
+
+    private PostgresInstances postgresInstances;
+
+    private SqlServerAvailabilityGroups sqlServerAvailabilityGroups;
+
+    private SqlServerDatabases sqlServerDatabases;
 
     private final AzureArcDataManagementClient clientObject;
 
@@ -218,7 +238,7 @@ public final class AzureArcDataManager {
                 .append("-")
                 .append("com.azure.resourcemanager.azurearcdata")
                 .append("/")
-                .append("1.0.0-beta.3");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -300,6 +320,18 @@ public final class AzureArcDataManager {
     }
 
     /**
+     * Gets the resource collection API of FailoverGroups. It manages FailoverGroupResource.
+     *
+     * @return Resource collection API of FailoverGroups.
+     */
+    public FailoverGroups failoverGroups() {
+        if (this.failoverGroups == null) {
+            this.failoverGroups = new FailoverGroupsImpl(clientObject.getFailoverGroups(), this);
+        }
+        return failoverGroups;
+    }
+
+    /**
      * Gets the resource collection API of SqlServerInstances. It manages SqlServerInstance.
      *
      * @return Resource collection API of SqlServerInstances.
@@ -324,8 +356,60 @@ public final class AzureArcDataManager {
     }
 
     /**
-     * @return Wrapped service client AzureArcDataManagementClient providing direct access to the underlying
-     *     auto-generated API implementation, based on Azure REST API.
+     * Gets the resource collection API of ActiveDirectoryConnectors. It manages ActiveDirectoryConnectorResource.
+     *
+     * @return Resource collection API of ActiveDirectoryConnectors.
+     */
+    public ActiveDirectoryConnectors activeDirectoryConnectors() {
+        if (this.activeDirectoryConnectors == null) {
+            this.activeDirectoryConnectors =
+                new ActiveDirectoryConnectorsImpl(clientObject.getActiveDirectoryConnectors(), this);
+        }
+        return activeDirectoryConnectors;
+    }
+
+    /**
+     * Gets the resource collection API of PostgresInstances. It manages PostgresInstance.
+     *
+     * @return Resource collection API of PostgresInstances.
+     */
+    public PostgresInstances postgresInstances() {
+        if (this.postgresInstances == null) {
+            this.postgresInstances = new PostgresInstancesImpl(clientObject.getPostgresInstances(), this);
+        }
+        return postgresInstances;
+    }
+
+    /**
+     * Gets the resource collection API of SqlServerAvailabilityGroups. It manages SqlServerAvailabilityGroupResource.
+     *
+     * @return Resource collection API of SqlServerAvailabilityGroups.
+     */
+    public SqlServerAvailabilityGroups sqlServerAvailabilityGroups() {
+        if (this.sqlServerAvailabilityGroups == null) {
+            this.sqlServerAvailabilityGroups =
+                new SqlServerAvailabilityGroupsImpl(clientObject.getSqlServerAvailabilityGroups(), this);
+        }
+        return sqlServerAvailabilityGroups;
+    }
+
+    /**
+     * Gets the resource collection API of SqlServerDatabases. It manages SqlServerDatabaseResource.
+     *
+     * @return Resource collection API of SqlServerDatabases.
+     */
+    public SqlServerDatabases sqlServerDatabases() {
+        if (this.sqlServerDatabases == null) {
+            this.sqlServerDatabases = new SqlServerDatabasesImpl(clientObject.getSqlServerDatabases(), this);
+        }
+        return sqlServerDatabases;
+    }
+
+    /**
+     * Gets wrapped service client AzureArcDataManagementClient providing direct access to the underlying auto-generated
+     * API implementation, based on Azure REST API.
+     *
+     * @return Wrapped service client AzureArcDataManagementClient.
      */
     public AzureArcDataManagementClient serviceClient() {
         return this.clientObject;

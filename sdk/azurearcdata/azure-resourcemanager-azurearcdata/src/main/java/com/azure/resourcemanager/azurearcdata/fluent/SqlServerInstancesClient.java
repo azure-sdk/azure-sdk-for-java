@@ -12,7 +12,9 @@ import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.azurearcdata.fluent.models.SqlServerInstanceInner;
+import com.azure.resourcemanager.azurearcdata.models.SqlServerInstanceTelemetryRequest;
 import com.azure.resourcemanager.azurearcdata.models.SqlServerInstanceUpdate;
+import java.util.List;
 
 /** An instance of this class provides access to all the operations defined in SqlServerInstancesClient. */
 public interface SqlServerInstancesClient {
@@ -99,7 +101,7 @@ public interface SqlServerInstancesClient {
      * Creates or replaces a SQL Server Instance resource.
      *
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlServerInstanceName The name of SQL Server Instance.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
      * @param sqlServerInstance The SQL Server Instance to be created or updated.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -114,7 +116,7 @@ public interface SqlServerInstancesClient {
      * Creates or replaces a SQL Server Instance resource.
      *
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlServerInstanceName The name of SQL Server Instance.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
      * @param sqlServerInstance The SQL Server Instance to be created or updated.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -133,7 +135,7 @@ public interface SqlServerInstancesClient {
      * Creates or replaces a SQL Server Instance resource.
      *
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlServerInstanceName The name of SQL Server Instance.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
      * @param sqlServerInstance The SQL Server Instance to be created or updated.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -148,7 +150,7 @@ public interface SqlServerInstancesClient {
      * Creates or replaces a SQL Server Instance resource.
      *
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlServerInstanceName The name of SQL Server Instance.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
      * @param sqlServerInstance The SQL Server Instance to be created or updated.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -167,7 +169,7 @@ public interface SqlServerInstancesClient {
      * Deletes a SQL Server Instance resource.
      *
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlServerInstanceName The name of SQL Server Instance.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -180,7 +182,7 @@ public interface SqlServerInstancesClient {
      * Deletes a SQL Server Instance resource.
      *
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlServerInstanceName The name of SQL Server Instance.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -195,7 +197,7 @@ public interface SqlServerInstancesClient {
      * Deletes a SQL Server Instance resource.
      *
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlServerInstanceName The name of SQL Server Instance.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -207,7 +209,7 @@ public interface SqlServerInstancesClient {
      * Deletes a SQL Server Instance resource.
      *
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlServerInstanceName The name of SQL Server Instance.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -220,7 +222,7 @@ public interface SqlServerInstancesClient {
      * Updates a SQL Server Instance resource.
      *
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlServerInstanceName Name of sqlServerInstance.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
      * @param parameters The SQL Server Instance.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -236,7 +238,7 @@ public interface SqlServerInstancesClient {
      * Updates a SQL Server Instance resource.
      *
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlServerInstanceName Name of sqlServerInstance.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
      * @param parameters The SQL Server Instance.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -246,4 +248,42 @@ public interface SqlServerInstancesClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     SqlServerInstanceInner update(
         String resourceGroupName, String sqlServerInstanceName, SqlServerInstanceUpdate parameters);
+
+    /**
+     * Retrieves SQL Server instance telemetry.
+     *
+     * @param resourceGroupName The name of the Azure resource group.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
+     * @param sqlServerInstanceTelemetryRequest Contains the parameters to get SQL Server instance telemetry.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a section of the telemetry response for the SQL Server instance as paginated response with {@link
+     *     PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<List<String>> getTelemetry(
+        String resourceGroupName,
+        String sqlServerInstanceName,
+        SqlServerInstanceTelemetryRequest sqlServerInstanceTelemetryRequest);
+
+    /**
+     * Retrieves SQL Server instance telemetry.
+     *
+     * @param resourceGroupName The name of the Azure resource group.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
+     * @param sqlServerInstanceTelemetryRequest Contains the parameters to get SQL Server instance telemetry.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a section of the telemetry response for the SQL Server instance as paginated response with {@link
+     *     PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<List<String>> getTelemetry(
+        String resourceGroupName,
+        String sqlServerInstanceName,
+        SqlServerInstanceTelemetryRequest sqlServerInstanceTelemetryRequest,
+        Context context);
 }

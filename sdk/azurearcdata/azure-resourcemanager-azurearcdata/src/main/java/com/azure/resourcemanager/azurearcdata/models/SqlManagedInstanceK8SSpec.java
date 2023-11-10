@@ -30,6 +30,18 @@ public final class SqlManagedInstanceK8SSpec {
     private Integer replicas;
 
     /*
+     * The kubernetes security information.
+     */
+    @JsonProperty(value = "security")
+    private K8SSecurity security;
+
+    /*
+     * The kubernetes settings information.
+     */
+    @JsonProperty(value = "settings")
+    private K8SSettings settings;
+
+    /*
      * The kubernetes spec information.
      */
     @JsonIgnore private Map<String, Object> additionalProperties;
@@ -83,6 +95,46 @@ public final class SqlManagedInstanceK8SSpec {
     }
 
     /**
+     * Get the security property: The kubernetes security information.
+     *
+     * @return the security value.
+     */
+    public K8SSecurity security() {
+        return this.security;
+    }
+
+    /**
+     * Set the security property: The kubernetes security information.
+     *
+     * @param security the security value to set.
+     * @return the SqlManagedInstanceK8SSpec object itself.
+     */
+    public SqlManagedInstanceK8SSpec withSecurity(K8SSecurity security) {
+        this.security = security;
+        return this;
+    }
+
+    /**
+     * Get the settings property: The kubernetes settings information.
+     *
+     * @return the settings value.
+     */
+    public K8SSettings settings() {
+        return this.settings;
+    }
+
+    /**
+     * Set the settings property: The kubernetes settings information.
+     *
+     * @param settings the settings value to set.
+     * @return the SqlManagedInstanceK8SSpec object itself.
+     */
+    public SqlManagedInstanceK8SSpec withSettings(K8SSettings settings) {
+        this.settings = settings;
+        return this;
+    }
+
+    /**
      * Get the additionalProperties property: The kubernetes spec information.
      *
      * @return the additionalProperties value.
@@ -119,6 +171,12 @@ public final class SqlManagedInstanceK8SSpec {
     public void validate() {
         if (scheduling() != null) {
             scheduling().validate();
+        }
+        if (security() != null) {
+            security().validate();
+        }
+        if (settings() != null) {
+            settings().validate();
         }
     }
 }

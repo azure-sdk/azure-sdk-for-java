@@ -9,11 +9,11 @@ import com.azure.resourcemanager.azurearcdata.fluent.models.DataControllerResour
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The PageOfDataControllerResource model. */
+/** A list of data controllers. */
 @Fluent
 public final class PageOfDataControllerResource {
     /*
-     * The value property.
+     * Array of results.
      */
     @JsonProperty(value = "value")
     private List<DataControllerResourceInner> value;
@@ -29,7 +29,7 @@ public final class PageOfDataControllerResource {
     }
 
     /**
-     * Get the value property: The value property.
+     * Get the value property: Array of results.
      *
      * @return the value value.
      */
@@ -38,7 +38,7 @@ public final class PageOfDataControllerResource {
     }
 
     /**
-     * Set the value property: The value property.
+     * Set the value property: Array of results.
      *
      * @param value the value value to set.
      * @return the PageOfDataControllerResource object itself.

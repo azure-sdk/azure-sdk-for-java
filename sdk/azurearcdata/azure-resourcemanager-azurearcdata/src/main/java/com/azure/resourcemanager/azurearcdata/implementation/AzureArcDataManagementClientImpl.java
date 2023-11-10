@@ -22,10 +22,15 @@ import com.azure.core.util.polling.LongRunningOperationStatus;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
+import com.azure.resourcemanager.azurearcdata.fluent.ActiveDirectoryConnectorsClient;
 import com.azure.resourcemanager.azurearcdata.fluent.AzureArcDataManagementClient;
 import com.azure.resourcemanager.azurearcdata.fluent.DataControllersClient;
+import com.azure.resourcemanager.azurearcdata.fluent.FailoverGroupsClient;
 import com.azure.resourcemanager.azurearcdata.fluent.OperationsClient;
+import com.azure.resourcemanager.azurearcdata.fluent.PostgresInstancesClient;
 import com.azure.resourcemanager.azurearcdata.fluent.SqlManagedInstancesClient;
+import com.azure.resourcemanager.azurearcdata.fluent.SqlServerAvailabilityGroupsClient;
+import com.azure.resourcemanager.azurearcdata.fluent.SqlServerDatabasesClient;
 import com.azure.resourcemanager.azurearcdata.fluent.SqlServerInstancesClient;
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -135,6 +140,18 @@ public final class AzureArcDataManagementClientImpl implements AzureArcDataManag
         return this.sqlManagedInstances;
     }
 
+    /** The FailoverGroupsClient object to access its operations. */
+    private final FailoverGroupsClient failoverGroups;
+
+    /**
+     * Gets the FailoverGroupsClient object to access its operations.
+     *
+     * @return the FailoverGroupsClient object.
+     */
+    public FailoverGroupsClient getFailoverGroups() {
+        return this.failoverGroups;
+    }
+
     /** The SqlServerInstancesClient object to access its operations. */
     private final SqlServerInstancesClient sqlServerInstances;
 
@@ -159,6 +176,54 @@ public final class AzureArcDataManagementClientImpl implements AzureArcDataManag
         return this.dataControllers;
     }
 
+    /** The ActiveDirectoryConnectorsClient object to access its operations. */
+    private final ActiveDirectoryConnectorsClient activeDirectoryConnectors;
+
+    /**
+     * Gets the ActiveDirectoryConnectorsClient object to access its operations.
+     *
+     * @return the ActiveDirectoryConnectorsClient object.
+     */
+    public ActiveDirectoryConnectorsClient getActiveDirectoryConnectors() {
+        return this.activeDirectoryConnectors;
+    }
+
+    /** The PostgresInstancesClient object to access its operations. */
+    private final PostgresInstancesClient postgresInstances;
+
+    /**
+     * Gets the PostgresInstancesClient object to access its operations.
+     *
+     * @return the PostgresInstancesClient object.
+     */
+    public PostgresInstancesClient getPostgresInstances() {
+        return this.postgresInstances;
+    }
+
+    /** The SqlServerAvailabilityGroupsClient object to access its operations. */
+    private final SqlServerAvailabilityGroupsClient sqlServerAvailabilityGroups;
+
+    /**
+     * Gets the SqlServerAvailabilityGroupsClient object to access its operations.
+     *
+     * @return the SqlServerAvailabilityGroupsClient object.
+     */
+    public SqlServerAvailabilityGroupsClient getSqlServerAvailabilityGroups() {
+        return this.sqlServerAvailabilityGroups;
+    }
+
+    /** The SqlServerDatabasesClient object to access its operations. */
+    private final SqlServerDatabasesClient sqlServerDatabases;
+
+    /**
+     * Gets the SqlServerDatabasesClient object to access its operations.
+     *
+     * @return the SqlServerDatabasesClient object.
+     */
+    public SqlServerDatabasesClient getSqlServerDatabases() {
+        return this.sqlServerDatabases;
+    }
+
     /**
      * Initializes an instance of AzureArcDataManagementClient client.
      *
@@ -181,11 +246,16 @@ public final class AzureArcDataManagementClientImpl implements AzureArcDataManag
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2021-08-01";
+        this.apiVersion = "2023-11-01-preview";
         this.operations = new OperationsClientImpl(this);
         this.sqlManagedInstances = new SqlManagedInstancesClientImpl(this);
+        this.failoverGroups = new FailoverGroupsClientImpl(this);
         this.sqlServerInstances = new SqlServerInstancesClientImpl(this);
         this.dataControllers = new DataControllersClientImpl(this);
+        this.activeDirectoryConnectors = new ActiveDirectoryConnectorsClientImpl(this);
+        this.postgresInstances = new PostgresInstancesClientImpl(this);
+        this.sqlServerAvailabilityGroups = new SqlServerAvailabilityGroupsClientImpl(this);
+        this.sqlServerDatabases = new SqlServerDatabasesClientImpl(this);
     }
 
     /**
