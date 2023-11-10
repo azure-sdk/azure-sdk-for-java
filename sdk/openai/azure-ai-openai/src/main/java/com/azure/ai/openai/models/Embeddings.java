@@ -21,7 +21,7 @@ public final class Embeddings {
      */
     @Generated
     @JsonProperty(value = "data")
-    private List<EmbeddingItem> data;
+    private List<PromptIndex> data;
 
     /*
      * Usage counts for tokens input using the embeddings API.
@@ -39,7 +39,7 @@ public final class Embeddings {
     @Generated
     @JsonCreator
     private Embeddings(
-            @JsonProperty(value = "data") List<EmbeddingItem> data,
+            @JsonProperty(value = "data") List<PromptIndex> data,
             @JsonProperty(value = "usage") EmbeddingsUsage usage) {
         this.data = data;
         this.usage = usage;
@@ -51,7 +51,7 @@ public final class Embeddings {
      * @return the data value.
      */
     @Generated
-    public List<EmbeddingItem> getData() {
+    public List<PromptIndex> getData() {
         return this.data;
     }
 
