@@ -6,11 +6,12 @@ package com.azure.resourcemanager.appcontainers.generated;
 
 import com.azure.resourcemanager.appcontainers.fluent.models.CertificateInner;
 import com.azure.resourcemanager.appcontainers.models.CertificateProperties;
+import com.azure.resourcemanager.appcontainers.models.CertificateType;
 
 /** Samples for Certificates CreateOrUpdate. */
 public final class CertificatesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2023-05-01/examples/Certificate_CreateOrUpdate.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2023-08-01-preview/examples/Certificate_CreateOrUpdate.json
      */
     /**
      * Sample code: Create or Update Certificate.
@@ -30,7 +31,8 @@ public final class CertificatesCreateOrUpdateSamples {
                     .withProperties(
                         new CertificateProperties()
                             .withPassword("fakeTokenPlaceholder")
-                            .withValue("Y2VydA==".getBytes())),
+                            .withValue("Y2VydA==".getBytes())
+                            .withCertificateType(CertificateType.IMAGE_PULL_TRUSTED_CA)),
                 com.azure.core.util.Context.NONE);
     }
 }

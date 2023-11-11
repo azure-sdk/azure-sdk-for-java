@@ -6,6 +6,8 @@ package com.azure.resourcemanager.appcontainers.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
+import com.azure.core.management.SystemData;
+import com.azure.resourcemanager.appcontainers.models.DaprComponentServiceBinding;
 import com.azure.resourcemanager.appcontainers.models.DaprMetadata;
 import com.azure.resourcemanager.appcontainers.models.Secret;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -20,6 +22,12 @@ public final class DaprComponentInner extends ProxyResource {
     @JsonProperty(value = "properties")
     private DaprComponentProperties innerProperties;
 
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
+
     /** Creates an instance of DaprComponentInner class. */
     public DaprComponentInner() {
     }
@@ -31,6 +39,15 @@ public final class DaprComponentInner extends ProxyResource {
      */
     private DaprComponentProperties innerProperties() {
         return this.innerProperties;
+    }
+
+    /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     *
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**
@@ -214,6 +231,29 @@ public final class DaprComponentInner extends ProxyResource {
             this.innerProperties = new DaprComponentProperties();
         }
         this.innerProperties().withScopes(scopes);
+        return this;
+    }
+
+    /**
+     * Get the serviceComponentBind property: List of container app services that are bound to the Dapr component.
+     *
+     * @return the serviceComponentBind value.
+     */
+    public List<DaprComponentServiceBinding> serviceComponentBind() {
+        return this.innerProperties() == null ? null : this.innerProperties().serviceComponentBind();
+    }
+
+    /**
+     * Set the serviceComponentBind property: List of container app services that are bound to the Dapr component.
+     *
+     * @param serviceComponentBind the serviceComponentBind value to set.
+     * @return the DaprComponentInner object itself.
+     */
+    public DaprComponentInner withServiceComponentBind(List<DaprComponentServiceBinding> serviceComponentBind) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new DaprComponentProperties();
+        }
+        this.innerProperties().withServiceComponentBind(serviceComponentBind);
         return this;
     }
 
