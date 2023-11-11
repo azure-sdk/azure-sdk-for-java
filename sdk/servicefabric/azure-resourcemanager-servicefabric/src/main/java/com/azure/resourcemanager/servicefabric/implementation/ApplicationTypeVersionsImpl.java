@@ -4,15 +4,14 @@
 
 package com.azure.resourcemanager.servicefabric.implementation;
 
+import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.servicefabric.fluent.ApplicationTypeVersionsClient;
 import com.azure.resourcemanager.servicefabric.fluent.models.ApplicationTypeVersionResourceInner;
-import com.azure.resourcemanager.servicefabric.fluent.models.ApplicationTypeVersionResourceListInner;
 import com.azure.resourcemanager.servicefabric.models.ApplicationTypeVersionResource;
-import com.azure.resourcemanager.servicefabric.models.ApplicationTypeVersionResourceList;
 import com.azure.resourcemanager.servicefabric.models.ApplicationTypeVersions;
 
 public final class ApplicationTypeVersionsImpl implements ApplicationTypeVersions {
@@ -64,30 +63,18 @@ public final class ApplicationTypeVersionsImpl implements ApplicationTypeVersion
         this.serviceClient().delete(resourceGroupName, clusterName, applicationTypeName, version, context);
     }
 
-    public Response<ApplicationTypeVersionResourceList> listWithResponse(
-        String resourceGroupName, String clusterName, String applicationTypeName, Context context) {
-        Response<ApplicationTypeVersionResourceListInner> inner =
-            this.serviceClient().listWithResponse(resourceGroupName, clusterName, applicationTypeName, context);
-        if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
-                new ApplicationTypeVersionResourceListImpl(inner.getValue(), this.manager()));
-        } else {
-            return null;
-        }
+    public PagedIterable<ApplicationTypeVersionResource> list(
+        String resourceGroupName, String clusterName, String applicationTypeName) {
+        PagedIterable<ApplicationTypeVersionResourceInner> inner =
+            this.serviceClient().list(resourceGroupName, clusterName, applicationTypeName);
+        return Utils.mapPage(inner, inner1 -> new ApplicationTypeVersionResourceImpl(inner1, this.manager()));
     }
 
-    public ApplicationTypeVersionResourceList list(
-        String resourceGroupName, String clusterName, String applicationTypeName) {
-        ApplicationTypeVersionResourceListInner inner =
-            this.serviceClient().list(resourceGroupName, clusterName, applicationTypeName);
-        if (inner != null) {
-            return new ApplicationTypeVersionResourceListImpl(inner, this.manager());
-        } else {
-            return null;
-        }
+    public PagedIterable<ApplicationTypeVersionResource> list(
+        String resourceGroupName, String clusterName, String applicationTypeName, Context context) {
+        PagedIterable<ApplicationTypeVersionResourceInner> inner =
+            this.serviceClient().list(resourceGroupName, clusterName, applicationTypeName, context);
+        return Utils.mapPage(inner, inner1 -> new ApplicationTypeVersionResourceImpl(inner1, this.manager()));
     }
 
     public ApplicationTypeVersionResource getById(String id) {

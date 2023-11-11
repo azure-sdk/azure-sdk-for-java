@@ -179,11 +179,13 @@ public interface ApplicationResource {
     interface Definition
         extends DefinitionStages.Blank, DefinitionStages.WithParentResource, DefinitionStages.WithCreate {
     }
+
     /** The ApplicationResource definition stages. */
     interface DefinitionStages {
         /** The first stage of the ApplicationResource definition. */
         interface Blank extends WithParentResource {
         }
+
         /** The stage of the ApplicationResource definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -195,6 +197,7 @@ public interface ApplicationResource {
              */
             WithCreate withExistingCluster(String resourceGroupName, String clusterName);
         }
+
         /**
          * The stage of the ApplicationResource definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
@@ -227,6 +230,7 @@ public interface ApplicationResource {
              */
             ApplicationResource create(Context context);
         }
+
         /** The stage of the ApplicationResource definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -245,6 +249,7 @@ public interface ApplicationResource {
              */
             WithCreate withRegion(String location);
         }
+
         /** The stage of the ApplicationResource definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -255,6 +260,7 @@ public interface ApplicationResource {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
         /** The stage of the ApplicationResource definition allowing to specify identity. */
         interface WithIdentity {
             /**
@@ -265,6 +271,7 @@ public interface ApplicationResource {
              */
             WithCreate withIdentity(ManagedIdentity identity);
         }
+
         /** The stage of the ApplicationResource definition allowing to specify typeName. */
         interface WithTypeName {
             /**
@@ -275,6 +282,7 @@ public interface ApplicationResource {
              */
             WithCreate withTypeName(String typeName);
         }
+
         /** The stage of the ApplicationResource definition allowing to specify typeVersion. */
         interface WithTypeVersion {
             /**
@@ -286,6 +294,7 @@ public interface ApplicationResource {
              */
             WithCreate withTypeVersion(String typeVersion);
         }
+
         /** The stage of the ApplicationResource definition allowing to specify parameters. */
         interface WithParameters {
             /**
@@ -298,6 +307,7 @@ public interface ApplicationResource {
              */
             WithCreate withParameters(Map<String, String> parameters);
         }
+
         /** The stage of the ApplicationResource definition allowing to specify upgradePolicy. */
         interface WithUpgradePolicy {
             /**
@@ -308,6 +318,7 @@ public interface ApplicationResource {
              */
             WithCreate withUpgradePolicy(ApplicationUpgradePolicy upgradePolicy);
         }
+
         /** The stage of the ApplicationResource definition allowing to specify minimumNodes. */
         interface WithMinimumNodes {
             /**
@@ -324,6 +335,7 @@ public interface ApplicationResource {
              */
             WithCreate withMinimumNodes(Long minimumNodes);
         }
+
         /** The stage of the ApplicationResource definition allowing to specify maximumNodes. */
         interface WithMaximumNodes {
             /**
@@ -340,6 +352,7 @@ public interface ApplicationResource {
              */
             WithCreate withMaximumNodes(Long maximumNodes);
         }
+
         /** The stage of the ApplicationResource definition allowing to specify removeApplicationCapacity. */
         interface WithRemoveApplicationCapacity {
             /**
@@ -350,6 +363,7 @@ public interface ApplicationResource {
              */
             WithCreate withRemoveApplicationCapacity(Boolean removeApplicationCapacity);
         }
+
         /** The stage of the ApplicationResource definition allowing to specify metrics. */
         interface WithMetrics {
             /**
@@ -360,6 +374,7 @@ public interface ApplicationResource {
              */
             WithCreate withMetrics(List<ApplicationMetricDescription> metrics);
         }
+
         /** The stage of the ApplicationResource definition allowing to specify managedIdentities. */
         interface WithManagedIdentities {
             /**
@@ -373,6 +388,7 @@ public interface ApplicationResource {
             WithCreate withManagedIdentities(List<ApplicationUserAssignedIdentity> managedIdentities);
         }
     }
+
     /**
      * Begins update for the ApplicationResource resource.
      *
@@ -405,6 +421,7 @@ public interface ApplicationResource {
          */
         ApplicationResource apply(Context context);
     }
+
     /** The ApplicationResource update stages. */
     interface UpdateStages {
         /** The stage of the ApplicationResource update allowing to specify typeVersion. */
@@ -418,6 +435,7 @@ public interface ApplicationResource {
              */
             Update withTypeVersion(String typeVersion);
         }
+
         /** The stage of the ApplicationResource update allowing to specify parameters. */
         interface WithParameters {
             /**
@@ -430,6 +448,7 @@ public interface ApplicationResource {
              */
             Update withParameters(Map<String, String> parameters);
         }
+
         /** The stage of the ApplicationResource update allowing to specify upgradePolicy. */
         interface WithUpgradePolicy {
             /**
@@ -440,6 +459,7 @@ public interface ApplicationResource {
              */
             Update withUpgradePolicy(ApplicationUpgradePolicy upgradePolicy);
         }
+
         /** The stage of the ApplicationResource update allowing to specify minimumNodes. */
         interface WithMinimumNodes {
             /**
@@ -456,6 +476,7 @@ public interface ApplicationResource {
              */
             Update withMinimumNodes(Long minimumNodes);
         }
+
         /** The stage of the ApplicationResource update allowing to specify maximumNodes. */
         interface WithMaximumNodes {
             /**
@@ -472,6 +493,7 @@ public interface ApplicationResource {
              */
             Update withMaximumNodes(Long maximumNodes);
         }
+
         /** The stage of the ApplicationResource update allowing to specify removeApplicationCapacity. */
         interface WithRemoveApplicationCapacity {
             /**
@@ -482,6 +504,7 @@ public interface ApplicationResource {
              */
             Update withRemoveApplicationCapacity(Boolean removeApplicationCapacity);
         }
+
         /** The stage of the ApplicationResource update allowing to specify metrics. */
         interface WithMetrics {
             /**
@@ -492,6 +515,7 @@ public interface ApplicationResource {
              */
             Update withMetrics(List<ApplicationMetricDescription> metrics);
         }
+
         /** The stage of the ApplicationResource update allowing to specify managedIdentities. */
         interface WithManagedIdentities {
             /**
@@ -505,6 +529,7 @@ public interface ApplicationResource {
             Update withManagedIdentities(List<ApplicationUserAssignedIdentity> managedIdentities);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

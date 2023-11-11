@@ -122,8 +122,8 @@ public interface Cluster {
     /**
      * Gets the clusterCodeVersion property: The Service Fabric runtime version of the cluster. This property can only
      * by set the user when **upgradeMode** is set to 'Manual'. To get list of available Service Fabric versions for new
-     * clusters use [ClusterVersion API](./ClusterVersion.md). To get the list of available version for existing
-     * clusters use **availableClusterVersions**.
+     * clusters use [ClusterVersion API](https://learn.microsoft.com/rest/api/servicefabric/cluster-versions/list). To
+     * get the list of available version for existing clusters use **availableClusterVersions**.
      *
      * @return the clusterCodeVersion value.
      */
@@ -364,11 +364,13 @@ public interface Cluster {
             DefinitionStages.WithResourceGroup,
             DefinitionStages.WithCreate {
     }
+
     /** The Cluster definition stages. */
     interface DefinitionStages {
         /** The first stage of the Cluster definition. */
         interface Blank extends WithLocation {
         }
+
         /** The stage of the Cluster definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -387,6 +389,7 @@ public interface Cluster {
              */
             WithResourceGroup withRegion(String location);
         }
+
         /** The stage of the Cluster definition allowing to specify parent resource. */
         interface WithResourceGroup {
             /**
@@ -397,6 +400,7 @@ public interface Cluster {
              */
             WithCreate withExistingResourceGroup(String resourceGroupName);
         }
+
         /**
          * The stage of the Cluster definition which contains all the minimum required properties for the resource to be
          * created, but also allows for any other optional properties to be specified.
@@ -445,6 +449,7 @@ public interface Cluster {
              */
             Cluster create(Context context);
         }
+
         /** The stage of the Cluster definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -455,6 +460,7 @@ public interface Cluster {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
         /** The stage of the Cluster definition allowing to specify addOnFeatures. */
         interface WithAddOnFeatures {
             /**
@@ -465,6 +471,7 @@ public interface Cluster {
              */
             WithCreate withAddOnFeatures(List<AddOnFeatures> addOnFeatures);
         }
+
         /** The stage of the Cluster definition allowing to specify azureActiveDirectory. */
         interface WithAzureActiveDirectory {
             /**
@@ -475,6 +482,7 @@ public interface Cluster {
              */
             WithCreate withAzureActiveDirectory(AzureActiveDirectory azureActiveDirectory);
         }
+
         /** The stage of the Cluster definition allowing to specify certificate. */
         interface WithCertificate {
             /**
@@ -489,6 +497,7 @@ public interface Cluster {
              */
             WithCreate withCertificate(CertificateDescription certificate);
         }
+
         /** The stage of the Cluster definition allowing to specify certificateCommonNames. */
         interface WithCertificateCommonNames {
             /**
@@ -501,6 +510,7 @@ public interface Cluster {
              */
             WithCreate withCertificateCommonNames(ServerCertificateCommonNames certificateCommonNames);
         }
+
         /** The stage of the Cluster definition allowing to specify clientCertificateCommonNames. */
         interface WithClientCertificateCommonNames {
             /**
@@ -513,6 +523,7 @@ public interface Cluster {
              */
             WithCreate withClientCertificateCommonNames(List<ClientCertificateCommonName> clientCertificateCommonNames);
         }
+
         /** The stage of the Cluster definition allowing to specify clientCertificateThumbprints. */
         interface WithClientCertificateThumbprints {
             /**
@@ -525,22 +536,26 @@ public interface Cluster {
              */
             WithCreate withClientCertificateThumbprints(List<ClientCertificateThumbprint> clientCertificateThumbprints);
         }
+
         /** The stage of the Cluster definition allowing to specify clusterCodeVersion. */
         interface WithClusterCodeVersion {
             /**
              * Specifies the clusterCodeVersion property: The Service Fabric runtime version of the cluster. This
              * property can only by set the user when **upgradeMode** is set to 'Manual'. To get list of available
-             * Service Fabric versions for new clusters use [ClusterVersion API](./ClusterVersion.md). To get the list
-             * of available version for existing clusters use **availableClusterVersions**..
+             * Service Fabric versions for new clusters use [ClusterVersion
+             * API](https://learn.microsoft.com/rest/api/servicefabric/cluster-versions/list). To get the list of
+             * available version for existing clusters use **availableClusterVersions**..
              *
              * @param clusterCodeVersion The Service Fabric runtime version of the cluster. This property can only by
              *     set the user when **upgradeMode** is set to 'Manual'. To get list of available Service Fabric
-             *     versions for new clusters use [ClusterVersion API](./ClusterVersion.md). To get the list of available
-             *     version for existing clusters use **availableClusterVersions**.
+             *     versions for new clusters use [ClusterVersion
+             *     API](https://learn.microsoft.com/rest/api/servicefabric/cluster-versions/list). To get the list of
+             *     available version for existing clusters use **availableClusterVersions**.
              * @return the next definition stage.
              */
             WithCreate withClusterCodeVersion(String clusterCodeVersion);
         }
+
         /** The stage of the Cluster definition allowing to specify diagnosticsStorageAccountConfig. */
         interface WithDiagnosticsStorageAccountConfig {
             /**
@@ -554,6 +569,7 @@ public interface Cluster {
             WithCreate withDiagnosticsStorageAccountConfig(
                 DiagnosticsStorageAccountConfig diagnosticsStorageAccountConfig);
         }
+
         /** The stage of the Cluster definition allowing to specify eventStoreServiceEnabled. */
         interface WithEventStoreServiceEnabled {
             /**
@@ -564,6 +580,7 @@ public interface Cluster {
              */
             WithCreate withEventStoreServiceEnabled(Boolean eventStoreServiceEnabled);
         }
+
         /** The stage of the Cluster definition allowing to specify fabricSettings. */
         interface WithFabricSettings {
             /**
@@ -574,6 +591,7 @@ public interface Cluster {
              */
             WithCreate withFabricSettings(List<SettingsSectionDescription> fabricSettings);
         }
+
         /** The stage of the Cluster definition allowing to specify managementEndpoint. */
         interface WithManagementEndpoint {
             /**
@@ -584,6 +602,7 @@ public interface Cluster {
              */
             WithCreate withManagementEndpoint(String managementEndpoint);
         }
+
         /** The stage of the Cluster definition allowing to specify nodeTypes. */
         interface WithNodeTypes {
             /**
@@ -594,6 +613,7 @@ public interface Cluster {
              */
             WithCreate withNodeTypes(List<NodeTypeDescription> nodeTypes);
         }
+
         /** The stage of the Cluster definition allowing to specify reliabilityLevel. */
         interface WithReliabilityLevel {
             /**
@@ -618,6 +638,7 @@ public interface Cluster {
              */
             WithCreate withReliabilityLevel(ReliabilityLevel reliabilityLevel);
         }
+
         /** The stage of the Cluster definition allowing to specify reverseProxyCertificate. */
         interface WithReverseProxyCertificate {
             /**
@@ -628,6 +649,7 @@ public interface Cluster {
              */
             WithCreate withReverseProxyCertificate(CertificateDescription reverseProxyCertificate);
         }
+
         /** The stage of the Cluster definition allowing to specify reverseProxyCertificateCommonNames. */
         interface WithReverseProxyCertificateCommonNames {
             /**
@@ -641,6 +663,7 @@ public interface Cluster {
             WithCreate withReverseProxyCertificateCommonNames(
                 ServerCertificateCommonNames reverseProxyCertificateCommonNames);
         }
+
         /** The stage of the Cluster definition allowing to specify upgradeDescription. */
         interface WithUpgradeDescription {
             /**
@@ -651,6 +674,7 @@ public interface Cluster {
              */
             WithCreate withUpgradeDescription(ClusterUpgradePolicy upgradeDescription);
         }
+
         /** The stage of the Cluster definition allowing to specify upgradeMode. */
         interface WithUpgradeMode {
             /**
@@ -662,6 +686,7 @@ public interface Cluster {
              */
             WithCreate withUpgradeMode(UpgradeMode upgradeMode);
         }
+
         /** The stage of the Cluster definition allowing to specify applicationTypeVersionsCleanupPolicy. */
         interface WithApplicationTypeVersionsCleanupPolicy {
             /**
@@ -674,6 +699,7 @@ public interface Cluster {
             WithCreate withApplicationTypeVersionsCleanupPolicy(
                 ApplicationTypeVersionsCleanupPolicy applicationTypeVersionsCleanupPolicy);
         }
+
         /** The stage of the Cluster definition allowing to specify vmImage. */
         interface WithVmImage {
             /**
@@ -686,6 +712,7 @@ public interface Cluster {
              */
             WithCreate withVmImage(String vmImage);
         }
+
         /** The stage of the Cluster definition allowing to specify sfZonalUpgradeMode. */
         interface WithSfZonalUpgradeMode {
             /**
@@ -700,6 +727,7 @@ public interface Cluster {
              */
             WithCreate withSfZonalUpgradeMode(SfZonalUpgradeMode sfZonalUpgradeMode);
         }
+
         /** The stage of the Cluster definition allowing to specify vmssZonalUpgradeMode. */
         interface WithVmssZonalUpgradeMode {
             /**
@@ -712,6 +740,7 @@ public interface Cluster {
              */
             WithCreate withVmssZonalUpgradeMode(VmssZonalUpgradeMode vmssZonalUpgradeMode);
         }
+
         /** The stage of the Cluster definition allowing to specify infrastructureServiceManager. */
         interface WithInfrastructureServiceManager {
             /**
@@ -723,6 +752,7 @@ public interface Cluster {
              */
             WithCreate withInfrastructureServiceManager(Boolean infrastructureServiceManager);
         }
+
         /** The stage of the Cluster definition allowing to specify upgradeWave. */
         interface WithUpgradeWave {
             /**
@@ -735,6 +765,7 @@ public interface Cluster {
              */
             WithCreate withUpgradeWave(ClusterUpgradeCadence upgradeWave);
         }
+
         /** The stage of the Cluster definition allowing to specify upgradePauseStartTimestampUtc. */
         interface WithUpgradePauseStartTimestampUtc {
             /**
@@ -747,6 +778,7 @@ public interface Cluster {
              */
             WithCreate withUpgradePauseStartTimestampUtc(OffsetDateTime upgradePauseStartTimestampUtc);
         }
+
         /** The stage of the Cluster definition allowing to specify upgradePauseEndTimestampUtc. */
         interface WithUpgradePauseEndTimestampUtc {
             /**
@@ -759,6 +791,7 @@ public interface Cluster {
              */
             WithCreate withUpgradePauseEndTimestampUtc(OffsetDateTime upgradePauseEndTimestampUtc);
         }
+
         /** The stage of the Cluster definition allowing to specify waveUpgradePaused. */
         interface WithWaveUpgradePaused {
             /**
@@ -770,6 +803,7 @@ public interface Cluster {
              */
             WithCreate withWaveUpgradePaused(Boolean waveUpgradePaused);
         }
+
         /** The stage of the Cluster definition allowing to specify notifications. */
         interface WithNotifications {
             /**
@@ -781,6 +815,7 @@ public interface Cluster {
             WithCreate withNotifications(List<Notification> notifications);
         }
     }
+
     /**
      * Begins update for the Cluster resource.
      *
@@ -828,6 +863,7 @@ public interface Cluster {
          */
         Cluster apply(Context context);
     }
+
     /** The Cluster update stages. */
     interface UpdateStages {
         /** The stage of the Cluster update allowing to specify tags. */
@@ -840,6 +876,7 @@ public interface Cluster {
              */
             Update withTags(Map<String, String> tags);
         }
+
         /** The stage of the Cluster update allowing to specify addOnFeatures. */
         interface WithAddOnFeatures {
             /**
@@ -850,6 +887,7 @@ public interface Cluster {
              */
             Update withAddOnFeatures(List<AddOnFeatures> addOnFeatures);
         }
+
         /** The stage of the Cluster update allowing to specify certificate. */
         interface WithCertificate {
             /**
@@ -864,6 +902,7 @@ public interface Cluster {
              */
             Update withCertificate(CertificateDescription certificate);
         }
+
         /** The stage of the Cluster update allowing to specify certificateCommonNames. */
         interface WithCertificateCommonNames {
             /**
@@ -876,6 +915,7 @@ public interface Cluster {
              */
             Update withCertificateCommonNames(ServerCertificateCommonNames certificateCommonNames);
         }
+
         /** The stage of the Cluster update allowing to specify clientCertificateCommonNames. */
         interface WithClientCertificateCommonNames {
             /**
@@ -888,6 +928,7 @@ public interface Cluster {
              */
             Update withClientCertificateCommonNames(List<ClientCertificateCommonName> clientCertificateCommonNames);
         }
+
         /** The stage of the Cluster update allowing to specify clientCertificateThumbprints. */
         interface WithClientCertificateThumbprints {
             /**
@@ -900,22 +941,26 @@ public interface Cluster {
              */
             Update withClientCertificateThumbprints(List<ClientCertificateThumbprint> clientCertificateThumbprints);
         }
+
         /** The stage of the Cluster update allowing to specify clusterCodeVersion. */
         interface WithClusterCodeVersion {
             /**
              * Specifies the clusterCodeVersion property: The Service Fabric runtime version of the cluster. This
              * property can only by set the user when **upgradeMode** is set to 'Manual'. To get list of available
-             * Service Fabric versions for new clusters use [ClusterVersion API](./ClusterVersion.md). To get the list
-             * of available version for existing clusters use **availableClusterVersions**..
+             * Service Fabric versions for new clusters use [ClusterVersion
+             * API](https://learn.microsoft.com/rest/api/servicefabric/cluster-versions/list). To get the list of
+             * available version for existing clusters use **availableClusterVersions**..
              *
              * @param clusterCodeVersion The Service Fabric runtime version of the cluster. This property can only by
              *     set the user when **upgradeMode** is set to 'Manual'. To get list of available Service Fabric
-             *     versions for new clusters use [ClusterVersion API](./ClusterVersion.md). To get the list of available
-             *     version for existing clusters use **availableClusterVersions**.
+             *     versions for new clusters use [ClusterVersion
+             *     API](https://learn.microsoft.com/rest/api/servicefabric/cluster-versions/list). To get the list of
+             *     available version for existing clusters use **availableClusterVersions**.
              * @return the next definition stage.
              */
             Update withClusterCodeVersion(String clusterCodeVersion);
         }
+
         /** The stage of the Cluster update allowing to specify eventStoreServiceEnabled. */
         interface WithEventStoreServiceEnabled {
             /**
@@ -926,6 +971,7 @@ public interface Cluster {
              */
             Update withEventStoreServiceEnabled(Boolean eventStoreServiceEnabled);
         }
+
         /** The stage of the Cluster update allowing to specify fabricSettings. */
         interface WithFabricSettings {
             /**
@@ -938,6 +984,7 @@ public interface Cluster {
              */
             Update withFabricSettings(List<SettingsSectionDescription> fabricSettings);
         }
+
         /** The stage of the Cluster update allowing to specify nodeTypes. */
         interface WithNodeTypes {
             /**
@@ -949,6 +996,7 @@ public interface Cluster {
              */
             Update withNodeTypes(List<NodeTypeDescription> nodeTypes);
         }
+
         /** The stage of the Cluster update allowing to specify reliabilityLevel. */
         interface WithReliabilityLevel {
             /**
@@ -973,6 +1021,7 @@ public interface Cluster {
              */
             Update withReliabilityLevel(ReliabilityLevel reliabilityLevel);
         }
+
         /** The stage of the Cluster update allowing to specify reverseProxyCertificate. */
         interface WithReverseProxyCertificate {
             /**
@@ -983,6 +1032,7 @@ public interface Cluster {
              */
             Update withReverseProxyCertificate(CertificateDescription reverseProxyCertificate);
         }
+
         /** The stage of the Cluster update allowing to specify upgradeDescription. */
         interface WithUpgradeDescription {
             /**
@@ -993,6 +1043,7 @@ public interface Cluster {
              */
             Update withUpgradeDescription(ClusterUpgradePolicy upgradeDescription);
         }
+
         /** The stage of the Cluster update allowing to specify applicationTypeVersionsCleanupPolicy. */
         interface WithApplicationTypeVersionsCleanupPolicy {
             /**
@@ -1005,6 +1056,7 @@ public interface Cluster {
             Update withApplicationTypeVersionsCleanupPolicy(
                 ApplicationTypeVersionsCleanupPolicy applicationTypeVersionsCleanupPolicy);
         }
+
         /** The stage of the Cluster update allowing to specify upgradeMode. */
         interface WithUpgradeMode {
             /**
@@ -1016,6 +1068,7 @@ public interface Cluster {
              */
             Update withUpgradeMode(UpgradeMode upgradeMode);
         }
+
         /** The stage of the Cluster update allowing to specify sfZonalUpgradeMode. */
         interface WithSfZonalUpgradeMode {
             /**
@@ -1030,6 +1083,7 @@ public interface Cluster {
              */
             Update withSfZonalUpgradeMode(SfZonalUpgradeMode sfZonalUpgradeMode);
         }
+
         /** The stage of the Cluster update allowing to specify vmssZonalUpgradeMode. */
         interface WithVmssZonalUpgradeMode {
             /**
@@ -1042,6 +1096,7 @@ public interface Cluster {
              */
             Update withVmssZonalUpgradeMode(VmssZonalUpgradeMode vmssZonalUpgradeMode);
         }
+
         /** The stage of the Cluster update allowing to specify infrastructureServiceManager. */
         interface WithInfrastructureServiceManager {
             /**
@@ -1053,6 +1108,7 @@ public interface Cluster {
              */
             Update withInfrastructureServiceManager(Boolean infrastructureServiceManager);
         }
+
         /** The stage of the Cluster update allowing to specify upgradeWave. */
         interface WithUpgradeWave {
             /**
@@ -1065,6 +1121,7 @@ public interface Cluster {
              */
             Update withUpgradeWave(ClusterUpgradeCadence upgradeWave);
         }
+
         /** The stage of the Cluster update allowing to specify upgradePauseStartTimestampUtc. */
         interface WithUpgradePauseStartTimestampUtc {
             /**
@@ -1077,6 +1134,7 @@ public interface Cluster {
              */
             Update withUpgradePauseStartTimestampUtc(OffsetDateTime upgradePauseStartTimestampUtc);
         }
+
         /** The stage of the Cluster update allowing to specify upgradePauseEndTimestampUtc. */
         interface WithUpgradePauseEndTimestampUtc {
             /**
@@ -1089,6 +1147,7 @@ public interface Cluster {
              */
             Update withUpgradePauseEndTimestampUtc(OffsetDateTime upgradePauseEndTimestampUtc);
         }
+
         /** The stage of the Cluster update allowing to specify waveUpgradePaused. */
         interface WithWaveUpgradePaused {
             /**
@@ -1100,6 +1159,7 @@ public interface Cluster {
              */
             Update withWaveUpgradePaused(Boolean waveUpgradePaused);
         }
+
         /** The stage of the Cluster update allowing to specify notifications. */
         interface WithNotifications {
             /**
@@ -1111,6 +1171,7 @@ public interface Cluster {
             Update withNotifications(List<Notification> notifications);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

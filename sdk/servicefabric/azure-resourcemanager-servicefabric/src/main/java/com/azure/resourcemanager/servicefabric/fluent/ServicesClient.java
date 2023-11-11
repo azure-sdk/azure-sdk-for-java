@@ -6,12 +6,12 @@ package com.azure.resourcemanager.servicefabric.fluent;
 
 import com.azure.core.annotation.ReturnType;
 import com.azure.core.annotation.ServiceMethod;
+import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.servicefabric.fluent.models.ServiceResourceInner;
-import com.azure.resourcemanager.servicefabric.fluent.models.ServiceResourceListInner;
 import com.azure.resourcemanager.servicefabric.models.ServiceResourceUpdate;
 
 /** An instance of this class provides access to all the operations defined in ServicesClient. */
@@ -328,16 +328,14 @@ public interface ServicesClient {
      * @param resourceGroupName The name of the resource group.
      * @param clusterName The name of the cluster resource.
      * @param applicationName The name of the application resource.
-     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return all service resources created or in the process of being created in the Service Fabric application
-     *     resource along with {@link Response}.
+     *     resource as paginated response with {@link PagedIterable}.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<ServiceResourceListInner> listWithResponse(
-        String resourceGroupName, String clusterName, String applicationName, Context context);
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<ServiceResourceInner> list(String resourceGroupName, String clusterName, String applicationName);
 
     /**
      * Gets the list of service resources created in the specified Service Fabric application resource.
@@ -348,12 +346,14 @@ public interface ServicesClient {
      * @param resourceGroupName The name of the resource group.
      * @param clusterName The name of the cluster resource.
      * @param applicationName The name of the application resource.
+     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return all service resources created or in the process of being created in the Service Fabric application
-     *     resource.
+     *     resource as paginated response with {@link PagedIterable}.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    ServiceResourceListInner list(String resourceGroupName, String clusterName, String applicationName);
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<ServiceResourceInner> list(
+        String resourceGroupName, String clusterName, String applicationName, Context context);
 }

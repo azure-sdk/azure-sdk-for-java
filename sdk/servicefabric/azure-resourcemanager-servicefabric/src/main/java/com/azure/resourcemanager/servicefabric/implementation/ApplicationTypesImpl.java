@@ -4,15 +4,14 @@
 
 package com.azure.resourcemanager.servicefabric.implementation;
 
+import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.servicefabric.fluent.ApplicationTypesClient;
 import com.azure.resourcemanager.servicefabric.fluent.models.ApplicationTypeResourceInner;
-import com.azure.resourcemanager.servicefabric.fluent.models.ApplicationTypeResourceListInner;
 import com.azure.resourcemanager.servicefabric.models.ApplicationTypeResource;
-import com.azure.resourcemanager.servicefabric.models.ApplicationTypeResourceList;
 import com.azure.resourcemanager.servicefabric.models.ApplicationTypes;
 
 public final class ApplicationTypesImpl implements ApplicationTypes {
@@ -62,28 +61,15 @@ public final class ApplicationTypesImpl implements ApplicationTypes {
         this.serviceClient().delete(resourceGroupName, clusterName, applicationTypeName, context);
     }
 
-    public Response<ApplicationTypeResourceList> listWithResponse(
-        String resourceGroupName, String clusterName, Context context) {
-        Response<ApplicationTypeResourceListInner> inner =
-            this.serviceClient().listWithResponse(resourceGroupName, clusterName, context);
-        if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
-                new ApplicationTypeResourceListImpl(inner.getValue(), this.manager()));
-        } else {
-            return null;
-        }
+    public PagedIterable<ApplicationTypeResource> list(String resourceGroupName, String clusterName) {
+        PagedIterable<ApplicationTypeResourceInner> inner = this.serviceClient().list(resourceGroupName, clusterName);
+        return Utils.mapPage(inner, inner1 -> new ApplicationTypeResourceImpl(inner1, this.manager()));
     }
 
-    public ApplicationTypeResourceList list(String resourceGroupName, String clusterName) {
-        ApplicationTypeResourceListInner inner = this.serviceClient().list(resourceGroupName, clusterName);
-        if (inner != null) {
-            return new ApplicationTypeResourceListImpl(inner, this.manager());
-        } else {
-            return null;
-        }
+    public PagedIterable<ApplicationTypeResource> list(String resourceGroupName, String clusterName, Context context) {
+        PagedIterable<ApplicationTypeResourceInner> inner =
+            this.serviceClient().list(resourceGroupName, clusterName, context);
+        return Utils.mapPage(inner, inner1 -> new ApplicationTypeResourceImpl(inner1, this.manager()));
     }
 
     public ApplicationTypeResource getById(String id) {

@@ -4,16 +4,15 @@
 
 package com.azure.resourcemanager.servicefabric.implementation;
 
+import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.servicefabric.fluent.ClustersClient;
 import com.azure.resourcemanager.servicefabric.fluent.models.ClusterInner;
-import com.azure.resourcemanager.servicefabric.fluent.models.ClusterListResultInner;
 import com.azure.resourcemanager.servicefabric.fluent.models.UpgradableVersionPathResultInner;
 import com.azure.resourcemanager.servicefabric.models.Cluster;
-import com.azure.resourcemanager.servicefabric.models.ClusterListResult;
 import com.azure.resourcemanager.servicefabric.models.Clusters;
 import com.azure.resourcemanager.servicefabric.models.UpgradableVersionPathResult;
 import com.azure.resourcemanager.servicefabric.models.UpgradableVersionsDescription;
@@ -64,49 +63,24 @@ public final class ClustersImpl implements Clusters {
         this.serviceClient().delete(resourceGroupName, clusterName);
     }
 
-    public Response<ClusterListResult> listByResourceGroupWithResponse(String resourceGroupName, Context context) {
-        Response<ClusterListResultInner> inner =
-            this.serviceClient().listByResourceGroupWithResponse(resourceGroupName, context);
-        if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
-                new ClusterListResultImpl(inner.getValue(), this.manager()));
-        } else {
-            return null;
-        }
+    public PagedIterable<Cluster> listByResourceGroup(String resourceGroupName) {
+        PagedIterable<ClusterInner> inner = this.serviceClient().listByResourceGroup(resourceGroupName);
+        return Utils.mapPage(inner, inner1 -> new ClusterImpl(inner1, this.manager()));
     }
 
-    public ClusterListResult listByResourceGroup(String resourceGroupName) {
-        ClusterListResultInner inner = this.serviceClient().listByResourceGroup(resourceGroupName);
-        if (inner != null) {
-            return new ClusterListResultImpl(inner, this.manager());
-        } else {
-            return null;
-        }
+    public PagedIterable<Cluster> listByResourceGroup(String resourceGroupName, Context context) {
+        PagedIterable<ClusterInner> inner = this.serviceClient().listByResourceGroup(resourceGroupName, context);
+        return Utils.mapPage(inner, inner1 -> new ClusterImpl(inner1, this.manager()));
     }
 
-    public Response<ClusterListResult> listWithResponse(Context context) {
-        Response<ClusterListResultInner> inner = this.serviceClient().listWithResponse(context);
-        if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
-                new ClusterListResultImpl(inner.getValue(), this.manager()));
-        } else {
-            return null;
-        }
+    public PagedIterable<Cluster> list() {
+        PagedIterable<ClusterInner> inner = this.serviceClient().list();
+        return Utils.mapPage(inner, inner1 -> new ClusterImpl(inner1, this.manager()));
     }
 
-    public ClusterListResult list() {
-        ClusterListResultInner inner = this.serviceClient().list();
-        if (inner != null) {
-            return new ClusterListResultImpl(inner, this.manager());
-        } else {
-            return null;
-        }
+    public PagedIterable<Cluster> list(Context context) {
+        PagedIterable<ClusterInner> inner = this.serviceClient().list(context);
+        return Utils.mapPage(inner, inner1 -> new ClusterImpl(inner1, this.manager()));
     }
 
     public Response<UpgradableVersionPathResult> listUpgradableVersionsWithResponse(

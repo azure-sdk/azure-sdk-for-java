@@ -19,6 +19,10 @@ import com.azure.core.annotation.ReturnType;
 import com.azure.core.annotation.ServiceInterface;
 import com.azure.core.annotation.ServiceMethod;
 import com.azure.core.annotation.UnexpectedResponseExceptionType;
+import com.azure.core.http.rest.PagedFlux;
+import com.azure.core.http.rest.PagedIterable;
+import com.azure.core.http.rest.PagedResponse;
+import com.azure.core.http.rest.PagedResponseBase;
 import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
@@ -29,7 +33,7 @@ import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.servicefabric.fluent.ApplicationTypeVersionsClient;
 import com.azure.resourcemanager.servicefabric.fluent.models.ApplicationTypeVersionResourceInner;
-import com.azure.resourcemanager.servicefabric.fluent.models.ApplicationTypeVersionResourceListInner;
+import com.azure.resourcemanager.servicefabric.models.ApplicationTypeVersionResourceList;
 import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -63,8 +67,7 @@ public final class ApplicationTypeVersionsClientImpl implements ApplicationTypeV
     public interface ApplicationTypeVersionsService {
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceFabric"
-                + "/clusters/{clusterName}/applicationTypes/{applicationTypeName}/versions/{version}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceFabric/clusters/{clusterName}/applicationTypes/{applicationTypeName}/versions/{version}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ApplicationTypeVersionResourceInner>> get(
@@ -80,8 +83,7 @@ public final class ApplicationTypeVersionsClientImpl implements ApplicationTypeV
 
         @Headers({"Content-Type: application/json"})
         @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceFabric"
-                + "/clusters/{clusterName}/applicationTypes/{applicationTypeName}/versions/{version}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceFabric/clusters/{clusterName}/applicationTypes/{applicationTypeName}/versions/{version}")
         @ExpectedResponses({202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
@@ -98,8 +100,7 @@ public final class ApplicationTypeVersionsClientImpl implements ApplicationTypeV
 
         @Headers({"Content-Type: application/json"})
         @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceFabric"
-                + "/clusters/{clusterName}/applicationTypes/{applicationTypeName}/versions/{version}")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceFabric/clusters/{clusterName}/applicationTypes/{applicationTypeName}/versions/{version}")
         @ExpectedResponses({202, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(
@@ -115,17 +116,26 @@ public final class ApplicationTypeVersionsClientImpl implements ApplicationTypeV
 
         @Headers({"Content-Type: application/json"})
         @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceFabric"
-                + "/clusters/{clusterName}/applicationTypes/{applicationTypeName}/versions")
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceFabric/clusters/{clusterName}/applicationTypes/{applicationTypeName}/versions")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ApplicationTypeVersionResourceListInner>> list(
+        Mono<Response<ApplicationTypeVersionResourceList>> list(
             @HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("clusterName") String clusterName,
             @PathParam("applicationTypeName") String applicationTypeName,
             @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
+        @Get("{nextLink}")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<ApplicationTypeVersionResourceList>> listNext(
+            @PathParam(value = "nextLink", encoded = true) String nextLink,
+            @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept,
             Context context);
     }
@@ -1028,10 +1038,10 @@ public final class ApplicationTypeVersionsClientImpl implements ApplicationTypeV
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return all application type version resources created or in the process of being created in the Service Fabric
-     *     application type name resource along with {@link Response} on successful completion of {@link Mono}.
+     *     application type name resource along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<ApplicationTypeVersionResourceListInner>> listWithResponseAsync(
+    private Mono<PagedResponse<ApplicationTypeVersionResourceInner>> listSinglePageAsync(
         String resourceGroupName, String clusterName, String applicationTypeName) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -1070,6 +1080,15 @@ public final class ApplicationTypeVersionsClientImpl implements ApplicationTypeV
                             this.client.getApiVersion(),
                             accept,
                             context))
+            .<PagedResponse<ApplicationTypeVersionResourceInner>>map(
+                res ->
+                    new PagedResponseBase<>(
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink(),
+                        null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -1088,10 +1107,10 @@ public final class ApplicationTypeVersionsClientImpl implements ApplicationTypeV
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return all application type version resources created or in the process of being created in the Service Fabric
-     *     application type name resource along with {@link Response} on successful completion of {@link Mono}.
+     *     application type name resource along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<ApplicationTypeVersionResourceListInner>> listWithResponseAsync(
+    private Mono<PagedResponse<ApplicationTypeVersionResourceInner>> listSinglePageAsync(
         String resourceGroupName, String clusterName, String applicationTypeName, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -1127,7 +1146,16 @@ public final class ApplicationTypeVersionsClientImpl implements ApplicationTypeV
                 applicationTypeName,
                 this.client.getApiVersion(),
                 accept,
-                context);
+                context)
+            .map(
+                res ->
+                    new PagedResponseBase<>(
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink(),
+                        null));
     }
 
     /**
@@ -1144,13 +1172,14 @@ public final class ApplicationTypeVersionsClientImpl implements ApplicationTypeV
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return all application type version resources created or in the process of being created in the Service Fabric
-     *     application type name resource on successful completion of {@link Mono}.
+     *     application type name resource as paginated response with {@link PagedFlux}.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ApplicationTypeVersionResourceListInner> listAsync(
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<ApplicationTypeVersionResourceInner> listAsync(
         String resourceGroupName, String clusterName, String applicationTypeName) {
-        return listWithResponseAsync(resourceGroupName, clusterName, applicationTypeName)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+        return new PagedFlux<>(
+            () -> listSinglePageAsync(resourceGroupName, clusterName, applicationTypeName),
+            nextLink -> listNextSinglePageAsync(nextLink));
     }
 
     /**
@@ -1168,12 +1197,14 @@ public final class ApplicationTypeVersionsClientImpl implements ApplicationTypeV
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return all application type version resources created or in the process of being created in the Service Fabric
-     *     application type name resource along with {@link Response}.
+     *     application type name resource as paginated response with {@link PagedFlux}.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApplicationTypeVersionResourceListInner> listWithResponse(
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<ApplicationTypeVersionResourceInner> listAsync(
         String resourceGroupName, String clusterName, String applicationTypeName, Context context) {
-        return listWithResponseAsync(resourceGroupName, clusterName, applicationTypeName, context).block();
+        return new PagedFlux<>(
+            () -> listSinglePageAsync(resourceGroupName, clusterName, applicationTypeName, context),
+            nextLink -> listNextSinglePageAsync(nextLink, context));
     }
 
     /**
@@ -1190,11 +1221,110 @@ public final class ApplicationTypeVersionsClientImpl implements ApplicationTypeV
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return all application type version resources created or in the process of being created in the Service Fabric
-     *     application type name resource.
+     *     application type name resource as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<ApplicationTypeVersionResourceInner> list(
+        String resourceGroupName, String clusterName, String applicationTypeName) {
+        return new PagedIterable<>(listAsync(resourceGroupName, clusterName, applicationTypeName));
+    }
+
+    /**
+     * Gets the list of application type version resources created in the specified Service Fabric application type name
+     * resource.
+     *
+     * <p>Gets all application type version resources created or in the process of being created in the Service Fabric
+     * application type name resource.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param clusterName The name of the cluster resource.
+     * @param applicationTypeName The name of the application type name resource.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return all application type version resources created or in the process of being created in the Service Fabric
+     *     application type name resource as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<ApplicationTypeVersionResourceInner> list(
+        String resourceGroupName, String clusterName, String applicationTypeName, Context context) {
+        return new PagedIterable<>(listAsync(resourceGroupName, clusterName, applicationTypeName, context));
+    }
+
+    /**
+     * Get the next page of items.
+     *
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of application type version resources for the specified application type name resource along
+     *     with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApplicationTypeVersionResourceListInner list(
-        String resourceGroupName, String clusterName, String applicationTypeName) {
-        return listWithResponse(resourceGroupName, clusterName, applicationTypeName, Context.NONE).getValue();
+    private Mono<PagedResponse<ApplicationTypeVersionResourceInner>> listNextSinglePageAsync(String nextLink) {
+        if (nextLink == null) {
+            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.listNext(nextLink, this.client.getEndpoint(), accept, context))
+            .<PagedResponse<ApplicationTypeVersionResourceInner>>map(
+                res ->
+                    new PagedResponseBase<>(
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink(),
+                        null))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Get the next page of items.
+     *
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of application type version resources for the specified application type name resource along
+     *     with {@link PagedResponse} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<ApplicationTypeVersionResourceInner>> listNextSinglePageAsync(
+        String nextLink, Context context) {
+        if (nextLink == null) {
+            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .listNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(
+                res ->
+                    new PagedResponseBase<>(
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink(),
+                        null));
     }
 }
