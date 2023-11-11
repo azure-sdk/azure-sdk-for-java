@@ -6,6 +6,7 @@ package com.azure.resourcemanager.sphere.implementation;
 
 import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.sphere.fluent.models.ProductInner;
 import com.azure.resourcemanager.sphere.models.CountDeviceResponse;
@@ -29,6 +30,10 @@ public final class ProductImpl implements Product, Product.Definition, Product.U
 
     public String type() {
         return this.innerModel().type();
+    }
+
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public String description() {

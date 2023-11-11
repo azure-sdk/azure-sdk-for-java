@@ -12,7 +12,7 @@ import java.time.OffsetDateTime;
 
 /** The properties of certificate. */
 @Immutable
-public class CertificateProperties {
+public final class CertificateProperties {
     /*
      * The certificate as a UTF-8 encoded base 64 string.
      */

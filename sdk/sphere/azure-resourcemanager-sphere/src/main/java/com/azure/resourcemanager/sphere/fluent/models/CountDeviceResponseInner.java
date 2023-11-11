@@ -5,19 +5,38 @@
 package com.azure.resourcemanager.sphere.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.resourcemanager.sphere.models.CountElementsResponse;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Response to the action call for count devices in a catalog. */
 @Fluent
-public final class CountDeviceResponseInner extends CountElementsResponse {
+public final class CountDeviceResponseInner {
+    /*
+     * Number of children resources in parent resource.
+     */
+    @JsonProperty(value = "value", required = true)
+    private int value;
+
     /** Creates an instance of CountDeviceResponseInner class. */
     public CountDeviceResponseInner() {
     }
 
-    /** {@inheritDoc} */
-    @Override
+    /**
+     * Get the value property: Number of children resources in parent resource.
+     *
+     * @return the value value.
+     */
+    public int value() {
+        return this.value;
+    }
+
+    /**
+     * Set the value property: Number of children resources in parent resource.
+     *
+     * @param value the value value to set.
+     * @return the CountDeviceResponseInner object itself.
+     */
     public CountDeviceResponseInner withValue(int value) {
-        super.withValue(value);
+        this.value = value;
         return this;
     }
 
@@ -26,8 +45,6 @@ public final class CountDeviceResponseInner extends CountElementsResponse {
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
-    @Override
     public void validate() {
-        super.validate();
     }
 }
