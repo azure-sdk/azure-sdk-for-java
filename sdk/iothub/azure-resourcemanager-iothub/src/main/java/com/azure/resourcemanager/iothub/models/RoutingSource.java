@@ -8,13 +8,13 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The source that the routing rule is to be applied to, such as DeviceMessages. */
+/** The source to which the routing rule is to be applied to. For example, DeviceMessages. */
 public final class RoutingSource extends ExpandableStringEnum<RoutingSource> {
-    /** Static value Invalid for RoutingSource. */
-    public static final RoutingSource INVALID = fromString("Invalid");
-
     /** Static value DeviceMessages for RoutingSource. */
     public static final RoutingSource DEVICE_MESSAGES = fromString("DeviceMessages");
+
+    /** Static value Invalid for RoutingSource. */
+    public static final RoutingSource INVALID = fromString("Invalid");
 
     /** Static value TwinChangeEvents for RoutingSource. */
     public static final RoutingSource TWIN_CHANGE_EVENTS = fromString("TwinChangeEvents");

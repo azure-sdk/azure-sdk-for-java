@@ -20,7 +20,7 @@ public final class RouteProperties {
     private String name;
 
     /*
-     * The source that the routing rule is to be applied to, such as DeviceMessages.
+     * The source to which the routing rule is to be applied to. For example, DeviceMessages
      */
     @JsonProperty(value = "source", required = true)
     private RoutingSource source;
@@ -72,7 +72,7 @@ public final class RouteProperties {
     }
 
     /**
-     * Get the source property: The source that the routing rule is to be applied to, such as DeviceMessages.
+     * Get the source property: The source to which the routing rule is to be applied to. For example, DeviceMessages.
      *
      * @return the source value.
      */
@@ -81,7 +81,7 @@ public final class RouteProperties {
     }
 
     /**
-     * Set the source property: The source that the routing rule is to be applied to, such as DeviceMessages.
+     * Set the source property: The source to which the routing rule is to be applied to. For example, DeviceMessages.
      *
      * @param source the source value to set.
      * @return the RouteProperties object itself.

@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class TestAllRoutesInput {
     /*
-     * Routing source
+     * The source to which the routing rule is to be applied to. For example, DeviceMessages
      */
     @JsonProperty(value = "routingSource")
     private RoutingSource routingSource;
@@ -33,7 +33,8 @@ public final class TestAllRoutesInput {
     }
 
     /**
-     * Get the routingSource property: Routing source.
+     * Get the routingSource property: The source to which the routing rule is to be applied to. For example,
+     * DeviceMessages.
      *
      * @return the routingSource value.
      */
@@ -42,7 +43,8 @@ public final class TestAllRoutesInput {
     }
 
     /**
-     * Set the routingSource property: Routing source.
+     * Set the routingSource property: The source to which the routing rule is to be applied to. For example,
+     * DeviceMessages.
      *
      * @param routingSource the routingSource value to set.
      * @return the TestAllRoutesInput object itself.
