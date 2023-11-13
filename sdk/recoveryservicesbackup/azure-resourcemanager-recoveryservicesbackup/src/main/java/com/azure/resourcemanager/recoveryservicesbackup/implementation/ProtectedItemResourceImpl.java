@@ -95,15 +95,14 @@ public final class ProtectedItemResourceImpl
             serviceManager
                 .serviceClient()
                 .getProtectedItems()
-                .createOrUpdateWithResponse(
+                .createOrUpdate(
                     vaultName,
                     resourceGroupName,
                     fabricName,
                     containerName,
                     protectedItemName,
                     this.innerModel(),
-                    Context.NONE)
-                .getValue();
+                    Context.NONE);
         return this;
     }
 
@@ -112,15 +111,14 @@ public final class ProtectedItemResourceImpl
             serviceManager
                 .serviceClient()
                 .getProtectedItems()
-                .createOrUpdateWithResponse(
+                .createOrUpdate(
                     vaultName,
                     resourceGroupName,
                     fabricName,
                     containerName,
                     protectedItemName,
                     this.innerModel(),
-                    context)
-                .getValue();
+                    context);
         return this;
     }
 
@@ -140,15 +138,14 @@ public final class ProtectedItemResourceImpl
             serviceManager
                 .serviceClient()
                 .getProtectedItems()
-                .createOrUpdateWithResponse(
+                .createOrUpdate(
                     vaultName,
                     resourceGroupName,
                     fabricName,
                     containerName,
                     protectedItemName,
                     this.innerModel(),
-                    Context.NONE)
-                .getValue();
+                    Context.NONE);
         return this;
     }
 
@@ -157,15 +154,14 @@ public final class ProtectedItemResourceImpl
             serviceManager
                 .serviceClient()
                 .getProtectedItems()
-                .createOrUpdateWithResponse(
+                .createOrUpdate(
                     vaultName,
                     resourceGroupName,
                     fabricName,
                     containerName,
                     protectedItemName,
                     this.innerModel(),
-                    context)
-                .getValue();
+                    context);
         return this;
     }
 

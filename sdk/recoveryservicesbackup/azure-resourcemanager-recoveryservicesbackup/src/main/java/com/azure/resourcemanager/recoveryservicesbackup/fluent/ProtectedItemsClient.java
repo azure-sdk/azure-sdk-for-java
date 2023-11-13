@@ -7,7 +7,9 @@ package com.azure.resourcemanager.recoveryservicesbackup.fluent;
 import com.azure.core.annotation.ReturnType;
 import com.azure.core.annotation.ServiceMethod;
 import com.azure.core.http.rest.Response;
+import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
+import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.recoveryservicesbackup.fluent.models.ProtectedItemResourceInner;
 
 /** An instance of this class provides access to all the operations defined in ProtectedItemsClient. */
@@ -66,14 +68,38 @@ public interface ProtectedItemsClient {
      * @param containerName Container name associated with the backup item.
      * @param protectedItemName Item name to be backed up.
      * @param parameters resource backed up item.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of base class for backup items.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<ProtectedItemResourceInner>, ProtectedItemResourceInner> beginCreateOrUpdate(
+        String vaultName,
+        String resourceGroupName,
+        String fabricName,
+        String containerName,
+        String protectedItemName,
+        ProtectedItemResourceInner parameters);
+
+    /**
+     * Enables backup of an item or to modifies the backup policy information of an already backed up item. This is an
+     * asynchronous operation. To know the status of the operation, call the GetItemOperationResult API.
+     *
+     * @param vaultName The name of the recovery services vault.
+     * @param resourceGroupName The name of the resource group where the recovery services vault is present.
+     * @param fabricName Fabric name associated with the backup item.
+     * @param containerName Container name associated with the backup item.
+     * @param protectedItemName Item name to be backed up.
+     * @param parameters resource backed up item.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return base class for backup items along with {@link Response}.
+     * @return the {@link SyncPoller} for polling of base class for backup items.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<ProtectedItemResourceInner> createOrUpdateWithResponse(
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<ProtectedItemResourceInner>, ProtectedItemResourceInner> beginCreateOrUpdate(
         String vaultName,
         String resourceGroupName,
         String fabricName,
@@ -107,6 +133,50 @@ public interface ProtectedItemsClient {
         ProtectedItemResourceInner parameters);
 
     /**
+     * Enables backup of an item or to modifies the backup policy information of an already backed up item. This is an
+     * asynchronous operation. To know the status of the operation, call the GetItemOperationResult API.
+     *
+     * @param vaultName The name of the recovery services vault.
+     * @param resourceGroupName The name of the resource group where the recovery services vault is present.
+     * @param fabricName Fabric name associated with the backup item.
+     * @param containerName Container name associated with the backup item.
+     * @param protectedItemName Item name to be backed up.
+     * @param parameters resource backed up item.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return base class for backup items.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    ProtectedItemResourceInner createOrUpdate(
+        String vaultName,
+        String resourceGroupName,
+        String fabricName,
+        String containerName,
+        String protectedItemName,
+        ProtectedItemResourceInner parameters,
+        Context context);
+
+    /**
+     * Used to disable backup of an item within a container. This is an asynchronous operation. To know the status of
+     * the request, call the GetItemOperationResult API.
+     *
+     * @param vaultName The name of the recovery services vault.
+     * @param resourceGroupName The name of the resource group where the recovery services vault is present.
+     * @param fabricName Fabric name associated with the backed up item.
+     * @param containerName Container name associated with the backed up item.
+     * @param protectedItemName Backed up item to be deleted.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<Void>, Void> beginDelete(
+        String vaultName, String resourceGroupName, String fabricName, String containerName, String protectedItemName);
+
+    /**
      * Used to disable backup of an item within a container. This is an asynchronous operation. To know the status of
      * the request, call the GetItemOperationResult API.
      *
@@ -119,10 +189,10 @@ public interface ProtectedItemsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the {@link SyncPoller} for polling of long-running operation.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<Void> deleteWithResponse(
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<Void>, Void> beginDelete(
         String vaultName,
         String resourceGroupName,
         String fabricName,
@@ -146,4 +216,27 @@ public interface ProtectedItemsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     void delete(
         String vaultName, String resourceGroupName, String fabricName, String containerName, String protectedItemName);
+
+    /**
+     * Used to disable backup of an item within a container. This is an asynchronous operation. To know the status of
+     * the request, call the GetItemOperationResult API.
+     *
+     * @param vaultName The name of the recovery services vault.
+     * @param resourceGroupName The name of the resource group where the recovery services vault is present.
+     * @param fabricName Fabric name associated with the backed up item.
+     * @param containerName Container name associated with the backed up item.
+     * @param protectedItemName Backed up item to be deleted.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    void delete(
+        String vaultName,
+        String resourceGroupName,
+        String fabricName,
+        String containerName,
+        String protectedItemName,
+        Context context);
 }

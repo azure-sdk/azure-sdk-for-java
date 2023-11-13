@@ -62,21 +62,21 @@ public final class ProtectedItemsImpl implements ProtectedItems {
         }
     }
 
-    public Response<Void> deleteWithResponse(
+    public void delete(
+        String vaultName, String resourceGroupName, String fabricName, String containerName, String protectedItemName) {
+        this.serviceClient().delete(vaultName, resourceGroupName, fabricName, containerName, protectedItemName);
+    }
+
+    public void delete(
         String vaultName,
         String resourceGroupName,
         String fabricName,
         String containerName,
         String protectedItemName,
         Context context) {
-        return this
+        this
             .serviceClient()
-            .deleteWithResponse(vaultName, resourceGroupName, fabricName, containerName, protectedItemName, context);
-    }
-
-    public void delete(
-        String vaultName, String resourceGroupName, String fabricName, String containerName, String protectedItemName) {
-        this.serviceClient().delete(vaultName, resourceGroupName, fabricName, containerName, protectedItemName);
+            .delete(vaultName, resourceGroupName, fabricName, containerName, protectedItemName, context);
     }
 
     public ProtectedItemResource getById(String id) {
@@ -214,12 +214,10 @@ public final class ProtectedItemsImpl implements ProtectedItems {
                         String
                             .format("The resource ID '%s' is not valid. Missing path segment 'protectedItems'.", id)));
         }
-        this
-            .deleteWithResponse(
-                vaultName, resourceGroupName, fabricName, containerName, protectedItemName, Context.NONE);
+        this.delete(vaultName, resourceGroupName, fabricName, containerName, protectedItemName, Context.NONE);
     }
 
-    public Response<Void> deleteByIdWithResponse(String id, Context context) {
+    public void deleteByIdWithResponse(String id, Context context) {
         String vaultName = Utils.getValueFromIdByName(id, "vaults");
         if (vaultName == null) {
             throw LOGGER
@@ -260,8 +258,7 @@ public final class ProtectedItemsImpl implements ProtectedItems {
                         String
                             .format("The resource ID '%s' is not valid. Missing path segment 'protectedItems'.", id)));
         }
-        return this
-            .deleteWithResponse(vaultName, resourceGroupName, fabricName, containerName, protectedItemName, context);
+        this.delete(vaultName, resourceGroupName, fabricName, containerName, protectedItemName, context);
     }
 
     private ProtectedItemsClient serviceClient() {

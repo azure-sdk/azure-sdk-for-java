@@ -60,19 +60,12 @@ public interface ProtectedItems {
      * @param fabricName Fabric name associated with the backed up item.
      * @param containerName Container name associated with the backed up item.
      * @param protectedItemName Backed up item to be deleted.
-     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
      */
-    Response<Void> deleteWithResponse(
-        String vaultName,
-        String resourceGroupName,
-        String fabricName,
-        String containerName,
-        String protectedItemName,
-        Context context);
+    void delete(
+        String vaultName, String resourceGroupName, String fabricName, String containerName, String protectedItemName);
 
     /**
      * Used to disable backup of an item within a container. This is an asynchronous operation. To know the status of
@@ -83,12 +76,18 @@ public interface ProtectedItems {
      * @param fabricName Fabric name associated with the backed up item.
      * @param containerName Container name associated with the backed up item.
      * @param protectedItemName Backed up item to be deleted.
+     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     void delete(
-        String vaultName, String resourceGroupName, String fabricName, String containerName, String protectedItemName);
+        String vaultName,
+        String resourceGroupName,
+        String fabricName,
+        String containerName,
+        String protectedItemName,
+        Context context);
 
     /**
      * Provides the details of the backed up item. This is an asynchronous operation. To know the status of the
@@ -136,9 +135,8 @@ public interface ProtectedItems {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
      */
-    Response<Void> deleteByIdWithResponse(String id, Context context);
+    void deleteByIdWithResponse(String id, Context context);
 
     /**
      * Begins definition for a new ProtectedItemResource resource.

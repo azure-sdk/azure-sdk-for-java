@@ -49,14 +49,11 @@ public interface ProtectionContainers {
      * @param resourceGroupName The name of the resource group where the recovery services vault is present.
      * @param fabricName Name of the fabric where the container belongs.
      * @param containerName Name of the container which needs to be unregistered from the Recovery Services Vault.
-     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
      */
-    Response<Void> unregisterWithResponse(
-        String vaultName, String resourceGroupName, String fabricName, String containerName, Context context);
+    void unregister(String vaultName, String resourceGroupName, String fabricName, String containerName);
 
     /**
      * Unregisters the given container from your Recovery Services Vault. This is an asynchronous operation. To
@@ -67,11 +64,13 @@ public interface ProtectionContainers {
      * @param resourceGroupName The name of the resource group where the recovery services vault is present.
      * @param fabricName Name of the fabric where the container belongs.
      * @param containerName Name of the container which needs to be unregistered from the Recovery Services Vault.
+     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
-    void unregister(String vaultName, String resourceGroupName, String fabricName, String containerName);
+    void unregister(
+        String vaultName, String resourceGroupName, String fabricName, String containerName, Context context);
 
     /**
      * Inquires all the protectable items under the given container.

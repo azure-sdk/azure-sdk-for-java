@@ -22,10 +22,15 @@ import com.azure.core.annotation.UnexpectedResponseExceptionType;
 import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
+import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.polling.PollerFlux;
+import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.recoveryservicesbackup.fluent.ProtectedItemsClient;
 import com.azure.resourcemanager.recoveryservicesbackup.fluent.models.ProtectedItemResourceInner;
+import java.nio.ByteBuffer;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in ProtectedItemsClient. */
@@ -77,7 +82,7 @@ public final class ProtectedItemsClientImpl implements ProtectedItemsClient {
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupFabrics/{fabricName}/protectionContainers/{containerName}/protectedItems/{protectedItemName}")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ProtectedItemResourceInner>> createOrUpdate(
+        Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
             @PathParam("vaultName") String vaultName,
@@ -95,7 +100,7 @@ public final class ProtectedItemsClientImpl implements ProtectedItemsClient {
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupFabrics/{fabricName}/protectionContainers/{containerName}/protectedItems/{protectedItemName}")
         @ExpectedResponses({200, 202, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Void>> delete(
+        Mono<Response<Flux<ByteBuffer>>> delete(
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
             @PathParam("vaultName") String vaultName,
@@ -342,7 +347,7 @@ public final class ProtectedItemsClientImpl implements ProtectedItemsClient {
      * @return base class for backup items along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<ProtectedItemResourceInner>> createOrUpdateWithResponseAsync(
+    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
         String vaultName,
         String resourceGroupName,
         String fabricName,
@@ -420,7 +425,7 @@ public final class ProtectedItemsClientImpl implements ProtectedItemsClient {
      * @return base class for backup items along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<ProtectedItemResourceInner>> createOrUpdateWithResponseAsync(
+    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
         String vaultName,
         String resourceGroupName,
         String fabricName,
@@ -492,19 +497,27 @@ public final class ProtectedItemsClientImpl implements ProtectedItemsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return base class for backup items on successful completion of {@link Mono}.
+     * @return the {@link PollerFlux} for polling of base class for backup items.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ProtectedItemResourceInner> createOrUpdateAsync(
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<ProtectedItemResourceInner>, ProtectedItemResourceInner> beginCreateOrUpdateAsync(
         String vaultName,
         String resourceGroupName,
         String fabricName,
         String containerName,
         String protectedItemName,
         ProtectedItemResourceInner parameters) {
-        return createOrUpdateWithResponseAsync(
-                vaultName, resourceGroupName, fabricName, containerName, protectedItemName, parameters)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+        Mono<Response<Flux<ByteBuffer>>> mono =
+            createOrUpdateWithResponseAsync(
+                vaultName, resourceGroupName, fabricName, containerName, protectedItemName, parameters);
+        return this
+            .client
+            .<ProtectedItemResourceInner, ProtectedItemResourceInner>getLroResult(
+                mono,
+                this.client.getHttpPipeline(),
+                ProtectedItemResourceInner.class,
+                ProtectedItemResourceInner.class,
+                this.client.getContext());
     }
 
     /**
@@ -521,10 +534,10 @@ public final class ProtectedItemsClientImpl implements ProtectedItemsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return base class for backup items along with {@link Response}.
+     * @return the {@link PollerFlux} for polling of base class for backup items.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ProtectedItemResourceInner> createOrUpdateWithResponse(
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<ProtectedItemResourceInner>, ProtectedItemResourceInner> beginCreateOrUpdateAsync(
         String vaultName,
         String resourceGroupName,
         String fabricName,
@@ -532,9 +545,138 @@ public final class ProtectedItemsClientImpl implements ProtectedItemsClient {
         String protectedItemName,
         ProtectedItemResourceInner parameters,
         Context context) {
-        return createOrUpdateWithResponseAsync(
+        context = this.client.mergeContext(context);
+        Mono<Response<Flux<ByteBuffer>>> mono =
+            createOrUpdateWithResponseAsync(
+                vaultName, resourceGroupName, fabricName, containerName, protectedItemName, parameters, context);
+        return this
+            .client
+            .<ProtectedItemResourceInner, ProtectedItemResourceInner>getLroResult(
+                mono,
+                this.client.getHttpPipeline(),
+                ProtectedItemResourceInner.class,
+                ProtectedItemResourceInner.class,
+                context);
+    }
+
+    /**
+     * Enables backup of an item or to modifies the backup policy information of an already backed up item. This is an
+     * asynchronous operation. To know the status of the operation, call the GetItemOperationResult API.
+     *
+     * @param vaultName The name of the recovery services vault.
+     * @param resourceGroupName The name of the resource group where the recovery services vault is present.
+     * @param fabricName Fabric name associated with the backup item.
+     * @param containerName Container name associated with the backup item.
+     * @param protectedItemName Item name to be backed up.
+     * @param parameters resource backed up item.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of base class for backup items.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<ProtectedItemResourceInner>, ProtectedItemResourceInner> beginCreateOrUpdate(
+        String vaultName,
+        String resourceGroupName,
+        String fabricName,
+        String containerName,
+        String protectedItemName,
+        ProtectedItemResourceInner parameters) {
+        return this
+            .beginCreateOrUpdateAsync(
+                vaultName, resourceGroupName, fabricName, containerName, protectedItemName, parameters)
+            .getSyncPoller();
+    }
+
+    /**
+     * Enables backup of an item or to modifies the backup policy information of an already backed up item. This is an
+     * asynchronous operation. To know the status of the operation, call the GetItemOperationResult API.
+     *
+     * @param vaultName The name of the recovery services vault.
+     * @param resourceGroupName The name of the resource group where the recovery services vault is present.
+     * @param fabricName Fabric name associated with the backup item.
+     * @param containerName Container name associated with the backup item.
+     * @param protectedItemName Item name to be backed up.
+     * @param parameters resource backed up item.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of base class for backup items.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<ProtectedItemResourceInner>, ProtectedItemResourceInner> beginCreateOrUpdate(
+        String vaultName,
+        String resourceGroupName,
+        String fabricName,
+        String containerName,
+        String protectedItemName,
+        ProtectedItemResourceInner parameters,
+        Context context) {
+        return this
+            .beginCreateOrUpdateAsync(
                 vaultName, resourceGroupName, fabricName, containerName, protectedItemName, parameters, context)
-            .block();
+            .getSyncPoller();
+    }
+
+    /**
+     * Enables backup of an item or to modifies the backup policy information of an already backed up item. This is an
+     * asynchronous operation. To know the status of the operation, call the GetItemOperationResult API.
+     *
+     * @param vaultName The name of the recovery services vault.
+     * @param resourceGroupName The name of the resource group where the recovery services vault is present.
+     * @param fabricName Fabric name associated with the backup item.
+     * @param containerName Container name associated with the backup item.
+     * @param protectedItemName Item name to be backed up.
+     * @param parameters resource backed up item.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return base class for backup items on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<ProtectedItemResourceInner> createOrUpdateAsync(
+        String vaultName,
+        String resourceGroupName,
+        String fabricName,
+        String containerName,
+        String protectedItemName,
+        ProtectedItemResourceInner parameters) {
+        return beginCreateOrUpdateAsync(
+                vaultName, resourceGroupName, fabricName, containerName, protectedItemName, parameters)
+            .last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Enables backup of an item or to modifies the backup policy information of an already backed up item. This is an
+     * asynchronous operation. To know the status of the operation, call the GetItemOperationResult API.
+     *
+     * @param vaultName The name of the recovery services vault.
+     * @param resourceGroupName The name of the resource group where the recovery services vault is present.
+     * @param fabricName Fabric name associated with the backup item.
+     * @param containerName Container name associated with the backup item.
+     * @param protectedItemName Item name to be backed up.
+     * @param parameters resource backed up item.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return base class for backup items on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<ProtectedItemResourceInner> createOrUpdateAsync(
+        String vaultName,
+        String resourceGroupName,
+        String fabricName,
+        String containerName,
+        String protectedItemName,
+        ProtectedItemResourceInner parameters,
+        Context context) {
+        return beginCreateOrUpdateAsync(
+                vaultName, resourceGroupName, fabricName, containerName, protectedItemName, parameters, context)
+            .last()
+            .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
@@ -560,9 +702,39 @@ public final class ProtectedItemsClientImpl implements ProtectedItemsClient {
         String containerName,
         String protectedItemName,
         ProtectedItemResourceInner parameters) {
-        return createOrUpdateWithResponse(
-                vaultName, resourceGroupName, fabricName, containerName, protectedItemName, parameters, Context.NONE)
-            .getValue();
+        return createOrUpdateAsync(
+                vaultName, resourceGroupName, fabricName, containerName, protectedItemName, parameters)
+            .block();
+    }
+
+    /**
+     * Enables backup of an item or to modifies the backup policy information of an already backed up item. This is an
+     * asynchronous operation. To know the status of the operation, call the GetItemOperationResult API.
+     *
+     * @param vaultName The name of the recovery services vault.
+     * @param resourceGroupName The name of the resource group where the recovery services vault is present.
+     * @param fabricName Fabric name associated with the backup item.
+     * @param containerName Container name associated with the backup item.
+     * @param protectedItemName Item name to be backed up.
+     * @param parameters resource backed up item.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return base class for backup items.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ProtectedItemResourceInner createOrUpdate(
+        String vaultName,
+        String resourceGroupName,
+        String fabricName,
+        String containerName,
+        String protectedItemName,
+        ProtectedItemResourceInner parameters,
+        Context context) {
+        return createOrUpdateAsync(
+                vaultName, resourceGroupName, fabricName, containerName, protectedItemName, parameters, context)
+            .block();
     }
 
     /**
@@ -580,7 +752,7 @@ public final class ProtectedItemsClientImpl implements ProtectedItemsClient {
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Void>> deleteWithResponseAsync(
+    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
         String vaultName, String resourceGroupName, String fabricName, String containerName, String protectedItemName) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -646,7 +818,7 @@ public final class ProtectedItemsClientImpl implements ProtectedItemsClient {
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Void>> deleteWithResponseAsync(
+    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
         String vaultName,
         String resourceGroupName,
         String fabricName,
@@ -710,13 +882,17 @@ public final class ProtectedItemsClientImpl implements ProtectedItemsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the {@link PollerFlux} for polling of long-running operation.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> deleteAsync(
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
         String vaultName, String resourceGroupName, String fabricName, String containerName, String protectedItemName) {
-        return deleteWithResponseAsync(vaultName, resourceGroupName, fabricName, containerName, protectedItemName)
-            .flatMap(ignored -> Mono.empty());
+        Mono<Response<Flux<ByteBuffer>>> mono =
+            deleteWithResponseAsync(vaultName, resourceGroupName, fabricName, containerName, protectedItemName);
+        return this
+            .client
+            .<Void, Void>getLroResult(
+                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
     }
 
     /**
@@ -732,19 +908,123 @@ public final class ProtectedItemsClientImpl implements ProtectedItemsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the {@link PollerFlux} for polling of long-running operation.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> deleteWithResponse(
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
         String vaultName,
         String resourceGroupName,
         String fabricName,
         String containerName,
         String protectedItemName,
         Context context) {
-        return deleteWithResponseAsync(
-                vaultName, resourceGroupName, fabricName, containerName, protectedItemName, context)
-            .block();
+        context = this.client.mergeContext(context);
+        Mono<Response<Flux<ByteBuffer>>> mono =
+            deleteWithResponseAsync(
+                vaultName, resourceGroupName, fabricName, containerName, protectedItemName, context);
+        return this
+            .client
+            .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, context);
+    }
+
+    /**
+     * Used to disable backup of an item within a container. This is an asynchronous operation. To know the status of
+     * the request, call the GetItemOperationResult API.
+     *
+     * @param vaultName The name of the recovery services vault.
+     * @param resourceGroupName The name of the resource group where the recovery services vault is present.
+     * @param fabricName Fabric name associated with the backed up item.
+     * @param containerName Container name associated with the backed up item.
+     * @param protectedItemName Backed up item to be deleted.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<Void>, Void> beginDelete(
+        String vaultName, String resourceGroupName, String fabricName, String containerName, String protectedItemName) {
+        return this
+            .beginDeleteAsync(vaultName, resourceGroupName, fabricName, containerName, protectedItemName)
+            .getSyncPoller();
+    }
+
+    /**
+     * Used to disable backup of an item within a container. This is an asynchronous operation. To know the status of
+     * the request, call the GetItemOperationResult API.
+     *
+     * @param vaultName The name of the recovery services vault.
+     * @param resourceGroupName The name of the resource group where the recovery services vault is present.
+     * @param fabricName Fabric name associated with the backed up item.
+     * @param containerName Container name associated with the backed up item.
+     * @param protectedItemName Backed up item to be deleted.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<Void>, Void> beginDelete(
+        String vaultName,
+        String resourceGroupName,
+        String fabricName,
+        String containerName,
+        String protectedItemName,
+        Context context) {
+        return this
+            .beginDeleteAsync(vaultName, resourceGroupName, fabricName, containerName, protectedItemName, context)
+            .getSyncPoller();
+    }
+
+    /**
+     * Used to disable backup of an item within a container. This is an asynchronous operation. To know the status of
+     * the request, call the GetItemOperationResult API.
+     *
+     * @param vaultName The name of the recovery services vault.
+     * @param resourceGroupName The name of the resource group where the recovery services vault is present.
+     * @param fabricName Fabric name associated with the backed up item.
+     * @param containerName Container name associated with the backed up item.
+     * @param protectedItemName Backed up item to be deleted.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Void> deleteAsync(
+        String vaultName, String resourceGroupName, String fabricName, String containerName, String protectedItemName) {
+        return beginDeleteAsync(vaultName, resourceGroupName, fabricName, containerName, protectedItemName)
+            .last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Used to disable backup of an item within a container. This is an asynchronous operation. To know the status of
+     * the request, call the GetItemOperationResult API.
+     *
+     * @param vaultName The name of the recovery services vault.
+     * @param resourceGroupName The name of the resource group where the recovery services vault is present.
+     * @param fabricName Fabric name associated with the backed up item.
+     * @param containerName Container name associated with the backed up item.
+     * @param protectedItemName Backed up item to be deleted.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Void> deleteAsync(
+        String vaultName,
+        String resourceGroupName,
+        String fabricName,
+        String containerName,
+        String protectedItemName,
+        Context context) {
+        return beginDeleteAsync(vaultName, resourceGroupName, fabricName, containerName, protectedItemName, context)
+            .last()
+            .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
@@ -763,6 +1043,31 @@ public final class ProtectedItemsClientImpl implements ProtectedItemsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public void delete(
         String vaultName, String resourceGroupName, String fabricName, String containerName, String protectedItemName) {
-        deleteWithResponse(vaultName, resourceGroupName, fabricName, containerName, protectedItemName, Context.NONE);
+        deleteAsync(vaultName, resourceGroupName, fabricName, containerName, protectedItemName).block();
+    }
+
+    /**
+     * Used to disable backup of an item within a container. This is an asynchronous operation. To know the status of
+     * the request, call the GetItemOperationResult API.
+     *
+     * @param vaultName The name of the recovery services vault.
+     * @param resourceGroupName The name of the resource group where the recovery services vault is present.
+     * @param fabricName Fabric name associated with the backed up item.
+     * @param containerName Container name associated with the backed up item.
+     * @param protectedItemName Backed up item to be deleted.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void delete(
+        String vaultName,
+        String resourceGroupName,
+        String fabricName,
+        String containerName,
+        String protectedItemName,
+        Context context) {
+        deleteAsync(vaultName, resourceGroupName, fabricName, containerName, protectedItemName, context).block();
     }
 }

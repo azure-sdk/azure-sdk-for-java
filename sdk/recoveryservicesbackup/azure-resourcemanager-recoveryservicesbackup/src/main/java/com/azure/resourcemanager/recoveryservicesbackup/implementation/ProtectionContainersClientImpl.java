@@ -99,7 +99,7 @@ public final class ProtectionContainersClientImpl implements ProtectionContainer
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupFabrics/{fabricName}/protectionContainers/{containerName}")
         @ExpectedResponses({200, 202, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Void>> unregister(
+        Mono<Response<Flux<ByteBuffer>>> unregister(
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
             @PathParam("vaultName") String vaultName,
@@ -702,7 +702,7 @@ public final class ProtectionContainersClientImpl implements ProtectionContainer
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Void>> unregisterWithResponseAsync(
+    private Mono<Response<Flux<ByteBuffer>>> unregisterWithResponseAsync(
         String vaultName, String resourceGroupName, String fabricName, String containerName) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -763,7 +763,7 @@ public final class ProtectionContainersClientImpl implements ProtectionContainer
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Void>> unregisterWithResponseAsync(
+    private Mono<Response<Flux<ByteBuffer>>> unregisterWithResponseAsync(
         String vaultName, String resourceGroupName, String fabricName, String containerName, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -817,13 +817,17 @@ public final class ProtectionContainersClientImpl implements ProtectionContainer
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the {@link PollerFlux} for polling of long-running operation.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> unregisterAsync(
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginUnregisterAsync(
         String vaultName, String resourceGroupName, String fabricName, String containerName) {
-        return unregisterWithResponseAsync(vaultName, resourceGroupName, fabricName, containerName)
-            .flatMap(ignored -> Mono.empty());
+        Mono<Response<Flux<ByteBuffer>>> mono =
+            unregisterWithResponseAsync(vaultName, resourceGroupName, fabricName, containerName);
+        return this
+            .client
+            .<Void, Void>getLroResult(
+                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
     }
 
     /**
@@ -839,12 +843,105 @@ public final class ProtectionContainersClientImpl implements ProtectionContainer
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the {@link PollerFlux} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginUnregisterAsync(
+        String vaultName, String resourceGroupName, String fabricName, String containerName, Context context) {
+        context = this.client.mergeContext(context);
+        Mono<Response<Flux<ByteBuffer>>> mono =
+            unregisterWithResponseAsync(vaultName, resourceGroupName, fabricName, containerName, context);
+        return this
+            .client
+            .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, context);
+    }
+
+    /**
+     * Unregisters the given container from your Recovery Services Vault. This is an asynchronous operation. To
+     * determine whether the backend service has finished processing the request, call Get Container Operation Result
+     * API.
+     *
+     * @param vaultName The name of the recovery services vault.
+     * @param resourceGroupName The name of the resource group where the recovery services vault is present.
+     * @param fabricName Name of the fabric where the container belongs.
+     * @param containerName Name of the container which needs to be unregistered from the Recovery Services Vault.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<Void>, Void> beginUnregister(
+        String vaultName, String resourceGroupName, String fabricName, String containerName) {
+        return this.beginUnregisterAsync(vaultName, resourceGroupName, fabricName, containerName).getSyncPoller();
+    }
+
+    /**
+     * Unregisters the given container from your Recovery Services Vault. This is an asynchronous operation. To
+     * determine whether the backend service has finished processing the request, call Get Container Operation Result
+     * API.
+     *
+     * @param vaultName The name of the recovery services vault.
+     * @param resourceGroupName The name of the resource group where the recovery services vault is present.
+     * @param fabricName Name of the fabric where the container belongs.
+     * @param containerName Name of the container which needs to be unregistered from the Recovery Services Vault.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<Void>, Void> beginUnregister(
+        String vaultName, String resourceGroupName, String fabricName, String containerName, Context context) {
+        return this
+            .beginUnregisterAsync(vaultName, resourceGroupName, fabricName, containerName, context)
+            .getSyncPoller();
+    }
+
+    /**
+     * Unregisters the given container from your Recovery Services Vault. This is an asynchronous operation. To
+     * determine whether the backend service has finished processing the request, call Get Container Operation Result
+     * API.
+     *
+     * @param vaultName The name of the recovery services vault.
+     * @param resourceGroupName The name of the resource group where the recovery services vault is present.
+     * @param fabricName Name of the fabric where the container belongs.
+     * @param containerName Name of the container which needs to be unregistered from the Recovery Services Vault.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> unregisterWithResponse(
+    private Mono<Void> unregisterAsync(
+        String vaultName, String resourceGroupName, String fabricName, String containerName) {
+        return beginUnregisterAsync(vaultName, resourceGroupName, fabricName, containerName)
+            .last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Unregisters the given container from your Recovery Services Vault. This is an asynchronous operation. To
+     * determine whether the backend service has finished processing the request, call Get Container Operation Result
+     * API.
+     *
+     * @param vaultName The name of the recovery services vault.
+     * @param resourceGroupName The name of the resource group where the recovery services vault is present.
+     * @param fabricName Name of the fabric where the container belongs.
+     * @param containerName Name of the container which needs to be unregistered from the Recovery Services Vault.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Void> unregisterAsync(
         String vaultName, String resourceGroupName, String fabricName, String containerName, Context context) {
-        return unregisterWithResponseAsync(vaultName, resourceGroupName, fabricName, containerName, context).block();
+        return beginUnregisterAsync(vaultName, resourceGroupName, fabricName, containerName, context)
+            .last()
+            .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
@@ -862,7 +959,27 @@ public final class ProtectionContainersClientImpl implements ProtectionContainer
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public void unregister(String vaultName, String resourceGroupName, String fabricName, String containerName) {
-        unregisterWithResponse(vaultName, resourceGroupName, fabricName, containerName, Context.NONE);
+        unregisterAsync(vaultName, resourceGroupName, fabricName, containerName).block();
+    }
+
+    /**
+     * Unregisters the given container from your Recovery Services Vault. This is an asynchronous operation. To
+     * determine whether the backend service has finished processing the request, call Get Container Operation Result
+     * API.
+     *
+     * @param vaultName The name of the recovery services vault.
+     * @param resourceGroupName The name of the resource group where the recovery services vault is present.
+     * @param fabricName Name of the fabric where the container belongs.
+     * @param containerName Name of the container which needs to be unregistered from the Recovery Services Vault.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void unregister(
+        String vaultName, String resourceGroupName, String fabricName, String containerName, Context context) {
+        unregisterAsync(vaultName, resourceGroupName, fabricName, containerName, context).block();
     }
 
     /**
