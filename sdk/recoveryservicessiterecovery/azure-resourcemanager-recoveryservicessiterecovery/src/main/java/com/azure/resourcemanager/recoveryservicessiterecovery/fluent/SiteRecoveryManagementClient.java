@@ -87,6 +87,13 @@ public interface SiteRecoveryManagementClient {
     ReplicationFabricsClient getReplicationFabrics();
 
     /**
+     * Gets the ReplicationInfrastructuresClient object to access its operations.
+     *
+     * @return the ReplicationInfrastructuresClient object.
+     */
+    ReplicationInfrastructuresClient getReplicationInfrastructures();
+
+    /**
      * Gets the ReplicationLogicalNetworksClient object to access its operations.
      *
      * @return the ReplicationLogicalNetworksClient object.

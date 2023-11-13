@@ -32,6 +32,7 @@ import com.azure.resourcemanager.recoveryservicessiterecovery.implementation.Rep
 import com.azure.resourcemanager.recoveryservicessiterecovery.implementation.ReplicationEligibilityResultsOperationsImpl;
 import com.azure.resourcemanager.recoveryservicessiterecovery.implementation.ReplicationEventsImpl;
 import com.azure.resourcemanager.recoveryservicessiterecovery.implementation.ReplicationFabricsImpl;
+import com.azure.resourcemanager.recoveryservicessiterecovery.implementation.ReplicationInfrastructuresImpl;
 import com.azure.resourcemanager.recoveryservicessiterecovery.implementation.ReplicationJobsImpl;
 import com.azure.resourcemanager.recoveryservicessiterecovery.implementation.ReplicationLogicalNetworksImpl;
 import com.azure.resourcemanager.recoveryservicessiterecovery.implementation.ReplicationMigrationItemsImpl;
@@ -61,6 +62,7 @@ import com.azure.resourcemanager.recoveryservicessiterecovery.models.Replication
 import com.azure.resourcemanager.recoveryservicessiterecovery.models.ReplicationEligibilityResultsOperations;
 import com.azure.resourcemanager.recoveryservicessiterecovery.models.ReplicationEvents;
 import com.azure.resourcemanager.recoveryservicessiterecovery.models.ReplicationFabrics;
+import com.azure.resourcemanager.recoveryservicessiterecovery.models.ReplicationInfrastructures;
 import com.azure.resourcemanager.recoveryservicessiterecovery.models.ReplicationJobs;
 import com.azure.resourcemanager.recoveryservicessiterecovery.models.ReplicationLogicalNetworks;
 import com.azure.resourcemanager.recoveryservicessiterecovery.models.ReplicationMigrationItems;
@@ -101,6 +103,8 @@ public final class SiteRecoveryManager {
     private ReplicationEvents replicationEvents;
 
     private ReplicationFabrics replicationFabrics;
+
+    private ReplicationInfrastructures replicationInfrastructures;
 
     private ReplicationLogicalNetworks replicationLogicalNetworks;
 
@@ -311,7 +315,7 @@ public final class SiteRecoveryManager {
                 .append("-")
                 .append("com.azure.resourcemanager.recoveryservicessiterecovery")
                 .append("/")
-                .append("1.0.0");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -441,6 +445,19 @@ public final class SiteRecoveryManager {
             this.replicationFabrics = new ReplicationFabricsImpl(clientObject.getReplicationFabrics(), this);
         }
         return replicationFabrics;
+    }
+
+    /**
+     * Gets the resource collection API of ReplicationInfrastructures.
+     *
+     * @return Resource collection API of ReplicationInfrastructures.
+     */
+    public ReplicationInfrastructures replicationInfrastructures() {
+        if (this.replicationInfrastructures == null) {
+            this.replicationInfrastructures =
+                new ReplicationInfrastructuresImpl(clientObject.getReplicationInfrastructures(), this);
+        }
+        return replicationInfrastructures;
     }
 
     /**

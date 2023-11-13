@@ -124,6 +124,12 @@ public final class A2AEnableProtectionInput extends EnableProtectionProviderSpec
     @JsonProperty(value = "recoveryCapacityReservationGroupId")
     private String recoveryCapacityReservationGroupId;
 
+    /*
+     * A value indicating whether the auto protection is enabled.
+     */
+    @JsonProperty(value = "autoProtectionOfDataDisk")
+    private AutoProtectionOfDataDisk autoProtectionOfDataDisk;
+
     /** Creates an instance of A2AEnableProtectionInput class. */
     public A2AEnableProtectionInput() {
     }
@@ -485,6 +491,26 @@ public final class A2AEnableProtectionInput extends EnableProtectionProviderSpec
      */
     public A2AEnableProtectionInput withRecoveryCapacityReservationGroupId(String recoveryCapacityReservationGroupId) {
         this.recoveryCapacityReservationGroupId = recoveryCapacityReservationGroupId;
+        return this;
+    }
+
+    /**
+     * Get the autoProtectionOfDataDisk property: A value indicating whether the auto protection is enabled.
+     *
+     * @return the autoProtectionOfDataDisk value.
+     */
+    public AutoProtectionOfDataDisk autoProtectionOfDataDisk() {
+        return this.autoProtectionOfDataDisk;
+    }
+
+    /**
+     * Set the autoProtectionOfDataDisk property: A value indicating whether the auto protection is enabled.
+     *
+     * @param autoProtectionOfDataDisk the autoProtectionOfDataDisk value to set.
+     * @return the A2AEnableProtectionInput object itself.
+     */
+    public A2AEnableProtectionInput withAutoProtectionOfDataDisk(AutoProtectionOfDataDisk autoProtectionOfDataDisk) {
+        this.autoProtectionOfDataDisk = autoProtectionOfDataDisk;
         return this;
     }
 

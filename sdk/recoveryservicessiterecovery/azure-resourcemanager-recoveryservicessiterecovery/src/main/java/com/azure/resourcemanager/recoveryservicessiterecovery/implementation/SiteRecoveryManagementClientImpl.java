@@ -30,6 +30,7 @@ import com.azure.resourcemanager.recoveryservicessiterecovery.fluent.Replication
 import com.azure.resourcemanager.recoveryservicessiterecovery.fluent.ReplicationEligibilityResultsOperationsClient;
 import com.azure.resourcemanager.recoveryservicessiterecovery.fluent.ReplicationEventsClient;
 import com.azure.resourcemanager.recoveryservicessiterecovery.fluent.ReplicationFabricsClient;
+import com.azure.resourcemanager.recoveryservicessiterecovery.fluent.ReplicationInfrastructuresClient;
 import com.azure.resourcemanager.recoveryservicessiterecovery.fluent.ReplicationJobsClient;
 import com.azure.resourcemanager.recoveryservicessiterecovery.fluent.ReplicationLogicalNetworksClient;
 import com.azure.resourcemanager.recoveryservicessiterecovery.fluent.ReplicationMigrationItemsClient;
@@ -205,6 +206,18 @@ public final class SiteRecoveryManagementClientImpl implements SiteRecoveryManag
      */
     public ReplicationFabricsClient getReplicationFabrics() {
         return this.replicationFabrics;
+    }
+
+    /** The ReplicationInfrastructuresClient object to access its operations. */
+    private final ReplicationInfrastructuresClient replicationInfrastructures;
+
+    /**
+     * Gets the ReplicationInfrastructuresClient object to access its operations.
+     *
+     * @return the ReplicationInfrastructuresClient object.
+     */
+    public ReplicationInfrastructuresClient getReplicationInfrastructures() {
+        return this.replicationInfrastructures;
     }
 
     /** The ReplicationLogicalNetworksClient object to access its operations. */
@@ -493,13 +506,14 @@ public final class SiteRecoveryManagementClientImpl implements SiteRecoveryManag
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2023-06-01";
+        this.apiVersion = "2023-08-01";
         this.operations = new OperationsClientImpl(this);
         this.replicationAlertSettings = new ReplicationAlertSettingsClientImpl(this);
         this.replicationAppliances = new ReplicationAppliancesClientImpl(this);
         this.replicationEligibilityResultsOperations = new ReplicationEligibilityResultsOperationsClientImpl(this);
         this.replicationEvents = new ReplicationEventsClientImpl(this);
         this.replicationFabrics = new ReplicationFabricsClientImpl(this);
+        this.replicationInfrastructures = new ReplicationInfrastructuresClientImpl(this);
         this.replicationLogicalNetworks = new ReplicationLogicalNetworksClientImpl(this);
         this.replicationNetworks = new ReplicationNetworksClientImpl(this);
         this.replicationNetworkMappings = new ReplicationNetworkMappingsClientImpl(this);
