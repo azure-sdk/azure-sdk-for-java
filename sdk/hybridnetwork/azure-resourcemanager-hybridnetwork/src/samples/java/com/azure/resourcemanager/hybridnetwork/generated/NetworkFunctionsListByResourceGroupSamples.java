@@ -4,12 +4,10 @@
 
 package com.azure.resourcemanager.hybridnetwork.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for NetworkFunctions ListByResourceGroup. */
 public final class NetworkFunctionsListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2021-05-01/examples/NetworkFunctionListByResourceGroup.json
+     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/NetworkFunctionListByResourceGroup.json
      */
     /**
      * Sample code: List network function in resource group.
@@ -18,6 +16,6 @@ public final class NetworkFunctionsListByResourceGroupSamples {
      */
     public static void listNetworkFunctionInResourceGroup(
         com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkFunctions().listByResourceGroup("rg", Context.NONE);
+        manager.networkFunctions().listByResourceGroup("rg", com.azure.core.util.Context.NONE);
     }
 }

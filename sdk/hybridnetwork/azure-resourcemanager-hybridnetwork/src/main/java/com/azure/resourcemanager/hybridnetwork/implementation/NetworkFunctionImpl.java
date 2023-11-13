@@ -5,18 +5,15 @@
 package com.azure.resourcemanager.hybridnetwork.implementation;
 
 import com.azure.core.management.Region;
-import com.azure.core.management.SubResource;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.hybridnetwork.fluent.models.NetworkFunctionInner;
+import com.azure.resourcemanager.hybridnetwork.models.ExecuteRequestParameters;
+import com.azure.resourcemanager.hybridnetwork.models.ManagedServiceIdentity;
 import com.azure.resourcemanager.hybridnetwork.models.NetworkFunction;
-import com.azure.resourcemanager.hybridnetwork.models.NetworkFunctionUserConfiguration;
-import com.azure.resourcemanager.hybridnetwork.models.ProvisioningState;
-import com.azure.resourcemanager.hybridnetwork.models.SkuType;
+import com.azure.resourcemanager.hybridnetwork.models.NetworkFunctionPropertiesFormat;
 import com.azure.resourcemanager.hybridnetwork.models.TagsObject;
-import com.azure.resourcemanager.hybridnetwork.models.VendorProvisioningState;
 import java.util.Collections;
-import java.util.List;
 import java.util.Map;
 
 public final class NetworkFunctionImpl implements NetworkFunction, NetworkFunction.Definition, NetworkFunction.Update {
@@ -49,61 +46,20 @@ public final class NetworkFunctionImpl implements NetworkFunction, NetworkFuncti
         }
     }
 
+    public NetworkFunctionPropertiesFormat properties() {
+        return this.innerModel().properties();
+    }
+
     public String etag() {
         return this.innerModel().etag();
     }
 
+    public ManagedServiceIdentity identity() {
+        return this.innerModel().identity();
+    }
+
     public SystemData systemData() {
         return this.innerModel().systemData();
-    }
-
-    public ProvisioningState provisioningState() {
-        return this.innerModel().provisioningState();
-    }
-
-    public SubResource device() {
-        return this.innerModel().device();
-    }
-
-    public String skuName() {
-        return this.innerModel().skuName();
-    }
-
-    public SkuType skuType() {
-        return this.innerModel().skuType();
-    }
-
-    public String vendorName() {
-        return this.innerModel().vendorName();
-    }
-
-    public String serviceKey() {
-        return this.innerModel().serviceKey();
-    }
-
-    public VendorProvisioningState vendorProvisioningState() {
-        return this.innerModel().vendorProvisioningState();
-    }
-
-    public SubResource managedApplication() {
-        return this.innerModel().managedApplication();
-    }
-
-    public Object managedApplicationParameters() {
-        return this.innerModel().managedApplicationParameters();
-    }
-
-    public Object networkFunctionContainerConfigurations() {
-        return this.innerModel().networkFunctionContainerConfigurations();
-    }
-
-    public List<NetworkFunctionUserConfiguration> networkFunctionUserConfigurations() {
-        List<NetworkFunctionUserConfiguration> inner = this.innerModel().networkFunctionUserConfigurations();
-        if (inner != null) {
-            return Collections.unmodifiableList(inner);
-        } else {
-            return Collections.emptyList();
-        }
     }
 
     public Region region() {
@@ -214,6 +170,14 @@ public final class NetworkFunctionImpl implements NetworkFunction, NetworkFuncti
         return this;
     }
 
+    public void executeRequest(ExecuteRequestParameters parameters) {
+        serviceManager.networkFunctions().executeRequest(resourceGroupName, networkFunctionName, parameters);
+    }
+
+    public void executeRequest(ExecuteRequestParameters parameters, Context context) {
+        serviceManager.networkFunctions().executeRequest(resourceGroupName, networkFunctionName, parameters, context);
+    }
+
     public NetworkFunctionImpl withRegion(Region location) {
         this.innerModel().withLocation(location.toString());
         return this;
@@ -234,40 +198,18 @@ public final class NetworkFunctionImpl implements NetworkFunction, NetworkFuncti
         }
     }
 
+    public NetworkFunctionImpl withProperties(NetworkFunctionPropertiesFormat properties) {
+        this.innerModel().withProperties(properties);
+        return this;
+    }
+
     public NetworkFunctionImpl withEtag(String etag) {
         this.innerModel().withEtag(etag);
         return this;
     }
 
-    public NetworkFunctionImpl withDevice(SubResource device) {
-        this.innerModel().withDevice(device);
-        return this;
-    }
-
-    public NetworkFunctionImpl withSkuName(String skuName) {
-        this.innerModel().withSkuName(skuName);
-        return this;
-    }
-
-    public NetworkFunctionImpl withVendorName(String vendorName) {
-        this.innerModel().withVendorName(vendorName);
-        return this;
-    }
-
-    public NetworkFunctionImpl withManagedApplicationParameters(Object managedApplicationParameters) {
-        this.innerModel().withManagedApplicationParameters(managedApplicationParameters);
-        return this;
-    }
-
-    public NetworkFunctionImpl withNetworkFunctionContainerConfigurations(
-        Object networkFunctionContainerConfigurations) {
-        this.innerModel().withNetworkFunctionContainerConfigurations(networkFunctionContainerConfigurations);
-        return this;
-    }
-
-    public NetworkFunctionImpl withNetworkFunctionUserConfigurations(
-        List<NetworkFunctionUserConfiguration> networkFunctionUserConfigurations) {
-        this.innerModel().withNetworkFunctionUserConfigurations(networkFunctionUserConfigurations);
+    public NetworkFunctionImpl withIdentity(ManagedServiceIdentity identity) {
+        this.innerModel().withIdentity(identity);
         return this;
     }
 
