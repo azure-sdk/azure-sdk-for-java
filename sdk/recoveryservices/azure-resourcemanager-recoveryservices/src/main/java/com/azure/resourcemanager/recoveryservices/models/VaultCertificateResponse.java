@@ -71,7 +71,7 @@ public interface VaultCertificateResponse {
          * The stage of the VaultCertificateResponse definition which contains all the minimum required properties for
          * the resource to be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithProperties {
+        interface WithCreate extends DefinitionStages.WithProperties, DefinitionStages.WithCertificateCreateOptions {
             /**
              * Executes the create request.
              *
@@ -97,6 +97,18 @@ public interface VaultCertificateResponse {
              * @return the next definition stage.
              */
             WithCreate withProperties(RawCertificateData properties);
+        }
+
+        /** The stage of the VaultCertificateResponse definition allowing to specify certificateCreateOptions. */
+        interface WithCertificateCreateOptions {
+            /**
+             * Specifies the certificateCreateOptions property: The certificateCreateOptions property..
+             *
+             * @param certificateCreateOptions The certificateCreateOptions property.
+             * @return the next definition stage.
+             */
+            WithCreate withCertificateCreateOptions(
+                CertificateRequestCertificateCreateOptions certificateCreateOptions);
         }
     }
 }

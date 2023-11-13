@@ -7,6 +7,7 @@ package com.azure.resourcemanager.recoveryservices.implementation;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.recoveryservices.fluent.models.VaultCertificateResponseInner;
 import com.azure.resourcemanager.recoveryservices.models.CertificateRequest;
+import com.azure.resourcemanager.recoveryservices.models.CertificateRequestCertificateCreateOptions;
 import com.azure.resourcemanager.recoveryservices.models.RawCertificateData;
 import com.azure.resourcemanager.recoveryservices.models.ResourceCertificateDetails;
 import com.azure.resourcemanager.recoveryservices.models.VaultCertificateResponse;
@@ -93,6 +94,12 @@ public final class VaultCertificateResponseImpl
 
     public VaultCertificateResponseImpl withProperties(RawCertificateData properties) {
         this.createCertificateRequest.withProperties(properties);
+        return this;
+    }
+
+    public VaultCertificateResponseImpl withCertificateCreateOptions(
+        CertificateRequestCertificateCreateOptions certificateCreateOptions) {
+        this.createCertificateRequest.withCertificateCreateOptions(certificateCreateOptions);
         return this;
     }
 }

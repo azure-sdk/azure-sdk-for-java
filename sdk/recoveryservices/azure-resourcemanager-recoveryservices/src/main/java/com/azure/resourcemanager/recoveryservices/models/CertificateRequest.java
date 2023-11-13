@@ -16,6 +16,12 @@ public final class CertificateRequest {
     @JsonProperty(value = "properties")
     private RawCertificateData properties;
 
+    /*
+     * The certificateCreateOptions property.
+     */
+    @JsonProperty(value = "certificateCreateOptions")
+    private CertificateRequestCertificateCreateOptions certificateCreateOptions;
+
     /** Creates an instance of CertificateRequest class. */
     public CertificateRequest() {
     }
@@ -41,6 +47,27 @@ public final class CertificateRequest {
     }
 
     /**
+     * Get the certificateCreateOptions property: The certificateCreateOptions property.
+     *
+     * @return the certificateCreateOptions value.
+     */
+    public CertificateRequestCertificateCreateOptions certificateCreateOptions() {
+        return this.certificateCreateOptions;
+    }
+
+    /**
+     * Set the certificateCreateOptions property: The certificateCreateOptions property.
+     *
+     * @param certificateCreateOptions the certificateCreateOptions value to set.
+     * @return the CertificateRequest object itself.
+     */
+    public CertificateRequest withCertificateCreateOptions(
+        CertificateRequestCertificateCreateOptions certificateCreateOptions) {
+        this.certificateCreateOptions = certificateCreateOptions;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -48,6 +75,9 @@ public final class CertificateRequest {
     public void validate() {
         if (properties() != null) {
             properties().validate();
+        }
+        if (certificateCreateOptions() != null) {
+            certificateCreateOptions().validate();
         }
     }
 }
