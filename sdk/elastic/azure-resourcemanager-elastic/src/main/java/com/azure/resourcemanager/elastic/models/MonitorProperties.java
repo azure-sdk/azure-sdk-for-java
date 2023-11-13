@@ -37,10 +37,34 @@ public final class MonitorProperties {
     private UserInfo userInfo;
 
     /*
+     * Plan details of the monitor resource.
+     */
+    @JsonProperty(value = "planDetails")
+    private PlanDetails planDetails;
+
+    /*
      * Version of elastic of the monitor resource
      */
     @JsonProperty(value = "version")
     private String version;
+
+    /*
+     * Status of Azure Subscription where Marketplace SaaS is located.
+     */
+    @JsonProperty(value = "saaSAzureSubscriptionStatus")
+    private String saaSAzureSubscriptionStatus;
+
+    /*
+     * Name of the marketing campaign.
+     */
+    @JsonProperty(value = "sourceCampaignName")
+    private String sourceCampaignName;
+
+    /*
+     * A unique identifier associated with the campaign.
+     */
+    @JsonProperty(value = "sourceCampaignId")
+    private String sourceCampaignId;
 
     /*
      * The liftrResourceCategory property.
@@ -149,6 +173,26 @@ public final class MonitorProperties {
     }
 
     /**
+     * Get the planDetails property: Plan details of the monitor resource.
+     *
+     * @return the planDetails value.
+     */
+    public PlanDetails planDetails() {
+        return this.planDetails;
+    }
+
+    /**
+     * Set the planDetails property: Plan details of the monitor resource.
+     *
+     * @param planDetails the planDetails value to set.
+     * @return the MonitorProperties object itself.
+     */
+    public MonitorProperties withPlanDetails(PlanDetails planDetails) {
+        this.planDetails = planDetails;
+        return this;
+    }
+
+    /**
      * Get the version property: Version of elastic of the monitor resource.
      *
      * @return the version value.
@@ -165,6 +209,66 @@ public final class MonitorProperties {
      */
     public MonitorProperties withVersion(String version) {
         this.version = version;
+        return this;
+    }
+
+    /**
+     * Get the saaSAzureSubscriptionStatus property: Status of Azure Subscription where Marketplace SaaS is located.
+     *
+     * @return the saaSAzureSubscriptionStatus value.
+     */
+    public String saaSAzureSubscriptionStatus() {
+        return this.saaSAzureSubscriptionStatus;
+    }
+
+    /**
+     * Set the saaSAzureSubscriptionStatus property: Status of Azure Subscription where Marketplace SaaS is located.
+     *
+     * @param saaSAzureSubscriptionStatus the saaSAzureSubscriptionStatus value to set.
+     * @return the MonitorProperties object itself.
+     */
+    public MonitorProperties withSaaSAzureSubscriptionStatus(String saaSAzureSubscriptionStatus) {
+        this.saaSAzureSubscriptionStatus = saaSAzureSubscriptionStatus;
+        return this;
+    }
+
+    /**
+     * Get the sourceCampaignName property: Name of the marketing campaign.
+     *
+     * @return the sourceCampaignName value.
+     */
+    public String sourceCampaignName() {
+        return this.sourceCampaignName;
+    }
+
+    /**
+     * Set the sourceCampaignName property: Name of the marketing campaign.
+     *
+     * @param sourceCampaignName the sourceCampaignName value to set.
+     * @return the MonitorProperties object itself.
+     */
+    public MonitorProperties withSourceCampaignName(String sourceCampaignName) {
+        this.sourceCampaignName = sourceCampaignName;
+        return this;
+    }
+
+    /**
+     * Get the sourceCampaignId property: A unique identifier associated with the campaign.
+     *
+     * @return the sourceCampaignId value.
+     */
+    public String sourceCampaignId() {
+        return this.sourceCampaignId;
+    }
+
+    /**
+     * Set the sourceCampaignId property: A unique identifier associated with the campaign.
+     *
+     * @param sourceCampaignId the sourceCampaignId value to set.
+     * @return the MonitorProperties object itself.
+     */
+    public MonitorProperties withSourceCampaignId(String sourceCampaignId) {
+        this.sourceCampaignId = sourceCampaignId;
         return this;
     }
 
@@ -217,6 +321,9 @@ public final class MonitorProperties {
         }
         if (userInfo() != null) {
             userInfo().validate();
+        }
+        if (planDetails() != null) {
+            planDetails().validate();
         }
     }
 }

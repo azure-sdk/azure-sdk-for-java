@@ -7,7 +7,7 @@ package com.azure.resourcemanager.elastic.generated;
 /** Samples for DetachTrafficFilter Update. */
 public final class DetachTrafficFilterUpdateSamples {
     /*
-     * x-ms-original-file: specification/elastic/resource-manager/Microsoft.Elastic/preview/2023-02-01-preview/examples/DetachTrafficFilters_Update.json
+     * x-ms-original-file: specification/elastic/resource-manager/Microsoft.Elastic/preview/2023-11-01-preview/examples/DetachTrafficFilters_Update.json
      */
     /**
      * Sample code: DetachTrafficFilter_Update.

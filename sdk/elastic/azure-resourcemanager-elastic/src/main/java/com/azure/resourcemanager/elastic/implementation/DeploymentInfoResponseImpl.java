@@ -36,6 +36,10 @@ public final class DeploymentInfoResponseImpl implements DeploymentInfoResponse 
         return this.innerModel().diskCapacity();
     }
 
+    public String elasticsearchEndPoint() {
+        return this.innerModel().elasticsearchEndPoint();
+    }
+
     public String deploymentUrl() {
         return this.innerModel().deploymentUrl();
     }

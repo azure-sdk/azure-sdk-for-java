@@ -9,7 +9,9 @@ import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.elastic.fluent.OrganizationsClient;
+import com.azure.resourcemanager.elastic.fluent.models.ElasticOrganizationToAzureSubscriptionMappingResponseInner;
 import com.azure.resourcemanager.elastic.fluent.models.UserApiKeyResponseInner;
+import com.azure.resourcemanager.elastic.models.ElasticOrganizationToAzureSubscriptionMappingResponse;
 import com.azure.resourcemanager.elastic.models.Organizations;
 import com.azure.resourcemanager.elastic.models.UserApiKeyResponse;
 import com.azure.resourcemanager.elastic.models.UserEmailId;
@@ -44,6 +46,31 @@ public final class OrganizationsImpl implements Organizations {
         UserApiKeyResponseInner inner = this.serviceClient().getApiKey();
         if (inner != null) {
             return new UserApiKeyResponseImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public Response<ElasticOrganizationToAzureSubscriptionMappingResponse>
+        getElasticToAzureSubscriptionMappingWithResponse(Context context) {
+        Response<ElasticOrganizationToAzureSubscriptionMappingResponseInner> inner =
+            this.serviceClient().getElasticToAzureSubscriptionMappingWithResponse(context);
+        if (inner != null) {
+            return new SimpleResponse<>(
+                inner.getRequest(),
+                inner.getStatusCode(),
+                inner.getHeaders(),
+                new ElasticOrganizationToAzureSubscriptionMappingResponseImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public ElasticOrganizationToAzureSubscriptionMappingResponse getElasticToAzureSubscriptionMapping() {
+        ElasticOrganizationToAzureSubscriptionMappingResponseInner inner =
+            this.serviceClient().getElasticToAzureSubscriptionMapping();
+        if (inner != null) {
+            return new ElasticOrganizationToAzureSubscriptionMappingResponseImpl(inner, this.manager());
         } else {
             return null;
         }
