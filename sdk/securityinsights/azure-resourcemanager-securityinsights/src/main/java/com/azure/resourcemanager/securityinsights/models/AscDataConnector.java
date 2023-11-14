@@ -22,6 +22,10 @@ public final class AscDataConnector extends DataConnectorInner {
     @JsonProperty(value = "properties")
     private AscDataConnectorProperties innerProperties;
 
+    /** Creates an instance of AscDataConnector class. */
+    public AscDataConnector() {
+    }
+
     /**
      * Get the innerProperties property: ASC (Azure Security Center) data connector properties.
      *

@@ -25,6 +25,10 @@ public final class ActionsList {
     @JsonProperty(value = "value", required = true)
     private List<ActionResponseInner> value;
 
+    /** Creates an instance of ActionsList class. */
+    public ActionsList() {
+    }
+
     /**
      * Get the nextLink property: URL to fetch the next set of actions.
      *

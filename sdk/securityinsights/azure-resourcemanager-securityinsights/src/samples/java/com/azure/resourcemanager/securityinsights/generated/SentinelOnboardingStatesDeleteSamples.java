@@ -4,12 +4,10 @@
 
 package com.azure.resourcemanager.securityinsights.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for SentinelOnboardingStates Delete. */
 public final class SentinelOnboardingStatesDeleteSamples {
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/onboardingStates/DeleteSentinelOnboardingState.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2023-10-01-preview/examples/onboardingStates/DeleteSentinelOnboardingState.json
      */
     /**
      * Sample code: Delete Sentinel onboarding state.
@@ -18,6 +16,8 @@ public final class SentinelOnboardingStatesDeleteSamples {
      */
     public static void deleteSentinelOnboardingState(
         com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
-        manager.sentinelOnboardingStates().deleteWithResponse("myRg", "myWorkspace", "default", Context.NONE);
+        manager
+            .sentinelOnboardingStates()
+            .deleteWithResponse("myRg", "myWorkspace", "default", com.azure.core.util.Context.NONE);
     }
 }

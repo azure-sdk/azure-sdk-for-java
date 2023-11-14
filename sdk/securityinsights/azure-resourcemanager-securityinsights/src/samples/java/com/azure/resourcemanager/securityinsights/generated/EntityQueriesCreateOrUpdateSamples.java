@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.securityinsights.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.securityinsights.models.ActivityCustomEntityQuery;
 import com.azure.resourcemanager.securityinsights.models.ActivityEntityQueriesPropertiesQueryDefinitions;
 import com.azure.resourcemanager.securityinsights.models.EntityType;
@@ -15,7 +14,7 @@ import java.util.Map;
 /** Samples for EntityQueries CreateOrUpdate. */
 public final class EntityQueriesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/entityQueries/CreateEntityQueryActivity.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2023-10-01-preview/examples/entityQueries/CreateEntityQueryActivity.json
      */
     /**
      * Sample code: Creates or updates an Activity entity query.
@@ -85,9 +84,10 @@ public final class EntityQueriesCreateOrUpdateSamples {
                                 Arrays.asList("Host_OMSAgentID")))
                     .withEntitiesFilter(mapOf("Host_OsFamily", Arrays.asList("Windows")))
                     .withEnabled(true),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

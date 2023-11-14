@@ -4,47 +4,45 @@
 
 package com.azure.resourcemanager.securityinsights.generated;
 
-import com.azure.resourcemanager.securityinsights.models.ContentPathMap;
+import com.azure.resourcemanager.securityinsights.fluent.models.RepositoryAccess;
 import com.azure.resourcemanager.securityinsights.models.ContentType;
 import com.azure.resourcemanager.securityinsights.models.RepoType;
 import com.azure.resourcemanager.securityinsights.models.Repository;
+import com.azure.resourcemanager.securityinsights.models.RepositoryAccessKind;
 import java.util.Arrays;
 
 /** Samples for SourceControlsOperation Create. */
 public final class SourceControlsOperationCreateSamples {
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/sourcecontrols/CreateSourceControl.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2023-10-01-preview/examples/sourcecontrols/CreateSourceControl.json
      */
     /**
-     * Sample code: Creates a source control.
+     * Sample code: Creates or updates a source control.
      *
      * @param manager Entry point to SecurityInsightsManager.
      */
-    public static void createsASourceControl(
+    public static void createsOrUpdatesASourceControl(
         com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
         manager
             .sourceControlsOperations()
             .define("789e0c1f-4a3d-43ad-809c-e713b677b04a")
             .withExistingWorkspace("myRg", "myWorkspace")
-            .withEtag("\"0300bf09-0000-0000-0000-5c37296e0000\"")
             .withDisplayName("My Source Control")
-            .withDescription("This is a source control")
             .withRepoType(RepoType.GITHUB)
             .withContentTypes(Arrays.asList(ContentType.fromString("AnalyticRules"), ContentType.WORKBOOK))
             .withRepository(
                 new Repository()
                     .withUrl("https://github.com/user/repo")
                     .withBranch("master")
-                    .withDisplayUrl("https://github.com/user/repo")
-                    .withPathMapping(
-                        Arrays
-                            .asList(
-                                new ContentPathMap()
-                                    .withContentType(ContentType.fromString("AnalyticRules"))
-                                    .withPath("path/to/rules"),
-                                new ContentPathMap()
-                                    .withContentType(ContentType.WORKBOOK)
-                                    .withPath("path/to/workbooks"))))
+                    .withDisplayUrl("https://github.com/user/repo"))
+            .withEtag("\"0300bf09-0000-0000-0000-5c37296e0000\"")
+            .withDescription("This is a source control")
+            .withRepositoryAccess(
+                new RepositoryAccess()
+                    .withKind(RepositoryAccessKind.OAUTH)
+                    .withCode("fakeTokenPlaceholder")
+                    .withState("state")
+                    .withClientId("54b3c2c0-1f48-4a1c-af9f-6399c3240b73"))
             .create();
     }
 }

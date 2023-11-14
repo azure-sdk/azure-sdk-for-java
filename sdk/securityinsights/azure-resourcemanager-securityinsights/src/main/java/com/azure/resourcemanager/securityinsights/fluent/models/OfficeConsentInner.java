@@ -24,6 +24,10 @@ public final class OfficeConsentInner extends ProxyResource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
+    /** Creates an instance of OfficeConsentInner class. */
+    public OfficeConsentInner() {
+    }
+
     /**
      * Get the innerProperties property: Office consent properties.
      *

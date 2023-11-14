@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.securityinsights.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.securityinsights.models.EntityExpandParameters;
 import java.time.OffsetDateTime;
 import java.util.UUID;
@@ -12,7 +11,7 @@ import java.util.UUID;
 /** Samples for Entities Expand. */
 public final class EntitiesExpandSamples {
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/entities/expand/PostExpandEntity.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2023-10-01-preview/examples/entities/expand/PostExpandEntity.json
      */
     /**
      * Sample code: Expand an entity.
@@ -30,6 +29,6 @@ public final class EntitiesExpandSamples {
                     .withEndTime(OffsetDateTime.parse("2019-05-26T00:00:00.000Z"))
                     .withExpansionId(UUID.fromString("a77992f3-25e9-4d01-99a4-5ff606cc410a"))
                     .withStartTime(OffsetDateTime.parse("2019-04-25T00:00:00.000Z")),
-                Context.NONE);
+                com.azure.core.util.Context.NONE);
     }
 }

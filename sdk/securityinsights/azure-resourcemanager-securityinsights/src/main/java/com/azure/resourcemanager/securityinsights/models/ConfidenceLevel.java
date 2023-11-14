@@ -20,6 +20,15 @@ public final class ConfidenceLevel extends ExpandableStringEnum<ConfidenceLevel>
     public static final ConfidenceLevel HIGH = fromString("High");
 
     /**
+     * Creates a new instance of ConfidenceLevel value.
+     *
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public ConfidenceLevel() {
+    }
+
+    /**
      * Creates or finds a ConfidenceLevel from its string representation.
      *
      * @param name a name to look for.

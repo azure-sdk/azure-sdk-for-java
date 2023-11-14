@@ -65,6 +65,10 @@ public final class BookmarkTimelineItem extends EntityTimelineItem {
     @JsonProperty(value = "labels")
     private List<String> labels;
 
+    /** Creates an instance of BookmarkTimelineItem class. */
+    public BookmarkTimelineItem() {
+    }
+
     /**
      * Get the azureResourceId property: The bookmark azure resource id.
      *

@@ -127,11 +127,13 @@ public interface AutomationRule {
             DefinitionStages.WithActions,
             DefinitionStages.WithCreate {
     }
+
     /** The AutomationRule definition stages. */
     interface DefinitionStages {
         /** The first stage of the AutomationRule definition. */
         interface Blank extends WithParentResource {
         }
+
         /** The stage of the AutomationRule definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -143,6 +145,7 @@ public interface AutomationRule {
              */
             WithDisplayName withExistingWorkspace(String resourceGroupName, String workspaceName);
         }
+
         /** The stage of the AutomationRule definition allowing to specify displayName. */
         interface WithDisplayName {
             /**
@@ -153,6 +156,7 @@ public interface AutomationRule {
              */
             WithOrder withDisplayName(String displayName);
         }
+
         /** The stage of the AutomationRule definition allowing to specify order. */
         interface WithOrder {
             /**
@@ -163,6 +167,7 @@ public interface AutomationRule {
              */
             WithTriggeringLogic withOrder(int order);
         }
+
         /** The stage of the AutomationRule definition allowing to specify triggeringLogic. */
         interface WithTriggeringLogic {
             /**
@@ -173,6 +178,7 @@ public interface AutomationRule {
              */
             WithActions withTriggeringLogic(AutomationRuleTriggeringLogic triggeringLogic);
         }
+
         /** The stage of the AutomationRule definition allowing to specify actions. */
         interface WithActions {
             /**
@@ -183,6 +189,7 @@ public interface AutomationRule {
              */
             WithCreate withActions(List<AutomationRuleAction> actions);
         }
+
         /**
          * The stage of the AutomationRule definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
@@ -203,6 +210,7 @@ public interface AutomationRule {
              */
             AutomationRule create(Context context);
         }
+
         /** The stage of the AutomationRule definition allowing to specify etag. */
         interface WithEtag {
             /**
@@ -214,6 +222,7 @@ public interface AutomationRule {
             WithCreate withEtag(String etag);
         }
     }
+
     /**
      * Begins update for the AutomationRule resource.
      *
@@ -243,6 +252,7 @@ public interface AutomationRule {
          */
         AutomationRule apply(Context context);
     }
+
     /** The AutomationRule update stages. */
     interface UpdateStages {
         /** The stage of the AutomationRule update allowing to specify etag. */
@@ -255,6 +265,7 @@ public interface AutomationRule {
              */
             Update withEtag(String etag);
         }
+
         /** The stage of the AutomationRule update allowing to specify displayName. */
         interface WithDisplayName {
             /**
@@ -265,6 +276,7 @@ public interface AutomationRule {
              */
             Update withDisplayName(String displayName);
         }
+
         /** The stage of the AutomationRule update allowing to specify order. */
         interface WithOrder {
             /**
@@ -275,6 +287,7 @@ public interface AutomationRule {
              */
             Update withOrder(int order);
         }
+
         /** The stage of the AutomationRule update allowing to specify triggeringLogic. */
         interface WithTriggeringLogic {
             /**
@@ -285,6 +298,7 @@ public interface AutomationRule {
              */
             Update withTriggeringLogic(AutomationRuleTriggeringLogic triggeringLogic);
         }
+
         /** The stage of the AutomationRule update allowing to specify actions. */
         interface WithActions {
             /**
@@ -296,6 +310,7 @@ public interface AutomationRule {
             Update withActions(List<AutomationRuleAction> actions);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

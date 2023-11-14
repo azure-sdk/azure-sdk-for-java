@@ -22,6 +22,10 @@ public final class Dynamics365DataConnector extends DataConnectorInner {
     @JsonProperty(value = "properties")
     private Dynamics365DataConnectorProperties innerProperties;
 
+    /** Creates an instance of Dynamics365DataConnector class. */
+    public Dynamics365DataConnector() {
+    }
+
     /**
      * Get the innerProperties property: Dynamics365 data connector properties.
      *

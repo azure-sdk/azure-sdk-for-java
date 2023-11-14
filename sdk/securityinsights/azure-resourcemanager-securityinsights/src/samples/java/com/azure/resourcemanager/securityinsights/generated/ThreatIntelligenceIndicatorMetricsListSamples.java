@@ -4,12 +4,10 @@
 
 package com.azure.resourcemanager.securityinsights.generated;
 
-import com.azure.core.util.Context;
-
 /** Samples for ThreatIntelligenceIndicatorMetrics List. */
 public final class ThreatIntelligenceIndicatorMetricsListSamples {
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/threatintelligence/CollectThreatIntelligenceMetrics.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2023-10-01-preview/examples/threatintelligence/CollectThreatIntelligenceMetrics.json
      */
     /**
      * Sample code: Get threat intelligence indicators metrics.
@@ -18,6 +16,8 @@ public final class ThreatIntelligenceIndicatorMetricsListSamples {
      */
     public static void getThreatIntelligenceIndicatorsMetrics(
         com.azure.resourcemanager.securityinsights.SecurityInsightsManager manager) {
-        manager.threatIntelligenceIndicatorMetrics().listWithResponse("myRg", "myWorkspace", Context.NONE);
+        manager
+            .threatIntelligenceIndicatorMetrics()
+            .listWithResponse("myRg", "myWorkspace", com.azure.core.util.Context.NONE);
     }
 }

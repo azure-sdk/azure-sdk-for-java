@@ -67,6 +67,10 @@ public final class HostEntityProperties extends EntityCommonProperties {
     @JsonProperty(value = "osVersion", access = JsonProperty.Access.WRITE_ONLY)
     private String osVersion;
 
+    /** Creates an instance of HostEntityProperties class. */
+    public HostEntityProperties() {
+    }
+
     /**
      * Get the azureId property: The azure resource id of the VM.
      *

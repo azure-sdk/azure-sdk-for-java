@@ -29,6 +29,10 @@ public final class AutomationRulePropertyValuesCondition {
     @JsonProperty(value = "propertyValues")
     private List<String> propertyValues;
 
+    /** Creates an instance of AutomationRulePropertyValuesCondition class. */
+    public AutomationRulePropertyValuesCondition() {
+    }
+
     /**
      * Get the propertyName property: The property to evaluate in an automation rule property condition.
      *

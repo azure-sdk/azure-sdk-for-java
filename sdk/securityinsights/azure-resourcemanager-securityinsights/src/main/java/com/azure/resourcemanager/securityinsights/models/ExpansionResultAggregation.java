@@ -33,7 +33,11 @@ public final class ExpansionResultAggregation {
      * The kind of the aggregated entity.
      */
     @JsonProperty(value = "entityKind", required = true)
-    private EntityKind entityKind;
+    private EntityKindEnum entityKind;
+
+    /** Creates an instance of ExpansionResultAggregation class. */
+    public ExpansionResultAggregation() {
+    }
 
     /**
      * Get the aggregationType property: The common type of the aggregation. (for e.g. entity field name).
@@ -102,7 +106,7 @@ public final class ExpansionResultAggregation {
      *
      * @return the entityKind value.
      */
-    public EntityKind entityKind() {
+    public EntityKindEnum entityKind() {
         return this.entityKind;
     }
 
@@ -112,7 +116,7 @@ public final class ExpansionResultAggregation {
      * @param entityKind the entityKind value to set.
      * @return the ExpansionResultAggregation object itself.
      */
-    public ExpansionResultAggregation withEntityKind(EntityKind entityKind) {
+    public ExpansionResultAggregation withEntityKind(EntityKindEnum entityKind) {
         this.entityKind = entityKind;
         return this;
     }
