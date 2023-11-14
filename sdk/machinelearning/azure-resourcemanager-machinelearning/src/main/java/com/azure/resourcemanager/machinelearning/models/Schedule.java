@@ -66,11 +66,13 @@ public interface Schedule {
             DefinitionStages.WithProperties,
             DefinitionStages.WithCreate {
     }
+
     /** The Schedule definition stages. */
     interface DefinitionStages {
         /** The first stage of the Schedule definition. */
         interface Blank extends WithParentResource {
         }
+
         /** The stage of the Schedule definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
@@ -82,6 +84,7 @@ public interface Schedule {
              */
             WithProperties withExistingWorkspace(String resourceGroupName, String workspaceName);
         }
+
         /** The stage of the Schedule definition allowing to specify properties. */
         interface WithProperties {
             /**
@@ -92,6 +95,7 @@ public interface Schedule {
              */
             WithCreate withProperties(ScheduleProperties properties);
         }
+
         /**
          * The stage of the Schedule definition which contains all the minimum required properties for the resource to
          * be created, but also allows for any other optional properties to be specified.
@@ -113,6 +117,7 @@ public interface Schedule {
             Schedule create(Context context);
         }
     }
+
     /**
      * Begins update for the Schedule resource.
      *
@@ -137,6 +142,7 @@ public interface Schedule {
          */
         Schedule apply(Context context);
     }
+
     /** The Schedule update stages. */
     interface UpdateStages {
         /** The stage of the Schedule update allowing to specify properties. */
@@ -150,6 +156,7 @@ public interface Schedule {
             Update withProperties(ScheduleProperties properties);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *

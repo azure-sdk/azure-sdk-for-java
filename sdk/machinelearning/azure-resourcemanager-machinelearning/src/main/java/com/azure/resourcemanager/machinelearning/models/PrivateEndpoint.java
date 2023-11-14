@@ -9,18 +9,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** The Private Endpoint resource. */
 @Immutable
-public final class PrivateEndpoint {
+public class PrivateEndpoint {
     /*
      * The ARM identifier for Private Endpoint
      */
     @JsonProperty(value = "id", access = JsonProperty.Access.WRITE_ONLY)
     private String id;
-
-    /*
-     * The ARM identifier for Subnet resource that private endpoint links to
-     */
-    @JsonProperty(value = "subnetArmId", access = JsonProperty.Access.WRITE_ONLY)
-    private String subnetArmId;
 
     /** Creates an instance of PrivateEndpoint class. */
     public PrivateEndpoint() {
@@ -33,15 +27,6 @@ public final class PrivateEndpoint {
      */
     public String id() {
         return this.id;
-    }
-
-    /**
-     * Get the subnetArmId property: The ARM identifier for Subnet resource that private endpoint links to.
-     *
-     * @return the subnetArmId value.
-     */
-    public String subnetArmId() {
-        return this.subnetArmId;
     }
 
     /**

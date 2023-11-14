@@ -6,37 +6,64 @@ package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 
 /** The FqdnEndpoints model. */
 @Fluent
 public final class FqdnEndpoints {
     /*
-     * The properties property.
+     * The category property.
      */
-    @JsonProperty(value = "properties")
-    private FqdnEndpointsProperties properties;
+    @JsonProperty(value = "category")
+    private String category;
+
+    /*
+     * The endpoints property.
+     */
+    @JsonProperty(value = "endpoints")
+    private List<FqdnEndpoint> endpoints;
 
     /** Creates an instance of FqdnEndpoints class. */
     public FqdnEndpoints() {
     }
 
     /**
-     * Get the properties property: The properties property.
+     * Get the category property: The category property.
      *
-     * @return the properties value.
+     * @return the category value.
      */
-    public FqdnEndpointsProperties properties() {
-        return this.properties;
+    public String category() {
+        return this.category;
     }
 
     /**
-     * Set the properties property: The properties property.
+     * Set the category property: The category property.
      *
-     * @param properties the properties value to set.
+     * @param category the category value to set.
      * @return the FqdnEndpoints object itself.
      */
-    public FqdnEndpoints withProperties(FqdnEndpointsProperties properties) {
-        this.properties = properties;
+    public FqdnEndpoints withCategory(String category) {
+        this.category = category;
+        return this;
+    }
+
+    /**
+     * Get the endpoints property: The endpoints property.
+     *
+     * @return the endpoints value.
+     */
+    public List<FqdnEndpoint> endpoints() {
+        return this.endpoints;
+    }
+
+    /**
+     * Set the endpoints property: The endpoints property.
+     *
+     * @param endpoints the endpoints value to set.
+     * @return the FqdnEndpoints object itself.
+     */
+    public FqdnEndpoints withEndpoints(List<FqdnEndpoint> endpoints) {
+        this.endpoints = endpoints;
         return this;
     }
 
@@ -46,8 +73,8 @@ public final class FqdnEndpoints {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (properties() != null) {
-            properties().validate();
+        if (endpoints() != null) {
+            endpoints().forEach(e -> e.validate());
         }
     }
 }
