@@ -5,11 +5,8 @@
 package com.azure.resourcemanager.selfhelp.generated;
 
 import com.azure.resourcemanager.selfhelp.models.Name;
-import com.azure.resourcemanager.selfhelp.models.SolutionResourceProperties;
 import com.azure.resourcemanager.selfhelp.models.TriggerCriterion;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
 /** Samples for SolutionOperation Create. */
 public final class SolutionOperationCreateSamples {
@@ -27,26 +24,8 @@ public final class SolutionOperationCreateSamples {
             .define("SolutionResourceName1")
             .withExistingScope(
                 "subscriptions/mySubscription/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-rp")
-            .withProperties(
-                new SolutionResourceProperties()
-                    .withTriggerCriteria(
-                        Arrays.asList(new TriggerCriterion().withName(Name.SOLUTION_ID).withValue("SolutionId1")))
-                    .withParameters(
-                        mapOf(
-                            "resourceUri",
-                            "subscriptions/mySubscription/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-rp")))
+            .withTriggerCriteria(
+                Arrays.asList(new TriggerCriterion().withName(Name.SOLUTION_ID).withValue("SolutionId1")))
             .create();
-    }
-
-    // Use "Map.of" if available
-    @SuppressWarnings("unchecked")
-    private static <T> Map<String, T> mapOf(Object... inputs) {
-        Map<String, T> map = new HashMap<>();
-        for (int i = 0; i < inputs.length; i += 2) {
-            String key = (String) inputs[i];
-            T value = (T) inputs[i + 1];
-            map.put(key, value);
-        }
-        return map;
     }
 }

@@ -86,12 +86,13 @@ public final class DiagnosticsClientImpl implements DiagnosticsClient {
 
     /**
      * Creates a diagnostic for the specific resource using solutionId and requiredInputs* from discovery solutions.
-     * &lt;br/&gt;Diagnostics tells you precisely the root cause of the issue and the steps to address it. You can get
-     * diagnostics once you discover the relevant solution for your Azure issue. &lt;br/&gt;&lt;br/&gt; &lt;b&gt;Note:
-     * &lt;/b&gt; requiredInputs’ from Discovery solutions response must be passed via ‘additionalParameters’ as an
-     * input to Diagnostics API.
+     * &lt;br/&gt;Diagnostics are powerful solutions that access product resources or other relevant data and provide
+     * the root cause of the issue and the steps to address the issue.&lt;br/&gt;&lt;br/&gt; &lt;b&gt;Note: &lt;/b&gt;
+     * ‘requiredInputs’ from Discovery solutions response must be passed via ‘additionalParameters’ as an input to
+     * Diagnostics API.
      *
-     * @param scope This is an extension resource provider and only resource level extension is supported at the moment.
+     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
+     *     /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
      * @param diagnosticsResourceName Unique resource name for insight resources.
      * @param diagnosticResourceRequest The required request body for this insightResource invocation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -137,12 +138,13 @@ public final class DiagnosticsClientImpl implements DiagnosticsClient {
 
     /**
      * Creates a diagnostic for the specific resource using solutionId and requiredInputs* from discovery solutions.
-     * &lt;br/&gt;Diagnostics tells you precisely the root cause of the issue and the steps to address it. You can get
-     * diagnostics once you discover the relevant solution for your Azure issue. &lt;br/&gt;&lt;br/&gt; &lt;b&gt;Note:
-     * &lt;/b&gt; requiredInputs’ from Discovery solutions response must be passed via ‘additionalParameters’ as an
-     * input to Diagnostics API.
+     * &lt;br/&gt;Diagnostics are powerful solutions that access product resources or other relevant data and provide
+     * the root cause of the issue and the steps to address the issue.&lt;br/&gt;&lt;br/&gt; &lt;b&gt;Note: &lt;/b&gt;
+     * ‘requiredInputs’ from Discovery solutions response must be passed via ‘additionalParameters’ as an input to
+     * Diagnostics API.
      *
-     * @param scope This is an extension resource provider and only resource level extension is supported at the moment.
+     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
+     *     /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
      * @param diagnosticsResourceName Unique resource name for insight resources.
      * @param diagnosticResourceRequest The required request body for this insightResource invocation.
      * @param context The context to associate with this operation.
@@ -189,12 +191,13 @@ public final class DiagnosticsClientImpl implements DiagnosticsClient {
 
     /**
      * Creates a diagnostic for the specific resource using solutionId and requiredInputs* from discovery solutions.
-     * &lt;br/&gt;Diagnostics tells you precisely the root cause of the issue and the steps to address it. You can get
-     * diagnostics once you discover the relevant solution for your Azure issue. &lt;br/&gt;&lt;br/&gt; &lt;b&gt;Note:
-     * &lt;/b&gt; requiredInputs’ from Discovery solutions response must be passed via ‘additionalParameters’ as an
-     * input to Diagnostics API.
+     * &lt;br/&gt;Diagnostics are powerful solutions that access product resources or other relevant data and provide
+     * the root cause of the issue and the steps to address the issue.&lt;br/&gt;&lt;br/&gt; &lt;b&gt;Note: &lt;/b&gt;
+     * ‘requiredInputs’ from Discovery solutions response must be passed via ‘additionalParameters’ as an input to
+     * Diagnostics API.
      *
-     * @param scope This is an extension resource provider and only resource level extension is supported at the moment.
+     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
+     *     /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
      * @param diagnosticsResourceName Unique resource name for insight resources.
      * @param diagnosticResourceRequest The required request body for this insightResource invocation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -219,12 +222,13 @@ public final class DiagnosticsClientImpl implements DiagnosticsClient {
 
     /**
      * Creates a diagnostic for the specific resource using solutionId and requiredInputs* from discovery solutions.
-     * &lt;br/&gt;Diagnostics tells you precisely the root cause of the issue and the steps to address it. You can get
-     * diagnostics once you discover the relevant solution for your Azure issue. &lt;br/&gt;&lt;br/&gt; &lt;b&gt;Note:
-     * &lt;/b&gt; requiredInputs’ from Discovery solutions response must be passed via ‘additionalParameters’ as an
-     * input to Diagnostics API.
+     * &lt;br/&gt;Diagnostics are powerful solutions that access product resources or other relevant data and provide
+     * the root cause of the issue and the steps to address the issue.&lt;br/&gt;&lt;br/&gt; &lt;b&gt;Note: &lt;/b&gt;
+     * ‘requiredInputs’ from Discovery solutions response must be passed via ‘additionalParameters’ as an input to
+     * Diagnostics API.
      *
-     * @param scope This is an extension resource provider and only resource level extension is supported at the moment.
+     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
+     *     /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
      * @param diagnosticsResourceName Unique resource name for insight resources.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -249,12 +253,13 @@ public final class DiagnosticsClientImpl implements DiagnosticsClient {
 
     /**
      * Creates a diagnostic for the specific resource using solutionId and requiredInputs* from discovery solutions.
-     * &lt;br/&gt;Diagnostics tells you precisely the root cause of the issue and the steps to address it. You can get
-     * diagnostics once you discover the relevant solution for your Azure issue. &lt;br/&gt;&lt;br/&gt; &lt;b&gt;Note:
-     * &lt;/b&gt; requiredInputs’ from Discovery solutions response must be passed via ‘additionalParameters’ as an
-     * input to Diagnostics API.
+     * &lt;br/&gt;Diagnostics are powerful solutions that access product resources or other relevant data and provide
+     * the root cause of the issue and the steps to address the issue.&lt;br/&gt;&lt;br/&gt; &lt;b&gt;Note: &lt;/b&gt;
+     * ‘requiredInputs’ from Discovery solutions response must be passed via ‘additionalParameters’ as an input to
+     * Diagnostics API.
      *
-     * @param scope This is an extension resource provider and only resource level extension is supported at the moment.
+     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
+     *     /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
      * @param diagnosticsResourceName Unique resource name for insight resources.
      * @param diagnosticResourceRequest The required request body for this insightResource invocation.
      * @param context The context to associate with this operation.
@@ -284,12 +289,13 @@ public final class DiagnosticsClientImpl implements DiagnosticsClient {
 
     /**
      * Creates a diagnostic for the specific resource using solutionId and requiredInputs* from discovery solutions.
-     * &lt;br/&gt;Diagnostics tells you precisely the root cause of the issue and the steps to address it. You can get
-     * diagnostics once you discover the relevant solution for your Azure issue. &lt;br/&gt;&lt;br/&gt; &lt;b&gt;Note:
-     * &lt;/b&gt; requiredInputs’ from Discovery solutions response must be passed via ‘additionalParameters’ as an
-     * input to Diagnostics API.
+     * &lt;br/&gt;Diagnostics are powerful solutions that access product resources or other relevant data and provide
+     * the root cause of the issue and the steps to address the issue.&lt;br/&gt;&lt;br/&gt; &lt;b&gt;Note: &lt;/b&gt;
+     * ‘requiredInputs’ from Discovery solutions response must be passed via ‘additionalParameters’ as an input to
+     * Diagnostics API.
      *
-     * @param scope This is an extension resource provider and only resource level extension is supported at the moment.
+     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
+     *     /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
      * @param diagnosticsResourceName Unique resource name for insight resources.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -305,12 +311,13 @@ public final class DiagnosticsClientImpl implements DiagnosticsClient {
 
     /**
      * Creates a diagnostic for the specific resource using solutionId and requiredInputs* from discovery solutions.
-     * &lt;br/&gt;Diagnostics tells you precisely the root cause of the issue and the steps to address it. You can get
-     * diagnostics once you discover the relevant solution for your Azure issue. &lt;br/&gt;&lt;br/&gt; &lt;b&gt;Note:
-     * &lt;/b&gt; requiredInputs’ from Discovery solutions response must be passed via ‘additionalParameters’ as an
-     * input to Diagnostics API.
+     * &lt;br/&gt;Diagnostics are powerful solutions that access product resources or other relevant data and provide
+     * the root cause of the issue and the steps to address the issue.&lt;br/&gt;&lt;br/&gt; &lt;b&gt;Note: &lt;/b&gt;
+     * ‘requiredInputs’ from Discovery solutions response must be passed via ‘additionalParameters’ as an input to
+     * Diagnostics API.
      *
-     * @param scope This is an extension resource provider and only resource level extension is supported at the moment.
+     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
+     *     /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
      * @param diagnosticsResourceName Unique resource name for insight resources.
      * @param diagnosticResourceRequest The required request body for this insightResource invocation.
      * @param context The context to associate with this operation.
@@ -332,12 +339,13 @@ public final class DiagnosticsClientImpl implements DiagnosticsClient {
 
     /**
      * Creates a diagnostic for the specific resource using solutionId and requiredInputs* from discovery solutions.
-     * &lt;br/&gt;Diagnostics tells you precisely the root cause of the issue and the steps to address it. You can get
-     * diagnostics once you discover the relevant solution for your Azure issue. &lt;br/&gt;&lt;br/&gt; &lt;b&gt;Note:
-     * &lt;/b&gt; requiredInputs’ from Discovery solutions response must be passed via ‘additionalParameters’ as an
-     * input to Diagnostics API.
+     * &lt;br/&gt;Diagnostics are powerful solutions that access product resources or other relevant data and provide
+     * the root cause of the issue and the steps to address the issue.&lt;br/&gt;&lt;br/&gt; &lt;b&gt;Note: &lt;/b&gt;
+     * ‘requiredInputs’ from Discovery solutions response must be passed via ‘additionalParameters’ as an input to
+     * Diagnostics API.
      *
-     * @param scope This is an extension resource provider and only resource level extension is supported at the moment.
+     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
+     *     /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
      * @param diagnosticsResourceName Unique resource name for insight resources.
      * @param diagnosticResourceRequest The required request body for this insightResource invocation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -355,12 +363,13 @@ public final class DiagnosticsClientImpl implements DiagnosticsClient {
 
     /**
      * Creates a diagnostic for the specific resource using solutionId and requiredInputs* from discovery solutions.
-     * &lt;br/&gt;Diagnostics tells you precisely the root cause of the issue and the steps to address it. You can get
-     * diagnostics once you discover the relevant solution for your Azure issue. &lt;br/&gt;&lt;br/&gt; &lt;b&gt;Note:
-     * &lt;/b&gt; requiredInputs’ from Discovery solutions response must be passed via ‘additionalParameters’ as an
-     * input to Diagnostics API.
+     * &lt;br/&gt;Diagnostics are powerful solutions that access product resources or other relevant data and provide
+     * the root cause of the issue and the steps to address the issue.&lt;br/&gt;&lt;br/&gt; &lt;b&gt;Note: &lt;/b&gt;
+     * ‘requiredInputs’ from Discovery solutions response must be passed via ‘additionalParameters’ as an input to
+     * Diagnostics API.
      *
-     * @param scope This is an extension resource provider and only resource level extension is supported at the moment.
+     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
+     *     /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
      * @param diagnosticsResourceName Unique resource name for insight resources.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -377,12 +386,13 @@ public final class DiagnosticsClientImpl implements DiagnosticsClient {
 
     /**
      * Creates a diagnostic for the specific resource using solutionId and requiredInputs* from discovery solutions.
-     * &lt;br/&gt;Diagnostics tells you precisely the root cause of the issue and the steps to address it. You can get
-     * diagnostics once you discover the relevant solution for your Azure issue. &lt;br/&gt;&lt;br/&gt; &lt;b&gt;Note:
-     * &lt;/b&gt; requiredInputs’ from Discovery solutions response must be passed via ‘additionalParameters’ as an
-     * input to Diagnostics API.
+     * &lt;br/&gt;Diagnostics are powerful solutions that access product resources or other relevant data and provide
+     * the root cause of the issue and the steps to address the issue.&lt;br/&gt;&lt;br/&gt; &lt;b&gt;Note: &lt;/b&gt;
+     * ‘requiredInputs’ from Discovery solutions response must be passed via ‘additionalParameters’ as an input to
+     * Diagnostics API.
      *
-     * @param scope This is an extension resource provider and only resource level extension is supported at the moment.
+     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
+     *     /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
      * @param diagnosticsResourceName Unique resource name for insight resources.
      * @param diagnosticResourceRequest The required request body for this insightResource invocation.
      * @param context The context to associate with this operation.
@@ -404,12 +414,13 @@ public final class DiagnosticsClientImpl implements DiagnosticsClient {
 
     /**
      * Creates a diagnostic for the specific resource using solutionId and requiredInputs* from discovery solutions.
-     * &lt;br/&gt;Diagnostics tells you precisely the root cause of the issue and the steps to address it. You can get
-     * diagnostics once you discover the relevant solution for your Azure issue. &lt;br/&gt;&lt;br/&gt; &lt;b&gt;Note:
-     * &lt;/b&gt; requiredInputs’ from Discovery solutions response must be passed via ‘additionalParameters’ as an
-     * input to Diagnostics API.
+     * &lt;br/&gt;Diagnostics are powerful solutions that access product resources or other relevant data and provide
+     * the root cause of the issue and the steps to address the issue.&lt;br/&gt;&lt;br/&gt; &lt;b&gt;Note: &lt;/b&gt;
+     * ‘requiredInputs’ from Discovery solutions response must be passed via ‘additionalParameters’ as an input to
+     * Diagnostics API.
      *
-     * @param scope This is an extension resource provider and only resource level extension is supported at the moment.
+     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
+     *     /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
      * @param diagnosticsResourceName Unique resource name for insight resources.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -424,12 +435,13 @@ public final class DiagnosticsClientImpl implements DiagnosticsClient {
 
     /**
      * Creates a diagnostic for the specific resource using solutionId and requiredInputs* from discovery solutions.
-     * &lt;br/&gt;Diagnostics tells you precisely the root cause of the issue and the steps to address it. You can get
-     * diagnostics once you discover the relevant solution for your Azure issue. &lt;br/&gt;&lt;br/&gt; &lt;b&gt;Note:
-     * &lt;/b&gt; requiredInputs’ from Discovery solutions response must be passed via ‘additionalParameters’ as an
-     * input to Diagnostics API.
+     * &lt;br/&gt;Diagnostics are powerful solutions that access product resources or other relevant data and provide
+     * the root cause of the issue and the steps to address the issue.&lt;br/&gt;&lt;br/&gt; &lt;b&gt;Note: &lt;/b&gt;
+     * ‘requiredInputs’ from Discovery solutions response must be passed via ‘additionalParameters’ as an input to
+     * Diagnostics API.
      *
-     * @param scope This is an extension resource provider and only resource level extension is supported at the moment.
+     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
+     *     /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
      * @param diagnosticsResourceName Unique resource name for insight resources.
      * @param diagnosticResourceRequest The required request body for this insightResource invocation.
      * @param context The context to associate with this operation.
@@ -450,7 +462,8 @@ public final class DiagnosticsClientImpl implements DiagnosticsClient {
     /**
      * Get the diagnostics using the 'diagnosticsResourceName' you chose while creating the diagnostic.
      *
-     * @param scope This is an extension resource provider and only resource level extension is supported at the moment.
+     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
+     *     /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
      * @param diagnosticsResourceName Unique resource name for insight resources.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -492,7 +505,8 @@ public final class DiagnosticsClientImpl implements DiagnosticsClient {
     /**
      * Get the diagnostics using the 'diagnosticsResourceName' you chose while creating the diagnostic.
      *
-     * @param scope This is an extension resource provider and only resource level extension is supported at the moment.
+     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
+     *     /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
      * @param diagnosticsResourceName Unique resource name for insight resources.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -533,7 +547,8 @@ public final class DiagnosticsClientImpl implements DiagnosticsClient {
     /**
      * Get the diagnostics using the 'diagnosticsResourceName' you chose while creating the diagnostic.
      *
-     * @param scope This is an extension resource provider and only resource level extension is supported at the moment.
+     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
+     *     /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
      * @param diagnosticsResourceName Unique resource name for insight resources.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -549,7 +564,8 @@ public final class DiagnosticsClientImpl implements DiagnosticsClient {
     /**
      * Get the diagnostics using the 'diagnosticsResourceName' you chose while creating the diagnostic.
      *
-     * @param scope This is an extension resource provider and only resource level extension is supported at the moment.
+     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
+     *     /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
      * @param diagnosticsResourceName Unique resource name for insight resources.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -567,7 +583,8 @@ public final class DiagnosticsClientImpl implements DiagnosticsClient {
     /**
      * Get the diagnostics using the 'diagnosticsResourceName' you chose while creating the diagnostic.
      *
-     * @param scope This is an extension resource provider and only resource level extension is supported at the moment.
+     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
+     *     /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
      * @param diagnosticsResourceName Unique resource name for insight resources.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

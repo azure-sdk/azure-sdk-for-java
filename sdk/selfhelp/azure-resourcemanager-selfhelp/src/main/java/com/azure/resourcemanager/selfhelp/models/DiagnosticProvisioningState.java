@@ -19,6 +19,9 @@ public final class DiagnosticProvisioningState extends ExpandableStringEnum<Diag
     /** Static value Failed for DiagnosticProvisioningState. */
     public static final DiagnosticProvisioningState FAILED = fromString("Failed");
 
+    /** Static value Running for DiagnosticProvisioningState. */
+    public static final DiagnosticProvisioningState RUNNING = fromString("Running");
+
     /** Static value Canceled for DiagnosticProvisioningState. */
     public static final DiagnosticProvisioningState CANCELED = fromString("Canceled");
 

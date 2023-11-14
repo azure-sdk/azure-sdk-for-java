@@ -124,16 +124,16 @@ public final class TroubleshootersClientImpl implements TroubleshootersClient {
 
     /**
      * Creates the specific troubleshooter action under a resource or subscription using the ‘solutionId’ and
-     * ‘properties.parameters’ as the trigger. &lt;br/&gt; Troubleshooters are step-by-step interactive guidance that
-     * scope the problem by collecting additional inputs from you in each stage while troubleshooting an Azure issue.
-     * You will be guided down decision tree style workflow and the best possible solution will be presented at the end
-     * of the workflow. &lt;br/&gt; Create API creates the Troubleshooter API using ‘parameters’ and ‘solutionId’
-     * &lt;br/&gt; After creating the Troubleshooter instance, the following APIs can be used:&lt;br/&gt; CONTINUE API:
-     * to move to the next step in the flow &lt;br/&gt;GET API: to identify the next step after executing the CONTINUE
-     * API. &lt;br/&gt;&lt;br/&gt; &lt;b&gt;Note:&lt;/b&gt; ‘requiredParameters’ from solutions response must be passed
-     * via ‘properties. parameters’ in the request body of Troubleshooters API.
+     * ‘properties.parameters’ as the trigger. &lt;br/&gt; Azure Troubleshooters help with hard to classify issues,
+     * reducing the gap between customer observed problems and solutions by guiding the user effortlessly through the
+     * troubleshooting process. Each Troubleshooter flow represents a problem area within Azure and has a complex
+     * tree-like structure that addresses many root causes. These flows are prepared with the help of Subject Matter
+     * experts and customer support engineers by carefully considering previous support requests raised by customers.
+     * Troubleshooters terminate at a well curated solution based off of resource backend signals and customer manual
+     * selections.
      *
-     * @param scope This is an extension resource provider and only resource level extension is supported at the moment.
+     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
+     *     /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
      * @param troubleshooterName Troubleshooter resource Name.
      * @param createTroubleshooterRequestBody The required request body for this Troubleshooter resource creation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -178,16 +178,16 @@ public final class TroubleshootersClientImpl implements TroubleshootersClient {
 
     /**
      * Creates the specific troubleshooter action under a resource or subscription using the ‘solutionId’ and
-     * ‘properties.parameters’ as the trigger. &lt;br/&gt; Troubleshooters are step-by-step interactive guidance that
-     * scope the problem by collecting additional inputs from you in each stage while troubleshooting an Azure issue.
-     * You will be guided down decision tree style workflow and the best possible solution will be presented at the end
-     * of the workflow. &lt;br/&gt; Create API creates the Troubleshooter API using ‘parameters’ and ‘solutionId’
-     * &lt;br/&gt; After creating the Troubleshooter instance, the following APIs can be used:&lt;br/&gt; CONTINUE API:
-     * to move to the next step in the flow &lt;br/&gt;GET API: to identify the next step after executing the CONTINUE
-     * API. &lt;br/&gt;&lt;br/&gt; &lt;b&gt;Note:&lt;/b&gt; ‘requiredParameters’ from solutions response must be passed
-     * via ‘properties. parameters’ in the request body of Troubleshooters API.
+     * ‘properties.parameters’ as the trigger. &lt;br/&gt; Azure Troubleshooters help with hard to classify issues,
+     * reducing the gap between customer observed problems and solutions by guiding the user effortlessly through the
+     * troubleshooting process. Each Troubleshooter flow represents a problem area within Azure and has a complex
+     * tree-like structure that addresses many root causes. These flows are prepared with the help of Subject Matter
+     * experts and customer support engineers by carefully considering previous support requests raised by customers.
+     * Troubleshooters terminate at a well curated solution based off of resource backend signals and customer manual
+     * selections.
      *
-     * @param scope This is an extension resource provider and only resource level extension is supported at the moment.
+     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
+     *     /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
      * @param troubleshooterName Troubleshooter resource Name.
      * @param createTroubleshooterRequestBody The required request body for this Troubleshooter resource creation.
      * @param context The context to associate with this operation.
@@ -233,16 +233,16 @@ public final class TroubleshootersClientImpl implements TroubleshootersClient {
 
     /**
      * Creates the specific troubleshooter action under a resource or subscription using the ‘solutionId’ and
-     * ‘properties.parameters’ as the trigger. &lt;br/&gt; Troubleshooters are step-by-step interactive guidance that
-     * scope the problem by collecting additional inputs from you in each stage while troubleshooting an Azure issue.
-     * You will be guided down decision tree style workflow and the best possible solution will be presented at the end
-     * of the workflow. &lt;br/&gt; Create API creates the Troubleshooter API using ‘parameters’ and ‘solutionId’
-     * &lt;br/&gt; After creating the Troubleshooter instance, the following APIs can be used:&lt;br/&gt; CONTINUE API:
-     * to move to the next step in the flow &lt;br/&gt;GET API: to identify the next step after executing the CONTINUE
-     * API. &lt;br/&gt;&lt;br/&gt; &lt;b&gt;Note:&lt;/b&gt; ‘requiredParameters’ from solutions response must be passed
-     * via ‘properties. parameters’ in the request body of Troubleshooters API.
+     * ‘properties.parameters’ as the trigger. &lt;br/&gt; Azure Troubleshooters help with hard to classify issues,
+     * reducing the gap between customer observed problems and solutions by guiding the user effortlessly through the
+     * troubleshooting process. Each Troubleshooter flow represents a problem area within Azure and has a complex
+     * tree-like structure that addresses many root causes. These flows are prepared with the help of Subject Matter
+     * experts and customer support engineers by carefully considering previous support requests raised by customers.
+     * Troubleshooters terminate at a well curated solution based off of resource backend signals and customer manual
+     * selections.
      *
-     * @param scope This is an extension resource provider and only resource level extension is supported at the moment.
+     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
+     *     /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
      * @param troubleshooterName Troubleshooter resource Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -258,16 +258,16 @@ public final class TroubleshootersClientImpl implements TroubleshootersClient {
 
     /**
      * Creates the specific troubleshooter action under a resource or subscription using the ‘solutionId’ and
-     * ‘properties.parameters’ as the trigger. &lt;br/&gt; Troubleshooters are step-by-step interactive guidance that
-     * scope the problem by collecting additional inputs from you in each stage while troubleshooting an Azure issue.
-     * You will be guided down decision tree style workflow and the best possible solution will be presented at the end
-     * of the workflow. &lt;br/&gt; Create API creates the Troubleshooter API using ‘parameters’ and ‘solutionId’
-     * &lt;br/&gt; After creating the Troubleshooter instance, the following APIs can be used:&lt;br/&gt; CONTINUE API:
-     * to move to the next step in the flow &lt;br/&gt;GET API: to identify the next step after executing the CONTINUE
-     * API. &lt;br/&gt;&lt;br/&gt; &lt;b&gt;Note:&lt;/b&gt; ‘requiredParameters’ from solutions response must be passed
-     * via ‘properties. parameters’ in the request body of Troubleshooters API.
+     * ‘properties.parameters’ as the trigger. &lt;br/&gt; Azure Troubleshooters help with hard to classify issues,
+     * reducing the gap between customer observed problems and solutions by guiding the user effortlessly through the
+     * troubleshooting process. Each Troubleshooter flow represents a problem area within Azure and has a complex
+     * tree-like structure that addresses many root causes. These flows are prepared with the help of Subject Matter
+     * experts and customer support engineers by carefully considering previous support requests raised by customers.
+     * Troubleshooters terminate at a well curated solution based off of resource backend signals and customer manual
+     * selections.
      *
-     * @param scope This is an extension resource provider and only resource level extension is supported at the moment.
+     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
+     *     /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
      * @param troubleshooterName Troubleshooter resource Name.
      * @param createTroubleshooterRequestBody The required request body for this Troubleshooter resource creation.
      * @param context The context to associate with this operation.
@@ -287,16 +287,16 @@ public final class TroubleshootersClientImpl implements TroubleshootersClient {
 
     /**
      * Creates the specific troubleshooter action under a resource or subscription using the ‘solutionId’ and
-     * ‘properties.parameters’ as the trigger. &lt;br/&gt; Troubleshooters are step-by-step interactive guidance that
-     * scope the problem by collecting additional inputs from you in each stage while troubleshooting an Azure issue.
-     * You will be guided down decision tree style workflow and the best possible solution will be presented at the end
-     * of the workflow. &lt;br/&gt; Create API creates the Troubleshooter API using ‘parameters’ and ‘solutionId’
-     * &lt;br/&gt; After creating the Troubleshooter instance, the following APIs can be used:&lt;br/&gt; CONTINUE API:
-     * to move to the next step in the flow &lt;br/&gt;GET API: to identify the next step after executing the CONTINUE
-     * API. &lt;br/&gt;&lt;br/&gt; &lt;b&gt;Note:&lt;/b&gt; ‘requiredParameters’ from solutions response must be passed
-     * via ‘properties. parameters’ in the request body of Troubleshooters API.
+     * ‘properties.parameters’ as the trigger. &lt;br/&gt; Azure Troubleshooters help with hard to classify issues,
+     * reducing the gap between customer observed problems and solutions by guiding the user effortlessly through the
+     * troubleshooting process. Each Troubleshooter flow represents a problem area within Azure and has a complex
+     * tree-like structure that addresses many root causes. These flows are prepared with the help of Subject Matter
+     * experts and customer support engineers by carefully considering previous support requests raised by customers.
+     * Troubleshooters terminate at a well curated solution based off of resource backend signals and customer manual
+     * selections.
      *
-     * @param scope This is an extension resource provider and only resource level extension is supported at the moment.
+     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
+     *     /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
      * @param troubleshooterName Troubleshooter resource Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -315,7 +315,8 @@ public final class TroubleshootersClientImpl implements TroubleshootersClient {
      * includes the status and result of each step in the Troubleshooter workflow. This API requires the Troubleshooter
      * resource name that was created using the Create API.
      *
-     * @param scope This is an extension resource provider and only resource level extension is supported at the moment.
+     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
+     *     /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
      * @param troubleshooterName Troubleshooter resource Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -361,7 +362,8 @@ public final class TroubleshootersClientImpl implements TroubleshootersClient {
      * includes the status and result of each step in the Troubleshooter workflow. This API requires the Troubleshooter
      * resource name that was created using the Create API.
      *
-     * @param scope This is an extension resource provider and only resource level extension is supported at the moment.
+     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
+     *     /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
      * @param troubleshooterName Troubleshooter resource Name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -400,7 +402,8 @@ public final class TroubleshootersClientImpl implements TroubleshootersClient {
      * includes the status and result of each step in the Troubleshooter workflow. This API requires the Troubleshooter
      * resource name that was created using the Create API.
      *
-     * @param scope This is an extension resource provider and only resource level extension is supported at the moment.
+     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
+     *     /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
      * @param troubleshooterName Troubleshooter resource Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -421,7 +424,8 @@ public final class TroubleshootersClientImpl implements TroubleshootersClient {
      * includes the status and result of each step in the Troubleshooter workflow. This API requires the Troubleshooter
      * resource name that was created using the Create API.
      *
-     * @param scope This is an extension resource provider and only resource level extension is supported at the moment.
+     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
+     *     /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
      * @param troubleshooterName Troubleshooter resource Name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -443,7 +447,8 @@ public final class TroubleshootersClientImpl implements TroubleshootersClient {
      * includes the status and result of each step in the Troubleshooter workflow. This API requires the Troubleshooter
      * resource name that was created using the Create API.
      *
-     * @param scope This is an extension resource provider and only resource level extension is supported at the moment.
+     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
+     *     /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
      * @param troubleshooterName Troubleshooter resource Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -463,7 +468,8 @@ public final class TroubleshootersClientImpl implements TroubleshootersClient {
      * specific troubleshooter to progress into the next step in the process. This API is used after the Troubleshooter
      * has been created using the Create API.
      *
-     * @param scope This is an extension resource provider and only resource level extension is supported at the moment.
+     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
+     *     /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
      * @param troubleshooterName Troubleshooter resource Name.
      * @param continueRequestBody The required request body for going to next step in Troubleshooter resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -512,7 +518,8 @@ public final class TroubleshootersClientImpl implements TroubleshootersClient {
      * specific troubleshooter to progress into the next step in the process. This API is used after the Troubleshooter
      * has been created using the Create API.
      *
-     * @param scope This is an extension resource provider and only resource level extension is supported at the moment.
+     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
+     *     /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
      * @param troubleshooterName Troubleshooter resource Name.
      * @param continueRequestBody The required request body for going to next step in Troubleshooter resource.
      * @param context The context to associate with this operation.
@@ -559,7 +566,8 @@ public final class TroubleshootersClientImpl implements TroubleshootersClient {
      * specific troubleshooter to progress into the next step in the process. This API is used after the Troubleshooter
      * has been created using the Create API.
      *
-     * @param scope This is an extension resource provider and only resource level extension is supported at the moment.
+     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
+     *     /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
      * @param troubleshooterName Troubleshooter resource Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -579,7 +587,8 @@ public final class TroubleshootersClientImpl implements TroubleshootersClient {
      * specific troubleshooter to progress into the next step in the process. This API is used after the Troubleshooter
      * has been created using the Create API.
      *
-     * @param scope This is an extension resource provider and only resource level extension is supported at the moment.
+     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
+     *     /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
      * @param troubleshooterName Troubleshooter resource Name.
      * @param continueRequestBody The required request body for going to next step in Troubleshooter resource.
      * @param context The context to associate with this operation.
@@ -600,7 +609,8 @@ public final class TroubleshootersClientImpl implements TroubleshootersClient {
      * specific troubleshooter to progress into the next step in the process. This API is used after the Troubleshooter
      * has been created using the Create API.
      *
-     * @param scope This is an extension resource provider and only resource level extension is supported at the moment.
+     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
+     *     /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
      * @param troubleshooterName Troubleshooter resource Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -615,7 +625,8 @@ public final class TroubleshootersClientImpl implements TroubleshootersClient {
     /**
      * Ends the troubleshooter action.
      *
-     * @param scope This is an extension resource provider and only resource level extension is supported at the moment.
+     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
+     *     /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
      * @param troubleshooterName Troubleshooter resource Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -655,7 +666,8 @@ public final class TroubleshootersClientImpl implements TroubleshootersClient {
     /**
      * Ends the troubleshooter action.
      *
-     * @param scope This is an extension resource provider and only resource level extension is supported at the moment.
+     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
+     *     /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
      * @param troubleshooterName Troubleshooter resource Name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -688,7 +700,8 @@ public final class TroubleshootersClientImpl implements TroubleshootersClient {
     /**
      * Ends the troubleshooter action.
      *
-     * @param scope This is an extension resource provider and only resource level extension is supported at the moment.
+     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
+     *     /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
      * @param troubleshooterName Troubleshooter resource Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -703,7 +716,8 @@ public final class TroubleshootersClientImpl implements TroubleshootersClient {
     /**
      * Ends the troubleshooter action.
      *
-     * @param scope This is an extension resource provider and only resource level extension is supported at the moment.
+     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
+     *     /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
      * @param troubleshooterName Troubleshooter resource Name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -719,7 +733,8 @@ public final class TroubleshootersClientImpl implements TroubleshootersClient {
     /**
      * Ends the troubleshooter action.
      *
-     * @param scope This is an extension resource provider and only resource level extension is supported at the moment.
+     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
+     *     /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
      * @param troubleshooterName Troubleshooter resource Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -735,7 +750,8 @@ public final class TroubleshootersClientImpl implements TroubleshootersClient {
      * new resource name which should be used in subsequent request. The old resource name is obsolete after this API is
      * invoked.
      *
-     * @param scope This is an extension resource provider and only resource level extension is supported at the moment.
+     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
+     *     /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
      * @param troubleshooterName Troubleshooter resource Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -777,7 +793,8 @@ public final class TroubleshootersClientImpl implements TroubleshootersClient {
      * new resource name which should be used in subsequent request. The old resource name is obsolete after this API is
      * invoked.
      *
-     * @param scope This is an extension resource provider and only resource level extension is supported at the moment.
+     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
+     *     /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
      * @param troubleshooterName Troubleshooter resource Name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -813,7 +830,8 @@ public final class TroubleshootersClientImpl implements TroubleshootersClient {
      * new resource name which should be used in subsequent request. The old resource name is obsolete after this API is
      * invoked.
      *
-     * @param scope This is an extension resource provider and only resource level extension is supported at the moment.
+     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
+     *     /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
      * @param troubleshooterName Troubleshooter resource Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -830,7 +848,8 @@ public final class TroubleshootersClientImpl implements TroubleshootersClient {
      * new resource name which should be used in subsequent request. The old resource name is obsolete after this API is
      * invoked.
      *
-     * @param scope This is an extension resource provider and only resource level extension is supported at the moment.
+     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
+     *     /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
      * @param troubleshooterName Troubleshooter resource Name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -849,7 +868,8 @@ public final class TroubleshootersClientImpl implements TroubleshootersClient {
      * new resource name which should be used in subsequent request. The old resource name is obsolete after this API is
      * invoked.
      *
-     * @param scope This is an extension resource provider and only resource level extension is supported at the moment.
+     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
+     *     /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
      * @param troubleshooterName Troubleshooter resource Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

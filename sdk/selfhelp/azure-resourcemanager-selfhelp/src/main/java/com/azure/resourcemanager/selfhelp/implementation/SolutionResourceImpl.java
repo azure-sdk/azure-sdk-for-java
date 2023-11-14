@@ -4,11 +4,18 @@
 
 package com.azure.resourcemanager.selfhelp.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.selfhelp.fluent.models.SolutionResourceInner;
+import com.azure.resourcemanager.selfhelp.models.ReplacementMaps;
+import com.azure.resourcemanager.selfhelp.models.Section;
 import com.azure.resourcemanager.selfhelp.models.SolutionPatchRequestBody;
+import com.azure.resourcemanager.selfhelp.models.SolutionProvisioningState;
 import com.azure.resourcemanager.selfhelp.models.SolutionResource;
-import com.azure.resourcemanager.selfhelp.models.SolutionResourceProperties;
+import com.azure.resourcemanager.selfhelp.models.TriggerCriterion;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 
 public final class SolutionResourceImpl
     implements SolutionResource, SolutionResource.Definition, SolutionResource.Update {
@@ -28,8 +35,55 @@ public final class SolutionResourceImpl
         return this.innerModel().type();
     }
 
-    public SolutionResourceProperties properties() {
-        return this.innerModel().properties();
+    public SystemData systemData() {
+        return this.innerModel().systemData();
+    }
+
+    public List<TriggerCriterion> triggerCriteria() {
+        List<TriggerCriterion> inner = this.innerModel().triggerCriteria();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
+    public Map<String, String> parameters() {
+        Map<String, String> inner = this.innerModel().parameters();
+        if (inner != null) {
+            return Collections.unmodifiableMap(inner);
+        } else {
+            return Collections.emptyMap();
+        }
+    }
+
+    public String solutionId() {
+        return this.innerModel().solutionId();
+    }
+
+    public SolutionProvisioningState provisioningState() {
+        return this.innerModel().provisioningState();
+    }
+
+    public String title() {
+        return this.innerModel().title();
+    }
+
+    public String content() {
+        return this.innerModel().content();
+    }
+
+    public ReplacementMaps replacementMaps() {
+        return this.innerModel().replacementMaps();
+    }
+
+    public List<Section> sections() {
+        List<Section> inner = this.innerModel().sections();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
     }
 
     public SolutionResourceInner innerModel() {
@@ -134,12 +188,22 @@ public final class SolutionResourceImpl
         return this;
     }
 
-    public SolutionResourceImpl withProperties(SolutionResourceProperties properties) {
+    public SolutionResourceImpl withTriggerCriteria(List<TriggerCriterion> triggerCriteria) {
         if (isInCreateMode()) {
-            this.innerModel().withProperties(properties);
+            this.innerModel().withTriggerCriteria(triggerCriteria);
             return this;
         } else {
-            this.updateSolutionPatchRequestBody.withProperties(properties);
+            this.updateSolutionPatchRequestBody.withTriggerCriteria(triggerCriteria);
+            return this;
+        }
+    }
+
+    public SolutionResourceImpl withParameters(Map<String, String> parameters) {
+        if (isInCreateMode()) {
+            this.innerModel().withParameters(parameters);
+            return this;
+        } else {
+            this.updateSolutionPatchRequestBody.withParameters(parameters);
             return this;
         }
     }

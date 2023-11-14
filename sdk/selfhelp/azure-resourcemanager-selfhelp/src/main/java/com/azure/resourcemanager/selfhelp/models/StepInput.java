@@ -18,10 +18,10 @@ public final class StepInput {
     private String questionId;
 
     /*
-     * Text Input. Will be a single line input.
+     * Type of Question
      */
     @JsonProperty(value = "questionType")
-    private String questionType;
+    private QuestionType questionType;
 
     /*
      * User question content.
@@ -90,21 +90,21 @@ public final class StepInput {
     }
 
     /**
-     * Get the questionType property: Text Input. Will be a single line input.
+     * Get the questionType property: Type of Question.
      *
      * @return the questionType value.
      */
-    public String questionType() {
+    public QuestionType questionType() {
         return this.questionType;
     }
 
     /**
-     * Set the questionType property: Text Input. Will be a single line input.
+     * Set the questionType property: Type of Question.
      *
      * @param questionType the questionType value to set.
      * @return the StepInput object itself.
      */
-    public StepInput withQuestionType(String questionType) {
+    public StepInput withQuestionType(QuestionType questionType) {
         this.questionType = questionType;
         return this;
     }

@@ -13,8 +13,14 @@ public final class SolutionProvisioningState extends ExpandableStringEnum<Soluti
     /** Static value Succeeded for SolutionProvisioningState. */
     public static final SolutionProvisioningState SUCCEEDED = fromString("Succeeded");
 
+    /** Static value PartialComplete for SolutionProvisioningState. */
+    public static final SolutionProvisioningState PARTIAL_COMPLETE = fromString("PartialComplete");
+
     /** Static value Failed for SolutionProvisioningState. */
     public static final SolutionProvisioningState FAILED = fromString("Failed");
+
+    /** Static value Running for SolutionProvisioningState. */
+    public static final SolutionProvisioningState RUNNING = fromString("Running");
 
     /** Static value Canceled for SolutionProvisioningState. */
     public static final SolutionProvisioningState CANCELED = fromString("Canceled");

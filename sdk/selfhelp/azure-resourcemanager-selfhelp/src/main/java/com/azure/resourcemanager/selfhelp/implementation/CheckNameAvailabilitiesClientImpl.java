@@ -70,7 +70,8 @@ public final class CheckNameAvailabilitiesClientImpl implements CheckNameAvailab
     /**
      * This API is used to check the uniqueness of a resource name used for a diagnostic, troubleshooter or solutions.
      *
-     * @param scope This is an extension resource provider and only resource level extension is supported at the moment.
+     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
+     *     /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
      * @param checkNameAvailabilityRequest The required parameters for availability check.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -111,7 +112,8 @@ public final class CheckNameAvailabilitiesClientImpl implements CheckNameAvailab
     /**
      * This API is used to check the uniqueness of a resource name used for a diagnostic, troubleshooter or solutions.
      *
-     * @param scope This is an extension resource provider and only resource level extension is supported at the moment.
+     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
+     *     /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
      * @param checkNameAvailabilityRequest The required parameters for availability check.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -150,7 +152,8 @@ public final class CheckNameAvailabilitiesClientImpl implements CheckNameAvailab
     /**
      * This API is used to check the uniqueness of a resource name used for a diagnostic, troubleshooter or solutions.
      *
-     * @param scope This is an extension resource provider and only resource level extension is supported at the moment.
+     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
+     *     /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -167,7 +170,8 @@ public final class CheckNameAvailabilitiesClientImpl implements CheckNameAvailab
     /**
      * This API is used to check the uniqueness of a resource name used for a diagnostic, troubleshooter or solutions.
      *
-     * @param scope This is an extension resource provider and only resource level extension is supported at the moment.
+     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
+     *     /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
      * @param checkNameAvailabilityRequest The required parameters for availability check.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -184,7 +188,8 @@ public final class CheckNameAvailabilitiesClientImpl implements CheckNameAvailab
     /**
      * This API is used to check the uniqueness of a resource name used for a diagnostic, troubleshooter or solutions.
      *
-     * @param scope This is an extension resource provider and only resource level extension is supported at the moment.
+     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
+     *     /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.

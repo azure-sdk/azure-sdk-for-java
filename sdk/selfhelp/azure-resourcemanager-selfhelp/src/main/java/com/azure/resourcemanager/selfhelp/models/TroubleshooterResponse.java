@@ -17,7 +17,7 @@ public final class TroubleshooterResponse {
     private String questionId;
 
     /*
-     * Text Input. Will be a single line input.
+     * Type of Question
      */
     @JsonProperty(value = "questionType")
     private QuestionType questionType;
@@ -53,7 +53,7 @@ public final class TroubleshooterResponse {
     }
 
     /**
-     * Get the questionType property: Text Input. Will be a single line input.
+     * Get the questionType property: Type of Question.
      *
      * @return the questionType value.
      */
@@ -62,7 +62,7 @@ public final class TroubleshooterResponse {
     }
 
     /**
-     * Set the questionType property: Text Input. Will be a single line input.
+     * Set the questionType property: Type of Question.
      *
      * @param questionType the questionType value to set.
      * @return the TroubleshooterResponse object itself.

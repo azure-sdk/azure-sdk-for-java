@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Text Input. Will be a single line input. */
+/** Type of Question. */
 public final class QuestionType extends ExpandableStringEnum<QuestionType> {
     /** Static value RadioButton for QuestionType. */
     public static final QuestionType RADIO_BUTTON = fromString("RadioButton");

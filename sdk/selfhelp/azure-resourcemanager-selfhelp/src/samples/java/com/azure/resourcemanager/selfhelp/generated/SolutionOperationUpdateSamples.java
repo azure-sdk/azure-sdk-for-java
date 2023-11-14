@@ -4,7 +4,10 @@
 
 package com.azure.resourcemanager.selfhelp.generated;
 
+import com.azure.resourcemanager.selfhelp.models.Name;
 import com.azure.resourcemanager.selfhelp.models.SolutionResource;
+import com.azure.resourcemanager.selfhelp.models.TriggerCriterion;
+import java.util.Arrays;
 
 /** Samples for SolutionOperation Update. */
 public final class SolutionOperationUpdateSamples {
@@ -25,6 +28,14 @@ public final class SolutionOperationUpdateSamples {
                     "SolutionResourceName1",
                     com.azure.core.util.Context.NONE)
                 .getValue();
-        resource.update().apply();
+        resource
+            .update()
+            .withTriggerCriteria(
+                Arrays
+                    .asList(
+                        new TriggerCriterion()
+                            .withName(Name.REPLACEMENT_KEY)
+                            .withValue("<!--12345678-BBBb-cCCCC-0000-123456789012-->")))
+            .apply();
     }
 }

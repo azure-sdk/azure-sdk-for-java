@@ -17,7 +17,8 @@ import java.util.Map;
 @Fluent
 public final class DiagnosticResourceProperties {
     /*
-     * Global parameters that can be passed to all solutionIds.
+     * Global parameters is an optional map which can be used to add key and  value to request body to improve the
+     * diagnostics results
      */
     @JsonProperty(value = "globalParameters")
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
@@ -52,7 +53,8 @@ public final class DiagnosticResourceProperties {
     }
 
     /**
-     * Get the globalParameters property: Global parameters that can be passed to all solutionIds.
+     * Get the globalParameters property: Global parameters is an optional map which can be used to add key and value to
+     * request body to improve the diagnostics results.
      *
      * @return the globalParameters value.
      */
@@ -61,7 +63,8 @@ public final class DiagnosticResourceProperties {
     }
 
     /**
-     * Set the globalParameters property: Global parameters that can be passed to all solutionIds.
+     * Set the globalParameters property: Global parameters is an optional map which can be used to add key and value to
+     * request body to improve the diagnostics results.
      *
      * @param globalParameters the globalParameters value to set.
      * @return the DiagnosticResourceProperties object itself.

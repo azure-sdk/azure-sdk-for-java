@@ -91,8 +91,8 @@ public interface TroubleshooterResource {
             /**
              * Specifies scope.
              *
-             * @param scope This is an extension resource provider and only resource level extension is supported at the
-             *     moment.
+             * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
+             *     /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
              * @return the next definition stage.
              */
             WithCreate withExistingScope(String scope);

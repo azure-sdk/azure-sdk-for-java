@@ -4,6 +4,9 @@
 
 package com.azure.resourcemanager.selfhelp.generated;
 
+import com.azure.resourcemanager.selfhelp.models.DiagnosticInvocation;
+import java.util.Arrays;
+
 /** Samples for Diagnostics Create. */
 public final class DiagnosticsCreateSamples {
     /*
@@ -21,6 +24,11 @@ public final class DiagnosticsCreateSamples {
             .define("VMNotWorkingInsight")
             .withExistingScope(
                 "subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourceGroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read")
+            .withInsights(
+                Arrays
+                    .asList(
+                        new DiagnosticInvocation().withSolutionId("SampleSolutionId1"),
+                        new DiagnosticInvocation().withSolutionId("SampleSolutionId2")))
             .create();
     }
 }
