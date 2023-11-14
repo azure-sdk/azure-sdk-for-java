@@ -545,7 +545,7 @@ public final class DataSourcesListByWorkspaceSamples {
 /** Samples for DeletedWorkspaces List. */
 public final class DeletedWorkspacesListSamples {
     /*
-     * x-ms-original-file: specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/stable/2022-10-01/examples/WorkspacesSubscriptionList.json
+     * x-ms-original-file: specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/stable/2023-09-01/examples/WorkspacesSubscriptionList.json
      */
     /**
      * Sample code: WorkspacesSubscriptionList.
@@ -564,7 +564,7 @@ public final class DeletedWorkspacesListSamples {
 /** Samples for DeletedWorkspaces ListByResourceGroup. */
 public final class DeletedWorkspacesListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/stable/2022-10-01/examples/WorkspacesListByResourceGroup.json
+     * x-ms-original-file: specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/stable/2023-09-01/examples/WorkspacesListByResourceGroup.json
      */
     /**
      * Sample code: WorkspacesGet.
@@ -894,7 +894,7 @@ public final class OperationStatusesGetSamples {
 /** Samples for Operations List. */
 public final class OperationsListSamples {
     /*
-     * x-ms-original-file: specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/stable/2022-10-01/examples/OperationsListByTenant.json
+     * x-ms-original-file: specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/stable/2023-09-01/examples/OperationsListByTenant.json
      */
     /**
      * Sample code: Get specific operation status.
@@ -1928,7 +1928,7 @@ import java.util.Map;
 /** Samples for Workspaces CreateOrUpdate. */
 public final class WorkspacesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/stable/2022-10-01/examples/WorkspacesCreate.json
+     * x-ms-original-file: specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/stable/2023-09-01/examples/WorkspacesCreate.json
      */
     /**
      * Sample code: WorkspacesCreate.
@@ -1967,7 +1967,7 @@ public final class WorkspacesCreateOrUpdateSamples {
 /** Samples for Workspaces Delete. */
 public final class WorkspacesDeleteSamples {
     /*
-     * x-ms-original-file: specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/stable/2022-10-01/examples/WorkspacesDelete.json
+     * x-ms-original-file: specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/stable/2023-09-01/examples/WorkspacesDelete.json
      */
     /**
      * Sample code: WorkspacesDelete.
@@ -1986,7 +1986,7 @@ public final class WorkspacesDeleteSamples {
 /** Samples for Workspaces GetByResourceGroup. */
 public final class WorkspacesGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/stable/2022-10-01/examples/WorkspacesGet.json
+     * x-ms-original-file: specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/stable/2023-09-01/examples/WorkspacesGet.json
      */
     /**
      * Sample code: WorkspaceGet.
@@ -2007,7 +2007,7 @@ public final class WorkspacesGetByResourceGroupSamples {
 /** Samples for Workspaces List. */
 public final class WorkspacesListSamples {
     /*
-     * x-ms-original-file: specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/stable/2022-10-01/examples/WorkspacesSubscriptionList.json
+     * x-ms-original-file: specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/stable/2023-09-01/examples/WorkspacesSubscriptionList.json
      */
     /**
      * Sample code: WorkspacesSubscriptionList.
@@ -2026,7 +2026,7 @@ public final class WorkspacesListSamples {
 /** Samples for Workspaces ListByResourceGroup. */
 public final class WorkspacesListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/stable/2022-10-01/examples/WorkspacesListByResourceGroup.json
+     * x-ms-original-file: specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/stable/2023-09-01/examples/WorkspacesListByResourceGroup.json
      */
     /**
      * Sample code: WorkspacesGet.
@@ -2050,7 +2050,7 @@ import com.azure.resourcemanager.loganalytics.models.WorkspaceSkuNameEnum;
 /** Samples for Workspaces Update. */
 public final class WorkspacesUpdateSamples {
     /*
-     * x-ms-original-file: specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/stable/2022-10-01/examples/WorkspacesUpdate.json
+     * x-ms-original-file: specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/stable/2023-09-01/examples/WorkspacesUpdate.json
      */
     /**
      * Sample code: WorkspacesPatch.

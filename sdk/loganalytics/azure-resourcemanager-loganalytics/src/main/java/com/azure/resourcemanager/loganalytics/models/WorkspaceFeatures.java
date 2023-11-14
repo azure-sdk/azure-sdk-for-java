@@ -46,6 +46,12 @@ public final class WorkspaceFeatures {
     private Boolean disableLocalAuth;
 
     /*
+     * An indication if the specify workspace is limited to sentinel's unified billing model only.
+     */
+    @JsonProperty(value = "unifiedSentinelBillingOnly", access = JsonProperty.Access.WRITE_ONLY)
+    private Boolean unifiedSentinelBillingOnly;
+
+    /*
      * Workspace features.
      */
     @JsonIgnore private Map<String, Object> additionalProperties;
@@ -155,6 +161,16 @@ public final class WorkspaceFeatures {
     public WorkspaceFeatures withDisableLocalAuth(Boolean disableLocalAuth) {
         this.disableLocalAuth = disableLocalAuth;
         return this;
+    }
+
+    /**
+     * Get the unifiedSentinelBillingOnly property: An indication if the specify workspace is limited to sentinel's
+     * unified billing model only.
+     *
+     * @return the unifiedSentinelBillingOnly value.
+     */
+    public Boolean unifiedSentinelBillingOnly() {
+        return this.unifiedSentinelBillingOnly;
     }
 
     /**
