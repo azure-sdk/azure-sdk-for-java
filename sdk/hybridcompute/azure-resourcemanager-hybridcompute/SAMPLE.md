@@ -1,6 +1,39 @@
 # Code snippets and samples
 
 
+## AgentVersion
+
+- [Get](#agentversion_get)
+- [List](#agentversion_list)
+
+## ExtensionMetadata
+
+- [Get](#extensionmetadata_get)
+- [List](#extensionmetadata_list)
+
+## HybridIdentityMetadata
+
+- [Get](#hybrididentitymetadata_get)
+- [ListByMachines](#hybrididentitymetadata_listbymachines)
+
+## LicenseProfiles
+
+- [CreateOrUpdate](#licenseprofiles_createorupdate)
+- [Delete](#licenseprofiles_delete)
+- [Get](#licenseprofiles_get)
+- [List](#licenseprofiles_list)
+- [Update](#licenseprofiles_update)
+
+## Licenses
+
+- [CreateOrUpdate](#licenses_createorupdate)
+- [Delete](#licenses_delete)
+- [GetByResourceGroup](#licenses_getbyresourcegroup)
+- [List](#licenses_list)
+- [ListByResourceGroup](#licenses_listbyresourcegroup)
+- [Update](#licenses_update)
+- [ValidateLicense](#licenses_validatelicense)
+
 ## MachineExtensions
 
 - [CreateOrUpdate](#machineextensions_createorupdate)
@@ -9,12 +42,42 @@
 - [List](#machineextensions_list)
 - [Update](#machineextensions_update)
 
+## MachineRunCommands
+
+- [CreateOrUpdate](#machineruncommands_createorupdate)
+- [Delete](#machineruncommands_delete)
+- [Get](#machineruncommands_get)
+- [List](#machineruncommands_list)
+- [Update](#machineruncommands_update)
+
 ## Machines
 
+- [AssessPatches](#machines_assesspatches)
 - [Delete](#machines_delete)
 - [GetByResourceGroup](#machines_getbyresourcegroup)
+- [InstallPatches](#machines_installpatches)
 - [List](#machines_list)
 - [ListByResourceGroup](#machines_listbyresourcegroup)
+
+## NetworkConfigurations
+
+- [CreateOrUpdate](#networkconfigurations_createorupdate)
+- [Get](#networkconfigurations_get)
+- [Update](#networkconfigurations_update)
+
+## NetworkProfile
+
+- [Get](#networkprofile_get)
+
+## NetworkSecurityPerimeterConfigurations
+
+- [GetByPrivateLinkScope](#networksecurityperimeterconfigurations_getbyprivatelinkscope)
+- [ListByPrivateLinkScope](#networksecurityperimeterconfigurations_listbyprivatelinkscope)
+- [ReconcileForPrivateLinkScope](#networksecurityperimeterconfigurations_reconcileforprivatelinkscope)
+
+## Operations
+
+- [List](#operations_list)
 
 ## PrivateEndpointConnections
 
@@ -38,18 +101,483 @@
 - [List](#privatelinkscopes_list)
 - [ListByResourceGroup](#privatelinkscopes_listbyresourcegroup)
 - [UpdateTags](#privatelinkscopes_updatetags)
+
+## ResourceProvider
+
+- [UpgradeExtensions](#resourceprovider_upgradeextensions)
+### AgentVersion_Get
+
+```java
+/** Samples for AgentVersion Get. */
+public final class AgentVersionGetSamples {
+    /*
+     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2023-10-03-preview/examples/AgentVersion_GetLatest.json
+     */
+    /**
+     * Sample code: GET Agent Versions.
+     *
+     * @param manager Entry point to HybridComputeManager.
+     */
+    public static void gETAgentVersions(com.azure.resourcemanager.hybridcompute.HybridComputeManager manager) {
+        manager.agentVersions().getWithResponse("myOsType", "1.27", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### AgentVersion_List
+
+```java
+/** Samples for AgentVersion List. */
+public final class AgentVersionListSamples {
+    /*
+     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2023-10-03-preview/examples/AgentVersions_Get.json
+     */
+    /**
+     * Sample code: GET Agent Versions.
+     *
+     * @param manager Entry point to HybridComputeManager.
+     */
+    public static void gETAgentVersions(com.azure.resourcemanager.hybridcompute.HybridComputeManager manager) {
+        manager.agentVersions().listWithResponse("myOsType", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ExtensionMetadata_Get
+
+```java
+/** Samples for ExtensionMetadata Get. */
+public final class ExtensionMetadataGetSamples {
+    /*
+     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2023-10-03-preview/examples/extension/ExtensionMetadata_Get.json
+     */
+    /**
+     * Sample code: GET an extensions metadata.
+     *
+     * @param manager Entry point to HybridComputeManager.
+     */
+    public static void gETAnExtensionsMetadata(com.azure.resourcemanager.hybridcompute.HybridComputeManager manager) {
+        manager
+            .extensionMetadatas()
+            .getWithResponse(
+                "EastUS",
+                "microsoft.azure.monitor",
+                "azuremonitorlinuxagent",
+                "1.9.1",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ExtensionMetadata_List
+
+```java
+/** Samples for ExtensionMetadata List. */
+public final class ExtensionMetadataListSamples {
+    /*
+     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2023-10-03-preview/examples/extension/ExtensionMetadata_List.json
+     */
+    /**
+     * Sample code: GET a list of extensions.
+     *
+     * @param manager Entry point to HybridComputeManager.
+     */
+    public static void gETAListOfExtensions(com.azure.resourcemanager.hybridcompute.HybridComputeManager manager) {
+        manager
+            .extensionMetadatas()
+            .list("EastUS", "microsoft.azure.monitor", "azuremonitorlinuxagent", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### HybridIdentityMetadata_Get
+
+```java
+/** Samples for HybridIdentityMetadata Get. */
+public final class HybridIdentityMetadataGetSamples {
+    /*
+     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2023-10-03-preview/examples/HybridIdentityMetadata_Get.json
+     */
+    /**
+     * Sample code: GetHybridIdentityMetadata.
+     *
+     * @param manager Entry point to HybridComputeManager.
+     */
+    public static void getHybridIdentityMetadata(com.azure.resourcemanager.hybridcompute.HybridComputeManager manager) {
+        manager
+            .hybridIdentityMetadatas()
+            .getWithResponse("testrg", "ContosoVm", "default", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### HybridIdentityMetadata_ListByMachines
+
+```java
+/** Samples for HybridIdentityMetadata ListByMachines. */
+public final class HybridIdentityMetadataListByMachinesSamples {
+    /*
+     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2023-10-03-preview/examples/HybridIdentityMetadata_ListByVirtualMachines.json
+     */
+    /**
+     * Sample code: HybridIdentityMetadataListByVirtualMachines.
+     *
+     * @param manager Entry point to HybridComputeManager.
+     */
+    public static void hybridIdentityMetadataListByVirtualMachines(
+        com.azure.resourcemanager.hybridcompute.HybridComputeManager manager) {
+        manager.hybridIdentityMetadatas().listByMachines("testrg", "ContosoVm", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### LicenseProfiles_CreateOrUpdate
+
+```java
+import com.azure.resourcemanager.hybridcompute.models.LicenseProfileProductType;
+import com.azure.resourcemanager.hybridcompute.models.LicenseProfileSubscriptionStatus;
+import com.azure.resourcemanager.hybridcompute.models.ProductFeature;
+import java.util.Arrays;
+
+/** Samples for LicenseProfiles CreateOrUpdate. */
+public final class LicenseProfilesCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2023-10-03-preview/examples/licenseProfile/LicenseProfile_CreateOrUpdate.json
+     */
+    /**
+     * Sample code: Create or Update a License Profile.
+     *
+     * @param manager Entry point to HybridComputeManager.
+     */
+    public static void createOrUpdateALicenseProfile(
+        com.azure.resourcemanager.hybridcompute.HybridComputeManager manager) {
+        manager
+            .licenseProfiles()
+            .define()
+            .withRegion("eastus2euap")
+            .withExistingMachine("myResourceGroup", "myMachine")
+            .withSoftwareAssuranceCustomer(true)
+            .withAssignedLicense("{LicenseResourceId}")
+            .withSubscriptionStatus(LicenseProfileSubscriptionStatus.ENABLED)
+            .withProductType(LicenseProfileProductType.WINDOWS_SERVER)
+            .withProductFeatures(
+                Arrays
+                    .asList(
+                        new ProductFeature()
+                            .withName("HotPatching")
+                            .withSubscriptionStatus(LicenseProfileSubscriptionStatus.ENABLED)))
+            .create();
+    }
+}
+```
+
+### LicenseProfiles_Delete
+
+```java
+/** Samples for LicenseProfiles Delete. */
+public final class LicenseProfilesDeleteSamples {
+    /*
+     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2023-10-03-preview/examples/licenseProfile/LicenseProfile_Delete.json
+     */
+    /**
+     * Sample code: Delete a License Profile.
+     *
+     * @param manager Entry point to HybridComputeManager.
+     */
+    public static void deleteALicenseProfile(com.azure.resourcemanager.hybridcompute.HybridComputeManager manager) {
+        manager.licenseProfiles().delete("myResourceGroup", "myMachine", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### LicenseProfiles_Get
+
+```java
+/** Samples for LicenseProfiles Get. */
+public final class LicenseProfilesGetSamples {
+    /*
+     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2023-10-03-preview/examples/licenseProfile/LicenseProfile_Get.json
+     */
+    /**
+     * Sample code: Get License Profile.
+     *
+     * @param manager Entry point to HybridComputeManager.
+     */
+    public static void getLicenseProfile(com.azure.resourcemanager.hybridcompute.HybridComputeManager manager) {
+        manager.licenseProfiles().getWithResponse("myResourceGroup", "myMachine", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### LicenseProfiles_List
+
+```java
+/** Samples for LicenseProfiles List. */
+public final class LicenseProfilesListSamples {
+    /*
+     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2023-10-03-preview/examples/licenseProfile/LicenseProfile_List.json
+     */
+    /**
+     * Sample code: List all License Profiles.
+     *
+     * @param manager Entry point to HybridComputeManager.
+     */
+    public static void listAllLicenseProfiles(com.azure.resourcemanager.hybridcompute.HybridComputeManager manager) {
+        manager.licenseProfiles().list("myResourceGroup", "myMachine", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### LicenseProfiles_Update
+
+```java
+import com.azure.resourcemanager.hybridcompute.models.LicenseProfile;
+import com.azure.resourcemanager.hybridcompute.models.LicenseProfileProductType;
+import com.azure.resourcemanager.hybridcompute.models.LicenseProfileSubscriptionStatusUpdate;
+import com.azure.resourcemanager.hybridcompute.models.ProductFeatureUpdate;
+import java.util.Arrays;
+
+/** Samples for LicenseProfiles Update. */
+public final class LicenseProfilesUpdateSamples {
+    /*
+     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2023-10-03-preview/examples/licenseProfile/LicenseProfile_Update.json
+     */
+    /**
+     * Sample code: Update a License Profile.
+     *
+     * @param manager Entry point to HybridComputeManager.
+     */
+    public static void updateALicenseProfile(com.azure.resourcemanager.hybridcompute.HybridComputeManager manager) {
+        LicenseProfile resource =
+            manager
+                .licenseProfiles()
+                .getWithResponse("myResourceGroup", "myMachine", com.azure.core.util.Context.NONE)
+                .getValue();
+        resource
+            .update()
+            .withSoftwareAssuranceCustomer(true)
+            .withAssignedLicense("{LicenseResourceId}")
+            .withSubscriptionStatus(LicenseProfileSubscriptionStatusUpdate.ENABLE)
+            .withProductType(LicenseProfileProductType.WINDOWS_SERVER)
+            .withProductFeaturesForUpdate(
+                Arrays
+                    .asList(
+                        new ProductFeatureUpdate()
+                            .withName("HotPatching")
+                            .withSubscriptionStatus(LicenseProfileSubscriptionStatusUpdate.ENABLE)))
+            .apply();
+    }
+}
+```
+
+### Licenses_CreateOrUpdate
+
+```java
+import com.azure.resourcemanager.hybridcompute.models.LicenseCoreType;
+import com.azure.resourcemanager.hybridcompute.models.LicenseDetails;
+import com.azure.resourcemanager.hybridcompute.models.LicenseEdition;
+import com.azure.resourcemanager.hybridcompute.models.LicenseState;
+import com.azure.resourcemanager.hybridcompute.models.LicenseTarget;
+import com.azure.resourcemanager.hybridcompute.models.LicenseType;
+
+/** Samples for Licenses CreateOrUpdate. */
+public final class LicensesCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2023-10-03-preview/examples/license/License_CreateOrUpdate.json
+     */
+    /**
+     * Sample code: Create or Update a License.
+     *
+     * @param manager Entry point to HybridComputeManager.
+     */
+    public static void createOrUpdateALicense(com.azure.resourcemanager.hybridcompute.HybridComputeManager manager) {
+        manager
+            .licenses()
+            .define("{licenseName}")
+            .withRegion("eastus2euap")
+            .withExistingResourceGroup("myResourceGroup")
+            .withLicenseType(LicenseType.ESU)
+            .withLicenseDetails(
+                new LicenseDetails()
+                    .withState(LicenseState.ACTIVATED)
+                    .withTarget(LicenseTarget.WINDOWS_SERVER_2012)
+                    .withEdition(LicenseEdition.DATACENTER)
+                    .withType(LicenseCoreType.P_CORE)
+                    .withProcessors(6))
+            .create();
+    }
+}
+```
+
+### Licenses_Delete
+
+```java
+/** Samples for Licenses Delete. */
+public final class LicensesDeleteSamples {
+    /*
+     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2023-10-03-preview/examples/license/License_Delete.json
+     */
+    /**
+     * Sample code: Delete a License.
+     *
+     * @param manager Entry point to HybridComputeManager.
+     */
+    public static void deleteALicense(com.azure.resourcemanager.hybridcompute.HybridComputeManager manager) {
+        manager.licenses().delete("myResourceGroup", "{licenseName}", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Licenses_GetByResourceGroup
+
+```java
+/** Samples for Licenses GetByResourceGroup. */
+public final class LicensesGetByResourceGroupSamples {
+    /*
+     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2023-10-03-preview/examples/license/License_Get.json
+     */
+    /**
+     * Sample code: Get License.
+     *
+     * @param manager Entry point to HybridComputeManager.
+     */
+    public static void getLicense(com.azure.resourcemanager.hybridcompute.HybridComputeManager manager) {
+        manager
+            .licenses()
+            .getByResourceGroupWithResponse("myResourceGroup", "{licenseName}", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Licenses_List
+
+```java
+/** Samples for Licenses List. */
+public final class LicensesListSamples {
+    /*
+     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2023-10-03-preview/examples/license/License_ListBySubscription.json
+     */
+    /**
+     * Sample code: List Licenses by Subscription.
+     *
+     * @param manager Entry point to HybridComputeManager.
+     */
+    public static void listLicensesBySubscription(
+        com.azure.resourcemanager.hybridcompute.HybridComputeManager manager) {
+        manager.licenses().list(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Licenses_ListByResourceGroup
+
+```java
+/** Samples for Licenses ListByResourceGroup. */
+public final class LicensesListByResourceGroupSamples {
+    /*
+     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2023-10-03-preview/examples/license/License_ListByResourceGroup.json
+     */
+    /**
+     * Sample code: GET all Machine Extensions.
+     *
+     * @param manager Entry point to HybridComputeManager.
+     */
+    public static void gETAllMachineExtensions(com.azure.resourcemanager.hybridcompute.HybridComputeManager manager) {
+        manager.licenses().listByResourceGroup("myResourceGroup", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Licenses_Update
+
+```java
+import com.azure.resourcemanager.hybridcompute.models.License;
+import com.azure.resourcemanager.hybridcompute.models.LicenseCoreType;
+import com.azure.resourcemanager.hybridcompute.models.LicenseEdition;
+import com.azure.resourcemanager.hybridcompute.models.LicenseState;
+import com.azure.resourcemanager.hybridcompute.models.LicenseTarget;
+import com.azure.resourcemanager.hybridcompute.models.LicenseType;
+
+/** Samples for Licenses Update. */
+public final class LicensesUpdateSamples {
+    /*
+     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2023-10-03-preview/examples/license/License_Update.json
+     */
+    /**
+     * Sample code: Update a License.
+     *
+     * @param manager Entry point to HybridComputeManager.
+     */
+    public static void updateALicense(com.azure.resourcemanager.hybridcompute.HybridComputeManager manager) {
+        License resource =
+            manager
+                .licenses()
+                .getByResourceGroupWithResponse("myResourceGroup", "{licenseName}", com.azure.core.util.Context.NONE)
+                .getValue();
+        resource
+            .update()
+            .withLicenseType(LicenseType.ESU)
+            .withState(LicenseState.ACTIVATED)
+            .withTarget(LicenseTarget.WINDOWS_SERVER_2012)
+            .withEdition(LicenseEdition.DATACENTER)
+            .withType(LicenseCoreType.P_CORE)
+            .withProcessors(6)
+            .apply();
+    }
+}
+```
+
+### Licenses_ValidateLicense
+
+```java
+import com.azure.resourcemanager.hybridcompute.fluent.models.LicenseInner;
+import com.azure.resourcemanager.hybridcompute.models.LicenseCoreType;
+import com.azure.resourcemanager.hybridcompute.models.LicenseDetails;
+import com.azure.resourcemanager.hybridcompute.models.LicenseEdition;
+import com.azure.resourcemanager.hybridcompute.models.LicenseState;
+import com.azure.resourcemanager.hybridcompute.models.LicenseTarget;
+import com.azure.resourcemanager.hybridcompute.models.LicenseType;
+
+/** Samples for Licenses ValidateLicense. */
+public final class LicensesValidateLicenseSamples {
+    /*
+     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2023-10-03-preview/examples/license/License_ValidateLicense.json
+     */
+    /**
+     * Sample code: Validate a License.
+     *
+     * @param manager Entry point to HybridComputeManager.
+     */
+    public static void validateALicense(com.azure.resourcemanager.hybridcompute.HybridComputeManager manager) {
+        manager
+            .licenses()
+            .validateLicense(
+                new LicenseInner()
+                    .withLocation("eastus2euap")
+                    .withLicenseType(LicenseType.ESU)
+                    .withLicenseDetails(
+                        new LicenseDetails()
+                            .withState(LicenseState.ACTIVATED)
+                            .withTarget(LicenseTarget.WINDOWS_SERVER_2012)
+                            .withEdition(LicenseEdition.DATACENTER)
+                            .withType(LicenseCoreType.P_CORE)
+                            .withProcessors(6)),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
 ### MachineExtensions_CreateOrUpdate
 
 ```java
-import com.azure.core.management.serializer.SerializerFactory;
-import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.hybridcompute.models.MachineExtensionProperties;
-import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 /** Samples for MachineExtensions CreateOrUpdate. */
 public final class MachineExtensionsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2021-03-25-preview/examples/PUTExtension.json
+     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2023-10-03-preview/examples/extension/Extension_CreateOrUpdate.json
      */
     /**
      * Sample code: Create or Update a Machine Extension.
@@ -57,7 +585,7 @@ public final class MachineExtensionsCreateOrUpdateSamples {
      * @param manager Entry point to HybridComputeManager.
      */
     public static void createOrUpdateAMachineExtension(
-        com.azure.resourcemanager.hybridcompute.HybridComputeManager manager) throws IOException {
+        com.azure.resourcemanager.hybridcompute.HybridComputeManager manager) {
         manager
             .machineExtensions()
             .define("CustomScriptExtension")
@@ -69,14 +597,22 @@ public final class MachineExtensionsCreateOrUpdateSamples {
                     .withType("CustomScriptExtension")
                     .withTypeHandlerVersion("1.10")
                     .withSettings(
-                        SerializerFactory
-                            .createDefaultManagementSerializerAdapter()
-                            .deserialize(
-                                "{\"commandToExecute\":\"powershell.exe -c \\\"Get-Process | Where-Object { $_.CPU -gt"
-                                    + " 10000 }\\\"\"}",
-                                Object.class,
-                                SerializerEncoding.JSON)))
+                        mapOf(
+                            "commandToExecute",
+                            "powershell.exe -c \"Get-Process | Where-Object { $_.CPU -gt 10000 }\"")))
             .create();
+    }
+
+    // Use "Map.of" if available
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
     }
 }
 ```
@@ -87,7 +623,7 @@ public final class MachineExtensionsCreateOrUpdateSamples {
 /** Samples for MachineExtensions Delete. */
 public final class MachineExtensionsDeleteSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2021-03-25-preview/examples/DELETEExtension.json
+     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2023-10-03-preview/examples/extension/Extension_Delete.json
      */
     /**
      * Sample code: Delete a Machine Extension.
@@ -106,7 +642,7 @@ public final class MachineExtensionsDeleteSamples {
 /** Samples for MachineExtensions Get. */
 public final class MachineExtensionsGetSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2021-03-25-preview/examples/GETExtension.json
+     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2023-10-03-preview/examples/extension/Extension_Get.json
      */
     /**
      * Sample code: GET Machine Extension.
@@ -127,14 +663,15 @@ public final class MachineExtensionsGetSamples {
 /** Samples for MachineExtensions List. */
 public final class MachineExtensionsListSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2021-03-25-preview/examples/LISTExtension.json
+     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2023-10-03-preview/examples/extension/Extension_List.json
      */
     /**
-     * Sample code: GET all Machine Extensions.
+     * Sample code: GET all Machine Extensions - List.
      *
      * @param manager Entry point to HybridComputeManager.
      */
-    public static void gETAllMachineExtensions(com.azure.resourcemanager.hybridcompute.HybridComputeManager manager) {
+    public static void gETAllMachineExtensionsList(
+        com.azure.resourcemanager.hybridcompute.HybridComputeManager manager) {
         manager.machineExtensions().list("myResourceGroup", "myMachine", null, com.azure.core.util.Context.NONE);
     }
 }
@@ -143,16 +680,14 @@ public final class MachineExtensionsListSamples {
 ### MachineExtensions_Update
 
 ```java
-import com.azure.core.management.serializer.SerializerFactory;
-import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.hybridcompute.models.MachineExtension;
-import com.azure.resourcemanager.hybridcompute.models.MachineExtensionUpdateProperties;
-import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 /** Samples for MachineExtensions Update. */
 public final class MachineExtensionsUpdateSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2021-03-25-preview/examples/UpdateExtension.json
+     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2023-10-03-preview/examples/extension/Extension_Update.json
      */
     /**
      * Sample code: Create or Update a Machine Extension.
@@ -160,7 +695,7 @@ public final class MachineExtensionsUpdateSamples {
      * @param manager Entry point to HybridComputeManager.
      */
     public static void createOrUpdateAMachineExtension(
-        com.azure.resourcemanager.hybridcompute.HybridComputeManager manager) throws IOException {
+        com.azure.resourcemanager.hybridcompute.HybridComputeManager manager) {
         MachineExtension resource =
             manager
                 .machineExtensions()
@@ -169,20 +704,187 @@ public final class MachineExtensionsUpdateSamples {
                 .getValue();
         resource
             .update()
-            .withProperties(
-                new MachineExtensionUpdateProperties()
-                    .withPublisher("Microsoft.Compute")
-                    .withType("CustomScriptExtension")
-                    .withTypeHandlerVersion("1.10")
-                    .withSettings(
-                        SerializerFactory
-                            .createDefaultManagementSerializerAdapter()
-                            .deserialize(
-                                "{\"commandToExecute\":\"powershell.exe -c \\\"Get-Process | Where-Object { $_.CPU -lt"
-                                    + " 100 }\\\"\"}",
-                                Object.class,
-                                SerializerEncoding.JSON)))
+            .withPublisher("Microsoft.Compute")
+            .withType("CustomScriptExtension")
+            .withTypeHandlerVersion("1.10")
+            .withEnableAutomaticUpgrade(true)
+            .withSettings(
+                mapOf("commandToExecute", "powershell.exe -c \"Get-Process | Where-Object { $_.CPU -lt 100 }\""))
             .apply();
+    }
+
+    // Use "Map.of" if available
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
+    }
+}
+```
+
+### MachineRunCommands_CreateOrUpdate
+
+```java
+import com.azure.resourcemanager.hybridcompute.models.MachineRunCommandScriptSource;
+import com.azure.resourcemanager.hybridcompute.models.RunCommandInputParameter;
+import java.util.Arrays;
+
+/** Samples for MachineRunCommands CreateOrUpdate. */
+public final class MachineRunCommandsCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2023-10-03-preview/examples/runCommand/RunCommands_CreateOrUpdate.json
+     */
+    /**
+     * Sample code: Create or Update a Run Command.
+     *
+     * @param manager Entry point to HybridComputeManager.
+     */
+    public static void createOrUpdateARunCommand(com.azure.resourcemanager.hybridcompute.HybridComputeManager manager) {
+        manager
+            .machineRunCommands()
+            .define("myRunCommand")
+            .withRegion("eastus2")
+            .withExistingMachine("myResourceGroup", "myMachine")
+            .withSource(new MachineRunCommandScriptSource().withScript("Write-Host Hello World!"))
+            .withParameters(
+                Arrays
+                    .asList(
+                        new RunCommandInputParameter().withName("param1").withValue("value1"),
+                        new RunCommandInputParameter().withName("param2").withValue("value2")))
+            .withAsyncExecution(false)
+            .withRunAsUser("user1")
+            .withRunAsPassword("<runAsPassword>")
+            .withTimeoutInSeconds(3600)
+            .withOutputBlobUri(
+                "https://mystorageaccount.blob.core.windows.net/myscriptoutputcontainer/MyScriptoutput.txt")
+            .withErrorBlobUri("https://mystorageaccount.blob.core.windows.net/mycontainer/MyScriptError.txt")
+            .create();
+    }
+}
+```
+
+### MachineRunCommands_Delete
+
+```java
+/** Samples for MachineRunCommands Delete. */
+public final class MachineRunCommandsDeleteSamples {
+    /*
+     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2023-10-03-preview/examples/runCommand/RunCommands_Delete.json
+     */
+    /**
+     * Sample code: Delete a Machine Run Command.
+     *
+     * @param manager Entry point to HybridComputeManager.
+     */
+    public static void deleteAMachineRunCommand(com.azure.resourcemanager.hybridcompute.HybridComputeManager manager) {
+        manager
+            .machineRunCommands()
+            .delete("myResourceGroup", "myMachine", "myRunCommand", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### MachineRunCommands_Get
+
+```java
+/** Samples for MachineRunCommands Get. */
+public final class MachineRunCommandsGetSamples {
+    /*
+     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2023-10-03-preview/examples/runCommand/RunCommands_Get.json
+     */
+    /**
+     * Sample code: Get a Run Command.
+     *
+     * @param manager Entry point to HybridComputeManager.
+     */
+    public static void getARunCommand(com.azure.resourcemanager.hybridcompute.HybridComputeManager manager) {
+        manager
+            .machineRunCommands()
+            .getWithResponse("myResourceGroup", "myMachine", "myRunCommand", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### MachineRunCommands_List
+
+```java
+/** Samples for MachineRunCommands List. */
+public final class MachineRunCommandsListSamples {
+    /*
+     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2023-10-03-preview/examples/runCommand/RunCommands_List.json
+     */
+    /**
+     * Sample code: GET all Machine Run Commands.
+     *
+     * @param manager Entry point to HybridComputeManager.
+     */
+    public static void gETAllMachineRunCommands(com.azure.resourcemanager.hybridcompute.HybridComputeManager manager) {
+        manager.machineRunCommands().list("myResourceGroup", "myMachine", null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### MachineRunCommands_Update
+
+```java
+import com.azure.resourcemanager.hybridcompute.models.MachineRunCommand;
+import java.util.HashMap;
+import java.util.Map;
+
+/** Samples for MachineRunCommands Update. */
+public final class MachineRunCommandsUpdateSamples {
+    /*
+     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2023-10-03-preview/examples/runCommand/RunCommands_Update.json
+     */
+    /**
+     * Sample code: Update a Run Command.
+     *
+     * @param manager Entry point to HybridComputeManager.
+     */
+    public static void updateARunCommand(com.azure.resourcemanager.hybridcompute.HybridComputeManager manager) {
+        MachineRunCommand resource =
+            manager
+                .machineRunCommands()
+                .getWithResponse("myResourceGroup", "myMachine", "myRunCommand", com.azure.core.util.Context.NONE)
+                .getValue();
+        resource.update().withTags(mapOf("tag1", "value1", "tag2", "value2")).apply();
+    }
+
+    // Use "Map.of" if available
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
+    }
+}
+```
+
+### Machines_AssessPatches
+
+```java
+/** Samples for Machines AssessPatches. */
+public final class MachinesAssessPatchesSamples {
+    /*
+     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2023-10-03-preview/examples/machine/Machine_AssessPatches.json
+     */
+    /**
+     * Sample code: Assess patch state of a machine.
+     *
+     * @param manager Entry point to HybridComputeManager.
+     */
+    public static void assessPatchStateOfAMachine(
+        com.azure.resourcemanager.hybridcompute.HybridComputeManager manager) {
+        manager.machines().assessPatches("myResourceGroupName", "myMachineName", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -193,7 +895,7 @@ public final class MachineExtensionsUpdateSamples {
 /** Samples for Machines Delete. */
 public final class MachinesDeleteSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2021-03-25-preview/examples/Machines_Delete.json
+     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2023-10-03-preview/examples/machine/Machines_Delete.json
      */
     /**
      * Sample code: Delete a Machine.
@@ -211,10 +913,28 @@ public final class MachinesDeleteSamples {
 ### Machines_GetByResourceGroup
 
 ```java
+import com.azure.resourcemanager.hybridcompute.models.InstanceViewTypes;
+
 /** Samples for Machines GetByResourceGroup. */
 public final class MachinesGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2021-03-25-preview/examples/Machines_Get.json
+     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2023-10-03-preview/examples/machine/Machines_Get_LicenseProfileInstanceView.json
+     */
+    /**
+     * Sample code: Get Machine with License Profile Instance View.
+     *
+     * @param manager Entry point to HybridComputeManager.
+     */
+    public static void getMachineWithLicenseProfileInstanceView(
+        com.azure.resourcemanager.hybridcompute.HybridComputeManager manager) {
+        manager
+            .machines()
+            .getByResourceGroupWithResponse(
+                "myResourceGroup", "myMachine", InstanceViewTypes.INSTANCE_VIEW, com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2023-10-03-preview/examples/machine/Machines_Get.json
      */
     /**
      * Sample code: Get Machine.
@@ -229,13 +949,56 @@ public final class MachinesGetByResourceGroupSamples {
 }
 ```
 
+### Machines_InstallPatches
+
+```java
+import com.azure.resourcemanager.hybridcompute.models.MachineInstallPatchesParameters;
+import com.azure.resourcemanager.hybridcompute.models.VMGuestPatchClassificationWindows;
+import com.azure.resourcemanager.hybridcompute.models.VMGuestPatchRebootSetting;
+import com.azure.resourcemanager.hybridcompute.models.WindowsParameters;
+import java.time.OffsetDateTime;
+import java.util.Arrays;
+
+/** Samples for Machines InstallPatches. */
+public final class MachinesInstallPatchesSamples {
+    /*
+     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2023-10-03-preview/examples/machine/Machine_InstallPatches.json
+     */
+    /**
+     * Sample code: Install patch state of a machine.
+     *
+     * @param manager Entry point to HybridComputeManager.
+     */
+    public static void installPatchStateOfAMachine(
+        com.azure.resourcemanager.hybridcompute.HybridComputeManager manager) {
+        manager
+            .machines()
+            .installPatches(
+                "myResourceGroupName",
+                "myMachineName",
+                new MachineInstallPatchesParameters()
+                    .withMaximumDuration("PT4H")
+                    .withRebootSetting(VMGuestPatchRebootSetting.IF_REQUIRED)
+                    .withWindowsParameters(
+                        new WindowsParameters()
+                            .withClassificationsToInclude(
+                                Arrays
+                                    .asList(
+                                        VMGuestPatchClassificationWindows.CRITICAL,
+                                        VMGuestPatchClassificationWindows.SECURITY))
+                            .withMaxPatchPublishDate(OffsetDateTime.parse("2021-08-19T02:36:43.0539904+00:00"))),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
 ### Machines_List
 
 ```java
 /** Samples for Machines List. */
 public final class MachinesListSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2021-03-25-preview/examples/Machines_ListBySubscription.json
+     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2023-10-03-preview/examples/machine/Machines_ListBySubscription.json
      */
     /**
      * Sample code: List Machines by resource group.
@@ -255,7 +1018,7 @@ public final class MachinesListSamples {
 /** Samples for Machines ListByResourceGroup. */
 public final class MachinesListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2021-03-25-preview/examples/Machines_ListByResourceGroup.json
+     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2023-10-03-preview/examples/machine/Machines_ListByResourceGroup.json
      */
     /**
      * Sample code: List Machines by resource group.
@@ -264,7 +1027,222 @@ public final class MachinesListByResourceGroupSamples {
      */
     public static void listMachinesByResourceGroup(
         com.azure.resourcemanager.hybridcompute.HybridComputeManager manager) {
-        manager.machines().listByResourceGroup("myResourceGroup", com.azure.core.util.Context.NONE);
+        manager.machines().listByResourceGroup("myResourceGroup", null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### NetworkConfigurations_CreateOrUpdate
+
+```java
+import com.azure.resourcemanager.hybridcompute.fluent.models.NetworkConfigurationInner;
+
+/** Samples for NetworkConfigurations CreateOrUpdate. */
+public final class NetworkConfigurationsCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2023-10-03-preview/examples/networkConfiguration/NetworkConfigurationsUpdate.json
+     */
+    /**
+     * Sample code: NetworkConfigurationsUpdate.
+     *
+     * @param manager Entry point to HybridComputeManager.
+     */
+    public static void networkConfigurationsUpdate(
+        com.azure.resourcemanager.hybridcompute.HybridComputeManager manager) {
+        manager
+            .networkConfigurations()
+            .createOrUpdateWithResponse(
+                "subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/hybridRG/providers/Microsoft.HybridCompute/machines/testMachine",
+                new NetworkConfigurationInner()
+                    .withNetworkConfigurationScopeResourceId(
+                        "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/hybridRG/providers/Microsoft.HybridCompute/privateLinkScopes/testScope"),
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2023-10-03-preview/examples/networkConfiguration/NetworkConfigurationsCreate.json
+     */
+    /**
+     * Sample code: NetworkConfigurationsCreate.
+     *
+     * @param manager Entry point to HybridComputeManager.
+     */
+    public static void networkConfigurationsCreate(
+        com.azure.resourcemanager.hybridcompute.HybridComputeManager manager) {
+        manager
+            .networkConfigurations()
+            .createOrUpdateWithResponse(
+                "subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/hybridRG/providers/Microsoft.HybridCompute/machines/testMachine",
+                new NetworkConfigurationInner()
+                    .withLocation("westus")
+                    .withNetworkConfigurationScopeResourceId(
+                        "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/hybridRG/providers/Microsoft.HybridCompute/privateLinkScopes/testScope"),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### NetworkConfigurations_Get
+
+```java
+/** Samples for NetworkConfigurations Get. */
+public final class NetworkConfigurationsGetSamples {
+    /*
+     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2023-10-03-preview/examples/networkConfiguration/NetworkConfigurationsGet.json
+     */
+    /**
+     * Sample code: NetworkConfigurationsGet.
+     *
+     * @param manager Entry point to HybridComputeManager.
+     */
+    public static void networkConfigurationsGet(com.azure.resourcemanager.hybridcompute.HybridComputeManager manager) {
+        manager
+            .networkConfigurations()
+            .getWithResponse(
+                "subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/hybridRG/providers/Microsoft.HybridCompute/machines/testMachine",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### NetworkConfigurations_Update
+
+```java
+import com.azure.resourcemanager.hybridcompute.fluent.models.NetworkConfigurationInner;
+
+/** Samples for NetworkConfigurations Update. */
+public final class NetworkConfigurationsUpdateSamples {
+    /*
+     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2023-10-03-preview/examples/networkConfiguration/NetworkConfigurationsPatch.json
+     */
+    /**
+     * Sample code: NetworkConfigurationsPatch.
+     *
+     * @param manager Entry point to HybridComputeManager.
+     */
+    public static void networkConfigurationsPatch(
+        com.azure.resourcemanager.hybridcompute.HybridComputeManager manager) {
+        manager
+            .networkConfigurations()
+            .updateWithResponse(
+                "subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/hybridRG/providers/Microsoft.HybridCompute/machines/testMachine",
+                new NetworkConfigurationInner()
+                    .withNetworkConfigurationScopeResourceId(
+                        "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/hybridRG/providers/Microsoft.HybridCompute/privateLinkScopes/testScope"),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### NetworkProfile_Get
+
+```java
+/** Samples for NetworkProfile Get. */
+public final class NetworkProfileGetSamples {
+    /*
+     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2023-10-03-preview/examples/NetworkProfile_Get.json
+     */
+    /**
+     * Sample code: GET Network Profile.
+     *
+     * @param manager Entry point to HybridComputeManager.
+     */
+    public static void gETNetworkProfile(com.azure.resourcemanager.hybridcompute.HybridComputeManager manager) {
+        manager.networkProfiles().getWithResponse("myResourceGroup", "myMachine", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### NetworkSecurityPerimeterConfigurations_GetByPrivateLinkScope
+
+```java
+/** Samples for NetworkSecurityPerimeterConfigurations GetByPrivateLinkScope. */
+public final class NetworkSecurityPerimeterConfigurationsGetByPrivateLinkScopeSamples {
+    /*
+     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2023-10-03-preview/examples/networkSecurityPerimeterConfiguration/NetworkSecurityPerimeterConfigurationGet.json
+     */
+    /**
+     * Sample code: Gets the network security perimeter configuration of the private link scope.
+     *
+     * @param manager Entry point to HybridComputeManager.
+     */
+    public static void getsTheNetworkSecurityPerimeterConfigurationOfThePrivateLinkScope(
+        com.azure.resourcemanager.hybridcompute.HybridComputeManager manager) {
+        manager
+            .networkSecurityPerimeterConfigurations()
+            .getByPrivateLinkScopeWithResponse(
+                "my-resource-group",
+                "my-privatelinkscope",
+                "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee.myAssociation",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### NetworkSecurityPerimeterConfigurations_ListByPrivateLinkScope
+
+```java
+/** Samples for NetworkSecurityPerimeterConfigurations ListByPrivateLinkScope. */
+public final class NetworkSecurityPerimeterConfigurationsListByPrivateLinkScopeSamples {
+    /*
+     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2023-10-03-preview/examples/networkSecurityPerimeterConfiguration/NetworkSecurityPerimeterConfigurationList.json
+     */
+    /**
+     * Sample code: Gets the list of network security perimeter configurations of the private link scope.
+     *
+     * @param manager Entry point to HybridComputeManager.
+     */
+    public static void getsTheListOfNetworkSecurityPerimeterConfigurationsOfThePrivateLinkScope(
+        com.azure.resourcemanager.hybridcompute.HybridComputeManager manager) {
+        manager
+            .networkSecurityPerimeterConfigurations()
+            .listByPrivateLinkScope("my-resource-group", "my-privatelinkscope", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### NetworkSecurityPerimeterConfigurations_ReconcileForPrivateLinkScope
+
+```java
+/** Samples for NetworkSecurityPerimeterConfigurations ReconcileForPrivateLinkScope. */
+public final class NetworkSecurityPerimeterConfigurationsReconcileForPrivateLinkScopeSamples {
+    /*
+     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2023-10-03-preview/examples/networkSecurityPerimeterConfiguration/NetworkSecurityPerimeterConfigurationReconcile.json
+     */
+    /**
+     * Sample code: Reconciles the network security perimeter configuration of the private link scope.
+     *
+     * @param manager Entry point to HybridComputeManager.
+     */
+    public static void reconcilesTheNetworkSecurityPerimeterConfigurationOfThePrivateLinkScope(
+        com.azure.resourcemanager.hybridcompute.HybridComputeManager manager) {
+        manager
+            .networkSecurityPerimeterConfigurations()
+            .reconcileForPrivateLinkScope(
+                "my-resource-group",
+                "my-privatelinkscope",
+                "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee.myAssociation",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Operations_List
+
+```java
+/** Samples for Operations List. */
+public final class OperationsListSamples {
+    /*
+     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2023-10-03-preview/examples/Operations_List.json
+     */
+    /**
+     * Sample code: List Hybrid Compute Provider Operations.
+     *
+     * @param manager Entry point to HybridComputeManager.
+     */
+    public static void listHybridComputeProviderOperations(
+        com.azure.resourcemanager.hybridcompute.HybridComputeManager manager) {
+        manager.operations().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -278,7 +1256,7 @@ import com.azure.resourcemanager.hybridcompute.models.PrivateLinkServiceConnecti
 /** Samples for PrivateEndpointConnections CreateOrUpdate. */
 public final class PrivateEndpointConnectionsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2021-03-25-preview/examples/PrivateEndpointConnectionUpdate.json
+     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2023-10-03-preview/examples/privateEndpoint/PrivateEndpointConnection_Update.json
      */
     /**
      * Sample code: Approve or reject a private endpoint connection with a given name.
@@ -308,7 +1286,7 @@ public final class PrivateEndpointConnectionsCreateOrUpdateSamples {
 /** Samples for PrivateEndpointConnections Delete. */
 public final class PrivateEndpointConnectionsDeleteSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2021-03-25-preview/examples/PrivateEndpointConnectionDelete.json
+     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2023-10-03-preview/examples/privateEndpoint/PrivateEndpointConnection_Delete.json
      */
     /**
      * Sample code: Deletes a private endpoint connection with a given name.
@@ -334,7 +1312,7 @@ public final class PrivateEndpointConnectionsDeleteSamples {
 /** Samples for PrivateEndpointConnections Get. */
 public final class PrivateEndpointConnectionsGetSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2021-03-25-preview/examples/PrivateEndpointConnectionGet.json
+     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2023-10-03-preview/examples/privateEndpoint/PrivateEndpointConnection_Get.json
      */
     /**
      * Sample code: Gets private endpoint connection.
@@ -360,7 +1338,7 @@ public final class PrivateEndpointConnectionsGetSamples {
 /** Samples for PrivateEndpointConnections ListByPrivateLinkScope. */
 public final class PrivateEndpointConnectionsListByPrivateLinkScopeSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2021-03-25-preview/examples/PrivateEndpointConnectionList.json
+     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2023-10-03-preview/examples/privateEndpoint/PrivateEndpointConnection_List.json
      */
     /**
      * Sample code: Gets list of private endpoint connections on a private link scope.
@@ -382,7 +1360,7 @@ public final class PrivateEndpointConnectionsListByPrivateLinkScopeSamples {
 /** Samples for PrivateLinkResources Get. */
 public final class PrivateLinkResourcesGetSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2021-03-25-preview/examples/PrivateLinkScopePrivateLinkResourceGet.json
+     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2023-10-03-preview/examples/privateLinkScope/PrivateLinkScopePrivateLinkResource_Get.json
      */
     /**
      * Sample code: Gets private endpoint connection.
@@ -405,7 +1383,7 @@ public final class PrivateLinkResourcesGetSamples {
 /** Samples for PrivateLinkResources ListByPrivateLinkScope. */
 public final class PrivateLinkResourcesListByPrivateLinkScopeSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2021-03-25-preview/examples/PrivateLinkScopePrivateLinkResourceListGet.json
+     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2023-10-03-preview/examples/privateLinkScope/PrivateLinkScopePrivateLinkResource_ListGet.json
      */
     /**
      * Sample code: Gets private endpoint connection.
@@ -430,7 +1408,7 @@ import java.util.Map;
 /** Samples for PrivateLinkScopes CreateOrUpdate. */
 public final class PrivateLinkScopesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2021-03-25-preview/examples/PrivateLinkScopesCreate.json
+     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2023-10-03-preview/examples/privateLinkScope/PrivateLinkScopes_Create.json
      */
     /**
      * Sample code: PrivateLinkScopeCreate.
@@ -447,7 +1425,7 @@ public final class PrivateLinkScopesCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2021-03-25-preview/examples/PrivateLinkScopesUpdate.json
+     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2023-10-03-preview/examples/privateLinkScope/PrivateLinkScopes_Update.json
      */
     /**
      * Sample code: PrivateLinkScopeUpdate.
@@ -464,6 +1442,7 @@ public final class PrivateLinkScopesCreateOrUpdateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -483,7 +1462,7 @@ public final class PrivateLinkScopesCreateOrUpdateSamples {
 /** Samples for PrivateLinkScopes Delete. */
 public final class PrivateLinkScopesDeleteSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2021-03-25-preview/examples/PrivateLinkScopesDelete.json
+     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2023-10-03-preview/examples/privateLinkScope/PrivateLinkScopes_Delete.json
      */
     /**
      * Sample code: PrivateLinkScopesDelete.
@@ -504,7 +1483,7 @@ public final class PrivateLinkScopesDeleteSamples {
 /** Samples for PrivateLinkScopes GetByResourceGroup. */
 public final class PrivateLinkScopesGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2021-03-25-preview/examples/PrivateLinkScopesGet.json
+     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2023-10-03-preview/examples/privateLinkScope/PrivateLinkScopes_Get.json
      */
     /**
      * Sample code: PrivateLinkScopeGet.
@@ -526,7 +1505,7 @@ public final class PrivateLinkScopesGetByResourceGroupSamples {
 /** Samples for PrivateLinkScopes GetValidationDetails. */
 public final class PrivateLinkScopesGetValidationDetailsSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2021-03-25-preview/examples/PrivateLinkScopesGetValidation.json
+     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2023-10-03-preview/examples/privateLinkScope/PrivateLinkScopes_GetValidation.json
      */
     /**
      * Sample code: PrivateLinkScopeGet.
@@ -548,7 +1527,7 @@ public final class PrivateLinkScopesGetValidationDetailsSamples {
 /** Samples for PrivateLinkScopes GetValidationDetailsForMachine. */
 public final class PrivateLinkScopesGetValidationDetailsForMachineSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2021-03-25-preview/examples/PrivateLinkScopesGetValidationForMachine.json
+     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2023-10-03-preview/examples/privateLinkScope/PrivateLinkScopes_GetValidationForMachine.json
      */
     /**
      * Sample code: PrivateLinkScopeGet.
@@ -570,7 +1549,7 @@ public final class PrivateLinkScopesGetValidationDetailsForMachineSamples {
 /** Samples for PrivateLinkScopes List. */
 public final class PrivateLinkScopesListSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2021-03-25-preview/examples/PrivateLinkScopesList.json
+     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2023-10-03-preview/examples/privateLinkScope/PrivateLinkScopes_List.json
      */
     /**
      * Sample code: PrivateLinkScopesList.json.
@@ -589,7 +1568,7 @@ public final class PrivateLinkScopesListSamples {
 /** Samples for PrivateLinkScopes ListByResourceGroup. */
 public final class PrivateLinkScopesListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2021-03-25-preview/examples/PrivateLinkScopesListByResourceGroup.json
+     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2023-10-03-preview/examples/privateLinkScope/PrivateLinkScopes_ListByResourceGroup.json
      */
     /**
      * Sample code: PrivateLinkScopeListByResourceGroup.
@@ -613,7 +1592,7 @@ import java.util.Map;
 /** Samples for PrivateLinkScopes UpdateTags. */
 public final class PrivateLinkScopesUpdateTagsSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2021-03-25-preview/examples/PrivateLinkScopesUpdateTagsOnly.json
+     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2023-10-03-preview/examples/privateLinkScope/PrivateLinkScopes_UpdateTagsOnly.json
      */
     /**
      * Sample code: PrivateLinkScopeUpdateTagsOnly.
@@ -631,6 +1610,55 @@ public final class PrivateLinkScopesUpdateTagsSamples {
         resource.update().withTags(mapOf("Tag1", "Value1", "Tag2", "Value2")).apply();
     }
 
+    // Use "Map.of" if available
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
+    }
+}
+```
+
+### ResourceProvider_UpgradeExtensions
+
+```java
+import com.azure.resourcemanager.hybridcompute.models.ExtensionTargetProperties;
+import com.azure.resourcemanager.hybridcompute.models.MachineExtensionUpgrade;
+import java.util.HashMap;
+import java.util.Map;
+
+/** Samples for ResourceProvider UpgradeExtensions. */
+public final class ResourceProviderUpgradeExtensionsSamples {
+    /*
+     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2023-10-03-preview/examples/extension/Extensions_Upgrade.json
+     */
+    /**
+     * Sample code: Upgrade Machine Extensions.
+     *
+     * @param manager Entry point to HybridComputeManager.
+     */
+    public static void upgradeMachineExtensions(com.azure.resourcemanager.hybridcompute.HybridComputeManager manager) {
+        manager
+            .resourceProviders()
+            .upgradeExtensions(
+                "myResourceGroup",
+                "myMachine",
+                new MachineExtensionUpgrade()
+                    .withExtensionTargets(
+                        mapOf(
+                            "Microsoft.Azure.Monitoring",
+                            new ExtensionTargetProperties().withTargetVersion("2.0"),
+                            "Microsoft.Compute.CustomScriptExtension",
+                            new ExtensionTargetProperties().withTargetVersion("1.10"))),
+                com.azure.core.util.Context.NONE);
+    }
+
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

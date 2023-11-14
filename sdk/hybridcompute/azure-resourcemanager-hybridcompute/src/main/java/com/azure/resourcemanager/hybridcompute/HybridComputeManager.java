@@ -24,19 +24,39 @@ import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.util.Configuration;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.hybridcompute.fluent.HybridComputeManagementClient;
+import com.azure.resourcemanager.hybridcompute.implementation.AgentVersionsImpl;
+import com.azure.resourcemanager.hybridcompute.implementation.ExtensionMetadatasImpl;
 import com.azure.resourcemanager.hybridcompute.implementation.HybridComputeManagementClientBuilder;
+import com.azure.resourcemanager.hybridcompute.implementation.HybridIdentityMetadatasImpl;
+import com.azure.resourcemanager.hybridcompute.implementation.LicenseProfilesImpl;
+import com.azure.resourcemanager.hybridcompute.implementation.LicensesImpl;
 import com.azure.resourcemanager.hybridcompute.implementation.MachineExtensionsImpl;
+import com.azure.resourcemanager.hybridcompute.implementation.MachineRunCommandsImpl;
 import com.azure.resourcemanager.hybridcompute.implementation.MachinesImpl;
+import com.azure.resourcemanager.hybridcompute.implementation.NetworkConfigurationsImpl;
+import com.azure.resourcemanager.hybridcompute.implementation.NetworkProfilesImpl;
+import com.azure.resourcemanager.hybridcompute.implementation.NetworkSecurityPerimeterConfigurationsImpl;
 import com.azure.resourcemanager.hybridcompute.implementation.OperationsImpl;
 import com.azure.resourcemanager.hybridcompute.implementation.PrivateEndpointConnectionsImpl;
 import com.azure.resourcemanager.hybridcompute.implementation.PrivateLinkResourcesImpl;
 import com.azure.resourcemanager.hybridcompute.implementation.PrivateLinkScopesImpl;
+import com.azure.resourcemanager.hybridcompute.implementation.ResourceProvidersImpl;
+import com.azure.resourcemanager.hybridcompute.models.AgentVersions;
+import com.azure.resourcemanager.hybridcompute.models.ExtensionMetadatas;
+import com.azure.resourcemanager.hybridcompute.models.HybridIdentityMetadatas;
+import com.azure.resourcemanager.hybridcompute.models.LicenseProfiles;
+import com.azure.resourcemanager.hybridcompute.models.Licenses;
 import com.azure.resourcemanager.hybridcompute.models.MachineExtensions;
+import com.azure.resourcemanager.hybridcompute.models.MachineRunCommands;
 import com.azure.resourcemanager.hybridcompute.models.Machines;
+import com.azure.resourcemanager.hybridcompute.models.NetworkConfigurations;
+import com.azure.resourcemanager.hybridcompute.models.NetworkProfiles;
+import com.azure.resourcemanager.hybridcompute.models.NetworkSecurityPerimeterConfigurations;
 import com.azure.resourcemanager.hybridcompute.models.Operations;
 import com.azure.resourcemanager.hybridcompute.models.PrivateEndpointConnections;
 import com.azure.resourcemanager.hybridcompute.models.PrivateLinkResources;
 import com.azure.resourcemanager.hybridcompute.models.PrivateLinkScopes;
+import com.azure.resourcemanager.hybridcompute.models.ResourceProviders;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -46,17 +66,37 @@ import java.util.stream.Collectors;
 
 /** Entry point to HybridComputeManager. The Hybrid Compute Management Client. */
 public final class HybridComputeManager {
+    private Licenses licenses;
+
     private Machines machines;
+
+    private LicenseProfiles licenseProfiles;
 
     private MachineExtensions machineExtensions;
 
+    private ResourceProviders resourceProviders;
+
+    private ExtensionMetadatas extensionMetadatas;
+
     private Operations operations;
+
+    private NetworkProfiles networkProfiles;
+
+    private HybridIdentityMetadatas hybridIdentityMetadatas;
+
+    private AgentVersions agentVersions;
+
+    private MachineRunCommands machineRunCommands;
 
     private PrivateLinkScopes privateLinkScopes;
 
     private PrivateLinkResources privateLinkResources;
 
     private PrivateEndpointConnections privateEndpointConnections;
+
+    private NetworkConfigurations networkConfigurations;
+
+    private NetworkSecurityPerimeterConfigurations networkSecurityPerimeterConfigurations;
 
     private final HybridComputeManagementClient clientObject;
 
@@ -223,7 +263,7 @@ public final class HybridComputeManager {
                 .append("-")
                 .append("com.azure.resourcemanager.hybridcompute")
                 .append("/")
-                .append("1.0.0-beta.2");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -281,6 +321,18 @@ public final class HybridComputeManager {
     }
 
     /**
+     * Gets the resource collection API of Licenses. It manages License.
+     *
+     * @return Resource collection API of Licenses.
+     */
+    public Licenses licenses() {
+        if (this.licenses == null) {
+            this.licenses = new LicensesImpl(clientObject.getLicenses(), this);
+        }
+        return licenses;
+    }
+
+    /**
      * Gets the resource collection API of Machines.
      *
      * @return Resource collection API of Machines.
@@ -290,6 +342,18 @@ public final class HybridComputeManager {
             this.machines = new MachinesImpl(clientObject.getMachines(), this);
         }
         return machines;
+    }
+
+    /**
+     * Gets the resource collection API of LicenseProfiles. It manages LicenseProfile.
+     *
+     * @return Resource collection API of LicenseProfiles.
+     */
+    public LicenseProfiles licenseProfiles() {
+        if (this.licenseProfiles == null) {
+            this.licenseProfiles = new LicenseProfilesImpl(clientObject.getLicenseProfiles(), this);
+        }
+        return licenseProfiles;
     }
 
     /**
@@ -305,6 +369,30 @@ public final class HybridComputeManager {
     }
 
     /**
+     * Gets the resource collection API of ResourceProviders.
+     *
+     * @return Resource collection API of ResourceProviders.
+     */
+    public ResourceProviders resourceProviders() {
+        if (this.resourceProviders == null) {
+            this.resourceProviders = new ResourceProvidersImpl(clientObject.getResourceProviders(), this);
+        }
+        return resourceProviders;
+    }
+
+    /**
+     * Gets the resource collection API of ExtensionMetadatas.
+     *
+     * @return Resource collection API of ExtensionMetadatas.
+     */
+    public ExtensionMetadatas extensionMetadatas() {
+        if (this.extensionMetadatas == null) {
+            this.extensionMetadatas = new ExtensionMetadatasImpl(clientObject.getExtensionMetadatas(), this);
+        }
+        return extensionMetadatas;
+    }
+
+    /**
      * Gets the resource collection API of Operations.
      *
      * @return Resource collection API of Operations.
@@ -314,6 +402,55 @@ public final class HybridComputeManager {
             this.operations = new OperationsImpl(clientObject.getOperations(), this);
         }
         return operations;
+    }
+
+    /**
+     * Gets the resource collection API of NetworkProfiles.
+     *
+     * @return Resource collection API of NetworkProfiles.
+     */
+    public NetworkProfiles networkProfiles() {
+        if (this.networkProfiles == null) {
+            this.networkProfiles = new NetworkProfilesImpl(clientObject.getNetworkProfiles(), this);
+        }
+        return networkProfiles;
+    }
+
+    /**
+     * Gets the resource collection API of HybridIdentityMetadatas.
+     *
+     * @return Resource collection API of HybridIdentityMetadatas.
+     */
+    public HybridIdentityMetadatas hybridIdentityMetadatas() {
+        if (this.hybridIdentityMetadatas == null) {
+            this.hybridIdentityMetadatas =
+                new HybridIdentityMetadatasImpl(clientObject.getHybridIdentityMetadatas(), this);
+        }
+        return hybridIdentityMetadatas;
+    }
+
+    /**
+     * Gets the resource collection API of AgentVersions.
+     *
+     * @return Resource collection API of AgentVersions.
+     */
+    public AgentVersions agentVersions() {
+        if (this.agentVersions == null) {
+            this.agentVersions = new AgentVersionsImpl(clientObject.getAgentVersions(), this);
+        }
+        return agentVersions;
+    }
+
+    /**
+     * Gets the resource collection API of MachineRunCommands. It manages MachineRunCommand.
+     *
+     * @return Resource collection API of MachineRunCommands.
+     */
+    public MachineRunCommands machineRunCommands() {
+        if (this.machineRunCommands == null) {
+            this.machineRunCommands = new MachineRunCommandsImpl(clientObject.getMachineRunCommands(), this);
+        }
+        return machineRunCommands;
     }
 
     /**
@@ -354,8 +491,36 @@ public final class HybridComputeManager {
     }
 
     /**
-     * @return Wrapped service client HybridComputeManagementClient providing direct access to the underlying
-     *     auto-generated API implementation, based on Azure REST API.
+     * Gets the resource collection API of NetworkConfigurations.
+     *
+     * @return Resource collection API of NetworkConfigurations.
+     */
+    public NetworkConfigurations networkConfigurations() {
+        if (this.networkConfigurations == null) {
+            this.networkConfigurations = new NetworkConfigurationsImpl(clientObject.getNetworkConfigurations(), this);
+        }
+        return networkConfigurations;
+    }
+
+    /**
+     * Gets the resource collection API of NetworkSecurityPerimeterConfigurations.
+     *
+     * @return Resource collection API of NetworkSecurityPerimeterConfigurations.
+     */
+    public NetworkSecurityPerimeterConfigurations networkSecurityPerimeterConfigurations() {
+        if (this.networkSecurityPerimeterConfigurations == null) {
+            this.networkSecurityPerimeterConfigurations =
+                new NetworkSecurityPerimeterConfigurationsImpl(
+                    clientObject.getNetworkSecurityPerimeterConfigurations(), this);
+        }
+        return networkSecurityPerimeterConfigurations;
+    }
+
+    /**
+     * Gets wrapped service client HybridComputeManagementClient providing direct access to the underlying
+     * auto-generated API implementation, based on Azure REST API.
+     *
+     * @return Wrapped service client HybridComputeManagementClient.
      */
     public HybridComputeManagementClient serviceClient() {
         return this.clientObject;
