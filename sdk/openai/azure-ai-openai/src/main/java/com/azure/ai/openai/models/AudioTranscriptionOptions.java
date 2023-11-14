@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** The configuration information for an audio transcription request. */
 @Fluent
-public final class AudioTranscriptionOptions {
+public class AudioTranscriptionOptions {
 
     /*
      * The audio data to transcribe. This must be the binary content of a file in one of the supported media formats:
@@ -27,7 +27,7 @@ public final class AudioTranscriptionOptions {
      */
     @Generated
     @JsonProperty(value = "response_format")
-    private AudioTranscriptionFormat responseFormat;
+    private ResponseFormatModelBase responseFormat;
 
     /*
      * The primary spoken language of the audio data to be transcribed, supplied as a two-letter ISO-639-1 language
@@ -94,21 +94,8 @@ public final class AudioTranscriptionOptions {
      * @return the responseFormat value.
      */
     @Generated
-    public AudioTranscriptionFormat getResponseFormat() {
+    public ResponseFormatModelBase getResponseFormat() {
         return this.responseFormat;
-    }
-
-    /**
-     * Set the responseFormat property: The requested format of the transcription response data, which will influence
-     * the content and detail of the result.
-     *
-     * @param responseFormat the responseFormat value to set.
-     * @return the AudioTranscriptionOptions object itself.
-     */
-    @Generated
-    public AudioTranscriptionOptions setResponseFormat(AudioTranscriptionFormat responseFormat) {
-        this.responseFormat = responseFormat;
-        return this;
     }
 
     /**
@@ -206,6 +193,19 @@ public final class AudioTranscriptionOptions {
     @Generated
     public AudioTranscriptionOptions setModel(String model) {
         this.model = model;
+        return this;
+    }
+
+    /**
+     * Set the responseFormat property: The requested format of the transcription response data, which will influence
+     * the content and detail of the result.
+     *
+     * @param responseFormat the responseFormat value to set.
+     * @return the AudioTranscriptionOptions object itself.
+     */
+    @Generated
+    public AudioTranscriptionOptions setResponseFormat(ResponseFormatModelBase responseFormat) {
+        this.responseFormat = responseFormat;
         return this;
     }
 }

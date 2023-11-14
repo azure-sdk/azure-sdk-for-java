@@ -170,7 +170,7 @@ public final class OpenAIClientImpl {
                 @QueryParam("api-version") String apiVersion,
                 @PathParam("deploymentId") String deploymentOrModelName,
                 @HeaderParam("accept") String accept,
-                @BodyParam("application/json") BinaryData audioTranscriptionOptions,
+                @BodyParam("application/json") BinaryData audioTranscriptionPlainTextOptions,
                 RequestOptions requestOptions,
                 Context context);
 
@@ -191,7 +191,7 @@ public final class OpenAIClientImpl {
                 @QueryParam("api-version") String apiVersion,
                 @PathParam("deploymentId") String deploymentOrModelName,
                 @HeaderParam("accept") String accept,
-                @BodyParam("application/json") BinaryData audioTranscriptionOptions,
+                @BodyParam("application/json") BinaryData audioTranscriptionPlainTextOptions,
                 RequestOptions requestOptions,
                 Context context);
 
@@ -214,7 +214,7 @@ public final class OpenAIClientImpl {
                 @PathParam("deploymentId") String deploymentOrModelName,
                 @HeaderParam("content-type") String contentType,
                 @HeaderParam("accept") String accept,
-                @BodyParam("multipart/form-data") BinaryData audioTranscriptionOptions,
+                @BodyParam("multipart/form-data") BinaryData audioTranscriptionJsonOptions,
                 RequestOptions requestOptions,
                 Context context);
 
@@ -237,7 +237,7 @@ public final class OpenAIClientImpl {
                 @PathParam("deploymentId") String deploymentOrModelName,
                 @HeaderParam("content-type") String contentType,
                 @HeaderParam("accept") String accept,
-                @BodyParam("multipart/form-data") BinaryData audioTranscriptionOptions,
+                @BodyParam("multipart/form-data") BinaryData audioTranscriptionJsonOptions,
                 RequestOptions requestOptions,
                 Context context);
 
@@ -547,11 +547,12 @@ public final class OpenAIClientImpl {
      * <pre>{@code
      * {
      *     file: byte[] (Required)
-     *     response_format: String(json/verbose_json/text/srt/vtt) (Optional)
+     *     response_format: ResponseFormatModelBase (Optional)
      *     language: String (Optional)
      *     prompt: String (Optional)
      *     temperature: Double (Optional)
      *     model: String (Optional)
+     *     response_format: String(text/srt/vtt) (Optional)
      * }
      * }</pre>
      *
@@ -563,7 +564,7 @@ public final class OpenAIClientImpl {
      *
      * @param deploymentOrModelName Specifies either the model deployment name (when using Azure OpenAI) or model name
      *     (when using non-Azure OpenAI) to use for this request.
-     * @param audioTranscriptionOptions The configuration information for an audio transcription request.
+     * @param audioTranscriptionPlainTextOptions The configuration information for an audio transcription request.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -574,7 +575,9 @@ public final class OpenAIClientImpl {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<BinaryData>> getAudioTranscriptionAsPlainTextWithResponseAsync(
-            String deploymentOrModelName, BinaryData audioTranscriptionOptions, RequestOptions requestOptions) {
+            String deploymentOrModelName,
+            BinaryData audioTranscriptionPlainTextOptions,
+            RequestOptions requestOptions) {
         final String accept = "application/json";
         return FluxUtil.withContext(
                 context ->
@@ -583,7 +586,7 @@ public final class OpenAIClientImpl {
                                 this.getServiceVersion().getVersion(),
                                 deploymentOrModelName,
                                 accept,
-                                audioTranscriptionOptions,
+                                audioTranscriptionPlainTextOptions,
                                 requestOptions,
                                 context));
     }
@@ -597,11 +600,12 @@ public final class OpenAIClientImpl {
      * <pre>{@code
      * {
      *     file: byte[] (Required)
-     *     response_format: String(json/verbose_json/text/srt/vtt) (Optional)
+     *     response_format: ResponseFormatModelBase (Optional)
      *     language: String (Optional)
      *     prompt: String (Optional)
      *     temperature: Double (Optional)
      *     model: String (Optional)
+     *     response_format: String(text/srt/vtt) (Optional)
      * }
      * }</pre>
      *
@@ -613,7 +617,7 @@ public final class OpenAIClientImpl {
      *
      * @param deploymentOrModelName Specifies either the model deployment name (when using Azure OpenAI) or model name
      *     (when using non-Azure OpenAI) to use for this request.
-     * @param audioTranscriptionOptions The configuration information for an audio transcription request.
+     * @param audioTranscriptionPlainTextOptions The configuration information for an audio transcription request.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -623,14 +627,16 @@ public final class OpenAIClientImpl {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<BinaryData> getAudioTranscriptionAsPlainTextWithResponse(
-            String deploymentOrModelName, BinaryData audioTranscriptionOptions, RequestOptions requestOptions) {
+            String deploymentOrModelName,
+            BinaryData audioTranscriptionPlainTextOptions,
+            RequestOptions requestOptions) {
         final String accept = "application/json";
         return service.getAudioTranscriptionAsPlainTextSync(
                 this.getEndpoint(),
                 this.getServiceVersion().getVersion(),
                 deploymentOrModelName,
                 accept,
-                audioTranscriptionOptions,
+                audioTranscriptionPlainTextOptions,
                 requestOptions,
                 Context.NONE);
     }
@@ -644,11 +650,12 @@ public final class OpenAIClientImpl {
      * <pre>{@code
      * {
      *     file: byte[] (Required)
-     *     response_format: String(json/verbose_json/text/srt/vtt) (Optional)
+     *     response_format: ResponseFormatModelBase (Optional)
      *     language: String (Optional)
      *     prompt: String (Optional)
      *     temperature: Double (Optional)
      *     model: String (Optional)
+     *     response_format: String(json/verbose_json) (Optional)
      * }
      * }</pre>
      *
@@ -681,7 +688,7 @@ public final class OpenAIClientImpl {
      *
      * @param deploymentOrModelName Specifies either the model deployment name (when using Azure OpenAI) or model name
      *     (when using non-Azure OpenAI) to use for this request.
-     * @param audioTranscriptionOptions The configuration information for an audio transcription request.
+     * @param audioTranscriptionJsonOptions The configuration information for an audio transcription request.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -692,7 +699,7 @@ public final class OpenAIClientImpl {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<BinaryData>> getAudioTranscriptionAsResponseObjectWithResponseAsync(
-            String deploymentOrModelName, BinaryData audioTranscriptionOptions, RequestOptions requestOptions) {
+            String deploymentOrModelName, BinaryData audioTranscriptionJsonOptions, RequestOptions requestOptions) {
         final String contentType = "multipart/form-data";
         final String accept = "application/json";
         return FluxUtil.withContext(
@@ -703,7 +710,7 @@ public final class OpenAIClientImpl {
                                 deploymentOrModelName,
                                 contentType,
                                 accept,
-                                audioTranscriptionOptions,
+                                audioTranscriptionJsonOptions,
                                 requestOptions,
                                 context));
     }
@@ -717,11 +724,12 @@ public final class OpenAIClientImpl {
      * <pre>{@code
      * {
      *     file: byte[] (Required)
-     *     response_format: String(json/verbose_json/text/srt/vtt) (Optional)
+     *     response_format: ResponseFormatModelBase (Optional)
      *     language: String (Optional)
      *     prompt: String (Optional)
      *     temperature: Double (Optional)
      *     model: String (Optional)
+     *     response_format: String(json/verbose_json) (Optional)
      * }
      * }</pre>
      *
@@ -754,7 +762,7 @@ public final class OpenAIClientImpl {
      *
      * @param deploymentOrModelName Specifies either the model deployment name (when using Azure OpenAI) or model name
      *     (when using non-Azure OpenAI) to use for this request.
-     * @param audioTranscriptionOptions The configuration information for an audio transcription request.
+     * @param audioTranscriptionJsonOptions The configuration information for an audio transcription request.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -764,7 +772,7 @@ public final class OpenAIClientImpl {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<BinaryData> getAudioTranscriptionAsResponseObjectWithResponse(
-            String deploymentOrModelName, BinaryData audioTranscriptionOptions, RequestOptions requestOptions) {
+            String deploymentOrModelName, BinaryData audioTranscriptionJsonOptions, RequestOptions requestOptions) {
         final String contentType = "multipart/form-data";
         final String accept = "application/json";
         return service.getAudioTranscriptionAsResponseObjectSync(
@@ -773,7 +781,7 @@ public final class OpenAIClientImpl {
                 deploymentOrModelName,
                 contentType,
                 accept,
-                audioTranscriptionOptions,
+                audioTranscriptionJsonOptions,
                 requestOptions,
                 Context.NONE);
     }
