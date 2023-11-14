@@ -21,7 +21,7 @@ import java.util.Map;
 /** Samples for Services CreateOrUpdate. */
 public final class ServicesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/healthcareapis/resource-manager/Microsoft.HealthcareApis/stable/2021-11-01/examples/legacy/ServiceCreate.json
+     * x-ms-original-file: specification/healthcareapis/resource-manager/Microsoft.HealthcareApis/stable/2023-11-01/examples/legacy/ServiceCreate.json
      */
     /**
      * Sample code: Create or Update a service with all parameters.
@@ -48,7 +48,7 @@ public final class ServicesCreateOrUpdateSamples {
                     .withCosmosDbConfiguration(
                         new ServiceCosmosDbConfigurationInfo()
                             .withOfferThroughput(1000)
-                            .withKeyVaultKeyUri("https://my-vault.vault.azure.net/keys/my-key"))
+                            .withKeyVaultKeyUri("fakeTokenPlaceholder"))
                     .withAuthenticationConfiguration(
                         new ServiceAuthenticationConfigurationInfo()
                             .withAuthority("https://login.microsoftonline.com/abfde7b2-df0f-47e6-aabf-2462b07508dc")
@@ -69,7 +69,56 @@ public final class ServicesCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/healthcareapis/resource-manager/Microsoft.HealthcareApis/stable/2021-11-01/examples/legacy/ServiceCreateMinimum.json
+     * x-ms-original-file: specification/healthcareapis/resource-manager/Microsoft.HealthcareApis/stable/2023-11-01/examples/legacy/ServiceCreateInDataSovereignRegionWithCmkEnabled.json
+     */
+    /**
+     * Sample code: Create or Update a service with all parameters and CMK enabled in a data sovereign region.
+     *
+     * @param manager Entry point to HealthcareApisManager.
+     */
+    public static void createOrUpdateAServiceWithAllParametersAndCMKEnabledInADataSovereignRegion(
+        com.azure.resourcemanager.healthcareapis.HealthcareApisManager manager) {
+        manager
+            .services()
+            .define("service1")
+            .withRegion("Southeast Asia")
+            .withExistingResourceGroup("rg1")
+            .withKind(Kind.FHIR_R4)
+            .withTags(mapOf())
+            .withIdentity(new ServicesResourceIdentity().withType(ManagedServiceIdentityType.SYSTEM_ASSIGNED))
+            .withProperties(
+                new ServicesProperties()
+                    .withAccessPolicies(
+                        Arrays
+                            .asList(
+                                new ServiceAccessPolicyEntry().withObjectId("c487e7d1-3210-41a3-8ccc-e9372b78da47"),
+                                new ServiceAccessPolicyEntry().withObjectId("5b307da8-43d4-492b-8b66-b0294ade872f")))
+                    .withCosmosDbConfiguration(
+                        new ServiceCosmosDbConfigurationInfo()
+                            .withOfferThroughput(1000)
+                            .withKeyVaultKeyUri("fakeTokenPlaceholder")
+                            .withCrossTenantCmkApplicationId("de3fbeef-8c3a-428e-8b9f-4d229c8a85f4"))
+                    .withAuthenticationConfiguration(
+                        new ServiceAuthenticationConfigurationInfo()
+                            .withAuthority("https://login.microsoftonline.com/abfde7b2-df0f-47e6-aabf-2462b07508dc")
+                            .withAudience("https://azurehealthcareapis.com")
+                            .withSmartProxyEnabled(true))
+                    .withCorsConfiguration(
+                        new ServiceCorsConfigurationInfo()
+                            .withOrigins(Arrays.asList("*"))
+                            .withHeaders(Arrays.asList("*"))
+                            .withMethods(Arrays.asList("DELETE", "GET", "OPTIONS", "PATCH", "POST", "PUT"))
+                            .withMaxAge(1440)
+                            .withAllowCredentials(false))
+                    .withExportConfiguration(
+                        new ServiceExportConfigurationInfo().withStorageAccountName("existingStorageAccount"))
+                    .withPrivateEndpointConnections(Arrays.asList())
+                    .withPublicNetworkAccess(PublicNetworkAccess.DISABLED))
+            .create();
+    }
+
+    /*
+     * x-ms-original-file: specification/healthcareapis/resource-manager/Microsoft.HealthcareApis/stable/2023-11-01/examples/legacy/ServiceCreateMinimum.json
      */
     /**
      * Sample code: Create or Update a service with minimum parameters.
@@ -94,6 +143,7 @@ public final class ServicesCreateOrUpdateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

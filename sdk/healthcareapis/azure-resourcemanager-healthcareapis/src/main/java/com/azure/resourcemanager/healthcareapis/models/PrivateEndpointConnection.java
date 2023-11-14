@@ -18,6 +18,10 @@ public class PrivateEndpointConnection extends ProxyResource {
     @JsonProperty(value = "properties")
     private PrivateEndpointConnectionProperties innerProperties;
 
+    /** Creates an instance of PrivateEndpointConnection class. */
+    public PrivateEndpointConnection() {
+    }
+
     /**
      * Get the innerProperties property: Resource properties.
      *

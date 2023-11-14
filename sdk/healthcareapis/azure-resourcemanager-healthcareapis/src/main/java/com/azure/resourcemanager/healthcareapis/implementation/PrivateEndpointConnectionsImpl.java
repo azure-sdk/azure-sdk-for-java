@@ -42,17 +42,6 @@ public final class PrivateEndpointConnectionsImpl implements PrivateEndpointConn
         return Utils.mapPage(inner, inner1 -> new PrivateEndpointConnectionDescriptionImpl(inner1, this.manager()));
     }
 
-    public PrivateEndpointConnectionDescription get(
-        String resourceGroupName, String resourceName, String privateEndpointConnectionName) {
-        PrivateEndpointConnectionDescriptionInner inner =
-            this.serviceClient().get(resourceGroupName, resourceName, privateEndpointConnectionName);
-        if (inner != null) {
-            return new PrivateEndpointConnectionDescriptionImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<PrivateEndpointConnectionDescription> getWithResponse(
         String resourceGroupName, String resourceName, String privateEndpointConnectionName, Context context) {
         Response<PrivateEndpointConnectionDescriptionInner> inner =
@@ -65,6 +54,17 @@ public final class PrivateEndpointConnectionsImpl implements PrivateEndpointConn
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new PrivateEndpointConnectionDescriptionImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public PrivateEndpointConnectionDescription get(
+        String resourceGroupName, String resourceName, String privateEndpointConnectionName) {
+        PrivateEndpointConnectionDescriptionInner inner =
+            this.serviceClient().get(resourceGroupName, resourceName, privateEndpointConnectionName);
+        if (inner != null) {
+            return new PrivateEndpointConnectionDescriptionImpl(inner, this.manager());
         } else {
             return null;
         }

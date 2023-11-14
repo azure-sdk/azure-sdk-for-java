@@ -29,6 +29,10 @@ public final class ServicesNameAvailabilityInfoInner {
     @JsonProperty(value = "message")
     private String message;
 
+    /** Creates an instance of ServicesNameAvailabilityInfoInner class. */
+    public ServicesNameAvailabilityInfoInner() {
+    }
+
     /**
      * Get the nameAvailable property: The value which indicates whether the provided name is available.
      *

@@ -18,19 +18,6 @@ public interface PrivateLinkResourcesClient {
      *
      * @param resourceGroupName The name of the resource group that contains the service instance.
      * @param resourceName The name of the service instance.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the private link resources that need to be created for a service.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    PrivateLinkResourceListResultDescriptionInner listByService(String resourceGroupName, String resourceName);
-
-    /**
-     * Gets the private link resources that need to be created for a service.
-     *
-     * @param resourceGroupName The name of the resource group that contains the service instance.
-     * @param resourceName The name of the service instance.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -42,18 +29,17 @@ public interface PrivateLinkResourcesClient {
         String resourceGroupName, String resourceName, Context context);
 
     /**
-     * Gets a private link resource that need to be created for a service.
+     * Gets the private link resources that need to be created for a service.
      *
      * @param resourceGroupName The name of the resource group that contains the service instance.
      * @param resourceName The name of the service instance.
-     * @param groupName The name of the private link resource group.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a private link resource that need to be created for a service.
+     * @return the private link resources that need to be created for a service.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    PrivateLinkResourceDescriptionInner get(String resourceGroupName, String resourceName, String groupName);
+    PrivateLinkResourceListResultDescriptionInner listByService(String resourceGroupName, String resourceName);
 
     /**
      * Gets a private link resource that need to be created for a service.
@@ -70,4 +56,18 @@ public interface PrivateLinkResourcesClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<PrivateLinkResourceDescriptionInner> getWithResponse(
         String resourceGroupName, String resourceName, String groupName, Context context);
+
+    /**
+     * Gets a private link resource that need to be created for a service.
+     *
+     * @param resourceGroupName The name of the resource group that contains the service instance.
+     * @param resourceName The name of the service instance.
+     * @param groupName The name of the private link resource group.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a private link resource that need to be created for a service.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    PrivateLinkResourceDescriptionInner get(String resourceGroupName, String resourceName, String groupName);
 }

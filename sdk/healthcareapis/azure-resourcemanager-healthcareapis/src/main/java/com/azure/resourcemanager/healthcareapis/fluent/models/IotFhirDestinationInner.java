@@ -27,6 +27,10 @@ public final class IotFhirDestinationInner extends LocationBasedResource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
+    /** Creates an instance of IotFhirDestinationInner class. */
+    public IotFhirDestinationInner() {
+    }
+
     /**
      * Get the innerProperties property: IoT FHIR Destination settings.
      *

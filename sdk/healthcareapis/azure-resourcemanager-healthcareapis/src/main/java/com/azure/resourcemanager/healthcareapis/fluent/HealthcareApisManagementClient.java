@@ -10,7 +10,7 @@ import java.time.Duration;
 /** The interface for HealthcareApisManagementClient class. */
 public interface HealthcareApisManagementClient {
     /**
-     * Gets The subscription identifier.
+     * Gets The ID of the target subscription.
      *
      * @return the subscriptionId value.
      */
