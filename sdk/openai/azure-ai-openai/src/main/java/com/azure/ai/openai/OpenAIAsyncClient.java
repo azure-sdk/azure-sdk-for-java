@@ -894,7 +894,6 @@ public final class OpenAIAsyncClient {
      *             }
      *             index: int (Required)
      *             finish_reason: String(stop/length/content_filter/function_call) (Required)
-     *             delta (Optional): (recursive schema, see delta above)
      *             content_filter_results (Optional): {
      *                 sexual (Optional): {
      *                     severity: String(safe/low/medium/high) (Required)
