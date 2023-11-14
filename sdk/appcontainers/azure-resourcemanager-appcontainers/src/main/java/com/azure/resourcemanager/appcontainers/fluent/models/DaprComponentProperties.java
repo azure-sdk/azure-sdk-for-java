@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.appcontainers.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.resourcemanager.appcontainers.models.DaprComponentServiceBinding;
 import com.azure.resourcemanager.appcontainers.models.DaprMetadata;
 import com.azure.resourcemanager.appcontainers.models.Secret;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -60,6 +61,12 @@ public final class DaprComponentProperties {
      */
     @JsonProperty(value = "scopes")
     private List<String> scopes;
+
+    /*
+     * List of container app services that are bound to the Dapr component
+     */
+    @JsonProperty(value = "serviceComponentBind")
+    private List<DaprComponentServiceBinding> serviceComponentBind;
 
     /** Creates an instance of DaprComponentProperties class. */
     public DaprComponentProperties() {
@@ -226,6 +233,26 @@ public final class DaprComponentProperties {
     }
 
     /**
+     * Get the serviceComponentBind property: List of container app services that are bound to the Dapr component.
+     *
+     * @return the serviceComponentBind value.
+     */
+    public List<DaprComponentServiceBinding> serviceComponentBind() {
+        return this.serviceComponentBind;
+    }
+
+    /**
+     * Set the serviceComponentBind property: List of container app services that are bound to the Dapr component.
+     *
+     * @param serviceComponentBind the serviceComponentBind value to set.
+     * @return the DaprComponentProperties object itself.
+     */
+    public DaprComponentProperties withServiceComponentBind(List<DaprComponentServiceBinding> serviceComponentBind) {
+        this.serviceComponentBind = serviceComponentBind;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -236,6 +263,9 @@ public final class DaprComponentProperties {
         }
         if (metadata() != null) {
             metadata().forEach(e -> e.validate());
+        }
+        if (serviceComponentBind() != null) {
+            serviceComponentBind().forEach(e -> e.validate());
         }
     }
 }

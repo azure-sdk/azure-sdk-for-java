@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.appcontainers.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.appcontainers.fluent.models.AvailableWorkloadProfileInner;
 import com.azure.resourcemanager.appcontainers.models.AvailableWorkloadProfile;
 import com.azure.resourcemanager.appcontainers.models.AvailableWorkloadProfileProperties;
@@ -38,6 +39,10 @@ public final class AvailableWorkloadProfileImpl implements AvailableWorkloadProf
 
     public AvailableWorkloadProfileProperties properties() {
         return this.innerModel().properties();
+    }
+
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public AvailableWorkloadProfileInner innerModel() {
