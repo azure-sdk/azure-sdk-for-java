@@ -161,11 +161,13 @@ public interface LocalRulestackResource {
             DefinitionStages.WithResourceGroup,
             DefinitionStages.WithCreate {
     }
+
     /** The LocalRulestackResource definition stages. */
     interface DefinitionStages {
         /** The first stage of the LocalRulestackResource definition. */
         interface Blank extends WithLocation {
         }
+
         /** The stage of the LocalRulestackResource definition allowing to specify location. */
         interface WithLocation {
             /**
@@ -184,6 +186,7 @@ public interface LocalRulestackResource {
              */
             WithResourceGroup withRegion(String location);
         }
+
         /** The stage of the LocalRulestackResource definition allowing to specify parent resource. */
         interface WithResourceGroup {
             /**
@@ -194,6 +197,7 @@ public interface LocalRulestackResource {
              */
             WithCreate withExistingResourceGroup(String resourceGroupName);
         }
+
         /**
          * The stage of the LocalRulestackResource definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
@@ -224,6 +228,7 @@ public interface LocalRulestackResource {
              */
             LocalRulestackResource create(Context context);
         }
+
         /** The stage of the LocalRulestackResource definition allowing to specify tags. */
         interface WithTags {
             /**
@@ -234,6 +239,7 @@ public interface LocalRulestackResource {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
         /** The stage of the LocalRulestackResource definition allowing to specify identity. */
         interface WithIdentity {
             /**
@@ -244,6 +250,7 @@ public interface LocalRulestackResource {
              */
             WithCreate withIdentity(AzureResourceManagerManagedIdentityProperties identity);
         }
+
         /** The stage of the LocalRulestackResource definition allowing to specify panEtag. */
         interface WithPanEtag {
             /**
@@ -254,6 +261,7 @@ public interface LocalRulestackResource {
              */
             WithCreate withPanEtag(String panEtag);
         }
+
         /** The stage of the LocalRulestackResource definition allowing to specify panLocation. */
         interface WithPanLocation {
             /**
@@ -265,6 +273,7 @@ public interface LocalRulestackResource {
              */
             WithCreate withPanLocation(String panLocation);
         }
+
         /** The stage of the LocalRulestackResource definition allowing to specify scope. */
         interface WithScope {
             /**
@@ -275,6 +284,7 @@ public interface LocalRulestackResource {
              */
             WithCreate withScope(ScopeType scope);
         }
+
         /** The stage of the LocalRulestackResource definition allowing to specify associatedSubscriptions. */
         interface WithAssociatedSubscriptions {
             /**
@@ -285,6 +295,7 @@ public interface LocalRulestackResource {
              */
             WithCreate withAssociatedSubscriptions(List<String> associatedSubscriptions);
         }
+
         /** The stage of the LocalRulestackResource definition allowing to specify description. */
         interface WithDescription {
             /**
@@ -295,6 +306,7 @@ public interface LocalRulestackResource {
              */
             WithCreate withDescription(String description);
         }
+
         /** The stage of the LocalRulestackResource definition allowing to specify defaultMode. */
         interface WithDefaultMode {
             /**
@@ -305,6 +317,7 @@ public interface LocalRulestackResource {
              */
             WithCreate withDefaultMode(DefaultMode defaultMode);
         }
+
         /** The stage of the LocalRulestackResource definition allowing to specify minAppIdVersion. */
         interface WithMinAppIdVersion {
             /**
@@ -315,6 +328,7 @@ public interface LocalRulestackResource {
              */
             WithCreate withMinAppIdVersion(String minAppIdVersion);
         }
+
         /** The stage of the LocalRulestackResource definition allowing to specify securityServices. */
         interface WithSecurityServices {
             /**
@@ -326,6 +340,7 @@ public interface LocalRulestackResource {
             WithCreate withSecurityServices(SecurityServices securityServices);
         }
     }
+
     /**
      * Begins update for the LocalRulestackResource resource.
      *
@@ -350,6 +365,7 @@ public interface LocalRulestackResource {
          */
         LocalRulestackResource apply(Context context);
     }
+
     /** The LocalRulestackResource update stages. */
     interface UpdateStages {
         /** The stage of the LocalRulestackResource update allowing to specify tags. */
@@ -362,6 +378,7 @@ public interface LocalRulestackResource {
              */
             Update withTags(Map<String, String> tags);
         }
+
         /** The stage of the LocalRulestackResource update allowing to specify identity. */
         interface WithIdentity {
             /**
@@ -372,6 +389,7 @@ public interface LocalRulestackResource {
              */
             Update withIdentity(AzureResourceManagerManagedIdentityProperties identity);
         }
+
         /** The stage of the LocalRulestackResource update allowing to specify properties. */
         interface WithProperties {
             /**
@@ -383,6 +401,7 @@ public interface LocalRulestackResource {
             Update withProperties(LocalRulestackResourceUpdateProperties properties);
         }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
      *
@@ -458,53 +477,6 @@ public interface LocalRulestackResource {
     SupportInfo getSupportInfo();
 
     /**
-     * List of AppIds for LocalRulestack ApiVersion.
-     *
-     * @param appIdVersion The appIdVersion parameter.
-     * @param appPrefix The appPrefix parameter.
-     * @param skip The skip parameter.
-     * @param top The top parameter.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response}.
-     */
-    Response<ListAppIdResponse> listAppIdsWithResponse(
-        String appIdVersion, String appPrefix, String skip, Integer top, Context context);
-
-    /**
-     * List of AppIds for LocalRulestack ApiVersion.
-     *
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
-     */
-    ListAppIdResponse listAppIds();
-
-    /**
-     * List of countries for Rulestack.
-     *
-     * @param skip The skip parameter.
-     * @param top The top parameter.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return countries Response Object along with {@link Response}.
-     */
-    Response<CountriesResponse> listCountriesWithResponse(String skip, Integer top, Context context);
-
-    /**
-     * List of countries for Rulestack.
-     *
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return countries Response Object.
-     */
-    CountriesResponse listCountries();
-
-    /**
      * List of Firewalls associated with Rulestack.
      *
      * @param context The context to associate with this operation.
@@ -523,29 +495,6 @@ public interface LocalRulestackResource {
      * @return list firewalls response.
      */
     ListFirewallsResponse listFirewalls();
-
-    /**
-     * List predefined URL categories for rulestack.
-     *
-     * @param skip The skip parameter.
-     * @param top The top parameter.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return predefined url categories response along with {@link Response}.
-     */
-    Response<PredefinedUrlCategoriesResponse> listPredefinedUrlCategoriesWithResponse(
-        String skip, Integer top, Context context);
-
-    /**
-     * List predefined URL categories for rulestack.
-     *
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return predefined url categories response.
-     */
-    PredefinedUrlCategoriesResponse listPredefinedUrlCategories();
 
     /**
      * Revert rulestack configuration.
