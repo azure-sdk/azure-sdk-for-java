@@ -22,6 +22,12 @@ public final class MLFlowModelJobInput extends JobInput {
     private InputDeliveryMode mode;
 
     /*
+     * Local path on compute node for Input asset.
+     */
+    @JsonProperty(value = "pathOnCompute")
+    private String pathOnCompute;
+
+    /*
      * [Required] Input Asset URI.
      */
     @JsonProperty(value = "uri", required = true)
@@ -48,6 +54,26 @@ public final class MLFlowModelJobInput extends JobInput {
      */
     public MLFlowModelJobInput withMode(InputDeliveryMode mode) {
         this.mode = mode;
+        return this;
+    }
+
+    /**
+     * Get the pathOnCompute property: Local path on compute node for Input asset.
+     *
+     * @return the pathOnCompute value.
+     */
+    public String pathOnCompute() {
+        return this.pathOnCompute;
+    }
+
+    /**
+     * Set the pathOnCompute property: Local path on compute node for Input asset.
+     *
+     * @param pathOnCompute the pathOnCompute value to set.
+     * @return the MLFlowModelJobInput object itself.
+     */
+    public MLFlowModelJobInput withPathOnCompute(String pathOnCompute) {
+        this.pathOnCompute = pathOnCompute;
         return this;
     }
 

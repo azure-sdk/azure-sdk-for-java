@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class DiagnoseWorkspaceParameters {
     /*
-     * Value of Parameters
+     * The value property.
      */
     @JsonProperty(value = "value")
     private DiagnoseRequestProperties value;
@@ -21,7 +21,7 @@ public final class DiagnoseWorkspaceParameters {
     }
 
     /**
-     * Get the value property: Value of Parameters.
+     * Get the value property: The value property.
      *
      * @return the value value.
      */
@@ -30,7 +30,7 @@ public final class DiagnoseWorkspaceParameters {
     }
 
     /**
-     * Set the value property: Value of Parameters.
+     * Set the value property: The value property.
      *
      * @param value the value value to set.
      * @return the DiagnoseWorkspaceParameters object itself.

@@ -21,6 +21,12 @@ public final class LiteralJobInput extends JobInput {
     @JsonProperty(value = "value", required = true)
     private String value;
 
+    /*
+     * Local path on compute node for literal job input.
+     */
+    @JsonProperty(value = "pathOnCompute")
+    private String pathOnCompute;
+
     /** Creates an instance of LiteralJobInput class. */
     public LiteralJobInput() {
     }
@@ -42,6 +48,26 @@ public final class LiteralJobInput extends JobInput {
      */
     public LiteralJobInput withValue(String value) {
         this.value = value;
+        return this;
+    }
+
+    /**
+     * Get the pathOnCompute property: Local path on compute node for literal job input.
+     *
+     * @return the pathOnCompute value.
+     */
+    public String pathOnCompute() {
+        return this.pathOnCompute;
+    }
+
+    /**
+     * Set the pathOnCompute property: Local path on compute node for literal job input.
+     *
+     * @param pathOnCompute the pathOnCompute value to set.
+     * @return the LiteralJobInput object itself.
+     */
+    public LiteralJobInput withPathOnCompute(String pathOnCompute) {
+        this.pathOnCompute = pathOnCompute;
         return this;
     }
 
