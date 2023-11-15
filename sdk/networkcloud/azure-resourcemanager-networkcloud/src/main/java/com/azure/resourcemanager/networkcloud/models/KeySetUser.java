@@ -32,6 +32,12 @@ public final class KeySetUser {
     @JsonProperty(value = "sshPublicKey", required = true)
     private SshPublicKey sshPublicKey;
 
+    /*
+     * The user principal name (email format) used to validate this user's group membership.
+     */
+    @JsonProperty(value = "userPrincipalName")
+    private String userPrincipalName;
+
     /** Creates an instance of KeySetUser class. */
     public KeySetUser() {
     }
@@ -101,6 +107,28 @@ public final class KeySetUser {
      */
     public KeySetUser withSshPublicKey(SshPublicKey sshPublicKey) {
         this.sshPublicKey = sshPublicKey;
+        return this;
+    }
+
+    /**
+     * Get the userPrincipalName property: The user principal name (email format) used to validate this user's group
+     * membership.
+     *
+     * @return the userPrincipalName value.
+     */
+    public String userPrincipalName() {
+        return this.userPrincipalName;
+    }
+
+    /**
+     * Set the userPrincipalName property: The user principal name (email format) used to validate this user's group
+     * membership.
+     *
+     * @param userPrincipalName the userPrincipalName value to set.
+     * @return the KeySetUser object itself.
+     */
+    public KeySetUser withUserPrincipalName(String userPrincipalName) {
+        this.userPrincipalName = userPrincipalName;
         return this;
     }
 

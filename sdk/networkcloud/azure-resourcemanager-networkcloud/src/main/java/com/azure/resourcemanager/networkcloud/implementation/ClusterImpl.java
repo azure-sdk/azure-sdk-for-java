@@ -17,12 +17,16 @@ import com.azure.resourcemanager.networkcloud.models.ClusterDetailedStatus;
 import com.azure.resourcemanager.networkcloud.models.ClusterManagerConnectionStatus;
 import com.azure.resourcemanager.networkcloud.models.ClusterPatchParameters;
 import com.azure.resourcemanager.networkcloud.models.ClusterProvisioningState;
+import com.azure.resourcemanager.networkcloud.models.ClusterScanRuntimeParameters;
+import com.azure.resourcemanager.networkcloud.models.ClusterSecretArchive;
 import com.azure.resourcemanager.networkcloud.models.ClusterType;
+import com.azure.resourcemanager.networkcloud.models.ClusterUpdateStrategy;
 import com.azure.resourcemanager.networkcloud.models.ClusterUpdateVersionParameters;
 import com.azure.resourcemanager.networkcloud.models.ExtendedLocation;
 import com.azure.resourcemanager.networkcloud.models.ManagedResourceGroupConfiguration;
 import com.azure.resourcemanager.networkcloud.models.OperationStatusResult;
 import com.azure.resourcemanager.networkcloud.models.RackDefinition;
+import com.azure.resourcemanager.networkcloud.models.RuntimeProtectionConfiguration;
 import com.azure.resourcemanager.networkcloud.models.ServicePrincipalInformation;
 import com.azure.resourcemanager.networkcloud.models.ValidationThreshold;
 import java.util.Collections;
@@ -161,8 +165,20 @@ public final class ClusterImpl implements Cluster, Cluster.Definition, Cluster.U
         return this.innerModel().provisioningState();
     }
 
+    public RuntimeProtectionConfiguration runtimeProtectionConfiguration() {
+        return this.innerModel().runtimeProtectionConfiguration();
+    }
+
+    public ClusterSecretArchive secretArchive() {
+        return this.innerModel().secretArchive();
+    }
+
     public String supportExpiryDate() {
         return this.innerModel().supportExpiryDate();
+    }
+
+    public ClusterUpdateStrategy updateStrategy() {
+        return this.innerModel().updateStrategy();
     }
 
     public List<String> workloadResourceIds() {
@@ -287,6 +303,17 @@ public final class ClusterImpl implements Cluster, Cluster.Definition, Cluster.U
         return serviceManager.clusters().deploy(resourceGroupName, clusterName, clusterDeployParameters, context);
     }
 
+    public OperationStatusResult scanRuntime() {
+        return serviceManager.clusters().scanRuntime(resourceGroupName, clusterName);
+    }
+
+    public OperationStatusResult scanRuntime(
+        ClusterScanRuntimeParameters clusterScanRuntimeParameters, Context context) {
+        return serviceManager
+            .clusters()
+            .scanRuntime(resourceGroupName, clusterName, clusterScanRuntimeParameters, context);
+    }
+
     public OperationStatusResult updateVersion(ClusterUpdateVersionParameters clusterUpdateVersionParameters) {
         return serviceManager.clusters().updateVersion(resourceGroupName, clusterName, clusterUpdateVersionParameters);
     }
@@ -397,6 +424,37 @@ public final class ClusterImpl implements Cluster, Cluster.Definition, Cluster.U
         ManagedResourceGroupConfiguration managedResourceGroupConfiguration) {
         this.innerModel().withManagedResourceGroupConfiguration(managedResourceGroupConfiguration);
         return this;
+    }
+
+    public ClusterImpl withRuntimeProtectionConfiguration(
+        RuntimeProtectionConfiguration runtimeProtectionConfiguration) {
+        if (isInCreateMode()) {
+            this.innerModel().withRuntimeProtectionConfiguration(runtimeProtectionConfiguration);
+            return this;
+        } else {
+            this.updateClusterUpdateParameters.withRuntimeProtectionConfiguration(runtimeProtectionConfiguration);
+            return this;
+        }
+    }
+
+    public ClusterImpl withSecretArchive(ClusterSecretArchive secretArchive) {
+        if (isInCreateMode()) {
+            this.innerModel().withSecretArchive(secretArchive);
+            return this;
+        } else {
+            this.updateClusterUpdateParameters.withSecretArchive(secretArchive);
+            return this;
+        }
+    }
+
+    public ClusterImpl withUpdateStrategy(ClusterUpdateStrategy updateStrategy) {
+        if (isInCreateMode()) {
+            this.innerModel().withUpdateStrategy(updateStrategy);
+            return this;
+        } else {
+            this.updateClusterUpdateParameters.withUpdateStrategy(updateStrategy);
+            return this;
+        }
     }
 
     private boolean isInCreateMode() {

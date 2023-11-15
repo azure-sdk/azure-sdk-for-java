@@ -149,7 +149,7 @@ public final class VirtualMachineInner extends Resource {
     }
 
     /**
-     * Get the bareMetalMachineId property: The resource ID of the bare metal machine the virtual machine has landed to.
+     * Get the bareMetalMachineId property: The resource ID of the bare metal machine that hosts the virtual machine.
      *
      * @return the bareMetalMachineId value.
      */

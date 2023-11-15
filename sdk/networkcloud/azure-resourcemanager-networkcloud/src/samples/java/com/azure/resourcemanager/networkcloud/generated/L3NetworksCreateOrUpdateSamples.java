@@ -12,7 +12,7 @@ import java.util.Map;
 /** Samples for L3Networks CreateOrUpdate. */
 public final class L3NetworksCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2023-07-01/examples/L3Networks_Create.json
+     * x-ms-original-file: specification/networkcloud/resource-manager/Microsoft.NetworkCloud/preview/2023-10-01-preview/examples/L3Networks_Create.json
      */
     /**
      * Sample code: Create or update L3 network.

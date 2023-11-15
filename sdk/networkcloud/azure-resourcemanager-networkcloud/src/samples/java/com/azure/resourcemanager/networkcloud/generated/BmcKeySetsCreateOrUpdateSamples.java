@@ -16,7 +16,7 @@ import java.util.Map;
 /** Samples for BmcKeySets CreateOrUpdate. */
 public final class BmcKeySetsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2023-07-01/examples/BmcKeySets_Create.json
+     * x-ms-original-file: specification/networkcloud/resource-manager/Microsoft.NetworkCloud/preview/2023-10-01-preview/examples/BmcKeySets_Create.json
      */
     /**
      * Sample code: Create or update baseboard management controller key set of cluster.
@@ -44,11 +44,13 @@ public final class BmcKeySetsCreateOrUpdateSamples {
                         new KeySetUser()
                             .withAzureUsername("userABC")
                             .withDescription("Needs access for troubleshooting as a part of the support team")
-                            .withSshPublicKey(new SshPublicKey().withKeyData("fakeTokenPlaceholder")),
+                            .withSshPublicKey(new SshPublicKey().withKeyData("fakeTokenPlaceholder"))
+                            .withUserPrincipalName("userABC@contoso.com"),
                         new KeySetUser()
                             .withAzureUsername("userXYZ")
                             .withDescription("Needs access for troubleshooting as a part of the support team")
-                            .withSshPublicKey(new SshPublicKey().withKeyData("fakeTokenPlaceholder"))))
+                            .withSshPublicKey(new SshPublicKey().withKeyData("fakeTokenPlaceholder"))
+                            .withUserPrincipalName("userABC@contoso.com")))
             .withTags(mapOf("key1", "fakeTokenPlaceholder", "key2", "fakeTokenPlaceholder"))
             .create();
     }

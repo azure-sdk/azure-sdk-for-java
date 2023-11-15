@@ -461,7 +461,11 @@ public interface AgentPool {
     AgentPool.Update update();
 
     /** The template for AgentPool update. */
-    interface Update extends UpdateStages.WithTags, UpdateStages.WithCount, UpdateStages.WithUpgradeSettings {
+    interface Update
+        extends UpdateStages.WithTags,
+            UpdateStages.WithAdministratorConfiguration,
+            UpdateStages.WithCount,
+            UpdateStages.WithUpgradeSettings {
         /**
          * Executes the update request.
          *
@@ -489,6 +493,22 @@ public interface AgentPool {
              * @return the next definition stage.
              */
             Update withTags(Map<String, String> tags);
+        }
+
+        /** The stage of the AgentPool update allowing to specify administratorConfiguration. */
+        interface WithAdministratorConfiguration {
+            /**
+             * Specifies the administratorConfiguration property: NodePoolAdministratorConfigurationPatch represents the
+             * patching capabilities for the administrator configuration.
+             *
+             * <p>The configuration of administrator credentials for the control plane nodes..
+             *
+             * @param administratorConfiguration NodePoolAdministratorConfigurationPatch represents the patching
+             *     capabilities for the administrator configuration.
+             *     <p>The configuration of administrator credentials for the control plane nodes.
+             * @return the next definition stage.
+             */
+            Update withAdministratorConfiguration(NodePoolAdministratorConfigurationPatch administratorConfiguration);
         }
 
         /** The stage of the AgentPool update allowing to specify count. */

@@ -5,12 +5,21 @@
 package com.azure.resourcemanager.networkcloud.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.resourcemanager.networkcloud.models.AdministratorConfigurationPatch;
 import com.azure.resourcemanager.networkcloud.models.ControlPlaneNodePatchConfiguration;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** KubernetesClusterPatchProperties represents the properties of the Kubernetes cluster that can be patched. */
 @Fluent
 public final class KubernetesClusterPatchProperties {
+    /*
+     * AdministratorConfigurationPatch represents the patching capabilities for the administrator configuration.
+     *
+     * The configuration of the default administrator credentials.
+     */
+    @JsonProperty(value = "administratorConfiguration")
+    private AdministratorConfigurationPatch administratorConfiguration;
+
     /*
      * ControlPlaneNodePatchConfiguration represents the properties of the control plane that can be patched for this
      * Kubernetes cluster.
@@ -29,6 +38,33 @@ public final class KubernetesClusterPatchProperties {
 
     /** Creates an instance of KubernetesClusterPatchProperties class. */
     public KubernetesClusterPatchProperties() {
+    }
+
+    /**
+     * Get the administratorConfiguration property: AdministratorConfigurationPatch represents the patching capabilities
+     * for the administrator configuration.
+     *
+     * <p>The configuration of the default administrator credentials.
+     *
+     * @return the administratorConfiguration value.
+     */
+    public AdministratorConfigurationPatch administratorConfiguration() {
+        return this.administratorConfiguration;
+    }
+
+    /**
+     * Set the administratorConfiguration property: AdministratorConfigurationPatch represents the patching capabilities
+     * for the administrator configuration.
+     *
+     * <p>The configuration of the default administrator credentials.
+     *
+     * @param administratorConfiguration the administratorConfiguration value to set.
+     * @return the KubernetesClusterPatchProperties object itself.
+     */
+    public KubernetesClusterPatchProperties withAdministratorConfiguration(
+        AdministratorConfigurationPatch administratorConfiguration) {
+        this.administratorConfiguration = administratorConfiguration;
+        return this;
     }
 
     /**
@@ -86,6 +122,9 @@ public final class KubernetesClusterPatchProperties {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (administratorConfiguration() != null) {
+            administratorConfiguration().validate();
+        }
         if (controlPlaneNodeConfiguration() != null) {
             controlPlaneNodeConfiguration().validate();
         }

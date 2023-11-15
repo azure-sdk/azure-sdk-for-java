@@ -6,10 +6,16 @@ package com.azure.resourcemanager.networkcloud.generated;
 
 import com.azure.resourcemanager.networkcloud.models.AdministrativeCredentials;
 import com.azure.resourcemanager.networkcloud.models.BareMetalMachineConfigurationData;
+import com.azure.resourcemanager.networkcloud.models.ClusterSecretArchive;
+import com.azure.resourcemanager.networkcloud.models.ClusterSecretArchiveEnabled;
 import com.azure.resourcemanager.networkcloud.models.ClusterType;
+import com.azure.resourcemanager.networkcloud.models.ClusterUpdateStrategy;
+import com.azure.resourcemanager.networkcloud.models.ClusterUpdateStrategyType;
 import com.azure.resourcemanager.networkcloud.models.ExtendedLocation;
 import com.azure.resourcemanager.networkcloud.models.ManagedResourceGroupConfiguration;
 import com.azure.resourcemanager.networkcloud.models.RackDefinition;
+import com.azure.resourcemanager.networkcloud.models.RuntimeProtectionConfiguration;
+import com.azure.resourcemanager.networkcloud.models.RuntimeProtectionEnforcementLevel;
 import com.azure.resourcemanager.networkcloud.models.ServicePrincipalInformation;
 import com.azure.resourcemanager.networkcloud.models.StorageApplianceConfigurationData;
 import com.azure.resourcemanager.networkcloud.models.ValidationThreshold;
@@ -22,7 +28,7 @@ import java.util.Map;
 /** Samples for Clusters CreateOrUpdate. */
 public final class ClustersCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2023-07-01/examples/Clusters_Create.json
+     * x-ms-original-file: specification/networkcloud/resource-manager/Microsoft.NetworkCloud/preview/2023-10-01-preview/examples/Clusters_Create.json
      */
     /**
      * Sample code: Create or update cluster.
@@ -151,6 +157,19 @@ public final class ClustersCreateOrUpdateSamples {
                                             .withStorageApplianceName("vmName")))))
             .withManagedResourceGroupConfiguration(
                 new ManagedResourceGroupConfiguration().withLocation("East US").withName("my-managed-rg"))
+            .withRuntimeProtectionConfiguration(
+                new RuntimeProtectionConfiguration().withEnforcementLevel(RuntimeProtectionEnforcementLevel.ON_DEMAND))
+            .withSecretArchive(
+                new ClusterSecretArchive()
+                    .withKeyVaultId("fakeTokenPlaceholder")
+                    .withUseKeyVault(ClusterSecretArchiveEnabled.TRUE))
+            .withUpdateStrategy(
+                new ClusterUpdateStrategy()
+                    .withMaxUnavailable(4L)
+                    .withStrategyType(ClusterUpdateStrategyType.RACK)
+                    .withThresholdType(ValidationThresholdType.COUNT_SUCCESS)
+                    .withThresholdValue(4L)
+                    .withWaitTimeMinutes(10L))
             .create();
     }
 

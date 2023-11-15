@@ -14,6 +14,7 @@ import com.azure.resourcemanager.networkcloud.fluent.models.ClusterInner;
 import com.azure.resourcemanager.networkcloud.fluent.models.OperationStatusResultInner;
 import com.azure.resourcemanager.networkcloud.models.Cluster;
 import com.azure.resourcemanager.networkcloud.models.ClusterDeployParameters;
+import com.azure.resourcemanager.networkcloud.models.ClusterScanRuntimeParameters;
 import com.azure.resourcemanager.networkcloud.models.ClusterUpdateVersionParameters;
 import com.azure.resourcemanager.networkcloud.models.Clusters;
 import com.azure.resourcemanager.networkcloud.models.OperationStatusResult;
@@ -99,6 +100,29 @@ public final class ClustersImpl implements Clusters {
         Context context) {
         OperationStatusResultInner inner =
             this.serviceClient().deploy(resourceGroupName, clusterName, clusterDeployParameters, context);
+        if (inner != null) {
+            return new OperationStatusResultImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public OperationStatusResult scanRuntime(String resourceGroupName, String clusterName) {
+        OperationStatusResultInner inner = this.serviceClient().scanRuntime(resourceGroupName, clusterName);
+        if (inner != null) {
+            return new OperationStatusResultImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public OperationStatusResult scanRuntime(
+        String resourceGroupName,
+        String clusterName,
+        ClusterScanRuntimeParameters clusterScanRuntimeParameters,
+        Context context) {
+        OperationStatusResultInner inner =
+            this.serviceClient().scanRuntime(resourceGroupName, clusterName, clusterScanRuntimeParameters, context);
         if (inner != null) {
             return new OperationStatusResultImpl(inner, this.manager());
         } else {

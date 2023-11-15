@@ -5,7 +5,10 @@
 package com.azure.resourcemanager.networkcloud.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.resourcemanager.networkcloud.models.ClusterSecretArchive;
+import com.azure.resourcemanager.networkcloud.models.ClusterUpdateStrategy;
 import com.azure.resourcemanager.networkcloud.models.RackDefinition;
+import com.azure.resourcemanager.networkcloud.models.RuntimeProtectionConfiguration;
 import com.azure.resourcemanager.networkcloud.models.ServicePrincipalInformation;
 import com.azure.resourcemanager.networkcloud.models.ValidationThreshold;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -53,6 +56,30 @@ public final class ClusterPatchProperties {
      */
     @JsonProperty(value = "computeRackDefinitions")
     private List<RackDefinition> computeRackDefinitions;
+
+    /*
+     * RuntimeProtectionConfiguration represents the runtime protection configuration for the cluster.
+     *
+     * The settings for cluster runtime protection.
+     */
+    @JsonProperty(value = "runtimeProtectionConfiguration")
+    private RuntimeProtectionConfiguration runtimeProtectionConfiguration;
+
+    /*
+     * ClusterSecretArchive configures the key vault to archive the secrets of the cluster for later retrieval.
+     *
+     * The configuration for use of a key vault to store secrets for later retrieval by the operator.
+     */
+    @JsonProperty(value = "secretArchive")
+    private ClusterSecretArchive secretArchive;
+
+    /*
+     * ClusterUpdateStrategy represents the strategy for updating the cluster.
+     *
+     * The strategy for updating the cluster.
+     */
+    @JsonProperty(value = "updateStrategy")
+    private ClusterUpdateStrategy updateStrategy;
 
     /** Creates an instance of ClusterPatchProperties class. */
     public ClusterPatchProperties() {
@@ -184,6 +211,83 @@ public final class ClusterPatchProperties {
     }
 
     /**
+     * Get the runtimeProtectionConfiguration property: RuntimeProtectionConfiguration represents the runtime protection
+     * configuration for the cluster.
+     *
+     * <p>The settings for cluster runtime protection.
+     *
+     * @return the runtimeProtectionConfiguration value.
+     */
+    public RuntimeProtectionConfiguration runtimeProtectionConfiguration() {
+        return this.runtimeProtectionConfiguration;
+    }
+
+    /**
+     * Set the runtimeProtectionConfiguration property: RuntimeProtectionConfiguration represents the runtime protection
+     * configuration for the cluster.
+     *
+     * <p>The settings for cluster runtime protection.
+     *
+     * @param runtimeProtectionConfiguration the runtimeProtectionConfiguration value to set.
+     * @return the ClusterPatchProperties object itself.
+     */
+    public ClusterPatchProperties withRuntimeProtectionConfiguration(
+        RuntimeProtectionConfiguration runtimeProtectionConfiguration) {
+        this.runtimeProtectionConfiguration = runtimeProtectionConfiguration;
+        return this;
+    }
+
+    /**
+     * Get the secretArchive property: ClusterSecretArchive configures the key vault to archive the secrets of the
+     * cluster for later retrieval.
+     *
+     * <p>The configuration for use of a key vault to store secrets for later retrieval by the operator.
+     *
+     * @return the secretArchive value.
+     */
+    public ClusterSecretArchive secretArchive() {
+        return this.secretArchive;
+    }
+
+    /**
+     * Set the secretArchive property: ClusterSecretArchive configures the key vault to archive the secrets of the
+     * cluster for later retrieval.
+     *
+     * <p>The configuration for use of a key vault to store secrets for later retrieval by the operator.
+     *
+     * @param secretArchive the secretArchive value to set.
+     * @return the ClusterPatchProperties object itself.
+     */
+    public ClusterPatchProperties withSecretArchive(ClusterSecretArchive secretArchive) {
+        this.secretArchive = secretArchive;
+        return this;
+    }
+
+    /**
+     * Get the updateStrategy property: ClusterUpdateStrategy represents the strategy for updating the cluster.
+     *
+     * <p>The strategy for updating the cluster.
+     *
+     * @return the updateStrategy value.
+     */
+    public ClusterUpdateStrategy updateStrategy() {
+        return this.updateStrategy;
+    }
+
+    /**
+     * Set the updateStrategy property: ClusterUpdateStrategy represents the strategy for updating the cluster.
+     *
+     * <p>The strategy for updating the cluster.
+     *
+     * @param updateStrategy the updateStrategy value to set.
+     * @return the ClusterPatchProperties object itself.
+     */
+    public ClusterPatchProperties withUpdateStrategy(ClusterUpdateStrategy updateStrategy) {
+        this.updateStrategy = updateStrategy;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -200,6 +304,15 @@ public final class ClusterPatchProperties {
         }
         if (computeRackDefinitions() != null) {
             computeRackDefinitions().forEach(e -> e.validate());
+        }
+        if (runtimeProtectionConfiguration() != null) {
+            runtimeProtectionConfiguration().validate();
+        }
+        if (secretArchive() != null) {
+            secretArchive().validate();
+        }
+        if (updateStrategy() != null) {
+            updateStrategy().validate();
         }
     }
 }

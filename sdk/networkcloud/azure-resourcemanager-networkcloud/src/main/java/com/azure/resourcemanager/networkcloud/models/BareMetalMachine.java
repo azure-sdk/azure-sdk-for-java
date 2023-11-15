@@ -193,6 +193,13 @@ public interface BareMetalMachine {
     String machineName();
 
     /**
+     * Gets the machineRoles property: The list of roles that are assigned to the cluster node running on this machine.
+     *
+     * @return the machineRoles value.
+     */
+    List<String> machineRoles();
+
+    /**
      * Gets the machineSkuId property: The unique internal identifier of the bare metal machine SKU.
      *
      * @return the machineSkuId value.
@@ -257,6 +264,16 @@ public interface BareMetalMachine {
      * @return the readyState value.
      */
     BareMetalMachineReadyState readyState();
+
+    /**
+     * Gets the runtimeProtectionStatus property: RuntimeProtectionStatus represents the runtime protection status of
+     * the bare metal machine.
+     *
+     * <p>The runtime protection status of the bare metal machine.
+     *
+     * @return the runtimeProtectionStatus value.
+     */
+    RuntimeProtectionStatus runtimeProtectionStatus();
 
     /**
      * Gets the serialNumber property: The serial number of the bare metal machine.

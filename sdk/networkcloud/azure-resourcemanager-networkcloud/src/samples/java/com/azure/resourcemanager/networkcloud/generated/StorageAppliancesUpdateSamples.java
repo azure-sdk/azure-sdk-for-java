@@ -11,7 +11,7 @@ import java.util.Map;
 /** Samples for StorageAppliances Update. */
 public final class StorageAppliancesUpdateSamples {
     /*
-     * x-ms-original-file: specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2023-07-01/examples/StorageAppliances_Patch.json
+     * x-ms-original-file: specification/networkcloud/resource-manager/Microsoft.NetworkCloud/preview/2023-10-01-preview/examples/StorageAppliances_Patch.json
      */
     /**
      * Sample code: Patch storage appliance.

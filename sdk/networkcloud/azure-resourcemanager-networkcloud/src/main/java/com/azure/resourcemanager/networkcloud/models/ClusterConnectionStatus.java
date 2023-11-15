@@ -13,6 +13,9 @@ public final class ClusterConnectionStatus extends ExpandableStringEnum<ClusterC
     /** Static value Connected for ClusterConnectionStatus. */
     public static final ClusterConnectionStatus CONNECTED = fromString("Connected");
 
+    /** Static value Disconnected for ClusterConnectionStatus. */
+    public static final ClusterConnectionStatus DISCONNECTED = fromString("Disconnected");
+
     /** Static value Timeout for ClusterConnectionStatus. */
     public static final ClusterConnectionStatus TIMEOUT = fromString("Timeout");
 

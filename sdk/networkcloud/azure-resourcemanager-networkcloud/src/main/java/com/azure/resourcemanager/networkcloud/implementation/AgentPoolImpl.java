@@ -19,6 +19,7 @@ import com.azure.resourcemanager.networkcloud.models.AgentPoolUpgradeSettings;
 import com.azure.resourcemanager.networkcloud.models.AttachedNetworkConfiguration;
 import com.azure.resourcemanager.networkcloud.models.ExtendedLocation;
 import com.azure.resourcemanager.networkcloud.models.KubernetesLabel;
+import com.azure.resourcemanager.networkcloud.models.NodePoolAdministratorConfigurationPatch;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -327,6 +328,12 @@ public final class AgentPoolImpl implements AgentPool, AgentPool.Definition, Age
             this.updateAgentPoolUpdateParameters.withUpgradeSettings(upgradeSettings);
             return this;
         }
+    }
+
+    public AgentPoolImpl withAdministratorConfiguration(
+        NodePoolAdministratorConfigurationPatch administratorConfiguration) {
+        this.updateAgentPoolUpdateParameters.withAdministratorConfiguration(administratorConfiguration);
+        return this;
     }
 
     public AgentPoolImpl withCount(Long count) {

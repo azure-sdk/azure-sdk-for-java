@@ -118,9 +118,9 @@ public interface Clusters {
     void delete(String resourceGroupName, String clusterName, Context context);
 
     /**
-     * Deploy the cluster to the rack.
+     * Deploy the cluster.
      *
-     * <p>Deploy the cluster to the provided rack.
+     * <p>Deploy the cluster using the rack configuration provided during creation.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the cluster.
@@ -132,9 +132,9 @@ public interface Clusters {
     OperationStatusResult deploy(String resourceGroupName, String clusterName);
 
     /**
-     * Deploy the cluster to the rack.
+     * Deploy the cluster.
      *
-     * <p>Deploy the cluster to the provided rack.
+     * <p>Deploy the cluster using the rack configuration provided during creation.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName The name of the cluster.
@@ -147,6 +147,42 @@ public interface Clusters {
      */
     OperationStatusResult deploy(
         String resourceGroupName, String clusterName, ClusterDeployParameters clusterDeployParameters, Context context);
+
+    /**
+     * Execute a runtime protection scan on the cluster.
+     *
+     * <p>Triggers the execution of a runtime protection scan to detect and remediate detected issues, in accordance
+     * with the cluster configuration.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterName The name of the cluster.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the current status of an async operation.
+     */
+    OperationStatusResult scanRuntime(String resourceGroupName, String clusterName);
+
+    /**
+     * Execute a runtime protection scan on the cluster.
+     *
+     * <p>Triggers the execution of a runtime protection scan to detect and remediate detected issues, in accordance
+     * with the cluster configuration.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterName The name of the cluster.
+     * @param clusterScanRuntimeParameters The request body.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the current status of an async operation.
+     */
+    OperationStatusResult scanRuntime(
+        String resourceGroupName,
+        String clusterName,
+        ClusterScanRuntimeParameters clusterScanRuntimeParameters,
+        Context context);
 
     /**
      * Update the cluster version.

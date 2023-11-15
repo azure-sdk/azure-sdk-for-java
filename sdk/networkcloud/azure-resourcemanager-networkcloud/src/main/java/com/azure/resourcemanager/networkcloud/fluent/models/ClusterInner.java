@@ -14,10 +14,13 @@ import com.azure.resourcemanager.networkcloud.models.ClusterConnectionStatus;
 import com.azure.resourcemanager.networkcloud.models.ClusterDetailedStatus;
 import com.azure.resourcemanager.networkcloud.models.ClusterManagerConnectionStatus;
 import com.azure.resourcemanager.networkcloud.models.ClusterProvisioningState;
+import com.azure.resourcemanager.networkcloud.models.ClusterSecretArchive;
 import com.azure.resourcemanager.networkcloud.models.ClusterType;
+import com.azure.resourcemanager.networkcloud.models.ClusterUpdateStrategy;
 import com.azure.resourcemanager.networkcloud.models.ExtendedLocation;
 import com.azure.resourcemanager.networkcloud.models.ManagedResourceGroupConfiguration;
 import com.azure.resourcemanager.networkcloud.models.RackDefinition;
+import com.azure.resourcemanager.networkcloud.models.RuntimeProtectionConfiguration;
 import com.azure.resourcemanager.networkcloud.models.ServicePrincipalInformation;
 import com.azure.resourcemanager.networkcloud.models.ValidationThreshold;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -491,12 +494,98 @@ public final class ClusterInner extends Resource {
     }
 
     /**
+     * Get the runtimeProtectionConfiguration property: RuntimeProtectionConfiguration represents the runtime protection
+     * configuration for the cluster.
+     *
+     * <p>The settings for cluster runtime protection.
+     *
+     * @return the runtimeProtectionConfiguration value.
+     */
+    public RuntimeProtectionConfiguration runtimeProtectionConfiguration() {
+        return this.innerProperties() == null ? null : this.innerProperties().runtimeProtectionConfiguration();
+    }
+
+    /**
+     * Set the runtimeProtectionConfiguration property: RuntimeProtectionConfiguration represents the runtime protection
+     * configuration for the cluster.
+     *
+     * <p>The settings for cluster runtime protection.
+     *
+     * @param runtimeProtectionConfiguration the runtimeProtectionConfiguration value to set.
+     * @return the ClusterInner object itself.
+     */
+    public ClusterInner withRuntimeProtectionConfiguration(
+        RuntimeProtectionConfiguration runtimeProtectionConfiguration) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ClusterProperties();
+        }
+        this.innerProperties().withRuntimeProtectionConfiguration(runtimeProtectionConfiguration);
+        return this;
+    }
+
+    /**
+     * Get the secretArchive property: ClusterSecretArchive configures the key vault to archive the secrets of the
+     * cluster for later retrieval.
+     *
+     * <p>The configuration for use of a key vault to store secrets for later retrieval by the operator.
+     *
+     * @return the secretArchive value.
+     */
+    public ClusterSecretArchive secretArchive() {
+        return this.innerProperties() == null ? null : this.innerProperties().secretArchive();
+    }
+
+    /**
+     * Set the secretArchive property: ClusterSecretArchive configures the key vault to archive the secrets of the
+     * cluster for later retrieval.
+     *
+     * <p>The configuration for use of a key vault to store secrets for later retrieval by the operator.
+     *
+     * @param secretArchive the secretArchive value to set.
+     * @return the ClusterInner object itself.
+     */
+    public ClusterInner withSecretArchive(ClusterSecretArchive secretArchive) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ClusterProperties();
+        }
+        this.innerProperties().withSecretArchive(secretArchive);
+        return this;
+    }
+
+    /**
      * Get the supportExpiryDate property: The support end date of the runtime version of the cluster.
      *
      * @return the supportExpiryDate value.
      */
     public String supportExpiryDate() {
         return this.innerProperties() == null ? null : this.innerProperties().supportExpiryDate();
+    }
+
+    /**
+     * Get the updateStrategy property: ClusterUpdateStrategy represents the strategy for updating the cluster.
+     *
+     * <p>The strategy for updating the cluster.
+     *
+     * @return the updateStrategy value.
+     */
+    public ClusterUpdateStrategy updateStrategy() {
+        return this.innerProperties() == null ? null : this.innerProperties().updateStrategy();
+    }
+
+    /**
+     * Set the updateStrategy property: ClusterUpdateStrategy represents the strategy for updating the cluster.
+     *
+     * <p>The strategy for updating the cluster.
+     *
+     * @param updateStrategy the updateStrategy value to set.
+     * @return the ClusterInner object itself.
+     */
+    public ClusterInner withUpdateStrategy(ClusterUpdateStrategy updateStrategy) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ClusterProperties();
+        }
+        this.innerProperties().withUpdateStrategy(updateStrategy);
+        return this;
     }
 
     /**

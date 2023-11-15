@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The credentials used to login to the image repository that has access to the specified image. */
+/** The indicator of whether the console access is enabled. */
 public final class ConsoleEnabled extends ExpandableStringEnum<ConsoleEnabled> {
     /** Static value True for ConsoleEnabled. */
     public static final ConsoleEnabled TRUE = fromString("True");

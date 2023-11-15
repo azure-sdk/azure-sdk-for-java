@@ -10,6 +10,7 @@ import com.azure.core.util.Context;
 import com.azure.resourcemanager.networkcloud.fluent.models.KubernetesClusterInner;
 import com.azure.resourcemanager.networkcloud.models.AadConfiguration;
 import com.azure.resourcemanager.networkcloud.models.AdministratorConfiguration;
+import com.azure.resourcemanager.networkcloud.models.AdministratorConfigurationPatch;
 import com.azure.resourcemanager.networkcloud.models.AvailableUpgrade;
 import com.azure.resourcemanager.networkcloud.models.ControlPlaneNodeConfiguration;
 import com.azure.resourcemanager.networkcloud.models.ControlPlaneNodePatchConfiguration;
@@ -347,6 +348,12 @@ public final class KubernetesClusterImpl
     public KubernetesClusterImpl withManagedResourceGroupConfiguration(
         ManagedResourceGroupConfiguration managedResourceGroupConfiguration) {
         this.innerModel().withManagedResourceGroupConfiguration(managedResourceGroupConfiguration);
+        return this;
+    }
+
+    public KubernetesClusterImpl withAdministratorConfiguration(
+        AdministratorConfigurationPatch administratorConfiguration) {
+        this.updateKubernetesClusterUpdateParameters.withAdministratorConfiguration(administratorConfiguration);
         return this;
     }
 

@@ -15,7 +15,7 @@ import java.util.Map;
 /** Samples for CloudServicesNetworks CreateOrUpdate. */
 public final class CloudServicesNetworksCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2023-07-01/examples/CloudServicesNetworks_Create.json
+     * x-ms-original-file: specification/networkcloud/resource-manager/Microsoft.NetworkCloud/preview/2023-10-01-preview/examples/CloudServicesNetworks_Create.json
      */
     /**
      * Sample code: Create or update cloud services network.

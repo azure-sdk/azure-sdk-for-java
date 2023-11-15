@@ -65,6 +65,36 @@ public final class AgentPoolPatchParameters {
     }
 
     /**
+     * Get the administratorConfiguration property: NodePoolAdministratorConfigurationPatch represents the patching
+     * capabilities for the administrator configuration.
+     *
+     * <p>The configuration of administrator credentials for the control plane nodes.
+     *
+     * @return the administratorConfiguration value.
+     */
+    public NodePoolAdministratorConfigurationPatch administratorConfiguration() {
+        return this.innerProperties() == null ? null : this.innerProperties().administratorConfiguration();
+    }
+
+    /**
+     * Set the administratorConfiguration property: NodePoolAdministratorConfigurationPatch represents the patching
+     * capabilities for the administrator configuration.
+     *
+     * <p>The configuration of administrator credentials for the control plane nodes.
+     *
+     * @param administratorConfiguration the administratorConfiguration value to set.
+     * @return the AgentPoolPatchParameters object itself.
+     */
+    public AgentPoolPatchParameters withAdministratorConfiguration(
+        NodePoolAdministratorConfigurationPatch administratorConfiguration) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new AgentPoolPatchProperties();
+        }
+        this.innerProperties().withAdministratorConfiguration(administratorConfiguration);
+        return this;
+    }
+
+    /**
      * Get the count property: The number of virtual machines that use this configuration.
      *
      * @return the count value.

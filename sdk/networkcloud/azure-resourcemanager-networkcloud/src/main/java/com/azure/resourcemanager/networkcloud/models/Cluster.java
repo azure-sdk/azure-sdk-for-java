@@ -244,11 +244,40 @@ public interface Cluster {
     ClusterProvisioningState provisioningState();
 
     /**
+     * Gets the runtimeProtectionConfiguration property: RuntimeProtectionConfiguration represents the runtime
+     * protection configuration for the cluster.
+     *
+     * <p>The settings for cluster runtime protection.
+     *
+     * @return the runtimeProtectionConfiguration value.
+     */
+    RuntimeProtectionConfiguration runtimeProtectionConfiguration();
+
+    /**
+     * Gets the secretArchive property: ClusterSecretArchive configures the key vault to archive the secrets of the
+     * cluster for later retrieval.
+     *
+     * <p>The configuration for use of a key vault to store secrets for later retrieval by the operator.
+     *
+     * @return the secretArchive value.
+     */
+    ClusterSecretArchive secretArchive();
+
+    /**
      * Gets the supportExpiryDate property: The support end date of the runtime version of the cluster.
      *
      * @return the supportExpiryDate value.
      */
     String supportExpiryDate();
+
+    /**
+     * Gets the updateStrategy property: ClusterUpdateStrategy represents the strategy for updating the cluster.
+     *
+     * <p>The strategy for updating the cluster.
+     *
+     * @return the updateStrategy value.
+     */
+    ClusterUpdateStrategy updateStrategy();
 
     /**
      * Gets the workloadResourceIds property: The list of workload resource IDs that are hosted within this cluster.
@@ -412,7 +441,10 @@ public interface Cluster {
                 DefinitionStages.WithClusterServicePrincipal,
                 DefinitionStages.WithComputeDeploymentThreshold,
                 DefinitionStages.WithComputeRackDefinitions,
-                DefinitionStages.WithManagedResourceGroupConfiguration {
+                DefinitionStages.WithManagedResourceGroupConfiguration,
+                DefinitionStages.WithRuntimeProtectionConfiguration,
+                DefinitionStages.WithSecretArchive,
+                DefinitionStages.WithUpdateStrategy {
             /**
              * Executes the create request.
              *
@@ -528,6 +560,54 @@ public interface Cluster {
             WithCreate withManagedResourceGroupConfiguration(
                 ManagedResourceGroupConfiguration managedResourceGroupConfiguration);
         }
+
+        /** The stage of the Cluster definition allowing to specify runtimeProtectionConfiguration. */
+        interface WithRuntimeProtectionConfiguration {
+            /**
+             * Specifies the runtimeProtectionConfiguration property: RuntimeProtectionConfiguration represents the
+             * runtime protection configuration for the cluster.
+             *
+             * <p>The settings for cluster runtime protection..
+             *
+             * @param runtimeProtectionConfiguration RuntimeProtectionConfiguration represents the runtime protection
+             *     configuration for the cluster.
+             *     <p>The settings for cluster runtime protection.
+             * @return the next definition stage.
+             */
+            WithCreate withRuntimeProtectionConfiguration(
+                RuntimeProtectionConfiguration runtimeProtectionConfiguration);
+        }
+
+        /** The stage of the Cluster definition allowing to specify secretArchive. */
+        interface WithSecretArchive {
+            /**
+             * Specifies the secretArchive property: ClusterSecretArchive configures the key vault to archive the
+             * secrets of the cluster for later retrieval.
+             *
+             * <p>The configuration for use of a key vault to store secrets for later retrieval by the operator..
+             *
+             * @param secretArchive ClusterSecretArchive configures the key vault to archive the secrets of the cluster
+             *     for later retrieval.
+             *     <p>The configuration for use of a key vault to store secrets for later retrieval by the operator.
+             * @return the next definition stage.
+             */
+            WithCreate withSecretArchive(ClusterSecretArchive secretArchive);
+        }
+
+        /** The stage of the Cluster definition allowing to specify updateStrategy. */
+        interface WithUpdateStrategy {
+            /**
+             * Specifies the updateStrategy property: ClusterUpdateStrategy represents the strategy for updating the
+             * cluster.
+             *
+             * <p>The strategy for updating the cluster..
+             *
+             * @param updateStrategy ClusterUpdateStrategy represents the strategy for updating the cluster.
+             *     <p>The strategy for updating the cluster.
+             * @return the next definition stage.
+             */
+            WithCreate withUpdateStrategy(ClusterUpdateStrategy updateStrategy);
+        }
     }
 
     /**
@@ -544,7 +624,10 @@ public interface Cluster {
             UpdateStages.WithClusterLocation,
             UpdateStages.WithClusterServicePrincipal,
             UpdateStages.WithComputeDeploymentThreshold,
-            UpdateStages.WithComputeRackDefinitions {
+            UpdateStages.WithComputeRackDefinitions,
+            UpdateStages.WithRuntimeProtectionConfiguration,
+            UpdateStages.WithSecretArchive,
+            UpdateStages.WithUpdateStrategy {
         /**
          * Executes the update request.
          *
@@ -649,6 +732,53 @@ public interface Cluster {
              */
             Update withComputeRackDefinitions(List<RackDefinition> computeRackDefinitions);
         }
+
+        /** The stage of the Cluster update allowing to specify runtimeProtectionConfiguration. */
+        interface WithRuntimeProtectionConfiguration {
+            /**
+             * Specifies the runtimeProtectionConfiguration property: RuntimeProtectionConfiguration represents the
+             * runtime protection configuration for the cluster.
+             *
+             * <p>The settings for cluster runtime protection..
+             *
+             * @param runtimeProtectionConfiguration RuntimeProtectionConfiguration represents the runtime protection
+             *     configuration for the cluster.
+             *     <p>The settings for cluster runtime protection.
+             * @return the next definition stage.
+             */
+            Update withRuntimeProtectionConfiguration(RuntimeProtectionConfiguration runtimeProtectionConfiguration);
+        }
+
+        /** The stage of the Cluster update allowing to specify secretArchive. */
+        interface WithSecretArchive {
+            /**
+             * Specifies the secretArchive property: ClusterSecretArchive configures the key vault to archive the
+             * secrets of the cluster for later retrieval.
+             *
+             * <p>The configuration for use of a key vault to store secrets for later retrieval by the operator..
+             *
+             * @param secretArchive ClusterSecretArchive configures the key vault to archive the secrets of the cluster
+             *     for later retrieval.
+             *     <p>The configuration for use of a key vault to store secrets for later retrieval by the operator.
+             * @return the next definition stage.
+             */
+            Update withSecretArchive(ClusterSecretArchive secretArchive);
+        }
+
+        /** The stage of the Cluster update allowing to specify updateStrategy. */
+        interface WithUpdateStrategy {
+            /**
+             * Specifies the updateStrategy property: ClusterUpdateStrategy represents the strategy for updating the
+             * cluster.
+             *
+             * <p>The strategy for updating the cluster..
+             *
+             * @param updateStrategy ClusterUpdateStrategy represents the strategy for updating the cluster.
+             *     <p>The strategy for updating the cluster.
+             * @return the next definition stage.
+             */
+            Update withUpdateStrategy(ClusterUpdateStrategy updateStrategy);
+        }
     }
 
     /**
@@ -667,9 +797,9 @@ public interface Cluster {
     Cluster refresh(Context context);
 
     /**
-     * Deploy the cluster to the rack.
+     * Deploy the cluster.
      *
-     * <p>Deploy the cluster to the provided rack.
+     * <p>Deploy the cluster using the rack configuration provided during creation.
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -678,9 +808,9 @@ public interface Cluster {
     OperationStatusResult deploy();
 
     /**
-     * Deploy the cluster to the rack.
+     * Deploy the cluster.
      *
-     * <p>Deploy the cluster to the provided rack.
+     * <p>Deploy the cluster using the rack configuration provided during creation.
      *
      * @param clusterDeployParameters The request body.
      * @param context The context to associate with this operation.
@@ -690,6 +820,33 @@ public interface Cluster {
      * @return the current status of an async operation.
      */
     OperationStatusResult deploy(ClusterDeployParameters clusterDeployParameters, Context context);
+
+    /**
+     * Execute a runtime protection scan on the cluster.
+     *
+     * <p>Triggers the execution of a runtime protection scan to detect and remediate detected issues, in accordance
+     * with the cluster configuration.
+     *
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the current status of an async operation.
+     */
+    OperationStatusResult scanRuntime();
+
+    /**
+     * Execute a runtime protection scan on the cluster.
+     *
+     * <p>Triggers the execution of a runtime protection scan to detect and remediate detected issues, in accordance
+     * with the cluster configuration.
+     *
+     * @param clusterScanRuntimeParameters The request body.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the current status of an async operation.
+     */
+    OperationStatusResult scanRuntime(ClusterScanRuntimeParameters clusterScanRuntimeParameters, Context context);
 
     /**
      * Update the cluster version.

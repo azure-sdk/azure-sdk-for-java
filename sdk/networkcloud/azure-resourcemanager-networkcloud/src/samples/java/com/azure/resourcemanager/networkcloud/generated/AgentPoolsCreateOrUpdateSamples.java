@@ -25,7 +25,7 @@ import java.util.Map;
 /** Samples for AgentPools CreateOrUpdate. */
 public final class AgentPoolsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2023-07-01/examples/AgentPools_Create.json
+     * x-ms-original-file: specification/networkcloud/resource-manager/Microsoft.NetworkCloud/preview/2023-10-01-preview/examples/AgentPools_Create.json
      */
     /**
      * Sample code: Create or update Kubernetes cluster agent pool.

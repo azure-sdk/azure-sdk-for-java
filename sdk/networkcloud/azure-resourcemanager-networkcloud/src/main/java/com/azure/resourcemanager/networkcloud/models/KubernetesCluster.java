@@ -465,6 +465,7 @@ public interface KubernetesCluster {
     /** The template for KubernetesCluster update. */
     interface Update
         extends UpdateStages.WithTags,
+            UpdateStages.WithAdministratorConfiguration,
             UpdateStages.WithControlPlaneNodeConfiguration,
             UpdateStages.WithKubernetesVersion {
         /**
@@ -494,6 +495,22 @@ public interface KubernetesCluster {
              * @return the next definition stage.
              */
             Update withTags(Map<String, String> tags);
+        }
+
+        /** The stage of the KubernetesCluster update allowing to specify administratorConfiguration. */
+        interface WithAdministratorConfiguration {
+            /**
+             * Specifies the administratorConfiguration property: AdministratorConfigurationPatch represents the
+             * patching capabilities for the administrator configuration.
+             *
+             * <p>The configuration of the default administrator credentials..
+             *
+             * @param administratorConfiguration AdministratorConfigurationPatch represents the patching capabilities
+             *     for the administrator configuration.
+             *     <p>The configuration of the default administrator credentials.
+             * @return the next definition stage.
+             */
+            Update withAdministratorConfiguration(AdministratorConfigurationPatch administratorConfiguration);
         }
 
         /** The stage of the KubernetesCluster update allowing to specify controlPlaneNodeConfiguration. */

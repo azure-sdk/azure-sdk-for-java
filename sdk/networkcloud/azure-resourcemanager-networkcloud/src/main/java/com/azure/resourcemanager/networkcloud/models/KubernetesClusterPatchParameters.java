@@ -65,6 +65,36 @@ public final class KubernetesClusterPatchParameters {
     }
 
     /**
+     * Get the administratorConfiguration property: AdministratorConfigurationPatch represents the patching capabilities
+     * for the administrator configuration.
+     *
+     * <p>The configuration of the default administrator credentials.
+     *
+     * @return the administratorConfiguration value.
+     */
+    public AdministratorConfigurationPatch administratorConfiguration() {
+        return this.innerProperties() == null ? null : this.innerProperties().administratorConfiguration();
+    }
+
+    /**
+     * Set the administratorConfiguration property: AdministratorConfigurationPatch represents the patching capabilities
+     * for the administrator configuration.
+     *
+     * <p>The configuration of the default administrator credentials.
+     *
+     * @param administratorConfiguration the administratorConfiguration value to set.
+     * @return the KubernetesClusterPatchParameters object itself.
+     */
+    public KubernetesClusterPatchParameters withAdministratorConfiguration(
+        AdministratorConfigurationPatch administratorConfiguration) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new KubernetesClusterPatchProperties();
+        }
+        this.innerProperties().withAdministratorConfiguration(administratorConfiguration);
+        return this;
+    }
+
+    /**
      * Get the controlPlaneNodeConfiguration property: ControlPlaneNodePatchConfiguration represents the properties of
      * the control plane that can be patched for this Kubernetes cluster.
      *

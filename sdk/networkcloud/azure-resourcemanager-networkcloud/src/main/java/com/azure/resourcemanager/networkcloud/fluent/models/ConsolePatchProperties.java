@@ -14,7 +14,7 @@ import java.time.OffsetDateTime;
 @Fluent
 public final class ConsolePatchProperties {
     /*
-     * The credentials used to login to the image repository that has access to the specified image.
+     * The indicator of whether the console access is enabled.
      */
     @JsonProperty(value = "enabled")
     private ConsoleEnabled enabled;
@@ -39,8 +39,7 @@ public final class ConsolePatchProperties {
     }
 
     /**
-     * Get the enabled property: The credentials used to login to the image repository that has access to the specified
-     * image.
+     * Get the enabled property: The indicator of whether the console access is enabled.
      *
      * @return the enabled value.
      */
@@ -49,8 +48,7 @@ public final class ConsolePatchProperties {
     }
 
     /**
-     * Set the enabled property: The credentials used to login to the image repository that has access to the specified
-     * image.
+     * Set the enabled property: The indicator of whether the console access is enabled.
      *
      * @param enabled the enabled value to set.
      * @return the ConsolePatchProperties object itself.

@@ -15,7 +15,7 @@ import java.util.Map;
 /** Samples for CloudServicesNetworks Update. */
 public final class CloudServicesNetworksUpdateSamples {
     /*
-     * x-ms-original-file: specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2023-07-01/examples/CloudServicesNetworks_Patch.json
+     * x-ms-original-file: specification/networkcloud/resource-manager/Microsoft.NetworkCloud/preview/2023-10-01-preview/examples/CloudServicesNetworks_Patch.json
      */
     /**
      * Sample code: Patch cloud services network.

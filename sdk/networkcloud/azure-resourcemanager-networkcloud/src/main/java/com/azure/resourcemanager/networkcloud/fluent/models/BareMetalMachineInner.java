@@ -17,6 +17,7 @@ import com.azure.resourcemanager.networkcloud.models.BareMetalMachineReadyState;
 import com.azure.resourcemanager.networkcloud.models.ExtendedLocation;
 import com.azure.resourcemanager.networkcloud.models.HardwareInventory;
 import com.azure.resourcemanager.networkcloud.models.HardwareValidationStatus;
+import com.azure.resourcemanager.networkcloud.models.RuntimeProtectionStatus;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
@@ -358,6 +359,15 @@ public final class BareMetalMachineInner extends Resource {
     }
 
     /**
+     * Get the machineRoles property: The list of roles that are assigned to the cluster node running on this machine.
+     *
+     * @return the machineRoles value.
+     */
+    public List<String> machineRoles() {
+        return this.innerProperties() == null ? null : this.innerProperties().machineRoles();
+    }
+
+    /**
      * Get the machineSkuId property: The unique internal identifier of the bare metal machine SKU.
      *
      * @return the machineSkuId value.
@@ -482,6 +492,18 @@ public final class BareMetalMachineInner extends Resource {
      */
     public BareMetalMachineReadyState readyState() {
         return this.innerProperties() == null ? null : this.innerProperties().readyState();
+    }
+
+    /**
+     * Get the runtimeProtectionStatus property: RuntimeProtectionStatus represents the runtime protection status of the
+     * bare metal machine.
+     *
+     * <p>The runtime protection status of the bare metal machine.
+     *
+     * @return the runtimeProtectionStatus value.
+     */
+    public RuntimeProtectionStatus runtimeProtectionStatus() {
+        return this.innerProperties() == null ? null : this.innerProperties().runtimeProtectionStatus();
     }
 
     /**

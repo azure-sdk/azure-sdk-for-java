@@ -66,8 +66,7 @@ public final class ConsolePatchParameters {
     }
 
     /**
-     * Get the enabled property: The credentials used to login to the image repository that has access to the specified
-     * image.
+     * Get the enabled property: The indicator of whether the console access is enabled.
      *
      * @return the enabled value.
      */
@@ -76,8 +75,7 @@ public final class ConsolePatchParameters {
     }
 
     /**
-     * Set the enabled property: The credentials used to login to the image repository that has access to the specified
-     * image.
+     * Set the enabled property: The indicator of whether the console access is enabled.
      *
      * @param enabled the enabled value to set.
      * @return the ConsolePatchParameters object itself.

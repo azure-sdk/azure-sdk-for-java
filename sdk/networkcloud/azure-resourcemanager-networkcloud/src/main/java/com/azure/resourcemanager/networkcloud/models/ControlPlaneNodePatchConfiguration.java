@@ -14,6 +14,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class ControlPlaneNodePatchConfiguration {
     /*
+     * AdministratorConfigurationPatch represents the patching capabilities for the administrator configuration.
+     *
+     * The configuration of administrator credentials for the control plane nodes.
+     */
+    @JsonProperty(value = "administratorConfiguration")
+    private AdministratorConfigurationPatch administratorConfiguration;
+
+    /*
      * The number of virtual machines that use this configuration.
      */
     @JsonProperty(value = "count")
@@ -21,6 +29,33 @@ public final class ControlPlaneNodePatchConfiguration {
 
     /** Creates an instance of ControlPlaneNodePatchConfiguration class. */
     public ControlPlaneNodePatchConfiguration() {
+    }
+
+    /**
+     * Get the administratorConfiguration property: AdministratorConfigurationPatch represents the patching capabilities
+     * for the administrator configuration.
+     *
+     * <p>The configuration of administrator credentials for the control plane nodes.
+     *
+     * @return the administratorConfiguration value.
+     */
+    public AdministratorConfigurationPatch administratorConfiguration() {
+        return this.administratorConfiguration;
+    }
+
+    /**
+     * Set the administratorConfiguration property: AdministratorConfigurationPatch represents the patching capabilities
+     * for the administrator configuration.
+     *
+     * <p>The configuration of administrator credentials for the control plane nodes.
+     *
+     * @param administratorConfiguration the administratorConfiguration value to set.
+     * @return the ControlPlaneNodePatchConfiguration object itself.
+     */
+    public ControlPlaneNodePatchConfiguration withAdministratorConfiguration(
+        AdministratorConfigurationPatch administratorConfiguration) {
+        this.administratorConfiguration = administratorConfiguration;
+        return this;
     }
 
     /**
@@ -49,5 +84,8 @@ public final class ControlPlaneNodePatchConfiguration {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (administratorConfiguration() != null) {
+            administratorConfiguration().validate();
+        }
     }
 }

@@ -15,7 +15,7 @@ import java.util.Map;
 /** Samples for BareMetalMachineKeySets Update. */
 public final class BareMetalMachineKeySetsUpdateSamples {
     /*
-     * x-ms-original-file: specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2023-07-01/examples/BareMetalMachineKeySets_Patch.json
+     * x-ms-original-file: specification/networkcloud/resource-manager/Microsoft.NetworkCloud/preview/2023-10-01-preview/examples/BareMetalMachineKeySets_Patch.json
      */
     /**
      * Sample code: Patch bare metal machine key set of cluster.
@@ -41,11 +41,13 @@ public final class BareMetalMachineKeySetsUpdateSamples {
                         new KeySetUser()
                             .withAzureUsername("userABC")
                             .withDescription("Needs access for troubleshooting as a part of the support team")
-                            .withSshPublicKey(new SshPublicKey().withKeyData("fakeTokenPlaceholder")),
+                            .withSshPublicKey(new SshPublicKey().withKeyData("fakeTokenPlaceholder"))
+                            .withUserPrincipalName("userABC@contoso.com"),
                         new KeySetUser()
                             .withAzureUsername("userXYZ")
                             .withDescription("Needs access for troubleshooting as a part of the support team")
-                            .withSshPublicKey(new SshPublicKey().withKeyData("fakeTokenPlaceholder"))))
+                            .withSshPublicKey(new SshPublicKey().withKeyData("fakeTokenPlaceholder"))
+                            .withUserPrincipalName("userABC@contoso.com")))
             .apply();
     }
 

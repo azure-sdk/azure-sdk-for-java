@@ -14,6 +14,7 @@ import com.azure.resourcemanager.networkcloud.models.BareMetalMachineProvisionin
 import com.azure.resourcemanager.networkcloud.models.BareMetalMachineReadyState;
 import com.azure.resourcemanager.networkcloud.models.HardwareInventory;
 import com.azure.resourcemanager.networkcloud.models.HardwareValidationStatus;
+import com.azure.resourcemanager.networkcloud.models.RuntimeProtectionStatus;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
@@ -128,6 +129,12 @@ public final class BareMetalMachineProperties {
     private String machineName;
 
     /*
+     * The list of roles that are assigned to the cluster node running on this machine.
+     */
+    @JsonProperty(value = "machineRoles", access = JsonProperty.Access.WRITE_ONLY)
+    private List<String> machineRoles;
+
+    /*
      * The unique internal identifier of the bare metal machine SKU.
      */
     @JsonProperty(value = "machineSkuId", required = true)
@@ -180,6 +187,14 @@ public final class BareMetalMachineProperties {
      */
     @JsonProperty(value = "readyState", access = JsonProperty.Access.WRITE_ONLY)
     private BareMetalMachineReadyState readyState;
+
+    /*
+     * RuntimeProtectionStatus represents the runtime protection status of the bare metal machine.
+     *
+     * The runtime protection status of the bare metal machine.
+     */
+    @JsonProperty(value = "runtimeProtectionStatus", access = JsonProperty.Access.WRITE_ONLY)
+    private RuntimeProtectionStatus runtimeProtectionStatus;
 
     /*
      * The serial number of the bare metal machine.
@@ -434,6 +449,15 @@ public final class BareMetalMachineProperties {
     }
 
     /**
+     * Get the machineRoles property: The list of roles that are assigned to the cluster node running on this machine.
+     *
+     * @return the machineRoles value.
+     */
+    public List<String> machineRoles() {
+        return this.machineRoles;
+    }
+
+    /**
      * Get the machineSkuId property: The unique internal identifier of the bare metal machine SKU.
      *
      * @return the machineSkuId value.
@@ -552,6 +576,18 @@ public final class BareMetalMachineProperties {
     }
 
     /**
+     * Get the runtimeProtectionStatus property: RuntimeProtectionStatus represents the runtime protection status of the
+     * bare metal machine.
+     *
+     * <p>The runtime protection status of the bare metal machine.
+     *
+     * @return the runtimeProtectionStatus value.
+     */
+    public RuntimeProtectionStatus runtimeProtectionStatus() {
+        return this.runtimeProtectionStatus;
+    }
+
+    /**
      * Get the serialNumber property: The serial number of the bare metal machine.
      *
      * @return the serialNumber value.
@@ -651,6 +687,9 @@ public final class BareMetalMachineProperties {
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property rackId in model BareMetalMachineProperties"));
+        }
+        if (runtimeProtectionStatus() != null) {
+            runtimeProtectionStatus().validate();
         }
         if (serialNumber() == null) {
             throw LOGGER

@@ -37,7 +37,7 @@ public final class VirtualMachineProperties {
     private String availabilityZone;
 
     /*
-     * The resource ID of the bare metal machine the virtual machine has landed to.
+     * The resource ID of the bare metal machine that hosts the virtual machine.
      */
     @JsonProperty(value = "bareMetalMachineId", access = JsonProperty.Access.WRITE_ONLY)
     private String bareMetalMachineId;
@@ -213,7 +213,7 @@ public final class VirtualMachineProperties {
     }
 
     /**
-     * Get the bareMetalMachineId property: The resource ID of the bare metal machine the virtual machine has landed to.
+     * Get the bareMetalMachineId property: The resource ID of the bare metal machine that hosts the virtual machine.
      *
      * @return the bareMetalMachineId value.
      */

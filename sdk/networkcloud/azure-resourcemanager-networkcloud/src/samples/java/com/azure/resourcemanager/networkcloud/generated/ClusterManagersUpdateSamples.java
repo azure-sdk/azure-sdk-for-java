@@ -11,7 +11,7 @@ import java.util.Map;
 /** Samples for ClusterManagers Update. */
 public final class ClusterManagersUpdateSamples {
     /*
-     * x-ms-original-file: specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2023-07-01/examples/ClusterManagers_Patch.json
+     * x-ms-original-file: specification/networkcloud/resource-manager/Microsoft.NetworkCloud/preview/2023-10-01-preview/examples/ClusterManagers_Patch.json
      */
     /**
      * Sample code: Patch cluster manager.

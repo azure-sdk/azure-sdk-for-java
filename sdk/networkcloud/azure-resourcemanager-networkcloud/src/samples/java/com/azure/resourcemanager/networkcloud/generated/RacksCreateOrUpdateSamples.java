@@ -11,7 +11,7 @@ import java.util.Map;
 /** Samples for Racks CreateOrUpdate. */
 public final class RacksCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/networkcloud/resource-manager/Microsoft.NetworkCloud/stable/2023-07-01/examples/Racks_Create.json
+     * x-ms-original-file: specification/networkcloud/resource-manager/Microsoft.NetworkCloud/preview/2023-10-01-preview/examples/Racks_Create.json
      */
     /**
      * Sample code: Create or update rack.
@@ -32,7 +32,8 @@ public final class RacksCreateOrUpdateSamples {
             .withAvailabilityZone("1")
             .withRackLocation("Rack 28")
             .withRackSerialNumber("RACK_SERIAL_NUMBER")
-            .withRackSkuId("RACK-TYPE-1")
+            .withRackSkuId(
+                "/subscriptions/123e4567-e89b-12d3-a456-426655440000/resourceGroups/resourceGroupName/providers/Microsoft.NetworkCloud/rackSkus/rackSkuName")
             .withTags(mapOf("key1", "fakeTokenPlaceholder", "key2", "fakeTokenPlaceholder"))
             .create();
     }

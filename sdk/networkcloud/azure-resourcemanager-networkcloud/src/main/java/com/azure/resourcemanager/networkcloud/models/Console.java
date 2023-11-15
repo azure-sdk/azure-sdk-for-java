@@ -339,11 +339,9 @@ public interface Console {
         /** The stage of the Console update allowing to specify enabled. */
         interface WithEnabled {
             /**
-             * Specifies the enabled property: The credentials used to login to the image repository that has access to
-             * the specified image..
+             * Specifies the enabled property: The indicator of whether the console access is enabled..
              *
-             * @param enabled The credentials used to login to the image repository that has access to the specified
-             *     image.
+             * @param enabled The indicator of whether the console access is enabled.
              * @return the next definition stage.
              */
             Update withEnabled(ConsoleEnabled enabled);

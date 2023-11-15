@@ -26,6 +26,7 @@ import com.azure.resourcemanager.networkcloud.models.ExtendedLocation;
 import com.azure.resourcemanager.networkcloud.models.HardwareInventory;
 import com.azure.resourcemanager.networkcloud.models.HardwareValidationStatus;
 import com.azure.resourcemanager.networkcloud.models.OperationStatusResult;
+import com.azure.resourcemanager.networkcloud.models.RuntimeProtectionStatus;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -143,6 +144,15 @@ public final class BareMetalMachineImpl
         return this.innerModel().machineName();
     }
 
+    public List<String> machineRoles() {
+        List<String> inner = this.innerModel().machineRoles();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
     public String machineSkuId() {
         return this.innerModel().machineSkuId();
     }
@@ -177,6 +187,10 @@ public final class BareMetalMachineImpl
 
     public BareMetalMachineReadyState readyState() {
         return this.innerModel().readyState();
+    }
+
+    public RuntimeProtectionStatus runtimeProtectionStatus() {
+        return this.innerModel().runtimeProtectionStatus();
     }
 
     public String serialNumber() {

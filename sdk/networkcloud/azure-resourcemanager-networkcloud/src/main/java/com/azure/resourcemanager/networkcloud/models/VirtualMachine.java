@@ -81,8 +81,7 @@ public interface VirtualMachine {
     String availabilityZone();
 
     /**
-     * Gets the bareMetalMachineId property: The resource ID of the bare metal machine the virtual machine has landed
-     * to.
+     * Gets the bareMetalMachineId property: The resource ID of the bare metal machine that hosts the virtual machine.
      *
      * @return the bareMetalMachineId value.
      */
