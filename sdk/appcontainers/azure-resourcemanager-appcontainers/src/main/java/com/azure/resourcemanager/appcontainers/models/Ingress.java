@@ -86,6 +86,18 @@ public final class Ingress {
     @JsonProperty(value = "corsPolicy")
     private CorsPolicy corsPolicy;
 
+    /*
+     * Settings to expose additional ports on container app
+     */
+    @JsonProperty(value = "additionalPortMappings")
+    private List<IngressPortMapping> additionalPortMappings;
+
+    /*
+     * Whether an http app listens on http or https
+     */
+    @JsonProperty(value = "targetPortScheme")
+    private IngressTargetPortScheme targetPortScheme;
+
     /** Creates an instance of Ingress class. */
     public Ingress() {
     }
@@ -326,6 +338,46 @@ public final class Ingress {
     }
 
     /**
+     * Get the additionalPortMappings property: Settings to expose additional ports on container app.
+     *
+     * @return the additionalPortMappings value.
+     */
+    public List<IngressPortMapping> additionalPortMappings() {
+        return this.additionalPortMappings;
+    }
+
+    /**
+     * Set the additionalPortMappings property: Settings to expose additional ports on container app.
+     *
+     * @param additionalPortMappings the additionalPortMappings value to set.
+     * @return the Ingress object itself.
+     */
+    public Ingress withAdditionalPortMappings(List<IngressPortMapping> additionalPortMappings) {
+        this.additionalPortMappings = additionalPortMappings;
+        return this;
+    }
+
+    /**
+     * Get the targetPortScheme property: Whether an http app listens on http or https.
+     *
+     * @return the targetPortScheme value.
+     */
+    public IngressTargetPortScheme targetPortScheme() {
+        return this.targetPortScheme;
+    }
+
+    /**
+     * Set the targetPortScheme property: Whether an http app listens on http or https.
+     *
+     * @param targetPortScheme the targetPortScheme value to set.
+     * @return the Ingress object itself.
+     */
+    public Ingress withTargetPortScheme(IngressTargetPortScheme targetPortScheme) {
+        this.targetPortScheme = targetPortScheme;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -345,6 +397,9 @@ public final class Ingress {
         }
         if (corsPolicy() != null) {
             corsPolicy().validate();
+        }
+        if (additionalPortMappings() != null) {
+            additionalPortMappings().forEach(e -> e.validate());
         }
     }
 }

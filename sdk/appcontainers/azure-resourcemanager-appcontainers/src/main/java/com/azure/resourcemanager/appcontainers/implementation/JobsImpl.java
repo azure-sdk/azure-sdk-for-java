@@ -11,10 +11,14 @@ import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.appcontainers.fluent.JobsClient;
 import com.azure.resourcemanager.appcontainers.fluent.models.ContainerAppJobExecutionsInner;
+import com.azure.resourcemanager.appcontainers.fluent.models.DiagnosticsCollectionInner;
+import com.azure.resourcemanager.appcontainers.fluent.models.DiagnosticsInner;
 import com.azure.resourcemanager.appcontainers.fluent.models.JobExecutionBaseInner;
 import com.azure.resourcemanager.appcontainers.fluent.models.JobInner;
 import com.azure.resourcemanager.appcontainers.fluent.models.JobSecretsCollectionInner;
 import com.azure.resourcemanager.appcontainers.models.ContainerAppJobExecutions;
+import com.azure.resourcemanager.appcontainers.models.Diagnostics;
+import com.azure.resourcemanager.appcontainers.models.DiagnosticsCollection;
 import com.azure.resourcemanager.appcontainers.models.Job;
 import com.azure.resourcemanager.appcontainers.models.JobExecutionBase;
 import com.azure.resourcemanager.appcontainers.models.JobExecutionTemplate;
@@ -32,6 +36,76 @@ public final class JobsImpl implements Jobs {
         JobsClient innerClient, com.azure.resourcemanager.appcontainers.ContainerAppsApiManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
+    }
+
+    public Response<DiagnosticsCollection> listDetectorsWithResponse(
+        String resourceGroupName, String jobName, Context context) {
+        Response<DiagnosticsCollectionInner> inner =
+            this.serviceClient().listDetectorsWithResponse(resourceGroupName, jobName, context);
+        if (inner != null) {
+            return new SimpleResponse<>(
+                inner.getRequest(),
+                inner.getStatusCode(),
+                inner.getHeaders(),
+                new DiagnosticsCollectionImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public DiagnosticsCollection listDetectors(String resourceGroupName, String jobName) {
+        DiagnosticsCollectionInner inner = this.serviceClient().listDetectors(resourceGroupName, jobName);
+        if (inner != null) {
+            return new DiagnosticsCollectionImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public Response<Diagnostics> getDetectorWithResponse(
+        String resourceGroupName, String jobName, String detectorName, Context context) {
+        Response<DiagnosticsInner> inner =
+            this.serviceClient().getDetectorWithResponse(resourceGroupName, jobName, detectorName, context);
+        if (inner != null) {
+            return new SimpleResponse<>(
+                inner.getRequest(),
+                inner.getStatusCode(),
+                inner.getHeaders(),
+                new DiagnosticsImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public Diagnostics getDetector(String resourceGroupName, String jobName, String detectorName) {
+        DiagnosticsInner inner = this.serviceClient().getDetector(resourceGroupName, jobName, detectorName);
+        if (inner != null) {
+            return new DiagnosticsImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public Response<Job> proxyGetWithResponse(String resourceGroupName, String jobName, Context context) {
+        Response<JobInner> inner = this.serviceClient().proxyGetWithResponse(resourceGroupName, jobName, context);
+        if (inner != null) {
+            return new SimpleResponse<>(
+                inner.getRequest(),
+                inner.getStatusCode(),
+                inner.getHeaders(),
+                new JobImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public Job proxyGet(String resourceGroupName, String jobName) {
+        JobInner inner = this.serviceClient().proxyGet(resourceGroupName, jobName);
+        if (inner != null) {
+            return new JobImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public PagedIterable<Job> list() {
