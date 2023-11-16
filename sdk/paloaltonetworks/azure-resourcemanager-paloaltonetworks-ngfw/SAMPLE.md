@@ -84,11 +84,8 @@
 - [GetSupportInfo](#localrulestacks_getsupportinfo)
 - [List](#localrulestacks_list)
 - [ListAdvancedSecurityObjects](#localrulestacks_listadvancedsecurityobjects)
-- [ListAppIds](#localrulestacks_listappids)
 - [ListByResourceGroup](#localrulestacks_listbyresourcegroup)
-- [ListCountries](#localrulestacks_listcountries)
 - [ListFirewalls](#localrulestacks_listfirewalls)
-- [ListPredefinedUrlCategories](#localrulestacks_listpredefinedurlcategories)
 - [ListSecurityServices](#localrulestacks_listsecurityservices)
 - [Revert](#localrulestacks_revert)
 - [Update](#localrulestacks_update)
@@ -2211,39 +2208,6 @@ public final class LocalRulestacksListAdvancedSecurityObjectsSamples {
 }
 ```
 
-### LocalRulestacks_ListAppIds
-
-```java
-/**
- * Samples for LocalRulestacks ListAppIds.
- */
-public final class LocalRulestacksListAppIdsSamples {
-    /*
-     * x-ms-original-file: specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/LocalRulestacks_listAppIds_MaximumSet_Gen.json
-     */
-    /**
-     * Sample code: LocalRulestacks_listAppIds_MaximumSet_Gen.
-     * 
-     * @param manager Entry point to PaloAltoNetworksNgfwManager.
-     */
-    public static void localRulestacksListAppIdsMaximumSetGen(com.azure.resourcemanager.paloaltonetworks.ngfw.PaloAltoNetworksNgfwManager manager) {
-        manager.localRulestacks().listAppIdsWithResponse("rgopenapi", "lrs1", "8543", "pref", "a6a321", 20, com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file: specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/LocalRulestacks_listAppIds_MinimumSet_Gen.json
-     */
-    /**
-     * Sample code: LocalRulestacks_listAppIds_MinimumSet_Gen.
-     * 
-     * @param manager Entry point to PaloAltoNetworksNgfwManager.
-     */
-    public static void localRulestacksListAppIdsMinimumSetGen(com.azure.resourcemanager.paloaltonetworks.ngfw.PaloAltoNetworksNgfwManager manager) {
-        manager.localRulestacks().listAppIdsWithResponse("rgopenapi", "lrs1", null, null, null, null, com.azure.core.util.Context.NONE);
-    }
-}
-```
-
 ### LocalRulestacks_ListByResourceGroup
 
 ```java
@@ -2277,39 +2241,6 @@ public final class LocalRulestacksListByResourceGroupSamples {
 }
 ```
 
-### LocalRulestacks_ListCountries
-
-```java
-/**
- * Samples for LocalRulestacks ListCountries.
- */
-public final class LocalRulestacksListCountriesSamples {
-    /*
-     * x-ms-original-file: specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/LocalRulestacks_listCountries_MaximumSet_Gen.json
-     */
-    /**
-     * Sample code: LocalRulestacks_listCountries_MaximumSet_Gen.
-     * 
-     * @param manager Entry point to PaloAltoNetworksNgfwManager.
-     */
-    public static void localRulestacksListCountriesMaximumSetGen(com.azure.resourcemanager.paloaltonetworks.ngfw.PaloAltoNetworksNgfwManager manager) {
-        manager.localRulestacks().listCountriesWithResponse("rgopenapi", "lrs1", "a6a321", 20, com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file: specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/LocalRulestacks_listCountries_MinimumSet_Gen.json
-     */
-    /**
-     * Sample code: LocalRulestacks_listCountries_MinimumSet_Gen.
-     * 
-     * @param manager Entry point to PaloAltoNetworksNgfwManager.
-     */
-    public static void localRulestacksListCountriesMinimumSetGen(com.azure.resourcemanager.paloaltonetworks.ngfw.PaloAltoNetworksNgfwManager manager) {
-        manager.localRulestacks().listCountriesWithResponse("rgopenapi", "lrs1", null, null, com.azure.core.util.Context.NONE);
-    }
-}
-```
-
 ### LocalRulestacks_ListFirewalls
 
 ```java
@@ -2339,39 +2270,6 @@ public final class LocalRulestacksListFirewallsSamples {
      */
     public static void localRulestacksListFirewallsMaximumSetGen(com.azure.resourcemanager.paloaltonetworks.ngfw.PaloAltoNetworksNgfwManager manager) {
         manager.localRulestacks().listFirewallsWithResponse("rgopenapi", "lrs1", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### LocalRulestacks_ListPredefinedUrlCategories
-
-```java
-/**
- * Samples for LocalRulestacks ListPredefinedUrlCategories.
- */
-public final class LocalRulestacksListPredefinedUrlCategoriesSamples {
-    /*
-     * x-ms-original-file: specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/LocalRulestacks_listPredefinedUrlCategories_MinimumSet_Gen.json
-     */
-    /**
-     * Sample code: LocalRulestacks_listPredefinedUrlCategories_MinimumSet_Gen.
-     * 
-     * @param manager Entry point to PaloAltoNetworksNgfwManager.
-     */
-    public static void localRulestacksListPredefinedUrlCategoriesMinimumSetGen(com.azure.resourcemanager.paloaltonetworks.ngfw.PaloAltoNetworksNgfwManager manager) {
-        manager.localRulestacks().listPredefinedUrlCategoriesWithResponse("rgopenapi", "lrs1", null, null, com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file: specification/paloaltonetworks/resource-manager/PaloAltoNetworks.Cloudngfw/stable/2023-09-01/examples/LocalRulestacks_listPredefinedUrlCategories_MaximumSet_Gen.json
-     */
-    /**
-     * Sample code: LocalRulestacks_listPredefinedUrlCategories_MaximumSet_Gen.
-     * 
-     * @param manager Entry point to PaloAltoNetworksNgfwManager.
-     */
-    public static void localRulestacksListPredefinedUrlCategoriesMaximumSetGen(com.azure.resourcemanager.paloaltonetworks.ngfw.PaloAltoNetworksNgfwManager manager) {
-        manager.localRulestacks().listPredefinedUrlCategoriesWithResponse("rgopenapi", "lrs1", "a6a321", 20, com.azure.core.util.Context.NONE);
     }
 }
 ```
