@@ -4,7 +4,7 @@
 
 package com.azure.ai.documentintelligence;
 
-import com.azure.ai.documentintelligence.implementation.DocumentAnalysisClientImpl;
+import com.azure.ai.documentintelligence.implementation.DocumentIntelligenceClientImpl;
 import com.azure.ai.documentintelligence.models.AnalyzeDocumentRequest;
 import com.azure.ai.documentintelligence.models.AnalyzeResultOperation;
 import com.azure.ai.documentintelligence.models.ClassifyDocumentRequest;
@@ -30,20 +30,20 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
- * Initializes a new instance of the asynchronous DocumentAnalysisClient type.
+ * Initializes a new instance of the asynchronous DocumentIntelligenceClient type.
  */
 @ServiceClient(builder = DocumentIntelligenceClientBuilder.class, isAsync = true)
 public final class DocumentIntelligenceAsyncClient {
     @Generated
-    private final DocumentAnalysisClientImpl serviceClient;
+    private final DocumentIntelligenceClientImpl serviceClient;
 
     /**
-     * Initializes an instance of DocumentAnalysisAsyncClient class.
-     *
+     * Initializes an instance of DocumentIntelligenceAsyncClient class.
+     * 
      * @param serviceClient the service client implementation.
      */
     @Generated
-    DocumentIntelligenceAsyncClient(DocumentAnalysisClientImpl serviceClient) {
+    DocumentIntelligenceAsyncClient(DocumentIntelligenceClientImpl serviceClient) {
         this.serviceClient = serviceClient;
     }
 
@@ -110,7 +110,7 @@ public final class DocumentIntelligenceAsyncClient {
      *     base64Source: byte[] (Optional)
      * }
      * }</pre>
-     *
+     * 
      * @param modelId Unique document model name.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
@@ -162,7 +162,7 @@ public final class DocumentIntelligenceAsyncClient {
      *     base64Source: byte[] (Optional)
      * }
      * }</pre>
-     *
+     * 
      * @param classifierId Unique document classifier name.
      * @param classifyRequest Classify request parameters.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
@@ -181,7 +181,7 @@ public final class DocumentIntelligenceAsyncClient {
 
     /**
      * Analyzes document with document model.
-     *
+     * 
      * @param modelId Unique document model name.
      * @param pages List of 1-based page numbers to analyze. Ex. "1-3,5,7-9".
      * @param locale Locale hint for text recognition and document analysis. Value may contain only
@@ -235,7 +235,7 @@ public final class DocumentIntelligenceAsyncClient {
 
     /**
      * Analyzes document with document model.
-     *
+     * 
      * @param modelId Unique document model name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the request is rejected by server.
@@ -255,7 +255,7 @@ public final class DocumentIntelligenceAsyncClient {
 
     /**
      * Classifies document with document classifier.
-     *
+     * 
      * @param classifierId Unique document classifier name.
      * @param classifyRequest Classify request parameters.
      * @param stringIndexType Method used to compute string offset and length.
@@ -286,7 +286,7 @@ public final class DocumentIntelligenceAsyncClient {
 
     /**
      * Classifies document with document classifier.
-     *
+     * 
      * @param classifierId Unique document classifier name.
      * @param classifyRequest Classify request parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
