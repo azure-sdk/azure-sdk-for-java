@@ -320,7 +320,7 @@ public final class EventGridManager {
 
             StringBuilder userAgentBuilder = new StringBuilder();
             userAgentBuilder.append("azsdk-java").append("-").append("com.azure.resourcemanager.eventgrid").append("/")
-                .append("1.2.0-beta.5");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (").append(Configuration.getGlobalConfiguration().get("java.version"))
                     .append("; ").append(Configuration.getGlobalConfiguration().get("os.name")).append("; ")
@@ -432,7 +432,7 @@ public final class EventGridManager {
     }
 
     /**
-     * Gets the resource collection API of DomainTopicEventSubscriptions. It manages EventSubscription.
+     * Gets the resource collection API of DomainTopicEventSubscriptions.
      * 
      * @return Resource collection API of DomainTopicEventSubscriptions.
      */
@@ -445,7 +445,7 @@ public final class EventGridManager {
     }
 
     /**
-     * Gets the resource collection API of TopicEventSubscriptions.
+     * Gets the resource collection API of TopicEventSubscriptions. It manages EventSubscription.
      * 
      * @return Resource collection API of TopicEventSubscriptions.
      */
