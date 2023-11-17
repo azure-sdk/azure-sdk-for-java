@@ -7,7 +7,9 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Resource requirements for each container instance within an online deployment. */
+/**
+ * Resource requirements for each container instance within an online deployment.
+ */
 @Fluent
 public final class ContainerResourceRequirements {
     /*
@@ -22,13 +24,15 @@ public final class ContainerResourceRequirements {
     @JsonProperty(value = "containerResourceRequests")
     private ContainerResourceSettings containerResourceRequests;
 
-    /** Creates an instance of ContainerResourceRequirements class. */
+    /**
+     * Creates an instance of ContainerResourceRequirements class.
+     */
     public ContainerResourceRequirements() {
     }
 
     /**
      * Get the containerResourceLimits property: Container resource limit info:.
-     *
+     * 
      * @return the containerResourceLimits value.
      */
     public ContainerResourceSettings containerResourceLimits() {
@@ -37,19 +41,19 @@ public final class ContainerResourceRequirements {
 
     /**
      * Set the containerResourceLimits property: Container resource limit info:.
-     *
+     * 
      * @param containerResourceLimits the containerResourceLimits value to set.
      * @return the ContainerResourceRequirements object itself.
      */
-    public ContainerResourceRequirements withContainerResourceLimits(
-        ContainerResourceSettings containerResourceLimits) {
+    public ContainerResourceRequirements
+        withContainerResourceLimits(ContainerResourceSettings containerResourceLimits) {
         this.containerResourceLimits = containerResourceLimits;
         return this;
     }
 
     /**
      * Get the containerResourceRequests property: Container resource request info:.
-     *
+     * 
      * @return the containerResourceRequests value.
      */
     public ContainerResourceSettings containerResourceRequests() {
@@ -58,19 +62,19 @@ public final class ContainerResourceRequirements {
 
     /**
      * Set the containerResourceRequests property: Container resource request info:.
-     *
+     * 
      * @param containerResourceRequests the containerResourceRequests value to set.
      * @return the ContainerResourceRequirements object itself.
      */
-    public ContainerResourceRequirements withContainerResourceRequests(
-        ContainerResourceSettings containerResourceRequests) {
+    public ContainerResourceRequirements
+        withContainerResourceRequests(ContainerResourceSettings containerResourceRequests) {
         this.containerResourceRequests = containerResourceRequests;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

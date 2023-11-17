@@ -8,18 +8,22 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The DefaultScaleSettings model. */
+/**
+ * The DefaultScaleSettings model.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "scaleType")
 @JsonTypeName("Default")
 @Immutable
 public final class DefaultScaleSettings extends OnlineScaleSettings {
-    /** Creates an instance of DefaultScaleSettings class. */
+    /**
+     * Creates an instance of DefaultScaleSettings class.
+     */
     public DefaultScaleSettings() {
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

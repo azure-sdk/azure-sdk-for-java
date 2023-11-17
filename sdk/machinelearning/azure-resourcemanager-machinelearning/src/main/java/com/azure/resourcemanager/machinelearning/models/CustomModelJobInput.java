@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The CustomModelJobInput model. */
+/**
+ * The CustomModelJobInput model.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "jobInputType")
 @JsonTypeName("custom_model")
 @Fluent
@@ -22,18 +24,26 @@ public final class CustomModelJobInput extends JobInput {
     private InputDeliveryMode mode;
 
     /*
+     * Local path on compute node for Input asset.
+     */
+    @JsonProperty(value = "pathOnCompute")
+    private String pathOnCompute;
+
+    /*
      * [Required] Input Asset URI.
      */
     @JsonProperty(value = "uri", required = true)
     private String uri;
 
-    /** Creates an instance of CustomModelJobInput class. */
+    /**
+     * Creates an instance of CustomModelJobInput class.
+     */
     public CustomModelJobInput() {
     }
 
     /**
      * Get the mode property: Input Asset Delivery Mode.
-     *
+     * 
      * @return the mode value.
      */
     public InputDeliveryMode mode() {
@@ -42,7 +52,7 @@ public final class CustomModelJobInput extends JobInput {
 
     /**
      * Set the mode property: Input Asset Delivery Mode.
-     *
+     * 
      * @param mode the mode value to set.
      * @return the CustomModelJobInput object itself.
      */
@@ -52,8 +62,28 @@ public final class CustomModelJobInput extends JobInput {
     }
 
     /**
+     * Get the pathOnCompute property: Local path on compute node for Input asset.
+     * 
+     * @return the pathOnCompute value.
+     */
+    public String pathOnCompute() {
+        return this.pathOnCompute;
+    }
+
+    /**
+     * Set the pathOnCompute property: Local path on compute node for Input asset.
+     * 
+     * @param pathOnCompute the pathOnCompute value to set.
+     * @return the CustomModelJobInput object itself.
+     */
+    public CustomModelJobInput withPathOnCompute(String pathOnCompute) {
+        this.pathOnCompute = pathOnCompute;
+        return this;
+    }
+
+    /**
      * Get the uri property: [Required] Input Asset URI.
-     *
+     * 
      * @return the uri value.
      */
     public String uri() {
@@ -62,7 +92,7 @@ public final class CustomModelJobInput extends JobInput {
 
     /**
      * Set the uri property: [Required] Input Asset URI.
-     *
+     * 
      * @param uri the uri value to set.
      * @return the CustomModelJobInput object itself.
      */
@@ -71,7 +101,9 @@ public final class CustomModelJobInput extends JobInput {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CustomModelJobInput withDescription(String description) {
         super.withDescription(description);
@@ -80,16 +112,15 @@ public final class CustomModelJobInput extends JobInput {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (uri() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property uri in model CustomModelJobInput"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property uri in model CustomModelJobInput"));
         }
     }
 

@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** Job endpoint definition. */
+/**
+ * Job endpoint definition.
+ */
 @Fluent
 public final class JobService {
     /*
@@ -31,7 +33,14 @@ public final class JobService {
     private String jobServiceType;
 
     /*
-     * Port for endpoint.
+     * Nodes that user would like to start the service on.
+     * If Nodes is not set or set to null, the service will only be started on leader node.
+     */
+    @JsonProperty(value = "nodes")
+    private Nodes nodes;
+
+    /*
+     * Port for endpoint set by user.
      */
     @JsonProperty(value = "port")
     private Integer port;
@@ -49,13 +58,15 @@ public final class JobService {
     @JsonProperty(value = "status", access = JsonProperty.Access.WRITE_ONLY)
     private String status;
 
-    /** Creates an instance of JobService class. */
+    /**
+     * Creates an instance of JobService class.
+     */
     public JobService() {
     }
 
     /**
      * Get the endpoint property: Url for endpoint.
-     *
+     * 
      * @return the endpoint value.
      */
     public String endpoint() {
@@ -64,7 +75,7 @@ public final class JobService {
 
     /**
      * Set the endpoint property: Url for endpoint.
-     *
+     * 
      * @param endpoint the endpoint value to set.
      * @return the JobService object itself.
      */
@@ -75,7 +86,7 @@ public final class JobService {
 
     /**
      * Get the errorMessage property: Any error in the service.
-     *
+     * 
      * @return the errorMessage value.
      */
     public String errorMessage() {
@@ -84,7 +95,7 @@ public final class JobService {
 
     /**
      * Get the jobServiceType property: Endpoint type.
-     *
+     * 
      * @return the jobServiceType value.
      */
     public String jobServiceType() {
@@ -93,7 +104,7 @@ public final class JobService {
 
     /**
      * Set the jobServiceType property: Endpoint type.
-     *
+     * 
      * @param jobServiceType the jobServiceType value to set.
      * @return the JobService object itself.
      */
@@ -103,8 +114,30 @@ public final class JobService {
     }
 
     /**
-     * Get the port property: Port for endpoint.
-     *
+     * Get the nodes property: Nodes that user would like to start the service on.
+     * If Nodes is not set or set to null, the service will only be started on leader node.
+     * 
+     * @return the nodes value.
+     */
+    public Nodes nodes() {
+        return this.nodes;
+    }
+
+    /**
+     * Set the nodes property: Nodes that user would like to start the service on.
+     * If Nodes is not set or set to null, the service will only be started on leader node.
+     * 
+     * @param nodes the nodes value to set.
+     * @return the JobService object itself.
+     */
+    public JobService withNodes(Nodes nodes) {
+        this.nodes = nodes;
+        return this;
+    }
+
+    /**
+     * Get the port property: Port for endpoint set by user.
+     * 
      * @return the port value.
      */
     public Integer port() {
@@ -112,8 +145,8 @@ public final class JobService {
     }
 
     /**
-     * Set the port property: Port for endpoint.
-     *
+     * Set the port property: Port for endpoint set by user.
+     * 
      * @param port the port value to set.
      * @return the JobService object itself.
      */
@@ -124,7 +157,7 @@ public final class JobService {
 
     /**
      * Get the properties property: Additional properties to set on the endpoint.
-     *
+     * 
      * @return the properties value.
      */
     public Map<String, String> properties() {
@@ -133,7 +166,7 @@ public final class JobService {
 
     /**
      * Set the properties property: Additional properties to set on the endpoint.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the JobService object itself.
      */
@@ -144,7 +177,7 @@ public final class JobService {
 
     /**
      * Get the status property: Status of endpoint.
-     *
+     * 
      * @return the status value.
      */
     public String status() {
@@ -153,9 +186,12 @@ public final class JobService {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (nodes() != null) {
+            nodes().validate();
+        }
     }
 }

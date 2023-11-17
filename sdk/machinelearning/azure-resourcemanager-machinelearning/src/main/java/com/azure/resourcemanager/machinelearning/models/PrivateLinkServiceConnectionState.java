@@ -7,77 +7,38 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** A collection of information about the state of the connection between service consumer and provider. */
+/**
+ * A collection of information about the state of the connection between service consumer and provider.
+ */
 @Fluent
 public final class PrivateLinkServiceConnectionState {
     /*
-     * Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service.
+     * Some RP chose "None". Other RPs use this for region expansion.
      */
-    @JsonProperty(value = "status")
-    private PrivateEndpointServiceConnectionStatus status;
+    @JsonProperty(value = "actionsRequired")
+    private String actionsRequired;
 
     /*
-     * The reason for approval/rejection of the connection.
+     * User-defined message that, per NRP doc, may be used for approval-related message.
      */
     @JsonProperty(value = "description")
     private String description;
 
     /*
-     * A message indicating if changes on the service provider require any updates on the consumer.
+     * Connection status of the service consumer with the service provider
      */
-    @JsonProperty(value = "actionsRequired")
-    private String actionsRequired;
+    @JsonProperty(value = "status")
+    private EndpointServiceConnectionStatus status;
 
-    /** Creates an instance of PrivateLinkServiceConnectionState class. */
+    /**
+     * Creates an instance of PrivateLinkServiceConnectionState class.
+     */
     public PrivateLinkServiceConnectionState() {
     }
 
     /**
-     * Get the status property: Indicates whether the connection has been Approved/Rejected/Removed by the owner of the
-     * service.
-     *
-     * @return the status value.
-     */
-    public PrivateEndpointServiceConnectionStatus status() {
-        return this.status;
-    }
-
-    /**
-     * Set the status property: Indicates whether the connection has been Approved/Rejected/Removed by the owner of the
-     * service.
-     *
-     * @param status the status value to set.
-     * @return the PrivateLinkServiceConnectionState object itself.
-     */
-    public PrivateLinkServiceConnectionState withStatus(PrivateEndpointServiceConnectionStatus status) {
-        this.status = status;
-        return this;
-    }
-
-    /**
-     * Get the description property: The reason for approval/rejection of the connection.
-     *
-     * @return the description value.
-     */
-    public String description() {
-        return this.description;
-    }
-
-    /**
-     * Set the description property: The reason for approval/rejection of the connection.
-     *
-     * @param description the description value to set.
-     * @return the PrivateLinkServiceConnectionState object itself.
-     */
-    public PrivateLinkServiceConnectionState withDescription(String description) {
-        this.description = description;
-        return this;
-    }
-
-    /**
-     * Get the actionsRequired property: A message indicating if changes on the service provider require any updates on
-     * the consumer.
-     *
+     * Get the actionsRequired property: Some RP chose "None". Other RPs use this for region expansion.
+     * 
      * @return the actionsRequired value.
      */
     public String actionsRequired() {
@@ -85,9 +46,8 @@ public final class PrivateLinkServiceConnectionState {
     }
 
     /**
-     * Set the actionsRequired property: A message indicating if changes on the service provider require any updates on
-     * the consumer.
-     *
+     * Set the actionsRequired property: Some RP chose "None". Other RPs use this for region expansion.
+     * 
      * @param actionsRequired the actionsRequired value to set.
      * @return the PrivateLinkServiceConnectionState object itself.
      */
@@ -97,8 +57,48 @@ public final class PrivateLinkServiceConnectionState {
     }
 
     /**
+     * Get the description property: User-defined message that, per NRP doc, may be used for approval-related message.
+     * 
+     * @return the description value.
+     */
+    public String description() {
+        return this.description;
+    }
+
+    /**
+     * Set the description property: User-defined message that, per NRP doc, may be used for approval-related message.
+     * 
+     * @param description the description value to set.
+     * @return the PrivateLinkServiceConnectionState object itself.
+     */
+    public PrivateLinkServiceConnectionState withDescription(String description) {
+        this.description = description;
+        return this;
+    }
+
+    /**
+     * Get the status property: Connection status of the service consumer with the service provider.
+     * 
+     * @return the status value.
+     */
+    public EndpointServiceConnectionStatus status() {
+        return this.status;
+    }
+
+    /**
+     * Set the status property: Connection status of the service consumer with the service provider.
+     * 
+     * @param status the status value to set.
+     * @return the PrivateLinkServiceConnectionState object itself.
+     */
+    public PrivateLinkServiceConnectionState withStatus(EndpointServiceConnectionStatus status) {
+        this.status = status;
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
