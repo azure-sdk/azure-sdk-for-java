@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Managed application artifact. */
+/**
+ * Managed application artifact.
+ */
 @Fluent
 public final class ApplicationArtifact {
     /*
@@ -29,13 +31,15 @@ public final class ApplicationArtifact {
     @JsonProperty(value = "type", required = true)
     private ApplicationArtifactType type;
 
-    /** Creates an instance of ApplicationArtifact class. */
+    /**
+     * Creates an instance of ApplicationArtifact class.
+     */
     public ApplicationArtifact() {
     }
 
     /**
      * Get the name property: The managed application artifact name.
-     *
+     * 
      * @return the name value.
      */
     public ApplicationArtifactName name() {
@@ -44,7 +48,7 @@ public final class ApplicationArtifact {
 
     /**
      * Set the name property: The managed application artifact name.
-     *
+     * 
      * @param name the name value to set.
      * @return the ApplicationArtifact object itself.
      */
@@ -55,7 +59,7 @@ public final class ApplicationArtifact {
 
     /**
      * Get the uri property: The managed application artifact blob uri.
-     *
+     * 
      * @return the uri value.
      */
     public String uri() {
@@ -64,7 +68,7 @@ public final class ApplicationArtifact {
 
     /**
      * Set the uri property: The managed application artifact blob uri.
-     *
+     * 
      * @param uri the uri value to set.
      * @return the ApplicationArtifact object itself.
      */
@@ -75,7 +79,7 @@ public final class ApplicationArtifact {
 
     /**
      * Get the type property: The managed application artifact type.
-     *
+     * 
      * @return the type value.
      */
     public ApplicationArtifactType type() {
@@ -84,7 +88,7 @@ public final class ApplicationArtifact {
 
     /**
      * Set the type property: The managed application artifact type.
-     *
+     * 
      * @param type the type value to set.
      * @return the ApplicationArtifact object itself.
      */
@@ -95,24 +99,21 @@ public final class ApplicationArtifact {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (name() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property name in model ApplicationArtifact"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property name in model ApplicationArtifact"));
         }
         if (uri() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property uri in model ApplicationArtifact"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property uri in model ApplicationArtifact"));
         }
         if (type() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property type in model ApplicationArtifact"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property type in model ApplicationArtifact"));
         }
     }
 

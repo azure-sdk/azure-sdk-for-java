@@ -16,7 +16,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
 
-/** Information about JIT request definition. */
+/**
+ * Information about JIT request definition.
+ */
 @Fluent
 public final class JitRequestDefinitionInner extends Resource {
     /*
@@ -31,13 +33,15 @@ public final class JitRequestDefinitionInner extends Resource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of JitRequestDefinitionInner class. */
+    /**
+     * Creates an instance of JitRequestDefinitionInner class.
+     */
     public JitRequestDefinitionInner() {
     }
 
     /**
      * Get the innerProperties property: The JIT request properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private JitRequestProperties innerProperties() {
@@ -46,21 +50,25 @@ public final class JitRequestDefinitionInner extends Resource {
 
     /**
      * Get the systemData property: Metadata pertaining to creation and last modification of the resource.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
         return this.systemData;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public JitRequestDefinitionInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public JitRequestDefinitionInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -69,7 +77,7 @@ public final class JitRequestDefinitionInner extends Resource {
 
     /**
      * Get the applicationResourceId property: The parent application id.
-     *
+     * 
      * @return the applicationResourceId value.
      */
     public String applicationResourceId() {
@@ -78,7 +86,7 @@ public final class JitRequestDefinitionInner extends Resource {
 
     /**
      * Set the applicationResourceId property: The parent application id.
-     *
+     * 
      * @param applicationResourceId the applicationResourceId value to set.
      * @return the JitRequestDefinitionInner object itself.
      */
@@ -92,7 +100,7 @@ public final class JitRequestDefinitionInner extends Resource {
 
     /**
      * Get the publisherTenantId property: The publisher tenant id.
-     *
+     * 
      * @return the publisherTenantId value.
      */
     public String publisherTenantId() {
@@ -101,7 +109,7 @@ public final class JitRequestDefinitionInner extends Resource {
 
     /**
      * Get the jitAuthorizationPolicies property: The JIT authorization policies.
-     *
+     * 
      * @return the jitAuthorizationPolicies value.
      */
     public List<JitAuthorizationPolicies> jitAuthorizationPolicies() {
@@ -110,12 +118,12 @@ public final class JitRequestDefinitionInner extends Resource {
 
     /**
      * Set the jitAuthorizationPolicies property: The JIT authorization policies.
-     *
+     * 
      * @param jitAuthorizationPolicies the jitAuthorizationPolicies value to set.
      * @return the JitRequestDefinitionInner object itself.
      */
-    public JitRequestDefinitionInner withJitAuthorizationPolicies(
-        List<JitAuthorizationPolicies> jitAuthorizationPolicies) {
+    public JitRequestDefinitionInner
+        withJitAuthorizationPolicies(List<JitAuthorizationPolicies> jitAuthorizationPolicies) {
         if (this.innerProperties() == null) {
             this.innerProperties = new JitRequestProperties();
         }
@@ -125,7 +133,7 @@ public final class JitRequestDefinitionInner extends Resource {
 
     /**
      * Get the jitSchedulingPolicy property: The JIT request properties.
-     *
+     * 
      * @return the jitSchedulingPolicy value.
      */
     public JitSchedulingPolicy jitSchedulingPolicy() {
@@ -134,7 +142,7 @@ public final class JitRequestDefinitionInner extends Resource {
 
     /**
      * Set the jitSchedulingPolicy property: The JIT request properties.
-     *
+     * 
      * @param jitSchedulingPolicy the jitSchedulingPolicy value to set.
      * @return the JitRequestDefinitionInner object itself.
      */
@@ -148,7 +156,7 @@ public final class JitRequestDefinitionInner extends Resource {
 
     /**
      * Get the provisioningState property: The JIT request provisioning state.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -157,7 +165,7 @@ public final class JitRequestDefinitionInner extends Resource {
 
     /**
      * Get the jitRequestState property: The JIT request state.
-     *
+     * 
      * @return the jitRequestState value.
      */
     public JitRequestState jitRequestState() {
@@ -166,7 +174,7 @@ public final class JitRequestDefinitionInner extends Resource {
 
     /**
      * Get the createdBy property: The client entity that created the JIT request.
-     *
+     * 
      * @return the createdBy value.
      */
     public ApplicationClientDetails createdBy() {
@@ -175,7 +183,7 @@ public final class JitRequestDefinitionInner extends Resource {
 
     /**
      * Get the updatedBy property: The client entity that last updated the JIT request.
-     *
+     * 
      * @return the updatedBy value.
      */
     public ApplicationClientDetails updatedBy() {
@@ -184,7 +192,7 @@ public final class JitRequestDefinitionInner extends Resource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -11,7 +11,9 @@ import com.azure.resourcemanager.managedapplications.models.Status;
 import com.azure.resourcemanager.managedapplications.models.Substatus;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Update access request definition. */
+/**
+ * Update access request definition.
+ */
 @Fluent
 public final class UpdateAccessDefinitionInner {
     /*
@@ -38,13 +40,15 @@ public final class UpdateAccessDefinitionInner {
     @JsonProperty(value = "subStatus", required = true)
     private Substatus subStatus;
 
-    /** Creates an instance of UpdateAccessDefinitionInner class. */
+    /**
+     * Creates an instance of UpdateAccessDefinitionInner class.
+     */
     public UpdateAccessDefinitionInner() {
     }
 
     /**
      * Get the approver property: The approver name.
-     *
+     * 
      * @return the approver value.
      */
     public String approver() {
@@ -53,7 +57,7 @@ public final class UpdateAccessDefinitionInner {
 
     /**
      * Set the approver property: The approver name.
-     *
+     * 
      * @param approver the approver value to set.
      * @return the UpdateAccessDefinitionInner object itself.
      */
@@ -64,7 +68,7 @@ public final class UpdateAccessDefinitionInner {
 
     /**
      * Get the metadata property: The JIT request metadata.
-     *
+     * 
      * @return the metadata value.
      */
     public JitRequestMetadata metadata() {
@@ -73,7 +77,7 @@ public final class UpdateAccessDefinitionInner {
 
     /**
      * Set the metadata property: The JIT request metadata.
-     *
+     * 
      * @param metadata the metadata value to set.
      * @return the UpdateAccessDefinitionInner object itself.
      */
@@ -84,7 +88,7 @@ public final class UpdateAccessDefinitionInner {
 
     /**
      * Get the status property: The JIT status.
-     *
+     * 
      * @return the status value.
      */
     public Status status() {
@@ -93,7 +97,7 @@ public final class UpdateAccessDefinitionInner {
 
     /**
      * Set the status property: The JIT status.
-     *
+     * 
      * @param status the status value to set.
      * @return the UpdateAccessDefinitionInner object itself.
      */
@@ -104,7 +108,7 @@ public final class UpdateAccessDefinitionInner {
 
     /**
      * Get the subStatus property: The JIT status.
-     *
+     * 
      * @return the subStatus value.
      */
     public Substatus subStatus() {
@@ -113,7 +117,7 @@ public final class UpdateAccessDefinitionInner {
 
     /**
      * Set the subStatus property: The JIT status.
-     *
+     * 
      * @param subStatus the subStatus value to set.
      * @return the UpdateAccessDefinitionInner object itself.
      */
@@ -124,29 +128,23 @@ public final class UpdateAccessDefinitionInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (metadata() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property metadata in model UpdateAccessDefinitionInner"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property metadata in model UpdateAccessDefinitionInner"));
         } else {
             metadata().validate();
         }
         if (status() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property status in model UpdateAccessDefinitionInner"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property status in model UpdateAccessDefinitionInner"));
         }
         if (subStatus() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property subStatus in model UpdateAccessDefinitionInner"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property subStatus in model UpdateAccessDefinitionInner"));
         }
     }
 

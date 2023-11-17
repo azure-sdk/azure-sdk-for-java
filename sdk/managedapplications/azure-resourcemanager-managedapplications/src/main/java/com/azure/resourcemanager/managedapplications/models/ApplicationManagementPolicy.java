@@ -7,7 +7,9 @@ package com.azure.resourcemanager.managedapplications.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Managed application management policy. */
+/**
+ * Managed application management policy.
+ */
 @Fluent
 public final class ApplicationManagementPolicy {
     /*
@@ -16,13 +18,15 @@ public final class ApplicationManagementPolicy {
     @JsonProperty(value = "mode")
     private ApplicationManagementMode mode;
 
-    /** Creates an instance of ApplicationManagementPolicy class. */
+    /**
+     * Creates an instance of ApplicationManagementPolicy class.
+     */
     public ApplicationManagementPolicy() {
     }
 
     /**
      * Get the mode property: The managed application management mode.
-     *
+     * 
      * @return the mode value.
      */
     public ApplicationManagementMode mode() {
@@ -31,7 +35,7 @@ public final class ApplicationManagementPolicy {
 
     /**
      * Set the mode property: The managed application management mode.
-     *
+     * 
      * @param mode the mode value to set.
      * @return the ApplicationManagementPolicy object itself.
      */
@@ -42,7 +46,7 @@ public final class ApplicationManagementPolicy {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

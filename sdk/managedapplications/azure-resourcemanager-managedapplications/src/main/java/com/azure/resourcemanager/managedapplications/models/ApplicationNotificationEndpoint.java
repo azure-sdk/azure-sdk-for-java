@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Managed application notification endpoint. */
+/**
+ * Managed application notification endpoint.
+ */
 @Fluent
 public final class ApplicationNotificationEndpoint {
     /*
@@ -17,13 +19,15 @@ public final class ApplicationNotificationEndpoint {
     @JsonProperty(value = "uri", required = true)
     private String uri;
 
-    /** Creates an instance of ApplicationNotificationEndpoint class. */
+    /**
+     * Creates an instance of ApplicationNotificationEndpoint class.
+     */
     public ApplicationNotificationEndpoint() {
     }
 
     /**
      * Get the uri property: The managed application notification endpoint uri.
-     *
+     * 
      * @return the uri value.
      */
     public String uri() {
@@ -32,7 +36,7 @@ public final class ApplicationNotificationEndpoint {
 
     /**
      * Set the uri property: The managed application notification endpoint uri.
-     *
+     * 
      * @param uri the uri value to set.
      * @return the ApplicationNotificationEndpoint object itself.
      */
@@ -43,15 +47,13 @@ public final class ApplicationNotificationEndpoint {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (uri() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property uri in model ApplicationNotificationEndpoint"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property uri in model ApplicationNotificationEndpoint"));
         }
     }
 

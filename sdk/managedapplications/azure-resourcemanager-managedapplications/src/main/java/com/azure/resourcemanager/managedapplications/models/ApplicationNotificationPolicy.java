@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Managed application notification policy. */
+/**
+ * Managed application notification policy.
+ */
 @Fluent
 public final class ApplicationNotificationPolicy {
     /*
@@ -18,13 +20,15 @@ public final class ApplicationNotificationPolicy {
     @JsonProperty(value = "notificationEndpoints", required = true)
     private List<ApplicationNotificationEndpoint> notificationEndpoints;
 
-    /** Creates an instance of ApplicationNotificationPolicy class. */
+    /**
+     * Creates an instance of ApplicationNotificationPolicy class.
+     */
     public ApplicationNotificationPolicy() {
     }
 
     /**
      * Get the notificationEndpoints property: The managed application notification endpoint.
-     *
+     * 
      * @return the notificationEndpoints value.
      */
     public List<ApplicationNotificationEndpoint> notificationEndpoints() {
@@ -33,27 +37,25 @@ public final class ApplicationNotificationPolicy {
 
     /**
      * Set the notificationEndpoints property: The managed application notification endpoint.
-     *
+     * 
      * @param notificationEndpoints the notificationEndpoints value to set.
      * @return the ApplicationNotificationPolicy object itself.
      */
-    public ApplicationNotificationPolicy withNotificationEndpoints(
-        List<ApplicationNotificationEndpoint> notificationEndpoints) {
+    public ApplicationNotificationPolicy
+        withNotificationEndpoints(List<ApplicationNotificationEndpoint> notificationEndpoints) {
         this.notificationEndpoints = notificationEndpoints;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (notificationEndpoints() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property notificationEndpoints in model ApplicationNotificationPolicy"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property notificationEndpoints in model ApplicationNotificationPolicy"));
         } else {
             notificationEndpoints().forEach(e -> e.validate());
         }

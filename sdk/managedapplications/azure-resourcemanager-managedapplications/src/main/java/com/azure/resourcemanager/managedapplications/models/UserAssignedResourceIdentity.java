@@ -25,13 +25,15 @@ public final class UserAssignedResourceIdentity {
     @JsonProperty(value = "tenantId", access = JsonProperty.Access.WRITE_ONLY)
     private String tenantId;
 
-    /** Creates an instance of UserAssignedResourceIdentity class. */
+    /**
+     * Creates an instance of UserAssignedResourceIdentity class.
+     */
     public UserAssignedResourceIdentity() {
     }
 
     /**
      * Get the principalId property: The principal id of user assigned identity.
-     *
+     * 
      * @return the principalId value.
      */
     public String principalId() {
@@ -40,7 +42,7 @@ public final class UserAssignedResourceIdentity {
 
     /**
      * Get the tenantId property: The tenant id of user assigned identity.
-     *
+     * 
      * @return the tenantId value.
      */
     public String tenantId() {
@@ -49,7 +51,7 @@ public final class UserAssignedResourceIdentity {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

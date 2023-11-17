@@ -14,7 +14,9 @@ import com.azure.resourcemanager.managedapplications.models.ProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Information about JIT request properties. */
+/**
+ * Information about JIT request properties.
+ */
 @Fluent
 public final class JitRequestProperties {
     /*
@@ -65,13 +67,15 @@ public final class JitRequestProperties {
     @JsonProperty(value = "updatedBy", access = JsonProperty.Access.WRITE_ONLY)
     private ApplicationClientDetails updatedBy;
 
-    /** Creates an instance of JitRequestProperties class. */
+    /**
+     * Creates an instance of JitRequestProperties class.
+     */
     public JitRequestProperties() {
     }
 
     /**
      * Get the applicationResourceId property: The parent application id.
-     *
+     * 
      * @return the applicationResourceId value.
      */
     public String applicationResourceId() {
@@ -80,7 +84,7 @@ public final class JitRequestProperties {
 
     /**
      * Set the applicationResourceId property: The parent application id.
-     *
+     * 
      * @param applicationResourceId the applicationResourceId value to set.
      * @return the JitRequestProperties object itself.
      */
@@ -91,7 +95,7 @@ public final class JitRequestProperties {
 
     /**
      * Get the publisherTenantId property: The publisher tenant id.
-     *
+     * 
      * @return the publisherTenantId value.
      */
     public String publisherTenantId() {
@@ -100,7 +104,7 @@ public final class JitRequestProperties {
 
     /**
      * Get the jitAuthorizationPolicies property: The JIT authorization policies.
-     *
+     * 
      * @return the jitAuthorizationPolicies value.
      */
     public List<JitAuthorizationPolicies> jitAuthorizationPolicies() {
@@ -109,7 +113,7 @@ public final class JitRequestProperties {
 
     /**
      * Set the jitAuthorizationPolicies property: The JIT authorization policies.
-     *
+     * 
      * @param jitAuthorizationPolicies the jitAuthorizationPolicies value to set.
      * @return the JitRequestProperties object itself.
      */
@@ -120,7 +124,7 @@ public final class JitRequestProperties {
 
     /**
      * Get the jitSchedulingPolicy property: The JIT request properties.
-     *
+     * 
      * @return the jitSchedulingPolicy value.
      */
     public JitSchedulingPolicy jitSchedulingPolicy() {
@@ -129,7 +133,7 @@ public final class JitRequestProperties {
 
     /**
      * Set the jitSchedulingPolicy property: The JIT request properties.
-     *
+     * 
      * @param jitSchedulingPolicy the jitSchedulingPolicy value to set.
      * @return the JitRequestProperties object itself.
      */
@@ -140,7 +144,7 @@ public final class JitRequestProperties {
 
     /**
      * Get the provisioningState property: The JIT request provisioning state.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -149,7 +153,7 @@ public final class JitRequestProperties {
 
     /**
      * Get the jitRequestState property: The JIT request state.
-     *
+     * 
      * @return the jitRequestState value.
      */
     public JitRequestState jitRequestState() {
@@ -158,7 +162,7 @@ public final class JitRequestProperties {
 
     /**
      * Get the createdBy property: The client entity that created the JIT request.
-     *
+     * 
      * @return the createdBy value.
      */
     public ApplicationClientDetails createdBy() {
@@ -167,7 +171,7 @@ public final class JitRequestProperties {
 
     /**
      * Get the updatedBy property: The client entity that last updated the JIT request.
-     *
+     * 
      * @return the updatedBy value.
      */
     public ApplicationClientDetails updatedBy() {
@@ -176,29 +180,23 @@ public final class JitRequestProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (applicationResourceId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property applicationResourceId in model JitRequestProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property applicationResourceId in model JitRequestProperties"));
         }
         if (jitAuthorizationPolicies() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property jitAuthorizationPolicies in model JitRequestProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property jitAuthorizationPolicies in model JitRequestProperties"));
         } else {
             jitAuthorizationPolicies().forEach(e -> e.validate());
         }
         if (jitSchedulingPolicy() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property jitSchedulingPolicy in model JitRequestProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property jitSchedulingPolicy in model JitRequestProperties"));
         } else {
             jitSchedulingPolicy().validate();
         }

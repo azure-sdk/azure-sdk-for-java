@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.Duration;
 import java.time.OffsetDateTime;
 
-/** The JIT scheduling policies. */
+/**
+ * The JIT scheduling policies.
+ */
 @Fluent
 public final class JitSchedulingPolicy {
     /*
@@ -31,13 +33,15 @@ public final class JitSchedulingPolicy {
     @JsonProperty(value = "startTime", required = true)
     private OffsetDateTime startTime;
 
-    /** Creates an instance of JitSchedulingPolicy class. */
+    /**
+     * Creates an instance of JitSchedulingPolicy class.
+     */
     public JitSchedulingPolicy() {
     }
 
     /**
      * Get the type property: The type of JIT schedule.
-     *
+     * 
      * @return the type value.
      */
     public JitSchedulingType type() {
@@ -46,7 +50,7 @@ public final class JitSchedulingPolicy {
 
     /**
      * Set the type property: The type of JIT schedule.
-     *
+     * 
      * @param type the type value to set.
      * @return the JitSchedulingPolicy object itself.
      */
@@ -57,7 +61,7 @@ public final class JitSchedulingPolicy {
 
     /**
      * Get the duration property: The required duration of the JIT request.
-     *
+     * 
      * @return the duration value.
      */
     public Duration duration() {
@@ -66,7 +70,7 @@ public final class JitSchedulingPolicy {
 
     /**
      * Set the duration property: The required duration of the JIT request.
-     *
+     * 
      * @param duration the duration value to set.
      * @return the JitSchedulingPolicy object itself.
      */
@@ -77,7 +81,7 @@ public final class JitSchedulingPolicy {
 
     /**
      * Get the startTime property: The start time of the request.
-     *
+     * 
      * @return the startTime value.
      */
     public OffsetDateTime startTime() {
@@ -86,7 +90,7 @@ public final class JitSchedulingPolicy {
 
     /**
      * Set the startTime property: The start time of the request.
-     *
+     * 
      * @param startTime the startTime value to set.
      * @return the JitSchedulingPolicy object itself.
      */
@@ -97,24 +101,21 @@ public final class JitSchedulingPolicy {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (type() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property type in model JitSchedulingPolicy"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property type in model JitSchedulingPolicy"));
         }
         if (duration() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property duration in model JitSchedulingPolicy"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property duration in model JitSchedulingPolicy"));
         }
         if (startTime() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property startTime in model JitSchedulingPolicy"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property startTime in model JitSchedulingPolicy"));
         }
     }
 

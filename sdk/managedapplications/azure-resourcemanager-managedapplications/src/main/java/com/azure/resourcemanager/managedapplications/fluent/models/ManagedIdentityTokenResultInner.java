@@ -9,7 +9,9 @@ import com.azure.resourcemanager.managedapplications.models.ManagedIdentityToken
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The array of managed identity tokens. */
+/**
+ * The array of managed identity tokens.
+ */
 @Fluent
 public final class ManagedIdentityTokenResultInner {
     /*
@@ -18,13 +20,15 @@ public final class ManagedIdentityTokenResultInner {
     @JsonProperty(value = "value")
     private List<ManagedIdentityToken> value;
 
-    /** Creates an instance of ManagedIdentityTokenResultInner class. */
+    /**
+     * Creates an instance of ManagedIdentityTokenResultInner class.
+     */
     public ManagedIdentityTokenResultInner() {
     }
 
     /**
      * Get the value property: The array of managed identity tokens.
-     *
+     * 
      * @return the value value.
      */
     public List<ManagedIdentityToken> value() {
@@ -33,7 +37,7 @@ public final class ManagedIdentityTokenResultInner {
 
     /**
      * Set the value property: The array of managed identity tokens.
-     *
+     * 
      * @param value the value value to set.
      * @return the ManagedIdentityTokenResultInner object itself.
      */
@@ -44,7 +48,7 @@ public final class ManagedIdentityTokenResultInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

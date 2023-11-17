@@ -7,7 +7,9 @@ package com.azure.resourcemanager.managedapplications.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The managed identity token for the managed app resource. */
+/**
+ * The managed identity token for the managed app resource.
+ */
 @Fluent
 public final class ManagedIdentityToken {
     /*
@@ -54,13 +56,15 @@ public final class ManagedIdentityToken {
     @JsonProperty(value = "tokenType")
     private String tokenType;
 
-    /** Creates an instance of ManagedIdentityToken class. */
+    /**
+     * Creates an instance of ManagedIdentityToken class.
+     */
     public ManagedIdentityToken() {
     }
 
     /**
      * Get the accessToken property: The requested access token.
-     *
+     * 
      * @return the accessToken value.
      */
     public String accessToken() {
@@ -69,7 +73,7 @@ public final class ManagedIdentityToken {
 
     /**
      * Set the accessToken property: The requested access token.
-     *
+     * 
      * @param accessToken the accessToken value to set.
      * @return the ManagedIdentityToken object itself.
      */
@@ -80,7 +84,7 @@ public final class ManagedIdentityToken {
 
     /**
      * Get the expiresIn property: The number of seconds the access token will be valid.
-     *
+     * 
      * @return the expiresIn value.
      */
     public String expiresIn() {
@@ -89,7 +93,7 @@ public final class ManagedIdentityToken {
 
     /**
      * Set the expiresIn property: The number of seconds the access token will be valid.
-     *
+     * 
      * @param expiresIn the expiresIn value to set.
      * @return the ManagedIdentityToken object itself.
      */
@@ -101,7 +105,7 @@ public final class ManagedIdentityToken {
     /**
      * Get the expiresOn property: The timespan when the access token expires. This is represented as the number of
      * seconds from epoch.
-     *
+     * 
      * @return the expiresOn value.
      */
     public String expiresOn() {
@@ -111,7 +115,7 @@ public final class ManagedIdentityToken {
     /**
      * Set the expiresOn property: The timespan when the access token expires. This is represented as the number of
      * seconds from epoch.
-     *
+     * 
      * @param expiresOn the expiresOn value to set.
      * @return the ManagedIdentityToken object itself.
      */
@@ -121,9 +125,9 @@ public final class ManagedIdentityToken {
     }
 
     /**
-     * Get the notBefore property: The timespan when the access token takes effect. This is represented as the number of
-     * seconds from epoch.
-     *
+     * Get the notBefore property: The timespan when the access token takes effect. This is represented as the number
+     * of seconds from epoch.
+     * 
      * @return the notBefore value.
      */
     public String notBefore() {
@@ -131,9 +135,9 @@ public final class ManagedIdentityToken {
     }
 
     /**
-     * Set the notBefore property: The timespan when the access token takes effect. This is represented as the number of
-     * seconds from epoch.
-     *
+     * Set the notBefore property: The timespan when the access token takes effect. This is represented as the number
+     * of seconds from epoch.
+     * 
      * @param notBefore the notBefore value to set.
      * @return the ManagedIdentityToken object itself.
      */
@@ -145,7 +149,7 @@ public final class ManagedIdentityToken {
     /**
      * Get the authorizationAudience property: The aud (audience) the access token was request for. This is the same as
      * what was provided in the listTokens request.
-     *
+     * 
      * @return the authorizationAudience value.
      */
     public String authorizationAudience() {
@@ -155,7 +159,7 @@ public final class ManagedIdentityToken {
     /**
      * Set the authorizationAudience property: The aud (audience) the access token was request for. This is the same as
      * what was provided in the listTokens request.
-     *
+     * 
      * @param authorizationAudience the authorizationAudience value to set.
      * @return the ManagedIdentityToken object itself.
      */
@@ -167,7 +171,7 @@ public final class ManagedIdentityToken {
     /**
      * Get the resourceId property: The Azure resource ID for the issued token. This is either the managed application
      * ID or the user-assigned identity ID.
-     *
+     * 
      * @return the resourceId value.
      */
     public String resourceId() {
@@ -177,7 +181,7 @@ public final class ManagedIdentityToken {
     /**
      * Set the resourceId property: The Azure resource ID for the issued token. This is either the managed application
      * ID or the user-assigned identity ID.
-     *
+     * 
      * @param resourceId the resourceId value to set.
      * @return the ManagedIdentityToken object itself.
      */
@@ -188,7 +192,7 @@ public final class ManagedIdentityToken {
 
     /**
      * Get the tokenType property: The type of the token.
-     *
+     * 
      * @return the tokenType value.
      */
     public String tokenType() {
@@ -197,7 +201,7 @@ public final class ManagedIdentityToken {
 
     /**
      * Set the tokenType property: The type of the token.
-     *
+     * 
      * @param tokenType the tokenType value to set.
      * @return the ManagedIdentityToken object itself.
      */
@@ -208,7 +212,7 @@ public final class ManagedIdentityToken {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
