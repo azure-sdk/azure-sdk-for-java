@@ -21,8 +21,8 @@ public final class GovernanceAssignmentsImpl implements GovernanceAssignments {
 
     private final com.azure.resourcemanager.security.SecurityManager serviceManager;
 
-    public GovernanceAssignmentsImpl(
-        GovernanceAssignmentsClient innerClient, com.azure.resourcemanager.security.SecurityManager serviceManager) {
+    public GovernanceAssignmentsImpl(GovernanceAssignmentsClient innerClient,
+        com.azure.resourcemanager.security.SecurityManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
@@ -37,15 +37,12 @@ public final class GovernanceAssignmentsImpl implements GovernanceAssignments {
         return Utils.mapPage(inner, inner1 -> new GovernanceAssignmentImpl(inner1, this.manager()));
     }
 
-    public Response<GovernanceAssignment> getWithResponse(
-        String scope, String assessmentName, String assignmentKey, Context context) {
-        Response<GovernanceAssignmentInner> inner =
-            this.serviceClient().getWithResponse(scope, assessmentName, assignmentKey, context);
+    public Response<GovernanceAssignment> getWithResponse(String scope, String assessmentName, String assignmentKey,
+        Context context) {
+        Response<GovernanceAssignmentInner> inner
+            = this.serviceClient().getWithResponse(scope, assessmentName, assignmentKey, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new GovernanceAssignmentImpl(inner.getValue(), this.manager()));
         } else {
             return null;
@@ -61,8 +58,8 @@ public final class GovernanceAssignmentsImpl implements GovernanceAssignments {
         }
     }
 
-    public Response<Void> deleteWithResponse(
-        String scope, String assessmentName, String assignmentKey, Context context) {
+    public Response<Void> deleteWithResponse(String scope, String assessmentName, String assignmentKey,
+        Context context) {
         return this.serviceClient().deleteWithResponse(scope, assessmentName, assignmentKey, context);
     }
 
@@ -71,173 +68,101 @@ public final class GovernanceAssignmentsImpl implements GovernanceAssignments {
     }
 
     public GovernanceAssignment getById(String id) {
-        String scope =
-            Utils
-                .getValueFromIdByParameterName(
-                    id,
-                    "/{scope}/providers/Microsoft.Security/assessments/{assessmentName}/governanceAssignments/{assignmentKey}",
-                    "scope");
+        String scope = Utils.getValueFromIdByParameterName(id,
+            "/{scope}/providers/Microsoft.Security/assessments/{assessmentName}/governanceAssignments/{assignmentKey}",
+            "scope");
         if (scope == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'scope'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'scope'.", id)));
         }
-        String assessmentName =
-            Utils
-                .getValueFromIdByParameterName(
-                    id,
-                    "/{scope}/providers/Microsoft.Security/assessments/{assessmentName}/governanceAssignments/{assignmentKey}",
-                    "assessmentName");
+        String assessmentName = Utils.getValueFromIdByParameterName(id,
+            "/{scope}/providers/Microsoft.Security/assessments/{assessmentName}/governanceAssignments/{assignmentKey}",
+            "assessmentName");
         if (assessmentName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'assessments'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'assessments'.", id)));
         }
-        String assignmentKey =
-            Utils
-                .getValueFromIdByParameterName(
-                    id,
-                    "/{scope}/providers/Microsoft.Security/assessments/{assessmentName}/governanceAssignments/{assignmentKey}",
-                    "assignmentKey");
+        String assignmentKey = Utils.getValueFromIdByParameterName(id,
+            "/{scope}/providers/Microsoft.Security/assessments/{assessmentName}/governanceAssignments/{assignmentKey}",
+            "assignmentKey");
         if (assignmentKey == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format(
-                                "The resource ID '%s' is not valid. Missing path segment 'governanceAssignments'.",
-                                id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'governanceAssignments'.", id)));
         }
         return this.getWithResponse(scope, assessmentName, assignmentKey, Context.NONE).getValue();
     }
 
     public Response<GovernanceAssignment> getByIdWithResponse(String id, Context context) {
-        String scope =
-            Utils
-                .getValueFromIdByParameterName(
-                    id,
-                    "/{scope}/providers/Microsoft.Security/assessments/{assessmentName}/governanceAssignments/{assignmentKey}",
-                    "scope");
+        String scope = Utils.getValueFromIdByParameterName(id,
+            "/{scope}/providers/Microsoft.Security/assessments/{assessmentName}/governanceAssignments/{assignmentKey}",
+            "scope");
         if (scope == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'scope'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'scope'.", id)));
         }
-        String assessmentName =
-            Utils
-                .getValueFromIdByParameterName(
-                    id,
-                    "/{scope}/providers/Microsoft.Security/assessments/{assessmentName}/governanceAssignments/{assignmentKey}",
-                    "assessmentName");
+        String assessmentName = Utils.getValueFromIdByParameterName(id,
+            "/{scope}/providers/Microsoft.Security/assessments/{assessmentName}/governanceAssignments/{assignmentKey}",
+            "assessmentName");
         if (assessmentName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'assessments'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'assessments'.", id)));
         }
-        String assignmentKey =
-            Utils
-                .getValueFromIdByParameterName(
-                    id,
-                    "/{scope}/providers/Microsoft.Security/assessments/{assessmentName}/governanceAssignments/{assignmentKey}",
-                    "assignmentKey");
+        String assignmentKey = Utils.getValueFromIdByParameterName(id,
+            "/{scope}/providers/Microsoft.Security/assessments/{assessmentName}/governanceAssignments/{assignmentKey}",
+            "assignmentKey");
         if (assignmentKey == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format(
-                                "The resource ID '%s' is not valid. Missing path segment 'governanceAssignments'.",
-                                id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'governanceAssignments'.", id)));
         }
         return this.getWithResponse(scope, assessmentName, assignmentKey, context);
     }
 
     public void deleteById(String id) {
-        String scope =
-            Utils
-                .getValueFromIdByParameterName(
-                    id,
-                    "/{scope}/providers/Microsoft.Security/assessments/{assessmentName}/governanceAssignments/{assignmentKey}",
-                    "scope");
+        String scope = Utils.getValueFromIdByParameterName(id,
+            "/{scope}/providers/Microsoft.Security/assessments/{assessmentName}/governanceAssignments/{assignmentKey}",
+            "scope");
         if (scope == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'scope'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'scope'.", id)));
         }
-        String assessmentName =
-            Utils
-                .getValueFromIdByParameterName(
-                    id,
-                    "/{scope}/providers/Microsoft.Security/assessments/{assessmentName}/governanceAssignments/{assignmentKey}",
-                    "assessmentName");
+        String assessmentName = Utils.getValueFromIdByParameterName(id,
+            "/{scope}/providers/Microsoft.Security/assessments/{assessmentName}/governanceAssignments/{assignmentKey}",
+            "assessmentName");
         if (assessmentName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'assessments'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'assessments'.", id)));
         }
-        String assignmentKey =
-            Utils
-                .getValueFromIdByParameterName(
-                    id,
-                    "/{scope}/providers/Microsoft.Security/assessments/{assessmentName}/governanceAssignments/{assignmentKey}",
-                    "assignmentKey");
+        String assignmentKey = Utils.getValueFromIdByParameterName(id,
+            "/{scope}/providers/Microsoft.Security/assessments/{assessmentName}/governanceAssignments/{assignmentKey}",
+            "assignmentKey");
         if (assignmentKey == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format(
-                                "The resource ID '%s' is not valid. Missing path segment 'governanceAssignments'.",
-                                id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'governanceAssignments'.", id)));
         }
         this.deleteWithResponse(scope, assessmentName, assignmentKey, Context.NONE);
     }
 
     public Response<Void> deleteByIdWithResponse(String id, Context context) {
-        String scope =
-            Utils
-                .getValueFromIdByParameterName(
-                    id,
-                    "/{scope}/providers/Microsoft.Security/assessments/{assessmentName}/governanceAssignments/{assignmentKey}",
-                    "scope");
+        String scope = Utils.getValueFromIdByParameterName(id,
+            "/{scope}/providers/Microsoft.Security/assessments/{assessmentName}/governanceAssignments/{assignmentKey}",
+            "scope");
         if (scope == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'scope'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'scope'.", id)));
         }
-        String assessmentName =
-            Utils
-                .getValueFromIdByParameterName(
-                    id,
-                    "/{scope}/providers/Microsoft.Security/assessments/{assessmentName}/governanceAssignments/{assignmentKey}",
-                    "assessmentName");
+        String assessmentName = Utils.getValueFromIdByParameterName(id,
+            "/{scope}/providers/Microsoft.Security/assessments/{assessmentName}/governanceAssignments/{assignmentKey}",
+            "assessmentName");
         if (assessmentName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'assessments'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'assessments'.", id)));
         }
-        String assignmentKey =
-            Utils
-                .getValueFromIdByParameterName(
-                    id,
-                    "/{scope}/providers/Microsoft.Security/assessments/{assessmentName}/governanceAssignments/{assignmentKey}",
-                    "assignmentKey");
+        String assignmentKey = Utils.getValueFromIdByParameterName(id,
+            "/{scope}/providers/Microsoft.Security/assessments/{assessmentName}/governanceAssignments/{assignmentKey}",
+            "assignmentKey");
         if (assignmentKey == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format(
-                                "The resource ID '%s' is not valid. Missing path segment 'governanceAssignments'.",
-                                id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'governanceAssignments'.", id)));
         }
         return this.deleteWithResponse(scope, assessmentName, assignmentKey, context);
     }

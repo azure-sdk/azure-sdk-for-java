@@ -7,7 +7,9 @@ package com.azure.resourcemanager.security.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Defines whether to send email notifications about new security alerts. */
+/**
+ * Defines whether to send email notifications about new security alerts.
+ */
 @Fluent
 public final class SecurityContactPropertiesAlertNotifications {
     /*
@@ -22,13 +24,15 @@ public final class SecurityContactPropertiesAlertNotifications {
     @JsonProperty(value = "minimalSeverity")
     private MinimalSeverity minimalSeverity;
 
-    /** Creates an instance of SecurityContactPropertiesAlertNotifications class. */
+    /**
+     * Creates an instance of SecurityContactPropertiesAlertNotifications class.
+     */
     public SecurityContactPropertiesAlertNotifications() {
     }
 
     /**
      * Get the state property: Defines if email notifications will be sent about new security alerts.
-     *
+     * 
      * @return the state value.
      */
     public State state() {
@@ -37,7 +41,7 @@ public final class SecurityContactPropertiesAlertNotifications {
 
     /**
      * Set the state property: Defines if email notifications will be sent about new security alerts.
-     *
+     * 
      * @param state the state value to set.
      * @return the SecurityContactPropertiesAlertNotifications object itself.
      */
@@ -48,7 +52,7 @@ public final class SecurityContactPropertiesAlertNotifications {
 
     /**
      * Get the minimalSeverity property: Defines the minimal alert severity which will be sent as email notifications.
-     *
+     * 
      * @return the minimalSeverity value.
      */
     public MinimalSeverity minimalSeverity() {
@@ -57,7 +61,7 @@ public final class SecurityContactPropertiesAlertNotifications {
 
     /**
      * Set the minimalSeverity property: Defines the minimal alert severity which will be sent as email notifications.
-     *
+     * 
      * @param minimalSeverity the minimalSeverity value to set.
      * @return the SecurityContactPropertiesAlertNotifications object itself.
      */
@@ -68,7 +72,7 @@ public final class SecurityContactPropertiesAlertNotifications {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
