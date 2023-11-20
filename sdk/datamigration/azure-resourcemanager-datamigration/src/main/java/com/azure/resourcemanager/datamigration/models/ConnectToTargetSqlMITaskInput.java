@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Input for the task that validates connection to Azure SQL Database Managed Instance. */
+/**
+ * Input for the task that validates connection to Azure SQL Database Managed Instance.
+ */
 @Fluent
 public final class ConnectToTargetSqlMITaskInput {
     /*
@@ -17,13 +19,33 @@ public final class ConnectToTargetSqlMITaskInput {
     @JsonProperty(value = "targetConnectionInfo", required = true)
     private SqlConnectionInfo targetConnectionInfo;
 
-    /** Creates an instance of ConnectToTargetSqlMITaskInput class. */
+    /*
+     * Flag for whether to collect logins from target SQL MI server.
+     */
+    @JsonProperty(value = "collectLogins")
+    private Boolean collectLogins;
+
+    /*
+     * Flag for whether to collect agent jobs from target SQL MI server.
+     */
+    @JsonProperty(value = "collectAgentJobs")
+    private Boolean collectAgentJobs;
+
+    /*
+     * Flag for whether to validate SSIS catalog is reachable on the target SQL MI server.
+     */
+    @JsonProperty(value = "validateSsisCatalogOnly")
+    private Boolean validateSsisCatalogOnly;
+
+    /**
+     * Creates an instance of ConnectToTargetSqlMITaskInput class.
+     */
     public ConnectToTargetSqlMITaskInput() {
     }
 
     /**
      * Get the targetConnectionInfo property: Connection information for target SQL Server.
-     *
+     * 
      * @return the targetConnectionInfo value.
      */
     public SqlConnectionInfo targetConnectionInfo() {
@@ -32,7 +54,7 @@ public final class ConnectToTargetSqlMITaskInput {
 
     /**
      * Set the targetConnectionInfo property: Connection information for target SQL Server.
-     *
+     * 
      * @param targetConnectionInfo the targetConnectionInfo value to set.
      * @return the ConnectToTargetSqlMITaskInput object itself.
      */
@@ -42,16 +64,76 @@ public final class ConnectToTargetSqlMITaskInput {
     }
 
     /**
+     * Get the collectLogins property: Flag for whether to collect logins from target SQL MI server.
+     * 
+     * @return the collectLogins value.
+     */
+    public Boolean collectLogins() {
+        return this.collectLogins;
+    }
+
+    /**
+     * Set the collectLogins property: Flag for whether to collect logins from target SQL MI server.
+     * 
+     * @param collectLogins the collectLogins value to set.
+     * @return the ConnectToTargetSqlMITaskInput object itself.
+     */
+    public ConnectToTargetSqlMITaskInput withCollectLogins(Boolean collectLogins) {
+        this.collectLogins = collectLogins;
+        return this;
+    }
+
+    /**
+     * Get the collectAgentJobs property: Flag for whether to collect agent jobs from target SQL MI server.
+     * 
+     * @return the collectAgentJobs value.
+     */
+    public Boolean collectAgentJobs() {
+        return this.collectAgentJobs;
+    }
+
+    /**
+     * Set the collectAgentJobs property: Flag for whether to collect agent jobs from target SQL MI server.
+     * 
+     * @param collectAgentJobs the collectAgentJobs value to set.
+     * @return the ConnectToTargetSqlMITaskInput object itself.
+     */
+    public ConnectToTargetSqlMITaskInput withCollectAgentJobs(Boolean collectAgentJobs) {
+        this.collectAgentJobs = collectAgentJobs;
+        return this;
+    }
+
+    /**
+     * Get the validateSsisCatalogOnly property: Flag for whether to validate SSIS catalog is reachable on the target
+     * SQL MI server.
+     * 
+     * @return the validateSsisCatalogOnly value.
+     */
+    public Boolean validateSsisCatalogOnly() {
+        return this.validateSsisCatalogOnly;
+    }
+
+    /**
+     * Set the validateSsisCatalogOnly property: Flag for whether to validate SSIS catalog is reachable on the target
+     * SQL MI server.
+     * 
+     * @param validateSsisCatalogOnly the validateSsisCatalogOnly value to set.
+     * @return the ConnectToTargetSqlMITaskInput object itself.
+     */
+    public ConnectToTargetSqlMITaskInput withValidateSsisCatalogOnly(Boolean validateSsisCatalogOnly) {
+        this.validateSsisCatalogOnly = validateSsisCatalogOnly;
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (targetConnectionInfo() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property targetConnectionInfo in model ConnectToTargetSqlMITaskInput"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property targetConnectionInfo in model ConnectToTargetSqlMITaskInput"));
         } else {
             targetConnectionInfo().validate();
         }

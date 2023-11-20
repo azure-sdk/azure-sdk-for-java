@@ -7,7 +7,9 @@ package com.azure.resourcemanager.datamigration.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** An Azure SKU instance. */
+/**
+ * An Azure SKU instance.
+ */
 @Fluent
 public final class ServiceSku {
     /*
@@ -17,7 +19,7 @@ public final class ServiceSku {
     private String name;
 
     /*
-     * The tier of the SKU, such as 'Free', 'Basic', 'Standard', or 'Premium'
+     * The tier of the SKU, such as 'Basic', 'General Purpose', or 'Business Critical'
      */
     @JsonProperty(value = "tier")
     private String tier;
@@ -42,13 +44,15 @@ public final class ServiceSku {
     @JsonProperty(value = "capacity")
     private Integer capacity;
 
-    /** Creates an instance of ServiceSku class. */
+    /**
+     * Creates an instance of ServiceSku class.
+     */
     public ServiceSku() {
     }
 
     /**
      * Get the name property: The unique name of the SKU, such as 'P3'.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -57,7 +61,7 @@ public final class ServiceSku {
 
     /**
      * Set the name property: The unique name of the SKU, such as 'P3'.
-     *
+     * 
      * @param name the name value to set.
      * @return the ServiceSku object itself.
      */
@@ -67,8 +71,8 @@ public final class ServiceSku {
     }
 
     /**
-     * Get the tier property: The tier of the SKU, such as 'Free', 'Basic', 'Standard', or 'Premium'.
-     *
+     * Get the tier property: The tier of the SKU, such as 'Basic', 'General Purpose', or 'Business Critical'.
+     * 
      * @return the tier value.
      */
     public String tier() {
@@ -76,8 +80,8 @@ public final class ServiceSku {
     }
 
     /**
-     * Set the tier property: The tier of the SKU, such as 'Free', 'Basic', 'Standard', or 'Premium'.
-     *
+     * Set the tier property: The tier of the SKU, such as 'Basic', 'General Purpose', or 'Business Critical'.
+     * 
      * @param tier the tier value to set.
      * @return the ServiceSku object itself.
      */
@@ -89,7 +93,7 @@ public final class ServiceSku {
     /**
      * Get the family property: The SKU family, used when the service has multiple performance classes within a tier,
      * such as 'A', 'D', etc. for virtual machines.
-     *
+     * 
      * @return the family value.
      */
     public String family() {
@@ -99,7 +103,7 @@ public final class ServiceSku {
     /**
      * Set the family property: The SKU family, used when the service has multiple performance classes within a tier,
      * such as 'A', 'D', etc. for virtual machines.
-     *
+     * 
      * @param family the family value to set.
      * @return the ServiceSku object itself.
      */
@@ -109,9 +113,9 @@ public final class ServiceSku {
     }
 
     /**
-     * Get the size property: The size of the SKU, used when the name alone does not denote a service size or when a SKU
-     * has multiple performance classes within a family, e.g. 'A1' for virtual machines.
-     *
+     * Get the size property: The size of the SKU, used when the name alone does not denote a service size or when a
+     * SKU has multiple performance classes within a family, e.g. 'A1' for virtual machines.
+     * 
      * @return the size value.
      */
     public String size() {
@@ -119,9 +123,9 @@ public final class ServiceSku {
     }
 
     /**
-     * Set the size property: The size of the SKU, used when the name alone does not denote a service size or when a SKU
-     * has multiple performance classes within a family, e.g. 'A1' for virtual machines.
-     *
+     * Set the size property: The size of the SKU, used when the name alone does not denote a service size or when a
+     * SKU has multiple performance classes within a family, e.g. 'A1' for virtual machines.
+     * 
      * @param size the size value to set.
      * @return the ServiceSku object itself.
      */
@@ -132,7 +136,7 @@ public final class ServiceSku {
 
     /**
      * Get the capacity property: The capacity of the SKU, if it supports scaling.
-     *
+     * 
      * @return the capacity value.
      */
     public Integer capacity() {
@@ -141,7 +145,7 @@ public final class ServiceSku {
 
     /**
      * Set the capacity property: The capacity of the SKU, if it supports scaling.
-     *
+     * 
      * @param capacity the capacity value to set.
      * @return the ServiceSku object itself.
      */
@@ -152,7 +156,7 @@ public final class ServiceSku {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

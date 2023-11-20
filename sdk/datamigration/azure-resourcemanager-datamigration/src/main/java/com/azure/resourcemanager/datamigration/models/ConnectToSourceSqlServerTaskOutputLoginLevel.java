@@ -47,13 +47,15 @@ public final class ConnectToSourceSqlServerTaskOutputLoginLevel extends ConnectT
     @JsonProperty(value = "migrationEligibility", access = JsonProperty.Access.WRITE_ONLY)
     private MigrationEligibilityInfo migrationEligibility;
 
-    /** Creates an instance of ConnectToSourceSqlServerTaskOutputLoginLevel class. */
+    /**
+     * Creates an instance of ConnectToSourceSqlServerTaskOutputLoginLevel class.
+     */
     public ConnectToSourceSqlServerTaskOutputLoginLevel() {
     }
 
     /**
      * Get the name property: Login name.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -62,7 +64,7 @@ public final class ConnectToSourceSqlServerTaskOutputLoginLevel extends ConnectT
 
     /**
      * Get the loginType property: The type of login.
-     *
+     * 
      * @return the loginType value.
      */
     public LoginType loginType() {
@@ -71,7 +73,7 @@ public final class ConnectToSourceSqlServerTaskOutputLoginLevel extends ConnectT
 
     /**
      * Get the defaultDatabase property: The default database for the login.
-     *
+     * 
      * @return the defaultDatabase value.
      */
     public String defaultDatabase() {
@@ -80,7 +82,7 @@ public final class ConnectToSourceSqlServerTaskOutputLoginLevel extends ConnectT
 
     /**
      * Get the isEnabled property: The state of the login.
-     *
+     * 
      * @return the isEnabled value.
      */
     public Boolean isEnabled() {
@@ -89,7 +91,7 @@ public final class ConnectToSourceSqlServerTaskOutputLoginLevel extends ConnectT
 
     /**
      * Get the migrationEligibility property: Information about eligibility of login for migration.
-     *
+     * 
      * @return the migrationEligibility value.
      */
     public MigrationEligibilityInfo migrationEligibility() {
@@ -98,7 +100,7 @@ public final class ConnectToSourceSqlServerTaskOutputLoginLevel extends ConnectT
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

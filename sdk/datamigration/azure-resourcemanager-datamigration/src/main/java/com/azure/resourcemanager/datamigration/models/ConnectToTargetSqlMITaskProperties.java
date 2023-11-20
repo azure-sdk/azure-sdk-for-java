@@ -9,8 +9,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
+import java.util.Map;
 
-/** Properties for the task that validates connection to Azure SQL Database Managed Instance. */
+/**
+ * Properties for the task that validates connection to Azure SQL Database Managed Instance.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "taskType")
 @JsonTypeName("ConnectToTarget.AzureSqlDbMI")
 @Fluent
@@ -27,13 +30,15 @@ public final class ConnectToTargetSqlMITaskProperties extends ProjectTaskPropert
     @JsonProperty(value = "output", access = JsonProperty.Access.WRITE_ONLY)
     private List<ConnectToTargetSqlMITaskOutput> output;
 
-    /** Creates an instance of ConnectToTargetSqlMITaskProperties class. */
+    /**
+     * Creates an instance of ConnectToTargetSqlMITaskProperties class.
+     */
     public ConnectToTargetSqlMITaskProperties() {
     }
 
     /**
      * Get the input property: Task input.
-     *
+     * 
      * @return the input value.
      */
     public ConnectToTargetSqlMITaskInput input() {
@@ -42,7 +47,7 @@ public final class ConnectToTargetSqlMITaskProperties extends ProjectTaskPropert
 
     /**
      * Set the input property: Task input.
-     *
+     * 
      * @param input the input value to set.
      * @return the ConnectToTargetSqlMITaskProperties object itself.
      */
@@ -53,7 +58,7 @@ public final class ConnectToTargetSqlMITaskProperties extends ProjectTaskPropert
 
     /**
      * Get the output property: Task output. This is ignored if submitted.
-     *
+     * 
      * @return the output value.
      */
     public List<ConnectToTargetSqlMITaskOutput> output() {
@@ -61,8 +66,17 @@ public final class ConnectToTargetSqlMITaskProperties extends ProjectTaskPropert
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ConnectToTargetSqlMITaskProperties withClientData(Map<String, String> clientData) {
+        super.withClientData(clientData);
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

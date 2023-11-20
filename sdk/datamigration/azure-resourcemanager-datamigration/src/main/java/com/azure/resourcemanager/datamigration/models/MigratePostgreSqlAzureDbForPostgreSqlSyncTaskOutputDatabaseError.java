@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
 
-/** The MigratePostgreSqlAzureDbForPostgreSqlSyncTaskOutputDatabaseError model. */
+/**
+ * The MigratePostgreSqlAzureDbForPostgreSqlSyncTaskOutputDatabaseError model.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "resultType")
 @JsonTypeName("DatabaseLevelErrorOutput")
 @Fluent
@@ -28,13 +30,15 @@ public final class MigratePostgreSqlAzureDbForPostgreSqlSyncTaskOutputDatabaseEr
     @JsonProperty(value = "events")
     private List<SyncMigrationDatabaseErrorEvent> events;
 
-    /** Creates an instance of MigratePostgreSqlAzureDbForPostgreSqlSyncTaskOutputDatabaseError class. */
+    /**
+     * Creates an instance of MigratePostgreSqlAzureDbForPostgreSqlSyncTaskOutputDatabaseError class.
+     */
     public MigratePostgreSqlAzureDbForPostgreSqlSyncTaskOutputDatabaseError() {
     }
 
     /**
      * Get the errorMessage property: Error message.
-     *
+     * 
      * @return the errorMessage value.
      */
     public String errorMessage() {
@@ -43,7 +47,7 @@ public final class MigratePostgreSqlAzureDbForPostgreSqlSyncTaskOutputDatabaseEr
 
     /**
      * Set the errorMessage property: Error message.
-     *
+     * 
      * @param errorMessage the errorMessage value to set.
      * @return the MigratePostgreSqlAzureDbForPostgreSqlSyncTaskOutputDatabaseError object itself.
      */
@@ -54,7 +58,7 @@ public final class MigratePostgreSqlAzureDbForPostgreSqlSyncTaskOutputDatabaseEr
 
     /**
      * Get the events property: List of error events.
-     *
+     * 
      * @return the events value.
      */
     public List<SyncMigrationDatabaseErrorEvent> events() {
@@ -63,19 +67,19 @@ public final class MigratePostgreSqlAzureDbForPostgreSqlSyncTaskOutputDatabaseEr
 
     /**
      * Set the events property: List of error events.
-     *
+     * 
      * @param events the events value to set.
      * @return the MigratePostgreSqlAzureDbForPostgreSqlSyncTaskOutputDatabaseError object itself.
      */
-    public MigratePostgreSqlAzureDbForPostgreSqlSyncTaskOutputDatabaseError withEvents(
-        List<SyncMigrationDatabaseErrorEvent> events) {
+    public MigratePostgreSqlAzureDbForPostgreSqlSyncTaskOutputDatabaseError
+        withEvents(List<SyncMigrationDatabaseErrorEvent> events) {
         this.events = events;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

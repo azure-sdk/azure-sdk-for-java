@@ -7,7 +7,9 @@ package com.azure.resourcemanager.datamigration.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** A description of the scaling capacities of the SKU. */
+/**
+ * A description of the scaling capacities of the SKU.
+ */
 @Fluent
 public final class AvailableServiceSkuCapacity {
     /*
@@ -34,13 +36,15 @@ public final class AvailableServiceSkuCapacity {
     @JsonProperty(value = "scaleType")
     private ServiceScalability scaleType;
 
-    /** Creates an instance of AvailableServiceSkuCapacity class. */
+    /**
+     * Creates an instance of AvailableServiceSkuCapacity class.
+     */
     public AvailableServiceSkuCapacity() {
     }
 
     /**
      * Get the minimum property: The minimum capacity, usually 0 or 1.
-     *
+     * 
      * @return the minimum value.
      */
     public Integer minimum() {
@@ -49,7 +53,7 @@ public final class AvailableServiceSkuCapacity {
 
     /**
      * Set the minimum property: The minimum capacity, usually 0 or 1.
-     *
+     * 
      * @param minimum the minimum value to set.
      * @return the AvailableServiceSkuCapacity object itself.
      */
@@ -60,7 +64,7 @@ public final class AvailableServiceSkuCapacity {
 
     /**
      * Get the maximum property: The maximum capacity.
-     *
+     * 
      * @return the maximum value.
      */
     public Integer maximum() {
@@ -69,7 +73,7 @@ public final class AvailableServiceSkuCapacity {
 
     /**
      * Set the maximum property: The maximum capacity.
-     *
+     * 
      * @param maximum the maximum value to set.
      * @return the AvailableServiceSkuCapacity object itself.
      */
@@ -80,7 +84,7 @@ public final class AvailableServiceSkuCapacity {
 
     /**
      * Get the defaultProperty property: The default capacity.
-     *
+     * 
      * @return the defaultProperty value.
      */
     public Integer defaultProperty() {
@@ -89,7 +93,7 @@ public final class AvailableServiceSkuCapacity {
 
     /**
      * Set the defaultProperty property: The default capacity.
-     *
+     * 
      * @param defaultProperty the defaultProperty value to set.
      * @return the AvailableServiceSkuCapacity object itself.
      */
@@ -100,7 +104,7 @@ public final class AvailableServiceSkuCapacity {
 
     /**
      * Get the scaleType property: The scalability approach.
-     *
+     * 
      * @return the scaleType value.
      */
     public ServiceScalability scaleType() {
@@ -109,7 +113,7 @@ public final class AvailableServiceSkuCapacity {
 
     /**
      * Set the scaleType property: The scalability approach.
-     *
+     * 
      * @param scaleType the scaleType value to set.
      * @return the AvailableServiceSkuCapacity object itself.
      */
@@ -120,7 +124,7 @@ public final class AvailableServiceSkuCapacity {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

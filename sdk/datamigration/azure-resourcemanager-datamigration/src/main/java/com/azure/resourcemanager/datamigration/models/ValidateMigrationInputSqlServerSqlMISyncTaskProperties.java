@@ -9,8 +9,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
+import java.util.Map;
 
-/** Properties for task that validates migration input for SQL to Azure SQL Database Managed Instance sync scenario. */
+/**
+ * Properties for task that validates migration input for SQL to Azure SQL Database Managed Instance sync scenario.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "taskType")
 @JsonTypeName("ValidateMigrationInput.SqlServer.AzureSqlDbMI.Sync.LRS")
 @Fluent
@@ -27,13 +30,15 @@ public final class ValidateMigrationInputSqlServerSqlMISyncTaskProperties extend
     @JsonProperty(value = "output", access = JsonProperty.Access.WRITE_ONLY)
     private List<ValidateMigrationInputSqlServerSqlMISyncTaskOutput> output;
 
-    /** Creates an instance of ValidateMigrationInputSqlServerSqlMISyncTaskProperties class. */
+    /**
+     * Creates an instance of ValidateMigrationInputSqlServerSqlMISyncTaskProperties class.
+     */
     public ValidateMigrationInputSqlServerSqlMISyncTaskProperties() {
     }
 
     /**
      * Get the input property: Task input.
-     *
+     * 
      * @return the input value.
      */
     public ValidateMigrationInputSqlServerSqlMISyncTaskInput input() {
@@ -42,19 +47,19 @@ public final class ValidateMigrationInputSqlServerSqlMISyncTaskProperties extend
 
     /**
      * Set the input property: Task input.
-     *
+     * 
      * @param input the input value to set.
      * @return the ValidateMigrationInputSqlServerSqlMISyncTaskProperties object itself.
      */
-    public ValidateMigrationInputSqlServerSqlMISyncTaskProperties withInput(
-        ValidateMigrationInputSqlServerSqlMISyncTaskInput input) {
+    public ValidateMigrationInputSqlServerSqlMISyncTaskProperties
+        withInput(ValidateMigrationInputSqlServerSqlMISyncTaskInput input) {
         this.input = input;
         return this;
     }
 
     /**
      * Get the output property: Task output. This is ignored if submitted.
-     *
+     * 
      * @return the output value.
      */
     public List<ValidateMigrationInputSqlServerSqlMISyncTaskOutput> output() {
@@ -62,8 +67,17 @@ public final class ValidateMigrationInputSqlServerSqlMISyncTaskProperties extend
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ValidateMigrationInputSqlServerSqlMISyncTaskProperties withClientData(Map<String, String> clientData) {
+        super.withClientData(clientData);
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

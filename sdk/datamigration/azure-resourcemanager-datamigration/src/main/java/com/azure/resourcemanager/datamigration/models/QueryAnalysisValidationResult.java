@@ -4,31 +4,35 @@
 
 package com.azure.resourcemanager.datamigration.models;
 
-import com.azure.core.annotation.Immutable;
+import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Results for query analysis comparison between the source and target. */
-@Immutable
+/**
+ * Results for query analysis comparison between the source and target.
+ */
+@Fluent
 public final class QueryAnalysisValidationResult {
     /*
      * List of queries executed and it's execution results in source and target
      */
-    @JsonProperty(value = "queryResults", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "queryResults")
     private QueryExecutionResult queryResults;
 
     /*
      * Errors that are part of the execution
      */
-    @JsonProperty(value = "validationErrors", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "validationErrors")
     private ValidationError validationErrors;
 
-    /** Creates an instance of QueryAnalysisValidationResult class. */
+    /**
+     * Creates an instance of QueryAnalysisValidationResult class.
+     */
     public QueryAnalysisValidationResult() {
     }
 
     /**
      * Get the queryResults property: List of queries executed and it's execution results in source and target.
-     *
+     * 
      * @return the queryResults value.
      */
     public QueryExecutionResult queryResults() {
@@ -36,8 +40,19 @@ public final class QueryAnalysisValidationResult {
     }
 
     /**
+     * Set the queryResults property: List of queries executed and it's execution results in source and target.
+     * 
+     * @param queryResults the queryResults value to set.
+     * @return the QueryAnalysisValidationResult object itself.
+     */
+    public QueryAnalysisValidationResult withQueryResults(QueryExecutionResult queryResults) {
+        this.queryResults = queryResults;
+        return this;
+    }
+
+    /**
      * Get the validationErrors property: Errors that are part of the execution.
-     *
+     * 
      * @return the validationErrors value.
      */
     public ValidationError validationErrors() {
@@ -45,8 +60,19 @@ public final class QueryAnalysisValidationResult {
     }
 
     /**
+     * Set the validationErrors property: Errors that are part of the execution.
+     * 
+     * @param validationErrors the validationErrors value to set.
+     * @return the QueryAnalysisValidationResult object itself.
+     */
+    public QueryAnalysisValidationResult withValidationErrors(ValidationError validationErrors) {
+        this.validationErrors = validationErrors;
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Input for the task that collects user tables for the given list of databases. */
+/**
+ * Input for the task that collects user tables for the given list of databases.
+ */
 @Fluent
 public final class GetUserTablesSqlSyncTaskInput {
     /*
@@ -36,13 +38,15 @@ public final class GetUserTablesSqlSyncTaskInput {
     @JsonProperty(value = "selectedTargetDatabases", required = true)
     private List<String> selectedTargetDatabases;
 
-    /** Creates an instance of GetUserTablesSqlSyncTaskInput class. */
+    /**
+     * Creates an instance of GetUserTablesSqlSyncTaskInput class.
+     */
     public GetUserTablesSqlSyncTaskInput() {
     }
 
     /**
      * Get the sourceConnectionInfo property: Connection information for SQL Server.
-     *
+     * 
      * @return the sourceConnectionInfo value.
      */
     public SqlConnectionInfo sourceConnectionInfo() {
@@ -51,7 +55,7 @@ public final class GetUserTablesSqlSyncTaskInput {
 
     /**
      * Set the sourceConnectionInfo property: Connection information for SQL Server.
-     *
+     * 
      * @param sourceConnectionInfo the sourceConnectionInfo value to set.
      * @return the GetUserTablesSqlSyncTaskInput object itself.
      */
@@ -62,7 +66,7 @@ public final class GetUserTablesSqlSyncTaskInput {
 
     /**
      * Get the targetConnectionInfo property: Connection information for SQL DB.
-     *
+     * 
      * @return the targetConnectionInfo value.
      */
     public SqlConnectionInfo targetConnectionInfo() {
@@ -71,7 +75,7 @@ public final class GetUserTablesSqlSyncTaskInput {
 
     /**
      * Set the targetConnectionInfo property: Connection information for SQL DB.
-     *
+     * 
      * @param targetConnectionInfo the targetConnectionInfo value to set.
      * @return the GetUserTablesSqlSyncTaskInput object itself.
      */
@@ -82,7 +86,7 @@ public final class GetUserTablesSqlSyncTaskInput {
 
     /**
      * Get the selectedSourceDatabases property: List of source database names to collect tables for.
-     *
+     * 
      * @return the selectedSourceDatabases value.
      */
     public List<String> selectedSourceDatabases() {
@@ -91,7 +95,7 @@ public final class GetUserTablesSqlSyncTaskInput {
 
     /**
      * Set the selectedSourceDatabases property: List of source database names to collect tables for.
-     *
+     * 
      * @param selectedSourceDatabases the selectedSourceDatabases value to set.
      * @return the GetUserTablesSqlSyncTaskInput object itself.
      */
@@ -102,7 +106,7 @@ public final class GetUserTablesSqlSyncTaskInput {
 
     /**
      * Get the selectedTargetDatabases property: List of target database names to collect tables for.
-     *
+     * 
      * @return the selectedTargetDatabases value.
      */
     public List<String> selectedTargetDatabases() {
@@ -111,7 +115,7 @@ public final class GetUserTablesSqlSyncTaskInput {
 
     /**
      * Set the selectedTargetDatabases property: List of target database names to collect tables for.
-     *
+     * 
      * @param selectedTargetDatabases the selectedTargetDatabases value to set.
      * @return the GetUserTablesSqlSyncTaskInput object itself.
      */
@@ -122,37 +126,29 @@ public final class GetUserTablesSqlSyncTaskInput {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (sourceConnectionInfo() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property sourceConnectionInfo in model GetUserTablesSqlSyncTaskInput"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property sourceConnectionInfo in model GetUserTablesSqlSyncTaskInput"));
         } else {
             sourceConnectionInfo().validate();
         }
         if (targetConnectionInfo() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property targetConnectionInfo in model GetUserTablesSqlSyncTaskInput"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property targetConnectionInfo in model GetUserTablesSqlSyncTaskInput"));
         } else {
             targetConnectionInfo().validate();
         }
         if (selectedSourceDatabases() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property selectedSourceDatabases in model GetUserTablesSqlSyncTaskInput"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property selectedSourceDatabases in model GetUserTablesSqlSyncTaskInput"));
         }
         if (selectedTargetDatabases() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property selectedTargetDatabases in model GetUserTablesSqlSyncTaskInput"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property selectedTargetDatabases in model GetUserTablesSqlSyncTaskInput"));
         }
     }
 

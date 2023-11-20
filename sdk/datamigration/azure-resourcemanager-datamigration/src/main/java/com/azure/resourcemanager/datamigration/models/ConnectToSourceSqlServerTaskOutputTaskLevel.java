@@ -11,7 +11,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
 
 /**
- * Task level output for the task that validates connection to SQL Server and also validates source server requirements.
+ * Task level output for the task that validates connection to SQL Server and also validates source server
+ * requirements.
  */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "resultType")
 @JsonTypeName("TaskLevelOutput")
@@ -36,6 +37,12 @@ public final class ConnectToSourceSqlServerTaskOutputTaskLevel extends ConnectTo
     private String agentJobs;
 
     /*
+     * Mapping from database name to TDE certificate name, if applicable
+     */
+    @JsonProperty(value = "databaseTdeCertificateMapping", access = JsonProperty.Access.WRITE_ONLY)
+    private String databaseTdeCertificateMapping;
+
+    /*
      * Source server version
      */
     @JsonProperty(value = "sourceServerVersion", access = JsonProperty.Access.WRITE_ONLY)
@@ -53,13 +60,15 @@ public final class ConnectToSourceSqlServerTaskOutputTaskLevel extends ConnectTo
     @JsonProperty(value = "validationErrors", access = JsonProperty.Access.WRITE_ONLY)
     private List<ReportableException> validationErrors;
 
-    /** Creates an instance of ConnectToSourceSqlServerTaskOutputTaskLevel class. */
+    /**
+     * Creates an instance of ConnectToSourceSqlServerTaskOutputTaskLevel class.
+     */
     public ConnectToSourceSqlServerTaskOutputTaskLevel() {
     }
 
     /**
      * Get the databases property: Source databases as a map from database name to database id.
-     *
+     * 
      * @return the databases value.
      */
     public String databases() {
@@ -68,7 +77,7 @@ public final class ConnectToSourceSqlServerTaskOutputTaskLevel extends ConnectTo
 
     /**
      * Get the logins property: Source logins as a map from login name to login id.
-     *
+     * 
      * @return the logins value.
      */
     public String logins() {
@@ -77,7 +86,7 @@ public final class ConnectToSourceSqlServerTaskOutputTaskLevel extends ConnectTo
 
     /**
      * Get the agentJobs property: Source agent jobs as a map from agent job name to id.
-     *
+     * 
      * @return the agentJobs value.
      */
     public String agentJobs() {
@@ -85,8 +94,18 @@ public final class ConnectToSourceSqlServerTaskOutputTaskLevel extends ConnectTo
     }
 
     /**
+     * Get the databaseTdeCertificateMapping property: Mapping from database name to TDE certificate name, if
+     * applicable.
+     * 
+     * @return the databaseTdeCertificateMapping value.
+     */
+    public String databaseTdeCertificateMapping() {
+        return this.databaseTdeCertificateMapping;
+    }
+
+    /**
      * Get the sourceServerVersion property: Source server version.
-     *
+     * 
      * @return the sourceServerVersion value.
      */
     public String sourceServerVersion() {
@@ -95,7 +114,7 @@ public final class ConnectToSourceSqlServerTaskOutputTaskLevel extends ConnectTo
 
     /**
      * Get the sourceServerBrandVersion property: Source server brand version.
-     *
+     * 
      * @return the sourceServerBrandVersion value.
      */
     public String sourceServerBrandVersion() {
@@ -104,7 +123,7 @@ public final class ConnectToSourceSqlServerTaskOutputTaskLevel extends ConnectTo
 
     /**
      * Get the validationErrors property: Validation errors.
-     *
+     * 
      * @return the validationErrors value.
      */
     public List<ReportableException> validationErrors() {
@@ -113,7 +132,7 @@ public final class ConnectToSourceSqlServerTaskOutputTaskLevel extends ConnectTo
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

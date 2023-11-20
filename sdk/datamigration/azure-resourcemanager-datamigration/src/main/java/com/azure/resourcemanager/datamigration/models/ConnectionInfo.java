@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Defines the connection properties of a server. */
+/**
+ * Defines the connection properties of a server.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
@@ -18,11 +20,12 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     defaultImpl = ConnectionInfo.class)
 @JsonTypeName("ConnectionInfo")
 @JsonSubTypes({
+    @JsonSubTypes.Type(name = "MongoDbConnectionInfo", value = MongoDbConnectionInfo.class),
     @JsonSubTypes.Type(name = "SqlConnectionInfo", value = SqlConnectionInfo.class),
     @JsonSubTypes.Type(name = "MySqlConnectionInfo", value = MySqlConnectionInfo.class),
+    @JsonSubTypes.Type(name = "OracleConnectionInfo", value = OracleConnectionInfo.class),
     @JsonSubTypes.Type(name = "PostgreSqlConnectionInfo", value = PostgreSqlConnectionInfo.class),
-    @JsonSubTypes.Type(name = "MiSqlConnectionInfo", value = MiSqlConnectionInfo.class)
-})
+    @JsonSubTypes.Type(name = "MiSqlConnectionInfo", value = MiSqlConnectionInfo.class) })
 @Fluent
 public class ConnectionInfo {
     /*
@@ -37,13 +40,15 @@ public class ConnectionInfo {
     @JsonProperty(value = "password")
     private String password;
 
-    /** Creates an instance of ConnectionInfo class. */
+    /**
+     * Creates an instance of ConnectionInfo class.
+     */
     public ConnectionInfo() {
     }
 
     /**
      * Get the username property: User name.
-     *
+     * 
      * @return the username value.
      */
     public String username() {
@@ -52,7 +57,7 @@ public class ConnectionInfo {
 
     /**
      * Set the username property: User name.
-     *
+     * 
      * @param username the username value to set.
      * @return the ConnectionInfo object itself.
      */
@@ -63,7 +68,7 @@ public class ConnectionInfo {
 
     /**
      * Get the password property: Password credential.
-     *
+     * 
      * @return the password value.
      */
     public String password() {
@@ -72,7 +77,7 @@ public class ConnectionInfo {
 
     /**
      * Set the password property: Password credential.
-     *
+     * 
      * @param password the password value to set.
      * @return the ConnectionInfo object itself.
      */
@@ -83,7 +88,7 @@ public class ConnectionInfo {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

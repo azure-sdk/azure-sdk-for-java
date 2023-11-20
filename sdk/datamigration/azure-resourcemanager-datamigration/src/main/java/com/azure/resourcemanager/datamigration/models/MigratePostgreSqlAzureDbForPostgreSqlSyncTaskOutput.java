@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Output for the task that migrates PostgreSQL databases to Azure Database for PostgreSQL for online migrations. */
+/**
+ * Output for the task that migrates PostgreSQL databases to Azure Database for PostgreSQL for online migrations.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
@@ -30,8 +32,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     @JsonSubTypes.Type(name = "ErrorOutput", value = MigratePostgreSqlAzureDbForPostgreSqlSyncTaskOutputError.class),
     @JsonSubTypes.Type(
         name = "DatabaseLevelErrorOutput",
-        value = MigratePostgreSqlAzureDbForPostgreSqlSyncTaskOutputDatabaseError.class)
-})
+        value = MigratePostgreSqlAzureDbForPostgreSqlSyncTaskOutputDatabaseError.class) })
 @Immutable
 public class MigratePostgreSqlAzureDbForPostgreSqlSyncTaskOutput {
     /*
@@ -40,13 +41,15 @@ public class MigratePostgreSqlAzureDbForPostgreSqlSyncTaskOutput {
     @JsonProperty(value = "id", access = JsonProperty.Access.WRITE_ONLY)
     private String id;
 
-    /** Creates an instance of MigratePostgreSqlAzureDbForPostgreSqlSyncTaskOutput class. */
+    /**
+     * Creates an instance of MigratePostgreSqlAzureDbForPostgreSqlSyncTaskOutput class.
+     */
     public MigratePostgreSqlAzureDbForPostgreSqlSyncTaskOutput() {
     }
 
     /**
      * Get the id property: Result identifier.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -55,7 +58,7 @@ public class MigratePostgreSqlAzureDbForPostgreSqlSyncTaskOutput {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

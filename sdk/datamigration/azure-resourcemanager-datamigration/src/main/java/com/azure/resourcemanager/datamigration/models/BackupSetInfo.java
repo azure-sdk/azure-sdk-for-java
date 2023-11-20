@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** Information of backup set. */
+/**
+ * Information of backup set.
+ */
 @Fluent
 public final class BackupSetInfo {
     /*
@@ -72,13 +74,15 @@ public final class BackupSetInfo {
     @JsonProperty(value = "isBackupRestored")
     private Boolean isBackupRestored;
 
-    /** Creates an instance of BackupSetInfo class. */
+    /**
+     * Creates an instance of BackupSetInfo class.
+     */
     public BackupSetInfo() {
     }
 
     /**
      * Get the backupSetId property: Id for the set of backup files.
-     *
+     * 
      * @return the backupSetId value.
      */
     public String backupSetId() {
@@ -87,7 +91,7 @@ public final class BackupSetInfo {
 
     /**
      * Set the backupSetId property: Id for the set of backup files.
-     *
+     * 
      * @param backupSetId the backupSetId value to set.
      * @return the BackupSetInfo object itself.
      */
@@ -98,7 +102,7 @@ public final class BackupSetInfo {
 
     /**
      * Get the firstLsn property: First log sequence number of the backup file.
-     *
+     * 
      * @return the firstLsn value.
      */
     public String firstLsn() {
@@ -107,7 +111,7 @@ public final class BackupSetInfo {
 
     /**
      * Set the firstLsn property: First log sequence number of the backup file.
-     *
+     * 
      * @param firstLsn the firstLsn value to set.
      * @return the BackupSetInfo object itself.
      */
@@ -118,7 +122,7 @@ public final class BackupSetInfo {
 
     /**
      * Get the lastLsn property: Last log sequence number of the backup file.
-     *
+     * 
      * @return the lastLsn value.
      */
     public String lastLsn() {
@@ -127,7 +131,7 @@ public final class BackupSetInfo {
 
     /**
      * Set the lastLsn property: Last log sequence number of the backup file.
-     *
+     * 
      * @param lastLsn the lastLsn value to set.
      * @return the BackupSetInfo object itself.
      */
@@ -138,7 +142,7 @@ public final class BackupSetInfo {
 
     /**
      * Get the lastModifiedTime property: Last modified time of the backup file in share location.
-     *
+     * 
      * @return the lastModifiedTime value.
      */
     public OffsetDateTime lastModifiedTime() {
@@ -147,7 +151,7 @@ public final class BackupSetInfo {
 
     /**
      * Set the lastModifiedTime property: Last modified time of the backup file in share location.
-     *
+     * 
      * @param lastModifiedTime the lastModifiedTime value to set.
      * @return the BackupSetInfo object itself.
      */
@@ -158,7 +162,7 @@ public final class BackupSetInfo {
 
     /**
      * Get the backupType property: Enum of the different backup types.
-     *
+     * 
      * @return the backupType value.
      */
     public BackupType backupType() {
@@ -167,7 +171,7 @@ public final class BackupSetInfo {
 
     /**
      * Set the backupType property: Enum of the different backup types.
-     *
+     * 
      * @param backupType the backupType value to set.
      * @return the BackupSetInfo object itself.
      */
@@ -178,7 +182,7 @@ public final class BackupSetInfo {
 
     /**
      * Get the listOfBackupFiles property: List of files in the backup set.
-     *
+     * 
      * @return the listOfBackupFiles value.
      */
     public List<BackupFileInfo> listOfBackupFiles() {
@@ -187,7 +191,7 @@ public final class BackupSetInfo {
 
     /**
      * Set the listOfBackupFiles property: List of files in the backup set.
-     *
+     * 
      * @param listOfBackupFiles the listOfBackupFiles value to set.
      * @return the BackupSetInfo object itself.
      */
@@ -198,7 +202,7 @@ public final class BackupSetInfo {
 
     /**
      * Get the databaseName property: Name of the database to which the backup set belongs.
-     *
+     * 
      * @return the databaseName value.
      */
     public String databaseName() {
@@ -207,7 +211,7 @@ public final class BackupSetInfo {
 
     /**
      * Set the databaseName property: Name of the database to which the backup set belongs.
-     *
+     * 
      * @param databaseName the databaseName value to set.
      * @return the BackupSetInfo object itself.
      */
@@ -218,7 +222,7 @@ public final class BackupSetInfo {
 
     /**
      * Get the backupStartDate property: Date and time that the backup operation began.
-     *
+     * 
      * @return the backupStartDate value.
      */
     public OffsetDateTime backupStartDate() {
@@ -227,7 +231,7 @@ public final class BackupSetInfo {
 
     /**
      * Set the backupStartDate property: Date and time that the backup operation began.
-     *
+     * 
      * @param backupStartDate the backupStartDate value to set.
      * @return the BackupSetInfo object itself.
      */
@@ -238,7 +242,7 @@ public final class BackupSetInfo {
 
     /**
      * Get the backupFinishedDate property: Date and time that the backup operation finished.
-     *
+     * 
      * @return the backupFinishedDate value.
      */
     public OffsetDateTime backupFinishedDate() {
@@ -247,7 +251,7 @@ public final class BackupSetInfo {
 
     /**
      * Set the backupFinishedDate property: Date and time that the backup operation finished.
-     *
+     * 
      * @param backupFinishedDate the backupFinishedDate value to set.
      * @return the BackupSetInfo object itself.
      */
@@ -258,7 +262,7 @@ public final class BackupSetInfo {
 
     /**
      * Get the isBackupRestored property: Whether the backup set is restored or not.
-     *
+     * 
      * @return the isBackupRestored value.
      */
     public Boolean isBackupRestored() {
@@ -267,7 +271,7 @@ public final class BackupSetInfo {
 
     /**
      * Set the isBackupRestored property: Whether the backup set is restored or not.
-     *
+     * 
      * @param isBackupRestored the isBackupRestored value to set.
      * @return the BackupSetInfo object itself.
      */
@@ -278,7 +282,7 @@ public final class BackupSetInfo {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

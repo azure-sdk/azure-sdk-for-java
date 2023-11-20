@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** An enumeration of possible target types when migrating from MySQL. */
+/**
+ * An enumeration of possible target types when migrating from MySQL.
+ */
 public final class MySqlTargetPlatformType extends ExpandableStringEnum<MySqlTargetPlatformType> {
-    /** Static value SqlServer for MySqlTargetPlatformType. */
+    /**
+     * Static value SqlServer for MySqlTargetPlatformType.
+     */
     public static final MySqlTargetPlatformType SQL_SERVER = fromString("SqlServer");
 
-    /** Static value AzureDbForMySQL for MySqlTargetPlatformType. */
+    /**
+     * Static value AzureDbForMySQL for MySqlTargetPlatformType.
+     */
     public static final MySqlTargetPlatformType AZURE_DB_FOR_MY_SQL = fromString("AzureDbForMySQL");
 
     /**
      * Creates a new instance of MySqlTargetPlatformType value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class MySqlTargetPlatformType extends ExpandableStringEnum<MySqlTar
 
     /**
      * Creates or finds a MySqlTargetPlatformType from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding MySqlTargetPlatformType.
      */
@@ -38,7 +44,7 @@ public final class MySqlTargetPlatformType extends ExpandableStringEnum<MySqlTar
 
     /**
      * Gets known MySqlTargetPlatformType values.
-     *
+     * 
      * @return known MySqlTargetPlatformType values.
      */
     public static Collection<MySqlTargetPlatformType> values() {

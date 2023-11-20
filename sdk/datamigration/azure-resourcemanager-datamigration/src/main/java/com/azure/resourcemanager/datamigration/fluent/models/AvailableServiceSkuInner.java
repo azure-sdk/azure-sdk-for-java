@@ -9,7 +9,9 @@ import com.azure.resourcemanager.datamigration.models.AvailableServiceSkuCapacit
 import com.azure.resourcemanager.datamigration.models.AvailableServiceSkuSku;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Describes the available service SKU. */
+/**
+ * Describes the available service SKU.
+ */
 @Fluent
 public final class AvailableServiceSkuInner {
     /*
@@ -30,13 +32,15 @@ public final class AvailableServiceSkuInner {
     @JsonProperty(value = "capacity")
     private AvailableServiceSkuCapacity capacity;
 
-    /** Creates an instance of AvailableServiceSkuInner class. */
+    /**
+     * Creates an instance of AvailableServiceSkuInner class.
+     */
     public AvailableServiceSkuInner() {
     }
 
     /**
      * Get the resourceType property: The resource type, including the provider namespace.
-     *
+     * 
      * @return the resourceType value.
      */
     public String resourceType() {
@@ -45,7 +49,7 @@ public final class AvailableServiceSkuInner {
 
     /**
      * Set the resourceType property: The resource type, including the provider namespace.
-     *
+     * 
      * @param resourceType the resourceType value to set.
      * @return the AvailableServiceSkuInner object itself.
      */
@@ -56,7 +60,7 @@ public final class AvailableServiceSkuInner {
 
     /**
      * Get the sku property: SKU name, tier, etc.
-     *
+     * 
      * @return the sku value.
      */
     public AvailableServiceSkuSku sku() {
@@ -65,7 +69,7 @@ public final class AvailableServiceSkuInner {
 
     /**
      * Set the sku property: SKU name, tier, etc.
-     *
+     * 
      * @param sku the sku value to set.
      * @return the AvailableServiceSkuInner object itself.
      */
@@ -76,7 +80,7 @@ public final class AvailableServiceSkuInner {
 
     /**
      * Get the capacity property: A description of the scaling capacities of the SKU.
-     *
+     * 
      * @return the capacity value.
      */
     public AvailableServiceSkuCapacity capacity() {
@@ -85,7 +89,7 @@ public final class AvailableServiceSkuInner {
 
     /**
      * Set the capacity property: A description of the scaling capacities of the SKU.
-     *
+     * 
      * @param capacity the capacity value to set.
      * @return the AvailableServiceSkuInner object itself.
      */
@@ -96,7 +100,7 @@ public final class AvailableServiceSkuInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

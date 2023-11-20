@@ -4,31 +4,35 @@
 
 package com.azure.resourcemanager.datamigration.models;
 
-import com.azure.core.annotation.Immutable;
+import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Migration validation report result, contains the url for downloading the generated report. */
-@Immutable
+/**
+ * Migration validation report result, contains the url for downloading the generated report.
+ */
+@Fluent
 public final class MigrationReportResult {
     /*
      * Migration validation result identifier
      */
-    @JsonProperty(value = "id", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "id")
     private String id;
 
     /*
      * The url of the report.
      */
-    @JsonProperty(value = "reportUrl", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "reportUrl")
     private String reportUrl;
 
-    /** Creates an instance of MigrationReportResult class. */
+    /**
+     * Creates an instance of MigrationReportResult class.
+     */
     public MigrationReportResult() {
     }
 
     /**
      * Get the id property: Migration validation result identifier.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -36,8 +40,19 @@ public final class MigrationReportResult {
     }
 
     /**
+     * Set the id property: Migration validation result identifier.
+     * 
+     * @param id the id value to set.
+     * @return the MigrationReportResult object itself.
+     */
+    public MigrationReportResult withId(String id) {
+        this.id = id;
+        return this;
+    }
+
+    /**
      * Get the reportUrl property: The url of the report.
-     *
+     * 
      * @return the reportUrl value.
      */
     public String reportUrl() {
@@ -45,8 +60,19 @@ public final class MigrationReportResult {
     }
 
     /**
+     * Set the reportUrl property: The url of the report.
+     * 
+     * @param reportUrl the reportUrl value to set.
+     * @return the MigrationReportResult object itself.
+     */
+    public MigrationReportResult withReportUrl(String reportUrl) {
+        this.reportUrl = reportUrl;
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

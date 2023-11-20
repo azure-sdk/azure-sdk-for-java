@@ -11,7 +11,9 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** Database level result for Sql Server to Azure Sql DB migration. */
+/**
+ * The MigrateSqlServerSqlDbTaskOutputDatabaseLevel model.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "resultType")
 @JsonTypeName("DatabaseLevelOutput")
 @Immutable
@@ -100,13 +102,15 @@ public final class MigrateSqlServerSqlDbTaskOutputDatabaseLevel extends MigrateS
     @JsonProperty(value = "objectSummary", access = JsonProperty.Access.WRITE_ONLY)
     private String objectSummary;
 
-    /** Creates an instance of MigrateSqlServerSqlDbTaskOutputDatabaseLevel class. */
+    /**
+     * Creates an instance of MigrateSqlServerSqlDbTaskOutputDatabaseLevel class.
+     */
     public MigrateSqlServerSqlDbTaskOutputDatabaseLevel() {
     }
 
     /**
      * Get the databaseName property: Name of the item.
-     *
+     * 
      * @return the databaseName value.
      */
     public String databaseName() {
@@ -115,7 +119,7 @@ public final class MigrateSqlServerSqlDbTaskOutputDatabaseLevel extends MigrateS
 
     /**
      * Get the startedOn property: Migration start time.
-     *
+     * 
      * @return the startedOn value.
      */
     public OffsetDateTime startedOn() {
@@ -124,7 +128,7 @@ public final class MigrateSqlServerSqlDbTaskOutputDatabaseLevel extends MigrateS
 
     /**
      * Get the endedOn property: Migration end time.
-     *
+     * 
      * @return the endedOn value.
      */
     public OffsetDateTime endedOn() {
@@ -133,7 +137,7 @@ public final class MigrateSqlServerSqlDbTaskOutputDatabaseLevel extends MigrateS
 
     /**
      * Get the state property: Current state of migration.
-     *
+     * 
      * @return the state value.
      */
     public MigrationState state() {
@@ -142,7 +146,7 @@ public final class MigrateSqlServerSqlDbTaskOutputDatabaseLevel extends MigrateS
 
     /**
      * Get the stage property: Migration stage that this database is in.
-     *
+     * 
      * @return the stage value.
      */
     public DatabaseMigrationStage stage() {
@@ -151,7 +155,7 @@ public final class MigrateSqlServerSqlDbTaskOutputDatabaseLevel extends MigrateS
 
     /**
      * Get the statusMessage property: Status message.
-     *
+     * 
      * @return the statusMessage value.
      */
     public String statusMessage() {
@@ -160,7 +164,7 @@ public final class MigrateSqlServerSqlDbTaskOutputDatabaseLevel extends MigrateS
 
     /**
      * Get the message property: Migration progress message.
-     *
+     * 
      * @return the message value.
      */
     public String message() {
@@ -169,7 +173,7 @@ public final class MigrateSqlServerSqlDbTaskOutputDatabaseLevel extends MigrateS
 
     /**
      * Get the numberOfObjects property: Number of objects.
-     *
+     * 
      * @return the numberOfObjects value.
      */
     public Long numberOfObjects() {
@@ -178,7 +182,7 @@ public final class MigrateSqlServerSqlDbTaskOutputDatabaseLevel extends MigrateS
 
     /**
      * Get the numberOfObjectsCompleted property: Number of successfully completed objects.
-     *
+     * 
      * @return the numberOfObjectsCompleted value.
      */
     public Long numberOfObjectsCompleted() {
@@ -187,7 +191,7 @@ public final class MigrateSqlServerSqlDbTaskOutputDatabaseLevel extends MigrateS
 
     /**
      * Get the errorCount property: Number of database/object errors.
-     *
+     * 
      * @return the errorCount value.
      */
     public Long errorCount() {
@@ -196,7 +200,7 @@ public final class MigrateSqlServerSqlDbTaskOutputDatabaseLevel extends MigrateS
 
     /**
      * Get the errorPrefix property: Wildcard string prefix to use for querying all errors of the item.
-     *
+     * 
      * @return the errorPrefix value.
      */
     public String errorPrefix() {
@@ -205,7 +209,7 @@ public final class MigrateSqlServerSqlDbTaskOutputDatabaseLevel extends MigrateS
 
     /**
      * Get the resultPrefix property: Wildcard string prefix to use for querying all sub-tem results of the item.
-     *
+     * 
      * @return the resultPrefix value.
      */
     public String resultPrefix() {
@@ -214,7 +218,7 @@ public final class MigrateSqlServerSqlDbTaskOutputDatabaseLevel extends MigrateS
 
     /**
      * Get the exceptionsAndWarnings property: Migration exceptions and warnings.
-     *
+     * 
      * @return the exceptionsAndWarnings value.
      */
     public List<ReportableException> exceptionsAndWarnings() {
@@ -223,7 +227,7 @@ public final class MigrateSqlServerSqlDbTaskOutputDatabaseLevel extends MigrateS
 
     /**
      * Get the objectSummary property: Summary of object results in the migration.
-     *
+     * 
      * @return the objectSummary value.
      */
     public String objectSummary() {
@@ -232,7 +236,7 @@ public final class MigrateSqlServerSqlDbTaskOutputDatabaseLevel extends MigrateS
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

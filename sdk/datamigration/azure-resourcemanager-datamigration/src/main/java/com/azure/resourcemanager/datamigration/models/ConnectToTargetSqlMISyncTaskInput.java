@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Input for the task that validates connection to Azure SQL Database Managed Instance online scenario. */
+/**
+ * Input for the task that validates connection to Azure SQL Database Managed Instance online scenario.
+ */
 @Fluent
 public final class ConnectToTargetSqlMISyncTaskInput {
     /*
@@ -18,19 +20,21 @@ public final class ConnectToTargetSqlMISyncTaskInput {
     private MiSqlConnectionInfo targetConnectionInfo;
 
     /*
-     * Azure Active Directory Application the DMS instance will use to connect to the target instance of Azure SQL
-     * Database Managed Instance and the Azure Storage Account
+     * Azure Active Directory Application the DMS (classic) instance will use to connect to the target instance of
+     * Azure SQL Database Managed Instance and the Azure Storage Account
      */
     @JsonProperty(value = "azureApp", required = true)
     private AzureActiveDirectoryApp azureApp;
 
-    /** Creates an instance of ConnectToTargetSqlMISyncTaskInput class. */
+    /**
+     * Creates an instance of ConnectToTargetSqlMISyncTaskInput class.
+     */
     public ConnectToTargetSqlMISyncTaskInput() {
     }
 
     /**
      * Get the targetConnectionInfo property: Connection information for Azure SQL Database Managed Instance.
-     *
+     * 
      * @return the targetConnectionInfo value.
      */
     public MiSqlConnectionInfo targetConnectionInfo() {
@@ -39,7 +43,7 @@ public final class ConnectToTargetSqlMISyncTaskInput {
 
     /**
      * Set the targetConnectionInfo property: Connection information for Azure SQL Database Managed Instance.
-     *
+     * 
      * @param targetConnectionInfo the targetConnectionInfo value to set.
      * @return the ConnectToTargetSqlMISyncTaskInput object itself.
      */
@@ -49,9 +53,9 @@ public final class ConnectToTargetSqlMISyncTaskInput {
     }
 
     /**
-     * Get the azureApp property: Azure Active Directory Application the DMS instance will use to connect to the target
-     * instance of Azure SQL Database Managed Instance and the Azure Storage Account.
-     *
+     * Get the azureApp property: Azure Active Directory Application the DMS (classic) instance will use to connect to
+     * the target instance of Azure SQL Database Managed Instance and the Azure Storage Account.
+     * 
      * @return the azureApp value.
      */
     public AzureActiveDirectoryApp azureApp() {
@@ -59,9 +63,9 @@ public final class ConnectToTargetSqlMISyncTaskInput {
     }
 
     /**
-     * Set the azureApp property: Azure Active Directory Application the DMS instance will use to connect to the target
-     * instance of Azure SQL Database Managed Instance and the Azure Storage Account.
-     *
+     * Set the azureApp property: Azure Active Directory Application the DMS (classic) instance will use to connect to
+     * the target instance of Azure SQL Database Managed Instance and the Azure Storage Account.
+     * 
      * @param azureApp the azureApp value to set.
      * @return the ConnectToTargetSqlMISyncTaskInput object itself.
      */
@@ -72,23 +76,19 @@ public final class ConnectToTargetSqlMISyncTaskInput {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (targetConnectionInfo() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property targetConnectionInfo in model ConnectToTargetSqlMISyncTaskInput"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property targetConnectionInfo in model ConnectToTargetSqlMISyncTaskInput"));
         } else {
             targetConnectionInfo().validate();
         }
         if (azureApp() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property azureApp in model ConnectToTargetSqlMISyncTaskInput"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property azureApp in model ConnectToTargetSqlMISyncTaskInput"));
         } else {
             azureApp().validate();
         }

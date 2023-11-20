@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Input for task that validates migration input for SQL sync migrations. */
+/**
+ * Input for task that validates migration input for SQL sync migrations.
+ */
 @Fluent
 public final class ValidateSyncMigrationInputSqlServerTaskInput {
     /*
@@ -30,13 +32,15 @@ public final class ValidateSyncMigrationInputSqlServerTaskInput {
     @JsonProperty(value = "selectedDatabases", required = true)
     private List<MigrateSqlServerSqlDbSyncDatabaseInput> selectedDatabases;
 
-    /** Creates an instance of ValidateSyncMigrationInputSqlServerTaskInput class. */
+    /**
+     * Creates an instance of ValidateSyncMigrationInputSqlServerTaskInput class.
+     */
     public ValidateSyncMigrationInputSqlServerTaskInput() {
     }
 
     /**
      * Get the sourceConnectionInfo property: Information for connecting to source SQL server.
-     *
+     * 
      * @return the sourceConnectionInfo value.
      */
     public SqlConnectionInfo sourceConnectionInfo() {
@@ -45,19 +49,19 @@ public final class ValidateSyncMigrationInputSqlServerTaskInput {
 
     /**
      * Set the sourceConnectionInfo property: Information for connecting to source SQL server.
-     *
+     * 
      * @param sourceConnectionInfo the sourceConnectionInfo value to set.
      * @return the ValidateSyncMigrationInputSqlServerTaskInput object itself.
      */
-    public ValidateSyncMigrationInputSqlServerTaskInput withSourceConnectionInfo(
-        SqlConnectionInfo sourceConnectionInfo) {
+    public ValidateSyncMigrationInputSqlServerTaskInput
+        withSourceConnectionInfo(SqlConnectionInfo sourceConnectionInfo) {
         this.sourceConnectionInfo = sourceConnectionInfo;
         return this;
     }
 
     /**
      * Get the targetConnectionInfo property: Information for connecting to target.
-     *
+     * 
      * @return the targetConnectionInfo value.
      */
     public SqlConnectionInfo targetConnectionInfo() {
@@ -66,19 +70,19 @@ public final class ValidateSyncMigrationInputSqlServerTaskInput {
 
     /**
      * Set the targetConnectionInfo property: Information for connecting to target.
-     *
+     * 
      * @param targetConnectionInfo the targetConnectionInfo value to set.
      * @return the ValidateSyncMigrationInputSqlServerTaskInput object itself.
      */
-    public ValidateSyncMigrationInputSqlServerTaskInput withTargetConnectionInfo(
-        SqlConnectionInfo targetConnectionInfo) {
+    public ValidateSyncMigrationInputSqlServerTaskInput
+        withTargetConnectionInfo(SqlConnectionInfo targetConnectionInfo) {
         this.targetConnectionInfo = targetConnectionInfo;
         return this;
     }
 
     /**
      * Get the selectedDatabases property: Databases to migrate.
-     *
+     * 
      * @return the selectedDatabases value.
      */
     public List<MigrateSqlServerSqlDbSyncDatabaseInput> selectedDatabases() {
@@ -87,46 +91,37 @@ public final class ValidateSyncMigrationInputSqlServerTaskInput {
 
     /**
      * Set the selectedDatabases property: Databases to migrate.
-     *
+     * 
      * @param selectedDatabases the selectedDatabases value to set.
      * @return the ValidateSyncMigrationInputSqlServerTaskInput object itself.
      */
-    public ValidateSyncMigrationInputSqlServerTaskInput withSelectedDatabases(
-        List<MigrateSqlServerSqlDbSyncDatabaseInput> selectedDatabases) {
+    public ValidateSyncMigrationInputSqlServerTaskInput
+        withSelectedDatabases(List<MigrateSqlServerSqlDbSyncDatabaseInput> selectedDatabases) {
         this.selectedDatabases = selectedDatabases;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (sourceConnectionInfo() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property sourceConnectionInfo in model"
-                            + " ValidateSyncMigrationInputSqlServerTaskInput"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property sourceConnectionInfo in model ValidateSyncMigrationInputSqlServerTaskInput"));
         } else {
             sourceConnectionInfo().validate();
         }
         if (targetConnectionInfo() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property targetConnectionInfo in model"
-                            + " ValidateSyncMigrationInputSqlServerTaskInput"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property targetConnectionInfo in model ValidateSyncMigrationInputSqlServerTaskInput"));
         } else {
             targetConnectionInfo().validate();
         }
         if (selectedDatabases() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property selectedDatabases in model"
-                            + " ValidateSyncMigrationInputSqlServerTaskInput"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property selectedDatabases in model ValidateSyncMigrationInputSqlServerTaskInput"));
         } else {
             selectedDatabases().forEach(e -> e.validate());
         }

@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Database specific information for SQL to Azure SQL DB Managed Instance migration task inputs. */
+/**
+ * Database specific information for SQL to Azure SQL DB Managed Instance migration task inputs.
+ */
 @Fluent
 public final class MigrateSqlServerSqlMIDatabaseInput {
     /*
@@ -36,13 +38,21 @@ public final class MigrateSqlServerSqlMIDatabaseInput {
     @JsonProperty(value = "backupFilePaths")
     private List<String> backupFilePaths;
 
-    /** Creates an instance of MigrateSqlServerSqlMIDatabaseInput class. */
+    /*
+     * id of the database
+     */
+    @JsonProperty(value = "id")
+    private String id;
+
+    /**
+     * Creates an instance of MigrateSqlServerSqlMIDatabaseInput class.
+     */
     public MigrateSqlServerSqlMIDatabaseInput() {
     }
 
     /**
      * Get the name property: Name of the database.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -51,7 +61,7 @@ public final class MigrateSqlServerSqlMIDatabaseInput {
 
     /**
      * Set the name property: Name of the database.
-     *
+     * 
      * @param name the name value to set.
      * @return the MigrateSqlServerSqlMIDatabaseInput object itself.
      */
@@ -62,7 +72,7 @@ public final class MigrateSqlServerSqlMIDatabaseInput {
 
     /**
      * Get the restoreDatabaseName property: Name of the database at destination.
-     *
+     * 
      * @return the restoreDatabaseName value.
      */
     public String restoreDatabaseName() {
@@ -71,7 +81,7 @@ public final class MigrateSqlServerSqlMIDatabaseInput {
 
     /**
      * Set the restoreDatabaseName property: Name of the database at destination.
-     *
+     * 
      * @param restoreDatabaseName the restoreDatabaseName value to set.
      * @return the MigrateSqlServerSqlMIDatabaseInput object itself.
      */
@@ -82,7 +92,7 @@ public final class MigrateSqlServerSqlMIDatabaseInput {
 
     /**
      * Get the backupFileShare property: Backup file share information for backing up this database.
-     *
+     * 
      * @return the backupFileShare value.
      */
     public FileShare backupFileShare() {
@@ -91,7 +101,7 @@ public final class MigrateSqlServerSqlMIDatabaseInput {
 
     /**
      * Set the backupFileShare property: Backup file share information for backing up this database.
-     *
+     * 
      * @param backupFileShare the backupFileShare value to set.
      * @return the MigrateSqlServerSqlMIDatabaseInput object itself.
      */
@@ -102,7 +112,7 @@ public final class MigrateSqlServerSqlMIDatabaseInput {
 
     /**
      * Get the backupFilePaths property: The list of backup files to be used in case of existing backups.
-     *
+     * 
      * @return the backupFilePaths value.
      */
     public List<String> backupFilePaths() {
@@ -111,7 +121,7 @@ public final class MigrateSqlServerSqlMIDatabaseInput {
 
     /**
      * Set the backupFilePaths property: The list of backup files to be used in case of existing backups.
-     *
+     * 
      * @param backupFilePaths the backupFilePaths value to set.
      * @return the MigrateSqlServerSqlMIDatabaseInput object itself.
      */
@@ -121,22 +131,38 @@ public final class MigrateSqlServerSqlMIDatabaseInput {
     }
 
     /**
+     * Get the id property: id of the database.
+     * 
+     * @return the id value.
+     */
+    public String id() {
+        return this.id;
+    }
+
+    /**
+     * Set the id property: id of the database.
+     * 
+     * @param id the id value to set.
+     * @return the MigrateSqlServerSqlMIDatabaseInput object itself.
+     */
+    public MigrateSqlServerSqlMIDatabaseInput withId(String id) {
+        this.id = id;
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (name() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property name in model MigrateSqlServerSqlMIDatabaseInput"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property name in model MigrateSqlServerSqlMIDatabaseInput"));
         }
         if (restoreDatabaseName() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property restoreDatabaseName in model MigrateSqlServerSqlMIDatabaseInput"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property restoreDatabaseName in model MigrateSqlServerSqlMIDatabaseInput"));
         }
         if (backupFileShare() != null) {
             backupFileShare().validate();

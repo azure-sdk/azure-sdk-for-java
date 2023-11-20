@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Output for command that completes sync migration for a database. */
+/**
+ * Output for command that completes sync migration for a database.
+ */
 @Immutable
 public final class MigrateSyncCompleteCommandOutput {
     /*
@@ -23,13 +25,15 @@ public final class MigrateSyncCompleteCommandOutput {
     @JsonProperty(value = "errors", access = JsonProperty.Access.WRITE_ONLY)
     private List<ReportableException> errors;
 
-    /** Creates an instance of MigrateSyncCompleteCommandOutput class. */
+    /**
+     * Creates an instance of MigrateSyncCompleteCommandOutput class.
+     */
     public MigrateSyncCompleteCommandOutput() {
     }
 
     /**
      * Get the id property: Result identifier.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -38,7 +42,7 @@ public final class MigrateSyncCompleteCommandOutput {
 
     /**
      * Get the errors property: List of errors that happened during the command execution.
-     *
+     * 
      * @return the errors value.
      */
     public List<ReportableException> errors() {
@@ -47,7 +51,7 @@ public final class MigrateSyncCompleteCommandOutput {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

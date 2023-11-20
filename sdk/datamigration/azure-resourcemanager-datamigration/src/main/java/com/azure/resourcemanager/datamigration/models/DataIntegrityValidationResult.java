@@ -4,34 +4,38 @@
 
 package com.azure.resourcemanager.datamigration.models;
 
-import com.azure.core.annotation.Immutable;
+import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** Results for checksum based Data Integrity validation results. */
-@Immutable
+/**
+ * Results for checksum based Data Integrity validation results.
+ */
+@Fluent
 public final class DataIntegrityValidationResult {
     /*
      * List of failed table names of source and target pair
      */
-    @JsonProperty(value = "failedObjects", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "failedObjects")
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> failedObjects;
 
     /*
      * List of errors that happened while performing data integrity validation
      */
-    @JsonProperty(value = "validationErrors", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "validationErrors")
     private ValidationError validationErrors;
 
-    /** Creates an instance of DataIntegrityValidationResult class. */
+    /**
+     * Creates an instance of DataIntegrityValidationResult class.
+     */
     public DataIntegrityValidationResult() {
     }
 
     /**
      * Get the failedObjects property: List of failed table names of source and target pair.
-     *
+     * 
      * @return the failedObjects value.
      */
     public Map<String, String> failedObjects() {
@@ -39,8 +43,19 @@ public final class DataIntegrityValidationResult {
     }
 
     /**
+     * Set the failedObjects property: List of failed table names of source and target pair.
+     * 
+     * @param failedObjects the failedObjects value to set.
+     * @return the DataIntegrityValidationResult object itself.
+     */
+    public DataIntegrityValidationResult withFailedObjects(Map<String, String> failedObjects) {
+        this.failedObjects = failedObjects;
+        return this;
+    }
+
+    /**
      * Get the validationErrors property: List of errors that happened while performing data integrity validation.
-     *
+     * 
      * @return the validationErrors value.
      */
     public ValidationError validationErrors() {
@@ -48,8 +63,19 @@ public final class DataIntegrityValidationResult {
     }
 
     /**
+     * Set the validationErrors property: List of errors that happened while performing data integrity validation.
+     * 
+     * @param validationErrors the validationErrors value to set.
+     * @return the DataIntegrityValidationResult object itself.
+     */
+    public DataIntegrityValidationResult withValidationErrors(ValidationError validationErrors) {
+        this.validationErrors = validationErrors;
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

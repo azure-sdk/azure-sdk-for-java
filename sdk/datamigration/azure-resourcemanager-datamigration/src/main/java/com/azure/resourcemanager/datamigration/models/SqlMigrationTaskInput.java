@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Base class for migration task input. */
+/**
+ * Base class for migration task input.
+ */
 @Fluent
 public class SqlMigrationTaskInput {
     /*
@@ -23,13 +25,15 @@ public class SqlMigrationTaskInput {
     @JsonProperty(value = "targetConnectionInfo", required = true)
     private SqlConnectionInfo targetConnectionInfo;
 
-    /** Creates an instance of SqlMigrationTaskInput class. */
+    /**
+     * Creates an instance of SqlMigrationTaskInput class.
+     */
     public SqlMigrationTaskInput() {
     }
 
     /**
      * Get the sourceConnectionInfo property: Information for connecting to source.
-     *
+     * 
      * @return the sourceConnectionInfo value.
      */
     public SqlConnectionInfo sourceConnectionInfo() {
@@ -38,7 +42,7 @@ public class SqlMigrationTaskInput {
 
     /**
      * Set the sourceConnectionInfo property: Information for connecting to source.
-     *
+     * 
      * @param sourceConnectionInfo the sourceConnectionInfo value to set.
      * @return the SqlMigrationTaskInput object itself.
      */
@@ -49,7 +53,7 @@ public class SqlMigrationTaskInput {
 
     /**
      * Get the targetConnectionInfo property: Information for connecting to target.
-     *
+     * 
      * @return the targetConnectionInfo value.
      */
     public SqlConnectionInfo targetConnectionInfo() {
@@ -58,7 +62,7 @@ public class SqlMigrationTaskInput {
 
     /**
      * Set the targetConnectionInfo property: Information for connecting to target.
-     *
+     * 
      * @param targetConnectionInfo the targetConnectionInfo value to set.
      * @return the SqlMigrationTaskInput object itself.
      */
@@ -69,23 +73,19 @@ public class SqlMigrationTaskInput {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (sourceConnectionInfo() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property sourceConnectionInfo in model SqlMigrationTaskInput"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property sourceConnectionInfo in model SqlMigrationTaskInput"));
         } else {
             sourceConnectionInfo().validate();
         }
         if (targetConnectionInfo() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property targetConnectionInfo in model SqlMigrationTaskInput"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property targetConnectionInfo in model SqlMigrationTaskInput"));
         } else {
             targetConnectionInfo().validate();
         }

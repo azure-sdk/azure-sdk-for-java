@@ -12,19 +12,34 @@ import com.fasterxml.jackson.annotation.JsonValue;
  * permission group for the activity that you are performing.
  */
 public enum ServerLevelPermissionsGroup {
-    /** Enum value Default. */
+    /**
+     * Enum value Default.
+     */
     DEFAULT("Default"),
 
-    /** Enum value MigrationFromSqlServerToAzureDB. */
+    /**
+     * Enum value MigrationFromSqlServerToAzureDB.
+     */
     MIGRATION_FROM_SQL_SERVER_TO_AZURE_DB("MigrationFromSqlServerToAzureDB"),
 
-    /** Enum value MigrationFromSqlServerToAzureMI. */
+    /**
+     * Enum value MigrationFromSqlServerToAzureMI.
+     */
     MIGRATION_FROM_SQL_SERVER_TO_AZURE_MI("MigrationFromSqlServerToAzureMI"),
 
-    /** Enum value MigrationFromMySQLToAzureDBForMySQL. */
-    MIGRATION_FROM_MY_SQLTO_AZURE_DBFOR_MY_SQL("MigrationFromMySQLToAzureDBForMySQL");
+    /**
+     * Enum value MigrationFromMySQLToAzureDBForMySQL.
+     */
+    MIGRATION_FROM_MY_SQLTO_AZURE_DBFOR_MY_SQL("MigrationFromMySQLToAzureDBForMySQL"),
 
-    /** The actual serialized value for a ServerLevelPermissionsGroup instance. */
+    /**
+     * Enum value MigrationFromSqlServerToAzureVM.
+     */
+    MIGRATION_FROM_SQL_SERVER_TO_AZURE_VM("MigrationFromSqlServerToAzureVM");
+
+    /**
+     * The actual serialized value for a ServerLevelPermissionsGroup instance.
+     */
     private final String value;
 
     ServerLevelPermissionsGroup(String value) {
@@ -33,7 +48,7 @@ public enum ServerLevelPermissionsGroup {
 
     /**
      * Parses a serialized value to a ServerLevelPermissionsGroup instance.
-     *
+     * 
      * @param value the serialized value to parse.
      * @return the parsed ServerLevelPermissionsGroup object, or null if unable to parse.
      */
@@ -51,7 +66,9 @@ public enum ServerLevelPermissionsGroup {
         return null;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @JsonValue
     @Override
     public String toString() {

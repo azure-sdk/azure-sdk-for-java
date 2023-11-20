@@ -5,37 +5,46 @@
 package com.azure.resourcemanager.datamigration.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Azure Active Directory Application. */
+/**
+ * Azure Active Directory Application.
+ */
 @Fluent
 public final class AzureActiveDirectoryApp {
     /*
      * Application ID of the Azure Active Directory Application
      */
-    @JsonProperty(value = "applicationId", required = true)
+    @JsonProperty(value = "applicationId")
     private String applicationId;
 
     /*
      * Key used to authenticate to the Azure Active Directory Application
      */
-    @JsonProperty(value = "appKey", required = true)
+    @JsonProperty(value = "appKey")
     private String appKey;
 
     /*
      * Tenant id of the customer
      */
-    @JsonProperty(value = "tenantId", required = true)
+    @JsonProperty(value = "tenantId")
     private String tenantId;
 
-    /** Creates an instance of AzureActiveDirectoryApp class. */
+    /*
+     * Ignore checking azure permissions on the AAD app
+     */
+    @JsonProperty(value = "ignoreAzurePermissions")
+    private Boolean ignoreAzurePermissions;
+
+    /**
+     * Creates an instance of AzureActiveDirectoryApp class.
+     */
     public AzureActiveDirectoryApp() {
     }
 
     /**
      * Get the applicationId property: Application ID of the Azure Active Directory Application.
-     *
+     * 
      * @return the applicationId value.
      */
     public String applicationId() {
@@ -44,7 +53,7 @@ public final class AzureActiveDirectoryApp {
 
     /**
      * Set the applicationId property: Application ID of the Azure Active Directory Application.
-     *
+     * 
      * @param applicationId the applicationId value to set.
      * @return the AzureActiveDirectoryApp object itself.
      */
@@ -55,7 +64,7 @@ public final class AzureActiveDirectoryApp {
 
     /**
      * Get the appKey property: Key used to authenticate to the Azure Active Directory Application.
-     *
+     * 
      * @return the appKey value.
      */
     public String appKey() {
@@ -64,7 +73,7 @@ public final class AzureActiveDirectoryApp {
 
     /**
      * Set the appKey property: Key used to authenticate to the Azure Active Directory Application.
-     *
+     * 
      * @param appKey the appKey value to set.
      * @return the AzureActiveDirectoryApp object itself.
      */
@@ -75,7 +84,7 @@ public final class AzureActiveDirectoryApp {
 
     /**
      * Get the tenantId property: Tenant id of the customer.
-     *
+     * 
      * @return the tenantId value.
      */
     public String tenantId() {
@@ -84,7 +93,7 @@ public final class AzureActiveDirectoryApp {
 
     /**
      * Set the tenantId property: Tenant id of the customer.
-     *
+     * 
      * @param tenantId the tenantId value to set.
      * @return the AzureActiveDirectoryApp object itself.
      */
@@ -94,29 +103,30 @@ public final class AzureActiveDirectoryApp {
     }
 
     /**
+     * Get the ignoreAzurePermissions property: Ignore checking azure permissions on the AAD app.
+     * 
+     * @return the ignoreAzurePermissions value.
+     */
+    public Boolean ignoreAzurePermissions() {
+        return this.ignoreAzurePermissions;
+    }
+
+    /**
+     * Set the ignoreAzurePermissions property: Ignore checking azure permissions on the AAD app.
+     * 
+     * @param ignoreAzurePermissions the ignoreAzurePermissions value to set.
+     * @return the AzureActiveDirectoryApp object itself.
+     */
+    public AzureActiveDirectoryApp withIgnoreAzurePermissions(Boolean ignoreAzurePermissions) {
+        this.ignoreAzurePermissions = ignoreAzurePermissions;
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (applicationId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property applicationId in model AzureActiveDirectoryApp"));
-        }
-        if (appKey() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property appKey in model AzureActiveDirectoryApp"));
-        }
-        if (tenantId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property tenantId in model AzureActiveDirectoryApp"));
-        }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(AzureActiveDirectoryApp.class);
 }

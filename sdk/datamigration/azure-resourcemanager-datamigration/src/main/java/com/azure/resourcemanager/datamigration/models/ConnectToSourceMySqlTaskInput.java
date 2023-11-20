@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Input for the task that validates MySQL database connection. */
+/**
+ * Input for the task that validates MySQL database connection.
+ */
 @Fluent
 public final class ConnectToSourceMySqlTaskInput {
     /*
@@ -29,13 +31,21 @@ public final class ConnectToSourceMySqlTaskInput {
     @JsonProperty(value = "checkPermissionsGroup")
     private ServerLevelPermissionsGroup checkPermissionsGroup;
 
-    /** Creates an instance of ConnectToSourceMySqlTaskInput class. */
+    /*
+     * Flag for whether or not the migration is offline
+     */
+    @JsonProperty(value = "isOfflineMigration")
+    private Boolean isOfflineMigration;
+
+    /**
+     * Creates an instance of ConnectToSourceMySqlTaskInput class.
+     */
     public ConnectToSourceMySqlTaskInput() {
     }
 
     /**
      * Get the sourceConnectionInfo property: Information for connecting to MySQL source.
-     *
+     * 
      * @return the sourceConnectionInfo value.
      */
     public MySqlConnectionInfo sourceConnectionInfo() {
@@ -44,7 +54,7 @@ public final class ConnectToSourceMySqlTaskInput {
 
     /**
      * Set the sourceConnectionInfo property: Information for connecting to MySQL source.
-     *
+     * 
      * @param sourceConnectionInfo the sourceConnectionInfo value to set.
      * @return the ConnectToSourceMySqlTaskInput object itself.
      */
@@ -55,7 +65,7 @@ public final class ConnectToSourceMySqlTaskInput {
 
     /**
      * Get the targetPlatform property: Target Platform for the migration.
-     *
+     * 
      * @return the targetPlatform value.
      */
     public MySqlTargetPlatformType targetPlatform() {
@@ -64,7 +74,7 @@ public final class ConnectToSourceMySqlTaskInput {
 
     /**
      * Set the targetPlatform property: Target Platform for the migration.
-     *
+     * 
      * @param targetPlatform the targetPlatform value to set.
      * @return the ConnectToSourceMySqlTaskInput object itself.
      */
@@ -75,7 +85,7 @@ public final class ConnectToSourceMySqlTaskInput {
 
     /**
      * Get the checkPermissionsGroup property: Permission group for validations.
-     *
+     * 
      * @return the checkPermissionsGroup value.
      */
     public ServerLevelPermissionsGroup checkPermissionsGroup() {
@@ -84,7 +94,7 @@ public final class ConnectToSourceMySqlTaskInput {
 
     /**
      * Set the checkPermissionsGroup property: Permission group for validations.
-     *
+     * 
      * @param checkPermissionsGroup the checkPermissionsGroup value to set.
      * @return the ConnectToSourceMySqlTaskInput object itself.
      */
@@ -94,16 +104,34 @@ public final class ConnectToSourceMySqlTaskInput {
     }
 
     /**
+     * Get the isOfflineMigration property: Flag for whether or not the migration is offline.
+     * 
+     * @return the isOfflineMigration value.
+     */
+    public Boolean isOfflineMigration() {
+        return this.isOfflineMigration;
+    }
+
+    /**
+     * Set the isOfflineMigration property: Flag for whether or not the migration is offline.
+     * 
+     * @param isOfflineMigration the isOfflineMigration value to set.
+     * @return the ConnectToSourceMySqlTaskInput object itself.
+     */
+    public ConnectToSourceMySqlTaskInput withIsOfflineMigration(Boolean isOfflineMigration) {
+        this.isOfflineMigration = isOfflineMigration;
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (sourceConnectionInfo() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property sourceConnectionInfo in model ConnectToSourceMySqlTaskInput"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property sourceConnectionInfo in model ConnectToSourceMySqlTaskInput"));
         } else {
             sourceConnectionInfo().validate();
         }

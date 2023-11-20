@@ -9,8 +9,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
+import java.util.Map;
 
-/** Properties for the task that collects user tables for the given list of databases. */
+/**
+ * Properties for the task that collects user tables for the given list of databases.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "taskType")
 @JsonTypeName("GetUserTables.Sql")
 @Fluent
@@ -27,13 +30,21 @@ public final class GetUserTablesSqlTaskProperties extends ProjectTaskProperties 
     @JsonProperty(value = "output", access = JsonProperty.Access.WRITE_ONLY)
     private List<GetUserTablesSqlTaskOutput> output;
 
-    /** Creates an instance of GetUserTablesSqlTaskProperties class. */
+    /*
+     * Task id
+     */
+    @JsonProperty(value = "taskId")
+    private String taskId;
+
+    /**
+     * Creates an instance of GetUserTablesSqlTaskProperties class.
+     */
     public GetUserTablesSqlTaskProperties() {
     }
 
     /**
      * Get the input property: Task input.
-     *
+     * 
      * @return the input value.
      */
     public GetUserTablesSqlTaskInput input() {
@@ -42,7 +53,7 @@ public final class GetUserTablesSqlTaskProperties extends ProjectTaskProperties 
 
     /**
      * Set the input property: Task input.
-     *
+     * 
      * @param input the input value to set.
      * @return the GetUserTablesSqlTaskProperties object itself.
      */
@@ -53,7 +64,7 @@ public final class GetUserTablesSqlTaskProperties extends ProjectTaskProperties 
 
     /**
      * Get the output property: Task output. This is ignored if submitted.
-     *
+     * 
      * @return the output value.
      */
     public List<GetUserTablesSqlTaskOutput> output() {
@@ -61,8 +72,37 @@ public final class GetUserTablesSqlTaskProperties extends ProjectTaskProperties 
     }
 
     /**
+     * Get the taskId property: Task id.
+     * 
+     * @return the taskId value.
+     */
+    public String taskId() {
+        return this.taskId;
+    }
+
+    /**
+     * Set the taskId property: Task id.
+     * 
+     * @param taskId the taskId value to set.
+     * @return the GetUserTablesSqlTaskProperties object itself.
+     */
+    public GetUserTablesSqlTaskProperties withTaskId(String taskId) {
+        this.taskId = taskId;
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public GetUserTablesSqlTaskProperties withClientData(Map<String, String> clientData) {
+        super.withClientData(clientData);
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

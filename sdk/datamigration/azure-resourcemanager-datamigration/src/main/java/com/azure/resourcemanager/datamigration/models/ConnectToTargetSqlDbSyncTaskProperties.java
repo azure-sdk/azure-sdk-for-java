@@ -9,8 +9,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
+import java.util.Map;
 
-/** Properties for the task that validates connection to SQL DB and target server requirements for online migration. */
+/**
+ * Properties for the task that validates connection to SQL DB and target server requirements for online migration.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "taskType")
 @JsonTypeName("ConnectToTarget.SqlDb.Sync")
 @Fluent
@@ -27,13 +30,15 @@ public final class ConnectToTargetSqlDbSyncTaskProperties extends ProjectTaskPro
     @JsonProperty(value = "output", access = JsonProperty.Access.WRITE_ONLY)
     private List<ConnectToTargetSqlDbTaskOutput> output;
 
-    /** Creates an instance of ConnectToTargetSqlDbSyncTaskProperties class. */
+    /**
+     * Creates an instance of ConnectToTargetSqlDbSyncTaskProperties class.
+     */
     public ConnectToTargetSqlDbSyncTaskProperties() {
     }
 
     /**
      * Get the input property: Task input.
-     *
+     * 
      * @return the input value.
      */
     public ConnectToTargetSqlDbSyncTaskInput input() {
@@ -42,7 +47,7 @@ public final class ConnectToTargetSqlDbSyncTaskProperties extends ProjectTaskPro
 
     /**
      * Set the input property: Task input.
-     *
+     * 
      * @param input the input value to set.
      * @return the ConnectToTargetSqlDbSyncTaskProperties object itself.
      */
@@ -53,7 +58,7 @@ public final class ConnectToTargetSqlDbSyncTaskProperties extends ProjectTaskPro
 
     /**
      * Get the output property: Task output. This is ignored if submitted.
-     *
+     * 
      * @return the output value.
      */
     public List<ConnectToTargetSqlDbTaskOutput> output() {
@@ -61,8 +66,17 @@ public final class ConnectToTargetSqlDbSyncTaskProperties extends ProjectTaskPro
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ConnectToTargetSqlDbSyncTaskProperties withClientData(Map<String, String> clientData) {
+        super.withClientData(clientData);
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

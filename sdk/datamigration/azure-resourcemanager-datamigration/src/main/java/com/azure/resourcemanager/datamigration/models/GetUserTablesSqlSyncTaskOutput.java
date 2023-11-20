@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Output of the task that collects user tables for the given list of databases. */
+/**
+ * Output of the task that collects user tables for the given list of databases.
+ */
 @Immutable
 public final class GetUserTablesSqlSyncTaskOutput {
     /*
@@ -35,13 +37,15 @@ public final class GetUserTablesSqlSyncTaskOutput {
     @JsonProperty(value = "validationErrors", access = JsonProperty.Access.WRITE_ONLY)
     private List<ReportableException> validationErrors;
 
-    /** Creates an instance of GetUserTablesSqlSyncTaskOutput class. */
+    /**
+     * Creates an instance of GetUserTablesSqlSyncTaskOutput class.
+     */
     public GetUserTablesSqlSyncTaskOutput() {
     }
 
     /**
      * Get the databasesToSourceTables property: Mapping from database name to list of source tables.
-     *
+     * 
      * @return the databasesToSourceTables value.
      */
     public String databasesToSourceTables() {
@@ -50,7 +54,7 @@ public final class GetUserTablesSqlSyncTaskOutput {
 
     /**
      * Get the databasesToTargetTables property: Mapping from database name to list of target tables.
-     *
+     * 
      * @return the databasesToTargetTables value.
      */
     public String databasesToTargetTables() {
@@ -59,7 +63,7 @@ public final class GetUserTablesSqlSyncTaskOutput {
 
     /**
      * Get the tableValidationErrors property: Mapping from database name to list of validation errors.
-     *
+     * 
      * @return the tableValidationErrors value.
      */
     public String tableValidationErrors() {
@@ -68,7 +72,7 @@ public final class GetUserTablesSqlSyncTaskOutput {
 
     /**
      * Get the validationErrors property: Validation errors.
-     *
+     * 
      * @return the validationErrors value.
      */
     public List<ReportableException> validationErrors() {
@@ -77,7 +81,7 @@ public final class GetUserTablesSqlSyncTaskOutput {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

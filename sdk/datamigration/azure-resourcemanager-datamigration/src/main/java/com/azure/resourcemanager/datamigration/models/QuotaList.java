@@ -9,7 +9,9 @@ import com.azure.resourcemanager.datamigration.fluent.models.QuotaInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** OData page of quota objects. */
+/**
+ * OData page of quota objects.
+ */
 @Fluent
 public final class QuotaList {
     /*
@@ -24,13 +26,15 @@ public final class QuotaList {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of QuotaList class. */
+    /**
+     * Creates an instance of QuotaList class.
+     */
     public QuotaList() {
     }
 
     /**
      * Get the value property: List of quotas.
-     *
+     * 
      * @return the value value.
      */
     public List<QuotaInner> value() {
@@ -39,7 +43,7 @@ public final class QuotaList {
 
     /**
      * Set the value property: List of quotas.
-     *
+     * 
      * @param value the value value to set.
      * @return the QuotaList object itself.
      */
@@ -50,7 +54,7 @@ public final class QuotaList {
 
     /**
      * Get the nextLink property: URL to load the next page of quotas, or null or missing if this is the last page.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class QuotaList {
 
     /**
      * Set the nextLink property: URL to load the next page of quotas, or null or missing if this is the last page.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the QuotaList object itself.
      */
@@ -70,7 +74,7 @@ public final class QuotaList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
