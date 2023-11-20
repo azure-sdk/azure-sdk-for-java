@@ -4,14 +4,18 @@
 
 package com.azure.resourcemanager.newrelicobservability.generated;
 
-/** Samples for Accounts List. */
+/**
+ * Samples for Accounts List.
+ */
 public final class AccountsListSamples {
     /*
-     * x-ms-original-file: specification/newrelic/resource-manager/NewRelic.Observability/stable/2022-07-01/examples/Accounts_List_MinimumSet_Gen.json
+     * x-ms-original-file:
+     * specification/newrelic/resource-manager/NewRelic.Observability/preview/2023-11-01-preview/examples/
+     * Accounts_List_MinimumSet_Gen.json
      */
     /**
      * Sample code: Accounts_List_MinimumSet_Gen.
-     *
+     * 
      * @param manager Entry point to NewRelicObservabilityManager.
      */
     public static void accountsListMinimumSetGen(
@@ -20,11 +24,13 @@ public final class AccountsListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/newrelic/resource-manager/NewRelic.Observability/stable/2022-07-01/examples/Accounts_List_MaximumSet_Gen.json
+     * x-ms-original-file:
+     * specification/newrelic/resource-manager/NewRelic.Observability/preview/2023-11-01-preview/examples/
+     * Accounts_List_MaximumSet_Gen.json
      */
     /**
      * Sample code: Accounts_List_MaximumSet_Gen.
-     *
+     * 
      * @param manager Entry point to NewRelicObservabilityManager.
      */
     public static void accountsListMaximumSetGen(

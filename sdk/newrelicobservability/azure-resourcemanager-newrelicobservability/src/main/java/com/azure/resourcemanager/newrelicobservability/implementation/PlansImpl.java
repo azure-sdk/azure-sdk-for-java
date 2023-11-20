@@ -19,8 +19,7 @@ public final class PlansImpl implements Plans {
 
     private final com.azure.resourcemanager.newrelicobservability.NewRelicObservabilityManager serviceManager;
 
-    public PlansImpl(
-        PlansClient innerClient,
+    public PlansImpl(PlansClient innerClient,
         com.azure.resourcemanager.newrelicobservability.NewRelicObservabilityManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;

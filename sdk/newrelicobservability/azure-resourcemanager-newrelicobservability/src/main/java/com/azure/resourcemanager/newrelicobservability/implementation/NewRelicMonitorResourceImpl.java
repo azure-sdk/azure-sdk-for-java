@@ -15,6 +15,7 @@ import com.azure.resourcemanager.newrelicobservability.models.AppServiceInfo;
 import com.azure.resourcemanager.newrelicobservability.models.AppServicesGetRequest;
 import com.azure.resourcemanager.newrelicobservability.models.HostsGetRequest;
 import com.azure.resourcemanager.newrelicobservability.models.LiftrResourceCategories;
+import com.azure.resourcemanager.newrelicobservability.models.LinkedResource;
 import com.azure.resourcemanager.newrelicobservability.models.ManagedServiceIdentity;
 import com.azure.resourcemanager.newrelicobservability.models.MarketplaceSubscriptionStatus;
 import com.azure.resourcemanager.newrelicobservability.models.MetricRules;
@@ -151,25 +152,19 @@ public final class NewRelicMonitorResourceImpl
     }
 
     public NewRelicMonitorResource create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getMonitors()
-                .createOrUpdate(resourceGroupName, monitorName, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getMonitors().createOrUpdate(resourceGroupName, monitorName,
+            this.innerModel(), Context.NONE);
         return this;
     }
 
     public NewRelicMonitorResource create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getMonitors()
-                .createOrUpdate(resourceGroupName, monitorName, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient().getMonitors().createOrUpdate(resourceGroupName, monitorName,
+            this.innerModel(), context);
         return this;
     }
 
-    NewRelicMonitorResourceImpl(
-        String name, com.azure.resourcemanager.newrelicobservability.NewRelicObservabilityManager serviceManager) {
+    NewRelicMonitorResourceImpl(String name,
+        com.azure.resourcemanager.newrelicobservability.NewRelicObservabilityManager serviceManager) {
         this.innerObject = new NewRelicMonitorResourceInner();
         this.serviceManager = serviceManager;
         this.monitorName = name;
@@ -181,27 +176,18 @@ public final class NewRelicMonitorResourceImpl
     }
 
     public NewRelicMonitorResource apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getMonitors()
-                .updateWithResponse(resourceGroupName, monitorName, updateProperties, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getMonitors()
+            .updateWithResponse(resourceGroupName, monitorName, updateProperties, Context.NONE).getValue();
         return this;
     }
 
     public NewRelicMonitorResource apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getMonitors()
-                .updateWithResponse(resourceGroupName, monitorName, updateProperties, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getMonitors()
+            .updateWithResponse(resourceGroupName, monitorName, updateProperties, context).getValue();
         return this;
     }
 
-    NewRelicMonitorResourceImpl(
-        NewRelicMonitorResourceInner innerObject,
+    NewRelicMonitorResourceImpl(NewRelicMonitorResourceInner innerObject,
         com.azure.resourcemanager.newrelicobservability.NewRelicObservabilityManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
@@ -210,22 +196,14 @@ public final class NewRelicMonitorResourceImpl
     }
 
     public NewRelicMonitorResource refresh() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getMonitors()
-                .getByResourceGroupWithResponse(resourceGroupName, monitorName, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getMonitors()
+            .getByResourceGroupWithResponse(resourceGroupName, monitorName, Context.NONE).getValue();
         return this;
     }
 
     public NewRelicMonitorResource refresh(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getMonitors()
-                .getByResourceGroupWithResponse(resourceGroupName, monitorName, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getMonitors()
+            .getByResourceGroupWithResponse(resourceGroupName, monitorName, context).getValue();
         return this;
     }
 
@@ -277,6 +255,14 @@ public final class NewRelicMonitorResourceImpl
         return serviceManager.monitors().listMonitoredResources(resourceGroupName, monitorName, context);
     }
 
+    public PagedIterable<LinkedResource> listLinkedResources() {
+        return serviceManager.monitors().listLinkedResources(resourceGroupName, monitorName);
+    }
+
+    public PagedIterable<LinkedResource> listLinkedResources(Context context) {
+        return serviceManager.monitors().listLinkedResources(resourceGroupName, monitorName, context);
+    }
+
     public Response<VMExtensionPayload> vmHostPayloadWithResponse(Context context) {
         return serviceManager.monitors().vmHostPayloadWithResponse(resourceGroupName, monitorName, context);
     }
@@ -315,8 +301,8 @@ public final class NewRelicMonitorResourceImpl
         }
     }
 
-    public NewRelicMonitorResourceImpl withNewRelicAccountProperties(
-        NewRelicAccountProperties newRelicAccountProperties) {
+    public NewRelicMonitorResourceImpl
+        withNewRelicAccountProperties(NewRelicAccountProperties newRelicAccountProperties) {
         if (isInCreateMode()) {
             this.innerModel().withNewRelicAccountProperties(newRelicAccountProperties);
             return this;

@@ -19,8 +19,7 @@ public final class OrganizationsImpl implements Organizations {
 
     private final com.azure.resourcemanager.newrelicobservability.NewRelicObservabilityManager serviceManager;
 
-    public OrganizationsImpl(
-        OrganizationsClient innerClient,
+    public OrganizationsImpl(OrganizationsClient innerClient,
         com.azure.resourcemanager.newrelicobservability.NewRelicObservabilityManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
