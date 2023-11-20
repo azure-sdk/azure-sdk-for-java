@@ -79,6 +79,7 @@
     <module>sdk/documentintelligence</module>
     <module>sdk/dynatrace</module>
     <module>sdk/easm</module>
+    <module>sdk/edgemicrosoftedgeedge</module>
     <module>sdk/edgeorder</module>
     <module>sdk/education</module>
     <module>sdk/elastic</module>
