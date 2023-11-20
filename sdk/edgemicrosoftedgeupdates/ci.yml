@@ -1,0 +1,47 @@
+# NOTE: Please refer to https://aka.ms/azsdk/engsys/ci-yaml before editing this file.
+
+trigger:
+  branches:
+    include:
+      - main
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/edgemicrosoftedgeupdates/ci.yml
+      - sdk/edgemicrosoftedgeupdates/azure-resourcemanager-edgemicrosoftedgeupdates/
+    exclude:
+      - sdk/edgemicrosoftedgeupdates/pom.xml
+      - sdk/edgemicrosoftedgeupdates/azure-resourcemanager-edgemicrosoftedgeupdates/pom.xml
+
+pr:
+  branches:
+    include:
+      - main
+      - feature/*
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/edgemicrosoftedgeupdates/ci.yml
+      - sdk/edgemicrosoftedgeupdates/azure-resourcemanager-edgemicrosoftedgeupdates/
+    exclude:
+      - sdk/edgemicrosoftedgeupdates/pom.xml
+      - sdk/edgemicrosoftedgeupdates/azure-resourcemanager-edgemicrosoftedgeupdates/pom.xml
+
+parameters:
+  - name: release_azureresourcemanageredgemicrosoftedgeupdates
+    displayName: azure-resourcemanager-edgemicrosoftedgeupdates
+    type: boolean
+    default: false
+
+extends:
+  template: ../../eng/pipelines/templates/stages/archetype-sdk-client.yml
+  parameters:
+    ServiceDirectory: edgemicrosoftedgeupdates
+    EnableBatchRelease: true
+    Artifacts:
+      - name: azure-resourcemanager-edgemicrosoftedgeupdates
+        groupId: com.azure.resourcemanager
+        safeName: azureresourcemanageredgemicrosoftedgeupdates
+        releaseInBatch: ${{ parameters.release_azureresourcemanageredgemicrosoftedgeupdates }}
