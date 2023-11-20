@@ -1,0 +1,47 @@
+# NOTE: Please refer to https://aka.ms/azsdk/engsys/ci-yaml before editing this file.
+
+trigger:
+  branches:
+    include:
+      - main
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/edgemicrosoftedgeconnectivitystatuses/ci.yml
+      - sdk/edgemicrosoftedgeconnectivitystatuses/azure-resourcemanager-edgemicrosoftedgeconnectivitystatuses/
+    exclude:
+      - sdk/edgemicrosoftedgeconnectivitystatuses/pom.xml
+      - sdk/edgemicrosoftedgeconnectivitystatuses/azure-resourcemanager-edgemicrosoftedgeconnectivitystatuses/pom.xml
+
+pr:
+  branches:
+    include:
+      - main
+      - feature/*
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/edgemicrosoftedgeconnectivitystatuses/ci.yml
+      - sdk/edgemicrosoftedgeconnectivitystatuses/azure-resourcemanager-edgemicrosoftedgeconnectivitystatuses/
+    exclude:
+      - sdk/edgemicrosoftedgeconnectivitystatuses/pom.xml
+      - sdk/edgemicrosoftedgeconnectivitystatuses/azure-resourcemanager-edgemicrosoftedgeconnectivitystatuses/pom.xml
+
+parameters:
+  - name: release_azureresourcemanageredgemicrosoftedgeconnectivitystatuses
+    displayName: azure-resourcemanager-edgemicrosoftedgeconnectivitystatuses
+    type: boolean
+    default: false
+
+extends:
+  template: ../../eng/pipelines/templates/stages/archetype-sdk-client.yml
+  parameters:
+    ServiceDirectory: edgemicrosoftedgeconnectivitystatuses
+    EnableBatchRelease: true
+    Artifacts:
+      - name: azure-resourcemanager-edgemicrosoftedgeconnectivitystatuses
+        groupId: com.azure.resourcemanager
+        safeName: azureresourcemanageredgemicrosoftedgeconnectivitystatuses
+        releaseInBatch: ${{ parameters.release_azureresourcemanageredgemicrosoftedgeconnectivitystatuses }}

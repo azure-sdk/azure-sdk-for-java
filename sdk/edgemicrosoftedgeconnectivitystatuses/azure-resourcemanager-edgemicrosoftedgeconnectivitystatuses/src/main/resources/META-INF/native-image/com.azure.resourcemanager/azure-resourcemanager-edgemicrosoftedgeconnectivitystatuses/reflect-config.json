@@ -1,0 +1,41 @@
+[ {
+  "name" : "com.azure.resourcemanager.edgemicrosoftedgeconnectivitystatuses.models.ConnectivityStatusListResult",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.edgemicrosoftedgeconnectivitystatuses.fluent.models.ConnectivityStatusInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.edgemicrosoftedgeconnectivitystatuses.fluent.models.ConnectivityStatusProperties",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.edgemicrosoftedgeconnectivitystatuses.models.ConnectivityStatusUpdate",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.edgemicrosoftedgeconnectivitystatuses.fluent.models.ConnectivityStatusUpdateProperties",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.edgemicrosoftedgeconnectivitystatuses.models.ConnectivityStatusEnum",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.edgemicrosoftedgeconnectivitystatuses.models.ProvisioningState",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.edgemicrosoftedgeconnectivitystatuses.models.ConnectivityStatusEnumForUpdate",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+} ]
