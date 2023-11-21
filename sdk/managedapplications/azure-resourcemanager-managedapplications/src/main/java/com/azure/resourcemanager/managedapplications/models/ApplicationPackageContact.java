@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The application package contact information. */
+/**
+ * The application package contact information.
+ */
 @Fluent
 public final class ApplicationPackageContact {
     /*
@@ -29,13 +31,15 @@ public final class ApplicationPackageContact {
     @JsonProperty(value = "phone", required = true)
     private String phone;
 
-    /** Creates an instance of ApplicationPackageContact class. */
+    /**
+     * Creates an instance of ApplicationPackageContact class.
+     */
     public ApplicationPackageContact() {
     }
 
     /**
      * Get the contactName property: The contact name.
-     *
+     * 
      * @return the contactName value.
      */
     public String contactName() {
@@ -44,7 +48,7 @@ public final class ApplicationPackageContact {
 
     /**
      * Set the contactName property: The contact name.
-     *
+     * 
      * @param contactName the contactName value to set.
      * @return the ApplicationPackageContact object itself.
      */
@@ -55,7 +59,7 @@ public final class ApplicationPackageContact {
 
     /**
      * Get the email property: The contact email.
-     *
+     * 
      * @return the email value.
      */
     public String email() {
@@ -64,7 +68,7 @@ public final class ApplicationPackageContact {
 
     /**
      * Set the email property: The contact email.
-     *
+     * 
      * @param email the email value to set.
      * @return the ApplicationPackageContact object itself.
      */
@@ -75,7 +79,7 @@ public final class ApplicationPackageContact {
 
     /**
      * Get the phone property: The contact phone number.
-     *
+     * 
      * @return the phone value.
      */
     public String phone() {
@@ -84,7 +88,7 @@ public final class ApplicationPackageContact {
 
     /**
      * Set the phone property: The contact phone number.
-     *
+     * 
      * @param phone the phone value to set.
      * @return the ApplicationPackageContact object itself.
      */
@@ -95,19 +99,17 @@ public final class ApplicationPackageContact {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (email() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property email in model ApplicationPackageContact"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property email in model ApplicationPackageContact"));
         }
         if (phone() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property phone in model ApplicationPackageContact"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property phone in model ApplicationPackageContact"));
         }
     }
 

@@ -7,7 +7,9 @@ package com.azure.resourcemanager.managedapplications.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Managed application policy. */
+/**
+ * Managed application policy.
+ */
 @Fluent
 public final class ApplicationPolicy {
     /*
@@ -28,13 +30,15 @@ public final class ApplicationPolicy {
     @JsonProperty(value = "parameters")
     private String parameters;
 
-    /** Creates an instance of ApplicationPolicy class. */
+    /**
+     * Creates an instance of ApplicationPolicy class.
+     */
     public ApplicationPolicy() {
     }
 
     /**
      * Get the name property: The policy name.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -43,7 +47,7 @@ public final class ApplicationPolicy {
 
     /**
      * Set the name property: The policy name.
-     *
+     * 
      * @param name the name value to set.
      * @return the ApplicationPolicy object itself.
      */
@@ -54,7 +58,7 @@ public final class ApplicationPolicy {
 
     /**
      * Get the policyDefinitionId property: The policy definition Id.
-     *
+     * 
      * @return the policyDefinitionId value.
      */
     public String policyDefinitionId() {
@@ -63,7 +67,7 @@ public final class ApplicationPolicy {
 
     /**
      * Set the policyDefinitionId property: The policy definition Id.
-     *
+     * 
      * @param policyDefinitionId the policyDefinitionId value to set.
      * @return the ApplicationPolicy object itself.
      */
@@ -74,7 +78,7 @@ public final class ApplicationPolicy {
 
     /**
      * Get the parameters property: The policy parameters.
-     *
+     * 
      * @return the parameters value.
      */
     public String parameters() {
@@ -83,7 +87,7 @@ public final class ApplicationPolicy {
 
     /**
      * Set the parameters property: The policy parameters.
-     *
+     * 
      * @param parameters the parameters value to set.
      * @return the ApplicationPolicy object itself.
      */
@@ -94,7 +98,7 @@ public final class ApplicationPolicy {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

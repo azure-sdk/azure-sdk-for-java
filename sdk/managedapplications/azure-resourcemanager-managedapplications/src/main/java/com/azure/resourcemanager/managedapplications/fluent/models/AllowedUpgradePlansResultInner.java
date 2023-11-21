@@ -9,7 +9,9 @@ import com.azure.resourcemanager.managedapplications.models.Plan;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The array of plan. */
+/**
+ * The array of plan.
+ */
 @Fluent
 public final class AllowedUpgradePlansResultInner {
     /*
@@ -18,13 +20,15 @@ public final class AllowedUpgradePlansResultInner {
     @JsonProperty(value = "value")
     private List<Plan> value;
 
-    /** Creates an instance of AllowedUpgradePlansResultInner class. */
+    /**
+     * Creates an instance of AllowedUpgradePlansResultInner class.
+     */
     public AllowedUpgradePlansResultInner() {
     }
 
     /**
      * Get the value property: The array of plans.
-     *
+     * 
      * @return the value value.
      */
     public List<Plan> value() {
@@ -33,7 +37,7 @@ public final class AllowedUpgradePlansResultInner {
 
     /**
      * Set the value property: The array of plans.
-     *
+     * 
      * @param value the value value to set.
      * @return the AllowedUpgradePlansResultInner object itself.
      */
@@ -44,7 +48,7 @@ public final class AllowedUpgradePlansResultInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

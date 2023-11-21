@@ -7,7 +7,9 @@ package com.azure.resourcemanager.managedapplications.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Managed application billing details definition. */
+/**
+ * Managed application billing details definition.
+ */
 @Fluent
 public final class ApplicationBillingDetailsDefinition {
     /*
@@ -16,13 +18,15 @@ public final class ApplicationBillingDetailsDefinition {
     @JsonProperty(value = "resourceUsageId")
     private String resourceUsageId;
 
-    /** Creates an instance of ApplicationBillingDetailsDefinition class. */
+    /**
+     * Creates an instance of ApplicationBillingDetailsDefinition class.
+     */
     public ApplicationBillingDetailsDefinition() {
     }
 
     /**
      * Get the resourceUsageId property: The managed application resource usage Id.
-     *
+     * 
      * @return the resourceUsageId value.
      */
     public String resourceUsageId() {
@@ -31,7 +35,7 @@ public final class ApplicationBillingDetailsDefinition {
 
     /**
      * Set the resourceUsageId property: The managed application resource usage Id.
-     *
+     * 
      * @param resourceUsageId the resourceUsageId value to set.
      * @return the ApplicationBillingDetailsDefinition object itself.
      */
@@ -42,7 +46,7 @@ public final class ApplicationBillingDetailsDefinition {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -10,7 +10,9 @@ import com.azure.core.management.SystemData;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** Resource information. */
+/**
+ * Resource information.
+ */
 @Fluent
 public class GenericResource extends Resource {
     /*
@@ -31,13 +33,15 @@ public class GenericResource extends Resource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of GenericResource class. */
+    /**
+     * Creates an instance of GenericResource class.
+     */
     public GenericResource() {
     }
 
     /**
      * Get the managedBy property: ID of the resource that manages this resource.
-     *
+     * 
      * @return the managedBy value.
      */
     public String managedBy() {
@@ -46,7 +50,7 @@ public class GenericResource extends Resource {
 
     /**
      * Set the managedBy property: ID of the resource that manages this resource.
-     *
+     * 
      * @param managedBy the managedBy value to set.
      * @return the GenericResource object itself.
      */
@@ -57,7 +61,7 @@ public class GenericResource extends Resource {
 
     /**
      * Get the sku property: The SKU of the resource.
-     *
+     * 
      * @return the sku value.
      */
     public Sku sku() {
@@ -66,7 +70,7 @@ public class GenericResource extends Resource {
 
     /**
      * Set the sku property: The SKU of the resource.
-     *
+     * 
      * @param sku the sku value to set.
      * @return the GenericResource object itself.
      */
@@ -77,21 +81,25 @@ public class GenericResource extends Resource {
 
     /**
      * Get the systemData property: Metadata pertaining to creation and last modification of the resource.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
         return this.systemData;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public GenericResource withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public GenericResource withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -100,7 +108,7 @@ public class GenericResource extends Resource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

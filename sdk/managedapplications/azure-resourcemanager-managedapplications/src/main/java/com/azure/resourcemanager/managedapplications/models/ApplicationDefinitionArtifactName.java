@@ -8,25 +8,35 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The managed application artifact name. */
+/**
+ * The managed application artifact name.
+ */
 public final class ApplicationDefinitionArtifactName extends ExpandableStringEnum<ApplicationDefinitionArtifactName> {
-    /** Static value NotSpecified for ApplicationDefinitionArtifactName. */
+    /**
+     * Static value NotSpecified for ApplicationDefinitionArtifactName.
+     */
     public static final ApplicationDefinitionArtifactName NOT_SPECIFIED = fromString("NotSpecified");
 
-    /** Static value ApplicationResourceTemplate for ApplicationDefinitionArtifactName. */
-    public static final ApplicationDefinitionArtifactName APPLICATION_RESOURCE_TEMPLATE =
-        fromString("ApplicationResourceTemplate");
+    /**
+     * Static value ApplicationResourceTemplate for ApplicationDefinitionArtifactName.
+     */
+    public static final ApplicationDefinitionArtifactName APPLICATION_RESOURCE_TEMPLATE
+        = fromString("ApplicationResourceTemplate");
 
-    /** Static value CreateUiDefinition for ApplicationDefinitionArtifactName. */
+    /**
+     * Static value CreateUiDefinition for ApplicationDefinitionArtifactName.
+     */
     public static final ApplicationDefinitionArtifactName CREATE_UI_DEFINITION = fromString("CreateUiDefinition");
 
-    /** Static value MainTemplateParameters for ApplicationDefinitionArtifactName. */
-    public static final ApplicationDefinitionArtifactName MAIN_TEMPLATE_PARAMETERS =
-        fromString("MainTemplateParameters");
+    /**
+     * Static value MainTemplateParameters for ApplicationDefinitionArtifactName.
+     */
+    public static final ApplicationDefinitionArtifactName MAIN_TEMPLATE_PARAMETERS
+        = fromString("MainTemplateParameters");
 
     /**
      * Creates a new instance of ApplicationDefinitionArtifactName value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -35,7 +45,7 @@ public final class ApplicationDefinitionArtifactName extends ExpandableStringEnu
 
     /**
      * Creates or finds a ApplicationDefinitionArtifactName from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding ApplicationDefinitionArtifactName.
      */
@@ -46,7 +56,7 @@ public final class ApplicationDefinitionArtifactName extends ExpandableStringEnu
 
     /**
      * Gets known ApplicationDefinitionArtifactName values.
-     *
+     * 
      * @return known ApplicationDefinitionArtifactName values.
      */
     public static Collection<ApplicationDefinitionArtifactName> values() {

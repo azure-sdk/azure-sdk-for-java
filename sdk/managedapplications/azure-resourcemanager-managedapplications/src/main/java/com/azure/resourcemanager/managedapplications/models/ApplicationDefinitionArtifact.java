@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Application definition artifact. */
+/**
+ * Application definition artifact.
+ */
 @Fluent
 public final class ApplicationDefinitionArtifact {
     /*
@@ -29,13 +31,15 @@ public final class ApplicationDefinitionArtifact {
     @JsonProperty(value = "type", required = true)
     private ApplicationArtifactType type;
 
-    /** Creates an instance of ApplicationDefinitionArtifact class. */
+    /**
+     * Creates an instance of ApplicationDefinitionArtifact class.
+     */
     public ApplicationDefinitionArtifact() {
     }
 
     /**
      * Get the name property: The managed application definition artifact name.
-     *
+     * 
      * @return the name value.
      */
     public ApplicationDefinitionArtifactName name() {
@@ -44,7 +48,7 @@ public final class ApplicationDefinitionArtifact {
 
     /**
      * Set the name property: The managed application definition artifact name.
-     *
+     * 
      * @param name the name value to set.
      * @return the ApplicationDefinitionArtifact object itself.
      */
@@ -55,7 +59,7 @@ public final class ApplicationDefinitionArtifact {
 
     /**
      * Get the uri property: The managed application definition artifact blob uri.
-     *
+     * 
      * @return the uri value.
      */
     public String uri() {
@@ -64,7 +68,7 @@ public final class ApplicationDefinitionArtifact {
 
     /**
      * Set the uri property: The managed application definition artifact blob uri.
-     *
+     * 
      * @param uri the uri value to set.
      * @return the ApplicationDefinitionArtifact object itself.
      */
@@ -75,7 +79,7 @@ public final class ApplicationDefinitionArtifact {
 
     /**
      * Get the type property: The managed application definition artifact type.
-     *
+     * 
      * @return the type value.
      */
     public ApplicationArtifactType type() {
@@ -84,7 +88,7 @@ public final class ApplicationDefinitionArtifact {
 
     /**
      * Set the type property: The managed application definition artifact type.
-     *
+     * 
      * @param type the type value to set.
      * @return the ApplicationDefinitionArtifact object itself.
      */
@@ -95,27 +99,21 @@ public final class ApplicationDefinitionArtifact {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (name() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property name in model ApplicationDefinitionArtifact"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property name in model ApplicationDefinitionArtifact"));
         }
         if (uri() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property uri in model ApplicationDefinitionArtifact"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property uri in model ApplicationDefinitionArtifact"));
         }
         if (type() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property type in model ApplicationDefinitionArtifact"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property type in model ApplicationDefinitionArtifact"));
         }
     }
 

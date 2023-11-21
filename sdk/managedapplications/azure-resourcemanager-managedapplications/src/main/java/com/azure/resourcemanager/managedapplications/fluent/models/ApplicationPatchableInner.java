@@ -22,7 +22,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
 
-/** Information about managed application. */
+/**
+ * Information about managed application.
+ */
 @Fluent
 public final class ApplicationPatchableInner extends GenericResource {
     /*
@@ -49,13 +51,15 @@ public final class ApplicationPatchableInner extends GenericResource {
     @JsonProperty(value = "identity")
     private Identity identity;
 
-    /** Creates an instance of ApplicationPatchableInner class. */
+    /**
+     * Creates an instance of ApplicationPatchableInner class.
+     */
     public ApplicationPatchableInner() {
     }
 
     /**
      * Get the innerProperties property: The managed application properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private ApplicationProperties innerProperties() {
@@ -64,7 +68,7 @@ public final class ApplicationPatchableInner extends GenericResource {
 
     /**
      * Get the plan property: The plan information.
-     *
+     * 
      * @return the plan value.
      */
     public PlanPatchable plan() {
@@ -73,7 +77,7 @@ public final class ApplicationPatchableInner extends GenericResource {
 
     /**
      * Set the plan property: The plan information.
-     *
+     * 
      * @param plan the plan value to set.
      * @return the ApplicationPatchableInner object itself.
      */
@@ -84,7 +88,7 @@ public final class ApplicationPatchableInner extends GenericResource {
 
     /**
      * Get the kind property: The kind of the managed application. Allowed values are MarketPlace and ServiceCatalog.
-     *
+     * 
      * @return the kind value.
      */
     public String kind() {
@@ -93,7 +97,7 @@ public final class ApplicationPatchableInner extends GenericResource {
 
     /**
      * Set the kind property: The kind of the managed application. Allowed values are MarketPlace and ServiceCatalog.
-     *
+     * 
      * @param kind the kind value to set.
      * @return the ApplicationPatchableInner object itself.
      */
@@ -104,7 +108,7 @@ public final class ApplicationPatchableInner extends GenericResource {
 
     /**
      * Get the identity property: The identity of the resource.
-     *
+     * 
      * @return the identity value.
      */
     public Identity identity() {
@@ -113,7 +117,7 @@ public final class ApplicationPatchableInner extends GenericResource {
 
     /**
      * Set the identity property: The identity of the resource.
-     *
+     * 
      * @param identity the identity value to set.
      * @return the ApplicationPatchableInner object itself.
      */
@@ -122,28 +126,36 @@ public final class ApplicationPatchableInner extends GenericResource {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ApplicationPatchableInner withManagedBy(String managedBy) {
         super.withManagedBy(managedBy);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ApplicationPatchableInner withSku(Sku sku) {
         super.withSku(sku);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ApplicationPatchableInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ApplicationPatchableInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -152,7 +164,7 @@ public final class ApplicationPatchableInner extends GenericResource {
 
     /**
      * Get the managedResourceGroupId property: The managed resource group Id.
-     *
+     * 
      * @return the managedResourceGroupId value.
      */
     public String managedResourceGroupId() {
@@ -161,7 +173,7 @@ public final class ApplicationPatchableInner extends GenericResource {
 
     /**
      * Set the managedResourceGroupId property: The managed resource group Id.
-     *
+     * 
      * @param managedResourceGroupId the managedResourceGroupId value to set.
      * @return the ApplicationPatchableInner object itself.
      */
@@ -175,7 +187,7 @@ public final class ApplicationPatchableInner extends GenericResource {
 
     /**
      * Get the applicationDefinitionId property: The fully qualified path of managed application definition Id.
-     *
+     * 
      * @return the applicationDefinitionId value.
      */
     public String applicationDefinitionId() {
@@ -184,7 +196,7 @@ public final class ApplicationPatchableInner extends GenericResource {
 
     /**
      * Set the applicationDefinitionId property: The fully qualified path of managed application definition Id.
-     *
+     * 
      * @param applicationDefinitionId the applicationDefinitionId value to set.
      * @return the ApplicationPatchableInner object itself.
      */
@@ -199,7 +211,7 @@ public final class ApplicationPatchableInner extends GenericResource {
     /**
      * Get the parameters property: Name and value pairs that define the managed application parameters. It can be a
      * JObject or a well formed JSON string.
-     *
+     * 
      * @return the parameters value.
      */
     public Object parameters() {
@@ -209,7 +221,7 @@ public final class ApplicationPatchableInner extends GenericResource {
     /**
      * Set the parameters property: Name and value pairs that define the managed application parameters. It can be a
      * JObject or a well formed JSON string.
-     *
+     * 
      * @param parameters the parameters value to set.
      * @return the ApplicationPatchableInner object itself.
      */
@@ -223,7 +235,7 @@ public final class ApplicationPatchableInner extends GenericResource {
 
     /**
      * Get the outputs property: Name and value pairs that define the managed application outputs.
-     *
+     * 
      * @return the outputs value.
      */
     public Object outputs() {
@@ -232,7 +244,7 @@ public final class ApplicationPatchableInner extends GenericResource {
 
     /**
      * Get the provisioningState property: The managed application provisioning state.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -241,7 +253,7 @@ public final class ApplicationPatchableInner extends GenericResource {
 
     /**
      * Get the billingDetails property: The managed application billing details.
-     *
+     * 
      * @return the billingDetails value.
      */
     public ApplicationBillingDetailsDefinition billingDetails() {
@@ -250,7 +262,7 @@ public final class ApplicationPatchableInner extends GenericResource {
 
     /**
      * Get the jitAccessPolicy property: The managed application Jit access policy.
-     *
+     * 
      * @return the jitAccessPolicy value.
      */
     public ApplicationJitAccessPolicy jitAccessPolicy() {
@@ -259,7 +271,7 @@ public final class ApplicationPatchableInner extends GenericResource {
 
     /**
      * Set the jitAccessPolicy property: The managed application Jit access policy.
-     *
+     * 
      * @param jitAccessPolicy the jitAccessPolicy value to set.
      * @return the ApplicationPatchableInner object itself.
      */
@@ -273,7 +285,7 @@ public final class ApplicationPatchableInner extends GenericResource {
 
     /**
      * Get the publisherTenantId property: The publisher tenant Id.
-     *
+     * 
      * @return the publisherTenantId value.
      */
     public String publisherTenantId() {
@@ -283,7 +295,7 @@ public final class ApplicationPatchableInner extends GenericResource {
     /**
      * Get the authorizations property: The read-only authorizations property that is retrieved from the application
      * package.
-     *
+     * 
      * @return the authorizations value.
      */
     public List<ApplicationAuthorization> authorizations() {
@@ -292,7 +304,7 @@ public final class ApplicationPatchableInner extends GenericResource {
 
     /**
      * Get the managementMode property: The managed application management mode.
-     *
+     * 
      * @return the managementMode value.
      */
     public ApplicationManagementMode managementMode() {
@@ -302,7 +314,7 @@ public final class ApplicationPatchableInner extends GenericResource {
     /**
      * Get the customerSupport property: The read-only customer support property that is retrieved from the application
      * package.
-     *
+     * 
      * @return the customerSupport value.
      */
     public ApplicationPackageContact customerSupport() {
@@ -310,8 +322,9 @@ public final class ApplicationPatchableInner extends GenericResource {
     }
 
     /**
-     * Get the supportUrls property: The read-only support URLs property that is retrieved from the application package.
-     *
+     * Get the supportUrls property: The read-only support URLs property that is retrieved from the application
+     * package.
+     * 
      * @return the supportUrls value.
      */
     public ApplicationPackageSupportUrls supportUrls() {
@@ -320,7 +333,7 @@ public final class ApplicationPatchableInner extends GenericResource {
 
     /**
      * Get the artifacts property: The collection of managed application artifacts.
-     *
+     * 
      * @return the artifacts value.
      */
     public List<ApplicationArtifact> artifacts() {
@@ -329,7 +342,7 @@ public final class ApplicationPatchableInner extends GenericResource {
 
     /**
      * Get the createdBy property: The client entity that created the JIT request.
-     *
+     * 
      * @return the createdBy value.
      */
     public ApplicationClientDetails createdBy() {
@@ -338,7 +351,7 @@ public final class ApplicationPatchableInner extends GenericResource {
 
     /**
      * Get the updatedBy property: The client entity that last updated the JIT request.
-     *
+     * 
      * @return the updatedBy value.
      */
     public ApplicationClientDetails updatedBy() {
@@ -347,7 +360,7 @@ public final class ApplicationPatchableInner extends GenericResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
