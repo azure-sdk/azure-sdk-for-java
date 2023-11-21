@@ -10,7 +10,9 @@ import com.azure.resourcemanager.securityinsights.models.SecurityAlert;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List of incident alerts. */
+/**
+ * List of incident alerts.
+ */
 @Fluent
 public final class IncidentAlertListInner {
     /*
@@ -20,8 +22,14 @@ public final class IncidentAlertListInner {
     private List<SecurityAlert> value;
 
     /**
+     * Creates an instance of IncidentAlertListInner class.
+     */
+    public IncidentAlertListInner() {
+    }
+
+    /**
      * Get the value property: Array of incident alerts.
-     *
+     * 
      * @return the value value.
      */
     public List<SecurityAlert> value() {
@@ -30,7 +38,7 @@ public final class IncidentAlertListInner {
 
     /**
      * Set the value property: Array of incident alerts.
-     *
+     * 
      * @param value the value value to set.
      * @return the IncidentAlertListInner object itself.
      */
@@ -41,14 +49,13 @@ public final class IncidentAlertListInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property value in model IncidentAlertListInner"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property value in model IncidentAlertListInner"));
         } else {
             value().forEach(e -> e.validate());
         }

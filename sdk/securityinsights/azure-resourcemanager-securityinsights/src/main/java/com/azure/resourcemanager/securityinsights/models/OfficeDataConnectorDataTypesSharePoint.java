@@ -6,10 +6,20 @@ package com.azure.resourcemanager.securityinsights.models;
 
 import com.azure.core.annotation.Fluent;
 
-/** SharePoint data type connection. */
+/**
+ * SharePoint data type connection.
+ */
 @Fluent
 public final class OfficeDataConnectorDataTypesSharePoint extends DataConnectorDataTypeCommon {
-    /** {@inheritDoc} */
+    /**
+     * Creates an instance of OfficeDataConnectorDataTypesSharePoint class.
+     */
+    public OfficeDataConnectorDataTypesSharePoint() {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public OfficeDataConnectorDataTypesSharePoint withState(DataTypeState state) {
         super.withState(state);
@@ -18,7 +28,7 @@ public final class OfficeDataConnectorDataTypesSharePoint extends DataConnectorD
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

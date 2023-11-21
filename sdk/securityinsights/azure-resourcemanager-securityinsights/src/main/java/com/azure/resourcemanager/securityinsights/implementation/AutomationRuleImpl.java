@@ -102,24 +102,16 @@ public final class AutomationRuleImpl implements AutomationRule, AutomationRule.
     }
 
     public AutomationRule create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getAutomationRules()
-                .createOrUpdateWithResponse(
-                    resourceGroupName, workspaceName, automationRuleId, this.innerModel(), Context.NONE)
-                .getValue();
+        this.innerObject
+            = serviceManager.serviceClient().getAutomationRules().createOrUpdateWithResponse(resourceGroupName,
+                workspaceName, automationRuleId, this.innerModel(), Context.NONE).getValue();
         return this;
     }
 
     public AutomationRule create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getAutomationRules()
-                .createOrUpdateWithResponse(
-                    resourceGroupName, workspaceName, automationRuleId, this.innerModel(), context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getAutomationRules()
+            .createOrUpdateWithResponse(resourceGroupName, workspaceName, automationRuleId, this.innerModel(), context)
+            .getValue();
         return this;
     }
 
@@ -134,29 +126,20 @@ public final class AutomationRuleImpl implements AutomationRule, AutomationRule.
     }
 
     public AutomationRule apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getAutomationRules()
-                .createOrUpdateWithResponse(
-                    resourceGroupName, workspaceName, automationRuleId, this.innerModel(), Context.NONE)
-                .getValue();
+        this.innerObject
+            = serviceManager.serviceClient().getAutomationRules().createOrUpdateWithResponse(resourceGroupName,
+                workspaceName, automationRuleId, this.innerModel(), Context.NONE).getValue();
         return this;
     }
 
     public AutomationRule apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getAutomationRules()
-                .createOrUpdateWithResponse(
-                    resourceGroupName, workspaceName, automationRuleId, this.innerModel(), context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getAutomationRules()
+            .createOrUpdateWithResponse(resourceGroupName, workspaceName, automationRuleId, this.innerModel(), context)
+            .getValue();
         return this;
     }
 
-    AutomationRuleImpl(
-        AutomationRuleInner innerObject,
+    AutomationRuleImpl(AutomationRuleInner innerObject,
         com.azure.resourcemanager.securityinsights.SecurityInsightsManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
@@ -166,22 +149,14 @@ public final class AutomationRuleImpl implements AutomationRule, AutomationRule.
     }
 
     public AutomationRule refresh() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getAutomationRules()
-                .getWithResponse(resourceGroupName, workspaceName, automationRuleId, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getAutomationRules()
+            .getWithResponse(resourceGroupName, workspaceName, automationRuleId, Context.NONE).getValue();
         return this;
     }
 
     public AutomationRule refresh(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getAutomationRules()
-                .getWithResponse(resourceGroupName, workspaceName, automationRuleId, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getAutomationRules()
+            .getWithResponse(resourceGroupName, workspaceName, automationRuleId, context).getValue();
         return this;
     }
 

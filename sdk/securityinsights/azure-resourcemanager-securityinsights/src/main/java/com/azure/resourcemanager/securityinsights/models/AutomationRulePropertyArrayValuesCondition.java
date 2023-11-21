@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The AutomationRulePropertyArrayValuesCondition model. */
+/**
+ * The AutomationRulePropertyArrayValuesCondition model.
+ */
 @Fluent
 public final class AutomationRulePropertyArrayValuesCondition {
     /*
@@ -30,8 +32,14 @@ public final class AutomationRulePropertyArrayValuesCondition {
     private List<AutomationRuleCondition> itemConditions;
 
     /**
+     * Creates an instance of AutomationRulePropertyArrayValuesCondition class.
+     */
+    public AutomationRulePropertyArrayValuesCondition() {
+    }
+
+    /**
      * Get the arrayType property: The arrayType property.
-     *
+     * 
      * @return the arrayType value.
      */
     public AutomationRulePropertyArrayConditionSupportedArrayType arrayType() {
@@ -40,19 +48,19 @@ public final class AutomationRulePropertyArrayValuesCondition {
 
     /**
      * Set the arrayType property: The arrayType property.
-     *
+     * 
      * @param arrayType the arrayType value to set.
      * @return the AutomationRulePropertyArrayValuesCondition object itself.
      */
-    public AutomationRulePropertyArrayValuesCondition withArrayType(
-        AutomationRulePropertyArrayConditionSupportedArrayType arrayType) {
+    public AutomationRulePropertyArrayValuesCondition
+        withArrayType(AutomationRulePropertyArrayConditionSupportedArrayType arrayType) {
         this.arrayType = arrayType;
         return this;
     }
 
     /**
      * Get the arrayConditionType property: The arrayConditionType property.
-     *
+     * 
      * @return the arrayConditionType value.
      */
     public AutomationRulePropertyArrayConditionSupportedArrayConditionType arrayConditionType() {
@@ -61,19 +69,19 @@ public final class AutomationRulePropertyArrayValuesCondition {
 
     /**
      * Set the arrayConditionType property: The arrayConditionType property.
-     *
+     * 
      * @param arrayConditionType the arrayConditionType value to set.
      * @return the AutomationRulePropertyArrayValuesCondition object itself.
      */
-    public AutomationRulePropertyArrayValuesCondition withArrayConditionType(
-        AutomationRulePropertyArrayConditionSupportedArrayConditionType arrayConditionType) {
+    public AutomationRulePropertyArrayValuesCondition
+        withArrayConditionType(AutomationRulePropertyArrayConditionSupportedArrayConditionType arrayConditionType) {
         this.arrayConditionType = arrayConditionType;
         return this;
     }
 
     /**
      * Get the itemConditions property: The itemConditions property.
-     *
+     * 
      * @return the itemConditions value.
      */
     public List<AutomationRuleCondition> itemConditions() {
@@ -82,7 +90,7 @@ public final class AutomationRulePropertyArrayValuesCondition {
 
     /**
      * Set the itemConditions property: The itemConditions property.
-     *
+     * 
      * @param itemConditions the itemConditions value to set.
      * @return the AutomationRulePropertyArrayValuesCondition object itself.
      */
@@ -93,7 +101,7 @@ public final class AutomationRulePropertyArrayValuesCondition {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

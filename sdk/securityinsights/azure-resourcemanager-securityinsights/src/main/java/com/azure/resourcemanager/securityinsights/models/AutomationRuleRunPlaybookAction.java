@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Describes an automation rule action to run a playbook. */
+/**
+ * Describes an automation rule action to run a playbook.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "actionType")
 @JsonTypeName("RunPlaybook")
 @Fluent
@@ -21,8 +23,14 @@ public final class AutomationRuleRunPlaybookAction extends AutomationRuleAction 
     private PlaybookActionProperties actionConfiguration;
 
     /**
+     * Creates an instance of AutomationRuleRunPlaybookAction class.
+     */
+    public AutomationRuleRunPlaybookAction() {
+    }
+
+    /**
      * Get the actionConfiguration property: The actionConfiguration property.
-     *
+     * 
      * @return the actionConfiguration value.
      */
     public PlaybookActionProperties actionConfiguration() {
@@ -31,7 +39,7 @@ public final class AutomationRuleRunPlaybookAction extends AutomationRuleAction 
 
     /**
      * Set the actionConfiguration property: The actionConfiguration property.
-     *
+     * 
      * @param actionConfiguration the actionConfiguration value to set.
      * @return the AutomationRuleRunPlaybookAction object itself.
      */
@@ -40,7 +48,9 @@ public final class AutomationRuleRunPlaybookAction extends AutomationRuleAction 
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AutomationRuleRunPlaybookAction withOrder(int order) {
         super.withOrder(order);
@@ -49,7 +59,7 @@ public final class AutomationRuleRunPlaybookAction extends AutomationRuleAction 
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

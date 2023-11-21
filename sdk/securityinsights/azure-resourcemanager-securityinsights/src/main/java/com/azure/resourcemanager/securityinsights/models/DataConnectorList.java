@@ -10,7 +10,9 @@ import com.azure.resourcemanager.securityinsights.fluent.models.DataConnectorInn
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List all the data connectors. */
+/**
+ * List all the data connectors.
+ */
 @Fluent
 public final class DataConnectorList {
     /*
@@ -26,8 +28,14 @@ public final class DataConnectorList {
     private List<DataConnectorInner> value;
 
     /**
+     * Creates an instance of DataConnectorList class.
+     */
+    public DataConnectorList() {
+    }
+
+    /**
      * Get the nextLink property: URL to fetch the next set of data connectors.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -36,7 +44,7 @@ public final class DataConnectorList {
 
     /**
      * Get the value property: Array of data connectors.
-     *
+     * 
      * @return the value value.
      */
     public List<DataConnectorInner> value() {
@@ -45,7 +53,7 @@ public final class DataConnectorList {
 
     /**
      * Set the value property: Array of data connectors.
-     *
+     * 
      * @param value the value value to set.
      * @return the DataConnectorList object itself.
      */
@@ -56,14 +64,13 @@ public final class DataConnectorList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property value in model DataConnectorList"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property value in model DataConnectorList"));
         } else {
             value().forEach(e -> e.validate());
         }

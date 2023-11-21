@@ -8,15 +8,11 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The available data types for Microsoft Threat Intelligence Platforms data connector. */
+/**
+ * The available data types for Microsoft Threat Intelligence Platforms data connector.
+ */
 @Fluent
 public final class MstiDataConnectorDataTypes {
-    /*
-     * Data type for Microsoft Threat Intelligence Platforms data connector.
-     */
-    @JsonProperty(value = "bingSafetyPhishingURL", required = true)
-    private MstiDataConnectorDataTypesBingSafetyPhishingUrl bingSafetyPhishingUrl;
-
     /*
      * Data type for Microsoft Threat Intelligence Platforms data connector.
      */
@@ -24,30 +20,15 @@ public final class MstiDataConnectorDataTypes {
     private MstiDataConnectorDataTypesMicrosoftEmergingThreatFeed microsoftEmergingThreatFeed;
 
     /**
-     * Get the bingSafetyPhishingUrl property: Data type for Microsoft Threat Intelligence Platforms data connector.
-     *
-     * @return the bingSafetyPhishingUrl value.
+     * Creates an instance of MstiDataConnectorDataTypes class.
      */
-    public MstiDataConnectorDataTypesBingSafetyPhishingUrl bingSafetyPhishingUrl() {
-        return this.bingSafetyPhishingUrl;
-    }
-
-    /**
-     * Set the bingSafetyPhishingUrl property: Data type for Microsoft Threat Intelligence Platforms data connector.
-     *
-     * @param bingSafetyPhishingUrl the bingSafetyPhishingUrl value to set.
-     * @return the MstiDataConnectorDataTypes object itself.
-     */
-    public MstiDataConnectorDataTypes withBingSafetyPhishingUrl(
-        MstiDataConnectorDataTypesBingSafetyPhishingUrl bingSafetyPhishingUrl) {
-        this.bingSafetyPhishingUrl = bingSafetyPhishingUrl;
-        return this;
+    public MstiDataConnectorDataTypes() {
     }
 
     /**
      * Get the microsoftEmergingThreatFeed property: Data type for Microsoft Threat Intelligence Platforms data
      * connector.
-     *
+     * 
      * @return the microsoftEmergingThreatFeed value.
      */
     public MstiDataConnectorDataTypesMicrosoftEmergingThreatFeed microsoftEmergingThreatFeed() {
@@ -57,7 +38,7 @@ public final class MstiDataConnectorDataTypes {
     /**
      * Set the microsoftEmergingThreatFeed property: Data type for Microsoft Threat Intelligence Platforms data
      * connector.
-     *
+     * 
      * @param microsoftEmergingThreatFeed the microsoftEmergingThreatFeed value to set.
      * @return the MstiDataConnectorDataTypes object itself.
      */
@@ -69,23 +50,13 @@ public final class MstiDataConnectorDataTypes {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (bingSafetyPhishingUrl() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property bingSafetyPhishingUrl in model MstiDataConnectorDataTypes"));
-        } else {
-            bingSafetyPhishingUrl().validate();
-        }
         if (microsoftEmergingThreatFeed() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property microsoftEmergingThreatFeed in model MstiDataConnectorDataTypes"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property microsoftEmergingThreatFeed in model MstiDataConnectorDataTypes"));
         } else {
             microsoftEmergingThreatFeed().validate();
         }
