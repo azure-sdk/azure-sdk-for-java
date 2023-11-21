@@ -19,8 +19,7 @@ public final class AccountsImpl implements Accounts {
 
     private final com.azure.resourcemanager.newrelicobservability.NewRelicObservabilityManager serviceManager;
 
-    public AccountsImpl(
-        AccountsClient innerClient,
+    public AccountsImpl(AccountsClient innerClient,
         com.azure.resourcemanager.newrelicobservability.NewRelicObservabilityManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
