@@ -1,3 +1,5 @@
-directory: specification/riskiq/Easm
-commit: f5f584c65071dc0306544a195fbcdff156023040
 repo: Azure/azure-rest-api-specs
+additionalDirectories: []
+commit: 93259c8e288a39b76fe6a58fabbbe850d3462d83
+directory: specification/riskiq/Easm
+
