@@ -4,14 +4,18 @@
 
 package com.azure.resourcemanager.security.generated;
 
-/** Samples for SecurityContacts Get. */
+/**
+ * Samples for SecurityContacts Get.
+ */
 public final class SecurityContactsGetSamples {
     /*
-     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2020-01-01-preview/examples/SecurityContacts/GetSecurityContact_example.json
+     * x-ms-original-file:
+     * specification/security/resource-manager/Microsoft.Security/preview/2020-01-01-preview/examples/SecurityContacts/
+     * GetSecurityContact_example.json
      */
     /**
      * Sample code: Get a security contact.
-     *
+     * 
      * @param manager Entry point to SecurityManager.
      */
     public static void getASecurityContact(com.azure.resourcemanager.security.SecurityManager manager) {

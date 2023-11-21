@@ -21,8 +21,8 @@ public final class SecurityContactsImpl implements SecurityContacts {
 
     private final com.azure.resourcemanager.security.SecurityManager serviceManager;
 
-    public SecurityContactsImpl(
-        SecurityContactsClient innerClient, com.azure.resourcemanager.security.SecurityManager serviceManager) {
+    public SecurityContactsImpl(SecurityContactsClient innerClient,
+        com.azure.resourcemanager.security.SecurityManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
@@ -40,10 +40,7 @@ public final class SecurityContactsImpl implements SecurityContacts {
     public Response<SecurityContact> getWithResponse(String securityContactName, Context context) {
         Response<SecurityContactInner> inner = this.serviceClient().getWithResponse(securityContactName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new SecurityContactImpl(inner.getValue(), this.manager()));
         } else {
             return null;
@@ -70,12 +67,8 @@ public final class SecurityContactsImpl implements SecurityContacts {
     public SecurityContact getById(String id) {
         String securityContactName = Utils.getValueFromIdByName(id, "securityContacts");
         if (securityContactName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format(
-                                "The resource ID '%s' is not valid. Missing path segment 'securityContacts'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'securityContacts'.", id)));
         }
         return this.getWithResponse(securityContactName, Context.NONE).getValue();
     }
@@ -83,12 +76,8 @@ public final class SecurityContactsImpl implements SecurityContacts {
     public Response<SecurityContact> getByIdWithResponse(String id, Context context) {
         String securityContactName = Utils.getValueFromIdByName(id, "securityContacts");
         if (securityContactName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format(
-                                "The resource ID '%s' is not valid. Missing path segment 'securityContacts'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'securityContacts'.", id)));
         }
         return this.getWithResponse(securityContactName, context);
     }
@@ -96,12 +85,8 @@ public final class SecurityContactsImpl implements SecurityContacts {
     public void deleteById(String id) {
         String securityContactName = Utils.getValueFromIdByName(id, "securityContacts");
         if (securityContactName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format(
-                                "The resource ID '%s' is not valid. Missing path segment 'securityContacts'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'securityContacts'.", id)));
         }
         this.deleteWithResponse(securityContactName, Context.NONE);
     }
@@ -109,12 +94,8 @@ public final class SecurityContactsImpl implements SecurityContacts {
     public Response<Void> deleteByIdWithResponse(String id, Context context) {
         String securityContactName = Utils.getValueFromIdByName(id, "securityContacts");
         if (securityContactName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format(
-                                "The resource ID '%s' is not valid. Missing path segment 'securityContacts'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'securityContacts'.", id)));
         }
         return this.deleteWithResponse(securityContactName, context);
     }

@@ -40,10 +40,7 @@ public final class SettingsImpl implements Settings {
     public Response<Setting> getWithResponse(SettingName settingName, Context context) {
         Response<SettingInner> inner = this.serviceClient().getWithResponse(settingName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new SettingImpl(inner.getValue(), this.manager()));
         } else {
             return null;
@@ -62,10 +59,7 @@ public final class SettingsImpl implements Settings {
     public Response<Setting> updateWithResponse(SettingName settingName, SettingInner setting, Context context) {
         Response<SettingInner> inner = this.serviceClient().updateWithResponse(settingName, setting, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new SettingImpl(inner.getValue(), this.manager()));
         } else {
             return null;

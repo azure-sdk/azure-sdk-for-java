@@ -23,8 +23,8 @@ public final class AutomationsImpl implements Automations {
 
     private final com.azure.resourcemanager.security.SecurityManager serviceManager;
 
-    public AutomationsImpl(
-        AutomationsClient innerClient, com.azure.resourcemanager.security.SecurityManager serviceManager) {
+    public AutomationsImpl(AutomationsClient innerClient,
+        com.azure.resourcemanager.security.SecurityManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
@@ -49,15 +49,12 @@ public final class AutomationsImpl implements Automations {
         return Utils.mapPage(inner, inner1 -> new AutomationImpl(inner1, this.manager()));
     }
 
-    public Response<Automation> getByResourceGroupWithResponse(
-        String resourceGroupName, String automationName, Context context) {
-        Response<AutomationInner> inner =
-            this.serviceClient().getByResourceGroupWithResponse(resourceGroupName, automationName, context);
+    public Response<Automation> getByResourceGroupWithResponse(String resourceGroupName, String automationName,
+        Context context) {
+        Response<AutomationInner> inner
+            = this.serviceClient().getByResourceGroupWithResponse(resourceGroupName, automationName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new AutomationImpl(inner.getValue(), this.manager()));
         } else {
             return null;
@@ -73,8 +70,8 @@ public final class AutomationsImpl implements Automations {
         }
     }
 
-    public Response<Void> deleteByResourceGroupWithResponse(
-        String resourceGroupName, String automationName, Context context) {
+    public Response<Void> deleteByResourceGroupWithResponse(String resourceGroupName, String automationName,
+        Context context) {
         return this.serviceClient().deleteWithResponse(resourceGroupName, automationName, context);
     }
 
@@ -82,25 +79,22 @@ public final class AutomationsImpl implements Automations {
         this.serviceClient().delete(resourceGroupName, automationName);
     }
 
-    public Response<AutomationValidationStatus> validateWithResponse(
-        String resourceGroupName, String automationName, AutomationInner automation, Context context) {
-        Response<AutomationValidationStatusInner> inner =
-            this.serviceClient().validateWithResponse(resourceGroupName, automationName, automation, context);
+    public Response<AutomationValidationStatus> validateWithResponse(String resourceGroupName, String automationName,
+        AutomationInner automation, Context context) {
+        Response<AutomationValidationStatusInner> inner
+            = this.serviceClient().validateWithResponse(resourceGroupName, automationName, automation, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new AutomationValidationStatusImpl(inner.getValue(), this.manager()));
         } else {
             return null;
         }
     }
 
-    public AutomationValidationStatus validate(
-        String resourceGroupName, String automationName, AutomationInner automation) {
-        AutomationValidationStatusInner inner =
-            this.serviceClient().validate(resourceGroupName, automationName, automation);
+    public AutomationValidationStatus validate(String resourceGroupName, String automationName,
+        AutomationInner automation) {
+        AutomationValidationStatusInner inner
+            = this.serviceClient().validate(resourceGroupName, automationName, automation);
         if (inner != null) {
             return new AutomationValidationStatusImpl(inner, this.manager());
         } else {
@@ -111,18 +105,13 @@ public final class AutomationsImpl implements Automations {
     public Automation getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String automationName = Utils.getValueFromIdByName(id, "automations");
         if (automationName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'automations'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'automations'.", id)));
         }
         return this.getByResourceGroupWithResponse(resourceGroupName, automationName, Context.NONE).getValue();
     }
@@ -130,18 +119,13 @@ public final class AutomationsImpl implements Automations {
     public Response<Automation> getByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String automationName = Utils.getValueFromIdByName(id, "automations");
         if (automationName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'automations'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'automations'.", id)));
         }
         return this.getByResourceGroupWithResponse(resourceGroupName, automationName, context);
     }
@@ -149,18 +133,13 @@ public final class AutomationsImpl implements Automations {
     public void deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String automationName = Utils.getValueFromIdByName(id, "automations");
         if (automationName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'automations'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'automations'.", id)));
         }
         this.deleteByResourceGroupWithResponse(resourceGroupName, automationName, Context.NONE);
     }
@@ -168,18 +147,13 @@ public final class AutomationsImpl implements Automations {
     public Response<Void> deleteByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String automationName = Utils.getValueFromIdByName(id, "automations");
         if (automationName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'automations'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'automations'.", id)));
         }
         return this.deleteByResourceGroupWithResponse(resourceGroupName, automationName, context);
     }
