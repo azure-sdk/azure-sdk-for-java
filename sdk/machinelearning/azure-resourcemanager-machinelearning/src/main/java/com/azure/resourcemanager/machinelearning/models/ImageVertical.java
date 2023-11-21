@@ -9,8 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Abstract class for AutoML tasks that train image (computer vision) models - such as Image Classification / Image
- * Classification Multilabel / Image Object Detection / Image Instance Segmentation.
+ * Abstract class for AutoML tasks that train image (computer vision) models -
+ * such as Image Classification / Image Classification Multilabel / Image Object Detection / Image Instance
+ * Segmentation.
  */
 @Fluent
 public class ImageVertical {
@@ -40,13 +41,15 @@ public class ImageVertical {
     @JsonProperty(value = "validationDataSize")
     private Double validationDataSize;
 
-    /** Creates an instance of ImageVertical class. */
+    /**
+     * Creates an instance of ImageVertical class.
+     */
     public ImageVertical() {
     }
 
     /**
      * Get the limitSettings property: [Required] Limit settings for the AutoML job.
-     *
+     * 
      * @return the limitSettings value.
      */
     public ImageLimitSettings limitSettings() {
@@ -55,7 +58,7 @@ public class ImageVertical {
 
     /**
      * Set the limitSettings property: [Required] Limit settings for the AutoML job.
-     *
+     * 
      * @param limitSettings the limitSettings value to set.
      * @return the ImageVertical object itself.
      */
@@ -66,7 +69,7 @@ public class ImageVertical {
 
     /**
      * Get the sweepSettings property: Model sweeping and hyperparameter sweeping related settings.
-     *
+     * 
      * @return the sweepSettings value.
      */
     public ImageSweepSettings sweepSettings() {
@@ -75,7 +78,7 @@ public class ImageVertical {
 
     /**
      * Set the sweepSettings property: Model sweeping and hyperparameter sweeping related settings.
-     *
+     * 
      * @param sweepSettings the sweepSettings value to set.
      * @return the ImageVertical object itself.
      */
@@ -86,7 +89,7 @@ public class ImageVertical {
 
     /**
      * Get the validationData property: Validation data inputs.
-     *
+     * 
      * @return the validationData value.
      */
     public MLTableJobInput validationData() {
@@ -95,7 +98,7 @@ public class ImageVertical {
 
     /**
      * Set the validationData property: Validation data inputs.
-     *
+     * 
      * @param validationData the validationData value to set.
      * @return the ImageVertical object itself.
      */
@@ -106,8 +109,10 @@ public class ImageVertical {
 
     /**
      * Get the validationDataSize property: The fraction of training dataset that needs to be set aside for validation
-     * purpose. Values between (0.0 , 1.0) Applied when validation dataset is not provided.
-     *
+     * purpose.
+     * Values between (0.0 , 1.0)
+     * Applied when validation dataset is not provided.
+     * 
      * @return the validationDataSize value.
      */
     public Double validationDataSize() {
@@ -116,8 +121,10 @@ public class ImageVertical {
 
     /**
      * Set the validationDataSize property: The fraction of training dataset that needs to be set aside for validation
-     * purpose. Values between (0.0 , 1.0) Applied when validation dataset is not provided.
-     *
+     * purpose.
+     * Values between (0.0 , 1.0)
+     * Applied when validation dataset is not provided.
+     * 
      * @param validationDataSize the validationDataSize value to set.
      * @return the ImageVertical object itself.
      */
@@ -128,14 +135,13 @@ public class ImageVertical {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (limitSettings() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property limitSettings in model ImageVertical"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property limitSettings in model ImageVertical"));
         } else {
             limitSettings().validate();
         }

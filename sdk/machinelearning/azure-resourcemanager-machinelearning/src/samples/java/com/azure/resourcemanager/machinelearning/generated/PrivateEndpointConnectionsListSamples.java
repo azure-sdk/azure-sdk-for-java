@@ -4,14 +4,18 @@
 
 package com.azure.resourcemanager.machinelearning.generated;
 
-/** Samples for PrivateEndpointConnections List. */
+/**
+ * Samples for PrivateEndpointConnections List.
+ */
 public final class PrivateEndpointConnectionsListSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/PrivateEndpointConnection/list.json
+     * x-ms-original-file:
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2024-01-01-
+     * preview/examples/PrivateEndpointConnection/list.json
      */
     /**
      * Sample code: StorageAccountListPrivateEndpointConnections.
-     *
+     * 
      * @param manager Entry point to MachineLearningManager.
      */
     public static void storageAccountListPrivateEndpointConnections(

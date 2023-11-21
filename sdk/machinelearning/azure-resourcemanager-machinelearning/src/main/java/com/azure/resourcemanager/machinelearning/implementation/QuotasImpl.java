@@ -24,21 +24,18 @@ public final class QuotasImpl implements Quotas {
 
     private final com.azure.resourcemanager.machinelearning.MachineLearningManager serviceManager;
 
-    public QuotasImpl(
-        QuotasClient innerClient, com.azure.resourcemanager.machinelearning.MachineLearningManager serviceManager) {
+    public QuotasImpl(QuotasClient innerClient,
+        com.azure.resourcemanager.machinelearning.MachineLearningManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
 
-    public Response<UpdateWorkspaceQuotasResult> updateWithResponse(
-        String location, QuotaUpdateParameters parameters, Context context) {
-        Response<UpdateWorkspaceQuotasResultInner> inner =
-            this.serviceClient().updateWithResponse(location, parameters, context);
+    public Response<UpdateWorkspaceQuotasResult> updateWithResponse(String location, QuotaUpdateParameters parameters,
+        Context context) {
+        Response<UpdateWorkspaceQuotasResultInner> inner
+            = this.serviceClient().updateWithResponse(location, parameters, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new UpdateWorkspaceQuotasResultImpl(inner.getValue(), this.manager()));
         } else {
             return null;

@@ -7,7 +7,9 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The FqdnEndpointDetail model. */
+/**
+ * The FqdnEndpointDetail model.
+ */
 @Fluent
 public final class FqdnEndpointDetail {
     /*
@@ -16,13 +18,15 @@ public final class FqdnEndpointDetail {
     @JsonProperty(value = "port")
     private Integer port;
 
-    /** Creates an instance of FqdnEndpointDetail class. */
+    /**
+     * Creates an instance of FqdnEndpointDetail class.
+     */
     public FqdnEndpointDetail() {
     }
 
     /**
      * Get the port property: The port property.
-     *
+     * 
      * @return the port value.
      */
     public Integer port() {
@@ -31,7 +35,7 @@ public final class FqdnEndpointDetail {
 
     /**
      * Set the port property: The port property.
-     *
+     * 
      * @param port the port value to set.
      * @return the FqdnEndpointDetail object itself.
      */
@@ -42,7 +46,7 @@ public final class FqdnEndpointDetail {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

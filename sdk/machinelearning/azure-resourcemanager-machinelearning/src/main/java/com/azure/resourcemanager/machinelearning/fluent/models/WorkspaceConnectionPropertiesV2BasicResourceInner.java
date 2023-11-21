@@ -11,7 +11,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.machinelearning.models.WorkspaceConnectionPropertiesV2;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The WorkspaceConnectionPropertiesV2BasicResource model. */
+/**
+ * The WorkspaceConnectionPropertiesV2BasicResource model.
+ */
 @Fluent
 public final class WorkspaceConnectionPropertiesV2BasicResourceInner extends ProxyResource {
     /*
@@ -26,13 +28,15 @@ public final class WorkspaceConnectionPropertiesV2BasicResourceInner extends Pro
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of WorkspaceConnectionPropertiesV2BasicResourceInner class. */
+    /**
+     * Creates an instance of WorkspaceConnectionPropertiesV2BasicResourceInner class.
+     */
     public WorkspaceConnectionPropertiesV2BasicResourceInner() {
     }
 
     /**
      * Get the properties property: The properties property.
-     *
+     * 
      * @return the properties value.
      */
     public WorkspaceConnectionPropertiesV2 properties() {
@@ -41,19 +45,19 @@ public final class WorkspaceConnectionPropertiesV2BasicResourceInner extends Pro
 
     /**
      * Set the properties property: The properties property.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the WorkspaceConnectionPropertiesV2BasicResourceInner object itself.
      */
-    public WorkspaceConnectionPropertiesV2BasicResourceInner withProperties(
-        WorkspaceConnectionPropertiesV2 properties) {
+    public WorkspaceConnectionPropertiesV2BasicResourceInner
+        withProperties(WorkspaceConnectionPropertiesV2 properties) {
         this.properties = properties;
         return this;
     }
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -62,21 +66,18 @@ public final class WorkspaceConnectionPropertiesV2BasicResourceInner extends Pro
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (properties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property properties in model"
-                            + " WorkspaceConnectionPropertiesV2BasicResourceInner"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property properties in model WorkspaceConnectionPropertiesV2BasicResourceInner"));
         } else {
             properties().validate();
         }
     }
 
-    private static final ClientLogger LOGGER =
-        new ClientLogger(WorkspaceConnectionPropertiesV2BasicResourceInner.class);
+    private static final ClientLogger LOGGER
+        = new ClientLogger(WorkspaceConnectionPropertiesV2BasicResourceInner.class);
 }

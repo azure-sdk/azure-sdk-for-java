@@ -9,7 +9,9 @@ import com.azure.resourcemanager.machinelearning.fluent.models.UsageInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The List Usages operation response. */
+/**
+ * The List Usages operation response.
+ */
 @Immutable
 public final class ListUsagesResult {
     /*
@@ -25,13 +27,15 @@ public final class ListUsagesResult {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of ListUsagesResult class. */
+    /**
+     * Creates an instance of ListUsagesResult class.
+     */
     public ListUsagesResult() {
     }
 
     /**
      * Get the value property: The list of AML resource usages.
-     *
+     * 
      * @return the value value.
      */
     public List<UsageInner> value() {
@@ -39,9 +43,9 @@ public final class ListUsagesResult {
     }
 
     /**
-     * Get the nextLink property: The URI to fetch the next page of AML resource usage information. Call ListNext() with
-     * this to fetch the next page of AML resource usage information.
-     *
+     * Get the nextLink property: The URI to fetch the next page of AML resource usage information. Call ListNext()
+     * with this to fetch the next page of AML resource usage information.
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -50,7 +54,7 @@ public final class ListUsagesResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
