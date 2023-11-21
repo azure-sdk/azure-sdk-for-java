@@ -9,10 +9,13 @@ import com.azure.core.management.Resource;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.scvmm.models.ExtendedLocation;
+import com.azure.resourcemanager.scvmm.models.ProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** The VirtualNetworks resource definition. */
+/**
+ * The VirtualNetworks resource definition.
+ */
 @Fluent
 public final class VirtualNetworkInner extends Resource {
     /*
@@ -22,20 +25,26 @@ public final class VirtualNetworkInner extends Resource {
     private VirtualNetworkProperties innerProperties = new VirtualNetworkProperties();
 
     /*
-     * The system data.
-     */
-    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
-    private SystemData systemData;
-
-    /*
      * The extended location.
      */
     @JsonProperty(value = "extendedLocation", required = true)
     private ExtendedLocation extendedLocation;
 
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
+
+    /**
+     * Creates an instance of VirtualNetworkInner class.
+     */
+    public VirtualNetworkInner() {
+    }
+
     /**
      * Get the innerProperties property: Resource properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private VirtualNetworkProperties innerProperties() {
@@ -43,17 +52,8 @@ public final class VirtualNetworkInner extends Resource {
     }
 
     /**
-     * Get the systemData property: The system data.
-     *
-     * @return the systemData value.
-     */
-    public SystemData systemData() {
-        return this.systemData;
-    }
-
-    /**
      * Get the extendedLocation property: The extended location.
-     *
+     * 
      * @return the extendedLocation value.
      */
     public ExtendedLocation extendedLocation() {
@@ -62,7 +62,7 @@ public final class VirtualNetworkInner extends Resource {
 
     /**
      * Set the extendedLocation property: The extended location.
-     *
+     * 
      * @param extendedLocation the extendedLocation value to set.
      * @return the VirtualNetworkInner object itself.
      */
@@ -71,14 +71,27 @@ public final class VirtualNetworkInner extends Resource {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public VirtualNetworkInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public VirtualNetworkInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -87,7 +100,7 @@ public final class VirtualNetworkInner extends Resource {
 
     /**
      * Get the inventoryItemId property: Gets or sets the inventory Item ID for the resource.
-     *
+     * 
      * @return the inventoryItemId value.
      */
     public String inventoryItemId() {
@@ -96,7 +109,7 @@ public final class VirtualNetworkInner extends Resource {
 
     /**
      * Set the inventoryItemId property: Gets or sets the inventory Item ID for the resource.
-     *
+     * 
      * @param inventoryItemId the inventoryItemId value to set.
      * @return the VirtualNetworkInner object itself.
      */
@@ -110,7 +123,7 @@ public final class VirtualNetworkInner extends Resource {
 
     /**
      * Get the uuid property: Unique ID of the virtual network.
-     *
+     * 
      * @return the uuid value.
      */
     public String uuid() {
@@ -119,7 +132,7 @@ public final class VirtualNetworkInner extends Resource {
 
     /**
      * Set the uuid property: Unique ID of the virtual network.
-     *
+     * 
      * @param uuid the uuid value to set.
      * @return the VirtualNetworkInner object itself.
      */
@@ -133,7 +146,7 @@ public final class VirtualNetworkInner extends Resource {
 
     /**
      * Get the vmmServerId property: ARM Id of the vmmServer resource in which this resource resides.
-     *
+     * 
      * @return the vmmServerId value.
      */
     public String vmmServerId() {
@@ -142,7 +155,7 @@ public final class VirtualNetworkInner extends Resource {
 
     /**
      * Set the vmmServerId property: ARM Id of the vmmServer resource in which this resource resides.
-     *
+     * 
      * @param vmmServerId the vmmServerId value to set.
      * @return the VirtualNetworkInner object itself.
      */
@@ -156,7 +169,7 @@ public final class VirtualNetworkInner extends Resource {
 
     /**
      * Get the networkName property: Name of the virtual network in vmmServer.
-     *
+     * 
      * @return the networkName value.
      */
     public String networkName() {
@@ -164,33 +177,29 @@ public final class VirtualNetworkInner extends Resource {
     }
 
     /**
-     * Get the provisioningState property: Gets or sets the provisioning state.
-     *
+     * Get the provisioningState property: Provisioning state of the resource.
+     * 
      * @return the provisioningState value.
      */
-    public String provisioningState() {
+    public ProvisioningState provisioningState() {
         return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (innerProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property innerProperties in model VirtualNetworkInner"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property innerProperties in model VirtualNetworkInner"));
         } else {
             innerProperties().validate();
         }
         if (extendedLocation() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property extendedLocation in model VirtualNetworkInner"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property extendedLocation in model VirtualNetworkInner"));
         } else {
             extendedLocation().validate();
         }

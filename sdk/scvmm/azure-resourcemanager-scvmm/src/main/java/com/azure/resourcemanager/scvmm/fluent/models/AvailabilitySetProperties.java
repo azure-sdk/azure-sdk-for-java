@@ -5,9 +5,12 @@
 package com.azure.resourcemanager.scvmm.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.resourcemanager.scvmm.models.ProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Defines the resource properties. */
+/**
+ * Defines the resource properties.
+ */
 @Fluent
 public final class AvailabilitySetProperties {
     /*
@@ -23,14 +26,20 @@ public final class AvailabilitySetProperties {
     private String vmmServerId;
 
     /*
-     * Gets or sets the provisioning state.
+     * Provisioning state of the resource.
      */
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
-    private String provisioningState;
+    private ProvisioningState provisioningState;
+
+    /**
+     * Creates an instance of AvailabilitySetProperties class.
+     */
+    public AvailabilitySetProperties() {
+    }
 
     /**
      * Get the availabilitySetName property: Name of the availability set.
-     *
+     * 
      * @return the availabilitySetName value.
      */
     public String availabilitySetName() {
@@ -39,7 +48,7 @@ public final class AvailabilitySetProperties {
 
     /**
      * Set the availabilitySetName property: Name of the availability set.
-     *
+     * 
      * @param availabilitySetName the availabilitySetName value to set.
      * @return the AvailabilitySetProperties object itself.
      */
@@ -50,7 +59,7 @@ public final class AvailabilitySetProperties {
 
     /**
      * Get the vmmServerId property: ARM Id of the vmmServer resource in which this resource resides.
-     *
+     * 
      * @return the vmmServerId value.
      */
     public String vmmServerId() {
@@ -59,7 +68,7 @@ public final class AvailabilitySetProperties {
 
     /**
      * Set the vmmServerId property: ARM Id of the vmmServer resource in which this resource resides.
-     *
+     * 
      * @param vmmServerId the vmmServerId value to set.
      * @return the AvailabilitySetProperties object itself.
      */
@@ -69,17 +78,17 @@ public final class AvailabilitySetProperties {
     }
 
     /**
-     * Get the provisioningState property: Gets or sets the provisioning state.
-     *
+     * Get the provisioningState property: Provisioning state of the resource.
+     * 
      * @return the provisioningState value.
      */
-    public String provisioningState() {
+    public ProvisioningState provisioningState() {
         return this.provisioningState;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

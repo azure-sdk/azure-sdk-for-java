@@ -9,9 +9,10 @@ import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.scvmm.fluent.models.VmmServerInner;
 import com.azure.resourcemanager.scvmm.models.ExtendedLocation;
+import com.azure.resourcemanager.scvmm.models.ProvisioningState;
 import com.azure.resourcemanager.scvmm.models.ResourcePatch;
+import com.azure.resourcemanager.scvmm.models.VmmCredential;
 import com.azure.resourcemanager.scvmm.models.VmmServer;
-import com.azure.resourcemanager.scvmm.models.VmmServerPropertiesCredentials;
 import java.util.Collections;
 import java.util.Map;
 
@@ -45,15 +46,15 @@ public final class VmmServerImpl implements VmmServer, VmmServer.Definition, Vmm
         }
     }
 
-    public SystemData systemData() {
-        return this.innerModel().systemData();
-    }
-
     public ExtendedLocation extendedLocation() {
         return this.innerModel().extendedLocation();
     }
 
-    public VmmServerPropertiesCredentials credentials() {
+    public SystemData systemData() {
+        return this.innerModel().systemData();
+    }
+
+    public VmmCredential credentials() {
         return this.innerModel().credentials();
     }
 
@@ -81,7 +82,7 @@ public final class VmmServerImpl implements VmmServer, VmmServer.Definition, Vmm
         return this.innerModel().version();
     }
 
-    public String provisioningState() {
+    public ProvisioningState provisioningState() {
         return this.innerModel().provisioningState();
     }
 
@@ -91,6 +92,10 @@ public final class VmmServerImpl implements VmmServer, VmmServer.Definition, Vmm
 
     public String regionName() {
         return this.location();
+    }
+
+    public String resourceGroupName() {
+        return resourceGroupName;
     }
 
     public VmmServerInner innerModel() {
@@ -113,20 +118,14 @@ public final class VmmServerImpl implements VmmServer, VmmServer.Definition, Vmm
     }
 
     public VmmServer create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getVmmServers()
-                .createOrUpdate(resourceGroupName, vmmServerName, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getVmmServers().createOrUpdate(resourceGroupName,
+            vmmServerName, this.innerModel(), Context.NONE);
         return this;
     }
 
     public VmmServer create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getVmmServers()
-                .createOrUpdate(resourceGroupName, vmmServerName, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient().getVmmServers().createOrUpdate(resourceGroupName,
+            vmmServerName, this.innerModel(), context);
         return this;
     }
 
@@ -142,20 +141,14 @@ public final class VmmServerImpl implements VmmServer, VmmServer.Definition, Vmm
     }
 
     public VmmServer apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getVmmServers()
-                .update(resourceGroupName, vmmServerName, updateBody, Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getVmmServers().update(resourceGroupName, vmmServerName,
+            updateBody, Context.NONE);
         return this;
     }
 
     public VmmServer apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getVmmServers()
-                .update(resourceGroupName, vmmServerName, updateBody, context);
+        this.innerObject = serviceManager.serviceClient().getVmmServers().update(resourceGroupName, vmmServerName,
+            updateBody, context);
         return this;
     }
 
@@ -167,22 +160,14 @@ public final class VmmServerImpl implements VmmServer, VmmServer.Definition, Vmm
     }
 
     public VmmServer refresh() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getVmmServers()
-                .getByResourceGroupWithResponse(resourceGroupName, vmmServerName, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getVmmServers()
+            .getByResourceGroupWithResponse(resourceGroupName, vmmServerName, Context.NONE).getValue();
         return this;
     }
 
     public VmmServer refresh(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getVmmServers()
-                .getByResourceGroupWithResponse(resourceGroupName, vmmServerName, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getVmmServers()
+            .getByResourceGroupWithResponse(resourceGroupName, vmmServerName, context).getValue();
         return this;
     }
 
@@ -216,7 +201,7 @@ public final class VmmServerImpl implements VmmServer, VmmServer.Definition, Vmm
         }
     }
 
-    public VmmServerImpl withCredentials(VmmServerPropertiesCredentials credentials) {
+    public VmmServerImpl withCredentials(VmmCredential credentials) {
         this.innerModel().withCredentials(credentials);
         return this;
     }

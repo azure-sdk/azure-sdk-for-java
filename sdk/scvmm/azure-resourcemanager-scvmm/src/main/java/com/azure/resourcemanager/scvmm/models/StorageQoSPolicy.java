@@ -7,7 +7,9 @@ package com.azure.resourcemanager.scvmm.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The StorageQoSPolicy definition. */
+/**
+ * The StorageQoSPolicy definition.
+ */
 @Fluent
 public final class StorageQoSPolicy {
     /*
@@ -47,8 +49,14 @@ public final class StorageQoSPolicy {
     private String policyId;
 
     /**
+     * Creates an instance of StorageQoSPolicy class.
+     */
+    public StorageQoSPolicy() {
+    }
+
+    /**
      * Get the name property: The name of the policy.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -57,7 +65,7 @@ public final class StorageQoSPolicy {
 
     /**
      * Set the name property: The name of the policy.
-     *
+     * 
      * @param name the name value to set.
      * @return the StorageQoSPolicy object itself.
      */
@@ -68,7 +76,7 @@ public final class StorageQoSPolicy {
 
     /**
      * Get the id property: The ID of the QoS policy.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -77,7 +85,7 @@ public final class StorageQoSPolicy {
 
     /**
      * Set the id property: The ID of the QoS policy.
-     *
+     * 
      * @param id the id value to set.
      * @return the StorageQoSPolicy object itself.
      */
@@ -88,7 +96,7 @@ public final class StorageQoSPolicy {
 
     /**
      * Get the iopsMaximum property: The maximum IO operations per second.
-     *
+     * 
      * @return the iopsMaximum value.
      */
     public Long iopsMaximum() {
@@ -97,7 +105,7 @@ public final class StorageQoSPolicy {
 
     /**
      * Set the iopsMaximum property: The maximum IO operations per second.
-     *
+     * 
      * @param iopsMaximum the iopsMaximum value to set.
      * @return the StorageQoSPolicy object itself.
      */
@@ -108,7 +116,7 @@ public final class StorageQoSPolicy {
 
     /**
      * Get the iopsMinimum property: The minimum IO operations per second.
-     *
+     * 
      * @return the iopsMinimum value.
      */
     public Long iopsMinimum() {
@@ -117,7 +125,7 @@ public final class StorageQoSPolicy {
 
     /**
      * Set the iopsMinimum property: The minimum IO operations per second.
-     *
+     * 
      * @param iopsMinimum the iopsMinimum value to set.
      * @return the StorageQoSPolicy object itself.
      */
@@ -128,7 +136,7 @@ public final class StorageQoSPolicy {
 
     /**
      * Get the bandwidthLimit property: The Bandwidth Limit for internet traffic.
-     *
+     * 
      * @return the bandwidthLimit value.
      */
     public Long bandwidthLimit() {
@@ -137,7 +145,7 @@ public final class StorageQoSPolicy {
 
     /**
      * Set the bandwidthLimit property: The Bandwidth Limit for internet traffic.
-     *
+     * 
      * @param bandwidthLimit the bandwidthLimit value to set.
      * @return the StorageQoSPolicy object itself.
      */
@@ -148,7 +156,7 @@ public final class StorageQoSPolicy {
 
     /**
      * Get the policyId property: The underlying policy.
-     *
+     * 
      * @return the policyId value.
      */
     public String policyId() {
@@ -157,7 +165,7 @@ public final class StorageQoSPolicy {
 
     /**
      * Set the policyId property: The underlying policy.
-     *
+     * 
      * @param policyId the policyId value to set.
      * @return the StorageQoSPolicy object itself.
      */
@@ -168,7 +176,7 @@ public final class StorageQoSPolicy {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

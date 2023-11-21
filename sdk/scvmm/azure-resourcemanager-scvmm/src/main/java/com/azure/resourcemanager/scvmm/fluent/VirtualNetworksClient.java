@@ -12,14 +12,36 @@ import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.scvmm.fluent.models.VirtualNetworkInner;
+import com.azure.resourcemanager.scvmm.models.Force;
 import com.azure.resourcemanager.scvmm.models.ResourcePatch;
 
-/** An instance of this class provides access to all the operations defined in VirtualNetworksClient. */
+/**
+ * An instance of this class provides access to all the operations defined in VirtualNetworksClient.
+ */
 public interface VirtualNetworksClient {
     /**
+     * Gets a VirtualNetwork.
+     * 
      * Implements VirtualNetwork GET method.
-     *
-     * @param resourceGroupName The name of the resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param virtualNetworkName Name of the VirtualNetwork.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the VirtualNetworks resource definition along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<VirtualNetworkInner> getByResourceGroupWithResponse(String resourceGroupName, String virtualNetworkName,
+        Context context);
+
+    /**
+     * Gets a VirtualNetwork.
+     * 
+     * Implements VirtualNetwork GET method.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualNetworkName Name of the VirtualNetwork.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -30,24 +52,11 @@ public interface VirtualNetworksClient {
     VirtualNetworkInner getByResourceGroup(String resourceGroupName, String virtualNetworkName);
 
     /**
-     * Implements VirtualNetwork GET method.
-     *
-     * @param resourceGroupName The name of the resource group.
-     * @param virtualNetworkName Name of the VirtualNetwork.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the VirtualNetworks resource definition along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<VirtualNetworkInner> getByResourceGroupWithResponse(
-        String resourceGroupName, String virtualNetworkName, Context context);
-
-    /**
+     * Implements VirtualNetworks PUT method.
+     * 
      * Onboards the ScVmm virtual network as an Azure virtual network resource.
-     *
-     * @param resourceGroupName The name of the resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualNetworkName Name of the VirtualNetwork.
      * @param body Request payload.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -56,13 +65,15 @@ public interface VirtualNetworksClient {
      * @return the {@link SyncPoller} for polling of the VirtualNetworks resource definition.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<VirtualNetworkInner>, VirtualNetworkInner> beginCreateOrUpdate(
-        String resourceGroupName, String virtualNetworkName, VirtualNetworkInner body);
+    SyncPoller<PollResult<VirtualNetworkInner>, VirtualNetworkInner> beginCreateOrUpdate(String resourceGroupName,
+        String virtualNetworkName, VirtualNetworkInner body);
 
     /**
+     * Implements VirtualNetworks PUT method.
+     * 
      * Onboards the ScVmm virtual network as an Azure virtual network resource.
-     *
-     * @param resourceGroupName The name of the resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualNetworkName Name of the VirtualNetwork.
      * @param body Request payload.
      * @param context The context to associate with this operation.
@@ -72,13 +83,15 @@ public interface VirtualNetworksClient {
      * @return the {@link SyncPoller} for polling of the VirtualNetworks resource definition.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<VirtualNetworkInner>, VirtualNetworkInner> beginCreateOrUpdate(
-        String resourceGroupName, String virtualNetworkName, VirtualNetworkInner body, Context context);
+    SyncPoller<PollResult<VirtualNetworkInner>, VirtualNetworkInner> beginCreateOrUpdate(String resourceGroupName,
+        String virtualNetworkName, VirtualNetworkInner body, Context context);
 
     /**
+     * Implements VirtualNetworks PUT method.
+     * 
      * Onboards the ScVmm virtual network as an Azure virtual network resource.
-     *
-     * @param resourceGroupName The name of the resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualNetworkName Name of the VirtualNetwork.
      * @param body Request payload.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -90,9 +103,11 @@ public interface VirtualNetworksClient {
     VirtualNetworkInner createOrUpdate(String resourceGroupName, String virtualNetworkName, VirtualNetworkInner body);
 
     /**
+     * Implements VirtualNetworks PUT method.
+     * 
      * Onboards the ScVmm virtual network as an Azure virtual network resource.
-     *
-     * @param resourceGroupName The name of the resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualNetworkName Name of the VirtualNetwork.
      * @param body Request payload.
      * @param context The context to associate with this operation.
@@ -102,31 +117,33 @@ public interface VirtualNetworksClient {
      * @return the VirtualNetworks resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    VirtualNetworkInner createOrUpdate(
-        String resourceGroupName, String virtualNetworkName, VirtualNetworkInner body, Context context);
+    VirtualNetworkInner createOrUpdate(String resourceGroupName, String virtualNetworkName, VirtualNetworkInner body,
+        Context context);
 
     /**
+     * Implements VirtualNetwork DELETE method.
+     * 
      * Deregisters the ScVmm virtual network from Azure.
-     *
-     * @param resourceGroupName The name of the resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualNetworkName Name of the VirtualNetwork.
-     * @param force Forces the resource to be deleted from azure. The corresponding CR would be attempted to be deleted
-     *     too.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String virtualNetworkName, Boolean force);
+    SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String virtualNetworkName);
 
     /**
+     * Implements VirtualNetwork DELETE method.
+     * 
      * Deregisters the ScVmm virtual network from Azure.
-     *
-     * @param resourceGroupName The name of the resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualNetworkName Name of the VirtualNetwork.
      * @param force Forces the resource to be deleted from azure. The corresponding CR would be attempted to be deleted
-     *     too.
+     * too.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -134,27 +151,15 @@ public interface VirtualNetworksClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginDelete(
-        String resourceGroupName, String virtualNetworkName, Boolean force, Context context);
+    SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String virtualNetworkName, Force force,
+        Context context);
 
     /**
+     * Implements VirtualNetwork DELETE method.
+     * 
      * Deregisters the ScVmm virtual network from Azure.
-     *
-     * @param resourceGroupName The name of the resource group.
-     * @param virtualNetworkName Name of the VirtualNetwork.
-     * @param force Forces the resource to be deleted from azure. The corresponding CR would be attempted to be deleted
-     *     too.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    void delete(String resourceGroupName, String virtualNetworkName, Boolean force);
-
-    /**
-     * Deregisters the ScVmm virtual network from Azure.
-     *
-     * @param resourceGroupName The name of the resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualNetworkName Name of the VirtualNetwork.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -164,24 +169,28 @@ public interface VirtualNetworksClient {
     void delete(String resourceGroupName, String virtualNetworkName);
 
     /**
+     * Implements VirtualNetwork DELETE method.
+     * 
      * Deregisters the ScVmm virtual network from Azure.
-     *
-     * @param resourceGroupName The name of the resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualNetworkName Name of the VirtualNetwork.
      * @param force Forces the resource to be deleted from azure. The corresponding CR would be attempted to be deleted
-     *     too.
+     * too.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    void delete(String resourceGroupName, String virtualNetworkName, Boolean force, Context context);
+    void delete(String resourceGroupName, String virtualNetworkName, Force force, Context context);
 
     /**
+     * Implements the VirtualNetworks PATCH method.
+     * 
      * Updates the VirtualNetworks resource.
-     *
-     * @param resourceGroupName The name of the resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualNetworkName Name of the VirtualNetwork.
      * @param body VirtualNetworks patch payload.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -190,13 +199,15 @@ public interface VirtualNetworksClient {
      * @return the {@link SyncPoller} for polling of the VirtualNetworks resource definition.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<VirtualNetworkInner>, VirtualNetworkInner> beginUpdate(
-        String resourceGroupName, String virtualNetworkName, ResourcePatch body);
+    SyncPoller<PollResult<VirtualNetworkInner>, VirtualNetworkInner> beginUpdate(String resourceGroupName,
+        String virtualNetworkName, ResourcePatch body);
 
     /**
+     * Implements the VirtualNetworks PATCH method.
+     * 
      * Updates the VirtualNetworks resource.
-     *
-     * @param resourceGroupName The name of the resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualNetworkName Name of the VirtualNetwork.
      * @param body VirtualNetworks patch payload.
      * @param context The context to associate with this operation.
@@ -206,13 +217,15 @@ public interface VirtualNetworksClient {
      * @return the {@link SyncPoller} for polling of the VirtualNetworks resource definition.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<VirtualNetworkInner>, VirtualNetworkInner> beginUpdate(
-        String resourceGroupName, String virtualNetworkName, ResourcePatch body, Context context);
+    SyncPoller<PollResult<VirtualNetworkInner>, VirtualNetworkInner> beginUpdate(String resourceGroupName,
+        String virtualNetworkName, ResourcePatch body, Context context);
 
     /**
+     * Implements the VirtualNetworks PATCH method.
+     * 
      * Updates the VirtualNetworks resource.
-     *
-     * @param resourceGroupName The name of the resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualNetworkName Name of the VirtualNetwork.
      * @param body VirtualNetworks patch payload.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -224,9 +237,11 @@ public interface VirtualNetworksClient {
     VirtualNetworkInner update(String resourceGroupName, String virtualNetworkName, ResourcePatch body);
 
     /**
+     * Implements the VirtualNetworks PATCH method.
+     * 
      * Updates the VirtualNetworks resource.
-     *
-     * @param resourceGroupName The name of the resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualNetworkName Name of the VirtualNetwork.
      * @param body VirtualNetworks patch payload.
      * @param context The context to associate with this operation.
@@ -236,13 +251,15 @@ public interface VirtualNetworksClient {
      * @return the VirtualNetworks resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    VirtualNetworkInner update(
-        String resourceGroupName, String virtualNetworkName, ResourcePatch body, Context context);
+    VirtualNetworkInner update(String resourceGroupName, String virtualNetworkName, ResourcePatch body,
+        Context context);
 
     /**
+     * Implements GET VirtualNetworks in a resource group.
+     * 
      * List of VirtualNetworks in a resource group.
-     *
-     * @param resourceGroupName The name of the resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -252,9 +269,11 @@ public interface VirtualNetworksClient {
     PagedIterable<VirtualNetworkInner> listByResourceGroup(String resourceGroupName);
 
     /**
+     * Implements GET VirtualNetworks in a resource group.
+     * 
      * List of VirtualNetworks in a resource group.
-     *
-     * @param resourceGroupName The name of the resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -265,8 +284,10 @@ public interface VirtualNetworksClient {
     PagedIterable<VirtualNetworkInner> listByResourceGroup(String resourceGroupName, Context context);
 
     /**
+     * Implements GET VirtualNetworks in a subscription.
+     * 
      * List of VirtualNetworks in a subscription.
-     *
+     * 
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return list of VirtualNetworks as paginated response with {@link PagedIterable}.
@@ -275,8 +296,10 @@ public interface VirtualNetworksClient {
     PagedIterable<VirtualNetworkInner> list();
 
     /**
+     * Implements GET VirtualNetworks in a subscription.
+     * 
      * List of VirtualNetworks in a subscription.
-     *
+     * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.

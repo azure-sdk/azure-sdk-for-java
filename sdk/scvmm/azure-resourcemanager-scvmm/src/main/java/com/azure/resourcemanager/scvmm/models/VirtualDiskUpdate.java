@@ -7,7 +7,9 @@ package com.azure.resourcemanager.scvmm.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Virtual disk model. */
+/**
+ * Virtual disk model.
+ */
 @Fluent
 public final class VirtualDiskUpdate {
     /*
@@ -59,8 +61,14 @@ public final class VirtualDiskUpdate {
     private StorageQoSPolicyDetails storageQoSPolicy;
 
     /**
+     * Creates an instance of VirtualDiskUpdate class.
+     */
+    public VirtualDiskUpdate() {
+    }
+
+    /**
      * Get the name property: Gets or sets the name of the disk.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -69,7 +77,7 @@ public final class VirtualDiskUpdate {
 
     /**
      * Set the name property: Gets or sets the name of the disk.
-     *
+     * 
      * @param name the name value to set.
      * @return the VirtualDiskUpdate object itself.
      */
@@ -80,7 +88,7 @@ public final class VirtualDiskUpdate {
 
     /**
      * Get the diskId property: Gets or sets the disk id.
-     *
+     * 
      * @return the diskId value.
      */
     public String diskId() {
@@ -89,7 +97,7 @@ public final class VirtualDiskUpdate {
 
     /**
      * Set the diskId property: Gets or sets the disk id.
-     *
+     * 
      * @param diskId the diskId value to set.
      * @return the VirtualDiskUpdate object itself.
      */
@@ -100,7 +108,7 @@ public final class VirtualDiskUpdate {
 
     /**
      * Get the diskSizeGB property: Gets or sets the disk total size.
-     *
+     * 
      * @return the diskSizeGB value.
      */
     public Integer diskSizeGB() {
@@ -109,7 +117,7 @@ public final class VirtualDiskUpdate {
 
     /**
      * Set the diskSizeGB property: Gets or sets the disk total size.
-     *
+     * 
      * @param diskSizeGB the diskSizeGB value to set.
      * @return the VirtualDiskUpdate object itself.
      */
@@ -120,7 +128,7 @@ public final class VirtualDiskUpdate {
 
     /**
      * Get the bus property: Gets or sets the disk bus.
-     *
+     * 
      * @return the bus value.
      */
     public Integer bus() {
@@ -129,7 +137,7 @@ public final class VirtualDiskUpdate {
 
     /**
      * Set the bus property: Gets or sets the disk bus.
-     *
+     * 
      * @param bus the bus value to set.
      * @return the VirtualDiskUpdate object itself.
      */
@@ -140,7 +148,7 @@ public final class VirtualDiskUpdate {
 
     /**
      * Get the lun property: Gets or sets the disk lun.
-     *
+     * 
      * @return the lun value.
      */
     public Integer lun() {
@@ -149,7 +157,7 @@ public final class VirtualDiskUpdate {
 
     /**
      * Set the lun property: Gets or sets the disk lun.
-     *
+     * 
      * @param lun the lun value to set.
      * @return the VirtualDiskUpdate object itself.
      */
@@ -160,7 +168,7 @@ public final class VirtualDiskUpdate {
 
     /**
      * Get the busType property: Gets or sets the disk bus type.
-     *
+     * 
      * @return the busType value.
      */
     public String busType() {
@@ -169,7 +177,7 @@ public final class VirtualDiskUpdate {
 
     /**
      * Set the busType property: Gets or sets the disk bus type.
-     *
+     * 
      * @param busType the busType value to set.
      * @return the VirtualDiskUpdate object itself.
      */
@@ -180,7 +188,7 @@ public final class VirtualDiskUpdate {
 
     /**
      * Get the vhdType property: Gets or sets the disk vhd type.
-     *
+     * 
      * @return the vhdType value.
      */
     public String vhdType() {
@@ -189,7 +197,7 @@ public final class VirtualDiskUpdate {
 
     /**
      * Set the vhdType property: Gets or sets the disk vhd type.
-     *
+     * 
      * @param vhdType the vhdType value to set.
      * @return the VirtualDiskUpdate object itself.
      */
@@ -200,7 +208,7 @@ public final class VirtualDiskUpdate {
 
     /**
      * Get the storageQoSPolicy property: The QoS policy for the disk.
-     *
+     * 
      * @return the storageQoSPolicy value.
      */
     public StorageQoSPolicyDetails storageQoSPolicy() {
@@ -209,7 +217,7 @@ public final class VirtualDiskUpdate {
 
     /**
      * Set the storageQoSPolicy property: The QoS policy for the disk.
-     *
+     * 
      * @param storageQoSPolicy the storageQoSPolicy value to set.
      * @return the VirtualDiskUpdate object itself.
      */
@@ -220,7 +228,7 @@ public final class VirtualDiskUpdate {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

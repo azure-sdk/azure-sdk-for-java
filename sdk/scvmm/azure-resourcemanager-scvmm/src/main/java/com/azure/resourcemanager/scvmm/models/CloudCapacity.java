@@ -7,12 +7,13 @@ package com.azure.resourcemanager.scvmm.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Cloud Capacity model. */
+/**
+ * Cloud Capacity model.
+ */
 @Fluent
 public final class CloudCapacity {
     /*
-     * CPUCount specifies the maximum number of CPUs that can be allocated in
-     * the cloud.
+     * CPUCount specifies the maximum number of CPUs that can be allocated in the cloud.
      */
     @JsonProperty(value = "cpuCount")
     private Long cpuCount;
@@ -30,8 +31,14 @@ public final class CloudCapacity {
     private Long vmCount;
 
     /**
+     * Creates an instance of CloudCapacity class.
+     */
+    public CloudCapacity() {
+    }
+
+    /**
      * Get the cpuCount property: CPUCount specifies the maximum number of CPUs that can be allocated in the cloud.
-     *
+     * 
      * @return the cpuCount value.
      */
     public Long cpuCount() {
@@ -40,7 +47,7 @@ public final class CloudCapacity {
 
     /**
      * Set the cpuCount property: CPUCount specifies the maximum number of CPUs that can be allocated in the cloud.
-     *
+     * 
      * @param cpuCount the cpuCount value to set.
      * @return the CloudCapacity object itself.
      */
@@ -51,7 +58,7 @@ public final class CloudCapacity {
 
     /**
      * Get the memoryMB property: MemoryMB specifies a memory usage limit in megabytes.
-     *
+     * 
      * @return the memoryMB value.
      */
     public Long memoryMB() {
@@ -60,7 +67,7 @@ public final class CloudCapacity {
 
     /**
      * Set the memoryMB property: MemoryMB specifies a memory usage limit in megabytes.
-     *
+     * 
      * @param memoryMB the memoryMB value to set.
      * @return the CloudCapacity object itself.
      */
@@ -71,7 +78,7 @@ public final class CloudCapacity {
 
     /**
      * Get the vmCount property: VMCount gives the max number of VMs that can be deployed in the cloud.
-     *
+     * 
      * @return the vmCount value.
      */
     public Long vmCount() {
@@ -80,7 +87,7 @@ public final class CloudCapacity {
 
     /**
      * Set the vmCount property: VMCount gives the max number of VMs that can be deployed in the cloud.
-     *
+     * 
      * @param vmCount the vmCount value to set.
      * @return the CloudCapacity object itself.
      */
@@ -91,7 +98,7 @@ public final class CloudCapacity {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

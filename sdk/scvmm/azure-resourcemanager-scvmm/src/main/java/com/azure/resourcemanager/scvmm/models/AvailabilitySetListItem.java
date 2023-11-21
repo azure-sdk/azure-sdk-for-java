@@ -7,7 +7,9 @@ package com.azure.resourcemanager.scvmm.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Availability Set model. */
+/**
+ * Availability Set model.
+ */
 @Fluent
 public final class AvailabilitySetListItem {
     /*
@@ -23,8 +25,14 @@ public final class AvailabilitySetListItem {
     private String name;
 
     /**
+     * Creates an instance of AvailabilitySetListItem class.
+     */
+    public AvailabilitySetListItem() {
+    }
+
+    /**
      * Get the id property: Gets the ARM Id of the microsoft.scvmm/availabilitySets resource.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -33,7 +41,7 @@ public final class AvailabilitySetListItem {
 
     /**
      * Set the id property: Gets the ARM Id of the microsoft.scvmm/availabilitySets resource.
-     *
+     * 
      * @param id the id value to set.
      * @return the AvailabilitySetListItem object itself.
      */
@@ -44,7 +52,7 @@ public final class AvailabilitySetListItem {
 
     /**
      * Get the name property: Gets or sets the name of the availability set.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -53,7 +61,7 @@ public final class AvailabilitySetListItem {
 
     /**
      * Set the name property: Gets or sets the name of the availability set.
-     *
+     * 
      * @param name the name value to set.
      * @return the AvailabilitySetListItem object itself.
      */
@@ -64,7 +72,7 @@ public final class AvailabilitySetListItem {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

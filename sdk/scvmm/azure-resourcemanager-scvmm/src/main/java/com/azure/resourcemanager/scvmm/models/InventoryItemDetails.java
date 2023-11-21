@@ -7,7 +7,9 @@ package com.azure.resourcemanager.scvmm.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Defines the resource properties. */
+/**
+ * Defines the resource properties.
+ */
 @Fluent
 public final class InventoryItemDetails {
     /*
@@ -23,8 +25,14 @@ public final class InventoryItemDetails {
     private String inventoryItemName;
 
     /**
+     * Creates an instance of InventoryItemDetails class.
+     */
+    public InventoryItemDetails() {
+    }
+
+    /**
      * Get the inventoryItemId property: Gets or sets the inventory Item ID for the resource.
-     *
+     * 
      * @return the inventoryItemId value.
      */
     public String inventoryItemId() {
@@ -33,7 +41,7 @@ public final class InventoryItemDetails {
 
     /**
      * Set the inventoryItemId property: Gets or sets the inventory Item ID for the resource.
-     *
+     * 
      * @param inventoryItemId the inventoryItemId value to set.
      * @return the InventoryItemDetails object itself.
      */
@@ -44,7 +52,7 @@ public final class InventoryItemDetails {
 
     /**
      * Get the inventoryItemName property: Gets or sets the Managed Object name in VMM for the resource.
-     *
+     * 
      * @return the inventoryItemName value.
      */
     public String inventoryItemName() {
@@ -53,7 +61,7 @@ public final class InventoryItemDetails {
 
     /**
      * Set the inventoryItemName property: Gets or sets the Managed Object name in VMM for the resource.
-     *
+     * 
      * @param inventoryItemName the inventoryItemName value to set.
      * @return the InventoryItemDetails object itself.
      */
@@ -64,7 +72,7 @@ public final class InventoryItemDetails {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
