@@ -7,7 +7,9 @@ package com.azure.resourcemanager.azurestackhci.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** InterfaceIPConfiguration iPConfiguration in a network interface. */
+/**
+ * InterfaceIPConfiguration iPConfiguration in a network interface.
+ */
 @Fluent
 public final class IpConfiguration {
     /*
@@ -23,14 +25,16 @@ public final class IpConfiguration {
     @JsonProperty(value = "properties")
     private IpConfigurationProperties properties;
 
-    /** Creates an instance of IpConfiguration class. */
+    /**
+     * Creates an instance of IpConfiguration class.
+     */
     public IpConfiguration() {
     }
 
     /**
      * Get the name property: Name - The name of the resource that is unique within a resource group. This name can be
      * used to access the resource.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -40,7 +44,7 @@ public final class IpConfiguration {
     /**
      * Set the name property: Name - The name of the resource that is unique within a resource group. This name can be
      * used to access the resource.
-     *
+     * 
      * @param name the name value to set.
      * @return the IpConfiguration object itself.
      */
@@ -51,7 +55,7 @@ public final class IpConfiguration {
 
     /**
      * Get the properties property: InterfaceIPConfigurationPropertiesFormat properties of IP configuration.
-     *
+     * 
      * @return the properties value.
      */
     public IpConfigurationProperties properties() {
@@ -60,7 +64,7 @@ public final class IpConfiguration {
 
     /**
      * Set the properties property: InterfaceIPConfigurationPropertiesFormat properties of IP configuration.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the IpConfiguration object itself.
      */
@@ -71,7 +75,7 @@ public final class IpConfiguration {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
