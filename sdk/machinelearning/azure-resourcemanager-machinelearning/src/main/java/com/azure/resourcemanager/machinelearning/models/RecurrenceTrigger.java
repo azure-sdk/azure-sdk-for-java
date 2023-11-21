@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The RecurrenceTrigger model. */
+/**
+ * The RecurrenceTrigger model.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "triggerType")
 @JsonTypeName("Recurrence")
 @Fluent
@@ -33,13 +35,15 @@ public final class RecurrenceTrigger extends TriggerBase {
     @JsonProperty(value = "schedule")
     private RecurrenceSchedule schedule;
 
-    /** Creates an instance of RecurrenceTrigger class. */
+    /**
+     * Creates an instance of RecurrenceTrigger class.
+     */
     public RecurrenceTrigger() {
     }
 
     /**
      * Get the frequency property: [Required] The frequency to trigger schedule.
-     *
+     * 
      * @return the frequency value.
      */
     public RecurrenceFrequency frequency() {
@@ -48,7 +52,7 @@ public final class RecurrenceTrigger extends TriggerBase {
 
     /**
      * Set the frequency property: [Required] The frequency to trigger schedule.
-     *
+     * 
      * @param frequency the frequency value to set.
      * @return the RecurrenceTrigger object itself.
      */
@@ -59,7 +63,7 @@ public final class RecurrenceTrigger extends TriggerBase {
 
     /**
      * Get the interval property: [Required] Specifies schedule interval in conjunction with frequency.
-     *
+     * 
      * @return the interval value.
      */
     public int interval() {
@@ -68,7 +72,7 @@ public final class RecurrenceTrigger extends TriggerBase {
 
     /**
      * Set the interval property: [Required] Specifies schedule interval in conjunction with frequency.
-     *
+     * 
      * @param interval the interval value to set.
      * @return the RecurrenceTrigger object itself.
      */
@@ -79,7 +83,7 @@ public final class RecurrenceTrigger extends TriggerBase {
 
     /**
      * Get the schedule property: The recurrence schedule.
-     *
+     * 
      * @return the schedule value.
      */
     public RecurrenceSchedule schedule() {
@@ -88,7 +92,7 @@ public final class RecurrenceTrigger extends TriggerBase {
 
     /**
      * Set the schedule property: The recurrence schedule.
-     *
+     * 
      * @param schedule the schedule value to set.
      * @return the RecurrenceTrigger object itself.
      */
@@ -97,21 +101,27 @@ public final class RecurrenceTrigger extends TriggerBase {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public RecurrenceTrigger withEndTime(String endTime) {
         super.withEndTime(endTime);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public RecurrenceTrigger withStartTime(String startTime) {
         super.withStartTime(startTime);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public RecurrenceTrigger withTimeZone(String timeZone) {
         super.withTimeZone(timeZone);
@@ -120,16 +130,15 @@ public final class RecurrenceTrigger extends TriggerBase {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (frequency() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property frequency in model RecurrenceTrigger"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property frequency in model RecurrenceTrigger"));
         }
         if (schedule() != null) {
             schedule().validate();

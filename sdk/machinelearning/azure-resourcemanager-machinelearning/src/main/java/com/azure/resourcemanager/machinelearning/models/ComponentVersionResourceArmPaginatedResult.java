@@ -9,7 +9,9 @@ import com.azure.resourcemanager.machinelearning.fluent.models.ComponentVersionI
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** A paginated list of ComponentVersion entities. */
+/**
+ * A paginated list of ComponentVersion entities.
+ */
 @Fluent
 public final class ComponentVersionResourceArmPaginatedResult {
     /*
@@ -24,14 +26,16 @@ public final class ComponentVersionResourceArmPaginatedResult {
     @JsonProperty(value = "value")
     private List<ComponentVersionInner> value;
 
-    /** Creates an instance of ComponentVersionResourceArmPaginatedResult class. */
+    /**
+     * Creates an instance of ComponentVersionResourceArmPaginatedResult class.
+     */
     public ComponentVersionResourceArmPaginatedResult() {
     }
 
     /**
      * Get the nextLink property: The link to the next page of ComponentVersion objects. If null, there are no
      * additional pages.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -41,7 +45,7 @@ public final class ComponentVersionResourceArmPaginatedResult {
     /**
      * Set the nextLink property: The link to the next page of ComponentVersion objects. If null, there are no
      * additional pages.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the ComponentVersionResourceArmPaginatedResult object itself.
      */
@@ -52,7 +56,7 @@ public final class ComponentVersionResourceArmPaginatedResult {
 
     /**
      * Get the value property: An array of objects of type ComponentVersion.
-     *
+     * 
      * @return the value value.
      */
     public List<ComponentVersionInner> value() {
@@ -61,7 +65,7 @@ public final class ComponentVersionResourceArmPaginatedResult {
 
     /**
      * Set the value property: An array of objects of type ComponentVersion.
-     *
+     * 
      * @param value the value value to set.
      * @return the ComponentVersionResourceArmPaginatedResult object itself.
      */
@@ -72,7 +76,7 @@ public final class ComponentVersionResourceArmPaginatedResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -13,6 +13,7 @@ import com.azure.core.annotation.Headers;
 import com.azure.core.annotation.Host;
 import com.azure.core.annotation.HostParam;
 import com.azure.core.annotation.PathParam;
+import com.azure.core.annotation.Post;
 import com.azure.core.annotation.Put;
 import com.azure.core.annotation.QueryParam;
 import com.azure.core.annotation.ReturnType;
@@ -26,129 +27,118 @@ import com.azure.core.http.rest.PagedResponseBase;
 import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
+import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.polling.PollerFlux;
+import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.machinelearning.fluent.EnvironmentVersionsClient;
 import com.azure.resourcemanager.machinelearning.fluent.models.EnvironmentVersionInner;
+import com.azure.resourcemanager.machinelearning.models.DestinationAsset;
 import com.azure.resourcemanager.machinelearning.models.EnvironmentVersionResourceArmPaginatedResult;
 import com.azure.resourcemanager.machinelearning.models.ListViewType;
+import java.nio.ByteBuffer;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-/** An instance of this class provides access to all the operations defined in EnvironmentVersionsClient. */
+/**
+ * An instance of this class provides access to all the operations defined in EnvironmentVersionsClient.
+ */
 public final class EnvironmentVersionsClientImpl implements EnvironmentVersionsClient {
-    /** The proxy service used to perform REST calls. */
+    /**
+     * The proxy service used to perform REST calls.
+     */
     private final EnvironmentVersionsService service;
 
-    /** The service client containing this operation class. */
-    private final AzureMachineLearningWorkspacesImpl client;
+    /**
+     * The service client containing this operation class.
+     */
+    private final AzureMachineLearningServicesImpl client;
 
     /**
      * Initializes an instance of EnvironmentVersionsClientImpl.
-     *
+     * 
      * @param client the instance of the service client containing this operation class.
      */
-    EnvironmentVersionsClientImpl(AzureMachineLearningWorkspacesImpl client) {
-        this.service =
-            RestProxy.create(EnvironmentVersionsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
+    EnvironmentVersionsClientImpl(AzureMachineLearningServicesImpl client) {
+        this.service = RestProxy.create(EnvironmentVersionsService.class, client.getHttpPipeline(),
+            client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for AzureMachineLearningWorkspacesEnvironmentVersions to be used by the
+     * The interface defining all the services for AzureMachineLearningServicesEnvironmentVersions to be used by the
      * proxy service to perform REST calls.
      */
     @Host("{$host}")
     @ServiceInterface(name = "AzureMachineLearning")
     public interface EnvironmentVersionsService {
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/environments/{name}/versions")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/environments/{name}/versions")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<EnvironmentVersionResourceArmPaginatedResult>> list(
-            @HostParam("$host") String endpoint,
+        Mono<Response<EnvironmentVersionResourceArmPaginatedResult>> list(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("workspaceName") String workspaceName,
-            @PathParam("name") String name,
-            @QueryParam("api-version") String apiVersion,
-            @QueryParam("$orderBy") String orderBy,
-            @QueryParam("$top") Integer top,
-            @QueryParam("$skip") String skip,
-            @QueryParam("listViewType") ListViewType listViewType,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workspaceName") String workspaceName,
+            @PathParam("name") String name, @QueryParam("api-version") String apiVersion,
+            @QueryParam("$orderBy") String orderBy, @QueryParam("$top") Integer top, @QueryParam("$skip") String skip,
+            @QueryParam("listViewType") ListViewType listViewType, @QueryParam("stage") String stage,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/environments/{name}/versions"
-                + "/{version}")
-        @ExpectedResponses({200, 204})
+        @Headers({ "Content-Type: application/json" })
+        @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/environments/{name}/versions/{version}")
+        @ExpectedResponses({ 200, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Void>> delete(
-            @HostParam("$host") String endpoint,
+        Mono<Response<Void>> delete(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("workspaceName") String workspaceName,
-            @PathParam("name") String name,
-            @PathParam("version") String version,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workspaceName") String workspaceName,
+            @PathParam("name") String name, @PathParam("version") String version,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/environments/{name}/versions"
-                + "/{version}")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/environments/{name}/versions/{version}")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<EnvironmentVersionInner>> get(
-            @HostParam("$host") String endpoint,
+        Mono<Response<EnvironmentVersionInner>> get(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("workspaceName") String workspaceName,
-            @PathParam("name") String name,
-            @PathParam("version") String version,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workspaceName") String workspaceName,
+            @PathParam("name") String name, @PathParam("version") String version,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
-                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/environments/{name}/versions"
-                + "/{version}")
-        @ExpectedResponses({200, 201})
+        @Headers({ "Content-Type: application/json" })
+        @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/environments/{name}/versions/{version}")
+        @ExpectedResponses({ 200, 201 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<EnvironmentVersionInner>> createOrUpdate(
-            @HostParam("$host") String endpoint,
+        Mono<Response<EnvironmentVersionInner>> createOrUpdate(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("workspaceName") String workspaceName,
-            @PathParam("name") String name,
-            @PathParam("version") String version,
-            @QueryParam("api-version") String apiVersion,
-            @BodyParam("application/json") EnvironmentVersionInner body,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workspaceName") String workspaceName,
+            @PathParam("name") String name, @PathParam("version") String version,
+            @QueryParam("api-version") String apiVersion, @BodyParam("application/json") EnvironmentVersionInner body,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/environments/{name}/versions/{version}/publish")
+        @ExpectedResponses({ 200, 202 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Flux<ByteBuffer>>> publish(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workspaceName") String workspaceName,
+            @PathParam("name") String name, @PathParam("version") String version,
+            @QueryParam("api-version") String apiVersion, @BodyParam("application/json") DestinationAsset body,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<EnvironmentVersionResourceArmPaginatedResult>> listNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
      * List versions.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
      * @param name Container name. This is case-sensitive.
@@ -156,32 +146,24 @@ public final class EnvironmentVersionsClientImpl implements EnvironmentVersionsC
      * @param top Maximum number of records to return.
      * @param skip Continuation token for pagination.
      * @param listViewType View type for including/excluding (for example) archived entities.
+     * @param stage Stage for including/excluding (for example) archived entities. Takes priority over listViewType.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a paginated list of EnvironmentVersion entities along with {@link PagedResponse} on successful completion
-     *     of {@link Mono}.
+     * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<EnvironmentVersionInner>> listSinglePageAsync(
-        String resourceGroupName,
-        String workspaceName,
-        String name,
-        String orderBy,
-        Integer top,
-        String skip,
-        ListViewType listViewType) {
+    private Mono<PagedResponse<EnvironmentVersionInner>> listSinglePageAsync(String resourceGroupName,
+        String workspaceName, String name, String orderBy, Integer top, String skip, ListViewType listViewType,
+        String stage) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -195,37 +177,17 @@ public final class EnvironmentVersionsClientImpl implements EnvironmentVersionsC
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .list(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            workspaceName,
-                            name,
-                            this.client.getApiVersion(),
-                            orderBy,
-                            top,
-                            skip,
-                            listViewType,
-                            accept,
-                            context))
-            .<PagedResponse<EnvironmentVersionInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, workspaceName, name, this.client.getApiVersion(), orderBy, top, skip, listViewType,
+                stage, accept, context))
+            .<PagedResponse<EnvironmentVersionInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * List versions.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
      * @param name Container name. This is case-sensitive.
@@ -233,34 +195,25 @@ public final class EnvironmentVersionsClientImpl implements EnvironmentVersionsC
      * @param top Maximum number of records to return.
      * @param skip Continuation token for pagination.
      * @param listViewType View type for including/excluding (for example) archived entities.
+     * @param stage Stage for including/excluding (for example) archived entities. Takes priority over listViewType.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a paginated list of EnvironmentVersion entities along with {@link PagedResponse} on successful completion
-     *     of {@link Mono}.
+     * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<EnvironmentVersionInner>> listSinglePageAsync(
-        String resourceGroupName,
-        String workspaceName,
-        String name,
-        String orderBy,
-        Integer top,
-        String skip,
-        ListViewType listViewType,
-        Context context) {
+    private Mono<PagedResponse<EnvironmentVersionInner>> listSinglePageAsync(String resourceGroupName,
+        String workspaceName, String name, String orderBy, Integer top, String skip, ListViewType listViewType,
+        String stage, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -275,33 +228,15 @@ public final class EnvironmentVersionsClientImpl implements EnvironmentVersionsC
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .list(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                workspaceName,
-                name,
-                this.client.getApiVersion(),
-                orderBy,
-                top,
-                skip,
-                listViewType,
-                accept,
-                context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+            .list(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, workspaceName, name,
+                this.client.getApiVersion(), orderBy, top, skip, listViewType, stage, accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * List versions.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
      * @param name Container name. This is case-sensitive.
@@ -309,28 +244,23 @@ public final class EnvironmentVersionsClientImpl implements EnvironmentVersionsC
      * @param top Maximum number of records to return.
      * @param skip Continuation token for pagination.
      * @param listViewType View type for including/excluding (for example) archived entities.
+     * @param stage Stage for including/excluding (for example) archived entities. Takes priority over listViewType.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a paginated list of EnvironmentVersion entities as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<EnvironmentVersionInner> listAsync(
-        String resourceGroupName,
-        String workspaceName,
-        String name,
-        String orderBy,
-        Integer top,
-        String skip,
-        ListViewType listViewType) {
+    private PagedFlux<EnvironmentVersionInner> listAsync(String resourceGroupName, String workspaceName, String name,
+        String orderBy, Integer top, String skip, ListViewType listViewType, String stage) {
         return new PagedFlux<>(
-            () -> listSinglePageAsync(resourceGroupName, workspaceName, name, orderBy, top, skip, listViewType),
+            () -> listSinglePageAsync(resourceGroupName, workspaceName, name, orderBy, top, skip, listViewType, stage),
             nextLink -> listNextSinglePageAsync(nextLink));
     }
 
     /**
      * List versions.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
      * @param name Container name. This is case-sensitive.
@@ -345,14 +275,15 @@ public final class EnvironmentVersionsClientImpl implements EnvironmentVersionsC
         final Integer top = null;
         final String skip = null;
         final ListViewType listViewType = null;
+        final String stage = null;
         return new PagedFlux<>(
-            () -> listSinglePageAsync(resourceGroupName, workspaceName, name, orderBy, top, skip, listViewType),
+            () -> listSinglePageAsync(resourceGroupName, workspaceName, name, orderBy, top, skip, listViewType, stage),
             nextLink -> listNextSinglePageAsync(nextLink));
     }
 
     /**
      * List versions.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
      * @param name Container name. This is case-sensitive.
@@ -360,6 +291,7 @@ public final class EnvironmentVersionsClientImpl implements EnvironmentVersionsC
      * @param top Maximum number of records to return.
      * @param skip Continuation token for pagination.
      * @param listViewType View type for including/excluding (for example) archived entities.
+     * @param stage Stage for including/excluding (for example) archived entities. Takes priority over listViewType.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -367,24 +299,15 @@ public final class EnvironmentVersionsClientImpl implements EnvironmentVersionsC
      * @return a paginated list of EnvironmentVersion entities as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<EnvironmentVersionInner> listAsync(
-        String resourceGroupName,
-        String workspaceName,
-        String name,
-        String orderBy,
-        Integer top,
-        String skip,
-        ListViewType listViewType,
-        Context context) {
-        return new PagedFlux<>(
-            () ->
-                listSinglePageAsync(resourceGroupName, workspaceName, name, orderBy, top, skip, listViewType, context),
-            nextLink -> listNextSinglePageAsync(nextLink, context));
+    private PagedFlux<EnvironmentVersionInner> listAsync(String resourceGroupName, String workspaceName, String name,
+        String orderBy, Integer top, String skip, ListViewType listViewType, String stage, Context context) {
+        return new PagedFlux<>(() -> listSinglePageAsync(resourceGroupName, workspaceName, name, orderBy, top, skip,
+            listViewType, stage, context), nextLink -> listNextSinglePageAsync(nextLink, context));
     }
 
     /**
      * List versions.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
      * @param name Container name. This is case-sensitive.
@@ -399,12 +322,14 @@ public final class EnvironmentVersionsClientImpl implements EnvironmentVersionsC
         final Integer top = null;
         final String skip = null;
         final ListViewType listViewType = null;
-        return new PagedIterable<>(listAsync(resourceGroupName, workspaceName, name, orderBy, top, skip, listViewType));
+        final String stage = null;
+        return new PagedIterable<>(
+            listAsync(resourceGroupName, workspaceName, name, orderBy, top, skip, listViewType, stage));
     }
 
     /**
      * List versions.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
      * @param name Container name. This is case-sensitive.
@@ -412,6 +337,7 @@ public final class EnvironmentVersionsClientImpl implements EnvironmentVersionsC
      * @param top Maximum number of records to return.
      * @param skip Continuation token for pagination.
      * @param listViewType View type for including/excluding (for example) archived entities.
+     * @param stage Stage for including/excluding (for example) archived entities. Takes priority over listViewType.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -419,22 +345,15 @@ public final class EnvironmentVersionsClientImpl implements EnvironmentVersionsC
      * @return a paginated list of EnvironmentVersion entities as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<EnvironmentVersionInner> list(
-        String resourceGroupName,
-        String workspaceName,
-        String name,
-        String orderBy,
-        Integer top,
-        String skip,
-        ListViewType listViewType,
-        Context context) {
+    public PagedIterable<EnvironmentVersionInner> list(String resourceGroupName, String workspaceName, String name,
+        String orderBy, Integer top, String skip, ListViewType listViewType, String stage, Context context) {
         return new PagedIterable<>(
-            listAsync(resourceGroupName, workspaceName, name, orderBy, top, skip, listViewType, context));
+            listAsync(resourceGroupName, workspaceName, name, orderBy, top, skip, listViewType, stage, context));
     }
 
     /**
      * Delete version.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
      * @param name Container name. This is case-sensitive.
@@ -445,19 +364,15 @@ public final class EnvironmentVersionsClientImpl implements EnvironmentVersionsC
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Void>> deleteWithResponseAsync(
-        String resourceGroupName, String workspaceName, String name, String version) {
+    private Mono<Response<Void>> deleteWithResponseAsync(String resourceGroupName, String workspaceName, String name,
+        String version) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -474,25 +389,14 @@ public final class EnvironmentVersionsClientImpl implements EnvironmentVersionsC
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .delete(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            workspaceName,
-                            name,
-                            version,
-                            this.client.getApiVersion(),
-                            accept,
-                            context))
+            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, workspaceName, name, version, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Delete version.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
      * @param name Container name. This is case-sensitive.
@@ -504,19 +408,15 @@ public final class EnvironmentVersionsClientImpl implements EnvironmentVersionsC
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Void>> deleteWithResponseAsync(
-        String resourceGroupName, String workspaceName, String name, String version, Context context) {
+    private Mono<Response<Void>> deleteWithResponseAsync(String resourceGroupName, String workspaceName, String name,
+        String version, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -533,22 +433,13 @@ public final class EnvironmentVersionsClientImpl implements EnvironmentVersionsC
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .delete(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                workspaceName,
-                name,
-                version,
-                this.client.getApiVersion(),
-                accept,
-                context);
+        return service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            workspaceName, name, version, this.client.getApiVersion(), accept, context);
     }
 
     /**
      * Delete version.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
      * @param name Container name. This is case-sensitive.
@@ -566,7 +457,7 @@ public final class EnvironmentVersionsClientImpl implements EnvironmentVersionsC
 
     /**
      * Delete version.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
      * @param name Container name. This is case-sensitive.
@@ -578,14 +469,14 @@ public final class EnvironmentVersionsClientImpl implements EnvironmentVersionsC
      * @return the {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> deleteWithResponse(
-        String resourceGroupName, String workspaceName, String name, String version, Context context) {
+    public Response<Void> deleteWithResponse(String resourceGroupName, String workspaceName, String name,
+        String version, Context context) {
         return deleteWithResponseAsync(resourceGroupName, workspaceName, name, version, context).block();
     }
 
     /**
      * Delete version.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
      * @param name Container name. This is case-sensitive.
@@ -601,7 +492,7 @@ public final class EnvironmentVersionsClientImpl implements EnvironmentVersionsC
 
     /**
      * Get version.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
      * @param name Container name. This is case-sensitive.
@@ -612,19 +503,15 @@ public final class EnvironmentVersionsClientImpl implements EnvironmentVersionsC
      * @return version along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<EnvironmentVersionInner>> getWithResponseAsync(
-        String resourceGroupName, String workspaceName, String name, String version) {
+    private Mono<Response<EnvironmentVersionInner>> getWithResponseAsync(String resourceGroupName, String workspaceName,
+        String name, String version) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -641,25 +528,14 @@ public final class EnvironmentVersionsClientImpl implements EnvironmentVersionsC
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .get(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            workspaceName,
-                            name,
-                            version,
-                            this.client.getApiVersion(),
-                            accept,
-                            context))
+            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, workspaceName, name, version, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get version.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
      * @param name Container name. This is case-sensitive.
@@ -671,19 +547,15 @@ public final class EnvironmentVersionsClientImpl implements EnvironmentVersionsC
      * @return version along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<EnvironmentVersionInner>> getWithResponseAsync(
-        String resourceGroupName, String workspaceName, String name, String version, Context context) {
+    private Mono<Response<EnvironmentVersionInner>> getWithResponseAsync(String resourceGroupName, String workspaceName,
+        String name, String version, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -700,22 +572,13 @@ public final class EnvironmentVersionsClientImpl implements EnvironmentVersionsC
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .get(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                workspaceName,
-                name,
-                version,
-                this.client.getApiVersion(),
-                accept,
-                context);
+        return service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, workspaceName,
+            name, version, this.client.getApiVersion(), accept, context);
     }
 
     /**
      * Get version.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
      * @param name Container name. This is case-sensitive.
@@ -726,15 +589,15 @@ public final class EnvironmentVersionsClientImpl implements EnvironmentVersionsC
      * @return version on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<EnvironmentVersionInner> getAsync(
-        String resourceGroupName, String workspaceName, String name, String version) {
+    private Mono<EnvironmentVersionInner> getAsync(String resourceGroupName, String workspaceName, String name,
+        String version) {
         return getWithResponseAsync(resourceGroupName, workspaceName, name, version)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
      * Get version.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
      * @param name Container name. This is case-sensitive.
@@ -746,14 +609,14 @@ public final class EnvironmentVersionsClientImpl implements EnvironmentVersionsC
      * @return version along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<EnvironmentVersionInner> getWithResponse(
-        String resourceGroupName, String workspaceName, String name, String version, Context context) {
+    public Response<EnvironmentVersionInner> getWithResponse(String resourceGroupName, String workspaceName,
+        String name, String version, Context context) {
         return getWithResponseAsync(resourceGroupName, workspaceName, name, version, context).block();
     }
 
     /**
      * Get version.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
      * @param name Container name. This is case-sensitive.
@@ -770,7 +633,7 @@ public final class EnvironmentVersionsClientImpl implements EnvironmentVersionsC
 
     /**
      * Creates or updates an EnvironmentVersion.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
      * @param name Name of EnvironmentVersion. This is case-sensitive.
@@ -779,23 +642,19 @@ public final class EnvironmentVersionsClientImpl implements EnvironmentVersionsC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return azure Resource Manager resource envelope along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return azure Resource Manager resource envelope along with {@link Response} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<EnvironmentVersionInner>> createOrUpdateWithResponseAsync(
-        String resourceGroupName, String workspaceName, String name, String version, EnvironmentVersionInner body) {
+    private Mono<Response<EnvironmentVersionInner>> createOrUpdateWithResponseAsync(String resourceGroupName,
+        String workspaceName, String name, String version, EnvironmentVersionInner body) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -817,26 +676,14 @@ public final class EnvironmentVersionsClientImpl implements EnvironmentVersionsC
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .createOrUpdate(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            workspaceName,
-                            name,
-                            version,
-                            this.client.getApiVersion(),
-                            body,
-                            accept,
-                            context))
+            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, workspaceName, name, version, this.client.getApiVersion(), body, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Creates or updates an EnvironmentVersion.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
      * @param name Name of EnvironmentVersion. This is case-sensitive.
@@ -846,28 +693,19 @@ public final class EnvironmentVersionsClientImpl implements EnvironmentVersionsC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return azure Resource Manager resource envelope along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return azure Resource Manager resource envelope along with {@link Response} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<EnvironmentVersionInner>> createOrUpdateWithResponseAsync(
-        String resourceGroupName,
-        String workspaceName,
-        String name,
-        String version,
-        EnvironmentVersionInner body,
-        Context context) {
+    private Mono<Response<EnvironmentVersionInner>> createOrUpdateWithResponseAsync(String resourceGroupName,
+        String workspaceName, String name, String version, EnvironmentVersionInner body, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -889,23 +727,13 @@ public final class EnvironmentVersionsClientImpl implements EnvironmentVersionsC
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .createOrUpdate(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                workspaceName,
-                name,
-                version,
-                this.client.getApiVersion(),
-                body,
-                accept,
-                context);
+        return service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            workspaceName, name, version, this.client.getApiVersion(), body, accept, context);
     }
 
     /**
      * Creates or updates an EnvironmentVersion.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
      * @param name Name of EnvironmentVersion. This is case-sensitive.
@@ -917,15 +745,15 @@ public final class EnvironmentVersionsClientImpl implements EnvironmentVersionsC
      * @return azure Resource Manager resource envelope on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<EnvironmentVersionInner> createOrUpdateAsync(
-        String resourceGroupName, String workspaceName, String name, String version, EnvironmentVersionInner body) {
+    private Mono<EnvironmentVersionInner> createOrUpdateAsync(String resourceGroupName, String workspaceName,
+        String name, String version, EnvironmentVersionInner body) {
         return createOrUpdateWithResponseAsync(resourceGroupName, workspaceName, name, version, body)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
      * Creates or updates an EnvironmentVersion.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
      * @param name Name of EnvironmentVersion. This is case-sensitive.
@@ -938,19 +766,14 @@ public final class EnvironmentVersionsClientImpl implements EnvironmentVersionsC
      * @return azure Resource Manager resource envelope along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<EnvironmentVersionInner> createOrUpdateWithResponse(
-        String resourceGroupName,
-        String workspaceName,
-        String name,
-        String version,
-        EnvironmentVersionInner body,
-        Context context) {
+    public Response<EnvironmentVersionInner> createOrUpdateWithResponse(String resourceGroupName, String workspaceName,
+        String name, String version, EnvironmentVersionInner body, Context context) {
         return createOrUpdateWithResponseAsync(resourceGroupName, workspaceName, name, version, body, context).block();
     }
 
     /**
      * Creates or updates an EnvironmentVersion.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
      * @param name Name of EnvironmentVersion. This is case-sensitive.
@@ -962,22 +785,284 @@ public final class EnvironmentVersionsClientImpl implements EnvironmentVersionsC
      * @return azure Resource Manager resource envelope.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public EnvironmentVersionInner createOrUpdate(
-        String resourceGroupName, String workspaceName, String name, String version, EnvironmentVersionInner body) {
+    public EnvironmentVersionInner createOrUpdate(String resourceGroupName, String workspaceName, String name,
+        String version, EnvironmentVersionInner body) {
         return createOrUpdateWithResponse(resourceGroupName, workspaceName, name, version, body, Context.NONE)
             .getValue();
     }
 
     /**
+     * Publish version asset into registry.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param name Container name.
+     * @param version Version identifier.
+     * @param body Destination registry info.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> publishWithResponseAsync(String resourceGroupName, String workspaceName,
+        String name, String version, DestinationAsset body) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workspaceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
+        }
+        if (name == null) {
+            return Mono.error(new IllegalArgumentException("Parameter name is required and cannot be null."));
+        }
+        if (version == null) {
+            return Mono.error(new IllegalArgumentException("Parameter version is required and cannot be null."));
+        }
+        if (body == null) {
+            return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
+        } else {
+            body.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.publish(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, workspaceName, name, version, this.client.getApiVersion(), body, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Publish version asset into registry.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param name Container name.
+     * @param version Version identifier.
+     * @param body Destination registry info.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> publishWithResponseAsync(String resourceGroupName, String workspaceName,
+        String name, String version, DestinationAsset body, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workspaceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
+        }
+        if (name == null) {
+            return Mono.error(new IllegalArgumentException("Parameter name is required and cannot be null."));
+        }
+        if (version == null) {
+            return Mono.error(new IllegalArgumentException("Parameter version is required and cannot be null."));
+        }
+        if (body == null) {
+            return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
+        } else {
+            body.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.publish(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            workspaceName, name, version, this.client.getApiVersion(), body, accept, context);
+    }
+
+    /**
+     * Publish version asset into registry.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param name Container name.
+     * @param version Version identifier.
+     * @param body Destination registry info.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginPublishAsync(String resourceGroupName, String workspaceName,
+        String name, String version, DestinationAsset body) {
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = publishWithResponseAsync(resourceGroupName, workspaceName, name, version, body);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            this.client.getContext());
+    }
+
+    /**
+     * Publish version asset into registry.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param name Container name.
+     * @param version Version identifier.
+     * @param body Destination registry info.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginPublishAsync(String resourceGroupName, String workspaceName,
+        String name, String version, DestinationAsset body, Context context) {
+        context = this.client.mergeContext(context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = publishWithResponseAsync(resourceGroupName, workspaceName, name, version, body, context);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            context);
+    }
+
+    /**
+     * Publish version asset into registry.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param name Container name.
+     * @param version Version identifier.
+     * @param body Destination registry info.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<Void>, Void> beginPublish(String resourceGroupName, String workspaceName, String name,
+        String version, DestinationAsset body) {
+        return this.beginPublishAsync(resourceGroupName, workspaceName, name, version, body).getSyncPoller();
+    }
+
+    /**
+     * Publish version asset into registry.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param name Container name.
+     * @param version Version identifier.
+     * @param body Destination registry info.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<Void>, Void> beginPublish(String resourceGroupName, String workspaceName, String name,
+        String version, DestinationAsset body, Context context) {
+        return this.beginPublishAsync(resourceGroupName, workspaceName, name, version, body, context).getSyncPoller();
+    }
+
+    /**
+     * Publish version asset into registry.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param name Container name.
+     * @param version Version identifier.
+     * @param body Destination registry info.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Void> publishAsync(String resourceGroupName, String workspaceName, String name, String version,
+        DestinationAsset body) {
+        return beginPublishAsync(resourceGroupName, workspaceName, name, version, body).last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Publish version asset into registry.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param name Container name.
+     * @param version Version identifier.
+     * @param body Destination registry info.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Void> publishAsync(String resourceGroupName, String workspaceName, String name, String version,
+        DestinationAsset body, Context context) {
+        return beginPublishAsync(resourceGroupName, workspaceName, name, version, body, context).last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Publish version asset into registry.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param name Container name.
+     * @param version Version identifier.
+     * @param body Destination registry info.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void publish(String resourceGroupName, String workspaceName, String name, String version,
+        DestinationAsset body) {
+        publishAsync(resourceGroupName, workspaceName, name, version, body).block();
+    }
+
+    /**
+     * Publish version asset into registry.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param name Container name.
+     * @param version Version identifier.
+     * @param body Destination registry info.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void publish(String resourceGroupName, String workspaceName, String name, String version,
+        DestinationAsset body, Context context) {
+        publishAsync(resourceGroupName, workspaceName, name, version, body, context).block();
+    }
+
+    /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a paginated list of EnvironmentVersion entities along with {@link PagedResponse} on successful completion
-     *     of {@link Mono}.
+     * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<EnvironmentVersionInner>> listNextSinglePageAsync(String nextLink) {
@@ -985,37 +1070,28 @@ public final class EnvironmentVersionsClientImpl implements EnvironmentVersionsC
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.listNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<EnvironmentVersionInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+        return FluxUtil.withContext(context -> service.listNext(nextLink, this.client.getEndpoint(), accept, context))
+            .<PagedResponse<EnvironmentVersionInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a paginated list of EnvironmentVersion entities along with {@link PagedResponse} on successful completion
-     *     of {@link Mono}.
+     * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<EnvironmentVersionInner>> listNextSinglePageAsync(String nextLink, Context context) {
@@ -1023,23 +1099,13 @@ public final class EnvironmentVersionsClientImpl implements EnvironmentVersionsC
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.listNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 }

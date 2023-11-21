@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.time.Duration;
 
-/** Sweep Job limit class. */
+/**
+ * Sweep Job limit class.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "jobLimitsType")
 @JsonTypeName("Sweep")
 @Fluent
@@ -33,13 +35,15 @@ public final class SweepJobLimits extends JobLimits {
     @JsonProperty(value = "trialTimeout")
     private Duration trialTimeout;
 
-    /** Creates an instance of SweepJobLimits class. */
+    /**
+     * Creates an instance of SweepJobLimits class.
+     */
     public SweepJobLimits() {
     }
 
     /**
      * Get the maxConcurrentTrials property: Sweep Job max concurrent trials.
-     *
+     * 
      * @return the maxConcurrentTrials value.
      */
     public Integer maxConcurrentTrials() {
@@ -48,7 +52,7 @@ public final class SweepJobLimits extends JobLimits {
 
     /**
      * Set the maxConcurrentTrials property: Sweep Job max concurrent trials.
-     *
+     * 
      * @param maxConcurrentTrials the maxConcurrentTrials value to set.
      * @return the SweepJobLimits object itself.
      */
@@ -59,7 +63,7 @@ public final class SweepJobLimits extends JobLimits {
 
     /**
      * Get the maxTotalTrials property: Sweep Job max total trials.
-     *
+     * 
      * @return the maxTotalTrials value.
      */
     public Integer maxTotalTrials() {
@@ -68,7 +72,7 @@ public final class SweepJobLimits extends JobLimits {
 
     /**
      * Set the maxTotalTrials property: Sweep Job max total trials.
-     *
+     * 
      * @param maxTotalTrials the maxTotalTrials value to set.
      * @return the SweepJobLimits object itself.
      */
@@ -79,7 +83,7 @@ public final class SweepJobLimits extends JobLimits {
 
     /**
      * Get the trialTimeout property: Sweep Job Trial timeout value.
-     *
+     * 
      * @return the trialTimeout value.
      */
     public Duration trialTimeout() {
@@ -88,7 +92,7 @@ public final class SweepJobLimits extends JobLimits {
 
     /**
      * Set the trialTimeout property: Sweep Job Trial timeout value.
-     *
+     * 
      * @param trialTimeout the trialTimeout value to set.
      * @return the SweepJobLimits object itself.
      */
@@ -97,7 +101,9 @@ public final class SweepJobLimits extends JobLimits {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public SweepJobLimits withTimeout(Duration timeout) {
         super.withTimeout(timeout);
@@ -106,7 +112,7 @@ public final class SweepJobLimits extends JobLimits {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

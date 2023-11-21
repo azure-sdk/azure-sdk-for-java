@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** Base definition for endpoint deployment. */
+/**
+ * Base definition for endpoint deployment.
+ */
 @Fluent
 public class EndpointDeploymentPropertiesBase {
     /*
@@ -25,7 +27,7 @@ public class EndpointDeploymentPropertiesBase {
     private String description;
 
     /*
-     * ARM resource ID or AssetId of the environment specification for the endpoint deployment.
+     * ARM resource ID of the environment specification for the endpoint deployment.
      */
     @JsonProperty(value = "environmentId")
     private String environmentId;
@@ -44,13 +46,15 @@ public class EndpointDeploymentPropertiesBase {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> properties;
 
-    /** Creates an instance of EndpointDeploymentPropertiesBase class. */
+    /**
+     * Creates an instance of EndpointDeploymentPropertiesBase class.
+     */
     public EndpointDeploymentPropertiesBase() {
     }
 
     /**
      * Get the codeConfiguration property: Code configuration for the endpoint deployment.
-     *
+     * 
      * @return the codeConfiguration value.
      */
     public CodeConfiguration codeConfiguration() {
@@ -59,7 +63,7 @@ public class EndpointDeploymentPropertiesBase {
 
     /**
      * Set the codeConfiguration property: Code configuration for the endpoint deployment.
-     *
+     * 
      * @param codeConfiguration the codeConfiguration value to set.
      * @return the EndpointDeploymentPropertiesBase object itself.
      */
@@ -70,7 +74,7 @@ public class EndpointDeploymentPropertiesBase {
 
     /**
      * Get the description property: Description of the endpoint deployment.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -79,7 +83,7 @@ public class EndpointDeploymentPropertiesBase {
 
     /**
      * Set the description property: Description of the endpoint deployment.
-     *
+     * 
      * @param description the description value to set.
      * @return the EndpointDeploymentPropertiesBase object itself.
      */
@@ -89,9 +93,8 @@ public class EndpointDeploymentPropertiesBase {
     }
 
     /**
-     * Get the environmentId property: ARM resource ID or AssetId of the environment specification for the endpoint
-     * deployment.
-     *
+     * Get the environmentId property: ARM resource ID of the environment specification for the endpoint deployment.
+     * 
      * @return the environmentId value.
      */
     public String environmentId() {
@@ -99,9 +102,8 @@ public class EndpointDeploymentPropertiesBase {
     }
 
     /**
-     * Set the environmentId property: ARM resource ID or AssetId of the environment specification for the endpoint
-     * deployment.
-     *
+     * Set the environmentId property: ARM resource ID of the environment specification for the endpoint deployment.
+     * 
      * @param environmentId the environmentId value to set.
      * @return the EndpointDeploymentPropertiesBase object itself.
      */
@@ -112,7 +114,7 @@ public class EndpointDeploymentPropertiesBase {
 
     /**
      * Get the environmentVariables property: Environment variables configuration for the deployment.
-     *
+     * 
      * @return the environmentVariables value.
      */
     public Map<String, String> environmentVariables() {
@@ -121,7 +123,7 @@ public class EndpointDeploymentPropertiesBase {
 
     /**
      * Set the environmentVariables property: Environment variables configuration for the deployment.
-     *
+     * 
      * @param environmentVariables the environmentVariables value to set.
      * @return the EndpointDeploymentPropertiesBase object itself.
      */
@@ -132,7 +134,7 @@ public class EndpointDeploymentPropertiesBase {
 
     /**
      * Get the properties property: Property dictionary. Properties can be added, but not removed or altered.
-     *
+     * 
      * @return the properties value.
      */
     public Map<String, String> properties() {
@@ -141,7 +143,7 @@ public class EndpointDeploymentPropertiesBase {
 
     /**
      * Set the properties property: Property dictionary. Properties can be added, but not removed or altered.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the EndpointDeploymentPropertiesBase object itself.
      */
@@ -152,7 +154,7 @@ public class EndpointDeploymentPropertiesBase {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

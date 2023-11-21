@@ -9,7 +9,9 @@ import com.azure.resourcemanager.machinelearning.fluent.models.BatchEndpointInne
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** A paginated list of BatchEndpoint entities. */
+/**
+ * A paginated list of BatchEndpoint entities.
+ */
 @Fluent
 public final class BatchEndpointTrackedResourceArmPaginatedResult {
     /*
@@ -24,14 +26,16 @@ public final class BatchEndpointTrackedResourceArmPaginatedResult {
     @JsonProperty(value = "value")
     private List<BatchEndpointInner> value;
 
-    /** Creates an instance of BatchEndpointTrackedResourceArmPaginatedResult class. */
+    /**
+     * Creates an instance of BatchEndpointTrackedResourceArmPaginatedResult class.
+     */
     public BatchEndpointTrackedResourceArmPaginatedResult() {
     }
 
     /**
      * Get the nextLink property: The link to the next page of BatchEndpoint objects. If null, there are no additional
      * pages.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -41,7 +45,7 @@ public final class BatchEndpointTrackedResourceArmPaginatedResult {
     /**
      * Set the nextLink property: The link to the next page of BatchEndpoint objects. If null, there are no additional
      * pages.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the BatchEndpointTrackedResourceArmPaginatedResult object itself.
      */
@@ -52,7 +56,7 @@ public final class BatchEndpointTrackedResourceArmPaginatedResult {
 
     /**
      * Get the value property: An array of objects of type BatchEndpoint.
-     *
+     * 
      * @return the value value.
      */
     public List<BatchEndpointInner> value() {
@@ -61,7 +65,7 @@ public final class BatchEndpointTrackedResourceArmPaginatedResult {
 
     /**
      * Set the value property: An array of objects of type BatchEndpoint.
-     *
+     * 
      * @param value the value value to set.
      * @return the BatchEndpointTrackedResourceArmPaginatedResult object itself.
      */
@@ -72,7 +76,7 @@ public final class BatchEndpointTrackedResourceArmPaginatedResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
