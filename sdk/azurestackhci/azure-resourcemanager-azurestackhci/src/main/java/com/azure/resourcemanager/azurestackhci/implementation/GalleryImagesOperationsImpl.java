@@ -21,22 +21,18 @@ public final class GalleryImagesOperationsImpl implements GalleryImagesOperation
 
     private final com.azure.resourcemanager.azurestackhci.AzureStackHciManager serviceManager;
 
-    public GalleryImagesOperationsImpl(
-        GalleryImagesOperationsClient innerClient,
+    public GalleryImagesOperationsImpl(GalleryImagesOperationsClient innerClient,
         com.azure.resourcemanager.azurestackhci.AzureStackHciManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
 
-    public Response<GalleryImages> getByResourceGroupWithResponse(
-        String resourceGroupName, String galleryImageName, Context context) {
-        Response<GalleryImagesInner> inner =
-            this.serviceClient().getByResourceGroupWithResponse(resourceGroupName, galleryImageName, context);
+    public Response<GalleryImages> getByResourceGroupWithResponse(String resourceGroupName, String galleryImageName,
+        Context context) {
+        Response<GalleryImagesInner> inner
+            = this.serviceClient().getByResourceGroupWithResponse(resourceGroupName, galleryImageName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new GalleryImagesImpl(inner.getValue(), this.manager()));
         } else {
             return null;
@@ -83,18 +79,13 @@ public final class GalleryImagesOperationsImpl implements GalleryImagesOperation
     public GalleryImages getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String galleryImageName = Utils.getValueFromIdByName(id, "galleryImages");
         if (galleryImageName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'galleryImages'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'galleryImages'.", id)));
         }
         return this.getByResourceGroupWithResponse(resourceGroupName, galleryImageName, Context.NONE).getValue();
     }
@@ -102,18 +93,13 @@ public final class GalleryImagesOperationsImpl implements GalleryImagesOperation
     public Response<GalleryImages> getByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String galleryImageName = Utils.getValueFromIdByName(id, "galleryImages");
         if (galleryImageName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'galleryImages'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'galleryImages'.", id)));
         }
         return this.getByResourceGroupWithResponse(resourceGroupName, galleryImageName, context);
     }
@@ -121,18 +107,13 @@ public final class GalleryImagesOperationsImpl implements GalleryImagesOperation
     public void deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String galleryImageName = Utils.getValueFromIdByName(id, "galleryImages");
         if (galleryImageName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'galleryImages'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'galleryImages'.", id)));
         }
         this.delete(resourceGroupName, galleryImageName, Context.NONE);
     }
@@ -140,18 +121,13 @@ public final class GalleryImagesOperationsImpl implements GalleryImagesOperation
     public void deleteByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String galleryImageName = Utils.getValueFromIdByName(id, "galleryImages");
         if (galleryImageName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'galleryImages'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'galleryImages'.", id)));
         }
         this.delete(resourceGroupName, galleryImageName, context);
     }

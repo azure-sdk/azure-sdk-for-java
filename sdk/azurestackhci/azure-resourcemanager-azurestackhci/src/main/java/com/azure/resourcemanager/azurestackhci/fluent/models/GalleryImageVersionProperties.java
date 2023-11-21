@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.azurestackhci.models.GalleryImageVersionStorageProfile;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Describes the properties of a gallery image version. */
+/**
+ * Describes the properties of a gallery image version.
+ */
 @Fluent
 public final class GalleryImageVersionProperties {
     /*
@@ -18,13 +20,15 @@ public final class GalleryImageVersionProperties {
     @JsonProperty(value = "storageProfile", required = true)
     private GalleryImageVersionStorageProfile storageProfile;
 
-    /** Creates an instance of GalleryImageVersionProperties class. */
+    /**
+     * Creates an instance of GalleryImageVersionProperties class.
+     */
     public GalleryImageVersionProperties() {
     }
 
     /**
      * Get the storageProfile property: This is the storage profile of a Gallery Image Version.
-     *
+     * 
      * @return the storageProfile value.
      */
     public GalleryImageVersionStorageProfile storageProfile() {
@@ -33,7 +37,7 @@ public final class GalleryImageVersionProperties {
 
     /**
      * Set the storageProfile property: This is the storage profile of a Gallery Image Version.
-     *
+     * 
      * @param storageProfile the storageProfile value to set.
      * @return the GalleryImageVersionProperties object itself.
      */
@@ -44,15 +48,13 @@ public final class GalleryImageVersionProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (storageProfile() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property storageProfile in model GalleryImageVersionProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property storageProfile in model GalleryImageVersionProperties"));
         } else {
             storageProfile().validate();
         }

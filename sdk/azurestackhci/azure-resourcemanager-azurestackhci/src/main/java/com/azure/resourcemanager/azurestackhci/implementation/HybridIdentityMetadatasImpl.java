@@ -21,8 +21,7 @@ public final class HybridIdentityMetadatasImpl implements HybridIdentityMetadata
 
     private final com.azure.resourcemanager.azurestackhci.AzureStackHciManager serviceManager;
 
-    public HybridIdentityMetadatasImpl(
-        HybridIdentityMetadatasClient innerClient,
+    public HybridIdentityMetadatasImpl(HybridIdentityMetadatasClient innerClient,
         com.azure.resourcemanager.azurestackhci.AzureStackHciManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
@@ -31,10 +30,7 @@ public final class HybridIdentityMetadatasImpl implements HybridIdentityMetadata
     public Response<HybridIdentityMetadata> getWithResponse(String resourceUri, Context context) {
         Response<HybridIdentityMetadataInner> inner = this.serviceClient().getWithResponse(resourceUri, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new HybridIdentityMetadataImpl(inner.getValue(), this.manager()));
         } else {
             return null;

@@ -8,22 +8,24 @@ import com.azure.resourcemanager.azurestackhci.models.GalleryImages;
 import java.util.HashMap;
 import java.util.Map;
 
-/** Samples for GalleryImagesOperation Update. */
+/**
+ * Samples for GalleryImagesOperation Update.
+ */
 public final class GalleryImagesOperationUpdateSamples {
     /*
-     * x-ms-original-file: specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/preview/2023-09-01-preview/examples/UpdateGalleryImage.json
+     * x-ms-original-file:
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/preview/2023-09-01-preview/examples/
+     * UpdateGalleryImage.json
      */
     /**
      * Sample code: UpdateGalleryImage.
-     *
+     * 
      * @param manager Entry point to AzureStackHciManager.
      */
     public static void updateGalleryImage(com.azure.resourcemanager.azurestackhci.AzureStackHciManager manager) {
-        GalleryImages resource =
-            manager
-                .galleryImagesOperations()
-                .getByResourceGroupWithResponse("test-rg", "test-gallery-image", com.azure.core.util.Context.NONE)
-                .getValue();
+        GalleryImages resource = manager.galleryImagesOperations()
+            .getByResourceGroupWithResponse("test-rg", "test-gallery-image", com.azure.core.util.Context.NONE)
+            .getValue();
         resource.update().withTags(mapOf("additionalProperties", "sample")).apply();
     }
 
