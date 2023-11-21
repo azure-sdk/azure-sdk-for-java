@@ -21,35 +21,31 @@ public final class ContainerAppsSourceControlsImpl implements ContainerAppsSourc
 
     private final com.azure.resourcemanager.appcontainers.ContainerAppsApiManager serviceManager;
 
-    public ContainerAppsSourceControlsImpl(
-        ContainerAppsSourceControlsClient innerClient,
+    public ContainerAppsSourceControlsImpl(ContainerAppsSourceControlsClient innerClient,
         com.azure.resourcemanager.appcontainers.ContainerAppsApiManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
 
     public PagedIterable<SourceControl> listByContainerApp(String resourceGroupName, String containerAppName) {
-        PagedIterable<SourceControlInner> inner =
-            this.serviceClient().listByContainerApp(resourceGroupName, containerAppName);
+        PagedIterable<SourceControlInner> inner
+            = this.serviceClient().listByContainerApp(resourceGroupName, containerAppName);
         return Utils.mapPage(inner, inner1 -> new SourceControlImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<SourceControl> listByContainerApp(
-        String resourceGroupName, String containerAppName, Context context) {
-        PagedIterable<SourceControlInner> inner =
-            this.serviceClient().listByContainerApp(resourceGroupName, containerAppName, context);
+    public PagedIterable<SourceControl> listByContainerApp(String resourceGroupName, String containerAppName,
+        Context context) {
+        PagedIterable<SourceControlInner> inner
+            = this.serviceClient().listByContainerApp(resourceGroupName, containerAppName, context);
         return Utils.mapPage(inner, inner1 -> new SourceControlImpl(inner1, this.manager()));
     }
 
-    public Response<SourceControl> getWithResponse(
-        String resourceGroupName, String containerAppName, String sourceControlName, Context context) {
-        Response<SourceControlInner> inner =
-            this.serviceClient().getWithResponse(resourceGroupName, containerAppName, sourceControlName, context);
+    public Response<SourceControl> getWithResponse(String resourceGroupName, String containerAppName,
+        String sourceControlName, Context context) {
+        Response<SourceControlInner> inner
+            = this.serviceClient().getWithResponse(resourceGroupName, containerAppName, sourceControlName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new SourceControlImpl(inner.getValue(), this.manager()));
         } else {
             return null;
@@ -76,26 +72,18 @@ public final class ContainerAppsSourceControlsImpl implements ContainerAppsSourc
     public SourceControl getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String containerAppName = Utils.getValueFromIdByName(id, "containerApps");
         if (containerAppName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'containerApps'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'containerApps'.", id)));
         }
         String sourceControlName = Utils.getValueFromIdByName(id, "sourcecontrols");
         if (sourceControlName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'sourcecontrols'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'sourcecontrols'.", id)));
         }
         return this.getWithResponse(resourceGroupName, containerAppName, sourceControlName, Context.NONE).getValue();
     }
@@ -103,26 +91,18 @@ public final class ContainerAppsSourceControlsImpl implements ContainerAppsSourc
     public Response<SourceControl> getByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String containerAppName = Utils.getValueFromIdByName(id, "containerApps");
         if (containerAppName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'containerApps'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'containerApps'.", id)));
         }
         String sourceControlName = Utils.getValueFromIdByName(id, "sourcecontrols");
         if (sourceControlName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'sourcecontrols'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'sourcecontrols'.", id)));
         }
         return this.getWithResponse(resourceGroupName, containerAppName, sourceControlName, context);
     }
@@ -130,26 +110,18 @@ public final class ContainerAppsSourceControlsImpl implements ContainerAppsSourc
     public void deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String containerAppName = Utils.getValueFromIdByName(id, "containerApps");
         if (containerAppName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'containerApps'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'containerApps'.", id)));
         }
         String sourceControlName = Utils.getValueFromIdByName(id, "sourcecontrols");
         if (sourceControlName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'sourcecontrols'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'sourcecontrols'.", id)));
         }
         this.delete(resourceGroupName, containerAppName, sourceControlName, Context.NONE);
     }
@@ -157,26 +129,18 @@ public final class ContainerAppsSourceControlsImpl implements ContainerAppsSourc
     public void deleteByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String containerAppName = Utils.getValueFromIdByName(id, "containerApps");
         if (containerAppName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'containerApps'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'containerApps'.", id)));
         }
         String sourceControlName = Utils.getValueFromIdByName(id, "sourcecontrols");
         if (sourceControlName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'sourcecontrols'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'sourcecontrols'.", id)));
         }
         this.delete(resourceGroupName, containerAppName, sourceControlName, context);
     }
