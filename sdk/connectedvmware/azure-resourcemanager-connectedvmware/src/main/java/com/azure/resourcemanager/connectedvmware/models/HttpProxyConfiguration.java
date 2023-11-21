@@ -7,7 +7,9 @@ package com.azure.resourcemanager.connectedvmware.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** HTTP Proxy configuration for the VM. */
+/**
+ * HTTP Proxy configuration for the VM.
+ */
 @Fluent
 public final class HttpProxyConfiguration {
     /*
@@ -16,13 +18,15 @@ public final class HttpProxyConfiguration {
     @JsonProperty(value = "httpsProxy")
     private String httpsProxy;
 
-    /** Creates an instance of HttpProxyConfiguration class. */
+    /**
+     * Creates an instance of HttpProxyConfiguration class.
+     */
     public HttpProxyConfiguration() {
     }
 
     /**
      * Get the httpsProxy property: Gets or sets httpsProxy url.
-     *
+     * 
      * @return the httpsProxy value.
      */
     public String httpsProxy() {
@@ -31,7 +35,7 @@ public final class HttpProxyConfiguration {
 
     /**
      * Set the httpsProxy property: Gets or sets httpsProxy url.
-     *
+     * 
      * @param httpsProxy the httpsProxy value to set.
      * @return the HttpProxyConfiguration object itself.
      */
@@ -42,7 +46,7 @@ public final class HttpProxyConfiguration {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

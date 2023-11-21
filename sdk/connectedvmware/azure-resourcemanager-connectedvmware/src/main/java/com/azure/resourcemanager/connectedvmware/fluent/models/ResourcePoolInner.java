@@ -15,7 +15,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
 
-/** Define the resourcePool. */
+/**
+ * Define the resourcePool.
+ */
 @Fluent
 public final class ResourcePoolInner extends Resource {
     /*
@@ -38,19 +40,21 @@ public final class ResourcePoolInner extends Resource {
 
     /*
      * Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type; e.g.
-     * ApiApps are a kind of Microsoft.Web/sites type.  If supported, the resource provider must validate and persist
+     * ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must validate and persist
      * this value.
      */
     @JsonProperty(value = "kind")
     private String kind;
 
-    /** Creates an instance of ResourcePoolInner class. */
+    /**
+     * Creates an instance of ResourcePoolInner class.
+     */
     public ResourcePoolInner() {
     }
 
     /**
      * Get the innerProperties property: Resource properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private ResourcePoolProperties innerProperties() {
@@ -59,7 +63,7 @@ public final class ResourcePoolInner extends Resource {
 
     /**
      * Get the extendedLocation property: Gets or sets the extended location.
-     *
+     * 
      * @return the extendedLocation value.
      */
     public ExtendedLocation extendedLocation() {
@@ -68,7 +72,7 @@ public final class ResourcePoolInner extends Resource {
 
     /**
      * Set the extendedLocation property: Gets or sets the extended location.
-     *
+     * 
      * @param extendedLocation the extendedLocation value to set.
      * @return the ResourcePoolInner object itself.
      */
@@ -79,7 +83,7 @@ public final class ResourcePoolInner extends Resource {
 
     /**
      * Get the systemData property: The system data.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -90,7 +94,7 @@ public final class ResourcePoolInner extends Resource {
      * Get the kind property: Metadata used by portal/tooling/etc to render different UX experiences for resources of
      * the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must
      * validate and persist this value.
-     *
+     * 
      * @return the kind value.
      */
     public String kind() {
@@ -101,7 +105,7 @@ public final class ResourcePoolInner extends Resource {
      * Set the kind property: Metadata used by portal/tooling/etc to render different UX experiences for resources of
      * the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must
      * validate and persist this value.
-     *
+     * 
      * @param kind the kind value to set.
      * @return the ResourcePoolInner object itself.
      */
@@ -110,14 +114,18 @@ public final class ResourcePoolInner extends Resource {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ResourcePoolInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ResourcePoolInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -126,7 +134,7 @@ public final class ResourcePoolInner extends Resource {
 
     /**
      * Get the uuid property: Gets or sets a unique identifier for this resource.
-     *
+     * 
      * @return the uuid value.
      */
     public String uuid() {
@@ -135,7 +143,7 @@ public final class ResourcePoolInner extends Resource {
 
     /**
      * Get the vCenterId property: Gets or sets the ARM Id of the vCenter resource in which this resource pool resides.
-     *
+     * 
      * @return the vCenterId value.
      */
     public String vCenterId() {
@@ -144,7 +152,7 @@ public final class ResourcePoolInner extends Resource {
 
     /**
      * Set the vCenterId property: Gets or sets the ARM Id of the vCenter resource in which this resource pool resides.
-     *
+     * 
      * @param vCenterId the vCenterId value to set.
      * @return the ResourcePoolInner object itself.
      */
@@ -158,7 +166,7 @@ public final class ResourcePoolInner extends Resource {
 
     /**
      * Get the moRefId property: Gets or sets the vCenter MoRef (Managed Object Reference) ID for the resource pool.
-     *
+     * 
      * @return the moRefId value.
      */
     public String moRefId() {
@@ -167,7 +175,7 @@ public final class ResourcePoolInner extends Resource {
 
     /**
      * Set the moRefId property: Gets or sets the vCenter MoRef (Managed Object Reference) ID for the resource pool.
-     *
+     * 
      * @param moRefId the moRefId value to set.
      * @return the ResourcePoolInner object itself.
      */
@@ -181,7 +189,7 @@ public final class ResourcePoolInner extends Resource {
 
     /**
      * Get the inventoryItemId property: Gets or sets the inventory Item ID for the resource pool.
-     *
+     * 
      * @return the inventoryItemId value.
      */
     public String inventoryItemId() {
@@ -190,7 +198,7 @@ public final class ResourcePoolInner extends Resource {
 
     /**
      * Set the inventoryItemId property: Gets or sets the inventory Item ID for the resource pool.
-     *
+     * 
      * @param inventoryItemId the inventoryItemId value to set.
      * @return the ResourcePoolInner object itself.
      */
@@ -204,7 +212,7 @@ public final class ResourcePoolInner extends Resource {
 
     /**
      * Get the moName property: Gets or sets the vCenter Managed Object name for the resource pool.
-     *
+     * 
      * @return the moName value.
      */
     public String moName() {
@@ -213,8 +221,9 @@ public final class ResourcePoolInner extends Resource {
 
     /**
      * Get the cpuSharesLevel property: Gets or sets CPUSharesLevel which specifies the CPU allocation level for this
-     * pool. This property is used in relative allocation between resource consumers.
-     *
+     * pool.
+     * This property is used in relative allocation between resource consumers.
+     * 
      * @return the cpuSharesLevel value.
      */
     public String cpuSharesLevel() {
@@ -223,8 +232,9 @@ public final class ResourcePoolInner extends Resource {
 
     /**
      * Get the cpuReservationMHz property: Gets or sets CPUReservationMHz which specifies the CPU size in MHz that is
-     * guaranteed to be available.
-     *
+     * guaranteed
+     * to be available.
+     * 
      * @return the cpuReservationMHz value.
      */
     public Long cpuReservationMHz() {
@@ -232,9 +242,9 @@ public final class ResourcePoolInner extends Resource {
     }
 
     /**
-     * Get the cpuLimitMHz property: Gets or sets CPULimitMHz which specifies a CPU usage limit in MHz. Utilization will
-     * not exceed this limit even if there are available resources.
-     *
+     * Get the cpuLimitMHz property: Gets or sets CPULimitMHz which specifies a CPU usage limit in MHz.
+     * Utilization will not exceed this limit even if there are available resources.
+     * 
      * @return the cpuLimitMHz value.
      */
     public Long cpuLimitMHz() {
@@ -242,9 +252,10 @@ public final class ResourcePoolInner extends Resource {
     }
 
     /**
-     * Get the memSharesLevel property: Gets or sets CPUSharesLevel which specifies the memory allocation level for this
-     * pool. This property is used in relative allocation between resource consumers.
-     *
+     * Get the memSharesLevel property: Gets or sets CPUSharesLevel which specifies the memory allocation level for
+     * this pool.
+     * This property is used in relative allocation between resource consumers.
+     * 
      * @return the memSharesLevel value.
      */
     public String memSharesLevel() {
@@ -253,8 +264,9 @@ public final class ResourcePoolInner extends Resource {
 
     /**
      * Get the memReservationMB property: Gets or sets MemReservationMB which specifies the guaranteed available memory
-     * in megabytes.
-     *
+     * in
+     * megabytes.
+     * 
      * @return the memReservationMB value.
      */
     public Long memReservationMB() {
@@ -262,9 +274,9 @@ public final class ResourcePoolInner extends Resource {
     }
 
     /**
-     * Get the memLimitMB property: Gets or sets MemLimitMB specifies a memory usage limit in megabytes. Utilization
-     * will not exceed the specified limit even if there are available resources.
-     *
+     * Get the memLimitMB property: Gets or sets MemLimitMB specifies a memory usage limit in megabytes.
+     * Utilization will not exceed the specified limit even if there are available resources.
+     * 
      * @return the memLimitMB value.
      */
     public Long memLimitMB() {
@@ -273,7 +285,7 @@ public final class ResourcePoolInner extends Resource {
 
     /**
      * Get the memOverallUsageGB property: Gets the used physical memory on the pool in GB.
-     *
+     * 
      * @return the memOverallUsageGB value.
      */
     public Long memOverallUsageGB() {
@@ -282,7 +294,7 @@ public final class ResourcePoolInner extends Resource {
 
     /**
      * Get the memCapacityGB property: Gets the total amount of physical memory on the pool in GB.
-     *
+     * 
      * @return the memCapacityGB value.
      */
     public Long memCapacityGB() {
@@ -291,7 +303,7 @@ public final class ResourcePoolInner extends Resource {
 
     /**
      * Get the cpuOverallUsageMHz property: Gets the used CPU usage across all cores on the pool in MHz.
-     *
+     * 
      * @return the cpuOverallUsageMHz value.
      */
     public Long cpuOverallUsageMHz() {
@@ -300,7 +312,7 @@ public final class ResourcePoolInner extends Resource {
 
     /**
      * Get the cpuCapacityMHz property: Gets the max CPU usage across all cores on the pool in MHz.
-     *
+     * 
      * @return the cpuCapacityMHz value.
      */
     public Long cpuCapacityMHz() {
@@ -309,7 +321,7 @@ public final class ResourcePoolInner extends Resource {
 
     /**
      * Get the customResourceName property: Gets the name of the corresponding resource in Kubernetes.
-     *
+     * 
      * @return the customResourceName value.
      */
     public String customResourceName() {
@@ -318,7 +330,7 @@ public final class ResourcePoolInner extends Resource {
 
     /**
      * Get the datastoreIds property: Gets the datastore ARM ids.
-     *
+     * 
      * @return the datastoreIds value.
      */
     public List<String> datastoreIds() {
@@ -327,7 +339,7 @@ public final class ResourcePoolInner extends Resource {
 
     /**
      * Get the networkIds property: Gets the network ARM ids.
-     *
+     * 
      * @return the networkIds value.
      */
     public List<String> networkIds() {
@@ -336,7 +348,7 @@ public final class ResourcePoolInner extends Resource {
 
     /**
      * Get the statuses property: The resource status information.
-     *
+     * 
      * @return the statuses value.
      */
     public List<ResourceStatus> statuses() {
@@ -345,7 +357,7 @@ public final class ResourcePoolInner extends Resource {
 
     /**
      * Get the provisioningState property: Gets the provisioning state.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -354,15 +366,13 @@ public final class ResourcePoolInner extends Resource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (innerProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property innerProperties in model ResourcePoolInner"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property innerProperties in model ResourcePoolInner"));
         } else {
             innerProperties().validate();
         }

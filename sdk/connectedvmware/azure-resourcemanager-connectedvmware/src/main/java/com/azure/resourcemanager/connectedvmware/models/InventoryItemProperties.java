@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Describes the properties of an Inventory Item. */
+/**
+ * Describes the properties of an Inventory Item.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
@@ -24,8 +26,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     @JsonSubTypes.Type(name = "VirtualNetwork", value = VirtualNetworkInventoryItem.class),
     @JsonSubTypes.Type(name = "Cluster", value = ClusterInventoryItem.class),
     @JsonSubTypes.Type(name = "Datastore", value = DatastoreInventoryItem.class),
-    @JsonSubTypes.Type(name = "Host", value = HostInventoryItem.class)
-})
+    @JsonSubTypes.Type(name = "Host", value = HostInventoryItem.class) })
 @Fluent
 public class InventoryItemProperties {
     /*
@@ -52,13 +53,16 @@ public class InventoryItemProperties {
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ProvisioningState provisioningState;
 
-    /** Creates an instance of InventoryItemProperties class. */
+    /**
+     * Creates an instance of InventoryItemProperties class.
+     */
     public InventoryItemProperties() {
     }
 
     /**
-     * Get the managedResourceId property: Gets or sets the tracked resource id corresponding to the inventory resource.
-     *
+     * Get the managedResourceId property: Gets or sets the tracked resource id corresponding to the inventory
+     * resource.
+     * 
      * @return the managedResourceId value.
      */
     public String managedResourceId() {
@@ -66,8 +70,9 @@ public class InventoryItemProperties {
     }
 
     /**
-     * Set the managedResourceId property: Gets or sets the tracked resource id corresponding to the inventory resource.
-     *
+     * Set the managedResourceId property: Gets or sets the tracked resource id corresponding to the inventory
+     * resource.
+     * 
      * @param managedResourceId the managedResourceId value to set.
      * @return the InventoryItemProperties object itself.
      */
@@ -78,7 +83,7 @@ public class InventoryItemProperties {
 
     /**
      * Get the moRefId property: Gets or sets the MoRef (Managed Object Reference) ID for the inventory item.
-     *
+     * 
      * @return the moRefId value.
      */
     public String moRefId() {
@@ -87,7 +92,7 @@ public class InventoryItemProperties {
 
     /**
      * Set the moRefId property: Gets or sets the MoRef (Managed Object Reference) ID for the inventory item.
-     *
+     * 
      * @param moRefId the moRefId value to set.
      * @return the InventoryItemProperties object itself.
      */
@@ -98,7 +103,7 @@ public class InventoryItemProperties {
 
     /**
      * Get the moName property: Gets or sets the vCenter Managed Object name for the inventory item.
-     *
+     * 
      * @return the moName value.
      */
     public String moName() {
@@ -107,7 +112,7 @@ public class InventoryItemProperties {
 
     /**
      * Set the moName property: Gets or sets the vCenter Managed Object name for the inventory item.
-     *
+     * 
      * @param moName the moName value to set.
      * @return the InventoryItemProperties object itself.
      */
@@ -118,7 +123,7 @@ public class InventoryItemProperties {
 
     /**
      * Get the provisioningState property: Gets the provisioning state.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -127,7 +132,7 @@ public class InventoryItemProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -10,7 +10,9 @@ import com.azure.resourcemanager.connectedvmware.fluent.models.VirtualNetworkInn
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List of VirtualNetworks. */
+/**
+ * List of VirtualNetworks.
+ */
 @Fluent
 public final class VirtualNetworksList {
     /*
@@ -25,13 +27,15 @@ public final class VirtualNetworksList {
     @JsonProperty(value = "value", required = true)
     private List<VirtualNetworkInner> value;
 
-    /** Creates an instance of VirtualNetworksList class. */
+    /**
+     * Creates an instance of VirtualNetworksList class.
+     */
     public VirtualNetworksList() {
     }
 
     /**
      * Get the nextLink property: Url to follow for getting next page of VirtualNetworks.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -40,7 +44,7 @@ public final class VirtualNetworksList {
 
     /**
      * Set the nextLink property: Url to follow for getting next page of VirtualNetworks.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the VirtualNetworksList object itself.
      */
@@ -51,7 +55,7 @@ public final class VirtualNetworksList {
 
     /**
      * Get the value property: Array of VirtualNetworks.
-     *
+     * 
      * @return the value value.
      */
     public List<VirtualNetworkInner> value() {
@@ -60,7 +64,7 @@ public final class VirtualNetworksList {
 
     /**
      * Set the value property: Array of VirtualNetworks.
-     *
+     * 
      * @param value the value value to set.
      * @return the VirtualNetworksList object itself.
      */
@@ -71,14 +75,13 @@ public final class VirtualNetworksList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property value in model VirtualNetworksList"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property value in model VirtualNetworksList"));
         } else {
             value().forEach(e -> e.validate());
         }

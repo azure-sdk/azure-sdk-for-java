@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Defines the network interface ip settings. */
+/**
+ * Defines the network interface ip settings.
+ */
 @Fluent
 public final class NicIpSettings {
     /*
@@ -60,13 +62,15 @@ public final class NicIpSettings {
     @JsonProperty(value = "ipAddressInfo", access = JsonProperty.Access.WRITE_ONLY)
     private List<NicIpAddressSettings> ipAddressInfo;
 
-    /** Creates an instance of NicIpSettings class. */
+    /**
+     * Creates an instance of NicIpSettings class.
+     */
     public NicIpSettings() {
     }
 
     /**
      * Get the allocationMethod property: Gets or sets the nic allocation method.
-     *
+     * 
      * @return the allocationMethod value.
      */
     public IpAddressAllocationMethod allocationMethod() {
@@ -75,7 +79,7 @@ public final class NicIpSettings {
 
     /**
      * Set the allocationMethod property: Gets or sets the nic allocation method.
-     *
+     * 
      * @param allocationMethod the allocationMethod value to set.
      * @return the NicIpSettings object itself.
      */
@@ -86,7 +90,7 @@ public final class NicIpSettings {
 
     /**
      * Get the dnsServers property: Gets or sets the dns servers.
-     *
+     * 
      * @return the dnsServers value.
      */
     public List<String> dnsServers() {
@@ -95,7 +99,7 @@ public final class NicIpSettings {
 
     /**
      * Set the dnsServers property: Gets or sets the dns servers.
-     *
+     * 
      * @param dnsServers the dnsServers value to set.
      * @return the NicIpSettings object itself.
      */
@@ -106,7 +110,7 @@ public final class NicIpSettings {
 
     /**
      * Get the gateway property: Gets or sets the gateway.
-     *
+     * 
      * @return the gateway value.
      */
     public List<String> gateway() {
@@ -115,7 +119,7 @@ public final class NicIpSettings {
 
     /**
      * Set the gateway property: Gets or sets the gateway.
-     *
+     * 
      * @param gateway the gateway value to set.
      * @return the NicIpSettings object itself.
      */
@@ -126,7 +130,7 @@ public final class NicIpSettings {
 
     /**
      * Get the ipAddress property: Gets or sets the ip address for the nic.
-     *
+     * 
      * @return the ipAddress value.
      */
     public String ipAddress() {
@@ -135,7 +139,7 @@ public final class NicIpSettings {
 
     /**
      * Set the ipAddress property: Gets or sets the ip address for the nic.
-     *
+     * 
      * @param ipAddress the ipAddress value to set.
      * @return the NicIpSettings object itself.
      */
@@ -146,7 +150,7 @@ public final class NicIpSettings {
 
     /**
      * Get the subnetMask property: Gets or sets the mask.
-     *
+     * 
      * @return the subnetMask value.
      */
     public String subnetMask() {
@@ -155,7 +159,7 @@ public final class NicIpSettings {
 
     /**
      * Set the subnetMask property: Gets or sets the mask.
-     *
+     * 
      * @param subnetMask the subnetMask value to set.
      * @return the NicIpSettings object itself.
      */
@@ -166,7 +170,7 @@ public final class NicIpSettings {
 
     /**
      * Get the primaryWinsServer property: Gets or sets the primary server.
-     *
+     * 
      * @return the primaryWinsServer value.
      */
     public String primaryWinsServer() {
@@ -175,7 +179,7 @@ public final class NicIpSettings {
 
     /**
      * Get the secondaryWinsServer property: Gets or sets the secondary server.
-     *
+     * 
      * @return the secondaryWinsServer value.
      */
     public String secondaryWinsServer() {
@@ -185,7 +189,7 @@ public final class NicIpSettings {
     /**
      * Get the ipAddressInfo property: Gets or sets the IP address information being reported for this NIC. This
      * contains the same IPv4 information above plus IPV6 information.
-     *
+     * 
      * @return the ipAddressInfo value.
      */
     public List<NicIpAddressSettings> ipAddressInfo() {
@@ -194,7 +198,7 @@ public final class NicIpSettings {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

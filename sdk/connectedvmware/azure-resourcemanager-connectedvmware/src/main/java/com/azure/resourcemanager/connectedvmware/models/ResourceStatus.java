@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** The resource status information. */
+/**
+ * The resource status information.
+ */
 @Immutable
 public final class ResourceStatus {
     /*
@@ -47,13 +49,15 @@ public final class ResourceStatus {
     @JsonProperty(value = "lastUpdatedAt", access = JsonProperty.Access.WRITE_ONLY)
     private OffsetDateTime lastUpdatedAt;
 
-    /** Creates an instance of ResourceStatus class. */
+    /**
+     * Creates an instance of ResourceStatus class.
+     */
     public ResourceStatus() {
     }
 
     /**
      * Get the type property: The type of the condition.
-     *
+     * 
      * @return the type value.
      */
     public String type() {
@@ -62,7 +66,7 @@ public final class ResourceStatus {
 
     /**
      * Get the status property: Status of the condition.
-     *
+     * 
      * @return the status value.
      */
     public String status() {
@@ -71,7 +75,7 @@ public final class ResourceStatus {
 
     /**
      * Get the reason property: The reason for the condition's status.
-     *
+     * 
      * @return the reason value.
      */
     public String reason() {
@@ -80,7 +84,7 @@ public final class ResourceStatus {
 
     /**
      * Get the message property: A human readable message indicating details about the status.
-     *
+     * 
      * @return the message value.
      */
     public String message() {
@@ -89,7 +93,7 @@ public final class ResourceStatus {
 
     /**
      * Get the severity property: Severity with which to treat failures of this type of condition.
-     *
+     * 
      * @return the severity value.
      */
     public String severity() {
@@ -98,7 +102,7 @@ public final class ResourceStatus {
 
     /**
      * Get the lastUpdatedAt property: The last update time for this condition.
-     *
+     * 
      * @return the lastUpdatedAt value.
      */
     public OffsetDateTime lastUpdatedAt() {
@@ -107,7 +111,7 @@ public final class ResourceStatus {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

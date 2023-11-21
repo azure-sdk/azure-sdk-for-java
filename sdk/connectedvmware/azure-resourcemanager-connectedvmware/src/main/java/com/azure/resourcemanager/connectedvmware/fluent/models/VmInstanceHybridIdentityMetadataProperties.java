@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.connectedvmware.models.ProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Describes the properties of Hybrid Identity Metadata for a Virtual Machine. */
+/**
+ * Describes the properties of Hybrid Identity Metadata for a Virtual Machine.
+ */
 @Fluent
 public final class VmInstanceHybridIdentityMetadataProperties {
     /*
@@ -29,13 +31,15 @@ public final class VmInstanceHybridIdentityMetadataProperties {
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ProvisioningState provisioningState;
 
-    /** Creates an instance of VmInstanceHybridIdentityMetadataProperties class. */
+    /**
+     * Creates an instance of VmInstanceHybridIdentityMetadataProperties class.
+     */
     public VmInstanceHybridIdentityMetadataProperties() {
     }
 
     /**
      * Get the resourceUid property: The unique identifier for the resource.
-     *
+     * 
      * @return the resourceUid value.
      */
     public String resourceUid() {
@@ -44,7 +48,7 @@ public final class VmInstanceHybridIdentityMetadataProperties {
 
     /**
      * Set the resourceUid property: The unique identifier for the resource.
-     *
+     * 
      * @param resourceUid the resourceUid value to set.
      * @return the VmInstanceHybridIdentityMetadataProperties object itself.
      */
@@ -55,7 +59,7 @@ public final class VmInstanceHybridIdentityMetadataProperties {
 
     /**
      * Get the publicKey property: Gets or sets the Public Key.
-     *
+     * 
      * @return the publicKey value.
      */
     public String publicKey() {
@@ -64,7 +68,7 @@ public final class VmInstanceHybridIdentityMetadataProperties {
 
     /**
      * Set the publicKey property: Gets or sets the Public Key.
-     *
+     * 
      * @param publicKey the publicKey value to set.
      * @return the VmInstanceHybridIdentityMetadataProperties object itself.
      */
@@ -75,7 +79,7 @@ public final class VmInstanceHybridIdentityMetadataProperties {
 
     /**
      * Get the provisioningState property: Gets the provisioning state.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -84,7 +88,7 @@ public final class VmInstanceHybridIdentityMetadataProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

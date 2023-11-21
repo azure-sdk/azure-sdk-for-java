@@ -10,7 +10,9 @@ import com.azure.resourcemanager.connectedvmware.fluent.models.HostModelInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List of Hosts. */
+/**
+ * List of Hosts.
+ */
 @Fluent
 public final class HostsList {
     /*
@@ -25,13 +27,15 @@ public final class HostsList {
     @JsonProperty(value = "value", required = true)
     private List<HostModelInner> value;
 
-    /** Creates an instance of HostsList class. */
+    /**
+     * Creates an instance of HostsList class.
+     */
     public HostsList() {
     }
 
     /**
      * Get the nextLink property: Url to follow for getting next page of Hosts.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -40,7 +44,7 @@ public final class HostsList {
 
     /**
      * Set the nextLink property: Url to follow for getting next page of Hosts.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the HostsList object itself.
      */
@@ -51,7 +55,7 @@ public final class HostsList {
 
     /**
      * Get the value property: Array of Hosts.
-     *
+     * 
      * @return the value value.
      */
     public List<HostModelInner> value() {
@@ -60,7 +64,7 @@ public final class HostsList {
 
     /**
      * Set the value property: Array of Hosts.
-     *
+     * 
      * @param value the value value to set.
      * @return the HostsList object itself.
      */
@@ -71,14 +75,13 @@ public final class HostsList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property value in model HostsList"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property value in model HostsList"));
         } else {
             value().forEach(e -> e.validate());
         }

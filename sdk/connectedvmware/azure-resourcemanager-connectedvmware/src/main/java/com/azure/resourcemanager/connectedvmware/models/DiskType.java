@@ -8,32 +8,48 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines the different types of disks. */
+/**
+ * Defines the different types of disks.
+ */
 public final class DiskType extends ExpandableStringEnum<DiskType> {
-    /** Static value flat for DiskType. */
+    /**
+     * Static value flat for DiskType.
+     */
     public static final DiskType FLAT = fromString("flat");
 
-    /** Static value pmem for DiskType. */
+    /**
+     * Static value pmem for DiskType.
+     */
     public static final DiskType PMEM = fromString("pmem");
 
-    /** Static value rawphysical for DiskType. */
+    /**
+     * Static value rawphysical for DiskType.
+     */
     public static final DiskType RAWPHYSICAL = fromString("rawphysical");
 
-    /** Static value rawvirtual for DiskType. */
+    /**
+     * Static value rawvirtual for DiskType.
+     */
     public static final DiskType RAWVIRTUAL = fromString("rawvirtual");
 
-    /** Static value sparse for DiskType. */
+    /**
+     * Static value sparse for DiskType.
+     */
     public static final DiskType SPARSE = fromString("sparse");
 
-    /** Static value sesparse for DiskType. */
+    /**
+     * Static value sesparse for DiskType.
+     */
     public static final DiskType SESPARSE = fromString("sesparse");
 
-    /** Static value unknown for DiskType. */
+    /**
+     * Static value unknown for DiskType.
+     */
     public static final DiskType UNKNOWN = fromString("unknown");
 
     /**
      * Creates a new instance of DiskType value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -42,7 +58,7 @@ public final class DiskType extends ExpandableStringEnum<DiskType> {
 
     /**
      * Creates or finds a DiskType from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding DiskType.
      */
@@ -53,7 +69,7 @@ public final class DiskType extends ExpandableStringEnum<DiskType> {
 
     /**
      * Gets known DiskType values.
-     *
+     * 
      * @return known DiskType values.
      */
     public static Collection<DiskType> values() {

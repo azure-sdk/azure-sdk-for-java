@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Specifies the storage settings for the virtual machine disks. */
+/**
+ * Specifies the storage settings for the virtual machine disks.
+ */
 @Fluent
 public final class StorageProfile {
     /*
@@ -23,13 +25,15 @@ public final class StorageProfile {
     @JsonProperty(value = "scsiControllers", access = JsonProperty.Access.WRITE_ONLY)
     private List<VirtualScsiController> scsiControllers;
 
-    /** Creates an instance of StorageProfile class. */
+    /**
+     * Creates an instance of StorageProfile class.
+     */
     public StorageProfile() {
     }
 
     /**
      * Get the disks property: Gets or sets the list of virtual disks associated with the virtual machine.
-     *
+     * 
      * @return the disks value.
      */
     public List<VirtualDisk> disks() {
@@ -38,7 +42,7 @@ public final class StorageProfile {
 
     /**
      * Set the disks property: Gets or sets the list of virtual disks associated with the virtual machine.
-     *
+     * 
      * @param disks the disks value to set.
      * @return the StorageProfile object itself.
      */
@@ -50,7 +54,7 @@ public final class StorageProfile {
     /**
      * Get the scsiControllers property: Gets or sets the list of virtual SCSI controllers associated with the virtual
      * machine.
-     *
+     * 
      * @return the scsiControllers value.
      */
     public List<VirtualScsiController> scsiControllers() {
@@ -59,7 +63,7 @@ public final class StorageProfile {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

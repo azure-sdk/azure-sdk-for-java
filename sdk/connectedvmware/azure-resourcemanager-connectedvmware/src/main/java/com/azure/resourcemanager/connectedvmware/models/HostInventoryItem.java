@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The host inventory item. */
+/**
+ * The host inventory item.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "inventoryType")
 @JsonTypeName("Host")
 @Fluent
@@ -20,13 +22,15 @@ public final class HostInventoryItem extends InventoryItemProperties {
     @JsonProperty(value = "parent")
     private InventoryItemDetails parent;
 
-    /** Creates an instance of HostInventoryItem class. */
+    /**
+     * Creates an instance of HostInventoryItem class.
+     */
     public HostInventoryItem() {
     }
 
     /**
      * Get the parent property: Parent host inventory resource details.
-     *
+     * 
      * @return the parent value.
      */
     public InventoryItemDetails parent() {
@@ -35,7 +39,7 @@ public final class HostInventoryItem extends InventoryItemProperties {
 
     /**
      * Set the parent property: Parent host inventory resource details.
-     *
+     * 
      * @param parent the parent value to set.
      * @return the HostInventoryItem object itself.
      */
@@ -44,21 +48,27 @@ public final class HostInventoryItem extends InventoryItemProperties {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public HostInventoryItem withManagedResourceId(String managedResourceId) {
         super.withManagedResourceId(managedResourceId);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public HostInventoryItem withMoRefId(String moRefId) {
         super.withMoRefId(moRefId);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public HostInventoryItem withMoName(String moName) {
         super.withMoName(moName);
@@ -67,7 +77,7 @@ public final class HostInventoryItem extends InventoryItemProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
