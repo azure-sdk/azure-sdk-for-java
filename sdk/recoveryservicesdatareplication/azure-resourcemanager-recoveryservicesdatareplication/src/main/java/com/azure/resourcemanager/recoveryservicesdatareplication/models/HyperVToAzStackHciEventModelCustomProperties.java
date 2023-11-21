@@ -10,8 +10,8 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * HyperV to AzStackHCI event model custom properties. This class provides provider specific details for events of type
- * DataContract.HealthEvents.HealthEventType.ProtectedItemHealth and
+ * HyperV to AzStackHCI event model custom properties. This class provides provider specific
+ * details for events of type DataContract.HealthEvents.HealthEventType.ProtectedItemHealth and
  * DataContract.HealthEvents.HealthEventType.AgentHealth.
  */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
@@ -48,14 +48,16 @@ public final class HyperVToAzStackHciEventModelCustomProperties extends EventMod
     @JsonProperty(value = "serverType", access = JsonProperty.Access.WRITE_ONLY)
     private String serverType;
 
-    /** Creates an instance of HyperVToAzStackHciEventModelCustomProperties class. */
+    /**
+     * Creates an instance of HyperVToAzStackHciEventModelCustomProperties class.
+     */
     public HyperVToAzStackHciEventModelCustomProperties() {
     }
 
     /**
      * Get the eventSourceFriendlyName property: Gets or sets the friendly name of the source which has raised this
      * health event.
-     *
+     * 
      * @return the eventSourceFriendlyName value.
      */
     public String eventSourceFriendlyName() {
@@ -64,7 +66,7 @@ public final class HyperVToAzStackHciEventModelCustomProperties extends EventMod
 
     /**
      * Get the protectedItemFriendlyName property: Gets or sets the protected item friendly name.
-     *
+     * 
      * @return the protectedItemFriendlyName value.
      */
     public String protectedItemFriendlyName() {
@@ -73,7 +75,7 @@ public final class HyperVToAzStackHciEventModelCustomProperties extends EventMod
 
     /**
      * Get the sourceApplianceName property: Gets or sets the source appliance name.
-     *
+     * 
      * @return the sourceApplianceName value.
      */
     public String sourceApplianceName() {
@@ -82,7 +84,7 @@ public final class HyperVToAzStackHciEventModelCustomProperties extends EventMod
 
     /**
      * Get the targetApplianceName property: Gets or sets the source target name.
-     *
+     * 
      * @return the targetApplianceName value.
      */
     public String targetApplianceName() {
@@ -91,7 +93,7 @@ public final class HyperVToAzStackHciEventModelCustomProperties extends EventMod
 
     /**
      * Get the serverType property: Gets or sets the server type.
-     *
+     * 
      * @return the serverType value.
      */
     public String serverType() {
@@ -100,7 +102,7 @@ public final class HyperVToAzStackHciEventModelCustomProperties extends EventMod
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

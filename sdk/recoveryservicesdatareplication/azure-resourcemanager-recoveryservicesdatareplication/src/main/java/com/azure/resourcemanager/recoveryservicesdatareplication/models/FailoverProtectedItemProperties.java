@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** Failover properties of the protected item. */
+/**
+ * Failover properties of the protected item.
+ */
 @Immutable
 public final class FailoverProtectedItemProperties {
     /*
@@ -53,13 +55,15 @@ public final class FailoverProtectedItemProperties {
     @JsonProperty(value = "subnet", access = JsonProperty.Access.WRITE_ONLY)
     private String subnet;
 
-    /** Creates an instance of FailoverProtectedItemProperties class. */
+    /**
+     * Creates an instance of FailoverProtectedItemProperties class.
+     */
     public FailoverProtectedItemProperties() {
     }
 
     /**
      * Get the protectedItemName property: Gets or sets the protected item name.
-     *
+     * 
      * @return the protectedItemName value.
      */
     public String protectedItemName() {
@@ -68,7 +72,7 @@ public final class FailoverProtectedItemProperties {
 
     /**
      * Get the vmName property: Gets or sets the VM name.
-     *
+     * 
      * @return the vmName value.
      */
     public String vmName() {
@@ -77,7 +81,7 @@ public final class FailoverProtectedItemProperties {
 
     /**
      * Get the testVmName property: Gets or sets the test VM name.
-     *
+     * 
      * @return the testVmName value.
      */
     public String testVmName() {
@@ -86,7 +90,7 @@ public final class FailoverProtectedItemProperties {
 
     /**
      * Get the recoveryPointId property: Gets or sets the recovery point Id.
-     *
+     * 
      * @return the recoveryPointId value.
      */
     public String recoveryPointId() {
@@ -95,7 +99,7 @@ public final class FailoverProtectedItemProperties {
 
     /**
      * Get the recoveryPointTime property: Gets or sets the recovery point time.
-     *
+     * 
      * @return the recoveryPointTime value.
      */
     public OffsetDateTime recoveryPointTime() {
@@ -104,7 +108,7 @@ public final class FailoverProtectedItemProperties {
 
     /**
      * Get the networkName property: Gets or sets the network name.
-     *
+     * 
      * @return the networkName value.
      */
     public String networkName() {
@@ -113,7 +117,7 @@ public final class FailoverProtectedItemProperties {
 
     /**
      * Get the subnet property: Gets or sets the network subnet.
-     *
+     * 
      * @return the subnet value.
      */
     public String subnet() {
@@ -122,7 +126,7 @@ public final class FailoverProtectedItemProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

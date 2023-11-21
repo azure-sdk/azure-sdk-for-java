@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** Vault model for update. */
+/**
+ * Vault model for update.
+ */
 @Fluent
 public final class VaultModelUpdate extends ProxyResource {
     /*
@@ -32,13 +34,15 @@ public final class VaultModelUpdate extends ProxyResource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private VaultModelUpdateSystemData systemData;
 
-    /** Creates an instance of VaultModelUpdate class. */
+    /**
+     * Creates an instance of VaultModelUpdate class.
+     */
     public VaultModelUpdate() {
     }
 
     /**
      * Get the tags property: Gets or sets the resource tags.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -47,7 +51,7 @@ public final class VaultModelUpdate extends ProxyResource {
 
     /**
      * Set the tags property: Gets or sets the resource tags.
-     *
+     * 
      * @param tags the tags value to set.
      * @return the VaultModelUpdate object itself.
      */
@@ -58,7 +62,7 @@ public final class VaultModelUpdate extends ProxyResource {
 
     /**
      * Get the properties property: Vault properties.
-     *
+     * 
      * @return the properties value.
      */
     public VaultModelProperties properties() {
@@ -67,7 +71,7 @@ public final class VaultModelUpdate extends ProxyResource {
 
     /**
      * Set the properties property: Vault properties.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the VaultModelUpdate object itself.
      */
@@ -78,7 +82,7 @@ public final class VaultModelUpdate extends ProxyResource {
 
     /**
      * Get the systemData property: The systemData property.
-     *
+     * 
      * @return the systemData value.
      */
     public VaultModelUpdateSystemData systemData() {
@@ -87,7 +91,7 @@ public final class VaultModelUpdate extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

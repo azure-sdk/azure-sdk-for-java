@@ -9,7 +9,9 @@ import com.azure.resourcemanager.recoveryservicesdatareplication.fluent.models.F
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Fabric model collection. */
+/**
+ * Fabric model collection.
+ */
 @Fluent
 public final class FabricModelCollection {
     /*
@@ -24,13 +26,15 @@ public final class FabricModelCollection {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of FabricModelCollection class. */
+    /**
+     * Creates an instance of FabricModelCollection class.
+     */
     public FabricModelCollection() {
     }
 
     /**
      * Get the value property: Gets or sets the list of fabrics.
-     *
+     * 
      * @return the value value.
      */
     public List<FabricModelInner> value() {
@@ -39,7 +43,7 @@ public final class FabricModelCollection {
 
     /**
      * Set the value property: Gets or sets the list of fabrics.
-     *
+     * 
      * @param value the value value to set.
      * @return the FabricModelCollection object itself.
      */
@@ -50,7 +54,7 @@ public final class FabricModelCollection {
 
     /**
      * Get the nextLink property: Gets or sets the value of next link.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class FabricModelCollection {
 
     /**
      * Set the nextLink property: Gets or sets the value of next link.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the FabricModelCollection object itself.
      */
@@ -70,7 +74,7 @@ public final class FabricModelCollection {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

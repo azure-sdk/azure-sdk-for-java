@@ -7,49 +7,65 @@ package com.azure.resourcemanager.recoveryservicesdatareplication.models;
 import com.azure.core.annotation.Fluent;
 import java.time.OffsetDateTime;
 
-/** The VaultModelSystemData model. */
+/**
+ * The VaultModelSystemData model.
+ */
 @Fluent
 public final class VaultModelSystemData extends SystemDataModel {
-    /** Creates an instance of VaultModelSystemData class. */
+    /**
+     * Creates an instance of VaultModelSystemData class.
+     */
     public VaultModelSystemData() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public VaultModelSystemData withCreatedBy(String createdBy) {
         super.withCreatedBy(createdBy);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public VaultModelSystemData withCreatedByType(String createdByType) {
         super.withCreatedByType(createdByType);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public VaultModelSystemData withCreatedAt(OffsetDateTime createdAt) {
         super.withCreatedAt(createdAt);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public VaultModelSystemData withLastModifiedBy(String lastModifiedBy) {
         super.withLastModifiedBy(lastModifiedBy);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public VaultModelSystemData withLastModifiedByType(String lastModifiedByType) {
         super.withLastModifiedByType(lastModifiedByType);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public VaultModelSystemData withLastModifiedAt(OffsetDateTime lastModifiedAt) {
         super.withLastModifiedAt(lastModifiedAt);
@@ -58,7 +74,7 @@ public final class VaultModelSystemData extends SystemDataModel {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

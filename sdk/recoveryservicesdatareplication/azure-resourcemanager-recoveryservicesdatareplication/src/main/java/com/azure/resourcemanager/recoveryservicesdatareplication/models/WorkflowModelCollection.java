@@ -9,7 +9,9 @@ import com.azure.resourcemanager.recoveryservicesdatareplication.fluent.models.W
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Workflow model collection. */
+/**
+ * Workflow model collection.
+ */
 @Fluent
 public final class WorkflowModelCollection {
     /*
@@ -24,13 +26,15 @@ public final class WorkflowModelCollection {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of WorkflowModelCollection class. */
+    /**
+     * Creates an instance of WorkflowModelCollection class.
+     */
     public WorkflowModelCollection() {
     }
 
     /**
      * Get the value property: Gets or sets the list of workflows.
-     *
+     * 
      * @return the value value.
      */
     public List<WorkflowModelInner> value() {
@@ -39,7 +43,7 @@ public final class WorkflowModelCollection {
 
     /**
      * Set the value property: Gets or sets the list of workflows.
-     *
+     * 
      * @param value the value value to set.
      * @return the WorkflowModelCollection object itself.
      */
@@ -50,7 +54,7 @@ public final class WorkflowModelCollection {
 
     /**
      * Get the nextLink property: Gets or sets the value of next link.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class WorkflowModelCollection {
 
     /**
      * Set the nextLink property: Gets or sets the value of next link.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the WorkflowModelCollection object itself.
      */
@@ -70,7 +74,7 @@ public final class WorkflowModelCollection {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

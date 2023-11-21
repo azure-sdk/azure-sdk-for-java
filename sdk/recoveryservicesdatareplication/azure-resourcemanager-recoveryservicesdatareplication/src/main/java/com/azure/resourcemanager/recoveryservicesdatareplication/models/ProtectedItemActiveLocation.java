@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Gets or sets the location of the protected item. */
+/**
+ * Gets or sets the location of the protected item.
+ */
 public final class ProtectedItemActiveLocation extends ExpandableStringEnum<ProtectedItemActiveLocation> {
-    /** Static value Primary for ProtectedItemActiveLocation. */
+    /**
+     * Static value Primary for ProtectedItemActiveLocation.
+     */
     public static final ProtectedItemActiveLocation PRIMARY = fromString("Primary");
 
-    /** Static value Recovery for ProtectedItemActiveLocation. */
+    /**
+     * Static value Recovery for ProtectedItemActiveLocation.
+     */
     public static final ProtectedItemActiveLocation RECOVERY = fromString("Recovery");
 
     /**
      * Creates a new instance of ProtectedItemActiveLocation value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class ProtectedItemActiveLocation extends ExpandableStringEnum<Prot
 
     /**
      * Creates or finds a ProtectedItemActiveLocation from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding ProtectedItemActiveLocation.
      */
@@ -38,7 +44,7 @@ public final class ProtectedItemActiveLocation extends ExpandableStringEnum<Prot
 
     /**
      * Gets known ProtectedItemActiveLocation values.
-     *
+     * 
      * @return known ProtectedItemActiveLocation values.
      */
     public static Collection<ProtectedItemActiveLocation> values() {

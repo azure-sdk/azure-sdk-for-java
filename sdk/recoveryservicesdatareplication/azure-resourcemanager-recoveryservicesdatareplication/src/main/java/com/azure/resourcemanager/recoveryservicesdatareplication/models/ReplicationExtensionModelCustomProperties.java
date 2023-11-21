@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Replication extension model custom properties. */
+/**
+ * Replication extension model custom properties.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
@@ -18,17 +20,18 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonTypeName("ReplicationExtensionModelCustomProperties")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "HyperVToAzStackHCI", value = HyperVToAzStackHciRepExtnCustomProps.class),
-    @JsonSubTypes.Type(name = "VMwareToAzStackHCI", value = VMwareToAzStackHciRepExtnCustomProps.class)
-})
+    @JsonSubTypes.Type(name = "VMwareToAzStackHCI", value = VMwareToAzStackHciRepExtnCustomProps.class) })
 @Immutable
 public class ReplicationExtensionModelCustomProperties {
-    /** Creates an instance of ReplicationExtensionModelCustomProperties class. */
+    /**
+     * Creates an instance of ReplicationExtensionModelCustomProperties class.
+     */
     public ReplicationExtensionModelCustomProperties() {
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

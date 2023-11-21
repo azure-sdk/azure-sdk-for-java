@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Protected item model custom properties. */
+/**
+ * Protected item model custom properties.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
@@ -18,17 +20,18 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonTypeName("ProtectedItemModelCustomProperties")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "HyperVToAzStackHCI", value = HyperVToAzStackHciProtectedItemCustomProps.class),
-    @JsonSubTypes.Type(name = "VMwareToAzStackHCI", value = VMwareToAzStackHciProtectedItemCustomProps.class)
-})
+    @JsonSubTypes.Type(name = "VMwareToAzStackHCI", value = VMwareToAzStackHciProtectedItemCustomProps.class) })
 @Immutable
 public class ProtectedItemModelCustomProperties {
-    /** Creates an instance of ProtectedItemModelCustomProperties class. */
+    /**
+     * Creates an instance of ProtectedItemModelCustomProperties class.
+     */
     public ProtectedItemModelCustomProperties() {
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** HyperV to AzStackHCI Replication extension model custom properties. */
+/**
+ * HyperV to AzStackHCI Replication extension model custom properties.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
 @JsonTypeName("HyperVToAzStackHCI")
 @Fluent
@@ -111,13 +113,15 @@ public final class HyperVToAzStackHciRepExtnCustomProps extends ReplicationExten
     @JsonProperty(value = "resourceGroup", access = JsonProperty.Access.WRITE_ONLY)
     private String resourceGroup;
 
-    /** Creates an instance of HyperVToAzStackHciRepExtnCustomProps class. */
+    /**
+     * Creates an instance of HyperVToAzStackHciRepExtnCustomProps class.
+     */
     public HyperVToAzStackHciRepExtnCustomProps() {
     }
 
     /**
      * Get the hyperVFabricArmId property: Gets or sets the ARM Id of the source HyperV fabric.
-     *
+     * 
      * @return the hyperVFabricArmId value.
      */
     public String hyperVFabricArmId() {
@@ -126,7 +130,7 @@ public final class HyperVToAzStackHciRepExtnCustomProps extends ReplicationExten
 
     /**
      * Set the hyperVFabricArmId property: Gets or sets the ARM Id of the source HyperV fabric.
-     *
+     * 
      * @param hyperVFabricArmId the hyperVFabricArmId value to set.
      * @return the HyperVToAzStackHciRepExtnCustomProps object itself.
      */
@@ -137,7 +141,7 @@ public final class HyperVToAzStackHciRepExtnCustomProps extends ReplicationExten
 
     /**
      * Get the hyperVSiteId property: Gets or sets the ARM Id of the HyperV site.
-     *
+     * 
      * @return the hyperVSiteId value.
      */
     public String hyperVSiteId() {
@@ -146,7 +150,7 @@ public final class HyperVToAzStackHciRepExtnCustomProps extends ReplicationExten
 
     /**
      * Get the azStackHciFabricArmId property: Gets or sets the ARM Id of the target AzStackHCI fabric.
-     *
+     * 
      * @return the azStackHciFabricArmId value.
      */
     public String azStackHciFabricArmId() {
@@ -155,7 +159,7 @@ public final class HyperVToAzStackHciRepExtnCustomProps extends ReplicationExten
 
     /**
      * Set the azStackHciFabricArmId property: Gets or sets the ARM Id of the target AzStackHCI fabric.
-     *
+     * 
      * @param azStackHciFabricArmId the azStackHciFabricArmId value to set.
      * @return the HyperVToAzStackHciRepExtnCustomProps object itself.
      */
@@ -166,7 +170,7 @@ public final class HyperVToAzStackHciRepExtnCustomProps extends ReplicationExten
 
     /**
      * Get the azStackHciSiteId property: Gets or sets the ARM Id of the AzStackHCI site.
-     *
+     * 
      * @return the azStackHciSiteId value.
      */
     public String azStackHciSiteId() {
@@ -175,7 +179,7 @@ public final class HyperVToAzStackHciRepExtnCustomProps extends ReplicationExten
 
     /**
      * Get the storageAccountId property: Gets or sets the storage account Id.
-     *
+     * 
      * @return the storageAccountId value.
      */
     public String storageAccountId() {
@@ -184,7 +188,7 @@ public final class HyperVToAzStackHciRepExtnCustomProps extends ReplicationExten
 
     /**
      * Set the storageAccountId property: Gets or sets the storage account Id.
-     *
+     * 
      * @param storageAccountId the storageAccountId value to set.
      * @return the HyperVToAzStackHciRepExtnCustomProps object itself.
      */
@@ -195,7 +199,7 @@ public final class HyperVToAzStackHciRepExtnCustomProps extends ReplicationExten
 
     /**
      * Get the storageAccountSasSecretName property: Gets or sets the Sas Secret of storage account.
-     *
+     * 
      * @return the storageAccountSasSecretName value.
      */
     public String storageAccountSasSecretName() {
@@ -204,7 +208,7 @@ public final class HyperVToAzStackHciRepExtnCustomProps extends ReplicationExten
 
     /**
      * Set the storageAccountSasSecretName property: Gets or sets the Sas Secret of storage account.
-     *
+     * 
      * @param storageAccountSasSecretName the storageAccountSasSecretName value to set.
      * @return the HyperVToAzStackHciRepExtnCustomProps object itself.
      */
@@ -215,7 +219,7 @@ public final class HyperVToAzStackHciRepExtnCustomProps extends ReplicationExten
 
     /**
      * Get the asrServiceUri property: Gets or sets the Uri of ASR.
-     *
+     * 
      * @return the asrServiceUri value.
      */
     public String asrServiceUri() {
@@ -224,7 +228,7 @@ public final class HyperVToAzStackHciRepExtnCustomProps extends ReplicationExten
 
     /**
      * Get the rcmServiceUri property: Gets or sets the Uri of Rcm.
-     *
+     * 
      * @return the rcmServiceUri value.
      */
     public String rcmServiceUri() {
@@ -233,7 +237,7 @@ public final class HyperVToAzStackHciRepExtnCustomProps extends ReplicationExten
 
     /**
      * Get the gatewayServiceUri property: Gets or sets the Uri of Gateway.
-     *
+     * 
      * @return the gatewayServiceUri value.
      */
     public String gatewayServiceUri() {
@@ -242,7 +246,7 @@ public final class HyperVToAzStackHciRepExtnCustomProps extends ReplicationExten
 
     /**
      * Get the sourceGatewayServiceId property: Gets or sets the gateway service Id of source.
-     *
+     * 
      * @return the sourceGatewayServiceId value.
      */
     public String sourceGatewayServiceId() {
@@ -251,7 +255,7 @@ public final class HyperVToAzStackHciRepExtnCustomProps extends ReplicationExten
 
     /**
      * Get the targetGatewayServiceId property: Gets or sets the gateway service Id of target.
-     *
+     * 
      * @return the targetGatewayServiceId value.
      */
     public String targetGatewayServiceId() {
@@ -260,7 +264,7 @@ public final class HyperVToAzStackHciRepExtnCustomProps extends ReplicationExten
 
     /**
      * Get the sourceStorageContainerName property: Gets or sets the source storage container name.
-     *
+     * 
      * @return the sourceStorageContainerName value.
      */
     public String sourceStorageContainerName() {
@@ -269,7 +273,7 @@ public final class HyperVToAzStackHciRepExtnCustomProps extends ReplicationExten
 
     /**
      * Get the targetStorageContainerName property: Gets or sets the target storage container name.
-     *
+     * 
      * @return the targetStorageContainerName value.
      */
     public String targetStorageContainerName() {
@@ -278,7 +282,7 @@ public final class HyperVToAzStackHciRepExtnCustomProps extends ReplicationExten
 
     /**
      * Get the resourceLocation property: Gets or sets the resource location.
-     *
+     * 
      * @return the resourceLocation value.
      */
     public String resourceLocation() {
@@ -287,7 +291,7 @@ public final class HyperVToAzStackHciRepExtnCustomProps extends ReplicationExten
 
     /**
      * Get the subscriptionId property: Gets or sets the subscription.
-     *
+     * 
      * @return the subscriptionId value.
      */
     public String subscriptionId() {
@@ -296,7 +300,7 @@ public final class HyperVToAzStackHciRepExtnCustomProps extends ReplicationExten
 
     /**
      * Get the resourceGroup property: Gets or sets the resource group.
-     *
+     * 
      * @return the resourceGroup value.
      */
     public String resourceGroup() {
@@ -305,24 +309,19 @@ public final class HyperVToAzStackHciRepExtnCustomProps extends ReplicationExten
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (hyperVFabricArmId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property hyperVFabricArmId in model HyperVToAzStackHciRepExtnCustomProps"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property hyperVFabricArmId in model HyperVToAzStackHciRepExtnCustomProps"));
         }
         if (azStackHciFabricArmId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property azStackHciFabricArmId in model"
-                            + " HyperVToAzStackHciRepExtnCustomProps"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property azStackHciFabricArmId in model HyperVToAzStackHciRepExtnCustomProps"));
         }
     }
 

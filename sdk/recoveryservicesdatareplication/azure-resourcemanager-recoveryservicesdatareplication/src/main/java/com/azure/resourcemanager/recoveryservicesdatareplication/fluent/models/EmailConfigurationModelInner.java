@@ -11,7 +11,9 @@ import com.azure.resourcemanager.recoveryservicesdatareplication.models.EmailCon
 import com.azure.resourcemanager.recoveryservicesdatareplication.models.EmailConfigurationModelSystemData;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Email configuration model. */
+/**
+ * Email configuration model.
+ */
 @Fluent
 public final class EmailConfigurationModelInner extends ProxyResource {
     /*
@@ -26,13 +28,15 @@ public final class EmailConfigurationModelInner extends ProxyResource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private EmailConfigurationModelSystemData systemData;
 
-    /** Creates an instance of EmailConfigurationModelInner class. */
+    /**
+     * Creates an instance of EmailConfigurationModelInner class.
+     */
     public EmailConfigurationModelInner() {
     }
 
     /**
      * Get the properties property: Email configuration model properties.
-     *
+     * 
      * @return the properties value.
      */
     public EmailConfigurationModelProperties properties() {
@@ -41,7 +45,7 @@ public final class EmailConfigurationModelInner extends ProxyResource {
 
     /**
      * Set the properties property: Email configuration model properties.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the EmailConfigurationModelInner object itself.
      */
@@ -52,7 +56,7 @@ public final class EmailConfigurationModelInner extends ProxyResource {
 
     /**
      * Get the systemData property: The systemData property.
-     *
+     * 
      * @return the systemData value.
      */
     public EmailConfigurationModelSystemData systemData() {
@@ -61,15 +65,13 @@ public final class EmailConfigurationModelInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (properties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property properties in model EmailConfigurationModelInner"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property properties in model EmailConfigurationModelInner"));
         } else {
             properties().validate();
         }

@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Gets or sets the type of vault. */
+/**
+ * Gets or sets the type of vault.
+ */
 public final class ReplicationVaultType extends ExpandableStringEnum<ReplicationVaultType> {
-    /** Static value DisasterRecovery for ReplicationVaultType. */
+    /**
+     * Static value DisasterRecovery for ReplicationVaultType.
+     */
     public static final ReplicationVaultType DISASTER_RECOVERY = fromString("DisasterRecovery");
 
-    /** Static value Migrate for ReplicationVaultType. */
+    /**
+     * Static value Migrate for ReplicationVaultType.
+     */
     public static final ReplicationVaultType MIGRATE = fromString("Migrate");
 
     /**
      * Creates a new instance of ReplicationVaultType value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class ReplicationVaultType extends ExpandableStringEnum<Replication
 
     /**
      * Creates or finds a ReplicationVaultType from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding ReplicationVaultType.
      */
@@ -38,7 +44,7 @@ public final class ReplicationVaultType extends ExpandableStringEnum<Replication
 
     /**
      * Gets known ReplicationVaultType values.
-     *
+     * 
      * @return known ReplicationVaultType values.
      */
     public static Collection<ReplicationVaultType> values() {

@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Planned failover model custom properties. */
+/**
+ * Planned failover model custom properties.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
@@ -18,17 +20,18 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonTypeName("PlannedFailoverModelCustomProperties")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "HyperVToAzStackHCI", value = HyperVToAzStackHciPlannedFailoverCustomProps.class),
-    @JsonSubTypes.Type(name = "VMwareToAzStackHCI", value = VMwareToAzStackHciPlannedFailoverCustomProps.class)
-})
+    @JsonSubTypes.Type(name = "VMwareToAzStackHCI", value = VMwareToAzStackHciPlannedFailoverCustomProps.class) })
 @Immutable
 public class PlannedFailoverModelCustomProperties {
-    /** Creates an instance of PlannedFailoverModelCustomProperties class. */
+    /**
+     * Creates an instance of PlannedFailoverModelCustomProperties class.
+     */
     public PlannedFailoverModelCustomProperties() {
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

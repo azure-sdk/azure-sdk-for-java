@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** VMwareToAzStack disk input. */
+/**
+ * VMwareToAzStack disk input.
+ */
 @Fluent
 public final class VMwareToAzStackHciDiskInput {
     /*
@@ -48,13 +50,15 @@ public final class VMwareToAzStackHciDiskInput {
     @JsonProperty(value = "isOsDisk", required = true)
     private boolean isOsDisk;
 
-    /** Creates an instance of VMwareToAzStackHciDiskInput class. */
+    /**
+     * Creates an instance of VMwareToAzStackHciDiskInput class.
+     */
     public VMwareToAzStackHciDiskInput() {
     }
 
     /**
      * Get the diskId property: Gets or sets the disk Id.
-     *
+     * 
      * @return the diskId value.
      */
     public String diskId() {
@@ -63,7 +67,7 @@ public final class VMwareToAzStackHciDiskInput {
 
     /**
      * Set the diskId property: Gets or sets the disk Id.
-     *
+     * 
      * @param diskId the diskId value to set.
      * @return the VMwareToAzStackHciDiskInput object itself.
      */
@@ -74,7 +78,7 @@ public final class VMwareToAzStackHciDiskInput {
 
     /**
      * Get the storageContainerId property: Gets or sets the target storage account ARM Id.
-     *
+     * 
      * @return the storageContainerId value.
      */
     public String storageContainerId() {
@@ -83,7 +87,7 @@ public final class VMwareToAzStackHciDiskInput {
 
     /**
      * Set the storageContainerId property: Gets or sets the target storage account ARM Id.
-     *
+     * 
      * @param storageContainerId the storageContainerId value to set.
      * @return the VMwareToAzStackHciDiskInput object itself.
      */
@@ -93,9 +97,10 @@ public final class VMwareToAzStackHciDiskInput {
     }
 
     /**
-     * Get the isDynamic property: Gets or sets a value indicating whether dynamic sizing is enabled on the virtual hard
+     * Get the isDynamic property: Gets or sets a value indicating whether dynamic sizing is enabled on the virtual
+     * hard
      * disk.
-     *
+     * 
      * @return the isDynamic value.
      */
     public Boolean isDynamic() {
@@ -103,9 +108,10 @@ public final class VMwareToAzStackHciDiskInput {
     }
 
     /**
-     * Set the isDynamic property: Gets or sets a value indicating whether dynamic sizing is enabled on the virtual hard
+     * Set the isDynamic property: Gets or sets a value indicating whether dynamic sizing is enabled on the virtual
+     * hard
      * disk.
-     *
+     * 
      * @param isDynamic the isDynamic value to set.
      * @return the VMwareToAzStackHciDiskInput object itself.
      */
@@ -116,7 +122,7 @@ public final class VMwareToAzStackHciDiskInput {
 
     /**
      * Get the diskSizeGB property: Gets or sets the disk size in GB.
-     *
+     * 
      * @return the diskSizeGB value.
      */
     public long diskSizeGB() {
@@ -125,7 +131,7 @@ public final class VMwareToAzStackHciDiskInput {
 
     /**
      * Set the diskSizeGB property: Gets or sets the disk size in GB.
-     *
+     * 
      * @param diskSizeGB the diskSizeGB value to set.
      * @return the VMwareToAzStackHciDiskInput object itself.
      */
@@ -136,7 +142,7 @@ public final class VMwareToAzStackHciDiskInput {
 
     /**
      * Get the diskFileFormat property: Gets or sets the type of the virtual hard disk, vhd or vhdx.
-     *
+     * 
      * @return the diskFileFormat value.
      */
     public String diskFileFormat() {
@@ -145,7 +151,7 @@ public final class VMwareToAzStackHciDiskInput {
 
     /**
      * Set the diskFileFormat property: Gets or sets the type of the virtual hard disk, vhd or vhdx.
-     *
+     * 
      * @param diskFileFormat the diskFileFormat value to set.
      * @return the VMwareToAzStackHciDiskInput object itself.
      */
@@ -156,7 +162,7 @@ public final class VMwareToAzStackHciDiskInput {
 
     /**
      * Get the isOsDisk property: Gets or sets a value indicating whether disk is os disk.
-     *
+     * 
      * @return the isOsDisk value.
      */
     public boolean isOsDisk() {
@@ -165,7 +171,7 @@ public final class VMwareToAzStackHciDiskInput {
 
     /**
      * Set the isOsDisk property: Gets or sets a value indicating whether disk is os disk.
-     *
+     * 
      * @param isOsDisk the isOsDisk value to set.
      * @return the VMwareToAzStackHciDiskInput object itself.
      */
@@ -176,21 +182,17 @@ public final class VMwareToAzStackHciDiskInput {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (diskId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property diskId in model VMwareToAzStackHciDiskInput"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property diskId in model VMwareToAzStackHciDiskInput"));
         }
         if (diskFileFormat() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property diskFileFormat in model VMwareToAzStackHciDiskInput"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property diskFileFormat in model VMwareToAzStackHciDiskInput"));
         }
     }
 

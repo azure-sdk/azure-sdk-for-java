@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** VMwareToAzStackHCI NIC properties. */
+/**
+ * VMwareToAzStackHCI NIC properties.
+ */
 @Fluent
 public final class VMwareToAzStackHciNicInput {
     /*
@@ -47,13 +49,15 @@ public final class VMwareToAzStackHciNicInput {
     @JsonProperty(value = "selectionTypeForFailover", required = true)
     private VMNicSelection selectionTypeForFailover;
 
-    /** Creates an instance of VMwareToAzStackHciNicInput class. */
+    /**
+     * Creates an instance of VMwareToAzStackHciNicInput class.
+     */
     public VMwareToAzStackHciNicInput() {
     }
 
     /**
      * Get the nicId property: Gets or sets the NIC Id.
-     *
+     * 
      * @return the nicId value.
      */
     public String nicId() {
@@ -62,7 +66,7 @@ public final class VMwareToAzStackHciNicInput {
 
     /**
      * Set the nicId property: Gets or sets the NIC Id.
-     *
+     * 
      * @param nicId the nicId value to set.
      * @return the VMwareToAzStackHciNicInput object itself.
      */
@@ -73,7 +77,7 @@ public final class VMwareToAzStackHciNicInput {
 
     /**
      * Get the label property: Gets or sets the NIC label.
-     *
+     * 
      * @return the label value.
      */
     public String label() {
@@ -82,7 +86,7 @@ public final class VMwareToAzStackHciNicInput {
 
     /**
      * Set the label property: Gets or sets the NIC label.
-     *
+     * 
      * @param label the label value to set.
      * @return the VMwareToAzStackHciNicInput object itself.
      */
@@ -93,7 +97,7 @@ public final class VMwareToAzStackHciNicInput {
 
     /**
      * Get the networkName property: Gets or sets the network name.
-     *
+     * 
      * @return the networkName value.
      */
     public String networkName() {
@@ -102,7 +106,7 @@ public final class VMwareToAzStackHciNicInput {
 
     /**
      * Get the targetNetworkId property: Gets or sets the target network Id within AzStackHCI Cluster.
-     *
+     * 
      * @return the targetNetworkId value.
      */
     public String targetNetworkId() {
@@ -111,7 +115,7 @@ public final class VMwareToAzStackHciNicInput {
 
     /**
      * Set the targetNetworkId property: Gets or sets the target network Id within AzStackHCI Cluster.
-     *
+     * 
      * @param targetNetworkId the targetNetworkId value to set.
      * @return the VMwareToAzStackHciNicInput object itself.
      */
@@ -122,7 +126,7 @@ public final class VMwareToAzStackHciNicInput {
 
     /**
      * Get the testNetworkId property: Gets or sets the target test network Id within AzStackHCI Cluster.
-     *
+     * 
      * @return the testNetworkId value.
      */
     public String testNetworkId() {
@@ -131,7 +135,7 @@ public final class VMwareToAzStackHciNicInput {
 
     /**
      * Set the testNetworkId property: Gets or sets the target test network Id within AzStackHCI Cluster.
-     *
+     * 
      * @param testNetworkId the testNetworkId value to set.
      * @return the VMwareToAzStackHciNicInput object itself.
      */
@@ -142,7 +146,7 @@ public final class VMwareToAzStackHciNicInput {
 
     /**
      * Get the selectionTypeForFailover property: Gets or sets the selection type of the NIC.
-     *
+     * 
      * @return the selectionTypeForFailover value.
      */
     public VMNicSelection selectionTypeForFailover() {
@@ -151,7 +155,7 @@ public final class VMwareToAzStackHciNicInput {
 
     /**
      * Set the selectionTypeForFailover property: Gets or sets the selection type of the NIC.
-     *
+     * 
      * @param selectionTypeForFailover the selectionTypeForFailover value to set.
      * @return the VMwareToAzStackHciNicInput object itself.
      */
@@ -162,39 +166,29 @@ public final class VMwareToAzStackHciNicInput {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (nicId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property nicId in model VMwareToAzStackHciNicInput"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property nicId in model VMwareToAzStackHciNicInput"));
         }
         if (label() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property label in model VMwareToAzStackHciNicInput"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property label in model VMwareToAzStackHciNicInput"));
         }
         if (targetNetworkId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property targetNetworkId in model VMwareToAzStackHciNicInput"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property targetNetworkId in model VMwareToAzStackHciNicInput"));
         }
         if (testNetworkId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property testNetworkId in model VMwareToAzStackHciNicInput"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property testNetworkId in model VMwareToAzStackHciNicInput"));
         }
         if (selectionTypeForFailover() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property selectionTypeForFailover in model VMwareToAzStackHciNicInput"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property selectionTypeForFailover in model VMwareToAzStackHciNicInput"));
         }
     }
 

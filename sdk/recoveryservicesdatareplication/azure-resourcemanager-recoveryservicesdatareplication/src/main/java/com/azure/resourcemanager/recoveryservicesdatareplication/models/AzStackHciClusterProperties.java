@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** AzStackHCI cluster properties. */
+/**
+ * AzStackHCI cluster properties.
+ */
 @Fluent
 public final class AzStackHciClusterProperties {
     /*
@@ -36,13 +38,15 @@ public final class AzStackHciClusterProperties {
     @JsonProperty(value = "storageContainers", required = true)
     private List<StorageContainerProperties> storageContainers;
 
-    /** Creates an instance of AzStackHciClusterProperties class. */
+    /**
+     * Creates an instance of AzStackHciClusterProperties class.
+     */
     public AzStackHciClusterProperties() {
     }
 
     /**
      * Get the clusterName property: Gets or sets the AzStackHCICluster FQDN name.
-     *
+     * 
      * @return the clusterName value.
      */
     public String clusterName() {
@@ -51,7 +55,7 @@ public final class AzStackHciClusterProperties {
 
     /**
      * Set the clusterName property: Gets or sets the AzStackHCICluster FQDN name.
-     *
+     * 
      * @param clusterName the clusterName value to set.
      * @return the AzStackHciClusterProperties object itself.
      */
@@ -62,7 +66,7 @@ public final class AzStackHciClusterProperties {
 
     /**
      * Get the resourceName property: Gets or sets the AzStackHCICluster resource name.
-     *
+     * 
      * @return the resourceName value.
      */
     public String resourceName() {
@@ -71,7 +75,7 @@ public final class AzStackHciClusterProperties {
 
     /**
      * Set the resourceName property: Gets or sets the AzStackHCICluster resource name.
-     *
+     * 
      * @param resourceName the resourceName value to set.
      * @return the AzStackHciClusterProperties object itself.
      */
@@ -82,7 +86,7 @@ public final class AzStackHciClusterProperties {
 
     /**
      * Get the storageAccountName property: Gets or sets the Storage account name.
-     *
+     * 
      * @return the storageAccountName value.
      */
     public String storageAccountName() {
@@ -91,7 +95,7 @@ public final class AzStackHciClusterProperties {
 
     /**
      * Set the storageAccountName property: Gets or sets the Storage account name.
-     *
+     * 
      * @param storageAccountName the storageAccountName value to set.
      * @return the AzStackHciClusterProperties object itself.
      */
@@ -102,7 +106,7 @@ public final class AzStackHciClusterProperties {
 
     /**
      * Get the storageContainers property: Gets or sets the list of AzStackHCICluster Storage Container.
-     *
+     * 
      * @return the storageContainers value.
      */
     public List<StorageContainerProperties> storageContainers() {
@@ -111,7 +115,7 @@ public final class AzStackHciClusterProperties {
 
     /**
      * Set the storageContainers property: Gets or sets the list of AzStackHCICluster Storage Container.
-     *
+     * 
      * @param storageContainers the storageContainers value to set.
      * @return the AzStackHciClusterProperties object itself.
      */
@@ -122,33 +126,25 @@ public final class AzStackHciClusterProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (clusterName() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property clusterName in model AzStackHciClusterProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property clusterName in model AzStackHciClusterProperties"));
         }
         if (resourceName() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property resourceName in model AzStackHciClusterProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property resourceName in model AzStackHciClusterProperties"));
         }
         if (storageAccountName() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property storageAccountName in model AzStackHciClusterProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property storageAccountName in model AzStackHciClusterProperties"));
         }
         if (storageContainers() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property storageContainers in model AzStackHciClusterProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property storageContainers in model AzStackHciClusterProperties"));
         } else {
             storageContainers().forEach(e -> e.validate());
         }

@@ -11,7 +11,9 @@ import com.azure.resourcemanager.recoveryservicesdatareplication.models.PolicyMo
 import com.azure.resourcemanager.recoveryservicesdatareplication.models.PolicyModelSystemData;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Policy model. */
+/**
+ * Policy model.
+ */
 @Fluent
 public final class PolicyModelInner extends ProxyResource {
     /*
@@ -26,13 +28,15 @@ public final class PolicyModelInner extends ProxyResource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private PolicyModelSystemData systemData;
 
-    /** Creates an instance of PolicyModelInner class. */
+    /**
+     * Creates an instance of PolicyModelInner class.
+     */
     public PolicyModelInner() {
     }
 
     /**
      * Get the properties property: Policy model properties.
-     *
+     * 
      * @return the properties value.
      */
     public PolicyModelProperties properties() {
@@ -41,7 +45,7 @@ public final class PolicyModelInner extends ProxyResource {
 
     /**
      * Set the properties property: Policy model properties.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the PolicyModelInner object itself.
      */
@@ -52,7 +56,7 @@ public final class PolicyModelInner extends ProxyResource {
 
     /**
      * Get the systemData property: The systemData property.
-     *
+     * 
      * @return the systemData value.
      */
     public PolicyModelSystemData systemData() {
@@ -61,14 +65,13 @@ public final class PolicyModelInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (properties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property properties in model PolicyModelInner"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property properties in model PolicyModelInner"));
         } else {
             properties().validate();
         }

@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** HyperV To AzStackHCI Policy model custom properties. */
+/**
+ * HyperV To AzStackHCI Policy model custom properties.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
 @JsonTypeName("HyperVToAzStackHCI")
 @Fluent
@@ -33,14 +35,17 @@ public final class HyperVToAzStackHciPolicyModelCustomProperties extends PolicyM
     @JsonProperty(value = "appConsistentFrequencyInMinutes", required = true)
     private int appConsistentFrequencyInMinutes;
 
-    /** Creates an instance of HyperVToAzStackHciPolicyModelCustomProperties class. */
+    /**
+     * Creates an instance of HyperVToAzStackHciPolicyModelCustomProperties class.
+     */
     public HyperVToAzStackHciPolicyModelCustomProperties() {
     }
 
     /**
      * Get the recoveryPointHistoryInMinutes property: Gets or sets the duration in minutes until which the recovery
-     * points need to be stored.
-     *
+     * points need to be
+     * stored.
+     * 
      * @return the recoveryPointHistoryInMinutes value.
      */
     public int recoveryPointHistoryInMinutes() {
@@ -49,13 +54,14 @@ public final class HyperVToAzStackHciPolicyModelCustomProperties extends PolicyM
 
     /**
      * Set the recoveryPointHistoryInMinutes property: Gets or sets the duration in minutes until which the recovery
-     * points need to be stored.
-     *
+     * points need to be
+     * stored.
+     * 
      * @param recoveryPointHistoryInMinutes the recoveryPointHistoryInMinutes value to set.
      * @return the HyperVToAzStackHciPolicyModelCustomProperties object itself.
      */
-    public HyperVToAzStackHciPolicyModelCustomProperties withRecoveryPointHistoryInMinutes(
-        int recoveryPointHistoryInMinutes) {
+    public HyperVToAzStackHciPolicyModelCustomProperties
+        withRecoveryPointHistoryInMinutes(int recoveryPointHistoryInMinutes) {
         this.recoveryPointHistoryInMinutes = recoveryPointHistoryInMinutes;
         return this;
     }
@@ -63,7 +69,7 @@ public final class HyperVToAzStackHciPolicyModelCustomProperties extends PolicyM
     /**
      * Get the crashConsistentFrequencyInMinutes property: Gets or sets the crash consistent snapshot frequency (in
      * minutes).
-     *
+     * 
      * @return the crashConsistentFrequencyInMinutes value.
      */
     public int crashConsistentFrequencyInMinutes() {
@@ -73,12 +79,12 @@ public final class HyperVToAzStackHciPolicyModelCustomProperties extends PolicyM
     /**
      * Set the crashConsistentFrequencyInMinutes property: Gets or sets the crash consistent snapshot frequency (in
      * minutes).
-     *
+     * 
      * @param crashConsistentFrequencyInMinutes the crashConsistentFrequencyInMinutes value to set.
      * @return the HyperVToAzStackHciPolicyModelCustomProperties object itself.
      */
-    public HyperVToAzStackHciPolicyModelCustomProperties withCrashConsistentFrequencyInMinutes(
-        int crashConsistentFrequencyInMinutes) {
+    public HyperVToAzStackHciPolicyModelCustomProperties
+        withCrashConsistentFrequencyInMinutes(int crashConsistentFrequencyInMinutes) {
         this.crashConsistentFrequencyInMinutes = crashConsistentFrequencyInMinutes;
         return this;
     }
@@ -86,7 +92,7 @@ public final class HyperVToAzStackHciPolicyModelCustomProperties extends PolicyM
     /**
      * Get the appConsistentFrequencyInMinutes property: Gets or sets the app consistent snapshot frequency (in
      * minutes).
-     *
+     * 
      * @return the appConsistentFrequencyInMinutes value.
      */
     public int appConsistentFrequencyInMinutes() {
@@ -96,19 +102,19 @@ public final class HyperVToAzStackHciPolicyModelCustomProperties extends PolicyM
     /**
      * Set the appConsistentFrequencyInMinutes property: Gets or sets the app consistent snapshot frequency (in
      * minutes).
-     *
+     * 
      * @param appConsistentFrequencyInMinutes the appConsistentFrequencyInMinutes value to set.
      * @return the HyperVToAzStackHciPolicyModelCustomProperties object itself.
      */
-    public HyperVToAzStackHciPolicyModelCustomProperties withAppConsistentFrequencyInMinutes(
-        int appConsistentFrequencyInMinutes) {
+    public HyperVToAzStackHciPolicyModelCustomProperties
+        withAppConsistentFrequencyInMinutes(int appConsistentFrequencyInMinutes) {
         this.appConsistentFrequencyInMinutes = appConsistentFrequencyInMinutes;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

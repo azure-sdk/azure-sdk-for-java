@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** VMware migrate fabric model custom properties. */
+/**
+ * VMware migrate fabric model custom properties.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
 @JsonTypeName("VMwareMigrate")
 @Fluent
@@ -27,13 +29,15 @@ public final class VMwareMigrateFabricModelCustomProperties extends FabricModelC
     @JsonProperty(value = "migrationSolutionId", required = true)
     private String migrationSolutionId;
 
-    /** Creates an instance of VMwareMigrateFabricModelCustomProperties class. */
+    /**
+     * Creates an instance of VMwareMigrateFabricModelCustomProperties class.
+     */
     public VMwareMigrateFabricModelCustomProperties() {
     }
 
     /**
      * Get the vmwareSiteId property: Gets or sets the ARM Id of the VMware site.
-     *
+     * 
      * @return the vmwareSiteId value.
      */
     public String vmwareSiteId() {
@@ -42,7 +46,7 @@ public final class VMwareMigrateFabricModelCustomProperties extends FabricModelC
 
     /**
      * Set the vmwareSiteId property: Gets or sets the ARM Id of the VMware site.
-     *
+     * 
      * @param vmwareSiteId the vmwareSiteId value to set.
      * @return the VMwareMigrateFabricModelCustomProperties object itself.
      */
@@ -53,7 +57,7 @@ public final class VMwareMigrateFabricModelCustomProperties extends FabricModelC
 
     /**
      * Get the migrationSolutionId property: Gets or sets the ARM Id of the migration solution.
-     *
+     * 
      * @return the migrationSolutionId value.
      */
     public String migrationSolutionId() {
@@ -62,7 +66,7 @@ public final class VMwareMigrateFabricModelCustomProperties extends FabricModelC
 
     /**
      * Set the migrationSolutionId property: Gets or sets the ARM Id of the migration solution.
-     *
+     * 
      * @param migrationSolutionId the migrationSolutionId value to set.
      * @return the VMwareMigrateFabricModelCustomProperties object itself.
      */
@@ -73,24 +77,19 @@ public final class VMwareMigrateFabricModelCustomProperties extends FabricModelC
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (vmwareSiteId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property vmwareSiteId in model VMwareMigrateFabricModelCustomProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property vmwareSiteId in model VMwareMigrateFabricModelCustomProperties"));
         }
         if (migrationSolutionId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property migrationSolutionId in model"
-                            + " VMwareMigrateFabricModelCustomProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property migrationSolutionId in model VMwareMigrateFabricModelCustomProperties"));
         }
     }
 

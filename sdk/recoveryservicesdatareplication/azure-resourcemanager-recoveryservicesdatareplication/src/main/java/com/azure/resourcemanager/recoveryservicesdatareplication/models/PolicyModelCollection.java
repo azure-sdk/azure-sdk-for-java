@@ -9,7 +9,9 @@ import com.azure.resourcemanager.recoveryservicesdatareplication.fluent.models.P
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Policy model collection. */
+/**
+ * Policy model collection.
+ */
 @Fluent
 public final class PolicyModelCollection {
     /*
@@ -24,13 +26,15 @@ public final class PolicyModelCollection {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of PolicyModelCollection class. */
+    /**
+     * Creates an instance of PolicyModelCollection class.
+     */
     public PolicyModelCollection() {
     }
 
     /**
      * Get the value property: Gets or sets the list of policies.
-     *
+     * 
      * @return the value value.
      */
     public List<PolicyModelInner> value() {
@@ -39,7 +43,7 @@ public final class PolicyModelCollection {
 
     /**
      * Set the value property: Gets or sets the list of policies.
-     *
+     * 
      * @param value the value value to set.
      * @return the PolicyModelCollection object itself.
      */
@@ -50,7 +54,7 @@ public final class PolicyModelCollection {
 
     /**
      * Get the nextLink property: Gets or sets the value of next link.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class PolicyModelCollection {
 
     /**
      * Set the nextLink property: Gets or sets the value of next link.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the PolicyModelCollection object itself.
      */
@@ -70,7 +74,7 @@ public final class PolicyModelCollection {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

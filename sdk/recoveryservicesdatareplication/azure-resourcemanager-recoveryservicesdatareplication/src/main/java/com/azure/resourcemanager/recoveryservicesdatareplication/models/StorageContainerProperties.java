@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Storage container properties. */
+/**
+ * Storage container properties.
+ */
 @Fluent
 public final class StorageContainerProperties {
     /*
@@ -23,13 +25,15 @@ public final class StorageContainerProperties {
     @JsonProperty(value = "clusterSharedVolumePath", required = true)
     private String clusterSharedVolumePath;
 
-    /** Creates an instance of StorageContainerProperties class. */
+    /**
+     * Creates an instance of StorageContainerProperties class.
+     */
     public StorageContainerProperties() {
     }
 
     /**
      * Get the name property: Gets or sets the Name.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -38,7 +42,7 @@ public final class StorageContainerProperties {
 
     /**
      * Set the name property: Gets or sets the Name.
-     *
+     * 
      * @param name the name value to set.
      * @return the StorageContainerProperties object itself.
      */
@@ -49,7 +53,7 @@ public final class StorageContainerProperties {
 
     /**
      * Get the clusterSharedVolumePath property: Gets or sets the ClusterSharedVolumePath.
-     *
+     * 
      * @return the clusterSharedVolumePath value.
      */
     public String clusterSharedVolumePath() {
@@ -58,7 +62,7 @@ public final class StorageContainerProperties {
 
     /**
      * Set the clusterSharedVolumePath property: Gets or sets the ClusterSharedVolumePath.
-     *
+     * 
      * @param clusterSharedVolumePath the clusterSharedVolumePath value to set.
      * @return the StorageContainerProperties object itself.
      */
@@ -69,20 +73,17 @@ public final class StorageContainerProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (name() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property name in model StorageContainerProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property name in model StorageContainerProperties"));
         }
         if (clusterSharedVolumePath() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property clusterSharedVolumePath in model StorageContainerProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property clusterSharedVolumePath in model StorageContainerProperties"));
         }
     }
 

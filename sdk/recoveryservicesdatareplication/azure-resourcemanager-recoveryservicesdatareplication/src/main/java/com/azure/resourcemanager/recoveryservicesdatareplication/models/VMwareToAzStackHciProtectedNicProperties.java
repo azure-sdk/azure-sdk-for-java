@@ -7,7 +7,9 @@ package com.azure.resourcemanager.recoveryservicesdatareplication.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** VMwareToAzStackHCI NIC properties. */
+/**
+ * VMwareToAzStackHCI NIC properties.
+ */
 @Fluent
 public final class VMwareToAzStackHciProtectedNicProperties {
     /*
@@ -58,13 +60,15 @@ public final class VMwareToAzStackHciProtectedNicProperties {
     @JsonProperty(value = "selectionTypeForFailover", access = JsonProperty.Access.WRITE_ONLY)
     private VMNicSelection selectionTypeForFailover;
 
-    /** Creates an instance of VMwareToAzStackHciProtectedNicProperties class. */
+    /**
+     * Creates an instance of VMwareToAzStackHciProtectedNicProperties class.
+     */
     public VMwareToAzStackHciProtectedNicProperties() {
     }
 
     /**
      * Get the nicId property: Gets or sets the NIC Id.
-     *
+     * 
      * @return the nicId value.
      */
     public String nicId() {
@@ -73,7 +77,7 @@ public final class VMwareToAzStackHciProtectedNicProperties {
 
     /**
      * Get the macAddress property: Gets or sets the NIC mac address.
-     *
+     * 
      * @return the macAddress value.
      */
     public String macAddress() {
@@ -82,7 +86,7 @@ public final class VMwareToAzStackHciProtectedNicProperties {
 
     /**
      * Get the label property: Gets or sets the NIC label.
-     *
+     * 
      * @return the label value.
      */
     public String label() {
@@ -91,7 +95,7 @@ public final class VMwareToAzStackHciProtectedNicProperties {
 
     /**
      * Get the isPrimaryNic property: Gets or sets a value indicating whether this is the primary NIC.
-     *
+     * 
      * @return the isPrimaryNic value.
      */
     public Boolean isPrimaryNic() {
@@ -100,7 +104,7 @@ public final class VMwareToAzStackHciProtectedNicProperties {
 
     /**
      * Set the isPrimaryNic property: Gets or sets a value indicating whether this is the primary NIC.
-     *
+     * 
      * @param isPrimaryNic the isPrimaryNic value to set.
      * @return the VMwareToAzStackHciProtectedNicProperties object itself.
      */
@@ -111,7 +115,7 @@ public final class VMwareToAzStackHciProtectedNicProperties {
 
     /**
      * Get the networkName property: Gets or sets the network name.
-     *
+     * 
      * @return the networkName value.
      */
     public String networkName() {
@@ -120,7 +124,7 @@ public final class VMwareToAzStackHciProtectedNicProperties {
 
     /**
      * Get the targetNetworkId property: Gets or sets the target network Id within AzStackHCI Cluster.
-     *
+     * 
      * @return the targetNetworkId value.
      */
     public String targetNetworkId() {
@@ -129,7 +133,7 @@ public final class VMwareToAzStackHciProtectedNicProperties {
 
     /**
      * Get the testNetworkId property: Gets or sets the target test network Id within AzStackHCI Cluster.
-     *
+     * 
      * @return the testNetworkId value.
      */
     public String testNetworkId() {
@@ -138,7 +142,7 @@ public final class VMwareToAzStackHciProtectedNicProperties {
 
     /**
      * Get the selectionTypeForFailover property: Gets or sets the selection type of the NIC.
-     *
+     * 
      * @return the selectionTypeForFailover value.
      */
     public VMNicSelection selectionTypeForFailover() {
@@ -147,7 +151,7 @@ public final class VMwareToAzStackHciProtectedNicProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

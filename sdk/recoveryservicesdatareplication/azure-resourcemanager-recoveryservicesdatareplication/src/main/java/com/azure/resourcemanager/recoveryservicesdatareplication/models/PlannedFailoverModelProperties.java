@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Planned failover model properties. */
+/**
+ * Planned failover model properties.
+ */
 @Fluent
 public final class PlannedFailoverModelProperties {
     /*
@@ -17,13 +19,15 @@ public final class PlannedFailoverModelProperties {
     @JsonProperty(value = "customProperties", required = true)
     private PlannedFailoverModelCustomProperties customProperties;
 
-    /** Creates an instance of PlannedFailoverModelProperties class. */
+    /**
+     * Creates an instance of PlannedFailoverModelProperties class.
+     */
     public PlannedFailoverModelProperties() {
     }
 
     /**
      * Get the customProperties property: Planned failover model custom properties.
-     *
+     * 
      * @return the customProperties value.
      */
     public PlannedFailoverModelCustomProperties customProperties() {
@@ -32,7 +36,7 @@ public final class PlannedFailoverModelProperties {
 
     /**
      * Set the customProperties property: Planned failover model custom properties.
-     *
+     * 
      * @param customProperties the customProperties value to set.
      * @return the PlannedFailoverModelProperties object itself.
      */
@@ -43,15 +47,13 @@ public final class PlannedFailoverModelProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (customProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property customProperties in model PlannedFailoverModelProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property customProperties in model PlannedFailoverModelProperties"));
         } else {
             customProperties().validate();
         }

@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** Task model. */
+/**
+ * Task model.
+ */
 @Fluent
 public final class TaskModel {
     /*
@@ -49,13 +51,15 @@ public final class TaskModel {
     @JsonProperty(value = "childrenWorkflows")
     private List<WorkflowModelInner> childrenWorkflows;
 
-    /** Creates an instance of TaskModel class. */
+    /**
+     * Creates an instance of TaskModel class.
+     */
     public TaskModel() {
     }
 
     /**
      * Get the taskName property: Gets or sets the task name.
-     *
+     * 
      * @return the taskName value.
      */
     public String taskName() {
@@ -64,7 +68,7 @@ public final class TaskModel {
 
     /**
      * Get the state property: Gets or sets the task state.
-     *
+     * 
      * @return the state value.
      */
     public TaskState state() {
@@ -73,7 +77,7 @@ public final class TaskModel {
 
     /**
      * Get the startTime property: Gets or sets the start time.
-     *
+     * 
      * @return the startTime value.
      */
     public OffsetDateTime startTime() {
@@ -82,7 +86,7 @@ public final class TaskModel {
 
     /**
      * Get the endTime property: Gets or sets the end time.
-     *
+     * 
      * @return the endTime value.
      */
     public OffsetDateTime endTime() {
@@ -91,7 +95,7 @@ public final class TaskModel {
 
     /**
      * Get the customProperties property: Task model custom properties.
-     *
+     * 
      * @return the customProperties value.
      */
     public TaskModelCustomProperties customProperties() {
@@ -100,7 +104,7 @@ public final class TaskModel {
 
     /**
      * Set the customProperties property: Task model custom properties.
-     *
+     * 
      * @param customProperties the customProperties value to set.
      * @return the TaskModel object itself.
      */
@@ -111,7 +115,7 @@ public final class TaskModel {
 
     /**
      * Get the childrenWorkflows property: Gets or sets the list of children workflow models.
-     *
+     * 
      * @return the childrenWorkflows value.
      */
     public List<WorkflowModelInner> childrenWorkflows() {
@@ -120,7 +124,7 @@ public final class TaskModel {
 
     /**
      * Set the childrenWorkflows property: Gets or sets the list of children workflow models.
-     *
+     * 
      * @param childrenWorkflows the childrenWorkflows value to set.
      * @return the TaskModel object itself.
      */
@@ -131,7 +135,7 @@ public final class TaskModel {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -9,7 +9,9 @@ import com.azure.resourcemanager.recoveryservicesdatareplication.fluent.models.P
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Protected item model collection. */
+/**
+ * Protected item model collection.
+ */
 @Fluent
 public final class ProtectedItemModelCollection {
     /*
@@ -24,13 +26,15 @@ public final class ProtectedItemModelCollection {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of ProtectedItemModelCollection class. */
+    /**
+     * Creates an instance of ProtectedItemModelCollection class.
+     */
     public ProtectedItemModelCollection() {
     }
 
     /**
      * Get the value property: Gets or sets the list of protected items.
-     *
+     * 
      * @return the value value.
      */
     public List<ProtectedItemModelInner> value() {
@@ -39,7 +43,7 @@ public final class ProtectedItemModelCollection {
 
     /**
      * Set the value property: Gets or sets the list of protected items.
-     *
+     * 
      * @param value the value value to set.
      * @return the ProtectedItemModelCollection object itself.
      */
@@ -50,7 +54,7 @@ public final class ProtectedItemModelCollection {
 
     /**
      * Get the nextLink property: Gets or sets the value of next link.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class ProtectedItemModelCollection {
 
     /**
      * Set the nextLink property: Gets or sets the value of next link.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the ProtectedItemModelCollection object itself.
      */
@@ -70,7 +74,7 @@ public final class ProtectedItemModelCollection {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

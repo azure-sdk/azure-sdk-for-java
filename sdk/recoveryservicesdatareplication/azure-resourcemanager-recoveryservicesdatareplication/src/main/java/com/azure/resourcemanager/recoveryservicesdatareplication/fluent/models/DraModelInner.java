@@ -11,7 +11,9 @@ import com.azure.resourcemanager.recoveryservicesdatareplication.models.DraModel
 import com.azure.resourcemanager.recoveryservicesdatareplication.models.DraModelSystemData;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Dra model. */
+/**
+ * Dra model.
+ */
 @Fluent
 public final class DraModelInner extends ProxyResource {
     /*
@@ -26,13 +28,15 @@ public final class DraModelInner extends ProxyResource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private DraModelSystemData systemData;
 
-    /** Creates an instance of DraModelInner class. */
+    /**
+     * Creates an instance of DraModelInner class.
+     */
     public DraModelInner() {
     }
 
     /**
      * Get the properties property: Dra model properties.
-     *
+     * 
      * @return the properties value.
      */
     public DraModelProperties properties() {
@@ -41,7 +45,7 @@ public final class DraModelInner extends ProxyResource {
 
     /**
      * Set the properties property: Dra model properties.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the DraModelInner object itself.
      */
@@ -52,7 +56,7 @@ public final class DraModelInner extends ProxyResource {
 
     /**
      * Get the systemData property: The systemData property.
-     *
+     * 
      * @return the systemData value.
      */
     public DraModelSystemData systemData() {
@@ -61,14 +65,13 @@ public final class DraModelInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (properties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property properties in model DraModelInner"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property properties in model DraModelInner"));
         } else {
             properties().validate();
         }

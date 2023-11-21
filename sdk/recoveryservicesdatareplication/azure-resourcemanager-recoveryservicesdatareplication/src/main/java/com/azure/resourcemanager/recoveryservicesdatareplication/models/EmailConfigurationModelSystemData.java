@@ -7,49 +7,65 @@ package com.azure.resourcemanager.recoveryservicesdatareplication.models;
 import com.azure.core.annotation.Fluent;
 import java.time.OffsetDateTime;
 
-/** The EmailConfigurationModelSystemData model. */
+/**
+ * The EmailConfigurationModelSystemData model.
+ */
 @Fluent
 public final class EmailConfigurationModelSystemData extends SystemDataModel {
-    /** Creates an instance of EmailConfigurationModelSystemData class. */
+    /**
+     * Creates an instance of EmailConfigurationModelSystemData class.
+     */
     public EmailConfigurationModelSystemData() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public EmailConfigurationModelSystemData withCreatedBy(String createdBy) {
         super.withCreatedBy(createdBy);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public EmailConfigurationModelSystemData withCreatedByType(String createdByType) {
         super.withCreatedByType(createdByType);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public EmailConfigurationModelSystemData withCreatedAt(OffsetDateTime createdAt) {
         super.withCreatedAt(createdAt);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public EmailConfigurationModelSystemData withLastModifiedBy(String lastModifiedBy) {
         super.withLastModifiedBy(lastModifiedBy);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public EmailConfigurationModelSystemData withLastModifiedByType(String lastModifiedByType) {
         super.withLastModifiedByType(lastModifiedByType);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public EmailConfigurationModelSystemData withLastModifiedAt(OffsetDateTime lastModifiedAt) {
         super.withLastModifiedAt(lastModifiedAt);
@@ -58,7 +74,7 @@ public final class EmailConfigurationModelSystemData extends SystemDataModel {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

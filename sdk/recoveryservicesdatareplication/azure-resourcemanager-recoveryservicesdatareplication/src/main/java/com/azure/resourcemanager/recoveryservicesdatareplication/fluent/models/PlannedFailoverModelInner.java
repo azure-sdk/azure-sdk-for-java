@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.recoveryservicesdatareplication.models.PlannedFailoverModelProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Planned failover model. */
+/**
+ * Planned failover model.
+ */
 @Fluent
 public final class PlannedFailoverModelInner {
     /*
@@ -18,13 +20,15 @@ public final class PlannedFailoverModelInner {
     @JsonProperty(value = "properties", required = true)
     private PlannedFailoverModelProperties properties;
 
-    /** Creates an instance of PlannedFailoverModelInner class. */
+    /**
+     * Creates an instance of PlannedFailoverModelInner class.
+     */
     public PlannedFailoverModelInner() {
     }
 
     /**
      * Get the properties property: Planned failover model properties.
-     *
+     * 
      * @return the properties value.
      */
     public PlannedFailoverModelProperties properties() {
@@ -33,7 +37,7 @@ public final class PlannedFailoverModelInner {
 
     /**
      * Set the properties property: Planned failover model properties.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the PlannedFailoverModelInner object itself.
      */
@@ -44,15 +48,13 @@ public final class PlannedFailoverModelInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (properties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property properties in model PlannedFailoverModelInner"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property properties in model PlannedFailoverModelInner"));
         } else {
             properties().validate();
         }

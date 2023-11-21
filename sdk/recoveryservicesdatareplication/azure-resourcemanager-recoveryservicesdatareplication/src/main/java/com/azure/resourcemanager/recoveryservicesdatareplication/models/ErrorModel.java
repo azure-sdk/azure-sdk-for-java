@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** Error model. */
+/**
+ * Error model.
+ */
 @Immutable
 public final class ErrorModel {
     /*
@@ -53,13 +55,15 @@ public final class ErrorModel {
     @JsonProperty(value = "recommendation", access = JsonProperty.Access.WRITE_ONLY)
     private String recommendation;
 
-    /** Creates an instance of ErrorModel class. */
+    /**
+     * Creates an instance of ErrorModel class.
+     */
     public ErrorModel() {
     }
 
     /**
      * Get the code property: Gets or sets the error code.
-     *
+     * 
      * @return the code value.
      */
     public String code() {
@@ -68,7 +72,7 @@ public final class ErrorModel {
 
     /**
      * Get the type property: Gets or sets the error type.
-     *
+     * 
      * @return the type value.
      */
     public String type() {
@@ -77,7 +81,7 @@ public final class ErrorModel {
 
     /**
      * Get the severity property: Gets or sets the error severity.
-     *
+     * 
      * @return the severity value.
      */
     public String severity() {
@@ -86,7 +90,7 @@ public final class ErrorModel {
 
     /**
      * Get the creationTime property: Gets or sets the creation time of error.
-     *
+     * 
      * @return the creationTime value.
      */
     public OffsetDateTime creationTime() {
@@ -95,7 +99,7 @@ public final class ErrorModel {
 
     /**
      * Get the message property: Gets or sets the error message.
-     *
+     * 
      * @return the message value.
      */
     public String message() {
@@ -104,7 +108,7 @@ public final class ErrorModel {
 
     /**
      * Get the causes property: Gets or sets the possible causes of error.
-     *
+     * 
      * @return the causes value.
      */
     public String causes() {
@@ -113,7 +117,7 @@ public final class ErrorModel {
 
     /**
      * Get the recommendation property: Gets or sets the recommended action to resolve error.
-     *
+     * 
      * @return the recommendation value.
      */
     public String recommendation() {
@@ -122,7 +126,7 @@ public final class ErrorModel {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -11,7 +11,9 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
 
-/** AzStackHCI fabric model custom properties. */
+/**
+ * AzStackHCI fabric model custom properties.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
 @JsonTypeName("AzStackHCI")
 @Fluent
@@ -58,13 +60,15 @@ public final class AzStackHciFabricModelCustomProperties extends FabricModelCust
     @JsonProperty(value = "migrationHubUri", access = JsonProperty.Access.WRITE_ONLY)
     private String migrationHubUri;
 
-    /** Creates an instance of AzStackHciFabricModelCustomProperties class. */
+    /**
+     * Creates an instance of AzStackHciFabricModelCustomProperties class.
+     */
     public AzStackHciFabricModelCustomProperties() {
     }
 
     /**
      * Get the azStackHciSiteId property: Gets or sets the ARM Id of the AzStackHCI site.
-     *
+     * 
      * @return the azStackHciSiteId value.
      */
     public String azStackHciSiteId() {
@@ -73,7 +77,7 @@ public final class AzStackHciFabricModelCustomProperties extends FabricModelCust
 
     /**
      * Set the azStackHciSiteId property: Gets or sets the ARM Id of the AzStackHCI site.
-     *
+     * 
      * @param azStackHciSiteId the azStackHciSiteId value to set.
      * @return the AzStackHciFabricModelCustomProperties object itself.
      */
@@ -84,7 +88,7 @@ public final class AzStackHciFabricModelCustomProperties extends FabricModelCust
 
     /**
      * Get the applianceName property: Gets or sets the Appliance name.
-     *
+     * 
      * @return the applianceName value.
      */
     public List<String> applianceName() {
@@ -93,7 +97,7 @@ public final class AzStackHciFabricModelCustomProperties extends FabricModelCust
 
     /**
      * Get the cluster property: AzStackHCI cluster properties.
-     *
+     * 
      * @return the cluster value.
      */
     public AzStackHciClusterProperties cluster() {
@@ -102,7 +106,7 @@ public final class AzStackHciFabricModelCustomProperties extends FabricModelCust
 
     /**
      * Set the cluster property: AzStackHCI cluster properties.
-     *
+     * 
      * @param cluster the cluster value to set.
      * @return the AzStackHciFabricModelCustomProperties object itself.
      */
@@ -113,7 +117,7 @@ public final class AzStackHciFabricModelCustomProperties extends FabricModelCust
 
     /**
      * Get the fabricResourceId property: Gets or sets the fabric resource Id.
-     *
+     * 
      * @return the fabricResourceId value.
      */
     public String fabricResourceId() {
@@ -122,7 +126,7 @@ public final class AzStackHciFabricModelCustomProperties extends FabricModelCust
 
     /**
      * Get the fabricContainerId property: Gets or sets the fabric container Id.
-     *
+     * 
      * @return the fabricContainerId value.
      */
     public String fabricContainerId() {
@@ -131,7 +135,7 @@ public final class AzStackHciFabricModelCustomProperties extends FabricModelCust
 
     /**
      * Get the migrationSolutionId property: Gets or sets the Migration solution ARM Id.
-     *
+     * 
      * @return the migrationSolutionId value.
      */
     public String migrationSolutionId() {
@@ -140,7 +144,7 @@ public final class AzStackHciFabricModelCustomProperties extends FabricModelCust
 
     /**
      * Set the migrationSolutionId property: Gets or sets the Migration solution ARM Id.
-     *
+     * 
      * @param migrationSolutionId the migrationSolutionId value to set.
      * @return the AzStackHciFabricModelCustomProperties object itself.
      */
@@ -151,7 +155,7 @@ public final class AzStackHciFabricModelCustomProperties extends FabricModelCust
 
     /**
      * Get the migrationHubUri property: Gets or sets the migration hub Uri.
-     *
+     * 
      * @return the migrationHubUri value.
      */
     public String migrationHubUri() {
@@ -160,32 +164,25 @@ public final class AzStackHciFabricModelCustomProperties extends FabricModelCust
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (azStackHciSiteId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property azStackHciSiteId in model AzStackHciFabricModelCustomProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property azStackHciSiteId in model AzStackHciFabricModelCustomProperties"));
         }
         if (cluster() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property cluster in model AzStackHciFabricModelCustomProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property cluster in model AzStackHciFabricModelCustomProperties"));
         } else {
             cluster().validate();
         }
         if (migrationSolutionId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property migrationSolutionId in model"
-                            + " AzStackHciFabricModelCustomProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property migrationSolutionId in model AzStackHciFabricModelCustomProperties"));
         }
     }
 

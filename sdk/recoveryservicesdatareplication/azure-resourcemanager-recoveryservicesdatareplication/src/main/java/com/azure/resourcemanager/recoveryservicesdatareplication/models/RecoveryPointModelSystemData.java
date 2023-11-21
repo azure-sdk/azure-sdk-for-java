@@ -7,49 +7,65 @@ package com.azure.resourcemanager.recoveryservicesdatareplication.models;
 import com.azure.core.annotation.Fluent;
 import java.time.OffsetDateTime;
 
-/** The RecoveryPointModelSystemData model. */
+/**
+ * The RecoveryPointModelSystemData model.
+ */
 @Fluent
 public final class RecoveryPointModelSystemData extends SystemDataModel {
-    /** Creates an instance of RecoveryPointModelSystemData class. */
+    /**
+     * Creates an instance of RecoveryPointModelSystemData class.
+     */
     public RecoveryPointModelSystemData() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public RecoveryPointModelSystemData withCreatedBy(String createdBy) {
         super.withCreatedBy(createdBy);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public RecoveryPointModelSystemData withCreatedByType(String createdByType) {
         super.withCreatedByType(createdByType);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public RecoveryPointModelSystemData withCreatedAt(OffsetDateTime createdAt) {
         super.withCreatedAt(createdAt);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public RecoveryPointModelSystemData withLastModifiedBy(String lastModifiedBy) {
         super.withLastModifiedBy(lastModifiedBy);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public RecoveryPointModelSystemData withLastModifiedByType(String lastModifiedByType) {
         super.withLastModifiedByType(lastModifiedByType);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public RecoveryPointModelSystemData withLastModifiedAt(OffsetDateTime lastModifiedAt) {
         super.withLastModifiedAt(lastModifiedAt);
@@ -58,7 +74,7 @@ public final class RecoveryPointModelSystemData extends SystemDataModel {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

@@ -8,22 +8,30 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Gets or sets the resync state. */
+/**
+ * Gets or sets the resync state.
+ */
 public final class VMwareToAzureMigrateResyncState extends ExpandableStringEnum<VMwareToAzureMigrateResyncState> {
-    /** Static value None for VMwareToAzureMigrateResyncState. */
+    /**
+     * Static value None for VMwareToAzureMigrateResyncState.
+     */
     public static final VMwareToAzureMigrateResyncState NONE = fromString("None");
 
-    /** Static value PreparedForResynchronization for VMwareToAzureMigrateResyncState. */
-    public static final VMwareToAzureMigrateResyncState PREPARED_FOR_RESYNCHRONIZATION =
-        fromString("PreparedForResynchronization");
+    /**
+     * Static value PreparedForResynchronization for VMwareToAzureMigrateResyncState.
+     */
+    public static final VMwareToAzureMigrateResyncState PREPARED_FOR_RESYNCHRONIZATION
+        = fromString("PreparedForResynchronization");
 
-    /** Static value StartedResynchronization for VMwareToAzureMigrateResyncState. */
-    public static final VMwareToAzureMigrateResyncState STARTED_RESYNCHRONIZATION =
-        fromString("StartedResynchronization");
+    /**
+     * Static value StartedResynchronization for VMwareToAzureMigrateResyncState.
+     */
+    public static final VMwareToAzureMigrateResyncState STARTED_RESYNCHRONIZATION
+        = fromString("StartedResynchronization");
 
     /**
      * Creates a new instance of VMwareToAzureMigrateResyncState value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -32,7 +40,7 @@ public final class VMwareToAzureMigrateResyncState extends ExpandableStringEnum<
 
     /**
      * Creates or finds a VMwareToAzureMigrateResyncState from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding VMwareToAzureMigrateResyncState.
      */
@@ -43,7 +51,7 @@ public final class VMwareToAzureMigrateResyncState extends ExpandableStringEnum<
 
     /**
      * Gets known VMwareToAzureMigrateResyncState values.
-     *
+     * 
      * @return known VMwareToAzureMigrateResyncState values.
      */
     public static Collection<VMwareToAzureMigrateResyncState> values() {

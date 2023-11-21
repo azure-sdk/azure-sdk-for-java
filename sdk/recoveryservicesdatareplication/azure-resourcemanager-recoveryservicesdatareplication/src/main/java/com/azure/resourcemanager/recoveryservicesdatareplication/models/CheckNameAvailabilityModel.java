@@ -7,7 +7,9 @@ package com.azure.resourcemanager.recoveryservicesdatareplication.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Check name availability model. */
+/**
+ * Check name availability model.
+ */
 @Fluent
 public final class CheckNameAvailabilityModel {
     /*
@@ -22,13 +24,15 @@ public final class CheckNameAvailabilityModel {
     @JsonProperty(value = "type")
     private String type;
 
-    /** Creates an instance of CheckNameAvailabilityModel class. */
+    /**
+     * Creates an instance of CheckNameAvailabilityModel class.
+     */
     public CheckNameAvailabilityModel() {
     }
 
     /**
      * Get the name property: Gets or sets the resource name.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -37,7 +41,7 @@ public final class CheckNameAvailabilityModel {
 
     /**
      * Set the name property: Gets or sets the resource name.
-     *
+     * 
      * @param name the name value to set.
      * @return the CheckNameAvailabilityModel object itself.
      */
@@ -48,7 +52,7 @@ public final class CheckNameAvailabilityModel {
 
     /**
      * Get the type property: Gets or sets the resource type.
-     *
+     * 
      * @return the type value.
      */
     public String type() {
@@ -57,7 +61,7 @@ public final class CheckNameAvailabilityModel {
 
     /**
      * Set the type property: Gets or sets the resource type.
-     *
+     * 
      * @param type the type value to set.
      * @return the CheckNameAvailabilityModel object itself.
      */
@@ -68,7 +72,7 @@ public final class CheckNameAvailabilityModel {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

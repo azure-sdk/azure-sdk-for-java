@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** Fabric model for update. */
+/**
+ * Fabric model for update.
+ */
 @Fluent
 public final class FabricModelUpdate extends ProxyResource {
     /*
@@ -32,13 +34,15 @@ public final class FabricModelUpdate extends ProxyResource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private FabricModelUpdateSystemData systemData;
 
-    /** Creates an instance of FabricModelUpdate class. */
+    /**
+     * Creates an instance of FabricModelUpdate class.
+     */
     public FabricModelUpdate() {
     }
 
     /**
      * Get the tags property: Gets or sets the resource tags.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -47,7 +51,7 @@ public final class FabricModelUpdate extends ProxyResource {
 
     /**
      * Set the tags property: Gets or sets the resource tags.
-     *
+     * 
      * @param tags the tags value to set.
      * @return the FabricModelUpdate object itself.
      */
@@ -58,7 +62,7 @@ public final class FabricModelUpdate extends ProxyResource {
 
     /**
      * Get the properties property: Fabric model properties.
-     *
+     * 
      * @return the properties value.
      */
     public FabricModelProperties properties() {
@@ -67,7 +71,7 @@ public final class FabricModelUpdate extends ProxyResource {
 
     /**
      * Set the properties property: Fabric model properties.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the FabricModelUpdate object itself.
      */
@@ -78,7 +82,7 @@ public final class FabricModelUpdate extends ProxyResource {
 
     /**
      * Get the systemData property: The systemData property.
-     *
+     * 
      * @return the systemData value.
      */
     public FabricModelUpdateSystemData systemData() {
@@ -87,7 +91,7 @@ public final class FabricModelUpdate extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

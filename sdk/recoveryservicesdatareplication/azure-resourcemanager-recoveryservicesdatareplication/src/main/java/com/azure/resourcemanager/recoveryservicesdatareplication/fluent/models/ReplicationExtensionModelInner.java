@@ -11,7 +11,9 @@ import com.azure.resourcemanager.recoveryservicesdatareplication.models.Replicat
 import com.azure.resourcemanager.recoveryservicesdatareplication.models.ReplicationExtensionModelSystemData;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Replication extension model. */
+/**
+ * Replication extension model.
+ */
 @Fluent
 public final class ReplicationExtensionModelInner extends ProxyResource {
     /*
@@ -26,13 +28,15 @@ public final class ReplicationExtensionModelInner extends ProxyResource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private ReplicationExtensionModelSystemData systemData;
 
-    /** Creates an instance of ReplicationExtensionModelInner class. */
+    /**
+     * Creates an instance of ReplicationExtensionModelInner class.
+     */
     public ReplicationExtensionModelInner() {
     }
 
     /**
      * Get the properties property: Replication extension model properties.
-     *
+     * 
      * @return the properties value.
      */
     public ReplicationExtensionModelProperties properties() {
@@ -41,7 +45,7 @@ public final class ReplicationExtensionModelInner extends ProxyResource {
 
     /**
      * Set the properties property: Replication extension model properties.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the ReplicationExtensionModelInner object itself.
      */
@@ -52,7 +56,7 @@ public final class ReplicationExtensionModelInner extends ProxyResource {
 
     /**
      * Get the systemData property: The systemData property.
-     *
+     * 
      * @return the systemData value.
      */
     public ReplicationExtensionModelSystemData systemData() {
@@ -61,15 +65,13 @@ public final class ReplicationExtensionModelInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (properties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property properties in model ReplicationExtensionModelInner"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property properties in model ReplicationExtensionModelInner"));
         } else {
             properties().validate();
         }

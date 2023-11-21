@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** Protected item job properties. */
+/**
+ * Protected item job properties.
+ */
 @Immutable
 public class ProtectedItemJobProperties {
     /*
@@ -53,13 +55,15 @@ public class ProtectedItemJobProperties {
     @JsonProperty(value = "endTime", access = JsonProperty.Access.WRITE_ONLY)
     private OffsetDateTime endTime;
 
-    /** Creates an instance of ProtectedItemJobProperties class. */
+    /**
+     * Creates an instance of ProtectedItemJobProperties class.
+     */
     public ProtectedItemJobProperties() {
     }
 
     /**
      * Get the scenarioName property: Gets or sets protection scenario name.
-     *
+     * 
      * @return the scenarioName value.
      */
     public String scenarioName() {
@@ -68,7 +72,7 @@ public class ProtectedItemJobProperties {
 
     /**
      * Get the id property: Gets or sets workflow Id.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -77,7 +81,7 @@ public class ProtectedItemJobProperties {
 
     /**
      * Get the name property: Gets or sets workflow name.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -86,7 +90,7 @@ public class ProtectedItemJobProperties {
 
     /**
      * Get the displayName property: Gets or sets the workflow friendly display name.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -95,7 +99,7 @@ public class ProtectedItemJobProperties {
 
     /**
      * Get the state property: Gets or sets workflow state.
-     *
+     * 
      * @return the state value.
      */
     public String state() {
@@ -104,7 +108,7 @@ public class ProtectedItemJobProperties {
 
     /**
      * Get the startTime property: Gets or sets start time of the workflow.
-     *
+     * 
      * @return the startTime value.
      */
     public OffsetDateTime startTime() {
@@ -113,7 +117,7 @@ public class ProtectedItemJobProperties {
 
     /**
      * Get the endTime property: Gets or sets end time of the workflow.
-     *
+     * 
      * @return the endTime value.
      */
     public OffsetDateTime endTime() {
@@ -122,7 +126,7 @@ public class ProtectedItemJobProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

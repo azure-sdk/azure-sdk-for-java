@@ -12,7 +12,9 @@ import com.azure.resourcemanager.recoveryservicesdatareplication.models.FabricMo
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** Fabric model. */
+/**
+ * Fabric model.
+ */
 @Fluent
 public final class FabricModelInner extends Resource {
     /*
@@ -27,13 +29,15 @@ public final class FabricModelInner extends Resource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private FabricModelSystemData systemData;
 
-    /** Creates an instance of FabricModelInner class. */
+    /**
+     * Creates an instance of FabricModelInner class.
+     */
     public FabricModelInner() {
     }
 
     /**
      * Get the properties property: Fabric model properties.
-     *
+     * 
      * @return the properties value.
      */
     public FabricModelProperties properties() {
@@ -42,7 +46,7 @@ public final class FabricModelInner extends Resource {
 
     /**
      * Set the properties property: Fabric model properties.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the FabricModelInner object itself.
      */
@@ -53,21 +57,25 @@ public final class FabricModelInner extends Resource {
 
     /**
      * Get the systemData property: The systemData property.
-     *
+     * 
      * @return the systemData value.
      */
     public FabricModelSystemData systemData() {
         return this.systemData;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public FabricModelInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public FabricModelInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -76,14 +84,13 @@ public final class FabricModelInner extends Resource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (properties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property properties in model FabricModelInner"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property properties in model FabricModelInner"));
         } else {
             properties().validate();
         }

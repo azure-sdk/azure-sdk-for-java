@@ -6,16 +6,20 @@ package com.azure.resourcemanager.recoveryservicesdatareplication.models;
 
 import com.azure.core.annotation.Immutable;
 
-/** The ProtectedItemModelPropertiesLastTestFailoverJob model. */
+/**
+ * The ProtectedItemModelPropertiesLastTestFailoverJob model.
+ */
 @Immutable
 public final class ProtectedItemModelPropertiesLastTestFailoverJob extends ProtectedItemJobProperties {
-    /** Creates an instance of ProtectedItemModelPropertiesLastTestFailoverJob class. */
+    /**
+     * Creates an instance of ProtectedItemModelPropertiesLastTestFailoverJob class.
+     */
     public ProtectedItemModelPropertiesLastTestFailoverJob() {
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

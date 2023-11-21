@@ -9,7 +9,9 @@ import com.azure.resourcemanager.recoveryservicesdatareplication.fluent.models.R
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Replication extension model collection. */
+/**
+ * Replication extension model collection.
+ */
 @Fluent
 public final class ReplicationExtensionModelCollection {
     /*
@@ -24,13 +26,15 @@ public final class ReplicationExtensionModelCollection {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of ReplicationExtensionModelCollection class. */
+    /**
+     * Creates an instance of ReplicationExtensionModelCollection class.
+     */
     public ReplicationExtensionModelCollection() {
     }
 
     /**
      * Get the value property: Gets or sets the list of replication extensions.
-     *
+     * 
      * @return the value value.
      */
     public List<ReplicationExtensionModelInner> value() {
@@ -39,7 +43,7 @@ public final class ReplicationExtensionModelCollection {
 
     /**
      * Set the value property: Gets or sets the list of replication extensions.
-     *
+     * 
      * @param value the value value to set.
      * @return the ReplicationExtensionModelCollection object itself.
      */
@@ -50,7 +54,7 @@ public final class ReplicationExtensionModelCollection {
 
     /**
      * Get the nextLink property: Gets or sets the value of next link.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class ReplicationExtensionModelCollection {
 
     /**
      * Set the nextLink property: Gets or sets the value of next link.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the ReplicationExtensionModelCollection object itself.
      */
@@ -70,7 +74,7 @@ public final class ReplicationExtensionModelCollection {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Policy model custom properties. */
+/**
+ * Policy model custom properties.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
@@ -18,17 +20,18 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonTypeName("PolicyModelCustomProperties")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "HyperVToAzStackHCI", value = HyperVToAzStackHciPolicyModelCustomProperties.class),
-    @JsonSubTypes.Type(name = "VMwareToAzStackHCI", value = VMwareToAzStackHciPolicyModelCustomProperties.class)
-})
+    @JsonSubTypes.Type(name = "VMwareToAzStackHCI", value = VMwareToAzStackHciPolicyModelCustomProperties.class) })
 @Immutable
 public class PolicyModelCustomProperties {
-    /** Creates an instance of PolicyModelCustomProperties class. */
+    /**
+     * Creates an instance of PolicyModelCustomProperties class.
+     */
     public PolicyModelCustomProperties() {
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

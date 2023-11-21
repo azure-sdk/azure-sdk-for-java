@@ -7,7 +7,9 @@ package com.azure.resourcemanager.recoveryservicesdatareplication.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Check name availability response model. */
+/**
+ * Check name availability response model.
+ */
 @Fluent
 public final class CheckNameAvailabilityResponseModelInner {
     /*
@@ -28,13 +30,15 @@ public final class CheckNameAvailabilityResponseModelInner {
     @JsonProperty(value = "message")
     private String message;
 
-    /** Creates an instance of CheckNameAvailabilityResponseModelInner class. */
+    /**
+     * Creates an instance of CheckNameAvailabilityResponseModelInner class.
+     */
     public CheckNameAvailabilityResponseModelInner() {
     }
 
     /**
      * Get the nameAvailable property: Gets or sets a value indicating whether resource name is available or not.
-     *
+     * 
      * @return the nameAvailable value.
      */
     public Boolean nameAvailable() {
@@ -43,7 +47,7 @@ public final class CheckNameAvailabilityResponseModelInner {
 
     /**
      * Set the nameAvailable property: Gets or sets a value indicating whether resource name is available or not.
-     *
+     * 
      * @param nameAvailable the nameAvailable value to set.
      * @return the CheckNameAvailabilityResponseModelInner object itself.
      */
@@ -54,7 +58,7 @@ public final class CheckNameAvailabilityResponseModelInner {
 
     /**
      * Get the reason property: Gets or sets the reason for resource name unavailability.
-     *
+     * 
      * @return the reason value.
      */
     public String reason() {
@@ -63,7 +67,7 @@ public final class CheckNameAvailabilityResponseModelInner {
 
     /**
      * Set the reason property: Gets or sets the reason for resource name unavailability.
-     *
+     * 
      * @param reason the reason value to set.
      * @return the CheckNameAvailabilityResponseModelInner object itself.
      */
@@ -74,7 +78,7 @@ public final class CheckNameAvailabilityResponseModelInner {
 
     /**
      * Get the message property: Gets or sets the message for resource name unavailability.
-     *
+     * 
      * @return the message value.
      */
     public String message() {
@@ -83,7 +87,7 @@ public final class CheckNameAvailabilityResponseModelInner {
 
     /**
      * Set the message property: Gets or sets the message for resource name unavailability.
-     *
+     * 
      * @param message the message value to set.
      * @return the CheckNameAvailabilityResponseModelInner object itself.
      */
@@ -94,7 +98,7 @@ public final class CheckNameAvailabilityResponseModelInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

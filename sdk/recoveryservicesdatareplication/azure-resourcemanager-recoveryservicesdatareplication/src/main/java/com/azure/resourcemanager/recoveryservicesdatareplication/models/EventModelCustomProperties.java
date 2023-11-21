@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Event model custom properties. */
+/**
+ * Event model custom properties.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
@@ -17,17 +19,18 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     defaultImpl = EventModelCustomProperties.class)
 @JsonTypeName("EventModelCustomProperties")
 @JsonSubTypes({
-    @JsonSubTypes.Type(name = "HyperVToAzStackHCI", value = HyperVToAzStackHciEventModelCustomProperties.class)
-})
+    @JsonSubTypes.Type(name = "HyperVToAzStackHCI", value = HyperVToAzStackHciEventModelCustomProperties.class) })
 @Immutable
 public class EventModelCustomProperties {
-    /** Creates an instance of EventModelCustomProperties class. */
+    /**
+     * Creates an instance of EventModelCustomProperties class.
+     */
     public EventModelCustomProperties() {
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

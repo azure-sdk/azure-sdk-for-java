@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** Workflow model properties. */
+/**
+ * Workflow model properties.
+ */
 @Fluent
 public final class WorkflowModelProperties {
     /*
@@ -115,13 +117,15 @@ public final class WorkflowModelProperties {
     @JsonProperty(value = "customProperties", required = true)
     private WorkflowModelCustomProperties customProperties;
 
-    /** Creates an instance of WorkflowModelProperties class. */
+    /**
+     * Creates an instance of WorkflowModelProperties class.
+     */
     public WorkflowModelProperties() {
     }
 
     /**
      * Get the displayName property: Gets or sets the friendly display name.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -130,7 +134,7 @@ public final class WorkflowModelProperties {
 
     /**
      * Get the state property: Gets or sets the workflow state.
-     *
+     * 
      * @return the state value.
      */
     public WorkflowState state() {
@@ -139,7 +143,7 @@ public final class WorkflowModelProperties {
 
     /**
      * Get the startTime property: Gets or sets the start time.
-     *
+     * 
      * @return the startTime value.
      */
     public OffsetDateTime startTime() {
@@ -148,7 +152,7 @@ public final class WorkflowModelProperties {
 
     /**
      * Get the endTime property: Gets or sets the end time.
-     *
+     * 
      * @return the endTime value.
      */
     public OffsetDateTime endTime() {
@@ -157,7 +161,7 @@ public final class WorkflowModelProperties {
 
     /**
      * Get the objectId property: Gets or sets the affected object Id.
-     *
+     * 
      * @return the objectId value.
      */
     public String objectId() {
@@ -166,7 +170,7 @@ public final class WorkflowModelProperties {
 
     /**
      * Get the objectName property: Gets or sets the affected object name.
-     *
+     * 
      * @return the objectName value.
      */
     public String objectName() {
@@ -175,7 +179,7 @@ public final class WorkflowModelProperties {
 
     /**
      * Get the objectInternalId property: Gets or sets the affected object internal Id.
-     *
+     * 
      * @return the objectInternalId value.
      */
     public String objectInternalId() {
@@ -184,7 +188,7 @@ public final class WorkflowModelProperties {
 
     /**
      * Get the objectInternalName property: Gets or sets the affected object internal name.
-     *
+     * 
      * @return the objectInternalName value.
      */
     public String objectInternalName() {
@@ -193,7 +197,7 @@ public final class WorkflowModelProperties {
 
     /**
      * Get the objectType property: Gets or sets the object type.
-     *
+     * 
      * @return the objectType value.
      */
     public WorkflowObjectType objectType() {
@@ -202,7 +206,7 @@ public final class WorkflowModelProperties {
 
     /**
      * Get the replicationProviderId property: Gets or sets the replication provider.
-     *
+     * 
      * @return the replicationProviderId value.
      */
     public String replicationProviderId() {
@@ -211,7 +215,7 @@ public final class WorkflowModelProperties {
 
     /**
      * Get the sourceFabricProviderId property: Gets or sets the source fabric provider.
-     *
+     * 
      * @return the sourceFabricProviderId value.
      */
     public String sourceFabricProviderId() {
@@ -220,7 +224,7 @@ public final class WorkflowModelProperties {
 
     /**
      * Get the targetFabricProviderId property: Gets or sets the target fabric provider.
-     *
+     * 
      * @return the targetFabricProviderId value.
      */
     public String targetFabricProviderId() {
@@ -229,7 +233,7 @@ public final class WorkflowModelProperties {
 
     /**
      * Get the allowedActions property: Gets or sets the list of allowed actions on the workflow.
-     *
+     * 
      * @return the allowedActions value.
      */
     public List<String> allowedActions() {
@@ -238,7 +242,7 @@ public final class WorkflowModelProperties {
 
     /**
      * Get the activityId property: Gets or sets the workflow activity id.
-     *
+     * 
      * @return the activityId value.
      */
     public String activityId() {
@@ -247,7 +251,7 @@ public final class WorkflowModelProperties {
 
     /**
      * Get the tasks property: Gets or sets the list of tasks.
-     *
+     * 
      * @return the tasks value.
      */
     public List<TaskModel> tasks() {
@@ -256,7 +260,7 @@ public final class WorkflowModelProperties {
 
     /**
      * Get the errors property: Gets or sets the list of errors.
-     *
+     * 
      * @return the errors value.
      */
     public List<ErrorModel> errors() {
@@ -265,7 +269,7 @@ public final class WorkflowModelProperties {
 
     /**
      * Get the customProperties property: Workflow model custom properties.
-     *
+     * 
      * @return the customProperties value.
      */
     public WorkflowModelCustomProperties customProperties() {
@@ -274,7 +278,7 @@ public final class WorkflowModelProperties {
 
     /**
      * Set the customProperties property: Workflow model custom properties.
-     *
+     * 
      * @param customProperties the customProperties value to set.
      * @return the WorkflowModelProperties object itself.
      */
@@ -285,7 +289,7 @@ public final class WorkflowModelProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
@@ -296,10 +300,8 @@ public final class WorkflowModelProperties {
             errors().forEach(e -> e.validate());
         }
         if (customProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property customProperties in model WorkflowModelProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property customProperties in model WorkflowModelProperties"));
         } else {
             customProperties().validate();
         }

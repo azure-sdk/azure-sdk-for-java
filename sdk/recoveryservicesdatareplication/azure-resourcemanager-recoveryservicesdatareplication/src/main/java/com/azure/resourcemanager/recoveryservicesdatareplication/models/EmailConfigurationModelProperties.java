@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Email configuration model properties. */
+/**
+ * Email configuration model properties.
+ */
 @Fluent
 public final class EmailConfigurationModelProperties {
     /*
@@ -29,14 +31,16 @@ public final class EmailConfigurationModelProperties {
     @JsonProperty(value = "locale")
     private String locale;
 
-    /** Creates an instance of EmailConfigurationModelProperties class. */
+    /**
+     * Creates an instance of EmailConfigurationModelProperties class.
+     */
     public EmailConfigurationModelProperties() {
     }
 
     /**
      * Get the sendToOwners property: Gets or sets a value indicating whether to send email to subscription
      * administrator.
-     *
+     * 
      * @return the sendToOwners value.
      */
     public boolean sendToOwners() {
@@ -46,7 +50,7 @@ public final class EmailConfigurationModelProperties {
     /**
      * Set the sendToOwners property: Gets or sets a value indicating whether to send email to subscription
      * administrator.
-     *
+     * 
      * @param sendToOwners the sendToOwners value to set.
      * @return the EmailConfigurationModelProperties object itself.
      */
@@ -57,7 +61,7 @@ public final class EmailConfigurationModelProperties {
 
     /**
      * Get the customEmailAddresses property: Gets or sets the custom email address for sending emails.
-     *
+     * 
      * @return the customEmailAddresses value.
      */
     public List<String> customEmailAddresses() {
@@ -66,7 +70,7 @@ public final class EmailConfigurationModelProperties {
 
     /**
      * Set the customEmailAddresses property: Gets or sets the custom email address for sending emails.
-     *
+     * 
      * @param customEmailAddresses the customEmailAddresses value to set.
      * @return the EmailConfigurationModelProperties object itself.
      */
@@ -77,7 +81,7 @@ public final class EmailConfigurationModelProperties {
 
     /**
      * Get the locale property: Gets or sets the locale for the email notification.
-     *
+     * 
      * @return the locale value.
      */
     public String locale() {
@@ -86,7 +90,7 @@ public final class EmailConfigurationModelProperties {
 
     /**
      * Set the locale property: Gets or sets the locale for the email notification.
-     *
+     * 
      * @param locale the locale value to set.
      * @return the EmailConfigurationModelProperties object itself.
      */
@@ -97,7 +101,7 @@ public final class EmailConfigurationModelProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

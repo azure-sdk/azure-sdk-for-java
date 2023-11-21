@@ -6,16 +6,20 @@ package com.azure.resourcemanager.recoveryservicesdatareplication.models;
 
 import com.azure.core.annotation.Immutable;
 
-/** The LastFailedEnableProtectionJob model. */
+/**
+ * The LastFailedEnableProtectionJob model.
+ */
 @Immutable
 public final class LastFailedEnableProtectionJob extends ProtectedItemJobProperties {
-    /** Creates an instance of LastFailedEnableProtectionJob class. */
+    /**
+     * Creates an instance of LastFailedEnableProtectionJob class.
+     */
     public LastFailedEnableProtectionJob() {
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

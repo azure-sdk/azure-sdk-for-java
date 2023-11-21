@@ -7,7 +7,9 @@ package com.azure.resourcemanager.recoveryservicesdatareplication.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Protected item dynamic memory config. */
+/**
+ * Protected item dynamic memory config.
+ */
 @Fluent
 public final class ProtectedItemDynamicMemoryConfig {
     /*
@@ -28,13 +30,15 @@ public final class ProtectedItemDynamicMemoryConfig {
     @JsonProperty(value = "targetMemoryBufferPercentage", required = true)
     private int targetMemoryBufferPercentage;
 
-    /** Creates an instance of ProtectedItemDynamicMemoryConfig class. */
+    /**
+     * Creates an instance of ProtectedItemDynamicMemoryConfig class.
+     */
     public ProtectedItemDynamicMemoryConfig() {
     }
 
     /**
      * Get the maximumMemoryInMegaBytes property: Gets or sets maximum memory in MB.
-     *
+     * 
      * @return the maximumMemoryInMegaBytes value.
      */
     public long maximumMemoryInMegaBytes() {
@@ -43,7 +47,7 @@ public final class ProtectedItemDynamicMemoryConfig {
 
     /**
      * Set the maximumMemoryInMegaBytes property: Gets or sets maximum memory in MB.
-     *
+     * 
      * @param maximumMemoryInMegaBytes the maximumMemoryInMegaBytes value to set.
      * @return the ProtectedItemDynamicMemoryConfig object itself.
      */
@@ -54,7 +58,7 @@ public final class ProtectedItemDynamicMemoryConfig {
 
     /**
      * Get the minimumMemoryInMegaBytes property: Gets or sets minimum memory in MB.
-     *
+     * 
      * @return the minimumMemoryInMegaBytes value.
      */
     public long minimumMemoryInMegaBytes() {
@@ -63,7 +67,7 @@ public final class ProtectedItemDynamicMemoryConfig {
 
     /**
      * Set the minimumMemoryInMegaBytes property: Gets or sets minimum memory in MB.
-     *
+     * 
      * @param minimumMemoryInMegaBytes the minimumMemoryInMegaBytes value to set.
      * @return the ProtectedItemDynamicMemoryConfig object itself.
      */
@@ -74,7 +78,7 @@ public final class ProtectedItemDynamicMemoryConfig {
 
     /**
      * Get the targetMemoryBufferPercentage property: Gets or sets target memory buffer in %.
-     *
+     * 
      * @return the targetMemoryBufferPercentage value.
      */
     public int targetMemoryBufferPercentage() {
@@ -83,7 +87,7 @@ public final class ProtectedItemDynamicMemoryConfig {
 
     /**
      * Set the targetMemoryBufferPercentage property: Gets or sets target memory buffer in %.
-     *
+     * 
      * @param targetMemoryBufferPercentage the targetMemoryBufferPercentage value to set.
      * @return the ProtectedItemDynamicMemoryConfig object itself.
      */
@@ -94,7 +98,7 @@ public final class ProtectedItemDynamicMemoryConfig {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

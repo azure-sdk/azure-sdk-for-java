@@ -10,7 +10,9 @@ import com.azure.resourcemanager.recoveryservicesdatareplication.models.Recovery
 import com.azure.resourcemanager.recoveryservicesdatareplication.models.RecoveryPointModelSystemData;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Recovery point model. */
+/**
+ * Recovery point model.
+ */
 @Fluent
 public final class RecoveryPointModelInner {
     /*
@@ -43,13 +45,15 @@ public final class RecoveryPointModelInner {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private RecoveryPointModelSystemData systemData;
 
-    /** Creates an instance of RecoveryPointModelInner class. */
+    /**
+     * Creates an instance of RecoveryPointModelInner class.
+     */
     public RecoveryPointModelInner() {
     }
 
     /**
      * Get the properties property: Recovery point model properties.
-     *
+     * 
      * @return the properties value.
      */
     public RecoveryPointModelProperties properties() {
@@ -58,7 +62,7 @@ public final class RecoveryPointModelInner {
 
     /**
      * Set the properties property: Recovery point model properties.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the RecoveryPointModelInner object itself.
      */
@@ -69,7 +73,7 @@ public final class RecoveryPointModelInner {
 
     /**
      * Get the id property: Gets or sets the Id of the resource.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -78,7 +82,7 @@ public final class RecoveryPointModelInner {
 
     /**
      * Get the name property: Gets or sets the name of the resource.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -87,7 +91,7 @@ public final class RecoveryPointModelInner {
 
     /**
      * Get the type property: Gets or sets the type of the resource.
-     *
+     * 
      * @return the type value.
      */
     public String type() {
@@ -96,7 +100,7 @@ public final class RecoveryPointModelInner {
 
     /**
      * Get the systemData property: The systemData property.
-     *
+     * 
      * @return the systemData value.
      */
     public RecoveryPointModelSystemData systemData() {
@@ -105,15 +109,13 @@ public final class RecoveryPointModelInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (properties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property properties in model RecoveryPointModelInner"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property properties in model RecoveryPointModelInner"));
         } else {
             properties().validate();
         }

@@ -11,7 +11,9 @@ import com.azure.resourcemanager.recoveryservicesdatareplication.models.VaultMod
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** Vault model. */
+/**
+ * Vault model.
+ */
 @Fluent
 public final class VaultModelInner extends Resource {
     /*
@@ -26,13 +28,15 @@ public final class VaultModelInner extends Resource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private VaultModelSystemData systemData;
 
-    /** Creates an instance of VaultModelInner class. */
+    /**
+     * Creates an instance of VaultModelInner class.
+     */
     public VaultModelInner() {
     }
 
     /**
      * Get the properties property: Vault properties.
-     *
+     * 
      * @return the properties value.
      */
     public VaultModelProperties properties() {
@@ -41,7 +45,7 @@ public final class VaultModelInner extends Resource {
 
     /**
      * Set the properties property: Vault properties.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the VaultModelInner object itself.
      */
@@ -52,21 +56,25 @@ public final class VaultModelInner extends Resource {
 
     /**
      * Get the systemData property: The systemData property.
-     *
+     * 
      * @return the systemData value.
      */
     public VaultModelSystemData systemData() {
         return this.systemData;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public VaultModelInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public VaultModelInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -75,7 +83,7 @@ public final class VaultModelInner extends Resource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

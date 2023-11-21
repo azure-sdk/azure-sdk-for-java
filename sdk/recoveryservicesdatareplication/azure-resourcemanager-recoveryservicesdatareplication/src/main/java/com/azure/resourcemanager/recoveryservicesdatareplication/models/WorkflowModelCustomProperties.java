@@ -12,7 +12,9 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.Map;
 
-/** Workflow model custom properties. */
+/**
+ * Workflow model custom properties.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
@@ -24,8 +26,7 @@ import java.util.Map;
     @JsonSubTypes.Type(
         name = "TestFailoverCleanupWorkflowDetails",
         value = TestFailoverCleanupWorkflowModelCustomProperties.class),
-    @JsonSubTypes.Type(name = "TestFailoverWorkflowDetails", value = TestFailoverWorkflowModelCustomProperties.class)
-})
+    @JsonSubTypes.Type(name = "TestFailoverWorkflowDetails", value = TestFailoverWorkflowModelCustomProperties.class) })
 @Immutable
 public class WorkflowModelCustomProperties {
     /*
@@ -35,13 +36,15 @@ public class WorkflowModelCustomProperties {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> affectedObjectDetails;
 
-    /** Creates an instance of WorkflowModelCustomProperties class. */
+    /**
+     * Creates an instance of WorkflowModelCustomProperties class.
+     */
     public WorkflowModelCustomProperties() {
     }
 
     /**
      * Get the affectedObjectDetails property: Gets or sets any custom properties of the affected object.
-     *
+     * 
      * @return the affectedObjectDetails value.
      */
     public Map<String, String> affectedObjectDetails() {
@@ -50,7 +53,7 @@ public class WorkflowModelCustomProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

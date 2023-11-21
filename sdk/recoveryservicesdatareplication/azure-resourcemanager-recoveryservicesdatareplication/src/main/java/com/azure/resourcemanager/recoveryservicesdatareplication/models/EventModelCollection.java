@@ -9,7 +9,9 @@ import com.azure.resourcemanager.recoveryservicesdatareplication.fluent.models.E
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Event model collection. */
+/**
+ * Event model collection.
+ */
 @Fluent
 public final class EventModelCollection {
     /*
@@ -24,13 +26,15 @@ public final class EventModelCollection {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of EventModelCollection class. */
+    /**
+     * Creates an instance of EventModelCollection class.
+     */
     public EventModelCollection() {
     }
 
     /**
      * Get the value property: Gets or sets the list of events.
-     *
+     * 
      * @return the value value.
      */
     public List<EventModelInner> value() {
@@ -39,7 +43,7 @@ public final class EventModelCollection {
 
     /**
      * Set the value property: Gets or sets the list of events.
-     *
+     * 
      * @param value the value value to set.
      * @return the EventModelCollection object itself.
      */
@@ -50,7 +54,7 @@ public final class EventModelCollection {
 
     /**
      * Get the nextLink property: Gets or sets the value of next link.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class EventModelCollection {
 
     /**
      * Set the nextLink property: Gets or sets the value of next link.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the EventModelCollection object itself.
      */
@@ -70,7 +74,7 @@ public final class EventModelCollection {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

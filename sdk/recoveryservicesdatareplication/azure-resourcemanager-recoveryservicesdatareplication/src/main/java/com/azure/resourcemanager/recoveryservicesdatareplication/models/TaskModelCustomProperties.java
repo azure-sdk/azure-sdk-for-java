@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Task model custom properties. */
+/**
+ * Task model custom properties.
+ */
 @Fluent
 public final class TaskModelCustomProperties {
     /*
@@ -17,13 +19,15 @@ public final class TaskModelCustomProperties {
     @JsonProperty(value = "instanceType", required = true)
     private String instanceType;
 
-    /** Creates an instance of TaskModelCustomProperties class. */
+    /**
+     * Creates an instance of TaskModelCustomProperties class.
+     */
     public TaskModelCustomProperties() {
     }
 
     /**
      * Get the instanceType property: Gets or sets the instance type.
-     *
+     * 
      * @return the instanceType value.
      */
     public String instanceType() {
@@ -32,7 +36,7 @@ public final class TaskModelCustomProperties {
 
     /**
      * Set the instanceType property: Gets or sets the instance type.
-     *
+     * 
      * @param instanceType the instanceType value to set.
      * @return the TaskModelCustomProperties object itself.
      */
@@ -43,15 +47,13 @@ public final class TaskModelCustomProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (instanceType() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property instanceType in model TaskModelCustomProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property instanceType in model TaskModelCustomProperties"));
         }
     }
 

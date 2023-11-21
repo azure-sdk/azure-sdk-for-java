@@ -10,7 +10,9 @@ import com.azure.resourcemanager.recoveryservicesdatareplication.models.EventMod
 import com.azure.resourcemanager.recoveryservicesdatareplication.models.EventModelSystemData;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Event model. */
+/**
+ * Event model.
+ */
 @Fluent
 public final class EventModelInner {
     /*
@@ -43,13 +45,15 @@ public final class EventModelInner {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private EventModelSystemData systemData;
 
-    /** Creates an instance of EventModelInner class. */
+    /**
+     * Creates an instance of EventModelInner class.
+     */
     public EventModelInner() {
     }
 
     /**
      * Get the properties property: Event model properties.
-     *
+     * 
      * @return the properties value.
      */
     public EventModelProperties properties() {
@@ -58,7 +62,7 @@ public final class EventModelInner {
 
     /**
      * Set the properties property: Event model properties.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the EventModelInner object itself.
      */
@@ -69,7 +73,7 @@ public final class EventModelInner {
 
     /**
      * Get the id property: Gets or sets the Id of the resource.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -78,7 +82,7 @@ public final class EventModelInner {
 
     /**
      * Get the name property: Gets or sets the name of the resource.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -87,7 +91,7 @@ public final class EventModelInner {
 
     /**
      * Get the type property: Gets or sets the type of the resource.
-     *
+     * 
      * @return the type value.
      */
     public String type() {
@@ -96,7 +100,7 @@ public final class EventModelInner {
 
     /**
      * Get the systemData property: The systemData property.
-     *
+     * 
      * @return the systemData value.
      */
     public EventModelSystemData systemData() {
@@ -105,14 +109,13 @@ public final class EventModelInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (properties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property properties in model EventModelInner"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property properties in model EventModelInner"));
         } else {
             properties().validate();
         }

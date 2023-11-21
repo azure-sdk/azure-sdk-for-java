@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** VMware to AzStackHCI planned failover model custom properties. */
+/**
+ * VMware to AzStackHCI planned failover model custom properties.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
 @JsonTypeName("VMwareToAzStackHCI")
 @Fluent
@@ -20,13 +22,15 @@ public final class VMwareToAzStackHciPlannedFailoverCustomProps extends PlannedF
     @JsonProperty(value = "shutdownSourceVM", required = true)
     private boolean shutdownSourceVM;
 
-    /** Creates an instance of VMwareToAzStackHciPlannedFailoverCustomProps class. */
+    /**
+     * Creates an instance of VMwareToAzStackHciPlannedFailoverCustomProps class.
+     */
     public VMwareToAzStackHciPlannedFailoverCustomProps() {
     }
 
     /**
      * Get the shutdownSourceVM property: Gets or sets a value indicating whether VM needs to be shut down.
-     *
+     * 
      * @return the shutdownSourceVM value.
      */
     public boolean shutdownSourceVM() {
@@ -35,7 +39,7 @@ public final class VMwareToAzStackHciPlannedFailoverCustomProps extends PlannedF
 
     /**
      * Set the shutdownSourceVM property: Gets or sets a value indicating whether VM needs to be shut down.
-     *
+     * 
      * @param shutdownSourceVM the shutdownSourceVM value to set.
      * @return the VMwareToAzStackHciPlannedFailoverCustomProps object itself.
      */
@@ -46,7 +50,7 @@ public final class VMwareToAzStackHciPlannedFailoverCustomProps extends PlannedF
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** Event model properties. */
+/**
+ * Event model properties.
+ */
 @Fluent
 public final class EventModelProperties {
     /*
@@ -73,13 +75,15 @@ public final class EventModelProperties {
     @JsonProperty(value = "customProperties", required = true)
     private EventModelCustomProperties customProperties;
 
-    /** Creates an instance of EventModelProperties class. */
+    /**
+     * Creates an instance of EventModelProperties class.
+     */
     public EventModelProperties() {
     }
 
     /**
      * Get the resourceType property: Gets or sets the resource type.
-     *
+     * 
      * @return the resourceType value.
      */
     public String resourceType() {
@@ -88,7 +92,7 @@ public final class EventModelProperties {
 
     /**
      * Get the resourceName property: Gets or sets the resource name.
-     *
+     * 
      * @return the resourceName value.
      */
     public String resourceName() {
@@ -97,7 +101,7 @@ public final class EventModelProperties {
 
     /**
      * Get the eventType property: Gets or sets the event type.
-     *
+     * 
      * @return the eventType value.
      */
     public String eventType() {
@@ -106,7 +110,7 @@ public final class EventModelProperties {
 
     /**
      * Get the eventName property: Gets or sets the event name.
-     *
+     * 
      * @return the eventName value.
      */
     public String eventName() {
@@ -115,7 +119,7 @@ public final class EventModelProperties {
 
     /**
      * Get the timeOfOccurrence property: Gets or sets the time at which the event occurred at source.
-     *
+     * 
      * @return the timeOfOccurrence value.
      */
     public OffsetDateTime timeOfOccurrence() {
@@ -124,7 +128,7 @@ public final class EventModelProperties {
 
     /**
      * Get the severity property: Gets or sets the event severity.
-     *
+     * 
      * @return the severity value.
      */
     public String severity() {
@@ -133,7 +137,7 @@ public final class EventModelProperties {
 
     /**
      * Get the description property: Gets or sets the event description.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -142,7 +146,7 @@ public final class EventModelProperties {
 
     /**
      * Get the correlationId property: Gets or sets the event correlation Id.
-     *
+     * 
      * @return the correlationId value.
      */
     public String correlationId() {
@@ -151,7 +155,7 @@ public final class EventModelProperties {
 
     /**
      * Get the healthErrors property: Gets or sets the errors associated with this event.
-     *
+     * 
      * @return the healthErrors value.
      */
     public List<HealthErrorModel> healthErrors() {
@@ -160,7 +164,7 @@ public final class EventModelProperties {
 
     /**
      * Get the customProperties property: Event model custom properties.
-     *
+     * 
      * @return the customProperties value.
      */
     public EventModelCustomProperties customProperties() {
@@ -169,7 +173,7 @@ public final class EventModelProperties {
 
     /**
      * Set the customProperties property: Event model custom properties.
-     *
+     * 
      * @param customProperties the customProperties value to set.
      * @return the EventModelProperties object itself.
      */
@@ -180,7 +184,7 @@ public final class EventModelProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
@@ -188,10 +192,8 @@ public final class EventModelProperties {
             healthErrors().forEach(e -> e.validate());
         }
         if (customProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property customProperties in model EventModelProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property customProperties in model EventModelProperties"));
         } else {
             customProperties().validate();
         }

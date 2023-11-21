@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
 
-/** Failover workflow model custom properties. */
+/**
+ * Failover workflow model custom properties.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
 @JsonTypeName("FailoverWorkflowDetails")
 @Immutable
@@ -21,13 +23,15 @@ public final class FailoverWorkflowModelCustomProperties extends WorkflowModelCu
     @JsonProperty(value = "protectedItemDetails", access = JsonProperty.Access.WRITE_ONLY)
     private List<FailoverProtectedItemProperties> protectedItemDetails;
 
-    /** Creates an instance of FailoverWorkflowModelCustomProperties class. */
+    /**
+     * Creates an instance of FailoverWorkflowModelCustomProperties class.
+     */
     public FailoverWorkflowModelCustomProperties() {
     }
 
     /**
      * Get the protectedItemDetails property: Gets or sets the failed over protected item details.
-     *
+     * 
      * @return the protectedItemDetails value.
      */
     public List<FailoverProtectedItemProperties> protectedItemDetails() {
@@ -36,7 +40,7 @@ public final class FailoverWorkflowModelCustomProperties extends WorkflowModelCu
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

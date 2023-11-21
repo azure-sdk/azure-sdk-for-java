@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Identity model. */
+/**
+ * Identity model.
+ */
 @Fluent
 public final class IdentityModel {
     /*
@@ -42,13 +44,15 @@ public final class IdentityModel {
     @JsonProperty(value = "aadAuthority", required = true)
     private String aadAuthority;
 
-    /** Creates an instance of IdentityModel class. */
+    /**
+     * Creates an instance of IdentityModel class.
+     */
     public IdentityModel() {
     }
 
     /**
      * Get the tenantId property: Gets or sets the tenant Id of the SPN with which Dra communicates to service.
-     *
+     * 
      * @return the tenantId value.
      */
     public String tenantId() {
@@ -57,7 +61,7 @@ public final class IdentityModel {
 
     /**
      * Set the tenantId property: Gets or sets the tenant Id of the SPN with which Dra communicates to service.
-     *
+     * 
      * @param tenantId the tenantId value to set.
      * @return the IdentityModel object itself.
      */
@@ -69,7 +73,7 @@ public final class IdentityModel {
     /**
      * Get the applicationId property: Gets or sets the client/application Id of the SPN with which Dra communicates to
      * service.
-     *
+     * 
      * @return the applicationId value.
      */
     public String applicationId() {
@@ -79,7 +83,7 @@ public final class IdentityModel {
     /**
      * Set the applicationId property: Gets or sets the client/application Id of the SPN with which Dra communicates to
      * service.
-     *
+     * 
      * @param applicationId the applicationId value to set.
      * @return the IdentityModel object itself.
      */
@@ -90,7 +94,7 @@ public final class IdentityModel {
 
     /**
      * Get the objectId property: Gets or sets the object Id of the SPN with which Dra communicates to service.
-     *
+     * 
      * @return the objectId value.
      */
     public String objectId() {
@@ -99,7 +103,7 @@ public final class IdentityModel {
 
     /**
      * Set the objectId property: Gets or sets the object Id of the SPN with which Dra communicates to service.
-     *
+     * 
      * @param objectId the objectId value to set.
      * @return the IdentityModel object itself.
      */
@@ -110,7 +114,7 @@ public final class IdentityModel {
 
     /**
      * Get the audience property: Gets or sets the audience of the SPN with which Dra communicates to service.
-     *
+     * 
      * @return the audience value.
      */
     public String audience() {
@@ -119,7 +123,7 @@ public final class IdentityModel {
 
     /**
      * Set the audience property: Gets or sets the audience of the SPN with which Dra communicates to service.
-     *
+     * 
      * @param audience the audience value to set.
      * @return the IdentityModel object itself.
      */
@@ -130,7 +134,7 @@ public final class IdentityModel {
 
     /**
      * Get the aadAuthority property: Gets or sets the authority of the SPN with which Dra communicates to service.
-     *
+     * 
      * @return the aadAuthority value.
      */
     public String aadAuthority() {
@@ -139,7 +143,7 @@ public final class IdentityModel {
 
     /**
      * Set the aadAuthority property: Gets or sets the authority of the SPN with which Dra communicates to service.
-     *
+     * 
      * @param aadAuthority the aadAuthority value to set.
      * @return the IdentityModel object itself.
      */
@@ -150,34 +154,29 @@ public final class IdentityModel {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (tenantId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property tenantId in model IdentityModel"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property tenantId in model IdentityModel"));
         }
         if (applicationId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property applicationId in model IdentityModel"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property applicationId in model IdentityModel"));
         }
         if (objectId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property objectId in model IdentityModel"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property objectId in model IdentityModel"));
         }
         if (audience() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property audience in model IdentityModel"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property audience in model IdentityModel"));
         }
         if (aadAuthority() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property aadAuthority in model IdentityModel"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property aadAuthority in model IdentityModel"));
         }
     }
 

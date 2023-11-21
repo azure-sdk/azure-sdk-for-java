@@ -7,7 +7,9 @@ package com.azure.resourcemanager.recoveryservicesdatareplication.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** HyperVToAzStackHCI protected disk properties. */
+/**
+ * HyperVToAzStackHCI protected disk properties.
+ */
 @Immutable
 public final class HyperVToAzStackHciProtectedDiskProperties {
     /*
@@ -77,13 +79,15 @@ public final class HyperVToAzStackHciProtectedDiskProperties {
     @JsonProperty(value = "diskType", access = JsonProperty.Access.WRITE_ONLY)
     private String diskType;
 
-    /** Creates an instance of HyperVToAzStackHciProtectedDiskProperties class. */
+    /**
+     * Creates an instance of HyperVToAzStackHciProtectedDiskProperties class.
+     */
     public HyperVToAzStackHciProtectedDiskProperties() {
     }
 
     /**
      * Get the storageContainerId property: Gets or sets the ARM Id of the storage container.
-     *
+     * 
      * @return the storageContainerId value.
      */
     public String storageContainerId() {
@@ -92,7 +96,7 @@ public final class HyperVToAzStackHciProtectedDiskProperties {
 
     /**
      * Get the storageContainerLocalPath property: Gets or sets the local path of the storage container.
-     *
+     * 
      * @return the storageContainerLocalPath value.
      */
     public String storageContainerLocalPath() {
@@ -101,7 +105,7 @@ public final class HyperVToAzStackHciProtectedDiskProperties {
 
     /**
      * Get the sourceDiskId property: Gets or sets the source disk Id.
-     *
+     * 
      * @return the sourceDiskId value.
      */
     public String sourceDiskId() {
@@ -110,7 +114,7 @@ public final class HyperVToAzStackHciProtectedDiskProperties {
 
     /**
      * Get the sourceDiskName property: Gets or sets the source disk Name.
-     *
+     * 
      * @return the sourceDiskName value.
      */
     public String sourceDiskName() {
@@ -119,7 +123,7 @@ public final class HyperVToAzStackHciProtectedDiskProperties {
 
     /**
      * Get the seedDiskName property: Gets or sets the seed disk name.
-     *
+     * 
      * @return the seedDiskName value.
      */
     public String seedDiskName() {
@@ -128,7 +132,7 @@ public final class HyperVToAzStackHciProtectedDiskProperties {
 
     /**
      * Get the testMigrateDiskName property: Gets or sets the test failover clone disk.
-     *
+     * 
      * @return the testMigrateDiskName value.
      */
     public String testMigrateDiskName() {
@@ -137,7 +141,7 @@ public final class HyperVToAzStackHciProtectedDiskProperties {
 
     /**
      * Get the migrateDiskName property: Gets or sets the failover clone disk.
-     *
+     * 
      * @return the migrateDiskName value.
      */
     public String migrateDiskName() {
@@ -146,7 +150,7 @@ public final class HyperVToAzStackHciProtectedDiskProperties {
 
     /**
      * Get the isOsDisk property: Gets or sets a value indicating whether the disk is the OS disk.
-     *
+     * 
      * @return the isOsDisk value.
      */
     public Boolean isOsDisk() {
@@ -155,7 +159,7 @@ public final class HyperVToAzStackHciProtectedDiskProperties {
 
     /**
      * Get the capacityInBytes property: Gets or sets the disk capacity in bytes.
-     *
+     * 
      * @return the capacityInBytes value.
      */
     public Long capacityInBytes() {
@@ -163,9 +167,10 @@ public final class HyperVToAzStackHciProtectedDiskProperties {
     }
 
     /**
-     * Get the isDynamic property: Gets or sets a value indicating whether dynamic sizing is enabled on the virtual hard
+     * Get the isDynamic property: Gets or sets a value indicating whether dynamic sizing is enabled on the virtual
+     * hard
      * disk.
-     *
+     * 
      * @return the isDynamic value.
      */
     public Boolean isDynamic() {
@@ -174,7 +179,7 @@ public final class HyperVToAzStackHciProtectedDiskProperties {
 
     /**
      * Get the diskType property: Gets or sets the disk type.
-     *
+     * 
      * @return the diskType value.
      */
     public String diskType() {
@@ -183,7 +188,7 @@ public final class HyperVToAzStackHciProtectedDiskProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

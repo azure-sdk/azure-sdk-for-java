@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** HyperV migrate fabric model custom properties. */
+/**
+ * HyperV migrate fabric model custom properties.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
 @JsonTypeName("HyperVMigrate")
 @Fluent
@@ -45,13 +47,15 @@ public final class HyperVMigrateFabricModelCustomProperties extends FabricModelC
     @JsonProperty(value = "migrationHubUri", access = JsonProperty.Access.WRITE_ONLY)
     private String migrationHubUri;
 
-    /** Creates an instance of HyperVMigrateFabricModelCustomProperties class. */
+    /**
+     * Creates an instance of HyperVMigrateFabricModelCustomProperties class.
+     */
     public HyperVMigrateFabricModelCustomProperties() {
     }
 
     /**
      * Get the hyperVSiteId property: Gets or sets the ARM Id of the HyperV site.
-     *
+     * 
      * @return the hyperVSiteId value.
      */
     public String hyperVSiteId() {
@@ -60,7 +64,7 @@ public final class HyperVMigrateFabricModelCustomProperties extends FabricModelC
 
     /**
      * Set the hyperVSiteId property: Gets or sets the ARM Id of the HyperV site.
-     *
+     * 
      * @param hyperVSiteId the hyperVSiteId value to set.
      * @return the HyperVMigrateFabricModelCustomProperties object itself.
      */
@@ -71,7 +75,7 @@ public final class HyperVMigrateFabricModelCustomProperties extends FabricModelC
 
     /**
      * Get the fabricResourceId property: Gets or sets the fabric resource Id.
-     *
+     * 
      * @return the fabricResourceId value.
      */
     public String fabricResourceId() {
@@ -80,7 +84,7 @@ public final class HyperVMigrateFabricModelCustomProperties extends FabricModelC
 
     /**
      * Get the fabricContainerId property: Gets or sets the fabric container Id.
-     *
+     * 
      * @return the fabricContainerId value.
      */
     public String fabricContainerId() {
@@ -89,7 +93,7 @@ public final class HyperVMigrateFabricModelCustomProperties extends FabricModelC
 
     /**
      * Get the migrationSolutionId property: Gets or sets the migration solution ARM Id.
-     *
+     * 
      * @return the migrationSolutionId value.
      */
     public String migrationSolutionId() {
@@ -98,7 +102,7 @@ public final class HyperVMigrateFabricModelCustomProperties extends FabricModelC
 
     /**
      * Set the migrationSolutionId property: Gets or sets the migration solution ARM Id.
-     *
+     * 
      * @param migrationSolutionId the migrationSolutionId value to set.
      * @return the HyperVMigrateFabricModelCustomProperties object itself.
      */
@@ -109,7 +113,7 @@ public final class HyperVMigrateFabricModelCustomProperties extends FabricModelC
 
     /**
      * Get the migrationHubUri property: Gets or sets the migration hub Uri.
-     *
+     * 
      * @return the migrationHubUri value.
      */
     public String migrationHubUri() {
@@ -118,24 +122,19 @@ public final class HyperVMigrateFabricModelCustomProperties extends FabricModelC
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (hyperVSiteId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property hyperVSiteId in model HyperVMigrateFabricModelCustomProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property hyperVSiteId in model HyperVMigrateFabricModelCustomProperties"));
         }
         if (migrationSolutionId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property migrationSolutionId in model"
-                            + " HyperVMigrateFabricModelCustomProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property migrationSolutionId in model HyperVMigrateFabricModelCustomProperties"));
         }
     }
 

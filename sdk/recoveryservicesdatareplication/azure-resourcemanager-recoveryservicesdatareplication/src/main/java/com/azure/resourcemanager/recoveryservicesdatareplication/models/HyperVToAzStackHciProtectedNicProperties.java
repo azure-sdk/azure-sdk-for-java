@@ -7,7 +7,9 @@ package com.azure.resourcemanager.recoveryservicesdatareplication.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** HyperVToAzStackHCI NIC properties. */
+/**
+ * HyperVToAzStackHCI NIC properties.
+ */
 @Immutable
 public final class HyperVToAzStackHciProtectedNicProperties {
     /*
@@ -46,13 +48,15 @@ public final class HyperVToAzStackHciProtectedNicProperties {
     @JsonProperty(value = "selectionTypeForFailover", access = JsonProperty.Access.WRITE_ONLY)
     private VMNicSelection selectionTypeForFailover;
 
-    /** Creates an instance of HyperVToAzStackHciProtectedNicProperties class. */
+    /**
+     * Creates an instance of HyperVToAzStackHciProtectedNicProperties class.
+     */
     public HyperVToAzStackHciProtectedNicProperties() {
     }
 
     /**
      * Get the nicId property: Gets or sets the NIC Id.
-     *
+     * 
      * @return the nicId value.
      */
     public String nicId() {
@@ -61,7 +65,7 @@ public final class HyperVToAzStackHciProtectedNicProperties {
 
     /**
      * Get the macAddress property: Gets or sets the NIC mac address.
-     *
+     * 
      * @return the macAddress value.
      */
     public String macAddress() {
@@ -70,7 +74,7 @@ public final class HyperVToAzStackHciProtectedNicProperties {
 
     /**
      * Get the networkName property: Gets or sets the network name.
-     *
+     * 
      * @return the networkName value.
      */
     public String networkName() {
@@ -79,7 +83,7 @@ public final class HyperVToAzStackHciProtectedNicProperties {
 
     /**
      * Get the targetNetworkId property: Gets or sets the target network Id within AzStackHCI Cluster.
-     *
+     * 
      * @return the targetNetworkId value.
      */
     public String targetNetworkId() {
@@ -88,7 +92,7 @@ public final class HyperVToAzStackHciProtectedNicProperties {
 
     /**
      * Get the testNetworkId property: Gets or sets the target test network Id within AzStackHCI Cluster.
-     *
+     * 
      * @return the testNetworkId value.
      */
     public String testNetworkId() {
@@ -97,7 +101,7 @@ public final class HyperVToAzStackHciProtectedNicProperties {
 
     /**
      * Get the selectionTypeForFailover property: Gets or sets the selection type of the NIC.
-     *
+     * 
      * @return the selectionTypeForFailover value.
      */
     public VMNicSelection selectionTypeForFailover() {
@@ -106,7 +110,7 @@ public final class HyperVToAzStackHciProtectedNicProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

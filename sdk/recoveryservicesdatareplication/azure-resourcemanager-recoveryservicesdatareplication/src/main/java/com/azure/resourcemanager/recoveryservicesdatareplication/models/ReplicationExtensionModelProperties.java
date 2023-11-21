@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Replication extension model properties. */
+/**
+ * Replication extension model properties.
+ */
 @Fluent
 public final class ReplicationExtensionModelProperties {
     /*
@@ -23,13 +25,15 @@ public final class ReplicationExtensionModelProperties {
     @JsonProperty(value = "customProperties", required = true)
     private ReplicationExtensionModelCustomProperties customProperties;
 
-    /** Creates an instance of ReplicationExtensionModelProperties class. */
+    /**
+     * Creates an instance of ReplicationExtensionModelProperties class.
+     */
     public ReplicationExtensionModelProperties() {
     }
 
     /**
      * Get the provisioningState property: Gets or sets the provisioning state of the replication extension.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -38,7 +42,7 @@ public final class ReplicationExtensionModelProperties {
 
     /**
      * Get the customProperties property: Replication extension model custom properties.
-     *
+     * 
      * @return the customProperties value.
      */
     public ReplicationExtensionModelCustomProperties customProperties() {
@@ -47,27 +51,25 @@ public final class ReplicationExtensionModelProperties {
 
     /**
      * Set the customProperties property: Replication extension model custom properties.
-     *
+     * 
      * @param customProperties the customProperties value to set.
      * @return the ReplicationExtensionModelProperties object itself.
      */
-    public ReplicationExtensionModelProperties withCustomProperties(
-        ReplicationExtensionModelCustomProperties customProperties) {
+    public ReplicationExtensionModelProperties
+        withCustomProperties(ReplicationExtensionModelCustomProperties customProperties) {
         this.customProperties = customProperties;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (customProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property customProperties in model ReplicationExtensionModelProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property customProperties in model ReplicationExtensionModelProperties"));
         } else {
             customProperties().validate();
         }

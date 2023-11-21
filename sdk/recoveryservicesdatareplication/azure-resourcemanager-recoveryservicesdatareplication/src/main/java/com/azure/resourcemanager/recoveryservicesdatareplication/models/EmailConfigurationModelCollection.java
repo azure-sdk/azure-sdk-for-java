@@ -9,7 +9,9 @@ import com.azure.resourcemanager.recoveryservicesdatareplication.fluent.models.E
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Email configuration model collection. */
+/**
+ * Email configuration model collection.
+ */
 @Fluent
 public final class EmailConfigurationModelCollection {
     /*
@@ -24,13 +26,15 @@ public final class EmailConfigurationModelCollection {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of EmailConfigurationModelCollection class. */
+    /**
+     * Creates an instance of EmailConfigurationModelCollection class.
+     */
     public EmailConfigurationModelCollection() {
     }
 
     /**
      * Get the value property: Gets or sets the list of email configurations.
-     *
+     * 
      * @return the value value.
      */
     public List<EmailConfigurationModelInner> value() {
@@ -39,7 +43,7 @@ public final class EmailConfigurationModelCollection {
 
     /**
      * Set the value property: Gets or sets the list of email configurations.
-     *
+     * 
      * @param value the value value to set.
      * @return the EmailConfigurationModelCollection object itself.
      */
@@ -50,7 +54,7 @@ public final class EmailConfigurationModelCollection {
 
     /**
      * Get the nextLink property: Gets or sets the value of next link.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class EmailConfigurationModelCollection {
 
     /**
      * Set the nextLink property: Gets or sets the value of next link.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the EmailConfigurationModelCollection object itself.
      */
@@ -70,7 +74,7 @@ public final class EmailConfigurationModelCollection {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

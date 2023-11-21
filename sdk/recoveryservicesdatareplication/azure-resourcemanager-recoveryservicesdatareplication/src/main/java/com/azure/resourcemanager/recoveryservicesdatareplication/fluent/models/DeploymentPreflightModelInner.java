@@ -9,7 +9,9 @@ import com.azure.resourcemanager.recoveryservicesdatareplication.models.Deployme
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Deployment preflight model. */
+/**
+ * Deployment preflight model.
+ */
 @Fluent
 public final class DeploymentPreflightModelInner {
     /*
@@ -18,13 +20,15 @@ public final class DeploymentPreflightModelInner {
     @JsonProperty(value = "resources")
     private List<DeploymentPreflightResource> resources;
 
-    /** Creates an instance of DeploymentPreflightModelInner class. */
+    /**
+     * Creates an instance of DeploymentPreflightModelInner class.
+     */
     public DeploymentPreflightModelInner() {
     }
 
     /**
      * Get the resources property: Gets or sets the list of resources.
-     *
+     * 
      * @return the resources value.
      */
     public List<DeploymentPreflightResource> resources() {
@@ -33,7 +37,7 @@ public final class DeploymentPreflightModelInner {
 
     /**
      * Set the resources property: Gets or sets the list of resources.
-     *
+     * 
      * @param resources the resources value to set.
      * @return the DeploymentPreflightModelInner object itself.
      */
@@ -44,7 +48,7 @@ public final class DeploymentPreflightModelInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

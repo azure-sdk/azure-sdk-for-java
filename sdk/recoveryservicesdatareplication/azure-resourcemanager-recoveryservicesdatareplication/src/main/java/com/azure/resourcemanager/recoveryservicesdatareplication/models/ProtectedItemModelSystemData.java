@@ -7,49 +7,65 @@ package com.azure.resourcemanager.recoveryservicesdatareplication.models;
 import com.azure.core.annotation.Fluent;
 import java.time.OffsetDateTime;
 
-/** The ProtectedItemModelSystemData model. */
+/**
+ * The ProtectedItemModelSystemData model.
+ */
 @Fluent
 public final class ProtectedItemModelSystemData extends SystemDataModel {
-    /** Creates an instance of ProtectedItemModelSystemData class. */
+    /**
+     * Creates an instance of ProtectedItemModelSystemData class.
+     */
     public ProtectedItemModelSystemData() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ProtectedItemModelSystemData withCreatedBy(String createdBy) {
         super.withCreatedBy(createdBy);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ProtectedItemModelSystemData withCreatedByType(String createdByType) {
         super.withCreatedByType(createdByType);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ProtectedItemModelSystemData withCreatedAt(OffsetDateTime createdAt) {
         super.withCreatedAt(createdAt);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ProtectedItemModelSystemData withLastModifiedBy(String lastModifiedBy) {
         super.withLastModifiedBy(lastModifiedBy);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ProtectedItemModelSystemData withLastModifiedByType(String lastModifiedByType) {
         super.withLastModifiedByType(lastModifiedByType);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ProtectedItemModelSystemData withLastModifiedAt(OffsetDateTime lastModifiedAt) {
         super.withLastModifiedAt(lastModifiedAt);
@@ -58,7 +74,7 @@ public final class ProtectedItemModelSystemData extends SystemDataModel {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

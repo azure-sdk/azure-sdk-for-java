@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
 
-/** HyperV to AzStackHCI recovery point model custom properties. */
+/**
+ * HyperV to AzStackHCI recovery point model custom properties.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
 @JsonTypeName("HyperVToAzStackHCI")
 @Immutable
@@ -21,13 +23,15 @@ public final class HyperVToAzStackHciRecoveryPointCustomProps extends RecoveryPo
     @JsonProperty(value = "diskIds", access = JsonProperty.Access.WRITE_ONLY)
     private List<String> diskIds;
 
-    /** Creates an instance of HyperVToAzStackHciRecoveryPointCustomProps class. */
+    /**
+     * Creates an instance of HyperVToAzStackHciRecoveryPointCustomProps class.
+     */
     public HyperVToAzStackHciRecoveryPointCustomProps() {
     }
 
     /**
      * Get the diskIds property: Gets or sets the list of the disk Ids.
-     *
+     * 
      * @return the diskIds value.
      */
     public List<String> diskIds() {
@@ -36,7 +40,7 @@ public final class HyperVToAzStackHciRecoveryPointCustomProps extends RecoveryPo
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

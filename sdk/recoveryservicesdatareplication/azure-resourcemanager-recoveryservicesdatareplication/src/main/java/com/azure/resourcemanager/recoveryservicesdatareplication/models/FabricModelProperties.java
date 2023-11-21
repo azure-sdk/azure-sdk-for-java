@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Fabric model properties. */
+/**
+ * Fabric model properties.
+ */
 @Fluent
 public final class FabricModelProperties {
     /*
@@ -48,13 +50,15 @@ public final class FabricModelProperties {
     @JsonProperty(value = "customProperties", required = true)
     private FabricModelCustomProperties customProperties;
 
-    /** Creates an instance of FabricModelProperties class. */
+    /**
+     * Creates an instance of FabricModelProperties class.
+     */
     public FabricModelProperties() {
     }
 
     /**
      * Get the provisioningState property: Gets or sets the provisioning state of the fabric.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -63,7 +67,7 @@ public final class FabricModelProperties {
 
     /**
      * Get the serviceEndpoint property: Gets or sets the service endpoint.
-     *
+     * 
      * @return the serviceEndpoint value.
      */
     public String serviceEndpoint() {
@@ -72,7 +76,7 @@ public final class FabricModelProperties {
 
     /**
      * Get the serviceResourceId property: Gets or sets the service resource Id.
-     *
+     * 
      * @return the serviceResourceId value.
      */
     public String serviceResourceId() {
@@ -81,7 +85,7 @@ public final class FabricModelProperties {
 
     /**
      * Get the health property: Gets or sets the fabric health.
-     *
+     * 
      * @return the health value.
      */
     public HealthStatus health() {
@@ -90,7 +94,7 @@ public final class FabricModelProperties {
 
     /**
      * Get the healthErrors property: Gets or sets the list of health errors.
-     *
+     * 
      * @return the healthErrors value.
      */
     public List<HealthErrorModel> healthErrors() {
@@ -99,7 +103,7 @@ public final class FabricModelProperties {
 
     /**
      * Get the customProperties property: Fabric model custom properties.
-     *
+     * 
      * @return the customProperties value.
      */
     public FabricModelCustomProperties customProperties() {
@@ -108,7 +112,7 @@ public final class FabricModelProperties {
 
     /**
      * Set the customProperties property: Fabric model custom properties.
-     *
+     * 
      * @param customProperties the customProperties value to set.
      * @return the FabricModelProperties object itself.
      */
@@ -119,7 +123,7 @@ public final class FabricModelProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
@@ -127,10 +131,8 @@ public final class FabricModelProperties {
             healthErrors().forEach(e -> e.validate());
         }
         if (customProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property customProperties in model FabricModelProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property customProperties in model FabricModelProperties"));
         } else {
             customProperties().validate();
         }

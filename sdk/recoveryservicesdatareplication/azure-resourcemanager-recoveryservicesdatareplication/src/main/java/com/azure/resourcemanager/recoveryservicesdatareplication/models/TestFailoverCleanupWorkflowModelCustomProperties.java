@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Test failover cleanup workflow model custom properties. */
+/**
+ * Test failover cleanup workflow model custom properties.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
 @JsonTypeName("TestFailoverCleanupWorkflowDetails")
 @Immutable
@@ -20,13 +22,15 @@ public final class TestFailoverCleanupWorkflowModelCustomProperties extends Work
     @JsonProperty(value = "comments", access = JsonProperty.Access.WRITE_ONLY)
     private String comments;
 
-    /** Creates an instance of TestFailoverCleanupWorkflowModelCustomProperties class. */
+    /**
+     * Creates an instance of TestFailoverCleanupWorkflowModelCustomProperties class.
+     */
     public TestFailoverCleanupWorkflowModelCustomProperties() {
     }
 
     /**
      * Get the comments property: Gets or sets the test failover cleanup comments.
-     *
+     * 
      * @return the comments value.
      */
     public String comments() {
@@ -35,7 +39,7 @@ public final class TestFailoverCleanupWorkflowModelCustomProperties extends Work
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

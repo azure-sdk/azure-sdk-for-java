@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** Dra model properties. */
+/**
+ * Dra model properties.
+ */
 @Fluent
 public final class DraModelProperties {
     /*
@@ -79,13 +81,15 @@ public final class DraModelProperties {
     @JsonProperty(value = "customProperties", required = true)
     private DraModelCustomProperties customProperties;
 
-    /** Creates an instance of DraModelProperties class. */
+    /**
+     * Creates an instance of DraModelProperties class.
+     */
     public DraModelProperties() {
     }
 
     /**
      * Get the correlationId property: Gets or sets the Dra correlation Id.
-     *
+     * 
      * @return the correlationId value.
      */
     public String correlationId() {
@@ -94,7 +98,7 @@ public final class DraModelProperties {
 
     /**
      * Get the machineId property: Gets or sets the machine Id where Dra is running.
-     *
+     * 
      * @return the machineId value.
      */
     public String machineId() {
@@ -103,7 +107,7 @@ public final class DraModelProperties {
 
     /**
      * Set the machineId property: Gets or sets the machine Id where Dra is running.
-     *
+     * 
      * @param machineId the machineId value to set.
      * @return the DraModelProperties object itself.
      */
@@ -114,7 +118,7 @@ public final class DraModelProperties {
 
     /**
      * Get the machineName property: Gets or sets the machine name where Dra is running.
-     *
+     * 
      * @return the machineName value.
      */
     public String machineName() {
@@ -123,7 +127,7 @@ public final class DraModelProperties {
 
     /**
      * Set the machineName property: Gets or sets the machine name where Dra is running.
-     *
+     * 
      * @param machineName the machineName value to set.
      * @return the DraModelProperties object itself.
      */
@@ -134,7 +138,7 @@ public final class DraModelProperties {
 
     /**
      * Get the authenticationIdentity property: Identity model.
-     *
+     * 
      * @return the authenticationIdentity value.
      */
     public IdentityModel authenticationIdentity() {
@@ -143,7 +147,7 @@ public final class DraModelProperties {
 
     /**
      * Set the authenticationIdentity property: Identity model.
-     *
+     * 
      * @param authenticationIdentity the authenticationIdentity value to set.
      * @return the DraModelProperties object itself.
      */
@@ -154,7 +158,7 @@ public final class DraModelProperties {
 
     /**
      * Get the resourceAccessIdentity property: Identity model.
-     *
+     * 
      * @return the resourceAccessIdentity value.
      */
     public IdentityModel resourceAccessIdentity() {
@@ -163,7 +167,7 @@ public final class DraModelProperties {
 
     /**
      * Set the resourceAccessIdentity property: Identity model.
-     *
+     * 
      * @param resourceAccessIdentity the resourceAccessIdentity value to set.
      * @return the DraModelProperties object itself.
      */
@@ -174,7 +178,7 @@ public final class DraModelProperties {
 
     /**
      * Get the isResponsive property: Gets or sets a value indicating whether Dra is responsive.
-     *
+     * 
      * @return the isResponsive value.
      */
     public Boolean isResponsive() {
@@ -183,7 +187,7 @@ public final class DraModelProperties {
 
     /**
      * Get the lastHeartbeat property: Gets or sets the time when last heartbeat was sent by the Dra.
-     *
+     * 
      * @return the lastHeartbeat value.
      */
     public OffsetDateTime lastHeartbeat() {
@@ -192,7 +196,7 @@ public final class DraModelProperties {
 
     /**
      * Get the versionNumber property: Gets or sets the Dra version.
-     *
+     * 
      * @return the versionNumber value.
      */
     public String versionNumber() {
@@ -201,7 +205,7 @@ public final class DraModelProperties {
 
     /**
      * Get the provisioningState property: Gets or sets the provisioning state of the Dra.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -210,7 +214,7 @@ public final class DraModelProperties {
 
     /**
      * Get the healthErrors property: Gets or sets the list of health errors.
-     *
+     * 
      * @return the healthErrors value.
      */
     public List<HealthErrorModel> healthErrors() {
@@ -219,7 +223,7 @@ public final class DraModelProperties {
 
     /**
      * Get the customProperties property: Dra model custom properties.
-     *
+     * 
      * @return the customProperties value.
      */
     public DraModelCustomProperties customProperties() {
@@ -228,7 +232,7 @@ public final class DraModelProperties {
 
     /**
      * Set the customProperties property: Dra model custom properties.
-     *
+     * 
      * @param customProperties the customProperties value to set.
      * @return the DraModelProperties object itself.
      */
@@ -239,33 +243,27 @@ public final class DraModelProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (machineId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property machineId in model DraModelProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property machineId in model DraModelProperties"));
         }
         if (machineName() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property machineName in model DraModelProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property machineName in model DraModelProperties"));
         }
         if (authenticationIdentity() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property authenticationIdentity in model DraModelProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property authenticationIdentity in model DraModelProperties"));
         } else {
             authenticationIdentity().validate();
         }
         if (resourceAccessIdentity() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property resourceAccessIdentity in model DraModelProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property resourceAccessIdentity in model DraModelProperties"));
         } else {
             resourceAccessIdentity().validate();
         }
@@ -273,10 +271,8 @@ public final class DraModelProperties {
             healthErrors().forEach(e -> e.validate());
         }
         if (customProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property customProperties in model DraModelProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property customProperties in model DraModelProperties"));
         } else {
             customProperties().validate();
         }

@@ -9,23 +9,27 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Dra model custom properties. */
+/**
+ * Dra model custom properties.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
     property = "instanceType",
     defaultImpl = DraModelCustomProperties.class)
 @JsonTypeName("DraModelCustomProperties")
-@JsonSubTypes({@JsonSubTypes.Type(name = "VMware", value = VMwareDraModelCustomProperties.class)})
+@JsonSubTypes({ @JsonSubTypes.Type(name = "VMware", value = VMwareDraModelCustomProperties.class) })
 @Immutable
 public class DraModelCustomProperties {
-    /** Creates an instance of DraModelCustomProperties class. */
+    /**
+     * Creates an instance of DraModelCustomProperties class.
+     */
     public DraModelCustomProperties() {
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

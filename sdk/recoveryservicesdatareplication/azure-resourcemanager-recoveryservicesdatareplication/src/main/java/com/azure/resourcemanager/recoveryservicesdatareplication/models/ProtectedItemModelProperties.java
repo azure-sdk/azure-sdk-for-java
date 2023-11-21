@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** Protected item model properties. */
+/**
+ * Protected item model properties.
+ */
 @Fluent
 public final class ProtectedItemModelProperties {
     /*
@@ -187,13 +189,15 @@ public final class ProtectedItemModelProperties {
     @JsonProperty(value = "customProperties", required = true)
     private ProtectedItemModelCustomProperties customProperties;
 
-    /** Creates an instance of ProtectedItemModelProperties class. */
+    /**
+     * Creates an instance of ProtectedItemModelProperties class.
+     */
     public ProtectedItemModelProperties() {
     }
 
     /**
      * Get the policyName property: Gets or sets the policy name.
-     *
+     * 
      * @return the policyName value.
      */
     public String policyName() {
@@ -202,7 +206,7 @@ public final class ProtectedItemModelProperties {
 
     /**
      * Set the policyName property: Gets or sets the policy name.
-     *
+     * 
      * @param policyName the policyName value to set.
      * @return the ProtectedItemModelProperties object itself.
      */
@@ -213,7 +217,7 @@ public final class ProtectedItemModelProperties {
 
     /**
      * Get the replicationExtensionName property: Gets or sets the replication extension name.
-     *
+     * 
      * @return the replicationExtensionName value.
      */
     public String replicationExtensionName() {
@@ -222,7 +226,7 @@ public final class ProtectedItemModelProperties {
 
     /**
      * Set the replicationExtensionName property: Gets or sets the replication extension name.
-     *
+     * 
      * @param replicationExtensionName the replicationExtensionName value to set.
      * @return the ProtectedItemModelProperties object itself.
      */
@@ -233,7 +237,7 @@ public final class ProtectedItemModelProperties {
 
     /**
      * Get the correlationId property: Gets or sets the protected item correlation Id.
-     *
+     * 
      * @return the correlationId value.
      */
     public String correlationId() {
@@ -242,7 +246,7 @@ public final class ProtectedItemModelProperties {
 
     /**
      * Get the provisioningState property: Gets or sets the provisioning state of the Dra.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -251,7 +255,7 @@ public final class ProtectedItemModelProperties {
 
     /**
      * Get the protectionState property: Gets or sets the protection state.
-     *
+     * 
      * @return the protectionState value.
      */
     public ProtectionState protectionState() {
@@ -260,7 +264,7 @@ public final class ProtectedItemModelProperties {
 
     /**
      * Get the protectionStateDescription property: Gets or sets the protection state description.
-     *
+     * 
      * @return the protectionStateDescription value.
      */
     public String protectionStateDescription() {
@@ -269,7 +273,7 @@ public final class ProtectedItemModelProperties {
 
     /**
      * Get the testFailoverState property: Gets or sets the test failover state.
-     *
+     * 
      * @return the testFailoverState value.
      */
     public TestFailoverState testFailoverState() {
@@ -278,7 +282,7 @@ public final class ProtectedItemModelProperties {
 
     /**
      * Get the testFailoverStateDescription property: Gets or sets the Test failover state description.
-     *
+     * 
      * @return the testFailoverStateDescription value.
      */
     public String testFailoverStateDescription() {
@@ -287,7 +291,7 @@ public final class ProtectedItemModelProperties {
 
     /**
      * Get the resynchronizationState property: Gets or sets the resynchronization state.
-     *
+     * 
      * @return the resynchronizationState value.
      */
     public ResynchronizationState resynchronizationState() {
@@ -296,7 +300,7 @@ public final class ProtectedItemModelProperties {
 
     /**
      * Get the fabricObjectId property: Gets or sets the fabric object Id.
-     *
+     * 
      * @return the fabricObjectId value.
      */
     public String fabricObjectId() {
@@ -305,7 +309,7 @@ public final class ProtectedItemModelProperties {
 
     /**
      * Get the fabricObjectName property: Gets or sets the fabric object name.
-     *
+     * 
      * @return the fabricObjectName value.
      */
     public String fabricObjectName() {
@@ -314,7 +318,7 @@ public final class ProtectedItemModelProperties {
 
     /**
      * Get the sourceFabricProviderId property: Gets or sets the source fabric provider Id.
-     *
+     * 
      * @return the sourceFabricProviderId value.
      */
     public String sourceFabricProviderId() {
@@ -323,7 +327,7 @@ public final class ProtectedItemModelProperties {
 
     /**
      * Get the targetFabricProviderId property: Gets or sets the target fabric provider Id.
-     *
+     * 
      * @return the targetFabricProviderId value.
      */
     public String targetFabricProviderId() {
@@ -332,7 +336,7 @@ public final class ProtectedItemModelProperties {
 
     /**
      * Get the fabricId property: Gets or sets the fabric Id.
-     *
+     * 
      * @return the fabricId value.
      */
     public String fabricId() {
@@ -341,7 +345,7 @@ public final class ProtectedItemModelProperties {
 
     /**
      * Get the targetFabricId property: Gets or sets the target fabric Id.
-     *
+     * 
      * @return the targetFabricId value.
      */
     public String targetFabricId() {
@@ -350,7 +354,7 @@ public final class ProtectedItemModelProperties {
 
     /**
      * Get the draId property: Gets or sets the DRA Id.
-     *
+     * 
      * @return the draId value.
      */
     public String draId() {
@@ -359,7 +363,7 @@ public final class ProtectedItemModelProperties {
 
     /**
      * Get the targetDraId property: Gets or sets the target DRA Id.
-     *
+     * 
      * @return the targetDraId value.
      */
     public String targetDraId() {
@@ -368,7 +372,7 @@ public final class ProtectedItemModelProperties {
 
     /**
      * Get the resyncRequired property: Gets or sets a value indicating whether resynchronization is required or not.
-     *
+     * 
      * @return the resyncRequired value.
      */
     public Boolean resyncRequired() {
@@ -377,7 +381,7 @@ public final class ProtectedItemModelProperties {
 
     /**
      * Get the lastSuccessfulPlannedFailoverTime property: Gets or sets the Last successful planned failover time.
-     *
+     * 
      * @return the lastSuccessfulPlannedFailoverTime value.
      */
     public OffsetDateTime lastSuccessfulPlannedFailoverTime() {
@@ -386,7 +390,7 @@ public final class ProtectedItemModelProperties {
 
     /**
      * Get the lastSuccessfulUnplannedFailoverTime property: Gets or sets the Last successful unplanned failover time.
-     *
+     * 
      * @return the lastSuccessfulUnplannedFailoverTime value.
      */
     public OffsetDateTime lastSuccessfulUnplannedFailoverTime() {
@@ -395,7 +399,7 @@ public final class ProtectedItemModelProperties {
 
     /**
      * Get the lastSuccessfulTestFailoverTime property: Gets or sets the Last successful test failover time.
-     *
+     * 
      * @return the lastSuccessfulTestFailoverTime value.
      */
     public OffsetDateTime lastSuccessfulTestFailoverTime() {
@@ -404,7 +408,7 @@ public final class ProtectedItemModelProperties {
 
     /**
      * Get the currentJob property: The currentJob property.
-     *
+     * 
      * @return the currentJob value.
      */
     public ProtectedItemModelPropertiesCurrentJob currentJob() {
@@ -413,7 +417,7 @@ public final class ProtectedItemModelProperties {
 
     /**
      * Get the allowedJobs property: Gets or sets the allowed scenarios on the protected item.
-     *
+     * 
      * @return the allowedJobs value.
      */
     public List<String> allowedJobs() {
@@ -422,7 +426,7 @@ public final class ProtectedItemModelProperties {
 
     /**
      * Get the lastFailedEnableProtectionJob property: The lastFailedEnableProtectionJob property.
-     *
+     * 
      * @return the lastFailedEnableProtectionJob value.
      */
     public LastFailedEnableProtectionJob lastFailedEnableProtectionJob() {
@@ -431,7 +435,7 @@ public final class ProtectedItemModelProperties {
 
     /**
      * Get the lastFailedPlannedFailoverJob property: The lastFailedPlannedFailoverJob property.
-     *
+     * 
      * @return the lastFailedPlannedFailoverJob value.
      */
     public LastFailedPlannedFailoverJob lastFailedPlannedFailoverJob() {
@@ -440,7 +444,7 @@ public final class ProtectedItemModelProperties {
 
     /**
      * Get the lastTestFailoverJob property: The lastTestFailoverJob property.
-     *
+     * 
      * @return the lastTestFailoverJob value.
      */
     public ProtectedItemModelPropertiesLastTestFailoverJob lastTestFailoverJob() {
@@ -449,7 +453,7 @@ public final class ProtectedItemModelProperties {
 
     /**
      * Get the replicationHealth property: Gets or sets protected item replication health.
-     *
+     * 
      * @return the replicationHealth value.
      */
     public HealthStatus replicationHealth() {
@@ -458,7 +462,7 @@ public final class ProtectedItemModelProperties {
 
     /**
      * Get the healthErrors property: Gets or sets the list of health errors.
-     *
+     * 
      * @return the healthErrors value.
      */
     public List<HealthErrorModel> healthErrors() {
@@ -467,7 +471,7 @@ public final class ProtectedItemModelProperties {
 
     /**
      * Get the customProperties property: Protected item model custom properties.
-     *
+     * 
      * @return the customProperties value.
      */
     public ProtectedItemModelCustomProperties customProperties() {
@@ -476,7 +480,7 @@ public final class ProtectedItemModelProperties {
 
     /**
      * Set the customProperties property: Protected item model custom properties.
-     *
+     * 
      * @param customProperties the customProperties value to set.
      * @return the ProtectedItemModelProperties object itself.
      */
@@ -487,21 +491,17 @@ public final class ProtectedItemModelProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (policyName() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property policyName in model ProtectedItemModelProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property policyName in model ProtectedItemModelProperties"));
         }
         if (replicationExtensionName() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property replicationExtensionName in model ProtectedItemModelProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property replicationExtensionName in model ProtectedItemModelProperties"));
         }
         if (currentJob() != null) {
             currentJob().validate();
@@ -519,10 +519,8 @@ public final class ProtectedItemModelProperties {
             healthErrors().forEach(e -> e.validate());
         }
         if (customProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property customProperties in model ProtectedItemModelProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property customProperties in model ProtectedItemModelProperties"));
         } else {
             customProperties().validate();
         }

@@ -7,7 +7,9 @@ package com.azure.resourcemanager.recoveryservicesdatareplication.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Defines the operation status. */
+/**
+ * Defines the operation status.
+ */
 @Fluent
 public final class OperationStatusInner {
     /*
@@ -41,13 +43,15 @@ public final class OperationStatusInner {
     @JsonProperty(value = "endTime")
     private String endTime;
 
-    /** Creates an instance of OperationStatusInner class. */
+    /**
+     * Creates an instance of OperationStatusInner class.
+     */
     public OperationStatusInner() {
     }
 
     /**
      * Get the id property: Gets or sets the Id.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -56,7 +60,7 @@ public final class OperationStatusInner {
 
     /**
      * Set the id property: Gets or sets the Id.
-     *
+     * 
      * @param id the id value to set.
      * @return the OperationStatusInner object itself.
      */
@@ -67,7 +71,7 @@ public final class OperationStatusInner {
 
     /**
      * Get the name property: Gets or sets the operation name.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -76,7 +80,7 @@ public final class OperationStatusInner {
 
     /**
      * Set the name property: Gets or sets the operation name.
-     *
+     * 
      * @param name the name value to set.
      * @return the OperationStatusInner object itself.
      */
@@ -88,7 +92,7 @@ public final class OperationStatusInner {
     /**
      * Get the status property: Gets or sets the status of the operation. ARM expects the terminal status to be one of
      * Succeeded/ Failed/ Canceled. All other values imply that the operation is still running.
-     *
+     * 
      * @return the status value.
      */
     public String status() {
@@ -98,7 +102,7 @@ public final class OperationStatusInner {
     /**
      * Set the status property: Gets or sets the status of the operation. ARM expects the terminal status to be one of
      * Succeeded/ Failed/ Canceled. All other values imply that the operation is still running.
-     *
+     * 
      * @param status the status value to set.
      * @return the OperationStatusInner object itself.
      */
@@ -109,7 +113,7 @@ public final class OperationStatusInner {
 
     /**
      * Get the startTime property: Gets or sets the start time.
-     *
+     * 
      * @return the startTime value.
      */
     public String startTime() {
@@ -118,7 +122,7 @@ public final class OperationStatusInner {
 
     /**
      * Set the startTime property: Gets or sets the start time.
-     *
+     * 
      * @param startTime the startTime value to set.
      * @return the OperationStatusInner object itself.
      */
@@ -129,7 +133,7 @@ public final class OperationStatusInner {
 
     /**
      * Get the endTime property: Gets or sets the end time.
-     *
+     * 
      * @return the endTime value.
      */
     public String endTime() {
@@ -138,7 +142,7 @@ public final class OperationStatusInner {
 
     /**
      * Set the endTime property: Gets or sets the end time.
-     *
+     * 
      * @param endTime the endTime value to set.
      * @return the OperationStatusInner object itself.
      */
@@ -149,7 +153,7 @@ public final class OperationStatusInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

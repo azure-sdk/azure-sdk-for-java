@@ -7,7 +7,9 @@ package com.azure.resourcemanager.recoveryservicesdatareplication.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Vault properties. */
+/**
+ * Vault properties.
+ */
 @Fluent
 public final class VaultModelProperties {
     /*
@@ -28,13 +30,15 @@ public final class VaultModelProperties {
     @JsonProperty(value = "vaultType")
     private ReplicationVaultType vaultType;
 
-    /** Creates an instance of VaultModelProperties class. */
+    /**
+     * Creates an instance of VaultModelProperties class.
+     */
     public VaultModelProperties() {
     }
 
     /**
      * Get the provisioningState property: Gets or sets the provisioning state of the vault.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -43,7 +47,7 @@ public final class VaultModelProperties {
 
     /**
      * Get the serviceResourceId property: Gets or sets the service resource Id.
-     *
+     * 
      * @return the serviceResourceId value.
      */
     public String serviceResourceId() {
@@ -52,7 +56,7 @@ public final class VaultModelProperties {
 
     /**
      * Get the vaultType property: Gets or sets the type of vault.
-     *
+     * 
      * @return the vaultType value.
      */
     public ReplicationVaultType vaultType() {
@@ -61,7 +65,7 @@ public final class VaultModelProperties {
 
     /**
      * Set the vaultType property: Gets or sets the type of vault.
-     *
+     * 
      * @param vaultType the vaultType value to set.
      * @return the VaultModelProperties object itself.
      */
@@ -72,7 +76,7 @@ public final class VaultModelProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
