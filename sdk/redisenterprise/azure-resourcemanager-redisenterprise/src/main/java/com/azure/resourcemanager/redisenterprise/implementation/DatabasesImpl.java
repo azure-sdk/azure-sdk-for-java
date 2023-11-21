@@ -28,8 +28,8 @@ public final class DatabasesImpl implements Databases {
 
     private final com.azure.resourcemanager.redisenterprise.RedisEnterpriseManager serviceManager;
 
-    public DatabasesImpl(
-        DatabasesClient innerClient, com.azure.resourcemanager.redisenterprise.RedisEnterpriseManager serviceManager) {
+    public DatabasesImpl(DatabasesClient innerClient,
+        com.azure.resourcemanager.redisenterprise.RedisEnterpriseManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
@@ -40,20 +40,17 @@ public final class DatabasesImpl implements Databases {
     }
 
     public PagedIterable<Database> listByCluster(String resourceGroupName, String clusterName, Context context) {
-        PagedIterable<DatabaseInner> inner =
-            this.serviceClient().listByCluster(resourceGroupName, clusterName, context);
+        PagedIterable<DatabaseInner> inner
+            = this.serviceClient().listByCluster(resourceGroupName, clusterName, context);
         return Utils.mapPage(inner, inner1 -> new DatabaseImpl(inner1, this.manager()));
     }
 
-    public Response<Database> getWithResponse(
-        String resourceGroupName, String clusterName, String databaseName, Context context) {
-        Response<DatabaseInner> inner =
-            this.serviceClient().getWithResponse(resourceGroupName, clusterName, databaseName, context);
+    public Response<Database> getWithResponse(String resourceGroupName, String clusterName, String databaseName,
+        Context context) {
+        Response<DatabaseInner> inner
+            = this.serviceClient().getWithResponse(resourceGroupName, clusterName, databaseName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new DatabaseImpl(inner.getValue(), this.manager()));
         } else {
             return null;
@@ -77,15 +74,12 @@ public final class DatabasesImpl implements Databases {
         this.serviceClient().delete(resourceGroupName, clusterName, databaseName, context);
     }
 
-    public Response<AccessKeys> listKeysWithResponse(
-        String resourceGroupName, String clusterName, String databaseName, Context context) {
-        Response<AccessKeysInner> inner =
-            this.serviceClient().listKeysWithResponse(resourceGroupName, clusterName, databaseName, context);
+    public Response<AccessKeys> listKeysWithResponse(String resourceGroupName, String clusterName, String databaseName,
+        Context context) {
+        Response<AccessKeysInner> inner
+            = this.serviceClient().listKeysWithResponse(resourceGroupName, clusterName, databaseName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new AccessKeysImpl(inner.getValue(), this.manager()));
         } else {
             return null;
@@ -101,10 +95,10 @@ public final class DatabasesImpl implements Databases {
         }
     }
 
-    public AccessKeys regenerateKey(
-        String resourceGroupName, String clusterName, String databaseName, RegenerateKeyParameters parameters) {
-        AccessKeysInner inner =
-            this.serviceClient().regenerateKey(resourceGroupName, clusterName, databaseName, parameters);
+    public AccessKeys regenerateKey(String resourceGroupName, String clusterName, String databaseName,
+        RegenerateKeyParameters parameters) {
+        AccessKeysInner inner
+            = this.serviceClient().regenerateKey(resourceGroupName, clusterName, databaseName, parameters);
         if (inner != null) {
             return new AccessKeysImpl(inner, this.manager());
         } else {
@@ -112,14 +106,10 @@ public final class DatabasesImpl implements Databases {
         }
     }
 
-    public AccessKeys regenerateKey(
-        String resourceGroupName,
-        String clusterName,
-        String databaseName,
-        RegenerateKeyParameters parameters,
-        Context context) {
-        AccessKeysInner inner =
-            this.serviceClient().regenerateKey(resourceGroupName, clusterName, databaseName, parameters, context);
+    public AccessKeys regenerateKey(String resourceGroupName, String clusterName, String databaseName,
+        RegenerateKeyParameters parameters, Context context) {
+        AccessKeysInner inner
+            = this.serviceClient().regenerateKey(resourceGroupName, clusterName, databaseName, parameters, context);
         if (inner != null) {
             return new AccessKeysImpl(inner, this.manager());
         } else {
@@ -127,45 +117,33 @@ public final class DatabasesImpl implements Databases {
         }
     }
 
-    public void importMethod(
-        String resourceGroupName, String clusterName, String databaseName, ImportClusterParameters parameters) {
+    public void importMethod(String resourceGroupName, String clusterName, String databaseName,
+        ImportClusterParameters parameters) {
         this.serviceClient().importMethod(resourceGroupName, clusterName, databaseName, parameters);
     }
 
-    public void importMethod(
-        String resourceGroupName,
-        String clusterName,
-        String databaseName,
-        ImportClusterParameters parameters,
-        Context context) {
+    public void importMethod(String resourceGroupName, String clusterName, String databaseName,
+        ImportClusterParameters parameters, Context context) {
         this.serviceClient().importMethod(resourceGroupName, clusterName, databaseName, parameters, context);
     }
 
-    public void export(
-        String resourceGroupName, String clusterName, String databaseName, ExportClusterParameters parameters) {
+    public void export(String resourceGroupName, String clusterName, String databaseName,
+        ExportClusterParameters parameters) {
         this.serviceClient().export(resourceGroupName, clusterName, databaseName, parameters);
     }
 
-    public void export(
-        String resourceGroupName,
-        String clusterName,
-        String databaseName,
-        ExportClusterParameters parameters,
-        Context context) {
+    public void export(String resourceGroupName, String clusterName, String databaseName,
+        ExportClusterParameters parameters, Context context) {
         this.serviceClient().export(resourceGroupName, clusterName, databaseName, parameters, context);
     }
 
-    public void forceUnlink(
-        String resourceGroupName, String clusterName, String databaseName, ForceUnlinkParameters parameters) {
+    public void forceUnlink(String resourceGroupName, String clusterName, String databaseName,
+        ForceUnlinkParameters parameters) {
         this.serviceClient().forceUnlink(resourceGroupName, clusterName, databaseName, parameters);
     }
 
-    public void forceUnlink(
-        String resourceGroupName,
-        String clusterName,
-        String databaseName,
-        ForceUnlinkParameters parameters,
-        Context context) {
+    public void forceUnlink(String resourceGroupName, String clusterName, String databaseName,
+        ForceUnlinkParameters parameters, Context context) {
         this.serviceClient().forceUnlink(resourceGroupName, clusterName, databaseName, parameters, context);
     }
 
@@ -173,11 +151,7 @@ public final class DatabasesImpl implements Databases {
         this.serviceClient().flush(resourceGroupName, clusterName, databaseName, parameters);
     }
 
-    public void flush(
-        String resourceGroupName,
-        String clusterName,
-        String databaseName,
-        FlushParameters parameters,
+    public void flush(String resourceGroupName, String clusterName, String databaseName, FlushParameters parameters,
         Context context) {
         this.serviceClient().flush(resourceGroupName, clusterName, databaseName, parameters, context);
     }
@@ -185,26 +159,18 @@ public final class DatabasesImpl implements Databases {
     public Database getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String clusterName = Utils.getValueFromIdByName(id, "redisEnterprise");
         if (clusterName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'redisEnterprise'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'redisEnterprise'.", id)));
         }
         String databaseName = Utils.getValueFromIdByName(id, "databases");
         if (databaseName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'databases'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'databases'.", id)));
         }
         return this.getWithResponse(resourceGroupName, clusterName, databaseName, Context.NONE).getValue();
     }
@@ -212,26 +178,18 @@ public final class DatabasesImpl implements Databases {
     public Response<Database> getByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String clusterName = Utils.getValueFromIdByName(id, "redisEnterprise");
         if (clusterName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'redisEnterprise'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'redisEnterprise'.", id)));
         }
         String databaseName = Utils.getValueFromIdByName(id, "databases");
         if (databaseName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'databases'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'databases'.", id)));
         }
         return this.getWithResponse(resourceGroupName, clusterName, databaseName, context);
     }
@@ -239,26 +197,18 @@ public final class DatabasesImpl implements Databases {
     public void deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String clusterName = Utils.getValueFromIdByName(id, "redisEnterprise");
         if (clusterName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'redisEnterprise'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'redisEnterprise'.", id)));
         }
         String databaseName = Utils.getValueFromIdByName(id, "databases");
         if (databaseName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'databases'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'databases'.", id)));
         }
         this.delete(resourceGroupName, clusterName, databaseName, Context.NONE);
     }
@@ -266,26 +216,18 @@ public final class DatabasesImpl implements Databases {
     public void deleteByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String clusterName = Utils.getValueFromIdByName(id, "redisEnterprise");
         if (clusterName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'redisEnterprise'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'redisEnterprise'.", id)));
         }
         String databaseName = Utils.getValueFromIdByName(id, "databases");
         if (databaseName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'databases'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'databases'.", id)));
         }
         this.delete(resourceGroupName, clusterName, databaseName, context);
     }
