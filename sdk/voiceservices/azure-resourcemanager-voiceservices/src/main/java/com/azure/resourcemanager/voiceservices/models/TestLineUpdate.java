@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** The type used for update operations of the TestLine. */
+/**
+ * The type used for update operations of the TestLine.
+ */
 @Fluent
 public final class TestLineUpdate {
     /*
@@ -19,13 +21,15 @@ public final class TestLineUpdate {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> tags;
 
-    /** Creates an instance of TestLineUpdate class. */
+    /**
+     * Creates an instance of TestLineUpdate class.
+     */
     public TestLineUpdate() {
     }
 
     /**
      * Get the tags property: Resource tags.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -34,7 +38,7 @@ public final class TestLineUpdate {
 
     /**
      * Set the tags property: Resource tags.
-     *
+     * 
      * @param tags the tags value to set.
      * @return the TestLineUpdate object itself.
      */
@@ -45,7 +49,7 @@ public final class TestLineUpdate {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

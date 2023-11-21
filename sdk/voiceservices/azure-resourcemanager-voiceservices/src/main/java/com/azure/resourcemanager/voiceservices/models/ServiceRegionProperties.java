@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The service region configuration needed for Teams Callings. */
+/**
+ * The service region configuration needed for Teams Callings.
+ */
 @Fluent
 public final class ServiceRegionProperties {
     /*
@@ -23,13 +25,15 @@ public final class ServiceRegionProperties {
     @JsonProperty(value = "primaryRegionProperties", required = true)
     private PrimaryRegionProperties primaryRegionProperties;
 
-    /** Creates an instance of ServiceRegionProperties class. */
+    /**
+     * Creates an instance of ServiceRegionProperties class.
+     */
     public ServiceRegionProperties() {
     }
 
     /**
      * Get the name property: The name of the region in which the resources needed for Teams Calling will be deployed.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -38,7 +42,7 @@ public final class ServiceRegionProperties {
 
     /**
      * Set the name property: The name of the region in which the resources needed for Teams Calling will be deployed.
-     *
+     * 
      * @param name the name value to set.
      * @return the ServiceRegionProperties object itself.
      */
@@ -50,7 +54,7 @@ public final class ServiceRegionProperties {
     /**
      * Get the primaryRegionProperties property: The configuration used in this region as primary, and other regions as
      * backup.
-     *
+     * 
      * @return the primaryRegionProperties value.
      */
     public PrimaryRegionProperties primaryRegionProperties() {
@@ -60,7 +64,7 @@ public final class ServiceRegionProperties {
     /**
      * Set the primaryRegionProperties property: The configuration used in this region as primary, and other regions as
      * backup.
-     *
+     * 
      * @param primaryRegionProperties the primaryRegionProperties value to set.
      * @return the ServiceRegionProperties object itself.
      */
@@ -71,20 +75,17 @@ public final class ServiceRegionProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (name() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property name in model ServiceRegionProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property name in model ServiceRegionProperties"));
         }
         if (primaryRegionProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property primaryRegionProperties in model ServiceRegionProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property primaryRegionProperties in model ServiceRegionProperties"));
         } else {
             primaryRegionProperties().validate();
         }

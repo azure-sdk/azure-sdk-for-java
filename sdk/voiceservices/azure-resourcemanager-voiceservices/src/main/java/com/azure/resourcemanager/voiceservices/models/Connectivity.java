@@ -8,14 +8,18 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** How this deployment connects back to the operator network. */
+/**
+ * How this deployment connects back to the operator network.
+ */
 public final class Connectivity extends ExpandableStringEnum<Connectivity> {
-    /** Static value PublicAddress for Connectivity. */
+    /**
+     * Static value PublicAddress for Connectivity.
+     */
     public static final Connectivity PUBLIC_ADDRESS = fromString("PublicAddress");
 
     /**
      * Creates a new instance of Connectivity value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -24,7 +28,7 @@ public final class Connectivity extends ExpandableStringEnum<Connectivity> {
 
     /**
      * Creates or finds a Connectivity from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding Connectivity.
      */
@@ -35,7 +39,7 @@ public final class Connectivity extends ExpandableStringEnum<Connectivity> {
 
     /**
      * Gets known Connectivity values.
-     *
+     * 
      * @return known Connectivity values.
      */
     public static Collection<Connectivity> values() {
