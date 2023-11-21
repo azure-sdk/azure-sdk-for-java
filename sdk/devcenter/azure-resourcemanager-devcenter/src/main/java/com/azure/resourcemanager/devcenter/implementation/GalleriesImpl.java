@@ -21,8 +21,8 @@ public final class GalleriesImpl implements Galleries {
 
     private final com.azure.resourcemanager.devcenter.DevCenterManager serviceManager;
 
-    public GalleriesImpl(
-        GalleriesClient innerClient, com.azure.resourcemanager.devcenter.DevCenterManager serviceManager) {
+    public GalleriesImpl(GalleriesClient innerClient,
+        com.azure.resourcemanager.devcenter.DevCenterManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
@@ -32,22 +32,19 @@ public final class GalleriesImpl implements Galleries {
         return Utils.mapPage(inner, inner1 -> new GalleryImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<Gallery> listByDevCenter(
-        String resourceGroupName, String devCenterName, Integer top, Context context) {
-        PagedIterable<GalleryInner> inner =
-            this.serviceClient().listByDevCenter(resourceGroupName, devCenterName, top, context);
+    public PagedIterable<Gallery> listByDevCenter(String resourceGroupName, String devCenterName, Integer top,
+        Context context) {
+        PagedIterable<GalleryInner> inner
+            = this.serviceClient().listByDevCenter(resourceGroupName, devCenterName, top, context);
         return Utils.mapPage(inner, inner1 -> new GalleryImpl(inner1, this.manager()));
     }
 
-    public Response<Gallery> getWithResponse(
-        String resourceGroupName, String devCenterName, String galleryName, Context context) {
-        Response<GalleryInner> inner =
-            this.serviceClient().getWithResponse(resourceGroupName, devCenterName, galleryName, context);
+    public Response<Gallery> getWithResponse(String resourceGroupName, String devCenterName, String galleryName,
+        Context context) {
+        Response<GalleryInner> inner
+            = this.serviceClient().getWithResponse(resourceGroupName, devCenterName, galleryName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new GalleryImpl(inner.getValue(), this.manager()));
         } else {
             return null;
@@ -74,25 +71,18 @@ public final class GalleriesImpl implements Galleries {
     public Gallery getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String devCenterName = Utils.getValueFromIdByName(id, "devcenters");
         if (devCenterName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'devcenters'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'devcenters'.", id)));
         }
         String galleryName = Utils.getValueFromIdByName(id, "galleries");
         if (galleryName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'galleries'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'galleries'.", id)));
         }
         return this.getWithResponse(resourceGroupName, devCenterName, galleryName, Context.NONE).getValue();
     }
@@ -100,25 +90,18 @@ public final class GalleriesImpl implements Galleries {
     public Response<Gallery> getByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String devCenterName = Utils.getValueFromIdByName(id, "devcenters");
         if (devCenterName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'devcenters'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'devcenters'.", id)));
         }
         String galleryName = Utils.getValueFromIdByName(id, "galleries");
         if (galleryName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'galleries'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'galleries'.", id)));
         }
         return this.getWithResponse(resourceGroupName, devCenterName, galleryName, context);
     }
@@ -126,25 +109,18 @@ public final class GalleriesImpl implements Galleries {
     public void deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String devCenterName = Utils.getValueFromIdByName(id, "devcenters");
         if (devCenterName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'devcenters'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'devcenters'.", id)));
         }
         String galleryName = Utils.getValueFromIdByName(id, "galleries");
         if (galleryName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'galleries'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'galleries'.", id)));
         }
         this.delete(resourceGroupName, devCenterName, galleryName, Context.NONE);
     }
@@ -152,25 +128,18 @@ public final class GalleriesImpl implements Galleries {
     public void deleteByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String devCenterName = Utils.getValueFromIdByName(id, "devcenters");
         if (devCenterName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'devcenters'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'devcenters'.", id)));
         }
         String galleryName = Utils.getValueFromIdByName(id, "galleries");
         if (galleryName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'galleries'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'galleries'.", id)));
         }
         this.delete(resourceGroupName, devCenterName, galleryName, context);
     }

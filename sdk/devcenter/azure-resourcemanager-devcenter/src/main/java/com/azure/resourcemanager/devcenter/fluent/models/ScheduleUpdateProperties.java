@@ -10,7 +10,9 @@ import com.azure.resourcemanager.devcenter.models.ScheduledFrequency;
 import com.azure.resourcemanager.devcenter.models.ScheduledType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Updatable properties of a Schedule. */
+/**
+ * Updatable properties of a Schedule.
+ */
 @Fluent
 public class ScheduleUpdateProperties {
     /*
@@ -43,13 +45,15 @@ public class ScheduleUpdateProperties {
     @JsonProperty(value = "state")
     private ScheduleEnableStatus state;
 
-    /** Creates an instance of ScheduleUpdateProperties class. */
+    /**
+     * Creates an instance of ScheduleUpdateProperties class.
+     */
     public ScheduleUpdateProperties() {
     }
 
     /**
      * Get the type property: Supported type this scheduled task represents.
-     *
+     * 
      * @return the type value.
      */
     public ScheduledType type() {
@@ -58,7 +62,7 @@ public class ScheduleUpdateProperties {
 
     /**
      * Set the type property: Supported type this scheduled task represents.
-     *
+     * 
      * @param type the type value to set.
      * @return the ScheduleUpdateProperties object itself.
      */
@@ -69,7 +73,7 @@ public class ScheduleUpdateProperties {
 
     /**
      * Get the frequency property: The frequency of this scheduled task.
-     *
+     * 
      * @return the frequency value.
      */
     public ScheduledFrequency frequency() {
@@ -78,7 +82,7 @@ public class ScheduleUpdateProperties {
 
     /**
      * Set the frequency property: The frequency of this scheduled task.
-     *
+     * 
      * @param frequency the frequency value to set.
      * @return the ScheduleUpdateProperties object itself.
      */
@@ -89,7 +93,7 @@ public class ScheduleUpdateProperties {
 
     /**
      * Get the time property: The target time to trigger the action. The format is HH:MM.
-     *
+     * 
      * @return the time value.
      */
     public String time() {
@@ -98,7 +102,7 @@ public class ScheduleUpdateProperties {
 
     /**
      * Set the time property: The target time to trigger the action. The format is HH:MM.
-     *
+     * 
      * @param time the time value to set.
      * @return the ScheduleUpdateProperties object itself.
      */
@@ -109,7 +113,7 @@ public class ScheduleUpdateProperties {
 
     /**
      * Get the timeZone property: The IANA timezone id at which the schedule should execute.
-     *
+     * 
      * @return the timeZone value.
      */
     public String timeZone() {
@@ -118,7 +122,7 @@ public class ScheduleUpdateProperties {
 
     /**
      * Set the timeZone property: The IANA timezone id at which the schedule should execute.
-     *
+     * 
      * @param timeZone the timeZone value to set.
      * @return the ScheduleUpdateProperties object itself.
      */
@@ -129,7 +133,7 @@ public class ScheduleUpdateProperties {
 
     /**
      * Get the state property: Indicates whether or not this scheduled task is enabled.
-     *
+     * 
      * @return the state value.
      */
     public ScheduleEnableStatus state() {
@@ -138,7 +142,7 @@ public class ScheduleUpdateProperties {
 
     /**
      * Set the state property: Indicates whether or not this scheduled task is enabled.
-     *
+     * 
      * @param state the state value to set.
      * @return the ScheduleUpdateProperties object itself.
      */
@@ -149,7 +153,7 @@ public class ScheduleUpdateProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

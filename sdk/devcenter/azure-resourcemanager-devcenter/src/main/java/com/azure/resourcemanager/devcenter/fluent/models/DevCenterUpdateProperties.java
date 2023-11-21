@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.devcenter.models.Encryption;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Properties of the devcenter. These properties can be updated after the resource has been created. */
+/**
+ * Properties of the devcenter. These properties can be updated after the resource has been created.
+ */
 @Fluent
 public class DevCenterUpdateProperties {
     /*
@@ -24,14 +26,16 @@ public class DevCenterUpdateProperties {
     @JsonProperty(value = "displayName")
     private String displayName;
 
-    /** Creates an instance of DevCenterUpdateProperties class. */
+    /**
+     * Creates an instance of DevCenterUpdateProperties class.
+     */
     public DevCenterUpdateProperties() {
     }
 
     /**
      * Get the encryption property: Encryption settings to be used for server-side encryption for proprietary content
      * (such as catalogs, logs, customizations).
-     *
+     * 
      * @return the encryption value.
      */
     public Encryption encryption() {
@@ -41,7 +45,7 @@ public class DevCenterUpdateProperties {
     /**
      * Set the encryption property: Encryption settings to be used for server-side encryption for proprietary content
      * (such as catalogs, logs, customizations).
-     *
+     * 
      * @param encryption the encryption value to set.
      * @return the DevCenterUpdateProperties object itself.
      */
@@ -52,7 +56,7 @@ public class DevCenterUpdateProperties {
 
     /**
      * Get the displayName property: The display name of the devcenter.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -61,7 +65,7 @@ public class DevCenterUpdateProperties {
 
     /**
      * Set the displayName property: The display name of the devcenter.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the DevCenterUpdateProperties object itself.
      */
@@ -72,7 +76,7 @@ public class DevCenterUpdateProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

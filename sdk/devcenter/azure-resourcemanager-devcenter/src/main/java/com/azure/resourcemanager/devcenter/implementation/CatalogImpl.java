@@ -104,20 +104,14 @@ public final class CatalogImpl implements Catalog, Catalog.Definition, Catalog.U
     }
 
     public Catalog create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getCatalogs()
-                .createOrUpdate(resourceGroupName, devCenterName, catalogName, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getCatalogs().createOrUpdate(resourceGroupName, devCenterName,
+            catalogName, this.innerModel(), Context.NONE);
         return this;
     }
 
     public Catalog create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getCatalogs()
-                .createOrUpdate(resourceGroupName, devCenterName, catalogName, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient().getCatalogs().createOrUpdate(resourceGroupName, devCenterName,
+            catalogName, this.innerModel(), context);
         return this;
     }
 
@@ -133,20 +127,14 @@ public final class CatalogImpl implements Catalog, Catalog.Definition, Catalog.U
     }
 
     public Catalog apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getCatalogs()
-                .update(resourceGroupName, devCenterName, catalogName, updateBody, Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getCatalogs().update(resourceGroupName, devCenterName,
+            catalogName, updateBody, Context.NONE);
         return this;
     }
 
     public Catalog apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getCatalogs()
-                .update(resourceGroupName, devCenterName, catalogName, updateBody, context);
+        this.innerObject = serviceManager.serviceClient().getCatalogs().update(resourceGroupName, devCenterName,
+            catalogName, updateBody, context);
         return this;
     }
 
@@ -159,29 +147,20 @@ public final class CatalogImpl implements Catalog, Catalog.Definition, Catalog.U
     }
 
     public Catalog refresh() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getCatalogs()
-                .getWithResponse(resourceGroupName, devCenterName, catalogName, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getCatalogs()
+            .getWithResponse(resourceGroupName, devCenterName, catalogName, Context.NONE).getValue();
         return this;
     }
 
     public Catalog refresh(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getCatalogs()
-                .getWithResponse(resourceGroupName, devCenterName, catalogName, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getCatalogs()
+            .getWithResponse(resourceGroupName, devCenterName, catalogName, context).getValue();
         return this;
     }
 
     public Response<SyncErrorDetails> getSyncErrorDetailsWithResponse(Context context) {
-        return serviceManager
-            .catalogs()
-            .getSyncErrorDetailsWithResponse(resourceGroupName, devCenterName, catalogName, context);
+        return serviceManager.catalogs().getSyncErrorDetailsWithResponse(resourceGroupName, devCenterName, catalogName,
+            context);
     }
 
     public SyncErrorDetails getSyncErrorDetails() {

@@ -119,20 +119,14 @@ public final class NetworkConnectionImpl
     }
 
     public NetworkConnection create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getNetworkConnections()
-                .createOrUpdate(resourceGroupName, networkConnectionName, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getNetworkConnections().createOrUpdate(resourceGroupName,
+            networkConnectionName, this.innerModel(), Context.NONE);
         return this;
     }
 
     public NetworkConnection create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getNetworkConnections()
-                .createOrUpdate(resourceGroupName, networkConnectionName, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient().getNetworkConnections().createOrUpdate(resourceGroupName,
+            networkConnectionName, this.innerModel(), context);
         return this;
     }
 
@@ -148,25 +142,19 @@ public final class NetworkConnectionImpl
     }
 
     public NetworkConnection apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getNetworkConnections()
-                .update(resourceGroupName, networkConnectionName, updateBody, Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getNetworkConnections().update(resourceGroupName,
+            networkConnectionName, updateBody, Context.NONE);
         return this;
     }
 
     public NetworkConnection apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getNetworkConnections()
-                .update(resourceGroupName, networkConnectionName, updateBody, context);
+        this.innerObject = serviceManager.serviceClient().getNetworkConnections().update(resourceGroupName,
+            networkConnectionName, updateBody, context);
         return this;
     }
 
-    NetworkConnectionImpl(
-        NetworkConnectionInner innerObject, com.azure.resourcemanager.devcenter.DevCenterManager serviceManager) {
+    NetworkConnectionImpl(NetworkConnectionInner innerObject,
+        com.azure.resourcemanager.devcenter.DevCenterManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
         this.resourceGroupName = Utils.getValueFromIdByName(innerObject.id(), "resourceGroups");
@@ -174,22 +162,14 @@ public final class NetworkConnectionImpl
     }
 
     public NetworkConnection refresh() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getNetworkConnections()
-                .getByResourceGroupWithResponse(resourceGroupName, networkConnectionName, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getNetworkConnections()
+            .getByResourceGroupWithResponse(resourceGroupName, networkConnectionName, Context.NONE).getValue();
         return this;
     }
 
     public NetworkConnection refresh(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getNetworkConnections()
-                .getByResourceGroupWithResponse(resourceGroupName, networkConnectionName, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getNetworkConnections()
+            .getByResourceGroupWithResponse(resourceGroupName, networkConnectionName, context).getValue();
         return this;
     }
 

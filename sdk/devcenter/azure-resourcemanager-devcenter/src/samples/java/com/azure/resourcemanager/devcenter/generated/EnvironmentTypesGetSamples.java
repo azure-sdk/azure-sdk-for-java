@@ -4,14 +4,18 @@
 
 package com.azure.resourcemanager.devcenter.generated;
 
-/** Samples for EnvironmentTypes Get. */
+/**
+ * Samples for EnvironmentTypes Get.
+ */
 public final class EnvironmentTypesGetSamples {
     /*
-     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2023-10-01-preview/examples/EnvironmentTypes_Get.json
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2023-10-01-preview/examples/
+     * EnvironmentTypes_Get.json
      */
     /**
      * Sample code: EnvironmentTypes_Get.
-     *
+     * 
      * @param manager Entry point to DevCenterManager.
      */
     public static void environmentTypesGet(com.azure.resourcemanager.devcenter.DevCenterManager manager) {

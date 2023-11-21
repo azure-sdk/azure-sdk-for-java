@@ -10,13 +10,15 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.devcenter.fluent.models.OperationStatusInner;
 
-/** An instance of this class provides access to all the operations defined in OperationStatusesClient. */
+/**
+ * An instance of this class provides access to all the operations defined in OperationStatusesClient.
+ */
 public interface OperationStatusesClient {
     /**
      * Get Operation Status
-     *
-     * <p>Gets the current status of an async operation.
-     *
+     * 
+     * Gets the current status of an async operation.
+     * 
      * @param location The Azure region.
      * @param operationId The ID of an ongoing async operation.
      * @param context The context to associate with this operation.
@@ -30,9 +32,9 @@ public interface OperationStatusesClient {
 
     /**
      * Get Operation Status
-     *
-     * <p>Gets the current status of an async operation.
-     *
+     * 
+     * Gets the current status of an async operation.
+     * 
      * @param location The Azure region.
      * @param operationId The ID of an ongoing async operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.

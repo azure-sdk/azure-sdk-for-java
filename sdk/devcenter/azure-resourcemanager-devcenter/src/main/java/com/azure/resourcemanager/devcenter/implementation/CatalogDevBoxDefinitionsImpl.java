@@ -23,52 +23,42 @@ public final class CatalogDevBoxDefinitionsImpl implements CatalogDevBoxDefiniti
 
     private final com.azure.resourcemanager.devcenter.DevCenterManager serviceManager;
 
-    public CatalogDevBoxDefinitionsImpl(
-        CatalogDevBoxDefinitionsClient innerClient,
+    public CatalogDevBoxDefinitionsImpl(CatalogDevBoxDefinitionsClient innerClient,
         com.azure.resourcemanager.devcenter.DevCenterManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
 
-    public PagedIterable<DevBoxDefinition> listByCatalog(
-        String resourceGroupName, String devCenterName, String catalogName) {
-        PagedIterable<DevBoxDefinitionInner> inner =
-            this.serviceClient().listByCatalog(resourceGroupName, devCenterName, catalogName);
+    public PagedIterable<DevBoxDefinition> listByCatalog(String resourceGroupName, String devCenterName,
+        String catalogName) {
+        PagedIterable<DevBoxDefinitionInner> inner
+            = this.serviceClient().listByCatalog(resourceGroupName, devCenterName, catalogName);
         return Utils.mapPage(inner, inner1 -> new DevBoxDefinitionImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<DevBoxDefinition> listByCatalog(
-        String resourceGroupName, String devCenterName, String catalogName, Integer top, Context context) {
-        PagedIterable<DevBoxDefinitionInner> inner =
-            this.serviceClient().listByCatalog(resourceGroupName, devCenterName, catalogName, top, context);
+    public PagedIterable<DevBoxDefinition> listByCatalog(String resourceGroupName, String devCenterName,
+        String catalogName, Integer top, Context context) {
+        PagedIterable<DevBoxDefinitionInner> inner
+            = this.serviceClient().listByCatalog(resourceGroupName, devCenterName, catalogName, top, context);
         return Utils.mapPage(inner, inner1 -> new DevBoxDefinitionImpl(inner1, this.manager()));
     }
 
-    public Response<DevBoxDefinition> getWithResponse(
-        String resourceGroupName,
-        String devCenterName,
-        String catalogName,
-        String devBoxDefinitionName,
-        Context context) {
-        Response<DevBoxDefinitionInner> inner =
-            this
-                .serviceClient()
-                .getWithResponse(resourceGroupName, devCenterName, catalogName, devBoxDefinitionName, context);
+    public Response<DevBoxDefinition> getWithResponse(String resourceGroupName, String devCenterName,
+        String catalogName, String devBoxDefinitionName, Context context) {
+        Response<DevBoxDefinitionInner> inner = this.serviceClient().getWithResponse(resourceGroupName, devCenterName,
+            catalogName, devBoxDefinitionName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new DevBoxDefinitionImpl(inner.getValue(), this.manager()));
         } else {
             return null;
         }
     }
 
-    public DevBoxDefinition get(
-        String resourceGroupName, String devCenterName, String catalogName, String devBoxDefinitionName) {
-        DevBoxDefinitionInner inner =
-            this.serviceClient().get(resourceGroupName, devCenterName, catalogName, devBoxDefinitionName);
+    public DevBoxDefinition get(String resourceGroupName, String devCenterName, String catalogName,
+        String devBoxDefinitionName) {
+        DevBoxDefinitionInner inner
+            = this.serviceClient().get(resourceGroupName, devCenterName, catalogName, devBoxDefinitionName);
         if (inner != null) {
             return new DevBoxDefinitionImpl(inner, this.manager());
         } else {
@@ -76,32 +66,22 @@ public final class CatalogDevBoxDefinitionsImpl implements CatalogDevBoxDefiniti
         }
     }
 
-    public Response<CatalogResourceValidationErrorDetails> getErrorDetailsWithResponse(
-        String resourceGroupName,
-        String devCenterName,
-        String catalogName,
-        String devBoxDefinitionName,
-        Context context) {
-        Response<CatalogResourceValidationErrorDetailsInner> inner =
-            this
-                .serviceClient()
-                .getErrorDetailsWithResponse(
-                    resourceGroupName, devCenterName, catalogName, devBoxDefinitionName, context);
+    public Response<CatalogResourceValidationErrorDetails> getErrorDetailsWithResponse(String resourceGroupName,
+        String devCenterName, String catalogName, String devBoxDefinitionName, Context context) {
+        Response<CatalogResourceValidationErrorDetailsInner> inner = this.serviceClient()
+            .getErrorDetailsWithResponse(resourceGroupName, devCenterName, catalogName, devBoxDefinitionName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new CatalogResourceValidationErrorDetailsImpl(inner.getValue(), this.manager()));
         } else {
             return null;
         }
     }
 
-    public CatalogResourceValidationErrorDetails getErrorDetails(
-        String resourceGroupName, String devCenterName, String catalogName, String devBoxDefinitionName) {
-        CatalogResourceValidationErrorDetailsInner inner =
-            this.serviceClient().getErrorDetails(resourceGroupName, devCenterName, catalogName, devBoxDefinitionName);
+    public CatalogResourceValidationErrorDetails getErrorDetails(String resourceGroupName, String devCenterName,
+        String catalogName, String devBoxDefinitionName) {
+        CatalogResourceValidationErrorDetailsInner inner
+            = this.serviceClient().getErrorDetails(resourceGroupName, devCenterName, catalogName, devBoxDefinitionName);
         if (inner != null) {
             return new CatalogResourceValidationErrorDetailsImpl(inner, this.manager());
         } else {

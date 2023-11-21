@@ -8,28 +8,25 @@ import com.azure.resourcemanager.devcenter.models.Project;
 import java.util.HashMap;
 import java.util.Map;
 
-/** Samples for Projects Update. */
+/**
+ * Samples for Projects Update.
+ */
 public final class ProjectsUpdateSamples {
     /*
-     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2023-10-01-preview/examples/Projects_Patch.json
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2023-10-01-preview/examples/Projects_Patch.
+     * json
      */
     /**
      * Sample code: Projects_Update.
-     *
+     * 
      * @param manager Entry point to DevCenterManager.
      */
     public static void projectsUpdate(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        Project resource =
-            manager
-                .projects()
-                .getByResourceGroupWithResponse("rg1", "DevProject", com.azure.core.util.Context.NONE)
-                .getValue();
-        resource
-            .update()
-            .withTags(mapOf("CostCenter", "R&D"))
-            .withDescription("This is my first project.")
-            .withDisplayName("Dev")
-            .apply();
+        Project resource = manager.projects()
+            .getByResourceGroupWithResponse("rg1", "DevProject", com.azure.core.util.Context.NONE).getValue();
+        resource.update().withTags(mapOf("CostCenter", "R&D")).withDescription("This is my first project.")
+            .withDisplayName("Dev").apply();
     }
 
     // Use "Map.of" if available

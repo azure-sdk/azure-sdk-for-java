@@ -76,7 +76,10 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-/** Entry point to DevCenterManager. DevCenter Management API. */
+/**
+ * Entry point to DevCenterManager.
+ * DevCenter Management API.
+ */
 public final class DevCenterManager {
     private DevCenters devCenters;
 
@@ -127,18 +130,14 @@ public final class DevCenterManager {
     private DevCenterManager(HttpPipeline httpPipeline, AzureProfile profile, Duration defaultPollInterval) {
         Objects.requireNonNull(httpPipeline, "'httpPipeline' cannot be null.");
         Objects.requireNonNull(profile, "'profile' cannot be null.");
-        this.clientObject =
-            new DevCenterManagementClientBuilder()
-                .pipeline(httpPipeline)
-                .endpoint(profile.getEnvironment().getResourceManagerEndpoint())
-                .subscriptionId(profile.getSubscriptionId())
-                .defaultPollInterval(defaultPollInterval)
-                .buildClient();
+        this.clientObject = new DevCenterManagementClientBuilder().pipeline(httpPipeline)
+            .endpoint(profile.getEnvironment().getResourceManagerEndpoint()).subscriptionId(profile.getSubscriptionId())
+            .defaultPollInterval(defaultPollInterval).buildClient();
     }
 
     /**
      * Creates an instance of DevCenter service API entry point.
-     *
+     * 
      * @param credential the credential to use.
      * @param profile the Azure profile for client.
      * @return the DevCenter service API instance.
@@ -151,7 +150,7 @@ public final class DevCenterManager {
 
     /**
      * Creates an instance of DevCenter service API entry point.
-     *
+     * 
      * @param httpPipeline the {@link HttpPipeline} configured with Azure authentication credential.
      * @param profile the Azure profile for client.
      * @return the DevCenter service API instance.
@@ -164,14 +163,16 @@ public final class DevCenterManager {
 
     /**
      * Gets a Configurable instance that can be used to create DevCenterManager with optional configuration.
-     *
+     * 
      * @return the Configurable instance allowing configurations.
      */
     public static Configurable configure() {
         return new DevCenterManager.Configurable();
     }
 
-    /** The Configurable allowing configurations to be set. */
+    /**
+     * The Configurable allowing configurations to be set.
+     */
     public static final class Configurable {
         private static final ClientLogger LOGGER = new ClientLogger(Configurable.class);
 
@@ -243,8 +244,8 @@ public final class DevCenterManager {
 
         /**
          * Sets the retry options for the HTTP pipeline retry policy.
-         *
-         * <p>This setting has no effect, if retry policy is set via {@link #withRetryPolicy(RetryPolicy)}.
+         * <p>
+         * This setting has no effect, if retry policy is set via {@link #withRetryPolicy(RetryPolicy)}.
          *
          * @param retryOptions the retry options for the HTTP pipeline retry policy.
          * @return the configurable object itself.
@@ -261,8 +262,8 @@ public final class DevCenterManager {
          * @return the configurable object itself.
          */
         public Configurable withDefaultPollInterval(Duration defaultPollInterval) {
-            this.defaultPollInterval =
-                Objects.requireNonNull(defaultPollInterval, "'defaultPollInterval' cannot be null.");
+            this.defaultPollInterval
+                = Objects.requireNonNull(defaultPollInterval, "'defaultPollInterval' cannot be null.");
             if (this.defaultPollInterval.isNegative()) {
                 throw LOGGER
                     .logExceptionAsError(new IllegalArgumentException("'defaultPollInterval' cannot be negative"));
@@ -282,21 +283,12 @@ public final class DevCenterManager {
             Objects.requireNonNull(profile, "'profile' cannot be null.");
 
             StringBuilder userAgentBuilder = new StringBuilder();
-            userAgentBuilder
-                .append("azsdk-java")
-                .append("-")
-                .append("com.azure.resourcemanager.devcenter")
-                .append("/")
-                .append("1.0.0-beta.6");
+            userAgentBuilder.append("azsdk-java").append("-").append("com.azure.resourcemanager.devcenter").append("/")
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
-                userAgentBuilder
-                    .append(" (")
-                    .append(Configuration.getGlobalConfiguration().get("java.version"))
-                    .append("; ")
-                    .append(Configuration.getGlobalConfiguration().get("os.name"))
-                    .append("; ")
-                    .append(Configuration.getGlobalConfiguration().get("os.version"))
-                    .append("; auto-generated)");
+                userAgentBuilder.append(" (").append(Configuration.getGlobalConfiguration().get("java.version"))
+                    .append("; ").append(Configuration.getGlobalConfiguration().get("os.name")).append("; ")
+                    .append(Configuration.getGlobalConfiguration().get("os.version")).append("; auto-generated)");
             } else {
                 userAgentBuilder.append(" (auto-generated)");
             }
@@ -315,38 +307,25 @@ public final class DevCenterManager {
             policies.add(new UserAgentPolicy(userAgentBuilder.toString()));
             policies.add(new AddHeadersFromContextPolicy());
             policies.add(new RequestIdPolicy());
-            policies
-                .addAll(
-                    this
-                        .policies
-                        .stream()
-                        .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_CALL)
-                        .collect(Collectors.toList()));
+            policies.addAll(this.policies.stream().filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_CALL)
+                .collect(Collectors.toList()));
             HttpPolicyProviders.addBeforeRetryPolicies(policies);
             policies.add(retryPolicy);
             policies.add(new AddDatePolicy());
             policies.add(new ArmChallengeAuthenticationPolicy(credential, scopes.toArray(new String[0])));
-            policies
-                .addAll(
-                    this
-                        .policies
-                        .stream()
-                        .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_RETRY)
-                        .collect(Collectors.toList()));
+            policies.addAll(this.policies.stream()
+                .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_RETRY).collect(Collectors.toList()));
             HttpPolicyProviders.addAfterRetryPolicies(policies);
             policies.add(new HttpLoggingPolicy(httpLogOptions));
-            HttpPipeline httpPipeline =
-                new HttpPipelineBuilder()
-                    .httpClient(httpClient)
-                    .policies(policies.toArray(new HttpPipelinePolicy[0]))
-                    .build();
+            HttpPipeline httpPipeline = new HttpPipelineBuilder().httpClient(httpClient)
+                .policies(policies.toArray(new HttpPipelinePolicy[0])).build();
             return new DevCenterManager(httpPipeline, profile, defaultPollInterval);
         }
     }
 
     /**
      * Gets the resource collection API of DevCenters. It manages DevCenter.
-     *
+     * 
      * @return Resource collection API of DevCenters.
      */
     public DevCenters devCenters() {
@@ -358,7 +337,7 @@ public final class DevCenterManager {
 
     /**
      * Gets the resource collection API of Projects. It manages Project.
-     *
+     * 
      * @return Resource collection API of Projects.
      */
     public Projects projects() {
@@ -370,7 +349,7 @@ public final class DevCenterManager {
 
     /**
      * Gets the resource collection API of AttachedNetworks. It manages AttachedNetworkConnection.
-     *
+     * 
      * @return Resource collection API of AttachedNetworks.
      */
     public AttachedNetworks attachedNetworks() {
@@ -382,7 +361,7 @@ public final class DevCenterManager {
 
     /**
      * Gets the resource collection API of Galleries. It manages Gallery.
-     *
+     * 
      * @return Resource collection API of Galleries.
      */
     public Galleries galleries() {
@@ -394,7 +373,7 @@ public final class DevCenterManager {
 
     /**
      * Gets the resource collection API of Images.
-     *
+     * 
      * @return Resource collection API of Images.
      */
     public Images images() {
@@ -406,7 +385,7 @@ public final class DevCenterManager {
 
     /**
      * Gets the resource collection API of ImageVersions.
-     *
+     * 
      * @return Resource collection API of ImageVersions.
      */
     public ImageVersions imageVersions() {
@@ -418,7 +397,7 @@ public final class DevCenterManager {
 
     /**
      * Gets the resource collection API of Catalogs. It manages Catalog.
-     *
+     * 
      * @return Resource collection API of Catalogs.
      */
     public Catalogs catalogs() {
@@ -430,7 +409,7 @@ public final class DevCenterManager {
 
     /**
      * Gets the resource collection API of EnvironmentTypes. It manages EnvironmentType.
-     *
+     * 
      * @return Resource collection API of EnvironmentTypes.
      */
     public EnvironmentTypes environmentTypes() {
@@ -442,33 +421,33 @@ public final class DevCenterManager {
 
     /**
      * Gets the resource collection API of ProjectAllowedEnvironmentTypes.
-     *
+     * 
      * @return Resource collection API of ProjectAllowedEnvironmentTypes.
      */
     public ProjectAllowedEnvironmentTypes projectAllowedEnvironmentTypes() {
         if (this.projectAllowedEnvironmentTypes == null) {
-            this.projectAllowedEnvironmentTypes =
-                new ProjectAllowedEnvironmentTypesImpl(clientObject.getProjectAllowedEnvironmentTypes(), this);
+            this.projectAllowedEnvironmentTypes
+                = new ProjectAllowedEnvironmentTypesImpl(clientObject.getProjectAllowedEnvironmentTypes(), this);
         }
         return projectAllowedEnvironmentTypes;
     }
 
     /**
      * Gets the resource collection API of ProjectEnvironmentTypes. It manages ProjectEnvironmentType.
-     *
+     * 
      * @return Resource collection API of ProjectEnvironmentTypes.
      */
     public ProjectEnvironmentTypes projectEnvironmentTypes() {
         if (this.projectEnvironmentTypes == null) {
-            this.projectEnvironmentTypes =
-                new ProjectEnvironmentTypesImpl(clientObject.getProjectEnvironmentTypes(), this);
+            this.projectEnvironmentTypes
+                = new ProjectEnvironmentTypesImpl(clientObject.getProjectEnvironmentTypes(), this);
         }
         return projectEnvironmentTypes;
     }
 
     /**
      * Gets the resource collection API of DevBoxDefinitions. It manages DevBoxDefinition.
-     *
+     * 
      * @return Resource collection API of DevBoxDefinitions.
      */
     public DevBoxDefinitions devBoxDefinitions() {
@@ -480,7 +459,7 @@ public final class DevCenterManager {
 
     /**
      * Gets the resource collection API of Operations.
-     *
+     * 
      * @return Resource collection API of Operations.
      */
     public Operations operations() {
@@ -492,7 +471,7 @@ public final class DevCenterManager {
 
     /**
      * Gets the resource collection API of OperationStatuses.
-     *
+     * 
      * @return Resource collection API of OperationStatuses.
      */
     public OperationStatuses operationStatuses() {
@@ -504,7 +483,7 @@ public final class DevCenterManager {
 
     /**
      * Gets the resource collection API of Usages.
-     *
+     * 
      * @return Resource collection API of Usages.
      */
     public Usages usages() {
@@ -516,33 +495,33 @@ public final class DevCenterManager {
 
     /**
      * Gets the resource collection API of CheckNameAvailabilities.
-     *
+     * 
      * @return Resource collection API of CheckNameAvailabilities.
      */
     public CheckNameAvailabilities checkNameAvailabilities() {
         if (this.checkNameAvailabilities == null) {
-            this.checkNameAvailabilities =
-                new CheckNameAvailabilitiesImpl(clientObject.getCheckNameAvailabilities(), this);
+            this.checkNameAvailabilities
+                = new CheckNameAvailabilitiesImpl(clientObject.getCheckNameAvailabilities(), this);
         }
         return checkNameAvailabilities;
     }
 
     /**
      * Gets the resource collection API of CatalogDevBoxDefinitions.
-     *
+     * 
      * @return Resource collection API of CatalogDevBoxDefinitions.
      */
     public CatalogDevBoxDefinitions catalogDevBoxDefinitions() {
         if (this.catalogDevBoxDefinitions == null) {
-            this.catalogDevBoxDefinitions =
-                new CatalogDevBoxDefinitionsImpl(clientObject.getCatalogDevBoxDefinitions(), this);
+            this.catalogDevBoxDefinitions
+                = new CatalogDevBoxDefinitionsImpl(clientObject.getCatalogDevBoxDefinitions(), this);
         }
         return catalogDevBoxDefinitions;
     }
 
     /**
      * Gets the resource collection API of CustomizationTasks.
-     *
+     * 
      * @return Resource collection API of CustomizationTasks.
      */
     public CustomizationTasks customizationTasks() {
@@ -554,20 +533,20 @@ public final class DevCenterManager {
 
     /**
      * Gets the resource collection API of EnvironmentDefinitions.
-     *
+     * 
      * @return Resource collection API of EnvironmentDefinitions.
      */
     public EnvironmentDefinitions environmentDefinitions() {
         if (this.environmentDefinitions == null) {
-            this.environmentDefinitions =
-                new EnvironmentDefinitionsImpl(clientObject.getEnvironmentDefinitions(), this);
+            this.environmentDefinitions
+                = new EnvironmentDefinitionsImpl(clientObject.getEnvironmentDefinitions(), this);
         }
         return environmentDefinitions;
     }
 
     /**
      * Gets the resource collection API of Skus.
-     *
+     * 
      * @return Resource collection API of Skus.
      */
     public Skus skus() {
@@ -579,7 +558,7 @@ public final class DevCenterManager {
 
     /**
      * Gets the resource collection API of Pools. It manages Pool.
-     *
+     * 
      * @return Resource collection API of Pools.
      */
     public Pools pools() {
@@ -591,7 +570,7 @@ public final class DevCenterManager {
 
     /**
      * Gets the resource collection API of Schedules. It manages Schedule.
-     *
+     * 
      * @return Resource collection API of Schedules.
      */
     public Schedules schedules() {
@@ -603,7 +582,7 @@ public final class DevCenterManager {
 
     /**
      * Gets the resource collection API of NetworkConnections. It manages NetworkConnection.
-     *
+     * 
      * @return Resource collection API of NetworkConnections.
      */
     public NetworkConnections networkConnections() {
@@ -616,7 +595,7 @@ public final class DevCenterManager {
     /**
      * Gets wrapped service client DevCenterManagementClient providing direct access to the underlying auto-generated
      * API implementation, based on Azure REST API.
-     *
+     * 
      * @return Wrapped service client DevCenterManagementClient.
      */
     public DevCenterManagementClient serviceClient() {

@@ -16,7 +16,9 @@ import com.azure.resourcemanager.devcenter.models.SyncStats;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** Represents a catalog. */
+/**
+ * Represents a catalog.
+ */
 @Fluent
 public final class CatalogInner extends ProxyResource {
     /*
@@ -31,13 +33,15 @@ public final class CatalogInner extends ProxyResource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of CatalogInner class. */
+    /**
+     * Creates an instance of CatalogInner class.
+     */
     public CatalogInner() {
     }
 
     /**
      * Get the innerProperties property: Catalog properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private CatalogProperties innerProperties() {
@@ -46,7 +50,7 @@ public final class CatalogInner extends ProxyResource {
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -55,7 +59,7 @@ public final class CatalogInner extends ProxyResource {
 
     /**
      * Get the provisioningState property: The provisioning state of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -64,7 +68,7 @@ public final class CatalogInner extends ProxyResource {
 
     /**
      * Get the syncState property: The synchronization state of the catalog.
-     *
+     * 
      * @return the syncState value.
      */
     public CatalogSyncState syncState() {
@@ -73,7 +77,7 @@ public final class CatalogInner extends ProxyResource {
 
     /**
      * Get the lastSyncStats property: Stats of the latest synchronization.
-     *
+     * 
      * @return the lastSyncStats value.
      */
     public SyncStats lastSyncStats() {
@@ -82,7 +86,7 @@ public final class CatalogInner extends ProxyResource {
 
     /**
      * Get the connectionState property: The connection state of the catalog.
-     *
+     * 
      * @return the connectionState value.
      */
     public CatalogConnectionState connectionState() {
@@ -91,7 +95,7 @@ public final class CatalogInner extends ProxyResource {
 
     /**
      * Get the lastConnectionTime property: When the catalog was last connected.
-     *
+     * 
      * @return the lastConnectionTime value.
      */
     public OffsetDateTime lastConnectionTime() {
@@ -100,7 +104,7 @@ public final class CatalogInner extends ProxyResource {
 
     /**
      * Get the lastSyncTime property: When the catalog was last synced.
-     *
+     * 
      * @return the lastSyncTime value.
      */
     public OffsetDateTime lastSyncTime() {
@@ -109,7 +113,7 @@ public final class CatalogInner extends ProxyResource {
 
     /**
      * Get the gitHub property: Properties for a GitHub catalog type.
-     *
+     * 
      * @return the gitHub value.
      */
     public GitCatalog gitHub() {
@@ -118,7 +122,7 @@ public final class CatalogInner extends ProxyResource {
 
     /**
      * Set the gitHub property: Properties for a GitHub catalog type.
-     *
+     * 
      * @param gitHub the gitHub value to set.
      * @return the CatalogInner object itself.
      */
@@ -132,7 +136,7 @@ public final class CatalogInner extends ProxyResource {
 
     /**
      * Get the adoGit property: Properties for an Azure DevOps catalog type.
-     *
+     * 
      * @return the adoGit value.
      */
     public GitCatalog adoGit() {
@@ -141,7 +145,7 @@ public final class CatalogInner extends ProxyResource {
 
     /**
      * Set the adoGit property: Properties for an Azure DevOps catalog type.
-     *
+     * 
      * @param adoGit the adoGit value to set.
      * @return the CatalogInner object itself.
      */
@@ -155,7 +159,7 @@ public final class CatalogInner extends ProxyResource {
 
     /**
      * Get the syncType property: Indicates the type of sync that is configured for the catalog.
-     *
+     * 
      * @return the syncType value.
      */
     public CatalogSyncType syncType() {
@@ -164,7 +168,7 @@ public final class CatalogInner extends ProxyResource {
 
     /**
      * Set the syncType property: Indicates the type of sync that is configured for the catalog.
-     *
+     * 
      * @param syncType the syncType value to set.
      * @return the CatalogInner object itself.
      */
@@ -178,7 +182,7 @@ public final class CatalogInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

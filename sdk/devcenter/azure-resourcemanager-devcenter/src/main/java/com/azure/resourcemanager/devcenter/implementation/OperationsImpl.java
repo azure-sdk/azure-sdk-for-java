@@ -19,8 +19,8 @@ public final class OperationsImpl implements Operations {
 
     private final com.azure.resourcemanager.devcenter.DevCenterManager serviceManager;
 
-    public OperationsImpl(
-        OperationsClient innerClient, com.azure.resourcemanager.devcenter.DevCenterManager serviceManager) {
+    public OperationsImpl(OperationsClient innerClient,
+        com.azure.resourcemanager.devcenter.DevCenterManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }

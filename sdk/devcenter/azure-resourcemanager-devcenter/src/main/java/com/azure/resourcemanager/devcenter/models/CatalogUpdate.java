@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** The catalog's properties for partial update. Properties not provided in the update request will not be changed. */
+/**
+ * The catalog's properties for partial update. Properties not provided in the update request will not be changed.
+ */
 @Fluent
 public final class CatalogUpdate {
     /*
@@ -26,13 +28,15 @@ public final class CatalogUpdate {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> tags;
 
-    /** Creates an instance of CatalogUpdate class. */
+    /**
+     * Creates an instance of CatalogUpdate class.
+     */
     public CatalogUpdate() {
     }
 
     /**
      * Get the innerProperties property: Catalog properties for update.
-     *
+     * 
      * @return the innerProperties value.
      */
     private CatalogUpdateProperties innerProperties() {
@@ -41,7 +45,7 @@ public final class CatalogUpdate {
 
     /**
      * Get the tags property: Resource tags.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -50,7 +54,7 @@ public final class CatalogUpdate {
 
     /**
      * Set the tags property: Resource tags.
-     *
+     * 
      * @param tags the tags value to set.
      * @return the CatalogUpdate object itself.
      */
@@ -61,7 +65,7 @@ public final class CatalogUpdate {
 
     /**
      * Get the gitHub property: Properties for a GitHub catalog type.
-     *
+     * 
      * @return the gitHub value.
      */
     public GitCatalog gitHub() {
@@ -70,7 +74,7 @@ public final class CatalogUpdate {
 
     /**
      * Set the gitHub property: Properties for a GitHub catalog type.
-     *
+     * 
      * @param gitHub the gitHub value to set.
      * @return the CatalogUpdate object itself.
      */
@@ -84,7 +88,7 @@ public final class CatalogUpdate {
 
     /**
      * Get the adoGit property: Properties for an Azure DevOps catalog type.
-     *
+     * 
      * @return the adoGit value.
      */
     public GitCatalog adoGit() {
@@ -93,7 +97,7 @@ public final class CatalogUpdate {
 
     /**
      * Set the adoGit property: Properties for an Azure DevOps catalog type.
-     *
+     * 
      * @param adoGit the adoGit value to set.
      * @return the CatalogUpdate object itself.
      */
@@ -107,7 +111,7 @@ public final class CatalogUpdate {
 
     /**
      * Get the syncType property: Indicates the type of sync that is configured for the catalog.
-     *
+     * 
      * @return the syncType value.
      */
     public CatalogSyncType syncType() {
@@ -116,7 +120,7 @@ public final class CatalogUpdate {
 
     /**
      * Set the syncType property: Indicates the type of sync that is configured for the catalog.
-     *
+     * 
      * @param syncType the syncType value to set.
      * @return the CatalogUpdate object itself.
      */
@@ -130,7 +134,7 @@ public final class CatalogUpdate {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

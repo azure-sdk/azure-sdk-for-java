@@ -12,11 +12,13 @@ import com.azure.core.util.Context;
 import com.azure.resourcemanager.devcenter.fluent.models.CatalogResourceValidationErrorDetailsInner;
 import com.azure.resourcemanager.devcenter.fluent.models.DevBoxDefinitionInner;
 
-/** An instance of this class provides access to all the operations defined in CatalogDevBoxDefinitionsClient. */
+/**
+ * An instance of this class provides access to all the operations defined in CatalogDevBoxDefinitionsClient.
+ */
 public interface CatalogDevBoxDefinitionsClient {
     /**
      * List Dev Box definitions in the catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param catalogName The name of the Catalog.
@@ -26,12 +28,12 @@ public interface CatalogDevBoxDefinitionsClient {
      * @return results of the Dev Box definition list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<DevBoxDefinitionInner> listByCatalog(
-        String resourceGroupName, String devCenterName, String catalogName);
+    PagedIterable<DevBoxDefinitionInner> listByCatalog(String resourceGroupName, String devCenterName,
+        String catalogName);
 
     /**
      * List Dev Box definitions in the catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param catalogName The name of the Catalog.
@@ -43,12 +45,12 @@ public interface CatalogDevBoxDefinitionsClient {
      * @return results of the Dev Box definition list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<DevBoxDefinitionInner> listByCatalog(
-        String resourceGroupName, String devCenterName, String catalogName, Integer top, Context context);
+    PagedIterable<DevBoxDefinitionInner> listByCatalog(String resourceGroupName, String devCenterName,
+        String catalogName, Integer top, Context context);
 
     /**
      * Gets a Dev Box definition from the catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param catalogName The name of the Catalog.
@@ -60,16 +62,12 @@ public interface CatalogDevBoxDefinitionsClient {
      * @return a Dev Box definition from the catalog along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<DevBoxDefinitionInner> getWithResponse(
-        String resourceGroupName,
-        String devCenterName,
-        String catalogName,
-        String devBoxDefinitionName,
-        Context context);
+    Response<DevBoxDefinitionInner> getWithResponse(String resourceGroupName, String devCenterName, String catalogName,
+        String devBoxDefinitionName, Context context);
 
     /**
      * Gets a Dev Box definition from the catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param catalogName The name of the Catalog.
@@ -80,12 +78,12 @@ public interface CatalogDevBoxDefinitionsClient {
      * @return a Dev Box definition from the catalog.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    DevBoxDefinitionInner get(
-        String resourceGroupName, String devCenterName, String catalogName, String devBoxDefinitionName);
+    DevBoxDefinitionInner get(String resourceGroupName, String devCenterName, String catalogName,
+        String devBoxDefinitionName);
 
     /**
      * Gets Catalog Devbox Definition error details.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param catalogName The name of the Catalog.
@@ -97,16 +95,12 @@ public interface CatalogDevBoxDefinitionsClient {
      * @return catalog Devbox Definition error details along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<CatalogResourceValidationErrorDetailsInner> getErrorDetailsWithResponse(
-        String resourceGroupName,
-        String devCenterName,
-        String catalogName,
-        String devBoxDefinitionName,
-        Context context);
+    Response<CatalogResourceValidationErrorDetailsInner> getErrorDetailsWithResponse(String resourceGroupName,
+        String devCenterName, String catalogName, String devBoxDefinitionName, Context context);
 
     /**
      * Gets Catalog Devbox Definition error details.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param catalogName The name of the Catalog.
@@ -117,6 +111,6 @@ public interface CatalogDevBoxDefinitionsClient {
      * @return catalog Devbox Definition error details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    CatalogResourceValidationErrorDetailsInner getErrorDetails(
-        String resourceGroupName, String devCenterName, String catalogName, String devBoxDefinitionName);
+    CatalogResourceValidationErrorDetailsInner getErrorDetails(String resourceGroupName, String devCenterName,
+        String catalogName, String devBoxDefinitionName);
 }

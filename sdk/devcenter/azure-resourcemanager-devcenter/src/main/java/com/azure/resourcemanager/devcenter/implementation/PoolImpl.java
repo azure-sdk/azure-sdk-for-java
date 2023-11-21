@@ -153,20 +153,14 @@ public final class PoolImpl implements Pool, Pool.Definition, Pool.Update {
     }
 
     public Pool create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getPools()
-                .createOrUpdate(resourceGroupName, projectName, poolName, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getPools().createOrUpdate(resourceGroupName, projectName,
+            poolName, this.innerModel(), Context.NONE);
         return this;
     }
 
     public Pool create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getPools()
-                .createOrUpdate(resourceGroupName, projectName, poolName, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient().getPools().createOrUpdate(resourceGroupName, projectName,
+            poolName, this.innerModel(), context);
         return this;
     }
 
@@ -182,20 +176,14 @@ public final class PoolImpl implements Pool, Pool.Definition, Pool.Update {
     }
 
     public Pool apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getPools()
-                .update(resourceGroupName, projectName, poolName, updateBody, Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getPools().update(resourceGroupName, projectName, poolName,
+            updateBody, Context.NONE);
         return this;
     }
 
     public Pool apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getPools()
-                .update(resourceGroupName, projectName, poolName, updateBody, context);
+        this.innerObject = serviceManager.serviceClient().getPools().update(resourceGroupName, projectName, poolName,
+            updateBody, context);
         return this;
     }
 
@@ -208,22 +196,14 @@ public final class PoolImpl implements Pool, Pool.Definition, Pool.Update {
     }
 
     public Pool refresh() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getPools()
-                .getWithResponse(resourceGroupName, projectName, poolName, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getPools()
+            .getWithResponse(resourceGroupName, projectName, poolName, Context.NONE).getValue();
         return this;
     }
 
     public Pool refresh(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getPools()
-                .getWithResponse(resourceGroupName, projectName, poolName, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getPools()
+            .getWithResponse(resourceGroupName, projectName, poolName, context).getValue();
         return this;
     }
 

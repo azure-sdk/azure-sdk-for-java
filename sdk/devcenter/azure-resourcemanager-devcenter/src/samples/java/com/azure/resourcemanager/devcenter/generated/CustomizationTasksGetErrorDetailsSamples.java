@@ -4,20 +4,22 @@
 
 package com.azure.resourcemanager.devcenter.generated;
 
-/** Samples for CustomizationTasks GetErrorDetails. */
+/**
+ * Samples for CustomizationTasks GetErrorDetails.
+ */
 public final class CustomizationTasksGetErrorDetailsSamples {
     /*
-     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2023-10-01-preview/examples/CustomizationTasks_GetErrorDetails.json
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2023-10-01-preview/examples/
+     * CustomizationTasks_GetErrorDetails.json
      */
     /**
      * Sample code: CustomizationTasks_GetErrorDetails.
-     *
+     * 
      * @param manager Entry point to DevCenterManager.
      */
     public static void customizationTasksGetErrorDetails(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager
-            .customizationTasks()
-            .getErrorDetailsWithResponse(
-                "rg1", "Contoso", "CentralCatalog", "SampleTask", com.azure.core.util.Context.NONE);
+        manager.customizationTasks().getErrorDetailsWithResponse("rg1", "Contoso", "CentralCatalog", "SampleTask",
+            com.azure.core.util.Context.NONE);
     }
 }

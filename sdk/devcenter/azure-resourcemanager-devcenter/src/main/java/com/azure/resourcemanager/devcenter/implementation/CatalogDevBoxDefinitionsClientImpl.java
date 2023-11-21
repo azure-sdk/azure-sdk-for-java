@@ -32,23 +32,28 @@ import com.azure.resourcemanager.devcenter.fluent.models.DevBoxDefinitionInner;
 import com.azure.resourcemanager.devcenter.models.DevBoxDefinitionListResult;
 import reactor.core.publisher.Mono;
 
-/** An instance of this class provides access to all the operations defined in CatalogDevBoxDefinitionsClient. */
+/**
+ * An instance of this class provides access to all the operations defined in CatalogDevBoxDefinitionsClient.
+ */
 public final class CatalogDevBoxDefinitionsClientImpl implements CatalogDevBoxDefinitionsClient {
-    /** The proxy service used to perform REST calls. */
+    /**
+     * The proxy service used to perform REST calls.
+     */
     private final CatalogDevBoxDefinitionsService service;
 
-    /** The service client containing this operation class. */
+    /**
+     * The service client containing this operation class.
+     */
     private final DevCenterManagementClientImpl client;
 
     /**
      * Initializes an instance of CatalogDevBoxDefinitionsClientImpl.
-     *
+     * 
      * @param client the instance of the service client containing this operation class.
      */
     CatalogDevBoxDefinitionsClientImpl(DevCenterManagementClientImpl client) {
-        this.service =
-            RestProxy
-                .create(CatalogDevBoxDefinitionsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
+        this.service = RestProxy.create(CatalogDevBoxDefinitionsService.class, client.getHttpPipeline(),
+            client.getSerializerAdapter());
         this.client = client;
     }
 
@@ -59,68 +64,50 @@ public final class CatalogDevBoxDefinitionsClientImpl implements CatalogDevBoxDe
     @Host("{$host}")
     @ServiceInterface(name = "DevCenterManagementC")
     public interface CatalogDevBoxDefinitionsService {
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevCenter/devcenters/{devCenterName}/catalogs/{catalogName}/devboxdefinitions")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevCenter/devcenters/{devCenterName}/catalogs/{catalogName}/devboxdefinitions")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<DevBoxDefinitionListResult>> listByCatalog(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("devCenterName") String devCenterName,
+        Mono<Response<DevBoxDefinitionListResult>> listByCatalog(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("devCenterName") String devCenterName,
+            @PathParam("catalogName") String catalogName, @QueryParam("$top") Integer top,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevCenter/devcenters/{devCenterName}/catalogs/{catalogName}/devboxdefinitions/{devBoxDefinitionName}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<DevBoxDefinitionInner>> get(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("devCenterName") String devCenterName,
             @PathParam("catalogName") String catalogName,
-            @QueryParam("$top") Integer top,
-            @HeaderParam("Accept") String accept,
+            @PathParam("devBoxDefinitionName") String devBoxDefinitionName, @HeaderParam("Accept") String accept,
             Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevCenter/devcenters/{devCenterName}/catalogs/{catalogName}/devboxdefinitions/{devBoxDefinitionName}")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevCenter/devcenters/{devCenterName}/catalogs/{catalogName}/devboxdefinitions/{devBoxDefinitionName}/getErrorDetails")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<DevBoxDefinitionInner>> get(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("devCenterName") String devCenterName,
+        Mono<Response<CatalogResourceValidationErrorDetailsInner>> getErrorDetails(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("devCenterName") String devCenterName,
             @PathParam("catalogName") String catalogName,
-            @PathParam("devBoxDefinitionName") String devBoxDefinitionName,
-            @HeaderParam("Accept") String accept,
+            @PathParam("devBoxDefinitionName") String devBoxDefinitionName, @HeaderParam("Accept") String accept,
             Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevCenter/devcenters/{devCenterName}/catalogs/{catalogName}/devboxdefinitions/{devBoxDefinitionName}/getErrorDetails")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<CatalogResourceValidationErrorDetailsInner>> getErrorDetails(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("devCenterName") String devCenterName,
-            @PathParam("catalogName") String catalogName,
-            @PathParam("devBoxDefinitionName") String devBoxDefinitionName,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<DevBoxDefinitionListResult>> listByCatalogNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
      * List Dev Box definitions in the catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param catalogName The name of the Catalog.
@@ -129,22 +116,18 @@ public final class CatalogDevBoxDefinitionsClientImpl implements CatalogDevBoxDe
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return results of the Dev Box definition list operation along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<DevBoxDefinitionInner>> listByCatalogSinglePageAsync(
-        String resourceGroupName, String devCenterName, String catalogName, Integer top) {
+    private Mono<PagedResponse<DevBoxDefinitionInner>> listByCatalogSinglePageAsync(String resourceGroupName,
+        String devCenterName, String catalogName, Integer top) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -158,34 +141,16 @@ public final class CatalogDevBoxDefinitionsClientImpl implements CatalogDevBoxDe
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .listByCatalog(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            devCenterName,
-                            catalogName,
-                            top,
-                            accept,
-                            context))
-            .<PagedResponse<DevBoxDefinitionInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .withContext(context -> service.listByCatalog(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, devCenterName, catalogName, top, accept, context))
+            .<PagedResponse<DevBoxDefinitionInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * List Dev Box definitions in the catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param catalogName The name of the Catalog.
@@ -195,22 +160,18 @@ public final class CatalogDevBoxDefinitionsClientImpl implements CatalogDevBoxDe
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return results of the Dev Box definition list operation along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<DevBoxDefinitionInner>> listByCatalogSinglePageAsync(
-        String resourceGroupName, String devCenterName, String catalogName, Integer top, Context context) {
+    private Mono<PagedResponse<DevBoxDefinitionInner>> listByCatalogSinglePageAsync(String resourceGroupName,
+        String devCenterName, String catalogName, Integer top, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -225,30 +186,15 @@ public final class CatalogDevBoxDefinitionsClientImpl implements CatalogDevBoxDe
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByCatalog(
-                this.client.getEndpoint(),
-                this.client.getApiVersion(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                devCenterName,
-                catalogName,
-                top,
-                accept,
-                context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+            .listByCatalog(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+                resourceGroupName, devCenterName, catalogName, top, accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * List Dev Box definitions in the catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param catalogName The name of the Catalog.
@@ -259,16 +205,15 @@ public final class CatalogDevBoxDefinitionsClientImpl implements CatalogDevBoxDe
      * @return results of the Dev Box definition list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<DevBoxDefinitionInner> listByCatalogAsync(
-        String resourceGroupName, String devCenterName, String catalogName, Integer top) {
-        return new PagedFlux<>(
-            () -> listByCatalogSinglePageAsync(resourceGroupName, devCenterName, catalogName, top),
+    private PagedFlux<DevBoxDefinitionInner> listByCatalogAsync(String resourceGroupName, String devCenterName,
+        String catalogName, Integer top) {
+        return new PagedFlux<>(() -> listByCatalogSinglePageAsync(resourceGroupName, devCenterName, catalogName, top),
             nextLink -> listByCatalogNextSinglePageAsync(nextLink));
     }
 
     /**
      * List Dev Box definitions in the catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param catalogName The name of the Catalog.
@@ -278,17 +223,16 @@ public final class CatalogDevBoxDefinitionsClientImpl implements CatalogDevBoxDe
      * @return results of the Dev Box definition list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<DevBoxDefinitionInner> listByCatalogAsync(
-        String resourceGroupName, String devCenterName, String catalogName) {
+    private PagedFlux<DevBoxDefinitionInner> listByCatalogAsync(String resourceGroupName, String devCenterName,
+        String catalogName) {
         final Integer top = null;
-        return new PagedFlux<>(
-            () -> listByCatalogSinglePageAsync(resourceGroupName, devCenterName, catalogName, top),
+        return new PagedFlux<>(() -> listByCatalogSinglePageAsync(resourceGroupName, devCenterName, catalogName, top),
             nextLink -> listByCatalogNextSinglePageAsync(nextLink));
     }
 
     /**
      * List Dev Box definitions in the catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param catalogName The name of the Catalog.
@@ -300,8 +244,8 @@ public final class CatalogDevBoxDefinitionsClientImpl implements CatalogDevBoxDe
      * @return results of the Dev Box definition list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<DevBoxDefinitionInner> listByCatalogAsync(
-        String resourceGroupName, String devCenterName, String catalogName, Integer top, Context context) {
+    private PagedFlux<DevBoxDefinitionInner> listByCatalogAsync(String resourceGroupName, String devCenterName,
+        String catalogName, Integer top, Context context) {
         return new PagedFlux<>(
             () -> listByCatalogSinglePageAsync(resourceGroupName, devCenterName, catalogName, top, context),
             nextLink -> listByCatalogNextSinglePageAsync(nextLink, context));
@@ -309,7 +253,7 @@ public final class CatalogDevBoxDefinitionsClientImpl implements CatalogDevBoxDe
 
     /**
      * List Dev Box definitions in the catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param catalogName The name of the Catalog.
@@ -319,15 +263,15 @@ public final class CatalogDevBoxDefinitionsClientImpl implements CatalogDevBoxDe
      * @return results of the Dev Box definition list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<DevBoxDefinitionInner> listByCatalog(
-        String resourceGroupName, String devCenterName, String catalogName) {
+    public PagedIterable<DevBoxDefinitionInner> listByCatalog(String resourceGroupName, String devCenterName,
+        String catalogName) {
         final Integer top = null;
         return new PagedIterable<>(listByCatalogAsync(resourceGroupName, devCenterName, catalogName, top));
     }
 
     /**
      * List Dev Box definitions in the catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param catalogName The name of the Catalog.
@@ -339,14 +283,14 @@ public final class CatalogDevBoxDefinitionsClientImpl implements CatalogDevBoxDe
      * @return results of the Dev Box definition list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<DevBoxDefinitionInner> listByCatalog(
-        String resourceGroupName, String devCenterName, String catalogName, Integer top, Context context) {
+    public PagedIterable<DevBoxDefinitionInner> listByCatalog(String resourceGroupName, String devCenterName,
+        String catalogName, Integer top, Context context) {
         return new PagedIterable<>(listByCatalogAsync(resourceGroupName, devCenterName, catalogName, top, context));
     }
 
     /**
      * Gets a Dev Box definition from the catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param catalogName The name of the Catalog.
@@ -354,23 +298,19 @@ public final class CatalogDevBoxDefinitionsClientImpl implements CatalogDevBoxDe
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Dev Box definition from the catalog along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return a Dev Box definition from the catalog along with {@link Response} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<DevBoxDefinitionInner>> getWithResponseAsync(
-        String resourceGroupName, String devCenterName, String catalogName, String devBoxDefinitionName) {
+    private Mono<Response<DevBoxDefinitionInner>> getWithResponseAsync(String resourceGroupName, String devCenterName,
+        String catalogName, String devBoxDefinitionName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -388,25 +328,15 @@ public final class CatalogDevBoxDefinitionsClientImpl implements CatalogDevBoxDe
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .get(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            devCenterName,
-                            catalogName,
-                            devBoxDefinitionName,
-                            accept,
-                            context))
+            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, devCenterName, catalogName, devBoxDefinitionName,
+                accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Gets a Dev Box definition from the catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param catalogName The name of the Catalog.
@@ -415,27 +345,19 @@ public final class CatalogDevBoxDefinitionsClientImpl implements CatalogDevBoxDe
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Dev Box definition from the catalog along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return a Dev Box definition from the catalog along with {@link Response} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<DevBoxDefinitionInner>> getWithResponseAsync(
-        String resourceGroupName,
-        String devCenterName,
-        String catalogName,
-        String devBoxDefinitionName,
-        Context context) {
+    private Mono<Response<DevBoxDefinitionInner>> getWithResponseAsync(String resourceGroupName, String devCenterName,
+        String catalogName, String devBoxDefinitionName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -453,22 +375,13 @@ public final class CatalogDevBoxDefinitionsClientImpl implements CatalogDevBoxDe
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .get(
-                this.client.getEndpoint(),
-                this.client.getApiVersion(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                devCenterName,
-                catalogName,
-                devBoxDefinitionName,
-                accept,
-                context);
+        return service.get(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, devCenterName, catalogName, devBoxDefinitionName, accept, context);
     }
 
     /**
      * Gets a Dev Box definition from the catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param catalogName The name of the Catalog.
@@ -479,15 +392,15 @@ public final class CatalogDevBoxDefinitionsClientImpl implements CatalogDevBoxDe
      * @return a Dev Box definition from the catalog on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<DevBoxDefinitionInner> getAsync(
-        String resourceGroupName, String devCenterName, String catalogName, String devBoxDefinitionName) {
+    private Mono<DevBoxDefinitionInner> getAsync(String resourceGroupName, String devCenterName, String catalogName,
+        String devBoxDefinitionName) {
         return getWithResponseAsync(resourceGroupName, devCenterName, catalogName, devBoxDefinitionName)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
      * Gets a Dev Box definition from the catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param catalogName The name of the Catalog.
@@ -499,19 +412,15 @@ public final class CatalogDevBoxDefinitionsClientImpl implements CatalogDevBoxDe
      * @return a Dev Box definition from the catalog along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<DevBoxDefinitionInner> getWithResponse(
-        String resourceGroupName,
-        String devCenterName,
-        String catalogName,
-        String devBoxDefinitionName,
-        Context context) {
+    public Response<DevBoxDefinitionInner> getWithResponse(String resourceGroupName, String devCenterName,
+        String catalogName, String devBoxDefinitionName, Context context) {
         return getWithResponseAsync(resourceGroupName, devCenterName, catalogName, devBoxDefinitionName, context)
             .block();
     }
 
     /**
      * Gets a Dev Box definition from the catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param catalogName The name of the Catalog.
@@ -522,15 +431,15 @@ public final class CatalogDevBoxDefinitionsClientImpl implements CatalogDevBoxDe
      * @return a Dev Box definition from the catalog.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public DevBoxDefinitionInner get(
-        String resourceGroupName, String devCenterName, String catalogName, String devBoxDefinitionName) {
+    public DevBoxDefinitionInner get(String resourceGroupName, String devCenterName, String catalogName,
+        String devBoxDefinitionName) {
         return getWithResponse(resourceGroupName, devCenterName, catalogName, devBoxDefinitionName, Context.NONE)
             .getValue();
     }
 
     /**
      * Gets Catalog Devbox Definition error details.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param catalogName The name of the Catalog.
@@ -538,23 +447,19 @@ public final class CatalogDevBoxDefinitionsClientImpl implements CatalogDevBoxDe
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return catalog Devbox Definition error details along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return catalog Devbox Definition error details along with {@link Response} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<CatalogResourceValidationErrorDetailsInner>> getErrorDetailsWithResponseAsync(
         String resourceGroupName, String devCenterName, String catalogName, String devBoxDefinitionName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -572,25 +477,15 @@ public final class CatalogDevBoxDefinitionsClientImpl implements CatalogDevBoxDe
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .getErrorDetails(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            devCenterName,
-                            catalogName,
-                            devBoxDefinitionName,
-                            accept,
-                            context))
+            .withContext(context -> service.getErrorDetails(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, devCenterName, catalogName, devBoxDefinitionName,
+                accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Gets Catalog Devbox Definition error details.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param catalogName The name of the Catalog.
@@ -599,27 +494,20 @@ public final class CatalogDevBoxDefinitionsClientImpl implements CatalogDevBoxDe
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return catalog Devbox Definition error details along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return catalog Devbox Definition error details along with {@link Response} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<CatalogResourceValidationErrorDetailsInner>> getErrorDetailsWithResponseAsync(
-        String resourceGroupName,
-        String devCenterName,
-        String catalogName,
-        String devBoxDefinitionName,
+        String resourceGroupName, String devCenterName, String catalogName, String devBoxDefinitionName,
         Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -637,22 +525,14 @@ public final class CatalogDevBoxDefinitionsClientImpl implements CatalogDevBoxDe
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .getErrorDetails(
-                this.client.getEndpoint(),
-                this.client.getApiVersion(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                devCenterName,
-                catalogName,
-                devBoxDefinitionName,
-                accept,
-                context);
+        return service.getErrorDetails(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, devCenterName, catalogName, devBoxDefinitionName,
+            accept, context);
     }
 
     /**
      * Gets Catalog Devbox Definition error details.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param catalogName The name of the Catalog.
@@ -663,15 +543,15 @@ public final class CatalogDevBoxDefinitionsClientImpl implements CatalogDevBoxDe
      * @return catalog Devbox Definition error details on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<CatalogResourceValidationErrorDetailsInner> getErrorDetailsAsync(
-        String resourceGroupName, String devCenterName, String catalogName, String devBoxDefinitionName) {
+    private Mono<CatalogResourceValidationErrorDetailsInner> getErrorDetailsAsync(String resourceGroupName,
+        String devCenterName, String catalogName, String devBoxDefinitionName) {
         return getErrorDetailsWithResponseAsync(resourceGroupName, devCenterName, catalogName, devBoxDefinitionName)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
      * Gets Catalog Devbox Definition error details.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param catalogName The name of the Catalog.
@@ -683,20 +563,15 @@ public final class CatalogDevBoxDefinitionsClientImpl implements CatalogDevBoxDe
      * @return catalog Devbox Definition error details along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<CatalogResourceValidationErrorDetailsInner> getErrorDetailsWithResponse(
-        String resourceGroupName,
-        String devCenterName,
-        String catalogName,
-        String devBoxDefinitionName,
-        Context context) {
-        return getErrorDetailsWithResponseAsync(
-                resourceGroupName, devCenterName, catalogName, devBoxDefinitionName, context)
-            .block();
+    public Response<CatalogResourceValidationErrorDetailsInner> getErrorDetailsWithResponse(String resourceGroupName,
+        String devCenterName, String catalogName, String devBoxDefinitionName, Context context) {
+        return getErrorDetailsWithResponseAsync(resourceGroupName, devCenterName, catalogName, devBoxDefinitionName,
+            context).block();
     }
 
     /**
      * Gets Catalog Devbox Definition error details.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param catalogName The name of the Catalog.
@@ -707,23 +582,23 @@ public final class CatalogDevBoxDefinitionsClientImpl implements CatalogDevBoxDe
      * @return catalog Devbox Definition error details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public CatalogResourceValidationErrorDetailsInner getErrorDetails(
-        String resourceGroupName, String devCenterName, String catalogName, String devBoxDefinitionName) {
-        return getErrorDetailsWithResponse(
-                resourceGroupName, devCenterName, catalogName, devBoxDefinitionName, Context.NONE)
-            .getValue();
+    public CatalogResourceValidationErrorDetailsInner getErrorDetails(String resourceGroupName, String devCenterName,
+        String catalogName, String devBoxDefinitionName) {
+        return getErrorDetailsWithResponse(resourceGroupName, devCenterName, catalogName, devBoxDefinitionName,
+            Context.NONE).getValue();
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return results of the Dev Box definition list operation along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<DevBoxDefinitionInner>> listByCatalogNextSinglePageAsync(String nextLink) {
@@ -731,62 +606,44 @@ public final class CatalogDevBoxDefinitionsClientImpl implements CatalogDevBoxDe
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listByCatalogNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<DevBoxDefinitionInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .<PagedResponse<DevBoxDefinitionInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return results of the Dev Box definition list operation along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<DevBoxDefinitionInner>> listByCatalogNextSinglePageAsync(
-        String nextLink, Context context) {
+    private Mono<PagedResponse<DevBoxDefinitionInner>> listByCatalogNextSinglePageAsync(String nextLink,
+        Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listByCatalogNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.listByCatalogNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 }

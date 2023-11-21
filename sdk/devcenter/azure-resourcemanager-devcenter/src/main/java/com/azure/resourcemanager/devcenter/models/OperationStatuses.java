@@ -7,13 +7,15 @@ package com.azure.resourcemanager.devcenter.models;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 
-/** Resource collection API of OperationStatuses. */
+/**
+ * Resource collection API of OperationStatuses.
+ */
 public interface OperationStatuses {
     /**
      * Get Operation Status
-     *
-     * <p>Gets the current status of an async operation.
-     *
+     * 
+     * Gets the current status of an async operation.
+     * 
      * @param location The Azure region.
      * @param operationId The ID of an ongoing async operation.
      * @param context The context to associate with this operation.
@@ -26,9 +28,9 @@ public interface OperationStatuses {
 
     /**
      * Get Operation Status
-     *
-     * <p>Gets the current status of an async operation.
-     *
+     * 
+     * Gets the current status of an async operation.
+     * 
      * @param location The Azure region.
      * @param operationId The ID of an ongoing async operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.

@@ -13,7 +13,9 @@ import com.azure.resourcemanager.devcenter.models.ScheduledFrequency;
 import com.azure.resourcemanager.devcenter.models.ScheduledType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Represents a Schedule to execute a task. */
+/**
+ * Represents a Schedule to execute a task.
+ */
 @Fluent
 public final class ScheduleInner extends ProxyResource {
     /*
@@ -28,13 +30,15 @@ public final class ScheduleInner extends ProxyResource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of ScheduleInner class. */
+    /**
+     * Creates an instance of ScheduleInner class.
+     */
     public ScheduleInner() {
     }
 
     /**
      * Get the innerProperties property: Properties of a Schedule resource.
-     *
+     * 
      * @return the innerProperties value.
      */
     private ScheduleProperties innerProperties() {
@@ -43,7 +47,7 @@ public final class ScheduleInner extends ProxyResource {
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -52,7 +56,7 @@ public final class ScheduleInner extends ProxyResource {
 
     /**
      * Get the provisioningState property: The provisioning state of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -61,7 +65,7 @@ public final class ScheduleInner extends ProxyResource {
 
     /**
      * Get the type property: Supported type this scheduled task represents.
-     *
+     * 
      * @return the type value.
      */
     public ScheduledType typePropertiesType() {
@@ -70,7 +74,7 @@ public final class ScheduleInner extends ProxyResource {
 
     /**
      * Set the type property: Supported type this scheduled task represents.
-     *
+     * 
      * @param type the type value to set.
      * @return the ScheduleInner object itself.
      */
@@ -84,7 +88,7 @@ public final class ScheduleInner extends ProxyResource {
 
     /**
      * Get the frequency property: The frequency of this scheduled task.
-     *
+     * 
      * @return the frequency value.
      */
     public ScheduledFrequency frequency() {
@@ -93,7 +97,7 @@ public final class ScheduleInner extends ProxyResource {
 
     /**
      * Set the frequency property: The frequency of this scheduled task.
-     *
+     * 
      * @param frequency the frequency value to set.
      * @return the ScheduleInner object itself.
      */
@@ -107,7 +111,7 @@ public final class ScheduleInner extends ProxyResource {
 
     /**
      * Get the time property: The target time to trigger the action. The format is HH:MM.
-     *
+     * 
      * @return the time value.
      */
     public String time() {
@@ -116,7 +120,7 @@ public final class ScheduleInner extends ProxyResource {
 
     /**
      * Set the time property: The target time to trigger the action. The format is HH:MM.
-     *
+     * 
      * @param time the time value to set.
      * @return the ScheduleInner object itself.
      */
@@ -130,7 +134,7 @@ public final class ScheduleInner extends ProxyResource {
 
     /**
      * Get the timeZone property: The IANA timezone id at which the schedule should execute.
-     *
+     * 
      * @return the timeZone value.
      */
     public String timeZone() {
@@ -139,7 +143,7 @@ public final class ScheduleInner extends ProxyResource {
 
     /**
      * Set the timeZone property: The IANA timezone id at which the schedule should execute.
-     *
+     * 
      * @param timeZone the timeZone value to set.
      * @return the ScheduleInner object itself.
      */
@@ -153,7 +157,7 @@ public final class ScheduleInner extends ProxyResource {
 
     /**
      * Get the state property: Indicates whether or not this scheduled task is enabled.
-     *
+     * 
      * @return the state value.
      */
     public ScheduleEnableStatus state() {
@@ -162,7 +166,7 @@ public final class ScheduleInner extends ProxyResource {
 
     /**
      * Set the state property: Indicates whether or not this scheduled task is enabled.
-     *
+     * 
      * @param state the state value to set.
      * @return the ScheduleInner object itself.
      */
@@ -176,7 +180,7 @@ public final class ScheduleInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

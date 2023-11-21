@@ -8,11 +8,13 @@ import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 
-/** Resource collection API of CatalogDevBoxDefinitions. */
+/**
+ * Resource collection API of CatalogDevBoxDefinitions.
+ */
 public interface CatalogDevBoxDefinitions {
     /**
      * List Dev Box definitions in the catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param catalogName The name of the Catalog.
@@ -25,7 +27,7 @@ public interface CatalogDevBoxDefinitions {
 
     /**
      * List Dev Box definitions in the catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param catalogName The name of the Catalog.
@@ -36,12 +38,12 @@ public interface CatalogDevBoxDefinitions {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return results of the Dev Box definition list operation as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<DevBoxDefinition> listByCatalog(
-        String resourceGroupName, String devCenterName, String catalogName, Integer top, Context context);
+    PagedIterable<DevBoxDefinition> listByCatalog(String resourceGroupName, String devCenterName, String catalogName,
+        Integer top, Context context);
 
     /**
      * Gets a Dev Box definition from the catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param catalogName The name of the Catalog.
@@ -52,16 +54,12 @@ public interface CatalogDevBoxDefinitions {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a Dev Box definition from the catalog along with {@link Response}.
      */
-    Response<DevBoxDefinition> getWithResponse(
-        String resourceGroupName,
-        String devCenterName,
-        String catalogName,
-        String devBoxDefinitionName,
-        Context context);
+    Response<DevBoxDefinition> getWithResponse(String resourceGroupName, String devCenterName, String catalogName,
+        String devBoxDefinitionName, Context context);
 
     /**
      * Gets a Dev Box definition from the catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param catalogName The name of the Catalog.
@@ -71,12 +69,12 @@ public interface CatalogDevBoxDefinitions {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a Dev Box definition from the catalog.
      */
-    DevBoxDefinition get(
-        String resourceGroupName, String devCenterName, String catalogName, String devBoxDefinitionName);
+    DevBoxDefinition get(String resourceGroupName, String devCenterName, String catalogName,
+        String devBoxDefinitionName);
 
     /**
      * Gets Catalog Devbox Definition error details.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param catalogName The name of the Catalog.
@@ -87,16 +85,12 @@ public interface CatalogDevBoxDefinitions {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return catalog Devbox Definition error details along with {@link Response}.
      */
-    Response<CatalogResourceValidationErrorDetails> getErrorDetailsWithResponse(
-        String resourceGroupName,
-        String devCenterName,
-        String catalogName,
-        String devBoxDefinitionName,
-        Context context);
+    Response<CatalogResourceValidationErrorDetails> getErrorDetailsWithResponse(String resourceGroupName,
+        String devCenterName, String catalogName, String devBoxDefinitionName, Context context);
 
     /**
      * Gets Catalog Devbox Definition error details.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param catalogName The name of the Catalog.
@@ -106,6 +100,6 @@ public interface CatalogDevBoxDefinitions {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return catalog Devbox Definition error details.
      */
-    CatalogResourceValidationErrorDetails getErrorDetails(
-        String resourceGroupName, String devCenterName, String catalogName, String devBoxDefinitionName);
+    CatalogResourceValidationErrorDetails getErrorDetails(String resourceGroupName, String devCenterName,
+        String catalogName, String devBoxDefinitionName);
 }

@@ -11,7 +11,9 @@ import com.azure.resourcemanager.devcenter.models.ProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** Represents a project resource. */
+/**
+ * Represents a project resource.
+ */
 @Fluent
 public final class ProjectInner extends Resource {
     /*
@@ -26,13 +28,15 @@ public final class ProjectInner extends Resource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of ProjectInner class. */
+    /**
+     * Creates an instance of ProjectInner class.
+     */
     public ProjectInner() {
     }
 
     /**
      * Get the innerProperties property: Properties of a project.
-     *
+     * 
      * @return the innerProperties value.
      */
     private ProjectProperties innerProperties() {
@@ -41,21 +45,25 @@ public final class ProjectInner extends Resource {
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
         return this.systemData;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ProjectInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ProjectInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -64,7 +72,7 @@ public final class ProjectInner extends Resource {
 
     /**
      * Get the provisioningState property: The provisioning state of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -73,7 +81,7 @@ public final class ProjectInner extends Resource {
 
     /**
      * Get the devCenterUri property: The URI of the Dev Center resource this project is associated with.
-     *
+     * 
      * @return the devCenterUri value.
      */
     public String devCenterUri() {
@@ -82,7 +90,7 @@ public final class ProjectInner extends Resource {
 
     /**
      * Get the devCenterId property: Resource Id of an associated DevCenter.
-     *
+     * 
      * @return the devCenterId value.
      */
     public String devCenterId() {
@@ -91,7 +99,7 @@ public final class ProjectInner extends Resource {
 
     /**
      * Set the devCenterId property: Resource Id of an associated DevCenter.
-     *
+     * 
      * @param devCenterId the devCenterId value to set.
      * @return the ProjectInner object itself.
      */
@@ -105,7 +113,7 @@ public final class ProjectInner extends Resource {
 
     /**
      * Get the description property: Description of the project.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -114,7 +122,7 @@ public final class ProjectInner extends Resource {
 
     /**
      * Set the description property: Description of the project.
-     *
+     * 
      * @param description the description value to set.
      * @return the ProjectInner object itself.
      */
@@ -129,7 +137,7 @@ public final class ProjectInner extends Resource {
     /**
      * Get the maxDevBoxesPerUser property: When specified, limits the maximum number of Dev Boxes a single user can
      * create across all pools in the project. This will have no effect on existing Dev Boxes when reduced.
-     *
+     * 
      * @return the maxDevBoxesPerUser value.
      */
     public Integer maxDevBoxesPerUser() {
@@ -139,7 +147,7 @@ public final class ProjectInner extends Resource {
     /**
      * Set the maxDevBoxesPerUser property: When specified, limits the maximum number of Dev Boxes a single user can
      * create across all pools in the project. This will have no effect on existing Dev Boxes when reduced.
-     *
+     * 
      * @param maxDevBoxesPerUser the maxDevBoxesPerUser value to set.
      * @return the ProjectInner object itself.
      */
@@ -153,7 +161,7 @@ public final class ProjectInner extends Resource {
 
     /**
      * Get the displayName property: The display name of the project.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -162,7 +170,7 @@ public final class ProjectInner extends Resource {
 
     /**
      * Set the displayName property: The display name of the project.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the ProjectInner object itself.
      */
@@ -176,7 +184,7 @@ public final class ProjectInner extends Resource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

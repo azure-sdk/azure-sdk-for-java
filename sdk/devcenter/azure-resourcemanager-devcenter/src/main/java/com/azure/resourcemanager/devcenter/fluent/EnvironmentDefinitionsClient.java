@@ -12,11 +12,13 @@ import com.azure.core.util.Context;
 import com.azure.resourcemanager.devcenter.fluent.models.CatalogResourceValidationErrorDetailsInner;
 import com.azure.resourcemanager.devcenter.fluent.models.EnvironmentDefinitionInner;
 
-/** An instance of this class provides access to all the operations defined in EnvironmentDefinitionsClient. */
+/**
+ * An instance of this class provides access to all the operations defined in EnvironmentDefinitionsClient.
+ */
 public interface EnvironmentDefinitionsClient {
     /**
      * List environment definitions in the catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param catalogName The name of the Catalog.
@@ -26,12 +28,12 @@ public interface EnvironmentDefinitionsClient {
      * @return results of the environment definition list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<EnvironmentDefinitionInner> listByCatalog(
-        String resourceGroupName, String devCenterName, String catalogName);
+    PagedIterable<EnvironmentDefinitionInner> listByCatalog(String resourceGroupName, String devCenterName,
+        String catalogName);
 
     /**
      * List environment definitions in the catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param catalogName The name of the Catalog.
@@ -43,12 +45,12 @@ public interface EnvironmentDefinitionsClient {
      * @return results of the environment definition list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<EnvironmentDefinitionInner> listByCatalog(
-        String resourceGroupName, String devCenterName, String catalogName, Integer top, Context context);
+    PagedIterable<EnvironmentDefinitionInner> listByCatalog(String resourceGroupName, String devCenterName,
+        String catalogName, Integer top, Context context);
 
     /**
      * Gets an environment definition from the catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param catalogName The name of the Catalog.
@@ -60,16 +62,12 @@ public interface EnvironmentDefinitionsClient {
      * @return an environment definition from the catalog along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<EnvironmentDefinitionInner> getWithResponse(
-        String resourceGroupName,
-        String devCenterName,
-        String catalogName,
-        String environmentDefinitionName,
-        Context context);
+    Response<EnvironmentDefinitionInner> getWithResponse(String resourceGroupName, String devCenterName,
+        String catalogName, String environmentDefinitionName, Context context);
 
     /**
      * Gets an environment definition from the catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param catalogName The name of the Catalog.
@@ -80,12 +78,12 @@ public interface EnvironmentDefinitionsClient {
      * @return an environment definition from the catalog.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    EnvironmentDefinitionInner get(
-        String resourceGroupName, String devCenterName, String catalogName, String environmentDefinitionName);
+    EnvironmentDefinitionInner get(String resourceGroupName, String devCenterName, String catalogName,
+        String environmentDefinitionName);
 
     /**
      * Gets Environment Definition error details.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param catalogName The name of the Catalog.
@@ -97,16 +95,12 @@ public interface EnvironmentDefinitionsClient {
      * @return environment Definition error details along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<CatalogResourceValidationErrorDetailsInner> getErrorDetailsWithResponse(
-        String resourceGroupName,
-        String devCenterName,
-        String catalogName,
-        String environmentDefinitionName,
-        Context context);
+    Response<CatalogResourceValidationErrorDetailsInner> getErrorDetailsWithResponse(String resourceGroupName,
+        String devCenterName, String catalogName, String environmentDefinitionName, Context context);
 
     /**
      * Gets Environment Definition error details.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param catalogName The name of the Catalog.
@@ -117,6 +111,6 @@ public interface EnvironmentDefinitionsClient {
      * @return environment Definition error details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    CatalogResourceValidationErrorDetailsInner getErrorDetails(
-        String resourceGroupName, String devCenterName, String catalogName, String environmentDefinitionName);
+    CatalogResourceValidationErrorDetailsInner getErrorDetails(String resourceGroupName, String devCenterName,
+        String catalogName, String environmentDefinitionName);
 }

@@ -21,8 +21,7 @@ public final class ProjectEnvironmentTypesImpl implements ProjectEnvironmentType
 
     private final com.azure.resourcemanager.devcenter.DevCenterManager serviceManager;
 
-    public ProjectEnvironmentTypesImpl(
-        ProjectEnvironmentTypesClient innerClient,
+    public ProjectEnvironmentTypesImpl(ProjectEnvironmentTypesClient innerClient,
         com.azure.resourcemanager.devcenter.DevCenterManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
@@ -33,22 +32,19 @@ public final class ProjectEnvironmentTypesImpl implements ProjectEnvironmentType
         return Utils.mapPage(inner, inner1 -> new ProjectEnvironmentTypeImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<ProjectEnvironmentType> list(
-        String resourceGroupName, String projectName, Integer top, Context context) {
-        PagedIterable<ProjectEnvironmentTypeInner> inner =
-            this.serviceClient().list(resourceGroupName, projectName, top, context);
+    public PagedIterable<ProjectEnvironmentType> list(String resourceGroupName, String projectName, Integer top,
+        Context context) {
+        PagedIterable<ProjectEnvironmentTypeInner> inner
+            = this.serviceClient().list(resourceGroupName, projectName, top, context);
         return Utils.mapPage(inner, inner1 -> new ProjectEnvironmentTypeImpl(inner1, this.manager()));
     }
 
-    public Response<ProjectEnvironmentType> getWithResponse(
-        String resourceGroupName, String projectName, String environmentTypeName, Context context) {
-        Response<ProjectEnvironmentTypeInner> inner =
-            this.serviceClient().getWithResponse(resourceGroupName, projectName, environmentTypeName, context);
+    public Response<ProjectEnvironmentType> getWithResponse(String resourceGroupName, String projectName,
+        String environmentTypeName, Context context) {
+        Response<ProjectEnvironmentTypeInner> inner
+            = this.serviceClient().getWithResponse(resourceGroupName, projectName, environmentTypeName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new ProjectEnvironmentTypeImpl(inner.getValue(), this.manager()));
         } else {
             return null;
@@ -56,8 +52,8 @@ public final class ProjectEnvironmentTypesImpl implements ProjectEnvironmentType
     }
 
     public ProjectEnvironmentType get(String resourceGroupName, String projectName, String environmentTypeName) {
-        ProjectEnvironmentTypeInner inner =
-            this.serviceClient().get(resourceGroupName, projectName, environmentTypeName);
+        ProjectEnvironmentTypeInner inner
+            = this.serviceClient().get(resourceGroupName, projectName, environmentTypeName);
         if (inner != null) {
             return new ProjectEnvironmentTypeImpl(inner, this.manager());
         } else {
@@ -65,8 +61,8 @@ public final class ProjectEnvironmentTypesImpl implements ProjectEnvironmentType
         }
     }
 
-    public Response<Void> deleteWithResponse(
-        String resourceGroupName, String projectName, String environmentTypeName, Context context) {
+    public Response<Void> deleteWithResponse(String resourceGroupName, String projectName, String environmentTypeName,
+        Context context) {
         return this.serviceClient().deleteWithResponse(resourceGroupName, projectName, environmentTypeName, context);
     }
 
@@ -77,27 +73,18 @@ public final class ProjectEnvironmentTypesImpl implements ProjectEnvironmentType
     public ProjectEnvironmentType getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String projectName = Utils.getValueFromIdByName(id, "projects");
         if (projectName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'projects'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'projects'.", id)));
         }
         String environmentTypeName = Utils.getValueFromIdByName(id, "environmentTypes");
         if (environmentTypeName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format(
-                                "The resource ID '%s' is not valid. Missing path segment 'environmentTypes'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'environmentTypes'.", id)));
         }
         return this.getWithResponse(resourceGroupName, projectName, environmentTypeName, Context.NONE).getValue();
     }
@@ -105,27 +92,18 @@ public final class ProjectEnvironmentTypesImpl implements ProjectEnvironmentType
     public Response<ProjectEnvironmentType> getByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String projectName = Utils.getValueFromIdByName(id, "projects");
         if (projectName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'projects'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'projects'.", id)));
         }
         String environmentTypeName = Utils.getValueFromIdByName(id, "environmentTypes");
         if (environmentTypeName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format(
-                                "The resource ID '%s' is not valid. Missing path segment 'environmentTypes'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'environmentTypes'.", id)));
         }
         return this.getWithResponse(resourceGroupName, projectName, environmentTypeName, context);
     }
@@ -133,27 +111,18 @@ public final class ProjectEnvironmentTypesImpl implements ProjectEnvironmentType
     public void deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String projectName = Utils.getValueFromIdByName(id, "projects");
         if (projectName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'projects'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'projects'.", id)));
         }
         String environmentTypeName = Utils.getValueFromIdByName(id, "environmentTypes");
         if (environmentTypeName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format(
-                                "The resource ID '%s' is not valid. Missing path segment 'environmentTypes'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'environmentTypes'.", id)));
         }
         this.deleteWithResponse(resourceGroupName, projectName, environmentTypeName, Context.NONE);
     }
@@ -161,27 +130,18 @@ public final class ProjectEnvironmentTypesImpl implements ProjectEnvironmentType
     public Response<Void> deleteByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String projectName = Utils.getValueFromIdByName(id, "projects");
         if (projectName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'projects'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'projects'.", id)));
         }
         String environmentTypeName = Utils.getValueFromIdByName(id, "environmentTypes");
         if (environmentTypeName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format(
-                                "The resource ID '%s' is not valid. Missing path segment 'environmentTypes'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'environmentTypes'.", id)));
         }
         return this.deleteWithResponse(resourceGroupName, projectName, environmentTypeName, context);
     }

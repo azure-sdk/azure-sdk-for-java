@@ -104,20 +104,14 @@ public final class ProjectImpl implements Project, Project.Definition, Project.U
     }
 
     public Project create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getProjects()
-                .createOrUpdate(resourceGroupName, projectName, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getProjects().createOrUpdate(resourceGroupName, projectName,
+            this.innerModel(), Context.NONE);
         return this;
     }
 
     public Project create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getProjects()
-                .createOrUpdate(resourceGroupName, projectName, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient().getProjects().createOrUpdate(resourceGroupName, projectName,
+            this.innerModel(), context);
         return this;
     }
 
@@ -133,17 +127,14 @@ public final class ProjectImpl implements Project, Project.Definition, Project.U
     }
 
     public Project apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getProjects()
-                .update(resourceGroupName, projectName, updateBody, Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getProjects().update(resourceGroupName, projectName,
+            updateBody, Context.NONE);
         return this;
     }
 
     public Project apply(Context context) {
-        this.innerObject =
-            serviceManager.serviceClient().getProjects().update(resourceGroupName, projectName, updateBody, context);
+        this.innerObject
+            = serviceManager.serviceClient().getProjects().update(resourceGroupName, projectName, updateBody, context);
         return this;
     }
 
@@ -155,22 +146,14 @@ public final class ProjectImpl implements Project, Project.Definition, Project.U
     }
 
     public Project refresh() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getProjects()
-                .getByResourceGroupWithResponse(resourceGroupName, projectName, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getProjects()
+            .getByResourceGroupWithResponse(resourceGroupName, projectName, Context.NONE).getValue();
         return this;
     }
 
     public Project refresh(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getProjects()
-                .getByResourceGroupWithResponse(resourceGroupName, projectName, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getProjects()
+            .getByResourceGroupWithResponse(resourceGroupName, projectName, context).getValue();
         return this;
     }
 

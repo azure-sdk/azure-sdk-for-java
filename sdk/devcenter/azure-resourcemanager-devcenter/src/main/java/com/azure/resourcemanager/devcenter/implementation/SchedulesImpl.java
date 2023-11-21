@@ -21,8 +21,8 @@ public final class SchedulesImpl implements Schedules {
 
     private final com.azure.resourcemanager.devcenter.DevCenterManager serviceManager;
 
-    public SchedulesImpl(
-        SchedulesClient innerClient, com.azure.resourcemanager.devcenter.DevCenterManager serviceManager) {
+    public SchedulesImpl(SchedulesClient innerClient,
+        com.azure.resourcemanager.devcenter.DevCenterManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
@@ -32,27 +32,19 @@ public final class SchedulesImpl implements Schedules {
         return Utils.mapPage(inner, inner1 -> new ScheduleImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<Schedule> listByPool(
-        String resourceGroupName, String projectName, String poolName, Integer top, Context context) {
-        PagedIterable<ScheduleInner> inner =
-            this.serviceClient().listByPool(resourceGroupName, projectName, poolName, top, context);
+    public PagedIterable<Schedule> listByPool(String resourceGroupName, String projectName, String poolName,
+        Integer top, Context context) {
+        PagedIterable<ScheduleInner> inner
+            = this.serviceClient().listByPool(resourceGroupName, projectName, poolName, top, context);
         return Utils.mapPage(inner, inner1 -> new ScheduleImpl(inner1, this.manager()));
     }
 
-    public Response<Schedule> getWithResponse(
-        String resourceGroupName,
-        String projectName,
-        String poolName,
-        String scheduleName,
-        Integer top,
-        Context context) {
-        Response<ScheduleInner> inner =
-            this.serviceClient().getWithResponse(resourceGroupName, projectName, poolName, scheduleName, top, context);
+    public Response<Schedule> getWithResponse(String resourceGroupName, String projectName, String poolName,
+        String scheduleName, Integer top, Context context) {
+        Response<ScheduleInner> inner = this.serviceClient().getWithResponse(resourceGroupName, projectName, poolName,
+            scheduleName, top, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new ScheduleImpl(inner.getValue(), this.manager()));
         } else {
             return null;
@@ -72,12 +64,7 @@ public final class SchedulesImpl implements Schedules {
         this.serviceClient().delete(resourceGroupName, projectName, poolName, scheduleName);
     }
 
-    public void delete(
-        String resourceGroupName,
-        String projectName,
-        String poolName,
-        String scheduleName,
-        Integer top,
+    public void delete(String resourceGroupName, String projectName, String poolName, String scheduleName, Integer top,
         Context context) {
         this.serviceClient().delete(resourceGroupName, projectName, poolName, scheduleName, top, context);
     }
@@ -85,68 +72,49 @@ public final class SchedulesImpl implements Schedules {
     public Schedule getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String projectName = Utils.getValueFromIdByName(id, "projects");
         if (projectName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'projects'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'projects'.", id)));
         }
         String poolName = Utils.getValueFromIdByName(id, "pools");
         if (poolName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'pools'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'pools'.", id)));
         }
         String scheduleName = Utils.getValueFromIdByName(id, "schedules");
         if (scheduleName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'schedules'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'schedules'.", id)));
         }
         Integer localTop = null;
-        return this
-            .getWithResponse(resourceGroupName, projectName, poolName, scheduleName, localTop, Context.NONE)
+        return this.getWithResponse(resourceGroupName, projectName, poolName, scheduleName, localTop, Context.NONE)
             .getValue();
     }
 
     public Response<Schedule> getByIdWithResponse(String id, Integer top, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String projectName = Utils.getValueFromIdByName(id, "projects");
         if (projectName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'projects'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'projects'.", id)));
         }
         String poolName = Utils.getValueFromIdByName(id, "pools");
         if (poolName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'pools'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'pools'.", id)));
         }
         String scheduleName = Utils.getValueFromIdByName(id, "schedules");
         if (scheduleName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'schedules'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'schedules'.", id)));
         }
         return this.getWithResponse(resourceGroupName, projectName, poolName, scheduleName, top, context);
     }
@@ -154,32 +122,23 @@ public final class SchedulesImpl implements Schedules {
     public void deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String projectName = Utils.getValueFromIdByName(id, "projects");
         if (projectName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'projects'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'projects'.", id)));
         }
         String poolName = Utils.getValueFromIdByName(id, "pools");
         if (poolName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'pools'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'pools'.", id)));
         }
         String scheduleName = Utils.getValueFromIdByName(id, "schedules");
         if (scheduleName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'schedules'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'schedules'.", id)));
         }
         Integer localTop = null;
         this.delete(resourceGroupName, projectName, poolName, scheduleName, localTop, Context.NONE);
@@ -188,32 +147,23 @@ public final class SchedulesImpl implements Schedules {
     public void deleteByIdWithResponse(String id, Integer top, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String projectName = Utils.getValueFromIdByName(id, "projects");
         if (projectName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'projects'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'projects'.", id)));
         }
         String poolName = Utils.getValueFromIdByName(id, "pools");
         if (poolName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'pools'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'pools'.", id)));
         }
         String scheduleName = Utils.getValueFromIdByName(id, "schedules");
         if (scheduleName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'schedules'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'schedules'.", id)));
         }
         this.delete(resourceGroupName, projectName, poolName, scheduleName, top, context);
     }

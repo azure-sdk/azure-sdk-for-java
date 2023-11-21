@@ -23,35 +23,32 @@ public final class CustomizationTasksImpl implements CustomizationTasks {
 
     private final com.azure.resourcemanager.devcenter.DevCenterManager serviceManager;
 
-    public CustomizationTasksImpl(
-        CustomizationTasksClient innerClient, com.azure.resourcemanager.devcenter.DevCenterManager serviceManager) {
+    public CustomizationTasksImpl(CustomizationTasksClient innerClient,
+        com.azure.resourcemanager.devcenter.DevCenterManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
 
-    public PagedIterable<CustomizationTask> listByCatalog(
-        String resourceGroupName, String devCenterName, String catalogName) {
-        PagedIterable<CustomizationTaskInner> inner =
-            this.serviceClient().listByCatalog(resourceGroupName, devCenterName, catalogName);
+    public PagedIterable<CustomizationTask> listByCatalog(String resourceGroupName, String devCenterName,
+        String catalogName) {
+        PagedIterable<CustomizationTaskInner> inner
+            = this.serviceClient().listByCatalog(resourceGroupName, devCenterName, catalogName);
         return Utils.mapPage(inner, inner1 -> new CustomizationTaskImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<CustomizationTask> listByCatalog(
-        String resourceGroupName, String devCenterName, String catalogName, Integer top, Context context) {
-        PagedIterable<CustomizationTaskInner> inner =
-            this.serviceClient().listByCatalog(resourceGroupName, devCenterName, catalogName, top, context);
+    public PagedIterable<CustomizationTask> listByCatalog(String resourceGroupName, String devCenterName,
+        String catalogName, Integer top, Context context) {
+        PagedIterable<CustomizationTaskInner> inner
+            = this.serviceClient().listByCatalog(resourceGroupName, devCenterName, catalogName, top, context);
         return Utils.mapPage(inner, inner1 -> new CustomizationTaskImpl(inner1, this.manager()));
     }
 
-    public Response<CustomizationTask> getWithResponse(
-        String resourceGroupName, String devCenterName, String catalogName, String taskName, Context context) {
-        Response<CustomizationTaskInner> inner =
-            this.serviceClient().getWithResponse(resourceGroupName, devCenterName, catalogName, taskName, context);
+    public Response<CustomizationTask> getWithResponse(String resourceGroupName, String devCenterName,
+        String catalogName, String taskName, Context context) {
+        Response<CustomizationTaskInner> inner
+            = this.serviceClient().getWithResponse(resourceGroupName, devCenterName, catalogName, taskName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new CustomizationTaskImpl(inner.getValue(), this.manager()));
         } else {
             return null;
@@ -59,8 +56,8 @@ public final class CustomizationTasksImpl implements CustomizationTasks {
     }
 
     public CustomizationTask get(String resourceGroupName, String devCenterName, String catalogName, String taskName) {
-        CustomizationTaskInner inner =
-            this.serviceClient().get(resourceGroupName, devCenterName, catalogName, taskName);
+        CustomizationTaskInner inner
+            = this.serviceClient().get(resourceGroupName, devCenterName, catalogName, taskName);
         if (inner != null) {
             return new CustomizationTaskImpl(inner, this.manager());
         } else {
@@ -68,27 +65,22 @@ public final class CustomizationTasksImpl implements CustomizationTasks {
         }
     }
 
-    public Response<CatalogResourceValidationErrorDetails> getErrorDetailsWithResponse(
-        String resourceGroupName, String devCenterName, String catalogName, String taskName, Context context) {
-        Response<CatalogResourceValidationErrorDetailsInner> inner =
-            this
-                .serviceClient()
-                .getErrorDetailsWithResponse(resourceGroupName, devCenterName, catalogName, taskName, context);
+    public Response<CatalogResourceValidationErrorDetails> getErrorDetailsWithResponse(String resourceGroupName,
+        String devCenterName, String catalogName, String taskName, Context context) {
+        Response<CatalogResourceValidationErrorDetailsInner> inner = this.serviceClient()
+            .getErrorDetailsWithResponse(resourceGroupName, devCenterName, catalogName, taskName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new CatalogResourceValidationErrorDetailsImpl(inner.getValue(), this.manager()));
         } else {
             return null;
         }
     }
 
-    public CatalogResourceValidationErrorDetails getErrorDetails(
-        String resourceGroupName, String devCenterName, String catalogName, String taskName) {
-        CatalogResourceValidationErrorDetailsInner inner =
-            this.serviceClient().getErrorDetails(resourceGroupName, devCenterName, catalogName, taskName);
+    public CatalogResourceValidationErrorDetails getErrorDetails(String resourceGroupName, String devCenterName,
+        String catalogName, String taskName) {
+        CatalogResourceValidationErrorDetailsInner inner
+            = this.serviceClient().getErrorDetails(resourceGroupName, devCenterName, catalogName, taskName);
         if (inner != null) {
             return new CatalogResourceValidationErrorDetailsImpl(inner, this.manager());
         } else {

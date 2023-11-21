@@ -23,8 +23,8 @@ public final class CatalogsImpl implements Catalogs {
 
     private final com.azure.resourcemanager.devcenter.DevCenterManager serviceManager;
 
-    public CatalogsImpl(
-        CatalogsClient innerClient, com.azure.resourcemanager.devcenter.DevCenterManager serviceManager) {
+    public CatalogsImpl(CatalogsClient innerClient,
+        com.azure.resourcemanager.devcenter.DevCenterManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
@@ -34,22 +34,19 @@ public final class CatalogsImpl implements Catalogs {
         return Utils.mapPage(inner, inner1 -> new CatalogImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<Catalog> listByDevCenter(
-        String resourceGroupName, String devCenterName, Integer top, Context context) {
-        PagedIterable<CatalogInner> inner =
-            this.serviceClient().listByDevCenter(resourceGroupName, devCenterName, top, context);
+    public PagedIterable<Catalog> listByDevCenter(String resourceGroupName, String devCenterName, Integer top,
+        Context context) {
+        PagedIterable<CatalogInner> inner
+            = this.serviceClient().listByDevCenter(resourceGroupName, devCenterName, top, context);
         return Utils.mapPage(inner, inner1 -> new CatalogImpl(inner1, this.manager()));
     }
 
-    public Response<Catalog> getWithResponse(
-        String resourceGroupName, String devCenterName, String catalogName, Context context) {
-        Response<CatalogInner> inner =
-            this.serviceClient().getWithResponse(resourceGroupName, devCenterName, catalogName, context);
+    public Response<Catalog> getWithResponse(String resourceGroupName, String devCenterName, String catalogName,
+        Context context) {
+        Response<CatalogInner> inner
+            = this.serviceClient().getWithResponse(resourceGroupName, devCenterName, catalogName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new CatalogImpl(inner.getValue(), this.manager()));
         } else {
             return null;
@@ -73,17 +70,12 @@ public final class CatalogsImpl implements Catalogs {
         this.serviceClient().delete(resourceGroupName, devCenterName, catalogName, context);
     }
 
-    public Response<SyncErrorDetails> getSyncErrorDetailsWithResponse(
-        String resourceGroupName, String devCenterName, String catalogName, Context context) {
-        Response<SyncErrorDetailsInner> inner =
-            this
-                .serviceClient()
-                .getSyncErrorDetailsWithResponse(resourceGroupName, devCenterName, catalogName, context);
+    public Response<SyncErrorDetails> getSyncErrorDetailsWithResponse(String resourceGroupName, String devCenterName,
+        String catalogName, Context context) {
+        Response<SyncErrorDetailsInner> inner = this.serviceClient().getSyncErrorDetailsWithResponse(resourceGroupName,
+            devCenterName, catalogName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new SyncErrorDetailsImpl(inner.getValue(), this.manager()));
         } else {
             return null;
@@ -91,8 +83,8 @@ public final class CatalogsImpl implements Catalogs {
     }
 
     public SyncErrorDetails getSyncErrorDetails(String resourceGroupName, String devCenterName, String catalogName) {
-        SyncErrorDetailsInner inner =
-            this.serviceClient().getSyncErrorDetails(resourceGroupName, devCenterName, catalogName);
+        SyncErrorDetailsInner inner
+            = this.serviceClient().getSyncErrorDetails(resourceGroupName, devCenterName, catalogName);
         if (inner != null) {
             return new SyncErrorDetailsImpl(inner, this.manager());
         } else {
@@ -119,25 +111,18 @@ public final class CatalogsImpl implements Catalogs {
     public Catalog getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String devCenterName = Utils.getValueFromIdByName(id, "devcenters");
         if (devCenterName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'devcenters'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'devcenters'.", id)));
         }
         String catalogName = Utils.getValueFromIdByName(id, "catalogs");
         if (catalogName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'catalogs'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'catalogs'.", id)));
         }
         return this.getWithResponse(resourceGroupName, devCenterName, catalogName, Context.NONE).getValue();
     }
@@ -145,25 +130,18 @@ public final class CatalogsImpl implements Catalogs {
     public Response<Catalog> getByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String devCenterName = Utils.getValueFromIdByName(id, "devcenters");
         if (devCenterName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'devcenters'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'devcenters'.", id)));
         }
         String catalogName = Utils.getValueFromIdByName(id, "catalogs");
         if (catalogName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'catalogs'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'catalogs'.", id)));
         }
         return this.getWithResponse(resourceGroupName, devCenterName, catalogName, context);
     }
@@ -171,25 +149,18 @@ public final class CatalogsImpl implements Catalogs {
     public void deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String devCenterName = Utils.getValueFromIdByName(id, "devcenters");
         if (devCenterName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'devcenters'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'devcenters'.", id)));
         }
         String catalogName = Utils.getValueFromIdByName(id, "catalogs");
         if (catalogName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'catalogs'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'catalogs'.", id)));
         }
         this.delete(resourceGroupName, devCenterName, catalogName, Context.NONE);
     }
@@ -197,25 +168,18 @@ public final class CatalogsImpl implements Catalogs {
     public void deleteByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String devCenterName = Utils.getValueFromIdByName(id, "devcenters");
         if (devCenterName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'devcenters'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'devcenters'.", id)));
         }
         String catalogName = Utils.getValueFromIdByName(id, "catalogs");
         if (catalogName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'catalogs'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'catalogs'.", id)));
         }
         this.delete(resourceGroupName, devCenterName, catalogName, context);
     }

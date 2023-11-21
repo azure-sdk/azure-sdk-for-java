@@ -11,7 +11,9 @@ import com.azure.resourcemanager.devcenter.models.HealthCheckStatus;
 import com.azure.resourcemanager.devcenter.models.ProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Network properties. */
+/**
+ * Network properties.
+ */
 @Fluent
 public final class NetworkProperties extends NetworkConnectionUpdateProperties {
     /*
@@ -39,13 +41,15 @@ public final class NetworkProperties extends NetworkConnectionUpdateProperties {
     @JsonProperty(value = "domainJoinType", required = true)
     private DomainJoinType domainJoinType;
 
-    /** Creates an instance of NetworkProperties class. */
+    /**
+     * Creates an instance of NetworkProperties class.
+     */
     public NetworkProperties() {
     }
 
     /**
      * Get the provisioningState property: The provisioning state of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -55,7 +59,7 @@ public final class NetworkProperties extends NetworkConnectionUpdateProperties {
     /**
      * Get the healthCheckStatus property: Overall health status of the network connection. Health checks are run on
      * creation, update, and periodically to validate the network connection.
-     *
+     * 
      * @return the healthCheckStatus value.
      */
     public HealthCheckStatus healthCheckStatus() {
@@ -64,7 +68,7 @@ public final class NetworkProperties extends NetworkConnectionUpdateProperties {
 
     /**
      * Get the networkingResourceGroupName property: The name for resource group where NICs will be placed.
-     *
+     * 
      * @return the networkingResourceGroupName value.
      */
     public String networkingResourceGroupName() {
@@ -73,7 +77,7 @@ public final class NetworkProperties extends NetworkConnectionUpdateProperties {
 
     /**
      * Set the networkingResourceGroupName property: The name for resource group where NICs will be placed.
-     *
+     * 
      * @param networkingResourceGroupName the networkingResourceGroupName value to set.
      * @return the NetworkProperties object itself.
      */
@@ -84,7 +88,7 @@ public final class NetworkProperties extends NetworkConnectionUpdateProperties {
 
     /**
      * Get the domainJoinType property: AAD Join type.
-     *
+     * 
      * @return the domainJoinType value.
      */
     public DomainJoinType domainJoinType() {
@@ -93,7 +97,7 @@ public final class NetworkProperties extends NetworkConnectionUpdateProperties {
 
     /**
      * Set the domainJoinType property: AAD Join type.
-     *
+     * 
      * @param domainJoinType the domainJoinType value to set.
      * @return the NetworkProperties object itself.
      */
@@ -102,35 +106,45 @@ public final class NetworkProperties extends NetworkConnectionUpdateProperties {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public NetworkProperties withSubnetId(String subnetId) {
         super.withSubnetId(subnetId);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public NetworkProperties withDomainName(String domainName) {
         super.withDomainName(domainName);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public NetworkProperties withOrganizationUnit(String organizationUnit) {
         super.withOrganizationUnit(organizationUnit);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public NetworkProperties withDomainUsername(String domainUsername) {
         super.withDomainUsername(domainUsername);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public NetworkProperties withDomainPassword(String domainPassword) {
         super.withDomainPassword(domainPassword);
@@ -139,17 +153,15 @@ public final class NetworkProperties extends NetworkConnectionUpdateProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (domainJoinType() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property domainJoinType in model NetworkProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property domainJoinType in model NetworkProperties"));
         }
     }
 

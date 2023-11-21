@@ -125,24 +125,16 @@ public final class ProjectEnvironmentTypeImpl
     }
 
     public ProjectEnvironmentType create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getProjectEnvironmentTypes()
-                .createOrUpdateWithResponse(
-                    resourceGroupName, projectName, environmentTypeName, this.innerModel(), Context.NONE)
-                .getValue();
+        this.innerObject
+            = serviceManager.serviceClient().getProjectEnvironmentTypes().createOrUpdateWithResponse(resourceGroupName,
+                projectName, environmentTypeName, this.innerModel(), Context.NONE).getValue();
         return this;
     }
 
     public ProjectEnvironmentType create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getProjectEnvironmentTypes()
-                .createOrUpdateWithResponse(
-                    resourceGroupName, projectName, environmentTypeName, this.innerModel(), context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getProjectEnvironmentTypes()
+            .createOrUpdateWithResponse(resourceGroupName, projectName, environmentTypeName, this.innerModel(), context)
+            .getValue();
         return this;
     }
 
@@ -158,27 +150,20 @@ public final class ProjectEnvironmentTypeImpl
     }
 
     public ProjectEnvironmentType apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getProjectEnvironmentTypes()
-                .updateWithResponse(resourceGroupName, projectName, environmentTypeName, updateBody, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getProjectEnvironmentTypes()
+            .updateWithResponse(resourceGroupName, projectName, environmentTypeName, updateBody, Context.NONE)
+            .getValue();
         return this;
     }
 
     public ProjectEnvironmentType apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getProjectEnvironmentTypes()
-                .updateWithResponse(resourceGroupName, projectName, environmentTypeName, updateBody, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getProjectEnvironmentTypes()
+            .updateWithResponse(resourceGroupName, projectName, environmentTypeName, updateBody, context).getValue();
         return this;
     }
 
-    ProjectEnvironmentTypeImpl(
-        ProjectEnvironmentTypeInner innerObject, com.azure.resourcemanager.devcenter.DevCenterManager serviceManager) {
+    ProjectEnvironmentTypeImpl(ProjectEnvironmentTypeInner innerObject,
+        com.azure.resourcemanager.devcenter.DevCenterManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
         this.resourceGroupName = Utils.getValueFromIdByName(innerObject.id(), "resourceGroups");
@@ -187,22 +172,14 @@ public final class ProjectEnvironmentTypeImpl
     }
 
     public ProjectEnvironmentType refresh() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getProjectEnvironmentTypes()
-                .getWithResponse(resourceGroupName, projectName, environmentTypeName, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getProjectEnvironmentTypes()
+            .getWithResponse(resourceGroupName, projectName, environmentTypeName, Context.NONE).getValue();
         return this;
     }
 
     public ProjectEnvironmentType refresh(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getProjectEnvironmentTypes()
-                .getWithResponse(resourceGroupName, projectName, environmentTypeName, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getProjectEnvironmentTypes()
+            .getWithResponse(resourceGroupName, projectName, environmentTypeName, context).getValue();
         return this;
     }
 
@@ -261,8 +238,8 @@ public final class ProjectEnvironmentTypeImpl
         }
     }
 
-    public ProjectEnvironmentTypeImpl withCreatorRoleAssignment(
-        ProjectEnvironmentTypeUpdatePropertiesCreatorRoleAssignment creatorRoleAssignment) {
+    public ProjectEnvironmentTypeImpl
+        withCreatorRoleAssignment(ProjectEnvironmentTypeUpdatePropertiesCreatorRoleAssignment creatorRoleAssignment) {
         if (isInCreateMode()) {
             this.innerModel().withCreatorRoleAssignment(creatorRoleAssignment);
             return this;
@@ -272,8 +249,8 @@ public final class ProjectEnvironmentTypeImpl
         }
     }
 
-    public ProjectEnvironmentTypeImpl withUserRoleAssignments(
-        Map<String, UserRoleAssignmentValue> userRoleAssignments) {
+    public ProjectEnvironmentTypeImpl
+        withUserRoleAssignments(Map<String, UserRoleAssignmentValue> userRoleAssignments) {
         if (isInCreateMode()) {
             this.innerModel().withUserRoleAssignments(userRoleAssignments);
             return this;

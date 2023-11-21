@@ -7,7 +7,9 @@ package com.azure.resourcemanager.devcenter.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Stats of the synchronization. */
+/**
+ * Stats of the synchronization.
+ */
 @Immutable
 public final class SyncStats {
     /*
@@ -46,13 +48,15 @@ public final class SyncStats {
     @JsonProperty(value = "synchronizationErrors", access = JsonProperty.Access.WRITE_ONLY)
     private Integer synchronizationErrors;
 
-    /** Creates an instance of SyncStats class. */
+    /**
+     * Creates an instance of SyncStats class.
+     */
     public SyncStats() {
     }
 
     /**
      * Get the added property: Count of catalog items added during synchronization.
-     *
+     * 
      * @return the added value.
      */
     public Integer added() {
@@ -61,7 +65,7 @@ public final class SyncStats {
 
     /**
      * Get the updated property: Count of catalog items updated during synchronization.
-     *
+     * 
      * @return the updated value.
      */
     public Integer updated() {
@@ -70,7 +74,7 @@ public final class SyncStats {
 
     /**
      * Get the unchanged property: Count of catalog items that were unchanged during synchronization.
-     *
+     * 
      * @return the unchanged value.
      */
     public Integer unchanged() {
@@ -79,7 +83,7 @@ public final class SyncStats {
 
     /**
      * Get the removed property: Count of catalog items removed during synchronization.
-     *
+     * 
      * @return the removed value.
      */
     public Integer removed() {
@@ -88,7 +92,7 @@ public final class SyncStats {
 
     /**
      * Get the validationErrors property: Count of catalog items that had validation errors during synchronization.
-     *
+     * 
      * @return the validationErrors value.
      */
     public Integer validationErrors() {
@@ -97,7 +101,7 @@ public final class SyncStats {
 
     /**
      * Get the synchronizationErrors property: Count of synchronization errors that occured during synchronization.
-     *
+     * 
      * @return the synchronizationErrors value.
      */
     public Integer synchronizationErrors() {
@@ -106,7 +110,7 @@ public final class SyncStats {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

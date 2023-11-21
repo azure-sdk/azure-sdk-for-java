@@ -9,7 +9,9 @@ import com.azure.resourcemanager.devcenter.fluent.models.ScheduleUpdatePropertie
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** The schedule properties for partial update. Properties not provided in the update request will not be changed. */
+/**
+ * The schedule properties for partial update. Properties not provided in the update request will not be changed.
+ */
 @Fluent
 public final class ScheduleUpdate extends TrackedResourceUpdate {
     /*
@@ -18,27 +20,33 @@ public final class ScheduleUpdate extends TrackedResourceUpdate {
     @JsonProperty(value = "properties")
     private ScheduleUpdateProperties innerProperties;
 
-    /** Creates an instance of ScheduleUpdate class. */
+    /**
+     * Creates an instance of ScheduleUpdate class.
+     */
     public ScheduleUpdate() {
     }
 
     /**
      * Get the innerProperties property: Properties of a schedule resource to be updated.
-     *
+     * 
      * @return the innerProperties value.
      */
     private ScheduleUpdateProperties innerProperties() {
         return this.innerProperties;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ScheduleUpdate withTags(Map<String, String> tags) {
         super.withTags(tags);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ScheduleUpdate withLocation(String location) {
         super.withLocation(location);
@@ -47,7 +55,7 @@ public final class ScheduleUpdate extends TrackedResourceUpdate {
 
     /**
      * Get the type property: Supported type this scheduled task represents.
-     *
+     * 
      * @return the type value.
      */
     public ScheduledType type() {
@@ -56,7 +64,7 @@ public final class ScheduleUpdate extends TrackedResourceUpdate {
 
     /**
      * Set the type property: Supported type this scheduled task represents.
-     *
+     * 
      * @param type the type value to set.
      * @return the ScheduleUpdate object itself.
      */
@@ -70,7 +78,7 @@ public final class ScheduleUpdate extends TrackedResourceUpdate {
 
     /**
      * Get the frequency property: The frequency of this scheduled task.
-     *
+     * 
      * @return the frequency value.
      */
     public ScheduledFrequency frequency() {
@@ -79,7 +87,7 @@ public final class ScheduleUpdate extends TrackedResourceUpdate {
 
     /**
      * Set the frequency property: The frequency of this scheduled task.
-     *
+     * 
      * @param frequency the frequency value to set.
      * @return the ScheduleUpdate object itself.
      */
@@ -93,7 +101,7 @@ public final class ScheduleUpdate extends TrackedResourceUpdate {
 
     /**
      * Get the time property: The target time to trigger the action. The format is HH:MM.
-     *
+     * 
      * @return the time value.
      */
     public String time() {
@@ -102,7 +110,7 @@ public final class ScheduleUpdate extends TrackedResourceUpdate {
 
     /**
      * Set the time property: The target time to trigger the action. The format is HH:MM.
-     *
+     * 
      * @param time the time value to set.
      * @return the ScheduleUpdate object itself.
      */
@@ -116,7 +124,7 @@ public final class ScheduleUpdate extends TrackedResourceUpdate {
 
     /**
      * Get the timeZone property: The IANA timezone id at which the schedule should execute.
-     *
+     * 
      * @return the timeZone value.
      */
     public String timeZone() {
@@ -125,7 +133,7 @@ public final class ScheduleUpdate extends TrackedResourceUpdate {
 
     /**
      * Set the timeZone property: The IANA timezone id at which the schedule should execute.
-     *
+     * 
      * @param timeZone the timeZone value to set.
      * @return the ScheduleUpdate object itself.
      */
@@ -139,7 +147,7 @@ public final class ScheduleUpdate extends TrackedResourceUpdate {
 
     /**
      * Get the state property: Indicates whether or not this scheduled task is enabled.
-     *
+     * 
      * @return the state value.
      */
     public ScheduleEnableStatus state() {
@@ -148,7 +156,7 @@ public final class ScheduleUpdate extends TrackedResourceUpdate {
 
     /**
      * Set the state property: Indicates whether or not this scheduled task is enabled.
-     *
+     * 
      * @param state the state value to set.
      * @return the ScheduleUpdate object itself.
      */
@@ -162,7 +170,7 @@ public final class ScheduleUpdate extends TrackedResourceUpdate {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

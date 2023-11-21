@@ -7,7 +7,9 @@ package com.azure.resourcemanager.devcenter.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Input for a Task. */
+/**
+ * Input for a Task.
+ */
 @Immutable
 public final class CustomizationTaskInput {
     /*
@@ -28,13 +30,15 @@ public final class CustomizationTaskInput {
     @JsonProperty(value = "required", access = JsonProperty.Access.WRITE_ONLY)
     private Boolean required;
 
-    /** Creates an instance of CustomizationTaskInput class. */
+    /**
+     * Creates an instance of CustomizationTaskInput class.
+     */
     public CustomizationTaskInput() {
     }
 
     /**
      * Get the description property: Description of the input.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -43,7 +47,7 @@ public final class CustomizationTaskInput {
 
     /**
      * Get the type property: Type of the input.
-     *
+     * 
      * @return the type value.
      */
     public CustomizationTaskInputType type() {
@@ -52,7 +56,7 @@ public final class CustomizationTaskInput {
 
     /**
      * Get the required property: Whether or not the input is required.
-     *
+     * 
      * @return the required value.
      */
     public Boolean required() {
@@ -61,7 +65,7 @@ public final class CustomizationTaskInput {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

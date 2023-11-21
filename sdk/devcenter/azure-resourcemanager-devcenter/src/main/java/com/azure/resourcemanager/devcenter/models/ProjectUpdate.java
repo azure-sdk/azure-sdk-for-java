@@ -9,7 +9,9 @@ import com.azure.resourcemanager.devcenter.fluent.models.ProjectUpdateProperties
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** The project properties for partial update. Properties not provided in the update request will not be changed. */
+/**
+ * The project properties for partial update. Properties not provided in the update request will not be changed.
+ */
 @Fluent
 public final class ProjectUpdate extends TrackedResourceUpdate {
     /*
@@ -18,27 +20,33 @@ public final class ProjectUpdate extends TrackedResourceUpdate {
     @JsonProperty(value = "properties")
     private ProjectUpdateProperties innerProperties;
 
-    /** Creates an instance of ProjectUpdate class. */
+    /**
+     * Creates an instance of ProjectUpdate class.
+     */
     public ProjectUpdate() {
     }
 
     /**
      * Get the innerProperties property: Properties of a project to be updated.
-     *
+     * 
      * @return the innerProperties value.
      */
     private ProjectUpdateProperties innerProperties() {
         return this.innerProperties;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ProjectUpdate withTags(Map<String, String> tags) {
         super.withTags(tags);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ProjectUpdate withLocation(String location) {
         super.withLocation(location);
@@ -47,7 +55,7 @@ public final class ProjectUpdate extends TrackedResourceUpdate {
 
     /**
      * Get the devCenterId property: Resource Id of an associated DevCenter.
-     *
+     * 
      * @return the devCenterId value.
      */
     public String devCenterId() {
@@ -56,7 +64,7 @@ public final class ProjectUpdate extends TrackedResourceUpdate {
 
     /**
      * Set the devCenterId property: Resource Id of an associated DevCenter.
-     *
+     * 
      * @param devCenterId the devCenterId value to set.
      * @return the ProjectUpdate object itself.
      */
@@ -70,7 +78,7 @@ public final class ProjectUpdate extends TrackedResourceUpdate {
 
     /**
      * Get the description property: Description of the project.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -79,7 +87,7 @@ public final class ProjectUpdate extends TrackedResourceUpdate {
 
     /**
      * Set the description property: Description of the project.
-     *
+     * 
      * @param description the description value to set.
      * @return the ProjectUpdate object itself.
      */
@@ -94,7 +102,7 @@ public final class ProjectUpdate extends TrackedResourceUpdate {
     /**
      * Get the maxDevBoxesPerUser property: When specified, limits the maximum number of Dev Boxes a single user can
      * create across all pools in the project. This will have no effect on existing Dev Boxes when reduced.
-     *
+     * 
      * @return the maxDevBoxesPerUser value.
      */
     public Integer maxDevBoxesPerUser() {
@@ -104,7 +112,7 @@ public final class ProjectUpdate extends TrackedResourceUpdate {
     /**
      * Set the maxDevBoxesPerUser property: When specified, limits the maximum number of Dev Boxes a single user can
      * create across all pools in the project. This will have no effect on existing Dev Boxes when reduced.
-     *
+     * 
      * @param maxDevBoxesPerUser the maxDevBoxesPerUser value to set.
      * @return the ProjectUpdate object itself.
      */
@@ -118,7 +126,7 @@ public final class ProjectUpdate extends TrackedResourceUpdate {
 
     /**
      * Get the displayName property: The display name of the project.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -127,7 +135,7 @@ public final class ProjectUpdate extends TrackedResourceUpdate {
 
     /**
      * Set the displayName property: The display name of the project.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the ProjectUpdate object itself.
      */
@@ -141,7 +149,7 @@ public final class ProjectUpdate extends TrackedResourceUpdate {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

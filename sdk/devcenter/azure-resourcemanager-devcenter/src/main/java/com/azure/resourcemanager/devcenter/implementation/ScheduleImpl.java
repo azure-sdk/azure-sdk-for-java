@@ -94,22 +94,14 @@ public final class ScheduleImpl implements Schedule, Schedule.Definition, Schedu
     }
 
     public Schedule create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getSchedules()
-                .createOrUpdate(
-                    resourceGroupName, projectName, poolName, scheduleName, this.innerModel(), createTop, Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getSchedules().createOrUpdate(resourceGroupName, projectName,
+            poolName, scheduleName, this.innerModel(), createTop, Context.NONE);
         return this;
     }
 
     public Schedule create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getSchedules()
-                .createOrUpdate(
-                    resourceGroupName, projectName, poolName, scheduleName, this.innerModel(), createTop, context);
+        this.innerObject = serviceManager.serviceClient().getSchedules().createOrUpdate(resourceGroupName, projectName,
+            poolName, scheduleName, this.innerModel(), createTop, context);
         return this;
     }
 
@@ -127,20 +119,14 @@ public final class ScheduleImpl implements Schedule, Schedule.Definition, Schedu
     }
 
     public Schedule apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getSchedules()
-                .update(resourceGroupName, projectName, poolName, scheduleName, updateBody, updateTop, Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getSchedules().update(resourceGroupName, projectName,
+            poolName, scheduleName, updateBody, updateTop, Context.NONE);
         return this;
     }
 
     public Schedule apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getSchedules()
-                .update(resourceGroupName, projectName, poolName, scheduleName, updateBody, updateTop, context);
+        this.innerObject = serviceManager.serviceClient().getSchedules().update(resourceGroupName, projectName,
+            poolName, scheduleName, updateBody, updateTop, context);
         return this;
     }
 
@@ -155,23 +141,15 @@ public final class ScheduleImpl implements Schedule, Schedule.Definition, Schedu
 
     public Schedule refresh() {
         Integer localTop = null;
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getSchedules()
-                .getWithResponse(resourceGroupName, projectName, poolName, scheduleName, localTop, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getSchedules()
+            .getWithResponse(resourceGroupName, projectName, poolName, scheduleName, localTop, Context.NONE).getValue();
         return this;
     }
 
     public Schedule refresh(Context context) {
         Integer localTop = null;
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getSchedules()
-                .getWithResponse(resourceGroupName, projectName, poolName, scheduleName, localTop, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getSchedules()
+            .getWithResponse(resourceGroupName, projectName, poolName, scheduleName, localTop, context).getValue();
         return this;
     }
 

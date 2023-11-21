@@ -21,34 +21,31 @@ public final class DevBoxDefinitionsImpl implements DevBoxDefinitions {
 
     private final com.azure.resourcemanager.devcenter.DevCenterManager serviceManager;
 
-    public DevBoxDefinitionsImpl(
-        DevBoxDefinitionsClient innerClient, com.azure.resourcemanager.devcenter.DevCenterManager serviceManager) {
+    public DevBoxDefinitionsImpl(DevBoxDefinitionsClient innerClient,
+        com.azure.resourcemanager.devcenter.DevCenterManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
 
     public PagedIterable<DevBoxDefinition> listByDevCenter(String resourceGroupName, String devCenterName) {
-        PagedIterable<DevBoxDefinitionInner> inner =
-            this.serviceClient().listByDevCenter(resourceGroupName, devCenterName);
+        PagedIterable<DevBoxDefinitionInner> inner
+            = this.serviceClient().listByDevCenter(resourceGroupName, devCenterName);
         return Utils.mapPage(inner, inner1 -> new DevBoxDefinitionImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<DevBoxDefinition> listByDevCenter(
-        String resourceGroupName, String devCenterName, Integer top, Context context) {
-        PagedIterable<DevBoxDefinitionInner> inner =
-            this.serviceClient().listByDevCenter(resourceGroupName, devCenterName, top, context);
+    public PagedIterable<DevBoxDefinition> listByDevCenter(String resourceGroupName, String devCenterName, Integer top,
+        Context context) {
+        PagedIterable<DevBoxDefinitionInner> inner
+            = this.serviceClient().listByDevCenter(resourceGroupName, devCenterName, top, context);
         return Utils.mapPage(inner, inner1 -> new DevBoxDefinitionImpl(inner1, this.manager()));
     }
 
-    public Response<DevBoxDefinition> getWithResponse(
-        String resourceGroupName, String devCenterName, String devBoxDefinitionName, Context context) {
-        Response<DevBoxDefinitionInner> inner =
-            this.serviceClient().getWithResponse(resourceGroupName, devCenterName, devBoxDefinitionName, context);
+    public Response<DevBoxDefinition> getWithResponse(String resourceGroupName, String devCenterName,
+        String devBoxDefinitionName, Context context) {
+        Response<DevBoxDefinitionInner> inner
+            = this.serviceClient().getWithResponse(resourceGroupName, devCenterName, devBoxDefinitionName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new DevBoxDefinitionImpl(inner.getValue(), this.manager()));
         } else {
             return null;
@@ -77,24 +74,19 @@ public final class DevBoxDefinitionsImpl implements DevBoxDefinitions {
         return Utils.mapPage(inner, inner1 -> new DevBoxDefinitionImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<DevBoxDefinition> listByProject(
-        String resourceGroupName, String projectName, Integer top, Context context) {
-        PagedIterable<DevBoxDefinitionInner> inner =
-            this.serviceClient().listByProject(resourceGroupName, projectName, top, context);
+    public PagedIterable<DevBoxDefinition> listByProject(String resourceGroupName, String projectName, Integer top,
+        Context context) {
+        PagedIterable<DevBoxDefinitionInner> inner
+            = this.serviceClient().listByProject(resourceGroupName, projectName, top, context);
         return Utils.mapPage(inner, inner1 -> new DevBoxDefinitionImpl(inner1, this.manager()));
     }
 
-    public Response<DevBoxDefinition> getByProjectWithResponse(
-        String resourceGroupName, String projectName, String devBoxDefinitionName, Context context) {
-        Response<DevBoxDefinitionInner> inner =
-            this
-                .serviceClient()
-                .getByProjectWithResponse(resourceGroupName, projectName, devBoxDefinitionName, context);
+    public Response<DevBoxDefinition> getByProjectWithResponse(String resourceGroupName, String projectName,
+        String devBoxDefinitionName, Context context) {
+        Response<DevBoxDefinitionInner> inner = this.serviceClient().getByProjectWithResponse(resourceGroupName,
+            projectName, devBoxDefinitionName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new DevBoxDefinitionImpl(inner.getValue(), this.manager()));
         } else {
             return null;
@@ -102,8 +94,8 @@ public final class DevBoxDefinitionsImpl implements DevBoxDefinitions {
     }
 
     public DevBoxDefinition getByProject(String resourceGroupName, String projectName, String devBoxDefinitionName) {
-        DevBoxDefinitionInner inner =
-            this.serviceClient().getByProject(resourceGroupName, projectName, devBoxDefinitionName);
+        DevBoxDefinitionInner inner
+            = this.serviceClient().getByProject(resourceGroupName, projectName, devBoxDefinitionName);
         if (inner != null) {
             return new DevBoxDefinitionImpl(inner, this.manager());
         } else {
@@ -114,27 +106,18 @@ public final class DevBoxDefinitionsImpl implements DevBoxDefinitions {
     public DevBoxDefinition getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String devCenterName = Utils.getValueFromIdByName(id, "devcenters");
         if (devCenterName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'devcenters'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'devcenters'.", id)));
         }
         String devBoxDefinitionName = Utils.getValueFromIdByName(id, "devboxdefinitions");
         if (devBoxDefinitionName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format(
-                                "The resource ID '%s' is not valid. Missing path segment 'devboxdefinitions'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'devboxdefinitions'.", id)));
         }
         return this.getWithResponse(resourceGroupName, devCenterName, devBoxDefinitionName, Context.NONE).getValue();
     }
@@ -142,27 +125,18 @@ public final class DevBoxDefinitionsImpl implements DevBoxDefinitions {
     public Response<DevBoxDefinition> getByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String devCenterName = Utils.getValueFromIdByName(id, "devcenters");
         if (devCenterName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'devcenters'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'devcenters'.", id)));
         }
         String devBoxDefinitionName = Utils.getValueFromIdByName(id, "devboxdefinitions");
         if (devBoxDefinitionName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format(
-                                "The resource ID '%s' is not valid. Missing path segment 'devboxdefinitions'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'devboxdefinitions'.", id)));
         }
         return this.getWithResponse(resourceGroupName, devCenterName, devBoxDefinitionName, context);
     }
@@ -170,27 +144,18 @@ public final class DevBoxDefinitionsImpl implements DevBoxDefinitions {
     public void deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String devCenterName = Utils.getValueFromIdByName(id, "devcenters");
         if (devCenterName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'devcenters'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'devcenters'.", id)));
         }
         String devBoxDefinitionName = Utils.getValueFromIdByName(id, "devboxdefinitions");
         if (devBoxDefinitionName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format(
-                                "The resource ID '%s' is not valid. Missing path segment 'devboxdefinitions'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'devboxdefinitions'.", id)));
         }
         this.delete(resourceGroupName, devCenterName, devBoxDefinitionName, Context.NONE);
     }
@@ -198,27 +163,18 @@ public final class DevBoxDefinitionsImpl implements DevBoxDefinitions {
     public void deleteByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String devCenterName = Utils.getValueFromIdByName(id, "devcenters");
         if (devCenterName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'devcenters'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'devcenters'.", id)));
         }
         String devBoxDefinitionName = Utils.getValueFromIdByName(id, "devboxdefinitions");
         if (devBoxDefinitionName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format(
-                                "The resource ID '%s' is not valid. Missing path segment 'devboxdefinitions'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'devboxdefinitions'.", id)));
         }
         this.delete(resourceGroupName, devCenterName, devBoxDefinitionName, context);
     }

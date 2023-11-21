@@ -102,20 +102,14 @@ public final class DevCenterImpl implements DevCenter, DevCenter.Definition, Dev
     }
 
     public DevCenter create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getDevCenters()
-                .createOrUpdate(resourceGroupName, devCenterName, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getDevCenters().createOrUpdate(resourceGroupName,
+            devCenterName, this.innerModel(), Context.NONE);
         return this;
     }
 
     public DevCenter create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getDevCenters()
-                .createOrUpdate(resourceGroupName, devCenterName, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient().getDevCenters().createOrUpdate(resourceGroupName,
+            devCenterName, this.innerModel(), context);
         return this;
     }
 
@@ -131,20 +125,14 @@ public final class DevCenterImpl implements DevCenter, DevCenter.Definition, Dev
     }
 
     public DevCenter apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getDevCenters()
-                .update(resourceGroupName, devCenterName, updateBody, Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getDevCenters().update(resourceGroupName, devCenterName,
+            updateBody, Context.NONE);
         return this;
     }
 
     public DevCenter apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getDevCenters()
-                .update(resourceGroupName, devCenterName, updateBody, context);
+        this.innerObject = serviceManager.serviceClient().getDevCenters().update(resourceGroupName, devCenterName,
+            updateBody, context);
         return this;
     }
 
@@ -156,22 +144,14 @@ public final class DevCenterImpl implements DevCenter, DevCenter.Definition, Dev
     }
 
     public DevCenter refresh() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getDevCenters()
-                .getByResourceGroupWithResponse(resourceGroupName, devCenterName, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getDevCenters()
+            .getByResourceGroupWithResponse(resourceGroupName, devCenterName, Context.NONE).getValue();
         return this;
     }
 
     public DevCenter refresh(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getDevCenters()
-                .getByResourceGroupWithResponse(resourceGroupName, devCenterName, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getDevCenters()
+            .getByResourceGroupWithResponse(resourceGroupName, devCenterName, context).getValue();
         return this;
     }
 

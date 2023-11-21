@@ -11,7 +11,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** Properties of a Task. */
+/**
+ * Properties of a Task.
+ */
 @Immutable
 public final class CustomizationTaskProperties {
     /*
@@ -33,13 +35,15 @@ public final class CustomizationTaskProperties {
     @JsonProperty(value = "validationStatus", access = JsonProperty.Access.WRITE_ONLY)
     private CatalogResourceValidationStatus validationStatus;
 
-    /** Creates an instance of CustomizationTaskProperties class. */
+    /**
+     * Creates an instance of CustomizationTaskProperties class.
+     */
     public CustomizationTaskProperties() {
     }
 
     /**
      * Get the inputs property: Inputs to the task.
-     *
+     * 
      * @return the inputs value.
      */
     public Map<String, CustomizationTaskInput> inputs() {
@@ -48,7 +52,7 @@ public final class CustomizationTaskProperties {
 
     /**
      * Get the timeout property: The default timeout for the task.
-     *
+     * 
      * @return the timeout value.
      */
     public Integer timeout() {
@@ -57,7 +61,7 @@ public final class CustomizationTaskProperties {
 
     /**
      * Get the validationStatus property: Validation status for the Task.
-     *
+     * 
      * @return the validationStatus value.
      */
     public CatalogResourceValidationStatus validationStatus() {
@@ -66,19 +70,16 @@ public final class CustomizationTaskProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (inputs() != null) {
-            inputs()
-                .values()
-                .forEach(
-                    e -> {
-                        if (e != null) {
-                            e.validate();
-                        }
-                    });
+            inputs().values().forEach(e -> {
+                if (e != null) {
+                    e.validate();
+                }
+            });
         }
     }
 }

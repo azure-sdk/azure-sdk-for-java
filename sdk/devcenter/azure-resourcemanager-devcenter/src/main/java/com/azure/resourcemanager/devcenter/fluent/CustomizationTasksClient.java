@@ -12,11 +12,13 @@ import com.azure.core.util.Context;
 import com.azure.resourcemanager.devcenter.fluent.models.CatalogResourceValidationErrorDetailsInner;
 import com.azure.resourcemanager.devcenter.fluent.models.CustomizationTaskInner;
 
-/** An instance of this class provides access to all the operations defined in CustomizationTasksClient. */
+/**
+ * An instance of this class provides access to all the operations defined in CustomizationTasksClient.
+ */
 public interface CustomizationTasksClient {
     /**
      * List Tasks in the catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param catalogName The name of the Catalog.
@@ -26,12 +28,12 @@ public interface CustomizationTasksClient {
      * @return results of the Task list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<CustomizationTaskInner> listByCatalog(
-        String resourceGroupName, String devCenterName, String catalogName);
+    PagedIterable<CustomizationTaskInner> listByCatalog(String resourceGroupName, String devCenterName,
+        String catalogName);
 
     /**
      * List Tasks in the catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param catalogName The name of the Catalog.
@@ -43,12 +45,12 @@ public interface CustomizationTasksClient {
      * @return results of the Task list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<CustomizationTaskInner> listByCatalog(
-        String resourceGroupName, String devCenterName, String catalogName, Integer top, Context context);
+    PagedIterable<CustomizationTaskInner> listByCatalog(String resourceGroupName, String devCenterName,
+        String catalogName, Integer top, Context context);
 
     /**
      * Gets a Task from the catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param catalogName The name of the Catalog.
@@ -60,12 +62,12 @@ public interface CustomizationTasksClient {
      * @return a Task from the catalog along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<CustomizationTaskInner> getWithResponse(
-        String resourceGroupName, String devCenterName, String catalogName, String taskName, Context context);
+    Response<CustomizationTaskInner> getWithResponse(String resourceGroupName, String devCenterName, String catalogName,
+        String taskName, Context context);
 
     /**
      * Gets a Task from the catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param catalogName The name of the Catalog.
@@ -80,7 +82,7 @@ public interface CustomizationTasksClient {
 
     /**
      * Gets Customization Task error details.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param catalogName The name of the Catalog.
@@ -92,12 +94,12 @@ public interface CustomizationTasksClient {
      * @return customization Task error details along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<CatalogResourceValidationErrorDetailsInner> getErrorDetailsWithResponse(
-        String resourceGroupName, String devCenterName, String catalogName, String taskName, Context context);
+    Response<CatalogResourceValidationErrorDetailsInner> getErrorDetailsWithResponse(String resourceGroupName,
+        String devCenterName, String catalogName, String taskName, Context context);
 
     /**
      * Gets Customization Task error details.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param catalogName The name of the Catalog.
@@ -108,6 +110,6 @@ public interface CustomizationTasksClient {
      * @return customization Task error details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    CatalogResourceValidationErrorDetailsInner getErrorDetails(
-        String resourceGroupName, String devCenterName, String catalogName, String taskName);
+    CatalogResourceValidationErrorDetailsInner getErrorDetails(String resourceGroupName, String devCenterName,
+        String catalogName, String taskName);
 }

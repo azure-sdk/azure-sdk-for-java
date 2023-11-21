@@ -8,11 +8,13 @@ import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 
-/** Resource collection API of Catalogs. */
+/**
+ * Resource collection API of Catalogs.
+ */
 public interface Catalogs {
     /**
      * Lists catalogs for a devcenter.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -24,7 +26,7 @@ public interface Catalogs {
 
     /**
      * Lists catalogs for a devcenter.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param top The maximum number of resources to return from the operation. Example: '$top=10'.
@@ -34,12 +36,12 @@ public interface Catalogs {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return results of the catalog list operation as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<Catalog> listByDevCenter(
-        String resourceGroupName, String devCenterName, Integer top, Context context);
+    PagedIterable<Catalog> listByDevCenter(String resourceGroupName, String devCenterName, Integer top,
+        Context context);
 
     /**
      * Gets a catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param catalogName The name of the Catalog.
@@ -49,12 +51,12 @@ public interface Catalogs {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a catalog along with {@link Response}.
      */
-    Response<Catalog> getWithResponse(
-        String resourceGroupName, String devCenterName, String catalogName, Context context);
+    Response<Catalog> getWithResponse(String resourceGroupName, String devCenterName, String catalogName,
+        Context context);
 
     /**
      * Gets a catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param catalogName The name of the Catalog.
@@ -67,7 +69,7 @@ public interface Catalogs {
 
     /**
      * Deletes a catalog resource.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param catalogName The name of the Catalog.
@@ -79,7 +81,7 @@ public interface Catalogs {
 
     /**
      * Deletes a catalog resource.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param catalogName The name of the Catalog.
@@ -92,7 +94,7 @@ public interface Catalogs {
 
     /**
      * Gets catalog synchronization error details.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param catalogName The name of the Catalog.
@@ -102,12 +104,12 @@ public interface Catalogs {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return catalog synchronization error details along with {@link Response}.
      */
-    Response<SyncErrorDetails> getSyncErrorDetailsWithResponse(
-        String resourceGroupName, String devCenterName, String catalogName, Context context);
+    Response<SyncErrorDetails> getSyncErrorDetailsWithResponse(String resourceGroupName, String devCenterName,
+        String catalogName, Context context);
 
     /**
      * Gets catalog synchronization error details.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param catalogName The name of the Catalog.
@@ -120,7 +122,7 @@ public interface Catalogs {
 
     /**
      * Syncs templates for a template source.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param catalogName The name of the Catalog.
@@ -132,7 +134,7 @@ public interface Catalogs {
 
     /**
      * Syncs templates for a template source.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param catalogName The name of the Catalog.
@@ -145,7 +147,7 @@ public interface Catalogs {
 
     /**
      * Connects a catalog to enable syncing.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param catalogName The name of the Catalog.
@@ -157,7 +159,7 @@ public interface Catalogs {
 
     /**
      * Connects a catalog to enable syncing.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param catalogName The name of the Catalog.
@@ -170,7 +172,7 @@ public interface Catalogs {
 
     /**
      * Gets a catalog.
-     *
+     * 
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -181,7 +183,7 @@ public interface Catalogs {
 
     /**
      * Gets a catalog.
-     *
+     * 
      * @param id the resource ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -193,7 +195,7 @@ public interface Catalogs {
 
     /**
      * Deletes a catalog resource.
-     *
+     * 
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -203,7 +205,7 @@ public interface Catalogs {
 
     /**
      * Deletes a catalog resource.
-     *
+     * 
      * @param id the resource ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -214,7 +216,7 @@ public interface Catalogs {
 
     /**
      * Begins definition for a new Catalog resource.
-     *
+     * 
      * @param name resource name.
      * @return the first stage of the new Catalog definition.
      */

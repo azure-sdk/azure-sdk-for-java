@@ -64,20 +64,14 @@ public final class GalleryImpl implements Gallery, Gallery.Definition, Gallery.U
     }
 
     public Gallery create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getGalleries()
-                .createOrUpdate(resourceGroupName, devCenterName, galleryName, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getGalleries().createOrUpdate(resourceGroupName,
+            devCenterName, galleryName, this.innerModel(), Context.NONE);
         return this;
     }
 
     public Gallery create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getGalleries()
-                .createOrUpdate(resourceGroupName, devCenterName, galleryName, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient().getGalleries().createOrUpdate(resourceGroupName,
+            devCenterName, galleryName, this.innerModel(), context);
         return this;
     }
 
@@ -92,20 +86,14 @@ public final class GalleryImpl implements Gallery, Gallery.Definition, Gallery.U
     }
 
     public Gallery apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getGalleries()
-                .createOrUpdate(resourceGroupName, devCenterName, galleryName, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getGalleries().createOrUpdate(resourceGroupName,
+            devCenterName, galleryName, this.innerModel(), Context.NONE);
         return this;
     }
 
     public Gallery apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getGalleries()
-                .createOrUpdate(resourceGroupName, devCenterName, galleryName, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient().getGalleries().createOrUpdate(resourceGroupName,
+            devCenterName, galleryName, this.innerModel(), context);
         return this;
     }
 
@@ -118,22 +106,14 @@ public final class GalleryImpl implements Gallery, Gallery.Definition, Gallery.U
     }
 
     public Gallery refresh() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getGalleries()
-                .getWithResponse(resourceGroupName, devCenterName, galleryName, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getGalleries()
+            .getWithResponse(resourceGroupName, devCenterName, galleryName, Context.NONE).getValue();
         return this;
     }
 
     public Gallery refresh(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getGalleries()
-                .getWithResponse(resourceGroupName, devCenterName, galleryName, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getGalleries()
+            .getWithResponse(resourceGroupName, devCenterName, galleryName, context).getValue();
         return this;
     }
 

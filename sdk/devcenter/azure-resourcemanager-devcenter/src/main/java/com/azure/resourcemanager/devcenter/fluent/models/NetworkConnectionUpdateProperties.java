@@ -7,7 +7,9 @@ package com.azure.resourcemanager.devcenter.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Properties of network connection. These properties can be updated after the resource has been created. */
+/**
+ * Properties of network connection. These properties can be updated after the resource has been created.
+ */
 @Fluent
 public class NetworkConnectionUpdateProperties {
     /*
@@ -41,13 +43,15 @@ public class NetworkConnectionUpdateProperties {
     @JsonProperty(value = "domainPassword")
     private String domainPassword;
 
-    /** Creates an instance of NetworkConnectionUpdateProperties class. */
+    /**
+     * Creates an instance of NetworkConnectionUpdateProperties class.
+     */
     public NetworkConnectionUpdateProperties() {
     }
 
     /**
      * Get the subnetId property: The subnet to attach Virtual Machines to.
-     *
+     * 
      * @return the subnetId value.
      */
     public String subnetId() {
@@ -56,7 +60,7 @@ public class NetworkConnectionUpdateProperties {
 
     /**
      * Set the subnetId property: The subnet to attach Virtual Machines to.
-     *
+     * 
      * @param subnetId the subnetId value to set.
      * @return the NetworkConnectionUpdateProperties object itself.
      */
@@ -67,7 +71,7 @@ public class NetworkConnectionUpdateProperties {
 
     /**
      * Get the domainName property: Active Directory domain name.
-     *
+     * 
      * @return the domainName value.
      */
     public String domainName() {
@@ -76,7 +80,7 @@ public class NetworkConnectionUpdateProperties {
 
     /**
      * Set the domainName property: Active Directory domain name.
-     *
+     * 
      * @param domainName the domainName value to set.
      * @return the NetworkConnectionUpdateProperties object itself.
      */
@@ -87,7 +91,7 @@ public class NetworkConnectionUpdateProperties {
 
     /**
      * Get the organizationUnit property: Active Directory domain Organization Unit (OU).
-     *
+     * 
      * @return the organizationUnit value.
      */
     public String organizationUnit() {
@@ -96,7 +100,7 @@ public class NetworkConnectionUpdateProperties {
 
     /**
      * Set the organizationUnit property: Active Directory domain Organization Unit (OU).
-     *
+     * 
      * @param organizationUnit the organizationUnit value to set.
      * @return the NetworkConnectionUpdateProperties object itself.
      */
@@ -108,7 +112,7 @@ public class NetworkConnectionUpdateProperties {
     /**
      * Get the domainUsername property: The username of an Active Directory account (user or service account) that has
      * permissions to create computer objects in Active Directory. Required format: admin@contoso.com.
-     *
+     * 
      * @return the domainUsername value.
      */
     public String domainUsername() {
@@ -118,7 +122,7 @@ public class NetworkConnectionUpdateProperties {
     /**
      * Set the domainUsername property: The username of an Active Directory account (user or service account) that has
      * permissions to create computer objects in Active Directory. Required format: admin@contoso.com.
-     *
+     * 
      * @param domainUsername the domainUsername value to set.
      * @return the NetworkConnectionUpdateProperties object itself.
      */
@@ -129,7 +133,7 @@ public class NetworkConnectionUpdateProperties {
 
     /**
      * Get the domainPassword property: The password for the account used to join domain.
-     *
+     * 
      * @return the domainPassword value.
      */
     public String domainPassword() {
@@ -138,7 +142,7 @@ public class NetworkConnectionUpdateProperties {
 
     /**
      * Set the domainPassword property: The password for the account used to join domain.
-     *
+     * 
      * @param domainPassword the domainPassword value to set.
      * @return the NetworkConnectionUpdateProperties object itself.
      */
@@ -149,7 +153,7 @@ public class NetworkConnectionUpdateProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

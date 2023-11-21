@@ -17,8 +17,8 @@ public final class CustomizationTaskImpl implements CustomizationTask {
 
     private final com.azure.resourcemanager.devcenter.DevCenterManager serviceManager;
 
-    CustomizationTaskImpl(
-        CustomizationTaskInner innerObject, com.azure.resourcemanager.devcenter.DevCenterManager serviceManager) {
+    CustomizationTaskImpl(CustomizationTaskInner innerObject,
+        com.azure.resourcemanager.devcenter.DevCenterManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
     }

@@ -12,7 +12,9 @@ import com.azure.resourcemanager.devcenter.models.UserRoleAssignmentValue;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** Properties of a project environment type. */
+/**
+ * Properties of a project environment type.
+ */
 @Fluent
 public final class ProjectEnvironmentTypeProperties extends ProjectEnvironmentTypeUpdateProperties {
     /*
@@ -33,13 +35,15 @@ public final class ProjectEnvironmentTypeProperties extends ProjectEnvironmentTy
     @JsonProperty(value = "environmentCount", access = JsonProperty.Access.WRITE_ONLY)
     private Integer environmentCount;
 
-    /** Creates an instance of ProjectEnvironmentTypeProperties class. */
+    /**
+     * Creates an instance of ProjectEnvironmentTypeProperties class.
+     */
     public ProjectEnvironmentTypeProperties() {
     }
 
     /**
      * Get the provisioningState property: The provisioning state of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -48,7 +52,7 @@ public final class ProjectEnvironmentTypeProperties extends ProjectEnvironmentTy
 
     /**
      * Get the displayName property: The display name of the project environment type.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -57,7 +61,7 @@ public final class ProjectEnvironmentTypeProperties extends ProjectEnvironmentTy
 
     /**
      * Set the displayName property: The display name of the project environment type.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the ProjectEnvironmentTypeProperties object itself.
      */
@@ -68,46 +72,54 @@ public final class ProjectEnvironmentTypeProperties extends ProjectEnvironmentTy
 
     /**
      * Get the environmentCount property: The number of environments of this type.
-     *
+     * 
      * @return the environmentCount value.
      */
     public Integer environmentCount() {
         return this.environmentCount;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ProjectEnvironmentTypeProperties withDeploymentTargetId(String deploymentTargetId) {
         super.withDeploymentTargetId(deploymentTargetId);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ProjectEnvironmentTypeProperties withStatus(EnvironmentTypeEnableStatus status) {
         super.withStatus(status);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public ProjectEnvironmentTypeProperties withCreatorRoleAssignment(
-        ProjectEnvironmentTypeUpdatePropertiesCreatorRoleAssignment creatorRoleAssignment) {
+    public ProjectEnvironmentTypeProperties
+        withCreatorRoleAssignment(ProjectEnvironmentTypeUpdatePropertiesCreatorRoleAssignment creatorRoleAssignment) {
         super.withCreatorRoleAssignment(creatorRoleAssignment);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public ProjectEnvironmentTypeProperties withUserRoleAssignments(
-        Map<String, UserRoleAssignmentValue> userRoleAssignments) {
+    public ProjectEnvironmentTypeProperties
+        withUserRoleAssignments(Map<String, UserRoleAssignmentValue> userRoleAssignments) {
         super.withUserRoleAssignments(userRoleAssignments);
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

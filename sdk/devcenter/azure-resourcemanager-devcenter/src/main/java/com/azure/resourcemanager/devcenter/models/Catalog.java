@@ -11,129 +11,139 @@ import com.azure.resourcemanager.devcenter.fluent.models.CatalogInner;
 import java.time.OffsetDateTime;
 import java.util.Map;
 
-/** An immutable client-side representation of Catalog. */
+/**
+ * An immutable client-side representation of Catalog.
+ */
 public interface Catalog {
     /**
      * Gets the id property: Fully qualified resource Id for the resource.
-     *
+     * 
      * @return the id value.
      */
     String id();
 
     /**
      * Gets the name property: The name of the resource.
-     *
+     * 
      * @return the name value.
      */
     String name();
 
     /**
      * Gets the type property: The type of the resource.
-     *
+     * 
      * @return the type value.
      */
     String type();
 
     /**
      * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     SystemData systemData();
 
     /**
      * Gets the provisioningState property: The provisioning state of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     ProvisioningState provisioningState();
 
     /**
      * Gets the syncState property: The synchronization state of the catalog.
-     *
+     * 
      * @return the syncState value.
      */
     CatalogSyncState syncState();
 
     /**
      * Gets the lastSyncStats property: Stats of the latest synchronization.
-     *
+     * 
      * @return the lastSyncStats value.
      */
     SyncStats lastSyncStats();
 
     /**
      * Gets the connectionState property: The connection state of the catalog.
-     *
+     * 
      * @return the connectionState value.
      */
     CatalogConnectionState connectionState();
 
     /**
      * Gets the lastConnectionTime property: When the catalog was last connected.
-     *
+     * 
      * @return the lastConnectionTime value.
      */
     OffsetDateTime lastConnectionTime();
 
     /**
      * Gets the lastSyncTime property: When the catalog was last synced.
-     *
+     * 
      * @return the lastSyncTime value.
      */
     OffsetDateTime lastSyncTime();
 
     /**
      * Gets the gitHub property: Properties for a GitHub catalog type.
-     *
+     * 
      * @return the gitHub value.
      */
     GitCatalog gitHub();
 
     /**
      * Gets the adoGit property: Properties for an Azure DevOps catalog type.
-     *
+     * 
      * @return the adoGit value.
      */
     GitCatalog adoGit();
 
     /**
      * Gets the syncType property: Indicates the type of sync that is configured for the catalog.
-     *
+     * 
      * @return the syncType value.
      */
     CatalogSyncType syncType();
 
     /**
      * Gets the name of the resource group.
-     *
+     * 
      * @return the name of the resource group.
      */
     String resourceGroupName();
 
     /**
      * Gets the inner com.azure.resourcemanager.devcenter.fluent.models.CatalogInner object.
-     *
+     * 
      * @return the inner object.
      */
     CatalogInner innerModel();
 
-    /** The entirety of the Catalog definition. */
+    /**
+     * The entirety of the Catalog definition.
+     */
     interface Definition
         extends DefinitionStages.Blank, DefinitionStages.WithParentResource, DefinitionStages.WithCreate {
     }
 
-    /** The Catalog definition stages. */
+    /**
+     * The Catalog definition stages.
+     */
     interface DefinitionStages {
-        /** The first stage of the Catalog definition. */
+        /**
+         * The first stage of the Catalog definition.
+         */
         interface Blank extends WithParentResource {
         }
 
-        /** The stage of the Catalog definition allowing to specify parent resource. */
+        /**
+         * The stage of the Catalog definition allowing to specify parent resource.
+         */
         interface WithParentResource {
             /**
              * Specifies resourceGroupName, devCenterName.
-             *
+             * 
              * @param resourceGroupName The name of the resource group. The name is case insensitive.
              * @param devCenterName The name of the devcenter.
              * @return the next definition stage.
@@ -149,47 +159,53 @@ public interface Catalog {
             extends DefinitionStages.WithGitHub, DefinitionStages.WithAdoGit, DefinitionStages.WithSyncType {
             /**
              * Executes the create request.
-             *
+             * 
              * @return the created resource.
              */
             Catalog create();
 
             /**
              * Executes the create request.
-             *
+             * 
              * @param context The context to associate with this operation.
              * @return the created resource.
              */
             Catalog create(Context context);
         }
 
-        /** The stage of the Catalog definition allowing to specify gitHub. */
+        /**
+         * The stage of the Catalog definition allowing to specify gitHub.
+         */
         interface WithGitHub {
             /**
              * Specifies the gitHub property: Properties for a GitHub catalog type..
-             *
+             * 
              * @param gitHub Properties for a GitHub catalog type.
              * @return the next definition stage.
              */
             WithCreate withGitHub(GitCatalog gitHub);
         }
 
-        /** The stage of the Catalog definition allowing to specify adoGit. */
+        /**
+         * The stage of the Catalog definition allowing to specify adoGit.
+         */
         interface WithAdoGit {
             /**
              * Specifies the adoGit property: Properties for an Azure DevOps catalog type..
-             *
+             * 
              * @param adoGit Properties for an Azure DevOps catalog type.
              * @return the next definition stage.
              */
             WithCreate withAdoGit(GitCatalog adoGit);
         }
 
-        /** The stage of the Catalog definition allowing to specify syncType. */
+        /**
+         * The stage of the Catalog definition allowing to specify syncType.
+         */
         interface WithSyncType {
             /**
              * Specifies the syncType property: Indicates the type of sync that is configured for the catalog..
-             *
+             * 
              * @param syncType Indicates the type of sync that is configured for the catalog.
              * @return the next definition stage.
              */
@@ -199,70 +215,82 @@ public interface Catalog {
 
     /**
      * Begins update for the Catalog resource.
-     *
+     * 
      * @return the stage of resource update.
      */
     Catalog.Update update();
 
-    /** The template for Catalog update. */
+    /**
+     * The template for Catalog update.
+     */
     interface Update
         extends UpdateStages.WithTags, UpdateStages.WithGitHub, UpdateStages.WithAdoGit, UpdateStages.WithSyncType {
         /**
          * Executes the update request.
-         *
+         * 
          * @return the updated resource.
          */
         Catalog apply();
 
         /**
          * Executes the update request.
-         *
+         * 
          * @param context The context to associate with this operation.
          * @return the updated resource.
          */
         Catalog apply(Context context);
     }
 
-    /** The Catalog update stages. */
+    /**
+     * The Catalog update stages.
+     */
     interface UpdateStages {
-        /** The stage of the Catalog update allowing to specify tags. */
+        /**
+         * The stage of the Catalog update allowing to specify tags.
+         */
         interface WithTags {
             /**
              * Specifies the tags property: Resource tags..
-             *
+             * 
              * @param tags Resource tags.
              * @return the next definition stage.
              */
             Update withTags(Map<String, String> tags);
         }
 
-        /** The stage of the Catalog update allowing to specify gitHub. */
+        /**
+         * The stage of the Catalog update allowing to specify gitHub.
+         */
         interface WithGitHub {
             /**
              * Specifies the gitHub property: Properties for a GitHub catalog type..
-             *
+             * 
              * @param gitHub Properties for a GitHub catalog type.
              * @return the next definition stage.
              */
             Update withGitHub(GitCatalog gitHub);
         }
 
-        /** The stage of the Catalog update allowing to specify adoGit. */
+        /**
+         * The stage of the Catalog update allowing to specify adoGit.
+         */
         interface WithAdoGit {
             /**
              * Specifies the adoGit property: Properties for an Azure DevOps catalog type..
-             *
+             * 
              * @param adoGit Properties for an Azure DevOps catalog type.
              * @return the next definition stage.
              */
             Update withAdoGit(GitCatalog adoGit);
         }
 
-        /** The stage of the Catalog update allowing to specify syncType. */
+        /**
+         * The stage of the Catalog update allowing to specify syncType.
+         */
         interface WithSyncType {
             /**
              * Specifies the syncType property: Indicates the type of sync that is configured for the catalog..
-             *
+             * 
              * @param syncType Indicates the type of sync that is configured for the catalog.
              * @return the next definition stage.
              */
@@ -272,14 +300,14 @@ public interface Catalog {
 
     /**
      * Refreshes the resource to sync with Azure.
-     *
+     * 
      * @return the refreshed resource.
      */
     Catalog refresh();
 
     /**
      * Refreshes the resource to sync with Azure.
-     *
+     * 
      * @param context The context to associate with this operation.
      * @return the refreshed resource.
      */
@@ -287,7 +315,7 @@ public interface Catalog {
 
     /**
      * Gets catalog synchronization error details.
-     *
+     * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -298,7 +326,7 @@ public interface Catalog {
 
     /**
      * Gets catalog synchronization error details.
-     *
+     * 
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return catalog synchronization error details.
@@ -307,7 +335,7 @@ public interface Catalog {
 
     /**
      * Syncs templates for a template source.
-     *
+     * 
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
@@ -315,7 +343,7 @@ public interface Catalog {
 
     /**
      * Syncs templates for a template source.
-     *
+     * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -325,7 +353,7 @@ public interface Catalog {
 
     /**
      * Connects a catalog to enable syncing.
-     *
+     * 
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
@@ -333,7 +361,7 @@ public interface Catalog {
 
     /**
      * Connects a catalog to enable syncing.
-     *
+     * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.

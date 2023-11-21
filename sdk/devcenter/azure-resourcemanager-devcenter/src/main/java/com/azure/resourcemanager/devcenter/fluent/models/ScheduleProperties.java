@@ -11,7 +11,9 @@ import com.azure.resourcemanager.devcenter.models.ScheduledFrequency;
 import com.azure.resourcemanager.devcenter.models.ScheduledType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The Schedule properties defining when and what to execute. */
+/**
+ * The Schedule properties defining when and what to execute.
+ */
 @Fluent
 public final class ScheduleProperties extends ScheduleUpdateProperties {
     /*
@@ -20,48 +22,60 @@ public final class ScheduleProperties extends ScheduleUpdateProperties {
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ProvisioningState provisioningState;
 
-    /** Creates an instance of ScheduleProperties class. */
+    /**
+     * Creates an instance of ScheduleProperties class.
+     */
     public ScheduleProperties() {
     }
 
     /**
      * Get the provisioningState property: The provisioning state of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
         return this.provisioningState;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ScheduleProperties withType(ScheduledType type) {
         super.withType(type);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ScheduleProperties withFrequency(ScheduledFrequency frequency) {
         super.withFrequency(frequency);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ScheduleProperties withTime(String time) {
         super.withTime(time);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ScheduleProperties withTimeZone(String timeZone) {
         super.withTimeZone(timeZone);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ScheduleProperties withState(ScheduleEnableStatus state) {
         super.withState(state);
@@ -70,7 +84,7 @@ public final class ScheduleProperties extends ScheduleUpdateProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

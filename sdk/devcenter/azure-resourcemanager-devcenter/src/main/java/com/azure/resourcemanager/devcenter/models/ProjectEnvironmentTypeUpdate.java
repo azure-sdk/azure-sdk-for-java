@@ -34,13 +34,15 @@ public final class ProjectEnvironmentTypeUpdate {
     @JsonProperty(value = "identity")
     private ManagedServiceIdentity identity;
 
-    /** Creates an instance of ProjectEnvironmentTypeUpdate class. */
+    /**
+     * Creates an instance of ProjectEnvironmentTypeUpdate class.
+     */
     public ProjectEnvironmentTypeUpdate() {
     }
 
     /**
      * Get the innerProperties property: Properties to configure an environment type.
-     *
+     * 
      * @return the innerProperties value.
      */
     private ProjectEnvironmentTypeUpdateProperties innerProperties() {
@@ -49,7 +51,7 @@ public final class ProjectEnvironmentTypeUpdate {
 
     /**
      * Get the tags property: Resource tags.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -58,7 +60,7 @@ public final class ProjectEnvironmentTypeUpdate {
 
     /**
      * Set the tags property: Resource tags.
-     *
+     * 
      * @param tags the tags value to set.
      * @return the ProjectEnvironmentTypeUpdate object itself.
      */
@@ -69,7 +71,7 @@ public final class ProjectEnvironmentTypeUpdate {
 
     /**
      * Get the identity property: Managed identity properties.
-     *
+     * 
      * @return the identity value.
      */
     public ManagedServiceIdentity identity() {
@@ -78,7 +80,7 @@ public final class ProjectEnvironmentTypeUpdate {
 
     /**
      * Set the identity property: Managed identity properties.
-     *
+     * 
      * @param identity the identity value to set.
      * @return the ProjectEnvironmentTypeUpdate object itself.
      */
@@ -90,7 +92,7 @@ public final class ProjectEnvironmentTypeUpdate {
     /**
      * Get the deploymentTargetId property: Id of a subscription that the environment type will be mapped to. The
      * environment's resources will be deployed into this subscription.
-     *
+     * 
      * @return the deploymentTargetId value.
      */
     public String deploymentTargetId() {
@@ -100,7 +102,7 @@ public final class ProjectEnvironmentTypeUpdate {
     /**
      * Set the deploymentTargetId property: Id of a subscription that the environment type will be mapped to. The
      * environment's resources will be deployed into this subscription.
-     *
+     * 
      * @param deploymentTargetId the deploymentTargetId value to set.
      * @return the ProjectEnvironmentTypeUpdate object itself.
      */
@@ -114,7 +116,7 @@ public final class ProjectEnvironmentTypeUpdate {
 
     /**
      * Get the status property: Defines whether this Environment Type can be used in this Project.
-     *
+     * 
      * @return the status value.
      */
     public EnvironmentTypeEnableStatus status() {
@@ -123,7 +125,7 @@ public final class ProjectEnvironmentTypeUpdate {
 
     /**
      * Set the status property: Defines whether this Environment Type can be used in this Project.
-     *
+     * 
      * @param status the status value to set.
      * @return the ProjectEnvironmentTypeUpdate object itself.
      */
@@ -138,7 +140,7 @@ public final class ProjectEnvironmentTypeUpdate {
     /**
      * Get the creatorRoleAssignment property: The role definition assigned to the environment creator on backing
      * resources.
-     *
+     * 
      * @return the creatorRoleAssignment value.
      */
     public ProjectEnvironmentTypeUpdatePropertiesCreatorRoleAssignment creatorRoleAssignment() {
@@ -148,12 +150,12 @@ public final class ProjectEnvironmentTypeUpdate {
     /**
      * Set the creatorRoleAssignment property: The role definition assigned to the environment creator on backing
      * resources.
-     *
+     * 
      * @param creatorRoleAssignment the creatorRoleAssignment value to set.
      * @return the ProjectEnvironmentTypeUpdate object itself.
      */
-    public ProjectEnvironmentTypeUpdate withCreatorRoleAssignment(
-        ProjectEnvironmentTypeUpdatePropertiesCreatorRoleAssignment creatorRoleAssignment) {
+    public ProjectEnvironmentTypeUpdate
+        withCreatorRoleAssignment(ProjectEnvironmentTypeUpdatePropertiesCreatorRoleAssignment creatorRoleAssignment) {
         if (this.innerProperties() == null) {
             this.innerProperties = new ProjectEnvironmentTypeUpdateProperties();
         }
@@ -164,7 +166,7 @@ public final class ProjectEnvironmentTypeUpdate {
     /**
      * Get the userRoleAssignments property: Role Assignments created on environment backing resources. This is a
      * mapping from a user object ID to an object of role definition IDs.
-     *
+     * 
      * @return the userRoleAssignments value.
      */
     public Map<String, UserRoleAssignmentValue> userRoleAssignments() {
@@ -174,12 +176,12 @@ public final class ProjectEnvironmentTypeUpdate {
     /**
      * Set the userRoleAssignments property: Role Assignments created on environment backing resources. This is a
      * mapping from a user object ID to an object of role definition IDs.
-     *
+     * 
      * @param userRoleAssignments the userRoleAssignments value to set.
      * @return the ProjectEnvironmentTypeUpdate object itself.
      */
-    public ProjectEnvironmentTypeUpdate withUserRoleAssignments(
-        Map<String, UserRoleAssignmentValue> userRoleAssignments) {
+    public ProjectEnvironmentTypeUpdate
+        withUserRoleAssignments(Map<String, UserRoleAssignmentValue> userRoleAssignments) {
         if (this.innerProperties() == null) {
             this.innerProperties = new ProjectEnvironmentTypeUpdateProperties();
         }
@@ -189,7 +191,7 @@ public final class ProjectEnvironmentTypeUpdate {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
