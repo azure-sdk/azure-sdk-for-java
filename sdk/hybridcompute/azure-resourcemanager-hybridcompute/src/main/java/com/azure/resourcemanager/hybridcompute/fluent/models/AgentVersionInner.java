@@ -7,7 +7,9 @@ package com.azure.resourcemanager.hybridcompute.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Describes properties of Agent Version. */
+/**
+ * Describes properties of Agent Version.
+ */
 @Fluent
 public final class AgentVersionInner {
     /*
@@ -28,13 +30,15 @@ public final class AgentVersionInner {
     @JsonProperty(value = "osType")
     private String osType;
 
-    /** Creates an instance of AgentVersionInner class. */
+    /**
+     * Creates an instance of AgentVersionInner class.
+     */
     public AgentVersionInner() {
     }
 
     /**
      * Get the agentVersion property: Represents the agent version.
-     *
+     * 
      * @return the agentVersion value.
      */
     public String agentVersion() {
@@ -43,7 +47,7 @@ public final class AgentVersionInner {
 
     /**
      * Set the agentVersion property: Represents the agent version.
-     *
+     * 
      * @param agentVersion the agentVersion value to set.
      * @return the AgentVersionInner object itself.
      */
@@ -54,7 +58,7 @@ public final class AgentVersionInner {
 
     /**
      * Get the downloadLink property: Represents the download link of specific agent version.
-     *
+     * 
      * @return the downloadLink value.
      */
     public String downloadLink() {
@@ -63,7 +67,7 @@ public final class AgentVersionInner {
 
     /**
      * Set the downloadLink property: Represents the download link of specific agent version.
-     *
+     * 
      * @param downloadLink the downloadLink value to set.
      * @return the AgentVersionInner object itself.
      */
@@ -74,7 +78,7 @@ public final class AgentVersionInner {
 
     /**
      * Get the osType property: Defines the os type.
-     *
+     * 
      * @return the osType value.
      */
     public String osType() {
@@ -83,7 +87,7 @@ public final class AgentVersionInner {
 
     /**
      * Set the osType property: Defines the os type.
-     *
+     * 
      * @param osType the osType value to set.
      * @return the AgentVersionInner object itself.
      */
@@ -94,7 +98,7 @@ public final class AgentVersionInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

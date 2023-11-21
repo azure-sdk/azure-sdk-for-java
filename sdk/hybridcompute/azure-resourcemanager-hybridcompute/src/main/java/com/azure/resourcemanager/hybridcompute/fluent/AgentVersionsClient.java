@@ -11,11 +11,13 @@ import com.azure.core.util.Context;
 import com.azure.resourcemanager.hybridcompute.fluent.models.AgentVersionInner;
 import com.azure.resourcemanager.hybridcompute.fluent.models.AgentVersionsListInner;
 
-/** An instance of this class provides access to all the operations defined in AgentVersionsClient. */
+/**
+ * An instance of this class provides access to all the operations defined in AgentVersionsClient.
+ */
 public interface AgentVersionsClient {
     /**
      * Gets all Agent Versions along with the download link currently present.
-     *
+     * 
      * @param osType Defines the os type.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -28,7 +30,7 @@ public interface AgentVersionsClient {
 
     /**
      * Gets all Agent Versions along with the download link currently present.
-     *
+     * 
      * @param osType Defines the os type.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -40,7 +42,7 @@ public interface AgentVersionsClient {
 
     /**
      * Gets an Agent Version along with the download link currently present.
-     *
+     * 
      * @param osType Defines the os type.
      * @param version Defines the agent version. To get latest, use latest or else a specific agent version.
      * @param context The context to associate with this operation.
@@ -54,7 +56,7 @@ public interface AgentVersionsClient {
 
     /**
      * Gets an Agent Version along with the download link currently present.
-     *
+     * 
      * @param osType Defines the os type.
      * @param version Defines the agent version. To get latest, use latest or else a specific agent version.
      * @throws IllegalArgumentException thrown if parameters fail the validation.

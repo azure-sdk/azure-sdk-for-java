@@ -12,8 +12,8 @@ public final class AgentVersionImpl implements AgentVersion {
 
     private final com.azure.resourcemanager.hybridcompute.HybridComputeManager serviceManager;
 
-    AgentVersionImpl(
-        AgentVersionInner innerObject, com.azure.resourcemanager.hybridcompute.HybridComputeManager serviceManager) {
+    AgentVersionImpl(AgentVersionInner innerObject,
+        com.azure.resourcemanager.hybridcompute.HybridComputeManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
     }

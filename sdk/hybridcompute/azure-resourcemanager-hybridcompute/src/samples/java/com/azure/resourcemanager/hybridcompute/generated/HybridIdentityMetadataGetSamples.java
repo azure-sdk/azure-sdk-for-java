@@ -4,19 +4,22 @@
 
 package com.azure.resourcemanager.hybridcompute.generated;
 
-/** Samples for HybridIdentityMetadata Get. */
+/**
+ * Samples for HybridIdentityMetadata Get.
+ */
 public final class HybridIdentityMetadataGetSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2023-06-20-preview/examples/HybridIdentityMetadata_Get.json
+     * x-ms-original-file:
+     * specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2023-10-03-preview/examples/
+     * HybridIdentityMetadata_Get.json
      */
     /**
      * Sample code: GetHybridIdentityMetadata.
-     *
+     * 
      * @param manager Entry point to HybridComputeManager.
      */
     public static void getHybridIdentityMetadata(com.azure.resourcemanager.hybridcompute.HybridComputeManager manager) {
-        manager
-            .hybridIdentityMetadatas()
-            .getWithResponse("testrg", "ContosoVm", "default", com.azure.core.util.Context.NONE);
+        manager.hybridIdentityMetadatas().getWithResponse("testrg", "ContosoVm", "default",
+            com.azure.core.util.Context.NONE);
     }
 }

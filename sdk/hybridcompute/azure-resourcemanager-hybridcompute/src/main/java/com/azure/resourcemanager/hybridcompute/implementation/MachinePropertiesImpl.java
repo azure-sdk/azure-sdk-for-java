@@ -29,8 +29,7 @@ public final class MachinePropertiesImpl implements MachineProperties {
 
     private final com.azure.resourcemanager.hybridcompute.HybridComputeManager serviceManager;
 
-    MachinePropertiesImpl(
-        MachinePropertiesInner innerObject,
+    MachinePropertiesImpl(MachinePropertiesInner innerObject,
         com.azure.resourcemanager.hybridcompute.HybridComputeManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
@@ -137,6 +136,10 @@ public final class MachinePropertiesImpl implements MachineProperties {
 
     public String osSku() {
         return this.innerModel().osSku();
+    }
+
+    public String osEdition() {
+        return this.innerModel().osEdition();
     }
 
     public String domainName() {

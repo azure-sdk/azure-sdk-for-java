@@ -4,14 +4,18 @@
 
 package com.azure.resourcemanager.hybridcompute.generated;
 
-/** Samples for HybridIdentityMetadata ListByMachines. */
+/**
+ * Samples for HybridIdentityMetadata ListByMachines.
+ */
 public final class HybridIdentityMetadataListByMachinesSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2023-06-20-preview/examples/HybridIdentityMetadata_ListByVirtualMachines.json
+     * x-ms-original-file:
+     * specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2023-10-03-preview/examples/
+     * HybridIdentityMetadata_ListByVirtualMachines.json
      */
     /**
      * Sample code: HybridIdentityMetadataListByVirtualMachines.
-     *
+     * 
      * @param manager Entry point to HybridComputeManager.
      */
     public static void hybridIdentityMetadataListByVirtualMachines(

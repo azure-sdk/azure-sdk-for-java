@@ -7,7 +7,9 @@ package com.azure.resourcemanager.hybridcompute.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The info w.r.t Agent Upgrade. */
+/**
+ * The info w.r.t Agent Upgrade.
+ */
 @Fluent
 public final class AgentUpgrade {
     /*
@@ -52,13 +54,15 @@ public final class AgentUpgrade {
     @JsonProperty(value = "lastAttemptMessage", access = JsonProperty.Access.WRITE_ONLY)
     private String lastAttemptMessage;
 
-    /** Creates an instance of AgentUpgrade class. */
+    /**
+     * Creates an instance of AgentUpgrade class.
+     */
     public AgentUpgrade() {
     }
 
     /**
      * Get the desiredVersion property: Specifies the version info w.r.t AgentUpgrade for the machine.
-     *
+     * 
      * @return the desiredVersion value.
      */
     public String desiredVersion() {
@@ -67,7 +71,7 @@ public final class AgentUpgrade {
 
     /**
      * Set the desiredVersion property: Specifies the version info w.r.t AgentUpgrade for the machine.
-     *
+     * 
      * @param desiredVersion the desiredVersion value to set.
      * @return the AgentUpgrade object itself.
      */
@@ -78,7 +82,7 @@ public final class AgentUpgrade {
 
     /**
      * Get the correlationId property: The correlation ID passed in from RSM per upgrade.
-     *
+     * 
      * @return the correlationId value.
      */
     public String correlationId() {
@@ -87,7 +91,7 @@ public final class AgentUpgrade {
 
     /**
      * Set the correlationId property: The correlation ID passed in from RSM per upgrade.
-     *
+     * 
      * @param correlationId the correlationId value to set.
      * @return the AgentUpgrade object itself.
      */
@@ -98,7 +102,7 @@ public final class AgentUpgrade {
 
     /**
      * Get the enableAutomaticUpgrade property: Specifies if RSM should try to upgrade this machine.
-     *
+     * 
      * @return the enableAutomaticUpgrade value.
      */
     public Boolean enableAutomaticUpgrade() {
@@ -107,7 +111,7 @@ public final class AgentUpgrade {
 
     /**
      * Set the enableAutomaticUpgrade property: Specifies if RSM should try to upgrade this machine.
-     *
+     * 
      * @param enableAutomaticUpgrade the enableAutomaticUpgrade value to set.
      * @return the AgentUpgrade object itself.
      */
@@ -118,7 +122,7 @@ public final class AgentUpgrade {
 
     /**
      * Get the lastAttemptDesiredVersion property: Specifies the version of the last attempt.
-     *
+     * 
      * @return the lastAttemptDesiredVersion value.
      */
     public String lastAttemptDesiredVersion() {
@@ -127,7 +131,7 @@ public final class AgentUpgrade {
 
     /**
      * Get the lastAttemptTimestamp property: Timestamp of last upgrade attempt.
-     *
+     * 
      * @return the lastAttemptTimestamp value.
      */
     public String lastAttemptTimestamp() {
@@ -136,7 +140,7 @@ public final class AgentUpgrade {
 
     /**
      * Get the lastAttemptStatus property: Specifies the status of Agent Upgrade.
-     *
+     * 
      * @return the lastAttemptStatus value.
      */
     public LastAttemptStatusEnum lastAttemptStatus() {
@@ -145,7 +149,7 @@ public final class AgentUpgrade {
 
     /**
      * Get the lastAttemptMessage property: Failure message of last upgrade attempt if any.
-     *
+     * 
      * @return the lastAttemptMessage value.
      */
     public String lastAttemptMessage() {
@@ -154,7 +158,7 @@ public final class AgentUpgrade {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

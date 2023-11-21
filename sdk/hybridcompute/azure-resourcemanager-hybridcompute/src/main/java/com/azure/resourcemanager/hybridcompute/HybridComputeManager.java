@@ -31,8 +31,11 @@ import com.azure.resourcemanager.hybridcompute.implementation.HybridIdentityMeta
 import com.azure.resourcemanager.hybridcompute.implementation.LicenseProfilesImpl;
 import com.azure.resourcemanager.hybridcompute.implementation.LicensesImpl;
 import com.azure.resourcemanager.hybridcompute.implementation.MachineExtensionsImpl;
+import com.azure.resourcemanager.hybridcompute.implementation.MachineRunCommandsImpl;
 import com.azure.resourcemanager.hybridcompute.implementation.MachinesImpl;
+import com.azure.resourcemanager.hybridcompute.implementation.NetworkConfigurationsImpl;
 import com.azure.resourcemanager.hybridcompute.implementation.NetworkProfilesImpl;
+import com.azure.resourcemanager.hybridcompute.implementation.NetworkSecurityPerimeterConfigurationsImpl;
 import com.azure.resourcemanager.hybridcompute.implementation.OperationsImpl;
 import com.azure.resourcemanager.hybridcompute.implementation.PrivateEndpointConnectionsImpl;
 import com.azure.resourcemanager.hybridcompute.implementation.PrivateLinkResourcesImpl;
@@ -44,8 +47,11 @@ import com.azure.resourcemanager.hybridcompute.models.HybridIdentityMetadatas;
 import com.azure.resourcemanager.hybridcompute.models.LicenseProfiles;
 import com.azure.resourcemanager.hybridcompute.models.Licenses;
 import com.azure.resourcemanager.hybridcompute.models.MachineExtensions;
+import com.azure.resourcemanager.hybridcompute.models.MachineRunCommands;
 import com.azure.resourcemanager.hybridcompute.models.Machines;
+import com.azure.resourcemanager.hybridcompute.models.NetworkConfigurations;
 import com.azure.resourcemanager.hybridcompute.models.NetworkProfiles;
+import com.azure.resourcemanager.hybridcompute.models.NetworkSecurityPerimeterConfigurations;
 import com.azure.resourcemanager.hybridcompute.models.Operations;
 import com.azure.resourcemanager.hybridcompute.models.PrivateEndpointConnections;
 import com.azure.resourcemanager.hybridcompute.models.PrivateLinkResources;
@@ -58,7 +64,10 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-/** Entry point to HybridComputeManager. The Hybrid Compute Management Client. */
+/**
+ * Entry point to HybridComputeManager.
+ * The Hybrid Compute Management Client.
+ */
 public final class HybridComputeManager {
     private Licenses licenses;
 
@@ -80,29 +89,31 @@ public final class HybridComputeManager {
 
     private AgentVersions agentVersions;
 
+    private MachineRunCommands machineRunCommands;
+
     private PrivateLinkScopes privateLinkScopes;
 
     private PrivateLinkResources privateLinkResources;
 
     private PrivateEndpointConnections privateEndpointConnections;
 
+    private NetworkConfigurations networkConfigurations;
+
+    private NetworkSecurityPerimeterConfigurations networkSecurityPerimeterConfigurations;
+
     private final HybridComputeManagementClient clientObject;
 
     private HybridComputeManager(HttpPipeline httpPipeline, AzureProfile profile, Duration defaultPollInterval) {
         Objects.requireNonNull(httpPipeline, "'httpPipeline' cannot be null.");
         Objects.requireNonNull(profile, "'profile' cannot be null.");
-        this.clientObject =
-            new HybridComputeManagementClientBuilder()
-                .pipeline(httpPipeline)
-                .endpoint(profile.getEnvironment().getResourceManagerEndpoint())
-                .subscriptionId(profile.getSubscriptionId())
-                .defaultPollInterval(defaultPollInterval)
-                .buildClient();
+        this.clientObject = new HybridComputeManagementClientBuilder().pipeline(httpPipeline)
+            .endpoint(profile.getEnvironment().getResourceManagerEndpoint()).subscriptionId(profile.getSubscriptionId())
+            .defaultPollInterval(defaultPollInterval).buildClient();
     }
 
     /**
      * Creates an instance of HybridCompute service API entry point.
-     *
+     * 
      * @param credential the credential to use.
      * @param profile the Azure profile for client.
      * @return the HybridCompute service API instance.
@@ -115,7 +126,7 @@ public final class HybridComputeManager {
 
     /**
      * Creates an instance of HybridCompute service API entry point.
-     *
+     * 
      * @param httpPipeline the {@link HttpPipeline} configured with Azure authentication credential.
      * @param profile the Azure profile for client.
      * @return the HybridCompute service API instance.
@@ -128,14 +139,16 @@ public final class HybridComputeManager {
 
     /**
      * Gets a Configurable instance that can be used to create HybridComputeManager with optional configuration.
-     *
+     * 
      * @return the Configurable instance allowing configurations.
      */
     public static Configurable configure() {
         return new HybridComputeManager.Configurable();
     }
 
-    /** The Configurable allowing configurations to be set. */
+    /**
+     * The Configurable allowing configurations to be set.
+     */
     public static final class Configurable {
         private static final ClientLogger LOGGER = new ClientLogger(Configurable.class);
 
@@ -207,8 +220,8 @@ public final class HybridComputeManager {
 
         /**
          * Sets the retry options for the HTTP pipeline retry policy.
-         *
-         * <p>This setting has no effect, if retry policy is set via {@link #withRetryPolicy(RetryPolicy)}.
+         * <p>
+         * This setting has no effect, if retry policy is set via {@link #withRetryPolicy(RetryPolicy)}.
          *
          * @param retryOptions the retry options for the HTTP pipeline retry policy.
          * @return the configurable object itself.
@@ -225,8 +238,8 @@ public final class HybridComputeManager {
          * @return the configurable object itself.
          */
         public Configurable withDefaultPollInterval(Duration defaultPollInterval) {
-            this.defaultPollInterval =
-                Objects.requireNonNull(defaultPollInterval, "'defaultPollInterval' cannot be null.");
+            this.defaultPollInterval
+                = Objects.requireNonNull(defaultPollInterval, "'defaultPollInterval' cannot be null.");
             if (this.defaultPollInterval.isNegative()) {
                 throw LOGGER
                     .logExceptionAsError(new IllegalArgumentException("'defaultPollInterval' cannot be negative"));
@@ -246,21 +259,12 @@ public final class HybridComputeManager {
             Objects.requireNonNull(profile, "'profile' cannot be null.");
 
             StringBuilder userAgentBuilder = new StringBuilder();
-            userAgentBuilder
-                .append("azsdk-java")
-                .append("-")
-                .append("com.azure.resourcemanager.hybridcompute")
-                .append("/")
-                .append("1.0.0-beta.3");
+            userAgentBuilder.append("azsdk-java").append("-").append("com.azure.resourcemanager.hybridcompute")
+                .append("/").append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
-                userAgentBuilder
-                    .append(" (")
-                    .append(Configuration.getGlobalConfiguration().get("java.version"))
-                    .append("; ")
-                    .append(Configuration.getGlobalConfiguration().get("os.name"))
-                    .append("; ")
-                    .append(Configuration.getGlobalConfiguration().get("os.version"))
-                    .append("; auto-generated)");
+                userAgentBuilder.append(" (").append(Configuration.getGlobalConfiguration().get("java.version"))
+                    .append("; ").append(Configuration.getGlobalConfiguration().get("os.name")).append("; ")
+                    .append(Configuration.getGlobalConfiguration().get("os.version")).append("; auto-generated)");
             } else {
                 userAgentBuilder.append(" (auto-generated)");
             }
@@ -279,38 +283,25 @@ public final class HybridComputeManager {
             policies.add(new UserAgentPolicy(userAgentBuilder.toString()));
             policies.add(new AddHeadersFromContextPolicy());
             policies.add(new RequestIdPolicy());
-            policies
-                .addAll(
-                    this
-                        .policies
-                        .stream()
-                        .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_CALL)
-                        .collect(Collectors.toList()));
+            policies.addAll(this.policies.stream().filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_CALL)
+                .collect(Collectors.toList()));
             HttpPolicyProviders.addBeforeRetryPolicies(policies);
             policies.add(retryPolicy);
             policies.add(new AddDatePolicy());
             policies.add(new ArmChallengeAuthenticationPolicy(credential, scopes.toArray(new String[0])));
-            policies
-                .addAll(
-                    this
-                        .policies
-                        .stream()
-                        .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_RETRY)
-                        .collect(Collectors.toList()));
+            policies.addAll(this.policies.stream()
+                .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_RETRY).collect(Collectors.toList()));
             HttpPolicyProviders.addAfterRetryPolicies(policies);
             policies.add(new HttpLoggingPolicy(httpLogOptions));
-            HttpPipeline httpPipeline =
-                new HttpPipelineBuilder()
-                    .httpClient(httpClient)
-                    .policies(policies.toArray(new HttpPipelinePolicy[0]))
-                    .build();
+            HttpPipeline httpPipeline = new HttpPipelineBuilder().httpClient(httpClient)
+                .policies(policies.toArray(new HttpPipelinePolicy[0])).build();
             return new HybridComputeManager(httpPipeline, profile, defaultPollInterval);
         }
     }
 
     /**
      * Gets the resource collection API of Licenses. It manages License.
-     *
+     * 
      * @return Resource collection API of Licenses.
      */
     public Licenses licenses() {
@@ -322,7 +313,7 @@ public final class HybridComputeManager {
 
     /**
      * Gets the resource collection API of Machines.
-     *
+     * 
      * @return Resource collection API of Machines.
      */
     public Machines machines() {
@@ -334,7 +325,7 @@ public final class HybridComputeManager {
 
     /**
      * Gets the resource collection API of LicenseProfiles. It manages LicenseProfile.
-     *
+     * 
      * @return Resource collection API of LicenseProfiles.
      */
     public LicenseProfiles licenseProfiles() {
@@ -346,7 +337,7 @@ public final class HybridComputeManager {
 
     /**
      * Gets the resource collection API of MachineExtensions. It manages MachineExtension.
-     *
+     * 
      * @return Resource collection API of MachineExtensions.
      */
     public MachineExtensions machineExtensions() {
@@ -358,7 +349,7 @@ public final class HybridComputeManager {
 
     /**
      * Gets the resource collection API of ResourceProviders.
-     *
+     * 
      * @return Resource collection API of ResourceProviders.
      */
     public ResourceProviders resourceProviders() {
@@ -370,7 +361,7 @@ public final class HybridComputeManager {
 
     /**
      * Gets the resource collection API of ExtensionMetadatas.
-     *
+     * 
      * @return Resource collection API of ExtensionMetadatas.
      */
     public ExtensionMetadatas extensionMetadatas() {
@@ -382,7 +373,7 @@ public final class HybridComputeManager {
 
     /**
      * Gets the resource collection API of Operations.
-     *
+     * 
      * @return Resource collection API of Operations.
      */
     public Operations operations() {
@@ -394,7 +385,7 @@ public final class HybridComputeManager {
 
     /**
      * Gets the resource collection API of NetworkProfiles.
-     *
+     * 
      * @return Resource collection API of NetworkProfiles.
      */
     public NetworkProfiles networkProfiles() {
@@ -406,20 +397,20 @@ public final class HybridComputeManager {
 
     /**
      * Gets the resource collection API of HybridIdentityMetadatas.
-     *
+     * 
      * @return Resource collection API of HybridIdentityMetadatas.
      */
     public HybridIdentityMetadatas hybridIdentityMetadatas() {
         if (this.hybridIdentityMetadatas == null) {
-            this.hybridIdentityMetadatas =
-                new HybridIdentityMetadatasImpl(clientObject.getHybridIdentityMetadatas(), this);
+            this.hybridIdentityMetadatas
+                = new HybridIdentityMetadatasImpl(clientObject.getHybridIdentityMetadatas(), this);
         }
         return hybridIdentityMetadatas;
     }
 
     /**
      * Gets the resource collection API of AgentVersions.
-     *
+     * 
      * @return Resource collection API of AgentVersions.
      */
     public AgentVersions agentVersions() {
@@ -430,8 +421,20 @@ public final class HybridComputeManager {
     }
 
     /**
+     * Gets the resource collection API of MachineRunCommands. It manages MachineRunCommand.
+     * 
+     * @return Resource collection API of MachineRunCommands.
+     */
+    public MachineRunCommands machineRunCommands() {
+        if (this.machineRunCommands == null) {
+            this.machineRunCommands = new MachineRunCommandsImpl(clientObject.getMachineRunCommands(), this);
+        }
+        return machineRunCommands;
+    }
+
+    /**
      * Gets the resource collection API of PrivateLinkScopes. It manages HybridComputePrivateLinkScope.
-     *
+     * 
      * @return Resource collection API of PrivateLinkScopes.
      */
     public PrivateLinkScopes privateLinkScopes() {
@@ -443,7 +446,7 @@ public final class HybridComputeManager {
 
     /**
      * Gets the resource collection API of PrivateLinkResources.
-     *
+     * 
      * @return Resource collection API of PrivateLinkResources.
      */
     public PrivateLinkResources privateLinkResources() {
@@ -455,21 +458,46 @@ public final class HybridComputeManager {
 
     /**
      * Gets the resource collection API of PrivateEndpointConnections. It manages PrivateEndpointConnection.
-     *
+     * 
      * @return Resource collection API of PrivateEndpointConnections.
      */
     public PrivateEndpointConnections privateEndpointConnections() {
         if (this.privateEndpointConnections == null) {
-            this.privateEndpointConnections =
-                new PrivateEndpointConnectionsImpl(clientObject.getPrivateEndpointConnections(), this);
+            this.privateEndpointConnections
+                = new PrivateEndpointConnectionsImpl(clientObject.getPrivateEndpointConnections(), this);
         }
         return privateEndpointConnections;
     }
 
     /**
+     * Gets the resource collection API of NetworkConfigurations.
+     * 
+     * @return Resource collection API of NetworkConfigurations.
+     */
+    public NetworkConfigurations networkConfigurations() {
+        if (this.networkConfigurations == null) {
+            this.networkConfigurations = new NetworkConfigurationsImpl(clientObject.getNetworkConfigurations(), this);
+        }
+        return networkConfigurations;
+    }
+
+    /**
+     * Gets the resource collection API of NetworkSecurityPerimeterConfigurations.
+     * 
+     * @return Resource collection API of NetworkSecurityPerimeterConfigurations.
+     */
+    public NetworkSecurityPerimeterConfigurations networkSecurityPerimeterConfigurations() {
+        if (this.networkSecurityPerimeterConfigurations == null) {
+            this.networkSecurityPerimeterConfigurations = new NetworkSecurityPerimeterConfigurationsImpl(
+                clientObject.getNetworkSecurityPerimeterConfigurations(), this);
+        }
+        return networkSecurityPerimeterConfigurations;
+    }
+
+    /**
      * Gets wrapped service client HybridComputeManagementClient providing direct access to the underlying
      * auto-generated API implementation, based on Azure REST API.
-     *
+     * 
      * @return Wrapped service client HybridComputeManagementClient.
      */
     public HybridComputeManagementClient serviceClient() {
