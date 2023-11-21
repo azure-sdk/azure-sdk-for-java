@@ -320,7 +320,7 @@ public final class EventGridManager {
 
             StringBuilder userAgentBuilder = new StringBuilder();
             userAgentBuilder.append("azsdk-java").append("-").append("com.azure.resourcemanager.eventgrid").append("/")
-                .append("1.2.0-beta.5");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (").append(Configuration.getGlobalConfiguration().get("java.version"))
                     .append("; ").append(Configuration.getGlobalConfiguration().get("os.name")).append("; ")
