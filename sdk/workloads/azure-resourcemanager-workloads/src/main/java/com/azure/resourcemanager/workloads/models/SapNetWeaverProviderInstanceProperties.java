@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
 
-/** Gets or sets the provider properties. */
+/**
+ * Gets or sets the provider properties.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "providerType")
 @JsonTypeName("SapNetWeaver")
 @Fluent
@@ -81,13 +83,15 @@ public final class SapNetWeaverProviderInstanceProperties extends ProviderSpecif
     @JsonProperty(value = "sslPreference")
     private SslPreference sslPreference;
 
-    /** Creates an instance of SapNetWeaverProviderInstanceProperties class. */
+    /**
+     * Creates an instance of SapNetWeaverProviderInstanceProperties class.
+     */
     public SapNetWeaverProviderInstanceProperties() {
     }
 
     /**
      * Get the sapSid property: Gets or sets the SAP System Identifier.
-     *
+     * 
      * @return the sapSid value.
      */
     public String sapSid() {
@@ -96,7 +100,7 @@ public final class SapNetWeaverProviderInstanceProperties extends ProviderSpecif
 
     /**
      * Set the sapSid property: Gets or sets the SAP System Identifier.
-     *
+     * 
      * @param sapSid the sapSid value to set.
      * @return the SapNetWeaverProviderInstanceProperties object itself.
      */
@@ -107,7 +111,7 @@ public final class SapNetWeaverProviderInstanceProperties extends ProviderSpecif
 
     /**
      * Get the sapHostname property: Gets or sets the target virtual machine IP Address/FQDN.
-     *
+     * 
      * @return the sapHostname value.
      */
     public String sapHostname() {
@@ -116,7 +120,7 @@ public final class SapNetWeaverProviderInstanceProperties extends ProviderSpecif
 
     /**
      * Set the sapHostname property: Gets or sets the target virtual machine IP Address/FQDN.
-     *
+     * 
      * @param sapHostname the sapHostname value to set.
      * @return the SapNetWeaverProviderInstanceProperties object itself.
      */
@@ -127,7 +131,7 @@ public final class SapNetWeaverProviderInstanceProperties extends ProviderSpecif
 
     /**
      * Get the sapInstanceNr property: Gets or sets the instance number of SAP NetWeaver.
-     *
+     * 
      * @return the sapInstanceNr value.
      */
     public String sapInstanceNr() {
@@ -136,7 +140,7 @@ public final class SapNetWeaverProviderInstanceProperties extends ProviderSpecif
 
     /**
      * Set the sapInstanceNr property: Gets or sets the instance number of SAP NetWeaver.
-     *
+     * 
      * @param sapInstanceNr the sapInstanceNr value to set.
      * @return the SapNetWeaverProviderInstanceProperties object itself.
      */
@@ -147,7 +151,7 @@ public final class SapNetWeaverProviderInstanceProperties extends ProviderSpecif
 
     /**
      * Get the sapHostFileEntries property: Gets or sets the list of HostFile Entries.
-     *
+     * 
      * @return the sapHostFileEntries value.
      */
     public List<String> sapHostFileEntries() {
@@ -156,7 +160,7 @@ public final class SapNetWeaverProviderInstanceProperties extends ProviderSpecif
 
     /**
      * Set the sapHostFileEntries property: Gets or sets the list of HostFile Entries.
-     *
+     * 
      * @param sapHostFileEntries the sapHostFileEntries value to set.
      * @return the SapNetWeaverProviderInstanceProperties object itself.
      */
@@ -167,7 +171,7 @@ public final class SapNetWeaverProviderInstanceProperties extends ProviderSpecif
 
     /**
      * Get the sapUsername property: Gets or sets the SAP user name.
-     *
+     * 
      * @return the sapUsername value.
      */
     public String sapUsername() {
@@ -176,7 +180,7 @@ public final class SapNetWeaverProviderInstanceProperties extends ProviderSpecif
 
     /**
      * Set the sapUsername property: Gets or sets the SAP user name.
-     *
+     * 
      * @param sapUsername the sapUsername value to set.
      * @return the SapNetWeaverProviderInstanceProperties object itself.
      */
@@ -187,7 +191,7 @@ public final class SapNetWeaverProviderInstanceProperties extends ProviderSpecif
 
     /**
      * Get the sapPassword property: Sets the SAP password.
-     *
+     * 
      * @return the sapPassword value.
      */
     public String sapPassword() {
@@ -196,7 +200,7 @@ public final class SapNetWeaverProviderInstanceProperties extends ProviderSpecif
 
     /**
      * Set the sapPassword property: Sets the SAP password.
-     *
+     * 
      * @param sapPassword the sapPassword value to set.
      * @return the SapNetWeaverProviderInstanceProperties object itself.
      */
@@ -207,7 +211,7 @@ public final class SapNetWeaverProviderInstanceProperties extends ProviderSpecif
 
     /**
      * Get the sapPasswordUri property: Gets or sets the key vault URI to secret with the SAP password.
-     *
+     * 
      * @return the sapPasswordUri value.
      */
     public String sapPasswordUri() {
@@ -216,7 +220,7 @@ public final class SapNetWeaverProviderInstanceProperties extends ProviderSpecif
 
     /**
      * Set the sapPasswordUri property: Gets or sets the key vault URI to secret with the SAP password.
-     *
+     * 
      * @param sapPasswordUri the sapPasswordUri value to set.
      * @return the SapNetWeaverProviderInstanceProperties object itself.
      */
@@ -227,7 +231,7 @@ public final class SapNetWeaverProviderInstanceProperties extends ProviderSpecif
 
     /**
      * Get the sapClientId property: Gets or sets the SAP Client ID.
-     *
+     * 
      * @return the sapClientId value.
      */
     public String sapClientId() {
@@ -236,7 +240,7 @@ public final class SapNetWeaverProviderInstanceProperties extends ProviderSpecif
 
     /**
      * Set the sapClientId property: Gets or sets the SAP Client ID.
-     *
+     * 
      * @param sapClientId the sapClientId value to set.
      * @return the SapNetWeaverProviderInstanceProperties object itself.
      */
@@ -247,7 +251,7 @@ public final class SapNetWeaverProviderInstanceProperties extends ProviderSpecif
 
     /**
      * Get the sapPortNumber property: Gets or sets the SAP HTTP port number.
-     *
+     * 
      * @return the sapPortNumber value.
      */
     public String sapPortNumber() {
@@ -256,7 +260,7 @@ public final class SapNetWeaverProviderInstanceProperties extends ProviderSpecif
 
     /**
      * Set the sapPortNumber property: Gets or sets the SAP HTTP port number.
-     *
+     * 
      * @param sapPortNumber the sapPortNumber value to set.
      * @return the SapNetWeaverProviderInstanceProperties object itself.
      */
@@ -267,7 +271,7 @@ public final class SapNetWeaverProviderInstanceProperties extends ProviderSpecif
 
     /**
      * Get the sslCertificateUri property: Gets or sets the blob URI to SSL certificate for the SAP system.
-     *
+     * 
      * @return the sslCertificateUri value.
      */
     public String sslCertificateUri() {
@@ -276,7 +280,7 @@ public final class SapNetWeaverProviderInstanceProperties extends ProviderSpecif
 
     /**
      * Set the sslCertificateUri property: Gets or sets the blob URI to SSL certificate for the SAP system.
-     *
+     * 
      * @param sslCertificateUri the sslCertificateUri value to set.
      * @return the SapNetWeaverProviderInstanceProperties object itself.
      */
@@ -287,7 +291,7 @@ public final class SapNetWeaverProviderInstanceProperties extends ProviderSpecif
 
     /**
      * Get the sslPreference property: Gets or sets certificate preference if secure communication is enabled.
-     *
+     * 
      * @return the sslPreference value.
      */
     public SslPreference sslPreference() {
@@ -296,7 +300,7 @@ public final class SapNetWeaverProviderInstanceProperties extends ProviderSpecif
 
     /**
      * Set the sslPreference property: Gets or sets certificate preference if secure communication is enabled.
-     *
+     * 
      * @param sslPreference the sslPreference value to set.
      * @return the SapNetWeaverProviderInstanceProperties object itself.
      */
@@ -307,7 +311,7 @@ public final class SapNetWeaverProviderInstanceProperties extends ProviderSpecif
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

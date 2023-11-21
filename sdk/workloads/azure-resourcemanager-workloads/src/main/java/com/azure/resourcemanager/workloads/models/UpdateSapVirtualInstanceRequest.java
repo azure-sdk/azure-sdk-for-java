@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** Defines the request body for updating Virtual Instance for SAP. */
+/**
+ * Defines the request body for updating Virtual Instance for SAP.
+ */
 @Fluent
 public final class UpdateSapVirtualInstanceRequest {
     /*
@@ -26,13 +28,15 @@ public final class UpdateSapVirtualInstanceRequest {
     @JsonProperty(value = "identity")
     private UserAssignedServiceIdentity identity;
 
-    /** Creates an instance of UpdateSapVirtualInstanceRequest class. */
+    /**
+     * Creates an instance of UpdateSapVirtualInstanceRequest class.
+     */
     public UpdateSapVirtualInstanceRequest() {
     }
 
     /**
      * Get the tags property: Gets or sets the Resource tags.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -41,7 +45,7 @@ public final class UpdateSapVirtualInstanceRequest {
 
     /**
      * Set the tags property: Gets or sets the Resource tags.
-     *
+     * 
      * @param tags the tags value to set.
      * @return the UpdateSapVirtualInstanceRequest object itself.
      */
@@ -51,9 +55,9 @@ public final class UpdateSapVirtualInstanceRequest {
     }
 
     /**
-     * Get the identity property: A pre-created user assigned identity with appropriate roles assigned. To learn more on
-     * identity and roles required, visit the ACSS how-to-guide.
-     *
+     * Get the identity property: A pre-created user assigned identity with appropriate roles assigned. To learn more
+     * on identity and roles required, visit the ACSS how-to-guide.
+     * 
      * @return the identity value.
      */
     public UserAssignedServiceIdentity identity() {
@@ -61,9 +65,9 @@ public final class UpdateSapVirtualInstanceRequest {
     }
 
     /**
-     * Set the identity property: A pre-created user assigned identity with appropriate roles assigned. To learn more on
-     * identity and roles required, visit the ACSS how-to-guide.
-     *
+     * Set the identity property: A pre-created user assigned identity with appropriate roles assigned. To learn more
+     * on identity and roles required, visit the ACSS how-to-guide.
+     * 
      * @param identity the identity value to set.
      * @return the UpdateSapVirtualInstanceRequest object itself.
      */
@@ -74,7 +78,7 @@ public final class UpdateSapVirtualInstanceRequest {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

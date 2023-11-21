@@ -11,7 +11,9 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The SAP sizing recommendation result. */
+/**
+ * The SAP sizing recommendation result.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
@@ -20,17 +22,18 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonTypeName("SapSizingRecommendationResult")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "SingleServer", value = SingleServerRecommendationResult.class),
-    @JsonSubTypes.Type(name = "ThreeTier", value = ThreeTierRecommendationResult.class)
-})
+    @JsonSubTypes.Type(name = "ThreeTier", value = ThreeTierRecommendationResult.class) })
 @Immutable
 public class SapSizingRecommendationResultInner {
-    /** Creates an instance of SapSizingRecommendationResultInner class. */
+    /**
+     * Creates an instance of SapSizingRecommendationResultInner class.
+     */
     public SapSizingRecommendationResultInner() {
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

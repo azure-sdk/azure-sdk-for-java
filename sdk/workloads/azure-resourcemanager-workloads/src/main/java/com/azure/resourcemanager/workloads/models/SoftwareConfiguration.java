@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The SAP Software configuration Input. */
+/**
+ * The SAP Software configuration Input.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
@@ -21,17 +23,18 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     @JsonSubTypes.Type(
         name = "SAPInstallWithoutOSConfig",
         value = SapInstallWithoutOSConfigSoftwareConfiguration.class),
-    @JsonSubTypes.Type(name = "External", value = ExternalInstallationSoftwareConfiguration.class)
-})
+    @JsonSubTypes.Type(name = "External", value = ExternalInstallationSoftwareConfiguration.class) })
 @Immutable
 public class SoftwareConfiguration {
-    /** Creates an instance of SoftwareConfiguration class. */
+    /**
+     * Creates an instance of SoftwareConfiguration class.
+     */
     public SoftwareConfiguration() {
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

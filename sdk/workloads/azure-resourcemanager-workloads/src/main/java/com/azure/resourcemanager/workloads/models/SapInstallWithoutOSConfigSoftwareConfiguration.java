@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The SAP Software configuration Input when the software is to be installed by service without OS Configurations. */
+/**
+ * The SAP Software configuration Input when the software is to be installed by service without OS Configurations.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "softwareInstallationType")
 @JsonTypeName("SAPInstallWithoutOSConfig")
 @Fluent
@@ -39,13 +41,15 @@ public final class SapInstallWithoutOSConfigSoftwareConfiguration extends Softwa
     @JsonProperty(value = "highAvailabilitySoftwareConfiguration")
     private HighAvailabilitySoftwareConfiguration highAvailabilitySoftwareConfiguration;
 
-    /** Creates an instance of SapInstallWithoutOSConfigSoftwareConfiguration class. */
+    /**
+     * Creates an instance of SapInstallWithoutOSConfigSoftwareConfiguration class.
+     */
     public SapInstallWithoutOSConfigSoftwareConfiguration() {
     }
 
     /**
      * Get the bomUrl property: The URL to the SAP Build of Materials(BOM) file.
-     *
+     * 
      * @return the bomUrl value.
      */
     public String bomUrl() {
@@ -54,7 +58,7 @@ public final class SapInstallWithoutOSConfigSoftwareConfiguration extends Softwa
 
     /**
      * Set the bomUrl property: The URL to the SAP Build of Materials(BOM) file.
-     *
+     * 
      * @param bomUrl the bomUrl value to set.
      * @return the SapInstallWithoutOSConfigSoftwareConfiguration object itself.
      */
@@ -65,7 +69,7 @@ public final class SapInstallWithoutOSConfigSoftwareConfiguration extends Softwa
 
     /**
      * Get the sapBitsStorageAccountId property: The SAP bits storage account id.
-     *
+     * 
      * @return the sapBitsStorageAccountId value.
      */
     public String sapBitsStorageAccountId() {
@@ -74,7 +78,7 @@ public final class SapInstallWithoutOSConfigSoftwareConfiguration extends Softwa
 
     /**
      * Set the sapBitsStorageAccountId property: The SAP bits storage account id.
-     *
+     * 
      * @param sapBitsStorageAccountId the sapBitsStorageAccountId value to set.
      * @return the SapInstallWithoutOSConfigSoftwareConfiguration object itself.
      */
@@ -85,7 +89,7 @@ public final class SapInstallWithoutOSConfigSoftwareConfiguration extends Softwa
 
     /**
      * Get the softwareVersion property: The software version to install.
-     *
+     * 
      * @return the softwareVersion value.
      */
     public String softwareVersion() {
@@ -94,7 +98,7 @@ public final class SapInstallWithoutOSConfigSoftwareConfiguration extends Softwa
 
     /**
      * Set the softwareVersion property: The software version to install.
-     *
+     * 
      * @param softwareVersion the softwareVersion value to set.
      * @return the SapInstallWithoutOSConfigSoftwareConfiguration object itself.
      */
@@ -105,7 +109,7 @@ public final class SapInstallWithoutOSConfigSoftwareConfiguration extends Softwa
 
     /**
      * Get the highAvailabilitySoftwareConfiguration property: Gets or sets the HA software configuration.
-     *
+     * 
      * @return the highAvailabilitySoftwareConfiguration value.
      */
     public HighAvailabilitySoftwareConfiguration highAvailabilitySoftwareConfiguration() {
@@ -114,7 +118,7 @@ public final class SapInstallWithoutOSConfigSoftwareConfiguration extends Softwa
 
     /**
      * Set the highAvailabilitySoftwareConfiguration property: Gets or sets the HA software configuration.
-     *
+     * 
      * @param highAvailabilitySoftwareConfiguration the highAvailabilitySoftwareConfiguration value to set.
      * @return the SapInstallWithoutOSConfigSoftwareConfiguration object itself.
      */
@@ -126,31 +130,23 @@ public final class SapInstallWithoutOSConfigSoftwareConfiguration extends Softwa
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (bomUrl() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property bomUrl in model SapInstallWithoutOSConfigSoftwareConfiguration"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property bomUrl in model SapInstallWithoutOSConfigSoftwareConfiguration"));
         }
         if (sapBitsStorageAccountId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property sapBitsStorageAccountId in model"
-                            + " SapInstallWithoutOSConfigSoftwareConfiguration"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property sapBitsStorageAccountId in model SapInstallWithoutOSConfigSoftwareConfiguration"));
         }
         if (softwareVersion() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property softwareVersion in model"
-                            + " SapInstallWithoutOSConfigSoftwareConfiguration"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property softwareVersion in model SapInstallWithoutOSConfigSoftwareConfiguration"));
         }
         if (highAvailabilitySoftwareConfiguration() != null) {
             highAvailabilitySoftwareConfiguration().validate();
