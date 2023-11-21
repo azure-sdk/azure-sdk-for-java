@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** SkuSetting fulfills the need for stripped down SKU info in ARM contract. */
+/**
+ * SkuSetting fulfills the need for stripped down SKU info in ARM contract.
+ */
 @Fluent
 public final class SkuSetting {
     /*
@@ -24,13 +26,15 @@ public final class SkuSetting {
     @JsonProperty(value = "tier")
     private SkuTier tier;
 
-    /** Creates an instance of SkuSetting class. */
+    /**
+     * Creates an instance of SkuSetting class.
+     */
     public SkuSetting() {
     }
 
     /**
      * Get the name property: [Required] The name of the SKU. Ex - P3. It is typically a letter+number code.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -39,7 +43,7 @@ public final class SkuSetting {
 
     /**
      * Set the name property: [Required] The name of the SKU. Ex - P3. It is typically a letter+number code.
-     *
+     * 
      * @param name the name value to set.
      * @return the SkuSetting object itself.
      */
@@ -51,7 +55,7 @@ public final class SkuSetting {
     /**
      * Get the tier property: This field is required to be implemented by the Resource Provider if the service has more
      * than one tier, but is not required on a PUT.
-     *
+     * 
      * @return the tier value.
      */
     public SkuTier tier() {
@@ -61,7 +65,7 @@ public final class SkuSetting {
     /**
      * Set the tier property: This field is required to be implemented by the Resource Provider if the service has more
      * than one tier, but is not required on a PUT.
-     *
+     * 
      * @param tier the tier value to set.
      * @return the SkuSetting object itself.
      */
@@ -72,14 +76,13 @@ public final class SkuSetting {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (name() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property name in model SkuSetting"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property name in model SkuSetting"));
         }
     }
 

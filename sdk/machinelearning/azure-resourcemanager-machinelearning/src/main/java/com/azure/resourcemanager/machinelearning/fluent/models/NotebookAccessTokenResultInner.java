@@ -7,14 +7,22 @@ package com.azure.resourcemanager.machinelearning.fluent.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The NotebookAccessTokenResult model. */
+/**
+ * The NotebookAccessTokenResult model.
+ */
 @Immutable
 public final class NotebookAccessTokenResultInner {
     /*
-     * The notebookResourceId property.
+     * The accessToken property.
      */
-    @JsonProperty(value = "notebookResourceId", access = JsonProperty.Access.WRITE_ONLY)
-    private String notebookResourceId;
+    @JsonProperty(value = "accessToken", access = JsonProperty.Access.WRITE_ONLY)
+    private String accessToken;
+
+    /*
+     * The expiresIn property.
+     */
+    @JsonProperty(value = "expiresIn", access = JsonProperty.Access.WRITE_ONLY)
+    private Integer expiresIn;
 
     /*
      * The hostName property.
@@ -23,28 +31,16 @@ public final class NotebookAccessTokenResultInner {
     private String hostname;
 
     /*
+     * The notebookResourceId property.
+     */
+    @JsonProperty(value = "notebookResourceId", access = JsonProperty.Access.WRITE_ONLY)
+    private String notebookResourceId;
+
+    /*
      * The publicDns property.
      */
     @JsonProperty(value = "publicDns", access = JsonProperty.Access.WRITE_ONLY)
     private String publicDns;
-
-    /*
-     * The accessToken property.
-     */
-    @JsonProperty(value = "accessToken", access = JsonProperty.Access.WRITE_ONLY)
-    private String accessToken;
-
-    /*
-     * The tokenType property.
-     */
-    @JsonProperty(value = "tokenType", access = JsonProperty.Access.WRITE_ONLY)
-    private String tokenType;
-
-    /*
-     * The expiresIn property.
-     */
-    @JsonProperty(value = "expiresIn", access = JsonProperty.Access.WRITE_ONLY)
-    private Integer expiresIn;
 
     /*
      * The refreshToken property.
@@ -58,40 +54,21 @@ public final class NotebookAccessTokenResultInner {
     @JsonProperty(value = "scope", access = JsonProperty.Access.WRITE_ONLY)
     private String scope;
 
-    /** Creates an instance of NotebookAccessTokenResultInner class. */
+    /*
+     * The tokenType property.
+     */
+    @JsonProperty(value = "tokenType", access = JsonProperty.Access.WRITE_ONLY)
+    private String tokenType;
+
+    /**
+     * Creates an instance of NotebookAccessTokenResultInner class.
+     */
     public NotebookAccessTokenResultInner() {
     }
 
     /**
-     * Get the notebookResourceId property: The notebookResourceId property.
-     *
-     * @return the notebookResourceId value.
-     */
-    public String notebookResourceId() {
-        return this.notebookResourceId;
-    }
-
-    /**
-     * Get the hostname property: The hostName property.
-     *
-     * @return the hostname value.
-     */
-    public String hostname() {
-        return this.hostname;
-    }
-
-    /**
-     * Get the publicDns property: The publicDns property.
-     *
-     * @return the publicDns value.
-     */
-    public String publicDns() {
-        return this.publicDns;
-    }
-
-    /**
      * Get the accessToken property: The accessToken property.
-     *
+     * 
      * @return the accessToken value.
      */
     public String accessToken() {
@@ -99,17 +76,8 @@ public final class NotebookAccessTokenResultInner {
     }
 
     /**
-     * Get the tokenType property: The tokenType property.
-     *
-     * @return the tokenType value.
-     */
-    public String tokenType() {
-        return this.tokenType;
-    }
-
-    /**
      * Get the expiresIn property: The expiresIn property.
-     *
+     * 
      * @return the expiresIn value.
      */
     public Integer expiresIn() {
@@ -117,8 +85,35 @@ public final class NotebookAccessTokenResultInner {
     }
 
     /**
+     * Get the hostname property: The hostName property.
+     * 
+     * @return the hostname value.
+     */
+    public String hostname() {
+        return this.hostname;
+    }
+
+    /**
+     * Get the notebookResourceId property: The notebookResourceId property.
+     * 
+     * @return the notebookResourceId value.
+     */
+    public String notebookResourceId() {
+        return this.notebookResourceId;
+    }
+
+    /**
+     * Get the publicDns property: The publicDns property.
+     * 
+     * @return the publicDns value.
+     */
+    public String publicDns() {
+        return this.publicDns;
+    }
+
+    /**
      * Get the refreshToken property: The refreshToken property.
-     *
+     * 
      * @return the refreshToken value.
      */
     public String refreshToken() {
@@ -127,7 +122,7 @@ public final class NotebookAccessTokenResultInner {
 
     /**
      * Get the scope property: The scope property.
-     *
+     * 
      * @return the scope value.
      */
     public String scope() {
@@ -135,8 +130,17 @@ public final class NotebookAccessTokenResultInner {
     }
 
     /**
+     * Get the tokenType property: The tokenType property.
+     * 
+     * @return the tokenType value.
+     */
+    public String tokenType() {
+        return this.tokenType;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

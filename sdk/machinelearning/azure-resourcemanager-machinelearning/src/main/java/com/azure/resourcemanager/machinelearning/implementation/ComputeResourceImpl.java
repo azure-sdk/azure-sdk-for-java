@@ -15,10 +15,15 @@ import com.azure.resourcemanager.machinelearning.models.ClusterUpdateParameters;
 import com.azure.resourcemanager.machinelearning.models.Compute;
 import com.azure.resourcemanager.machinelearning.models.ComputeResource;
 import com.azure.resourcemanager.machinelearning.models.ComputeSecrets;
+import com.azure.resourcemanager.machinelearning.models.CustomService;
+import com.azure.resourcemanager.machinelearning.models.IdleShutdownSetting;
 import com.azure.resourcemanager.machinelearning.models.ManagedServiceIdentity;
+import com.azure.resourcemanager.machinelearning.models.ResizeSchema;
 import com.azure.resourcemanager.machinelearning.models.ScaleSettingsInformation;
 import com.azure.resourcemanager.machinelearning.models.Sku;
+import com.azure.resourcemanager.machinelearning.models.VirtualMachineSizeListResult;
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 public final class ComputeResourceImpl implements ComputeResource, ComputeResource.Definition, ComputeResource.Update {
@@ -102,20 +107,14 @@ public final class ComputeResourceImpl implements ComputeResource, ComputeResour
     }
 
     public ComputeResource create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getComputes()
-                .createOrUpdate(resourceGroupName, workspaceName, computeName, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getComputes().createOrUpdate(resourceGroupName, workspaceName,
+            computeName, this.innerModel(), Context.NONE);
         return this;
     }
 
     public ComputeResource create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getComputes()
-                .createOrUpdate(resourceGroupName, workspaceName, computeName, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient().getComputes().createOrUpdate(resourceGroupName, workspaceName,
+            computeName, this.innerModel(), context);
         return this;
     }
 
@@ -131,25 +130,18 @@ public final class ComputeResourceImpl implements ComputeResource, ComputeResour
     }
 
     public ComputeResource apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getComputes()
-                .update(resourceGroupName, workspaceName, computeName, updateParameters, Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getComputes().update(resourceGroupName, workspaceName,
+            computeName, updateParameters, Context.NONE);
         return this;
     }
 
     public ComputeResource apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getComputes()
-                .update(resourceGroupName, workspaceName, computeName, updateParameters, context);
+        this.innerObject = serviceManager.serviceClient().getComputes().update(resourceGroupName, workspaceName,
+            computeName, updateParameters, context);
         return this;
     }
 
-    ComputeResourceImpl(
-        ComputeResourceInner innerObject,
+    ComputeResourceImpl(ComputeResourceInner innerObject,
         com.azure.resourcemanager.machinelearning.MachineLearningManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
@@ -159,23 +151,24 @@ public final class ComputeResourceImpl implements ComputeResource, ComputeResour
     }
 
     public ComputeResource refresh() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getComputes()
-                .getWithResponse(resourceGroupName, workspaceName, computeName, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getComputes()
+            .getWithResponse(resourceGroupName, workspaceName, computeName, Context.NONE).getValue();
         return this;
     }
 
     public ComputeResource refresh(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getComputes()
-                .getWithResponse(resourceGroupName, workspaceName, computeName, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getComputes()
+            .getWithResponse(resourceGroupName, workspaceName, computeName, context).getValue();
         return this;
+    }
+
+    public Response<Void> updateCustomServicesWithResponse(List<CustomService> customServices, Context context) {
+        return serviceManager.computes().updateCustomServicesWithResponse(resourceGroupName, workspaceName, computeName,
+            customServices, context);
+    }
+
+    public void updateCustomServices(List<CustomService> customServices) {
+        serviceManager.computes().updateCustomServices(resourceGroupName, workspaceName, computeName, customServices);
     }
 
     public PagedIterable<AmlComputeNodeInformation> listNodes() {
@@ -216,6 +209,32 @@ public final class ComputeResourceImpl implements ComputeResource, ComputeResour
 
     public void restart(Context context) {
         serviceManager.computes().restart(resourceGroupName, workspaceName, computeName, context);
+    }
+
+    public Response<Void> updateIdleShutdownSettingWithResponse(IdleShutdownSetting parameters, Context context) {
+        return serviceManager.computes().updateIdleShutdownSettingWithResponse(resourceGroupName, workspaceName,
+            computeName, parameters, context);
+    }
+
+    public void updateIdleShutdownSetting(IdleShutdownSetting parameters) {
+        serviceManager.computes().updateIdleShutdownSetting(resourceGroupName, workspaceName, computeName, parameters);
+    }
+
+    public Response<VirtualMachineSizeListResult> getAllowedResizeSizesWithResponse(Context context) {
+        return serviceManager.computes().getAllowedResizeSizesWithResponse(resourceGroupName, workspaceName,
+            computeName, context);
+    }
+
+    public VirtualMachineSizeListResult getAllowedResizeSizes() {
+        return serviceManager.computes().getAllowedResizeSizes(resourceGroupName, workspaceName, computeName);
+    }
+
+    public void resize(ResizeSchema parameters) {
+        serviceManager.computes().resize(resourceGroupName, workspaceName, computeName, parameters);
+    }
+
+    public void resize(ResizeSchema parameters, Context context) {
+        serviceManager.computes().resize(resourceGroupName, workspaceName, computeName, parameters, context);
     }
 
     public ComputeResourceImpl withRegion(Region location) {

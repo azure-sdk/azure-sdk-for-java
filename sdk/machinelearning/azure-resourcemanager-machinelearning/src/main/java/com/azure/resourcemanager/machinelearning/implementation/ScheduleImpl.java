@@ -60,20 +60,14 @@ public final class ScheduleImpl implements Schedule, Schedule.Definition, Schedu
     }
 
     public Schedule create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getSchedules()
-                .createOrUpdate(resourceGroupName, workspaceName, name, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getSchedules().createOrUpdate(resourceGroupName,
+            workspaceName, name, this.innerModel(), Context.NONE);
         return this;
     }
 
     public Schedule create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getSchedules()
-                .createOrUpdate(resourceGroupName, workspaceName, name, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient().getSchedules().createOrUpdate(resourceGroupName,
+            workspaceName, name, this.innerModel(), context);
         return this;
     }
 
@@ -88,25 +82,19 @@ public final class ScheduleImpl implements Schedule, Schedule.Definition, Schedu
     }
 
     public Schedule apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getSchedules()
-                .createOrUpdate(resourceGroupName, workspaceName, name, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getSchedules().createOrUpdate(resourceGroupName,
+            workspaceName, name, this.innerModel(), Context.NONE);
         return this;
     }
 
     public Schedule apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getSchedules()
-                .createOrUpdate(resourceGroupName, workspaceName, name, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient().getSchedules().createOrUpdate(resourceGroupName,
+            workspaceName, name, this.innerModel(), context);
         return this;
     }
 
-    ScheduleImpl(
-        ScheduleInner innerObject, com.azure.resourcemanager.machinelearning.MachineLearningManager serviceManager) {
+    ScheduleImpl(ScheduleInner innerObject,
+        com.azure.resourcemanager.machinelearning.MachineLearningManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
         this.resourceGroupName = Utils.getValueFromIdByName(innerObject.id(), "resourceGroups");
@@ -115,22 +103,14 @@ public final class ScheduleImpl implements Schedule, Schedule.Definition, Schedu
     }
 
     public Schedule refresh() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getSchedules()
-                .getWithResponse(resourceGroupName, workspaceName, name, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getSchedules()
+            .getWithResponse(resourceGroupName, workspaceName, name, Context.NONE).getValue();
         return this;
     }
 
     public Schedule refresh(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getSchedules()
-                .getWithResponse(resourceGroupName, workspaceName, name, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getSchedules()
+            .getWithResponse(resourceGroupName, workspaceName, name, context).getValue();
         return this;
     }
 
