@@ -14,7 +14,9 @@ import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
 
-/** A workbook definition. */
+/**
+ * A workbook definition.
+ */
 @Fluent
 public final class WorkbookInner extends WorkbookResource {
     /*
@@ -29,13 +31,15 @@ public final class WorkbookInner extends WorkbookResource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of WorkbookInner class. */
+    /**
+     * Creates an instance of WorkbookInner class.
+     */
     public WorkbookInner() {
     }
 
     /**
      * Get the innerProperties property: Metadata describing a workbook for an Azure resource.
-     *
+     * 
      * @return the innerProperties value.
      */
     private WorkbookProperties innerProperties() {
@@ -44,42 +48,52 @@ public final class WorkbookInner extends WorkbookResource {
 
     /**
      * Get the systemData property: Metadata pertaining to creation and last modification of the resource.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
         return this.systemData;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public WorkbookInner withIdentity(WorkbookResourceIdentity identity) {
         super.withIdentity(identity);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public WorkbookInner withKind(WorkbookSharedTypeKind kind) {
         super.withKind(kind);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public WorkbookInner withEtag(String etag) {
         super.withEtag(etag);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public WorkbookInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public WorkbookInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -88,7 +102,7 @@ public final class WorkbookInner extends WorkbookResource {
 
     /**
      * Get the displayName property: The user-defined name (display name) of the workbook.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -97,7 +111,7 @@ public final class WorkbookInner extends WorkbookResource {
 
     /**
      * Set the displayName property: The user-defined name (display name) of the workbook.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the WorkbookInner object itself.
      */
@@ -112,7 +126,7 @@ public final class WorkbookInner extends WorkbookResource {
     /**
      * Get the serializedData property: Configuration of this particular workbook. Configuration data is a string
      * containing valid JSON.
-     *
+     * 
      * @return the serializedData value.
      */
     public String serializedData() {
@@ -122,7 +136,7 @@ public final class WorkbookInner extends WorkbookResource {
     /**
      * Set the serializedData property: Configuration of this particular workbook. Configuration data is a string
      * containing valid JSON.
-     *
+     * 
      * @param serializedData the serializedData value to set.
      * @return the WorkbookInner object itself.
      */
@@ -135,9 +149,9 @@ public final class WorkbookInner extends WorkbookResource {
     }
 
     /**
-     * Get the version property: Workbook schema version format, like 'Notebook/1.0', which should match the workbook in
-     * serializedData.
-     *
+     * Get the version property: Workbook schema version format, like 'Notebook/1.0', which should match the workbook
+     * in serializedData.
+     * 
      * @return the version value.
      */
     public String version() {
@@ -145,9 +159,9 @@ public final class WorkbookInner extends WorkbookResource {
     }
 
     /**
-     * Set the version property: Workbook schema version format, like 'Notebook/1.0', which should match the workbook in
-     * serializedData.
-     *
+     * Set the version property: Workbook schema version format, like 'Notebook/1.0', which should match the workbook
+     * in serializedData.
+     * 
      * @param version the version value to set.
      * @return the WorkbookInner object itself.
      */
@@ -162,7 +176,7 @@ public final class WorkbookInner extends WorkbookResource {
     /**
      * Get the timeModified property: Date and time in UTC of the last modification that was made to this workbook
      * definition.
-     *
+     * 
      * @return the timeModified value.
      */
     public OffsetDateTime timeModified() {
@@ -171,7 +185,7 @@ public final class WorkbookInner extends WorkbookResource {
 
     /**
      * Get the category property: Workbook category, as defined by the user at creation time.
-     *
+     * 
      * @return the category value.
      */
     public String category() {
@@ -180,7 +194,7 @@ public final class WorkbookInner extends WorkbookResource {
 
     /**
      * Set the category property: Workbook category, as defined by the user at creation time.
-     *
+     * 
      * @param category the category value to set.
      * @return the WorkbookInner object itself.
      */
@@ -194,7 +208,7 @@ public final class WorkbookInner extends WorkbookResource {
 
     /**
      * Get the tags property: Being deprecated, please use the other tags field.
-     *
+     * 
      * @return the tags value.
      */
     public List<String> tagsPropertiesTags() {
@@ -203,7 +217,7 @@ public final class WorkbookInner extends WorkbookResource {
 
     /**
      * Set the tags property: Being deprecated, please use the other tags field.
-     *
+     * 
      * @param tags the tags value to set.
      * @return the WorkbookInner object itself.
      */
@@ -217,7 +231,7 @@ public final class WorkbookInner extends WorkbookResource {
 
     /**
      * Get the userId property: Unique user id of the specific user that owns this workbook.
-     *
+     * 
      * @return the userId value.
      */
     public String userId() {
@@ -226,7 +240,7 @@ public final class WorkbookInner extends WorkbookResource {
 
     /**
      * Get the sourceId property: ResourceId for a source resource.
-     *
+     * 
      * @return the sourceId value.
      */
     public String sourceId() {
@@ -235,7 +249,7 @@ public final class WorkbookInner extends WorkbookResource {
 
     /**
      * Set the sourceId property: ResourceId for a source resource.
-     *
+     * 
      * @param sourceId the sourceId value to set.
      * @return the WorkbookInner object itself.
      */
@@ -249,7 +263,7 @@ public final class WorkbookInner extends WorkbookResource {
 
     /**
      * Get the storageUri property: The resourceId to the storage account when bring your own storage is used.
-     *
+     * 
      * @return the storageUri value.
      */
     public String storageUri() {
@@ -258,7 +272,7 @@ public final class WorkbookInner extends WorkbookResource {
 
     /**
      * Set the storageUri property: The resourceId to the storage account when bring your own storage is used.
-     *
+     * 
      * @param storageUri the storageUri value to set.
      * @return the WorkbookInner object itself.
      */
@@ -272,7 +286,7 @@ public final class WorkbookInner extends WorkbookResource {
 
     /**
      * Get the description property: The description of the workbook.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -281,7 +295,7 @@ public final class WorkbookInner extends WorkbookResource {
 
     /**
      * Set the description property: The description of the workbook.
-     *
+     * 
      * @param description the description value to set.
      * @return the WorkbookInner object itself.
      */
@@ -295,7 +309,7 @@ public final class WorkbookInner extends WorkbookResource {
 
     /**
      * Get the revision property: The unique revision id for this workbook definition.
-     *
+     * 
      * @return the revision value.
      */
     public String revision() {
@@ -304,7 +318,7 @@ public final class WorkbookInner extends WorkbookResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

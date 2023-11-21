@@ -11,85 +11,56 @@ import com.azure.resourcemanager.applicationinsights.models.WorkbookSharedTypeKi
 import java.util.HashMap;
 import java.util.Map;
 
-/** Samples for Workbooks CreateOrUpdate. */
+/**
+ * Samples for Workbooks CreateOrUpdate.
+ */
 public final class WorkbooksCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2022-04-01/examples/WorkbookManagedAdd.json
+     * x-ms-original-file:
+     * specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2023-06-01/examples/
+     * WorkbookManagedAdd.json
      */
     /**
      * Sample code: WorkbookManagedAdd.
-     *
+     * 
      * @param manager Entry point to ApplicationInsightsManager.
      */
-    public static void workbookManagedAdd(
-        com.azure.resourcemanager.applicationinsights.ApplicationInsightsManager manager) {
-        manager
-            .workbooks()
-            .define("deadb33f-5e0d-4064-8ebb-1a4ed0313eb2")
-            .withRegion("westus")
+    public static void
+        workbookManagedAdd(com.azure.resourcemanager.applicationinsights.ApplicationInsightsManager manager) {
+        manager.workbooks().define("deadb33f-5e0d-4064-8ebb-1a4ed0313eb2").withRegion("westus")
             .withExistingResourceGroup("my-resource-group")
-            .withIdentity(
-                new WorkbookResourceIdentity()
-                    .withType(ManagedServiceIdentityType.USER_ASSIGNED)
-                    .withUserAssignedIdentities(
-                        mapOf(
-                            "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myid",
-                            new UserAssignedIdentity())))
-            .withKind(WorkbookSharedTypeKind.SHARED)
-            .withDisplayName("Sample workbook")
+            .withIdentity(new WorkbookResourceIdentity().withType(ManagedServiceIdentityType.USER_ASSIGNED)
+                .withUserAssignedIdentities(mapOf(
+                    "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myid",
+                    new UserAssignedIdentity())))
+            .withKind(WorkbookSharedTypeKind.SHARED).withDisplayName("Sample workbook")
             .withSerializedData(
-                "{\"version\":\"Notebook/1.0\",\"items\":[{\"type\":1,\"content\":{\"json\":\"test\"},\"name\":\"text -"
-                    + " 0\"}],\"isLocked\":false,\"fallbackResourceIds\":[\"/subscriptions/00000000-0000-0000-0000-00000000/resourceGroups/my-resource-group\"]}")
-            .withVersion("Notebook/1.0")
-            .withCategory("workbook")
+                "{\"version\":\"Notebook/1.0\",\"items\":[{\"type\":1,\"content\":{\"json\":\"test\"},\"name\":\"text - 0\"}],\"isLocked\":false,\"fallbackResourceIds\":[\"/subscriptions/00000000-0000-0000-0000-00000000/resourceGroups/my-resource-group\"]}")
+            .withVersion("Notebook/1.0").withCategory("workbook")
             .withStorageUri(
                 "/subscriptions/6b643656-33eb-422f-aee8-3ac145d124af/resourceGroups/my-resource-group/providers/Microsoft.Storage/storageAccounts/mystorage/blobServices/default/containers/mycontainer")
-            .withDescription("Sample workbook")
-            .withSourceIdParameter(
+            .withDescription("Sample workbook").withSourceIdParameter(
                 "/subscriptions/6b643656-33eb-422f-aee8-3ac145d124af/resourcegroups/my-resource-group")
             .create();
     }
 
     /*
-     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2022-04-01/examples/WorkbookAdd.json
+     * x-ms-original-file:
+     * specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2023-06-01/examples/WorkbookAdd.json
      */
     /**
      * Sample code: WorkbookAdd.
-     *
+     * 
      * @param manager Entry point to ApplicationInsightsManager.
      */
     public static void workbookAdd(com.azure.resourcemanager.applicationinsights.ApplicationInsightsManager manager) {
-        manager
-            .workbooks()
-            .define("deadb33f-5e0d-4064-8ebb-1a4ed0313eb2")
-            .withRegion("westus")
+        manager.workbooks().define("deadb33f-5e0d-4064-8ebb-1a4ed0313eb2").withRegion("westus")
             .withExistingResourceGroup("my-resource-group")
             .withTags(mapOf("TagSample01", "sample01", "TagSample02", "sample02"))
-            .withKind(WorkbookSharedTypeKind.SHARED)
-            .withDisplayName("Sample workbook")
+            .withKind(WorkbookSharedTypeKind.SHARED).withDisplayName("Sample workbook")
             .withSerializedData(
-                "{\"version\":\"Notebook/1.0\",\"items\":[{\"type\":1,\"content\":\"{\"json\":\"## New workbook\\r"
-                    + "\\n"
-                    + "---\\r"
-                    + "\\n"
-                    + "\\r"
-                    + "\\n"
-                    + "Welcome to your new workbook.  This area will display text formatted as markdown.\\r"
-                    + "\\n"
-                    + "\\r"
-                    + "\\n"
-                    + "\\r"
-                    + "\\n"
-                    + "We've included a basic analytics query to get you started. Use the `Edit` button below each"
-                    + " section to configure it or add more"
-                    + " sections.\"}\",\"halfWidth\":null,\"conditionalVisibility\":null},{\"type\":3,\"content\":\"{\"version\":\"KqlItem/1.0\",\"query\":\"union"
-                    + " withsource=TableName *\\n"
-                    + "| summarize Count=count() by TableName\\n"
-                    + "| render"
-                    + " barchart\",\"showQuery\":false,\"size\":1,\"aggregation\":0,\"showAnnotations\":false}\",\"halfWidth\":null,\"conditionalVisibility\":null}],\"isLocked\":false}")
-            .withCategory("workbook")
-            .withDescription("Sample workbook")
-            .withSourceIdParameter(
+                "{\"version\":\"Notebook/1.0\",\"items\":[{\"type\":1,\"content\":\"{\"json\":\"## New workbook\\r\\n---\\r\\n\\r\\nWelcome to your new workbook.  This area will display text formatted as markdown.\\r\\n\\r\\n\\r\\nWe've included a basic analytics query to get you started. Use the `Edit` button below each section to configure it or add more sections.\"}\",\"halfWidth\":null,\"conditionalVisibility\":null},{\"type\":3,\"content\":\"{\"version\":\"KqlItem/1.0\",\"query\":\"union withsource=TableName *\\n| summarize Count=count() by TableName\\n| render barchart\",\"showQuery\":false,\"size\":1,\"aggregation\":0,\"showAnnotations\":false}\",\"halfWidth\":null,\"conditionalVisibility\":null}],\"isLocked\":false}")
+            .withCategory("workbook").withDescription("Sample workbook").withSourceIdParameter(
                 "/subscriptions/6b643656-33eb-422f-aee8-3ac145d124af/resourcegroups/my-resource-group")
             .create();
     }

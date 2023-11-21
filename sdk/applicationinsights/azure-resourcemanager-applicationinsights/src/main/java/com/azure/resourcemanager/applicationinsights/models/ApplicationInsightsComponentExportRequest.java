@@ -7,7 +7,9 @@ package com.azure.resourcemanager.applicationinsights.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** An Application Insights component Continuous Export configuration request definition. */
+/**
+ * An Application Insights component Continuous Export configuration request definition.
+ */
 @Fluent
 public final class ApplicationInsightsComponentExportRequest {
     /*
@@ -66,7 +68,9 @@ public final class ApplicationInsightsComponentExportRequest {
     @JsonProperty(value = "DestinationAccountId")
     private String destinationAccountId;
 
-    /** Creates an instance of ApplicationInsightsComponentExportRequest class. */
+    /**
+     * Creates an instance of ApplicationInsightsComponentExportRequest class.
+     */
     public ApplicationInsightsComponentExportRequest() {
     }
 
@@ -74,7 +78,7 @@ public final class ApplicationInsightsComponentExportRequest {
      * Get the recordTypes property: The document types to be exported, as comma separated values. Allowed values
      * include 'Requests', 'Event', 'Exceptions', 'Metrics', 'PageViews', 'PageViewPerformance', 'Rdd',
      * 'PerformanceCounters', 'Availability', 'Messages'.
-     *
+     * 
      * @return the recordTypes value.
      */
     public String recordTypes() {
@@ -85,7 +89,7 @@ public final class ApplicationInsightsComponentExportRequest {
      * Set the recordTypes property: The document types to be exported, as comma separated values. Allowed values
      * include 'Requests', 'Event', 'Exceptions', 'Metrics', 'PageViews', 'PageViewPerformance', 'Rdd',
      * 'PerformanceCounters', 'Availability', 'Messages'.
-     *
+     * 
      * @param recordTypes the recordTypes value to set.
      * @return the ApplicationInsightsComponentExportRequest object itself.
      */
@@ -96,7 +100,7 @@ public final class ApplicationInsightsComponentExportRequest {
 
     /**
      * Get the destinationType property: The Continuous Export destination type. This has to be 'Blob'.
-     *
+     * 
      * @return the destinationType value.
      */
     public String destinationType() {
@@ -105,7 +109,7 @@ public final class ApplicationInsightsComponentExportRequest {
 
     /**
      * Set the destinationType property: The Continuous Export destination type. This has to be 'Blob'.
-     *
+     * 
      * @param destinationType the destinationType value to set.
      * @return the ApplicationInsightsComponentExportRequest object itself.
      */
@@ -117,7 +121,7 @@ public final class ApplicationInsightsComponentExportRequest {
     /**
      * Get the destinationAddress property: The SAS URL for the destination storage container. It must grant write
      * permission.
-     *
+     * 
      * @return the destinationAddress value.
      */
     public String destinationAddress() {
@@ -127,7 +131,7 @@ public final class ApplicationInsightsComponentExportRequest {
     /**
      * Set the destinationAddress property: The SAS URL for the destination storage container. It must grant write
      * permission.
-     *
+     * 
      * @param destinationAddress the destinationAddress value to set.
      * @return the ApplicationInsightsComponentExportRequest object itself.
      */
@@ -139,7 +143,7 @@ public final class ApplicationInsightsComponentExportRequest {
     /**
      * Get the isEnabled property: Set to 'true' to create a Continuous Export configuration as enabled, otherwise set
      * it to 'false'.
-     *
+     * 
      * @return the isEnabled value.
      */
     public String isEnabled() {
@@ -149,7 +153,7 @@ public final class ApplicationInsightsComponentExportRequest {
     /**
      * Set the isEnabled property: Set to 'true' to create a Continuous Export configuration as enabled, otherwise set
      * it to 'false'.
-     *
+     * 
      * @param isEnabled the isEnabled value to set.
      * @return the ApplicationInsightsComponentExportRequest object itself.
      */
@@ -160,7 +164,7 @@ public final class ApplicationInsightsComponentExportRequest {
 
     /**
      * Get the notificationQueueEnabled property: Deprecated.
-     *
+     * 
      * @return the notificationQueueEnabled value.
      */
     public String notificationQueueEnabled() {
@@ -169,7 +173,7 @@ public final class ApplicationInsightsComponentExportRequest {
 
     /**
      * Set the notificationQueueEnabled property: Deprecated.
-     *
+     * 
      * @param notificationQueueEnabled the notificationQueueEnabled value to set.
      * @return the ApplicationInsightsComponentExportRequest object itself.
      */
@@ -180,7 +184,7 @@ public final class ApplicationInsightsComponentExportRequest {
 
     /**
      * Get the notificationQueueUri property: Deprecated.
-     *
+     * 
      * @return the notificationQueueUri value.
      */
     public String notificationQueueUri() {
@@ -189,7 +193,7 @@ public final class ApplicationInsightsComponentExportRequest {
 
     /**
      * Set the notificationQueueUri property: Deprecated.
-     *
+     * 
      * @param notificationQueueUri the notificationQueueUri value to set.
      * @return the ApplicationInsightsComponentExportRequest object itself.
      */
@@ -200,7 +204,7 @@ public final class ApplicationInsightsComponentExportRequest {
 
     /**
      * Get the destinationStorageSubscriptionId property: The subscription ID of the destination storage container.
-     *
+     * 
      * @return the destinationStorageSubscriptionId value.
      */
     public String destinationStorageSubscriptionId() {
@@ -209,19 +213,19 @@ public final class ApplicationInsightsComponentExportRequest {
 
     /**
      * Set the destinationStorageSubscriptionId property: The subscription ID of the destination storage container.
-     *
+     * 
      * @param destinationStorageSubscriptionId the destinationStorageSubscriptionId value to set.
      * @return the ApplicationInsightsComponentExportRequest object itself.
      */
-    public ApplicationInsightsComponentExportRequest withDestinationStorageSubscriptionId(
-        String destinationStorageSubscriptionId) {
+    public ApplicationInsightsComponentExportRequest
+        withDestinationStorageSubscriptionId(String destinationStorageSubscriptionId) {
         this.destinationStorageSubscriptionId = destinationStorageSubscriptionId;
         return this;
     }
 
     /**
      * Get the destinationStorageLocationId property: The location ID of the destination storage container.
-     *
+     * 
      * @return the destinationStorageLocationId value.
      */
     public String destinationStorageLocationId() {
@@ -230,19 +234,19 @@ public final class ApplicationInsightsComponentExportRequest {
 
     /**
      * Set the destinationStorageLocationId property: The location ID of the destination storage container.
-     *
+     * 
      * @param destinationStorageLocationId the destinationStorageLocationId value to set.
      * @return the ApplicationInsightsComponentExportRequest object itself.
      */
-    public ApplicationInsightsComponentExportRequest withDestinationStorageLocationId(
-        String destinationStorageLocationId) {
+    public ApplicationInsightsComponentExportRequest
+        withDestinationStorageLocationId(String destinationStorageLocationId) {
         this.destinationStorageLocationId = destinationStorageLocationId;
         return this;
     }
 
     /**
      * Get the destinationAccountId property: The name of destination storage account.
-     *
+     * 
      * @return the destinationAccountId value.
      */
     public String destinationAccountId() {
@@ -251,7 +255,7 @@ public final class ApplicationInsightsComponentExportRequest {
 
     /**
      * Set the destinationAccountId property: The name of destination storage account.
-     *
+     * 
      * @param destinationAccountId the destinationAccountId value to set.
      * @return the ApplicationInsightsComponentExportRequest object itself.
      */
@@ -262,7 +266,7 @@ public final class ApplicationInsightsComponentExportRequest {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

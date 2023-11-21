@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** An Application Insights component daily data volume cap status. */
+/**
+ * An Application Insights component daily data volume cap status.
+ */
 @Immutable
 public final class ApplicationInsightsComponentFeature {
     /*
@@ -65,13 +67,15 @@ public final class ApplicationInsightsComponentFeature {
     @JsonProperty(value = "SupportedAddonFeatures", access = JsonProperty.Access.WRITE_ONLY)
     private String supportedAddonFeatures;
 
-    /** Creates an instance of ApplicationInsightsComponentFeature class. */
+    /**
+     * Creates an instance of ApplicationInsightsComponentFeature class.
+     */
     public ApplicationInsightsComponentFeature() {
     }
 
     /**
      * Get the featureName property: The pricing feature name.
-     *
+     * 
      * @return the featureName value.
      */
     public String featureName() {
@@ -80,7 +84,7 @@ public final class ApplicationInsightsComponentFeature {
 
     /**
      * Get the meterId property: The meter id used for the feature.
-     *
+     * 
      * @return the meterId value.
      */
     public String meterId() {
@@ -89,7 +93,7 @@ public final class ApplicationInsightsComponentFeature {
 
     /**
      * Get the meterRateFrequency property: The meter rate for the feature's meter.
-     *
+     * 
      * @return the meterRateFrequency value.
      */
     public String meterRateFrequency() {
@@ -98,7 +102,7 @@ public final class ApplicationInsightsComponentFeature {
 
     /**
      * Get the resouceId property: Reserved, not used now.
-     *
+     * 
      * @return the resouceId value.
      */
     public String resouceId() {
@@ -107,7 +111,7 @@ public final class ApplicationInsightsComponentFeature {
 
     /**
      * Get the isHidden property: Reserved, not used now.
-     *
+     * 
      * @return the isHidden value.
      */
     public Boolean isHidden() {
@@ -116,7 +120,7 @@ public final class ApplicationInsightsComponentFeature {
 
     /**
      * Get the capabilities property: A list of Application Insights component feature capability.
-     *
+     * 
      * @return the capabilities value.
      */
     public List<ApplicationInsightsComponentFeatureCapability> capabilities() {
@@ -125,7 +129,7 @@ public final class ApplicationInsightsComponentFeature {
 
     /**
      * Get the title property: Display name of the feature.
-     *
+     * 
      * @return the title value.
      */
     public String title() {
@@ -134,7 +138,7 @@ public final class ApplicationInsightsComponentFeature {
 
     /**
      * Get the isMainFeature property: Whether can apply addon feature on to it.
-     *
+     * 
      * @return the isMainFeature value.
      */
     public Boolean isMainFeature() {
@@ -143,7 +147,7 @@ public final class ApplicationInsightsComponentFeature {
 
     /**
      * Get the supportedAddonFeatures property: The add on features on main feature.
-     *
+     * 
      * @return the supportedAddonFeatures value.
      */
     public String supportedAddonFeatures() {
@@ -152,7 +156,7 @@ public final class ApplicationInsightsComponentFeature {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

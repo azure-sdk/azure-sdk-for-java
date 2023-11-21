@@ -7,7 +7,9 @@ package com.azure.resourcemanager.applicationinsights.fluent.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Properties that define a web test location available to an Application Insights Component. */
+/**
+ * Properties that define a web test location available to an Application Insights Component.
+ */
 @Immutable
 public final class ApplicationInsightsComponentWebTestLocationInner {
     /*
@@ -22,13 +24,15 @@ public final class ApplicationInsightsComponentWebTestLocationInner {
     @JsonProperty(value = "Tag", access = JsonProperty.Access.WRITE_ONLY)
     private String tag;
 
-    /** Creates an instance of ApplicationInsightsComponentWebTestLocationInner class. */
+    /**
+     * Creates an instance of ApplicationInsightsComponentWebTestLocationInner class.
+     */
     public ApplicationInsightsComponentWebTestLocationInner() {
     }
 
     /**
      * Get the displayName property: The display name of the web test location.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -37,7 +41,7 @@ public final class ApplicationInsightsComponentWebTestLocationInner {
 
     /**
      * Get the tag property: Internally defined geographic location tag.
-     *
+     * 
      * @return the tag value.
      */
     public String tag() {
@@ -46,7 +50,7 @@ public final class ApplicationInsightsComponentWebTestLocationInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

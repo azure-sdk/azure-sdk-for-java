@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.azure.core.management.exception.ManagementError;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Error response. */
+/**
+ * Error response.
+ */
 @Immutable
 public final class WorkbookErrorDefinition extends ManagementError {
     /*
@@ -17,13 +19,15 @@ public final class WorkbookErrorDefinition extends ManagementError {
     @JsonProperty(value = "innererror", access = JsonProperty.Access.WRITE_ONLY)
     private WorkbookInnerErrorTrace innererror;
 
-    /** Creates an instance of WorkbookErrorDefinition class. */
+    /**
+     * Creates an instance of WorkbookErrorDefinition class.
+     */
     public WorkbookErrorDefinition() {
     }
 
     /**
      * Get the innererror property: Internal error details.
-     *
+     * 
      * @return the innererror value.
      */
     public WorkbookInnerErrorTrace getInnererror() {
@@ -32,7 +36,7 @@ public final class WorkbookErrorDefinition extends ManagementError {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -13,7 +13,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
 
-/** Properties that contain a workbook template. */
+/**
+ * Properties that contain a workbook template.
+ */
 @Fluent
 public final class WorkbookTemplateProperties {
     /*
@@ -47,14 +49,16 @@ public final class WorkbookTemplateProperties {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, List<WorkbookTemplateLocalizedGallery>> localized;
 
-    /** Creates an instance of WorkbookTemplateProperties class. */
+    /**
+     * Creates an instance of WorkbookTemplateProperties class.
+     */
     public WorkbookTemplateProperties() {
     }
 
     /**
-     * Get the priority property: Priority of the template. Determines which template to open when a workbook gallery is
-     * opened in viewer mode.
-     *
+     * Get the priority property: Priority of the template. Determines which template to open when a workbook gallery
+     * is opened in viewer mode.
+     * 
      * @return the priority value.
      */
     public Integer priority() {
@@ -62,9 +66,9 @@ public final class WorkbookTemplateProperties {
     }
 
     /**
-     * Set the priority property: Priority of the template. Determines which template to open when a workbook gallery is
-     * opened in viewer mode.
-     *
+     * Set the priority property: Priority of the template. Determines which template to open when a workbook gallery
+     * is opened in viewer mode.
+     * 
      * @param priority the priority value to set.
      * @return the WorkbookTemplateProperties object itself.
      */
@@ -75,7 +79,7 @@ public final class WorkbookTemplateProperties {
 
     /**
      * Get the author property: Information about the author of the workbook template.
-     *
+     * 
      * @return the author value.
      */
     public String author() {
@@ -84,7 +88,7 @@ public final class WorkbookTemplateProperties {
 
     /**
      * Set the author property: Information about the author of the workbook template.
-     *
+     * 
      * @param author the author value to set.
      * @return the WorkbookTemplateProperties object itself.
      */
@@ -95,7 +99,7 @@ public final class WorkbookTemplateProperties {
 
     /**
      * Get the templateData property: Valid JSON object containing workbook template payload.
-     *
+     * 
      * @return the templateData value.
      */
     public Object templateData() {
@@ -104,7 +108,7 @@ public final class WorkbookTemplateProperties {
 
     /**
      * Set the templateData property: Valid JSON object containing workbook template payload.
-     *
+     * 
      * @param templateData the templateData value to set.
      * @return the WorkbookTemplateProperties object itself.
      */
@@ -115,7 +119,7 @@ public final class WorkbookTemplateProperties {
 
     /**
      * Get the galleries property: Workbook galleries supported by the template.
-     *
+     * 
      * @return the galleries value.
      */
     public List<WorkbookTemplateGallery> galleries() {
@@ -124,7 +128,7 @@ public final class WorkbookTemplateProperties {
 
     /**
      * Set the galleries property: Workbook galleries supported by the template.
-     *
+     * 
      * @param galleries the galleries value to set.
      * @return the WorkbookTemplateProperties object itself.
      */
@@ -136,7 +140,7 @@ public final class WorkbookTemplateProperties {
     /**
      * Get the localized property: Key value pair of localized gallery. Each key is the locale code of languages
      * supported by the Azure portal.
-     *
+     * 
      * @return the localized value.
      */
     public Map<String, List<WorkbookTemplateLocalizedGallery>> localized() {
@@ -146,7 +150,7 @@ public final class WorkbookTemplateProperties {
     /**
      * Set the localized property: Key value pair of localized gallery. Each key is the locale code of languages
      * supported by the Azure portal.
-     *
+     * 
      * @param localized the localized value to set.
      * @return the WorkbookTemplateProperties object itself.
      */
@@ -157,33 +161,26 @@ public final class WorkbookTemplateProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (templateData() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property templateData in model WorkbookTemplateProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property templateData in model WorkbookTemplateProperties"));
         }
         if (galleries() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property galleries in model WorkbookTemplateProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property galleries in model WorkbookTemplateProperties"));
         } else {
             galleries().forEach(e -> e.validate());
         }
         if (localized() != null) {
-            localized()
-                .values()
-                .forEach(
-                    e -> {
-                        if (e != null) {
-                            e.forEach(e1 -> e1.validate());
-                        }
-                    });
+            localized().values().forEach(e -> {
+                if (e != null) {
+                    e.forEach(e1 -> e1.validate());
+                }
+            });
         }
     }
 

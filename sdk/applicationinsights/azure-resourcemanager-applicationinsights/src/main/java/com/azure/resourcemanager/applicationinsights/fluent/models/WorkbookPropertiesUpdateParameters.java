@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Properties that contain a workbook for PATCH operation. */
+/**
+ * Properties that contain a workbook for PATCH operation.
+ */
 @Fluent
 public final class WorkbookPropertiesUpdateParameters {
     /*
@@ -47,13 +49,15 @@ public final class WorkbookPropertiesUpdateParameters {
     @JsonProperty(value = "revision")
     private String revision;
 
-    /** Creates an instance of WorkbookPropertiesUpdateParameters class. */
+    /**
+     * Creates an instance of WorkbookPropertiesUpdateParameters class.
+     */
     public WorkbookPropertiesUpdateParameters() {
     }
 
     /**
      * Get the displayName property: The user-defined name (display name) of the workbook.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -62,7 +66,7 @@ public final class WorkbookPropertiesUpdateParameters {
 
     /**
      * Set the displayName property: The user-defined name (display name) of the workbook.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the WorkbookPropertiesUpdateParameters object itself.
      */
@@ -74,7 +78,7 @@ public final class WorkbookPropertiesUpdateParameters {
     /**
      * Get the serializedData property: Configuration of this particular workbook. Configuration data is a string
      * containing valid JSON.
-     *
+     * 
      * @return the serializedData value.
      */
     public String serializedData() {
@@ -84,7 +88,7 @@ public final class WorkbookPropertiesUpdateParameters {
     /**
      * Set the serializedData property: Configuration of this particular workbook. Configuration data is a string
      * containing valid JSON.
-     *
+     * 
      * @param serializedData the serializedData value to set.
      * @return the WorkbookPropertiesUpdateParameters object itself.
      */
@@ -95,7 +99,7 @@ public final class WorkbookPropertiesUpdateParameters {
 
     /**
      * Get the category property: Workbook category, as defined by the user at creation time.
-     *
+     * 
      * @return the category value.
      */
     public String category() {
@@ -104,7 +108,7 @@ public final class WorkbookPropertiesUpdateParameters {
 
     /**
      * Set the category property: Workbook category, as defined by the user at creation time.
-     *
+     * 
      * @param category the category value to set.
      * @return the WorkbookPropertiesUpdateParameters object itself.
      */
@@ -115,7 +119,7 @@ public final class WorkbookPropertiesUpdateParameters {
 
     /**
      * Get the tags property: A list of 0 or more tags that are associated with this workbook definition.
-     *
+     * 
      * @return the tags value.
      */
     public List<String> tags() {
@@ -124,7 +128,7 @@ public final class WorkbookPropertiesUpdateParameters {
 
     /**
      * Set the tags property: A list of 0 or more tags that are associated with this workbook definition.
-     *
+     * 
      * @param tags the tags value to set.
      * @return the WorkbookPropertiesUpdateParameters object itself.
      */
@@ -135,7 +139,7 @@ public final class WorkbookPropertiesUpdateParameters {
 
     /**
      * Get the description property: The description of the workbook.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -144,7 +148,7 @@ public final class WorkbookPropertiesUpdateParameters {
 
     /**
      * Set the description property: The description of the workbook.
-     *
+     * 
      * @param description the description value to set.
      * @return the WorkbookPropertiesUpdateParameters object itself.
      */
@@ -155,7 +159,7 @@ public final class WorkbookPropertiesUpdateParameters {
 
     /**
      * Get the revision property: The unique revision id for this workbook definition.
-     *
+     * 
      * @return the revision value.
      */
     public String revision() {
@@ -164,7 +168,7 @@ public final class WorkbookPropertiesUpdateParameters {
 
     /**
      * Set the revision property: The unique revision id for this workbook definition.
-     *
+     * 
      * @param revision the revision value to set.
      * @return the WorkbookPropertiesUpdateParameters object itself.
      */
@@ -175,7 +179,7 @@ public final class WorkbookPropertiesUpdateParameters {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -7,7 +7,9 @@ package com.azure.resourcemanager.applicationinsights.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Gallery information for a workbook template. */
+/**
+ * Gallery information for a workbook template.
+ */
 @Fluent
 public final class WorkbookTemplateGallery {
     /*
@@ -40,13 +42,15 @@ public final class WorkbookTemplateGallery {
     @JsonProperty(value = "resourceType")
     private String resourceType;
 
-    /** Creates an instance of WorkbookTemplateGallery class. */
+    /**
+     * Creates an instance of WorkbookTemplateGallery class.
+     */
     public WorkbookTemplateGallery() {
     }
 
     /**
      * Get the name property: Name of the workbook template in the gallery.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -55,7 +59,7 @@ public final class WorkbookTemplateGallery {
 
     /**
      * Set the name property: Name of the workbook template in the gallery.
-     *
+     * 
      * @param name the name value to set.
      * @return the WorkbookTemplateGallery object itself.
      */
@@ -66,7 +70,7 @@ public final class WorkbookTemplateGallery {
 
     /**
      * Get the category property: Category for the gallery.
-     *
+     * 
      * @return the category value.
      */
     public String category() {
@@ -75,7 +79,7 @@ public final class WorkbookTemplateGallery {
 
     /**
      * Set the category property: Category for the gallery.
-     *
+     * 
      * @param category the category value to set.
      * @return the WorkbookTemplateGallery object itself.
      */
@@ -86,7 +90,7 @@ public final class WorkbookTemplateGallery {
 
     /**
      * Get the type property: Type of workbook supported by the workbook template.
-     *
+     * 
      * @return the type value.
      */
     public String type() {
@@ -95,7 +99,7 @@ public final class WorkbookTemplateGallery {
 
     /**
      * Set the type property: Type of workbook supported by the workbook template.
-     *
+     * 
      * @param type the type value to set.
      * @return the WorkbookTemplateGallery object itself.
      */
@@ -106,7 +110,7 @@ public final class WorkbookTemplateGallery {
 
     /**
      * Get the order property: Order of the template within the gallery.
-     *
+     * 
      * @return the order value.
      */
     public Integer order() {
@@ -115,7 +119,7 @@ public final class WorkbookTemplateGallery {
 
     /**
      * Set the order property: Order of the template within the gallery.
-     *
+     * 
      * @param order the order value to set.
      * @return the WorkbookTemplateGallery object itself.
      */
@@ -126,7 +130,7 @@ public final class WorkbookTemplateGallery {
 
     /**
      * Get the resourceType property: Azure resource type supported by the gallery.
-     *
+     * 
      * @return the resourceType value.
      */
     public String resourceType() {
@@ -135,7 +139,7 @@ public final class WorkbookTemplateGallery {
 
     /**
      * Set the resourceType property: Azure resource type supported by the gallery.
-     *
+     * 
      * @param resourceType the resourceType value to set.
      * @return the WorkbookTemplateGallery object itself.
      */
@@ -146,7 +150,7 @@ public final class WorkbookTemplateGallery {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

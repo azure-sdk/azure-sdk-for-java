@@ -7,7 +7,9 @@ package com.azure.resourcemanager.applicationinsights.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Static definitions of the ProactiveDetection configuration rule (same values for all components). */
+/**
+ * Static definitions of the ProactiveDetection configuration rule (same values for all components).
+ */
 @Fluent
 public final class ApplicationInsightsComponentProactiveDetectionConfigurationRuleDefinitions {
     /*
@@ -58,13 +60,15 @@ public final class ApplicationInsightsComponentProactiveDetectionConfigurationRu
     @JsonProperty(value = "SupportsEmailNotifications")
     private Boolean supportsEmailNotifications;
 
-    /** Creates an instance of ApplicationInsightsComponentProactiveDetectionConfigurationRuleDefinitions class. */
+    /**
+     * Creates an instance of ApplicationInsightsComponentProactiveDetectionConfigurationRuleDefinitions class.
+     */
     public ApplicationInsightsComponentProactiveDetectionConfigurationRuleDefinitions() {
     }
 
     /**
      * Get the name property: The rule name.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -73,7 +77,7 @@ public final class ApplicationInsightsComponentProactiveDetectionConfigurationRu
 
     /**
      * Set the name property: The rule name.
-     *
+     * 
      * @param name the name value to set.
      * @return the ApplicationInsightsComponentProactiveDetectionConfigurationRuleDefinitions object itself.
      */
@@ -84,7 +88,7 @@ public final class ApplicationInsightsComponentProactiveDetectionConfigurationRu
 
     /**
      * Get the displayName property: The rule name as it is displayed in UI.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -93,19 +97,19 @@ public final class ApplicationInsightsComponentProactiveDetectionConfigurationRu
 
     /**
      * Set the displayName property: The rule name as it is displayed in UI.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the ApplicationInsightsComponentProactiveDetectionConfigurationRuleDefinitions object itself.
      */
-    public ApplicationInsightsComponentProactiveDetectionConfigurationRuleDefinitions withDisplayName(
-        String displayName) {
+    public ApplicationInsightsComponentProactiveDetectionConfigurationRuleDefinitions
+        withDisplayName(String displayName) {
         this.displayName = displayName;
         return this;
     }
 
     /**
      * Get the description property: The rule description.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -114,19 +118,19 @@ public final class ApplicationInsightsComponentProactiveDetectionConfigurationRu
 
     /**
      * Set the description property: The rule description.
-     *
+     * 
      * @param description the description value to set.
      * @return the ApplicationInsightsComponentProactiveDetectionConfigurationRuleDefinitions object itself.
      */
-    public ApplicationInsightsComponentProactiveDetectionConfigurationRuleDefinitions withDescription(
-        String description) {
+    public ApplicationInsightsComponentProactiveDetectionConfigurationRuleDefinitions
+        withDescription(String description) {
         this.description = description;
         return this;
     }
 
     /**
      * Get the helpUrl property: URL which displays additional info about the proactive detection rule.
-     *
+     * 
      * @return the helpUrl value.
      */
     public String helpUrl() {
@@ -135,7 +139,7 @@ public final class ApplicationInsightsComponentProactiveDetectionConfigurationRu
 
     /**
      * Set the helpUrl property: URL which displays additional info about the proactive detection rule.
-     *
+     * 
      * @param helpUrl the helpUrl value to set.
      * @return the ApplicationInsightsComponentProactiveDetectionConfigurationRuleDefinitions object itself.
      */
@@ -146,7 +150,7 @@ public final class ApplicationInsightsComponentProactiveDetectionConfigurationRu
 
     /**
      * Get the isHidden property: A flag indicating whether the rule is hidden (from the UI).
-     *
+     * 
      * @return the isHidden value.
      */
     public Boolean isHidden() {
@@ -155,7 +159,7 @@ public final class ApplicationInsightsComponentProactiveDetectionConfigurationRu
 
     /**
      * Set the isHidden property: A flag indicating whether the rule is hidden (from the UI).
-     *
+     * 
      * @param isHidden the isHidden value to set.
      * @return the ApplicationInsightsComponentProactiveDetectionConfigurationRuleDefinitions object itself.
      */
@@ -166,7 +170,7 @@ public final class ApplicationInsightsComponentProactiveDetectionConfigurationRu
 
     /**
      * Get the isEnabledByDefault property: A flag indicating whether the rule is enabled by default.
-     *
+     * 
      * @return the isEnabledByDefault value.
      */
     public Boolean isEnabledByDefault() {
@@ -175,19 +179,19 @@ public final class ApplicationInsightsComponentProactiveDetectionConfigurationRu
 
     /**
      * Set the isEnabledByDefault property: A flag indicating whether the rule is enabled by default.
-     *
+     * 
      * @param isEnabledByDefault the isEnabledByDefault value to set.
      * @return the ApplicationInsightsComponentProactiveDetectionConfigurationRuleDefinitions object itself.
      */
-    public ApplicationInsightsComponentProactiveDetectionConfigurationRuleDefinitions withIsEnabledByDefault(
-        Boolean isEnabledByDefault) {
+    public ApplicationInsightsComponentProactiveDetectionConfigurationRuleDefinitions
+        withIsEnabledByDefault(Boolean isEnabledByDefault) {
         this.isEnabledByDefault = isEnabledByDefault;
         return this;
     }
 
     /**
      * Get the isInPreview property: A flag indicating whether the rule is in preview.
-     *
+     * 
      * @return the isInPreview value.
      */
     public Boolean isInPreview() {
@@ -196,12 +200,12 @@ public final class ApplicationInsightsComponentProactiveDetectionConfigurationRu
 
     /**
      * Set the isInPreview property: A flag indicating whether the rule is in preview.
-     *
+     * 
      * @param isInPreview the isInPreview value to set.
      * @return the ApplicationInsightsComponentProactiveDetectionConfigurationRuleDefinitions object itself.
      */
-    public ApplicationInsightsComponentProactiveDetectionConfigurationRuleDefinitions withIsInPreview(
-        Boolean isInPreview) {
+    public ApplicationInsightsComponentProactiveDetectionConfigurationRuleDefinitions
+        withIsInPreview(Boolean isInPreview) {
         this.isInPreview = isInPreview;
         return this;
     }
@@ -209,7 +213,7 @@ public final class ApplicationInsightsComponentProactiveDetectionConfigurationRu
     /**
      * Get the supportsEmailNotifications property: A flag indicating whether email notifications are supported for
      * detections for this rule.
-     *
+     * 
      * @return the supportsEmailNotifications value.
      */
     public Boolean supportsEmailNotifications() {
@@ -219,19 +223,19 @@ public final class ApplicationInsightsComponentProactiveDetectionConfigurationRu
     /**
      * Set the supportsEmailNotifications property: A flag indicating whether email notifications are supported for
      * detections for this rule.
-     *
+     * 
      * @param supportsEmailNotifications the supportsEmailNotifications value to set.
      * @return the ApplicationInsightsComponentProactiveDetectionConfigurationRuleDefinitions object itself.
      */
-    public ApplicationInsightsComponentProactiveDetectionConfigurationRuleDefinitions withSupportsEmailNotifications(
-        Boolean supportsEmailNotifications) {
+    public ApplicationInsightsComponentProactiveDetectionConfigurationRuleDefinitions
+        withSupportsEmailNotifications(Boolean supportsEmailNotifications) {
         this.supportsEmailNotifications = supportsEmailNotifications;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

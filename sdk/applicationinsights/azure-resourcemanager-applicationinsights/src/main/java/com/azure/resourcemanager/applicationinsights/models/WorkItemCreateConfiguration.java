@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** Work item configuration creation payload. */
+/**
+ * Work item configuration creation payload.
+ */
 @Fluent
 public final class WorkItemCreateConfiguration {
     /*
@@ -37,13 +39,15 @@ public final class WorkItemCreateConfiguration {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> workItemProperties;
 
-    /** Creates an instance of WorkItemCreateConfiguration class. */
+    /**
+     * Creates an instance of WorkItemCreateConfiguration class.
+     */
     public WorkItemCreateConfiguration() {
     }
 
     /**
      * Get the connectorId property: Unique connector id.
-     *
+     * 
      * @return the connectorId value.
      */
     public String connectorId() {
@@ -52,7 +56,7 @@ public final class WorkItemCreateConfiguration {
 
     /**
      * Set the connectorId property: Unique connector id.
-     *
+     * 
      * @param connectorId the connectorId value to set.
      * @return the WorkItemCreateConfiguration object itself.
      */
@@ -63,7 +67,7 @@ public final class WorkItemCreateConfiguration {
 
     /**
      * Get the connectorDataConfiguration property: Serialized JSON object for detailed properties.
-     *
+     * 
      * @return the connectorDataConfiguration value.
      */
     public String connectorDataConfiguration() {
@@ -72,7 +76,7 @@ public final class WorkItemCreateConfiguration {
 
     /**
      * Set the connectorDataConfiguration property: Serialized JSON object for detailed properties.
-     *
+     * 
      * @param connectorDataConfiguration the connectorDataConfiguration value to set.
      * @return the WorkItemCreateConfiguration object itself.
      */
@@ -83,7 +87,7 @@ public final class WorkItemCreateConfiguration {
 
     /**
      * Get the validateOnly property: Boolean indicating validate only.
-     *
+     * 
      * @return the validateOnly value.
      */
     public Boolean validateOnly() {
@@ -92,7 +96,7 @@ public final class WorkItemCreateConfiguration {
 
     /**
      * Set the validateOnly property: Boolean indicating validate only.
-     *
+     * 
      * @param validateOnly the validateOnly value to set.
      * @return the WorkItemCreateConfiguration object itself.
      */
@@ -103,7 +107,7 @@ public final class WorkItemCreateConfiguration {
 
     /**
      * Get the workItemProperties property: Custom work item properties.
-     *
+     * 
      * @return the workItemProperties value.
      */
     public Map<String, String> workItemProperties() {
@@ -112,7 +116,7 @@ public final class WorkItemCreateConfiguration {
 
     /**
      * Set the workItemProperties property: Custom work item properties.
-     *
+     * 
      * @param workItemProperties the workItemProperties value to set.
      * @return the WorkItemCreateConfiguration object itself.
      */
@@ -123,7 +127,7 @@ public final class WorkItemCreateConfiguration {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

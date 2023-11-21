@@ -16,7 +16,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** Properties that define an Application Insights component resource. */
+/**
+ * Properties that define an Application Insights component resource.
+ */
 @Fluent
 public final class ApplicationInsightsComponentProperties {
     /*
@@ -178,14 +180,16 @@ public final class ApplicationInsightsComponentProperties {
     @JsonProperty(value = "ForceCustomerStorageForProfiler")
     private Boolean forceCustomerStorageForProfiler;
 
-    /** Creates an instance of ApplicationInsightsComponentProperties class. */
+    /**
+     * Creates an instance of ApplicationInsightsComponentProperties class.
+     */
     public ApplicationInsightsComponentProperties() {
     }
 
     /**
-     * Get the applicationId property: The unique ID of your application. This field mirrors the 'Name' field and cannot
-     * be changed.
-     *
+     * Get the applicationId property: The unique ID of your application. This field mirrors the 'Name' field and
+     * cannot be changed.
+     * 
      * @return the applicationId value.
      */
     public String applicationId() {
@@ -194,7 +198,7 @@ public final class ApplicationInsightsComponentProperties {
 
     /**
      * Get the appId property: Application Insights Unique ID for your Application.
-     *
+     * 
      * @return the appId value.
      */
     public String appId() {
@@ -203,7 +207,7 @@ public final class ApplicationInsightsComponentProperties {
 
     /**
      * Get the name property: Application name.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -212,7 +216,7 @@ public final class ApplicationInsightsComponentProperties {
 
     /**
      * Get the applicationType property: Type of application being monitored.
-     *
+     * 
      * @return the applicationType value.
      */
     public ApplicationType applicationType() {
@@ -221,7 +225,7 @@ public final class ApplicationInsightsComponentProperties {
 
     /**
      * Set the applicationType property: Type of application being monitored.
-     *
+     * 
      * @param applicationType the applicationType value to set.
      * @return the ApplicationInsightsComponentProperties object itself.
      */
@@ -233,7 +237,7 @@ public final class ApplicationInsightsComponentProperties {
     /**
      * Get the flowType property: Used by the Application Insights system to determine what kind of flow this component
      * was created by. This is to be set to 'Bluefield' when creating/updating a component via the REST API.
-     *
+     * 
      * @return the flowType value.
      */
     public FlowType flowType() {
@@ -243,7 +247,7 @@ public final class ApplicationInsightsComponentProperties {
     /**
      * Set the flowType property: Used by the Application Insights system to determine what kind of flow this component
      * was created by. This is to be set to 'Bluefield' when creating/updating a component via the REST API.
-     *
+     * 
      * @param flowType the flowType value to set.
      * @return the ApplicationInsightsComponentProperties object itself.
      */
@@ -255,7 +259,7 @@ public final class ApplicationInsightsComponentProperties {
     /**
      * Get the requestSource property: Describes what tool created this Application Insights component. Customers using
      * this API should set this to the default 'rest'.
-     *
+     * 
      * @return the requestSource value.
      */
     public RequestSource requestSource() {
@@ -265,7 +269,7 @@ public final class ApplicationInsightsComponentProperties {
     /**
      * Set the requestSource property: Describes what tool created this Application Insights component. Customers using
      * this API should set this to the default 'rest'.
-     *
+     * 
      * @param requestSource the requestSource value to set.
      * @return the ApplicationInsightsComponentProperties object itself.
      */
@@ -276,9 +280,9 @@ public final class ApplicationInsightsComponentProperties {
 
     /**
      * Get the instrumentationKey property: Application Insights Instrumentation key. A read-only value that
-     * applications can use to identify the destination for all telemetry sent to Azure Application Insights. This value
-     * will be supplied upon construction of each new Application Insights component.
-     *
+     * applications can use to identify the destination for all telemetry sent to Azure Application Insights. This
+     * value will be supplied upon construction of each new Application Insights component.
+     * 
      * @return the instrumentationKey value.
      */
     public String instrumentationKey() {
@@ -287,7 +291,7 @@ public final class ApplicationInsightsComponentProperties {
 
     /**
      * Get the creationDate property: Creation Date for the Application Insights component, in ISO 8601 format.
-     *
+     * 
      * @return the creationDate value.
      */
     public OffsetDateTime creationDate() {
@@ -296,7 +300,7 @@ public final class ApplicationInsightsComponentProperties {
 
     /**
      * Get the tenantId property: Azure Tenant Id.
-     *
+     * 
      * @return the tenantId value.
      */
     public String tenantId() {
@@ -306,7 +310,7 @@ public final class ApplicationInsightsComponentProperties {
     /**
      * Get the hockeyAppId property: The unique application ID created when a new application is added to HockeyApp,
      * used for communications with HockeyApp.
-     *
+     * 
      * @return the hockeyAppId value.
      */
     public String hockeyAppId() {
@@ -316,7 +320,7 @@ public final class ApplicationInsightsComponentProperties {
     /**
      * Set the hockeyAppId property: The unique application ID created when a new application is added to HockeyApp,
      * used for communications with HockeyApp.
-     *
+     * 
      * @param hockeyAppId the hockeyAppId value to set.
      * @return the ApplicationInsightsComponentProperties object itself.
      */
@@ -328,7 +332,7 @@ public final class ApplicationInsightsComponentProperties {
     /**
      * Get the hockeyAppToken property: Token used to authenticate communications with between Application Insights and
      * HockeyApp.
-     *
+     * 
      * @return the hockeyAppToken value.
      */
     public String hockeyAppToken() {
@@ -337,9 +341,9 @@ public final class ApplicationInsightsComponentProperties {
 
     /**
      * Get the provisioningState property: Current state of this component: whether or not is has been provisioned
-     * within the resource group it is defined. Users cannot change this value but are able to read from it. Values will
-     * include Succeeded, Deploying, Canceled, and Failed.
-     *
+     * within the resource group it is defined. Users cannot change this value but are able to read from it. Values
+     * will include Succeeded, Deploying, Canceled, and Failed.
+     * 
      * @return the provisioningState value.
      */
     public String provisioningState() {
@@ -349,7 +353,7 @@ public final class ApplicationInsightsComponentProperties {
     /**
      * Get the samplingPercentage property: Percentage of the data produced by the application being monitored that is
      * being sampled for Application Insights telemetry.
-     *
+     * 
      * @return the samplingPercentage value.
      */
     public Double samplingPercentage() {
@@ -359,7 +363,7 @@ public final class ApplicationInsightsComponentProperties {
     /**
      * Set the samplingPercentage property: Percentage of the data produced by the application being monitored that is
      * being sampled for Application Insights telemetry.
-     *
+     * 
      * @param samplingPercentage the samplingPercentage value to set.
      * @return the ApplicationInsightsComponentProperties object itself.
      */
@@ -370,7 +374,7 @@ public final class ApplicationInsightsComponentProperties {
 
     /**
      * Get the connectionString property: Application Insights component connection string.
-     *
+     * 
      * @return the connectionString value.
      */
     public String connectionString() {
@@ -379,7 +383,7 @@ public final class ApplicationInsightsComponentProperties {
 
     /**
      * Get the retentionInDays property: Retention period in days.
-     *
+     * 
      * @return the retentionInDays value.
      */
     public Integer retentionInDays() {
@@ -388,7 +392,7 @@ public final class ApplicationInsightsComponentProperties {
 
     /**
      * Set the retentionInDays property: Retention period in days.
-     *
+     * 
      * @param retentionInDays the retentionInDays value to set.
      * @return the ApplicationInsightsComponentProperties object itself.
      */
@@ -399,7 +403,7 @@ public final class ApplicationInsightsComponentProperties {
 
     /**
      * Get the disableIpMasking property: Disable IP masking.
-     *
+     * 
      * @return the disableIpMasking value.
      */
     public Boolean disableIpMasking() {
@@ -408,7 +412,7 @@ public final class ApplicationInsightsComponentProperties {
 
     /**
      * Set the disableIpMasking property: Disable IP masking.
-     *
+     * 
      * @param disableIpMasking the disableIpMasking value to set.
      * @return the ApplicationInsightsComponentProperties object itself.
      */
@@ -419,7 +423,7 @@ public final class ApplicationInsightsComponentProperties {
 
     /**
      * Get the immediatePurgeDataOn30Days property: Purge data immediately after 30 days.
-     *
+     * 
      * @return the immediatePurgeDataOn30Days value.
      */
     public Boolean immediatePurgeDataOn30Days() {
@@ -428,7 +432,7 @@ public final class ApplicationInsightsComponentProperties {
 
     /**
      * Set the immediatePurgeDataOn30Days property: Purge data immediately after 30 days.
-     *
+     * 
      * @param immediatePurgeDataOn30Days the immediatePurgeDataOn30Days value to set.
      * @return the ApplicationInsightsComponentProperties object itself.
      */
@@ -441,7 +445,7 @@ public final class ApplicationInsightsComponentProperties {
      * Get the workspaceResourceId property: Resource Id of the log analytics workspace which the data will be ingested
      * to. This property is required to create an application with this API version. Applications from older versions
      * will not have this property.
-     *
+     * 
      * @return the workspaceResourceId value.
      */
     public String workspaceResourceId() {
@@ -452,7 +456,7 @@ public final class ApplicationInsightsComponentProperties {
      * Set the workspaceResourceId property: Resource Id of the log analytics workspace which the data will be ingested
      * to. This property is required to create an application with this API version. Applications from older versions
      * will not have this property.
-     *
+     * 
      * @param workspaceResourceId the workspaceResourceId value to set.
      * @return the ApplicationInsightsComponentProperties object itself.
      */
@@ -463,7 +467,7 @@ public final class ApplicationInsightsComponentProperties {
 
     /**
      * Get the laMigrationDate property: The date which the component got migrated to LA, in ISO 8601 format.
-     *
+     * 
      * @return the laMigrationDate value.
      */
     public OffsetDateTime laMigrationDate() {
@@ -472,7 +476,7 @@ public final class ApplicationInsightsComponentProperties {
 
     /**
      * Get the privateLinkScopedResources property: List of linked private link scope resources.
-     *
+     * 
      * @return the privateLinkScopedResources value.
      */
     public List<PrivateLinkScopedResource> privateLinkScopedResources() {
@@ -482,7 +486,7 @@ public final class ApplicationInsightsComponentProperties {
     /**
      * Get the publicNetworkAccessForIngestion property: The network access type for accessing Application Insights
      * ingestion.
-     *
+     * 
      * @return the publicNetworkAccessForIngestion value.
      */
     public PublicNetworkAccessType publicNetworkAccessForIngestion() {
@@ -492,19 +496,19 @@ public final class ApplicationInsightsComponentProperties {
     /**
      * Set the publicNetworkAccessForIngestion property: The network access type for accessing Application Insights
      * ingestion.
-     *
+     * 
      * @param publicNetworkAccessForIngestion the publicNetworkAccessForIngestion value to set.
      * @return the ApplicationInsightsComponentProperties object itself.
      */
-    public ApplicationInsightsComponentProperties withPublicNetworkAccessForIngestion(
-        PublicNetworkAccessType publicNetworkAccessForIngestion) {
+    public ApplicationInsightsComponentProperties
+        withPublicNetworkAccessForIngestion(PublicNetworkAccessType publicNetworkAccessForIngestion) {
         this.publicNetworkAccessForIngestion = publicNetworkAccessForIngestion;
         return this;
     }
 
     /**
      * Get the publicNetworkAccessForQuery property: The network access type for accessing Application Insights query.
-     *
+     * 
      * @return the publicNetworkAccessForQuery value.
      */
     public PublicNetworkAccessType publicNetworkAccessForQuery() {
@@ -513,19 +517,19 @@ public final class ApplicationInsightsComponentProperties {
 
     /**
      * Set the publicNetworkAccessForQuery property: The network access type for accessing Application Insights query.
-     *
+     * 
      * @param publicNetworkAccessForQuery the publicNetworkAccessForQuery value to set.
      * @return the ApplicationInsightsComponentProperties object itself.
      */
-    public ApplicationInsightsComponentProperties withPublicNetworkAccessForQuery(
-        PublicNetworkAccessType publicNetworkAccessForQuery) {
+    public ApplicationInsightsComponentProperties
+        withPublicNetworkAccessForQuery(PublicNetworkAccessType publicNetworkAccessForQuery) {
         this.publicNetworkAccessForQuery = publicNetworkAccessForQuery;
         return this;
     }
 
     /**
      * Get the ingestionMode property: Indicates the flow of the ingestion.
-     *
+     * 
      * @return the ingestionMode value.
      */
     public IngestionMode ingestionMode() {
@@ -534,7 +538,7 @@ public final class ApplicationInsightsComponentProperties {
 
     /**
      * Set the ingestionMode property: Indicates the flow of the ingestion.
-     *
+     * 
      * @param ingestionMode the ingestionMode value to set.
      * @return the ApplicationInsightsComponentProperties object itself.
      */
@@ -545,7 +549,7 @@ public final class ApplicationInsightsComponentProperties {
 
     /**
      * Get the disableLocalAuth property: Disable Non-AAD based Auth.
-     *
+     * 
      * @return the disableLocalAuth value.
      */
     public Boolean disableLocalAuth() {
@@ -554,7 +558,7 @@ public final class ApplicationInsightsComponentProperties {
 
     /**
      * Set the disableLocalAuth property: Disable Non-AAD based Auth.
-     *
+     * 
      * @param disableLocalAuth the disableLocalAuth value to set.
      * @return the ApplicationInsightsComponentProperties object itself.
      */
@@ -566,7 +570,7 @@ public final class ApplicationInsightsComponentProperties {
     /**
      * Get the forceCustomerStorageForProfiler property: Force users to create their own storage account for profiler
      * and debugger.
-     *
+     * 
      * @return the forceCustomerStorageForProfiler value.
      */
     public Boolean forceCustomerStorageForProfiler() {
@@ -576,27 +580,25 @@ public final class ApplicationInsightsComponentProperties {
     /**
      * Set the forceCustomerStorageForProfiler property: Force users to create their own storage account for profiler
      * and debugger.
-     *
+     * 
      * @param forceCustomerStorageForProfiler the forceCustomerStorageForProfiler value to set.
      * @return the ApplicationInsightsComponentProperties object itself.
      */
-    public ApplicationInsightsComponentProperties withForceCustomerStorageForProfiler(
-        Boolean forceCustomerStorageForProfiler) {
+    public ApplicationInsightsComponentProperties
+        withForceCustomerStorageForProfiler(Boolean forceCustomerStorageForProfiler) {
         this.forceCustomerStorageForProfiler = forceCustomerStorageForProfiler;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (applicationType() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property applicationType in model ApplicationInsightsComponentProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property applicationType in model ApplicationInsightsComponentProperties"));
         }
         if (privateLinkScopedResources() != null) {
             privateLinkScopedResources().forEach(e -> e.validate());

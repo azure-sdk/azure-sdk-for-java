@@ -15,7 +15,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
 
-/** An Application Insights WebTest definition. */
+/**
+ * An Application Insights WebTest definition.
+ */
 @Fluent
 public final class WebTestInner extends WebtestsResource {
     /*
@@ -30,13 +32,15 @@ public final class WebTestInner extends WebtestsResource {
     @JsonProperty(value = "properties")
     private WebTestProperties innerProperties;
 
-    /** Creates an instance of WebTestInner class. */
+    /**
+     * Creates an instance of WebTestInner class.
+     */
     public WebTestInner() {
     }
 
     /**
      * Get the kind property: The kind of WebTest that this web test watches. Choices are ping, multistep and standard.
-     *
+     * 
      * @return the kind value.
      */
     public WebTestKind kind() {
@@ -45,7 +49,7 @@ public final class WebTestInner extends WebtestsResource {
 
     /**
      * Set the kind property: The kind of WebTest that this web test watches. Choices are ping, multistep and standard.
-     *
+     * 
      * @param kind the kind value to set.
      * @return the WebTestInner object itself.
      */
@@ -56,21 +60,25 @@ public final class WebTestInner extends WebtestsResource {
 
     /**
      * Get the innerProperties property: Metadata describing a web test for an Azure resource.
-     *
+     * 
      * @return the innerProperties value.
      */
     private WebTestProperties innerProperties() {
         return this.innerProperties;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public WebTestInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public WebTestInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -80,7 +88,7 @@ public final class WebTestInner extends WebtestsResource {
     /**
      * Get the syntheticMonitorId property: Unique ID of this WebTest. This is typically the same value as the Name
      * field.
-     *
+     * 
      * @return the syntheticMonitorId value.
      */
     public String syntheticMonitorId() {
@@ -90,7 +98,7 @@ public final class WebTestInner extends WebtestsResource {
     /**
      * Set the syntheticMonitorId property: Unique ID of this WebTest. This is typically the same value as the Name
      * field.
-     *
+     * 
      * @param syntheticMonitorId the syntheticMonitorId value to set.
      * @return the WebTestInner object itself.
      */
@@ -104,7 +112,7 @@ public final class WebTestInner extends WebtestsResource {
 
     /**
      * Get the webTestName property: User defined name if this WebTest.
-     *
+     * 
      * @return the webTestName value.
      */
     public String webTestName() {
@@ -113,7 +121,7 @@ public final class WebTestInner extends WebtestsResource {
 
     /**
      * Set the webTestName property: User defined name if this WebTest.
-     *
+     * 
      * @param webTestName the webTestName value to set.
      * @return the WebTestInner object itself.
      */
@@ -127,7 +135,7 @@ public final class WebTestInner extends WebtestsResource {
 
     /**
      * Get the description property: User defined description for this WebTest.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -136,7 +144,7 @@ public final class WebTestInner extends WebtestsResource {
 
     /**
      * Set the description property: User defined description for this WebTest.
-     *
+     * 
      * @param description the description value to set.
      * @return the WebTestInner object itself.
      */
@@ -150,7 +158,7 @@ public final class WebTestInner extends WebtestsResource {
 
     /**
      * Get the enabled property: Is the test actively being monitored.
-     *
+     * 
      * @return the enabled value.
      */
     public Boolean enabled() {
@@ -159,7 +167,7 @@ public final class WebTestInner extends WebtestsResource {
 
     /**
      * Set the enabled property: Is the test actively being monitored.
-     *
+     * 
      * @param enabled the enabled value to set.
      * @return the WebTestInner object itself.
      */
@@ -173,7 +181,7 @@ public final class WebTestInner extends WebtestsResource {
 
     /**
      * Get the frequency property: Interval in seconds between test runs for this WebTest. Default value is 300.
-     *
+     * 
      * @return the frequency value.
      */
     public Integer frequency() {
@@ -182,7 +190,7 @@ public final class WebTestInner extends WebtestsResource {
 
     /**
      * Set the frequency property: Interval in seconds between test runs for this WebTest. Default value is 300.
-     *
+     * 
      * @param frequency the frequency value to set.
      * @return the WebTestInner object itself.
      */
@@ -196,7 +204,7 @@ public final class WebTestInner extends WebtestsResource {
 
     /**
      * Get the timeout property: Seconds until this WebTest will timeout and fail. Default value is 30.
-     *
+     * 
      * @return the timeout value.
      */
     public Integer timeout() {
@@ -205,7 +213,7 @@ public final class WebTestInner extends WebtestsResource {
 
     /**
      * Set the timeout property: Seconds until this WebTest will timeout and fail. Default value is 30.
-     *
+     * 
      * @param timeout the timeout value to set.
      * @return the WebTestInner object itself.
      */
@@ -219,7 +227,7 @@ public final class WebTestInner extends WebtestsResource {
 
     /**
      * Get the webTestKind property: The kind of web test this is, valid choices are ping, multistep and standard.
-     *
+     * 
      * @return the webTestKind value.
      */
     public WebTestKind webTestKind() {
@@ -228,7 +236,7 @@ public final class WebTestInner extends WebtestsResource {
 
     /**
      * Set the webTestKind property: The kind of web test this is, valid choices are ping, multistep and standard.
-     *
+     * 
      * @param webTestKind the webTestKind value to set.
      * @return the WebTestInner object itself.
      */
@@ -242,7 +250,7 @@ public final class WebTestInner extends WebtestsResource {
 
     /**
      * Get the retryEnabled property: Allow for retries should this WebTest fail.
-     *
+     * 
      * @return the retryEnabled value.
      */
     public Boolean retryEnabled() {
@@ -251,7 +259,7 @@ public final class WebTestInner extends WebtestsResource {
 
     /**
      * Set the retryEnabled property: Allow for retries should this WebTest fail.
-     *
+     * 
      * @param retryEnabled the retryEnabled value to set.
      * @return the WebTestInner object itself.
      */
@@ -266,7 +274,7 @@ public final class WebTestInner extends WebtestsResource {
     /**
      * Get the locations property: A list of where to physically run the tests from to give global coverage for
      * accessibility of your application.
-     *
+     * 
      * @return the locations value.
      */
     public List<WebTestGeolocation> locations() {
@@ -276,7 +284,7 @@ public final class WebTestInner extends WebtestsResource {
     /**
      * Set the locations property: A list of where to physically run the tests from to give global coverage for
      * accessibility of your application.
-     *
+     * 
      * @param locations the locations value to set.
      * @return the WebTestInner object itself.
      */
@@ -290,7 +298,7 @@ public final class WebTestInner extends WebtestsResource {
 
     /**
      * Get the configuration property: An XML configuration specification for a WebTest.
-     *
+     * 
      * @return the configuration value.
      */
     public WebTestPropertiesConfiguration configuration() {
@@ -299,7 +307,7 @@ public final class WebTestInner extends WebtestsResource {
 
     /**
      * Set the configuration property: An XML configuration specification for a WebTest.
-     *
+     * 
      * @param configuration the configuration value to set.
      * @return the WebTestInner object itself.
      */
@@ -313,9 +321,9 @@ public final class WebTestInner extends WebtestsResource {
 
     /**
      * Get the provisioningState property: Current state of this component, whether or not is has been provisioned
-     * within the resource group it is defined. Users cannot change this value but are able to read from it. Values will
-     * include Succeeded, Deploying, Canceled, and Failed.
-     *
+     * within the resource group it is defined. Users cannot change this value but are able to read from it. Values
+     * will include Succeeded, Deploying, Canceled, and Failed.
+     * 
      * @return the provisioningState value.
      */
     public String provisioningState() {
@@ -324,7 +332,7 @@ public final class WebTestInner extends WebtestsResource {
 
     /**
      * Get the request property: The collection of request properties.
-     *
+     * 
      * @return the request value.
      */
     public WebTestPropertiesRequest request() {
@@ -333,7 +341,7 @@ public final class WebTestInner extends WebtestsResource {
 
     /**
      * Set the request property: The collection of request properties.
-     *
+     * 
      * @param request the request value to set.
      * @return the WebTestInner object itself.
      */
@@ -347,7 +355,7 @@ public final class WebTestInner extends WebtestsResource {
 
     /**
      * Get the validationRules property: The collection of validation rule properties.
-     *
+     * 
      * @return the validationRules value.
      */
     public WebTestPropertiesValidationRules validationRules() {
@@ -356,7 +364,7 @@ public final class WebTestInner extends WebtestsResource {
 
     /**
      * Set the validationRules property: The collection of validation rule properties.
-     *
+     * 
      * @param validationRules the validationRules value to set.
      * @return the WebTestInner object itself.
      */
@@ -370,7 +378,7 @@ public final class WebTestInner extends WebtestsResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

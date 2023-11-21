@@ -9,7 +9,9 @@ import com.azure.resourcemanager.applicationinsights.fluent.models.AnnotationInn
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Annotations list result. */
+/**
+ * Annotations list result.
+ */
 @Immutable
 public final class AnnotationsListResult {
     /*
@@ -18,13 +20,15 @@ public final class AnnotationsListResult {
     @JsonProperty(value = "value", access = JsonProperty.Access.WRITE_ONLY)
     private List<AnnotationInner> value;
 
-    /** Creates an instance of AnnotationsListResult class. */
+    /**
+     * Creates an instance of AnnotationsListResult class.
+     */
     public AnnotationsListResult() {
     }
 
     /**
      * Get the value property: An array of annotations.
-     *
+     * 
      * @return the value value.
      */
     public List<AnnotationInner> value() {
@@ -33,7 +37,7 @@ public final class AnnotationsListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

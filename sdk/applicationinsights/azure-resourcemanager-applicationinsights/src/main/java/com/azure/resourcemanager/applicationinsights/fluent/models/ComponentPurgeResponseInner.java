@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Response containing operationId for a specific purge action. */
+/**
+ * Response containing operationId for a specific purge action.
+ */
 @Fluent
 public final class ComponentPurgeResponseInner {
     /*
@@ -17,13 +19,15 @@ public final class ComponentPurgeResponseInner {
     @JsonProperty(value = "operationId", required = true)
     private String operationId;
 
-    /** Creates an instance of ComponentPurgeResponseInner class. */
+    /**
+     * Creates an instance of ComponentPurgeResponseInner class.
+     */
     public ComponentPurgeResponseInner() {
     }
 
     /**
      * Get the operationId property: Id to use when querying for status for a particular purge operation.
-     *
+     * 
      * @return the operationId value.
      */
     public String operationId() {
@@ -32,7 +36,7 @@ public final class ComponentPurgeResponseInner {
 
     /**
      * Set the operationId property: Id to use when querying for status for a particular purge operation.
-     *
+     * 
      * @param operationId the operationId value to set.
      * @return the ComponentPurgeResponseInner object itself.
      */
@@ -43,15 +47,13 @@ public final class ComponentPurgeResponseInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (operationId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property operationId in model ComponentPurgeResponseInner"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property operationId in model ComponentPurgeResponseInner"));
         }
     }
 

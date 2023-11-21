@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.azure.core.management.exception.ManagementError;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Error associated with trying to create annotation with Id that already exist. */
+/**
+ * Error associated with trying to create annotation with Id that already exist.
+ */
 @Immutable
 public final class AnnotationError extends ManagementError {
     /*
@@ -17,13 +19,15 @@ public final class AnnotationError extends ManagementError {
     @JsonProperty(value = "innererror", access = JsonProperty.Access.WRITE_ONLY)
     private InnerError innererror;
 
-    /** Creates an instance of AnnotationError class. */
+    /**
+     * Creates an instance of AnnotationError class.
+     */
     public AnnotationError() {
     }
 
     /**
      * Get the innererror property: Inner error.
-     *
+     * 
      * @return the innererror value.
      */
     public InnerError getInnererror() {
@@ -32,7 +36,7 @@ public final class AnnotationError extends ManagementError {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

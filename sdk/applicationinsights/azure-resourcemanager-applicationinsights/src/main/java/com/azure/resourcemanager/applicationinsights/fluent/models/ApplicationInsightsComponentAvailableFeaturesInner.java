@@ -9,7 +9,9 @@ import com.azure.resourcemanager.applicationinsights.models.ApplicationInsightsC
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** An Application Insights component available features. */
+/**
+ * An Application Insights component available features.
+ */
 @Immutable
 public final class ApplicationInsightsComponentAvailableFeaturesInner {
     /*
@@ -18,13 +20,15 @@ public final class ApplicationInsightsComponentAvailableFeaturesInner {
     @JsonProperty(value = "Result", access = JsonProperty.Access.WRITE_ONLY)
     private List<ApplicationInsightsComponentFeature> result;
 
-    /** Creates an instance of ApplicationInsightsComponentAvailableFeaturesInner class. */
+    /**
+     * Creates an instance of ApplicationInsightsComponentAvailableFeaturesInner class.
+     */
     public ApplicationInsightsComponentAvailableFeaturesInner() {
     }
 
     /**
      * Get the result property: A list of Application Insights component feature.
-     *
+     * 
      * @return the result value.
      */
     public List<ApplicationInsightsComponentFeature> result() {
@@ -33,7 +37,7 @@ public final class ApplicationInsightsComponentAvailableFeaturesInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

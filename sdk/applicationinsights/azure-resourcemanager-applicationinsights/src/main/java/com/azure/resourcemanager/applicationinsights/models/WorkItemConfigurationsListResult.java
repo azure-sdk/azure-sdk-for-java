@@ -9,7 +9,9 @@ import com.azure.resourcemanager.applicationinsights.fluent.models.WorkItemConfi
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Work item configuration list result. */
+/**
+ * Work item configuration list result.
+ */
 @Immutable
 public final class WorkItemConfigurationsListResult {
     /*
@@ -18,13 +20,15 @@ public final class WorkItemConfigurationsListResult {
     @JsonProperty(value = "value", access = JsonProperty.Access.WRITE_ONLY)
     private List<WorkItemConfigurationInner> value;
 
-    /** Creates an instance of WorkItemConfigurationsListResult class. */
+    /**
+     * Creates an instance of WorkItemConfigurationsListResult class.
+     */
     public WorkItemConfigurationsListResult() {
     }
 
     /**
      * Get the value property: An array of work item configurations.
-     *
+     * 
      * @return the value value.
      */
     public List<WorkItemConfigurationInner> value() {
@@ -33,7 +37,7 @@ public final class WorkItemConfigurationsListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

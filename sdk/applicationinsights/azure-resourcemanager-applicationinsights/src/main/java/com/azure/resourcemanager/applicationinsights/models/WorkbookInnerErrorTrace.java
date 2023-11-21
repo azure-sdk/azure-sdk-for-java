@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Error details. */
+/**
+ * Error details.
+ */
 @Immutable
 public final class WorkbookInnerErrorTrace {
     /*
@@ -17,13 +19,15 @@ public final class WorkbookInnerErrorTrace {
     @JsonProperty(value = "trace", access = JsonProperty.Access.WRITE_ONLY)
     private List<String> trace;
 
-    /** Creates an instance of WorkbookInnerErrorTrace class. */
+    /**
+     * Creates an instance of WorkbookInnerErrorTrace class.
+     */
     public WorkbookInnerErrorTrace() {
     }
 
     /**
      * Get the trace property: detailed error trace.
-     *
+     * 
      * @return the trace value.
      */
     public List<String> trace() {
@@ -32,7 +36,7 @@ public final class WorkbookInnerErrorTrace {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

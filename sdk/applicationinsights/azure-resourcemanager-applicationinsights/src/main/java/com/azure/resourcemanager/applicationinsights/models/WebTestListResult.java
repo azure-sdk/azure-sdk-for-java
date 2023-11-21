@@ -10,7 +10,9 @@ import com.azure.resourcemanager.applicationinsights.fluent.models.WebTestInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** A list of 0 or more Application Insights WebTest definitions. */
+/**
+ * A list of 0 or more Application Insights WebTest definitions.
+ */
 @Fluent
 public final class WebTestListResult {
     /*
@@ -26,13 +28,15 @@ public final class WebTestListResult {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of WebTestListResult class. */
+    /**
+     * Creates an instance of WebTestListResult class.
+     */
     public WebTestListResult() {
     }
 
     /**
      * Get the value property: Set of Application Insights WebTest definitions.
-     *
+     * 
      * @return the value value.
      */
     public List<WebTestInner> value() {
@@ -41,7 +45,7 @@ public final class WebTestListResult {
 
     /**
      * Set the value property: Set of Application Insights WebTest definitions.
-     *
+     * 
      * @param value the value value to set.
      * @return the WebTestListResult object itself.
      */
@@ -53,7 +57,7 @@ public final class WebTestListResult {
     /**
      * Get the nextLink property: The link to get the next part of the returned list of WebTest, should the return set
      * be too large for a single request. May be null.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -63,7 +67,7 @@ public final class WebTestListResult {
     /**
      * Set the nextLink property: The link to get the next part of the returned list of WebTest, should the return set
      * be too large for a single request. May be null.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the WebTestListResult object itself.
      */
@@ -74,14 +78,13 @@ public final class WebTestListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property value in model WebTestListResult"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property value in model WebTestListResult"));
         } else {
             value().forEach(e -> e.validate());
         }

@@ -7,7 +7,9 @@ package com.azure.resourcemanager.applicationinsights.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** An XML configuration specification for a WebTest. */
+/**
+ * An XML configuration specification for a WebTest.
+ */
 @Fluent
 public final class WebTestPropertiesConfiguration {
     /*
@@ -16,13 +18,15 @@ public final class WebTestPropertiesConfiguration {
     @JsonProperty(value = "WebTest")
     private String webTest;
 
-    /** Creates an instance of WebTestPropertiesConfiguration class. */
+    /**
+     * Creates an instance of WebTestPropertiesConfiguration class.
+     */
     public WebTestPropertiesConfiguration() {
     }
 
     /**
      * Get the webTest property: The XML specification of a WebTest to run against an application.
-     *
+     * 
      * @return the webTest value.
      */
     public String webTest() {
@@ -31,7 +35,7 @@ public final class WebTestPropertiesConfiguration {
 
     /**
      * Set the webTest property: The XML specification of a WebTest to run against an application.
-     *
+     * 
      * @param webTest the webTest value to set.
      * @return the WebTestPropertiesConfiguration object itself.
      */
@@ -42,7 +46,7 @@ public final class WebTestPropertiesConfiguration {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

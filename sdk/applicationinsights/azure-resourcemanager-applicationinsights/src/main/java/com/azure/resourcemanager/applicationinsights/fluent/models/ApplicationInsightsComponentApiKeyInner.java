@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Properties that define an API key of an Application Insights Component. */
+/**
+ * Properties that define an API key of an Application Insights Component.
+ */
 @Fluent
 public final class ApplicationInsightsComponentApiKeyInner {
     /*
@@ -48,14 +50,16 @@ public final class ApplicationInsightsComponentApiKeyInner {
     @JsonProperty(value = "linkedWriteProperties")
     private List<String> linkedWriteProperties;
 
-    /** Creates an instance of ApplicationInsightsComponentApiKeyInner class. */
+    /**
+     * Creates an instance of ApplicationInsightsComponentApiKeyInner class.
+     */
     public ApplicationInsightsComponentApiKeyInner() {
     }
 
     /**
      * Get the id property: The unique ID of the API key inside an Application Insights component. It is auto generated
      * when the API key is created.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -64,7 +68,7 @@ public final class ApplicationInsightsComponentApiKeyInner {
 
     /**
      * Get the apiKey property: The API key value. It will be only return once when the API Key was created.
-     *
+     * 
      * @return the apiKey value.
      */
     public String apiKey() {
@@ -73,7 +77,7 @@ public final class ApplicationInsightsComponentApiKeyInner {
 
     /**
      * Get the createdDate property: The create date of this API key.
-     *
+     * 
      * @return the createdDate value.
      */
     public String createdDate() {
@@ -82,7 +86,7 @@ public final class ApplicationInsightsComponentApiKeyInner {
 
     /**
      * Set the createdDate property: The create date of this API key.
-     *
+     * 
      * @param createdDate the createdDate value to set.
      * @return the ApplicationInsightsComponentApiKeyInner object itself.
      */
@@ -93,7 +97,7 @@ public final class ApplicationInsightsComponentApiKeyInner {
 
     /**
      * Get the name property: The name of the API key.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -102,7 +106,7 @@ public final class ApplicationInsightsComponentApiKeyInner {
 
     /**
      * Set the name property: The name of the API key.
-     *
+     * 
      * @param name the name value to set.
      * @return the ApplicationInsightsComponentApiKeyInner object itself.
      */
@@ -113,7 +117,7 @@ public final class ApplicationInsightsComponentApiKeyInner {
 
     /**
      * Get the linkedReadProperties property: The read access rights of this API Key.
-     *
+     * 
      * @return the linkedReadProperties value.
      */
     public List<String> linkedReadProperties() {
@@ -122,7 +126,7 @@ public final class ApplicationInsightsComponentApiKeyInner {
 
     /**
      * Set the linkedReadProperties property: The read access rights of this API Key.
-     *
+     * 
      * @param linkedReadProperties the linkedReadProperties value to set.
      * @return the ApplicationInsightsComponentApiKeyInner object itself.
      */
@@ -133,7 +137,7 @@ public final class ApplicationInsightsComponentApiKeyInner {
 
     /**
      * Get the linkedWriteProperties property: The write access rights of this API Key.
-     *
+     * 
      * @return the linkedWriteProperties value.
      */
     public List<String> linkedWriteProperties() {
@@ -142,7 +146,7 @@ public final class ApplicationInsightsComponentApiKeyInner {
 
     /**
      * Set the linkedWriteProperties property: The write access rights of this API Key.
-     *
+     * 
      * @param linkedWriteProperties the linkedWriteProperties value to set.
      * @return the ApplicationInsightsComponentApiKeyInner object itself.
      */
@@ -153,7 +157,7 @@ public final class ApplicationInsightsComponentApiKeyInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

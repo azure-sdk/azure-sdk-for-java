@@ -9,11 +9,6 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.applicationinsights.models.ErrorDefinitionException",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
   "name" : "com.azure.resourcemanager.applicationinsights.models.WorkbookErrorDefinitionException",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
@@ -304,41 +299,6 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.applicationinsights.models.MyWorkbooksListResult",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.applicationinsights.fluent.models.MyWorkbookInner",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.applicationinsights.fluent.models.MyWorkbookProperties",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.applicationinsights.models.MyWorkbookResource",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.applicationinsights.models.MyWorkbookManagedIdentity",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.applicationinsights.models.MyWorkbookUserAssignedIdentities",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.applicationinsights.models.ErrorDefinition",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
   "name" : "com.azure.resourcemanager.applicationinsights.models.WorkbooksListResult",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
@@ -395,6 +355,21 @@
   "allDeclaredMethods" : true
 }, {
   "name" : "com.azure.resourcemanager.applicationinsights.fluent.models.LiveTokenResponseInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.applicationinsights.fluent.models.ComponentLinkedStorageAccountsInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.applicationinsights.fluent.models.LinkedStorageAccountsProperties",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.applicationinsights.models.ComponentLinkedStorageAccountsPatch",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
@@ -459,16 +434,6 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.applicationinsights.models.Kind",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.applicationinsights.models.MyWorkbookManagedIdentityType",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
   "name" : "com.azure.resourcemanager.applicationinsights.models.ManagedServiceIdentityType",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
@@ -480,6 +445,11 @@
   "allDeclaredMethods" : true
 }, {
   "name" : "com.azure.resourcemanager.applicationinsights.models.WorkbookUpdateSharedTypeKind",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.applicationinsights.models.StorageType",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true

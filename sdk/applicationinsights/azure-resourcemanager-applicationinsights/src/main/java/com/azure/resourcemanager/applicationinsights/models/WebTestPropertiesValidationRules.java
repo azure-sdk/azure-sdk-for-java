@@ -7,7 +7,9 @@ package com.azure.resourcemanager.applicationinsights.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The collection of validation rule properties. */
+/**
+ * The collection of validation rule properties.
+ */
 @Fluent
 public final class WebTestPropertiesValidationRules {
     /*
@@ -23,7 +25,7 @@ public final class WebTestPropertiesValidationRules {
     private Boolean sslCheck;
 
     /*
-     * A number of days to check still remain before the the existing SSL cert expires.  Value must be positive and the
+     * A number of days to check still remain before the the existing SSL cert expires. Value must be positive and the
      * SSLCheck must be set to true.
      */
     @JsonProperty(value = "SSLCertRemainingLifetimeCheck")
@@ -41,13 +43,15 @@ public final class WebTestPropertiesValidationRules {
     @JsonProperty(value = "IgnoreHttpStatusCode")
     private Boolean ignoreHttpStatusCode;
 
-    /** Creates an instance of WebTestPropertiesValidationRules class. */
+    /**
+     * Creates an instance of WebTestPropertiesValidationRules class.
+     */
     public WebTestPropertiesValidationRules() {
     }
 
     /**
      * Get the contentValidation property: The collection of content validation properties.
-     *
+     * 
      * @return the contentValidation value.
      */
     public WebTestPropertiesValidationRulesContentValidation contentValidation() {
@@ -56,19 +60,19 @@ public final class WebTestPropertiesValidationRules {
 
     /**
      * Set the contentValidation property: The collection of content validation properties.
-     *
+     * 
      * @param contentValidation the contentValidation value to set.
      * @return the WebTestPropertiesValidationRules object itself.
      */
-    public WebTestPropertiesValidationRules withContentValidation(
-        WebTestPropertiesValidationRulesContentValidation contentValidation) {
+    public WebTestPropertiesValidationRules
+        withContentValidation(WebTestPropertiesValidationRulesContentValidation contentValidation) {
         this.contentValidation = contentValidation;
         return this;
     }
 
     /**
      * Get the sslCheck property: Checks to see if the SSL cert is still valid.
-     *
+     * 
      * @return the sslCheck value.
      */
     public Boolean sslCheck() {
@@ -77,7 +81,7 @@ public final class WebTestPropertiesValidationRules {
 
     /**
      * Set the sslCheck property: Checks to see if the SSL cert is still valid.
-     *
+     * 
      * @param sslCheck the sslCheck value to set.
      * @return the WebTestPropertiesValidationRules object itself.
      */
@@ -89,7 +93,7 @@ public final class WebTestPropertiesValidationRules {
     /**
      * Get the sslCertRemainingLifetimeCheck property: A number of days to check still remain before the the existing
      * SSL cert expires. Value must be positive and the SSLCheck must be set to true.
-     *
+     * 
      * @return the sslCertRemainingLifetimeCheck value.
      */
     public Integer sslCertRemainingLifetimeCheck() {
@@ -99,7 +103,7 @@ public final class WebTestPropertiesValidationRules {
     /**
      * Set the sslCertRemainingLifetimeCheck property: A number of days to check still remain before the the existing
      * SSL cert expires. Value must be positive and the SSLCheck must be set to true.
-     *
+     * 
      * @param sslCertRemainingLifetimeCheck the sslCertRemainingLifetimeCheck value to set.
      * @return the WebTestPropertiesValidationRules object itself.
      */
@@ -110,7 +114,7 @@ public final class WebTestPropertiesValidationRules {
 
     /**
      * Get the expectedHttpStatusCode property: Validate that the WebTest returns the http status code provided.
-     *
+     * 
      * @return the expectedHttpStatusCode value.
      */
     public Integer expectedHttpStatusCode() {
@@ -119,7 +123,7 @@ public final class WebTestPropertiesValidationRules {
 
     /**
      * Set the expectedHttpStatusCode property: Validate that the WebTest returns the http status code provided.
-     *
+     * 
      * @param expectedHttpStatusCode the expectedHttpStatusCode value to set.
      * @return the WebTestPropertiesValidationRules object itself.
      */
@@ -130,7 +134,7 @@ public final class WebTestPropertiesValidationRules {
 
     /**
      * Get the ignoreHttpStatusCode property: When set, validation will ignore the status code.
-     *
+     * 
      * @return the ignoreHttpStatusCode value.
      */
     public Boolean ignoreHttpStatusCode() {
@@ -139,7 +143,7 @@ public final class WebTestPropertiesValidationRules {
 
     /**
      * Set the ignoreHttpStatusCode property: When set, validation will ignore the status code.
-     *
+     * 
      * @param ignoreHttpStatusCode the ignoreHttpStatusCode value to set.
      * @return the WebTestPropertiesValidationRules object itself.
      */
@@ -150,7 +154,7 @@ public final class WebTestPropertiesValidationRules {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
