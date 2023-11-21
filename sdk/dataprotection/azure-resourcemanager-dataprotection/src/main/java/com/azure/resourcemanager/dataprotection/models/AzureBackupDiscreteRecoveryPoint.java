@@ -14,8 +14,8 @@ import java.util.List;
 
 /**
  * AzureBackupDiscreteRecoveryPoint
- *
- * <p>Azure backup discrete RecoveryPoint.
+ * 
+ * Azure backup discrete RecoveryPoint.
  */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "objectType")
 @JsonTypeName("AzureBackupDiscreteRecoveryPoint")
@@ -81,13 +81,15 @@ public final class AzureBackupDiscreteRecoveryPoint extends AzureBackupRecoveryP
     @JsonProperty(value = "expiryTime", access = JsonProperty.Access.WRITE_ONLY)
     private OffsetDateTime expiryTime;
 
-    /** Creates an instance of AzureBackupDiscreteRecoveryPoint class. */
+    /**
+     * Creates an instance of AzureBackupDiscreteRecoveryPoint class.
+     */
     public AzureBackupDiscreteRecoveryPoint() {
     }
 
     /**
      * Get the friendlyName property: The friendlyName property.
-     *
+     * 
      * @return the friendlyName value.
      */
     public String friendlyName() {
@@ -96,7 +98,7 @@ public final class AzureBackupDiscreteRecoveryPoint extends AzureBackupRecoveryP
 
     /**
      * Set the friendlyName property: The friendlyName property.
-     *
+     * 
      * @param friendlyName the friendlyName value to set.
      * @return the AzureBackupDiscreteRecoveryPoint object itself.
      */
@@ -107,7 +109,7 @@ public final class AzureBackupDiscreteRecoveryPoint extends AzureBackupRecoveryP
 
     /**
      * Get the recoveryPointDataStoresDetails property: The recoveryPointDataStoresDetails property.
-     *
+     * 
      * @return the recoveryPointDataStoresDetails value.
      */
     public List<RecoveryPointDataStoreDetails> recoveryPointDataStoresDetails() {
@@ -116,19 +118,19 @@ public final class AzureBackupDiscreteRecoveryPoint extends AzureBackupRecoveryP
 
     /**
      * Set the recoveryPointDataStoresDetails property: The recoveryPointDataStoresDetails property.
-     *
+     * 
      * @param recoveryPointDataStoresDetails the recoveryPointDataStoresDetails value to set.
      * @return the AzureBackupDiscreteRecoveryPoint object itself.
      */
-    public AzureBackupDiscreteRecoveryPoint withRecoveryPointDataStoresDetails(
-        List<RecoveryPointDataStoreDetails> recoveryPointDataStoresDetails) {
+    public AzureBackupDiscreteRecoveryPoint
+        withRecoveryPointDataStoresDetails(List<RecoveryPointDataStoreDetails> recoveryPointDataStoresDetails) {
         this.recoveryPointDataStoresDetails = recoveryPointDataStoresDetails;
         return this;
     }
 
     /**
      * Get the recoveryPointTime property: The recoveryPointTime property.
-     *
+     * 
      * @return the recoveryPointTime value.
      */
     public OffsetDateTime recoveryPointTime() {
@@ -137,7 +139,7 @@ public final class AzureBackupDiscreteRecoveryPoint extends AzureBackupRecoveryP
 
     /**
      * Set the recoveryPointTime property: The recoveryPointTime property.
-     *
+     * 
      * @param recoveryPointTime the recoveryPointTime value to set.
      * @return the AzureBackupDiscreteRecoveryPoint object itself.
      */
@@ -148,7 +150,7 @@ public final class AzureBackupDiscreteRecoveryPoint extends AzureBackupRecoveryP
 
     /**
      * Get the policyName property: The policyName property.
-     *
+     * 
      * @return the policyName value.
      */
     public String policyName() {
@@ -157,7 +159,7 @@ public final class AzureBackupDiscreteRecoveryPoint extends AzureBackupRecoveryP
 
     /**
      * Set the policyName property: The policyName property.
-     *
+     * 
      * @param policyName the policyName value to set.
      * @return the AzureBackupDiscreteRecoveryPoint object itself.
      */
@@ -168,7 +170,7 @@ public final class AzureBackupDiscreteRecoveryPoint extends AzureBackupRecoveryP
 
     /**
      * Get the policyVersion property: The policyVersion property.
-     *
+     * 
      * @return the policyVersion value.
      */
     public String policyVersion() {
@@ -177,7 +179,7 @@ public final class AzureBackupDiscreteRecoveryPoint extends AzureBackupRecoveryP
 
     /**
      * Set the policyVersion property: The policyVersion property.
-     *
+     * 
      * @param policyVersion the policyVersion value to set.
      * @return the AzureBackupDiscreteRecoveryPoint object itself.
      */
@@ -188,7 +190,7 @@ public final class AzureBackupDiscreteRecoveryPoint extends AzureBackupRecoveryP
 
     /**
      * Get the recoveryPointId property: The recoveryPointId property.
-     *
+     * 
      * @return the recoveryPointId value.
      */
     public String recoveryPointId() {
@@ -197,7 +199,7 @@ public final class AzureBackupDiscreteRecoveryPoint extends AzureBackupRecoveryP
 
     /**
      * Set the recoveryPointId property: The recoveryPointId property.
-     *
+     * 
      * @param recoveryPointId the recoveryPointId value to set.
      * @return the AzureBackupDiscreteRecoveryPoint object itself.
      */
@@ -208,7 +210,7 @@ public final class AzureBackupDiscreteRecoveryPoint extends AzureBackupRecoveryP
 
     /**
      * Get the recoveryPointType property: The recoveryPointType property.
-     *
+     * 
      * @return the recoveryPointType value.
      */
     public String recoveryPointType() {
@@ -217,7 +219,7 @@ public final class AzureBackupDiscreteRecoveryPoint extends AzureBackupRecoveryP
 
     /**
      * Set the recoveryPointType property: The recoveryPointType property.
-     *
+     * 
      * @param recoveryPointType the recoveryPointType value to set.
      * @return the AzureBackupDiscreteRecoveryPoint object itself.
      */
@@ -228,7 +230,7 @@ public final class AzureBackupDiscreteRecoveryPoint extends AzureBackupRecoveryP
 
     /**
      * Get the retentionTagName property: The retentionTagName property.
-     *
+     * 
      * @return the retentionTagName value.
      */
     public String retentionTagName() {
@@ -237,7 +239,7 @@ public final class AzureBackupDiscreteRecoveryPoint extends AzureBackupRecoveryP
 
     /**
      * Set the retentionTagName property: The retentionTagName property.
-     *
+     * 
      * @param retentionTagName the retentionTagName value to set.
      * @return the AzureBackupDiscreteRecoveryPoint object itself.
      */
@@ -248,7 +250,7 @@ public final class AzureBackupDiscreteRecoveryPoint extends AzureBackupRecoveryP
 
     /**
      * Get the retentionTagVersion property: The retentionTagVersion property.
-     *
+     * 
      * @return the retentionTagVersion value.
      */
     public String retentionTagVersion() {
@@ -257,7 +259,7 @@ public final class AzureBackupDiscreteRecoveryPoint extends AzureBackupRecoveryP
 
     /**
      * Set the retentionTagVersion property: The retentionTagVersion property.
-     *
+     * 
      * @param retentionTagVersion the retentionTagVersion value to set.
      * @return the AzureBackupDiscreteRecoveryPoint object itself.
      */
@@ -268,7 +270,7 @@ public final class AzureBackupDiscreteRecoveryPoint extends AzureBackupRecoveryP
 
     /**
      * Get the expiryTime property: The expiryTime property.
-     *
+     * 
      * @return the expiryTime value.
      */
     public OffsetDateTime expiryTime() {
@@ -277,7 +279,7 @@ public final class AzureBackupDiscreteRecoveryPoint extends AzureBackupRecoveryP
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
@@ -287,10 +289,8 @@ public final class AzureBackupDiscreteRecoveryPoint extends AzureBackupRecoveryP
             recoveryPointDataStoresDetails().forEach(e -> e.validate());
         }
         if (recoveryPointTime() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property recoveryPointTime in model AzureBackupDiscreteRecoveryPoint"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property recoveryPointTime in model AzureBackupDiscreteRecoveryPoint"));
         }
     }
 
