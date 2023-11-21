@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The analysis request of the image. */
+/**
+ * The image analysis request.
+ */
 @Fluent
 public final class AnalyzeImageOptions {
     /*
@@ -18,41 +20,49 @@ public final class AnalyzeImageOptions {
      */
     @Generated
     @JsonProperty(value = "image")
-    private ImageData image;
+    private ContentSafetyImageData image;
 
     /*
-     * The categories will be analyzed. If not assigned, a default set of the categories' analysis results will be
-     * returned.
+     * The categories will be analyzed. If they are not assigned, a default set of analysis results for the categories
+     * will be returned.
      */
     @Generated
     @JsonProperty(value = "categories")
     private List<ImageCategory> categories;
 
+    /*
+     * This refers to the type of image analysis output. If no value is assigned, the default value will be
+     * "FourSeverityLevels".
+     */
+    @Generated
+    @JsonProperty(value = "outputType")
+    private AnalyzeImageOutputType outputType;
+
     /**
      * Creates an instance of AnalyzeImageOptions class.
-     *
+     * 
      * @param image the image value to set.
      */
     @Generated
     @JsonCreator
-    public AnalyzeImageOptions(@JsonProperty(value = "image") ImageData image) {
+    public AnalyzeImageOptions(@JsonProperty(value = "image") ContentSafetyImageData image) {
         this.image = image;
     }
 
     /**
      * Get the image property: The image needs to be analyzed.
-     *
+     * 
      * @return the image value.
      */
     @Generated
-    public ImageData getImage() {
+    public ContentSafetyImageData getImage() {
         return this.image;
     }
 
     /**
-     * Get the categories property: The categories will be analyzed. If not assigned, a default set of the categories'
-     * analysis results will be returned.
-     *
+     * Get the categories property: The categories will be analyzed. If they are not assigned, a default set of
+     * analysis results for the categories will be returned.
+     * 
      * @return the categories value.
      */
     @Generated
@@ -61,15 +71,39 @@ public final class AnalyzeImageOptions {
     }
 
     /**
-     * Set the categories property: The categories will be analyzed. If not assigned, a default set of the categories'
-     * analysis results will be returned.
-     *
+     * Set the categories property: The categories will be analyzed. If they are not assigned, a default set of
+     * analysis results for the categories will be returned.
+     * 
      * @param categories the categories value to set.
      * @return the AnalyzeImageOptions object itself.
      */
     @Generated
     public AnalyzeImageOptions setCategories(List<ImageCategory> categories) {
         this.categories = categories;
+        return this;
+    }
+
+    /**
+     * Get the outputType property: This refers to the type of image analysis output. If no value is assigned, the
+     * default value will be "FourSeverityLevels".
+     * 
+     * @return the outputType value.
+     */
+    @Generated
+    public AnalyzeImageOutputType getOutputType() {
+        return this.outputType;
+    }
+
+    /**
+     * Set the outputType property: This refers to the type of image analysis output. If no value is assigned, the
+     * default value will be "FourSeverityLevels".
+     * 
+     * @param outputType the outputType value to set.
+     * @return the AnalyzeImageOptions object itself.
+     */
+    @Generated
+    public AnalyzeImageOptions setOutputType(AnalyzeImageOutputType outputType) {
+        this.outputType = outputType;
         return this;
     }
 }
