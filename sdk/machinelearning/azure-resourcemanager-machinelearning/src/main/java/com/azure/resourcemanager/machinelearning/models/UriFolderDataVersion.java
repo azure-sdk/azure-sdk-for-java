@@ -9,51 +9,94 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.Map;
 
-/** uri-folder data version entity. */
+/**
+ * uri-folder data version entity.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "dataType")
 @JsonTypeName("uri_folder")
 @Fluent
 public final class UriFolderDataVersion extends DataVersionBaseProperties {
-    /** Creates an instance of UriFolderDataVersion class. */
+    /**
+     * Creates an instance of UriFolderDataVersion class.
+     */
     public UriFolderDataVersion() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public UriFolderDataVersion withDataUri(String dataUri) {
         super.withDataUri(dataUri);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public UriFolderDataVersion withIntellectualProperty(IntellectualProperty intellectualProperty) {
+        super.withIntellectualProperty(intellectualProperty);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public UriFolderDataVersion withStage(String stage) {
+        super.withStage(stage);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public UriFolderDataVersion withAutoDeleteSetting(AutoDeleteSetting autoDeleteSetting) {
+        super.withAutoDeleteSetting(autoDeleteSetting);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public UriFolderDataVersion withIsAnonymous(Boolean isAnonymous) {
         super.withIsAnonymous(isAnonymous);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public UriFolderDataVersion withIsArchived(Boolean isArchived) {
         super.withIsArchived(isArchived);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public UriFolderDataVersion withDescription(String description) {
         super.withDescription(description);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public UriFolderDataVersion withProperties(Map<String, String> properties) {
         super.withProperties(properties);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public UriFolderDataVersion withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -62,7 +105,7 @@ public final class UriFolderDataVersion extends DataVersionBaseProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
