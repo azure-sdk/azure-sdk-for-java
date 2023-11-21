@@ -10,8 +10,14 @@ import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.confidentialledger.fluent.LedgersClient;
+import com.azure.resourcemanager.confidentialledger.fluent.models.ConfidentialLedgerBackupResponseInner;
 import com.azure.resourcemanager.confidentialledger.fluent.models.ConfidentialLedgerInner;
+import com.azure.resourcemanager.confidentialledger.fluent.models.ConfidentialLedgerRestoreResponseInner;
 import com.azure.resourcemanager.confidentialledger.models.ConfidentialLedger;
+import com.azure.resourcemanager.confidentialledger.models.ConfidentialLedgerBackup;
+import com.azure.resourcemanager.confidentialledger.models.ConfidentialLedgerBackupResponse;
+import com.azure.resourcemanager.confidentialledger.models.ConfidentialLedgerRestore;
+import com.azure.resourcemanager.confidentialledger.models.ConfidentialLedgerRestoreResponse;
 import com.azure.resourcemanager.confidentialledger.models.Ledgers;
 
 public final class LedgersImpl implements Ledgers {
@@ -21,22 +27,18 @@ public final class LedgersImpl implements Ledgers {
 
     private final com.azure.resourcemanager.confidentialledger.ConfidentialLedgerManager serviceManager;
 
-    public LedgersImpl(
-        LedgersClient innerClient,
+    public LedgersImpl(LedgersClient innerClient,
         com.azure.resourcemanager.confidentialledger.ConfidentialLedgerManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
 
-    public Response<ConfidentialLedger> getByResourceGroupWithResponse(
-        String resourceGroupName, String ledgerName, Context context) {
-        Response<ConfidentialLedgerInner> inner =
-            this.serviceClient().getByResourceGroupWithResponse(resourceGroupName, ledgerName, context);
+    public Response<ConfidentialLedger> getByResourceGroupWithResponse(String resourceGroupName, String ledgerName,
+        Context context) {
+        Response<ConfidentialLedgerInner> inner
+            = this.serviceClient().getByResourceGroupWithResponse(resourceGroupName, ledgerName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new ConfidentialLedgerImpl(inner.getValue(), this.manager()));
         } else {
             return null;
@@ -65,10 +67,10 @@ public final class LedgersImpl implements Ledgers {
         return Utils.mapPage(inner, inner1 -> new ConfidentialLedgerImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<ConfidentialLedger> listByResourceGroup(
-        String resourceGroupName, String filter, Context context) {
-        PagedIterable<ConfidentialLedgerInner> inner =
-            this.serviceClient().listByResourceGroup(resourceGroupName, filter, context);
+    public PagedIterable<ConfidentialLedger> listByResourceGroup(String resourceGroupName, String filter,
+        Context context) {
+        PagedIterable<ConfidentialLedgerInner> inner
+            = this.serviceClient().listByResourceGroup(resourceGroupName, filter, context);
         return Utils.mapPage(inner, inner1 -> new ConfidentialLedgerImpl(inner1, this.manager()));
     }
 
@@ -82,21 +84,60 @@ public final class LedgersImpl implements Ledgers {
         return Utils.mapPage(inner, inner1 -> new ConfidentialLedgerImpl(inner1, this.manager()));
     }
 
+    public ConfidentialLedgerBackupResponse backup(String resourceGroupName, String ledgerName,
+        ConfidentialLedgerBackup confidentialLedger) {
+        ConfidentialLedgerBackupResponseInner inner
+            = this.serviceClient().backup(resourceGroupName, ledgerName, confidentialLedger);
+        if (inner != null) {
+            return new ConfidentialLedgerBackupResponseImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public ConfidentialLedgerBackupResponse backup(String resourceGroupName, String ledgerName,
+        ConfidentialLedgerBackup confidentialLedger, Context context) {
+        ConfidentialLedgerBackupResponseInner inner
+            = this.serviceClient().backup(resourceGroupName, ledgerName, confidentialLedger, context);
+        if (inner != null) {
+            return new ConfidentialLedgerBackupResponseImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public ConfidentialLedgerRestoreResponse restore(String resourceGroupName, String ledgerName,
+        ConfidentialLedgerRestore confidentialLedger) {
+        ConfidentialLedgerRestoreResponseInner inner
+            = this.serviceClient().restore(resourceGroupName, ledgerName, confidentialLedger);
+        if (inner != null) {
+            return new ConfidentialLedgerRestoreResponseImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public ConfidentialLedgerRestoreResponse restore(String resourceGroupName, String ledgerName,
+        ConfidentialLedgerRestore confidentialLedger, Context context) {
+        ConfidentialLedgerRestoreResponseInner inner
+            = this.serviceClient().restore(resourceGroupName, ledgerName, confidentialLedger, context);
+        if (inner != null) {
+            return new ConfidentialLedgerRestoreResponseImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
     public ConfidentialLedger getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String ledgerName = Utils.getValueFromIdByName(id, "ledgers");
         if (ledgerName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'ledgers'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'ledgers'.", id)));
         }
         return this.getByResourceGroupWithResponse(resourceGroupName, ledgerName, Context.NONE).getValue();
     }
@@ -104,18 +145,13 @@ public final class LedgersImpl implements Ledgers {
     public Response<ConfidentialLedger> getByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String ledgerName = Utils.getValueFromIdByName(id, "ledgers");
         if (ledgerName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'ledgers'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'ledgers'.", id)));
         }
         return this.getByResourceGroupWithResponse(resourceGroupName, ledgerName, context);
     }
@@ -123,18 +159,13 @@ public final class LedgersImpl implements Ledgers {
     public void deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String ledgerName = Utils.getValueFromIdByName(id, "ledgers");
         if (ledgerName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'ledgers'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'ledgers'.", id)));
         }
         this.delete(resourceGroupName, ledgerName, Context.NONE);
     }
@@ -142,18 +173,13 @@ public final class LedgersImpl implements Ledgers {
     public void deleteByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String ledgerName = Utils.getValueFromIdByName(id, "ledgers");
         if (ledgerName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'ledgers'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'ledgers'.", id)));
         }
         this.delete(resourceGroupName, ledgerName, context);
     }
