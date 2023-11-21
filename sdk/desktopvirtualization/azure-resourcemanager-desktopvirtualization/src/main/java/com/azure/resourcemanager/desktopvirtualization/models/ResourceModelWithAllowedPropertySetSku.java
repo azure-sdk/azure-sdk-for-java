@@ -6,42 +6,56 @@ package com.azure.resourcemanager.desktopvirtualization.models;
 
 import com.azure.core.annotation.Fluent;
 
-/** The ResourceModelWithAllowedPropertySetSku model. */
+/**
+ * The ResourceModelWithAllowedPropertySetSku model.
+ */
 @Fluent
 public final class ResourceModelWithAllowedPropertySetSku extends Sku {
-    /** Creates an instance of ResourceModelWithAllowedPropertySetSku class. */
+    /**
+     * Creates an instance of ResourceModelWithAllowedPropertySetSku class.
+     */
     public ResourceModelWithAllowedPropertySetSku() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ResourceModelWithAllowedPropertySetSku withName(String name) {
         super.withName(name);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ResourceModelWithAllowedPropertySetSku withTier(SkuTier tier) {
         super.withTier(tier);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ResourceModelWithAllowedPropertySetSku withSize(String size) {
         super.withSize(size);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ResourceModelWithAllowedPropertySetSku withFamily(String family) {
         super.withFamily(family);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ResourceModelWithAllowedPropertySetSku withCapacity(Integer capacity) {
         super.withCapacity(capacity);
@@ -50,7 +64,7 @@ public final class ResourceModelWithAllowedPropertySetSku extends Sku {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

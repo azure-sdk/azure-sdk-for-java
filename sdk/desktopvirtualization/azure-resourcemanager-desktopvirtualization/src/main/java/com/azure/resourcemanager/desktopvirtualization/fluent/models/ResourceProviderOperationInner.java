@@ -9,7 +9,9 @@ import com.azure.resourcemanager.desktopvirtualization.models.OperationPropertie
 import com.azure.resourcemanager.desktopvirtualization.models.ResourceProviderOperationDisplay;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Supported operation of this resource provider. */
+/**
+ * Supported operation of this resource provider.
+ */
 @Fluent
 public final class ResourceProviderOperationInner {
     /*
@@ -36,13 +38,15 @@ public final class ResourceProviderOperationInner {
     @JsonProperty(value = "properties")
     private OperationProperties properties;
 
-    /** Creates an instance of ResourceProviderOperationInner class. */
+    /**
+     * Creates an instance of ResourceProviderOperationInner class.
+     */
     public ResourceProviderOperationInner() {
     }
 
     /**
      * Get the name property: Operation name, in format of {provider}/{resource}/{operation}.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -51,7 +55,7 @@ public final class ResourceProviderOperationInner {
 
     /**
      * Set the name property: Operation name, in format of {provider}/{resource}/{operation}.
-     *
+     * 
      * @param name the name value to set.
      * @return the ResourceProviderOperationInner object itself.
      */
@@ -62,7 +66,7 @@ public final class ResourceProviderOperationInner {
 
     /**
      * Get the display property: Display metadata associated with the operation.
-     *
+     * 
      * @return the display value.
      */
     public ResourceProviderOperationDisplay display() {
@@ -71,7 +75,7 @@ public final class ResourceProviderOperationInner {
 
     /**
      * Set the display property: Display metadata associated with the operation.
-     *
+     * 
      * @param display the display value to set.
      * @return the ResourceProviderOperationInner object itself.
      */
@@ -82,7 +86,7 @@ public final class ResourceProviderOperationInner {
 
     /**
      * Get the isDataAction property: Is a data action.
-     *
+     * 
      * @return the isDataAction value.
      */
     public Boolean isDataAction() {
@@ -91,7 +95,7 @@ public final class ResourceProviderOperationInner {
 
     /**
      * Set the isDataAction property: Is a data action.
-     *
+     * 
      * @param isDataAction the isDataAction value to set.
      * @return the ResourceProviderOperationInner object itself.
      */
@@ -102,7 +106,7 @@ public final class ResourceProviderOperationInner {
 
     /**
      * Get the properties property: Properties of the operation.
-     *
+     * 
      * @return the properties value.
      */
     public OperationProperties properties() {
@@ -111,7 +115,7 @@ public final class ResourceProviderOperationInner {
 
     /**
      * Set the properties property: Properties of the operation.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the ResourceProviderOperationInner object itself.
      */
@@ -122,7 +126,7 @@ public final class ResourceProviderOperationInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

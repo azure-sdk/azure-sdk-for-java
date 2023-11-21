@@ -24,8 +24,7 @@ public final class HostPoolPropertiesImpl implements HostPoolProperties {
 
     private final com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager serviceManager;
 
-    HostPoolPropertiesImpl(
-        HostPoolPropertiesInner innerObject,
+    HostPoolPropertiesImpl(HostPoolPropertiesInner innerObject,
         com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
@@ -86,6 +85,15 @@ public final class HostPoolPropertiesImpl implements HostPoolProperties {
 
     public List<String> applicationGroupReferences() {
         List<String> inner = this.innerModel().applicationGroupReferences();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
+    public List<String> appAttachPackageReferences() {
+        List<String> inner = this.innerModel().appAttachPackageReferences();
         if (inner != null) {
             return Collections.unmodifiableList(inner);
         } else {

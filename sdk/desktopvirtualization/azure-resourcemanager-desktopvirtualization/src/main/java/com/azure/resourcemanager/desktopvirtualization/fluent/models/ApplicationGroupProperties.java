@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.desktopvirtualization.models.ApplicationGroupType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Schema for ApplicationGroup properties. */
+/**
+ * Schema for ApplicationGroup properties.
+ */
 @Fluent
 public final class ApplicationGroupProperties {
     /*
@@ -60,13 +62,15 @@ public final class ApplicationGroupProperties {
     @JsonProperty(value = "showInFeed")
     private Boolean showInFeed;
 
-    /** Creates an instance of ApplicationGroupProperties class. */
+    /**
+     * Creates an instance of ApplicationGroupProperties class.
+     */
     public ApplicationGroupProperties() {
     }
 
     /**
      * Get the objectId property: ObjectId of ApplicationGroup. (internal use).
-     *
+     * 
      * @return the objectId value.
      */
     public String objectId() {
@@ -75,7 +79,7 @@ public final class ApplicationGroupProperties {
 
     /**
      * Get the description property: Description of ApplicationGroup.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -84,7 +88,7 @@ public final class ApplicationGroupProperties {
 
     /**
      * Set the description property: Description of ApplicationGroup.
-     *
+     * 
      * @param description the description value to set.
      * @return the ApplicationGroupProperties object itself.
      */
@@ -95,7 +99,7 @@ public final class ApplicationGroupProperties {
 
     /**
      * Get the friendlyName property: Friendly name of ApplicationGroup.
-     *
+     * 
      * @return the friendlyName value.
      */
     public String friendlyName() {
@@ -104,7 +108,7 @@ public final class ApplicationGroupProperties {
 
     /**
      * Set the friendlyName property: Friendly name of ApplicationGroup.
-     *
+     * 
      * @param friendlyName the friendlyName value to set.
      * @return the ApplicationGroupProperties object itself.
      */
@@ -115,7 +119,7 @@ public final class ApplicationGroupProperties {
 
     /**
      * Get the hostPoolArmPath property: HostPool arm path of ApplicationGroup.
-     *
+     * 
      * @return the hostPoolArmPath value.
      */
     public String hostPoolArmPath() {
@@ -124,7 +128,7 @@ public final class ApplicationGroupProperties {
 
     /**
      * Set the hostPoolArmPath property: HostPool arm path of ApplicationGroup.
-     *
+     * 
      * @param hostPoolArmPath the hostPoolArmPath value to set.
      * @return the ApplicationGroupProperties object itself.
      */
@@ -135,7 +139,7 @@ public final class ApplicationGroupProperties {
 
     /**
      * Get the workspaceArmPath property: Workspace arm path of ApplicationGroup.
-     *
+     * 
      * @return the workspaceArmPath value.
      */
     public String workspaceArmPath() {
@@ -144,7 +148,7 @@ public final class ApplicationGroupProperties {
 
     /**
      * Get the applicationGroupType property: Resource Type of ApplicationGroup.
-     *
+     * 
      * @return the applicationGroupType value.
      */
     public ApplicationGroupType applicationGroupType() {
@@ -153,7 +157,7 @@ public final class ApplicationGroupProperties {
 
     /**
      * Set the applicationGroupType property: Resource Type of ApplicationGroup.
-     *
+     * 
      * @param applicationGroupType the applicationGroupType value to set.
      * @return the ApplicationGroupProperties object itself.
      */
@@ -164,7 +168,7 @@ public final class ApplicationGroupProperties {
 
     /**
      * Get the cloudPcResource property: Is cloud pc resource.
-     *
+     * 
      * @return the cloudPcResource value.
      */
     public Boolean cloudPcResource() {
@@ -173,7 +177,7 @@ public final class ApplicationGroupProperties {
 
     /**
      * Get the showInFeed property: Boolean representing whether the applicationGroup is show in the feed.
-     *
+     * 
      * @return the showInFeed value.
      */
     public Boolean showInFeed() {
@@ -182,7 +186,7 @@ public final class ApplicationGroupProperties {
 
     /**
      * Set the showInFeed property: Boolean representing whether the applicationGroup is show in the feed.
-     *
+     * 
      * @param showInFeed the showInFeed value to set.
      * @return the ApplicationGroupProperties object itself.
      */
@@ -193,21 +197,17 @@ public final class ApplicationGroupProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (hostPoolArmPath() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property hostPoolArmPath in model ApplicationGroupProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property hostPoolArmPath in model ApplicationGroupProperties"));
         }
         if (applicationGroupType() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property applicationGroupType in model ApplicationGroupProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property applicationGroupType in model ApplicationGroupProperties"));
         }
     }
 

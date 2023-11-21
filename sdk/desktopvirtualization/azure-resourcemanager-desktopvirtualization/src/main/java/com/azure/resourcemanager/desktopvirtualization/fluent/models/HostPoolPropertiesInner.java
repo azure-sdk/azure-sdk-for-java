@@ -17,7 +17,9 @@ import com.azure.resourcemanager.desktopvirtualization.models.SsoSecretType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Properties of HostPool. */
+/**
+ * Properties of HostPool.
+ */
 @Fluent
 public final class HostPoolPropertiesInner {
     /*
@@ -99,6 +101,12 @@ public final class HostPoolPropertiesInner {
     private List<String> applicationGroupReferences;
 
     /*
+     * List of App Attach Package links.
+     */
+    @JsonProperty(value = "appAttachPackageReferences", access = JsonProperty.Access.WRITE_ONLY)
+    private List<String> appAttachPackageReferences;
+
+    /*
      * URL to customer ADFS server for signing WVD SSO certificates.
      */
     @JsonProperty(value = "ssoadfsAuthority")
@@ -159,13 +167,15 @@ public final class HostPoolPropertiesInner {
     @JsonProperty(value = "privateEndpointConnections", access = JsonProperty.Access.WRITE_ONLY)
     private List<PrivateEndpointConnection> privateEndpointConnections;
 
-    /** Creates an instance of HostPoolPropertiesInner class. */
+    /**
+     * Creates an instance of HostPoolPropertiesInner class.
+     */
     public HostPoolPropertiesInner() {
     }
 
     /**
      * Get the objectId property: ObjectId of HostPool. (internal use).
-     *
+     * 
      * @return the objectId value.
      */
     public String objectId() {
@@ -174,7 +184,7 @@ public final class HostPoolPropertiesInner {
 
     /**
      * Get the friendlyName property: Friendly name of HostPool.
-     *
+     * 
      * @return the friendlyName value.
      */
     public String friendlyName() {
@@ -183,7 +193,7 @@ public final class HostPoolPropertiesInner {
 
     /**
      * Set the friendlyName property: Friendly name of HostPool.
-     *
+     * 
      * @param friendlyName the friendlyName value to set.
      * @return the HostPoolPropertiesInner object itself.
      */
@@ -194,7 +204,7 @@ public final class HostPoolPropertiesInner {
 
     /**
      * Get the description property: Description of HostPool.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -203,7 +213,7 @@ public final class HostPoolPropertiesInner {
 
     /**
      * Set the description property: Description of HostPool.
-     *
+     * 
      * @param description the description value to set.
      * @return the HostPoolPropertiesInner object itself.
      */
@@ -214,7 +224,7 @@ public final class HostPoolPropertiesInner {
 
     /**
      * Get the hostPoolType property: HostPool type for desktop.
-     *
+     * 
      * @return the hostPoolType value.
      */
     public HostPoolType hostPoolType() {
@@ -223,7 +233,7 @@ public final class HostPoolPropertiesInner {
 
     /**
      * Set the hostPoolType property: HostPool type for desktop.
-     *
+     * 
      * @param hostPoolType the hostPoolType value to set.
      * @return the HostPoolPropertiesInner object itself.
      */
@@ -234,7 +244,7 @@ public final class HostPoolPropertiesInner {
 
     /**
      * Get the personalDesktopAssignmentType property: PersonalDesktopAssignment type for HostPool.
-     *
+     * 
      * @return the personalDesktopAssignmentType value.
      */
     public PersonalDesktopAssignmentType personalDesktopAssignmentType() {
@@ -243,19 +253,19 @@ public final class HostPoolPropertiesInner {
 
     /**
      * Set the personalDesktopAssignmentType property: PersonalDesktopAssignment type for HostPool.
-     *
+     * 
      * @param personalDesktopAssignmentType the personalDesktopAssignmentType value to set.
      * @return the HostPoolPropertiesInner object itself.
      */
-    public HostPoolPropertiesInner withPersonalDesktopAssignmentType(
-        PersonalDesktopAssignmentType personalDesktopAssignmentType) {
+    public HostPoolPropertiesInner
+        withPersonalDesktopAssignmentType(PersonalDesktopAssignmentType personalDesktopAssignmentType) {
         this.personalDesktopAssignmentType = personalDesktopAssignmentType;
         return this;
     }
 
     /**
      * Get the customRdpProperty property: Custom rdp property of HostPool.
-     *
+     * 
      * @return the customRdpProperty value.
      */
     public String customRdpProperty() {
@@ -264,7 +274,7 @@ public final class HostPoolPropertiesInner {
 
     /**
      * Set the customRdpProperty property: Custom rdp property of HostPool.
-     *
+     * 
      * @param customRdpProperty the customRdpProperty value to set.
      * @return the HostPoolPropertiesInner object itself.
      */
@@ -275,7 +285,7 @@ public final class HostPoolPropertiesInner {
 
     /**
      * Get the maxSessionLimit property: The max session limit of HostPool.
-     *
+     * 
      * @return the maxSessionLimit value.
      */
     public Integer maxSessionLimit() {
@@ -284,7 +294,7 @@ public final class HostPoolPropertiesInner {
 
     /**
      * Set the maxSessionLimit property: The max session limit of HostPool.
-     *
+     * 
      * @param maxSessionLimit the maxSessionLimit value to set.
      * @return the HostPoolPropertiesInner object itself.
      */
@@ -295,7 +305,7 @@ public final class HostPoolPropertiesInner {
 
     /**
      * Get the loadBalancerType property: The type of the load balancer.
-     *
+     * 
      * @return the loadBalancerType value.
      */
     public LoadBalancerType loadBalancerType() {
@@ -304,7 +314,7 @@ public final class HostPoolPropertiesInner {
 
     /**
      * Set the loadBalancerType property: The type of the load balancer.
-     *
+     * 
      * @param loadBalancerType the loadBalancerType value to set.
      * @return the HostPoolPropertiesInner object itself.
      */
@@ -315,7 +325,7 @@ public final class HostPoolPropertiesInner {
 
     /**
      * Get the ring property: The ring number of HostPool.
-     *
+     * 
      * @return the ring value.
      */
     public Integer ring() {
@@ -324,7 +334,7 @@ public final class HostPoolPropertiesInner {
 
     /**
      * Set the ring property: The ring number of HostPool.
-     *
+     * 
      * @param ring the ring value to set.
      * @return the HostPoolPropertiesInner object itself.
      */
@@ -335,7 +345,7 @@ public final class HostPoolPropertiesInner {
 
     /**
      * Get the validationEnvironment property: Is validation environment.
-     *
+     * 
      * @return the validationEnvironment value.
      */
     public Boolean validationEnvironment() {
@@ -344,7 +354,7 @@ public final class HostPoolPropertiesInner {
 
     /**
      * Set the validationEnvironment property: Is validation environment.
-     *
+     * 
      * @param validationEnvironment the validationEnvironment value to set.
      * @return the HostPoolPropertiesInner object itself.
      */
@@ -355,7 +365,7 @@ public final class HostPoolPropertiesInner {
 
     /**
      * Get the registrationInfo property: The registration info of HostPool.
-     *
+     * 
      * @return the registrationInfo value.
      */
     public RegistrationInfoInner registrationInfo() {
@@ -364,7 +374,7 @@ public final class HostPoolPropertiesInner {
 
     /**
      * Set the registrationInfo property: The registration info of HostPool.
-     *
+     * 
      * @param registrationInfo the registrationInfo value to set.
      * @return the HostPoolPropertiesInner object itself.
      */
@@ -375,7 +385,7 @@ public final class HostPoolPropertiesInner {
 
     /**
      * Get the vmTemplate property: VM template for sessionhosts configuration within hostpool.
-     *
+     * 
      * @return the vmTemplate value.
      */
     public String vmTemplate() {
@@ -384,7 +394,7 @@ public final class HostPoolPropertiesInner {
 
     /**
      * Set the vmTemplate property: VM template for sessionhosts configuration within hostpool.
-     *
+     * 
      * @param vmTemplate the vmTemplate value to set.
      * @return the HostPoolPropertiesInner object itself.
      */
@@ -395,7 +405,7 @@ public final class HostPoolPropertiesInner {
 
     /**
      * Get the applicationGroupReferences property: List of applicationGroup links.
-     *
+     * 
      * @return the applicationGroupReferences value.
      */
     public List<String> applicationGroupReferences() {
@@ -403,8 +413,17 @@ public final class HostPoolPropertiesInner {
     }
 
     /**
+     * Get the appAttachPackageReferences property: List of App Attach Package links.
+     * 
+     * @return the appAttachPackageReferences value.
+     */
+    public List<String> appAttachPackageReferences() {
+        return this.appAttachPackageReferences;
+    }
+
+    /**
      * Get the ssoadfsAuthority property: URL to customer ADFS server for signing WVD SSO certificates.
-     *
+     * 
      * @return the ssoadfsAuthority value.
      */
     public String ssoadfsAuthority() {
@@ -413,7 +432,7 @@ public final class HostPoolPropertiesInner {
 
     /**
      * Set the ssoadfsAuthority property: URL to customer ADFS server for signing WVD SSO certificates.
-     *
+     * 
      * @param ssoadfsAuthority the ssoadfsAuthority value to set.
      * @return the HostPoolPropertiesInner object itself.
      */
@@ -424,7 +443,7 @@ public final class HostPoolPropertiesInner {
 
     /**
      * Get the ssoClientId property: ClientId for the registered Relying Party used to issue WVD SSO certificates.
-     *
+     * 
      * @return the ssoClientId value.
      */
     public String ssoClientId() {
@@ -433,7 +452,7 @@ public final class HostPoolPropertiesInner {
 
     /**
      * Set the ssoClientId property: ClientId for the registered Relying Party used to issue WVD SSO certificates.
-     *
+     * 
      * @param ssoClientId the ssoClientId value to set.
      * @return the HostPoolPropertiesInner object itself.
      */
@@ -443,9 +462,9 @@ public final class HostPoolPropertiesInner {
     }
 
     /**
-     * Get the ssoClientSecretKeyVaultPath property: Path to Azure KeyVault storing the secret used for communication to
-     * ADFS.
-     *
+     * Get the ssoClientSecretKeyVaultPath property: Path to Azure KeyVault storing the secret used for communication
+     * to ADFS.
+     * 
      * @return the ssoClientSecretKeyVaultPath value.
      */
     public String ssoClientSecretKeyVaultPath() {
@@ -453,9 +472,9 @@ public final class HostPoolPropertiesInner {
     }
 
     /**
-     * Set the ssoClientSecretKeyVaultPath property: Path to Azure KeyVault storing the secret used for communication to
-     * ADFS.
-     *
+     * Set the ssoClientSecretKeyVaultPath property: Path to Azure KeyVault storing the secret used for communication
+     * to ADFS.
+     * 
      * @param ssoClientSecretKeyVaultPath the ssoClientSecretKeyVaultPath value to set.
      * @return the HostPoolPropertiesInner object itself.
      */
@@ -466,7 +485,7 @@ public final class HostPoolPropertiesInner {
 
     /**
      * Get the ssoSecretType property: The type of single sign on Secret Type.
-     *
+     * 
      * @return the ssoSecretType value.
      */
     public SsoSecretType ssoSecretType() {
@@ -475,7 +494,7 @@ public final class HostPoolPropertiesInner {
 
     /**
      * Set the ssoSecretType property: The type of single sign on Secret Type.
-     *
+     * 
      * @param ssoSecretType the ssoSecretType value to set.
      * @return the HostPoolPropertiesInner object itself.
      */
@@ -487,7 +506,7 @@ public final class HostPoolPropertiesInner {
     /**
      * Get the preferredAppGroupType property: The type of preferred application group type, default to Desktop
      * Application Group.
-     *
+     * 
      * @return the preferredAppGroupType value.
      */
     public PreferredAppGroupType preferredAppGroupType() {
@@ -497,7 +516,7 @@ public final class HostPoolPropertiesInner {
     /**
      * Set the preferredAppGroupType property: The type of preferred application group type, default to Desktop
      * Application Group.
-     *
+     * 
      * @param preferredAppGroupType the preferredAppGroupType value to set.
      * @return the HostPoolPropertiesInner object itself.
      */
@@ -508,7 +527,7 @@ public final class HostPoolPropertiesInner {
 
     /**
      * Get the startVMOnConnect property: The flag to turn on/off StartVMOnConnect feature.
-     *
+     * 
      * @return the startVMOnConnect value.
      */
     public Boolean startVMOnConnect() {
@@ -517,7 +536,7 @@ public final class HostPoolPropertiesInner {
 
     /**
      * Set the startVMOnConnect property: The flag to turn on/off StartVMOnConnect feature.
-     *
+     * 
      * @param startVMOnConnect the startVMOnConnect value to set.
      * @return the HostPoolPropertiesInner object itself.
      */
@@ -528,7 +547,7 @@ public final class HostPoolPropertiesInner {
 
     /**
      * Get the cloudPcResource property: Is cloud pc resource.
-     *
+     * 
      * @return the cloudPcResource value.
      */
     public Boolean cloudPcResource() {
@@ -538,7 +557,7 @@ public final class HostPoolPropertiesInner {
     /**
      * Get the publicNetworkAccess property: Enabled allows this resource to be accessed from both public and private
      * networks, Disabled allows this resource to only be accessed via private endpoints.
-     *
+     * 
      * @return the publicNetworkAccess value.
      */
     public HostpoolPublicNetworkAccess publicNetworkAccess() {
@@ -548,7 +567,7 @@ public final class HostPoolPropertiesInner {
     /**
      * Set the publicNetworkAccess property: Enabled allows this resource to be accessed from both public and private
      * networks, Disabled allows this resource to only be accessed via private endpoints.
-     *
+     * 
      * @param publicNetworkAccess the publicNetworkAccess value to set.
      * @return the HostPoolPropertiesInner object itself.
      */
@@ -560,7 +579,7 @@ public final class HostPoolPropertiesInner {
     /**
      * Get the agentUpdate property: The session host configuration for updating agent, monitoring agent, and stack
      * component.
-     *
+     * 
      * @return the agentUpdate value.
      */
     public AgentUpdateProperties agentUpdate() {
@@ -570,7 +589,7 @@ public final class HostPoolPropertiesInner {
     /**
      * Set the agentUpdate property: The session host configuration for updating agent, monitoring agent, and stack
      * component.
-     *
+     * 
      * @param agentUpdate the agentUpdate value to set.
      * @return the HostPoolPropertiesInner object itself.
      */
@@ -582,7 +601,7 @@ public final class HostPoolPropertiesInner {
     /**
      * Get the privateEndpointConnections property: List of private endpoint connection associated with the specified
      * resource.
-     *
+     * 
      * @return the privateEndpointConnections value.
      */
     public List<PrivateEndpointConnection> privateEndpointConnections() {
@@ -591,30 +610,24 @@ public final class HostPoolPropertiesInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (hostPoolType() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property hostPoolType in model HostPoolPropertiesInner"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property hostPoolType in model HostPoolPropertiesInner"));
         }
         if (loadBalancerType() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property loadBalancerType in model HostPoolPropertiesInner"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property loadBalancerType in model HostPoolPropertiesInner"));
         }
         if (registrationInfo() != null) {
             registrationInfo().validate();
         }
         if (preferredAppGroupType() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property preferredAppGroupType in model HostPoolPropertiesInner"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property preferredAppGroupType in model HostPoolPropertiesInner"));
         }
         if (agentUpdate() != null) {
             agentUpdate().validate();

@@ -14,7 +14,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** Represents a SessionHost definition. */
+/**
+ * Represents a SessionHost definition.
+ */
 @Fluent
 public final class SessionHostInner extends ProxyResource {
     /*
@@ -29,13 +31,15 @@ public final class SessionHostInner extends ProxyResource {
     @JsonProperty(value = "properties")
     private SessionHostProperties innerProperties;
 
-    /** Creates an instance of SessionHostInner class. */
+    /**
+     * Creates an instance of SessionHostInner class.
+     */
     public SessionHostInner() {
     }
 
     /**
      * Get the systemData property: Metadata pertaining to creation and last modification of the resource.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -44,7 +48,7 @@ public final class SessionHostInner extends ProxyResource {
 
     /**
      * Get the innerProperties property: Detailed properties for SessionHost.
-     *
+     * 
      * @return the innerProperties value.
      */
     private SessionHostProperties innerProperties() {
@@ -53,7 +57,7 @@ public final class SessionHostInner extends ProxyResource {
 
     /**
      * Get the objectId property: ObjectId of SessionHost. (internal use).
-     *
+     * 
      * @return the objectId value.
      */
     public String objectId() {
@@ -62,7 +66,7 @@ public final class SessionHostInner extends ProxyResource {
 
     /**
      * Get the lastHeartBeat property: Last heart beat from SessionHost.
-     *
+     * 
      * @return the lastHeartBeat value.
      */
     public OffsetDateTime lastHeartBeat() {
@@ -71,7 +75,7 @@ public final class SessionHostInner extends ProxyResource {
 
     /**
      * Set the lastHeartBeat property: Last heart beat from SessionHost.
-     *
+     * 
      * @param lastHeartBeat the lastHeartBeat value to set.
      * @return the SessionHostInner object itself.
      */
@@ -85,7 +89,7 @@ public final class SessionHostInner extends ProxyResource {
 
     /**
      * Get the sessions property: Number of sessions on SessionHost.
-     *
+     * 
      * @return the sessions value.
      */
     public Integer sessions() {
@@ -94,7 +98,7 @@ public final class SessionHostInner extends ProxyResource {
 
     /**
      * Set the sessions property: Number of sessions on SessionHost.
-     *
+     * 
      * @param sessions the sessions value to set.
      * @return the SessionHostInner object itself.
      */
@@ -108,7 +112,7 @@ public final class SessionHostInner extends ProxyResource {
 
     /**
      * Get the agentVersion property: Version of agent on SessionHost.
-     *
+     * 
      * @return the agentVersion value.
      */
     public String agentVersion() {
@@ -117,7 +121,7 @@ public final class SessionHostInner extends ProxyResource {
 
     /**
      * Set the agentVersion property: Version of agent on SessionHost.
-     *
+     * 
      * @param agentVersion the agentVersion value to set.
      * @return the SessionHostInner object itself.
      */
@@ -131,7 +135,7 @@ public final class SessionHostInner extends ProxyResource {
 
     /**
      * Get the allowNewSession property: Allow a new session.
-     *
+     * 
      * @return the allowNewSession value.
      */
     public Boolean allowNewSession() {
@@ -140,7 +144,7 @@ public final class SessionHostInner extends ProxyResource {
 
     /**
      * Set the allowNewSession property: Allow a new session.
-     *
+     * 
      * @param allowNewSession the allowNewSession value to set.
      * @return the SessionHostInner object itself.
      */
@@ -154,7 +158,7 @@ public final class SessionHostInner extends ProxyResource {
 
     /**
      * Get the virtualMachineId property: Virtual Machine Id of SessionHost's underlying virtual machine.
-     *
+     * 
      * @return the virtualMachineId value.
      */
     public String virtualMachineId() {
@@ -163,7 +167,7 @@ public final class SessionHostInner extends ProxyResource {
 
     /**
      * Get the resourceId property: Resource Id of SessionHost's underlying virtual machine.
-     *
+     * 
      * @return the resourceId value.
      */
     public String resourceId() {
@@ -172,7 +176,7 @@ public final class SessionHostInner extends ProxyResource {
 
     /**
      * Get the assignedUser property: User assigned to SessionHost.
-     *
+     * 
      * @return the assignedUser value.
      */
     public String assignedUser() {
@@ -181,7 +185,7 @@ public final class SessionHostInner extends ProxyResource {
 
     /**
      * Set the assignedUser property: User assigned to SessionHost.
-     *
+     * 
      * @param assignedUser the assignedUser value to set.
      * @return the SessionHostInner object itself.
      */
@@ -195,7 +199,7 @@ public final class SessionHostInner extends ProxyResource {
 
     /**
      * Get the friendlyName property: Friendly name of SessionHost.
-     *
+     * 
      * @return the friendlyName value.
      */
     public String friendlyName() {
@@ -204,7 +208,7 @@ public final class SessionHostInner extends ProxyResource {
 
     /**
      * Set the friendlyName property: Friendly name of SessionHost.
-     *
+     * 
      * @param friendlyName the friendlyName value to set.
      * @return the SessionHostInner object itself.
      */
@@ -218,7 +222,7 @@ public final class SessionHostInner extends ProxyResource {
 
     /**
      * Get the status property: Status for a SessionHost.
-     *
+     * 
      * @return the status value.
      */
     public Status status() {
@@ -227,7 +231,7 @@ public final class SessionHostInner extends ProxyResource {
 
     /**
      * Set the status property: Status for a SessionHost.
-     *
+     * 
      * @param status the status value to set.
      * @return the SessionHostInner object itself.
      */
@@ -241,7 +245,7 @@ public final class SessionHostInner extends ProxyResource {
 
     /**
      * Get the statusTimestamp property: The timestamp of the status.
-     *
+     * 
      * @return the statusTimestamp value.
      */
     public OffsetDateTime statusTimestamp() {
@@ -250,7 +254,7 @@ public final class SessionHostInner extends ProxyResource {
 
     /**
      * Get the osVersion property: The version of the OS on the session host.
-     *
+     * 
      * @return the osVersion value.
      */
     public String osVersion() {
@@ -259,7 +263,7 @@ public final class SessionHostInner extends ProxyResource {
 
     /**
      * Set the osVersion property: The version of the OS on the session host.
-     *
+     * 
      * @param osVersion the osVersion value to set.
      * @return the SessionHostInner object itself.
      */
@@ -273,7 +277,7 @@ public final class SessionHostInner extends ProxyResource {
 
     /**
      * Get the sxSStackVersion property: The version of the side by side stack on the session host.
-     *
+     * 
      * @return the sxSStackVersion value.
      */
     public String sxSStackVersion() {
@@ -282,7 +286,7 @@ public final class SessionHostInner extends ProxyResource {
 
     /**
      * Set the sxSStackVersion property: The version of the side by side stack on the session host.
-     *
+     * 
      * @param sxSStackVersion the sxSStackVersion value to set.
      * @return the SessionHostInner object itself.
      */
@@ -296,7 +300,7 @@ public final class SessionHostInner extends ProxyResource {
 
     /**
      * Get the updateState property: Update state of a SessionHost.
-     *
+     * 
      * @return the updateState value.
      */
     public UpdateState updateState() {
@@ -305,7 +309,7 @@ public final class SessionHostInner extends ProxyResource {
 
     /**
      * Set the updateState property: Update state of a SessionHost.
-     *
+     * 
      * @param updateState the updateState value to set.
      * @return the SessionHostInner object itself.
      */
@@ -319,7 +323,7 @@ public final class SessionHostInner extends ProxyResource {
 
     /**
      * Get the lastUpdateTime property: The timestamp of the last update.
-     *
+     * 
      * @return the lastUpdateTime value.
      */
     public OffsetDateTime lastUpdateTime() {
@@ -328,7 +332,7 @@ public final class SessionHostInner extends ProxyResource {
 
     /**
      * Get the updateErrorMessage property: The error message.
-     *
+     * 
      * @return the updateErrorMessage value.
      */
     public String updateErrorMessage() {
@@ -337,7 +341,7 @@ public final class SessionHostInner extends ProxyResource {
 
     /**
      * Set the updateErrorMessage property: The error message.
-     *
+     * 
      * @param updateErrorMessage the updateErrorMessage value to set.
      * @return the SessionHostInner object itself.
      */
@@ -351,7 +355,7 @@ public final class SessionHostInner extends ProxyResource {
 
     /**
      * Get the sessionHostHealthCheckResults property: List of SessionHostHealthCheckReports.
-     *
+     * 
      * @return the sessionHostHealthCheckResults value.
      */
     public List<SessionHostHealthCheckReport> sessionHostHealthCheckResults() {
@@ -360,7 +364,7 @@ public final class SessionHostInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

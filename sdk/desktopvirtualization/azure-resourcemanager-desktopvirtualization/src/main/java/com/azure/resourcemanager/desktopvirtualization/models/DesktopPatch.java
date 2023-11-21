@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** Desktop properties that can be patched. */
+/**
+ * Desktop properties that can be patched.
+ */
 @Fluent
 public final class DesktopPatch {
     /*
@@ -26,13 +28,15 @@ public final class DesktopPatch {
     @JsonProperty(value = "properties")
     private DesktopPatchProperties innerProperties;
 
-    /** Creates an instance of DesktopPatch class. */
+    /**
+     * Creates an instance of DesktopPatch class.
+     */
     public DesktopPatch() {
     }
 
     /**
      * Get the tags property: tags to be updated.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -41,7 +45,7 @@ public final class DesktopPatch {
 
     /**
      * Set the tags property: tags to be updated.
-     *
+     * 
      * @param tags the tags value to set.
      * @return the DesktopPatch object itself.
      */
@@ -52,7 +56,7 @@ public final class DesktopPatch {
 
     /**
      * Get the innerProperties property: Detailed properties for Desktop.
-     *
+     * 
      * @return the innerProperties value.
      */
     private DesktopPatchProperties innerProperties() {
@@ -61,7 +65,7 @@ public final class DesktopPatch {
 
     /**
      * Get the description property: Description of Desktop.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -70,7 +74,7 @@ public final class DesktopPatch {
 
     /**
      * Set the description property: Description of Desktop.
-     *
+     * 
      * @param description the description value to set.
      * @return the DesktopPatch object itself.
      */
@@ -84,7 +88,7 @@ public final class DesktopPatch {
 
     /**
      * Get the friendlyName property: Friendly name of Desktop.
-     *
+     * 
      * @return the friendlyName value.
      */
     public String friendlyName() {
@@ -93,7 +97,7 @@ public final class DesktopPatch {
 
     /**
      * Set the friendlyName property: Friendly name of Desktop.
-     *
+     * 
      * @param friendlyName the friendlyName value to set.
      * @return the DesktopPatch object itself.
      */
@@ -107,7 +111,7 @@ public final class DesktopPatch {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
