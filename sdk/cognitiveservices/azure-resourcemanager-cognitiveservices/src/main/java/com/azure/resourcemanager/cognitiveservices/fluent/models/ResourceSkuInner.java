@@ -9,7 +9,9 @@ import com.azure.resourcemanager.cognitiveservices.models.ResourceSkuRestriction
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Describes an available Cognitive Services SKU. */
+/**
+ * Describes an available Cognitive Services SKU.
+ */
 @Fluent
 public final class ResourceSkuInner {
     /*
@@ -48,13 +50,15 @@ public final class ResourceSkuInner {
     @JsonProperty(value = "restrictions")
     private List<ResourceSkuRestrictions> restrictions;
 
-    /** Creates an instance of ResourceSkuInner class. */
+    /**
+     * Creates an instance of ResourceSkuInner class.
+     */
     public ResourceSkuInner() {
     }
 
     /**
      * Get the resourceType property: The type of resource the SKU applies to.
-     *
+     * 
      * @return the resourceType value.
      */
     public String resourceType() {
@@ -63,7 +67,7 @@ public final class ResourceSkuInner {
 
     /**
      * Set the resourceType property: The type of resource the SKU applies to.
-     *
+     * 
      * @param resourceType the resourceType value to set.
      * @return the ResourceSkuInner object itself.
      */
@@ -74,7 +78,7 @@ public final class ResourceSkuInner {
 
     /**
      * Get the name property: The name of SKU.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -83,7 +87,7 @@ public final class ResourceSkuInner {
 
     /**
      * Set the name property: The name of SKU.
-     *
+     * 
      * @param name the name value to set.
      * @return the ResourceSkuInner object itself.
      */
@@ -94,7 +98,7 @@ public final class ResourceSkuInner {
 
     /**
      * Get the tier property: Specifies the tier of Cognitive Services account.
-     *
+     * 
      * @return the tier value.
      */
     public String tier() {
@@ -103,7 +107,7 @@ public final class ResourceSkuInner {
 
     /**
      * Set the tier property: Specifies the tier of Cognitive Services account.
-     *
+     * 
      * @param tier the tier value to set.
      * @return the ResourceSkuInner object itself.
      */
@@ -114,7 +118,7 @@ public final class ResourceSkuInner {
 
     /**
      * Get the kind property: The Kind of resources that are supported in this SKU.
-     *
+     * 
      * @return the kind value.
      */
     public String kind() {
@@ -123,7 +127,7 @@ public final class ResourceSkuInner {
 
     /**
      * Set the kind property: The Kind of resources that are supported in this SKU.
-     *
+     * 
      * @param kind the kind value to set.
      * @return the ResourceSkuInner object itself.
      */
@@ -134,7 +138,7 @@ public final class ResourceSkuInner {
 
     /**
      * Get the locations property: The set of locations that the SKU is available.
-     *
+     * 
      * @return the locations value.
      */
     public List<String> locations() {
@@ -143,7 +147,7 @@ public final class ResourceSkuInner {
 
     /**
      * Set the locations property: The set of locations that the SKU is available.
-     *
+     * 
      * @param locations the locations value to set.
      * @return the ResourceSkuInner object itself.
      */
@@ -155,7 +159,7 @@ public final class ResourceSkuInner {
     /**
      * Get the restrictions property: The restrictions because of which SKU cannot be used. This is empty if there are
      * no restrictions.
-     *
+     * 
      * @return the restrictions value.
      */
     public List<ResourceSkuRestrictions> restrictions() {
@@ -165,7 +169,7 @@ public final class ResourceSkuInner {
     /**
      * Set the restrictions property: The restrictions because of which SKU cannot be used. This is empty if there are
      * no restrictions.
-     *
+     * 
      * @param restrictions the restrictions value to set.
      * @return the ResourceSkuInner object itself.
      */
@@ -176,7 +180,7 @@ public final class ResourceSkuInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

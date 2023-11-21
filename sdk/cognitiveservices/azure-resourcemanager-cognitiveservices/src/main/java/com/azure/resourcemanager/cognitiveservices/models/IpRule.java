@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** A rule governing the accessibility from a specific ip address or ip range. */
+/**
+ * A rule governing the accessibility from a specific ip address or ip range.
+ */
 @Fluent
 public final class IpRule {
     /*
@@ -18,14 +20,16 @@ public final class IpRule {
     @JsonProperty(value = "value", required = true)
     private String value;
 
-    /** Creates an instance of IpRule class. */
+    /**
+     * Creates an instance of IpRule class.
+     */
     public IpRule() {
     }
 
     /**
      * Get the value property: An IPv4 address range in CIDR notation, such as '124.56.78.91' (simple IP address) or
      * '124.56.78.0/24' (all addresses that start with 124.56.78).
-     *
+     * 
      * @return the value value.
      */
     public String value() {
@@ -35,7 +39,7 @@ public final class IpRule {
     /**
      * Set the value property: An IPv4 address range in CIDR notation, such as '124.56.78.91' (simple IP address) or
      * '124.56.78.0/24' (all addresses that start with 124.56.78).
-     *
+     * 
      * @param value the value value to set.
      * @return the IpRule object itself.
      */
@@ -46,7 +50,7 @@ public final class IpRule {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -14,62 +14,48 @@ import com.azure.resourcemanager.cognitiveservices.models.Sku;
 import com.azure.resourcemanager.cognitiveservices.models.UserOwnedStorage;
 import java.util.Arrays;
 
-/** Samples for Accounts Create. */
+/**
+ * Samples for Accounts Create.
+ */
 public final class AccountsCreateSamples {
     /*
-     * x-ms-original-file: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/stable/2023-05-01/examples/CreateAccountMin.json
+     * x-ms-original-file:
+     * specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/preview/2023-10-01-preview/examples/
+     * CreateAccountMin.json
      */
     /**
      * Sample code: Create Account Min.
-     *
+     * 
      * @param manager Entry point to CognitiveServicesManager.
      */
     public static void createAccountMin(com.azure.resourcemanager.cognitiveservices.CognitiveServicesManager manager) {
-        manager
-            .accounts()
-            .define("testCreate1")
-            .withExistingResourceGroup("myResourceGroup")
-            .withRegion("West US")
-            .withKind("CognitiveServices")
-            .withSku(new Sku().withName("S0"))
+        manager.accounts().define("testCreate1").withExistingResourceGroup("myResourceGroup").withRegion("West US")
+            .withKind("CognitiveServices").withSku(new Sku().withName("S0"))
             .withIdentity(new Identity().withType(ResourceIdentityType.SYSTEM_ASSIGNED))
-            .withProperties(new AccountProperties())
-            .create();
+            .withProperties(new AccountProperties()).create();
     }
 
     /*
-     * x-ms-original-file: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/stable/2023-05-01/examples/CreateAccount.json
+     * x-ms-original-file:
+     * specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/preview/2023-10-01-preview/examples/
+     * CreateAccount.json
      */
     /**
      * Sample code: Create Account.
-     *
+     * 
      * @param manager Entry point to CognitiveServicesManager.
      */
     public static void createAccount(com.azure.resourcemanager.cognitiveservices.CognitiveServicesManager manager) {
-        manager
-            .accounts()
-            .define("testCreate1")
-            .withExistingResourceGroup("myResourceGroup")
-            .withRegion("West US")
-            .withKind("Emotion")
-            .withSku(new Sku().withName("S0"))
+        manager.accounts().define("testCreate1").withExistingResourceGroup("myResourceGroup").withRegion("West US")
+            .withKind("Emotion").withSku(new Sku().withName("S0"))
             .withIdentity(new Identity().withType(ResourceIdentityType.SYSTEM_ASSIGNED))
-            .withProperties(
-                new AccountProperties()
-                    .withEncryption(
-                        new Encryption()
-                            .withKeyVaultProperties(
-                                new KeyVaultProperties()
-                                    .withKeyName("fakeTokenPlaceholder")
-                                    .withKeyVersion("fakeTokenPlaceholder")
-                                    .withKeyVaultUri("fakeTokenPlaceholder"))
-                            .withKeySource(KeySource.MICROSOFT_KEY_VAULT))
-                    .withUserOwnedStorage(
-                        Arrays
-                            .asList(
-                                new UserOwnedStorage()
-                                    .withResourceId(
-                                        "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/myResourceGroup/providers/Microsoft.Storage/storageAccounts/myStorageAccount"))))
+            .withProperties(new AccountProperties()
+                .withEncryption(new Encryption()
+                    .withKeyVaultProperties(new KeyVaultProperties().withKeyName("fakeTokenPlaceholder")
+                        .withKeyVersion("fakeTokenPlaceholder").withKeyVaultUri("fakeTokenPlaceholder"))
+                    .withKeySource(KeySource.MICROSOFT_KEY_VAULT))
+                .withUserOwnedStorage(Arrays.asList(new UserOwnedStorage().withResourceId(
+                    "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/myResourceGroup/providers/Microsoft.Storage/storageAccounts/myStorageAccount"))))
             .create();
     }
 }

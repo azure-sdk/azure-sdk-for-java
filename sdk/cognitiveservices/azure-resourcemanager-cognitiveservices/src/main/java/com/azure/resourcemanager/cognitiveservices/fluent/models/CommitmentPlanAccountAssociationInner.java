@@ -7,9 +7,13 @@ package com.azure.resourcemanager.cognitiveservices.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.Map;
 
-/** The commitment plan association. */
+/**
+ * The commitment plan association.
+ */
 @Fluent
 public final class CommitmentPlanAccountAssociationInner extends ProxyResource {
     /*
@@ -25,18 +29,27 @@ public final class CommitmentPlanAccountAssociationInner extends ProxyResource {
     private String etag;
 
     /*
+     * Resource tags.
+     */
+    @JsonProperty(value = "tags")
+    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
+    private Map<String, String> tags;
+
+    /*
      * Properties of Cognitive Services account commitment plan association.
      */
     @JsonProperty(value = "properties")
     private CommitmentPlanAccountAssociationProperties innerProperties;
 
-    /** Creates an instance of CommitmentPlanAccountAssociationInner class. */
+    /**
+     * Creates an instance of CommitmentPlanAccountAssociationInner class.
+     */
     public CommitmentPlanAccountAssociationInner() {
     }
 
     /**
      * Get the systemData property: Metadata pertaining to creation and last modification of the resource.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -45,7 +58,7 @@ public final class CommitmentPlanAccountAssociationInner extends ProxyResource {
 
     /**
      * Get the etag property: Resource Etag.
-     *
+     * 
      * @return the etag value.
      */
     public String etag() {
@@ -53,8 +66,28 @@ public final class CommitmentPlanAccountAssociationInner extends ProxyResource {
     }
 
     /**
+     * Get the tags property: Resource tags.
+     * 
+     * @return the tags value.
+     */
+    public Map<String, String> tags() {
+        return this.tags;
+    }
+
+    /**
+     * Set the tags property: Resource tags.
+     * 
+     * @param tags the tags value to set.
+     * @return the CommitmentPlanAccountAssociationInner object itself.
+     */
+    public CommitmentPlanAccountAssociationInner withTags(Map<String, String> tags) {
+        this.tags = tags;
+        return this;
+    }
+
+    /**
      * Get the innerProperties property: Properties of Cognitive Services account commitment plan association.
-     *
+     * 
      * @return the innerProperties value.
      */
     private CommitmentPlanAccountAssociationProperties innerProperties() {
@@ -63,7 +96,7 @@ public final class CommitmentPlanAccountAssociationInner extends ProxyResource {
 
     /**
      * Get the accountId property: The Azure resource id of the account.
-     *
+     * 
      * @return the accountId value.
      */
     public String accountId() {
@@ -72,7 +105,7 @@ public final class CommitmentPlanAccountAssociationInner extends ProxyResource {
 
     /**
      * Set the accountId property: The Azure resource id of the account.
-     *
+     * 
      * @param accountId the accountId value to set.
      * @return the CommitmentPlanAccountAssociationInner object itself.
      */
@@ -86,7 +119,7 @@ public final class CommitmentPlanAccountAssociationInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
