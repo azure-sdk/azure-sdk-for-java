@@ -9,7 +9,9 @@ import com.azure.resourcemanager.billing.fluent.models.InstructionInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The list of billing instructions used during invoice generation. */
+/**
+ * The list of billing instructions used during invoice generation.
+ */
 @Immutable
 public final class InstructionListResult {
     /*
@@ -24,13 +26,15 @@ public final class InstructionListResult {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of InstructionListResult class. */
+    /**
+     * Creates an instance of InstructionListResult class.
+     */
     public InstructionListResult() {
     }
 
     /**
      * Get the value property: The list of billing instructions used during invoice generation.
-     *
+     * 
      * @return the value value.
      */
     public List<InstructionInner> value() {
@@ -39,7 +43,7 @@ public final class InstructionListResult {
 
     /**
      * Get the nextLink property: The link (url) to the next page of results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -48,7 +52,7 @@ public final class InstructionListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

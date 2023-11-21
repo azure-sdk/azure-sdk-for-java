@@ -4,14 +4,17 @@
 
 package com.azure.resourcemanager.billing.generated;
 
-/** Samples for EnrollmentAccounts List. */
+/**
+ * Samples for EnrollmentAccounts List.
+ */
 public final class EnrollmentAccountsListSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/preview/2018-03-01-preview/examples/EnrollmentAccountsList.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/preview/2018-03-01-preview/examples/
+     * EnrollmentAccountsList.json
      */
     /**
      * Sample code: EnrollmentAccountsList.
-     *
+     * 
      * @param manager Entry point to BillingManager.
      */
     public static void enrollmentAccountsList(com.azure.resourcemanager.billing.BillingManager manager) {

@@ -4,14 +4,17 @@
 
 package com.azure.resourcemanager.billing.generated;
 
-/** Samples for Operations List. */
+/**
+ * Samples for Operations List.
+ */
 public final class OperationsListSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/GetOperations.json
+     * x-ms-original-file:
+     * specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/GetOperations.json
      */
     /**
      * Sample code: BillingAccountPermissionsList.
-     *
+     * 
      * @param manager Entry point to BillingManager.
      */
     public static void billingAccountPermissionsList(com.azure.resourcemanager.billing.BillingManager manager) {

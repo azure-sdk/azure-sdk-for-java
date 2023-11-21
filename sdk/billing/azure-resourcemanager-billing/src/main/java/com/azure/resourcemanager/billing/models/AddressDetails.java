@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Address details. */
+/**
+ * Address details.
+ */
 @Fluent
 public final class AddressDetails {
     /*
@@ -95,13 +97,15 @@ public final class AddressDetails {
     @JsonProperty(value = "phoneNumber")
     private String phoneNumber;
 
-    /** Creates an instance of AddressDetails class. */
+    /**
+     * Creates an instance of AddressDetails class.
+     */
     public AddressDetails() {
     }
 
     /**
      * Get the firstName property: First name.
-     *
+     * 
      * @return the firstName value.
      */
     public String firstName() {
@@ -110,7 +114,7 @@ public final class AddressDetails {
 
     /**
      * Set the firstName property: First name.
-     *
+     * 
      * @param firstName the firstName value to set.
      * @return the AddressDetails object itself.
      */
@@ -121,7 +125,7 @@ public final class AddressDetails {
 
     /**
      * Get the middleName property: Middle name.
-     *
+     * 
      * @return the middleName value.
      */
     public String middleName() {
@@ -130,7 +134,7 @@ public final class AddressDetails {
 
     /**
      * Set the middleName property: Middle name.
-     *
+     * 
      * @param middleName the middleName value to set.
      * @return the AddressDetails object itself.
      */
@@ -141,7 +145,7 @@ public final class AddressDetails {
 
     /**
      * Get the lastName property: Last name.
-     *
+     * 
      * @return the lastName value.
      */
     public String lastName() {
@@ -150,7 +154,7 @@ public final class AddressDetails {
 
     /**
      * Set the lastName property: Last name.
-     *
+     * 
      * @param lastName the lastName value to set.
      * @return the AddressDetails object itself.
      */
@@ -161,7 +165,7 @@ public final class AddressDetails {
 
     /**
      * Get the companyName property: Company name.
-     *
+     * 
      * @return the companyName value.
      */
     public String companyName() {
@@ -170,7 +174,7 @@ public final class AddressDetails {
 
     /**
      * Set the companyName property: Company name.
-     *
+     * 
      * @param companyName the companyName value to set.
      * @return the AddressDetails object itself.
      */
@@ -181,7 +185,7 @@ public final class AddressDetails {
 
     /**
      * Get the addressLine1 property: Address line 1.
-     *
+     * 
      * @return the addressLine1 value.
      */
     public String addressLine1() {
@@ -190,7 +194,7 @@ public final class AddressDetails {
 
     /**
      * Set the addressLine1 property: Address line 1.
-     *
+     * 
      * @param addressLine1 the addressLine1 value to set.
      * @return the AddressDetails object itself.
      */
@@ -201,7 +205,7 @@ public final class AddressDetails {
 
     /**
      * Get the addressLine2 property: Address line 2.
-     *
+     * 
      * @return the addressLine2 value.
      */
     public String addressLine2() {
@@ -210,7 +214,7 @@ public final class AddressDetails {
 
     /**
      * Set the addressLine2 property: Address line 2.
-     *
+     * 
      * @param addressLine2 the addressLine2 value to set.
      * @return the AddressDetails object itself.
      */
@@ -221,7 +225,7 @@ public final class AddressDetails {
 
     /**
      * Get the addressLine3 property: Address line 3.
-     *
+     * 
      * @return the addressLine3 value.
      */
     public String addressLine3() {
@@ -230,7 +234,7 @@ public final class AddressDetails {
 
     /**
      * Set the addressLine3 property: Address line 3.
-     *
+     * 
      * @param addressLine3 the addressLine3 value to set.
      * @return the AddressDetails object itself.
      */
@@ -241,7 +245,7 @@ public final class AddressDetails {
 
     /**
      * Get the city property: Address city.
-     *
+     * 
      * @return the city value.
      */
     public String city() {
@@ -250,7 +254,7 @@ public final class AddressDetails {
 
     /**
      * Set the city property: Address city.
-     *
+     * 
      * @param city the city value to set.
      * @return the AddressDetails object itself.
      */
@@ -261,7 +265,7 @@ public final class AddressDetails {
 
     /**
      * Get the district property: Address district.
-     *
+     * 
      * @return the district value.
      */
     public String district() {
@@ -270,7 +274,7 @@ public final class AddressDetails {
 
     /**
      * Set the district property: Address district.
-     *
+     * 
      * @param district the district value to set.
      * @return the AddressDetails object itself.
      */
@@ -281,7 +285,7 @@ public final class AddressDetails {
 
     /**
      * Get the region property: Address region.
-     *
+     * 
      * @return the region value.
      */
     public String region() {
@@ -290,7 +294,7 @@ public final class AddressDetails {
 
     /**
      * Set the region property: Address region.
-     *
+     * 
      * @param region the region value to set.
      * @return the AddressDetails object itself.
      */
@@ -301,7 +305,7 @@ public final class AddressDetails {
 
     /**
      * Get the country property: Country code uses ISO2, 2-digit format.
-     *
+     * 
      * @return the country value.
      */
     public String country() {
@@ -310,7 +314,7 @@ public final class AddressDetails {
 
     /**
      * Set the country property: Country code uses ISO2, 2-digit format.
-     *
+     * 
      * @param country the country value to set.
      * @return the AddressDetails object itself.
      */
@@ -321,7 +325,7 @@ public final class AddressDetails {
 
     /**
      * Get the postalCode property: Postal code.
-     *
+     * 
      * @return the postalCode value.
      */
     public String postalCode() {
@@ -330,7 +334,7 @@ public final class AddressDetails {
 
     /**
      * Set the postalCode property: Postal code.
-     *
+     * 
      * @param postalCode the postalCode value to set.
      * @return the AddressDetails object itself.
      */
@@ -341,7 +345,7 @@ public final class AddressDetails {
 
     /**
      * Get the email property: Email address.
-     *
+     * 
      * @return the email value.
      */
     public String email() {
@@ -350,7 +354,7 @@ public final class AddressDetails {
 
     /**
      * Set the email property: Email address.
-     *
+     * 
      * @param email the email value to set.
      * @return the AddressDetails object itself.
      */
@@ -361,7 +365,7 @@ public final class AddressDetails {
 
     /**
      * Get the phoneNumber property: Phone number.
-     *
+     * 
      * @return the phoneNumber value.
      */
     public String phoneNumber() {
@@ -370,7 +374,7 @@ public final class AddressDetails {
 
     /**
      * Set the phoneNumber property: Phone number.
-     *
+     * 
      * @param phoneNumber the phoneNumber value to set.
      * @return the AddressDetails object itself.
      */
@@ -381,19 +385,17 @@ public final class AddressDetails {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (addressLine1() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property addressLine1 in model AddressDetails"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property addressLine1 in model AddressDetails"));
         }
         if (country() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property country in model AddressDetails"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property country in model AddressDetails"));
         }
     }
 

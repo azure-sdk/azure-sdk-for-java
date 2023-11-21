@@ -9,12 +9,14 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.billing.fluent.models.InvoiceSectionInner;
 
-/** Resource collection API of InvoiceSections. */
+/**
+ * Resource collection API of InvoiceSections.
+ */
 public interface InvoiceSections {
     /**
      * Lists the invoice sections that a user has access to. The operation is supported only for billing accounts with
      * agreement type Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -27,7 +29,7 @@ public interface InvoiceSections {
     /**
      * Lists the invoice sections that a user has access to. The operation is supported only for billing accounts with
      * agreement type Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param context The context to associate with this operation.
@@ -36,13 +38,13 @@ public interface InvoiceSections {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the list of invoice sections as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<InvoiceSection> listByBillingProfile(
-        String billingAccountName, String billingProfileName, Context context);
+    PagedIterable<InvoiceSection> listByBillingProfile(String billingAccountName, String billingProfileName,
+        Context context);
 
     /**
      * Gets an invoice section by its ID. The operation is supported only for billing accounts with agreement type
      * Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param invoiceSectionName The ID that uniquely identifies an invoice section.
@@ -52,13 +54,13 @@ public interface InvoiceSections {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return an invoice section by its ID along with {@link Response}.
      */
-    Response<InvoiceSection> getWithResponse(
-        String billingAccountName, String billingProfileName, String invoiceSectionName, Context context);
+    Response<InvoiceSection> getWithResponse(String billingAccountName, String billingProfileName,
+        String invoiceSectionName, Context context);
 
     /**
      * Gets an invoice section by its ID. The operation is supported only for billing accounts with agreement type
      * Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param invoiceSectionName The ID that uniquely identifies an invoice section.
@@ -72,7 +74,7 @@ public interface InvoiceSections {
     /**
      * Creates or updates an invoice section. The operation is supported only for billing accounts with agreement type
      * Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param invoiceSectionName The ID that uniquely identifies an invoice section.
@@ -82,16 +84,13 @@ public interface InvoiceSections {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return an invoice section.
      */
-    InvoiceSection createOrUpdate(
-        String billingAccountName,
-        String billingProfileName,
-        String invoiceSectionName,
+    InvoiceSection createOrUpdate(String billingAccountName, String billingProfileName, String invoiceSectionName,
         InvoiceSectionInner parameters);
 
     /**
      * Creates or updates an invoice section. The operation is supported only for billing accounts with agreement type
      * Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param invoiceSectionName The ID that uniquely identifies an invoice section.
@@ -102,10 +101,6 @@ public interface InvoiceSections {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return an invoice section.
      */
-    InvoiceSection createOrUpdate(
-        String billingAccountName,
-        String billingProfileName,
-        String invoiceSectionName,
-        InvoiceSectionInner parameters,
-        Context context);
+    InvoiceSection createOrUpdate(String billingAccountName, String billingProfileName, String invoiceSectionName,
+        InvoiceSectionInner parameters, Context context);
 }

@@ -8,20 +8,28 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Invoice type. */
+/**
+ * Invoice type.
+ */
 public final class InvoiceType extends ExpandableStringEnum<InvoiceType> {
-    /** Static value AzureService for InvoiceType. */
+    /**
+     * Static value AzureService for InvoiceType.
+     */
     public static final InvoiceType AZURE_SERVICE = fromString("AzureService");
 
-    /** Static value AzureMarketplace for InvoiceType. */
+    /**
+     * Static value AzureMarketplace for InvoiceType.
+     */
     public static final InvoiceType AZURE_MARKETPLACE = fromString("AzureMarketplace");
 
-    /** Static value AzureSupport for InvoiceType. */
+    /**
+     * Static value AzureSupport for InvoiceType.
+     */
     public static final InvoiceType AZURE_SUPPORT = fromString("AzureSupport");
 
     /**
      * Creates a new instance of InvoiceType value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -30,7 +38,7 @@ public final class InvoiceType extends ExpandableStringEnum<InvoiceType> {
 
     /**
      * Creates or finds a InvoiceType from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding InvoiceType.
      */
@@ -41,7 +49,7 @@ public final class InvoiceType extends ExpandableStringEnum<InvoiceType> {
 
     /**
      * Gets known InvoiceType values.
-     *
+     * 
      * @return known InvoiceType values.
      */
     public static Collection<InvoiceType> values() {

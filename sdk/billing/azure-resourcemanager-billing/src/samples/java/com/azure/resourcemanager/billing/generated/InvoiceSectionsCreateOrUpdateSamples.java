@@ -8,29 +8,28 @@ import com.azure.resourcemanager.billing.fluent.models.InvoiceSectionInner;
 import java.util.HashMap;
 import java.util.Map;
 
-/** Samples for InvoiceSections CreateOrUpdate. */
+/**
+ * Samples for InvoiceSections CreateOrUpdate.
+ */
 public final class InvoiceSectionsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/PutInvoiceSection.json
+     * x-ms-original-file:
+     * specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/PutInvoiceSection.json
      */
     /**
      * Sample code: PutInvoiceSection.
-     *
+     * 
      * @param manager Entry point to BillingManager.
      */
     public static void putInvoiceSection(com.azure.resourcemanager.billing.BillingManager manager) {
-        manager
-            .invoiceSections()
-            .createOrUpdate(
-                "{billingAccountName}",
-                "{billingProfileName}",
-                "{invoiceSectionName}",
-                new InvoiceSectionInner()
-                    .withDisplayName("invoiceSection1")
-                    .withLabels(mapOf("costCategory", "Support", "pcCode", "A123456")),
+        manager.invoiceSections()
+            .createOrUpdate("{billingAccountName}", "{billingProfileName}", "{invoiceSectionName}",
+                new InvoiceSectionInner().withDisplayName("invoiceSection1")
+                    .withLabels(mapOf("costCategory", "Support", "pcCode", "fakeTokenPlaceholder")),
                 com.azure.core.util.Context.NONE);
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

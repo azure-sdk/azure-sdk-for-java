@@ -4,18 +4,22 @@
 
 package com.azure.resourcemanager.billing.generated;
 
-/** Samples for Invoices GetBySubscriptionAndInvoiceId. */
+/**
+ * Samples for Invoices GetBySubscriptionAndInvoiceId.
+ */
 public final class InvoicesGetBySubscriptionAndInvoiceIdSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/BillingSubscriptionInvoice.json
+     * x-ms-original-file:
+     * specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/BillingSubscriptionInvoice.
+     * json
      */
     /**
      * Sample code: BillingSubscriptionsListByBillingAccount.
-     *
+     * 
      * @param manager Entry point to BillingManager.
      */
-    public static void billingSubscriptionsListByBillingAccount(
-        com.azure.resourcemanager.billing.BillingManager manager) {
+    public static void
+        billingSubscriptionsListByBillingAccount(com.azure.resourcemanager.billing.BillingManager manager) {
         manager.invoices().getBySubscriptionAndInvoiceIdWithResponse("{invoiceName}", com.azure.core.util.Context.NONE);
     }
 }

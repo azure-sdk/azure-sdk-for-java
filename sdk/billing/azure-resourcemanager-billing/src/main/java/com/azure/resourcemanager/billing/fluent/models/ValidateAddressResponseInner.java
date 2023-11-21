@@ -10,7 +10,9 @@ import com.azure.resourcemanager.billing.models.AddressValidationStatus;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Result of the address validation. */
+/**
+ * Result of the address validation.
+ */
 @Fluent
 public final class ValidateAddressResponseInner {
     /*
@@ -31,13 +33,15 @@ public final class ValidateAddressResponseInner {
     @JsonProperty(value = "validationMessage")
     private String validationMessage;
 
-    /** Creates an instance of ValidateAddressResponseInner class. */
+    /**
+     * Creates an instance of ValidateAddressResponseInner class.
+     */
     public ValidateAddressResponseInner() {
     }
 
     /**
      * Get the status property: status of the address validation.
-     *
+     * 
      * @return the status value.
      */
     public AddressValidationStatus status() {
@@ -46,7 +50,7 @@ public final class ValidateAddressResponseInner {
 
     /**
      * Set the status property: status of the address validation.
-     *
+     * 
      * @param status the status value to set.
      * @return the ValidateAddressResponseInner object itself.
      */
@@ -57,7 +61,7 @@ public final class ValidateAddressResponseInner {
 
     /**
      * Get the suggestedAddresses property: The list of suggested addresses.
-     *
+     * 
      * @return the suggestedAddresses value.
      */
     public List<AddressDetails> suggestedAddresses() {
@@ -66,7 +70,7 @@ public final class ValidateAddressResponseInner {
 
     /**
      * Set the suggestedAddresses property: The list of suggested addresses.
-     *
+     * 
      * @param suggestedAddresses the suggestedAddresses value to set.
      * @return the ValidateAddressResponseInner object itself.
      */
@@ -77,7 +81,7 @@ public final class ValidateAddressResponseInner {
 
     /**
      * Get the validationMessage property: Validation error message.
-     *
+     * 
      * @return the validationMessage value.
      */
     public String validationMessage() {
@@ -86,7 +90,7 @@ public final class ValidateAddressResponseInner {
 
     /**
      * Set the validationMessage property: Validation error message.
-     *
+     * 
      * @param validationMessage the validationMessage value to set.
      * @return the ValidateAddressResponseInner object itself.
      */
@@ -97,7 +101,7 @@ public final class ValidateAddressResponseInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

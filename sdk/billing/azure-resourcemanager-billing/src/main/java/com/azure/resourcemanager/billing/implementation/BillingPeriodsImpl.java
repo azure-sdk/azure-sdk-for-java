@@ -21,8 +21,8 @@ public final class BillingPeriodsImpl implements BillingPeriods {
 
     private final com.azure.resourcemanager.billing.BillingManager serviceManager;
 
-    public BillingPeriodsImpl(
-        BillingPeriodsClient innerClient, com.azure.resourcemanager.billing.BillingManager serviceManager) {
+    public BillingPeriodsImpl(BillingPeriodsClient innerClient,
+        com.azure.resourcemanager.billing.BillingManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
@@ -40,10 +40,7 @@ public final class BillingPeriodsImpl implements BillingPeriods {
     public Response<BillingPeriod> getWithResponse(String billingPeriodName, Context context) {
         Response<BillingPeriodInner> inner = this.serviceClient().getWithResponse(billingPeriodName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new BillingPeriodImpl(inner.getValue(), this.manager()));
         } else {
             return null;

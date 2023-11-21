@@ -29,49 +29,38 @@ public final class InvoicesImpl implements Invoices {
         this.serviceManager = serviceManager;
     }
 
-    public PagedIterable<Invoice> listByBillingAccount(
-        String billingAccountName, String periodStartDate, String periodEndDate) {
-        PagedIterable<InvoiceInner> inner =
-            this.serviceClient().listByBillingAccount(billingAccountName, periodStartDate, periodEndDate);
+    public PagedIterable<Invoice> listByBillingAccount(String billingAccountName, String periodStartDate,
+        String periodEndDate) {
+        PagedIterable<InvoiceInner> inner
+            = this.serviceClient().listByBillingAccount(billingAccountName, periodStartDate, periodEndDate);
         return Utils.mapPage(inner, inner1 -> new InvoiceImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<Invoice> listByBillingAccount(
-        String billingAccountName, String periodStartDate, String periodEndDate, Context context) {
-        PagedIterable<InvoiceInner> inner =
-            this.serviceClient().listByBillingAccount(billingAccountName, periodStartDate, periodEndDate, context);
+    public PagedIterable<Invoice> listByBillingAccount(String billingAccountName, String periodStartDate,
+        String periodEndDate, Context context) {
+        PagedIterable<InvoiceInner> inner
+            = this.serviceClient().listByBillingAccount(billingAccountName, periodStartDate, periodEndDate, context);
         return Utils.mapPage(inner, inner1 -> new InvoiceImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<Invoice> listByBillingProfile(
-        String billingAccountName, String billingProfileName, String periodStartDate, String periodEndDate) {
-        PagedIterable<InvoiceInner> inner =
-            this
-                .serviceClient()
-                .listByBillingProfile(billingAccountName, billingProfileName, periodStartDate, periodEndDate);
+    public PagedIterable<Invoice> listByBillingProfile(String billingAccountName, String billingProfileName,
+        String periodStartDate, String periodEndDate) {
+        PagedIterable<InvoiceInner> inner = this.serviceClient().listByBillingProfile(billingAccountName,
+            billingProfileName, periodStartDate, periodEndDate);
         return Utils.mapPage(inner, inner1 -> new InvoiceImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<Invoice> listByBillingProfile(
-        String billingAccountName,
-        String billingProfileName,
-        String periodStartDate,
-        String periodEndDate,
-        Context context) {
-        PagedIterable<InvoiceInner> inner =
-            this
-                .serviceClient()
-                .listByBillingProfile(billingAccountName, billingProfileName, periodStartDate, periodEndDate, context);
+    public PagedIterable<Invoice> listByBillingProfile(String billingAccountName, String billingProfileName,
+        String periodStartDate, String periodEndDate, Context context) {
+        PagedIterable<InvoiceInner> inner = this.serviceClient().listByBillingProfile(billingAccountName,
+            billingProfileName, periodStartDate, periodEndDate, context);
         return Utils.mapPage(inner, inner1 -> new InvoiceImpl(inner1, this.manager()));
     }
 
     public Response<Invoice> getWithResponse(String billingAccountName, String invoiceName, Context context) {
         Response<InvoiceInner> inner = this.serviceClient().getWithResponse(billingAccountName, invoiceName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new InvoiceImpl(inner.getValue(), this.manager()));
         } else {
             return null;
@@ -90,10 +79,7 @@ public final class InvoicesImpl implements Invoices {
     public Response<Invoice> getByIdWithResponse(String invoiceName, Context context) {
         Response<InvoiceInner> inner = this.serviceClient().getByIdWithResponse(invoiceName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new InvoiceImpl(inner.getValue(), this.manager()));
         } else {
             return null;
@@ -118,10 +104,10 @@ public final class InvoicesImpl implements Invoices {
         }
     }
 
-    public DownloadUrl downloadInvoice(
-        String billingAccountName, String invoiceName, String downloadToken, Context context) {
-        DownloadUrlInner inner =
-            this.serviceClient().downloadInvoice(billingAccountName, invoiceName, downloadToken, context);
+    public DownloadUrl downloadInvoice(String billingAccountName, String invoiceName, String downloadToken,
+        Context context) {
+        DownloadUrlInner inner
+            = this.serviceClient().downloadInvoice(billingAccountName, invoiceName, downloadToken, context);
         if (inner != null) {
             return new DownloadUrlImpl(inner, this.manager());
         } else {
@@ -130,8 +116,8 @@ public final class InvoicesImpl implements Invoices {
     }
 
     public DownloadUrl downloadMultipleBillingProfileInvoices(String billingAccountName, List<String> downloadUrls) {
-        DownloadUrlInner inner =
-            this.serviceClient().downloadMultipleBillingProfileInvoices(billingAccountName, downloadUrls);
+        DownloadUrlInner inner
+            = this.serviceClient().downloadMultipleBillingProfileInvoices(billingAccountName, downloadUrls);
         if (inner != null) {
             return new DownloadUrlImpl(inner, this.manager());
         } else {
@@ -139,10 +125,10 @@ public final class InvoicesImpl implements Invoices {
         }
     }
 
-    public DownloadUrl downloadMultipleBillingProfileInvoices(
-        String billingAccountName, List<String> downloadUrls, Context context) {
-        DownloadUrlInner inner =
-            this.serviceClient().downloadMultipleBillingProfileInvoices(billingAccountName, downloadUrls, context);
+    public DownloadUrl downloadMultipleBillingProfileInvoices(String billingAccountName, List<String> downloadUrls,
+        Context context) {
+        DownloadUrlInner inner
+            = this.serviceClient().downloadMultipleBillingProfileInvoices(billingAccountName, downloadUrls, context);
         if (inner != null) {
             return new DownloadUrlImpl(inner, this.manager());
         } else {
@@ -151,26 +137,23 @@ public final class InvoicesImpl implements Invoices {
     }
 
     public PagedIterable<Invoice> listByBillingSubscription(String periodStartDate, String periodEndDate) {
-        PagedIterable<InvoiceInner> inner =
-            this.serviceClient().listByBillingSubscription(periodStartDate, periodEndDate);
+        PagedIterable<InvoiceInner> inner
+            = this.serviceClient().listByBillingSubscription(periodStartDate, periodEndDate);
         return Utils.mapPage(inner, inner1 -> new InvoiceImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<Invoice> listByBillingSubscription(
-        String periodStartDate, String periodEndDate, Context context) {
-        PagedIterable<InvoiceInner> inner =
-            this.serviceClient().listByBillingSubscription(periodStartDate, periodEndDate, context);
+    public PagedIterable<Invoice> listByBillingSubscription(String periodStartDate, String periodEndDate,
+        Context context) {
+        PagedIterable<InvoiceInner> inner
+            = this.serviceClient().listByBillingSubscription(periodStartDate, periodEndDate, context);
         return Utils.mapPage(inner, inner1 -> new InvoiceImpl(inner1, this.manager()));
     }
 
     public Response<Invoice> getBySubscriptionAndInvoiceIdWithResponse(String invoiceName, Context context) {
-        Response<InvoiceInner> inner =
-            this.serviceClient().getBySubscriptionAndInvoiceIdWithResponse(invoiceName, context);
+        Response<InvoiceInner> inner
+            = this.serviceClient().getBySubscriptionAndInvoiceIdWithResponse(invoiceName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new InvoiceImpl(inner.getValue(), this.manager()));
         } else {
             return null;
@@ -196,8 +179,8 @@ public final class InvoicesImpl implements Invoices {
     }
 
     public DownloadUrl downloadBillingSubscriptionInvoice(String invoiceName, String downloadToken, Context context) {
-        DownloadUrlInner inner =
-            this.serviceClient().downloadBillingSubscriptionInvoice(invoiceName, downloadToken, context);
+        DownloadUrlInner inner
+            = this.serviceClient().downloadBillingSubscriptionInvoice(invoiceName, downloadToken, context);
         if (inner != null) {
             return new DownloadUrlImpl(inner, this.manager());
         } else {
@@ -215,8 +198,8 @@ public final class InvoicesImpl implements Invoices {
     }
 
     public DownloadUrl downloadMultipleBillingSubscriptionInvoices(List<String> downloadUrls, Context context) {
-        DownloadUrlInner inner =
-            this.serviceClient().downloadMultipleBillingSubscriptionInvoices(downloadUrls, context);
+        DownloadUrlInner inner
+            = this.serviceClient().downloadMultipleBillingSubscriptionInvoices(downloadUrls, context);
         if (inner != null) {
             return new DownloadUrlImpl(inner, this.manager());
         } else {

@@ -7,7 +7,9 @@ package com.azure.resourcemanager.billing.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The properties of the role assignment. */
+/**
+ * The properties of the role assignment.
+ */
 @Fluent
 public final class BillingRoleAssignmentProperties {
     /*
@@ -70,13 +72,15 @@ public final class BillingRoleAssignmentProperties {
     @JsonProperty(value = "userEmailAddress")
     private String userEmailAddress;
 
-    /** Creates an instance of BillingRoleAssignmentProperties class. */
+    /**
+     * Creates an instance of BillingRoleAssignmentProperties class.
+     */
     public BillingRoleAssignmentProperties() {
     }
 
     /**
      * Get the createdOn property: The date the role assignment was created.
-     *
+     * 
      * @return the createdOn value.
      */
     public String createdOn() {
@@ -85,7 +89,7 @@ public final class BillingRoleAssignmentProperties {
 
     /**
      * Get the createdByPrincipalTenantId property: The tenant Id of the user who created the role assignment.
-     *
+     * 
      * @return the createdByPrincipalTenantId value.
      */
     public String createdByPrincipalTenantId() {
@@ -94,7 +98,7 @@ public final class BillingRoleAssignmentProperties {
 
     /**
      * Get the createdByPrincipalId property: The principal Id of the user who created the role assignment.
-     *
+     * 
      * @return the createdByPrincipalId value.
      */
     public String createdByPrincipalId() {
@@ -103,7 +107,7 @@ public final class BillingRoleAssignmentProperties {
 
     /**
      * Get the createdByUserEmailAddress property: The email address of the user who created the role assignment.
-     *
+     * 
      * @return the createdByUserEmailAddress value.
      */
     public String createdByUserEmailAddress() {
@@ -112,7 +116,7 @@ public final class BillingRoleAssignmentProperties {
 
     /**
      * Get the principalId property: The principal id of the user to whom the role was assigned.
-     *
+     * 
      * @return the principalId value.
      */
     public String principalId() {
@@ -121,7 +125,7 @@ public final class BillingRoleAssignmentProperties {
 
     /**
      * Set the principalId property: The principal id of the user to whom the role was assigned.
-     *
+     * 
      * @param principalId the principalId value to set.
      * @return the BillingRoleAssignmentProperties object itself.
      */
@@ -132,7 +136,7 @@ public final class BillingRoleAssignmentProperties {
 
     /**
      * Get the principalTenantId property: The principal tenant id of the user to whom the role was assigned.
-     *
+     * 
      * @return the principalTenantId value.
      */
     public String principalTenantId() {
@@ -141,7 +145,7 @@ public final class BillingRoleAssignmentProperties {
 
     /**
      * Set the principalTenantId property: The principal tenant id of the user to whom the role was assigned.
-     *
+     * 
      * @param principalTenantId the principalTenantId value to set.
      * @return the BillingRoleAssignmentProperties object itself.
      */
@@ -152,7 +156,7 @@ public final class BillingRoleAssignmentProperties {
 
     /**
      * Get the roleDefinitionId property: The ID of the role definition.
-     *
+     * 
      * @return the roleDefinitionId value.
      */
     public String roleDefinitionId() {
@@ -161,7 +165,7 @@ public final class BillingRoleAssignmentProperties {
 
     /**
      * Set the roleDefinitionId property: The ID of the role definition.
-     *
+     * 
      * @param roleDefinitionId the roleDefinitionId value to set.
      * @return the BillingRoleAssignmentProperties object itself.
      */
@@ -172,7 +176,7 @@ public final class BillingRoleAssignmentProperties {
 
     /**
      * Get the scope property: The scope at which the role was assigned.
-     *
+     * 
      * @return the scope value.
      */
     public String scope() {
@@ -181,7 +185,7 @@ public final class BillingRoleAssignmentProperties {
 
     /**
      * Get the userAuthenticationType property: The authentication type.
-     *
+     * 
      * @return the userAuthenticationType value.
      */
     public String userAuthenticationType() {
@@ -190,7 +194,7 @@ public final class BillingRoleAssignmentProperties {
 
     /**
      * Set the userAuthenticationType property: The authentication type.
-     *
+     * 
      * @param userAuthenticationType the userAuthenticationType value to set.
      * @return the BillingRoleAssignmentProperties object itself.
      */
@@ -201,7 +205,7 @@ public final class BillingRoleAssignmentProperties {
 
     /**
      * Get the userEmailAddress property: The email address of the user.
-     *
+     * 
      * @return the userEmailAddress value.
      */
     public String userEmailAddress() {
@@ -210,7 +214,7 @@ public final class BillingRoleAssignmentProperties {
 
     /**
      * Set the userEmailAddress property: The email address of the user.
-     *
+     * 
      * @param userEmailAddress the userEmailAddress value to set.
      * @return the BillingRoleAssignmentProperties object itself.
      */
@@ -221,7 +225,7 @@ public final class BillingRoleAssignmentProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

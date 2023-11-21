@@ -4,14 +4,17 @@
 
 package com.azure.resourcemanager.billing.generated;
 
-/** Samples for BillingAccounts List. */
+/**
+ * Samples for BillingAccounts List.
+ */
 public final class BillingAccountsListSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/BillingAccountsList.json
+     * x-ms-original-file:
+     * specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/BillingAccountsList.json
      */
     /**
      * Sample code: BillingAccountsList.
-     *
+     * 
      * @param manager Entry point to BillingManager.
      */
     public static void billingAccountsList(com.azure.resourcemanager.billing.BillingManager manager) {
@@ -19,31 +22,32 @@ public final class BillingAccountsListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/BillingAccountsListWithExpandForEnrollmentDetails.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/
+     * BillingAccountsListWithExpandForEnrollmentDetails.json
      */
     /**
      * Sample code: BillingAccountsListWithExpandForEnrollmentDetails.
-     *
+     * 
      * @param manager Entry point to BillingManager.
      */
-    public static void billingAccountsListWithExpandForEnrollmentDetails(
-        com.azure.resourcemanager.billing.BillingManager manager) {
-        manager
-            .billingAccounts()
-            .list("enrollmentDetails,departments,enrollmentAccounts", com.azure.core.util.Context.NONE);
+    public static void
+        billingAccountsListWithExpandForEnrollmentDetails(com.azure.resourcemanager.billing.BillingManager manager) {
+        manager.billingAccounts().list("enrollmentDetails,departments,enrollmentAccounts",
+            com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/BillingAccountsListWithExpand.json
+     * x-ms-original-file:
+     * specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/BillingAccountsListWithExpand
+     * .json
      */
     /**
      * Sample code: BillingAccountsListWithExpand.
-     *
+     * 
      * @param manager Entry point to BillingManager.
      */
     public static void billingAccountsListWithExpand(com.azure.resourcemanager.billing.BillingManager manager) {
-        manager
-            .billingAccounts()
-            .list("soldTo,billingProfiles,billingProfiles/invoiceSections", com.azure.core.util.Context.NONE);
+        manager.billingAccounts().list("soldTo,billingProfiles,billingProfiles/invoiceSections",
+            com.azure.core.util.Context.NONE);
     }
 }

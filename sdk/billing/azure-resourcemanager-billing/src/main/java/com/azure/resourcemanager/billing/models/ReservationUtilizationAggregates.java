@@ -7,7 +7,9 @@ package com.azure.resourcemanager.billing.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The aggregate values of reservation utilization. */
+/**
+ * The aggregate values of reservation utilization.
+ */
 @Immutable
 public final class ReservationUtilizationAggregates {
     /*
@@ -34,13 +36,15 @@ public final class ReservationUtilizationAggregates {
     @JsonProperty(value = "valueUnit", access = JsonProperty.Access.WRITE_ONLY)
     private String valueUnit;
 
-    /** Creates an instance of ReservationUtilizationAggregates class. */
+    /**
+     * Creates an instance of ReservationUtilizationAggregates class.
+     */
     public ReservationUtilizationAggregates() {
     }
 
     /**
      * Get the grain property: The grain of the aggregate.
-     *
+     * 
      * @return the grain value.
      */
     public Float grain() {
@@ -49,7 +53,7 @@ public final class ReservationUtilizationAggregates {
 
     /**
      * Get the grainUnit property: The grain unit of the aggregate.
-     *
+     * 
      * @return the grainUnit value.
      */
     public String grainUnit() {
@@ -58,7 +62,7 @@ public final class ReservationUtilizationAggregates {
 
     /**
      * Get the value property: The aggregate value.
-     *
+     * 
      * @return the value value.
      */
     public Float value() {
@@ -67,7 +71,7 @@ public final class ReservationUtilizationAggregates {
 
     /**
      * Get the valueUnit property: The aggregate value unit.
-     *
+     * 
      * @return the valueUnit value.
      */
     public String valueUnit() {
@@ -76,7 +80,7 @@ public final class ReservationUtilizationAggregates {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

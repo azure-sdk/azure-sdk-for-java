@@ -10,13 +10,15 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.billing.fluent.models.AvailableBalanceInner;
 
-/** An instance of this class provides access to all the operations defined in AvailableBalancesClient. */
+/**
+ * An instance of this class provides access to all the operations defined in AvailableBalancesClient.
+ */
 public interface AvailableBalancesClient {
     /**
      * The available credit balance for a billing profile. This is the balance that can be used for pay now to settle
      * due or past due invoices. The operation is supported only for billing accounts with agreement type Microsoft
      * Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param context The context to associate with this operation.
@@ -26,14 +28,14 @@ public interface AvailableBalancesClient {
      * @return the latest Azure credit balance along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<AvailableBalanceInner> getWithResponse(
-        String billingAccountName, String billingProfileName, Context context);
+    Response<AvailableBalanceInner> getWithResponse(String billingAccountName, String billingProfileName,
+        Context context);
 
     /**
      * The available credit balance for a billing profile. This is the balance that can be used for pay now to settle
      * due or past due invoices. The operation is supported only for billing accounts with agreement type Microsoft
      * Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @throws IllegalArgumentException thrown if parameters fail the validation.

@@ -53,315 +53,369 @@ import java.time.Duration;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-/** Initializes a new instance of the BillingManagementClientImpl type. */
+/**
+ * Initializes a new instance of the BillingManagementClientImpl type.
+ */
 @ServiceClient(builder = BillingManagementClientBuilder.class)
 public final class BillingManagementClientImpl implements BillingManagementClient {
-    /** The ID that uniquely identifies an Azure subscription. */
+    /**
+     * The ID that uniquely identifies an Azure subscription.
+     */
     private final String subscriptionId;
 
     /**
      * Gets The ID that uniquely identifies an Azure subscription.
-     *
+     * 
      * @return the subscriptionId value.
      */
     public String getSubscriptionId() {
         return this.subscriptionId;
     }
 
-    /** server parameter. */
+    /**
+     * server parameter.
+     */
     private final String endpoint;
 
     /**
      * Gets server parameter.
-     *
+     * 
      * @return the endpoint value.
      */
     public String getEndpoint() {
         return this.endpoint;
     }
 
-    /** The HTTP pipeline to send requests through. */
+    /**
+     * The HTTP pipeline to send requests through.
+     */
     private final HttpPipeline httpPipeline;
 
     /**
      * Gets The HTTP pipeline to send requests through.
-     *
+     * 
      * @return the httpPipeline value.
      */
     public HttpPipeline getHttpPipeline() {
         return this.httpPipeline;
     }
 
-    /** The serializer to serialize an object into a string. */
+    /**
+     * The serializer to serialize an object into a string.
+     */
     private final SerializerAdapter serializerAdapter;
 
     /**
      * Gets The serializer to serialize an object into a string.
-     *
+     * 
      * @return the serializerAdapter value.
      */
     SerializerAdapter getSerializerAdapter() {
         return this.serializerAdapter;
     }
 
-    /** The default poll interval for long-running operation. */
+    /**
+     * The default poll interval for long-running operation.
+     */
     private final Duration defaultPollInterval;
 
     /**
      * Gets The default poll interval for long-running operation.
-     *
+     * 
      * @return the defaultPollInterval value.
      */
     public Duration getDefaultPollInterval() {
         return this.defaultPollInterval;
     }
 
-    /** The BillingAccountsClient object to access its operations. */
+    /**
+     * The BillingAccountsClient object to access its operations.
+     */
     private final BillingAccountsClient billingAccounts;
 
     /**
      * Gets the BillingAccountsClient object to access its operations.
-     *
+     * 
      * @return the BillingAccountsClient object.
      */
     public BillingAccountsClient getBillingAccounts() {
         return this.billingAccounts;
     }
 
-    /** The AddressClient object to access its operations. */
+    /**
+     * The AddressClient object to access its operations.
+     */
     private final AddressClient address;
 
     /**
      * Gets the AddressClient object to access its operations.
-     *
+     * 
      * @return the AddressClient object.
      */
     public AddressClient getAddress() {
         return this.address;
     }
 
-    /** The AvailableBalancesClient object to access its operations. */
+    /**
+     * The AvailableBalancesClient object to access its operations.
+     */
     private final AvailableBalancesClient availableBalances;
 
     /**
      * Gets the AvailableBalancesClient object to access its operations.
-     *
+     * 
      * @return the AvailableBalancesClient object.
      */
     public AvailableBalancesClient getAvailableBalances() {
         return this.availableBalances;
     }
 
-    /** The InstructionsClient object to access its operations. */
+    /**
+     * The InstructionsClient object to access its operations.
+     */
     private final InstructionsClient instructions;
 
     /**
      * Gets the InstructionsClient object to access its operations.
-     *
+     * 
      * @return the InstructionsClient object.
      */
     public InstructionsClient getInstructions() {
         return this.instructions;
     }
 
-    /** The BillingProfilesClient object to access its operations. */
+    /**
+     * The BillingProfilesClient object to access its operations.
+     */
     private final BillingProfilesClient billingProfiles;
 
     /**
      * Gets the BillingProfilesClient object to access its operations.
-     *
+     * 
      * @return the BillingProfilesClient object.
      */
     public BillingProfilesClient getBillingProfiles() {
         return this.billingProfiles;
     }
 
-    /** The CustomersClient object to access its operations. */
+    /**
+     * The CustomersClient object to access its operations.
+     */
     private final CustomersClient customers;
 
     /**
      * Gets the CustomersClient object to access its operations.
-     *
+     * 
      * @return the CustomersClient object.
      */
     public CustomersClient getCustomers() {
         return this.customers;
     }
 
-    /** The InvoiceSectionsClient object to access its operations. */
+    /**
+     * The InvoiceSectionsClient object to access its operations.
+     */
     private final InvoiceSectionsClient invoiceSections;
 
     /**
      * Gets the InvoiceSectionsClient object to access its operations.
-     *
+     * 
      * @return the InvoiceSectionsClient object.
      */
     public InvoiceSectionsClient getInvoiceSections() {
         return this.invoiceSections;
     }
 
-    /** The BillingPermissionsClient object to access its operations. */
+    /**
+     * The BillingPermissionsClient object to access its operations.
+     */
     private final BillingPermissionsClient billingPermissions;
 
     /**
      * Gets the BillingPermissionsClient object to access its operations.
-     *
+     * 
      * @return the BillingPermissionsClient object.
      */
     public BillingPermissionsClient getBillingPermissions() {
         return this.billingPermissions;
     }
 
-    /** The BillingSubscriptionsClient object to access its operations. */
+    /**
+     * The BillingSubscriptionsClient object to access its operations.
+     */
     private final BillingSubscriptionsClient billingSubscriptions;
 
     /**
      * Gets the BillingSubscriptionsClient object to access its operations.
-     *
+     * 
      * @return the BillingSubscriptionsClient object.
      */
     public BillingSubscriptionsClient getBillingSubscriptions() {
         return this.billingSubscriptions;
     }
 
-    /** The ProductsClient object to access its operations. */
+    /**
+     * The ProductsClient object to access its operations.
+     */
     private final ProductsClient products;
 
     /**
      * Gets the ProductsClient object to access its operations.
-     *
+     * 
      * @return the ProductsClient object.
      */
     public ProductsClient getProducts() {
         return this.products;
     }
 
-    /** The InvoicesClient object to access its operations. */
+    /**
+     * The InvoicesClient object to access its operations.
+     */
     private final InvoicesClient invoices;
 
     /**
      * Gets the InvoicesClient object to access its operations.
-     *
+     * 
      * @return the InvoicesClient object.
      */
     public InvoicesClient getInvoices() {
         return this.invoices;
     }
 
-    /** The TransactionsClient object to access its operations. */
+    /**
+     * The TransactionsClient object to access its operations.
+     */
     private final TransactionsClient transactions;
 
     /**
      * Gets the TransactionsClient object to access its operations.
-     *
+     * 
      * @return the TransactionsClient object.
      */
     public TransactionsClient getTransactions() {
         return this.transactions;
     }
 
-    /** The PoliciesClient object to access its operations. */
+    /**
+     * The PoliciesClient object to access its operations.
+     */
     private final PoliciesClient policies;
 
     /**
      * Gets the PoliciesClient object to access its operations.
-     *
+     * 
      * @return the PoliciesClient object.
      */
     public PoliciesClient getPolicies() {
         return this.policies;
     }
 
-    /** The BillingPropertiesClient object to access its operations. */
+    /**
+     * The BillingPropertiesClient object to access its operations.
+     */
     private final BillingPropertiesClient billingProperties;
 
     /**
      * Gets the BillingPropertiesClient object to access its operations.
-     *
+     * 
      * @return the BillingPropertiesClient object.
      */
     public BillingPropertiesClient getBillingProperties() {
         return this.billingProperties;
     }
 
-    /** The BillingRoleDefinitionsClient object to access its operations. */
+    /**
+     * The BillingRoleDefinitionsClient object to access its operations.
+     */
     private final BillingRoleDefinitionsClient billingRoleDefinitions;
 
     /**
      * Gets the BillingRoleDefinitionsClient object to access its operations.
-     *
+     * 
      * @return the BillingRoleDefinitionsClient object.
      */
     public BillingRoleDefinitionsClient getBillingRoleDefinitions() {
         return this.billingRoleDefinitions;
     }
 
-    /** The BillingRoleAssignmentsClient object to access its operations. */
+    /**
+     * The BillingRoleAssignmentsClient object to access its operations.
+     */
     private final BillingRoleAssignmentsClient billingRoleAssignments;
 
     /**
      * Gets the BillingRoleAssignmentsClient object to access its operations.
-     *
+     * 
      * @return the BillingRoleAssignmentsClient object.
      */
     public BillingRoleAssignmentsClient getBillingRoleAssignments() {
         return this.billingRoleAssignments;
     }
 
-    /** The AgreementsClient object to access its operations. */
+    /**
+     * The AgreementsClient object to access its operations.
+     */
     private final AgreementsClient agreements;
 
     /**
      * Gets the AgreementsClient object to access its operations.
-     *
+     * 
      * @return the AgreementsClient object.
      */
     public AgreementsClient getAgreements() {
         return this.agreements;
     }
 
-    /** The ReservationsClient object to access its operations. */
+    /**
+     * The ReservationsClient object to access its operations.
+     */
     private final ReservationsClient reservations;
 
     /**
      * Gets the ReservationsClient object to access its operations.
-     *
+     * 
      * @return the ReservationsClient object.
      */
     public ReservationsClient getReservations() {
         return this.reservations;
     }
 
-    /** The EnrollmentAccountsClient object to access its operations. */
+    /**
+     * The EnrollmentAccountsClient object to access its operations.
+     */
     private final EnrollmentAccountsClient enrollmentAccounts;
 
     /**
      * Gets the EnrollmentAccountsClient object to access its operations.
-     *
+     * 
      * @return the EnrollmentAccountsClient object.
      */
     public EnrollmentAccountsClient getEnrollmentAccounts() {
         return this.enrollmentAccounts;
     }
 
-    /** The BillingPeriodsClient object to access its operations. */
+    /**
+     * The BillingPeriodsClient object to access its operations.
+     */
     private final BillingPeriodsClient billingPeriods;
 
     /**
      * Gets the BillingPeriodsClient object to access its operations.
-     *
+     * 
      * @return the BillingPeriodsClient object.
      */
     public BillingPeriodsClient getBillingPeriods() {
         return this.billingPeriods;
     }
 
-    /** The OperationsClient object to access its operations. */
+    /**
+     * The OperationsClient object to access its operations.
+     */
     private final OperationsClient operations;
 
     /**
      * Gets the OperationsClient object to access its operations.
-     *
+     * 
      * @return the OperationsClient object.
      */
     public OperationsClient getOperations() {
@@ -370,7 +424,7 @@ public final class BillingManagementClientImpl implements BillingManagementClien
 
     /**
      * Initializes an instance of BillingManagementClient client.
-     *
+     * 
      * @param httpPipeline The HTTP pipeline to send requests through.
      * @param serializerAdapter The serializer to serialize an object into a string.
      * @param defaultPollInterval The default poll interval for long-running operation.
@@ -378,13 +432,8 @@ public final class BillingManagementClientImpl implements BillingManagementClien
      * @param subscriptionId The ID that uniquely identifies an Azure subscription.
      * @param endpoint server parameter.
      */
-    BillingManagementClientImpl(
-        HttpPipeline httpPipeline,
-        SerializerAdapter serializerAdapter,
-        Duration defaultPollInterval,
-        AzureEnvironment environment,
-        String subscriptionId,
-        String endpoint) {
+    BillingManagementClientImpl(HttpPipeline httpPipeline, SerializerAdapter serializerAdapter,
+        Duration defaultPollInterval, AzureEnvironment environment, String subscriptionId, String endpoint) {
         this.httpPipeline = httpPipeline;
         this.serializerAdapter = serializerAdapter;
         this.defaultPollInterval = defaultPollInterval;
@@ -415,7 +464,7 @@ public final class BillingManagementClientImpl implements BillingManagementClien
 
     /**
      * Gets default client context.
-     *
+     * 
      * @return the default client context.
      */
     public Context getContext() {
@@ -424,7 +473,7 @@ public final class BillingManagementClientImpl implements BillingManagementClien
 
     /**
      * Merges default client context with provided context.
-     *
+     * 
      * @param context the context to be merged with default client context.
      * @return the merged context.
      */
@@ -434,7 +483,7 @@ public final class BillingManagementClientImpl implements BillingManagementClien
 
     /**
      * Gets long running operation result.
-     *
+     * 
      * @param activationResponse the response of activation operation.
      * @param httpPipeline the http pipeline.
      * @param pollResultType type of poll result.
@@ -444,26 +493,15 @@ public final class BillingManagementClientImpl implements BillingManagementClien
      * @param <U> type of final result.
      * @return poller flux for poll result and final result.
      */
-    public <T, U> PollerFlux<PollResult<T>, U> getLroResult(
-        Mono<Response<Flux<ByteBuffer>>> activationResponse,
-        HttpPipeline httpPipeline,
-        Type pollResultType,
-        Type finalResultType,
-        Context context) {
-        return PollerFactory
-            .create(
-                serializerAdapter,
-                httpPipeline,
-                pollResultType,
-                finalResultType,
-                defaultPollInterval,
-                activationResponse,
-                context);
+    public <T, U> PollerFlux<PollResult<T>, U> getLroResult(Mono<Response<Flux<ByteBuffer>>> activationResponse,
+        HttpPipeline httpPipeline, Type pollResultType, Type finalResultType, Context context) {
+        return PollerFactory.create(serializerAdapter, httpPipeline, pollResultType, finalResultType,
+            defaultPollInterval, activationResponse, context);
     }
 
     /**
      * Gets the final result, or an error, based on last async poll response.
-     *
+     * 
      * @param response the last async poll response.
      * @param <T> type of poll result.
      * @param <U> type of final result.
@@ -476,19 +514,16 @@ public final class BillingManagementClientImpl implements BillingManagementClien
             HttpResponse errorResponse = null;
             PollResult.Error lroError = response.getValue().getError();
             if (lroError != null) {
-                errorResponse =
-                    new HttpResponseImpl(
-                        lroError.getResponseStatusCode(), lroError.getResponseHeaders(), lroError.getResponseBody());
+                errorResponse = new HttpResponseImpl(lroError.getResponseStatusCode(), lroError.getResponseHeaders(),
+                    lroError.getResponseBody());
 
                 errorMessage = response.getValue().getError().getMessage();
                 String errorBody = response.getValue().getError().getResponseBody();
                 if (errorBody != null) {
                     // try to deserialize error body to ManagementError
                     try {
-                        managementError =
-                            this
-                                .getSerializerAdapter()
-                                .deserialize(errorBody, ManagementError.class, SerializerEncoding.JSON);
+                        managementError = this.getSerializerAdapter().deserialize(errorBody, ManagementError.class,
+                            SerializerEncoding.JSON);
                         if (managementError.getCode() == null || managementError.getMessage() == null) {
                             managementError = null;
                         }

@@ -11,12 +11,14 @@ import com.azure.core.util.Context;
 import com.azure.resourcemanager.billing.fluent.models.CustomerPolicyInner;
 import com.azure.resourcemanager.billing.fluent.models.PolicyInner;
 
-/** An instance of this class provides access to all the operations defined in PoliciesClient. */
+/**
+ * An instance of this class provides access to all the operations defined in PoliciesClient.
+ */
 public interface PoliciesClient {
     /**
      * Lists the policies for a billing profile. This operation is supported only for billing accounts with agreement
      * type Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param context The context to associate with this operation.
@@ -26,13 +28,13 @@ public interface PoliciesClient {
      * @return a policy along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<PolicyInner> getByBillingProfileWithResponse(
-        String billingAccountName, String billingProfileName, Context context);
+    Response<PolicyInner> getByBillingProfileWithResponse(String billingAccountName, String billingProfileName,
+        Context context);
 
     /**
      * Lists the policies for a billing profile. This operation is supported only for billing accounts with agreement
      * type Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -46,7 +48,7 @@ public interface PoliciesClient {
     /**
      * Updates the policies for a billing profile. This operation is supported only for billing accounts with agreement
      * type Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param parameters Request parameters that are provided to the update policies operation.
@@ -57,13 +59,13 @@ public interface PoliciesClient {
      * @return a policy along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<PolicyInner> updateWithResponse(
-        String billingAccountName, String billingProfileName, PolicyInner parameters, Context context);
+    Response<PolicyInner> updateWithResponse(String billingAccountName, String billingProfileName,
+        PolicyInner parameters, Context context);
 
     /**
      * Updates the policies for a billing profile. This operation is supported only for billing accounts with agreement
      * type Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param parameters Request parameters that are provided to the update policies operation.
@@ -78,7 +80,7 @@ public interface PoliciesClient {
     /**
      * Lists the policies for a customer. This operation is supported only for billing accounts with agreement type
      * Microsoft Partner Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param customerName The ID that uniquely identifies a customer.
      * @param context The context to associate with this operation.
@@ -88,13 +90,13 @@ public interface PoliciesClient {
      * @return the customer's Policy along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<CustomerPolicyInner> getByCustomerWithResponse(
-        String billingAccountName, String customerName, Context context);
+    Response<CustomerPolicyInner> getByCustomerWithResponse(String billingAccountName, String customerName,
+        Context context);
 
     /**
      * Lists the policies for a customer. This operation is supported only for billing accounts with agreement type
      * Microsoft Partner Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param customerName The ID that uniquely identifies a customer.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -108,7 +110,7 @@ public interface PoliciesClient {
     /**
      * Updates the policies for a customer. This operation is supported only for billing accounts with agreement type
      * Microsoft Partner Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param customerName The ID that uniquely identifies a customer.
      * @param parameters Request parameters that are provided to the update policies operation.
@@ -119,13 +121,13 @@ public interface PoliciesClient {
      * @return the customer's Policy along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<CustomerPolicyInner> updateCustomerWithResponse(
-        String billingAccountName, String customerName, CustomerPolicyInner parameters, Context context);
+    Response<CustomerPolicyInner> updateCustomerWithResponse(String billingAccountName, String customerName,
+        CustomerPolicyInner parameters, Context context);
 
     /**
      * Updates the policies for a customer. This operation is supported only for billing accounts with agreement type
      * Microsoft Partner Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param customerName The ID that uniquely identifies a customer.
      * @param parameters Request parameters that are provided to the update policies operation.

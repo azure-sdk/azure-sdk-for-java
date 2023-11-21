@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** The properties of an enrollment. */
+/**
+ * The properties of an enrollment.
+ */
 @Fluent
 public final class Enrollment {
     /*
@@ -65,13 +67,15 @@ public final class Enrollment {
     @JsonProperty(value = "billingCycle", access = JsonProperty.Access.WRITE_ONLY)
     private String billingCycle;
 
-    /** Creates an instance of Enrollment class. */
+    /**
+     * Creates an instance of Enrollment class.
+     */
     public Enrollment() {
     }
 
     /**
      * Get the startDate property: The start date of the enrollment.
-     *
+     * 
      * @return the startDate value.
      */
     public OffsetDateTime startDate() {
@@ -80,7 +84,7 @@ public final class Enrollment {
 
     /**
      * Set the startDate property: The start date of the enrollment.
-     *
+     * 
      * @param startDate the startDate value to set.
      * @return the Enrollment object itself.
      */
@@ -91,7 +95,7 @@ public final class Enrollment {
 
     /**
      * Get the endDate property: The end date of the enrollment.
-     *
+     * 
      * @return the endDate value.
      */
     public OffsetDateTime endDate() {
@@ -100,7 +104,7 @@ public final class Enrollment {
 
     /**
      * Set the endDate property: The end date of the enrollment.
-     *
+     * 
      * @param endDate the endDate value to set.
      * @return the Enrollment object itself.
      */
@@ -111,7 +115,7 @@ public final class Enrollment {
 
     /**
      * Get the currency property: The billing currency for the enrollment.
-     *
+     * 
      * @return the currency value.
      */
     public String currency() {
@@ -120,7 +124,7 @@ public final class Enrollment {
 
     /**
      * Get the channel property: The channel type of the enrollment.
-     *
+     * 
      * @return the channel value.
      */
     public String channel() {
@@ -129,7 +133,7 @@ public final class Enrollment {
 
     /**
      * Get the policies property: The policies for Enterprise Agreement enrollments.
-     *
+     * 
      * @return the policies value.
      */
     public EnrollmentPolicies policies() {
@@ -138,7 +142,7 @@ public final class Enrollment {
 
     /**
      * Get the language property: The language for the enrollment.
-     *
+     * 
      * @return the language value.
      */
     public String language() {
@@ -147,7 +151,7 @@ public final class Enrollment {
 
     /**
      * Get the countryCode property: The country code of the enrollment.
-     *
+     * 
      * @return the countryCode value.
      */
     public String countryCode() {
@@ -156,7 +160,7 @@ public final class Enrollment {
 
     /**
      * Get the status property: The current status of the enrollment.
-     *
+     * 
      * @return the status value.
      */
     public String status() {
@@ -165,7 +169,7 @@ public final class Enrollment {
 
     /**
      * Get the billingCycle property: The billing cycle for the enrollment.
-     *
+     * 
      * @return the billingCycle value.
      */
     public String billingCycle() {
@@ -174,7 +178,7 @@ public final class Enrollment {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

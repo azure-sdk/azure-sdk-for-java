@@ -9,7 +9,9 @@ import com.azure.core.management.ProxyResource;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The properties of a role definition. */
+/**
+ * The properties of a role definition.
+ */
 @Fluent
 public final class BillingRoleDefinitionInner extends ProxyResource {
     /*
@@ -18,13 +20,15 @@ public final class BillingRoleDefinitionInner extends ProxyResource {
     @JsonProperty(value = "properties")
     private BillingRoleDefinitionProperties innerProperties;
 
-    /** Creates an instance of BillingRoleDefinitionInner class. */
+    /**
+     * Creates an instance of BillingRoleDefinitionInner class.
+     */
     public BillingRoleDefinitionInner() {
     }
 
     /**
      * Get the innerProperties property: The properties of the a role definition.
-     *
+     * 
      * @return the innerProperties value.
      */
     private BillingRoleDefinitionProperties innerProperties() {
@@ -33,7 +37,7 @@ public final class BillingRoleDefinitionInner extends ProxyResource {
 
     /**
      * Get the description property: The role description.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -42,7 +46,7 @@ public final class BillingRoleDefinitionInner extends ProxyResource {
 
     /**
      * Get the permissions property: The billingPermissions the role has.
-     *
+     * 
      * @return the permissions value.
      */
     public List<BillingPermissionsPropertiesInner> permissions() {
@@ -51,7 +55,7 @@ public final class BillingRoleDefinitionInner extends ProxyResource {
 
     /**
      * Set the permissions property: The billingPermissions the role has.
-     *
+     * 
      * @param permissions the permissions value to set.
      * @return the BillingRoleDefinitionInner object itself.
      */
@@ -65,7 +69,7 @@ public final class BillingRoleDefinitionInner extends ProxyResource {
 
     /**
      * Get the roleName property: The name of the role.
-     *
+     * 
      * @return the roleName value.
      */
     public String roleName() {
@@ -74,7 +78,7 @@ public final class BillingRoleDefinitionInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

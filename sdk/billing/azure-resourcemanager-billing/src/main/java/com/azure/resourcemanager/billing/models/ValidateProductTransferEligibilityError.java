@@ -7,7 +7,9 @@ package com.azure.resourcemanager.billing.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Error details of the product transfer eligibility validation. */
+/**
+ * Error details of the product transfer eligibility validation.
+ */
 @Fluent
 public final class ValidateProductTransferEligibilityError {
     /*
@@ -28,13 +30,15 @@ public final class ValidateProductTransferEligibilityError {
     @JsonProperty(value = "details")
     private String details;
 
-    /** Creates an instance of ValidateProductTransferEligibilityError class. */
+    /**
+     * Creates an instance of ValidateProductTransferEligibilityError class.
+     */
     public ValidateProductTransferEligibilityError() {
     }
 
     /**
      * Get the code property: Error code for the product transfer validation.
-     *
+     * 
      * @return the code value.
      */
     public ProductTransferValidationErrorCode code() {
@@ -43,7 +47,7 @@ public final class ValidateProductTransferEligibilityError {
 
     /**
      * Set the code property: Error code for the product transfer validation.
-     *
+     * 
      * @param code the code value to set.
      * @return the ValidateProductTransferEligibilityError object itself.
      */
@@ -54,7 +58,7 @@ public final class ValidateProductTransferEligibilityError {
 
     /**
      * Get the message property: The error message.
-     *
+     * 
      * @return the message value.
      */
     public String message() {
@@ -63,7 +67,7 @@ public final class ValidateProductTransferEligibilityError {
 
     /**
      * Set the message property: The error message.
-     *
+     * 
      * @param message the message value to set.
      * @return the ValidateProductTransferEligibilityError object itself.
      */
@@ -74,7 +78,7 @@ public final class ValidateProductTransferEligibilityError {
 
     /**
      * Get the details property: Detailed error message explaining the error.
-     *
+     * 
      * @return the details value.
      */
     public String details() {
@@ -83,7 +87,7 @@ public final class ValidateProductTransferEligibilityError {
 
     /**
      * Set the details property: Detailed error message explaining the error.
-     *
+     * 
      * @param details the details value to set.
      * @return the ValidateProductTransferEligibilityError object itself.
      */
@@ -94,7 +98,7 @@ public final class ValidateProductTransferEligibilityError {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

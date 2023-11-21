@@ -4,23 +4,22 @@
 
 package com.azure.resourcemanager.billing.generated;
 
-/** Samples for BillingRoleAssignments GetByBillingProfile. */
+/**
+ * Samples for BillingRoleAssignments GetByBillingProfile.
+ */
 public final class BillingRoleAssignmentsGetByBillingProfileSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/BillingProfileRoleAssignment.json
+     * x-ms-original-file:
+     * specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/BillingProfileRoleAssignment.
+     * json
      */
     /**
      * Sample code: BillingProfileRoleAssignment.
-     *
+     * 
      * @param manager Entry point to BillingManager.
      */
     public static void billingProfileRoleAssignment(com.azure.resourcemanager.billing.BillingManager manager) {
-        manager
-            .billingRoleAssignments()
-            .getByBillingProfileWithResponse(
-                "{billingAccountName}",
-                "{billingProfileName}",
-                "{billingRoleAssignmentName}",
-                com.azure.core.util.Context.NONE);
+        manager.billingRoleAssignments().getByBillingProfileWithResponse("{billingAccountName}", "{billingProfileName}",
+            "{billingRoleAssignmentName}", com.azure.core.util.Context.NONE);
     }
 }

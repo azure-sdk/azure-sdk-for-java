@@ -12,7 +12,9 @@ import com.azure.resourcemanager.billing.models.TransactionTypeKind;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** A transaction. */
+/**
+ * A transaction.
+ */
 @Fluent
 public final class TransactionInner extends ProxyResource {
     /*
@@ -21,13 +23,15 @@ public final class TransactionInner extends ProxyResource {
     @JsonProperty(value = "properties")
     private TransactionProperties innerProperties;
 
-    /** Creates an instance of TransactionInner class. */
+    /**
+     * Creates an instance of TransactionInner class.
+     */
     public TransactionInner() {
     }
 
     /**
      * Get the innerProperties property: The properties of a transaction.
-     *
+     * 
      * @return the innerProperties value.
      */
     private TransactionProperties innerProperties() {
@@ -36,7 +40,7 @@ public final class TransactionInner extends ProxyResource {
 
     /**
      * Get the kind property: The kind of transaction. Options are all or reservation.
-     *
+     * 
      * @return the kind value.
      */
     public TransactionTypeKind kind() {
@@ -45,7 +49,7 @@ public final class TransactionInner extends ProxyResource {
 
     /**
      * Set the kind property: The kind of transaction. Options are all or reservation.
-     *
+     * 
      * @param kind the kind value to set.
      * @return the TransactionInner object itself.
      */
@@ -59,7 +63,7 @@ public final class TransactionInner extends ProxyResource {
 
     /**
      * Get the date property: The date of transaction.
-     *
+     * 
      * @return the date value.
      */
     public OffsetDateTime date() {
@@ -69,7 +73,7 @@ public final class TransactionInner extends ProxyResource {
     /**
      * Get the invoice property: Invoice on which the transaction was billed or 'pending' if the transaction is not
      * billed.
-     *
+     * 
      * @return the invoice value.
      */
     public String invoice() {
@@ -79,7 +83,7 @@ public final class TransactionInner extends ProxyResource {
     /**
      * Get the invoiceId property: The ID of the invoice on which the transaction was billed. This field is only
      * applicable for transactions which are billed.
-     *
+     * 
      * @return the invoiceId value.
      */
     public String invoiceId() {
@@ -89,7 +93,7 @@ public final class TransactionInner extends ProxyResource {
     /**
      * Get the orderId property: The order ID of the reservation. The field is only applicable for transaction of kind
      * reservation.
-     *
+     * 
      * @return the orderId value.
      */
     public String orderId() {
@@ -99,7 +103,7 @@ public final class TransactionInner extends ProxyResource {
     /**
      * Get the orderName property: The name of the reservation order. The field is only applicable for transactions of
      * kind reservation.
-     *
+     * 
      * @return the orderName value.
      */
     public String orderName() {
@@ -108,7 +112,7 @@ public final class TransactionInner extends ProxyResource {
 
     /**
      * Get the productFamily property: The family of the product for which the transaction took place.
-     *
+     * 
      * @return the productFamily value.
      */
     public String productFamily() {
@@ -117,7 +121,7 @@ public final class TransactionInner extends ProxyResource {
 
     /**
      * Get the productTypeId property: The ID of the product type for which the transaction took place.
-     *
+     * 
      * @return the productTypeId value.
      */
     public String productTypeId() {
@@ -126,7 +130,7 @@ public final class TransactionInner extends ProxyResource {
 
     /**
      * Get the productType property: The type of the product for which the transaction took place.
-     *
+     * 
      * @return the productType value.
      */
     public String productType() {
@@ -135,7 +139,7 @@ public final class TransactionInner extends ProxyResource {
 
     /**
      * Get the productDescription property: The description of the product for which the transaction took place.
-     *
+     * 
      * @return the productDescription value.
      */
     public String productDescription() {
@@ -144,7 +148,7 @@ public final class TransactionInner extends ProxyResource {
 
     /**
      * Get the transactionType property: The type of transaction.
-     *
+     * 
      * @return the transactionType value.
      */
     public ReservationType transactionType() {
@@ -153,7 +157,7 @@ public final class TransactionInner extends ProxyResource {
 
     /**
      * Set the transactionType property: The type of transaction.
-     *
+     * 
      * @param transactionType the transactionType value to set.
      * @return the TransactionInner object itself.
      */
@@ -167,7 +171,7 @@ public final class TransactionInner extends ProxyResource {
 
     /**
      * Get the transactionAmount property: The charge associated with the transaction.
-     *
+     * 
      * @return the transactionAmount value.
      */
     public Amount transactionAmount() {
@@ -176,7 +180,7 @@ public final class TransactionInner extends ProxyResource {
 
     /**
      * Get the quantity property: The quantity purchased in the transaction.
-     *
+     * 
      * @return the quantity value.
      */
     public Integer quantity() {
@@ -185,7 +189,7 @@ public final class TransactionInner extends ProxyResource {
 
     /**
      * Get the invoiceSectionId property: The ID of the invoice section which will be billed for the transaction.
-     *
+     * 
      * @return the invoiceSectionId value.
      */
     public String invoiceSectionId() {
@@ -195,7 +199,7 @@ public final class TransactionInner extends ProxyResource {
     /**
      * Get the invoiceSectionDisplayName property: The name of the invoice section which will be billed for the
      * transaction.
-     *
+     * 
      * @return the invoiceSectionDisplayName value.
      */
     public String invoiceSectionDisplayName() {
@@ -204,7 +208,7 @@ public final class TransactionInner extends ProxyResource {
 
     /**
      * Get the billingProfileId property: The ID of the billing profile which will be billed for the transaction.
-     *
+     * 
      * @return the billingProfileId value.
      */
     public String billingProfileId() {
@@ -214,7 +218,7 @@ public final class TransactionInner extends ProxyResource {
     /**
      * Get the billingProfileDisplayName property: The name of the billing profile which will be billed for the
      * transaction.
-     *
+     * 
      * @return the billingProfileDisplayName value.
      */
     public String billingProfileDisplayName() {
@@ -222,9 +226,9 @@ public final class TransactionInner extends ProxyResource {
     }
 
     /**
-     * Get the customerId property: The ID of the customer for which the transaction took place. The field is applicable
-     * only for Microsoft Partner Agreement billing account.
-     *
+     * Get the customerId property: The ID of the customer for which the transaction took place. The field is
+     * applicable only for Microsoft Partner Agreement billing account.
+     * 
      * @return the customerId value.
      */
     public String customerId() {
@@ -232,9 +236,9 @@ public final class TransactionInner extends ProxyResource {
     }
 
     /**
-     * Get the customerDisplayName property: The name of the customer for which the transaction took place. The field is
-     * applicable only for Microsoft Partner Agreement billing account.
-     *
+     * Get the customerDisplayName property: The name of the customer for which the transaction took place. The field
+     * is applicable only for Microsoft Partner Agreement billing account.
+     * 
      * @return the customerDisplayName value.
      */
     public String customerDisplayName() {
@@ -244,7 +248,7 @@ public final class TransactionInner extends ProxyResource {
     /**
      * Get the subscriptionId property: The ID of the subscription that was used for the transaction. The field is only
      * applicable for transaction of kind reservation.
-     *
+     * 
      * @return the subscriptionId value.
      */
     public String subscriptionId() {
@@ -254,7 +258,7 @@ public final class TransactionInner extends ProxyResource {
     /**
      * Get the subscriptionName property: The name of the subscription that was used for the transaction. The field is
      * only applicable for transaction of kind reservation.
-     *
+     * 
      * @return the subscriptionName value.
      */
     public String subscriptionName() {
@@ -263,7 +267,7 @@ public final class TransactionInner extends ProxyResource {
 
     /**
      * Get the azurePlan property: The type of azure plan of the subscription that was used for the transaction.
-     *
+     * 
      * @return the azurePlan value.
      */
     public String azurePlan() {
@@ -272,7 +276,7 @@ public final class TransactionInner extends ProxyResource {
 
     /**
      * Get the azureCreditApplied property: The amount of any Azure credits automatically applied to this transaction.
-     *
+     * 
      * @return the azureCreditApplied value.
      */
     public Amount azureCreditApplied() {
@@ -281,7 +285,7 @@ public final class TransactionInner extends ProxyResource {
 
     /**
      * Get the billingCurrency property: The ISO 4217 code for the currency in which this transaction is billed.
-     *
+     * 
      * @return the billingCurrency value.
      */
     public String billingCurrency() {
@@ -290,7 +294,7 @@ public final class TransactionInner extends ProxyResource {
 
     /**
      * Get the discount property: The percentage discount, if any, applied to this transaction.
-     *
+     * 
      * @return the discount value.
      */
     public Float discount() {
@@ -299,7 +303,7 @@ public final class TransactionInner extends ProxyResource {
 
     /**
      * Get the effectivePrice property: The price of the product after applying any discounts.
-     *
+     * 
      * @return the effectivePrice value.
      */
     public Amount effectivePrice() {
@@ -309,7 +313,7 @@ public final class TransactionInner extends ProxyResource {
     /**
      * Get the exchangeRate property: The exchange rate used to convert charged amount to billing currency, if
      * applicable.
-     *
+     * 
      * @return the exchangeRate value.
      */
     public Float exchangeRate() {
@@ -318,7 +322,7 @@ public final class TransactionInner extends ProxyResource {
 
     /**
      * Get the marketPrice property: The retail price of the product.
-     *
+     * 
      * @return the marketPrice value.
      */
     public Amount marketPrice() {
@@ -327,7 +331,7 @@ public final class TransactionInner extends ProxyResource {
 
     /**
      * Get the pricingCurrency property: The ISO 4217 code for the currency in which the product is priced.
-     *
+     * 
      * @return the pricingCurrency value.
      */
     public String pricingCurrency() {
@@ -337,7 +341,7 @@ public final class TransactionInner extends ProxyResource {
     /**
      * Get the servicePeriodStartDate property: The date of the purchase of the product, or the start date of the month
      * in which usage started.
-     *
+     * 
      * @return the servicePeriodStartDate value.
      */
     public OffsetDateTime servicePeriodStartDate() {
@@ -347,7 +351,7 @@ public final class TransactionInner extends ProxyResource {
     /**
      * Get the servicePeriodEndDate property: The end date of the product term, or the end date of the month in which
      * usage ended.
-     *
+     * 
      * @return the servicePeriodEndDate value.
      */
     public OffsetDateTime servicePeriodEndDate() {
@@ -356,7 +360,7 @@ public final class TransactionInner extends ProxyResource {
 
     /**
      * Get the subTotal property: The pre-tax charged amount for the transaction.
-     *
+     * 
      * @return the subTotal value.
      */
     public Amount subTotal() {
@@ -365,7 +369,7 @@ public final class TransactionInner extends ProxyResource {
 
     /**
      * Get the tax property: The tax amount applied to the transaction.
-     *
+     * 
      * @return the tax value.
      */
     public Amount tax() {
@@ -375,7 +379,7 @@ public final class TransactionInner extends ProxyResource {
     /**
      * Get the unitOfMeasure property: The unit of measure used to bill for the product. For example, compute services
      * are billed per hour.
-     *
+     * 
      * @return the unitOfMeasure value.
      */
     public String unitOfMeasure() {
@@ -384,7 +388,7 @@ public final class TransactionInner extends ProxyResource {
 
     /**
      * Get the units property: The number of units used for a given product.
-     *
+     * 
      * @return the units value.
      */
     public Float units() {
@@ -393,7 +397,7 @@ public final class TransactionInner extends ProxyResource {
 
     /**
      * Get the unitType property: The description for the unit of measure for a given product.
-     *
+     * 
      * @return the unitType value.
      */
     public String unitType() {
@@ -402,7 +406,7 @@ public final class TransactionInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

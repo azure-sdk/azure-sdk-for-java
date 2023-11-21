@@ -74,7 +74,10 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-/** Entry point to BillingManager. Billing client provides access to billing resources for Azure subscriptions. */
+/**
+ * Entry point to BillingManager.
+ * Billing client provides access to billing resources for Azure subscriptions.
+ */
 public final class BillingManager {
     private BillingAccounts billingAccounts;
 
@@ -123,18 +126,14 @@ public final class BillingManager {
     private BillingManager(HttpPipeline httpPipeline, AzureProfile profile, Duration defaultPollInterval) {
         Objects.requireNonNull(httpPipeline, "'httpPipeline' cannot be null.");
         Objects.requireNonNull(profile, "'profile' cannot be null.");
-        this.clientObject =
-            new BillingManagementClientBuilder()
-                .pipeline(httpPipeline)
-                .endpoint(profile.getEnvironment().getResourceManagerEndpoint())
-                .subscriptionId(profile.getSubscriptionId())
-                .defaultPollInterval(defaultPollInterval)
-                .buildClient();
+        this.clientObject = new BillingManagementClientBuilder().pipeline(httpPipeline)
+            .endpoint(profile.getEnvironment().getResourceManagerEndpoint()).subscriptionId(profile.getSubscriptionId())
+            .defaultPollInterval(defaultPollInterval).buildClient();
     }
 
     /**
      * Creates an instance of Billing service API entry point.
-     *
+     * 
      * @param credential the credential to use.
      * @param profile the Azure profile for client.
      * @return the Billing service API instance.
@@ -147,7 +146,7 @@ public final class BillingManager {
 
     /**
      * Creates an instance of Billing service API entry point.
-     *
+     * 
      * @param httpPipeline the {@link HttpPipeline} configured with Azure authentication credential.
      * @param profile the Azure profile for client.
      * @return the Billing service API instance.
@@ -160,14 +159,16 @@ public final class BillingManager {
 
     /**
      * Gets a Configurable instance that can be used to create BillingManager with optional configuration.
-     *
+     * 
      * @return the Configurable instance allowing configurations.
      */
     public static Configurable configure() {
         return new BillingManager.Configurable();
     }
 
-    /** The Configurable allowing configurations to be set. */
+    /**
+     * The Configurable allowing configurations to be set.
+     */
     public static final class Configurable {
         private static final ClientLogger LOGGER = new ClientLogger(Configurable.class);
 
@@ -239,8 +240,8 @@ public final class BillingManager {
 
         /**
          * Sets the retry options for the HTTP pipeline retry policy.
-         *
-         * <p>This setting has no effect, if retry policy is set via {@link #withRetryPolicy(RetryPolicy)}.
+         * <p>
+         * This setting has no effect, if retry policy is set via {@link #withRetryPolicy(RetryPolicy)}.
          *
          * @param retryOptions the retry options for the HTTP pipeline retry policy.
          * @return the configurable object itself.
@@ -257,8 +258,8 @@ public final class BillingManager {
          * @return the configurable object itself.
          */
         public Configurable withDefaultPollInterval(Duration defaultPollInterval) {
-            this.defaultPollInterval =
-                Objects.requireNonNull(defaultPollInterval, "'defaultPollInterval' cannot be null.");
+            this.defaultPollInterval
+                = Objects.requireNonNull(defaultPollInterval, "'defaultPollInterval' cannot be null.");
             if (this.defaultPollInterval.isNegative()) {
                 throw LOGGER
                     .logExceptionAsError(new IllegalArgumentException("'defaultPollInterval' cannot be negative"));
@@ -278,21 +279,12 @@ public final class BillingManager {
             Objects.requireNonNull(profile, "'profile' cannot be null.");
 
             StringBuilder userAgentBuilder = new StringBuilder();
-            userAgentBuilder
-                .append("azsdk-java")
-                .append("-")
-                .append("com.azure.resourcemanager.billing")
-                .append("/")
-                .append("1.0.0-beta.3");
+            userAgentBuilder.append("azsdk-java").append("-").append("com.azure.resourcemanager.billing").append("/")
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
-                userAgentBuilder
-                    .append(" (")
-                    .append(Configuration.getGlobalConfiguration().get("java.version"))
-                    .append("; ")
-                    .append(Configuration.getGlobalConfiguration().get("os.name"))
-                    .append("; ")
-                    .append(Configuration.getGlobalConfiguration().get("os.version"))
-                    .append("; auto-generated)");
+                userAgentBuilder.append(" (").append(Configuration.getGlobalConfiguration().get("java.version"))
+                    .append("; ").append(Configuration.getGlobalConfiguration().get("os.name")).append("; ")
+                    .append(Configuration.getGlobalConfiguration().get("os.version")).append("; auto-generated)");
             } else {
                 userAgentBuilder.append(" (auto-generated)");
             }
@@ -311,38 +303,25 @@ public final class BillingManager {
             policies.add(new UserAgentPolicy(userAgentBuilder.toString()));
             policies.add(new AddHeadersFromContextPolicy());
             policies.add(new RequestIdPolicy());
-            policies
-                .addAll(
-                    this
-                        .policies
-                        .stream()
-                        .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_CALL)
-                        .collect(Collectors.toList()));
+            policies.addAll(this.policies.stream().filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_CALL)
+                .collect(Collectors.toList()));
             HttpPolicyProviders.addBeforeRetryPolicies(policies);
             policies.add(retryPolicy);
             policies.add(new AddDatePolicy());
             policies.add(new ArmChallengeAuthenticationPolicy(credential, scopes.toArray(new String[0])));
-            policies
-                .addAll(
-                    this
-                        .policies
-                        .stream()
-                        .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_RETRY)
-                        .collect(Collectors.toList()));
+            policies.addAll(this.policies.stream()
+                .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_RETRY).collect(Collectors.toList()));
             HttpPolicyProviders.addAfterRetryPolicies(policies);
             policies.add(new HttpLoggingPolicy(httpLogOptions));
-            HttpPipeline httpPipeline =
-                new HttpPipelineBuilder()
-                    .httpClient(httpClient)
-                    .policies(policies.toArray(new HttpPipelinePolicy[0]))
-                    .build();
+            HttpPipeline httpPipeline = new HttpPipelineBuilder().httpClient(httpClient)
+                .policies(policies.toArray(new HttpPipelinePolicy[0])).build();
             return new BillingManager(httpPipeline, profile, defaultPollInterval);
         }
     }
 
     /**
      * Gets the resource collection API of BillingAccounts.
-     *
+     * 
      * @return Resource collection API of BillingAccounts.
      */
     public BillingAccounts billingAccounts() {
@@ -354,7 +333,7 @@ public final class BillingManager {
 
     /**
      * Gets the resource collection API of Address.
-     *
+     * 
      * @return Resource collection API of Address.
      */
     public Address address() {
@@ -366,7 +345,7 @@ public final class BillingManager {
 
     /**
      * Gets the resource collection API of AvailableBalances.
-     *
+     * 
      * @return Resource collection API of AvailableBalances.
      */
     public AvailableBalances availableBalances() {
@@ -378,7 +357,7 @@ public final class BillingManager {
 
     /**
      * Gets the resource collection API of Instructions.
-     *
+     * 
      * @return Resource collection API of Instructions.
      */
     public Instructions instructions() {
@@ -390,7 +369,7 @@ public final class BillingManager {
 
     /**
      * Gets the resource collection API of BillingProfiles.
-     *
+     * 
      * @return Resource collection API of BillingProfiles.
      */
     public BillingProfiles billingProfiles() {
@@ -402,7 +381,7 @@ public final class BillingManager {
 
     /**
      * Gets the resource collection API of Customers.
-     *
+     * 
      * @return Resource collection API of Customers.
      */
     public Customers customers() {
@@ -414,7 +393,7 @@ public final class BillingManager {
 
     /**
      * Gets the resource collection API of InvoiceSections.
-     *
+     * 
      * @return Resource collection API of InvoiceSections.
      */
     public InvoiceSections invoiceSections() {
@@ -426,7 +405,7 @@ public final class BillingManager {
 
     /**
      * Gets the resource collection API of BillingPermissions.
-     *
+     * 
      * @return Resource collection API of BillingPermissions.
      */
     public BillingPermissions billingPermissions() {
@@ -438,7 +417,7 @@ public final class BillingManager {
 
     /**
      * Gets the resource collection API of BillingSubscriptions.
-     *
+     * 
      * @return Resource collection API of BillingSubscriptions.
      */
     public BillingSubscriptions billingSubscriptions() {
@@ -450,7 +429,7 @@ public final class BillingManager {
 
     /**
      * Gets the resource collection API of Products.
-     *
+     * 
      * @return Resource collection API of Products.
      */
     public Products products() {
@@ -462,7 +441,7 @@ public final class BillingManager {
 
     /**
      * Gets the resource collection API of Invoices.
-     *
+     * 
      * @return Resource collection API of Invoices.
      */
     public Invoices invoices() {
@@ -474,7 +453,7 @@ public final class BillingManager {
 
     /**
      * Gets the resource collection API of Transactions.
-     *
+     * 
      * @return Resource collection API of Transactions.
      */
     public Transactions transactions() {
@@ -486,7 +465,7 @@ public final class BillingManager {
 
     /**
      * Gets the resource collection API of Policies.
-     *
+     * 
      * @return Resource collection API of Policies.
      */
     public Policies policies() {
@@ -498,7 +477,7 @@ public final class BillingManager {
 
     /**
      * Gets the resource collection API of BillingProperties.
-     *
+     * 
      * @return Resource collection API of BillingProperties.
      */
     public BillingProperties billingProperties() {
@@ -510,33 +489,33 @@ public final class BillingManager {
 
     /**
      * Gets the resource collection API of BillingRoleDefinitions.
-     *
+     * 
      * @return Resource collection API of BillingRoleDefinitions.
      */
     public BillingRoleDefinitions billingRoleDefinitions() {
         if (this.billingRoleDefinitions == null) {
-            this.billingRoleDefinitions =
-                new BillingRoleDefinitionsImpl(clientObject.getBillingRoleDefinitions(), this);
+            this.billingRoleDefinitions
+                = new BillingRoleDefinitionsImpl(clientObject.getBillingRoleDefinitions(), this);
         }
         return billingRoleDefinitions;
     }
 
     /**
      * Gets the resource collection API of BillingRoleAssignments.
-     *
+     * 
      * @return Resource collection API of BillingRoleAssignments.
      */
     public BillingRoleAssignments billingRoleAssignments() {
         if (this.billingRoleAssignments == null) {
-            this.billingRoleAssignments =
-                new BillingRoleAssignmentsImpl(clientObject.getBillingRoleAssignments(), this);
+            this.billingRoleAssignments
+                = new BillingRoleAssignmentsImpl(clientObject.getBillingRoleAssignments(), this);
         }
         return billingRoleAssignments;
     }
 
     /**
      * Gets the resource collection API of Agreements.
-     *
+     * 
      * @return Resource collection API of Agreements.
      */
     public Agreements agreements() {
@@ -548,7 +527,7 @@ public final class BillingManager {
 
     /**
      * Gets the resource collection API of Reservations.
-     *
+     * 
      * @return Resource collection API of Reservations.
      */
     public Reservations reservations() {
@@ -560,7 +539,7 @@ public final class BillingManager {
 
     /**
      * Gets the resource collection API of EnrollmentAccounts.
-     *
+     * 
      * @return Resource collection API of EnrollmentAccounts.
      */
     public EnrollmentAccounts enrollmentAccounts() {
@@ -572,7 +551,7 @@ public final class BillingManager {
 
     /**
      * Gets the resource collection API of BillingPeriods.
-     *
+     * 
      * @return Resource collection API of BillingPeriods.
      */
     public BillingPeriods billingPeriods() {
@@ -584,7 +563,7 @@ public final class BillingManager {
 
     /**
      * Gets the resource collection API of Operations.
-     *
+     * 
      * @return Resource collection API of Operations.
      */
     public Operations operations() {
@@ -595,8 +574,10 @@ public final class BillingManager {
     }
 
     /**
-     * @return Wrapped service client BillingManagementClient providing direct access to the underlying auto-generated
-     *     API implementation, based on Azure REST API.
+     * Gets wrapped service client BillingManagementClient providing direct access to the underlying auto-generated API
+     * implementation, based on Azure REST API.
+     * 
+     * @return Wrapped service client BillingManagementClient.
      */
     public BillingManagementClient serviceClient() {
         return this.clientObject;

@@ -4,24 +4,22 @@
 
 package com.azure.resourcemanager.billing.generated;
 
-/** Samples for BillingRoleAssignments GetByInvoiceSection. */
+/**
+ * Samples for BillingRoleAssignments GetByInvoiceSection.
+ */
 public final class BillingRoleAssignmentsGetByInvoiceSectionSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/InvoiceSectionRoleAssignment.json
+     * x-ms-original-file:
+     * specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/InvoiceSectionRoleAssignment.
+     * json
      */
     /**
      * Sample code: InvoiceSectionRoleAssignment.
-     *
+     * 
      * @param manager Entry point to BillingManager.
      */
     public static void invoiceSectionRoleAssignment(com.azure.resourcemanager.billing.BillingManager manager) {
-        manager
-            .billingRoleAssignments()
-            .getByInvoiceSectionWithResponse(
-                "{billingAccountName}",
-                "{billingProfileName}",
-                "{invoiceSectionName}",
-                "{billingRoleAssignmentName}",
-                com.azure.core.util.Context.NONE);
+        manager.billingRoleAssignments().getByInvoiceSectionWithResponse("{billingAccountName}", "{billingProfileName}",
+            "{invoiceSectionName}", "{billingRoleAssignmentName}", com.azure.core.util.Context.NONE);
     }
 }

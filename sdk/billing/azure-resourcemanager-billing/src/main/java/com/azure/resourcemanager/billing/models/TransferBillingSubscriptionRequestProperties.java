@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Request parameters to transfer billing subscription. */
+/**
+ * Request parameters to transfer billing subscription.
+ */
 @Fluent
 public final class TransferBillingSubscriptionRequestProperties {
     /*
@@ -17,13 +19,15 @@ public final class TransferBillingSubscriptionRequestProperties {
     @JsonProperty(value = "destinationInvoiceSectionId", required = true)
     private String destinationInvoiceSectionId;
 
-    /** Creates an instance of TransferBillingSubscriptionRequestProperties class. */
+    /**
+     * Creates an instance of TransferBillingSubscriptionRequestProperties class.
+     */
     public TransferBillingSubscriptionRequestProperties() {
     }
 
     /**
      * Get the destinationInvoiceSectionId property: The destination invoice section id.
-     *
+     * 
      * @return the destinationInvoiceSectionId value.
      */
     public String destinationInvoiceSectionId() {
@@ -32,28 +36,25 @@ public final class TransferBillingSubscriptionRequestProperties {
 
     /**
      * Set the destinationInvoiceSectionId property: The destination invoice section id.
-     *
+     * 
      * @param destinationInvoiceSectionId the destinationInvoiceSectionId value to set.
      * @return the TransferBillingSubscriptionRequestProperties object itself.
      */
-    public TransferBillingSubscriptionRequestProperties withDestinationInvoiceSectionId(
-        String destinationInvoiceSectionId) {
+    public TransferBillingSubscriptionRequestProperties
+        withDestinationInvoiceSectionId(String destinationInvoiceSectionId) {
         this.destinationInvoiceSectionId = destinationInvoiceSectionId;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (destinationInvoiceSectionId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property destinationInvoiceSectionId in model"
-                            + " TransferBillingSubscriptionRequestProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property destinationInvoiceSectionId in model TransferBillingSubscriptionRequestProperties"));
         }
     }
 

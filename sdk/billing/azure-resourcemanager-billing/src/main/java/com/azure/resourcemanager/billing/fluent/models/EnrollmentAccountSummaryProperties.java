@@ -7,7 +7,9 @@ package com.azure.resourcemanager.billing.fluent.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The properties of the enrollment account. */
+/**
+ * The properties of the enrollment account.
+ */
 @Immutable
 public final class EnrollmentAccountSummaryProperties {
     /*
@@ -16,13 +18,15 @@ public final class EnrollmentAccountSummaryProperties {
     @JsonProperty(value = "principalName", access = JsonProperty.Access.WRITE_ONLY)
     private String principalName;
 
-    /** Creates an instance of EnrollmentAccountSummaryProperties class. */
+    /**
+     * Creates an instance of EnrollmentAccountSummaryProperties class.
+     */
     public EnrollmentAccountSummaryProperties() {
     }
 
     /**
      * Get the principalName property: The account owner's principal name.
-     *
+     * 
      * @return the principalName value.
      */
     public String principalName() {
@@ -31,7 +35,7 @@ public final class EnrollmentAccountSummaryProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

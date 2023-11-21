@@ -8,20 +8,28 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The category of the agreement signed by a customer. */
+/**
+ * The category of the agreement signed by a customer.
+ */
 public final class Category extends ExpandableStringEnum<Category> {
-    /** Static value MicrosoftCustomerAgreement for Category. */
+    /**
+     * Static value MicrosoftCustomerAgreement for Category.
+     */
     public static final Category MICROSOFT_CUSTOMER_AGREEMENT = fromString("MicrosoftCustomerAgreement");
 
-    /** Static value AffiliatePurchaseTerms for Category. */
+    /**
+     * Static value AffiliatePurchaseTerms for Category.
+     */
     public static final Category AFFILIATE_PURCHASE_TERMS = fromString("AffiliatePurchaseTerms");
 
-    /** Static value Other for Category. */
+    /**
+     * Static value Other for Category.
+     */
     public static final Category OTHER = fromString("Other");
 
     /**
      * Creates a new instance of Category value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -30,7 +38,7 @@ public final class Category extends ExpandableStringEnum<Category> {
 
     /**
      * Creates or finds a Category from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding Category.
      */
@@ -41,7 +49,7 @@ public final class Category extends ExpandableStringEnum<Category> {
 
     /**
      * Gets known Category values.
-     *
+     * 
      * @return known Category values.
      */
     public static Collection<Category> values() {

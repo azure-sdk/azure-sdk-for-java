@@ -30,200 +30,159 @@ import com.azure.resourcemanager.billing.fluent.models.BillingRoleDefinitionInne
 import com.azure.resourcemanager.billing.models.BillingRoleDefinitionListResult;
 import reactor.core.publisher.Mono;
 
-/** An instance of this class provides access to all the operations defined in BillingRoleDefinitionsClient. */
+/**
+ * An instance of this class provides access to all the operations defined in BillingRoleDefinitionsClient.
+ */
 public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefinitionsClient {
-    /** The proxy service used to perform REST calls. */
+    /**
+     * The proxy service used to perform REST calls.
+     */
     private final BillingRoleDefinitionsService service;
 
-    /** The service client containing this operation class. */
+    /**
+     * The service client containing this operation class.
+     */
     private final BillingManagementClientImpl client;
 
     /**
      * Initializes an instance of BillingRoleDefinitionsClientImpl.
-     *
+     * 
      * @param client the instance of the service client containing this operation class.
      */
     BillingRoleDefinitionsClientImpl(BillingManagementClientImpl client) {
-        this.service =
-            RestProxy
-                .create(BillingRoleDefinitionsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
+        this.service = RestProxy.create(BillingRoleDefinitionsService.class, client.getHttpPipeline(),
+            client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for BillingManagementClientBillingRoleDefinitions to be used by the proxy
-     * service to perform REST calls.
+     * The interface defining all the services for BillingManagementClientBillingRoleDefinitions to be used by the
+     * proxy service to perform REST calls.
      */
     @Host("{$host}")
     @ServiceInterface(name = "BillingManagementCli")
     public interface BillingRoleDefinitionsService {
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingRoleDefinitions"
-                + "/{billingRoleDefinitionName}")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Get("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingRoleDefinitions/{billingRoleDefinitionName}")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<BillingRoleDefinitionInner>> getByBillingAccount(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("billingAccountName") String billingAccountName,
+        Mono<Response<BillingRoleDefinitionInner>> getByBillingAccount(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("billingAccountName") String billingAccountName,
             @PathParam("billingRoleDefinitionName") String billingRoleDefinitionName,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}"
-                + "/invoiceSections/{invoiceSectionName}/billingRoleDefinitions/{billingRoleDefinitionName}")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Get("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}/invoiceSections/{invoiceSectionName}/billingRoleDefinitions/{billingRoleDefinitionName}")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<BillingRoleDefinitionInner>> getByInvoiceSection(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("billingAccountName") String billingAccountName,
+        Mono<Response<BillingRoleDefinitionInner>> getByInvoiceSection(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("billingAccountName") String billingAccountName,
             @PathParam("billingProfileName") String billingProfileName,
             @PathParam("invoiceSectionName") String invoiceSectionName,
             @PathParam("billingRoleDefinitionName") String billingRoleDefinitionName,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}"
-                + "/billingRoleDefinitions/{billingRoleDefinitionName}")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Get("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}/billingRoleDefinitions/{billingRoleDefinitionName}")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<BillingRoleDefinitionInner>> getByBillingProfile(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("billingAccountName") String billingAccountName,
+        Mono<Response<BillingRoleDefinitionInner>> getByBillingProfile(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("billingAccountName") String billingAccountName,
             @PathParam("billingProfileName") String billingProfileName,
             @PathParam("billingRoleDefinitionName") String billingRoleDefinitionName,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingRoleDefinitions")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<BillingRoleDefinitionListResult>> listByBillingAccount(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("billingAccountName") String billingAccountName,
-            @HeaderParam("Accept") String accept,
-            Context context);
+        Mono<Response<BillingRoleDefinitionListResult>> listByBillingAccount(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("billingAccountName") String billingAccountName,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}"
-                + "/invoiceSections/{invoiceSectionName}/billingRoleDefinitions")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Get("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}/invoiceSections/{invoiceSectionName}/billingRoleDefinitions")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<BillingRoleDefinitionListResult>> listByInvoiceSection(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("billingAccountName") String billingAccountName,
+        Mono<Response<BillingRoleDefinitionListResult>> listByInvoiceSection(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("billingAccountName") String billingAccountName,
             @PathParam("billingProfileName") String billingProfileName,
-            @PathParam("invoiceSectionName") String invoiceSectionName,
-            @HeaderParam("Accept") String accept,
+            @PathParam("invoiceSectionName") String invoiceSectionName, @HeaderParam("Accept") String accept,
             Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}"
-                + "/billingRoleDefinitions")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Get("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}/billingRoleDefinitions")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<BillingRoleDefinitionListResult>> listByBillingProfile(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("billingAccountName") String billingAccountName,
-            @PathParam("billingProfileName") String billingProfileName,
-            @HeaderParam("Accept") String accept,
+        Mono<Response<BillingRoleDefinitionListResult>> listByBillingProfile(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("billingAccountName") String billingAccountName,
+            @PathParam("billingProfileName") String billingProfileName, @HeaderParam("Accept") String accept,
             Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<BillingRoleDefinitionListResult>> listByBillingAccountNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<BillingRoleDefinitionListResult>> listByInvoiceSectionNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<BillingRoleDefinitionListResult>> listByBillingProfileNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
      * Gets the definition for a role on a billing account. The operation is supported for billing accounts with
      * agreement type Microsoft Partner Agreement or Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingRoleDefinitionName The ID that uniquely identifies a role definition.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the definition for a role on a billing account along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<BillingRoleDefinitionInner>> getByBillingAccountWithResponseAsync(
-        String billingAccountName, String billingRoleDefinitionName) {
+    private Mono<Response<BillingRoleDefinitionInner>> getByBillingAccountWithResponseAsync(String billingAccountName,
+        String billingRoleDefinitionName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (billingAccountName == null) {
             return Mono
                 .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
         }
         if (billingRoleDefinitionName == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter billingRoleDefinitionName is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter billingRoleDefinitionName is required and cannot be null."));
         }
         final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .getByBillingAccount(
-                            this.client.getEndpoint(),
-                            apiVersion,
-                            billingAccountName,
-                            billingRoleDefinitionName,
-                            accept,
-                            context))
+            .withContext(context -> service.getByBillingAccount(this.client.getEndpoint(), apiVersion,
+                billingAccountName, billingRoleDefinitionName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Gets the definition for a role on a billing account. The operation is supported for billing accounts with
      * agreement type Microsoft Partner Agreement or Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingRoleDefinitionName The ID that uniquely identifies a role definition.
      * @param context The context to associate with this operation.
@@ -231,39 +190,34 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the definition for a role on a billing account along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<BillingRoleDefinitionInner>> getByBillingAccountWithResponseAsync(
-        String billingAccountName, String billingRoleDefinitionName, Context context) {
+    private Mono<Response<BillingRoleDefinitionInner>> getByBillingAccountWithResponseAsync(String billingAccountName,
+        String billingRoleDefinitionName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (billingAccountName == null) {
             return Mono
                 .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
         }
         if (billingRoleDefinitionName == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter billingRoleDefinitionName is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter billingRoleDefinitionName is required and cannot be null."));
         }
         final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .getByBillingAccount(
-                this.client.getEndpoint(), apiVersion, billingAccountName, billingRoleDefinitionName, accept, context);
+        return service.getByBillingAccount(this.client.getEndpoint(), apiVersion, billingAccountName,
+            billingRoleDefinitionName, accept, context);
     }
 
     /**
      * Gets the definition for a role on a billing account. The operation is supported for billing accounts with
      * agreement type Microsoft Partner Agreement or Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingRoleDefinitionName The ID that uniquely identifies a role definition.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -272,8 +226,8 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
      * @return the definition for a role on a billing account on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<BillingRoleDefinitionInner> getByBillingAccountAsync(
-        String billingAccountName, String billingRoleDefinitionName) {
+    private Mono<BillingRoleDefinitionInner> getByBillingAccountAsync(String billingAccountName,
+        String billingRoleDefinitionName) {
         return getByBillingAccountWithResponseAsync(billingAccountName, billingRoleDefinitionName)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
@@ -281,7 +235,7 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
     /**
      * Gets the definition for a role on a billing account. The operation is supported for billing accounts with
      * agreement type Microsoft Partner Agreement or Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingRoleDefinitionName The ID that uniquely identifies a role definition.
      * @param context The context to associate with this operation.
@@ -291,15 +245,15 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
      * @return the definition for a role on a billing account along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BillingRoleDefinitionInner> getByBillingAccountWithResponse(
-        String billingAccountName, String billingRoleDefinitionName, Context context) {
+    public Response<BillingRoleDefinitionInner> getByBillingAccountWithResponse(String billingAccountName,
+        String billingRoleDefinitionName, Context context) {
         return getByBillingAccountWithResponseAsync(billingAccountName, billingRoleDefinitionName, context).block();
     }
 
     /**
      * Gets the definition for a role on a billing account. The operation is supported for billing accounts with
      * agreement type Microsoft Partner Agreement or Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingRoleDefinitionName The ID that uniquely identifies a role definition.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -315,7 +269,7 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
     /**
      * Gets the definition for a role on an invoice section. The operation is supported only for billing accounts with
      * agreement type Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param invoiceSectionName The ID that uniquely identifies an invoice section.
@@ -324,19 +278,14 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the definition for a role on an invoice section along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<BillingRoleDefinitionInner>> getByInvoiceSectionWithResponseAsync(
-        String billingAccountName,
-        String billingProfileName,
-        String invoiceSectionName,
-        String billingRoleDefinitionName) {
+    private Mono<Response<BillingRoleDefinitionInner>> getByInvoiceSectionWithResponseAsync(String billingAccountName,
+        String billingProfileName, String invoiceSectionName, String billingRoleDefinitionName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (billingAccountName == null) {
             return Mono
@@ -351,33 +300,21 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
                 .error(new IllegalArgumentException("Parameter invoiceSectionName is required and cannot be null."));
         }
         if (billingRoleDefinitionName == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter billingRoleDefinitionName is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter billingRoleDefinitionName is required and cannot be null."));
         }
         final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .getByInvoiceSection(
-                            this.client.getEndpoint(),
-                            apiVersion,
-                            billingAccountName,
-                            billingProfileName,
-                            invoiceSectionName,
-                            billingRoleDefinitionName,
-                            accept,
-                            context))
+            .withContext(context -> service.getByInvoiceSection(this.client.getEndpoint(), apiVersion,
+                billingAccountName, billingProfileName, invoiceSectionName, billingRoleDefinitionName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Gets the definition for a role on an invoice section. The operation is supported only for billing accounts with
      * agreement type Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param invoiceSectionName The ID that uniquely identifies an invoice section.
@@ -387,20 +324,14 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the definition for a role on an invoice section along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<BillingRoleDefinitionInner>> getByInvoiceSectionWithResponseAsync(
-        String billingAccountName,
-        String billingProfileName,
-        String invoiceSectionName,
-        String billingRoleDefinitionName,
-        Context context) {
+    private Mono<Response<BillingRoleDefinitionInner>> getByInvoiceSectionWithResponseAsync(String billingAccountName,
+        String billingProfileName, String invoiceSectionName, String billingRoleDefinitionName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (billingAccountName == null) {
             return Mono
@@ -415,30 +346,20 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
                 .error(new IllegalArgumentException("Parameter invoiceSectionName is required and cannot be null."));
         }
         if (billingRoleDefinitionName == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter billingRoleDefinitionName is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter billingRoleDefinitionName is required and cannot be null."));
         }
         final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .getByInvoiceSection(
-                this.client.getEndpoint(),
-                apiVersion,
-                billingAccountName,
-                billingProfileName,
-                invoiceSectionName,
-                billingRoleDefinitionName,
-                accept,
-                context);
+        return service.getByInvoiceSection(this.client.getEndpoint(), apiVersion, billingAccountName,
+            billingProfileName, invoiceSectionName, billingRoleDefinitionName, accept, context);
     }
 
     /**
      * Gets the definition for a role on an invoice section. The operation is supported only for billing accounts with
      * agreement type Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param invoiceSectionName The ID that uniquely identifies an invoice section.
@@ -449,20 +370,16 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
      * @return the definition for a role on an invoice section on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<BillingRoleDefinitionInner> getByInvoiceSectionAsync(
-        String billingAccountName,
-        String billingProfileName,
-        String invoiceSectionName,
-        String billingRoleDefinitionName) {
-        return getByInvoiceSectionWithResponseAsync(
-                billingAccountName, billingProfileName, invoiceSectionName, billingRoleDefinitionName)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    private Mono<BillingRoleDefinitionInner> getByInvoiceSectionAsync(String billingAccountName,
+        String billingProfileName, String invoiceSectionName, String billingRoleDefinitionName) {
+        return getByInvoiceSectionWithResponseAsync(billingAccountName, billingProfileName, invoiceSectionName,
+            billingRoleDefinitionName).flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
      * Gets the definition for a role on an invoice section. The operation is supported only for billing accounts with
      * agreement type Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param invoiceSectionName The ID that uniquely identifies an invoice section.
@@ -474,21 +391,16 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
      * @return the definition for a role on an invoice section along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BillingRoleDefinitionInner> getByInvoiceSectionWithResponse(
-        String billingAccountName,
-        String billingProfileName,
-        String invoiceSectionName,
-        String billingRoleDefinitionName,
-        Context context) {
-        return getByInvoiceSectionWithResponseAsync(
-                billingAccountName, billingProfileName, invoiceSectionName, billingRoleDefinitionName, context)
-            .block();
+    public Response<BillingRoleDefinitionInner> getByInvoiceSectionWithResponse(String billingAccountName,
+        String billingProfileName, String invoiceSectionName, String billingRoleDefinitionName, Context context) {
+        return getByInvoiceSectionWithResponseAsync(billingAccountName, billingProfileName, invoiceSectionName,
+            billingRoleDefinitionName, context).block();
     }
 
     /**
      * Gets the definition for a role on an invoice section. The operation is supported only for billing accounts with
      * agreement type Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param invoiceSectionName The ID that uniquely identifies an invoice section.
@@ -499,20 +411,16 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
      * @return the definition for a role on an invoice section.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public BillingRoleDefinitionInner getByInvoiceSection(
-        String billingAccountName,
-        String billingProfileName,
-        String invoiceSectionName,
-        String billingRoleDefinitionName) {
-        return getByInvoiceSectionWithResponse(
-                billingAccountName, billingProfileName, invoiceSectionName, billingRoleDefinitionName, Context.NONE)
-            .getValue();
+    public BillingRoleDefinitionInner getByInvoiceSection(String billingAccountName, String billingProfileName,
+        String invoiceSectionName, String billingRoleDefinitionName) {
+        return getByInvoiceSectionWithResponse(billingAccountName, billingProfileName, invoiceSectionName,
+            billingRoleDefinitionName, Context.NONE).getValue();
     }
 
     /**
      * Gets the definition for a role on a billing profile. The operation is supported for billing accounts with
      * agreement type Microsoft Partner Agreement or Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param billingRoleDefinitionName The ID that uniquely identifies a role definition.
@@ -520,16 +428,14 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the definition for a role on a billing profile along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<BillingRoleDefinitionInner>> getByBillingProfileWithResponseAsync(
-        String billingAccountName, String billingProfileName, String billingRoleDefinitionName) {
+    private Mono<Response<BillingRoleDefinitionInner>> getByBillingProfileWithResponseAsync(String billingAccountName,
+        String billingProfileName, String billingRoleDefinitionName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (billingAccountName == null) {
             return Mono
@@ -540,32 +446,21 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
                 .error(new IllegalArgumentException("Parameter billingProfileName is required and cannot be null."));
         }
         if (billingRoleDefinitionName == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter billingRoleDefinitionName is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter billingRoleDefinitionName is required and cannot be null."));
         }
         final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .getByBillingProfile(
-                            this.client.getEndpoint(),
-                            apiVersion,
-                            billingAccountName,
-                            billingProfileName,
-                            billingRoleDefinitionName,
-                            accept,
-                            context))
+            .withContext(context -> service.getByBillingProfile(this.client.getEndpoint(), apiVersion,
+                billingAccountName, billingProfileName, billingRoleDefinitionName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Gets the definition for a role on a billing profile. The operation is supported for billing accounts with
      * agreement type Microsoft Partner Agreement or Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param billingRoleDefinitionName The ID that uniquely identifies a role definition.
@@ -574,16 +469,14 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the definition for a role on a billing profile along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<BillingRoleDefinitionInner>> getByBillingProfileWithResponseAsync(
-        String billingAccountName, String billingProfileName, String billingRoleDefinitionName, Context context) {
+    private Mono<Response<BillingRoleDefinitionInner>> getByBillingProfileWithResponseAsync(String billingAccountName,
+        String billingProfileName, String billingRoleDefinitionName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (billingAccountName == null) {
             return Mono
@@ -594,29 +487,20 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
                 .error(new IllegalArgumentException("Parameter billingProfileName is required and cannot be null."));
         }
         if (billingRoleDefinitionName == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter billingRoleDefinitionName is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter billingRoleDefinitionName is required and cannot be null."));
         }
         final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .getByBillingProfile(
-                this.client.getEndpoint(),
-                apiVersion,
-                billingAccountName,
-                billingProfileName,
-                billingRoleDefinitionName,
-                accept,
-                context);
+        return service.getByBillingProfile(this.client.getEndpoint(), apiVersion, billingAccountName,
+            billingProfileName, billingRoleDefinitionName, accept, context);
     }
 
     /**
      * Gets the definition for a role on a billing profile. The operation is supported for billing accounts with
      * agreement type Microsoft Partner Agreement or Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param billingRoleDefinitionName The ID that uniquely identifies a role definition.
@@ -626,8 +510,8 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
      * @return the definition for a role on a billing profile on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<BillingRoleDefinitionInner> getByBillingProfileAsync(
-        String billingAccountName, String billingProfileName, String billingRoleDefinitionName) {
+    private Mono<BillingRoleDefinitionInner> getByBillingProfileAsync(String billingAccountName,
+        String billingProfileName, String billingRoleDefinitionName) {
         return getByBillingProfileWithResponseAsync(billingAccountName, billingProfileName, billingRoleDefinitionName)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
@@ -635,7 +519,7 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
     /**
      * Gets the definition for a role on a billing profile. The operation is supported for billing accounts with
      * agreement type Microsoft Partner Agreement or Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param billingRoleDefinitionName The ID that uniquely identifies a role definition.
@@ -646,17 +530,16 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
      * @return the definition for a role on a billing profile along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BillingRoleDefinitionInner> getByBillingProfileWithResponse(
-        String billingAccountName, String billingProfileName, String billingRoleDefinitionName, Context context) {
-        return getByBillingProfileWithResponseAsync(
-                billingAccountName, billingProfileName, billingRoleDefinitionName, context)
-            .block();
+    public Response<BillingRoleDefinitionInner> getByBillingProfileWithResponse(String billingAccountName,
+        String billingProfileName, String billingRoleDefinitionName, Context context) {
+        return getByBillingProfileWithResponseAsync(billingAccountName, billingProfileName, billingRoleDefinitionName,
+            context).block();
     }
 
     /**
      * Gets the definition for a role on a billing profile. The operation is supported for billing accounts with
      * agreement type Microsoft Partner Agreement or Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param billingRoleDefinitionName The ID that uniquely identifies a role definition.
@@ -666,17 +549,16 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
      * @return the definition for a role on a billing profile.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public BillingRoleDefinitionInner getByBillingProfile(
-        String billingAccountName, String billingProfileName, String billingRoleDefinitionName) {
-        return getByBillingProfileWithResponse(
-                billingAccountName, billingProfileName, billingRoleDefinitionName, Context.NONE)
-            .getValue();
+    public BillingRoleDefinitionInner getByBillingProfile(String billingAccountName, String billingProfileName,
+        String billingRoleDefinitionName) {
+        return getByBillingProfileWithResponse(billingAccountName, billingProfileName, billingRoleDefinitionName,
+            Context.NONE).getValue();
     }
 
     /**
      * Lists the role definitions for a billing account. The operation is supported for billing accounts with agreement
      * type Microsoft Partner Agreement or Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -684,13 +566,11 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
      * @return the list of role definitions along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<BillingRoleDefinitionInner>> listByBillingAccountSinglePageAsync(
-        String billingAccountName) {
+    private Mono<PagedResponse<BillingRoleDefinitionInner>>
+        listByBillingAccountSinglePageAsync(String billingAccountName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (billingAccountName == null) {
             return Mono
@@ -699,27 +579,17 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
         final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .listByBillingAccount(
-                            this.client.getEndpoint(), apiVersion, billingAccountName, accept, context))
-            .<PagedResponse<BillingRoleDefinitionInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .withContext(context -> service.listByBillingAccount(this.client.getEndpoint(), apiVersion,
+                billingAccountName, accept, context))
+            .<PagedResponse<BillingRoleDefinitionInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Lists the role definitions for a billing account. The operation is supported for billing accounts with agreement
      * type Microsoft Partner Agreement or Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -728,13 +598,11 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
      * @return the list of role definitions along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<BillingRoleDefinitionInner>> listByBillingAccountSinglePageAsync(
-        String billingAccountName, Context context) {
+    private Mono<PagedResponse<BillingRoleDefinitionInner>>
+        listByBillingAccountSinglePageAsync(String billingAccountName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (billingAccountName == null) {
             return Mono
@@ -743,23 +611,15 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
         final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listByBillingAccount(this.client.getEndpoint(), apiVersion, billingAccountName, accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.listByBillingAccount(this.client.getEndpoint(), apiVersion, billingAccountName, accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * Lists the role definitions for a billing account. The operation is supported for billing accounts with agreement
      * type Microsoft Partner Agreement or Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -768,15 +628,14 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<BillingRoleDefinitionInner> listByBillingAccountAsync(String billingAccountName) {
-        return new PagedFlux<>(
-            () -> listByBillingAccountSinglePageAsync(billingAccountName),
+        return new PagedFlux<>(() -> listByBillingAccountSinglePageAsync(billingAccountName),
             nextLink -> listByBillingAccountNextSinglePageAsync(nextLink));
     }
 
     /**
      * Lists the role definitions for a billing account. The operation is supported for billing accounts with agreement
      * type Microsoft Partner Agreement or Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -785,17 +644,16 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
      * @return the list of role definitions as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<BillingRoleDefinitionInner> listByBillingAccountAsync(
-        String billingAccountName, Context context) {
-        return new PagedFlux<>(
-            () -> listByBillingAccountSinglePageAsync(billingAccountName, context),
+    private PagedFlux<BillingRoleDefinitionInner> listByBillingAccountAsync(String billingAccountName,
+        Context context) {
+        return new PagedFlux<>(() -> listByBillingAccountSinglePageAsync(billingAccountName, context),
             nextLink -> listByBillingAccountNextSinglePageAsync(nextLink, context));
     }
 
     /**
      * Lists the role definitions for a billing account. The operation is supported for billing accounts with agreement
      * type Microsoft Partner Agreement or Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -810,7 +668,7 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
     /**
      * Lists the role definitions for a billing account. The operation is supported for billing accounts with agreement
      * type Microsoft Partner Agreement or Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -826,7 +684,7 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
     /**
      * Lists the role definitions for an invoice section. The operation is supported for billing accounts with agreement
      * type Microsoft Partner Agreement or Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param invoiceSectionName The ID that uniquely identifies an invoice section.
@@ -839,10 +697,8 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
     private Mono<PagedResponse<BillingRoleDefinitionInner>> listByInvoiceSectionSinglePageAsync(
         String billingAccountName, String billingProfileName, String invoiceSectionName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (billingAccountName == null) {
             return Mono
@@ -859,33 +715,17 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
         final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .listByInvoiceSection(
-                            this.client.getEndpoint(),
-                            apiVersion,
-                            billingAccountName,
-                            billingProfileName,
-                            invoiceSectionName,
-                            accept,
-                            context))
-            .<PagedResponse<BillingRoleDefinitionInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .withContext(context -> service.listByInvoiceSection(this.client.getEndpoint(), apiVersion,
+                billingAccountName, billingProfileName, invoiceSectionName, accept, context))
+            .<PagedResponse<BillingRoleDefinitionInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Lists the role definitions for an invoice section. The operation is supported for billing accounts with agreement
      * type Microsoft Partner Agreement or Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param invoiceSectionName The ID that uniquely identifies an invoice section.
@@ -899,10 +739,8 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
     private Mono<PagedResponse<BillingRoleDefinitionInner>> listByInvoiceSectionSinglePageAsync(
         String billingAccountName, String billingProfileName, String invoiceSectionName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (billingAccountName == null) {
             return Mono
@@ -920,29 +758,16 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByInvoiceSection(
-                this.client.getEndpoint(),
-                apiVersion,
-                billingAccountName,
-                billingProfileName,
-                invoiceSectionName,
-                accept,
-                context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+            .listByInvoiceSection(this.client.getEndpoint(), apiVersion, billingAccountName, billingProfileName,
+                invoiceSectionName, accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * Lists the role definitions for an invoice section. The operation is supported for billing accounts with agreement
      * type Microsoft Partner Agreement or Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param invoiceSectionName The ID that uniquely identifies an invoice section.
@@ -952,8 +777,8 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
      * @return the list of role definitions as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<BillingRoleDefinitionInner> listByInvoiceSectionAsync(
-        String billingAccountName, String billingProfileName, String invoiceSectionName) {
+    private PagedFlux<BillingRoleDefinitionInner> listByInvoiceSectionAsync(String billingAccountName,
+        String billingProfileName, String invoiceSectionName) {
         return new PagedFlux<>(
             () -> listByInvoiceSectionSinglePageAsync(billingAccountName, billingProfileName, invoiceSectionName),
             nextLink -> listByInvoiceSectionNextSinglePageAsync(nextLink));
@@ -962,7 +787,7 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
     /**
      * Lists the role definitions for an invoice section. The operation is supported for billing accounts with agreement
      * type Microsoft Partner Agreement or Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param invoiceSectionName The ID that uniquely identifies an invoice section.
@@ -973,19 +798,16 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
      * @return the list of role definitions as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<BillingRoleDefinitionInner> listByInvoiceSectionAsync(
-        String billingAccountName, String billingProfileName, String invoiceSectionName, Context context) {
-        return new PagedFlux<>(
-            () ->
-                listByInvoiceSectionSinglePageAsync(
-                    billingAccountName, billingProfileName, invoiceSectionName, context),
-            nextLink -> listByInvoiceSectionNextSinglePageAsync(nextLink, context));
+    private PagedFlux<BillingRoleDefinitionInner> listByInvoiceSectionAsync(String billingAccountName,
+        String billingProfileName, String invoiceSectionName, Context context) {
+        return new PagedFlux<>(() -> listByInvoiceSectionSinglePageAsync(billingAccountName, billingProfileName,
+            invoiceSectionName, context), nextLink -> listByInvoiceSectionNextSinglePageAsync(nextLink, context));
     }
 
     /**
      * Lists the role definitions for an invoice section. The operation is supported for billing accounts with agreement
      * type Microsoft Partner Agreement or Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param invoiceSectionName The ID that uniquely identifies an invoice section.
@@ -995,8 +817,8 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
      * @return the list of role definitions as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BillingRoleDefinitionInner> listByInvoiceSection(
-        String billingAccountName, String billingProfileName, String invoiceSectionName) {
+    public PagedIterable<BillingRoleDefinitionInner> listByInvoiceSection(String billingAccountName,
+        String billingProfileName, String invoiceSectionName) {
         return new PagedIterable<>(
             listByInvoiceSectionAsync(billingAccountName, billingProfileName, invoiceSectionName));
     }
@@ -1004,7 +826,7 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
     /**
      * Lists the role definitions for an invoice section. The operation is supported for billing accounts with agreement
      * type Microsoft Partner Agreement or Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param invoiceSectionName The ID that uniquely identifies an invoice section.
@@ -1015,8 +837,8 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
      * @return the list of role definitions as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BillingRoleDefinitionInner> listByInvoiceSection(
-        String billingAccountName, String billingProfileName, String invoiceSectionName, Context context) {
+    public PagedIterable<BillingRoleDefinitionInner> listByInvoiceSection(String billingAccountName,
+        String billingProfileName, String invoiceSectionName, Context context) {
         return new PagedIterable<>(
             listByInvoiceSectionAsync(billingAccountName, billingProfileName, invoiceSectionName, context));
     }
@@ -1024,7 +846,7 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
     /**
      * Lists the role definitions for a billing profile. The operation is supported for billing accounts with agreement
      * type Microsoft Partner Agreement or Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1033,13 +855,11 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
      * @return the list of role definitions along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<BillingRoleDefinitionInner>> listByBillingProfileSinglePageAsync(
-        String billingAccountName, String billingProfileName) {
+    private Mono<PagedResponse<BillingRoleDefinitionInner>>
+        listByBillingProfileSinglePageAsync(String billingAccountName, String billingProfileName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (billingAccountName == null) {
             return Mono
@@ -1052,32 +872,17 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
         final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .listByBillingProfile(
-                            this.client.getEndpoint(),
-                            apiVersion,
-                            billingAccountName,
-                            billingProfileName,
-                            accept,
-                            context))
-            .<PagedResponse<BillingRoleDefinitionInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .withContext(context -> service.listByBillingProfile(this.client.getEndpoint(), apiVersion,
+                billingAccountName, billingProfileName, accept, context))
+            .<PagedResponse<BillingRoleDefinitionInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Lists the role definitions for a billing profile. The operation is supported for billing accounts with agreement
      * type Microsoft Partner Agreement or Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param context The context to associate with this operation.
@@ -1087,13 +892,11 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
      * @return the list of role definitions along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<BillingRoleDefinitionInner>> listByBillingProfileSinglePageAsync(
-        String billingAccountName, String billingProfileName, Context context) {
+    private Mono<PagedResponse<BillingRoleDefinitionInner>>
+        listByBillingProfileSinglePageAsync(String billingAccountName, String billingProfileName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (billingAccountName == null) {
             return Mono
@@ -1107,23 +910,16 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByBillingProfile(
-                this.client.getEndpoint(), apiVersion, billingAccountName, billingProfileName, accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+            .listByBillingProfile(this.client.getEndpoint(), apiVersion, billingAccountName, billingProfileName, accept,
+                context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * Lists the role definitions for a billing profile. The operation is supported for billing accounts with agreement
      * type Microsoft Partner Agreement or Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1132,17 +928,16 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
      * @return the list of role definitions as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<BillingRoleDefinitionInner> listByBillingProfileAsync(
-        String billingAccountName, String billingProfileName) {
-        return new PagedFlux<>(
-            () -> listByBillingProfileSinglePageAsync(billingAccountName, billingProfileName),
+    private PagedFlux<BillingRoleDefinitionInner> listByBillingProfileAsync(String billingAccountName,
+        String billingProfileName) {
+        return new PagedFlux<>(() -> listByBillingProfileSinglePageAsync(billingAccountName, billingProfileName),
             nextLink -> listByBillingProfileNextSinglePageAsync(nextLink));
     }
 
     /**
      * Lists the role definitions for a billing profile. The operation is supported for billing accounts with agreement
      * type Microsoft Partner Agreement or Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param context The context to associate with this operation.
@@ -1152,8 +947,8 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
      * @return the list of role definitions as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<BillingRoleDefinitionInner> listByBillingProfileAsync(
-        String billingAccountName, String billingProfileName, Context context) {
+    private PagedFlux<BillingRoleDefinitionInner> listByBillingProfileAsync(String billingAccountName,
+        String billingProfileName, Context context) {
         return new PagedFlux<>(
             () -> listByBillingProfileSinglePageAsync(billingAccountName, billingProfileName, context),
             nextLink -> listByBillingProfileNextSinglePageAsync(nextLink, context));
@@ -1162,7 +957,7 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
     /**
      * Lists the role definitions for a billing profile. The operation is supported for billing accounts with agreement
      * type Microsoft Partner Agreement or Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1171,15 +966,15 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
      * @return the list of role definitions as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BillingRoleDefinitionInner> listByBillingProfile(
-        String billingAccountName, String billingProfileName) {
+    public PagedIterable<BillingRoleDefinitionInner> listByBillingProfile(String billingAccountName,
+        String billingProfileName) {
         return new PagedIterable<>(listByBillingProfileAsync(billingAccountName, billingProfileName));
     }
 
     /**
      * Lists the role definitions for a billing profile. The operation is supported for billing accounts with agreement
      * type Microsoft Partner Agreement or Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param context The context to associate with this operation.
@@ -1189,16 +984,17 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
      * @return the list of role definitions as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BillingRoleDefinitionInner> listByBillingProfile(
-        String billingAccountName, String billingProfileName, Context context) {
+    public PagedIterable<BillingRoleDefinitionInner> listByBillingProfile(String billingAccountName,
+        String billingProfileName, Context context) {
         return new PagedIterable<>(listByBillingProfileAsync(billingAccountName, billingProfileName, context));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1210,32 +1006,24 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
             .withContext(
                 context -> service.listByBillingAccountNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<BillingRoleDefinitionInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .<PagedResponse<BillingRoleDefinitionInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1243,37 +1031,28 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
      * @return the list of role definitions along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<BillingRoleDefinitionInner>> listByBillingAccountNextSinglePageAsync(
-        String nextLink, Context context) {
+    private Mono<PagedResponse<BillingRoleDefinitionInner>> listByBillingAccountNextSinglePageAsync(String nextLink,
+        Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listByBillingAccountNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.listByBillingAccountNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1285,32 +1064,24 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
             .withContext(
                 context -> service.listByInvoiceSectionNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<BillingRoleDefinitionInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .<PagedResponse<BillingRoleDefinitionInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1318,37 +1089,28 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
      * @return the list of role definitions along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<BillingRoleDefinitionInner>> listByInvoiceSectionNextSinglePageAsync(
-        String nextLink, Context context) {
+    private Mono<PagedResponse<BillingRoleDefinitionInner>> listByInvoiceSectionNextSinglePageAsync(String nextLink,
+        Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listByInvoiceSectionNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.listByInvoiceSectionNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1360,32 +1122,24 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
             .withContext(
                 context -> service.listByBillingProfileNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<BillingRoleDefinitionInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .<PagedResponse<BillingRoleDefinitionInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1393,29 +1147,19 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
      * @return the list of role definitions along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<BillingRoleDefinitionInner>> listByBillingProfileNextSinglePageAsync(
-        String nextLink, Context context) {
+    private Mono<PagedResponse<BillingRoleDefinitionInner>> listByBillingProfileNextSinglePageAsync(String nextLink,
+        Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listByBillingProfileNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.listByBillingProfileNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 }

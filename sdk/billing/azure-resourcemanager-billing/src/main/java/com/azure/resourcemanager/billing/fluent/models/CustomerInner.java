@@ -11,7 +11,9 @@ import com.azure.resourcemanager.billing.models.Reseller;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** A partner's customer. */
+/**
+ * A partner's customer.
+ */
 @Fluent
 public final class CustomerInner extends ProxyResource {
     /*
@@ -20,13 +22,15 @@ public final class CustomerInner extends ProxyResource {
     @JsonProperty(value = "properties")
     private CustomerProperties innerProperties;
 
-    /** Creates an instance of CustomerInner class. */
+    /**
+     * Creates an instance of CustomerInner class.
+     */
     public CustomerInner() {
     }
 
     /**
      * Get the innerProperties property: The customer.
-     *
+     * 
      * @return the innerProperties value.
      */
     private CustomerProperties innerProperties() {
@@ -35,7 +39,7 @@ public final class CustomerInner extends ProxyResource {
 
     /**
      * Get the billingProfileId property: The ID of the billing profile for the invoice section.
-     *
+     * 
      * @return the billingProfileId value.
      */
     public String billingProfileId() {
@@ -44,7 +48,7 @@ public final class CustomerInner extends ProxyResource {
 
     /**
      * Get the billingProfileDisplayName property: The name of the billing profile for the invoice section.
-     *
+     * 
      * @return the billingProfileDisplayName value.
      */
     public String billingProfileDisplayName() {
@@ -53,7 +57,7 @@ public final class CustomerInner extends ProxyResource {
 
     /**
      * Get the displayName property: The name of the customer.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -62,7 +66,7 @@ public final class CustomerInner extends ProxyResource {
 
     /**
      * Set the displayName property: The name of the customer.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the CustomerInner object itself.
      */
@@ -76,7 +80,7 @@ public final class CustomerInner extends ProxyResource {
 
     /**
      * Get the enabledAzurePlans property: Azure plans enabled for the customer.
-     *
+     * 
      * @return the enabledAzurePlans value.
      */
     public List<AzurePlan> enabledAzurePlans() {
@@ -85,7 +89,7 @@ public final class CustomerInner extends ProxyResource {
 
     /**
      * Set the enabledAzurePlans property: Azure plans enabled for the customer.
-     *
+     * 
      * @param enabledAzurePlans the enabledAzurePlans value to set.
      * @return the CustomerInner object itself.
      */
@@ -99,7 +103,7 @@ public final class CustomerInner extends ProxyResource {
 
     /**
      * Get the resellers property: The list of resellers for which an Azure plan is enabled for the customer.
-     *
+     * 
      * @return the resellers value.
      */
     public List<Reseller> resellers() {
@@ -108,7 +112,7 @@ public final class CustomerInner extends ProxyResource {
 
     /**
      * Set the resellers property: The list of resellers for which an Azure plan is enabled for the customer.
-     *
+     * 
      * @param resellers the resellers value to set.
      * @return the CustomerInner object itself.
      */
@@ -122,7 +126,7 @@ public final class CustomerInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

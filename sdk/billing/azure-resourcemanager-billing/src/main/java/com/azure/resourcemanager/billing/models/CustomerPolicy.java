@@ -6,25 +6,27 @@ package com.azure.resourcemanager.billing.models;
 
 import com.azure.resourcemanager.billing.fluent.models.CustomerPolicyInner;
 
-/** An immutable client-side representation of CustomerPolicy. */
+/**
+ * An immutable client-side representation of CustomerPolicy.
+ */
 public interface CustomerPolicy {
     /**
      * Gets the id property: Fully qualified resource Id for the resource.
-     *
+     * 
      * @return the id value.
      */
     String id();
 
     /**
      * Gets the name property: The name of the resource.
-     *
+     * 
      * @return the name value.
      */
     String name();
 
     /**
      * Gets the type property: The type of the resource.
-     *
+     * 
      * @return the type value.
      */
     String type();
@@ -32,14 +34,14 @@ public interface CustomerPolicy {
     /**
      * Gets the viewCharges property: The policy that controls whether the users in customer's organization can view
      * charges at pay-as-you-go prices.
-     *
+     * 
      * @return the viewCharges value.
      */
     ViewCharges viewCharges();
 
     /**
      * Gets the inner com.azure.resourcemanager.billing.fluent.models.CustomerPolicyInner object.
-     *
+     * 
      * @return the inner object.
      */
     CustomerPolicyInner innerModel();

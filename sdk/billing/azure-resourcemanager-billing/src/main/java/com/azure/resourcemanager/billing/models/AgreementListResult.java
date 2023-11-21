@@ -9,7 +9,9 @@ import com.azure.resourcemanager.billing.fluent.models.AgreementInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Result of listing agreements. */
+/**
+ * Result of listing agreements.
+ */
 @Immutable
 public final class AgreementListResult {
     /*
@@ -24,13 +26,15 @@ public final class AgreementListResult {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of AgreementListResult class. */
+    /**
+     * Creates an instance of AgreementListResult class.
+     */
     public AgreementListResult() {
     }
 
     /**
      * Get the value property: The list of agreements.
-     *
+     * 
      * @return the value value.
      */
     public List<AgreementInner> value() {
@@ -39,7 +43,7 @@ public final class AgreementListResult {
 
     /**
      * Get the nextLink property: The link (url) to the next page of results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -48,7 +52,7 @@ public final class AgreementListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

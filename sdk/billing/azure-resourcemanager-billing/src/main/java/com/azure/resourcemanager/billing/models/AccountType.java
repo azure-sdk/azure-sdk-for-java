@@ -8,20 +8,28 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The type of customer. */
+/**
+ * The type of customer.
+ */
 public final class AccountType extends ExpandableStringEnum<AccountType> {
-    /** Static value Enterprise for AccountType. */
+    /**
+     * Static value Enterprise for AccountType.
+     */
     public static final AccountType ENTERPRISE = fromString("Enterprise");
 
-    /** Static value Individual for AccountType. */
+    /**
+     * Static value Individual for AccountType.
+     */
     public static final AccountType INDIVIDUAL = fromString("Individual");
 
-    /** Static value Partner for AccountType. */
+    /**
+     * Static value Partner for AccountType.
+     */
     public static final AccountType PARTNER = fromString("Partner");
 
     /**
      * Creates a new instance of AccountType value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -30,7 +38,7 @@ public final class AccountType extends ExpandableStringEnum<AccountType> {
 
     /**
      * Creates or finds a AccountType from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding AccountType.
      */
@@ -41,7 +49,7 @@ public final class AccountType extends ExpandableStringEnum<AccountType> {
 
     /**
      * Gets known AccountType values.
-     *
+     * 
      * @return known AccountType values.
      */
     public static Collection<AccountType> values() {

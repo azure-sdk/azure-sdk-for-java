@@ -13,12 +13,14 @@ import com.azure.core.util.Context;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.billing.fluent.models.BillingProfileInner;
 
-/** An instance of this class provides access to all the operations defined in BillingProfilesClient. */
+/**
+ * An instance of this class provides access to all the operations defined in BillingProfilesClient.
+ */
 public interface BillingProfilesClient {
     /**
      * Lists the billing profiles that a user has access to. The operation is supported for billing accounts with
      * agreement type Microsoft Customer Agreement or Microsoft Partner Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -31,7 +33,7 @@ public interface BillingProfilesClient {
     /**
      * Lists the billing profiles that a user has access to. The operation is supported for billing accounts with
      * agreement type Microsoft Customer Agreement or Microsoft Partner Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param expand May be used to expand the invoice sections.
      * @param context The context to associate with this operation.
@@ -46,7 +48,7 @@ public interface BillingProfilesClient {
     /**
      * Gets a billing profile by its ID. The operation is supported for billing accounts with agreement type Microsoft
      * Customer Agreement or Microsoft Partner Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param expand May be used to expand the invoice sections.
@@ -57,13 +59,13 @@ public interface BillingProfilesClient {
      * @return a billing profile by its ID along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<BillingProfileInner> getWithResponse(
-        String billingAccountName, String billingProfileName, String expand, Context context);
+    Response<BillingProfileInner> getWithResponse(String billingAccountName, String billingProfileName, String expand,
+        Context context);
 
     /**
      * Gets a billing profile by its ID. The operation is supported for billing accounts with agreement type Microsoft
      * Customer Agreement or Microsoft Partner Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -77,7 +79,7 @@ public interface BillingProfilesClient {
     /**
      * Creates or updates a billing profile. The operation is supported for billing accounts with agreement type
      * Microsoft Customer Agreement or Microsoft Partner Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param parameters The new or updated billing profile.
@@ -87,13 +89,13 @@ public interface BillingProfilesClient {
      * @return the {@link SyncPoller} for polling of a billing profile.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<BillingProfileInner>, BillingProfileInner> beginCreateOrUpdate(
-        String billingAccountName, String billingProfileName, BillingProfileInner parameters);
+    SyncPoller<PollResult<BillingProfileInner>, BillingProfileInner> beginCreateOrUpdate(String billingAccountName,
+        String billingProfileName, BillingProfileInner parameters);
 
     /**
      * Creates or updates a billing profile. The operation is supported for billing accounts with agreement type
      * Microsoft Customer Agreement or Microsoft Partner Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param parameters The new or updated billing profile.
@@ -104,13 +106,13 @@ public interface BillingProfilesClient {
      * @return the {@link SyncPoller} for polling of a billing profile.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<BillingProfileInner>, BillingProfileInner> beginCreateOrUpdate(
-        String billingAccountName, String billingProfileName, BillingProfileInner parameters, Context context);
+    SyncPoller<PollResult<BillingProfileInner>, BillingProfileInner> beginCreateOrUpdate(String billingAccountName,
+        String billingProfileName, BillingProfileInner parameters, Context context);
 
     /**
      * Creates or updates a billing profile. The operation is supported for billing accounts with agreement type
      * Microsoft Customer Agreement or Microsoft Partner Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param parameters The new or updated billing profile.
@@ -120,13 +122,13 @@ public interface BillingProfilesClient {
      * @return a billing profile.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    BillingProfileInner createOrUpdate(
-        String billingAccountName, String billingProfileName, BillingProfileInner parameters);
+    BillingProfileInner createOrUpdate(String billingAccountName, String billingProfileName,
+        BillingProfileInner parameters);
 
     /**
      * Creates or updates a billing profile. The operation is supported for billing accounts with agreement type
      * Microsoft Customer Agreement or Microsoft Partner Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param parameters The new or updated billing profile.
@@ -137,6 +139,6 @@ public interface BillingProfilesClient {
      * @return a billing profile.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    BillingProfileInner createOrUpdate(
-        String billingAccountName, String billingProfileName, BillingProfileInner parameters, Context context);
+    BillingProfileInner createOrUpdate(String billingAccountName, String billingProfileName,
+        BillingProfileInner parameters, Context context);
 }

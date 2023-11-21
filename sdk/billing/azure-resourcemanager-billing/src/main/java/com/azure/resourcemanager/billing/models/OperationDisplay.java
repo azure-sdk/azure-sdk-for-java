@@ -7,7 +7,9 @@ package com.azure.resourcemanager.billing.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The object that represents the operation. */
+/**
+ * The object that represents the operation.
+ */
 @Immutable
 public final class OperationDisplay {
     /*
@@ -34,13 +36,15 @@ public final class OperationDisplay {
     @JsonProperty(value = "description", access = JsonProperty.Access.WRITE_ONLY)
     private String description;
 
-    /** Creates an instance of OperationDisplay class. */
+    /**
+     * Creates an instance of OperationDisplay class.
+     */
     public OperationDisplay() {
     }
 
     /**
      * Get the provider property: Service provider: Microsoft.Billing.
-     *
+     * 
      * @return the provider value.
      */
     public String provider() {
@@ -48,8 +52,9 @@ public final class OperationDisplay {
     }
 
     /**
-     * Get the resource property: Resource on which the operation is performed such as invoice and billing subscription.
-     *
+     * Get the resource property: Resource on which the operation is performed such as invoice and billing
+     * subscription.
+     * 
      * @return the resource value.
      */
     public String resource() {
@@ -58,7 +63,7 @@ public final class OperationDisplay {
 
     /**
      * Get the operation property: Operation type such as read, write and delete.
-     *
+     * 
      * @return the operation value.
      */
     public String operation() {
@@ -67,7 +72,7 @@ public final class OperationDisplay {
 
     /**
      * Get the description property: Description of operation.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -76,7 +81,7 @@ public final class OperationDisplay {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

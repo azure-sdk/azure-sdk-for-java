@@ -19,8 +19,8 @@ public final class TransactionsImpl implements Transactions {
 
     private final com.azure.resourcemanager.billing.BillingManager serviceManager;
 
-    public TransactionsImpl(
-        TransactionsClient innerClient, com.azure.resourcemanager.billing.BillingManager serviceManager) {
+    public TransactionsImpl(TransactionsClient innerClient,
+        com.azure.resourcemanager.billing.BillingManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
@@ -31,8 +31,8 @@ public final class TransactionsImpl implements Transactions {
     }
 
     public PagedIterable<Transaction> listByInvoice(String billingAccountName, String invoiceName, Context context) {
-        PagedIterable<TransactionInner> inner =
-            this.serviceClient().listByInvoice(billingAccountName, invoiceName, context);
+        PagedIterable<TransactionInner> inner
+            = this.serviceClient().listByInvoice(billingAccountName, invoiceName, context);
         return Utils.mapPage(inner, inner1 -> new TransactionImpl(inner1, this.manager()));
     }
 

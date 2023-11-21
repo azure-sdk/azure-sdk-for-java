@@ -17,8 +17,8 @@ public final class BillingRoleDefinitionImpl implements BillingRoleDefinition {
 
     private final com.azure.resourcemanager.billing.BillingManager serviceManager;
 
-    BillingRoleDefinitionImpl(
-        BillingRoleDefinitionInner innerObject, com.azure.resourcemanager.billing.BillingManager serviceManager) {
+    BillingRoleDefinitionImpl(BillingRoleDefinitionInner innerObject,
+        com.azure.resourcemanager.billing.BillingManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
     }
@@ -42,12 +42,9 @@ public final class BillingRoleDefinitionImpl implements BillingRoleDefinition {
     public List<BillingPermissionsProperties> permissions() {
         List<BillingPermissionsPropertiesInner> inner = this.innerModel().permissions();
         if (inner != null) {
-            return Collections
-                .unmodifiableList(
-                    inner
-                        .stream()
-                        .map(inner1 -> new BillingPermissionsPropertiesImpl(inner1, this.manager()))
-                        .collect(Collectors.toList()));
+            return Collections.unmodifiableList(
+                inner.stream().map(inner1 -> new BillingPermissionsPropertiesImpl(inner1, this.manager()))
+                    .collect(Collectors.toList()));
         } else {
             return Collections.emptyList();
         }

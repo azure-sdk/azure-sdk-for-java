@@ -10,7 +10,9 @@ import com.azure.resourcemanager.billing.models.ReservationPurchasesPolicy;
 import com.azure.resourcemanager.billing.models.ViewChargesPolicy;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The properties of a policy. */
+/**
+ * The properties of a policy.
+ */
 @Fluent
 public final class PolicyProperties {
     /*
@@ -31,14 +33,16 @@ public final class PolicyProperties {
     @JsonProperty(value = "viewCharges")
     private ViewChargesPolicy viewCharges;
 
-    /** Creates an instance of PolicyProperties class. */
+    /**
+     * Creates an instance of PolicyProperties class.
+     */
     public PolicyProperties() {
     }
 
     /**
      * Get the marketplacePurchases property: The policy that controls whether Azure marketplace purchases are allowed
      * for a billing profile.
-     *
+     * 
      * @return the marketplacePurchases value.
      */
     public MarketplacePurchasesPolicy marketplacePurchases() {
@@ -48,7 +52,7 @@ public final class PolicyProperties {
     /**
      * Set the marketplacePurchases property: The policy that controls whether Azure marketplace purchases are allowed
      * for a billing profile.
-     *
+     * 
      * @param marketplacePurchases the marketplacePurchases value to set.
      * @return the PolicyProperties object itself.
      */
@@ -60,7 +64,7 @@ public final class PolicyProperties {
     /**
      * Get the reservationPurchases property: The policy that controls whether Azure reservation purchases are allowed
      * for a billing profile.
-     *
+     * 
      * @return the reservationPurchases value.
      */
     public ReservationPurchasesPolicy reservationPurchases() {
@@ -70,7 +74,7 @@ public final class PolicyProperties {
     /**
      * Set the reservationPurchases property: The policy that controls whether Azure reservation purchases are allowed
      * for a billing profile.
-     *
+     * 
      * @param reservationPurchases the reservationPurchases value to set.
      * @return the PolicyProperties object itself.
      */
@@ -80,9 +84,9 @@ public final class PolicyProperties {
     }
 
     /**
-     * Get the viewCharges property: The policy that controls whether users with Azure RBAC access to a subscription can
-     * view its charges.
-     *
+     * Get the viewCharges property: The policy that controls whether users with Azure RBAC access to a subscription
+     * can view its charges.
+     * 
      * @return the viewCharges value.
      */
     public ViewChargesPolicy viewCharges() {
@@ -90,9 +94,9 @@ public final class PolicyProperties {
     }
 
     /**
-     * Set the viewCharges property: The policy that controls whether users with Azure RBAC access to a subscription can
-     * view its charges.
-     *
+     * Set the viewCharges property: The policy that controls whether users with Azure RBAC access to a subscription
+     * can view its charges.
+     * 
      * @param viewCharges the viewCharges value to set.
      * @return the PolicyProperties object itself.
      */
@@ -103,7 +107,7 @@ public final class PolicyProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

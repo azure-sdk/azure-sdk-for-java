@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.LocalDate;
 import java.util.List;
 
-/** A billing period resource. */
+/**
+ * A billing period resource.
+ */
 @Immutable
 public final class BillingPeriodInner extends ProxyResource {
     /*
@@ -19,13 +21,15 @@ public final class BillingPeriodInner extends ProxyResource {
     @JsonProperty(value = "properties")
     private BillingPeriodProperties innerProperties;
 
-    /** Creates an instance of BillingPeriodInner class. */
+    /**
+     * Creates an instance of BillingPeriodInner class.
+     */
     public BillingPeriodInner() {
     }
 
     /**
      * Get the innerProperties property: A billing period.
-     *
+     * 
      * @return the innerProperties value.
      */
     private BillingPeriodProperties innerProperties() {
@@ -34,7 +38,7 @@ public final class BillingPeriodInner extends ProxyResource {
 
     /**
      * Get the billingPeriodStartDate property: The start of the date range covered by the billing period.
-     *
+     * 
      * @return the billingPeriodStartDate value.
      */
     public LocalDate billingPeriodStartDate() {
@@ -43,7 +47,7 @@ public final class BillingPeriodInner extends ProxyResource {
 
     /**
      * Get the billingPeriodEndDate property: The end of the date range covered by the billing period.
-     *
+     * 
      * @return the billingPeriodEndDate value.
      */
     public LocalDate billingPeriodEndDate() {
@@ -52,7 +56,7 @@ public final class BillingPeriodInner extends ProxyResource {
 
     /**
      * Get the invoiceIds property: Array of invoice ids that associated with.
-     *
+     * 
      * @return the invoiceIds value.
      */
     public List<String> invoiceIds() {
@@ -61,7 +65,7 @@ public final class BillingPeriodInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

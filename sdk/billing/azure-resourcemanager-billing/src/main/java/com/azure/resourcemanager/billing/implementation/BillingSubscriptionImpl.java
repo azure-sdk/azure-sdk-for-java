@@ -18,8 +18,8 @@ public final class BillingSubscriptionImpl implements BillingSubscription {
 
     private final com.azure.resourcemanager.billing.BillingManager serviceManager;
 
-    BillingSubscriptionImpl(
-        BillingSubscriptionInner innerObject, com.azure.resourcemanager.billing.BillingManager serviceManager) {
+    BillingSubscriptionImpl(BillingSubscriptionInner innerObject,
+        com.azure.resourcemanager.billing.BillingManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
     }

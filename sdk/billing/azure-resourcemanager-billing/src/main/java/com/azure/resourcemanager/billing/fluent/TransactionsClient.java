@@ -10,11 +10,13 @@ import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.billing.fluent.models.TransactionInner;
 
-/** An instance of this class provides access to all the operations defined in TransactionsClient. */
+/**
+ * An instance of this class provides access to all the operations defined in TransactionsClient.
+ */
 public interface TransactionsClient {
     /**
      * Lists the transactions for an invoice. Transactions include purchases, refunds and Azure usage charges.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param invoiceName The ID that uniquely identifies an invoice.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -27,7 +29,7 @@ public interface TransactionsClient {
 
     /**
      * Lists the transactions for an invoice. Transactions include purchases, refunds and Azure usage charges.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param invoiceName The ID that uniquely identifies an invoice.
      * @param context The context to associate with this operation.

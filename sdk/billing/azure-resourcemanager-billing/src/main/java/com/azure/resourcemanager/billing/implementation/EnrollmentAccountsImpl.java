@@ -21,8 +21,8 @@ public final class EnrollmentAccountsImpl implements EnrollmentAccounts {
 
     private final com.azure.resourcemanager.billing.BillingManager serviceManager;
 
-    public EnrollmentAccountsImpl(
-        EnrollmentAccountsClient innerClient, com.azure.resourcemanager.billing.BillingManager serviceManager) {
+    public EnrollmentAccountsImpl(EnrollmentAccountsClient innerClient,
+        com.azure.resourcemanager.billing.BillingManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
@@ -40,10 +40,7 @@ public final class EnrollmentAccountsImpl implements EnrollmentAccounts {
     public Response<EnrollmentAccountSummary> getWithResponse(String name, Context context) {
         Response<EnrollmentAccountSummaryInner> inner = this.serviceClient().getWithResponse(name, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new EnrollmentAccountSummaryImpl(inner.getValue(), this.manager()));
         } else {
             return null;

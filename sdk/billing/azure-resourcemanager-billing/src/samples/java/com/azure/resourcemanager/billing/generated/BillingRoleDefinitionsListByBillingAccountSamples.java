@@ -4,14 +4,17 @@
 
 package com.azure.resourcemanager.billing.generated;
 
-/** Samples for BillingRoleDefinitions ListByBillingAccount. */
+/**
+ * Samples for BillingRoleDefinitions ListByBillingAccount.
+ */
 public final class BillingRoleDefinitionsListByBillingAccountSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/BillingAccountRoleDefinitionsList.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/
+     * BillingAccountRoleDefinitionsList.json
      */
     /**
      * Sample code: BillingAccountRoleDefinitionsList.
-     *
+     * 
      * @param manager Entry point to BillingManager.
      */
     public static void billingAccountRoleDefinitionsList(com.azure.resourcemanager.billing.BillingManager manager) {

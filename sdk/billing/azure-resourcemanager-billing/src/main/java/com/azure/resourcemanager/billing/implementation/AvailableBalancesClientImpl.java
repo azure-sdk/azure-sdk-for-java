@@ -25,22 +25,28 @@ import com.azure.resourcemanager.billing.fluent.AvailableBalancesClient;
 import com.azure.resourcemanager.billing.fluent.models.AvailableBalanceInner;
 import reactor.core.publisher.Mono;
 
-/** An instance of this class provides access to all the operations defined in AvailableBalancesClient. */
+/**
+ * An instance of this class provides access to all the operations defined in AvailableBalancesClient.
+ */
 public final class AvailableBalancesClientImpl implements AvailableBalancesClient {
-    /** The proxy service used to perform REST calls. */
+    /**
+     * The proxy service used to perform REST calls.
+     */
     private final AvailableBalancesService service;
 
-    /** The service client containing this operation class. */
+    /**
+     * The service client containing this operation class.
+     */
     private final BillingManagementClientImpl client;
 
     /**
      * Initializes an instance of AvailableBalancesClientImpl.
-     *
+     * 
      * @param client the instance of the service client containing this operation class.
      */
     AvailableBalancesClientImpl(BillingManagementClientImpl client) {
-        this.service =
-            RestProxy.create(AvailableBalancesService.class, client.getHttpPipeline(), client.getSerializerAdapter());
+        this.service
+            = RestProxy.create(AvailableBalancesService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
@@ -51,26 +57,21 @@ public final class AvailableBalancesClientImpl implements AvailableBalancesClien
     @Host("{$host}")
     @ServiceInterface(name = "BillingManagementCli")
     public interface AvailableBalancesService {
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}"
-                + "/availableBalance/default")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Get("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}/availableBalance/default")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<AvailableBalanceInner>> get(
-            @HostParam("$host") String endpoint,
+        Mono<Response<AvailableBalanceInner>> get(@HostParam("$host") String endpoint,
             @PathParam("billingAccountName") String billingAccountName,
-            @PathParam("billingProfileName") String billingProfileName,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("billingProfileName") String billingProfileName, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
      * The available credit balance for a billing profile. This is the balance that can be used for pay now to settle
      * due or past due invoices. The operation is supported only for billing accounts with agreement type Microsoft
      * Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -79,13 +80,11 @@ public final class AvailableBalancesClientImpl implements AvailableBalancesClien
      * @return the latest Azure credit balance along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<AvailableBalanceInner>> getWithResponseAsync(
-        String billingAccountName, String billingProfileName) {
+    private Mono<Response<AvailableBalanceInner>> getWithResponseAsync(String billingAccountName,
+        String billingProfileName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (billingAccountName == null) {
             return Mono
@@ -98,16 +97,8 @@ public final class AvailableBalancesClientImpl implements AvailableBalancesClien
         final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .get(
-                            this.client.getEndpoint(),
-                            billingAccountName,
-                            billingProfileName,
-                            apiVersion,
-                            accept,
-                            context))
+            .withContext(context -> service.get(this.client.getEndpoint(), billingAccountName, billingProfileName,
+                apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -115,7 +106,7 @@ public final class AvailableBalancesClientImpl implements AvailableBalancesClien
      * The available credit balance for a billing profile. This is the balance that can be used for pay now to settle
      * due or past due invoices. The operation is supported only for billing accounts with agreement type Microsoft
      * Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param context The context to associate with this operation.
@@ -125,13 +116,11 @@ public final class AvailableBalancesClientImpl implements AvailableBalancesClien
      * @return the latest Azure credit balance along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<AvailableBalanceInner>> getWithResponseAsync(
-        String billingAccountName, String billingProfileName, Context context) {
+    private Mono<Response<AvailableBalanceInner>> getWithResponseAsync(String billingAccountName,
+        String billingProfileName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (billingAccountName == null) {
             return Mono
@@ -144,15 +133,15 @@ public final class AvailableBalancesClientImpl implements AvailableBalancesClien
         final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .get(this.client.getEndpoint(), billingAccountName, billingProfileName, apiVersion, accept, context);
+        return service.get(this.client.getEndpoint(), billingAccountName, billingProfileName, apiVersion, accept,
+            context);
     }
 
     /**
      * The available credit balance for a billing profile. This is the balance that can be used for pay now to settle
      * due or past due invoices. The operation is supported only for billing accounts with agreement type Microsoft
      * Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -170,7 +159,7 @@ public final class AvailableBalancesClientImpl implements AvailableBalancesClien
      * The available credit balance for a billing profile. This is the balance that can be used for pay now to settle
      * due or past due invoices. The operation is supported only for billing accounts with agreement type Microsoft
      * Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param context The context to associate with this operation.
@@ -180,8 +169,8 @@ public final class AvailableBalancesClientImpl implements AvailableBalancesClien
      * @return the latest Azure credit balance along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<AvailableBalanceInner> getWithResponse(
-        String billingAccountName, String billingProfileName, Context context) {
+    public Response<AvailableBalanceInner> getWithResponse(String billingAccountName, String billingProfileName,
+        Context context) {
         return getWithResponseAsync(billingAccountName, billingProfileName, context).block();
     }
 
@@ -189,7 +178,7 @@ public final class AvailableBalancesClientImpl implements AvailableBalancesClien
      * The available credit balance for a billing profile. This is the balance that can be used for pay now to settle
      * due or past due invoices. The operation is supported only for billing accounts with agreement type Microsoft
      * Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
