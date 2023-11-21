@@ -23,8 +23,8 @@ public final class ServersImpl implements Servers {
 
     private final com.azure.resourcemanager.mysqlflexibleserver.MySqlManager serviceManager;
 
-    public ServersImpl(
-        ServersClient innerClient, com.azure.resourcemanager.mysqlflexibleserver.MySqlManager serviceManager) {
+    public ServersImpl(ServersClient innerClient,
+        com.azure.resourcemanager.mysqlflexibleserver.MySqlManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
@@ -37,15 +37,12 @@ public final class ServersImpl implements Servers {
         this.serviceClient().delete(resourceGroupName, serverName, context);
     }
 
-    public Response<Server> getByResourceGroupWithResponse(
-        String resourceGroupName, String serverName, Context context) {
-        Response<ServerInner> inner =
-            this.serviceClient().getByResourceGroupWithResponse(resourceGroupName, serverName, context);
+    public Response<Server> getByResourceGroupWithResponse(String resourceGroupName, String serverName,
+        Context context) {
+        Response<ServerInner> inner
+            = this.serviceClient().getByResourceGroupWithResponse(resourceGroupName, serverName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new ServerImpl(inner.getValue(), this.manager()));
         } else {
             return null;
@@ -93,8 +90,8 @@ public final class ServersImpl implements Servers {
         this.serviceClient().restart(resourceGroupName, serverName, parameters);
     }
 
-    public void restart(
-        String resourceGroupName, String serverName, ServerRestartParameter parameters, Context context) {
+    public void restart(String resourceGroupName, String serverName, ServerRestartParameter parameters,
+        Context context) {
         this.serviceClient().restart(resourceGroupName, serverName, parameters, context);
     }
 
@@ -118,27 +115,21 @@ public final class ServersImpl implements Servers {
         this.serviceClient().resetGtid(resourceGroupName, serverName, parameters);
     }
 
-    public void resetGtid(
-        String resourceGroupName, String serverName, ServerGtidSetParameter parameters, Context context) {
+    public void resetGtid(String resourceGroupName, String serverName, ServerGtidSetParameter parameters,
+        Context context) {
         this.serviceClient().resetGtid(resourceGroupName, serverName, parameters, context);
     }
 
     public Server getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String serverName = Utils.getValueFromIdByName(id, "flexibleServers");
         if (serverName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'flexibleServers'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'flexibleServers'.", id)));
         }
         return this.getByResourceGroupWithResponse(resourceGroupName, serverName, Context.NONE).getValue();
     }
@@ -146,19 +137,13 @@ public final class ServersImpl implements Servers {
     public Response<Server> getByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String serverName = Utils.getValueFromIdByName(id, "flexibleServers");
         if (serverName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'flexibleServers'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'flexibleServers'.", id)));
         }
         return this.getByResourceGroupWithResponse(resourceGroupName, serverName, context);
     }
@@ -166,19 +151,13 @@ public final class ServersImpl implements Servers {
     public void deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String serverName = Utils.getValueFromIdByName(id, "flexibleServers");
         if (serverName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'flexibleServers'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'flexibleServers'.", id)));
         }
         this.delete(resourceGroupName, serverName, Context.NONE);
     }
@@ -186,19 +165,13 @@ public final class ServersImpl implements Servers {
     public void deleteByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String serverName = Utils.getValueFromIdByName(id, "flexibleServers");
         if (serverName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'flexibleServers'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'flexibleServers'.", id)));
         }
         this.delete(resourceGroupName, serverName, context);
     }

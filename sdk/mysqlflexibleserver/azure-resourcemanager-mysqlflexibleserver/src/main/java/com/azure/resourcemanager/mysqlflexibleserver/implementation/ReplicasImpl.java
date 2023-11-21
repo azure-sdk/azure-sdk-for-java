@@ -19,8 +19,8 @@ public final class ReplicasImpl implements Replicas {
 
     private final com.azure.resourcemanager.mysqlflexibleserver.MySqlManager serviceManager;
 
-    public ReplicasImpl(
-        ReplicasClient innerClient, com.azure.resourcemanager.mysqlflexibleserver.MySqlManager serviceManager) {
+    public ReplicasImpl(ReplicasClient innerClient,
+        com.azure.resourcemanager.mysqlflexibleserver.MySqlManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }

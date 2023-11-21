@@ -7,7 +7,9 @@ package com.azure.resourcemanager.mysqlflexibleserver.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** storage edition capability. */
+/**
+ * storage edition capability.
+ */
 @Immutable
 public final class StorageEditionCapability {
     /*
@@ -40,13 +42,15 @@ public final class StorageEditionCapability {
     @JsonProperty(value = "maxBackupRetentionDays", access = JsonProperty.Access.WRITE_ONLY)
     private Long maxBackupRetentionDays;
 
-    /** Creates an instance of StorageEditionCapability class. */
+    /**
+     * Creates an instance of StorageEditionCapability class.
+     */
     public StorageEditionCapability() {
     }
 
     /**
      * Get the name property: storage edition name.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -55,7 +59,7 @@ public final class StorageEditionCapability {
 
     /**
      * Get the minStorageSize property: The minimal supported storage size.
-     *
+     * 
      * @return the minStorageSize value.
      */
     public Long minStorageSize() {
@@ -64,7 +68,7 @@ public final class StorageEditionCapability {
 
     /**
      * Get the maxStorageSize property: The maximum supported storage size.
-     *
+     * 
      * @return the maxStorageSize value.
      */
     public Long maxStorageSize() {
@@ -73,7 +77,7 @@ public final class StorageEditionCapability {
 
     /**
      * Get the minBackupRetentionDays property: Minimal backup retention days.
-     *
+     * 
      * @return the minBackupRetentionDays value.
      */
     public Long minBackupRetentionDays() {
@@ -82,7 +86,7 @@ public final class StorageEditionCapability {
 
     /**
      * Get the maxBackupRetentionDays property: Maximum backup retention days.
-     *
+     * 
      * @return the maxBackupRetentionDays value.
      */
     public Long maxBackupRetentionDays() {
@@ -91,7 +95,7 @@ public final class StorageEditionCapability {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
