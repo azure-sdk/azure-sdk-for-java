@@ -7,7 +7,9 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The ssl configuration for scoring. */
+/**
+ * The ssl configuration for scoring.
+ */
 @Fluent
 public final class SslConfiguration {
     /*
@@ -46,13 +48,15 @@ public final class SslConfiguration {
     @JsonProperty(value = "overwriteExistingDomain")
     private Boolean overwriteExistingDomain;
 
-    /** Creates an instance of SslConfiguration class. */
+    /**
+     * Creates an instance of SslConfiguration class.
+     */
     public SslConfiguration() {
     }
 
     /**
      * Get the status property: Enable or disable ssl for scoring.
-     *
+     * 
      * @return the status value.
      */
     public SslConfigStatus status() {
@@ -61,7 +65,7 @@ public final class SslConfiguration {
 
     /**
      * Set the status property: Enable or disable ssl for scoring.
-     *
+     * 
      * @param status the status value to set.
      * @return the SslConfiguration object itself.
      */
@@ -72,7 +76,7 @@ public final class SslConfiguration {
 
     /**
      * Get the cert property: Cert data.
-     *
+     * 
      * @return the cert value.
      */
     public String cert() {
@@ -81,7 +85,7 @@ public final class SslConfiguration {
 
     /**
      * Set the cert property: Cert data.
-     *
+     * 
      * @param cert the cert value to set.
      * @return the SslConfiguration object itself.
      */
@@ -92,7 +96,7 @@ public final class SslConfiguration {
 
     /**
      * Get the key property: Key data.
-     *
+     * 
      * @return the key value.
      */
     public String key() {
@@ -101,7 +105,7 @@ public final class SslConfiguration {
 
     /**
      * Set the key property: Key data.
-     *
+     * 
      * @param key the key value to set.
      * @return the SslConfiguration object itself.
      */
@@ -112,7 +116,7 @@ public final class SslConfiguration {
 
     /**
      * Get the cname property: CNAME of the cert.
-     *
+     * 
      * @return the cname value.
      */
     public String cname() {
@@ -121,7 +125,7 @@ public final class SslConfiguration {
 
     /**
      * Set the cname property: CNAME of the cert.
-     *
+     * 
      * @param cname the cname value to set.
      * @return the SslConfiguration object itself.
      */
@@ -132,7 +136,7 @@ public final class SslConfiguration {
 
     /**
      * Get the leafDomainLabel property: Leaf domain label of public endpoint.
-     *
+     * 
      * @return the leafDomainLabel value.
      */
     public String leafDomainLabel() {
@@ -141,7 +145,7 @@ public final class SslConfiguration {
 
     /**
      * Set the leafDomainLabel property: Leaf domain label of public endpoint.
-     *
+     * 
      * @param leafDomainLabel the leafDomainLabel value to set.
      * @return the SslConfiguration object itself.
      */
@@ -152,7 +156,7 @@ public final class SslConfiguration {
 
     /**
      * Get the overwriteExistingDomain property: Indicates whether to overwrite existing domain label.
-     *
+     * 
      * @return the overwriteExistingDomain value.
      */
     public Boolean overwriteExistingDomain() {
@@ -161,7 +165,7 @@ public final class SslConfiguration {
 
     /**
      * Set the overwriteExistingDomain property: Indicates whether to overwrite existing domain label.
-     *
+     * 
      * @param overwriteExistingDomain the overwriteExistingDomain value to set.
      * @return the SslConfiguration object itself.
      */
@@ -172,7 +176,7 @@ public final class SslConfiguration {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

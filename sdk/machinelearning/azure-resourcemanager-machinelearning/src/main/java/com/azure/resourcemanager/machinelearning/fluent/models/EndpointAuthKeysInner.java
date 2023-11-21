@@ -7,7 +7,9 @@ package com.azure.resourcemanager.machinelearning.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Keys for endpoint authentication. */
+/**
+ * Keys for endpoint authentication.
+ */
 @Fluent
 public final class EndpointAuthKeysInner {
     /*
@@ -22,13 +24,15 @@ public final class EndpointAuthKeysInner {
     @JsonProperty(value = "secondaryKey")
     private String secondaryKey;
 
-    /** Creates an instance of EndpointAuthKeysInner class. */
+    /**
+     * Creates an instance of EndpointAuthKeysInner class.
+     */
     public EndpointAuthKeysInner() {
     }
 
     /**
      * Get the primaryKey property: The primary key.
-     *
+     * 
      * @return the primaryKey value.
      */
     public String primaryKey() {
@@ -37,7 +41,7 @@ public final class EndpointAuthKeysInner {
 
     /**
      * Set the primaryKey property: The primary key.
-     *
+     * 
      * @param primaryKey the primaryKey value to set.
      * @return the EndpointAuthKeysInner object itself.
      */
@@ -48,7 +52,7 @@ public final class EndpointAuthKeysInner {
 
     /**
      * Get the secondaryKey property: The secondary key.
-     *
+     * 
      * @return the secondaryKey value.
      */
     public String secondaryKey() {
@@ -57,7 +61,7 @@ public final class EndpointAuthKeysInner {
 
     /**
      * Set the secondaryKey property: The secondary key.
-     *
+     * 
      * @param secondaryKey the secondaryKey value to set.
      * @return the EndpointAuthKeysInner object itself.
      */
@@ -68,7 +72,7 @@ public final class EndpointAuthKeysInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
