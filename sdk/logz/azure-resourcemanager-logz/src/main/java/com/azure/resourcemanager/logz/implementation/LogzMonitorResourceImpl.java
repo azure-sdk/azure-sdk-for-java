@@ -95,20 +95,14 @@ public final class LogzMonitorResourceImpl
     }
 
     public LogzMonitorResource create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getMonitors()
-                .create(resourceGroupName, monitorName, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getMonitors().create(resourceGroupName, monitorName,
+            this.innerModel(), Context.NONE);
         return this;
     }
 
     public LogzMonitorResource create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getMonitors()
-                .create(resourceGroupName, monitorName, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient().getMonitors().create(resourceGroupName, monitorName,
+            this.innerModel(), context);
         return this;
     }
 
@@ -124,27 +118,19 @@ public final class LogzMonitorResourceImpl
     }
 
     public LogzMonitorResource apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getMonitors()
-                .updateWithResponse(resourceGroupName, monitorName, updateBody, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getMonitors()
+            .updateWithResponse(resourceGroupName, monitorName, updateBody, Context.NONE).getValue();
         return this;
     }
 
     public LogzMonitorResource apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getMonitors()
-                .updateWithResponse(resourceGroupName, monitorName, updateBody, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getMonitors()
+            .updateWithResponse(resourceGroupName, monitorName, updateBody, context).getValue();
         return this;
     }
 
-    LogzMonitorResourceImpl(
-        LogzMonitorResourceInner innerObject, com.azure.resourcemanager.logz.LogzManager serviceManager) {
+    LogzMonitorResourceImpl(LogzMonitorResourceInner innerObject,
+        com.azure.resourcemanager.logz.LogzManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
         this.resourceGroupName = Utils.getValueFromIdByName(innerObject.id(), "resourceGroups");
@@ -152,22 +138,14 @@ public final class LogzMonitorResourceImpl
     }
 
     public LogzMonitorResource refresh() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getMonitors()
-                .getByResourceGroupWithResponse(resourceGroupName, monitorName, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getMonitors()
+            .getByResourceGroupWithResponse(resourceGroupName, monitorName, Context.NONE).getValue();
         return this;
     }
 
     public LogzMonitorResource refresh(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getMonitors()
-                .getByResourceGroupWithResponse(resourceGroupName, monitorName, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getMonitors()
+            .getByResourceGroupWithResponse(resourceGroupName, monitorName, context).getValue();
         return this;
     }
 

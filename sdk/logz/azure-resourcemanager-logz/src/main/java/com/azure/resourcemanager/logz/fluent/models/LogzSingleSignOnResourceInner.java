@@ -10,7 +10,9 @@ import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.logz.models.LogzSingleSignOnProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The LogzSingleSignOnResource model. */
+/**
+ * The LogzSingleSignOnResource model.
+ */
 @Fluent
 public final class LogzSingleSignOnResourceInner extends ProxyResource {
     /*
@@ -25,13 +27,15 @@ public final class LogzSingleSignOnResourceInner extends ProxyResource {
     @JsonProperty(value = "properties")
     private LogzSingleSignOnProperties properties;
 
-    /** Creates an instance of LogzSingleSignOnResourceInner class. */
+    /**
+     * Creates an instance of LogzSingleSignOnResourceInner class.
+     */
     public LogzSingleSignOnResourceInner() {
     }
 
     /**
      * Get the systemData property: Metadata pertaining to creation and last modification of the resource.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -40,7 +44,7 @@ public final class LogzSingleSignOnResourceInner extends ProxyResource {
 
     /**
      * Get the properties property: The properties property.
-     *
+     * 
      * @return the properties value.
      */
     public LogzSingleSignOnProperties properties() {
@@ -49,7 +53,7 @@ public final class LogzSingleSignOnResourceInner extends ProxyResource {
 
     /**
      * Set the properties property: The properties property.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the LogzSingleSignOnResourceInner object itself.
      */
@@ -60,7 +64,7 @@ public final class LogzSingleSignOnResourceInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

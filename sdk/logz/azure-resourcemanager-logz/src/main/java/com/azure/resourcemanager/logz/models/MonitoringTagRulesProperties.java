@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.management.SystemData;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Definition of the properties for a TagRules resource. */
+/**
+ * Definition of the properties for a TagRules resource.
+ */
 @Fluent
 public final class MonitoringTagRulesProperties {
     /*
@@ -29,13 +31,15 @@ public final class MonitoringTagRulesProperties {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of MonitoringTagRulesProperties class. */
+    /**
+     * Creates an instance of MonitoringTagRulesProperties class.
+     */
     public MonitoringTagRulesProperties() {
     }
 
     /**
      * Get the provisioningState property: Flag specifying if the resource provisioning state as tracked by ARM.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -44,7 +48,7 @@ public final class MonitoringTagRulesProperties {
 
     /**
      * Get the logRules property: Set of rules for sending logs for the Monitor resource.
-     *
+     * 
      * @return the logRules value.
      */
     public LogRules logRules() {
@@ -53,7 +57,7 @@ public final class MonitoringTagRulesProperties {
 
     /**
      * Set the logRules property: Set of rules for sending logs for the Monitor resource.
-     *
+     * 
      * @param logRules the logRules value to set.
      * @return the MonitoringTagRulesProperties object itself.
      */
@@ -64,7 +68,7 @@ public final class MonitoringTagRulesProperties {
 
     /**
      * Get the systemData property: Metadata pertaining to creation and last modification of the resource.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -73,7 +77,7 @@ public final class MonitoringTagRulesProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -9,7 +9,9 @@ import com.azure.resourcemanager.logz.fluent.models.VMResourcesInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Request of a list VM Host Update Operation. */
+/**
+ * Request of a list VM Host Update Operation.
+ */
 @Fluent
 public final class VMHostUpdateRequest {
     /*
@@ -24,13 +26,15 @@ public final class VMHostUpdateRequest {
     @JsonProperty(value = "state")
     private VMHostUpdateStates state;
 
-    /** Creates an instance of VMHostUpdateRequest class. */
+    /**
+     * Creates an instance of VMHostUpdateRequest class.
+     */
     public VMHostUpdateRequest() {
     }
 
     /**
      * Get the vmResourceIds property: Request of a list vm host update operation.
-     *
+     * 
      * @return the vmResourceIds value.
      */
     public List<VMResourcesInner> vmResourceIds() {
@@ -39,7 +43,7 @@ public final class VMHostUpdateRequest {
 
     /**
      * Set the vmResourceIds property: Request of a list vm host update operation.
-     *
+     * 
      * @param vmResourceIds the vmResourceIds value to set.
      * @return the VMHostUpdateRequest object itself.
      */
@@ -50,7 +54,7 @@ public final class VMHostUpdateRequest {
 
     /**
      * Get the state property: Specifies the state of the operation - install/ delete.
-     *
+     * 
      * @return the state value.
      */
     public VMHostUpdateStates state() {
@@ -59,7 +63,7 @@ public final class VMHostUpdateRequest {
 
     /**
      * Set the state property: Specifies the state of the operation - install/ delete.
-     *
+     * 
      * @param state the state value to set.
      * @return the VMHostUpdateRequest object itself.
      */
@@ -70,7 +74,7 @@ public final class VMHostUpdateRequest {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -7,7 +7,9 @@ package com.azure.resourcemanager.logz.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The LogzSingleSignOnProperties model. */
+/**
+ * The LogzSingleSignOnProperties model.
+ */
 @Fluent
 public final class LogzSingleSignOnProperties {
     /*
@@ -34,13 +36,15 @@ public final class LogzSingleSignOnProperties {
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ProvisioningState provisioningState;
 
-    /** Creates an instance of LogzSingleSignOnProperties class. */
+    /**
+     * Creates an instance of LogzSingleSignOnProperties class.
+     */
     public LogzSingleSignOnProperties() {
     }
 
     /**
      * Get the singleSignOnState property: Various states of the SSO resource.
-     *
+     * 
      * @return the singleSignOnState value.
      */
     public SingleSignOnStates singleSignOnState() {
@@ -49,7 +53,7 @@ public final class LogzSingleSignOnProperties {
 
     /**
      * Set the singleSignOnState property: Various states of the SSO resource.
-     *
+     * 
      * @param singleSignOnState the singleSignOnState value to set.
      * @return the LogzSingleSignOnProperties object itself.
      */
@@ -60,7 +64,7 @@ public final class LogzSingleSignOnProperties {
 
     /**
      * Get the enterpriseAppId property: The Id of the Enterprise App used for Single sign-on.
-     *
+     * 
      * @return the enterpriseAppId value.
      */
     public String enterpriseAppId() {
@@ -69,7 +73,7 @@ public final class LogzSingleSignOnProperties {
 
     /**
      * Set the enterpriseAppId property: The Id of the Enterprise App used for Single sign-on.
-     *
+     * 
      * @param enterpriseAppId the enterpriseAppId value to set.
      * @return the LogzSingleSignOnProperties object itself.
      */
@@ -80,7 +84,7 @@ public final class LogzSingleSignOnProperties {
 
     /**
      * Get the singleSignOnUrl property: The login URL specific to this Logz Organization.
-     *
+     * 
      * @return the singleSignOnUrl value.
      */
     public String singleSignOnUrl() {
@@ -89,7 +93,7 @@ public final class LogzSingleSignOnProperties {
 
     /**
      * Set the singleSignOnUrl property: The login URL specific to this Logz Organization.
-     *
+     * 
      * @param singleSignOnUrl the singleSignOnUrl value to set.
      * @return the LogzSingleSignOnProperties object itself.
      */
@@ -100,7 +104,7 @@ public final class LogzSingleSignOnProperties {
 
     /**
      * Get the provisioningState property: Flag specifying if the resource provisioning state as tracked by ARM.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -109,7 +113,7 @@ public final class LogzSingleSignOnProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

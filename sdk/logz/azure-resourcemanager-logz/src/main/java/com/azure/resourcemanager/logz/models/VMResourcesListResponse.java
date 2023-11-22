@@ -9,7 +9,9 @@ import com.azure.resourcemanager.logz.fluent.models.VMResourcesInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Response of a list VM Host Update Operation. */
+/**
+ * Response of a list VM Host Update Operation.
+ */
 @Fluent
 public final class VMResourcesListResponse {
     /*
@@ -24,13 +26,15 @@ public final class VMResourcesListResponse {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of VMResourcesListResponse class. */
+    /**
+     * Creates an instance of VMResourcesListResponse class.
+     */
     public VMResourcesListResponse() {
     }
 
     /**
      * Get the value property: Response of a list vm host update operation.
-     *
+     * 
      * @return the value value.
      */
     public List<VMResourcesInner> value() {
@@ -39,7 +43,7 @@ public final class VMResourcesListResponse {
 
     /**
      * Set the value property: Response of a list vm host update operation.
-     *
+     * 
      * @param value the value value to set.
      * @return the VMResourcesListResponse object itself.
      */
@@ -50,7 +54,7 @@ public final class VMResourcesListResponse {
 
     /**
      * Get the nextLink property: Link to the next set of results, if any.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class VMResourcesListResponse {
 
     /**
      * Set the nextLink property: Link to the next set of results, if any.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the VMResourcesListResponse object itself.
      */
@@ -70,7 +74,7 @@ public final class VMResourcesListResponse {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

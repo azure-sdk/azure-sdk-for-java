@@ -10,7 +10,9 @@ import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.logz.models.MonitoringTagRulesProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Capture logs and metrics of Azure resources based on ARM tags. */
+/**
+ * Capture logs and metrics of Azure resources based on ARM tags.
+ */
 @Fluent
 public final class MonitoringTagRulesInner extends ProxyResource {
     /*
@@ -25,13 +27,15 @@ public final class MonitoringTagRulesInner extends ProxyResource {
     @JsonProperty(value = "properties")
     private MonitoringTagRulesProperties properties;
 
-    /** Creates an instance of MonitoringTagRulesInner class. */
+    /**
+     * Creates an instance of MonitoringTagRulesInner class.
+     */
     public MonitoringTagRulesInner() {
     }
 
     /**
      * Get the systemData property: The system metadata relating to this resource.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -40,7 +44,7 @@ public final class MonitoringTagRulesInner extends ProxyResource {
 
     /**
      * Get the properties property: Definition of the properties for a TagRules resource.
-     *
+     * 
      * @return the properties value.
      */
     public MonitoringTagRulesProperties properties() {
@@ -49,7 +53,7 @@ public final class MonitoringTagRulesInner extends ProxyResource {
 
     /**
      * Set the properties property: Definition of the properties for a TagRules resource.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the MonitoringTagRulesInner object itself.
      */
@@ -60,7 +64,7 @@ public final class MonitoringTagRulesInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
