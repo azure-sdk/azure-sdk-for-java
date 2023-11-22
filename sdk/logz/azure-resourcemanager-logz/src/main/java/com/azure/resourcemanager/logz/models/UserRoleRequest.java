@@ -7,7 +7,9 @@ package com.azure.resourcemanager.logz.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Request for checking user's role for Logz.io account. */
+/**
+ * Request for checking user's role for Logz.io account.
+ */
 @Fluent
 public final class UserRoleRequest {
     /*
@@ -16,13 +18,15 @@ public final class UserRoleRequest {
     @JsonProperty(value = "emailAddress")
     private String emailAddress;
 
-    /** Creates an instance of UserRoleRequest class. */
+    /**
+     * Creates an instance of UserRoleRequest class.
+     */
     public UserRoleRequest() {
     }
 
     /**
      * Get the emailAddress property: Email of the user used by Logz for contacting them if needed.
-     *
+     * 
      * @return the emailAddress value.
      */
     public String emailAddress() {
@@ -31,7 +35,7 @@ public final class UserRoleRequest {
 
     /**
      * Set the emailAddress property: Email of the user used by Logz for contacting them if needed.
-     *
+     * 
      * @param emailAddress the emailAddress value to set.
      * @return the UserRoleRequest object itself.
      */
@@ -42,7 +46,7 @@ public final class UserRoleRequest {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

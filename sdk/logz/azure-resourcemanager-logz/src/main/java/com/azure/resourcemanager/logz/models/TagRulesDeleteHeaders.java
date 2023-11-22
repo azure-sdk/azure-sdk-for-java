@@ -9,7 +9,9 @@ import com.azure.core.http.HttpHeaderName;
 import com.azure.core.http.HttpHeaders;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The TagRulesDeleteHeaders model. */
+/**
+ * The TagRulesDeleteHeaders model.
+ */
 @Fluent
 public final class TagRulesDeleteHeaders {
     /*
@@ -21,7 +23,7 @@ public final class TagRulesDeleteHeaders {
     // HttpHeaders containing the raw property values.
     /**
      * Creates an instance of TagRulesDeleteHeaders class.
-     *
+     * 
      * @param rawHeaders The raw HttpHeaders that will be used to create the property values.
      */
     public TagRulesDeleteHeaders(HttpHeaders rawHeaders) {
@@ -30,7 +32,7 @@ public final class TagRulesDeleteHeaders {
 
     /**
      * Get the location property: The location property.
-     *
+     * 
      * @return the location value.
      */
     public String location() {
@@ -39,7 +41,7 @@ public final class TagRulesDeleteHeaders {
 
     /**
      * Set the location property: The location property.
-     *
+     * 
      * @param location the location value to set.
      * @return the TagRulesDeleteHeaders object itself.
      */
@@ -50,7 +52,7 @@ public final class TagRulesDeleteHeaders {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

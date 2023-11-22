@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** The parameters for a PATCH request to a monitor resource. */
+/**
+ * The parameters for a PATCH request to a monitor resource.
+ */
 @Fluent
 public final class LogzMonitorResourceUpdateParameters {
     /*
@@ -25,13 +27,15 @@ public final class LogzMonitorResourceUpdateParameters {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> tags;
 
-    /** Creates an instance of LogzMonitorResourceUpdateParameters class. */
+    /**
+     * Creates an instance of LogzMonitorResourceUpdateParameters class.
+     */
     public LogzMonitorResourceUpdateParameters() {
     }
 
     /**
      * Get the properties property: The set of properties that can be update in a PATCH request to a monitor resource.
-     *
+     * 
      * @return the properties value.
      */
     public MonitorUpdateProperties properties() {
@@ -40,7 +44,7 @@ public final class LogzMonitorResourceUpdateParameters {
 
     /**
      * Set the properties property: The set of properties that can be update in a PATCH request to a monitor resource.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the LogzMonitorResourceUpdateParameters object itself.
      */
@@ -51,7 +55,7 @@ public final class LogzMonitorResourceUpdateParameters {
 
     /**
      * Get the tags property: The new tags of the monitor resource.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -60,7 +64,7 @@ public final class LogzMonitorResourceUpdateParameters {
 
     /**
      * Set the tags property: The new tags of the monitor resource.
-     *
+     * 
      * @param tags the tags value to set.
      * @return the LogzMonitorResourceUpdateParameters object itself.
      */
@@ -71,7 +75,7 @@ public final class LogzMonitorResourceUpdateParameters {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

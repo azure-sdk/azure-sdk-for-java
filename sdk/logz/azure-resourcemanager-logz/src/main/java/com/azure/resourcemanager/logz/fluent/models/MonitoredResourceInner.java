@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.management.SystemData;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The properties of a resource currently being monitored by the Logz monitor resource. */
+/**
+ * The properties of a resource currently being monitored by the Logz monitor resource.
+ */
 @Fluent
 public final class MonitoredResourceInner {
     /*
@@ -47,13 +49,15 @@ public final class MonitoredResourceInner {
     @JsonProperty(value = "reasonForLogsStatus")
     private String reasonForLogsStatus;
 
-    /** Creates an instance of MonitoredResourceInner class. */
+    /**
+     * Creates an instance of MonitoredResourceInner class.
+     */
     public MonitoredResourceInner() {
     }
 
     /**
      * Get the id property: The ARM id of the resource.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -62,7 +66,7 @@ public final class MonitoredResourceInner {
 
     /**
      * Set the id property: The ARM id of the resource.
-     *
+     * 
      * @param id the id value to set.
      * @return the MonitoredResourceInner object itself.
      */
@@ -73,7 +77,7 @@ public final class MonitoredResourceInner {
 
     /**
      * Get the sendingMetrics property: Flag indicating if resource is sending metrics to Logz.
-     *
+     * 
      * @return the sendingMetrics value.
      */
     public Boolean sendingMetrics() {
@@ -82,7 +86,7 @@ public final class MonitoredResourceInner {
 
     /**
      * Set the sendingMetrics property: Flag indicating if resource is sending metrics to Logz.
-     *
+     * 
      * @param sendingMetrics the sendingMetrics value to set.
      * @return the MonitoredResourceInner object itself.
      */
@@ -94,7 +98,7 @@ public final class MonitoredResourceInner {
     /**
      * Get the reasonForMetricsStatus property: Reason for why the resource is sending metrics (or why it is not
      * sending).
-     *
+     * 
      * @return the reasonForMetricsStatus value.
      */
     public String reasonForMetricsStatus() {
@@ -104,7 +108,7 @@ public final class MonitoredResourceInner {
     /**
      * Set the reasonForMetricsStatus property: Reason for why the resource is sending metrics (or why it is not
      * sending).
-     *
+     * 
      * @param reasonForMetricsStatus the reasonForMetricsStatus value to set.
      * @return the MonitoredResourceInner object itself.
      */
@@ -115,7 +119,7 @@ public final class MonitoredResourceInner {
 
     /**
      * Get the sendingLogs property: Flag indicating if resource is sending logs to Logz.
-     *
+     * 
      * @return the sendingLogs value.
      */
     public Boolean sendingLogs() {
@@ -124,7 +128,7 @@ public final class MonitoredResourceInner {
 
     /**
      * Set the sendingLogs property: Flag indicating if resource is sending logs to Logz.
-     *
+     * 
      * @param sendingLogs the sendingLogs value to set.
      * @return the MonitoredResourceInner object itself.
      */
@@ -135,7 +139,7 @@ public final class MonitoredResourceInner {
 
     /**
      * Get the systemData property: Metadata pertaining to creation and last modification of the resource.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -144,7 +148,7 @@ public final class MonitoredResourceInner {
 
     /**
      * Get the reasonForLogsStatus property: Reason for why the resource is sending logs (or why it is not sending).
-     *
+     * 
      * @return the reasonForLogsStatus value.
      */
     public String reasonForLogsStatus() {
@@ -153,7 +157,7 @@ public final class MonitoredResourceInner {
 
     /**
      * Set the reasonForLogsStatus property: Reason for why the resource is sending logs (or why it is not sending).
-     *
+     * 
      * @param reasonForLogsStatus the reasonForLogsStatus value to set.
      * @return the MonitoredResourceInner object itself.
      */
@@ -164,7 +168,7 @@ public final class MonitoredResourceInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
