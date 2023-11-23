@@ -20,8 +20,8 @@ public final class SecureScoreControlsImpl implements SecureScoreControls {
 
     private final com.azure.resourcemanager.security.SecurityManager serviceManager;
 
-    public SecureScoreControlsImpl(
-        SecureScoreControlsClient innerClient, com.azure.resourcemanager.security.SecurityManager serviceManager) {
+    public SecureScoreControlsImpl(SecureScoreControlsClient innerClient,
+        com.azure.resourcemanager.security.SecurityManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
@@ -31,10 +31,10 @@ public final class SecureScoreControlsImpl implements SecureScoreControls {
         return Utils.mapPage(inner, inner1 -> new SecureScoreControlDetailsImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<SecureScoreControlDetails> listBySecureScore(
-        String secureScoreName, ExpandControlsEnum expand, Context context) {
-        PagedIterable<SecureScoreControlDetailsInner> inner =
-            this.serviceClient().listBySecureScore(secureScoreName, expand, context);
+    public PagedIterable<SecureScoreControlDetails> listBySecureScore(String secureScoreName, ExpandControlsEnum expand,
+        Context context) {
+        PagedIterable<SecureScoreControlDetailsInner> inner
+            = this.serviceClient().listBySecureScore(secureScoreName, expand, context);
         return Utils.mapPage(inner, inner1 -> new SecureScoreControlDetailsImpl(inner1, this.manager()));
     }
 

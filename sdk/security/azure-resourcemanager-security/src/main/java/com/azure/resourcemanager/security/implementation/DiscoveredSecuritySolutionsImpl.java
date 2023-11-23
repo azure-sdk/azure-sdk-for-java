@@ -21,8 +21,7 @@ public final class DiscoveredSecuritySolutionsImpl implements DiscoveredSecurity
 
     private final com.azure.resourcemanager.security.SecurityManager serviceManager;
 
-    public DiscoveredSecuritySolutionsImpl(
-        DiscoveredSecuritySolutionsClient innerClient,
+    public DiscoveredSecuritySolutionsImpl(DiscoveredSecuritySolutionsClient innerClient,
         com.azure.resourcemanager.security.SecurityManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
@@ -44,32 +43,27 @@ public final class DiscoveredSecuritySolutionsImpl implements DiscoveredSecurity
     }
 
     public PagedIterable<DiscoveredSecuritySolution> listByHomeRegion(String ascLocation, Context context) {
-        PagedIterable<DiscoveredSecuritySolutionInner> inner =
-            this.serviceClient().listByHomeRegion(ascLocation, context);
+        PagedIterable<DiscoveredSecuritySolutionInner> inner
+            = this.serviceClient().listByHomeRegion(ascLocation, context);
         return Utils.mapPage(inner, inner1 -> new DiscoveredSecuritySolutionImpl(inner1, this.manager()));
     }
 
-    public Response<DiscoveredSecuritySolution> getWithResponse(
-        String resourceGroupName, String ascLocation, String discoveredSecuritySolutionName, Context context) {
-        Response<DiscoveredSecuritySolutionInner> inner =
-            this
-                .serviceClient()
-                .getWithResponse(resourceGroupName, ascLocation, discoveredSecuritySolutionName, context);
+    public Response<DiscoveredSecuritySolution> getWithResponse(String resourceGroupName, String ascLocation,
+        String discoveredSecuritySolutionName, Context context) {
+        Response<DiscoveredSecuritySolutionInner> inner = this.serviceClient().getWithResponse(resourceGroupName,
+            ascLocation, discoveredSecuritySolutionName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new DiscoveredSecuritySolutionImpl(inner.getValue(), this.manager()));
         } else {
             return null;
         }
     }
 
-    public DiscoveredSecuritySolution get(
-        String resourceGroupName, String ascLocation, String discoveredSecuritySolutionName) {
-        DiscoveredSecuritySolutionInner inner =
-            this.serviceClient().get(resourceGroupName, ascLocation, discoveredSecuritySolutionName);
+    public DiscoveredSecuritySolution get(String resourceGroupName, String ascLocation,
+        String discoveredSecuritySolutionName) {
+        DiscoveredSecuritySolutionInner inner
+            = this.serviceClient().get(resourceGroupName, ascLocation, discoveredSecuritySolutionName);
         if (inner != null) {
             return new DiscoveredSecuritySolutionImpl(inner, this.manager());
         } else {

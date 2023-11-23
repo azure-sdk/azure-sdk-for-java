@@ -21,8 +21,8 @@ public final class AssessmentsMetadatasImpl implements AssessmentsMetadatas {
 
     private final com.azure.resourcemanager.security.SecurityManager serviceManager;
 
-    public AssessmentsMetadatasImpl(
-        AssessmentsMetadatasClient innerClient, com.azure.resourcemanager.security.SecurityManager serviceManager) {
+    public AssessmentsMetadatasImpl(AssessmentsMetadatasClient innerClient,
+        com.azure.resourcemanager.security.SecurityManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
@@ -37,15 +37,12 @@ public final class AssessmentsMetadatasImpl implements AssessmentsMetadatas {
         return Utils.mapPage(inner, inner1 -> new SecurityAssessmentMetadataResponseImpl(inner1, this.manager()));
     }
 
-    public Response<SecurityAssessmentMetadataResponse> getWithResponse(
-        String assessmentMetadataName, Context context) {
-        Response<SecurityAssessmentMetadataResponseInner> inner =
-            this.serviceClient().getWithResponse(assessmentMetadataName, context);
+    public Response<SecurityAssessmentMetadataResponse> getWithResponse(String assessmentMetadataName,
+        Context context) {
+        Response<SecurityAssessmentMetadataResponseInner> inner
+            = this.serviceClient().getWithResponse(assessmentMetadataName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new SecurityAssessmentMetadataResponseImpl(inner.getValue(), this.manager()));
         } else {
             return null;
@@ -71,15 +68,12 @@ public final class AssessmentsMetadatasImpl implements AssessmentsMetadatas {
         return Utils.mapPage(inner, inner1 -> new SecurityAssessmentMetadataResponseImpl(inner1, this.manager()));
     }
 
-    public Response<SecurityAssessmentMetadataResponse> getInSubscriptionWithResponse(
-        String assessmentMetadataName, Context context) {
-        Response<SecurityAssessmentMetadataResponseInner> inner =
-            this.serviceClient().getInSubscriptionWithResponse(assessmentMetadataName, context);
+    public Response<SecurityAssessmentMetadataResponse> getInSubscriptionWithResponse(String assessmentMetadataName,
+        Context context) {
+        Response<SecurityAssessmentMetadataResponseInner> inner
+            = this.serviceClient().getInSubscriptionWithResponse(assessmentMetadataName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new SecurityAssessmentMetadataResponseImpl(inner.getValue(), this.manager()));
         } else {
             return null;
@@ -106,12 +100,8 @@ public final class AssessmentsMetadatasImpl implements AssessmentsMetadatas {
     public SecurityAssessmentMetadataResponse getInSubscriptionById(String id) {
         String assessmentMetadataName = Utils.getValueFromIdByName(id, "assessmentMetadata");
         if (assessmentMetadataName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format(
-                                "The resource ID '%s' is not valid. Missing path segment 'assessmentMetadata'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'assessmentMetadata'.", id)));
         }
         return this.getInSubscriptionWithResponse(assessmentMetadataName, Context.NONE).getValue();
     }
@@ -119,12 +109,8 @@ public final class AssessmentsMetadatasImpl implements AssessmentsMetadatas {
     public Response<SecurityAssessmentMetadataResponse> getInSubscriptionByIdWithResponse(String id, Context context) {
         String assessmentMetadataName = Utils.getValueFromIdByName(id, "assessmentMetadata");
         if (assessmentMetadataName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format(
-                                "The resource ID '%s' is not valid. Missing path segment 'assessmentMetadata'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'assessmentMetadata'.", id)));
         }
         return this.getInSubscriptionWithResponse(assessmentMetadataName, context);
     }
@@ -132,12 +118,8 @@ public final class AssessmentsMetadatasImpl implements AssessmentsMetadatas {
     public void deleteInSubscriptionById(String id) {
         String assessmentMetadataName = Utils.getValueFromIdByName(id, "assessmentMetadata");
         if (assessmentMetadataName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format(
-                                "The resource ID '%s' is not valid. Missing path segment 'assessmentMetadata'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'assessmentMetadata'.", id)));
         }
         this.deleteInSubscriptionWithResponse(assessmentMetadataName, Context.NONE);
     }
@@ -145,12 +127,8 @@ public final class AssessmentsMetadatasImpl implements AssessmentsMetadatas {
     public Response<Void> deleteInSubscriptionByIdWithResponse(String id, Context context) {
         String assessmentMetadataName = Utils.getValueFromIdByName(id, "assessmentMetadata");
         if (assessmentMetadataName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format(
-                                "The resource ID '%s' is not valid. Missing path segment 'assessmentMetadata'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'assessmentMetadata'.", id)));
         }
         return this.deleteInSubscriptionWithResponse(assessmentMetadataName, context);
     }
