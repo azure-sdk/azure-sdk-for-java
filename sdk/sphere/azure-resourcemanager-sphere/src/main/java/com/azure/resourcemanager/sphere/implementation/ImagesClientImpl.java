@@ -38,17 +38,23 @@ import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-/** An instance of this class provides access to all the operations defined in ImagesClient. */
+/**
+ * An instance of this class provides access to all the operations defined in ImagesClient.
+ */
 public final class ImagesClientImpl implements ImagesClient {
-    /** The proxy service used to perform REST calls. */
+    /**
+     * The proxy service used to perform REST calls.
+     */
     private final ImagesService service;
 
-    /** The service client containing this operation class. */
+    /**
+     * The service client containing this operation class.
+     */
     private final AzureSphereManagementClientImpl client;
 
     /**
      * Initializes an instance of ImagesClientImpl.
-     *
+     * 
      * @param client the instance of the service client containing this operation class.
      */
     ImagesClientImpl(AzureSphereManagementClientImpl client) {
@@ -63,84 +69,57 @@ public final class ImagesClientImpl implements ImagesClient {
     @Host("{$host}")
     @ServiceInterface(name = "AzureSphereManagemen")
     public interface ImagesService {
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/images")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/images")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ImageListResult>> listByCatalog(
-            @HostParam("$host") String endpoint,
-            @QueryParam("$filter") String filter,
-            @QueryParam("$top") Integer top,
-            @QueryParam("$skip") Integer skip,
-            @QueryParam("$maxpagesize") Integer maxpagesize,
-            @QueryParam("api-version") String apiVersion,
+        Mono<Response<ImageListResult>> listByCatalog(@HostParam("$host") String endpoint,
+            @QueryParam("$filter") String filter, @QueryParam("$top") Integer top, @QueryParam("$skip") Integer skip,
+            @QueryParam("$maxpagesize") Integer maxpagesize, @QueryParam("api-version") String apiVersion,
             @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("catalogName") String catalogName,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("catalogName") String catalogName,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/images/{imageName}")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/images/{imageName}")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ImageInner>> get(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("catalogName") String catalogName,
-            @PathParam("imageName") String imageName,
-            @HeaderParam("Accept") String accept,
-            Context context);
+        Mono<Response<ImageInner>> get(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("catalogName") String catalogName,
+            @PathParam("imageName") String imageName, @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/images/{imageName}")
-        @ExpectedResponses({200, 201})
+        @Headers({ "Content-Type: application/json" })
+        @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/images/{imageName}")
+        @ExpectedResponses({ 200, 201 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("catalogName") String catalogName,
-            @PathParam("imageName") String imageName,
-            @BodyParam("application/json") ImageInner resource,
-            @HeaderParam("Accept") String accept,
-            Context context);
+        Mono<Response<Flux<ByteBuffer>>> createOrUpdate(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("catalogName") String catalogName,
+            @PathParam("imageName") String imageName, @BodyParam("application/json") ImageInner resource,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/images/{imageName}")
-        @ExpectedResponses({200, 202, 204})
+        @Headers({ "Content-Type: application/json" })
+        @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/images/{imageName}")
+        @ExpectedResponses({ 200, 202, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> delete(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("catalogName") String catalogName,
-            @PathParam("imageName") String imageName,
-            @HeaderParam("Accept") String accept,
-            Context context);
+        Mono<Response<Flux<ByteBuffer>>> delete(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("catalogName") String catalogName,
+            @PathParam("imageName") String imageName, @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ImageListResult>> listByCatalogNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
      * List Image resources by Catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param filter Filter the result list using the given expression.
@@ -151,22 +130,18 @@ public final class ImagesClientImpl implements ImagesClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a Image list operation along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ImageInner>> listByCatalogSinglePageAsync(
-        String resourceGroupName, String catalogName, String filter, Integer top, Integer skip, Integer maxpagesize) {
+    private Mono<PagedResponse<ImageInner>> listByCatalogSinglePageAsync(String resourceGroupName, String catalogName,
+        String filter, Integer top, Integer skip, Integer maxpagesize) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -177,36 +152,17 @@ public final class ImagesClientImpl implements ImagesClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .listByCatalog(
-                            this.client.getEndpoint(),
-                            filter,
-                            top,
-                            skip,
-                            maxpagesize,
-                            this.client.getApiVersion(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            catalogName,
-                            accept,
-                            context))
-            .<PagedResponse<ImageInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .withContext(context -> service.listByCatalog(this.client.getEndpoint(), filter, top, skip, maxpagesize,
+                this.client.getApiVersion(), this.client.getSubscriptionId(), resourceGroupName, catalogName, accept,
+                context))
+            .<PagedResponse<ImageInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
+                res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * List Image resources by Catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param filter Filter the result list using the given expression.
@@ -218,28 +174,18 @@ public final class ImagesClientImpl implements ImagesClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a Image list operation along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ImageInner>> listByCatalogSinglePageAsync(
-        String resourceGroupName,
-        String catalogName,
-        String filter,
-        Integer top,
-        Integer skip,
-        Integer maxpagesize,
-        Context context) {
+    private Mono<PagedResponse<ImageInner>> listByCatalogSinglePageAsync(String resourceGroupName, String catalogName,
+        String filter, Integer top, Integer skip, Integer maxpagesize, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -251,32 +197,15 @@ public final class ImagesClientImpl implements ImagesClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByCatalog(
-                this.client.getEndpoint(),
-                filter,
-                top,
-                skip,
-                maxpagesize,
-                this.client.getApiVersion(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                catalogName,
-                accept,
-                context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+            .listByCatalog(this.client.getEndpoint(), filter, top, skip, maxpagesize, this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, catalogName, accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * List Image resources by Catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param filter Filter the result list using the given expression.
@@ -289,8 +218,8 @@ public final class ImagesClientImpl implements ImagesClient {
      * @return the response of a Image list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<ImageInner> listByCatalogAsync(
-        String resourceGroupName, String catalogName, String filter, Integer top, Integer skip, Integer maxpagesize) {
+    private PagedFlux<ImageInner> listByCatalogAsync(String resourceGroupName, String catalogName, String filter,
+        Integer top, Integer skip, Integer maxpagesize) {
         return new PagedFlux<>(
             () -> listByCatalogSinglePageAsync(resourceGroupName, catalogName, filter, top, skip, maxpagesize),
             nextLink -> listByCatalogNextSinglePageAsync(nextLink));
@@ -298,7 +227,7 @@ public final class ImagesClientImpl implements ImagesClient {
 
     /**
      * List Image resources by Catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -319,7 +248,7 @@ public final class ImagesClientImpl implements ImagesClient {
 
     /**
      * List Image resources by Catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param filter Filter the result list using the given expression.
@@ -333,14 +262,8 @@ public final class ImagesClientImpl implements ImagesClient {
      * @return the response of a Image list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<ImageInner> listByCatalogAsync(
-        String resourceGroupName,
-        String catalogName,
-        String filter,
-        Integer top,
-        Integer skip,
-        Integer maxpagesize,
-        Context context) {
+    private PagedFlux<ImageInner> listByCatalogAsync(String resourceGroupName, String catalogName, String filter,
+        Integer top, Integer skip, Integer maxpagesize, Context context) {
         return new PagedFlux<>(
             () -> listByCatalogSinglePageAsync(resourceGroupName, catalogName, filter, top, skip, maxpagesize, context),
             nextLink -> listByCatalogNextSinglePageAsync(nextLink, context));
@@ -348,7 +271,7 @@ public final class ImagesClientImpl implements ImagesClient {
 
     /**
      * List Image resources by Catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -367,7 +290,7 @@ public final class ImagesClientImpl implements ImagesClient {
 
     /**
      * List Image resources by Catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param filter Filter the result list using the given expression.
@@ -381,21 +304,15 @@ public final class ImagesClientImpl implements ImagesClient {
      * @return the response of a Image list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<ImageInner> listByCatalog(
-        String resourceGroupName,
-        String catalogName,
-        String filter,
-        Integer top,
-        Integer skip,
-        Integer maxpagesize,
-        Context context) {
+    public PagedIterable<ImageInner> listByCatalog(String resourceGroupName, String catalogName, String filter,
+        Integer top, Integer skip, Integer maxpagesize, Context context) {
         return new PagedIterable<>(
             listByCatalogAsync(resourceGroupName, catalogName, filter, top, skip, maxpagesize, context));
     }
 
     /**
      * Get a Image.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param imageName Image name. Use .default for image creation.
@@ -405,19 +322,15 @@ public final class ImagesClientImpl implements ImagesClient {
      * @return a Image along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<ImageInner>> getWithResponseAsync(
-        String resourceGroupName, String catalogName, String imageName) {
+    private Mono<Response<ImageInner>> getWithResponseAsync(String resourceGroupName, String catalogName,
+        String imageName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -431,24 +344,14 @@ public final class ImagesClientImpl implements ImagesClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .get(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            catalogName,
-                            imageName,
-                            accept,
-                            context))
+            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, catalogName, imageName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get a Image.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param imageName Image name. Use .default for image creation.
@@ -459,19 +362,15 @@ public final class ImagesClientImpl implements ImagesClient {
      * @return a Image along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<ImageInner>> getWithResponseAsync(
-        String resourceGroupName, String catalogName, String imageName, Context context) {
+    private Mono<Response<ImageInner>> getWithResponseAsync(String resourceGroupName, String catalogName,
+        String imageName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -485,21 +384,13 @@ public final class ImagesClientImpl implements ImagesClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .get(
-                this.client.getEndpoint(),
-                this.client.getApiVersion(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                catalogName,
-                imageName,
-                accept,
-                context);
+        return service.get(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, catalogName, imageName, accept, context);
     }
 
     /**
      * Get a Image.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param imageName Image name. Use .default for image creation.
@@ -516,7 +407,7 @@ public final class ImagesClientImpl implements ImagesClient {
 
     /**
      * Get a Image.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param imageName Image name. Use .default for image creation.
@@ -527,14 +418,14 @@ public final class ImagesClientImpl implements ImagesClient {
      * @return a Image along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ImageInner> getWithResponse(
-        String resourceGroupName, String catalogName, String imageName, Context context) {
+    public Response<ImageInner> getWithResponse(String resourceGroupName, String catalogName, String imageName,
+        Context context) {
         return getWithResponseAsync(resourceGroupName, catalogName, imageName, context).block();
     }
 
     /**
      * Get a Image.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param imageName Image name. Use .default for image creation.
@@ -550,7 +441,7 @@ public final class ImagesClientImpl implements ImagesClient {
 
     /**
      * Create a Image.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param imageName Image name. Use .default for image creation.
@@ -559,22 +450,18 @@ public final class ImagesClientImpl implements ImagesClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return an image resource belonging to a catalog resource along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
-        String resourceGroupName, String catalogName, String imageName, ImageInner resource) {
+    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
+        String catalogName, String imageName, ImageInner resource) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -593,25 +480,14 @@ public final class ImagesClientImpl implements ImagesClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .createOrUpdate(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            catalogName,
-                            imageName,
-                            resource,
-                            accept,
-                            context))
+            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, catalogName, imageName, resource, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Create a Image.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param imageName Image name. Use .default for image creation.
@@ -621,22 +497,18 @@ public final class ImagesClientImpl implements ImagesClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return an image resource belonging to a catalog resource along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
-        String resourceGroupName, String catalogName, String imageName, ImageInner resource, Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
+        String catalogName, String imageName, ImageInner resource, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -655,22 +527,13 @@ public final class ImagesClientImpl implements ImagesClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .createOrUpdate(
-                this.client.getEndpoint(),
-                this.client.getApiVersion(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                catalogName,
-                imageName,
-                resource,
-                accept,
-                context);
+        return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, catalogName, imageName, resource, accept, context);
     }
 
     /**
      * Create a Image.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param imageName Image name. Use .default for image creation.
@@ -681,19 +544,17 @@ public final class ImagesClientImpl implements ImagesClient {
      * @return the {@link PollerFlux} for polling of an image resource belonging to a catalog resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<ImageInner>, ImageInner> beginCreateOrUpdateAsync(
-        String resourceGroupName, String catalogName, String imageName, ImageInner resource) {
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            createOrUpdateWithResponseAsync(resourceGroupName, catalogName, imageName, resource);
-        return this
-            .client
-            .<ImageInner, ImageInner>getLroResult(
-                mono, this.client.getHttpPipeline(), ImageInner.class, ImageInner.class, this.client.getContext());
+    private PollerFlux<PollResult<ImageInner>, ImageInner> beginCreateOrUpdateAsync(String resourceGroupName,
+        String catalogName, String imageName, ImageInner resource) {
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = createOrUpdateWithResponseAsync(resourceGroupName, catalogName, imageName, resource);
+        return this.client.<ImageInner, ImageInner>getLroResult(mono, this.client.getHttpPipeline(), ImageInner.class,
+            ImageInner.class, this.client.getContext());
     }
 
     /**
      * Create a Image.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param imageName Image name. Use .default for image creation.
@@ -705,20 +566,18 @@ public final class ImagesClientImpl implements ImagesClient {
      * @return the {@link PollerFlux} for polling of an image resource belonging to a catalog resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<ImageInner>, ImageInner> beginCreateOrUpdateAsync(
-        String resourceGroupName, String catalogName, String imageName, ImageInner resource, Context context) {
+    private PollerFlux<PollResult<ImageInner>, ImageInner> beginCreateOrUpdateAsync(String resourceGroupName,
+        String catalogName, String imageName, ImageInner resource, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            createOrUpdateWithResponseAsync(resourceGroupName, catalogName, imageName, resource, context);
-        return this
-            .client
-            .<ImageInner, ImageInner>getLroResult(
-                mono, this.client.getHttpPipeline(), ImageInner.class, ImageInner.class, context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = createOrUpdateWithResponseAsync(resourceGroupName, catalogName, imageName, resource, context);
+        return this.client.<ImageInner, ImageInner>getLroResult(mono, this.client.getHttpPipeline(), ImageInner.class,
+            ImageInner.class, context);
     }
 
     /**
      * Create a Image.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param imageName Image name. Use .default for image creation.
@@ -729,14 +588,14 @@ public final class ImagesClientImpl implements ImagesClient {
      * @return the {@link SyncPoller} for polling of an image resource belonging to a catalog resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<ImageInner>, ImageInner> beginCreateOrUpdate(
-        String resourceGroupName, String catalogName, String imageName, ImageInner resource) {
+    public SyncPoller<PollResult<ImageInner>, ImageInner> beginCreateOrUpdate(String resourceGroupName,
+        String catalogName, String imageName, ImageInner resource) {
         return this.beginCreateOrUpdateAsync(resourceGroupName, catalogName, imageName, resource).getSyncPoller();
     }
 
     /**
      * Create a Image.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param imageName Image name. Use .default for image creation.
@@ -748,16 +607,15 @@ public final class ImagesClientImpl implements ImagesClient {
      * @return the {@link SyncPoller} for polling of an image resource belonging to a catalog resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<ImageInner>, ImageInner> beginCreateOrUpdate(
-        String resourceGroupName, String catalogName, String imageName, ImageInner resource, Context context) {
-        return this
-            .beginCreateOrUpdateAsync(resourceGroupName, catalogName, imageName, resource, context)
+    public SyncPoller<PollResult<ImageInner>, ImageInner> beginCreateOrUpdate(String resourceGroupName,
+        String catalogName, String imageName, ImageInner resource, Context context) {
+        return this.beginCreateOrUpdateAsync(resourceGroupName, catalogName, imageName, resource, context)
             .getSyncPoller();
     }
 
     /**
      * Create a Image.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param imageName Image name. Use .default for image creation.
@@ -768,16 +626,15 @@ public final class ImagesClientImpl implements ImagesClient {
      * @return an image resource belonging to a catalog resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ImageInner> createOrUpdateAsync(
-        String resourceGroupName, String catalogName, String imageName, ImageInner resource) {
-        return beginCreateOrUpdateAsync(resourceGroupName, catalogName, imageName, resource)
-            .last()
+    private Mono<ImageInner> createOrUpdateAsync(String resourceGroupName, String catalogName, String imageName,
+        ImageInner resource) {
+        return beginCreateOrUpdateAsync(resourceGroupName, catalogName, imageName, resource).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Create a Image.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param imageName Image name. Use .default for image creation.
@@ -789,16 +646,15 @@ public final class ImagesClientImpl implements ImagesClient {
      * @return an image resource belonging to a catalog resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ImageInner> createOrUpdateAsync(
-        String resourceGroupName, String catalogName, String imageName, ImageInner resource, Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, catalogName, imageName, resource, context)
-            .last()
+    private Mono<ImageInner> createOrUpdateAsync(String resourceGroupName, String catalogName, String imageName,
+        ImageInner resource, Context context) {
+        return beginCreateOrUpdateAsync(resourceGroupName, catalogName, imageName, resource, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Create a Image.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param imageName Image name. Use .default for image creation.
@@ -809,14 +665,14 @@ public final class ImagesClientImpl implements ImagesClient {
      * @return an image resource belonging to a catalog resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ImageInner createOrUpdate(
-        String resourceGroupName, String catalogName, String imageName, ImageInner resource) {
+    public ImageInner createOrUpdate(String resourceGroupName, String catalogName, String imageName,
+        ImageInner resource) {
         return createOrUpdateAsync(resourceGroupName, catalogName, imageName, resource).block();
     }
 
     /**
      * Create a Image.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param imageName Image name. Use .default for image creation.
@@ -828,14 +684,14 @@ public final class ImagesClientImpl implements ImagesClient {
      * @return an image resource belonging to a catalog resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ImageInner createOrUpdate(
-        String resourceGroupName, String catalogName, String imageName, ImageInner resource, Context context) {
+    public ImageInner createOrUpdate(String resourceGroupName, String catalogName, String imageName,
+        ImageInner resource, Context context) {
         return createOrUpdateAsync(resourceGroupName, catalogName, imageName, resource, context).block();
     }
 
     /**
      * Delete a Image.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param imageName Image name. Use .default for image creation.
@@ -845,19 +701,15 @@ public final class ImagesClientImpl implements ImagesClient {
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
-        String resourceGroupName, String catalogName, String imageName) {
+    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName, String catalogName,
+        String imageName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -871,24 +723,14 @@ public final class ImagesClientImpl implements ImagesClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .delete(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            catalogName,
-                            imageName,
-                            accept,
-                            context))
+            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, catalogName, imageName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Delete a Image.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param imageName Image name. Use .default for image creation.
@@ -899,19 +741,15 @@ public final class ImagesClientImpl implements ImagesClient {
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
-        String resourceGroupName, String catalogName, String imageName, Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName, String catalogName,
+        String imageName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -925,21 +763,13 @@ public final class ImagesClientImpl implements ImagesClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .delete(
-                this.client.getEndpoint(),
-                this.client.getApiVersion(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                catalogName,
-                imageName,
-                accept,
-                context);
+        return service.delete(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, catalogName, imageName, accept, context);
     }
 
     /**
      * Delete a Image.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param imageName Image name. Use .default for image creation.
@@ -949,18 +779,16 @@ public final class ImagesClientImpl implements ImagesClient {
      * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
-        String resourceGroupName, String catalogName, String imageName) {
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String catalogName,
+        String imageName) {
         Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceGroupName, catalogName, imageName);
-        return this
-            .client
-            .<Void, Void>getLroResult(
-                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            this.client.getContext());
     }
 
     /**
      * Delete a Image.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param imageName Image name. Use .default for image creation.
@@ -971,19 +799,18 @@ public final class ImagesClientImpl implements ImagesClient {
      * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
-        String resourceGroupName, String catalogName, String imageName, Context context) {
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String catalogName,
+        String imageName, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            deleteWithResponseAsync(resourceGroupName, catalogName, imageName, context);
-        return this
-            .client
-            .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = deleteWithResponseAsync(resourceGroupName, catalogName, imageName, context);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            context);
     }
 
     /**
      * Delete a Image.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param imageName Image name. Use .default for image creation.
@@ -993,14 +820,14 @@ public final class ImagesClientImpl implements ImagesClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDelete(
-        String resourceGroupName, String catalogName, String imageName) {
+    public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String catalogName,
+        String imageName) {
         return this.beginDeleteAsync(resourceGroupName, catalogName, imageName).getSyncPoller();
     }
 
     /**
      * Delete a Image.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param imageName Image name. Use .default for image creation.
@@ -1011,14 +838,14 @@ public final class ImagesClientImpl implements ImagesClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDelete(
-        String resourceGroupName, String catalogName, String imageName, Context context) {
+    public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String catalogName,
+        String imageName, Context context) {
         return this.beginDeleteAsync(resourceGroupName, catalogName, imageName, context).getSyncPoller();
     }
 
     /**
      * Delete a Image.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param imageName Image name. Use .default for image creation.
@@ -1029,14 +856,13 @@ public final class ImagesClientImpl implements ImagesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String resourceGroupName, String catalogName, String imageName) {
-        return beginDeleteAsync(resourceGroupName, catalogName, imageName)
-            .last()
+        return beginDeleteAsync(resourceGroupName, catalogName, imageName).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Delete a Image.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param imageName Image name. Use .default for image creation.
@@ -1048,14 +874,13 @@ public final class ImagesClientImpl implements ImagesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String resourceGroupName, String catalogName, String imageName, Context context) {
-        return beginDeleteAsync(resourceGroupName, catalogName, imageName, context)
-            .last()
+        return beginDeleteAsync(resourceGroupName, catalogName, imageName, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Delete a Image.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param imageName Image name. Use .default for image creation.
@@ -1070,7 +895,7 @@ public final class ImagesClientImpl implements ImagesClient {
 
     /**
      * Delete a Image.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param imageName Image name. Use .default for image creation.
@@ -1086,14 +911,15 @@ public final class ImagesClientImpl implements ImagesClient {
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a Image list operation along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ImageInner>> listByCatalogNextSinglePageAsync(String nextLink) {
@@ -1101,37 +927,29 @@ public final class ImagesClientImpl implements ImagesClient {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listByCatalogNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<ImageInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .<PagedResponse<ImageInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
+                res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a Image list operation along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ImageInner>> listByCatalogNextSinglePageAsync(String nextLink, Context context) {
@@ -1139,23 +957,13 @@ public final class ImagesClientImpl implements ImagesClient {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listByCatalogNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.listByCatalogNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 }
