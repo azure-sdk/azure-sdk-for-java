@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The cluster create parameters. */
+/**
+ * The cluster create parameters.
+ */
 @Fluent
 public final class ClusterCreateProperties {
     /*
@@ -95,13 +97,15 @@ public final class ClusterCreateProperties {
     @JsonProperty(value = "privateLinkConfigurations")
     private List<PrivateLinkConfiguration> privateLinkConfigurations;
 
-    /** Creates an instance of ClusterCreateProperties class. */
+    /**
+     * Creates an instance of ClusterCreateProperties class.
+     */
     public ClusterCreateProperties() {
     }
 
     /**
      * Get the clusterVersion property: The version of the cluster.
-     *
+     * 
      * @return the clusterVersion value.
      */
     public String clusterVersion() {
@@ -110,7 +114,7 @@ public final class ClusterCreateProperties {
 
     /**
      * Set the clusterVersion property: The version of the cluster.
-     *
+     * 
      * @param clusterVersion the clusterVersion value to set.
      * @return the ClusterCreateProperties object itself.
      */
@@ -121,7 +125,7 @@ public final class ClusterCreateProperties {
 
     /**
      * Get the osType property: The type of operating system.
-     *
+     * 
      * @return the osType value.
      */
     public OSType osType() {
@@ -130,7 +134,7 @@ public final class ClusterCreateProperties {
 
     /**
      * Set the osType property: The type of operating system.
-     *
+     * 
      * @param osType the osType value to set.
      * @return the ClusterCreateProperties object itself.
      */
@@ -141,7 +145,7 @@ public final class ClusterCreateProperties {
 
     /**
      * Get the tier property: The cluster tier.
-     *
+     * 
      * @return the tier value.
      */
     public Tier tier() {
@@ -150,7 +154,7 @@ public final class ClusterCreateProperties {
 
     /**
      * Set the tier property: The cluster tier.
-     *
+     * 
      * @param tier the tier value to set.
      * @return the ClusterCreateProperties object itself.
      */
@@ -161,7 +165,7 @@ public final class ClusterCreateProperties {
 
     /**
      * Get the clusterDefinition property: The cluster definition.
-     *
+     * 
      * @return the clusterDefinition value.
      */
     public ClusterDefinition clusterDefinition() {
@@ -170,7 +174,7 @@ public final class ClusterCreateProperties {
 
     /**
      * Set the clusterDefinition property: The cluster definition.
-     *
+     * 
      * @param clusterDefinition the clusterDefinition value to set.
      * @return the ClusterCreateProperties object itself.
      */
@@ -181,7 +185,7 @@ public final class ClusterCreateProperties {
 
     /**
      * Get the kafkaRestProperties property: The cluster kafka rest proxy configuration.
-     *
+     * 
      * @return the kafkaRestProperties value.
      */
     public KafkaRestProperties kafkaRestProperties() {
@@ -190,7 +194,7 @@ public final class ClusterCreateProperties {
 
     /**
      * Set the kafkaRestProperties property: The cluster kafka rest proxy configuration.
-     *
+     * 
      * @param kafkaRestProperties the kafkaRestProperties value to set.
      * @return the ClusterCreateProperties object itself.
      */
@@ -201,7 +205,7 @@ public final class ClusterCreateProperties {
 
     /**
      * Get the securityProfile property: The security profile.
-     *
+     * 
      * @return the securityProfile value.
      */
     public SecurityProfile securityProfile() {
@@ -210,7 +214,7 @@ public final class ClusterCreateProperties {
 
     /**
      * Set the securityProfile property: The security profile.
-     *
+     * 
      * @param securityProfile the securityProfile value to set.
      * @return the ClusterCreateProperties object itself.
      */
@@ -221,7 +225,7 @@ public final class ClusterCreateProperties {
 
     /**
      * Get the computeProfile property: The compute profile.
-     *
+     * 
      * @return the computeProfile value.
      */
     public ComputeProfile computeProfile() {
@@ -230,7 +234,7 @@ public final class ClusterCreateProperties {
 
     /**
      * Set the computeProfile property: The compute profile.
-     *
+     * 
      * @param computeProfile the computeProfile value to set.
      * @return the ClusterCreateProperties object itself.
      */
@@ -241,7 +245,7 @@ public final class ClusterCreateProperties {
 
     /**
      * Get the storageProfile property: The storage profile.
-     *
+     * 
      * @return the storageProfile value.
      */
     public StorageProfile storageProfile() {
@@ -250,7 +254,7 @@ public final class ClusterCreateProperties {
 
     /**
      * Set the storageProfile property: The storage profile.
-     *
+     * 
      * @param storageProfile the storageProfile value to set.
      * @return the ClusterCreateProperties object itself.
      */
@@ -261,7 +265,7 @@ public final class ClusterCreateProperties {
 
     /**
      * Get the diskEncryptionProperties property: The disk encryption properties.
-     *
+     * 
      * @return the diskEncryptionProperties value.
      */
     public DiskEncryptionProperties diskEncryptionProperties() {
@@ -270,7 +274,7 @@ public final class ClusterCreateProperties {
 
     /**
      * Set the diskEncryptionProperties property: The disk encryption properties.
-     *
+     * 
      * @param diskEncryptionProperties the diskEncryptionProperties value to set.
      * @return the ClusterCreateProperties object itself.
      */
@@ -281,7 +285,7 @@ public final class ClusterCreateProperties {
 
     /**
      * Get the encryptionInTransitProperties property: The encryption-in-transit properties.
-     *
+     * 
      * @return the encryptionInTransitProperties value.
      */
     public EncryptionInTransitProperties encryptionInTransitProperties() {
@@ -290,19 +294,19 @@ public final class ClusterCreateProperties {
 
     /**
      * Set the encryptionInTransitProperties property: The encryption-in-transit properties.
-     *
+     * 
      * @param encryptionInTransitProperties the encryptionInTransitProperties value to set.
      * @return the ClusterCreateProperties object itself.
      */
-    public ClusterCreateProperties withEncryptionInTransitProperties(
-        EncryptionInTransitProperties encryptionInTransitProperties) {
+    public ClusterCreateProperties
+        withEncryptionInTransitProperties(EncryptionInTransitProperties encryptionInTransitProperties) {
         this.encryptionInTransitProperties = encryptionInTransitProperties;
         return this;
     }
 
     /**
      * Get the minSupportedTlsVersion property: The minimal supported tls version.
-     *
+     * 
      * @return the minSupportedTlsVersion value.
      */
     public String minSupportedTlsVersion() {
@@ -311,7 +315,7 @@ public final class ClusterCreateProperties {
 
     /**
      * Set the minSupportedTlsVersion property: The minimal supported tls version.
-     *
+     * 
      * @param minSupportedTlsVersion the minSupportedTlsVersion value to set.
      * @return the ClusterCreateProperties object itself.
      */
@@ -322,7 +326,7 @@ public final class ClusterCreateProperties {
 
     /**
      * Get the networkProperties property: The network properties.
-     *
+     * 
      * @return the networkProperties value.
      */
     public NetworkProperties networkProperties() {
@@ -331,7 +335,7 @@ public final class ClusterCreateProperties {
 
     /**
      * Set the networkProperties property: The network properties.
-     *
+     * 
      * @param networkProperties the networkProperties value to set.
      * @return the ClusterCreateProperties object itself.
      */
@@ -342,7 +346,7 @@ public final class ClusterCreateProperties {
 
     /**
      * Get the computeIsolationProperties property: The compute isolation properties.
-     *
+     * 
      * @return the computeIsolationProperties value.
      */
     public ComputeIsolationProperties computeIsolationProperties() {
@@ -351,19 +355,19 @@ public final class ClusterCreateProperties {
 
     /**
      * Set the computeIsolationProperties property: The compute isolation properties.
-     *
+     * 
      * @param computeIsolationProperties the computeIsolationProperties value to set.
      * @return the ClusterCreateProperties object itself.
      */
-    public ClusterCreateProperties withComputeIsolationProperties(
-        ComputeIsolationProperties computeIsolationProperties) {
+    public ClusterCreateProperties
+        withComputeIsolationProperties(ComputeIsolationProperties computeIsolationProperties) {
         this.computeIsolationProperties = computeIsolationProperties;
         return this;
     }
 
     /**
      * Get the privateLinkConfigurations property: The private link configurations.
-     *
+     * 
      * @return the privateLinkConfigurations value.
      */
     public List<PrivateLinkConfiguration> privateLinkConfigurations() {
@@ -372,19 +376,19 @@ public final class ClusterCreateProperties {
 
     /**
      * Set the privateLinkConfigurations property: The private link configurations.
-     *
+     * 
      * @param privateLinkConfigurations the privateLinkConfigurations value to set.
      * @return the ClusterCreateProperties object itself.
      */
-    public ClusterCreateProperties withPrivateLinkConfigurations(
-        List<PrivateLinkConfiguration> privateLinkConfigurations) {
+    public ClusterCreateProperties
+        withPrivateLinkConfigurations(List<PrivateLinkConfiguration> privateLinkConfigurations) {
         this.privateLinkConfigurations = privateLinkConfigurations;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

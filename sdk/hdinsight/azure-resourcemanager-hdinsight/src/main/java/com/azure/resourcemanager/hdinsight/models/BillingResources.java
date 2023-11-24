@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The billing resources. */
+/**
+ * The billing resources.
+ */
 @Fluent
 public final class BillingResources {
     /*
@@ -29,13 +31,15 @@ public final class BillingResources {
     @JsonProperty(value = "diskBillingMeters")
     private List<DiskBillingMeters> diskBillingMeters;
 
-    /** Creates an instance of BillingResources class. */
+    /**
+     * Creates an instance of BillingResources class.
+     */
     public BillingResources() {
     }
 
     /**
      * Get the region property: The region or location.
-     *
+     * 
      * @return the region value.
      */
     public String region() {
@@ -44,7 +48,7 @@ public final class BillingResources {
 
     /**
      * Set the region property: The region or location.
-     *
+     * 
      * @param region the region value to set.
      * @return the BillingResources object itself.
      */
@@ -55,7 +59,7 @@ public final class BillingResources {
 
     /**
      * Get the billingMeters property: The billing meter information.
-     *
+     * 
      * @return the billingMeters value.
      */
     public List<BillingMeters> billingMeters() {
@@ -64,7 +68,7 @@ public final class BillingResources {
 
     /**
      * Set the billingMeters property: The billing meter information.
-     *
+     * 
      * @param billingMeters the billingMeters value to set.
      * @return the BillingResources object itself.
      */
@@ -75,7 +79,7 @@ public final class BillingResources {
 
     /**
      * Get the diskBillingMeters property: The managed disk billing information.
-     *
+     * 
      * @return the diskBillingMeters value.
      */
     public List<DiskBillingMeters> diskBillingMeters() {
@@ -84,7 +88,7 @@ public final class BillingResources {
 
     /**
      * Set the diskBillingMeters property: The managed disk billing information.
-     *
+     * 
      * @param diskBillingMeters the diskBillingMeters value to set.
      * @return the BillingResources object itself.
      */
@@ -95,7 +99,7 @@ public final class BillingResources {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

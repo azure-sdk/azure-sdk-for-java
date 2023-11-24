@@ -7,7 +7,9 @@ package com.azure.resourcemanager.hdinsight.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Gets the application SSH endpoint. */
+/**
+ * Gets the application SSH endpoint.
+ */
 @Fluent
 public final class ApplicationGetEndpoint {
     /*
@@ -34,13 +36,15 @@ public final class ApplicationGetEndpoint {
     @JsonProperty(value = "privateIPAddress")
     private String privateIpAddress;
 
-    /** Creates an instance of ApplicationGetEndpoint class. */
+    /**
+     * Creates an instance of ApplicationGetEndpoint class.
+     */
     public ApplicationGetEndpoint() {
     }
 
     /**
      * Get the location property: The location of the endpoint.
-     *
+     * 
      * @return the location value.
      */
     public String location() {
@@ -49,7 +53,7 @@ public final class ApplicationGetEndpoint {
 
     /**
      * Set the location property: The location of the endpoint.
-     *
+     * 
      * @param location the location value to set.
      * @return the ApplicationGetEndpoint object itself.
      */
@@ -60,7 +64,7 @@ public final class ApplicationGetEndpoint {
 
     /**
      * Get the destinationPort property: The destination port to connect to.
-     *
+     * 
      * @return the destinationPort value.
      */
     public Integer destinationPort() {
@@ -69,7 +73,7 @@ public final class ApplicationGetEndpoint {
 
     /**
      * Set the destinationPort property: The destination port to connect to.
-     *
+     * 
      * @param destinationPort the destinationPort value to set.
      * @return the ApplicationGetEndpoint object itself.
      */
@@ -80,7 +84,7 @@ public final class ApplicationGetEndpoint {
 
     /**
      * Get the publicPort property: The public port to connect to.
-     *
+     * 
      * @return the publicPort value.
      */
     public Integer publicPort() {
@@ -89,7 +93,7 @@ public final class ApplicationGetEndpoint {
 
     /**
      * Set the publicPort property: The public port to connect to.
-     *
+     * 
      * @param publicPort the publicPort value to set.
      * @return the ApplicationGetEndpoint object itself.
      */
@@ -100,7 +104,7 @@ public final class ApplicationGetEndpoint {
 
     /**
      * Get the privateIpAddress property: The private ip address of the endpoint.
-     *
+     * 
      * @return the privateIpAddress value.
      */
     public String privateIpAddress() {
@@ -109,7 +113,7 @@ public final class ApplicationGetEndpoint {
 
     /**
      * Set the privateIpAddress property: The private ip address of the endpoint.
-     *
+     * 
      * @param privateIpAddress the privateIpAddress value to set.
      * @return the ApplicationGetEndpoint object itself.
      */
@@ -120,7 +124,7 @@ public final class ApplicationGetEndpoint {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

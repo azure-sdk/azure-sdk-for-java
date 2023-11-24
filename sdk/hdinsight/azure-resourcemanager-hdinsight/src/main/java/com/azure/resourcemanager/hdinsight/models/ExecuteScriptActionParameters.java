@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The parameters for the script actions to execute on a running cluster. */
+/**
+ * The parameters for the script actions to execute on a running cluster.
+ */
 @Fluent
 public final class ExecuteScriptActionParameters {
     /*
@@ -23,13 +25,15 @@ public final class ExecuteScriptActionParameters {
     @JsonProperty(value = "persistOnSuccess", required = true)
     private boolean persistOnSuccess;
 
-    /** Creates an instance of ExecuteScriptActionParameters class. */
+    /**
+     * Creates an instance of ExecuteScriptActionParameters class.
+     */
     public ExecuteScriptActionParameters() {
     }
 
     /**
      * Get the scriptActions property: The list of run time script actions.
-     *
+     * 
      * @return the scriptActions value.
      */
     public List<RuntimeScriptAction> scriptActions() {
@@ -38,7 +42,7 @@ public final class ExecuteScriptActionParameters {
 
     /**
      * Set the scriptActions property: The list of run time script actions.
-     *
+     * 
      * @param scriptActions the scriptActions value to set.
      * @return the ExecuteScriptActionParameters object itself.
      */
@@ -49,7 +53,7 @@ public final class ExecuteScriptActionParameters {
 
     /**
      * Get the persistOnSuccess property: Gets or sets if the scripts needs to be persisted.
-     *
+     * 
      * @return the persistOnSuccess value.
      */
     public boolean persistOnSuccess() {
@@ -58,7 +62,7 @@ public final class ExecuteScriptActionParameters {
 
     /**
      * Set the persistOnSuccess property: Gets or sets if the scripts needs to be persisted.
-     *
+     * 
      * @param persistOnSuccess the persistOnSuccess value to set.
      * @return the ExecuteScriptActionParameters object itself.
      */
@@ -69,7 +73,7 @@ public final class ExecuteScriptActionParameters {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

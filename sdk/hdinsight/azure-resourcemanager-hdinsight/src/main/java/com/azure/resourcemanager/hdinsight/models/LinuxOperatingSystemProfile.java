@@ -7,7 +7,9 @@ package com.azure.resourcemanager.hdinsight.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The ssh username, password, and ssh public key. */
+/**
+ * The ssh username, password, and ssh public key.
+ */
 @Fluent
 public final class LinuxOperatingSystemProfile {
     /*
@@ -28,13 +30,15 @@ public final class LinuxOperatingSystemProfile {
     @JsonProperty(value = "sshProfile")
     private SshProfile sshProfile;
 
-    /** Creates an instance of LinuxOperatingSystemProfile class. */
+    /**
+     * Creates an instance of LinuxOperatingSystemProfile class.
+     */
     public LinuxOperatingSystemProfile() {
     }
 
     /**
      * Get the username property: The username.
-     *
+     * 
      * @return the username value.
      */
     public String username() {
@@ -43,7 +47,7 @@ public final class LinuxOperatingSystemProfile {
 
     /**
      * Set the username property: The username.
-     *
+     * 
      * @param username the username value to set.
      * @return the LinuxOperatingSystemProfile object itself.
      */
@@ -54,7 +58,7 @@ public final class LinuxOperatingSystemProfile {
 
     /**
      * Get the password property: The password.
-     *
+     * 
      * @return the password value.
      */
     public String password() {
@@ -63,7 +67,7 @@ public final class LinuxOperatingSystemProfile {
 
     /**
      * Set the password property: The password.
-     *
+     * 
      * @param password the password value to set.
      * @return the LinuxOperatingSystemProfile object itself.
      */
@@ -74,7 +78,7 @@ public final class LinuxOperatingSystemProfile {
 
     /**
      * Get the sshProfile property: The SSH profile.
-     *
+     * 
      * @return the sshProfile value.
      */
     public SshProfile sshProfile() {
@@ -83,7 +87,7 @@ public final class LinuxOperatingSystemProfile {
 
     /**
      * Set the sshProfile property: The SSH profile.
-     *
+     * 
      * @param sshProfile the sshProfile value to set.
      * @return the LinuxOperatingSystemProfile object itself.
      */
@@ -94,7 +98,7 @@ public final class LinuxOperatingSystemProfile {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

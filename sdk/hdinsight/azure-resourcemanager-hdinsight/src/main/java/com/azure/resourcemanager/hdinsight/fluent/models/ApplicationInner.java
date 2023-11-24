@@ -12,7 +12,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** The HDInsight cluster application. */
+/**
+ * The HDInsight cluster application.
+ */
 @Fluent
 public final class ApplicationInner extends ProxyResource {
     /*
@@ -40,13 +42,15 @@ public final class ApplicationInner extends ProxyResource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of ApplicationInner class. */
+    /**
+     * Creates an instance of ApplicationInner class.
+     */
     public ApplicationInner() {
     }
 
     /**
      * Get the etag property: The ETag for the application.
-     *
+     * 
      * @return the etag value.
      */
     public String etag() {
@@ -55,7 +59,7 @@ public final class ApplicationInner extends ProxyResource {
 
     /**
      * Set the etag property: The ETag for the application.
-     *
+     * 
      * @param etag the etag value to set.
      * @return the ApplicationInner object itself.
      */
@@ -66,7 +70,7 @@ public final class ApplicationInner extends ProxyResource {
 
     /**
      * Get the tags property: The tags for the application.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -75,7 +79,7 @@ public final class ApplicationInner extends ProxyResource {
 
     /**
      * Set the tags property: The tags for the application.
-     *
+     * 
      * @param tags the tags value to set.
      * @return the ApplicationInner object itself.
      */
@@ -86,7 +90,7 @@ public final class ApplicationInner extends ProxyResource {
 
     /**
      * Get the properties property: The properties of the application.
-     *
+     * 
      * @return the properties value.
      */
     public ApplicationProperties properties() {
@@ -95,7 +99,7 @@ public final class ApplicationInner extends ProxyResource {
 
     /**
      * Set the properties property: The properties of the application.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the ApplicationInner object itself.
      */
@@ -106,7 +110,7 @@ public final class ApplicationInner extends ProxyResource {
 
     /**
      * Get the systemData property: Metadata pertaining to creation and last modification of the resource.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -115,7 +119,7 @@ public final class ApplicationInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

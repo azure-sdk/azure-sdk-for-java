@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The storage profile. */
+/**
+ * The storage profile.
+ */
 @Fluent
 public final class StorageProfile {
     /*
@@ -17,13 +19,15 @@ public final class StorageProfile {
     @JsonProperty(value = "storageaccounts")
     private List<StorageAccount> storageaccounts;
 
-    /** Creates an instance of StorageProfile class. */
+    /**
+     * Creates an instance of StorageProfile class.
+     */
     public StorageProfile() {
     }
 
     /**
      * Get the storageaccounts property: The list of storage accounts in the cluster.
-     *
+     * 
      * @return the storageaccounts value.
      */
     public List<StorageAccount> storageaccounts() {
@@ -32,7 +36,7 @@ public final class StorageProfile {
 
     /**
      * Set the storageaccounts property: The list of storage accounts in the cluster.
-     *
+     * 
      * @param storageaccounts the storageaccounts value to set.
      * @return the StorageProfile object itself.
      */
@@ -43,7 +47,7 @@ public final class StorageProfile {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

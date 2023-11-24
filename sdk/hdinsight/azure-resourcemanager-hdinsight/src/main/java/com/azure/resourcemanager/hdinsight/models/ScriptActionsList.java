@@ -9,7 +9,9 @@ import com.azure.resourcemanager.hdinsight.fluent.models.RuntimeScriptActionDeta
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The persisted script action for the cluster. */
+/**
+ * The persisted script action for the cluster.
+ */
 @Fluent
 public final class ScriptActionsList {
     /*
@@ -24,13 +26,15 @@ public final class ScriptActionsList {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of ScriptActionsList class. */
+    /**
+     * Creates an instance of ScriptActionsList class.
+     */
     public ScriptActionsList() {
     }
 
     /**
      * Get the value property: The list of persisted script action details for the cluster.
-     *
+     * 
      * @return the value value.
      */
     public List<RuntimeScriptActionDetailInner> value() {
@@ -39,7 +43,7 @@ public final class ScriptActionsList {
 
     /**
      * Set the value property: The list of persisted script action details for the cluster.
-     *
+     * 
      * @param value the value value to set.
      * @return the ScriptActionsList object itself.
      */
@@ -50,7 +54,7 @@ public final class ScriptActionsList {
 
     /**
      * Get the nextLink property: The link (url) to the next page of results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class ScriptActionsList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

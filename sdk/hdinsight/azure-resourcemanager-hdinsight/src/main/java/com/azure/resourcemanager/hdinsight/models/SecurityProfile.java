@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The security profile which contains Ssh public key for the HDInsight cluster. */
+/**
+ * The security profile which contains Ssh public key for the HDInsight cluster.
+ */
 @Fluent
 public final class SecurityProfile {
     /*
@@ -65,13 +67,15 @@ public final class SecurityProfile {
     @JsonProperty(value = "msiResourceId")
     private String msiResourceId;
 
-    /** Creates an instance of SecurityProfile class. */
+    /**
+     * Creates an instance of SecurityProfile class.
+     */
     public SecurityProfile() {
     }
 
     /**
      * Get the directoryType property: The directory type.
-     *
+     * 
      * @return the directoryType value.
      */
     public DirectoryType directoryType() {
@@ -80,7 +84,7 @@ public final class SecurityProfile {
 
     /**
      * Set the directoryType property: The directory type.
-     *
+     * 
      * @param directoryType the directoryType value to set.
      * @return the SecurityProfile object itself.
      */
@@ -91,7 +95,7 @@ public final class SecurityProfile {
 
     /**
      * Get the domain property: The organization's active directory domain.
-     *
+     * 
      * @return the domain value.
      */
     public String domain() {
@@ -100,7 +104,7 @@ public final class SecurityProfile {
 
     /**
      * Set the domain property: The organization's active directory domain.
-     *
+     * 
      * @param domain the domain value to set.
      * @return the SecurityProfile object itself.
      */
@@ -112,7 +116,7 @@ public final class SecurityProfile {
     /**
      * Get the organizationalUnitDN property: The organizational unit within the Active Directory to place the cluster
      * and service accounts.
-     *
+     * 
      * @return the organizationalUnitDN value.
      */
     public String organizationalUnitDN() {
@@ -122,7 +126,7 @@ public final class SecurityProfile {
     /**
      * Set the organizationalUnitDN property: The organizational unit within the Active Directory to place the cluster
      * and service accounts.
-     *
+     * 
      * @param organizationalUnitDN the organizationalUnitDN value to set.
      * @return the SecurityProfile object itself.
      */
@@ -133,7 +137,7 @@ public final class SecurityProfile {
 
     /**
      * Get the ldapsUrls property: The LDAPS protocol URLs to communicate with the Active Directory.
-     *
+     * 
      * @return the ldapsUrls value.
      */
     public List<String> ldapsUrls() {
@@ -142,7 +146,7 @@ public final class SecurityProfile {
 
     /**
      * Set the ldapsUrls property: The LDAPS protocol URLs to communicate with the Active Directory.
-     *
+     * 
      * @param ldapsUrls the ldapsUrls value to set.
      * @return the SecurityProfile object itself.
      */
@@ -153,7 +157,7 @@ public final class SecurityProfile {
 
     /**
      * Get the domainUsername property: The domain user account that will have admin privileges on the cluster.
-     *
+     * 
      * @return the domainUsername value.
      */
     public String domainUsername() {
@@ -162,7 +166,7 @@ public final class SecurityProfile {
 
     /**
      * Set the domainUsername property: The domain user account that will have admin privileges on the cluster.
-     *
+     * 
      * @param domainUsername the domainUsername value to set.
      * @return the SecurityProfile object itself.
      */
@@ -173,7 +177,7 @@ public final class SecurityProfile {
 
     /**
      * Get the domainUserPassword property: The domain admin password.
-     *
+     * 
      * @return the domainUserPassword value.
      */
     public String domainUserPassword() {
@@ -182,7 +186,7 @@ public final class SecurityProfile {
 
     /**
      * Set the domainUserPassword property: The domain admin password.
-     *
+     * 
      * @param domainUserPassword the domainUserPassword value to set.
      * @return the SecurityProfile object itself.
      */
@@ -193,7 +197,7 @@ public final class SecurityProfile {
 
     /**
      * Get the clusterUsersGroupDNs property: Optional. The Distinguished Names for cluster user groups.
-     *
+     * 
      * @return the clusterUsersGroupDNs value.
      */
     public List<String> clusterUsersGroupDNs() {
@@ -202,7 +206,7 @@ public final class SecurityProfile {
 
     /**
      * Set the clusterUsersGroupDNs property: Optional. The Distinguished Names for cluster user groups.
-     *
+     * 
      * @param clusterUsersGroupDNs the clusterUsersGroupDNs value to set.
      * @return the SecurityProfile object itself.
      */
@@ -213,7 +217,7 @@ public final class SecurityProfile {
 
     /**
      * Get the aaddsResourceId property: The resource ID of the user's Azure Active Directory Domain Service.
-     *
+     * 
      * @return the aaddsResourceId value.
      */
     public String aaddsResourceId() {
@@ -222,7 +226,7 @@ public final class SecurityProfile {
 
     /**
      * Set the aaddsResourceId property: The resource ID of the user's Azure Active Directory Domain Service.
-     *
+     * 
      * @param aaddsResourceId the aaddsResourceId value to set.
      * @return the SecurityProfile object itself.
      */
@@ -234,7 +238,7 @@ public final class SecurityProfile {
     /**
      * Get the msiResourceId property: User assigned identity that has permissions to read and create cluster-related
      * artifacts in the user's AADDS.
-     *
+     * 
      * @return the msiResourceId value.
      */
     public String msiResourceId() {
@@ -244,7 +248,7 @@ public final class SecurityProfile {
     /**
      * Set the msiResourceId property: User assigned identity that has permissions to read and create cluster-related
      * artifacts in the user's AADDS.
-     *
+     * 
      * @param msiResourceId the msiResourceId value to set.
      * @return the SecurityProfile object itself.
      */
@@ -255,7 +259,7 @@ public final class SecurityProfile {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -7,7 +7,9 @@ package com.azure.resourcemanager.hdinsight.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The compute isolation properties. */
+/**
+ * The compute isolation properties.
+ */
 @Fluent
 public final class ComputeIsolationProperties {
     /*
@@ -22,13 +24,15 @@ public final class ComputeIsolationProperties {
     @JsonProperty(value = "hostSku")
     private String hostSku;
 
-    /** Creates an instance of ComputeIsolationProperties class. */
+    /**
+     * Creates an instance of ComputeIsolationProperties class.
+     */
     public ComputeIsolationProperties() {
     }
 
     /**
      * Get the enableComputeIsolation property: The flag indicates whether enable compute isolation or not.
-     *
+     * 
      * @return the enableComputeIsolation value.
      */
     public Boolean enableComputeIsolation() {
@@ -37,7 +41,7 @@ public final class ComputeIsolationProperties {
 
     /**
      * Set the enableComputeIsolation property: The flag indicates whether enable compute isolation or not.
-     *
+     * 
      * @param enableComputeIsolation the enableComputeIsolation value to set.
      * @return the ComputeIsolationProperties object itself.
      */
@@ -48,7 +52,7 @@ public final class ComputeIsolationProperties {
 
     /**
      * Get the hostSku property: The host sku.
-     *
+     * 
      * @return the hostSku value.
      */
     public String hostSku() {
@@ -57,7 +61,7 @@ public final class ComputeIsolationProperties {
 
     /**
      * Set the hostSku property: The host sku.
-     *
+     * 
      * @param hostSku the hostSku value to set.
      * @return the ComputeIsolationProperties object itself.
      */
@@ -68,7 +72,7 @@ public final class ComputeIsolationProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -7,7 +7,9 @@ package com.azure.resourcemanager.hdinsight.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The autoscale request parameters. */
+/**
+ * The autoscale request parameters.
+ */
 @Fluent
 public final class Autoscale {
     /*
@@ -22,13 +24,15 @@ public final class Autoscale {
     @JsonProperty(value = "recurrence")
     private AutoscaleRecurrence recurrence;
 
-    /** Creates an instance of Autoscale class. */
+    /**
+     * Creates an instance of Autoscale class.
+     */
     public Autoscale() {
     }
 
     /**
      * Get the capacity property: Parameters for load-based autoscale.
-     *
+     * 
      * @return the capacity value.
      */
     public AutoscaleCapacity capacity() {
@@ -37,7 +41,7 @@ public final class Autoscale {
 
     /**
      * Set the capacity property: Parameters for load-based autoscale.
-     *
+     * 
      * @param capacity the capacity value to set.
      * @return the Autoscale object itself.
      */
@@ -48,7 +52,7 @@ public final class Autoscale {
 
     /**
      * Get the recurrence property: Parameters for schedule-based autoscale.
-     *
+     * 
      * @return the recurrence value.
      */
     public AutoscaleRecurrence recurrence() {
@@ -57,7 +61,7 @@ public final class Autoscale {
 
     /**
      * Set the recurrence property: Parameters for schedule-based autoscale.
-     *
+     * 
      * @param recurrence the recurrence value to set.
      * @return the Autoscale object itself.
      */
@@ -68,7 +72,7 @@ public final class Autoscale {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

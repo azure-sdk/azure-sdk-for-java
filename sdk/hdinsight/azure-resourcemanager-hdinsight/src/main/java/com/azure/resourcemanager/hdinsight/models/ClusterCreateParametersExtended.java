@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
 
-/** The CreateCluster request parameters. */
+/**
+ * The CreateCluster request parameters.
+ */
 @Fluent
 public class ClusterCreateParametersExtended {
     /*
@@ -44,13 +46,15 @@ public class ClusterCreateParametersExtended {
     @JsonProperty(value = "identity")
     private ClusterIdentity identity;
 
-    /** Creates an instance of ClusterCreateParametersExtended class. */
+    /**
+     * Creates an instance of ClusterCreateParametersExtended class.
+     */
     public ClusterCreateParametersExtended() {
     }
 
     /**
      * Get the location property: The location of the cluster.
-     *
+     * 
      * @return the location value.
      */
     public String location() {
@@ -59,7 +63,7 @@ public class ClusterCreateParametersExtended {
 
     /**
      * Set the location property: The location of the cluster.
-     *
+     * 
      * @param location the location value to set.
      * @return the ClusterCreateParametersExtended object itself.
      */
@@ -70,7 +74,7 @@ public class ClusterCreateParametersExtended {
 
     /**
      * Get the tags property: The resource tags.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -79,7 +83,7 @@ public class ClusterCreateParametersExtended {
 
     /**
      * Set the tags property: The resource tags.
-     *
+     * 
      * @param tags the tags value to set.
      * @return the ClusterCreateParametersExtended object itself.
      */
@@ -90,7 +94,7 @@ public class ClusterCreateParametersExtended {
 
     /**
      * Get the zones property: The availability zones.
-     *
+     * 
      * @return the zones value.
      */
     public List<String> zones() {
@@ -99,7 +103,7 @@ public class ClusterCreateParametersExtended {
 
     /**
      * Set the zones property: The availability zones.
-     *
+     * 
      * @param zones the zones value to set.
      * @return the ClusterCreateParametersExtended object itself.
      */
@@ -110,7 +114,7 @@ public class ClusterCreateParametersExtended {
 
     /**
      * Get the properties property: The cluster create parameters.
-     *
+     * 
      * @return the properties value.
      */
     public ClusterCreateProperties properties() {
@@ -119,7 +123,7 @@ public class ClusterCreateParametersExtended {
 
     /**
      * Set the properties property: The cluster create parameters.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the ClusterCreateParametersExtended object itself.
      */
@@ -130,7 +134,7 @@ public class ClusterCreateParametersExtended {
 
     /**
      * Get the identity property: The identity of the cluster, if configured.
-     *
+     * 
      * @return the identity value.
      */
     public ClusterIdentity identity() {
@@ -139,7 +143,7 @@ public class ClusterCreateParametersExtended {
 
     /**
      * Set the identity property: The identity of the cluster, if configured.
-     *
+     * 
      * @param identity the identity value to set.
      * @return the ClusterCreateParametersExtended object itself.
      */
@@ -150,7 +154,7 @@ public class ClusterCreateParametersExtended {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

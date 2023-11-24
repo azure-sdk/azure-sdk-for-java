@@ -7,7 +7,9 @@ package com.azure.resourcemanager.hdinsight.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The cluster host information. */
+/**
+ * The cluster host information.
+ */
 @Fluent
 public final class HostInfoInner {
     /*
@@ -28,13 +30,15 @@ public final class HostInfoInner {
     @JsonProperty(value = "effectiveDiskEncryptionKeyUrl")
     private String effectiveDiskEncryptionKeyUrl;
 
-    /** Creates an instance of HostInfoInner class. */
+    /**
+     * Creates an instance of HostInfoInner class.
+     */
     public HostInfoInner() {
     }
 
     /**
      * Get the name property: The host name.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -43,7 +47,7 @@ public final class HostInfoInner {
 
     /**
      * Set the name property: The host name.
-     *
+     * 
      * @param name the name value to set.
      * @return the HostInfoInner object itself.
      */
@@ -54,7 +58,7 @@ public final class HostInfoInner {
 
     /**
      * Get the fqdn property: The Fully Qualified Domain Name of host.
-     *
+     * 
      * @return the fqdn value.
      */
     public String fqdn() {
@@ -63,7 +67,7 @@ public final class HostInfoInner {
 
     /**
      * Set the fqdn property: The Fully Qualified Domain Name of host.
-     *
+     * 
      * @param fqdn the fqdn value to set.
      * @return the HostInfoInner object itself.
      */
@@ -74,7 +78,7 @@ public final class HostInfoInner {
 
     /**
      * Get the effectiveDiskEncryptionKeyUrl property: The effective disk encryption key URL used by the host.
-     *
+     * 
      * @return the effectiveDiskEncryptionKeyUrl value.
      */
     public String effectiveDiskEncryptionKeyUrl() {
@@ -83,7 +87,7 @@ public final class HostInfoInner {
 
     /**
      * Set the effectiveDiskEncryptionKeyUrl property: The effective disk encryption key URL used by the host.
-     *
+     * 
      * @param effectiveDiskEncryptionKeyUrl the effectiveDiskEncryptionKeyUrl value to set.
      * @return the HostInfoInner object itself.
      */
@@ -94,7 +98,7 @@ public final class HostInfoInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

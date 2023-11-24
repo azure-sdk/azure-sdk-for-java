@@ -7,7 +7,9 @@ package com.azure.resourcemanager.hdinsight.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The regional quota capacity. */
+/**
+ * The regional quota capacity.
+ */
 @Fluent
 public final class RegionalQuotaCapability {
     /*
@@ -28,13 +30,15 @@ public final class RegionalQuotaCapability {
     @JsonProperty(value = "coresAvailable")
     private Long coresAvailable;
 
-    /** Creates an instance of RegionalQuotaCapability class. */
+    /**
+     * Creates an instance of RegionalQuotaCapability class.
+     */
     public RegionalQuotaCapability() {
     }
 
     /**
      * Get the regionName property: The region name.
-     *
+     * 
      * @return the regionName value.
      */
     public String regionName() {
@@ -43,7 +47,7 @@ public final class RegionalQuotaCapability {
 
     /**
      * Set the regionName property: The region name.
-     *
+     * 
      * @param regionName the regionName value to set.
      * @return the RegionalQuotaCapability object itself.
      */
@@ -54,7 +58,7 @@ public final class RegionalQuotaCapability {
 
     /**
      * Get the coresUsed property: The number of cores used in the region.
-     *
+     * 
      * @return the coresUsed value.
      */
     public Long coresUsed() {
@@ -63,7 +67,7 @@ public final class RegionalQuotaCapability {
 
     /**
      * Set the coresUsed property: The number of cores used in the region.
-     *
+     * 
      * @param coresUsed the coresUsed value to set.
      * @return the RegionalQuotaCapability object itself.
      */
@@ -74,7 +78,7 @@ public final class RegionalQuotaCapability {
 
     /**
      * Get the coresAvailable property: The number of cores available in the region.
-     *
+     * 
      * @return the coresAvailable value.
      */
     public Long coresAvailable() {
@@ -83,7 +87,7 @@ public final class RegionalQuotaCapability {
 
     /**
      * Set the coresAvailable property: The number of cores available in the region.
-     *
+     * 
      * @param coresAvailable the coresAvailable value to set.
      * @return the RegionalQuotaCapability object itself.
      */
@@ -94,7 +98,7 @@ public final class RegionalQuotaCapability {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -7,7 +7,9 @@ package com.azure.resourcemanager.hdinsight.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The billing meters. */
+/**
+ * The billing meters.
+ */
 @Fluent
 public final class BillingMeters {
     /*
@@ -28,13 +30,15 @@ public final class BillingMeters {
     @JsonProperty(value = "unit")
     private String unit;
 
-    /** Creates an instance of BillingMeters class. */
+    /**
+     * Creates an instance of BillingMeters class.
+     */
     public BillingMeters() {
     }
 
     /**
      * Get the meterParameter property: The virtual machine sizes.
-     *
+     * 
      * @return the meterParameter value.
      */
     public String meterParameter() {
@@ -43,7 +47,7 @@ public final class BillingMeters {
 
     /**
      * Set the meterParameter property: The virtual machine sizes.
-     *
+     * 
      * @param meterParameter the meterParameter value to set.
      * @return the BillingMeters object itself.
      */
@@ -54,7 +58,7 @@ public final class BillingMeters {
 
     /**
      * Get the meter property: The HDInsight meter guid.
-     *
+     * 
      * @return the meter value.
      */
     public String meter() {
@@ -63,7 +67,7 @@ public final class BillingMeters {
 
     /**
      * Set the meter property: The HDInsight meter guid.
-     *
+     * 
      * @param meter the meter value to set.
      * @return the BillingMeters object itself.
      */
@@ -74,7 +78,7 @@ public final class BillingMeters {
 
     /**
      * Get the unit property: The unit of meter, VMHours or CoreHours.
-     *
+     * 
      * @return the unit value.
      */
     public String unit() {
@@ -83,7 +87,7 @@ public final class BillingMeters {
 
     /**
      * Set the unit property: The unit of meter, VMHours or CoreHours.
-     *
+     * 
      * @param unit the unit value to set.
      * @return the BillingMeters object itself.
      */
@@ -94,7 +98,7 @@ public final class BillingMeters {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

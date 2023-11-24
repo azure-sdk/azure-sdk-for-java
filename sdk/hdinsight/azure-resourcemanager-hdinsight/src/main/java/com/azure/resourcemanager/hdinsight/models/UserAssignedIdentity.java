@@ -7,7 +7,9 @@ package com.azure.resourcemanager.hdinsight.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The User Assigned Identity. */
+/**
+ * The User Assigned Identity.
+ */
 @Fluent
 public final class UserAssignedIdentity {
     /*
@@ -28,13 +30,15 @@ public final class UserAssignedIdentity {
     @JsonProperty(value = "tenantId")
     private String tenantId;
 
-    /** Creates an instance of UserAssignedIdentity class. */
+    /**
+     * Creates an instance of UserAssignedIdentity class.
+     */
     public UserAssignedIdentity() {
     }
 
     /**
      * Get the principalId property: The principal id of user assigned identity.
-     *
+     * 
      * @return the principalId value.
      */
     public String principalId() {
@@ -43,7 +47,7 @@ public final class UserAssignedIdentity {
 
     /**
      * Get the clientId property: The client id of user assigned identity.
-     *
+     * 
      * @return the clientId value.
      */
     public String clientId() {
@@ -52,7 +56,7 @@ public final class UserAssignedIdentity {
 
     /**
      * Get the tenantId property: The tenant id of user assigned identity.
-     *
+     * 
      * @return the tenantId value.
      */
     public String tenantId() {
@@ -61,7 +65,7 @@ public final class UserAssignedIdentity {
 
     /**
      * Set the tenantId property: The tenant id of user assigned identity.
-     *
+     * 
      * @param tenantId the tenantId value to set.
      * @return the UserAssignedIdentity object itself.
      */
@@ -72,7 +76,7 @@ public final class UserAssignedIdentity {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

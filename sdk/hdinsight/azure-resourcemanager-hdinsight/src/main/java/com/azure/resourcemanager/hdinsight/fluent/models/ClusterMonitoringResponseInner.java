@@ -7,7 +7,9 @@ package com.azure.resourcemanager.hdinsight.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The cluster monitoring status response. */
+/**
+ * The cluster monitoring status response.
+ */
 @Fluent
 public final class ClusterMonitoringResponseInner {
     /*
@@ -22,13 +24,15 @@ public final class ClusterMonitoringResponseInner {
     @JsonProperty(value = "workspaceId")
     private String workspaceId;
 
-    /** Creates an instance of ClusterMonitoringResponseInner class. */
+    /**
+     * Creates an instance of ClusterMonitoringResponseInner class.
+     */
     public ClusterMonitoringResponseInner() {
     }
 
     /**
      * Get the clusterMonitoringEnabled property: The status of the monitor on the HDInsight cluster.
-     *
+     * 
      * @return the clusterMonitoringEnabled value.
      */
     public Boolean clusterMonitoringEnabled() {
@@ -37,7 +41,7 @@ public final class ClusterMonitoringResponseInner {
 
     /**
      * Set the clusterMonitoringEnabled property: The status of the monitor on the HDInsight cluster.
-     *
+     * 
      * @param clusterMonitoringEnabled the clusterMonitoringEnabled value to set.
      * @return the ClusterMonitoringResponseInner object itself.
      */
@@ -48,7 +52,7 @@ public final class ClusterMonitoringResponseInner {
 
     /**
      * Get the workspaceId property: The workspace ID of the monitor on the HDInsight cluster.
-     *
+     * 
      * @return the workspaceId value.
      */
     public String workspaceId() {
@@ -57,7 +61,7 @@ public final class ClusterMonitoringResponseInner {
 
     /**
      * Set the workspaceId property: The workspace ID of the monitor on the HDInsight cluster.
-     *
+     * 
      * @param workspaceId the workspaceId value to set.
      * @return the ClusterMonitoringResponseInner object itself.
      */
@@ -68,7 +72,7 @@ public final class ClusterMonitoringResponseInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

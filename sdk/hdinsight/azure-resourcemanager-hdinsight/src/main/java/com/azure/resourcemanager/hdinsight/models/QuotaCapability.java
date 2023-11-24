@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The regional quota capability. */
+/**
+ * The regional quota capability.
+ */
 @Fluent
 public final class QuotaCapability {
     /*
@@ -29,13 +31,15 @@ public final class QuotaCapability {
     @JsonProperty(value = "regionalQuotas")
     private List<RegionalQuotaCapability> regionalQuotas;
 
-    /** Creates an instance of QuotaCapability class. */
+    /**
+     * Creates an instance of QuotaCapability class.
+     */
     public QuotaCapability() {
     }
 
     /**
      * Get the coresUsed property: The number of cores used in the subscription.
-     *
+     * 
      * @return the coresUsed value.
      */
     public Long coresUsed() {
@@ -44,7 +48,7 @@ public final class QuotaCapability {
 
     /**
      * Set the coresUsed property: The number of cores used in the subscription.
-     *
+     * 
      * @param coresUsed the coresUsed value to set.
      * @return the QuotaCapability object itself.
      */
@@ -55,7 +59,7 @@ public final class QuotaCapability {
 
     /**
      * Get the maxCoresAllowed property: The number of cores that the subscription allowed.
-     *
+     * 
      * @return the maxCoresAllowed value.
      */
     public Long maxCoresAllowed() {
@@ -64,7 +68,7 @@ public final class QuotaCapability {
 
     /**
      * Set the maxCoresAllowed property: The number of cores that the subscription allowed.
-     *
+     * 
      * @param maxCoresAllowed the maxCoresAllowed value to set.
      * @return the QuotaCapability object itself.
      */
@@ -75,7 +79,7 @@ public final class QuotaCapability {
 
     /**
      * Get the regionalQuotas property: The list of region quota capabilities.
-     *
+     * 
      * @return the regionalQuotas value.
      */
     public List<RegionalQuotaCapability> regionalQuotas() {
@@ -84,7 +88,7 @@ public final class QuotaCapability {
 
     /**
      * Set the regionalQuotas property: The list of region quota capabilities.
-     *
+     * 
      * @param regionalQuotas the regionalQuotas value to set.
      * @return the QuotaCapability object itself.
      */
@@ -95,7 +99,7 @@ public final class QuotaCapability {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -11,7 +11,9 @@ import com.azure.resourcemanager.hdinsight.models.VmSizeProperty;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The response for the operation to get regional billingSpecs for a subscription. */
+/**
+ * The response for the operation to get regional billingSpecs for a subscription.
+ */
 @Fluent
 public final class BillingResponseListResultInner {
     /*
@@ -45,13 +47,15 @@ public final class BillingResponseListResultInner {
     @JsonProperty(value = "billingResources")
     private List<BillingResources> billingResources;
 
-    /** Creates an instance of BillingResponseListResultInner class. */
+    /**
+     * Creates an instance of BillingResponseListResultInner class.
+     */
     public BillingResponseListResultInner() {
     }
 
     /**
      * Get the vmSizes property: The virtual machine sizes to include or exclude.
-     *
+     * 
      * @return the vmSizes value.
      */
     public List<String> vmSizes() {
@@ -60,7 +64,7 @@ public final class BillingResponseListResultInner {
 
     /**
      * Set the vmSizes property: The virtual machine sizes to include or exclude.
-     *
+     * 
      * @param vmSizes the vmSizes value to set.
      * @return the BillingResponseListResultInner object itself.
      */
@@ -71,7 +75,7 @@ public final class BillingResponseListResultInner {
 
     /**
      * Get the vmSizesWithEncryptionAtHost property: The vm sizes which enable encryption at host.
-     *
+     * 
      * @return the vmSizesWithEncryptionAtHost value.
      */
     public List<String> vmSizesWithEncryptionAtHost() {
@@ -80,7 +84,7 @@ public final class BillingResponseListResultInner {
 
     /**
      * Set the vmSizesWithEncryptionAtHost property: The vm sizes which enable encryption at host.
-     *
+     * 
      * @param vmSizesWithEncryptionAtHost the vmSizesWithEncryptionAtHost value to set.
      * @return the BillingResponseListResultInner object itself.
      */
@@ -92,7 +96,7 @@ public final class BillingResponseListResultInner {
     /**
      * Get the vmSizeFilters property: The virtual machine filtering mode. Effectively this can enabling or disabling
      * the virtual machine sizes in a particular set.
-     *
+     * 
      * @return the vmSizeFilters value.
      */
     public List<VmSizeCompatibilityFilterV2> vmSizeFilters() {
@@ -102,7 +106,7 @@ public final class BillingResponseListResultInner {
     /**
      * Set the vmSizeFilters property: The virtual machine filtering mode. Effectively this can enabling or disabling
      * the virtual machine sizes in a particular set.
-     *
+     * 
      * @param vmSizeFilters the vmSizeFilters value to set.
      * @return the BillingResponseListResultInner object itself.
      */
@@ -113,7 +117,7 @@ public final class BillingResponseListResultInner {
 
     /**
      * Get the vmSizeProperties property: The vm size properties.
-     *
+     * 
      * @return the vmSizeProperties value.
      */
     public List<VmSizeProperty> vmSizeProperties() {
@@ -122,7 +126,7 @@ public final class BillingResponseListResultInner {
 
     /**
      * Get the billingResources property: The billing and managed disk billing resources for a region.
-     *
+     * 
      * @return the billingResources value.
      */
     public List<BillingResources> billingResources() {
@@ -131,7 +135,7 @@ public final class BillingResponseListResultInner {
 
     /**
      * Set the billingResources property: The billing and managed disk billing resources for a region.
-     *
+     * 
      * @param billingResources the billingResources value to set.
      * @return the BillingResponseListResultInner object itself.
      */
@@ -142,7 +146,7 @@ public final class BillingResponseListResultInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

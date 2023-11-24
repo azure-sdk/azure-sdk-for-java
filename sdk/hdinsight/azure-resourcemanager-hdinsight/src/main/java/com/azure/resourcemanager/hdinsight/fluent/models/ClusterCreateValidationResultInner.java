@@ -11,7 +11,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.Duration;
 import java.util.List;
 
-/** The response of cluster create request validation. */
+/**
+ * The response of cluster create request validation.
+ */
 @Fluent
 public final class ClusterCreateValidationResultInner {
     /*
@@ -38,13 +40,15 @@ public final class ClusterCreateValidationResultInner {
     @JsonProperty(value = "aaddsResourcesDetails")
     private List<AaddsResourceDetails> aaddsResourcesDetails;
 
-    /** Creates an instance of ClusterCreateValidationResultInner class. */
+    /**
+     * Creates an instance of ClusterCreateValidationResultInner class.
+     */
     public ClusterCreateValidationResultInner() {
     }
 
     /**
      * Get the validationErrors property: The validation errors.
-     *
+     * 
      * @return the validationErrors value.
      */
     public List<ValidationErrorInfo> validationErrors() {
@@ -53,7 +57,7 @@ public final class ClusterCreateValidationResultInner {
 
     /**
      * Set the validationErrors property: The validation errors.
-     *
+     * 
      * @param validationErrors the validationErrors value to set.
      * @return the ClusterCreateValidationResultInner object itself.
      */
@@ -64,7 +68,7 @@ public final class ClusterCreateValidationResultInner {
 
     /**
      * Get the validationWarnings property: The validation warnings.
-     *
+     * 
      * @return the validationWarnings value.
      */
     public List<ValidationErrorInfo> validationWarnings() {
@@ -73,7 +77,7 @@ public final class ClusterCreateValidationResultInner {
 
     /**
      * Set the validationWarnings property: The validation warnings.
-     *
+     * 
      * @param validationWarnings the validationWarnings value to set.
      * @return the ClusterCreateValidationResultInner object itself.
      */
@@ -84,7 +88,7 @@ public final class ClusterCreateValidationResultInner {
 
     /**
      * Get the estimatedCreationDuration property: The estimated creation duration.
-     *
+     * 
      * @return the estimatedCreationDuration value.
      */
     public Duration estimatedCreationDuration() {
@@ -93,7 +97,7 @@ public final class ClusterCreateValidationResultInner {
 
     /**
      * Set the estimatedCreationDuration property: The estimated creation duration.
-     *
+     * 
      * @param estimatedCreationDuration the estimatedCreationDuration value to set.
      * @return the ClusterCreateValidationResultInner object itself.
      */
@@ -104,7 +108,7 @@ public final class ClusterCreateValidationResultInner {
 
     /**
      * Get the aaddsResourcesDetails property: The Azure active directory domain service resource details.
-     *
+     * 
      * @return the aaddsResourcesDetails value.
      */
     public List<AaddsResourceDetails> aaddsResourcesDetails() {
@@ -113,19 +117,19 @@ public final class ClusterCreateValidationResultInner {
 
     /**
      * Set the aaddsResourcesDetails property: The Azure active directory domain service resource details.
-     *
+     * 
      * @param aaddsResourcesDetails the aaddsResourcesDetails value to set.
      * @return the ClusterCreateValidationResultInner object itself.
      */
-    public ClusterCreateValidationResultInner withAaddsResourcesDetails(
-        List<AaddsResourceDetails> aaddsResourcesDetails) {
+    public ClusterCreateValidationResultInner
+        withAaddsResourcesDetails(List<AaddsResourceDetails> aaddsResourcesDetails) {
         this.aaddsResourcesDetails = aaddsResourcesDetails;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

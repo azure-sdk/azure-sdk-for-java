@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Describes the compute profile. */
+/**
+ * Describes the compute profile.
+ */
 @Fluent
 public final class ComputeProfile {
     /*
@@ -17,13 +19,15 @@ public final class ComputeProfile {
     @JsonProperty(value = "roles")
     private List<Role> roles;
 
-    /** Creates an instance of ComputeProfile class. */
+    /**
+     * Creates an instance of ComputeProfile class.
+     */
     public ComputeProfile() {
     }
 
     /**
      * Get the roles property: The list of roles in the cluster.
-     *
+     * 
      * @return the roles value.
      */
     public List<Role> roles() {
@@ -32,7 +36,7 @@ public final class ComputeProfile {
 
     /**
      * Set the roles property: The list of roles in the cluster.
-     *
+     * 
      * @param roles the roles value to set.
      * @return the ComputeProfile object itself.
      */
@@ -43,7 +47,7 @@ public final class ComputeProfile {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

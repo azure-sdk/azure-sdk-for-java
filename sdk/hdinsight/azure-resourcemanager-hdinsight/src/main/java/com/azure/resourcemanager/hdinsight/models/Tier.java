@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The cluster tier. */
+/**
+ * The cluster tier.
+ */
 public final class Tier extends ExpandableStringEnum<Tier> {
-    /** Static value Standard for Tier. */
+    /**
+     * Static value Standard for Tier.
+     */
     public static final Tier STANDARD = fromString("Standard");
 
-    /** Static value Premium for Tier. */
+    /**
+     * Static value Premium for Tier.
+     */
     public static final Tier PREMIUM = fromString("Premium");
 
     /**
      * Creates a new instance of Tier value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class Tier extends ExpandableStringEnum<Tier> {
 
     /**
      * Creates or finds a Tier from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding Tier.
      */
@@ -38,7 +44,7 @@ public final class Tier extends ExpandableStringEnum<Tier> {
 
     /**
      * Gets known Tier values.
-     *
+     * 
      * @return known Tier values.
      */
     public static Collection<Tier> values() {

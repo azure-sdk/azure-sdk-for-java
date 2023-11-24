@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Schedule-based autoscale request parameters. */
+/**
+ * Schedule-based autoscale request parameters.
+ */
 @Fluent
 public final class AutoscaleRecurrence {
     /*
@@ -23,13 +25,15 @@ public final class AutoscaleRecurrence {
     @JsonProperty(value = "schedule")
     private List<AutoscaleSchedule> schedule;
 
-    /** Creates an instance of AutoscaleRecurrence class. */
+    /**
+     * Creates an instance of AutoscaleRecurrence class.
+     */
     public AutoscaleRecurrence() {
     }
 
     /**
      * Get the timeZone property: The time zone for the autoscale schedule times.
-     *
+     * 
      * @return the timeZone value.
      */
     public String timeZone() {
@@ -38,7 +42,7 @@ public final class AutoscaleRecurrence {
 
     /**
      * Set the timeZone property: The time zone for the autoscale schedule times.
-     *
+     * 
      * @param timeZone the timeZone value to set.
      * @return the AutoscaleRecurrence object itself.
      */
@@ -49,7 +53,7 @@ public final class AutoscaleRecurrence {
 
     /**
      * Get the schedule property: Array of schedule-based autoscale rules.
-     *
+     * 
      * @return the schedule value.
      */
     public List<AutoscaleSchedule> schedule() {
@@ -58,7 +62,7 @@ public final class AutoscaleRecurrence {
 
     /**
      * Set the schedule property: Array of schedule-based autoscale rules.
-     *
+     * 
      * @param schedule the schedule value to set.
      * @return the AutoscaleRecurrence object itself.
      */
@@ -69,7 +73,7 @@ public final class AutoscaleRecurrence {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

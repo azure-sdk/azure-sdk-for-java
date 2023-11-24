@@ -7,7 +7,9 @@ package com.azure.resourcemanager.hdinsight.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The encryption-in-transit properties. */
+/**
+ * The encryption-in-transit properties.
+ */
 @Fluent
 public final class EncryptionInTransitProperties {
     /*
@@ -16,14 +18,16 @@ public final class EncryptionInTransitProperties {
     @JsonProperty(value = "isEncryptionInTransitEnabled")
     private Boolean isEncryptionInTransitEnabled;
 
-    /** Creates an instance of EncryptionInTransitProperties class. */
+    /**
+     * Creates an instance of EncryptionInTransitProperties class.
+     */
     public EncryptionInTransitProperties() {
     }
 
     /**
      * Get the isEncryptionInTransitEnabled property: Indicates whether or not inter cluster node communication is
      * encrypted in transit.
-     *
+     * 
      * @return the isEncryptionInTransitEnabled value.
      */
     public Boolean isEncryptionInTransitEnabled() {
@@ -33,7 +37,7 @@ public final class EncryptionInTransitProperties {
     /**
      * Set the isEncryptionInTransitEnabled property: Indicates whether or not inter cluster node communication is
      * encrypted in transit.
-     *
+     * 
      * @param isEncryptionInTransitEnabled the isEncryptionInTransitEnabled value to set.
      * @return the EncryptionInTransitProperties object itself.
      */
@@ -44,7 +48,7 @@ public final class EncryptionInTransitProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

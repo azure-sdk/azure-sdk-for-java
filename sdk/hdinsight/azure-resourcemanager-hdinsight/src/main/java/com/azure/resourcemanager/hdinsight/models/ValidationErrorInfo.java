@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The validation error information. */
+/**
+ * The validation error information.
+ */
 @Fluent
 public final class ValidationErrorInfo {
     /*
@@ -35,13 +37,15 @@ public final class ValidationErrorInfo {
     @JsonProperty(value = "messageArguments")
     private List<String> messageArguments;
 
-    /** Creates an instance of ValidationErrorInfo class. */
+    /**
+     * Creates an instance of ValidationErrorInfo class.
+     */
     public ValidationErrorInfo() {
     }
 
     /**
      * Get the code property: The error code.
-     *
+     * 
      * @return the code value.
      */
     public String code() {
@@ -50,7 +54,7 @@ public final class ValidationErrorInfo {
 
     /**
      * Set the code property: The error code.
-     *
+     * 
      * @param code the code value to set.
      * @return the ValidationErrorInfo object itself.
      */
@@ -61,7 +65,7 @@ public final class ValidationErrorInfo {
 
     /**
      * Get the message property: The error message.
-     *
+     * 
      * @return the message value.
      */
     public String message() {
@@ -70,7 +74,7 @@ public final class ValidationErrorInfo {
 
     /**
      * Set the message property: The error message.
-     *
+     * 
      * @param message the message value to set.
      * @return the ValidationErrorInfo object itself.
      */
@@ -81,7 +85,7 @@ public final class ValidationErrorInfo {
 
     /**
      * Get the errorResource property: The error resource.
-     *
+     * 
      * @return the errorResource value.
      */
     public String errorResource() {
@@ -90,7 +94,7 @@ public final class ValidationErrorInfo {
 
     /**
      * Set the errorResource property: The error resource.
-     *
+     * 
      * @param errorResource the errorResource value to set.
      * @return the ValidationErrorInfo object itself.
      */
@@ -101,7 +105,7 @@ public final class ValidationErrorInfo {
 
     /**
      * Get the messageArguments property: The message arguments.
-     *
+     * 
      * @return the messageArguments value.
      */
     public List<String> messageArguments() {
@@ -110,7 +114,7 @@ public final class ValidationErrorInfo {
 
     /**
      * Set the messageArguments property: The message arguments.
-     *
+     * 
      * @param messageArguments the messageArguments value to set.
      * @return the ValidationErrorInfo object itself.
      */
@@ -121,7 +125,7 @@ public final class ValidationErrorInfo {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

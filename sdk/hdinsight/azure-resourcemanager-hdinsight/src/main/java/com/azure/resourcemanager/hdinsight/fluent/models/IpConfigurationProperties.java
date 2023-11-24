@@ -10,7 +10,9 @@ import com.azure.resourcemanager.hdinsight.models.PrivateLinkConfigurationProvis
 import com.azure.resourcemanager.hdinsight.models.ResourceId;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The private link ip configuration properties. */
+/**
+ * The private link ip configuration properties.
+ */
 @Fluent
 public final class IpConfigurationProperties {
     /*
@@ -43,14 +45,16 @@ public final class IpConfigurationProperties {
     @JsonProperty(value = "subnet")
     private ResourceId subnet;
 
-    /** Creates an instance of IpConfigurationProperties class. */
+    /**
+     * Creates an instance of IpConfigurationProperties class.
+     */
     public IpConfigurationProperties() {
     }
 
     /**
      * Get the provisioningState property: The private link configuration provisioning state, which only appears in the
      * response.
-     *
+     * 
      * @return the provisioningState value.
      */
     public PrivateLinkConfigurationProvisioningState provisioningState() {
@@ -59,7 +63,7 @@ public final class IpConfigurationProperties {
 
     /**
      * Get the primary property: Indicates whether this IP configuration is primary for the corresponding NIC.
-     *
+     * 
      * @return the primary value.
      */
     public Boolean primary() {
@@ -68,7 +72,7 @@ public final class IpConfigurationProperties {
 
     /**
      * Set the primary property: Indicates whether this IP configuration is primary for the corresponding NIC.
-     *
+     * 
      * @param primary the primary value to set.
      * @return the IpConfigurationProperties object itself.
      */
@@ -79,7 +83,7 @@ public final class IpConfigurationProperties {
 
     /**
      * Get the privateIpAddress property: The IP address.
-     *
+     * 
      * @return the privateIpAddress value.
      */
     public String privateIpAddress() {
@@ -88,7 +92,7 @@ public final class IpConfigurationProperties {
 
     /**
      * Set the privateIpAddress property: The IP address.
-     *
+     * 
      * @param privateIpAddress the privateIpAddress value to set.
      * @return the IpConfigurationProperties object itself.
      */
@@ -99,7 +103,7 @@ public final class IpConfigurationProperties {
 
     /**
      * Get the privateIpAllocationMethod property: The method that private IP address is allocated.
-     *
+     * 
      * @return the privateIpAllocationMethod value.
      */
     public PrivateIpAllocationMethod privateIpAllocationMethod() {
@@ -108,19 +112,19 @@ public final class IpConfigurationProperties {
 
     /**
      * Set the privateIpAllocationMethod property: The method that private IP address is allocated.
-     *
+     * 
      * @param privateIpAllocationMethod the privateIpAllocationMethod value to set.
      * @return the IpConfigurationProperties object itself.
      */
-    public IpConfigurationProperties withPrivateIpAllocationMethod(
-        PrivateIpAllocationMethod privateIpAllocationMethod) {
+    public IpConfigurationProperties
+        withPrivateIpAllocationMethod(PrivateIpAllocationMethod privateIpAllocationMethod) {
         this.privateIpAllocationMethod = privateIpAllocationMethod;
         return this;
     }
 
     /**
      * Get the subnet property: The subnet resource id.
-     *
+     * 
      * @return the subnet value.
      */
     public ResourceId subnet() {
@@ -129,7 +133,7 @@ public final class IpConfigurationProperties {
 
     /**
      * Set the subnet property: The subnet resource id.
-     *
+     * 
      * @param subnet the subnet value to set.
      * @return the IpConfigurationProperties object itself.
      */
@@ -140,7 +144,7 @@ public final class IpConfigurationProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

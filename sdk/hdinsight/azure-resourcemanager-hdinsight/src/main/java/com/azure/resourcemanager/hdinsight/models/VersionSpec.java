@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** The version properties. */
+/**
+ * The version properties.
+ */
 @Fluent
 public final class VersionSpec {
     /*
@@ -37,13 +39,15 @@ public final class VersionSpec {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> componentVersions;
 
-    /** Creates an instance of VersionSpec class. */
+    /**
+     * Creates an instance of VersionSpec class.
+     */
     public VersionSpec() {
     }
 
     /**
      * Get the friendlyName property: The friendly name.
-     *
+     * 
      * @return the friendlyName value.
      */
     public String friendlyName() {
@@ -52,7 +56,7 @@ public final class VersionSpec {
 
     /**
      * Set the friendlyName property: The friendly name.
-     *
+     * 
      * @param friendlyName the friendlyName value to set.
      * @return the VersionSpec object itself.
      */
@@ -63,7 +67,7 @@ public final class VersionSpec {
 
     /**
      * Get the displayName property: The display name.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -72,7 +76,7 @@ public final class VersionSpec {
 
     /**
      * Set the displayName property: The display name.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the VersionSpec object itself.
      */
@@ -83,7 +87,7 @@ public final class VersionSpec {
 
     /**
      * Get the isDefault property: Whether or not the version is the default version.
-     *
+     * 
      * @return the isDefault value.
      */
     public Boolean isDefault() {
@@ -92,7 +96,7 @@ public final class VersionSpec {
 
     /**
      * Set the isDefault property: Whether or not the version is the default version.
-     *
+     * 
      * @param isDefault the isDefault value to set.
      * @return the VersionSpec object itself.
      */
@@ -103,7 +107,7 @@ public final class VersionSpec {
 
     /**
      * Get the componentVersions property: The component version property.
-     *
+     * 
      * @return the componentVersions value.
      */
     public Map<String, String> componentVersions() {
@@ -112,7 +116,7 @@ public final class VersionSpec {
 
     /**
      * Set the componentVersions property: The component version property.
-     *
+     * 
      * @param componentVersions the componentVersions value to set.
      * @return the VersionSpec object itself.
      */
@@ -123,7 +127,7 @@ public final class VersionSpec {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

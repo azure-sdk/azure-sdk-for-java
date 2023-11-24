@@ -7,7 +7,9 @@ package com.azure.resourcemanager.hdinsight.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The load-based autoscale request parameters. */
+/**
+ * The load-based autoscale request parameters.
+ */
 @Fluent
 public final class AutoscaleCapacity {
     /*
@@ -22,13 +24,15 @@ public final class AutoscaleCapacity {
     @JsonProperty(value = "maxInstanceCount")
     private Integer maxInstanceCount;
 
-    /** Creates an instance of AutoscaleCapacity class. */
+    /**
+     * Creates an instance of AutoscaleCapacity class.
+     */
     public AutoscaleCapacity() {
     }
 
     /**
      * Get the minInstanceCount property: The minimum instance count of the cluster.
-     *
+     * 
      * @return the minInstanceCount value.
      */
     public Integer minInstanceCount() {
@@ -37,7 +41,7 @@ public final class AutoscaleCapacity {
 
     /**
      * Set the minInstanceCount property: The minimum instance count of the cluster.
-     *
+     * 
      * @param minInstanceCount the minInstanceCount value to set.
      * @return the AutoscaleCapacity object itself.
      */
@@ -48,7 +52,7 @@ public final class AutoscaleCapacity {
 
     /**
      * Get the maxInstanceCount property: The maximum instance count of the cluster.
-     *
+     * 
      * @return the maxInstanceCount value.
      */
     public Integer maxInstanceCount() {
@@ -57,7 +61,7 @@ public final class AutoscaleCapacity {
 
     /**
      * Set the maxInstanceCount property: The maximum instance count of the cluster.
-     *
+     * 
      * @param maxInstanceCount the maxInstanceCount value to set.
      * @return the AutoscaleCapacity object itself.
      */
@@ -68,7 +72,7 @@ public final class AutoscaleCapacity {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

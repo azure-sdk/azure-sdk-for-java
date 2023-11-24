@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Describes a role on the cluster. */
+/**
+ * Describes a role on the cluster.
+ */
 @Fluent
 public final class Role {
     /*
@@ -77,13 +79,15 @@ public final class Role {
     @JsonProperty(value = "encryptDataDisks")
     private Boolean encryptDataDisks;
 
-    /** Creates an instance of Role class. */
+    /**
+     * Creates an instance of Role class.
+     */
     public Role() {
     }
 
     /**
      * Get the name property: The name of the role.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -92,7 +96,7 @@ public final class Role {
 
     /**
      * Set the name property: The name of the role.
-     *
+     * 
      * @param name the name value to set.
      * @return the Role object itself.
      */
@@ -103,7 +107,7 @@ public final class Role {
 
     /**
      * Get the minInstanceCount property: The minimum instance count of the cluster.
-     *
+     * 
      * @return the minInstanceCount value.
      */
     public Integer minInstanceCount() {
@@ -112,7 +116,7 @@ public final class Role {
 
     /**
      * Set the minInstanceCount property: The minimum instance count of the cluster.
-     *
+     * 
      * @param minInstanceCount the minInstanceCount value to set.
      * @return the Role object itself.
      */
@@ -123,7 +127,7 @@ public final class Role {
 
     /**
      * Get the targetInstanceCount property: The instance count of the cluster.
-     *
+     * 
      * @return the targetInstanceCount value.
      */
     public Integer targetInstanceCount() {
@@ -132,7 +136,7 @@ public final class Role {
 
     /**
      * Set the targetInstanceCount property: The instance count of the cluster.
-     *
+     * 
      * @param targetInstanceCount the targetInstanceCount value to set.
      * @return the Role object itself.
      */
@@ -143,7 +147,7 @@ public final class Role {
 
     /**
      * Get the vMGroupName property: The name of the virtual machine group.
-     *
+     * 
      * @return the vMGroupName value.
      */
     public String vMGroupName() {
@@ -152,7 +156,7 @@ public final class Role {
 
     /**
      * Set the vMGroupName property: The name of the virtual machine group.
-     *
+     * 
      * @param vMGroupName the vMGroupName value to set.
      * @return the Role object itself.
      */
@@ -163,7 +167,7 @@ public final class Role {
 
     /**
      * Get the autoscaleConfiguration property: The autoscale configurations.
-     *
+     * 
      * @return the autoscaleConfiguration value.
      */
     public Autoscale autoscaleConfiguration() {
@@ -172,7 +176,7 @@ public final class Role {
 
     /**
      * Set the autoscaleConfiguration property: The autoscale configurations.
-     *
+     * 
      * @param autoscaleConfiguration the autoscaleConfiguration value to set.
      * @return the Role object itself.
      */
@@ -183,7 +187,7 @@ public final class Role {
 
     /**
      * Get the hardwareProfile property: The hardware profile.
-     *
+     * 
      * @return the hardwareProfile value.
      */
     public HardwareProfile hardwareProfile() {
@@ -192,7 +196,7 @@ public final class Role {
 
     /**
      * Set the hardwareProfile property: The hardware profile.
-     *
+     * 
      * @param hardwareProfile the hardwareProfile value to set.
      * @return the Role object itself.
      */
@@ -203,7 +207,7 @@ public final class Role {
 
     /**
      * Get the osProfile property: The operating system profile.
-     *
+     * 
      * @return the osProfile value.
      */
     public OsProfile osProfile() {
@@ -212,7 +216,7 @@ public final class Role {
 
     /**
      * Set the osProfile property: The operating system profile.
-     *
+     * 
      * @param osProfile the osProfile value to set.
      * @return the Role object itself.
      */
@@ -223,7 +227,7 @@ public final class Role {
 
     /**
      * Get the virtualNetworkProfile property: The virtual network profile.
-     *
+     * 
      * @return the virtualNetworkProfile value.
      */
     public VirtualNetworkProfile virtualNetworkProfile() {
@@ -232,7 +236,7 @@ public final class Role {
 
     /**
      * Set the virtualNetworkProfile property: The virtual network profile.
-     *
+     * 
      * @param virtualNetworkProfile the virtualNetworkProfile value to set.
      * @return the Role object itself.
      */
@@ -243,7 +247,7 @@ public final class Role {
 
     /**
      * Get the dataDisksGroups property: The data disks groups for the role.
-     *
+     * 
      * @return the dataDisksGroups value.
      */
     public List<DataDisksGroups> dataDisksGroups() {
@@ -252,7 +256,7 @@ public final class Role {
 
     /**
      * Set the dataDisksGroups property: The data disks groups for the role.
-     *
+     * 
      * @param dataDisksGroups the dataDisksGroups value to set.
      * @return the Role object itself.
      */
@@ -263,7 +267,7 @@ public final class Role {
 
     /**
      * Get the scriptActions property: The list of script actions on the role.
-     *
+     * 
      * @return the scriptActions value.
      */
     public List<ScriptAction> scriptActions() {
@@ -272,7 +276,7 @@ public final class Role {
 
     /**
      * Set the scriptActions property: The list of script actions on the role.
-     *
+     * 
      * @param scriptActions the scriptActions value to set.
      * @return the Role object itself.
      */
@@ -283,7 +287,7 @@ public final class Role {
 
     /**
      * Get the encryptDataDisks property: Indicates whether encrypt the data disks.
-     *
+     * 
      * @return the encryptDataDisks value.
      */
     public Boolean encryptDataDisks() {
@@ -292,7 +296,7 @@ public final class Role {
 
     /**
      * Set the encryptDataDisks property: Indicates whether encrypt the data disks.
-     *
+     * 
      * @param encryptDataDisks the encryptDataDisks value to set.
      * @return the Role object itself.
      */
@@ -303,7 +307,7 @@ public final class Role {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -7,7 +7,9 @@ package com.azure.resourcemanager.hdinsight.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The update cluster identity certificate request parameters. */
+/**
+ * The update cluster identity certificate request parameters.
+ */
 @Fluent
 public final class UpdateClusterIdentityCertificateParameters {
     /*
@@ -28,13 +30,15 @@ public final class UpdateClusterIdentityCertificateParameters {
     @JsonProperty(value = "certificatePassword")
     private String certificatePassword;
 
-    /** Creates an instance of UpdateClusterIdentityCertificateParameters class. */
+    /**
+     * Creates an instance of UpdateClusterIdentityCertificateParameters class.
+     */
     public UpdateClusterIdentityCertificateParameters() {
     }
 
     /**
      * Get the applicationId property: The application id.
-     *
+     * 
      * @return the applicationId value.
      */
     public String applicationId() {
@@ -43,7 +47,7 @@ public final class UpdateClusterIdentityCertificateParameters {
 
     /**
      * Set the applicationId property: The application id.
-     *
+     * 
      * @param applicationId the applicationId value to set.
      * @return the UpdateClusterIdentityCertificateParameters object itself.
      */
@@ -54,7 +58,7 @@ public final class UpdateClusterIdentityCertificateParameters {
 
     /**
      * Get the certificate property: The certificate in base64 encoded format.
-     *
+     * 
      * @return the certificate value.
      */
     public String certificate() {
@@ -63,7 +67,7 @@ public final class UpdateClusterIdentityCertificateParameters {
 
     /**
      * Set the certificate property: The certificate in base64 encoded format.
-     *
+     * 
      * @param certificate the certificate value to set.
      * @return the UpdateClusterIdentityCertificateParameters object itself.
      */
@@ -74,7 +78,7 @@ public final class UpdateClusterIdentityCertificateParameters {
 
     /**
      * Get the certificatePassword property: The password of the certificate.
-     *
+     * 
      * @return the certificatePassword value.
      */
     public String certificatePassword() {
@@ -83,7 +87,7 @@ public final class UpdateClusterIdentityCertificateParameters {
 
     /**
      * Set the certificatePassword property: The password of the certificate.
-     *
+     * 
      * @param certificatePassword the certificatePassword value to set.
      * @return the UpdateClusterIdentityCertificateParameters object itself.
      */
@@ -94,7 +98,7 @@ public final class UpdateClusterIdentityCertificateParameters {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

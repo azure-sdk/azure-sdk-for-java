@@ -27,13 +27,15 @@ public final class ApplicationListResult {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of ApplicationListResult class. */
+    /**
+     * Creates an instance of ApplicationListResult class.
+     */
     public ApplicationListResult() {
     }
 
     /**
      * Get the value property: The list of HDInsight applications installed on HDInsight cluster.
-     *
+     * 
      * @return the value value.
      */
     public List<ApplicationInner> value() {
@@ -42,7 +44,7 @@ public final class ApplicationListResult {
 
     /**
      * Set the value property: The list of HDInsight applications installed on HDInsight cluster.
-     *
+     * 
      * @param value the value value to set.
      * @return the ApplicationListResult object itself.
      */
@@ -53,7 +55,7 @@ public final class ApplicationListResult {
 
     /**
      * Get the nextLink property: The URL to get the next set of operation list results if there are any.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -62,7 +64,7 @@ public final class ApplicationListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

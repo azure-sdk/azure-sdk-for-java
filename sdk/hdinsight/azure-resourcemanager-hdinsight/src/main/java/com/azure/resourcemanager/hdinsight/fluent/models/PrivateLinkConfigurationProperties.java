@@ -11,7 +11,9 @@ import com.azure.resourcemanager.hdinsight.models.PrivateLinkConfigurationProvis
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The private link configuration properties. */
+/**
+ * The private link configuration properties.
+ */
 @Fluent
 public final class PrivateLinkConfigurationProperties {
     /*
@@ -33,14 +35,16 @@ public final class PrivateLinkConfigurationProperties {
     @JsonProperty(value = "ipConfigurations", required = true)
     private List<IpConfiguration> ipConfigurations;
 
-    /** Creates an instance of PrivateLinkConfigurationProperties class. */
+    /**
+     * Creates an instance of PrivateLinkConfigurationProperties class.
+     */
     public PrivateLinkConfigurationProperties() {
     }
 
     /**
      * Get the groupId property: The HDInsight private linkable sub-resource name to apply the private link
      * configuration to. For example, 'headnode', 'gateway', 'edgenode'.
-     *
+     * 
      * @return the groupId value.
      */
     public String groupId() {
@@ -50,7 +54,7 @@ public final class PrivateLinkConfigurationProperties {
     /**
      * Set the groupId property: The HDInsight private linkable sub-resource name to apply the private link
      * configuration to. For example, 'headnode', 'gateway', 'edgenode'.
-     *
+     * 
      * @param groupId the groupId value to set.
      * @return the PrivateLinkConfigurationProperties object itself.
      */
@@ -62,7 +66,7 @@ public final class PrivateLinkConfigurationProperties {
     /**
      * Get the provisioningState property: The private link configuration provisioning state, which only appears in the
      * response.
-     *
+     * 
      * @return the provisioningState value.
      */
     public PrivateLinkConfigurationProvisioningState provisioningState() {
@@ -71,7 +75,7 @@ public final class PrivateLinkConfigurationProperties {
 
     /**
      * Get the ipConfigurations property: The IP configurations for the private link service.
-     *
+     * 
      * @return the ipConfigurations value.
      */
     public List<IpConfiguration> ipConfigurations() {
@@ -80,7 +84,7 @@ public final class PrivateLinkConfigurationProperties {
 
     /**
      * Set the ipConfigurations property: The IP configurations for the private link service.
-     *
+     * 
      * @param ipConfigurations the ipConfigurations value to set.
      * @return the PrivateLinkConfigurationProperties object itself.
      */
@@ -91,21 +95,17 @@ public final class PrivateLinkConfigurationProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (groupId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property groupId in model PrivateLinkConfigurationProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property groupId in model PrivateLinkConfigurationProperties"));
         }
         if (ipConfigurations() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property ipConfigurations in model PrivateLinkConfigurationProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property ipConfigurations in model PrivateLinkConfigurationProperties"));
         } else {
             ipConfigurations().forEach(e -> e.validate());
         }

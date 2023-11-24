@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Describes a script action on a running cluster. */
+/**
+ * Describes a script action on a running cluster.
+ */
 @Fluent
 public class RuntimeScriptAction {
     /*
@@ -42,13 +44,15 @@ public class RuntimeScriptAction {
     @JsonProperty(value = "applicationName", access = JsonProperty.Access.WRITE_ONLY)
     private String applicationName;
 
-    /** Creates an instance of RuntimeScriptAction class. */
+    /**
+     * Creates an instance of RuntimeScriptAction class.
+     */
     public RuntimeScriptAction() {
     }
 
     /**
      * Get the name property: The name of the script action.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -57,7 +61,7 @@ public class RuntimeScriptAction {
 
     /**
      * Set the name property: The name of the script action.
-     *
+     * 
      * @param name the name value to set.
      * @return the RuntimeScriptAction object itself.
      */
@@ -68,7 +72,7 @@ public class RuntimeScriptAction {
 
     /**
      * Get the uri property: The URI to the script.
-     *
+     * 
      * @return the uri value.
      */
     public String uri() {
@@ -77,7 +81,7 @@ public class RuntimeScriptAction {
 
     /**
      * Set the uri property: The URI to the script.
-     *
+     * 
      * @param uri the uri value to set.
      * @return the RuntimeScriptAction object itself.
      */
@@ -88,7 +92,7 @@ public class RuntimeScriptAction {
 
     /**
      * Get the parameters property: The parameters for the script.
-     *
+     * 
      * @return the parameters value.
      */
     public String parameters() {
@@ -97,7 +101,7 @@ public class RuntimeScriptAction {
 
     /**
      * Set the parameters property: The parameters for the script.
-     *
+     * 
      * @param parameters the parameters value to set.
      * @return the RuntimeScriptAction object itself.
      */
@@ -108,7 +112,7 @@ public class RuntimeScriptAction {
 
     /**
      * Get the roles property: The list of roles where script will be executed.
-     *
+     * 
      * @return the roles value.
      */
     public List<String> roles() {
@@ -117,7 +121,7 @@ public class RuntimeScriptAction {
 
     /**
      * Set the roles property: The list of roles where script will be executed.
-     *
+     * 
      * @param roles the roles value to set.
      * @return the RuntimeScriptAction object itself.
      */
@@ -128,7 +132,7 @@ public class RuntimeScriptAction {
 
     /**
      * Get the applicationName property: The application name of the script action, if any.
-     *
+     * 
      * @return the applicationName value.
      */
     public String applicationName() {
@@ -137,24 +141,21 @@ public class RuntimeScriptAction {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (name() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property name in model RuntimeScriptAction"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property name in model RuntimeScriptAction"));
         }
         if (uri() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property uri in model RuntimeScriptAction"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property uri in model RuntimeScriptAction"));
         }
         if (roles() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property roles in model RuntimeScriptAction"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property roles in model RuntimeScriptAction"));
         }
     }
 

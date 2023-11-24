@@ -7,7 +7,9 @@ package com.azure.resourcemanager.hdinsight.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The azure resource id. */
+/**
+ * The azure resource id.
+ */
 @Fluent
 public final class ResourceId {
     /*
@@ -16,13 +18,15 @@ public final class ResourceId {
     @JsonProperty(value = "id")
     private String id;
 
-    /** Creates an instance of ResourceId class. */
+    /**
+     * Creates an instance of ResourceId class.
+     */
     public ResourceId() {
     }
 
     /**
      * Get the id property: The azure resource id.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -31,7 +35,7 @@ public final class ResourceId {
 
     /**
      * Set the id property: The azure resource id.
-     *
+     * 
      * @param id the id value to set.
      * @return the ResourceId object itself.
      */
@@ -42,7 +46,7 @@ public final class ResourceId {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

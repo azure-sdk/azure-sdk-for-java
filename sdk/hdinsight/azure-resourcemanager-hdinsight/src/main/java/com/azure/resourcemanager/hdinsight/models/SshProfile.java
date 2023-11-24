@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The list of SSH public keys. */
+/**
+ * The list of SSH public keys.
+ */
 @Fluent
 public final class SshProfile {
     /*
@@ -17,13 +19,15 @@ public final class SshProfile {
     @JsonProperty(value = "publicKeys")
     private List<SshPublicKey> publicKeys;
 
-    /** Creates an instance of SshProfile class. */
+    /**
+     * Creates an instance of SshProfile class.
+     */
     public SshProfile() {
     }
 
     /**
      * Get the publicKeys property: The list of SSH public keys.
-     *
+     * 
      * @return the publicKeys value.
      */
     public List<SshPublicKey> publicKeys() {
@@ -32,7 +36,7 @@ public final class SshProfile {
 
     /**
      * Set the publicKeys property: The list of SSH public keys.
-     *
+     * 
      * @param publicKeys the publicKeys value to set.
      * @return the SshProfile object itself.
      */
@@ -43,7 +47,7 @@ public final class SshProfile {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

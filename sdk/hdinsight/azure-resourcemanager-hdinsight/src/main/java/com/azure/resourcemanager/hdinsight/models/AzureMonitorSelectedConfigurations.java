@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
 
-/** The selected configurations for azure monitor. */
+/**
+ * The selected configurations for azure monitor.
+ */
 @Fluent
 public final class AzureMonitorSelectedConfigurations {
     /*
@@ -32,13 +34,15 @@ public final class AzureMonitorSelectedConfigurations {
     @JsonProperty(value = "tableList")
     private List<AzureMonitorTableConfiguration> tableList;
 
-    /** Creates an instance of AzureMonitorSelectedConfigurations class. */
+    /**
+     * Creates an instance of AzureMonitorSelectedConfigurations class.
+     */
     public AzureMonitorSelectedConfigurations() {
     }
 
     /**
      * Get the configurationVersion property: The configuration version.
-     *
+     * 
      * @return the configurationVersion value.
      */
     public String configurationVersion() {
@@ -47,7 +51,7 @@ public final class AzureMonitorSelectedConfigurations {
 
     /**
      * Set the configurationVersion property: The configuration version.
-     *
+     * 
      * @param configurationVersion the configurationVersion value to set.
      * @return the AzureMonitorSelectedConfigurations object itself.
      */
@@ -58,7 +62,7 @@ public final class AzureMonitorSelectedConfigurations {
 
     /**
      * Get the globalConfigurations property: The global configurations of selected configurations.
-     *
+     * 
      * @return the globalConfigurations value.
      */
     public Map<String, String> globalConfigurations() {
@@ -67,7 +71,7 @@ public final class AzureMonitorSelectedConfigurations {
 
     /**
      * Set the globalConfigurations property: The global configurations of selected configurations.
-     *
+     * 
      * @param globalConfigurations the globalConfigurations value to set.
      * @return the AzureMonitorSelectedConfigurations object itself.
      */
@@ -78,7 +82,7 @@ public final class AzureMonitorSelectedConfigurations {
 
     /**
      * Get the tableList property: The table list.
-     *
+     * 
      * @return the tableList value.
      */
     public List<AzureMonitorTableConfiguration> tableList() {
@@ -87,7 +91,7 @@ public final class AzureMonitorSelectedConfigurations {
 
     /**
      * Set the tableList property: The table list.
-     *
+     * 
      * @param tableList the tableList value to set.
      * @return the AzureMonitorSelectedConfigurations object itself.
      */
@@ -98,7 +102,7 @@ public final class AzureMonitorSelectedConfigurations {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

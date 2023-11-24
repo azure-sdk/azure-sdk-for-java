@@ -7,7 +7,9 @@ package com.azure.resourcemanager.hdinsight.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The error message associated with the cluster creation. */
+/**
+ * The error message associated with the cluster creation.
+ */
 @Fluent
 public final class Errors {
     /*
@@ -22,13 +24,15 @@ public final class Errors {
     @JsonProperty(value = "message")
     private String message;
 
-    /** Creates an instance of Errors class. */
+    /**
+     * Creates an instance of Errors class.
+     */
     public Errors() {
     }
 
     /**
      * Get the code property: The error code.
-     *
+     * 
      * @return the code value.
      */
     public String code() {
@@ -37,7 +41,7 @@ public final class Errors {
 
     /**
      * Set the code property: The error code.
-     *
+     * 
      * @param code the code value to set.
      * @return the Errors object itself.
      */
@@ -48,7 +52,7 @@ public final class Errors {
 
     /**
      * Get the message property: The error message.
-     *
+     * 
      * @return the message value.
      */
     public String message() {
@@ -57,7 +61,7 @@ public final class Errors {
 
     /**
      * Set the message property: The error message.
-     *
+     * 
      * @param message the message value to set.
      * @return the Errors object itself.
      */
@@ -68,7 +72,7 @@ public final class Errors {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

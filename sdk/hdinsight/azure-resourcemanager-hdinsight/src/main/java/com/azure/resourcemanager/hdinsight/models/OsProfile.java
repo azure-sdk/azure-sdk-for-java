@@ -7,7 +7,9 @@ package com.azure.resourcemanager.hdinsight.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The Linux operation systems profile. */
+/**
+ * The Linux operation systems profile.
+ */
 @Fluent
 public final class OsProfile {
     /*
@@ -16,13 +18,15 @@ public final class OsProfile {
     @JsonProperty(value = "linuxOperatingSystemProfile")
     private LinuxOperatingSystemProfile linuxOperatingSystemProfile;
 
-    /** Creates an instance of OsProfile class. */
+    /**
+     * Creates an instance of OsProfile class.
+     */
     public OsProfile() {
     }
 
     /**
      * Get the linuxOperatingSystemProfile property: The Linux OS profile.
-     *
+     * 
      * @return the linuxOperatingSystemProfile value.
      */
     public LinuxOperatingSystemProfile linuxOperatingSystemProfile() {
@@ -31,7 +35,7 @@ public final class OsProfile {
 
     /**
      * Set the linuxOperatingSystemProfile property: The Linux OS profile.
-     *
+     * 
      * @param linuxOperatingSystemProfile the linuxOperatingSystemProfile value to set.
      * @return the OsProfile object itself.
      */
@@ -42,7 +46,7 @@ public final class OsProfile {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

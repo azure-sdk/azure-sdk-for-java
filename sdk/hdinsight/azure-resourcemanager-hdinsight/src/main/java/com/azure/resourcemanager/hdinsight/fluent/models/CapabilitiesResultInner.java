@@ -13,7 +13,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
 
-/** The Get Capabilities operation response. */
+/**
+ * The Get Capabilities operation response.
+ */
 @Fluent
 public final class CapabilitiesResultInner {
     /*
@@ -42,13 +44,15 @@ public final class CapabilitiesResultInner {
     @JsonProperty(value = "quota", access = JsonProperty.Access.WRITE_ONLY)
     private QuotaCapability quota;
 
-    /** Creates an instance of CapabilitiesResultInner class. */
+    /**
+     * Creates an instance of CapabilitiesResultInner class.
+     */
     public CapabilitiesResultInner() {
     }
 
     /**
      * Get the versions property: The version capability.
-     *
+     * 
      * @return the versions value.
      */
     public Map<String, VersionsCapability> versions() {
@@ -57,7 +61,7 @@ public final class CapabilitiesResultInner {
 
     /**
      * Set the versions property: The version capability.
-     *
+     * 
      * @param versions the versions value to set.
      * @return the CapabilitiesResultInner object itself.
      */
@@ -68,7 +72,7 @@ public final class CapabilitiesResultInner {
 
     /**
      * Get the regions property: The virtual machine size compatibility features.
-     *
+     * 
      * @return the regions value.
      */
     public Map<String, RegionsCapability> regions() {
@@ -77,7 +81,7 @@ public final class CapabilitiesResultInner {
 
     /**
      * Set the regions property: The virtual machine size compatibility features.
-     *
+     * 
      * @param regions the regions value to set.
      * @return the CapabilitiesResultInner object itself.
      */
@@ -88,7 +92,7 @@ public final class CapabilitiesResultInner {
 
     /**
      * Get the features property: The capability features.
-     *
+     * 
      * @return the features value.
      */
     public List<String> features() {
@@ -97,7 +101,7 @@ public final class CapabilitiesResultInner {
 
     /**
      * Set the features property: The capability features.
-     *
+     * 
      * @param features the features value to set.
      * @return the CapabilitiesResultInner object itself.
      */
@@ -108,7 +112,7 @@ public final class CapabilitiesResultInner {
 
     /**
      * Get the quota property: The quota capability.
-     *
+     * 
      * @return the quota value.
      */
     public QuotaCapability quota() {
@@ -117,29 +121,23 @@ public final class CapabilitiesResultInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (versions() != null) {
-            versions()
-                .values()
-                .forEach(
-                    e -> {
-                        if (e != null) {
-                            e.validate();
-                        }
-                    });
+            versions().values().forEach(e -> {
+                if (e != null) {
+                    e.validate();
+                }
+            });
         }
         if (regions() != null) {
-            regions()
-                .values()
-                .forEach(
-                    e -> {
-                        if (e != null) {
-                            e.validate();
-                        }
-                    });
+            regions().values().forEach(e -> {
+                if (e != null) {
+                    e.validate();
+                }
+            });
         }
         if (quota() != null) {
             quota().validate();

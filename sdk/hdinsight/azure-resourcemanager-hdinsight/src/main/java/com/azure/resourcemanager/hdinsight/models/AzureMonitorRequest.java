@@ -7,7 +7,9 @@ package com.azure.resourcemanager.hdinsight.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The azure monitor parameters. */
+/**
+ * The azure monitor parameters.
+ */
 @Fluent
 public final class AzureMonitorRequest {
     /*
@@ -28,13 +30,15 @@ public final class AzureMonitorRequest {
     @JsonProperty(value = "selectedConfigurations")
     private AzureMonitorSelectedConfigurations selectedConfigurations;
 
-    /** Creates an instance of AzureMonitorRequest class. */
+    /**
+     * Creates an instance of AzureMonitorRequest class.
+     */
     public AzureMonitorRequest() {
     }
 
     /**
      * Get the workspaceId property: The Log Analytics workspace ID.
-     *
+     * 
      * @return the workspaceId value.
      */
     public String workspaceId() {
@@ -43,7 +47,7 @@ public final class AzureMonitorRequest {
 
     /**
      * Set the workspaceId property: The Log Analytics workspace ID.
-     *
+     * 
      * @param workspaceId the workspaceId value to set.
      * @return the AzureMonitorRequest object itself.
      */
@@ -54,7 +58,7 @@ public final class AzureMonitorRequest {
 
     /**
      * Get the primaryKey property: The Log Analytics workspace key.
-     *
+     * 
      * @return the primaryKey value.
      */
     public String primaryKey() {
@@ -63,7 +67,7 @@ public final class AzureMonitorRequest {
 
     /**
      * Set the primaryKey property: The Log Analytics workspace key.
-     *
+     * 
      * @param primaryKey the primaryKey value to set.
      * @return the AzureMonitorRequest object itself.
      */
@@ -74,7 +78,7 @@ public final class AzureMonitorRequest {
 
     /**
      * Get the selectedConfigurations property: The selected configurations.
-     *
+     * 
      * @return the selectedConfigurations value.
      */
     public AzureMonitorSelectedConfigurations selectedConfigurations() {
@@ -83,7 +87,7 @@ public final class AzureMonitorRequest {
 
     /**
      * Set the selectedConfigurations property: The selected configurations.
-     *
+     * 
      * @param selectedConfigurations the selectedConfigurations value to set.
      * @return the AzureMonitorRequest object itself.
      */
@@ -94,7 +98,7 @@ public final class AzureMonitorRequest {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

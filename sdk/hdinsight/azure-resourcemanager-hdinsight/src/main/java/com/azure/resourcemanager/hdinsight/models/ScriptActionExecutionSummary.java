@@ -7,7 +7,9 @@ package com.azure.resourcemanager.hdinsight.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The execution summary of a script action. */
+/**
+ * The execution summary of a script action.
+ */
 @Immutable
 public final class ScriptActionExecutionSummary {
     /*
@@ -22,13 +24,15 @@ public final class ScriptActionExecutionSummary {
     @JsonProperty(value = "instanceCount", access = JsonProperty.Access.WRITE_ONLY)
     private Integer instanceCount;
 
-    /** Creates an instance of ScriptActionExecutionSummary class. */
+    /**
+     * Creates an instance of ScriptActionExecutionSummary class.
+     */
     public ScriptActionExecutionSummary() {
     }
 
     /**
      * Get the status property: The status of script action execution.
-     *
+     * 
      * @return the status value.
      */
     public String status() {
@@ -37,7 +41,7 @@ public final class ScriptActionExecutionSummary {
 
     /**
      * Get the instanceCount property: The instance count for a given script action execution status.
-     *
+     * 
      * @return the instanceCount value.
      */
     public Integer instanceCount() {
@@ -46,7 +50,7 @@ public final class ScriptActionExecutionSummary {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

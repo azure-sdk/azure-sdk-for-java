@@ -7,7 +7,9 @@ package com.azure.resourcemanager.hdinsight.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The quota properties for the cluster. */
+/**
+ * The quota properties for the cluster.
+ */
 @Fluent
 public final class QuotaInfo {
     /*
@@ -16,13 +18,15 @@ public final class QuotaInfo {
     @JsonProperty(value = "coresUsed")
     private Integer coresUsed;
 
-    /** Creates an instance of QuotaInfo class. */
+    /**
+     * Creates an instance of QuotaInfo class.
+     */
     public QuotaInfo() {
     }
 
     /**
      * Get the coresUsed property: The cores used by the cluster.
-     *
+     * 
      * @return the coresUsed value.
      */
     public Integer coresUsed() {
@@ -31,7 +35,7 @@ public final class QuotaInfo {
 
     /**
      * Set the coresUsed property: The cores used by the cluster.
-     *
+     * 
      * @param coresUsed the coresUsed value to set.
      * @return the QuotaInfo object itself.
      */
@@ -42,7 +46,7 @@ public final class QuotaInfo {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

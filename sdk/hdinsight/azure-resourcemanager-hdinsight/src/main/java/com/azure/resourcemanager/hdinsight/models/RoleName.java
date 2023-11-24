@@ -8,14 +8,18 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for RoleName. */
+/**
+ * Defines values for RoleName.
+ */
 public final class RoleName extends ExpandableStringEnum<RoleName> {
-    /** Static value workernode for RoleName. */
+    /**
+     * Static value workernode for RoleName.
+     */
     public static final RoleName WORKERNODE = fromString("workernode");
 
     /**
      * Creates a new instance of RoleName value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -24,7 +28,7 @@ public final class RoleName extends ExpandableStringEnum<RoleName> {
 
     /**
      * Creates or finds a RoleName from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding RoleName.
      */
@@ -35,7 +39,7 @@ public final class RoleName extends ExpandableStringEnum<RoleName> {
 
     /**
      * Gets known RoleName values.
-     *
+     * 
      * @return known RoleName values.
      */
     public static Collection<RoleName> values() {

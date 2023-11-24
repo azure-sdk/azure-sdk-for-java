@@ -7,7 +7,9 @@ package com.azure.resourcemanager.hdinsight.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The hardware profile. */
+/**
+ * The hardware profile.
+ */
 @Fluent
 public final class HardwareProfile {
     /*
@@ -16,13 +18,15 @@ public final class HardwareProfile {
     @JsonProperty(value = "vmSize")
     private String vmSize;
 
-    /** Creates an instance of HardwareProfile class. */
+    /**
+     * Creates an instance of HardwareProfile class.
+     */
     public HardwareProfile() {
     }
 
     /**
      * Get the vmSize property: The size of the VM.
-     *
+     * 
      * @return the vmSize value.
      */
     public String vmSize() {
@@ -31,7 +35,7 @@ public final class HardwareProfile {
 
     /**
      * Set the vmSize property: The size of the VM.
-     *
+     * 
      * @param vmSize the vmSize value to set.
      * @return the HardwareProfile object itself.
      */
@@ -42,7 +46,7 @@ public final class HardwareProfile {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

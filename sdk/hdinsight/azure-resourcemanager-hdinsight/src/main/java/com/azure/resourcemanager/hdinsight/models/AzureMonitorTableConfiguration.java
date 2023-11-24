@@ -7,7 +7,9 @@ package com.azure.resourcemanager.hdinsight.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The table configuration for the Log Analytics integration. */
+/**
+ * The table configuration for the Log Analytics integration.
+ */
 @Fluent
 public final class AzureMonitorTableConfiguration {
     /*
@@ -16,13 +18,15 @@ public final class AzureMonitorTableConfiguration {
     @JsonProperty(value = "name")
     private String name;
 
-    /** Creates an instance of AzureMonitorTableConfiguration class. */
+    /**
+     * Creates an instance of AzureMonitorTableConfiguration class.
+     */
     public AzureMonitorTableConfiguration() {
     }
 
     /**
      * Get the name property: The name.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -31,7 +35,7 @@ public final class AzureMonitorTableConfiguration {
 
     /**
      * Set the name property: The name.
-     *
+     * 
      * @param name the name value to set.
      * @return the AzureMonitorTableConfiguration object itself.
      */
@@ -42,7 +46,7 @@ public final class AzureMonitorTableConfiguration {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

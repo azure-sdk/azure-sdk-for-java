@@ -7,7 +7,9 @@ package com.azure.resourcemanager.hdinsight.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The response spec of checking name availability. */
+/**
+ * The response spec of checking name availability.
+ */
 @Fluent
 public final class NameAvailabilityCheckResultInner {
     /*
@@ -28,13 +30,15 @@ public final class NameAvailabilityCheckResultInner {
     @JsonProperty(value = "message", access = JsonProperty.Access.WRITE_ONLY)
     private String message;
 
-    /** Creates an instance of NameAvailabilityCheckResultInner class. */
+    /**
+     * Creates an instance of NameAvailabilityCheckResultInner class.
+     */
     public NameAvailabilityCheckResultInner() {
     }
 
     /**
      * Get the nameAvailable property: This indicates whether the name is available.
-     *
+     * 
      * @return the nameAvailable value.
      */
     public Boolean nameAvailable() {
@@ -43,7 +47,7 @@ public final class NameAvailabilityCheckResultInner {
 
     /**
      * Set the nameAvailable property: This indicates whether the name is available.
-     *
+     * 
      * @param nameAvailable the nameAvailable value to set.
      * @return the NameAvailabilityCheckResultInner object itself.
      */
@@ -54,7 +58,7 @@ public final class NameAvailabilityCheckResultInner {
 
     /**
      * Get the reason property: The reason of the result.
-     *
+     * 
      * @return the reason value.
      */
     public String reason() {
@@ -63,7 +67,7 @@ public final class NameAvailabilityCheckResultInner {
 
     /**
      * Get the message property: The related message.
-     *
+     * 
      * @return the message value.
      */
     public String message() {
@@ -72,7 +76,7 @@ public final class NameAvailabilityCheckResultInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

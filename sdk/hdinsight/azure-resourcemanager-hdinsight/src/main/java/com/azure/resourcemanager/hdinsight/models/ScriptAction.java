@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Describes a script action on role on the cluster. */
+/**
+ * Describes a script action on role on the cluster.
+ */
 @Fluent
 public final class ScriptAction {
     /*
@@ -29,13 +31,15 @@ public final class ScriptAction {
     @JsonProperty(value = "parameters", required = true)
     private String parameters;
 
-    /** Creates an instance of ScriptAction class. */
+    /**
+     * Creates an instance of ScriptAction class.
+     */
     public ScriptAction() {
     }
 
     /**
      * Get the name property: The name of the script action.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -44,7 +48,7 @@ public final class ScriptAction {
 
     /**
      * Set the name property: The name of the script action.
-     *
+     * 
      * @param name the name value to set.
      * @return the ScriptAction object itself.
      */
@@ -55,7 +59,7 @@ public final class ScriptAction {
 
     /**
      * Get the uri property: The URI to the script.
-     *
+     * 
      * @return the uri value.
      */
     public String uri() {
@@ -64,7 +68,7 @@ public final class ScriptAction {
 
     /**
      * Set the uri property: The URI to the script.
-     *
+     * 
      * @param uri the uri value to set.
      * @return the ScriptAction object itself.
      */
@@ -75,7 +79,7 @@ public final class ScriptAction {
 
     /**
      * Get the parameters property: The parameters for the script provided.
-     *
+     * 
      * @return the parameters value.
      */
     public String parameters() {
@@ -84,7 +88,7 @@ public final class ScriptAction {
 
     /**
      * Set the parameters property: The parameters for the script provided.
-     *
+     * 
      * @param parameters the parameters value to set.
      * @return the ScriptAction object itself.
      */
@@ -95,24 +99,21 @@ public final class ScriptAction {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (name() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property name in model ScriptAction"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property name in model ScriptAction"));
         }
         if (uri() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property uri in model ScriptAction"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property uri in model ScriptAction"));
         }
         if (parameters() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property parameters in model ScriptAction"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property parameters in model ScriptAction"));
         }
     }
 

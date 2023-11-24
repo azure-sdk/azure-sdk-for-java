@@ -7,7 +7,9 @@ package com.azure.resourcemanager.hdinsight.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The information of AAD security group. */
+/**
+ * The information of AAD security group.
+ */
 @Fluent
 public final class ClientGroupInfo {
     /*
@@ -22,13 +24,15 @@ public final class ClientGroupInfo {
     @JsonProperty(value = "groupId")
     private String groupId;
 
-    /** Creates an instance of ClientGroupInfo class. */
+    /**
+     * Creates an instance of ClientGroupInfo class.
+     */
     public ClientGroupInfo() {
     }
 
     /**
      * Get the groupName property: The AAD security group name.
-     *
+     * 
      * @return the groupName value.
      */
     public String groupName() {
@@ -37,7 +41,7 @@ public final class ClientGroupInfo {
 
     /**
      * Set the groupName property: The AAD security group name.
-     *
+     * 
      * @param groupName the groupName value to set.
      * @return the ClientGroupInfo object itself.
      */
@@ -48,7 +52,7 @@ public final class ClientGroupInfo {
 
     /**
      * Get the groupId property: The AAD security group id.
-     *
+     * 
      * @return the groupId value.
      */
     public String groupId() {
@@ -57,7 +61,7 @@ public final class ClientGroupInfo {
 
     /**
      * Set the groupId property: The AAD security group id.
-     *
+     * 
      * @param groupId the groupId value to set.
      * @return the ClientGroupInfo object itself.
      */
@@ -68,7 +72,7 @@ public final class ClientGroupInfo {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

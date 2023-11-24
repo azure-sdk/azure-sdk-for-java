@@ -7,7 +7,9 @@ package com.azure.resourcemanager.hdinsight.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The request spec of checking name availability. */
+/**
+ * The request spec of checking name availability.
+ */
 @Fluent
 public final class NameAvailabilityCheckRequestParameters {
     /*
@@ -22,13 +24,15 @@ public final class NameAvailabilityCheckRequestParameters {
     @JsonProperty(value = "type")
     private String type;
 
-    /** Creates an instance of NameAvailabilityCheckRequestParameters class. */
+    /**
+     * Creates an instance of NameAvailabilityCheckRequestParameters class.
+     */
     public NameAvailabilityCheckRequestParameters() {
     }
 
     /**
      * Get the name property: The resource name.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -37,7 +41,7 @@ public final class NameAvailabilityCheckRequestParameters {
 
     /**
      * Set the name property: The resource name.
-     *
+     * 
      * @param name the name value to set.
      * @return the NameAvailabilityCheckRequestParameters object itself.
      */
@@ -48,7 +52,7 @@ public final class NameAvailabilityCheckRequestParameters {
 
     /**
      * Get the type property: The resource type.
-     *
+     * 
      * @return the type value.
      */
     public String type() {
@@ -57,7 +61,7 @@ public final class NameAvailabilityCheckRequestParameters {
 
     /**
      * Set the type property: The resource type.
-     *
+     * 
      * @param type the type value to set.
      * @return the NameAvailabilityCheckRequestParameters object itself.
      */
@@ -68,7 +72,7 @@ public final class NameAvailabilityCheckRequestParameters {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

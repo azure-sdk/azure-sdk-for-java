@@ -7,7 +7,9 @@ package com.azure.resourcemanager.hdinsight.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The details about the usage of a particular limited resource. */
+/**
+ * The details about the usage of a particular limited resource.
+ */
 @Fluent
 public final class Usage {
     /*
@@ -34,13 +36,15 @@ public final class Usage {
     @JsonProperty(value = "name", access = JsonProperty.Access.WRITE_ONLY)
     private LocalizedName name;
 
-    /** Creates an instance of Usage class. */
+    /**
+     * Creates an instance of Usage class.
+     */
     public Usage() {
     }
 
     /**
      * Get the unit property: The type of measurement for usage.
-     *
+     * 
      * @return the unit value.
      */
     public String unit() {
@@ -49,7 +53,7 @@ public final class Usage {
 
     /**
      * Set the unit property: The type of measurement for usage.
-     *
+     * 
      * @param unit the unit value to set.
      * @return the Usage object itself.
      */
@@ -60,7 +64,7 @@ public final class Usage {
 
     /**
      * Get the currentValue property: The current usage.
-     *
+     * 
      * @return the currentValue value.
      */
     public Long currentValue() {
@@ -69,7 +73,7 @@ public final class Usage {
 
     /**
      * Set the currentValue property: The current usage.
-     *
+     * 
      * @param currentValue the currentValue value to set.
      * @return the Usage object itself.
      */
@@ -80,7 +84,7 @@ public final class Usage {
 
     /**
      * Get the limit property: The maximum allowed usage.
-     *
+     * 
      * @return the limit value.
      */
     public Long limit() {
@@ -89,7 +93,7 @@ public final class Usage {
 
     /**
      * Set the limit property: The maximum allowed usage.
-     *
+     * 
      * @param limit the limit value to set.
      * @return the Usage object itself.
      */
@@ -100,7 +104,7 @@ public final class Usage {
 
     /**
      * Get the name property: The details about the localizable name of the used resource.
-     *
+     * 
      * @return the name value.
      */
     public LocalizedName name() {
@@ -109,7 +113,7 @@ public final class Usage {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -7,7 +7,9 @@ package com.azure.resourcemanager.hdinsight.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The vm size property. */
+/**
+ * The vm size property.
+ */
 @Fluent
 public final class VmSizeProperty {
     /*
@@ -70,13 +72,15 @@ public final class VmSizeProperty {
     @JsonProperty(value = "webWorkerResourceDiskSizeInMb")
     private Long webWorkerResourceDiskSizeInMb;
 
-    /** Creates an instance of VmSizeProperty class. */
+    /**
+     * Creates an instance of VmSizeProperty class.
+     */
     public VmSizeProperty() {
     }
 
     /**
      * Get the name property: The vm size name.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -85,7 +89,7 @@ public final class VmSizeProperty {
 
     /**
      * Set the name property: The vm size name.
-     *
+     * 
      * @param name the name value to set.
      * @return the VmSizeProperty object itself.
      */
@@ -96,7 +100,7 @@ public final class VmSizeProperty {
 
     /**
      * Get the cores property: The number of cores that the vm size has.
-     *
+     * 
      * @return the cores value.
      */
     public Integer cores() {
@@ -105,7 +109,7 @@ public final class VmSizeProperty {
 
     /**
      * Set the cores property: The number of cores that the vm size has.
-     *
+     * 
      * @param cores the cores value to set.
      * @return the VmSizeProperty object itself.
      */
@@ -116,7 +120,7 @@ public final class VmSizeProperty {
 
     /**
      * Get the dataDiskStorageTier property: The data disk storage tier of the vm size.
-     *
+     * 
      * @return the dataDiskStorageTier value.
      */
     public String dataDiskStorageTier() {
@@ -125,7 +129,7 @@ public final class VmSizeProperty {
 
     /**
      * Set the dataDiskStorageTier property: The data disk storage tier of the vm size.
-     *
+     * 
      * @param dataDiskStorageTier the dataDiskStorageTier value to set.
      * @return the VmSizeProperty object itself.
      */
@@ -136,7 +140,7 @@ public final class VmSizeProperty {
 
     /**
      * Get the label property: The label of the vm size.
-     *
+     * 
      * @return the label value.
      */
     public String label() {
@@ -145,7 +149,7 @@ public final class VmSizeProperty {
 
     /**
      * Set the label property: The label of the vm size.
-     *
+     * 
      * @param label the label value to set.
      * @return the VmSizeProperty object itself.
      */
@@ -156,7 +160,7 @@ public final class VmSizeProperty {
 
     /**
      * Get the maxDataDiskCount property: The max data disk count of the vm size.
-     *
+     * 
      * @return the maxDataDiskCount value.
      */
     public Long maxDataDiskCount() {
@@ -165,7 +169,7 @@ public final class VmSizeProperty {
 
     /**
      * Set the maxDataDiskCount property: The max data disk count of the vm size.
-     *
+     * 
      * @param maxDataDiskCount the maxDataDiskCount value to set.
      * @return the VmSizeProperty object itself.
      */
@@ -176,7 +180,7 @@ public final class VmSizeProperty {
 
     /**
      * Get the memoryInMb property: The memory whose unit is MB of the vm size.
-     *
+     * 
      * @return the memoryInMb value.
      */
     public Long memoryInMb() {
@@ -185,7 +189,7 @@ public final class VmSizeProperty {
 
     /**
      * Set the memoryInMb property: The memory whose unit is MB of the vm size.
-     *
+     * 
      * @param memoryInMb the memoryInMb value to set.
      * @return the VmSizeProperty object itself.
      */
@@ -195,8 +199,9 @@ public final class VmSizeProperty {
     }
 
     /**
-     * Get the supportedByVirtualMachines property: This indicates this vm size is supported by virtual machines or not.
-     *
+     * Get the supportedByVirtualMachines property: This indicates this vm size is supported by virtual machines or
+     * not.
+     * 
      * @return the supportedByVirtualMachines value.
      */
     public Boolean supportedByVirtualMachines() {
@@ -204,8 +209,9 @@ public final class VmSizeProperty {
     }
 
     /**
-     * Set the supportedByVirtualMachines property: This indicates this vm size is supported by virtual machines or not.
-     *
+     * Set the supportedByVirtualMachines property: This indicates this vm size is supported by virtual machines or
+     * not.
+     * 
      * @param supportedByVirtualMachines the supportedByVirtualMachines value to set.
      * @return the VmSizeProperty object itself.
      */
@@ -216,7 +222,7 @@ public final class VmSizeProperty {
 
     /**
      * Get the supportedByWebWorkerRoles property: The indicates this vm size is supported by web worker roles or not.
-     *
+     * 
      * @return the supportedByWebWorkerRoles value.
      */
     public Boolean supportedByWebWorkerRoles() {
@@ -225,7 +231,7 @@ public final class VmSizeProperty {
 
     /**
      * Set the supportedByWebWorkerRoles property: The indicates this vm size is supported by web worker roles or not.
-     *
+     * 
      * @param supportedByWebWorkerRoles the supportedByWebWorkerRoles value to set.
      * @return the VmSizeProperty object itself.
      */
@@ -237,7 +243,7 @@ public final class VmSizeProperty {
     /**
      * Get the virtualMachineResourceDiskSizeInMb property: The virtual machine resource disk size whose unit is MB of
      * the vm size.
-     *
+     * 
      * @return the virtualMachineResourceDiskSizeInMb value.
      */
     public Long virtualMachineResourceDiskSizeInMb() {
@@ -247,7 +253,7 @@ public final class VmSizeProperty {
     /**
      * Set the virtualMachineResourceDiskSizeInMb property: The virtual machine resource disk size whose unit is MB of
      * the vm size.
-     *
+     * 
      * @param virtualMachineResourceDiskSizeInMb the virtualMachineResourceDiskSizeInMb value to set.
      * @return the VmSizeProperty object itself.
      */
@@ -259,7 +265,7 @@ public final class VmSizeProperty {
     /**
      * Get the webWorkerResourceDiskSizeInMb property: The web worker resource disk size whose unit is MB of the vm
      * size.
-     *
+     * 
      * @return the webWorkerResourceDiskSizeInMb value.
      */
     public Long webWorkerResourceDiskSizeInMb() {
@@ -269,7 +275,7 @@ public final class VmSizeProperty {
     /**
      * Set the webWorkerResourceDiskSizeInMb property: The web worker resource disk size whose unit is MB of the vm
      * size.
-     *
+     * 
      * @param webWorkerResourceDiskSizeInMb the webWorkerResourceDiskSizeInMb value to set.
      * @return the VmSizeProperty object itself.
      */
@@ -280,7 +286,7 @@ public final class VmSizeProperty {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

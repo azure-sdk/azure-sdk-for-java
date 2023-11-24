@@ -10,7 +10,9 @@ import com.azure.resourcemanager.hdinsight.fluent.models.PrivateLinkConfiguratio
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The private link configuration. */
+/**
+ * The private link configuration.
+ */
 @Fluent
 public final class PrivateLinkConfiguration {
     /*
@@ -37,13 +39,15 @@ public final class PrivateLinkConfiguration {
     @JsonProperty(value = "properties", required = true)
     private PrivateLinkConfigurationProperties innerProperties = new PrivateLinkConfigurationProperties();
 
-    /** Creates an instance of PrivateLinkConfiguration class. */
+    /**
+     * Creates an instance of PrivateLinkConfiguration class.
+     */
     public PrivateLinkConfiguration() {
     }
 
     /**
      * Get the id property: The private link configuration id.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -52,7 +56,7 @@ public final class PrivateLinkConfiguration {
 
     /**
      * Get the name property: The name of private link configuration.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -61,7 +65,7 @@ public final class PrivateLinkConfiguration {
 
     /**
      * Set the name property: The name of private link configuration.
-     *
+     * 
      * @param name the name value to set.
      * @return the PrivateLinkConfiguration object itself.
      */
@@ -72,7 +76,7 @@ public final class PrivateLinkConfiguration {
 
     /**
      * Get the type property: The type of the private link configuration.
-     *
+     * 
      * @return the type value.
      */
     public String type() {
@@ -81,7 +85,7 @@ public final class PrivateLinkConfiguration {
 
     /**
      * Get the innerProperties property: The private link configuration properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private PrivateLinkConfigurationProperties innerProperties() {
@@ -91,7 +95,7 @@ public final class PrivateLinkConfiguration {
     /**
      * Get the groupId property: The HDInsight private linkable sub-resource name to apply the private link
      * configuration to. For example, 'headnode', 'gateway', 'edgenode'.
-     *
+     * 
      * @return the groupId value.
      */
     public String groupId() {
@@ -101,7 +105,7 @@ public final class PrivateLinkConfiguration {
     /**
      * Set the groupId property: The HDInsight private linkable sub-resource name to apply the private link
      * configuration to. For example, 'headnode', 'gateway', 'edgenode'.
-     *
+     * 
      * @param groupId the groupId value to set.
      * @return the PrivateLinkConfiguration object itself.
      */
@@ -116,7 +120,7 @@ public final class PrivateLinkConfiguration {
     /**
      * Get the provisioningState property: The private link configuration provisioning state, which only appears in the
      * response.
-     *
+     * 
      * @return the provisioningState value.
      */
     public PrivateLinkConfigurationProvisioningState provisioningState() {
@@ -125,7 +129,7 @@ public final class PrivateLinkConfiguration {
 
     /**
      * Get the ipConfigurations property: The IP configurations for the private link service.
-     *
+     * 
      * @return the ipConfigurations value.
      */
     public List<IpConfiguration> ipConfigurations() {
@@ -134,7 +138,7 @@ public final class PrivateLinkConfiguration {
 
     /**
      * Set the ipConfigurations property: The IP configurations for the private link service.
-     *
+     * 
      * @param ipConfigurations the ipConfigurations value to set.
      * @return the PrivateLinkConfiguration object itself.
      */
@@ -148,20 +152,17 @@ public final class PrivateLinkConfiguration {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (name() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property name in model PrivateLinkConfiguration"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property name in model PrivateLinkConfiguration"));
         }
         if (innerProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property innerProperties in model PrivateLinkConfiguration"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property innerProperties in model PrivateLinkConfiguration"));
         } else {
             innerProperties().validate();
         }

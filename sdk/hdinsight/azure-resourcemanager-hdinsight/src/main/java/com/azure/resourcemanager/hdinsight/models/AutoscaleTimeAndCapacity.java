@@ -7,7 +7,9 @@ package com.azure.resourcemanager.hdinsight.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Time and capacity request parameters. */
+/**
+ * Time and capacity request parameters.
+ */
 @Fluent
 public final class AutoscaleTimeAndCapacity {
     /*
@@ -28,13 +30,15 @@ public final class AutoscaleTimeAndCapacity {
     @JsonProperty(value = "maxInstanceCount")
     private Integer maxInstanceCount;
 
-    /** Creates an instance of AutoscaleTimeAndCapacity class. */
+    /**
+     * Creates an instance of AutoscaleTimeAndCapacity class.
+     */
     public AutoscaleTimeAndCapacity() {
     }
 
     /**
      * Get the time property: 24-hour time in the form xx:xx.
-     *
+     * 
      * @return the time value.
      */
     public String time() {
@@ -43,7 +47,7 @@ public final class AutoscaleTimeAndCapacity {
 
     /**
      * Set the time property: 24-hour time in the form xx:xx.
-     *
+     * 
      * @param time the time value to set.
      * @return the AutoscaleTimeAndCapacity object itself.
      */
@@ -54,7 +58,7 @@ public final class AutoscaleTimeAndCapacity {
 
     /**
      * Get the minInstanceCount property: The minimum instance count of the cluster.
-     *
+     * 
      * @return the minInstanceCount value.
      */
     public Integer minInstanceCount() {
@@ -63,7 +67,7 @@ public final class AutoscaleTimeAndCapacity {
 
     /**
      * Set the minInstanceCount property: The minimum instance count of the cluster.
-     *
+     * 
      * @param minInstanceCount the minInstanceCount value to set.
      * @return the AutoscaleTimeAndCapacity object itself.
      */
@@ -74,7 +78,7 @@ public final class AutoscaleTimeAndCapacity {
 
     /**
      * Get the maxInstanceCount property: The maximum instance count of the cluster.
-     *
+     * 
      * @return the maxInstanceCount value.
      */
     public Integer maxInstanceCount() {
@@ -83,7 +87,7 @@ public final class AutoscaleTimeAndCapacity {
 
     /**
      * Set the maxInstanceCount property: The maximum instance count of the cluster.
-     *
+     * 
      * @param maxInstanceCount the maxInstanceCount value to set.
      * @return the AutoscaleTimeAndCapacity object itself.
      */
@@ -94,7 +98,7 @@ public final class AutoscaleTimeAndCapacity {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

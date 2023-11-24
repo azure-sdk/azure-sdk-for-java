@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** The cluster definition. */
+/**
+ * The cluster definition.
+ */
 @Fluent
 public final class ClusterDefinition {
     /*
@@ -22,7 +24,7 @@ public final class ClusterDefinition {
      * The type of cluster.
      */
     @JsonProperty(value = "kind")
-    private String kind;
+    private ClusterKind kind;
 
     /*
      * The versions of different services in the cluster.
@@ -37,13 +39,15 @@ public final class ClusterDefinition {
     @JsonProperty(value = "configurations")
     private Object configurations;
 
-    /** Creates an instance of ClusterDefinition class. */
+    /**
+     * Creates an instance of ClusterDefinition class.
+     */
     public ClusterDefinition() {
     }
 
     /**
      * Get the blueprint property: The link to the blueprint.
-     *
+     * 
      * @return the blueprint value.
      */
     public String blueprint() {
@@ -52,7 +56,7 @@ public final class ClusterDefinition {
 
     /**
      * Set the blueprint property: The link to the blueprint.
-     *
+     * 
      * @param blueprint the blueprint value to set.
      * @return the ClusterDefinition object itself.
      */
@@ -63,27 +67,27 @@ public final class ClusterDefinition {
 
     /**
      * Get the kind property: The type of cluster.
-     *
+     * 
      * @return the kind value.
      */
-    public String kind() {
+    public ClusterKind kind() {
         return this.kind;
     }
 
     /**
      * Set the kind property: The type of cluster.
-     *
+     * 
      * @param kind the kind value to set.
      * @return the ClusterDefinition object itself.
      */
-    public ClusterDefinition withKind(String kind) {
+    public ClusterDefinition withKind(ClusterKind kind) {
         this.kind = kind;
         return this;
     }
 
     /**
      * Get the componentVersion property: The versions of different services in the cluster.
-     *
+     * 
      * @return the componentVersion value.
      */
     public Map<String, String> componentVersion() {
@@ -92,7 +96,7 @@ public final class ClusterDefinition {
 
     /**
      * Set the componentVersion property: The versions of different services in the cluster.
-     *
+     * 
      * @param componentVersion the componentVersion value to set.
      * @return the ClusterDefinition object itself.
      */
@@ -103,7 +107,7 @@ public final class ClusterDefinition {
 
     /**
      * Get the configurations property: The cluster configurations.
-     *
+     * 
      * @return the configurations value.
      */
     public Object configurations() {
@@ -112,7 +116,7 @@ public final class ClusterDefinition {
 
     /**
      * Set the configurations property: The cluster configurations.
-     *
+     * 
      * @param configurations the configurations value to set.
      * @return the ClusterDefinition object itself.
      */
@@ -123,7 +127,7 @@ public final class ClusterDefinition {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

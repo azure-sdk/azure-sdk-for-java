@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.hdinsight.models.AzureMonitorSelectedConfigurations;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The azure monitor status response. */
+/**
+ * The azure monitor status response.
+ */
 @Fluent
 public final class AzureMonitorResponseInner {
     /*
@@ -29,13 +31,15 @@ public final class AzureMonitorResponseInner {
     @JsonProperty(value = "selectedConfigurations")
     private AzureMonitorSelectedConfigurations selectedConfigurations;
 
-    /** Creates an instance of AzureMonitorResponseInner class. */
+    /**
+     * Creates an instance of AzureMonitorResponseInner class.
+     */
     public AzureMonitorResponseInner() {
     }
 
     /**
      * Get the clusterMonitoringEnabled property: The status of the monitor on the HDInsight cluster.
-     *
+     * 
      * @return the clusterMonitoringEnabled value.
      */
     public Boolean clusterMonitoringEnabled() {
@@ -44,7 +48,7 @@ public final class AzureMonitorResponseInner {
 
     /**
      * Set the clusterMonitoringEnabled property: The status of the monitor on the HDInsight cluster.
-     *
+     * 
      * @param clusterMonitoringEnabled the clusterMonitoringEnabled value to set.
      * @return the AzureMonitorResponseInner object itself.
      */
@@ -55,7 +59,7 @@ public final class AzureMonitorResponseInner {
 
     /**
      * Get the workspaceId property: The workspace ID of the monitor on the HDInsight cluster.
-     *
+     * 
      * @return the workspaceId value.
      */
     public String workspaceId() {
@@ -64,7 +68,7 @@ public final class AzureMonitorResponseInner {
 
     /**
      * Set the workspaceId property: The workspace ID of the monitor on the HDInsight cluster.
-     *
+     * 
      * @param workspaceId the workspaceId value to set.
      * @return the AzureMonitorResponseInner object itself.
      */
@@ -75,7 +79,7 @@ public final class AzureMonitorResponseInner {
 
     /**
      * Get the selectedConfigurations property: The selected configurations.
-     *
+     * 
      * @return the selectedConfigurations value.
      */
     public AzureMonitorSelectedConfigurations selectedConfigurations() {
@@ -84,19 +88,19 @@ public final class AzureMonitorResponseInner {
 
     /**
      * Set the selectedConfigurations property: The selected configurations.
-     *
+     * 
      * @param selectedConfigurations the selectedConfigurations value to set.
      * @return the AzureMonitorResponseInner object itself.
      */
-    public AzureMonitorResponseInner withSelectedConfigurations(
-        AzureMonitorSelectedConfigurations selectedConfigurations) {
+    public AzureMonitorResponseInner
+        withSelectedConfigurations(AzureMonitorSelectedConfigurations selectedConfigurations) {
         this.selectedConfigurations = selectedConfigurations;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

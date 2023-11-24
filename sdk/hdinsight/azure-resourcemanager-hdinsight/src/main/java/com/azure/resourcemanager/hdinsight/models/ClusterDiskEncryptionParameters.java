@@ -7,7 +7,9 @@ package com.azure.resourcemanager.hdinsight.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The Disk Encryption Cluster request parameters. */
+/**
+ * The Disk Encryption Cluster request parameters.
+ */
 @Fluent
 public final class ClusterDiskEncryptionParameters {
     /*
@@ -28,14 +30,16 @@ public final class ClusterDiskEncryptionParameters {
     @JsonProperty(value = "keyVersion")
     private String keyVersion;
 
-    /** Creates an instance of ClusterDiskEncryptionParameters class. */
+    /**
+     * Creates an instance of ClusterDiskEncryptionParameters class.
+     */
     public ClusterDiskEncryptionParameters() {
     }
 
     /**
      * Get the vaultUri property: Base key vault URI where the customers key is located eg.
      * https://myvault.vault.azure.net.
-     *
+     * 
      * @return the vaultUri value.
      */
     public String vaultUri() {
@@ -45,7 +49,7 @@ public final class ClusterDiskEncryptionParameters {
     /**
      * Set the vaultUri property: Base key vault URI where the customers key is located eg.
      * https://myvault.vault.azure.net.
-     *
+     * 
      * @param vaultUri the vaultUri value to set.
      * @return the ClusterDiskEncryptionParameters object itself.
      */
@@ -56,7 +60,7 @@ public final class ClusterDiskEncryptionParameters {
 
     /**
      * Get the keyName property: Key name that is used for enabling disk encryption.
-     *
+     * 
      * @return the keyName value.
      */
     public String keyName() {
@@ -65,7 +69,7 @@ public final class ClusterDiskEncryptionParameters {
 
     /**
      * Set the keyName property: Key name that is used for enabling disk encryption.
-     *
+     * 
      * @param keyName the keyName value to set.
      * @return the ClusterDiskEncryptionParameters object itself.
      */
@@ -76,7 +80,7 @@ public final class ClusterDiskEncryptionParameters {
 
     /**
      * Get the keyVersion property: Specific key version that is used for enabling disk encryption.
-     *
+     * 
      * @return the keyVersion value.
      */
     public String keyVersion() {
@@ -85,7 +89,7 @@ public final class ClusterDiskEncryptionParameters {
 
     /**
      * Set the keyVersion property: Specific key version that is used for enabling disk encryption.
-     *
+     * 
      * @param keyVersion the keyVersion value to set.
      * @return the ClusterDiskEncryptionParameters object itself.
      */
@@ -96,7 +100,7 @@ public final class ClusterDiskEncryptionParameters {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

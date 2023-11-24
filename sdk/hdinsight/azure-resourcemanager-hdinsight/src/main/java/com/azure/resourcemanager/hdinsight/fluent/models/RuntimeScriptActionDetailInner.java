@@ -10,7 +10,9 @@ import com.azure.resourcemanager.hdinsight.models.ScriptActionExecutionSummary;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The execution details of a script action. */
+/**
+ * The execution details of a script action.
+ */
 @Fluent
 public final class RuntimeScriptActionDetailInner extends RuntimeScriptAction {
     /*
@@ -55,13 +57,15 @@ public final class RuntimeScriptActionDetailInner extends RuntimeScriptAction {
     @JsonProperty(value = "debugInformation", access = JsonProperty.Access.WRITE_ONLY)
     private String debugInformation;
 
-    /** Creates an instance of RuntimeScriptActionDetailInner class. */
+    /**
+     * Creates an instance of RuntimeScriptActionDetailInner class.
+     */
     public RuntimeScriptActionDetailInner() {
     }
 
     /**
      * Get the scriptExecutionId property: The execution id of the script action.
-     *
+     * 
      * @return the scriptExecutionId value.
      */
     public Long scriptExecutionId() {
@@ -70,7 +74,7 @@ public final class RuntimeScriptActionDetailInner extends RuntimeScriptAction {
 
     /**
      * Get the startTime property: The start time of script action execution.
-     *
+     * 
      * @return the startTime value.
      */
     public String startTime() {
@@ -79,7 +83,7 @@ public final class RuntimeScriptActionDetailInner extends RuntimeScriptAction {
 
     /**
      * Get the endTime property: The end time of script action execution.
-     *
+     * 
      * @return the endTime value.
      */
     public String endTime() {
@@ -88,7 +92,7 @@ public final class RuntimeScriptActionDetailInner extends RuntimeScriptAction {
 
     /**
      * Get the status property: The current execution status of the script action.
-     *
+     * 
      * @return the status value.
      */
     public String status() {
@@ -97,7 +101,7 @@ public final class RuntimeScriptActionDetailInner extends RuntimeScriptAction {
 
     /**
      * Get the operation property: The reason why the script action was executed.
-     *
+     * 
      * @return the operation value.
      */
     public String operation() {
@@ -106,7 +110,7 @@ public final class RuntimeScriptActionDetailInner extends RuntimeScriptAction {
 
     /**
      * Get the executionSummary property: The summary of script action execution result.
-     *
+     * 
      * @return the executionSummary value.
      */
     public List<ScriptActionExecutionSummary> executionSummary() {
@@ -115,35 +119,43 @@ public final class RuntimeScriptActionDetailInner extends RuntimeScriptAction {
 
     /**
      * Get the debugInformation property: The script action execution debug information.
-     *
+     * 
      * @return the debugInformation value.
      */
     public String debugInformation() {
         return this.debugInformation;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public RuntimeScriptActionDetailInner withName(String name) {
         super.withName(name);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public RuntimeScriptActionDetailInner withUri(String uri) {
         super.withUri(uri);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public RuntimeScriptActionDetailInner withParameters(String parameters) {
         super.withParameters(parameters);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public RuntimeScriptActionDetailInner withRoles(List<String> roles) {
         super.withRoles(roles);
@@ -152,7 +164,7 @@ public final class RuntimeScriptActionDetailInner extends RuntimeScriptAction {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

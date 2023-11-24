@@ -7,7 +7,9 @@ package com.azure.resourcemanager.hdinsight.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The update gateway settings request parameters. */
+/**
+ * The update gateway settings request parameters.
+ */
 @Fluent
 public final class UpdateGatewaySettingsParameters {
     /*
@@ -28,14 +30,16 @@ public final class UpdateGatewaySettingsParameters {
     @JsonProperty(value = "restAuthCredential.password")
     private String password;
 
-    /** Creates an instance of UpdateGatewaySettingsParameters class. */
+    /**
+     * Creates an instance of UpdateGatewaySettingsParameters class.
+     */
     public UpdateGatewaySettingsParameters() {
     }
 
     /**
      * Get the isCredentialEnabled property: Indicates whether or not the gateway settings based authorization is
      * enabled.
-     *
+     * 
      * @return the isCredentialEnabled value.
      */
     public Boolean isCredentialEnabled() {
@@ -45,7 +49,7 @@ public final class UpdateGatewaySettingsParameters {
     /**
      * Set the isCredentialEnabled property: Indicates whether or not the gateway settings based authorization is
      * enabled.
-     *
+     * 
      * @param isCredentialEnabled the isCredentialEnabled value to set.
      * @return the UpdateGatewaySettingsParameters object itself.
      */
@@ -56,7 +60,7 @@ public final class UpdateGatewaySettingsParameters {
 
     /**
      * Get the username property: The gateway settings user name.
-     *
+     * 
      * @return the username value.
      */
     public String username() {
@@ -65,7 +69,7 @@ public final class UpdateGatewaySettingsParameters {
 
     /**
      * Set the username property: The gateway settings user name.
-     *
+     * 
      * @param username the username value to set.
      * @return the UpdateGatewaySettingsParameters object itself.
      */
@@ -76,7 +80,7 @@ public final class UpdateGatewaySettingsParameters {
 
     /**
      * Get the password property: The gateway settings user password.
-     *
+     * 
      * @return the password value.
      */
     public String password() {
@@ -85,7 +89,7 @@ public final class UpdateGatewaySettingsParameters {
 
     /**
      * Set the password property: The gateway settings user password.
-     *
+     * 
      * @param password the password value to set.
      * @return the UpdateGatewaySettingsParameters object itself.
      */
@@ -96,7 +100,7 @@ public final class UpdateGatewaySettingsParameters {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

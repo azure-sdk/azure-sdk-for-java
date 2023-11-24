@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The regions capability. */
+/**
+ * The regions capability.
+ */
 @Fluent
 public final class RegionsCapability {
     /*
@@ -17,13 +19,15 @@ public final class RegionsCapability {
     @JsonProperty(value = "available")
     private List<String> available;
 
-    /** Creates an instance of RegionsCapability class. */
+    /**
+     * Creates an instance of RegionsCapability class.
+     */
     public RegionsCapability() {
     }
 
     /**
      * Get the available property: The list of region capabilities.
-     *
+     * 
      * @return the available value.
      */
     public List<String> available() {
@@ -32,7 +36,7 @@ public final class RegionsCapability {
 
     /**
      * Set the available property: The list of region capabilities.
-     *
+     * 
      * @param available the available value to set.
      * @return the RegionsCapability object itself.
      */
@@ -43,7 +47,7 @@ public final class RegionsCapability {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

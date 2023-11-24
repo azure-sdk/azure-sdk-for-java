@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The version capability. */
+/**
+ * The version capability.
+ */
 @Fluent
 public final class VersionsCapability {
     /*
@@ -17,13 +19,15 @@ public final class VersionsCapability {
     @JsonProperty(value = "available")
     private List<VersionSpec> available;
 
-    /** Creates an instance of VersionsCapability class. */
+    /**
+     * Creates an instance of VersionsCapability class.
+     */
     public VersionsCapability() {
     }
 
     /**
      * Get the available property: The list of version capabilities.
-     *
+     * 
      * @return the available value.
      */
     public List<VersionSpec> available() {
@@ -32,7 +36,7 @@ public final class VersionsCapability {
 
     /**
      * Set the available property: The list of version capabilities.
-     *
+     * 
      * @param available the available value to set.
      * @return the VersionsCapability object itself.
      */
@@ -43,7 +47,7 @@ public final class VersionsCapability {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

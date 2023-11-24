@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The HDInsight cluster application GET response. */
+/**
+ * The HDInsight cluster application GET response.
+ */
 @Fluent
 public final class ApplicationProperties {
     /*
@@ -83,13 +85,15 @@ public final class ApplicationProperties {
     @JsonProperty(value = "privateLinkConfigurations")
     private List<PrivateLinkConfiguration> privateLinkConfigurations;
 
-    /** Creates an instance of ApplicationProperties class. */
+    /**
+     * Creates an instance of ApplicationProperties class.
+     */
     public ApplicationProperties() {
     }
 
     /**
      * Get the computeProfile property: The list of roles in the cluster.
-     *
+     * 
      * @return the computeProfile value.
      */
     public ComputeProfile computeProfile() {
@@ -98,7 +102,7 @@ public final class ApplicationProperties {
 
     /**
      * Set the computeProfile property: The list of roles in the cluster.
-     *
+     * 
      * @param computeProfile the computeProfile value to set.
      * @return the ApplicationProperties object itself.
      */
@@ -109,7 +113,7 @@ public final class ApplicationProperties {
 
     /**
      * Get the installScriptActions property: The list of install script actions.
-     *
+     * 
      * @return the installScriptActions value.
      */
     public List<RuntimeScriptAction> installScriptActions() {
@@ -118,7 +122,7 @@ public final class ApplicationProperties {
 
     /**
      * Set the installScriptActions property: The list of install script actions.
-     *
+     * 
      * @param installScriptActions the installScriptActions value to set.
      * @return the ApplicationProperties object itself.
      */
@@ -129,7 +133,7 @@ public final class ApplicationProperties {
 
     /**
      * Get the uninstallScriptActions property: The list of uninstall script actions.
-     *
+     * 
      * @return the uninstallScriptActions value.
      */
     public List<RuntimeScriptAction> uninstallScriptActions() {
@@ -138,7 +142,7 @@ public final class ApplicationProperties {
 
     /**
      * Set the uninstallScriptActions property: The list of uninstall script actions.
-     *
+     * 
      * @param uninstallScriptActions the uninstallScriptActions value to set.
      * @return the ApplicationProperties object itself.
      */
@@ -149,7 +153,7 @@ public final class ApplicationProperties {
 
     /**
      * Get the httpsEndpoints property: The list of application HTTPS endpoints.
-     *
+     * 
      * @return the httpsEndpoints value.
      */
     public List<ApplicationGetHttpsEndpoint> httpsEndpoints() {
@@ -158,7 +162,7 @@ public final class ApplicationProperties {
 
     /**
      * Set the httpsEndpoints property: The list of application HTTPS endpoints.
-     *
+     * 
      * @param httpsEndpoints the httpsEndpoints value to set.
      * @return the ApplicationProperties object itself.
      */
@@ -169,7 +173,7 @@ public final class ApplicationProperties {
 
     /**
      * Get the sshEndpoints property: The list of application SSH endpoints.
-     *
+     * 
      * @return the sshEndpoints value.
      */
     public List<ApplicationGetEndpoint> sshEndpoints() {
@@ -178,7 +182,7 @@ public final class ApplicationProperties {
 
     /**
      * Set the sshEndpoints property: The list of application SSH endpoints.
-     *
+     * 
      * @param sshEndpoints the sshEndpoints value to set.
      * @return the ApplicationProperties object itself.
      */
@@ -189,7 +193,7 @@ public final class ApplicationProperties {
 
     /**
      * Get the provisioningState property: The provisioning state of the application.
-     *
+     * 
      * @return the provisioningState value.
      */
     public String provisioningState() {
@@ -198,7 +202,7 @@ public final class ApplicationProperties {
 
     /**
      * Get the applicationType property: The application type.
-     *
+     * 
      * @return the applicationType value.
      */
     public String applicationType() {
@@ -207,7 +211,7 @@ public final class ApplicationProperties {
 
     /**
      * Set the applicationType property: The application type.
-     *
+     * 
      * @param applicationType the applicationType value to set.
      * @return the ApplicationProperties object itself.
      */
@@ -218,7 +222,7 @@ public final class ApplicationProperties {
 
     /**
      * Get the applicationState property: The application state.
-     *
+     * 
      * @return the applicationState value.
      */
     public String applicationState() {
@@ -227,7 +231,7 @@ public final class ApplicationProperties {
 
     /**
      * Get the errors property: The list of errors.
-     *
+     * 
      * @return the errors value.
      */
     public List<Errors> errors() {
@@ -236,7 +240,7 @@ public final class ApplicationProperties {
 
     /**
      * Set the errors property: The list of errors.
-     *
+     * 
      * @param errors the errors value to set.
      * @return the ApplicationProperties object itself.
      */
@@ -247,7 +251,7 @@ public final class ApplicationProperties {
 
     /**
      * Get the createdDate property: The application create date time.
-     *
+     * 
      * @return the createdDate value.
      */
     public String createdDate() {
@@ -256,7 +260,7 @@ public final class ApplicationProperties {
 
     /**
      * Get the marketplaceIdentifier property: The marketplace identifier.
-     *
+     * 
      * @return the marketplaceIdentifier value.
      */
     public String marketplaceIdentifier() {
@@ -265,7 +269,7 @@ public final class ApplicationProperties {
 
     /**
      * Get the privateLinkConfigurations property: The private link configurations.
-     *
+     * 
      * @return the privateLinkConfigurations value.
      */
     public List<PrivateLinkConfiguration> privateLinkConfigurations() {
@@ -274,19 +278,19 @@ public final class ApplicationProperties {
 
     /**
      * Set the privateLinkConfigurations property: The private link configurations.
-     *
+     * 
      * @param privateLinkConfigurations the privateLinkConfigurations value to set.
      * @return the ApplicationProperties object itself.
      */
-    public ApplicationProperties withPrivateLinkConfigurations(
-        List<PrivateLinkConfiguration> privateLinkConfigurations) {
+    public ApplicationProperties
+        withPrivateLinkConfigurations(List<PrivateLinkConfiguration> privateLinkConfigurations) {
         this.privateLinkConfigurations = privateLinkConfigurations;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -7,7 +7,9 @@ package com.azure.resourcemanager.hdinsight.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Cluster monitoring extensions. */
+/**
+ * Cluster monitoring extensions.
+ */
 @Fluent
 public final class Extension {
     /*
@@ -22,13 +24,15 @@ public final class Extension {
     @JsonProperty(value = "primaryKey")
     private String primaryKey;
 
-    /** Creates an instance of Extension class. */
+    /**
+     * Creates an instance of Extension class.
+     */
     public Extension() {
     }
 
     /**
      * Get the workspaceId property: The workspace ID for the cluster monitoring extension.
-     *
+     * 
      * @return the workspaceId value.
      */
     public String workspaceId() {
@@ -37,7 +41,7 @@ public final class Extension {
 
     /**
      * Set the workspaceId property: The workspace ID for the cluster monitoring extension.
-     *
+     * 
      * @param workspaceId the workspaceId value to set.
      * @return the Extension object itself.
      */
@@ -48,7 +52,7 @@ public final class Extension {
 
     /**
      * Get the primaryKey property: The certificate for the cluster monitoring extensions.
-     *
+     * 
      * @return the primaryKey value.
      */
     public String primaryKey() {
@@ -57,7 +61,7 @@ public final class Extension {
 
     /**
      * Set the primaryKey property: The certificate for the cluster monitoring extensions.
-     *
+     * 
      * @param primaryKey the primaryKey value to set.
      * @return the Extension object itself.
      */
@@ -68,7 +72,7 @@ public final class Extension {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

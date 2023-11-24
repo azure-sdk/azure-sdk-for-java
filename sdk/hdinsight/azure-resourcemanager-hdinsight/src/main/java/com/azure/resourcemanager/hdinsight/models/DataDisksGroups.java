@@ -7,7 +7,9 @@ package com.azure.resourcemanager.hdinsight.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The data disks groups for the role. */
+/**
+ * The data disks groups for the role.
+ */
 @Fluent
 public final class DataDisksGroups {
     /*
@@ -28,13 +30,15 @@ public final class DataDisksGroups {
     @JsonProperty(value = "diskSizeGB", access = JsonProperty.Access.WRITE_ONLY)
     private Integer diskSizeGB;
 
-    /** Creates an instance of DataDisksGroups class. */
+    /**
+     * Creates an instance of DataDisksGroups class.
+     */
     public DataDisksGroups() {
     }
 
     /**
      * Get the disksPerNode property: The number of disks per node.
-     *
+     * 
      * @return the disksPerNode value.
      */
     public Integer disksPerNode() {
@@ -43,7 +47,7 @@ public final class DataDisksGroups {
 
     /**
      * Set the disksPerNode property: The number of disks per node.
-     *
+     * 
      * @param disksPerNode the disksPerNode value to set.
      * @return the DataDisksGroups object itself.
      */
@@ -54,7 +58,7 @@ public final class DataDisksGroups {
 
     /**
      * Get the storageAccountType property: ReadOnly. The storage account type. Do not set this value.
-     *
+     * 
      * @return the storageAccountType value.
      */
     public String storageAccountType() {
@@ -63,7 +67,7 @@ public final class DataDisksGroups {
 
     /**
      * Get the diskSizeGB property: ReadOnly. The DiskSize in GB. Do not set this value.
-     *
+     * 
      * @return the diskSizeGB value.
      */
     public Integer diskSizeGB() {
@@ -72,7 +76,7 @@ public final class DataDisksGroups {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** Identity for the cluster. */
+/**
+ * Identity for the cluster.
+ */
 @Fluent
 public final class ClusterIdentity {
     /*
@@ -34,20 +36,23 @@ public final class ClusterIdentity {
     /*
      * The list of user identities associated with the cluster. The user identity dictionary key references will be ARM
      * resource ids in the form:
-     * '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'.
+     * '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/
+     * userAssignedIdentities/{identityName}'.
      */
     @JsonProperty(value = "userAssignedIdentities")
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, UserAssignedIdentity> userAssignedIdentities;
 
-    /** Creates an instance of ClusterIdentity class. */
+    /**
+     * Creates an instance of ClusterIdentity class.
+     */
     public ClusterIdentity() {
     }
 
     /**
      * Get the principalId property: The principal id of cluster identity. This property will only be provided for a
      * system assigned identity.
-     *
+     * 
      * @return the principalId value.
      */
     public String principalId() {
@@ -57,7 +62,7 @@ public final class ClusterIdentity {
     /**
      * Get the tenantId property: The tenant id associated with the cluster. This property will only be provided for a
      * system assigned identity.
-     *
+     * 
      * @return the tenantId value.
      */
     public String tenantId() {
@@ -67,7 +72,7 @@ public final class ClusterIdentity {
     /**
      * Get the type property: The type of identity used for the cluster. The type 'SystemAssigned, UserAssigned'
      * includes both an implicitly created identity and a set of user assigned identities.
-     *
+     * 
      * @return the type value.
      */
     public ResourceIdentityType type() {
@@ -77,7 +82,7 @@ public final class ClusterIdentity {
     /**
      * Set the type property: The type of identity used for the cluster. The type 'SystemAssigned, UserAssigned'
      * includes both an implicitly created identity and a set of user assigned identities.
-     *
+     * 
      * @param type the type value to set.
      * @return the ClusterIdentity object itself.
      */
@@ -90,7 +95,7 @@ public final class ClusterIdentity {
      * Get the userAssignedIdentities property: The list of user identities associated with the cluster. The user
      * identity dictionary key references will be ARM resource ids in the form:
      * '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'.
-     *
+     * 
      * @return the userAssignedIdentities value.
      */
     public Map<String, UserAssignedIdentity> userAssignedIdentities() {
@@ -101,7 +106,7 @@ public final class ClusterIdentity {
      * Set the userAssignedIdentities property: The list of user identities associated with the cluster. The user
      * identity dictionary key references will be ARM resource ids in the form:
      * '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'.
-     *
+     * 
      * @param userAssignedIdentities the userAssignedIdentities value to set.
      * @return the ClusterIdentity object itself.
      */
@@ -112,19 +117,16 @@ public final class ClusterIdentity {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (userAssignedIdentities() != null) {
-            userAssignedIdentities()
-                .values()
-                .forEach(
-                    e -> {
-                        if (e != null) {
-                            e.validate();
-                        }
-                    });
+            userAssignedIdentities().values().forEach(e -> {
+                if (e != null) {
+                    e.validate();
+                }
+            });
         }
     }
 }

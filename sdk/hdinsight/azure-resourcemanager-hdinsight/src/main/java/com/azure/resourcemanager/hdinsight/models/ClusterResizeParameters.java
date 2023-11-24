@@ -7,7 +7,9 @@ package com.azure.resourcemanager.hdinsight.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The Resize Cluster request parameters. */
+/**
+ * The Resize Cluster request parameters.
+ */
 @Fluent
 public final class ClusterResizeParameters {
     /*
@@ -16,13 +18,15 @@ public final class ClusterResizeParameters {
     @JsonProperty(value = "targetInstanceCount")
     private Integer targetInstanceCount;
 
-    /** Creates an instance of ClusterResizeParameters class. */
+    /**
+     * Creates an instance of ClusterResizeParameters class.
+     */
     public ClusterResizeParameters() {
     }
 
     /**
      * Get the targetInstanceCount property: The target instance count for the operation.
-     *
+     * 
      * @return the targetInstanceCount value.
      */
     public Integer targetInstanceCount() {
@@ -31,7 +35,7 @@ public final class ClusterResizeParameters {
 
     /**
      * Set the targetInstanceCount property: The target instance count for the operation.
-     *
+     * 
      * @param targetInstanceCount the targetInstanceCount value to set.
      * @return the ClusterResizeParameters object itself.
      */
@@ -42,7 +46,7 @@ public final class ClusterResizeParameters {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

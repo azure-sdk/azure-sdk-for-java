@@ -7,7 +7,9 @@ package com.azure.resourcemanager.hdinsight.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The configuration that services will be excluded when creating cluster. */
+/**
+ * The configuration that services will be excluded when creating cluster.
+ */
 @Fluent
 public final class ExcludedServicesConfig {
     /*
@@ -22,13 +24,15 @@ public final class ExcludedServicesConfig {
     @JsonProperty(value = "excludedServicesList")
     private String excludedServicesList;
 
-    /** Creates an instance of ExcludedServicesConfig class. */
+    /**
+     * Creates an instance of ExcludedServicesConfig class.
+     */
     public ExcludedServicesConfig() {
     }
 
     /**
      * Get the excludedServicesConfigId property: The config id of excluded services.
-     *
+     * 
      * @return the excludedServicesConfigId value.
      */
     public String excludedServicesConfigId() {
@@ -37,7 +41,7 @@ public final class ExcludedServicesConfig {
 
     /**
      * Set the excludedServicesConfigId property: The config id of excluded services.
-     *
+     * 
      * @param excludedServicesConfigId the excludedServicesConfigId value to set.
      * @return the ExcludedServicesConfig object itself.
      */
@@ -48,7 +52,7 @@ public final class ExcludedServicesConfig {
 
     /**
      * Get the excludedServicesList property: The list of excluded services.
-     *
+     * 
      * @return the excludedServicesList value.
      */
     public String excludedServicesList() {
@@ -57,7 +61,7 @@ public final class ExcludedServicesConfig {
 
     /**
      * Set the excludedServicesList property: The list of excluded services.
-     *
+     * 
      * @param excludedServicesList the excludedServicesList value to set.
      * @return the ExcludedServicesConfig object itself.
      */
@@ -68,7 +72,7 @@ public final class ExcludedServicesConfig {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

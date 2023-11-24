@@ -7,7 +7,9 @@ package com.azure.resourcemanager.hdinsight.fluent.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Gateway settings. */
+/**
+ * Gateway settings.
+ */
 @Immutable
 public final class GatewaySettingsInner {
     /*
@@ -28,14 +30,16 @@ public final class GatewaySettingsInner {
     @JsonProperty(value = "restAuthCredential.password", access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
-    /** Creates an instance of GatewaySettingsInner class. */
+    /**
+     * Creates an instance of GatewaySettingsInner class.
+     */
     public GatewaySettingsInner() {
     }
 
     /**
      * Get the isCredentialEnabled property: Indicates whether or not the gateway settings based authorization is
      * enabled.
-     *
+     * 
      * @return the isCredentialEnabled value.
      */
     public String isCredentialEnabled() {
@@ -44,7 +48,7 @@ public final class GatewaySettingsInner {
 
     /**
      * Get the username property: The gateway settings user name.
-     *
+     * 
      * @return the username value.
      */
     public String username() {
@@ -53,7 +57,7 @@ public final class GatewaySettingsInner {
 
     /**
      * Get the password property: The gateway settings user password.
-     *
+     * 
      * @return the password value.
      */
     public String password() {
@@ -62,7 +66,7 @@ public final class GatewaySettingsInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

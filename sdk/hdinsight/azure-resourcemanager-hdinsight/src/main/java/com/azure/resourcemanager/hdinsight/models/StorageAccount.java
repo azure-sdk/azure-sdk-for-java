@@ -7,7 +7,9 @@ package com.azure.resourcemanager.hdinsight.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The storage Account. */
+/**
+ * The storage Account.
+ */
 @Fluent
 public final class StorageAccount {
     /*
@@ -72,13 +74,15 @@ public final class StorageAccount {
     @JsonProperty(value = "enableSecureChannel")
     private Boolean enableSecureChannel;
 
-    /** Creates an instance of StorageAccount class. */
+    /**
+     * Creates an instance of StorageAccount class.
+     */
     public StorageAccount() {
     }
 
     /**
      * Get the name property: The name of the storage account.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -87,7 +91,7 @@ public final class StorageAccount {
 
     /**
      * Set the name property: The name of the storage account.
-     *
+     * 
      * @param name the name value to set.
      * @return the StorageAccount object itself.
      */
@@ -98,7 +102,7 @@ public final class StorageAccount {
 
     /**
      * Get the isDefault property: Whether or not the storage account is the default storage account.
-     *
+     * 
      * @return the isDefault value.
      */
     public Boolean isDefault() {
@@ -107,7 +111,7 @@ public final class StorageAccount {
 
     /**
      * Set the isDefault property: Whether or not the storage account is the default storage account.
-     *
+     * 
      * @param isDefault the isDefault value to set.
      * @return the StorageAccount object itself.
      */
@@ -117,8 +121,9 @@ public final class StorageAccount {
     }
 
     /**
-     * Get the container property: The container in the storage account, only to be specified for WASB storage accounts.
-     *
+     * Get the container property: The container in the storage account, only to be specified for WASB storage
+     * accounts.
+     * 
      * @return the container value.
      */
     public String container() {
@@ -126,8 +131,9 @@ public final class StorageAccount {
     }
 
     /**
-     * Set the container property: The container in the storage account, only to be specified for WASB storage accounts.
-     *
+     * Set the container property: The container in the storage account, only to be specified for WASB storage
+     * accounts.
+     * 
      * @param container the container value to set.
      * @return the StorageAccount object itself.
      */
@@ -138,7 +144,7 @@ public final class StorageAccount {
 
     /**
      * Get the fileSystem property: The filesystem, only to be specified for Azure Data Lake Storage Gen 2.
-     *
+     * 
      * @return the fileSystem value.
      */
     public String fileSystem() {
@@ -147,7 +153,7 @@ public final class StorageAccount {
 
     /**
      * Set the fileSystem property: The filesystem, only to be specified for Azure Data Lake Storage Gen 2.
-     *
+     * 
      * @param fileSystem the fileSystem value to set.
      * @return the StorageAccount object itself.
      */
@@ -158,7 +164,7 @@ public final class StorageAccount {
 
     /**
      * Get the key property: The storage account access key.
-     *
+     * 
      * @return the key value.
      */
     public String key() {
@@ -167,7 +173,7 @@ public final class StorageAccount {
 
     /**
      * Set the key property: The storage account access key.
-     *
+     * 
      * @param key the key value to set.
      * @return the StorageAccount object itself.
      */
@@ -177,9 +183,9 @@ public final class StorageAccount {
     }
 
     /**
-     * Get the resourceId property: The resource ID of storage account, only to be specified for Azure Data Lake Storage
-     * Gen 2.
-     *
+     * Get the resourceId property: The resource ID of storage account, only to be specified for Azure Data Lake
+     * Storage Gen 2.
+     * 
      * @return the resourceId value.
      */
     public String resourceId() {
@@ -187,9 +193,9 @@ public final class StorageAccount {
     }
 
     /**
-     * Set the resourceId property: The resource ID of storage account, only to be specified for Azure Data Lake Storage
-     * Gen 2.
-     *
+     * Set the resourceId property: The resource ID of storage account, only to be specified for Azure Data Lake
+     * Storage Gen 2.
+     * 
      * @param resourceId the resourceId value to set.
      * @return the StorageAccount object itself.
      */
@@ -199,9 +205,9 @@ public final class StorageAccount {
     }
 
     /**
-     * Get the msiResourceId property: The managed identity (MSI) that is allowed to access the storage account, only to
-     * be specified for Azure Data Lake Storage Gen 2.
-     *
+     * Get the msiResourceId property: The managed identity (MSI) that is allowed to access the storage account, only
+     * to be specified for Azure Data Lake Storage Gen 2.
+     * 
      * @return the msiResourceId value.
      */
     public String msiResourceId() {
@@ -209,9 +215,9 @@ public final class StorageAccount {
     }
 
     /**
-     * Set the msiResourceId property: The managed identity (MSI) that is allowed to access the storage account, only to
-     * be specified for Azure Data Lake Storage Gen 2.
-     *
+     * Set the msiResourceId property: The managed identity (MSI) that is allowed to access the storage account, only
+     * to be specified for Azure Data Lake Storage Gen 2.
+     * 
      * @param msiResourceId the msiResourceId value to set.
      * @return the StorageAccount object itself.
      */
@@ -222,7 +228,7 @@ public final class StorageAccount {
 
     /**
      * Get the saskey property: The shared access signature key.
-     *
+     * 
      * @return the saskey value.
      */
     public String saskey() {
@@ -231,7 +237,7 @@ public final class StorageAccount {
 
     /**
      * Set the saskey property: The shared access signature key.
-     *
+     * 
      * @param saskey the saskey value to set.
      * @return the StorageAccount object itself.
      */
@@ -242,7 +248,7 @@ public final class StorageAccount {
 
     /**
      * Get the fileshare property: The file share name.
-     *
+     * 
      * @return the fileshare value.
      */
     public String fileshare() {
@@ -251,7 +257,7 @@ public final class StorageAccount {
 
     /**
      * Set the fileshare property: The file share name.
-     *
+     * 
      * @param fileshare the fileshare value to set.
      * @return the StorageAccount object itself.
      */
@@ -263,7 +269,7 @@ public final class StorageAccount {
     /**
      * Get the enableSecureChannel property: Enable secure channel or not, it's an optional field. Default value is
      * false when cluster version &lt; 5.1 and true when cluster version &gt;= 5.1 ,.
-     *
+     * 
      * @return the enableSecureChannel value.
      */
     public Boolean enableSecureChannel() {
@@ -273,7 +279,7 @@ public final class StorageAccount {
     /**
      * Set the enableSecureChannel property: Enable secure channel or not, it's an optional field. Default value is
      * false when cluster version &lt; 5.1 and true when cluster version &gt;= 5.1 ,.
-     *
+     * 
      * @param enableSecureChannel the enableSecureChannel value to set.
      * @return the StorageAccount object itself.
      */
@@ -284,7 +290,7 @@ public final class StorageAccount {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

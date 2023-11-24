@@ -13,7 +13,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
 
-/** The HDInsight cluster. */
+/**
+ * The HDInsight cluster.
+ */
 @Fluent
 public final class ClusterInner extends Resource {
     /*
@@ -46,13 +48,15 @@ public final class ClusterInner extends Resource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of ClusterInner class. */
+    /**
+     * Creates an instance of ClusterInner class.
+     */
     public ClusterInner() {
     }
 
     /**
      * Get the etag property: The ETag for the resource.
-     *
+     * 
      * @return the etag value.
      */
     public String etag() {
@@ -61,7 +65,7 @@ public final class ClusterInner extends Resource {
 
     /**
      * Set the etag property: The ETag for the resource.
-     *
+     * 
      * @param etag the etag value to set.
      * @return the ClusterInner object itself.
      */
@@ -72,7 +76,7 @@ public final class ClusterInner extends Resource {
 
     /**
      * Get the zones property: The availability zones.
-     *
+     * 
      * @return the zones value.
      */
     public List<String> zones() {
@@ -81,7 +85,7 @@ public final class ClusterInner extends Resource {
 
     /**
      * Set the zones property: The availability zones.
-     *
+     * 
      * @param zones the zones value to set.
      * @return the ClusterInner object itself.
      */
@@ -92,7 +96,7 @@ public final class ClusterInner extends Resource {
 
     /**
      * Get the properties property: The properties of the cluster.
-     *
+     * 
      * @return the properties value.
      */
     public ClusterGetProperties properties() {
@@ -101,7 +105,7 @@ public final class ClusterInner extends Resource {
 
     /**
      * Set the properties property: The properties of the cluster.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the ClusterInner object itself.
      */
@@ -112,7 +116,7 @@ public final class ClusterInner extends Resource {
 
     /**
      * Get the identity property: The identity of the cluster, if configured.
-     *
+     * 
      * @return the identity value.
      */
     public ClusterIdentity identity() {
@@ -121,7 +125,7 @@ public final class ClusterInner extends Resource {
 
     /**
      * Set the identity property: The identity of the cluster, if configured.
-     *
+     * 
      * @param identity the identity value to set.
      * @return the ClusterInner object itself.
      */
@@ -132,21 +136,25 @@ public final class ClusterInner extends Resource {
 
     /**
      * Get the systemData property: Metadata pertaining to creation and last modification of the resource.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
         return this.systemData;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ClusterInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ClusterInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -155,7 +163,7 @@ public final class ClusterInner extends Resource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

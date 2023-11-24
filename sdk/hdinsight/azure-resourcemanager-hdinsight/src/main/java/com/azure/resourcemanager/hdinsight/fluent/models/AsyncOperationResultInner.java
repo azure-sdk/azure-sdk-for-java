@@ -9,7 +9,9 @@ import com.azure.resourcemanager.hdinsight.models.AsyncOperationState;
 import com.azure.resourcemanager.hdinsight.models.Errors;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The azure async operation response. */
+/**
+ * The azure async operation response.
+ */
 @Fluent
 public final class AsyncOperationResultInner {
     /*
@@ -24,13 +26,15 @@ public final class AsyncOperationResultInner {
     @JsonProperty(value = "error")
     private Errors error;
 
-    /** Creates an instance of AsyncOperationResultInner class. */
+    /**
+     * Creates an instance of AsyncOperationResultInner class.
+     */
     public AsyncOperationResultInner() {
     }
 
     /**
      * Get the status property: The async operation state.
-     *
+     * 
      * @return the status value.
      */
     public AsyncOperationState status() {
@@ -39,7 +43,7 @@ public final class AsyncOperationResultInner {
 
     /**
      * Set the status property: The async operation state.
-     *
+     * 
      * @param status the status value to set.
      * @return the AsyncOperationResultInner object itself.
      */
@@ -50,7 +54,7 @@ public final class AsyncOperationResultInner {
 
     /**
      * Get the error property: The operation error information.
-     *
+     * 
      * @return the error value.
      */
     public Errors error() {
@@ -59,7 +63,7 @@ public final class AsyncOperationResultInner {
 
     /**
      * Set the error property: The operation error information.
-     *
+     * 
      * @param error the error value to set.
      * @return the AsyncOperationResultInner object itself.
      */
@@ -70,7 +74,7 @@ public final class AsyncOperationResultInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

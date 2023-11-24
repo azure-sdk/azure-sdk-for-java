@@ -7,7 +7,9 @@ package com.azure.resourcemanager.hdinsight.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The disk encryption properties. */
+/**
+ * The disk encryption properties.
+ */
 @Fluent
 public final class DiskEncryptionProperties {
     /*
@@ -46,14 +48,16 @@ public final class DiskEncryptionProperties {
     @JsonProperty(value = "encryptionAtHost")
     private Boolean encryptionAtHost;
 
-    /** Creates an instance of DiskEncryptionProperties class. */
+    /**
+     * Creates an instance of DiskEncryptionProperties class.
+     */
     public DiskEncryptionProperties() {
     }
 
     /**
      * Get the vaultUri property: Base key vault URI where the customers key is located eg.
      * https://myvault.vault.azure.net.
-     *
+     * 
      * @return the vaultUri value.
      */
     public String vaultUri() {
@@ -63,7 +67,7 @@ public final class DiskEncryptionProperties {
     /**
      * Set the vaultUri property: Base key vault URI where the customers key is located eg.
      * https://myvault.vault.azure.net.
-     *
+     * 
      * @param vaultUri the vaultUri value to set.
      * @return the DiskEncryptionProperties object itself.
      */
@@ -74,7 +78,7 @@ public final class DiskEncryptionProperties {
 
     /**
      * Get the keyName property: Key name that is used for enabling disk encryption.
-     *
+     * 
      * @return the keyName value.
      */
     public String keyName() {
@@ -83,7 +87,7 @@ public final class DiskEncryptionProperties {
 
     /**
      * Set the keyName property: Key name that is used for enabling disk encryption.
-     *
+     * 
      * @param keyName the keyName value to set.
      * @return the DiskEncryptionProperties object itself.
      */
@@ -94,7 +98,7 @@ public final class DiskEncryptionProperties {
 
     /**
      * Get the keyVersion property: Specific key version that is used for enabling disk encryption.
-     *
+     * 
      * @return the keyVersion value.
      */
     public String keyVersion() {
@@ -103,7 +107,7 @@ public final class DiskEncryptionProperties {
 
     /**
      * Set the keyVersion property: Specific key version that is used for enabling disk encryption.
-     *
+     * 
      * @param keyVersion the keyVersion value to set.
      * @return the DiskEncryptionProperties object itself.
      */
@@ -114,7 +118,7 @@ public final class DiskEncryptionProperties {
 
     /**
      * Get the encryptionAlgorithm property: Algorithm identifier for encryption, default RSA-OAEP.
-     *
+     * 
      * @return the encryptionAlgorithm value.
      */
     public JsonWebKeyEncryptionAlgorithm encryptionAlgorithm() {
@@ -123,7 +127,7 @@ public final class DiskEncryptionProperties {
 
     /**
      * Set the encryptionAlgorithm property: Algorithm identifier for encryption, default RSA-OAEP.
-     *
+     * 
      * @param encryptionAlgorithm the encryptionAlgorithm value to set.
      * @return the DiskEncryptionProperties object itself.
      */
@@ -134,7 +138,7 @@ public final class DiskEncryptionProperties {
 
     /**
      * Get the msiResourceId property: Resource ID of Managed Identity that is used to access the key vault.
-     *
+     * 
      * @return the msiResourceId value.
      */
     public String msiResourceId() {
@@ -143,7 +147,7 @@ public final class DiskEncryptionProperties {
 
     /**
      * Set the msiResourceId property: Resource ID of Managed Identity that is used to access the key vault.
-     *
+     * 
      * @param msiResourceId the msiResourceId value to set.
      * @return the DiskEncryptionProperties object itself.
      */
@@ -154,7 +158,7 @@ public final class DiskEncryptionProperties {
 
     /**
      * Get the encryptionAtHost property: Indicates whether or not resource disk encryption is enabled.
-     *
+     * 
      * @return the encryptionAtHost value.
      */
     public Boolean encryptionAtHost() {
@@ -163,7 +167,7 @@ public final class DiskEncryptionProperties {
 
     /**
      * Set the encryptionAtHost property: Indicates whether or not resource disk encryption is enabled.
-     *
+     * 
      * @param encryptionAtHost the encryptionAtHost value to set.
      * @return the DiskEncryptionProperties object itself.
      */
@@ -174,7 +178,7 @@ public final class DiskEncryptionProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

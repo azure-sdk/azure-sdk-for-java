@@ -7,7 +7,9 @@ package com.azure.resourcemanager.hdinsight.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The autoscale configuration update parameter. */
+/**
+ * The autoscale configuration update parameter.
+ */
 @Fluent
 public final class AutoscaleConfigurationUpdateParameter {
     /*
@@ -16,13 +18,15 @@ public final class AutoscaleConfigurationUpdateParameter {
     @JsonProperty(value = "autoscale")
     private Autoscale autoscale;
 
-    /** Creates an instance of AutoscaleConfigurationUpdateParameter class. */
+    /**
+     * Creates an instance of AutoscaleConfigurationUpdateParameter class.
+     */
     public AutoscaleConfigurationUpdateParameter() {
     }
 
     /**
      * Get the autoscale property: The autoscale configuration.
-     *
+     * 
      * @return the autoscale value.
      */
     public Autoscale autoscale() {
@@ -31,7 +35,7 @@ public final class AutoscaleConfigurationUpdateParameter {
 
     /**
      * Set the autoscale property: The autoscale configuration.
-     *
+     * 
      * @param autoscale the autoscale value to set.
      * @return the AutoscaleConfigurationUpdateParameter object itself.
      */
@@ -42,7 +46,7 @@ public final class AutoscaleConfigurationUpdateParameter {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -7,7 +7,9 @@ package com.azure.resourcemanager.hdinsight.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The connectivity properties. */
+/**
+ * The connectivity properties.
+ */
 @Fluent
 public final class ConnectivityEndpoint {
     /*
@@ -40,13 +42,15 @@ public final class ConnectivityEndpoint {
     @JsonProperty(value = "privateIPAddress")
     private String privateIpAddress;
 
-    /** Creates an instance of ConnectivityEndpoint class. */
+    /**
+     * Creates an instance of ConnectivityEndpoint class.
+     */
     public ConnectivityEndpoint() {
     }
 
     /**
      * Get the name property: The name of the endpoint.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -55,7 +59,7 @@ public final class ConnectivityEndpoint {
 
     /**
      * Set the name property: The name of the endpoint.
-     *
+     * 
      * @param name the name value to set.
      * @return the ConnectivityEndpoint object itself.
      */
@@ -66,7 +70,7 @@ public final class ConnectivityEndpoint {
 
     /**
      * Get the protocol property: The protocol of the endpoint.
-     *
+     * 
      * @return the protocol value.
      */
     public String protocol() {
@@ -75,7 +79,7 @@ public final class ConnectivityEndpoint {
 
     /**
      * Set the protocol property: The protocol of the endpoint.
-     *
+     * 
      * @param protocol the protocol value to set.
      * @return the ConnectivityEndpoint object itself.
      */
@@ -86,7 +90,7 @@ public final class ConnectivityEndpoint {
 
     /**
      * Get the location property: The location of the endpoint.
-     *
+     * 
      * @return the location value.
      */
     public String location() {
@@ -95,7 +99,7 @@ public final class ConnectivityEndpoint {
 
     /**
      * Set the location property: The location of the endpoint.
-     *
+     * 
      * @param location the location value to set.
      * @return the ConnectivityEndpoint object itself.
      */
@@ -106,7 +110,7 @@ public final class ConnectivityEndpoint {
 
     /**
      * Get the port property: The port to connect to.
-     *
+     * 
      * @return the port value.
      */
     public Integer port() {
@@ -115,7 +119,7 @@ public final class ConnectivityEndpoint {
 
     /**
      * Set the port property: The port to connect to.
-     *
+     * 
      * @param port the port value to set.
      * @return the ConnectivityEndpoint object itself.
      */
@@ -126,7 +130,7 @@ public final class ConnectivityEndpoint {
 
     /**
      * Get the privateIpAddress property: The private ip address of the endpoint.
-     *
+     * 
      * @return the privateIpAddress value.
      */
     public String privateIpAddress() {
@@ -135,7 +139,7 @@ public final class ConnectivityEndpoint {
 
     /**
      * Set the privateIpAddress property: The private ip address of the endpoint.
-     *
+     * 
      * @param privateIpAddress the privateIpAddress value to set.
      * @return the ConnectivityEndpoint object itself.
      */
@@ -146,7 +150,7 @@ public final class ConnectivityEndpoint {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

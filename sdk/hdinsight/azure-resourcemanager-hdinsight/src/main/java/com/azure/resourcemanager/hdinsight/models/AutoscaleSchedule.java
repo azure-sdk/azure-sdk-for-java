@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Parameters for a schedule-based autoscale rule, consisting of an array of days + a time and capacity. */
+/**
+ * Parameters for a schedule-based autoscale rule, consisting of an array of days + a time and capacity.
+ */
 @Fluent
 public final class AutoscaleSchedule {
     /*
@@ -23,13 +25,15 @@ public final class AutoscaleSchedule {
     @JsonProperty(value = "timeAndCapacity")
     private AutoscaleTimeAndCapacity timeAndCapacity;
 
-    /** Creates an instance of AutoscaleSchedule class. */
+    /**
+     * Creates an instance of AutoscaleSchedule class.
+     */
     public AutoscaleSchedule() {
     }
 
     /**
      * Get the days property: Days of the week for a schedule-based autoscale rule.
-     *
+     * 
      * @return the days value.
      */
     public List<DaysOfWeek> days() {
@@ -38,7 +42,7 @@ public final class AutoscaleSchedule {
 
     /**
      * Set the days property: Days of the week for a schedule-based autoscale rule.
-     *
+     * 
      * @param days the days value to set.
      * @return the AutoscaleSchedule object itself.
      */
@@ -49,7 +53,7 @@ public final class AutoscaleSchedule {
 
     /**
      * Get the timeAndCapacity property: Time and capacity for a schedule-based autoscale rule.
-     *
+     * 
      * @return the timeAndCapacity value.
      */
     public AutoscaleTimeAndCapacity timeAndCapacity() {
@@ -58,7 +62,7 @@ public final class AutoscaleSchedule {
 
     /**
      * Set the timeAndCapacity property: Time and capacity for a schedule-based autoscale rule.
-     *
+     * 
      * @param timeAndCapacity the timeAndCapacity value to set.
      * @return the AutoscaleSchedule object itself.
      */
@@ -69,7 +73,7 @@ public final class AutoscaleSchedule {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

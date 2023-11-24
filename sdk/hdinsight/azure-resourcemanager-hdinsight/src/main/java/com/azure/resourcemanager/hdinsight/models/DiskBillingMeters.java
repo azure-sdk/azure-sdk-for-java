@@ -7,7 +7,9 @@ package com.azure.resourcemanager.hdinsight.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The disk billing meters. */
+/**
+ * The disk billing meters.
+ */
 @Fluent
 public final class DiskBillingMeters {
     /*
@@ -28,13 +30,15 @@ public final class DiskBillingMeters {
     @JsonProperty(value = "tier")
     private Tier tier;
 
-    /** Creates an instance of DiskBillingMeters class. */
+    /**
+     * Creates an instance of DiskBillingMeters class.
+     */
     public DiskBillingMeters() {
     }
 
     /**
      * Get the diskRpMeter property: The managed disk meter guid.
-     *
+     * 
      * @return the diskRpMeter value.
      */
     public String diskRpMeter() {
@@ -43,7 +47,7 @@ public final class DiskBillingMeters {
 
     /**
      * Set the diskRpMeter property: The managed disk meter guid.
-     *
+     * 
      * @param diskRpMeter the diskRpMeter value to set.
      * @return the DiskBillingMeters object itself.
      */
@@ -54,7 +58,7 @@ public final class DiskBillingMeters {
 
     /**
      * Get the sku property: The managed disk billing sku, P30 or S30.
-     *
+     * 
      * @return the sku value.
      */
     public String sku() {
@@ -63,7 +67,7 @@ public final class DiskBillingMeters {
 
     /**
      * Set the sku property: The managed disk billing sku, P30 or S30.
-     *
+     * 
      * @param sku the sku value to set.
      * @return the DiskBillingMeters object itself.
      */
@@ -74,7 +78,7 @@ public final class DiskBillingMeters {
 
     /**
      * Get the tier property: The managed disk billing tier, Standard or Premium.
-     *
+     * 
      * @return the tier value.
      */
     public Tier tier() {
@@ -83,7 +87,7 @@ public final class DiskBillingMeters {
 
     /**
      * Set the tier property: The managed disk billing tier, Standard or Premium.
-     *
+     * 
      * @param tier the tier value to set.
      * @return the DiskBillingMeters object itself.
      */
@@ -94,7 +98,7 @@ public final class DiskBillingMeters {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -7,7 +7,9 @@ package com.azure.resourcemanager.hdinsight.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The virtual network properties. */
+/**
+ * The virtual network properties.
+ */
 @Fluent
 public final class VirtualNetworkProfile {
     /*
@@ -22,13 +24,15 @@ public final class VirtualNetworkProfile {
     @JsonProperty(value = "subnet")
     private String subnet;
 
-    /** Creates an instance of VirtualNetworkProfile class. */
+    /**
+     * Creates an instance of VirtualNetworkProfile class.
+     */
     public VirtualNetworkProfile() {
     }
 
     /**
      * Get the id property: The ID of the virtual network.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -37,7 +41,7 @@ public final class VirtualNetworkProfile {
 
     /**
      * Set the id property: The ID of the virtual network.
-     *
+     * 
      * @param id the id value to set.
      * @return the VirtualNetworkProfile object itself.
      */
@@ -48,7 +52,7 @@ public final class VirtualNetworkProfile {
 
     /**
      * Get the subnet property: The name of the subnet.
-     *
+     * 
      * @return the subnet value.
      */
     public String subnet() {
@@ -57,7 +61,7 @@ public final class VirtualNetworkProfile {
 
     /**
      * Set the subnet property: The name of the subnet.
-     *
+     * 
      * @param subnet the subnet value to set.
      * @return the VirtualNetworkProfile object itself.
      */
@@ -68,7 +72,7 @@ public final class VirtualNetworkProfile {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

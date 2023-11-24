@@ -9,7 +9,9 @@ import com.azure.resourcemanager.hdinsight.models.OperationDisplay;
 import com.azure.resourcemanager.hdinsight.models.OperationProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The HDInsight REST API operation. */
+/**
+ * The HDInsight REST API operation.
+ */
 @Fluent
 public final class OperationInner {
     /*
@@ -30,13 +32,15 @@ public final class OperationInner {
     @JsonProperty(value = "properties")
     private OperationProperties properties;
 
-    /** Creates an instance of OperationInner class. */
+    /**
+     * Creates an instance of OperationInner class.
+     */
     public OperationInner() {
     }
 
     /**
      * Get the name property: The operation name: {provider}/{resource}/{operation}.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -45,7 +49,7 @@ public final class OperationInner {
 
     /**
      * Set the name property: The operation name: {provider}/{resource}/{operation}.
-     *
+     * 
      * @param name the name value to set.
      * @return the OperationInner object itself.
      */
@@ -56,7 +60,7 @@ public final class OperationInner {
 
     /**
      * Get the display property: The display of operation.
-     *
+     * 
      * @return the display value.
      */
     public OperationDisplay display() {
@@ -65,7 +69,7 @@ public final class OperationInner {
 
     /**
      * Set the display property: The display of operation.
-     *
+     * 
      * @param display the display value to set.
      * @return the OperationInner object itself.
      */
@@ -76,7 +80,7 @@ public final class OperationInner {
 
     /**
      * Get the properties property: The operation properties.
-     *
+     * 
      * @return the properties value.
      */
     public OperationProperties properties() {
@@ -85,7 +89,7 @@ public final class OperationInner {
 
     /**
      * Set the properties property: The operation properties.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the OperationInner object itself.
      */
@@ -96,7 +100,7 @@ public final class OperationInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

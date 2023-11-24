@@ -7,7 +7,9 @@ package com.azure.resourcemanager.hdinsight.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The SSH public key for the cluster nodes. */
+/**
+ * The SSH public key for the cluster nodes.
+ */
 @Fluent
 public final class SshPublicKey {
     /*
@@ -16,13 +18,15 @@ public final class SshPublicKey {
     @JsonProperty(value = "certificateData")
     private String certificateData;
 
-    /** Creates an instance of SshPublicKey class. */
+    /**
+     * Creates an instance of SshPublicKey class.
+     */
     public SshPublicKey() {
     }
 
     /**
      * Get the certificateData property: The certificate for SSH.
-     *
+     * 
      * @return the certificateData value.
      */
     public String certificateData() {
@@ -31,7 +35,7 @@ public final class SshPublicKey {
 
     /**
      * Set the certificateData property: The certificate for SSH.
-     *
+     * 
      * @param certificateData the certificateData value to set.
      * @return the SshPublicKey object itself.
      */
@@ -42,7 +46,7 @@ public final class SshPublicKey {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

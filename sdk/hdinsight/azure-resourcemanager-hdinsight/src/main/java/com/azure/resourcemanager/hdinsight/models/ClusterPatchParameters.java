@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** The PatchCluster request parameters. */
+/**
+ * The PatchCluster request parameters.
+ */
 @Fluent
 public final class ClusterPatchParameters {
     /*
@@ -19,13 +21,15 @@ public final class ClusterPatchParameters {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> tags;
 
-    /** Creates an instance of ClusterPatchParameters class. */
+    /**
+     * Creates an instance of ClusterPatchParameters class.
+     */
     public ClusterPatchParameters() {
     }
 
     /**
      * Get the tags property: The resource tags.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -34,7 +38,7 @@ public final class ClusterPatchParameters {
 
     /**
      * Set the tags property: The resource tags.
-     *
+     * 
      * @param tags the tags value to set.
      * @return the ClusterPatchParameters object itself.
      */
@@ -45,7 +49,7 @@ public final class ClusterPatchParameters {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -7,7 +7,9 @@ package com.azure.resourcemanager.hdinsight.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The cluster monitor parameters. */
+/**
+ * The cluster monitor parameters.
+ */
 @Fluent
 public final class ClusterMonitoringRequest {
     /*
@@ -22,13 +24,15 @@ public final class ClusterMonitoringRequest {
     @JsonProperty(value = "primaryKey")
     private String primaryKey;
 
-    /** Creates an instance of ClusterMonitoringRequest class. */
+    /**
+     * Creates an instance of ClusterMonitoringRequest class.
+     */
     public ClusterMonitoringRequest() {
     }
 
     /**
      * Get the workspaceId property: The cluster monitor workspace ID.
-     *
+     * 
      * @return the workspaceId value.
      */
     public String workspaceId() {
@@ -37,7 +41,7 @@ public final class ClusterMonitoringRequest {
 
     /**
      * Set the workspaceId property: The cluster monitor workspace ID.
-     *
+     * 
      * @param workspaceId the workspaceId value to set.
      * @return the ClusterMonitoringRequest object itself.
      */
@@ -48,7 +52,7 @@ public final class ClusterMonitoringRequest {
 
     /**
      * Get the primaryKey property: The cluster monitor workspace key.
-     *
+     * 
      * @return the primaryKey value.
      */
     public String primaryKey() {
@@ -57,7 +61,7 @@ public final class ClusterMonitoringRequest {
 
     /**
      * Set the primaryKey property: The cluster monitor workspace key.
-     *
+     * 
      * @param primaryKey the primaryKey value to set.
      * @return the ClusterMonitoringRequest object itself.
      */
@@ -68,7 +72,7 @@ public final class ClusterMonitoringRequest {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -9,7 +9,9 @@ import com.azure.resourcemanager.hdinsight.models.Usage;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The response for the operation to get regional usages for a subscription. */
+/**
+ * The response for the operation to get regional usages for a subscription.
+ */
 @Fluent
 public final class UsagesListResultInner {
     /*
@@ -18,13 +20,15 @@ public final class UsagesListResultInner {
     @JsonProperty(value = "value")
     private List<Usage> value;
 
-    /** Creates an instance of UsagesListResultInner class. */
+    /**
+     * Creates an instance of UsagesListResultInner class.
+     */
     public UsagesListResultInner() {
     }
 
     /**
      * Get the value property: The list of usages.
-     *
+     * 
      * @return the value value.
      */
     public List<Usage> value() {
@@ -33,7 +37,7 @@ public final class UsagesListResultInner {
 
     /**
      * Set the value property: The list of usages.
-     *
+     * 
      * @param value the value value to set.
      * @return the UsagesListResultInner object itself.
      */
@@ -44,7 +48,7 @@ public final class UsagesListResultInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

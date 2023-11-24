@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
 
-/** The cluster create request specification. */
+/**
+ * The cluster create request specification.
+ */
 @Fluent
 public final class ClusterCreateRequestValidationParameters extends ClusterCreateParametersExtended {
     /*
@@ -36,13 +38,15 @@ public final class ClusterCreateRequestValidationParameters extends ClusterCreat
     @JsonProperty(value = "fetchAaddsResource")
     private Boolean fetchAaddsResource;
 
-    /** Creates an instance of ClusterCreateRequestValidationParameters class. */
+    /**
+     * Creates an instance of ClusterCreateRequestValidationParameters class.
+     */
     public ClusterCreateRequestValidationParameters() {
     }
 
     /**
      * Get the name property: The cluster name.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -51,7 +55,7 @@ public final class ClusterCreateRequestValidationParameters extends ClusterCreat
 
     /**
      * Set the name property: The cluster name.
-     *
+     * 
      * @param name the name value to set.
      * @return the ClusterCreateRequestValidationParameters object itself.
      */
@@ -62,7 +66,7 @@ public final class ClusterCreateRequestValidationParameters extends ClusterCreat
 
     /**
      * Get the type property: The resource type.
-     *
+     * 
      * @return the type value.
      */
     public String type() {
@@ -71,7 +75,7 @@ public final class ClusterCreateRequestValidationParameters extends ClusterCreat
 
     /**
      * Set the type property: The resource type.
-     *
+     * 
      * @param type the type value to set.
      * @return the ClusterCreateRequestValidationParameters object itself.
      */
@@ -82,7 +86,7 @@ public final class ClusterCreateRequestValidationParameters extends ClusterCreat
 
     /**
      * Get the tenantId property: The tenant id.
-     *
+     * 
      * @return the tenantId value.
      */
     public String tenantId() {
@@ -91,7 +95,7 @@ public final class ClusterCreateRequestValidationParameters extends ClusterCreat
 
     /**
      * Set the tenantId property: The tenant id.
-     *
+     * 
      * @param tenantId the tenantId value to set.
      * @return the ClusterCreateRequestValidationParameters object itself.
      */
@@ -102,7 +106,7 @@ public final class ClusterCreateRequestValidationParameters extends ClusterCreat
 
     /**
      * Get the fetchAaddsResource property: This indicates whether fetch Aadds resource or not.
-     *
+     * 
      * @return the fetchAaddsResource value.
      */
     public Boolean fetchAaddsResource() {
@@ -111,7 +115,7 @@ public final class ClusterCreateRequestValidationParameters extends ClusterCreat
 
     /**
      * Set the fetchAaddsResource property: This indicates whether fetch Aadds resource or not.
-     *
+     * 
      * @param fetchAaddsResource the fetchAaddsResource value to set.
      * @return the ClusterCreateRequestValidationParameters object itself.
      */
@@ -120,35 +124,45 @@ public final class ClusterCreateRequestValidationParameters extends ClusterCreat
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ClusterCreateRequestValidationParameters withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ClusterCreateRequestValidationParameters withTags(Map<String, String> tags) {
         super.withTags(tags);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ClusterCreateRequestValidationParameters withZones(List<String> zones) {
         super.withZones(zones);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ClusterCreateRequestValidationParameters withProperties(ClusterCreateProperties properties) {
         super.withProperties(properties);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ClusterCreateRequestValidationParameters withIdentity(ClusterIdentity identity) {
         super.withIdentity(identity);
@@ -157,7 +171,7 @@ public final class ClusterCreateRequestValidationParameters extends ClusterCreat
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
