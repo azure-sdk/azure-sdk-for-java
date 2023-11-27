@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.agrifood.implementation;
 
+import com.azure.core.annotation.BodyParam;
 import com.azure.core.annotation.Delete;
 import com.azure.core.annotation.ExpectedResponses;
 import com.azure.core.annotation.Get;
@@ -11,7 +12,6 @@ import com.azure.core.annotation.HeaderParam;
 import com.azure.core.annotation.Headers;
 import com.azure.core.annotation.Host;
 import com.azure.core.annotation.HostParam;
-import com.azure.core.annotation.Patch;
 import com.azure.core.annotation.PathParam;
 import com.azure.core.annotation.Put;
 import com.azure.core.annotation.QueryParam;
@@ -30,404 +30,404 @@ import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
 import com.azure.resourcemanager.agrifood.fluent.ExtensionsClient;
 import com.azure.resourcemanager.agrifood.fluent.models.ExtensionInner;
-import com.azure.resourcemanager.agrifood.models.ExtensionListResponse;
+import com.azure.resourcemanager.agrifood.models.ExtensionListResult;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import reactor.core.publisher.Mono;
 
-/** An instance of this class provides access to all the operations defined in ExtensionsClient. */
+/**
+ * An instance of this class provides access to all the operations defined in ExtensionsClient.
+ */
 public final class ExtensionsClientImpl implements ExtensionsClient {
-    /** The proxy service used to perform REST calls. */
+    /**
+     * The proxy service used to perform REST calls.
+     */
     private final ExtensionsService service;
 
-    /** The service client containing this operation class. */
+    /**
+     * The service client containing this operation class.
+     */
     private final AgriFoodManagementClientImpl client;
 
     /**
      * Initializes an instance of ExtensionsClientImpl.
-     *
+     * 
      * @param client the instance of the service client containing this operation class.
      */
     ExtensionsClientImpl(AgriFoodManagementClientImpl client) {
-        this.service =
-            RestProxy.create(ExtensionsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
+        this.service
+            = RestProxy.create(ExtensionsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for AgriFoodManagementClientExtensions to be used by the proxy service to
-     * perform REST calls.
+     * The interface defining all the services for AgriFoodManagementClientExtensions to be used by the proxy service
+     * to perform REST calls.
      */
     @Host("{$host}")
     @ServiceInterface(name = "AgriFoodManagementCl")
-    private interface ExtensionsService {
-        @Headers({"Content-Type: application/json"})
-        @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AgFoodPlatform"
-                + "/farmBeats/{farmBeatsResourceName}/extensions/{extensionId}")
-        @ExpectedResponses({201})
+    public interface ExtensionsService {
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AgFoodPlatform/farmBeats/{dataManagerForAgricultureResourceName}/extensions")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ExtensionInner>> create(
-            @HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
+        Mono<Response<ExtensionListResult>> listByDataManagerForAgriculture(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("farmBeatsResourceName") String farmBeatsResourceName,
-            @PathParam("extensionId") String extensionId,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AgFoodPlatform"
-                + "/farmBeats/{farmBeatsResourceName}/extensions/{extensionId}")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ExtensionInner>> get(
-            @HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("farmBeatsResourceName") String farmBeatsResourceName,
-            @PathParam("extensionId") String extensionId,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Content-Type: application/json"})
-        @Patch(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AgFoodPlatform"
-                + "/farmBeats/{farmBeatsResourceName}/extensions/{extensionId}")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ExtensionInner>> update(
-            @HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("farmBeatsResourceName") String farmBeatsResourceName,
-            @PathParam("extensionId") String extensionId,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Content-Type: application/json"})
-        @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AgFoodPlatform"
-                + "/farmBeats/{farmBeatsResourceName}/extensions/{extensionId}")
-        @ExpectedResponses({200, 204})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Void>> delete(
-            @HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("farmBeatsResourceName") String farmBeatsResourceName,
-            @PathParam("extensionId") String extensionId,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AgFoodPlatform"
-                + "/farmBeats/{farmBeatsResourceName}/extensions")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ExtensionListResponse>> listByFarmBeats(
-            @HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("farmBeatsResourceName") String farmBeatsResourceName,
-            @QueryParam("api-version") String apiVersion,
             @QueryParam(value = "extensionIds", multipleQueryParams = true) List<String> extensionIds,
             @QueryParam(value = "extensionCategories", multipleQueryParams = true) List<String> extensionCategories,
-            @QueryParam("$maxPageSize") Integer maxPageSize,
-            @QueryParam("$skipToken") String skipToken,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @QueryParam("$maxPageSize") Integer maxPageSize, @QueryParam("$skipToken") String skipToken,
+            @PathParam("dataManagerForAgricultureResourceName") String dataManagerForAgricultureResourceName,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Get("{nextLink}")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AgFoodPlatform/farmBeats/{dataManagerForAgricultureResourceName}/extensions/{extensionId}")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ExtensionListResponse>> listByFarmBeatsNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
+        Mono<Response<ExtensionInner>> get(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("dataManagerForAgricultureResourceName") String dataManagerForAgricultureResourceName,
+            @PathParam("extensionId") String extensionId, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AgFoodPlatform/farmBeats/{dataManagerForAgricultureResourceName}/extensions/{extensionId}")
+        @ExpectedResponses({ 200, 201 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<ExtensionInner>> createOrUpdate(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("dataManagerForAgricultureResourceName") String dataManagerForAgricultureResourceName,
+            @PathParam("extensionId") String extensionId, @BodyParam("application/json") ExtensionInner resource,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AgFoodPlatform/farmBeats/{dataManagerForAgricultureResourceName}/extensions/{extensionId}")
+        @ExpectedResponses({ 200, 204 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Void>> delete(@HostParam("$host") String endpoint, @QueryParam("api-version") String apiVersion,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("dataManagerForAgricultureResourceName") String dataManagerForAgricultureResourceName,
+            @PathParam("extensionId") String extensionId, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("{nextLink}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<ExtensionListResult>> listByDataManagerForAgricultureNext(
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
-     * Install extension.
-     *
+     * Get installed extensions details.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
-     * @param extensionId Id of extension resource.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
+     * @param extensionIds Installed extension ids.
+     * @param extensionCategories Installed extension categories.
+     * @param maxPageSize Maximum number of items needed (inclusive).
+     * Minimum = 10, Maximum = 1000, Default value = 50.
+     * @param skipToken Skip token for getting next set of results.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return extension resource along with {@link Response} on successful completion of {@link Mono}.
+     * @return installed extensions details along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<ExtensionInner>> createWithResponseAsync(
-        String resourceGroupName, String farmBeatsResourceName, String extensionId) {
+    private Mono<PagedResponse<ExtensionInner>> listByDataManagerForAgricultureSinglePageAsync(String resourceGroupName,
+        String dataManagerForAgricultureResourceName, List<String> extensionIds, List<String> extensionCategories,
+        Integer maxPageSize, String skipToken) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        if (farmBeatsResourceName == null) {
+        if (dataManagerForAgricultureResourceName == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter dataManagerForAgricultureResourceName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        List<String> extensionIdsConverted = (extensionIds == null) ? new ArrayList<>()
+            : extensionIds.stream().map(item -> Objects.toString(item, "")).collect(Collectors.toList());
+        List<String> extensionCategoriesConverted = (extensionCategories == null) ? new ArrayList<>()
+            : extensionCategories.stream().map(item -> Objects.toString(item, "")).collect(Collectors.toList());
+        return FluxUtil
+            .withContext(context -> service.listByDataManagerForAgriculture(this.client.getEndpoint(),
+                this.client.getApiVersion(), this.client.getSubscriptionId(), resourceGroupName, extensionIdsConverted,
+                extensionCategoriesConverted, maxPageSize, skipToken, dataManagerForAgricultureResourceName, accept,
+                context))
+            .<PagedResponse<ExtensionInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
+                res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Get installed extensions details.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
+     * @param extensionIds Installed extension ids.
+     * @param extensionCategories Installed extension categories.
+     * @param maxPageSize Maximum number of items needed (inclusive).
+     * Minimum = 10, Maximum = 1000, Default value = 50.
+     * @param skipToken Skip token for getting next set of results.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return installed extensions details along with {@link PagedResponse} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<ExtensionInner>> listByDataManagerForAgricultureSinglePageAsync(String resourceGroupName,
+        String dataManagerForAgricultureResourceName, List<String> extensionIds, List<String> extensionCategories,
+        Integer maxPageSize, String skipToken, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
             return Mono
-                .error(new IllegalArgumentException("Parameter farmBeatsResourceName is required and cannot be null."));
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (dataManagerForAgricultureResourceName == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter dataManagerForAgricultureResourceName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        List<String> extensionIdsConverted = (extensionIds == null) ? new ArrayList<>()
+            : extensionIds.stream().map(item -> Objects.toString(item, "")).collect(Collectors.toList());
+        List<String> extensionCategoriesConverted = (extensionCategories == null) ? new ArrayList<>()
+            : extensionCategories.stream().map(item -> Objects.toString(item, "")).collect(Collectors.toList());
+        context = this.client.mergeContext(context);
+        return service
+            .listByDataManagerForAgriculture(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, extensionIdsConverted, extensionCategoriesConverted,
+                maxPageSize, skipToken, dataManagerForAgricultureResourceName, accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
+    }
+
+    /**
+     * Get installed extensions details.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
+     * @param extensionIds Installed extension ids.
+     * @param extensionCategories Installed extension categories.
+     * @param maxPageSize Maximum number of items needed (inclusive).
+     * Minimum = 10, Maximum = 1000, Default value = 50.
+     * @param skipToken Skip token for getting next set of results.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return installed extensions details as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<ExtensionInner> listByDataManagerForAgricultureAsync(String resourceGroupName,
+        String dataManagerForAgricultureResourceName, List<String> extensionIds, List<String> extensionCategories,
+        Integer maxPageSize, String skipToken) {
+        return new PagedFlux<>(
+            () -> listByDataManagerForAgricultureSinglePageAsync(resourceGroupName,
+                dataManagerForAgricultureResourceName, extensionIds, extensionCategories, maxPageSize, skipToken),
+            nextLink -> listByDataManagerForAgricultureNextSinglePageAsync(nextLink));
+    }
+
+    /**
+     * Get installed extensions details.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return installed extensions details as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<ExtensionInner> listByDataManagerForAgricultureAsync(String resourceGroupName,
+        String dataManagerForAgricultureResourceName) {
+        final List<String> extensionIds = null;
+        final List<String> extensionCategories = null;
+        final Integer maxPageSize = null;
+        final String skipToken = null;
+        return new PagedFlux<>(
+            () -> listByDataManagerForAgricultureSinglePageAsync(resourceGroupName,
+                dataManagerForAgricultureResourceName, extensionIds, extensionCategories, maxPageSize, skipToken),
+            nextLink -> listByDataManagerForAgricultureNextSinglePageAsync(nextLink));
+    }
+
+    /**
+     * Get installed extensions details.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
+     * @param extensionIds Installed extension ids.
+     * @param extensionCategories Installed extension categories.
+     * @param maxPageSize Maximum number of items needed (inclusive).
+     * Minimum = 10, Maximum = 1000, Default value = 50.
+     * @param skipToken Skip token for getting next set of results.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return installed extensions details as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<ExtensionInner> listByDataManagerForAgricultureAsync(String resourceGroupName,
+        String dataManagerForAgricultureResourceName, List<String> extensionIds, List<String> extensionCategories,
+        Integer maxPageSize, String skipToken, Context context) {
+        return new PagedFlux<>(() -> listByDataManagerForAgricultureSinglePageAsync(resourceGroupName,
+            dataManagerForAgricultureResourceName, extensionIds, extensionCategories, maxPageSize, skipToken, context),
+            nextLink -> listByDataManagerForAgricultureNextSinglePageAsync(nextLink, context));
+    }
+
+    /**
+     * Get installed extensions details.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return installed extensions details as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<ExtensionInner> listByDataManagerForAgriculture(String resourceGroupName,
+        String dataManagerForAgricultureResourceName) {
+        final List<String> extensionIds = null;
+        final List<String> extensionCategories = null;
+        final Integer maxPageSize = null;
+        final String skipToken = null;
+        return new PagedIterable<>(listByDataManagerForAgricultureAsync(resourceGroupName,
+            dataManagerForAgricultureResourceName, extensionIds, extensionCategories, maxPageSize, skipToken));
+    }
+
+    /**
+     * Get installed extensions details.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
+     * @param extensionIds Installed extension ids.
+     * @param extensionCategories Installed extension categories.
+     * @param maxPageSize Maximum number of items needed (inclusive).
+     * Minimum = 10, Maximum = 1000, Default value = 50.
+     * @param skipToken Skip token for getting next set of results.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return installed extensions details as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<ExtensionInner> listByDataManagerForAgriculture(String resourceGroupName,
+        String dataManagerForAgricultureResourceName, List<String> extensionIds, List<String> extensionCategories,
+        Integer maxPageSize, String skipToken, Context context) {
+        return new PagedIterable<>(listByDataManagerForAgricultureAsync(resourceGroupName,
+            dataManagerForAgricultureResourceName, extensionIds, extensionCategories, maxPageSize, skipToken, context));
+    }
+
+    /**
+     * Get installed extension details by extension id.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
+     * @param extensionId Id of extension resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return installed extension details by extension id along with {@link Response} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<ExtensionInner>> getWithResponseAsync(String resourceGroupName,
+        String dataManagerForAgricultureResourceName, String extensionId) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (dataManagerForAgricultureResourceName == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter dataManagerForAgricultureResourceName is required and cannot be null."));
         }
         if (extensionId == null) {
             return Mono.error(new IllegalArgumentException("Parameter extensionId is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .create(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            farmBeatsResourceName,
-                            extensionId,
-                            this.client.getApiVersion(),
-                            accept,
-                            context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Install extension.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
-     * @param extensionId Id of extension resource.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return extension resource along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<ExtensionInner>> createWithResponseAsync(
-        String resourceGroupName, String farmBeatsResourceName, String extensionId, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (farmBeatsResourceName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter farmBeatsResourceName is required and cannot be null."));
-        }
-        if (extensionId == null) {
-            return Mono.error(new IllegalArgumentException("Parameter extensionId is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .create(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                farmBeatsResourceName,
-                extensionId,
-                this.client.getApiVersion(),
-                accept,
-                context);
-    }
-
-    /**
-     * Install extension.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
-     * @param extensionId Id of extension resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return extension resource on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ExtensionInner> createAsync(
-        String resourceGroupName, String farmBeatsResourceName, String extensionId) {
-        return createWithResponseAsync(resourceGroupName, farmBeatsResourceName, extensionId)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Install extension.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
-     * @param extensionId Id of extension resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return extension resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ExtensionInner create(String resourceGroupName, String farmBeatsResourceName, String extensionId) {
-        return createAsync(resourceGroupName, farmBeatsResourceName, extensionId).block();
-    }
-
-    /**
-     * Install extension.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
-     * @param extensionId Id of extension resource.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return extension resource along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ExtensionInner> createWithResponse(
-        String resourceGroupName, String farmBeatsResourceName, String extensionId, Context context) {
-        return createWithResponseAsync(resourceGroupName, farmBeatsResourceName, extensionId, context).block();
-    }
-
-    /**
-     * Get installed extension details by extension id.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
-     * @param extensionId Id of extension resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return installed extension details by extension id along with {@link Response} on successful completion of
-     *     {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<ExtensionInner>> getWithResponseAsync(
-        String resourceGroupName, String farmBeatsResourceName, String extensionId) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (farmBeatsResourceName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter farmBeatsResourceName is required and cannot be null."));
-        }
-        if (extensionId == null) {
-            return Mono.error(new IllegalArgumentException("Parameter extensionId is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .get(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            farmBeatsResourceName,
-                            extensionId,
-                            this.client.getApiVersion(),
-                            accept,
-                            context))
+            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, dataManagerForAgricultureResourceName, extensionId,
+                accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get installed extension details by extension id.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
      * @param extensionId Id of extension resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return installed extension details by extension id along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<ExtensionInner>> getWithResponseAsync(
-        String resourceGroupName, String farmBeatsResourceName, String extensionId, Context context) {
+    private Mono<Response<ExtensionInner>> getWithResponseAsync(String resourceGroupName,
+        String dataManagerForAgricultureResourceName, String extensionId, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        if (farmBeatsResourceName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter farmBeatsResourceName is required and cannot be null."));
+        if (dataManagerForAgricultureResourceName == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter dataManagerForAgricultureResourceName is required and cannot be null."));
         }
         if (extensionId == null) {
             return Mono.error(new IllegalArgumentException("Parameter extensionId is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .get(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                farmBeatsResourceName,
-                extensionId,
-                this.client.getApiVersion(),
-                accept,
-                context);
+        return service.get(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, dataManagerForAgricultureResourceName, extensionId, accept, context);
     }
 
     /**
      * Get installed extension details by extension id.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
      * @param extensionId Id of extension resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -435,32 +435,17 @@ public final class ExtensionsClientImpl implements ExtensionsClient {
      * @return installed extension details by extension id on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ExtensionInner> getAsync(String resourceGroupName, String farmBeatsResourceName, String extensionId) {
-        return getWithResponseAsync(resourceGroupName, farmBeatsResourceName, extensionId)
+    private Mono<ExtensionInner> getAsync(String resourceGroupName, String dataManagerForAgricultureResourceName,
+        String extensionId) {
+        return getWithResponseAsync(resourceGroupName, dataManagerForAgricultureResourceName, extensionId)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
      * Get installed extension details by extension id.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
-     * @param extensionId Id of extension resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return installed extension details by extension id.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ExtensionInner get(String resourceGroupName, String farmBeatsResourceName, String extensionId) {
-        return getAsync(resourceGroupName, farmBeatsResourceName, extensionId).block();
-    }
-
-    /**
-     * Get installed extension details by extension id.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
      * @param extensionId Id of extension resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -469,71 +454,86 @@ public final class ExtensionsClientImpl implements ExtensionsClient {
      * @return installed extension details by extension id along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ExtensionInner> getWithResponse(
-        String resourceGroupName, String farmBeatsResourceName, String extensionId, Context context) {
-        return getWithResponseAsync(resourceGroupName, farmBeatsResourceName, extensionId, context).block();
+    public Response<ExtensionInner> getWithResponse(String resourceGroupName,
+        String dataManagerForAgricultureResourceName, String extensionId, Context context) {
+        return getWithResponseAsync(resourceGroupName, dataManagerForAgricultureResourceName, extensionId, context)
+            .block();
     }
 
     /**
-     * Upgrade to latest extension.
-     *
+     * Get installed extension details by extension id.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
      * @param extensionId Id of extension resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return installed extension details by extension id.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ExtensionInner get(String resourceGroupName, String dataManagerForAgricultureResourceName,
+        String extensionId) {
+        return getWithResponse(resourceGroupName, dataManagerForAgricultureResourceName, extensionId, Context.NONE)
+            .getValue();
+    }
+
+    /**
+     * Install or Update extension. Additional Api Properties are merged patch and if the extension is updated to a new
+     * version then the obsolete entries will be auto deleted from Additional Api Properties.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
+     * @param extensionId Id of extension resource.
+     * @param resource Resource create parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return extension resource along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<ExtensionInner>> updateWithResponseAsync(
-        String resourceGroupName, String farmBeatsResourceName, String extensionId) {
+    private Mono<Response<ExtensionInner>> createOrUpdateWithResponseAsync(String resourceGroupName,
+        String dataManagerForAgricultureResourceName, String extensionId, ExtensionInner resource) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        if (farmBeatsResourceName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter farmBeatsResourceName is required and cannot be null."));
+        if (dataManagerForAgricultureResourceName == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter dataManagerForAgricultureResourceName is required and cannot be null."));
         }
         if (extensionId == null) {
             return Mono.error(new IllegalArgumentException("Parameter extensionId is required and cannot be null."));
         }
+        if (resource == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
+        } else {
+            resource.validate();
+        }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .update(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            farmBeatsResourceName,
-                            extensionId,
-                            this.client.getApiVersion(),
-                            accept,
-                            context))
+            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, dataManagerForAgricultureResourceName, extensionId,
+                resource, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Upgrade to latest extension.
-     *
+     * Install or Update extension. Additional Api Properties are merged patch and if the extension is updated to a new
+     * version then the obsolete entries will be auto deleted from Additional Api Properties.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
      * @param extensionId Id of extension resource.
+     * @param resource Resource create parameters.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -541,85 +541,67 @@ public final class ExtensionsClientImpl implements ExtensionsClient {
      * @return extension resource along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<ExtensionInner>> updateWithResponseAsync(
-        String resourceGroupName, String farmBeatsResourceName, String extensionId, Context context) {
+    private Mono<Response<ExtensionInner>> createOrUpdateWithResponseAsync(String resourceGroupName,
+        String dataManagerForAgricultureResourceName, String extensionId, ExtensionInner resource, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        if (farmBeatsResourceName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter farmBeatsResourceName is required and cannot be null."));
+        if (dataManagerForAgricultureResourceName == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter dataManagerForAgricultureResourceName is required and cannot be null."));
         }
         if (extensionId == null) {
             return Mono.error(new IllegalArgumentException("Parameter extensionId is required and cannot be null."));
         }
+        if (resource == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
+        } else {
+            resource.validate();
+        }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .update(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                farmBeatsResourceName,
-                extensionId,
-                this.client.getApiVersion(),
-                accept,
-                context);
+        return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, dataManagerForAgricultureResourceName, extensionId,
+            resource, accept, context);
     }
 
     /**
-     * Upgrade to latest extension.
-     *
+     * Install or Update extension. Additional Api Properties are merged patch and if the extension is updated to a new
+     * version then the obsolete entries will be auto deleted from Additional Api Properties.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
      * @param extensionId Id of extension resource.
+     * @param resource Resource create parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return extension resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ExtensionInner> updateAsync(
-        String resourceGroupName, String farmBeatsResourceName, String extensionId) {
-        return updateWithResponseAsync(resourceGroupName, farmBeatsResourceName, extensionId)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    private Mono<ExtensionInner> createOrUpdateAsync(String resourceGroupName,
+        String dataManagerForAgricultureResourceName, String extensionId, ExtensionInner resource) {
+        return createOrUpdateWithResponseAsync(resourceGroupName, dataManagerForAgricultureResourceName, extensionId,
+            resource).flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Upgrade to latest extension.
-     *
+     * Install or Update extension. Additional Api Properties are merged patch and if the extension is updated to a new
+     * version then the obsolete entries will be auto deleted from Additional Api Properties.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
      * @param extensionId Id of extension resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return extension resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ExtensionInner update(String resourceGroupName, String farmBeatsResourceName, String extensionId) {
-        return updateAsync(resourceGroupName, farmBeatsResourceName, extensionId).block();
-    }
-
-    /**
-     * Upgrade to latest extension.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
-     * @param extensionId Id of extension resource.
+     * @param resource Resource create parameters.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -627,16 +609,37 @@ public final class ExtensionsClientImpl implements ExtensionsClient {
      * @return extension resource along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ExtensionInner> updateWithResponse(
-        String resourceGroupName, String farmBeatsResourceName, String extensionId, Context context) {
-        return updateWithResponseAsync(resourceGroupName, farmBeatsResourceName, extensionId, context).block();
+    public Response<ExtensionInner> createOrUpdateWithResponse(String resourceGroupName,
+        String dataManagerForAgricultureResourceName, String extensionId, ExtensionInner resource, Context context) {
+        return createOrUpdateWithResponseAsync(resourceGroupName, dataManagerForAgricultureResourceName, extensionId,
+            resource, context).block();
+    }
+
+    /**
+     * Install or Update extension. Additional Api Properties are merged patch and if the extension is updated to a new
+     * version then the obsolete entries will be auto deleted from Additional Api Properties.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
+     * @param extensionId Id of extension resource.
+     * @param resource Resource create parameters.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return extension resource.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ExtensionInner createOrUpdate(String resourceGroupName, String dataManagerForAgricultureResourceName,
+        String extensionId, ExtensionInner resource) {
+        return createOrUpdateWithResponse(resourceGroupName, dataManagerForAgricultureResourceName, extensionId,
+            resource, Context.NONE).getValue();
     }
 
     /**
      * Uninstall extension.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
      * @param extensionId Id of extension resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -644,53 +647,40 @@ public final class ExtensionsClientImpl implements ExtensionsClient {
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Void>> deleteWithResponseAsync(
-        String resourceGroupName, String farmBeatsResourceName, String extensionId) {
+    private Mono<Response<Void>> deleteWithResponseAsync(String resourceGroupName,
+        String dataManagerForAgricultureResourceName, String extensionId) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        if (farmBeatsResourceName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter farmBeatsResourceName is required and cannot be null."));
+        if (dataManagerForAgricultureResourceName == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter dataManagerForAgricultureResourceName is required and cannot be null."));
         }
         if (extensionId == null) {
             return Mono.error(new IllegalArgumentException("Parameter extensionId is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .delete(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            farmBeatsResourceName,
-                            extensionId,
-                            this.client.getApiVersion(),
-                            accept,
-                            context))
+            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, dataManagerForAgricultureResourceName, extensionId,
+                accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Uninstall extension.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
      * @param extensionId Id of extension resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -699,50 +689,38 @@ public final class ExtensionsClientImpl implements ExtensionsClient {
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Void>> deleteWithResponseAsync(
-        String resourceGroupName, String farmBeatsResourceName, String extensionId, Context context) {
+    private Mono<Response<Void>> deleteWithResponseAsync(String resourceGroupName,
+        String dataManagerForAgricultureResourceName, String extensionId, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        if (farmBeatsResourceName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter farmBeatsResourceName is required and cannot be null."));
+        if (dataManagerForAgricultureResourceName == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter dataManagerForAgricultureResourceName is required and cannot be null."));
         }
         if (extensionId == null) {
             return Mono.error(new IllegalArgumentException("Parameter extensionId is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .delete(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                farmBeatsResourceName,
-                extensionId,
-                this.client.getApiVersion(),
-                accept,
-                context);
+        return service.delete(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, dataManagerForAgricultureResourceName, extensionId, accept, context);
     }
 
     /**
      * Uninstall extension.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
      * @param extensionId Id of extension resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -750,31 +728,17 @@ public final class ExtensionsClientImpl implements ExtensionsClient {
      * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> deleteAsync(String resourceGroupName, String farmBeatsResourceName, String extensionId) {
-        return deleteWithResponseAsync(resourceGroupName, farmBeatsResourceName, extensionId)
+    private Mono<Void> deleteAsync(String resourceGroupName, String dataManagerForAgricultureResourceName,
+        String extensionId) {
+        return deleteWithResponseAsync(resourceGroupName, dataManagerForAgricultureResourceName, extensionId)
             .flatMap(ignored -> Mono.empty());
     }
 
     /**
      * Uninstall extension.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
-     * @param extensionId Id of extension resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceGroupName, String farmBeatsResourceName, String extensionId) {
-        deleteAsync(resourceGroupName, farmBeatsResourceName, extensionId).block();
-    }
-
-    /**
-     * Uninstall extension.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
      * @param extensionId Id of extension resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -783,395 +747,84 @@ public final class ExtensionsClientImpl implements ExtensionsClient {
      * @return the {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> deleteWithResponse(
-        String resourceGroupName, String farmBeatsResourceName, String extensionId, Context context) {
-        return deleteWithResponseAsync(resourceGroupName, farmBeatsResourceName, extensionId, context).block();
+    public Response<Void> deleteWithResponse(String resourceGroupName, String dataManagerForAgricultureResourceName,
+        String extensionId, Context context) {
+        return deleteWithResponseAsync(resourceGroupName, dataManagerForAgricultureResourceName, extensionId, context)
+            .block();
     }
 
     /**
-     * Get installed extensions details.
-     *
+     * Uninstall extension.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
-     * @param extensionIds Installed extension ids.
-     * @param extensionCategories Installed extension categories.
-     * @param maxPageSize Maximum number of items needed (inclusive). Minimum = 10, Maximum = 1000, Default value = 50.
-     * @param skipToken Skip token for getting next set of results.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
+     * @param extensionId Id of extension resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return installed extensions details along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ExtensionInner>> listByFarmBeatsSinglePageAsync(
-        String resourceGroupName,
-        String farmBeatsResourceName,
-        List<String> extensionIds,
-        List<String> extensionCategories,
-        Integer maxPageSize,
-        String skipToken) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (farmBeatsResourceName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter farmBeatsResourceName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        List<String> extensionIdsConverted =
-            (extensionIds == null)
-                ? new ArrayList<>()
-                : extensionIds.stream().map(item -> Objects.toString(item, "")).collect(Collectors.toList());
-        List<String> extensionCategoriesConverted =
-            (extensionCategories == null)
-                ? new ArrayList<>()
-                : extensionCategories.stream().map(item -> Objects.toString(item, "")).collect(Collectors.toList());
-        return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .listByFarmBeats(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            farmBeatsResourceName,
-                            this.client.getApiVersion(),
-                            extensionIdsConverted,
-                            extensionCategoriesConverted,
-                            maxPageSize,
-                            skipToken,
-                            accept,
-                            context))
-            .<PagedResponse<ExtensionInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Get installed extensions details.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
-     * @param extensionIds Installed extension ids.
-     * @param extensionCategories Installed extension categories.
-     * @param maxPageSize Maximum number of items needed (inclusive). Minimum = 10, Maximum = 1000, Default value = 50.
-     * @param skipToken Skip token for getting next set of results.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return installed extensions details along with {@link PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ExtensionInner>> listByFarmBeatsSinglePageAsync(
-        String resourceGroupName,
-        String farmBeatsResourceName,
-        List<String> extensionIds,
-        List<String> extensionCategories,
-        Integer maxPageSize,
-        String skipToken,
-        Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (farmBeatsResourceName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter farmBeatsResourceName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        List<String> extensionIdsConverted =
-            (extensionIds == null)
-                ? new ArrayList<>()
-                : extensionIds.stream().map(item -> Objects.toString(item, "")).collect(Collectors.toList());
-        List<String> extensionCategoriesConverted =
-            (extensionCategories == null)
-                ? new ArrayList<>()
-                : extensionCategories.stream().map(item -> Objects.toString(item, "")).collect(Collectors.toList());
-        context = this.client.mergeContext(context);
-        return service
-            .listByFarmBeats(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                farmBeatsResourceName,
-                this.client.getApiVersion(),
-                extensionIdsConverted,
-                extensionCategoriesConverted,
-                maxPageSize,
-                skipToken,
-                accept,
-                context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
-    }
-
-    /**
-     * Get installed extensions details.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
-     * @param extensionIds Installed extension ids.
-     * @param extensionCategories Installed extension categories.
-     * @param maxPageSize Maximum number of items needed (inclusive). Minimum = 10, Maximum = 1000, Default value = 50.
-     * @param skipToken Skip token for getting next set of results.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return installed extensions details as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<ExtensionInner> listByFarmBeatsAsync(
-        String resourceGroupName,
-        String farmBeatsResourceName,
-        List<String> extensionIds,
-        List<String> extensionCategories,
-        Integer maxPageSize,
-        String skipToken) {
-        return new PagedFlux<>(
-            () ->
-                listByFarmBeatsSinglePageAsync(
-                    resourceGroupName,
-                    farmBeatsResourceName,
-                    extensionIds,
-                    extensionCategories,
-                    maxPageSize,
-                    skipToken),
-            nextLink -> listByFarmBeatsNextSinglePageAsync(nextLink));
-    }
-
-    /**
-     * Get installed extensions details.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return installed extensions details as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<ExtensionInner> listByFarmBeatsAsync(String resourceGroupName, String farmBeatsResourceName) {
-        final List<String> extensionIds = null;
-        final List<String> extensionCategories = null;
-        final Integer maxPageSize = null;
-        final String skipToken = null;
-        return new PagedFlux<>(
-            () ->
-                listByFarmBeatsSinglePageAsync(
-                    resourceGroupName,
-                    farmBeatsResourceName,
-                    extensionIds,
-                    extensionCategories,
-                    maxPageSize,
-                    skipToken),
-            nextLink -> listByFarmBeatsNextSinglePageAsync(nextLink));
-    }
-
-    /**
-     * Get installed extensions details.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
-     * @param extensionIds Installed extension ids.
-     * @param extensionCategories Installed extension categories.
-     * @param maxPageSize Maximum number of items needed (inclusive). Minimum = 10, Maximum = 1000, Default value = 50.
-     * @param skipToken Skip token for getting next set of results.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return installed extensions details as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<ExtensionInner> listByFarmBeatsAsync(
-        String resourceGroupName,
-        String farmBeatsResourceName,
-        List<String> extensionIds,
-        List<String> extensionCategories,
-        Integer maxPageSize,
-        String skipToken,
-        Context context) {
-        return new PagedFlux<>(
-            () ->
-                listByFarmBeatsSinglePageAsync(
-                    resourceGroupName,
-                    farmBeatsResourceName,
-                    extensionIds,
-                    extensionCategories,
-                    maxPageSize,
-                    skipToken,
-                    context),
-            nextLink -> listByFarmBeatsNextSinglePageAsync(nextLink, context));
-    }
-
-    /**
-     * Get installed extensions details.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return installed extensions details as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<ExtensionInner> listByFarmBeats(String resourceGroupName, String farmBeatsResourceName) {
-        final List<String> extensionIds = null;
-        final List<String> extensionCategories = null;
-        final Integer maxPageSize = null;
-        final String skipToken = null;
-        return new PagedIterable<>(
-            listByFarmBeatsAsync(
-                resourceGroupName, farmBeatsResourceName, extensionIds, extensionCategories, maxPageSize, skipToken));
-    }
-
-    /**
-     * Get installed extensions details.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
-     * @param extensionIds Installed extension ids.
-     * @param extensionCategories Installed extension categories.
-     * @param maxPageSize Maximum number of items needed (inclusive). Minimum = 10, Maximum = 1000, Default value = 50.
-     * @param skipToken Skip token for getting next set of results.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return installed extensions details as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<ExtensionInner> listByFarmBeats(
-        String resourceGroupName,
-        String farmBeatsResourceName,
-        List<String> extensionIds,
-        List<String> extensionCategories,
-        Integer maxPageSize,
-        String skipToken,
-        Context context) {
-        return new PagedIterable<>(
-            listByFarmBeatsAsync(
-                resourceGroupName,
-                farmBeatsResourceName,
-                extensionIds,
-                extensionCategories,
-                maxPageSize,
-                skipToken,
-                context));
+    public void delete(String resourceGroupName, String dataManagerForAgricultureResourceName, String extensionId) {
+        deleteWithResponse(resourceGroupName, dataManagerForAgricultureResourceName, extensionId, Context.NONE);
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged response contains list of requested objects and a URL link to get the next set of results along
-     *     with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return the response of a Extension list operation along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ExtensionInner>> listByFarmBeatsNextSinglePageAsync(String nextLink) {
+    private Mono<PagedResponse<ExtensionInner>> listByDataManagerForAgricultureNextSinglePageAsync(String nextLink) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.listByFarmBeatsNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<ExtensionInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .withContext(context -> service.listByDataManagerForAgricultureNext(nextLink, this.client.getEndpoint(),
+                accept, context))
+            .<PagedResponse<ExtensionInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
+                res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged response contains list of requested objects and a URL link to get the next set of results along
-     *     with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return the response of a Extension list operation along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ExtensionInner>> listByFarmBeatsNextSinglePageAsync(String nextLink, Context context) {
+    private Mono<PagedResponse<ExtensionInner>> listByDataManagerForAgricultureNextSinglePageAsync(String nextLink,
+        Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listByFarmBeatsNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.listByDataManagerForAgricultureNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 }

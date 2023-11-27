@@ -1,6 +1,8 @@
 # Release History
 
-## 1.0.0-beta.2 (Unreleased)
+## 1.0.0-beta.1 (2023-11-27)
+
+- Azure Resource Manager AgriFood client library for Java. This package contains Microsoft Azure SDK for AgriFood Management SDK. APIs documentation for Microsoft Azure Data Manager for Agriculture Service. Package tag package-preview-2023-06. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Features Added
 

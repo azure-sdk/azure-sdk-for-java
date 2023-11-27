@@ -7,89 +7,120 @@ package com.azure.resourcemanager.agrifood.fluent;
 import com.azure.core.http.HttpPipeline;
 import java.time.Duration;
 
-/** The interface for AgriFoodManagementClient class. */
+/**
+ * The interface for AgriFoodManagementClient class.
+ */
 public interface AgriFoodManagementClient {
     /**
      * Gets The ID of the target subscription.
-     *
+     * 
      * @return the subscriptionId value.
      */
     String getSubscriptionId();
 
     /**
      * Gets server parameter.
-     *
+     * 
      * @return the endpoint value.
      */
     String getEndpoint();
 
     /**
      * Gets Api Version.
-     *
+     * 
      * @return the apiVersion value.
      */
     String getApiVersion();
 
     /**
      * Gets The HTTP pipeline to send requests through.
-     *
+     * 
      * @return the httpPipeline value.
      */
     HttpPipeline getHttpPipeline();
 
     /**
      * Gets The default poll interval for long-running operation.
-     *
+     * 
      * @return the defaultPollInterval value.
      */
     Duration getDefaultPollInterval();
 
     /**
-     * Gets the ExtensionsClient object to access its operations.
-     *
-     * @return the ExtensionsClient object.
+     * Gets the DataManagerForAgricultureExtensionsClient object to access its operations.
+     * 
+     * @return the DataManagerForAgricultureExtensionsClient object.
      */
-    ExtensionsClient getExtensions();
+    DataManagerForAgricultureExtensionsClient getDataManagerForAgricultureExtensions();
 
     /**
-     * Gets the FarmBeatsExtensionsClient object to access its operations.
-     *
-     * @return the FarmBeatsExtensionsClient object.
+     * Gets the DataManagerForAgricultureSolutionsClient object to access its operations.
+     * 
+     * @return the DataManagerForAgricultureSolutionsClient object.
      */
-    FarmBeatsExtensionsClient getFarmBeatsExtensions();
-
-    /**
-     * Gets the FarmBeatsModelsClient object to access its operations.
-     *
-     * @return the FarmBeatsModelsClient object.
-     */
-    FarmBeatsModelsClient getFarmBeatsModels();
-
-    /**
-     * Gets the LocationsClient object to access its operations.
-     *
-     * @return the LocationsClient object.
-     */
-    LocationsClient getLocations();
+    DataManagerForAgricultureSolutionsClient getDataManagerForAgricultureSolutions();
 
     /**
      * Gets the OperationsClient object to access its operations.
-     *
+     * 
      * @return the OperationsClient object.
      */
     OperationsClient getOperations();
 
     /**
-     * Gets the PrivateEndpointConnectionsClient object to access its operations.
-     *
-     * @return the PrivateEndpointConnectionsClient object.
+     * Gets the CheckNameAvailabilityOperationsClient object to access its operations.
+     * 
+     * @return the CheckNameAvailabilityOperationsClient object.
      */
-    PrivateEndpointConnectionsClient getPrivateEndpointConnections();
+    CheckNameAvailabilityOperationsClient getCheckNameAvailabilityOperations();
 
     /**
-     * Gets the PrivateLinkResourcesClient object to access its operations.
-     *
-     * @return the PrivateLinkResourcesClient object.
+     * Gets the DataManagerForAgriculturesClient object to access its operations.
+     * 
+     * @return the DataManagerForAgriculturesClient object.
      */
-    PrivateLinkResourcesClient getPrivateLinkResources();
+    DataManagerForAgriculturesClient getDataManagerForAgricultures();
+
+    /**
+     * Gets the OperationResultsOperationsClient object to access its operations.
+     * 
+     * @return the OperationResultsOperationsClient object.
+     */
+    OperationResultsOperationsClient getOperationResultsOperations();
+
+    /**
+     * Gets the DataConnectorsClient object to access its operations.
+     * 
+     * @return the DataConnectorsClient object.
+     */
+    DataConnectorsClient getDataConnectors();
+
+    /**
+     * Gets the ExtensionsClient object to access its operations.
+     * 
+     * @return the ExtensionsClient object.
+     */
+    ExtensionsClient getExtensions();
+
+    /**
+     * Gets the AzureAgFoodPlatformRpServicePrivateEndpointConnectionsClient object to access its operations.
+     * 
+     * @return the AzureAgFoodPlatformRpServicePrivateEndpointConnectionsClient object.
+     */
+    AzureAgFoodPlatformRpServicePrivateEndpointConnectionsClient
+        getAzureAgFoodPlatformRpServicePrivateEndpointConnections();
+
+    /**
+     * Gets the AzureAgFoodPlatformRpServicePrivateLinkResourcesClient object to access its operations.
+     * 
+     * @return the AzureAgFoodPlatformRpServicePrivateLinkResourcesClient object.
+     */
+    AzureAgFoodPlatformRpServicePrivateLinkResourcesClient getAzureAgFoodPlatformRpServicePrivateLinkResources();
+
+    /**
+     * Gets the SolutionsClient object to access its operations.
+     * 
+     * @return the SolutionsClient object.
+     */
+    SolutionsClient getSolutions();
 }

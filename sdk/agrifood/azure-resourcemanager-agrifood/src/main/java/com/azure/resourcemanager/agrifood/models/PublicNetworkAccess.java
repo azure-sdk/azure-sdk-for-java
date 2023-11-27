@@ -8,17 +8,32 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Property to allow or block public traffic for an Azure FarmBeats resource. */
+/**
+ * Defines values for PublicNetworkAccess.
+ */
 public final class PublicNetworkAccess extends ExpandableStringEnum<PublicNetworkAccess> {
-    /** Static value Enabled for PublicNetworkAccess. */
+    /**
+     * Static value Enabled for PublicNetworkAccess.
+     */
     public static final PublicNetworkAccess ENABLED = fromString("Enabled");
 
-    /** Static value Hybrid for PublicNetworkAccess. */
-    public static final PublicNetworkAccess HYBRID = fromString("Hybrid");
+    /**
+     * Static value Disabled for PublicNetworkAccess.
+     */
+    public static final PublicNetworkAccess DISABLED = fromString("Disabled");
+
+    /**
+     * Creates a new instance of PublicNetworkAccess value.
+     * 
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public PublicNetworkAccess() {
+    }
 
     /**
      * Creates or finds a PublicNetworkAccess from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding PublicNetworkAccess.
      */
@@ -29,7 +44,7 @@ public final class PublicNetworkAccess extends ExpandableStringEnum<PublicNetwor
 
     /**
      * Gets known PublicNetworkAccess values.
-     *
+     * 
      * @return known PublicNetworkAccess values.
      */
     public static Collection<PublicNetworkAccess> values() {
