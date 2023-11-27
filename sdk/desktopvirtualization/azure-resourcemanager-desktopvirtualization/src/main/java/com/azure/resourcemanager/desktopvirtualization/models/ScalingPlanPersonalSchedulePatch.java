@@ -9,7 +9,9 @@ import com.azure.resourcemanager.desktopvirtualization.fluent.models.ScalingPlan
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** ScalingPlanPersonalSchedule properties that can be patched. */
+/**
+ * ScalingPlanPersonalSchedule properties that can be patched.
+ */
 @Fluent
 public final class ScalingPlanPersonalSchedulePatch {
     /*
@@ -18,13 +20,15 @@ public final class ScalingPlanPersonalSchedulePatch {
     @JsonProperty(value = "properties")
     private ScalingPlanPersonalScheduleProperties innerProperties;
 
-    /** Creates an instance of ScalingPlanPersonalSchedulePatch class. */
+    /**
+     * Creates an instance of ScalingPlanPersonalSchedulePatch class.
+     */
     public ScalingPlanPersonalSchedulePatch() {
     }
 
     /**
      * Get the innerProperties property: Detailed properties for ScalingPlanPersonalSchedule.
-     *
+     * 
      * @return the innerProperties value.
      */
     private ScalingPlanPersonalScheduleProperties innerProperties() {
@@ -33,7 +37,7 @@ public final class ScalingPlanPersonalSchedulePatch {
 
     /**
      * Get the daysOfWeek property: Set of days of the week on which this schedule is active.
-     *
+     * 
      * @return the daysOfWeek value.
      */
     public List<DayOfWeek> daysOfWeek() {
@@ -42,7 +46,7 @@ public final class ScalingPlanPersonalSchedulePatch {
 
     /**
      * Set the daysOfWeek property: Set of days of the week on which this schedule is active.
-     *
+     * 
      * @param daysOfWeek the daysOfWeek value to set.
      * @return the ScalingPlanPersonalSchedulePatch object itself.
      */
@@ -56,7 +60,7 @@ public final class ScalingPlanPersonalSchedulePatch {
 
     /**
      * Get the rampUpStartTime property: Starting time for ramp up period.
-     *
+     * 
      * @return the rampUpStartTime value.
      */
     public Time rampUpStartTime() {
@@ -65,7 +69,7 @@ public final class ScalingPlanPersonalSchedulePatch {
 
     /**
      * Set the rampUpStartTime property: Starting time for ramp up period.
-     *
+     * 
      * @param rampUpStartTime the rampUpStartTime value to set.
      * @return the ScalingPlanPersonalSchedulePatch object itself.
      */
@@ -78,9 +82,9 @@ public final class ScalingPlanPersonalSchedulePatch {
     }
 
     /**
-     * Get the rampUpAutoStartHosts property: The desired startup behavior during the ramp up period for personal vms in
-     * the hostpool.
-     *
+     * Get the rampUpAutoStartHosts property: The desired startup behavior during the ramp up period for personal vms
+     * in the hostpool.
+     * 
      * @return the rampUpAutoStartHosts value.
      */
     public StartupBehavior rampUpAutoStartHosts() {
@@ -88,9 +92,9 @@ public final class ScalingPlanPersonalSchedulePatch {
     }
 
     /**
-     * Set the rampUpAutoStartHosts property: The desired startup behavior during the ramp up period for personal vms in
-     * the hostpool.
-     *
+     * Set the rampUpAutoStartHosts property: The desired startup behavior during the ramp up period for personal vms
+     * in the hostpool.
+     * 
      * @param rampUpAutoStartHosts the rampUpAutoStartHosts value to set.
      * @return the ScalingPlanPersonalSchedulePatch object itself.
      */
@@ -103,10 +107,10 @@ public final class ScalingPlanPersonalSchedulePatch {
     }
 
     /**
-     * Get the rampUpStartVMOnConnect property: The desired configuration of Start VM On Connect for the hostpool during
-     * the ramp up phase. If this is disabled, session hosts must be turned on using rampUpAutoStartHosts or by turning
-     * them on manually.
-     *
+     * Get the rampUpStartVMOnConnect property: The desired configuration of Start VM On Connect for the hostpool
+     * during the ramp up phase. If this is disabled, session hosts must be turned on using rampUpAutoStartHosts or by
+     * turning them on manually.
+     * 
      * @return the rampUpStartVMOnConnect value.
      */
     public SetStartVMOnConnect rampUpStartVMOnConnect() {
@@ -114,10 +118,10 @@ public final class ScalingPlanPersonalSchedulePatch {
     }
 
     /**
-     * Set the rampUpStartVMOnConnect property: The desired configuration of Start VM On Connect for the hostpool during
-     * the ramp up phase. If this is disabled, session hosts must be turned on using rampUpAutoStartHosts or by turning
-     * them on manually.
-     *
+     * Set the rampUpStartVMOnConnect property: The desired configuration of Start VM On Connect for the hostpool
+     * during the ramp up phase. If this is disabled, session hosts must be turned on using rampUpAutoStartHosts or by
+     * turning them on manually.
+     * 
      * @param rampUpStartVMOnConnect the rampUpStartVMOnConnect value to set.
      * @return the ScalingPlanPersonalSchedulePatch object itself.
      */
@@ -131,7 +135,7 @@ public final class ScalingPlanPersonalSchedulePatch {
 
     /**
      * Get the rampUpActionOnDisconnect property: Action to be taken after a user disconnect during the ramp up period.
-     *
+     * 
      * @return the rampUpActionOnDisconnect value.
      */
     public SessionHandlingOperation rampUpActionOnDisconnect() {
@@ -140,12 +144,12 @@ public final class ScalingPlanPersonalSchedulePatch {
 
     /**
      * Set the rampUpActionOnDisconnect property: Action to be taken after a user disconnect during the ramp up period.
-     *
+     * 
      * @param rampUpActionOnDisconnect the rampUpActionOnDisconnect value to set.
      * @return the ScalingPlanPersonalSchedulePatch object itself.
      */
-    public ScalingPlanPersonalSchedulePatch withRampUpActionOnDisconnect(
-        SessionHandlingOperation rampUpActionOnDisconnect) {
+    public ScalingPlanPersonalSchedulePatch
+        withRampUpActionOnDisconnect(SessionHandlingOperation rampUpActionOnDisconnect) {
         if (this.innerProperties() == null) {
             this.innerProperties = new ScalingPlanPersonalScheduleProperties();
         }
@@ -156,7 +160,7 @@ public final class ScalingPlanPersonalSchedulePatch {
     /**
      * Get the rampUpMinutesToWaitOnDisconnect property: The time in minutes to wait before performing the desired
      * session handling action when a user disconnects during the ramp up period.
-     *
+     * 
      * @return the rampUpMinutesToWaitOnDisconnect value.
      */
     public Integer rampUpMinutesToWaitOnDisconnect() {
@@ -166,12 +170,12 @@ public final class ScalingPlanPersonalSchedulePatch {
     /**
      * Set the rampUpMinutesToWaitOnDisconnect property: The time in minutes to wait before performing the desired
      * session handling action when a user disconnects during the ramp up period.
-     *
+     * 
      * @param rampUpMinutesToWaitOnDisconnect the rampUpMinutesToWaitOnDisconnect value to set.
      * @return the ScalingPlanPersonalSchedulePatch object itself.
      */
-    public ScalingPlanPersonalSchedulePatch withRampUpMinutesToWaitOnDisconnect(
-        Integer rampUpMinutesToWaitOnDisconnect) {
+    public ScalingPlanPersonalSchedulePatch
+        withRampUpMinutesToWaitOnDisconnect(Integer rampUpMinutesToWaitOnDisconnect) {
         if (this.innerProperties() == null) {
             this.innerProperties = new ScalingPlanPersonalScheduleProperties();
         }
@@ -181,7 +185,7 @@ public final class ScalingPlanPersonalSchedulePatch {
 
     /**
      * Get the rampUpActionOnLogoff property: Action to be taken after a logoff during the ramp up period.
-     *
+     * 
      * @return the rampUpActionOnLogoff value.
      */
     public SessionHandlingOperation rampUpActionOnLogoff() {
@@ -190,7 +194,7 @@ public final class ScalingPlanPersonalSchedulePatch {
 
     /**
      * Set the rampUpActionOnLogoff property: Action to be taken after a logoff during the ramp up period.
-     *
+     * 
      * @param rampUpActionOnLogoff the rampUpActionOnLogoff value to set.
      * @return the ScalingPlanPersonalSchedulePatch object itself.
      */
@@ -205,7 +209,7 @@ public final class ScalingPlanPersonalSchedulePatch {
     /**
      * Get the rampUpMinutesToWaitOnLogoff property: The time in minutes to wait before performing the desired session
      * handling action when a user logs off during the ramp up period.
-     *
+     * 
      * @return the rampUpMinutesToWaitOnLogoff value.
      */
     public Integer rampUpMinutesToWaitOnLogoff() {
@@ -215,7 +219,7 @@ public final class ScalingPlanPersonalSchedulePatch {
     /**
      * Set the rampUpMinutesToWaitOnLogoff property: The time in minutes to wait before performing the desired session
      * handling action when a user logs off during the ramp up period.
-     *
+     * 
      * @param rampUpMinutesToWaitOnLogoff the rampUpMinutesToWaitOnLogoff value to set.
      * @return the ScalingPlanPersonalSchedulePatch object itself.
      */
@@ -229,7 +233,7 @@ public final class ScalingPlanPersonalSchedulePatch {
 
     /**
      * Get the peakStartTime property: Starting time for peak period.
-     *
+     * 
      * @return the peakStartTime value.
      */
     public Time peakStartTime() {
@@ -238,7 +242,7 @@ public final class ScalingPlanPersonalSchedulePatch {
 
     /**
      * Set the peakStartTime property: Starting time for peak period.
-     *
+     * 
      * @param peakStartTime the peakStartTime value to set.
      * @return the ScalingPlanPersonalSchedulePatch object itself.
      */
@@ -253,7 +257,7 @@ public final class ScalingPlanPersonalSchedulePatch {
     /**
      * Get the peakStartVMOnConnect property: The desired configuration of Start VM On Connect for the hostpool during
      * the peak phase.
-     *
+     * 
      * @return the peakStartVMOnConnect value.
      */
     public SetStartVMOnConnect peakStartVMOnConnect() {
@@ -263,7 +267,7 @@ public final class ScalingPlanPersonalSchedulePatch {
     /**
      * Set the peakStartVMOnConnect property: The desired configuration of Start VM On Connect for the hostpool during
      * the peak phase.
-     *
+     * 
      * @param peakStartVMOnConnect the peakStartVMOnConnect value to set.
      * @return the ScalingPlanPersonalSchedulePatch object itself.
      */
@@ -277,7 +281,7 @@ public final class ScalingPlanPersonalSchedulePatch {
 
     /**
      * Get the peakActionOnDisconnect property: Action to be taken after a user disconnect during the peak period.
-     *
+     * 
      * @return the peakActionOnDisconnect value.
      */
     public SessionHandlingOperation peakActionOnDisconnect() {
@@ -286,12 +290,12 @@ public final class ScalingPlanPersonalSchedulePatch {
 
     /**
      * Set the peakActionOnDisconnect property: Action to be taken after a user disconnect during the peak period.
-     *
+     * 
      * @param peakActionOnDisconnect the peakActionOnDisconnect value to set.
      * @return the ScalingPlanPersonalSchedulePatch object itself.
      */
-    public ScalingPlanPersonalSchedulePatch withPeakActionOnDisconnect(
-        SessionHandlingOperation peakActionOnDisconnect) {
+    public ScalingPlanPersonalSchedulePatch
+        withPeakActionOnDisconnect(SessionHandlingOperation peakActionOnDisconnect) {
         if (this.innerProperties() == null) {
             this.innerProperties = new ScalingPlanPersonalScheduleProperties();
         }
@@ -300,9 +304,9 @@ public final class ScalingPlanPersonalSchedulePatch {
     }
 
     /**
-     * Get the peakMinutesToWaitOnDisconnect property: The time in minutes to wait before performing the desired session
-     * handling action when a user disconnects during the peak period.
-     *
+     * Get the peakMinutesToWaitOnDisconnect property: The time in minutes to wait before performing the desired
+     * session handling action when a user disconnects during the peak period.
+     * 
      * @return the peakMinutesToWaitOnDisconnect value.
      */
     public Integer peakMinutesToWaitOnDisconnect() {
@@ -310,9 +314,9 @@ public final class ScalingPlanPersonalSchedulePatch {
     }
 
     /**
-     * Set the peakMinutesToWaitOnDisconnect property: The time in minutes to wait before performing the desired session
-     * handling action when a user disconnects during the peak period.
-     *
+     * Set the peakMinutesToWaitOnDisconnect property: The time in minutes to wait before performing the desired
+     * session handling action when a user disconnects during the peak period.
+     * 
      * @param peakMinutesToWaitOnDisconnect the peakMinutesToWaitOnDisconnect value to set.
      * @return the ScalingPlanPersonalSchedulePatch object itself.
      */
@@ -326,7 +330,7 @@ public final class ScalingPlanPersonalSchedulePatch {
 
     /**
      * Get the peakActionOnLogoff property: Action to be taken after a logoff during the peak period.
-     *
+     * 
      * @return the peakActionOnLogoff value.
      */
     public SessionHandlingOperation peakActionOnLogoff() {
@@ -335,7 +339,7 @@ public final class ScalingPlanPersonalSchedulePatch {
 
     /**
      * Set the peakActionOnLogoff property: Action to be taken after a logoff during the peak period.
-     *
+     * 
      * @param peakActionOnLogoff the peakActionOnLogoff value to set.
      * @return the ScalingPlanPersonalSchedulePatch object itself.
      */
@@ -350,7 +354,7 @@ public final class ScalingPlanPersonalSchedulePatch {
     /**
      * Get the peakMinutesToWaitOnLogoff property: The time in minutes to wait before performing the desired session
      * handling action when a user logs off during the peak period.
-     *
+     * 
      * @return the peakMinutesToWaitOnLogoff value.
      */
     public Integer peakMinutesToWaitOnLogoff() {
@@ -360,7 +364,7 @@ public final class ScalingPlanPersonalSchedulePatch {
     /**
      * Set the peakMinutesToWaitOnLogoff property: The time in minutes to wait before performing the desired session
      * handling action when a user logs off during the peak period.
-     *
+     * 
      * @param peakMinutesToWaitOnLogoff the peakMinutesToWaitOnLogoff value to set.
      * @return the ScalingPlanPersonalSchedulePatch object itself.
      */
@@ -374,7 +378,7 @@ public final class ScalingPlanPersonalSchedulePatch {
 
     /**
      * Get the rampDownStartTime property: Starting time for ramp down period.
-     *
+     * 
      * @return the rampDownStartTime value.
      */
     public Time rampDownStartTime() {
@@ -383,7 +387,7 @@ public final class ScalingPlanPersonalSchedulePatch {
 
     /**
      * Set the rampDownStartTime property: Starting time for ramp down period.
-     *
+     * 
      * @param rampDownStartTime the rampDownStartTime value to set.
      * @return the ScalingPlanPersonalSchedulePatch object itself.
      */
@@ -398,7 +402,7 @@ public final class ScalingPlanPersonalSchedulePatch {
     /**
      * Get the rampDownStartVMOnConnect property: The desired configuration of Start VM On Connect for the hostpool
      * during the ramp down phase.
-     *
+     * 
      * @return the rampDownStartVMOnConnect value.
      */
     public SetStartVMOnConnect rampDownStartVMOnConnect() {
@@ -408,7 +412,7 @@ public final class ScalingPlanPersonalSchedulePatch {
     /**
      * Set the rampDownStartVMOnConnect property: The desired configuration of Start VM On Connect for the hostpool
      * during the ramp down phase.
-     *
+     * 
      * @param rampDownStartVMOnConnect the rampDownStartVMOnConnect value to set.
      * @return the ScalingPlanPersonalSchedulePatch object itself.
      */
@@ -423,7 +427,7 @@ public final class ScalingPlanPersonalSchedulePatch {
     /**
      * Get the rampDownActionOnDisconnect property: Action to be taken after a user disconnect during the ramp down
      * period.
-     *
+     * 
      * @return the rampDownActionOnDisconnect value.
      */
     public SessionHandlingOperation rampDownActionOnDisconnect() {
@@ -433,12 +437,12 @@ public final class ScalingPlanPersonalSchedulePatch {
     /**
      * Set the rampDownActionOnDisconnect property: Action to be taken after a user disconnect during the ramp down
      * period.
-     *
+     * 
      * @param rampDownActionOnDisconnect the rampDownActionOnDisconnect value to set.
      * @return the ScalingPlanPersonalSchedulePatch object itself.
      */
-    public ScalingPlanPersonalSchedulePatch withRampDownActionOnDisconnect(
-        SessionHandlingOperation rampDownActionOnDisconnect) {
+    public ScalingPlanPersonalSchedulePatch
+        withRampDownActionOnDisconnect(SessionHandlingOperation rampDownActionOnDisconnect) {
         if (this.innerProperties() == null) {
             this.innerProperties = new ScalingPlanPersonalScheduleProperties();
         }
@@ -449,7 +453,7 @@ public final class ScalingPlanPersonalSchedulePatch {
     /**
      * Get the rampDownMinutesToWaitOnDisconnect property: The time in minutes to wait before performing the desired
      * session handling action when a user disconnects during the ramp down period.
-     *
+     * 
      * @return the rampDownMinutesToWaitOnDisconnect value.
      */
     public Integer rampDownMinutesToWaitOnDisconnect() {
@@ -459,12 +463,12 @@ public final class ScalingPlanPersonalSchedulePatch {
     /**
      * Set the rampDownMinutesToWaitOnDisconnect property: The time in minutes to wait before performing the desired
      * session handling action when a user disconnects during the ramp down period.
-     *
+     * 
      * @param rampDownMinutesToWaitOnDisconnect the rampDownMinutesToWaitOnDisconnect value to set.
      * @return the ScalingPlanPersonalSchedulePatch object itself.
      */
-    public ScalingPlanPersonalSchedulePatch withRampDownMinutesToWaitOnDisconnect(
-        Integer rampDownMinutesToWaitOnDisconnect) {
+    public ScalingPlanPersonalSchedulePatch
+        withRampDownMinutesToWaitOnDisconnect(Integer rampDownMinutesToWaitOnDisconnect) {
         if (this.innerProperties() == null) {
             this.innerProperties = new ScalingPlanPersonalScheduleProperties();
         }
@@ -474,7 +478,7 @@ public final class ScalingPlanPersonalSchedulePatch {
 
     /**
      * Get the rampDownActionOnLogoff property: Action to be taken after a logoff during the ramp down period.
-     *
+     * 
      * @return the rampDownActionOnLogoff value.
      */
     public SessionHandlingOperation rampDownActionOnLogoff() {
@@ -483,12 +487,12 @@ public final class ScalingPlanPersonalSchedulePatch {
 
     /**
      * Set the rampDownActionOnLogoff property: Action to be taken after a logoff during the ramp down period.
-     *
+     * 
      * @param rampDownActionOnLogoff the rampDownActionOnLogoff value to set.
      * @return the ScalingPlanPersonalSchedulePatch object itself.
      */
-    public ScalingPlanPersonalSchedulePatch withRampDownActionOnLogoff(
-        SessionHandlingOperation rampDownActionOnLogoff) {
+    public ScalingPlanPersonalSchedulePatch
+        withRampDownActionOnLogoff(SessionHandlingOperation rampDownActionOnLogoff) {
         if (this.innerProperties() == null) {
             this.innerProperties = new ScalingPlanPersonalScheduleProperties();
         }
@@ -497,9 +501,9 @@ public final class ScalingPlanPersonalSchedulePatch {
     }
 
     /**
-     * Get the rampDownMinutesToWaitOnLogoff property: The time in minutes to wait before performing the desired session
-     * handling action when a user logs off during the ramp down period.
-     *
+     * Get the rampDownMinutesToWaitOnLogoff property: The time in minutes to wait before performing the desired
+     * session handling action when a user logs off during the ramp down period.
+     * 
      * @return the rampDownMinutesToWaitOnLogoff value.
      */
     public Integer rampDownMinutesToWaitOnLogoff() {
@@ -507,9 +511,9 @@ public final class ScalingPlanPersonalSchedulePatch {
     }
 
     /**
-     * Set the rampDownMinutesToWaitOnLogoff property: The time in minutes to wait before performing the desired session
-     * handling action when a user logs off during the ramp down period.
-     *
+     * Set the rampDownMinutesToWaitOnLogoff property: The time in minutes to wait before performing the desired
+     * session handling action when a user logs off during the ramp down period.
+     * 
      * @param rampDownMinutesToWaitOnLogoff the rampDownMinutesToWaitOnLogoff value to set.
      * @return the ScalingPlanPersonalSchedulePatch object itself.
      */
@@ -523,7 +527,7 @@ public final class ScalingPlanPersonalSchedulePatch {
 
     /**
      * Get the offPeakStartTime property: Starting time for off-peak period.
-     *
+     * 
      * @return the offPeakStartTime value.
      */
     public Time offPeakStartTime() {
@@ -532,7 +536,7 @@ public final class ScalingPlanPersonalSchedulePatch {
 
     /**
      * Set the offPeakStartTime property: Starting time for off-peak period.
-     *
+     * 
      * @param offPeakStartTime the offPeakStartTime value to set.
      * @return the ScalingPlanPersonalSchedulePatch object itself.
      */
@@ -547,7 +551,7 @@ public final class ScalingPlanPersonalSchedulePatch {
     /**
      * Get the offPeakStartVMOnConnect property: The desired configuration of Start VM On Connect for the hostpool
      * during the off-peak phase.
-     *
+     * 
      * @return the offPeakStartVMOnConnect value.
      */
     public SetStartVMOnConnect offPeakStartVMOnConnect() {
@@ -557,7 +561,7 @@ public final class ScalingPlanPersonalSchedulePatch {
     /**
      * Set the offPeakStartVMOnConnect property: The desired configuration of Start VM On Connect for the hostpool
      * during the off-peak phase.
-     *
+     * 
      * @param offPeakStartVMOnConnect the offPeakStartVMOnConnect value to set.
      * @return the ScalingPlanPersonalSchedulePatch object itself.
      */
@@ -572,7 +576,7 @@ public final class ScalingPlanPersonalSchedulePatch {
     /**
      * Get the offPeakActionOnDisconnect property: Action to be taken after a user disconnect during the off-peak
      * period.
-     *
+     * 
      * @return the offPeakActionOnDisconnect value.
      */
     public SessionHandlingOperation offPeakActionOnDisconnect() {
@@ -582,12 +586,12 @@ public final class ScalingPlanPersonalSchedulePatch {
     /**
      * Set the offPeakActionOnDisconnect property: Action to be taken after a user disconnect during the off-peak
      * period.
-     *
+     * 
      * @param offPeakActionOnDisconnect the offPeakActionOnDisconnect value to set.
      * @return the ScalingPlanPersonalSchedulePatch object itself.
      */
-    public ScalingPlanPersonalSchedulePatch withOffPeakActionOnDisconnect(
-        SessionHandlingOperation offPeakActionOnDisconnect) {
+    public ScalingPlanPersonalSchedulePatch
+        withOffPeakActionOnDisconnect(SessionHandlingOperation offPeakActionOnDisconnect) {
         if (this.innerProperties() == null) {
             this.innerProperties = new ScalingPlanPersonalScheduleProperties();
         }
@@ -598,7 +602,7 @@ public final class ScalingPlanPersonalSchedulePatch {
     /**
      * Get the offPeakMinutesToWaitOnDisconnect property: The time in minutes to wait before performing the desired
      * session handling action when a user disconnects during the off-peak period.
-     *
+     * 
      * @return the offPeakMinutesToWaitOnDisconnect value.
      */
     public Integer offPeakMinutesToWaitOnDisconnect() {
@@ -608,12 +612,12 @@ public final class ScalingPlanPersonalSchedulePatch {
     /**
      * Set the offPeakMinutesToWaitOnDisconnect property: The time in minutes to wait before performing the desired
      * session handling action when a user disconnects during the off-peak period.
-     *
+     * 
      * @param offPeakMinutesToWaitOnDisconnect the offPeakMinutesToWaitOnDisconnect value to set.
      * @return the ScalingPlanPersonalSchedulePatch object itself.
      */
-    public ScalingPlanPersonalSchedulePatch withOffPeakMinutesToWaitOnDisconnect(
-        Integer offPeakMinutesToWaitOnDisconnect) {
+    public ScalingPlanPersonalSchedulePatch
+        withOffPeakMinutesToWaitOnDisconnect(Integer offPeakMinutesToWaitOnDisconnect) {
         if (this.innerProperties() == null) {
             this.innerProperties = new ScalingPlanPersonalScheduleProperties();
         }
@@ -623,7 +627,7 @@ public final class ScalingPlanPersonalSchedulePatch {
 
     /**
      * Get the offPeakActionOnLogoff property: Action to be taken after a logoff during the off-peak period.
-     *
+     * 
      * @return the offPeakActionOnLogoff value.
      */
     public SessionHandlingOperation offPeakActionOnLogoff() {
@@ -632,7 +636,7 @@ public final class ScalingPlanPersonalSchedulePatch {
 
     /**
      * Set the offPeakActionOnLogoff property: Action to be taken after a logoff during the off-peak period.
-     *
+     * 
      * @param offPeakActionOnLogoff the offPeakActionOnLogoff value to set.
      * @return the ScalingPlanPersonalSchedulePatch object itself.
      */
@@ -647,7 +651,7 @@ public final class ScalingPlanPersonalSchedulePatch {
     /**
      * Get the offPeakMinutesToWaitOnLogoff property: The time in minutes to wait before performing the desired session
      * handling action when a user logs off during the off-peak period.
-     *
+     * 
      * @return the offPeakMinutesToWaitOnLogoff value.
      */
     public Integer offPeakMinutesToWaitOnLogoff() {
@@ -657,7 +661,7 @@ public final class ScalingPlanPersonalSchedulePatch {
     /**
      * Set the offPeakMinutesToWaitOnLogoff property: The time in minutes to wait before performing the desired session
      * handling action when a user logs off during the off-peak period.
-     *
+     * 
      * @param offPeakMinutesToWaitOnLogoff the offPeakMinutesToWaitOnLogoff value to set.
      * @return the ScalingPlanPersonalSchedulePatch object itself.
      */
@@ -671,7 +675,7 @@ public final class ScalingPlanPersonalSchedulePatch {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -11,51 +11,42 @@ import com.azure.resourcemanager.desktopvirtualization.models.StartupBehavior;
 import com.azure.resourcemanager.desktopvirtualization.models.Time;
 import java.util.Arrays;
 
-/** Samples for ScalingPlanPersonalSchedules Create. */
+/**
+ * Samples for ScalingPlanPersonalSchedules Create.
+ */
 public final class ScalingPlanPersonalSchedulesCreateSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2023-09-05/examples/ScalingPlanPersonalSchedule_Create.json
+     * x-ms-original-file:
+     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2023-11-01-preview/
+     * examples/ScalingPlanPersonalSchedule_Create.json
      */
     /**
      * Sample code: ScalingPlanPersonalSchedules_Create.
-     *
+     * 
      * @param manager Entry point to DesktopVirtualizationManager.
      */
     public static void scalingPlanPersonalSchedulesCreate(
         com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager manager) {
-        manager
-            .scalingPlanPersonalSchedules()
-            .define("scalingPlanScheduleWeekdays1")
+        manager.scalingPlanPersonalSchedules().define("scalingPlanScheduleWeekdays1")
             .withExistingScalingPlan("resourceGroup1", "scalingPlan1")
-            .withDaysOfWeek(
-                Arrays
-                    .asList(
-                        DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY, DayOfWeek.THURSDAY, DayOfWeek.FRIDAY))
-            .withRampUpStartTime(new Time().withHour(6).withMinute(0))
-            .withRampUpAutoStartHosts(StartupBehavior.ALL)
+            .withDaysOfWeek(Arrays.asList(DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY, DayOfWeek.THURSDAY,
+                DayOfWeek.FRIDAY))
+            .withRampUpStartTime(new Time().withHour(6).withMinute(0)).withRampUpAutoStartHosts(StartupBehavior.ALL)
             .withRampUpStartVMOnConnect(SetStartVMOnConnect.ENABLE)
-            .withRampUpActionOnDisconnect(SessionHandlingOperation.NONE)
-            .withRampUpMinutesToWaitOnDisconnect(10)
-            .withRampUpActionOnLogoff(SessionHandlingOperation.NONE)
-            .withRampUpMinutesToWaitOnLogoff(10)
+            .withRampUpActionOnDisconnect(SessionHandlingOperation.NONE).withRampUpMinutesToWaitOnDisconnect(10)
+            .withRampUpActionOnLogoff(SessionHandlingOperation.NONE).withRampUpMinutesToWaitOnLogoff(10)
             .withPeakStartTime(new Time().withHour(8).withMinute(0))
             .withPeakStartVMOnConnect(SetStartVMOnConnect.ENABLE)
-            .withPeakActionOnDisconnect(SessionHandlingOperation.NONE)
-            .withPeakMinutesToWaitOnDisconnect(10)
-            .withPeakActionOnLogoff(SessionHandlingOperation.DEALLOCATE)
-            .withPeakMinutesToWaitOnLogoff(10)
+            .withPeakActionOnDisconnect(SessionHandlingOperation.NONE).withPeakMinutesToWaitOnDisconnect(10)
+            .withPeakActionOnLogoff(SessionHandlingOperation.DEALLOCATE).withPeakMinutesToWaitOnLogoff(10)
             .withRampDownStartTime(new Time().withHour(18).withMinute(0))
             .withRampDownStartVMOnConnect(SetStartVMOnConnect.ENABLE)
-            .withRampDownActionOnDisconnect(SessionHandlingOperation.NONE)
-            .withRampDownMinutesToWaitOnDisconnect(10)
-            .withRampDownActionOnLogoff(SessionHandlingOperation.DEALLOCATE)
-            .withRampDownMinutesToWaitOnLogoff(10)
+            .withRampDownActionOnDisconnect(SessionHandlingOperation.NONE).withRampDownMinutesToWaitOnDisconnect(10)
+            .withRampDownActionOnLogoff(SessionHandlingOperation.DEALLOCATE).withRampDownMinutesToWaitOnLogoff(10)
             .withOffPeakStartTime(new Time().withHour(20).withMinute(0))
             .withOffPeakStartVMOnConnect(SetStartVMOnConnect.ENABLE)
-            .withOffPeakActionOnDisconnect(SessionHandlingOperation.NONE)
-            .withOffPeakMinutesToWaitOnDisconnect(10)
-            .withOffPeakActionOnLogoff(SessionHandlingOperation.DEALLOCATE)
-            .withOffPeakMinutesToWaitOnLogoff(10)
+            .withOffPeakActionOnDisconnect(SessionHandlingOperation.NONE).withOffPeakMinutesToWaitOnDisconnect(10)
+            .withOffPeakActionOnLogoff(SessionHandlingOperation.DEALLOCATE).withOffPeakMinutesToWaitOnLogoff(10)
             .create();
     }
 }

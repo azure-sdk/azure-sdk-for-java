@@ -11,8 +11,8 @@ import java.util.List;
 
 /**
  * HostPoolList
- *
- * <p>List of HostPool definitions.
+ * 
+ * List of HostPool definitions.
  */
 @Fluent
 public final class HostPoolList {
@@ -28,13 +28,15 @@ public final class HostPoolList {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of HostPoolList class. */
+    /**
+     * Creates an instance of HostPoolList class.
+     */
     public HostPoolList() {
     }
 
     /**
      * Get the value property: List of HostPool definitions.
-     *
+     * 
      * @return the value value.
      */
     public List<HostPoolInner> value() {
@@ -43,7 +45,7 @@ public final class HostPoolList {
 
     /**
      * Set the value property: List of HostPool definitions.
-     *
+     * 
      * @param value the value value to set.
      * @return the HostPoolList object itself.
      */
@@ -54,7 +56,7 @@ public final class HostPoolList {
 
     /**
      * Get the nextLink property: Link to the next page of results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -63,7 +65,7 @@ public final class HostPoolList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

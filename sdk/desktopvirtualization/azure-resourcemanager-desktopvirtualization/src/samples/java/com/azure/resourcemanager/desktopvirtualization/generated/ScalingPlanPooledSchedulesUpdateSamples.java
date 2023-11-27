@@ -10,36 +10,30 @@ import com.azure.resourcemanager.desktopvirtualization.models.SessionHostLoadBal
 import com.azure.resourcemanager.desktopvirtualization.models.Time;
 import java.util.Arrays;
 
-/** Samples for ScalingPlanPooledSchedules Update. */
+/**
+ * Samples for ScalingPlanPooledSchedules Update.
+ */
 public final class ScalingPlanPooledSchedulesUpdateSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2023-09-05/examples/ScalingPlanPooledSchedule_Update.json
+     * x-ms-original-file:
+     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2023-11-01-preview/
+     * examples/ScalingPlanPooledSchedule_Update.json
      */
     /**
      * Sample code: ScalingPlanPooledSchedules_Update.
-     *
+     * 
      * @param manager Entry point to DesktopVirtualizationManager.
      */
     public static void scalingPlanPooledSchedulesUpdate(
         com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager manager) {
-        ScalingPlanPooledSchedule resource =
-            manager
-                .scalingPlanPooledSchedules()
-                .getWithResponse(
-                    "resourceGroup1", "scalingPlan1", "scalingPlanScheduleWeekdays1", com.azure.core.util.Context.NONE)
-                .getValue();
-        resource
-            .update()
-            .withDaysOfWeek(
-                Arrays
-                    .asList(
-                        DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY, DayOfWeek.THURSDAY, DayOfWeek.FRIDAY))
+        ScalingPlanPooledSchedule resource = manager.scalingPlanPooledSchedules().getWithResponse("resourceGroup1",
+            "scalingPlan1", "scalingPlanScheduleWeekdays1", com.azure.core.util.Context.NONE).getValue();
+        resource.update()
+            .withDaysOfWeek(Arrays.asList(DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY, DayOfWeek.THURSDAY,
+                DayOfWeek.FRIDAY))
             .withRampUpLoadBalancingAlgorithm(SessionHostLoadBalancingAlgorithm.DEPTH_FIRST)
-            .withRampUpCapacityThresholdPct(80)
-            .withPeakStartTime(new Time().withHour(8).withMinute(0))
+            .withRampUpCapacityThresholdPct(80).withPeakStartTime(new Time().withHour(8).withMinute(0))
             .withRampDownLoadBalancingAlgorithm(SessionHostLoadBalancingAlgorithm.DEPTH_FIRST)
-            .withRampDownMinimumHostsPct(20)
-            .withRampDownWaitTimeMinutes(30)
-            .apply();
+            .withRampDownMinimumHostsPct(20).withRampDownWaitTimeMinutes(30).apply();
     }
 }
