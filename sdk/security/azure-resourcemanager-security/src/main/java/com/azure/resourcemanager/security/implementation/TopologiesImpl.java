@@ -21,8 +21,8 @@ public final class TopologiesImpl implements Topologies {
 
     private final com.azure.resourcemanager.security.SecurityManager serviceManager;
 
-    public TopologiesImpl(
-        TopologiesClient innerClient, com.azure.resourcemanager.security.SecurityManager serviceManager) {
+    public TopologiesImpl(TopologiesClient innerClient,
+        com.azure.resourcemanager.security.SecurityManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
@@ -47,15 +47,12 @@ public final class TopologiesImpl implements Topologies {
         return Utils.mapPage(inner, inner1 -> new TopologyResourceImpl(inner1, this.manager()));
     }
 
-    public Response<TopologyResource> getWithResponse(
-        String resourceGroupName, String ascLocation, String topologyResourceName, Context context) {
-        Response<TopologyResourceInner> inner =
-            this.serviceClient().getWithResponse(resourceGroupName, ascLocation, topologyResourceName, context);
+    public Response<TopologyResource> getWithResponse(String resourceGroupName, String ascLocation,
+        String topologyResourceName, Context context) {
+        Response<TopologyResourceInner> inner
+            = this.serviceClient().getWithResponse(resourceGroupName, ascLocation, topologyResourceName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new TopologyResourceImpl(inner.getValue(), this.manager()));
         } else {
             return null;

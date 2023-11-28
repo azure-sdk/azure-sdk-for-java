@@ -25,13 +25,15 @@ public final class PricingInner extends ProxyResource {
     @JsonProperty(value = "properties")
     private PricingProperties innerProperties;
 
-    /** Creates an instance of PricingInner class. */
+    /**
+     * Creates an instance of PricingInner class.
+     */
     public PricingInner() {
     }
 
     /**
      * Get the innerProperties property: Pricing data.
-     *
+     * 
      * @return the innerProperties value.
      */
     private PricingProperties innerProperties() {
@@ -42,7 +44,7 @@ public final class PricingInner extends ProxyResource {
      * Get the pricingTier property: The pricing tier value. Microsoft Defender for Cloud is provided in two pricing
      * tiers: free and standard. The standard tier offers advanced security capabilities, while the free tier offers
      * basic security features.
-     *
+     * 
      * @return the pricingTier value.
      */
     public PricingTier pricingTier() {
@@ -53,7 +55,7 @@ public final class PricingInner extends ProxyResource {
      * Set the pricingTier property: The pricing tier value. Microsoft Defender for Cloud is provided in two pricing
      * tiers: free and standard. The standard tier offers advanced security capabilities, while the free tier offers
      * basic security features.
-     *
+     * 
      * @param pricingTier the pricingTier value to set.
      * @return the PricingInner object itself.
      */
@@ -66,9 +68,10 @@ public final class PricingInner extends ProxyResource {
     }
 
     /**
-     * Get the subPlan property: The sub-plan selected for a Standard pricing configuration, when more than one sub-plan
-     * is available. Each sub-plan enables a set of security features. When not specified, full plan is applied.
-     *
+     * Get the subPlan property: The sub-plan selected for a Standard pricing configuration, when more than one
+     * sub-plan is available. Each sub-plan enables a set of security features. When not specified, full plan is
+     * applied.
+     * 
      * @return the subPlan value.
      */
     public String subPlan() {
@@ -76,9 +79,10 @@ public final class PricingInner extends ProxyResource {
     }
 
     /**
-     * Set the subPlan property: The sub-plan selected for a Standard pricing configuration, when more than one sub-plan
-     * is available. Each sub-plan enables a set of security features. When not specified, full plan is applied.
-     *
+     * Set the subPlan property: The sub-plan selected for a Standard pricing configuration, when more than one
+     * sub-plan is available. Each sub-plan enables a set of security features. When not specified, full plan is
+     * applied.
+     * 
      * @param subPlan the subPlan value to set.
      * @return the PricingInner object itself.
      */
@@ -93,7 +97,7 @@ public final class PricingInner extends ProxyResource {
     /**
      * Get the freeTrialRemainingTime property: The duration left for the subscriptions free trial period - in ISO 8601
      * format (e.g. P3Y6M4DT12H30M5S).
-     *
+     * 
      * @return the freeTrialRemainingTime value.
      */
     public Duration freeTrialRemainingTime() {
@@ -103,7 +107,7 @@ public final class PricingInner extends ProxyResource {
     /**
      * Get the enablementTime property: Optional. If `pricingTier` is `Standard` then this property holds the date of
      * the last time the `pricingTier` was set to `Standard`, when available (e.g 2023-03-01T12:42:42.1921106Z).
-     *
+     * 
      * @return the enablementTime value.
      */
     public OffsetDateTime enablementTime() {
@@ -113,7 +117,7 @@ public final class PricingInner extends ProxyResource {
     /**
      * Get the deprecated property: Optional. True if the plan is deprecated. If there are replacing plans they will
      * appear in `replacedBy` property.
-     *
+     * 
      * @return the deprecated value.
      */
     public Boolean deprecated() {
@@ -123,7 +127,7 @@ public final class PricingInner extends ProxyResource {
     /**
      * Get the replacedBy property: Optional. List of plans that replace this plan. This property exists only if this
      * plan is deprecated.
-     *
+     * 
      * @return the replacedBy value.
      */
     public List<String> replacedBy() {
@@ -132,7 +136,7 @@ public final class PricingInner extends ProxyResource {
 
     /**
      * Get the extensions property: Optional. List of extensions offered under a plan.
-     *
+     * 
      * @return the extensions value.
      */
     public List<Extension> extensions() {
@@ -141,7 +145,7 @@ public final class PricingInner extends ProxyResource {
 
     /**
      * Set the extensions property: Optional. List of extensions offered under a plan.
-     *
+     * 
      * @param extensions the extensions value to set.
      * @return the PricingInner object itself.
      */
@@ -155,7 +159,7 @@ public final class PricingInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
