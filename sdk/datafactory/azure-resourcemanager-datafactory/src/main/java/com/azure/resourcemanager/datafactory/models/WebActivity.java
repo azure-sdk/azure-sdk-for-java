@@ -259,6 +259,60 @@ public final class WebActivity extends ExecutionActivity {
     }
 
     /**
+     * Get the httpRequestTimeout property: Timeout for the HTTP request to get a response. Format is in TimeSpan
+     * (hh:mm:ss). This value is the timeout to get a response, not the activity timeout. The default value is 00:01:00
+     * (1 minute). The range is from 1 to 10 minutes.
+     * 
+     * @return the httpRequestTimeout value.
+     */
+    public Object httpRequestTimeout() {
+        return this.innerTypeProperties() == null ? null : this.innerTypeProperties().httpRequestTimeout();
+    }
+
+    /**
+     * Set the httpRequestTimeout property: Timeout for the HTTP request to get a response. Format is in TimeSpan
+     * (hh:mm:ss). This value is the timeout to get a response, not the activity timeout. The default value is 00:01:00
+     * (1 minute). The range is from 1 to 10 minutes.
+     * 
+     * @param httpRequestTimeout the httpRequestTimeout value to set.
+     * @return the WebActivity object itself.
+     */
+    public WebActivity withHttpRequestTimeout(Object httpRequestTimeout) {
+        if (this.innerTypeProperties() == null) {
+            this.innerTypeProperties = new WebActivityTypeProperties();
+        }
+        this.innerTypeProperties().withHttpRequestTimeout(httpRequestTimeout);
+        return this;
+    }
+
+    /**
+     * Get the turnOffAsync property: Option to disable invoking HTTP GET on location given in response header of a
+     * HTTP 202 Response. If set true, it stops invoking HTTP GET on http location given in response header. If set
+     * false then continues to invoke HTTP GET call on location given in http response headers.
+     * 
+     * @return the turnOffAsync value.
+     */
+    public Boolean turnOffAsync() {
+        return this.innerTypeProperties() == null ? null : this.innerTypeProperties().turnOffAsync();
+    }
+
+    /**
+     * Set the turnOffAsync property: Option to disable invoking HTTP GET on location given in response header of a
+     * HTTP 202 Response. If set true, it stops invoking HTTP GET on http location given in response header. If set
+     * false then continues to invoke HTTP GET call on location given in http response headers.
+     * 
+     * @param turnOffAsync the turnOffAsync value to set.
+     * @return the WebActivity object itself.
+     */
+    public WebActivity withTurnOffAsync(Boolean turnOffAsync) {
+        if (this.innerTypeProperties() == null) {
+            this.innerTypeProperties = new WebActivityTypeProperties();
+        }
+        this.innerTypeProperties().withTurnOffAsync(turnOffAsync);
+        return this;
+    }
+
+    /**
      * Get the datasets property: List of datasets passed to web endpoint.
      * 
      * @return the datasets value.

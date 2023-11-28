@@ -59,6 +59,22 @@ public final class WebActivityTypeProperties {
     private Boolean disableCertValidation;
 
     /*
+     * Timeout for the HTTP request to get a response. Format is in TimeSpan (hh:mm:ss). This value is the timeout to
+     * get a response, not the activity timeout. The default value is 00:01:00 (1 minute). The range is from 1 to 10
+     * minutes
+     */
+    @JsonProperty(value = "httpRequestTimeout")
+    private Object httpRequestTimeout;
+
+    /*
+     * Option to disable invoking HTTP GET on location given in response header of a HTTP 202 Response. If set true, it
+     * stops invoking HTTP GET on http location given in response header. If set false then continues to invoke HTTP
+     * GET call on location given in http response headers.
+     */
+    @JsonProperty(value = "turnOffAsync")
+    private Boolean turnOffAsync;
+
+    /*
      * List of datasets passed to web endpoint.
      */
     @JsonProperty(value = "datasets")
@@ -207,6 +223,54 @@ public final class WebActivityTypeProperties {
      */
     public WebActivityTypeProperties withDisableCertValidation(Boolean disableCertValidation) {
         this.disableCertValidation = disableCertValidation;
+        return this;
+    }
+
+    /**
+     * Get the httpRequestTimeout property: Timeout for the HTTP request to get a response. Format is in TimeSpan
+     * (hh:mm:ss). This value is the timeout to get a response, not the activity timeout. The default value is 00:01:00
+     * (1 minute). The range is from 1 to 10 minutes.
+     * 
+     * @return the httpRequestTimeout value.
+     */
+    public Object httpRequestTimeout() {
+        return this.httpRequestTimeout;
+    }
+
+    /**
+     * Set the httpRequestTimeout property: Timeout for the HTTP request to get a response. Format is in TimeSpan
+     * (hh:mm:ss). This value is the timeout to get a response, not the activity timeout. The default value is 00:01:00
+     * (1 minute). The range is from 1 to 10 minutes.
+     * 
+     * @param httpRequestTimeout the httpRequestTimeout value to set.
+     * @return the WebActivityTypeProperties object itself.
+     */
+    public WebActivityTypeProperties withHttpRequestTimeout(Object httpRequestTimeout) {
+        this.httpRequestTimeout = httpRequestTimeout;
+        return this;
+    }
+
+    /**
+     * Get the turnOffAsync property: Option to disable invoking HTTP GET on location given in response header of a
+     * HTTP 202 Response. If set true, it stops invoking HTTP GET on http location given in response header. If set
+     * false then continues to invoke HTTP GET call on location given in http response headers.
+     * 
+     * @return the turnOffAsync value.
+     */
+    public Boolean turnOffAsync() {
+        return this.turnOffAsync;
+    }
+
+    /**
+     * Set the turnOffAsync property: Option to disable invoking HTTP GET on location given in response header of a
+     * HTTP 202 Response. If set true, it stops invoking HTTP GET on http location given in response header. If set
+     * false then continues to invoke HTTP GET call on location given in http response headers.
+     * 
+     * @param turnOffAsync the turnOffAsync value to set.
+     * @return the WebActivityTypeProperties object itself.
+     */
+    public WebActivityTypeProperties withTurnOffAsync(Boolean turnOffAsync) {
+        this.turnOffAsync = turnOffAsync;
         return this;
     }
 
