@@ -1,0 +1,1 @@
+[ [ "com.azure.resourcemanager.monitor.generated.implementation.MetricDefinitionsClientImpl$MetricDefinitionsService" ], [ "com.azure.resourcemanager.monitor.generated.implementation.MetricsClientImpl$MetricsService" ], [ "com.azure.resourcemanager.monitor.generated.implementation.OperationsClientImpl$OperationsService" ] ]
