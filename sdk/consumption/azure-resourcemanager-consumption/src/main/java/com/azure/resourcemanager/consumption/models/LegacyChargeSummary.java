@@ -7,19 +7,18 @@ package com.azure.resourcemanager.consumption.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.consumption.fluent.models.LegacyChargeSummaryProperties;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.math.BigDecimal;
 
-/** Legacy charge summary. */
+/**
+ * Legacy charge summary.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
 @JsonTypeName("legacy")
 @Fluent
 public final class LegacyChargeSummary extends ChargeSummary {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(LegacyChargeSummary.class);
-
     /*
      * Properties for legacy charge summary
      */
@@ -27,15 +26,23 @@ public final class LegacyChargeSummary extends ChargeSummary {
     private LegacyChargeSummaryProperties innerProperties = new LegacyChargeSummaryProperties();
 
     /**
+     * Creates an instance of LegacyChargeSummary class.
+     */
+    public LegacyChargeSummary() {
+    }
+
+    /**
      * Get the innerProperties property: Properties for legacy charge summary.
-     *
+     * 
      * @return the innerProperties value.
      */
     private LegacyChargeSummaryProperties innerProperties() {
         return this.innerProperties;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public LegacyChargeSummary withEtag(String etag) {
         super.withEtag(etag);
@@ -44,7 +51,7 @@ public final class LegacyChargeSummary extends ChargeSummary {
 
     /**
      * Get the billingPeriodId property: The id of the billing period resource that the charge belongs to.
-     *
+     * 
      * @return the billingPeriodId value.
      */
     public String billingPeriodId() {
@@ -53,7 +60,7 @@ public final class LegacyChargeSummary extends ChargeSummary {
 
     /**
      * Get the usageStart property: Usage start date.
-     *
+     * 
      * @return the usageStart value.
      */
     public String usageStart() {
@@ -62,7 +69,7 @@ public final class LegacyChargeSummary extends ChargeSummary {
 
     /**
      * Get the usageEnd property: Usage end date.
-     *
+     * 
      * @return the usageEnd value.
      */
     public String usageEnd() {
@@ -71,7 +78,7 @@ public final class LegacyChargeSummary extends ChargeSummary {
 
     /**
      * Get the azureCharges property: Azure Charges.
-     *
+     * 
      * @return the azureCharges value.
      */
     public BigDecimal azureCharges() {
@@ -80,7 +87,7 @@ public final class LegacyChargeSummary extends ChargeSummary {
 
     /**
      * Get the chargesBilledSeparately property: Charges Billed separately.
-     *
+     * 
      * @return the chargesBilledSeparately value.
      */
     public BigDecimal chargesBilledSeparately() {
@@ -88,17 +95,17 @@ public final class LegacyChargeSummary extends ChargeSummary {
     }
 
     /**
-     * Get the marketplaceCharges property: Marketplace Charges.
-     *
-     * @return the marketplaceCharges value.
+     * Get the azureMarketplaceCharges property: Marketplace Charges.
+     * 
+     * @return the azureMarketplaceCharges value.
      */
-    public BigDecimal marketplaceCharges() {
-        return this.innerProperties() == null ? null : this.innerProperties().marketplaceCharges();
+    public BigDecimal azureMarketplaceCharges() {
+        return this.innerProperties() == null ? null : this.innerProperties().azureMarketplaceCharges();
     }
 
     /**
      * Get the currency property: Currency Code.
-     *
+     * 
      * @return the currency value.
      */
     public String currency() {
@@ -107,19 +114,19 @@ public final class LegacyChargeSummary extends ChargeSummary {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (innerProperties() == null) {
-            throw logger
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property innerProperties in model LegacyChargeSummary"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property innerProperties in model LegacyChargeSummary"));
         } else {
             innerProperties().validate();
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(LegacyChargeSummary.class);
 }

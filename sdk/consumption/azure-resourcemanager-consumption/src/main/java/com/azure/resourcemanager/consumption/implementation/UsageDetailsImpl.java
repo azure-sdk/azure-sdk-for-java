@@ -12,17 +12,16 @@ import com.azure.resourcemanager.consumption.fluent.models.UsageDetailInner;
 import com.azure.resourcemanager.consumption.models.Metrictype;
 import com.azure.resourcemanager.consumption.models.UsageDetail;
 import com.azure.resourcemanager.consumption.models.UsageDetails;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class UsageDetailsImpl implements UsageDetails {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(UsageDetailsImpl.class);
+    private static final ClientLogger LOGGER = new ClientLogger(UsageDetailsImpl.class);
 
     private final UsageDetailsClient innerClient;
 
     private final com.azure.resourcemanager.consumption.ConsumptionManager serviceManager;
 
-    public UsageDetailsImpl(
-        UsageDetailsClient innerClient, com.azure.resourcemanager.consumption.ConsumptionManager serviceManager) {
+    public UsageDetailsImpl(UsageDetailsClient innerClient,
+        com.azure.resourcemanager.consumption.ConsumptionManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
@@ -32,10 +31,10 @@ public final class UsageDetailsImpl implements UsageDetails {
         return Utils.mapPage(inner, inner1 -> new UsageDetailImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<UsageDetail> list(
-        String scope, String expand, String filter, String skiptoken, Integer top, Metrictype metric, Context context) {
-        PagedIterable<UsageDetailInner> inner =
-            this.serviceClient().list(scope, expand, filter, skiptoken, top, metric, context);
+    public PagedIterable<UsageDetail> list(String scope, String expand, String filter, String skiptoken, Integer top,
+        Metrictype metric, Context context) {
+        PagedIterable<UsageDetailInner> inner
+            = this.serviceClient().list(scope, expand, filter, skiptoken, top, metric, context);
         return Utils.mapPage(inner, inner1 -> new UsageDetailImpl(inner1, this.manager()));
     }
 
