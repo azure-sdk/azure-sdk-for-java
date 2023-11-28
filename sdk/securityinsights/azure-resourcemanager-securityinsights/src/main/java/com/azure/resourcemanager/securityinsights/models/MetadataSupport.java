@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Support information for the content item. */
+/**
+ * Support information for the content item.
+ */
 @Fluent
 public final class MetadataSupport {
     /*
@@ -36,8 +38,14 @@ public final class MetadataSupport {
     private String link;
 
     /**
+     * Creates an instance of MetadataSupport class.
+     */
+    public MetadataSupport() {
+    }
+
+    /**
      * Get the tier property: Type of support for content item.
-     *
+     * 
      * @return the tier value.
      */
     public SupportTier tier() {
@@ -46,7 +54,7 @@ public final class MetadataSupport {
 
     /**
      * Set the tier property: Type of support for content item.
-     *
+     * 
      * @param tier the tier value to set.
      * @return the MetadataSupport object itself.
      */
@@ -57,7 +65,7 @@ public final class MetadataSupport {
 
     /**
      * Get the name property: Name of the support contact. Company or person.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -66,7 +74,7 @@ public final class MetadataSupport {
 
     /**
      * Set the name property: Name of the support contact. Company or person.
-     *
+     * 
      * @param name the name value to set.
      * @return the MetadataSupport object itself.
      */
@@ -77,7 +85,7 @@ public final class MetadataSupport {
 
     /**
      * Get the email property: Email of support contact.
-     *
+     * 
      * @return the email value.
      */
     public String email() {
@@ -86,7 +94,7 @@ public final class MetadataSupport {
 
     /**
      * Set the email property: Email of support contact.
-     *
+     * 
      * @param email the email value to set.
      * @return the MetadataSupport object itself.
      */
@@ -97,7 +105,7 @@ public final class MetadataSupport {
 
     /**
      * Get the link property: Link for support help, like to support page to open a ticket etc.
-     *
+     * 
      * @return the link value.
      */
     public String link() {
@@ -106,7 +114,7 @@ public final class MetadataSupport {
 
     /**
      * Set the link property: Link for support help, like to support page to open a ticket etc.
-     *
+     * 
      * @param link the link value to set.
      * @return the MetadataSupport object itself.
      */
@@ -117,14 +125,13 @@ public final class MetadataSupport {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (tier() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property tier in model MetadataSupport"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property tier in model MetadataSupport"));
         }
     }
 

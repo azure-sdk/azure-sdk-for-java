@@ -13,7 +13,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** Automation rule properties. */
+/**
+ * Automation rule properties.
+ */
 @Fluent
 public final class AutomationRuleProperties {
     /*
@@ -65,8 +67,14 @@ public final class AutomationRuleProperties {
     private ClientInfo createdBy;
 
     /**
+     * Creates an instance of AutomationRuleProperties class.
+     */
+    public AutomationRuleProperties() {
+    }
+
+    /**
      * Get the displayName property: The display name of the automation rule.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -75,7 +83,7 @@ public final class AutomationRuleProperties {
 
     /**
      * Set the displayName property: The display name of the automation rule.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the AutomationRuleProperties object itself.
      */
@@ -86,7 +94,7 @@ public final class AutomationRuleProperties {
 
     /**
      * Get the order property: The order of execution of the automation rule.
-     *
+     * 
      * @return the order value.
      */
     public int order() {
@@ -95,7 +103,7 @@ public final class AutomationRuleProperties {
 
     /**
      * Set the order property: The order of execution of the automation rule.
-     *
+     * 
      * @param order the order value to set.
      * @return the AutomationRuleProperties object itself.
      */
@@ -106,7 +114,7 @@ public final class AutomationRuleProperties {
 
     /**
      * Get the triggeringLogic property: Describes automation rule triggering logic.
-     *
+     * 
      * @return the triggeringLogic value.
      */
     public AutomationRuleTriggeringLogic triggeringLogic() {
@@ -115,7 +123,7 @@ public final class AutomationRuleProperties {
 
     /**
      * Set the triggeringLogic property: Describes automation rule triggering logic.
-     *
+     * 
      * @param triggeringLogic the triggeringLogic value to set.
      * @return the AutomationRuleProperties object itself.
      */
@@ -126,7 +134,7 @@ public final class AutomationRuleProperties {
 
     /**
      * Get the actions property: The actions to execute when the automation rule is triggered.
-     *
+     * 
      * @return the actions value.
      */
     public List<AutomationRuleAction> actions() {
@@ -135,7 +143,7 @@ public final class AutomationRuleProperties {
 
     /**
      * Set the actions property: The actions to execute when the automation rule is triggered.
-     *
+     * 
      * @param actions the actions value to set.
      * @return the AutomationRuleProperties object itself.
      */
@@ -146,7 +154,7 @@ public final class AutomationRuleProperties {
 
     /**
      * Get the lastModifiedTimeUtc property: The last time the automation rule was updated.
-     *
+     * 
      * @return the lastModifiedTimeUtc value.
      */
     public OffsetDateTime lastModifiedTimeUtc() {
@@ -155,7 +163,7 @@ public final class AutomationRuleProperties {
 
     /**
      * Get the createdTimeUtc property: The time the automation rule was created.
-     *
+     * 
      * @return the createdTimeUtc value.
      */
     public OffsetDateTime createdTimeUtc() {
@@ -164,7 +172,7 @@ public final class AutomationRuleProperties {
 
     /**
      * Get the lastModifiedBy property: Information on the client (user or application) that made some action.
-     *
+     * 
      * @return the lastModifiedBy value.
      */
     public ClientInfo lastModifiedBy() {
@@ -173,7 +181,7 @@ public final class AutomationRuleProperties {
 
     /**
      * Get the createdBy property: Information on the client (user or application) that made some action.
-     *
+     * 
      * @return the createdBy value.
      */
     public ClientInfo createdBy() {
@@ -182,29 +190,23 @@ public final class AutomationRuleProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (displayName() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property displayName in model AutomationRuleProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property displayName in model AutomationRuleProperties"));
         }
         if (triggeringLogic() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property triggeringLogic in model AutomationRuleProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property triggeringLogic in model AutomationRuleProperties"));
         } else {
             triggeringLogic().validate();
         }
         if (actions() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property actions in model AutomationRuleProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property actions in model AutomationRuleProperties"));
         } else {
             actions().forEach(e -> e.validate());
         }

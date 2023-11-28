@@ -9,7 +9,9 @@ import com.azure.resourcemanager.securityinsights.models.EntityQueryItem;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Retrieve queries for entity result operation response. */
+/**
+ * Retrieve queries for entity result operation response.
+ */
 @Fluent
 public final class GetQueriesResponseInner {
     /*
@@ -19,8 +21,14 @@ public final class GetQueriesResponseInner {
     private List<EntityQueryItem> value;
 
     /**
+     * Creates an instance of GetQueriesResponseInner class.
+     */
+    public GetQueriesResponseInner() {
+    }
+
+    /**
      * Get the value property: The query result values.
-     *
+     * 
      * @return the value value.
      */
     public List<EntityQueryItem> value() {
@@ -29,7 +37,7 @@ public final class GetQueriesResponseInner {
 
     /**
      * Set the value property: The query result values.
-     *
+     * 
      * @param value the value value to set.
      * @return the GetQueriesResponseInner object itself.
      */
@@ -40,7 +48,7 @@ public final class GetQueriesResponseInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

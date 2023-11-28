@@ -10,7 +10,9 @@ import com.azure.resourcemanager.securityinsights.fluent.models.OperationInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Lists the operations available in the SecurityInsights RP. */
+/**
+ * Lists the operations available in the SecurityInsights RP.
+ */
 @Fluent
 public final class OperationsList {
     /*
@@ -26,8 +28,14 @@ public final class OperationsList {
     private List<OperationInner> value;
 
     /**
+     * Creates an instance of OperationsList class.
+     */
+    public OperationsList() {
+    }
+
+    /**
      * Get the nextLink property: URL to fetch the next set of operations.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -36,7 +44,7 @@ public final class OperationsList {
 
     /**
      * Get the value property: Array of operations.
-     *
+     * 
      * @return the value value.
      */
     public List<OperationInner> value() {
@@ -45,7 +53,7 @@ public final class OperationsList {
 
     /**
      * Set the value property: Array of operations.
-     *
+     * 
      * @param value the value value to set.
      * @return the OperationsList object itself.
      */
@@ -56,14 +64,13 @@ public final class OperationsList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property value in model OperationsList"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property value in model OperationsList"));
         } else {
             value().forEach(e -> e.validate());
         }

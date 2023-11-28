@@ -10,7 +10,9 @@ import com.azure.resourcemanager.securityinsights.models.DataConnectorTenantId;
 import com.azure.resourcemanager.securityinsights.models.OfficePowerBIConnectorDataTypes;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Office Microsoft PowerBI data connector properties. */
+/**
+ * Office Microsoft PowerBI data connector properties.
+ */
 @Fluent
 public final class OfficePowerBIDataConnectorProperties extends DataConnectorTenantId {
     /*
@@ -20,8 +22,14 @@ public final class OfficePowerBIDataConnectorProperties extends DataConnectorTen
     private OfficePowerBIConnectorDataTypes dataTypes;
 
     /**
+     * Creates an instance of OfficePowerBIDataConnectorProperties class.
+     */
+    public OfficePowerBIDataConnectorProperties() {
+    }
+
+    /**
      * Get the dataTypes property: The available data types for the connector.
-     *
+     * 
      * @return the dataTypes value.
      */
     public OfficePowerBIConnectorDataTypes dataTypes() {
@@ -30,7 +38,7 @@ public final class OfficePowerBIDataConnectorProperties extends DataConnectorTen
 
     /**
      * Set the dataTypes property: The available data types for the connector.
-     *
+     * 
      * @param dataTypes the dataTypes value to set.
      * @return the OfficePowerBIDataConnectorProperties object itself.
      */
@@ -39,7 +47,9 @@ public final class OfficePowerBIDataConnectorProperties extends DataConnectorTen
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public OfficePowerBIDataConnectorProperties withTenantId(String tenantId) {
         super.withTenantId(tenantId);
@@ -48,17 +58,15 @@ public final class OfficePowerBIDataConnectorProperties extends DataConnectorTen
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (dataTypes() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property dataTypes in model OfficePowerBIDataConnectorProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property dataTypes in model OfficePowerBIDataConnectorProperties"));
         } else {
             dataTypes().validate();
         }

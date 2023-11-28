@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The insight table query. */
+/**
+ * The insight table query.
+ */
 @Fluent
 public final class InsightQueryItemPropertiesTableQuery {
     /*
@@ -24,8 +26,14 @@ public final class InsightQueryItemPropertiesTableQuery {
     private List<InsightQueryItemPropertiesTableQueryQueriesDefinitionsItem> queriesDefinitions;
 
     /**
+     * Creates an instance of InsightQueryItemPropertiesTableQuery class.
+     */
+    public InsightQueryItemPropertiesTableQuery() {
+    }
+
+    /**
      * Get the columnsDefinitions property: List of insight column definitions.
-     *
+     * 
      * @return the columnsDefinitions value.
      */
     public List<InsightQueryItemPropertiesTableQueryColumnsDefinitionsItem> columnsDefinitions() {
@@ -34,19 +42,19 @@ public final class InsightQueryItemPropertiesTableQuery {
 
     /**
      * Set the columnsDefinitions property: List of insight column definitions.
-     *
+     * 
      * @param columnsDefinitions the columnsDefinitions value to set.
      * @return the InsightQueryItemPropertiesTableQuery object itself.
      */
-    public InsightQueryItemPropertiesTableQuery withColumnsDefinitions(
-        List<InsightQueryItemPropertiesTableQueryColumnsDefinitionsItem> columnsDefinitions) {
+    public InsightQueryItemPropertiesTableQuery
+        withColumnsDefinitions(List<InsightQueryItemPropertiesTableQueryColumnsDefinitionsItem> columnsDefinitions) {
         this.columnsDefinitions = columnsDefinitions;
         return this;
     }
 
     /**
      * Get the queriesDefinitions property: List of insight queries definitions.
-     *
+     * 
      * @return the queriesDefinitions value.
      */
     public List<InsightQueryItemPropertiesTableQueryQueriesDefinitionsItem> queriesDefinitions() {
@@ -55,19 +63,19 @@ public final class InsightQueryItemPropertiesTableQuery {
 
     /**
      * Set the queriesDefinitions property: List of insight queries definitions.
-     *
+     * 
      * @param queriesDefinitions the queriesDefinitions value to set.
      * @return the InsightQueryItemPropertiesTableQuery object itself.
      */
-    public InsightQueryItemPropertiesTableQuery withQueriesDefinitions(
-        List<InsightQueryItemPropertiesTableQueryQueriesDefinitionsItem> queriesDefinitions) {
+    public InsightQueryItemPropertiesTableQuery
+        withQueriesDefinitions(List<InsightQueryItemPropertiesTableQueryQueriesDefinitionsItem> queriesDefinitions) {
         this.queriesDefinitions = queriesDefinitions;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

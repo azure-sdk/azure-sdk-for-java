@@ -8,20 +8,37 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The format of the file. */
+/**
+ * The format of the file.
+ */
 public final class FileFormat extends ExpandableStringEnum<FileFormat> {
-    /** Static value CSV for FileFormat. */
+    /**
+     * Static value CSV for FileFormat.
+     */
     public static final FileFormat CSV = fromString("CSV");
 
-    /** Static value JSON for FileFormat. */
+    /**
+     * Static value JSON for FileFormat.
+     */
     public static final FileFormat JSON = fromString("JSON");
 
-    /** Static value Unspecified for FileFormat. */
+    /**
+     * Static value Unspecified for FileFormat.
+     */
     public static final FileFormat UNSPECIFIED = fromString("Unspecified");
 
     /**
+     * Creates a new instance of FileFormat value.
+     * 
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public FileFormat() {
+    }
+
+    /**
      * Creates or finds a FileFormat from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding FileFormat.
      */
@@ -32,7 +49,7 @@ public final class FileFormat extends ExpandableStringEnum<FileFormat> {
 
     /**
      * Gets known FileFormat values.
-     *
+     * 
      * @return known FileFormat values.
      */
     public static Collection<FileFormat> values() {

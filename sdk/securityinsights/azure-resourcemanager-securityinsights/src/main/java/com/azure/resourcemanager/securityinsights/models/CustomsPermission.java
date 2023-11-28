@@ -7,7 +7,9 @@ package com.azure.resourcemanager.securityinsights.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Customs permissions required for the connector. */
+/**
+ * Customs permissions required for the connector.
+ */
 @Fluent
 public class CustomsPermission {
     /*
@@ -23,8 +25,14 @@ public class CustomsPermission {
     private String description;
 
     /**
+     * Creates an instance of CustomsPermission class.
+     */
+    public CustomsPermission() {
+    }
+
+    /**
      * Get the name property: Customs permissions name.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -33,7 +41,7 @@ public class CustomsPermission {
 
     /**
      * Set the name property: Customs permissions name.
-     *
+     * 
      * @param name the name value to set.
      * @return the CustomsPermission object itself.
      */
@@ -44,7 +52,7 @@ public class CustomsPermission {
 
     /**
      * Get the description property: Customs permissions description.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -53,7 +61,7 @@ public class CustomsPermission {
 
     /**
      * Set the description property: Customs permissions description.
-     *
+     * 
      * @param description the description value to set.
      * @return the CustomsPermission object itself.
      */
@@ -64,7 +72,7 @@ public class CustomsPermission {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

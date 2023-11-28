@@ -12,7 +12,9 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** Represents anomaly timeline item. */
+/**
+ * Represents anomaly timeline item.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
 @JsonTypeName("Anomaly")
 @Fluent
@@ -84,8 +86,14 @@ public final class AnomalyTimelineItem extends EntityTimelineItem {
     private List<String> reasons;
 
     /**
+     * Creates an instance of AnomalyTimelineItem class.
+     */
+    public AnomalyTimelineItem() {
+    }
+
+    /**
      * Get the azureResourceId property: The anomaly azure resource id.
-     *
+     * 
      * @return the azureResourceId value.
      */
     public String azureResourceId() {
@@ -94,7 +102,7 @@ public final class AnomalyTimelineItem extends EntityTimelineItem {
 
     /**
      * Set the azureResourceId property: The anomaly azure resource id.
-     *
+     * 
      * @param azureResourceId the azureResourceId value to set.
      * @return the AnomalyTimelineItem object itself.
      */
@@ -105,7 +113,7 @@ public final class AnomalyTimelineItem extends EntityTimelineItem {
 
     /**
      * Get the productName property: The anomaly product name.
-     *
+     * 
      * @return the productName value.
      */
     public String productName() {
@@ -114,7 +122,7 @@ public final class AnomalyTimelineItem extends EntityTimelineItem {
 
     /**
      * Set the productName property: The anomaly product name.
-     *
+     * 
      * @param productName the productName value to set.
      * @return the AnomalyTimelineItem object itself.
      */
@@ -125,7 +133,7 @@ public final class AnomalyTimelineItem extends EntityTimelineItem {
 
     /**
      * Get the description property: The anomaly description.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -134,7 +142,7 @@ public final class AnomalyTimelineItem extends EntityTimelineItem {
 
     /**
      * Set the description property: The anomaly description.
-     *
+     * 
      * @param description the description value to set.
      * @return the AnomalyTimelineItem object itself.
      */
@@ -145,7 +153,7 @@ public final class AnomalyTimelineItem extends EntityTimelineItem {
 
     /**
      * Get the displayName property: The anomaly name.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -154,7 +162,7 @@ public final class AnomalyTimelineItem extends EntityTimelineItem {
 
     /**
      * Set the displayName property: The anomaly name.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the AnomalyTimelineItem object itself.
      */
@@ -165,7 +173,7 @@ public final class AnomalyTimelineItem extends EntityTimelineItem {
 
     /**
      * Get the endTimeUtc property: The anomaly end time.
-     *
+     * 
      * @return the endTimeUtc value.
      */
     public OffsetDateTime endTimeUtc() {
@@ -174,7 +182,7 @@ public final class AnomalyTimelineItem extends EntityTimelineItem {
 
     /**
      * Set the endTimeUtc property: The anomaly end time.
-     *
+     * 
      * @param endTimeUtc the endTimeUtc value to set.
      * @return the AnomalyTimelineItem object itself.
      */
@@ -185,7 +193,7 @@ public final class AnomalyTimelineItem extends EntityTimelineItem {
 
     /**
      * Get the startTimeUtc property: The anomaly start time.
-     *
+     * 
      * @return the startTimeUtc value.
      */
     public OffsetDateTime startTimeUtc() {
@@ -194,7 +202,7 @@ public final class AnomalyTimelineItem extends EntityTimelineItem {
 
     /**
      * Set the startTimeUtc property: The anomaly start time.
-     *
+     * 
      * @param startTimeUtc the startTimeUtc value to set.
      * @return the AnomalyTimelineItem object itself.
      */
@@ -205,7 +213,7 @@ public final class AnomalyTimelineItem extends EntityTimelineItem {
 
     /**
      * Get the timeGenerated property: The anomaly generated time.
-     *
+     * 
      * @return the timeGenerated value.
      */
     public OffsetDateTime timeGenerated() {
@@ -214,7 +222,7 @@ public final class AnomalyTimelineItem extends EntityTimelineItem {
 
     /**
      * Set the timeGenerated property: The anomaly generated time.
-     *
+     * 
      * @param timeGenerated the timeGenerated value to set.
      * @return the AnomalyTimelineItem object itself.
      */
@@ -225,7 +233,7 @@ public final class AnomalyTimelineItem extends EntityTimelineItem {
 
     /**
      * Get the vendor property: The name of the anomaly vendor.
-     *
+     * 
      * @return the vendor value.
      */
     public String vendor() {
@@ -234,7 +242,7 @@ public final class AnomalyTimelineItem extends EntityTimelineItem {
 
     /**
      * Set the vendor property: The name of the anomaly vendor.
-     *
+     * 
      * @param vendor the vendor value to set.
      * @return the AnomalyTimelineItem object itself.
      */
@@ -245,7 +253,7 @@ public final class AnomalyTimelineItem extends EntityTimelineItem {
 
     /**
      * Get the intent property: The intent of the anomaly.
-     *
+     * 
      * @return the intent value.
      */
     public String intent() {
@@ -254,7 +262,7 @@ public final class AnomalyTimelineItem extends EntityTimelineItem {
 
     /**
      * Set the intent property: The intent of the anomaly.
-     *
+     * 
      * @param intent the intent value to set.
      * @return the AnomalyTimelineItem object itself.
      */
@@ -265,7 +273,7 @@ public final class AnomalyTimelineItem extends EntityTimelineItem {
 
     /**
      * Get the techniques property: The techniques of the anomaly.
-     *
+     * 
      * @return the techniques value.
      */
     public List<String> techniques() {
@@ -274,7 +282,7 @@ public final class AnomalyTimelineItem extends EntityTimelineItem {
 
     /**
      * Set the techniques property: The techniques of the anomaly.
-     *
+     * 
      * @param techniques the techniques value to set.
      * @return the AnomalyTimelineItem object itself.
      */
@@ -285,7 +293,7 @@ public final class AnomalyTimelineItem extends EntityTimelineItem {
 
     /**
      * Get the reasons property: The reasons that cause the anomaly.
-     *
+     * 
      * @return the reasons value.
      */
     public List<String> reasons() {
@@ -294,7 +302,7 @@ public final class AnomalyTimelineItem extends EntityTimelineItem {
 
     /**
      * Set the reasons property: The reasons that cause the anomaly.
-     *
+     * 
      * @param reasons the reasons value to set.
      * @return the AnomalyTimelineItem object itself.
      */
@@ -305,39 +313,31 @@ public final class AnomalyTimelineItem extends EntityTimelineItem {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (azureResourceId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property azureResourceId in model AnomalyTimelineItem"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property azureResourceId in model AnomalyTimelineItem"));
         }
         if (displayName() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property displayName in model AnomalyTimelineItem"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property displayName in model AnomalyTimelineItem"));
         }
         if (endTimeUtc() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property endTimeUtc in model AnomalyTimelineItem"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property endTimeUtc in model AnomalyTimelineItem"));
         }
         if (startTimeUtc() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property startTimeUtc in model AnomalyTimelineItem"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property startTimeUtc in model AnomalyTimelineItem"));
         }
         if (timeGenerated() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property timeGenerated in model AnomalyTimelineItem"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property timeGenerated in model AnomalyTimelineItem"));
         }
     }
 

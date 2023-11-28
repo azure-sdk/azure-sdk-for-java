@@ -11,7 +11,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.Map;
 
-/** Represents a Watchlist item in Azure Security Insights. */
+/**
+ * Represents a Watchlist item in Azure Security Insights.
+ */
 @Fluent
 public final class WatchlistItemInner extends ResourceWithEtag {
     /*
@@ -21,15 +23,23 @@ public final class WatchlistItemInner extends ResourceWithEtag {
     private WatchlistItemProperties innerProperties;
 
     /**
+     * Creates an instance of WatchlistItemInner class.
+     */
+    public WatchlistItemInner() {
+    }
+
+    /**
      * Get the innerProperties property: Watchlist Item properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private WatchlistItemProperties innerProperties() {
         return this.innerProperties;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public WatchlistItemInner withEtag(String etag) {
         super.withEtag(etag);
@@ -38,7 +48,7 @@ public final class WatchlistItemInner extends ResourceWithEtag {
 
     /**
      * Get the watchlistItemType property: The type of the watchlist item.
-     *
+     * 
      * @return the watchlistItemType value.
      */
     public String watchlistItemType() {
@@ -47,7 +57,7 @@ public final class WatchlistItemInner extends ResourceWithEtag {
 
     /**
      * Set the watchlistItemType property: The type of the watchlist item.
-     *
+     * 
      * @param watchlistItemType the watchlistItemType value to set.
      * @return the WatchlistItemInner object itself.
      */
@@ -61,7 +71,7 @@ public final class WatchlistItemInner extends ResourceWithEtag {
 
     /**
      * Get the watchlistItemId property: The id (a Guid) of the watchlist item.
-     *
+     * 
      * @return the watchlistItemId value.
      */
     public String watchlistItemId() {
@@ -70,7 +80,7 @@ public final class WatchlistItemInner extends ResourceWithEtag {
 
     /**
      * Set the watchlistItemId property: The id (a Guid) of the watchlist item.
-     *
+     * 
      * @param watchlistItemId the watchlistItemId value to set.
      * @return the WatchlistItemInner object itself.
      */
@@ -84,7 +94,7 @@ public final class WatchlistItemInner extends ResourceWithEtag {
 
     /**
      * Get the tenantId property: The tenantId to which the watchlist item belongs to.
-     *
+     * 
      * @return the tenantId value.
      */
     public String tenantId() {
@@ -93,7 +103,7 @@ public final class WatchlistItemInner extends ResourceWithEtag {
 
     /**
      * Set the tenantId property: The tenantId to which the watchlist item belongs to.
-     *
+     * 
      * @param tenantId the tenantId value to set.
      * @return the WatchlistItemInner object itself.
      */
@@ -107,7 +117,7 @@ public final class WatchlistItemInner extends ResourceWithEtag {
 
     /**
      * Get the isDeleted property: A flag that indicates if the watchlist item is deleted or not.
-     *
+     * 
      * @return the isDeleted value.
      */
     public Boolean isDeleted() {
@@ -116,7 +126,7 @@ public final class WatchlistItemInner extends ResourceWithEtag {
 
     /**
      * Set the isDeleted property: A flag that indicates if the watchlist item is deleted or not.
-     *
+     * 
      * @param isDeleted the isDeleted value to set.
      * @return the WatchlistItemInner object itself.
      */
@@ -130,7 +140,7 @@ public final class WatchlistItemInner extends ResourceWithEtag {
 
     /**
      * Get the created property: The time the watchlist item was created.
-     *
+     * 
      * @return the created value.
      */
     public OffsetDateTime created() {
@@ -139,7 +149,7 @@ public final class WatchlistItemInner extends ResourceWithEtag {
 
     /**
      * Set the created property: The time the watchlist item was created.
-     *
+     * 
      * @param created the created value to set.
      * @return the WatchlistItemInner object itself.
      */
@@ -153,7 +163,7 @@ public final class WatchlistItemInner extends ResourceWithEtag {
 
     /**
      * Get the updated property: The last time the watchlist item was updated.
-     *
+     * 
      * @return the updated value.
      */
     public OffsetDateTime updated() {
@@ -162,7 +172,7 @@ public final class WatchlistItemInner extends ResourceWithEtag {
 
     /**
      * Set the updated property: The last time the watchlist item was updated.
-     *
+     * 
      * @param updated the updated value to set.
      * @return the WatchlistItemInner object itself.
      */
@@ -176,7 +186,7 @@ public final class WatchlistItemInner extends ResourceWithEtag {
 
     /**
      * Get the createdBy property: Describes a user that created the watchlist item.
-     *
+     * 
      * @return the createdBy value.
      */
     public UserInfo createdBy() {
@@ -185,7 +195,7 @@ public final class WatchlistItemInner extends ResourceWithEtag {
 
     /**
      * Set the createdBy property: Describes a user that created the watchlist item.
-     *
+     * 
      * @param createdBy the createdBy value to set.
      * @return the WatchlistItemInner object itself.
      */
@@ -199,7 +209,7 @@ public final class WatchlistItemInner extends ResourceWithEtag {
 
     /**
      * Get the updatedBy property: Describes a user that updated the watchlist item.
-     *
+     * 
      * @return the updatedBy value.
      */
     public UserInfo updatedBy() {
@@ -208,7 +218,7 @@ public final class WatchlistItemInner extends ResourceWithEtag {
 
     /**
      * Set the updatedBy property: Describes a user that updated the watchlist item.
-     *
+     * 
      * @param updatedBy the updatedBy value to set.
      * @return the WatchlistItemInner object itself.
      */
@@ -222,7 +232,7 @@ public final class WatchlistItemInner extends ResourceWithEtag {
 
     /**
      * Get the itemsKeyValue property: key-value pairs for a watchlist item.
-     *
+     * 
      * @return the itemsKeyValue value.
      */
     public Map<String, Object> itemsKeyValue() {
@@ -231,7 +241,7 @@ public final class WatchlistItemInner extends ResourceWithEtag {
 
     /**
      * Set the itemsKeyValue property: key-value pairs for a watchlist item.
-     *
+     * 
      * @param itemsKeyValue the itemsKeyValue value to set.
      * @return the WatchlistItemInner object itself.
      */
@@ -245,7 +255,7 @@ public final class WatchlistItemInner extends ResourceWithEtag {
 
     /**
      * Get the entityMapping property: key-value pairs for a watchlist item entity mapping.
-     *
+     * 
      * @return the entityMapping value.
      */
     public Map<String, Object> entityMapping() {
@@ -254,7 +264,7 @@ public final class WatchlistItemInner extends ResourceWithEtag {
 
     /**
      * Set the entityMapping property: key-value pairs for a watchlist item entity mapping.
-     *
+     * 
      * @param entityMapping the entityMapping value to set.
      * @return the WatchlistItemInner object itself.
      */
@@ -268,7 +278,7 @@ public final class WatchlistItemInner extends ResourceWithEtag {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

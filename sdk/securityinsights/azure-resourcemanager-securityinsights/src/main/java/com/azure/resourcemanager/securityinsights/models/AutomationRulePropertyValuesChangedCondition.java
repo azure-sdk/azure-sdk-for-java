@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The AutomationRulePropertyValuesChangedCondition model. */
+/**
+ * The AutomationRulePropertyValuesChangedCondition model.
+ */
 @Fluent
 public final class AutomationRulePropertyValuesChangedCondition {
     /*
@@ -36,8 +38,14 @@ public final class AutomationRulePropertyValuesChangedCondition {
     private List<String> propertyValues;
 
     /**
+     * Creates an instance of AutomationRulePropertyValuesChangedCondition class.
+     */
+    public AutomationRulePropertyValuesChangedCondition() {
+    }
+
+    /**
      * Get the propertyName property: The propertyName property.
-     *
+     * 
      * @return the propertyName value.
      */
     public AutomationRulePropertyChangedConditionSupportedPropertyType propertyName() {
@@ -46,19 +54,19 @@ public final class AutomationRulePropertyValuesChangedCondition {
 
     /**
      * Set the propertyName property: The propertyName property.
-     *
+     * 
      * @param propertyName the propertyName value to set.
      * @return the AutomationRulePropertyValuesChangedCondition object itself.
      */
-    public AutomationRulePropertyValuesChangedCondition withPropertyName(
-        AutomationRulePropertyChangedConditionSupportedPropertyType propertyName) {
+    public AutomationRulePropertyValuesChangedCondition
+        withPropertyName(AutomationRulePropertyChangedConditionSupportedPropertyType propertyName) {
         this.propertyName = propertyName;
         return this;
     }
 
     /**
      * Get the changeType property: The changeType property.
-     *
+     * 
      * @return the changeType value.
      */
     public AutomationRulePropertyChangedConditionSupportedChangedType changeType() {
@@ -67,19 +75,19 @@ public final class AutomationRulePropertyValuesChangedCondition {
 
     /**
      * Set the changeType property: The changeType property.
-     *
+     * 
      * @param changeType the changeType value to set.
      * @return the AutomationRulePropertyValuesChangedCondition object itself.
      */
-    public AutomationRulePropertyValuesChangedCondition withChangeType(
-        AutomationRulePropertyChangedConditionSupportedChangedType changeType) {
+    public AutomationRulePropertyValuesChangedCondition
+        withChangeType(AutomationRulePropertyChangedConditionSupportedChangedType changeType) {
         this.changeType = changeType;
         return this;
     }
 
     /**
      * Get the operator property: The operator property.
-     *
+     * 
      * @return the operator value.
      */
     public AutomationRulePropertyConditionSupportedOperator operator() {
@@ -88,19 +96,19 @@ public final class AutomationRulePropertyValuesChangedCondition {
 
     /**
      * Set the operator property: The operator property.
-     *
+     * 
      * @param operator the operator value to set.
      * @return the AutomationRulePropertyValuesChangedCondition object itself.
      */
-    public AutomationRulePropertyValuesChangedCondition withOperator(
-        AutomationRulePropertyConditionSupportedOperator operator) {
+    public AutomationRulePropertyValuesChangedCondition
+        withOperator(AutomationRulePropertyConditionSupportedOperator operator) {
         this.operator = operator;
         return this;
     }
 
     /**
      * Get the propertyValues property: The propertyValues property.
-     *
+     * 
      * @return the propertyValues value.
      */
     public List<String> propertyValues() {
@@ -109,7 +117,7 @@ public final class AutomationRulePropertyValuesChangedCondition {
 
     /**
      * Set the propertyValues property: The propertyValues property.
-     *
+     * 
      * @param propertyValues the propertyValues value to set.
      * @return the AutomationRulePropertyValuesChangedCondition object itself.
      */
@@ -120,7 +128,7 @@ public final class AutomationRulePropertyValuesChangedCondition {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

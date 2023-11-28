@@ -9,7 +9,9 @@ import com.azure.resourcemanager.securityinsights.models.DataConnectorAuthorizat
 import com.azure.resourcemanager.securityinsights.models.DataConnectorLicenseState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Data connector requirements status. */
+/**
+ * Data connector requirements status.
+ */
 @Fluent
 public final class DataConnectorRequirementsStateInner {
     /*
@@ -25,8 +27,14 @@ public final class DataConnectorRequirementsStateInner {
     private DataConnectorLicenseState licenseState;
 
     /**
+     * Creates an instance of DataConnectorRequirementsStateInner class.
+     */
+    public DataConnectorRequirementsStateInner() {
+    }
+
+    /**
      * Get the authorizationState property: Authorization state for this connector.
-     *
+     * 
      * @return the authorizationState value.
      */
     public DataConnectorAuthorizationState authorizationState() {
@@ -35,19 +43,19 @@ public final class DataConnectorRequirementsStateInner {
 
     /**
      * Set the authorizationState property: Authorization state for this connector.
-     *
+     * 
      * @param authorizationState the authorizationState value to set.
      * @return the DataConnectorRequirementsStateInner object itself.
      */
-    public DataConnectorRequirementsStateInner withAuthorizationState(
-        DataConnectorAuthorizationState authorizationState) {
+    public DataConnectorRequirementsStateInner
+        withAuthorizationState(DataConnectorAuthorizationState authorizationState) {
         this.authorizationState = authorizationState;
         return this;
     }
 
     /**
      * Get the licenseState property: License state for this connector.
-     *
+     * 
      * @return the licenseState value.
      */
     public DataConnectorLicenseState licenseState() {
@@ -56,7 +64,7 @@ public final class DataConnectorRequirementsStateInner {
 
     /**
      * Set the licenseState property: License state for this connector.
-     *
+     * 
      * @param licenseState the licenseState value to set.
      * @return the DataConnectorRequirementsStateInner object itself.
      */
@@ -67,7 +75,7 @@ public final class DataConnectorRequirementsStateInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

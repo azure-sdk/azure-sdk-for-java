@@ -9,30 +9,33 @@ import com.azure.core.annotation.ServiceMethod;
 import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.securityinsights.fluent.models.RepoInner;
-import com.azure.resourcemanager.securityinsights.models.RepoType;
+import com.azure.resourcemanager.securityinsights.models.RepositoryAccessProperties;
 
-/** An instance of this class provides access to all the operations defined in SourceControlsClient. */
+/**
+ * An instance of this class provides access to all the operations defined in SourceControlsClient.
+ */
 public interface SourceControlsClient {
     /**
      * Gets a list of repositories metadata.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
-     * @param repoType The repo type.
+     * @param repositoryAccess The repository access credentials.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a list of repositories metadata as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<RepoInner> listRepositories(String resourceGroupName, String workspaceName, RepoType repoType);
+    PagedIterable<RepoInner> listRepositories(String resourceGroupName, String workspaceName,
+        RepositoryAccessProperties repositoryAccess);
 
     /**
      * Gets a list of repositories metadata.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
-     * @param repoType The repo type.
+     * @param repositoryAccess The repository access credentials.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -40,6 +43,6 @@ public interface SourceControlsClient {
      * @return a list of repositories metadata as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<RepoInner> listRepositories(
-        String resourceGroupName, String workspaceName, RepoType repoType, Context context);
+    PagedIterable<RepoInner> listRepositories(String resourceGroupName, String workspaceName,
+        RepositoryAccessProperties repositoryAccess, Context context);
 }

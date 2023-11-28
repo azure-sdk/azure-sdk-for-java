@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Describes an automation rule condition. */
+/**
+ * Describes an automation rule condition.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
@@ -21,13 +23,18 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     @JsonSubTypes.Type(name = "PropertyArrayChanged", value = PropertyArrayChangedConditionProperties.class),
     @JsonSubTypes.Type(name = "PropertyArray", value = PropertyArrayConditionProperties.class),
     @JsonSubTypes.Type(name = "PropertyChanged", value = PropertyChangedConditionProperties.class),
-    @JsonSubTypes.Type(name = "Property", value = PropertyConditionProperties.class)
-})
+    @JsonSubTypes.Type(name = "Property", value = PropertyConditionProperties.class) })
 @Immutable
 public class AutomationRuleCondition {
     /**
+     * Creates an instance of AutomationRuleCondition class.
+     */
+    public AutomationRuleCondition() {
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

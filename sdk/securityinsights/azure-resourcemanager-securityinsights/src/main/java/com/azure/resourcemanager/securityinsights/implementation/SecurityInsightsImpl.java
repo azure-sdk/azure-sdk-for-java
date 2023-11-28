@@ -23,12 +23,19 @@ import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.securityinsights.fluent.ActionsClient;
+import com.azure.resourcemanager.securityinsights.fluent.AlertRuleOperationsClient;
 import com.azure.resourcemanager.securityinsights.fluent.AlertRuleTemplatesClient;
 import com.azure.resourcemanager.securityinsights.fluent.AlertRulesClient;
 import com.azure.resourcemanager.securityinsights.fluent.AutomationRulesClient;
+import com.azure.resourcemanager.securityinsights.fluent.BillingStatisticsClient;
 import com.azure.resourcemanager.securityinsights.fluent.BookmarkOperationsClient;
 import com.azure.resourcemanager.securityinsights.fluent.BookmarkRelationsClient;
 import com.azure.resourcemanager.securityinsights.fluent.BookmarksClient;
+import com.azure.resourcemanager.securityinsights.fluent.ContentPackageOperationsClient;
+import com.azure.resourcemanager.securityinsights.fluent.ContentPackagesClient;
+import com.azure.resourcemanager.securityinsights.fluent.ContentTemplateOperationsClient;
+import com.azure.resourcemanager.securityinsights.fluent.ContentTemplatesClient;
+import com.azure.resourcemanager.securityinsights.fluent.DataConnectorDefinitionsClient;
 import com.azure.resourcemanager.securityinsights.fluent.DataConnectorsCheckRequirementsOperationsClient;
 import com.azure.resourcemanager.securityinsights.fluent.DataConnectorsClient;
 import com.azure.resourcemanager.securityinsights.fluent.DomainWhoisClient;
@@ -39,14 +46,25 @@ import com.azure.resourcemanager.securityinsights.fluent.EntityQueriesClient;
 import com.azure.resourcemanager.securityinsights.fluent.EntityQueryTemplatesClient;
 import com.azure.resourcemanager.securityinsights.fluent.EntityRelationsClient;
 import com.azure.resourcemanager.securityinsights.fluent.FileImportsClient;
+import com.azure.resourcemanager.securityinsights.fluent.GetRecommendationsClient;
+import com.azure.resourcemanager.securityinsights.fluent.GetTriggeredAnalyticsRuleRunsClient;
+import com.azure.resourcemanager.securityinsights.fluent.GetsClient;
+import com.azure.resourcemanager.securityinsights.fluent.HuntCommentsClient;
+import com.azure.resourcemanager.securityinsights.fluent.HuntRelationsClient;
+import com.azure.resourcemanager.securityinsights.fluent.HuntsClient;
 import com.azure.resourcemanager.securityinsights.fluent.IncidentCommentsClient;
 import com.azure.resourcemanager.securityinsights.fluent.IncidentRelationsClient;
+import com.azure.resourcemanager.securityinsights.fluent.IncidentTasksClient;
 import com.azure.resourcemanager.securityinsights.fluent.IncidentsClient;
 import com.azure.resourcemanager.securityinsights.fluent.IpGeodatasClient;
 import com.azure.resourcemanager.securityinsights.fluent.MetadatasClient;
 import com.azure.resourcemanager.securityinsights.fluent.OfficeConsentsClient;
 import com.azure.resourcemanager.securityinsights.fluent.OperationsClient;
+import com.azure.resourcemanager.securityinsights.fluent.ProductPackageOperationsClient;
+import com.azure.resourcemanager.securityinsights.fluent.ProductPackagesClient;
 import com.azure.resourcemanager.securityinsights.fluent.ProductSettingsClient;
+import com.azure.resourcemanager.securityinsights.fluent.ProductTemplateOperationsClient;
+import com.azure.resourcemanager.securityinsights.fluent.ProductTemplatesClient;
 import com.azure.resourcemanager.securityinsights.fluent.SecurityInsights;
 import com.azure.resourcemanager.securityinsights.fluent.SecurityMLAnalyticsSettingsClient;
 import com.azure.resourcemanager.securityinsights.fluent.SentinelOnboardingStatesClient;
@@ -55,8 +73,15 @@ import com.azure.resourcemanager.securityinsights.fluent.SourceControlsOperation
 import com.azure.resourcemanager.securityinsights.fluent.ThreatIntelligenceIndicatorMetricsClient;
 import com.azure.resourcemanager.securityinsights.fluent.ThreatIntelligenceIndicatorsClient;
 import com.azure.resourcemanager.securityinsights.fluent.ThreatIntelligenceIndicatorsOperationsClient;
+import com.azure.resourcemanager.securityinsights.fluent.TriggeredAnalyticsRuleRunOperationsClient;
+import com.azure.resourcemanager.securityinsights.fluent.UpdatesClient;
 import com.azure.resourcemanager.securityinsights.fluent.WatchlistItemsClient;
 import com.azure.resourcemanager.securityinsights.fluent.WatchlistsClient;
+import com.azure.resourcemanager.securityinsights.fluent.WorkspaceManagerAssignmentJobsClient;
+import com.azure.resourcemanager.securityinsights.fluent.WorkspaceManagerAssignmentsClient;
+import com.azure.resourcemanager.securityinsights.fluent.WorkspaceManagerConfigurationsClient;
+import com.azure.resourcemanager.securityinsights.fluent.WorkspaceManagerGroupsClient;
+import com.azure.resourcemanager.securityinsights.fluent.WorkspaceManagerMembersClient;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.nio.ByteBuffer;
@@ -66,483 +91,915 @@ import java.time.Duration;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-/** Initializes a new instance of the SecurityInsightsImpl type. */
+/**
+ * Initializes a new instance of the SecurityInsightsImpl type.
+ */
 @ServiceClient(builder = SecurityInsightsBuilder.class)
 public final class SecurityInsightsImpl implements SecurityInsights {
-    /** The ID of the target subscription. */
+    /**
+     * The ID of the target subscription.
+     */
     private final String subscriptionId;
 
     /**
      * Gets The ID of the target subscription.
-     *
+     * 
      * @return the subscriptionId value.
      */
     public String getSubscriptionId() {
         return this.subscriptionId;
     }
 
-    /** server parameter. */
+    /**
+     * server parameter.
+     */
     private final String endpoint;
 
     /**
      * Gets server parameter.
-     *
+     * 
      * @return the endpoint value.
      */
     public String getEndpoint() {
         return this.endpoint;
     }
 
-    /** Api Version. */
+    /**
+     * Api Version.
+     */
     private final String apiVersion;
 
     /**
      * Gets Api Version.
-     *
+     * 
      * @return the apiVersion value.
      */
     public String getApiVersion() {
         return this.apiVersion;
     }
 
-    /** The HTTP pipeline to send requests through. */
+    /**
+     * The HTTP pipeline to send requests through.
+     */
     private final HttpPipeline httpPipeline;
 
     /**
      * Gets The HTTP pipeline to send requests through.
-     *
+     * 
      * @return the httpPipeline value.
      */
     public HttpPipeline getHttpPipeline() {
         return this.httpPipeline;
     }
 
-    /** The serializer to serialize an object into a string. */
+    /**
+     * The serializer to serialize an object into a string.
+     */
     private final SerializerAdapter serializerAdapter;
 
     /**
      * Gets The serializer to serialize an object into a string.
-     *
+     * 
      * @return the serializerAdapter value.
      */
     SerializerAdapter getSerializerAdapter() {
         return this.serializerAdapter;
     }
 
-    /** The default poll interval for long-running operation. */
+    /**
+     * The default poll interval for long-running operation.
+     */
     private final Duration defaultPollInterval;
 
     /**
      * Gets The default poll interval for long-running operation.
-     *
+     * 
      * @return the defaultPollInterval value.
      */
     public Duration getDefaultPollInterval() {
         return this.defaultPollInterval;
     }
 
-    /** The AlertRulesClient object to access its operations. */
+    /**
+     * The AlertRulesClient object to access its operations.
+     */
     private final AlertRulesClient alertRules;
 
     /**
      * Gets the AlertRulesClient object to access its operations.
-     *
+     * 
      * @return the AlertRulesClient object.
      */
     public AlertRulesClient getAlertRules() {
         return this.alertRules;
     }
 
-    /** The ActionsClient object to access its operations. */
+    /**
+     * The ActionsClient object to access its operations.
+     */
     private final ActionsClient actions;
 
     /**
      * Gets the ActionsClient object to access its operations.
-     *
+     * 
      * @return the ActionsClient object.
      */
     public ActionsClient getActions() {
         return this.actions;
     }
 
-    /** The AlertRuleTemplatesClient object to access its operations. */
+    /**
+     * The AlertRuleTemplatesClient object to access its operations.
+     */
     private final AlertRuleTemplatesClient alertRuleTemplates;
 
     /**
      * Gets the AlertRuleTemplatesClient object to access its operations.
-     *
+     * 
      * @return the AlertRuleTemplatesClient object.
      */
     public AlertRuleTemplatesClient getAlertRuleTemplates() {
         return this.alertRuleTemplates;
     }
 
-    /** The AutomationRulesClient object to access its operations. */
+    /**
+     * The AutomationRulesClient object to access its operations.
+     */
     private final AutomationRulesClient automationRules;
 
     /**
      * Gets the AutomationRulesClient object to access its operations.
-     *
+     * 
      * @return the AutomationRulesClient object.
      */
     public AutomationRulesClient getAutomationRules() {
         return this.automationRules;
     }
 
-    /** The IncidentsClient object to access its operations. */
-    private final IncidentsClient incidents;
-
     /**
-     * Gets the IncidentsClient object to access its operations.
-     *
-     * @return the IncidentsClient object.
+     * The EntitiesClient object to access its operations.
      */
-    public IncidentsClient getIncidents() {
-        return this.incidents;
-    }
-
-    /** The BookmarksClient object to access its operations. */
-    private final BookmarksClient bookmarks;
-
-    /**
-     * Gets the BookmarksClient object to access its operations.
-     *
-     * @return the BookmarksClient object.
-     */
-    public BookmarksClient getBookmarks() {
-        return this.bookmarks;
-    }
-
-    /** The BookmarkRelationsClient object to access its operations. */
-    private final BookmarkRelationsClient bookmarkRelations;
-
-    /**
-     * Gets the BookmarkRelationsClient object to access its operations.
-     *
-     * @return the BookmarkRelationsClient object.
-     */
-    public BookmarkRelationsClient getBookmarkRelations() {
-        return this.bookmarkRelations;
-    }
-
-    /** The BookmarkOperationsClient object to access its operations. */
-    private final BookmarkOperationsClient bookmarkOperations;
-
-    /**
-     * Gets the BookmarkOperationsClient object to access its operations.
-     *
-     * @return the BookmarkOperationsClient object.
-     */
-    public BookmarkOperationsClient getBookmarkOperations() {
-        return this.bookmarkOperations;
-    }
-
-    /** The IpGeodatasClient object to access its operations. */
-    private final IpGeodatasClient ipGeodatas;
-
-    /**
-     * Gets the IpGeodatasClient object to access its operations.
-     *
-     * @return the IpGeodatasClient object.
-     */
-    public IpGeodatasClient getIpGeodatas() {
-        return this.ipGeodatas;
-    }
-
-    /** The DomainWhoisClient object to access its operations. */
-    private final DomainWhoisClient domainWhois;
-
-    /**
-     * Gets the DomainWhoisClient object to access its operations.
-     *
-     * @return the DomainWhoisClient object.
-     */
-    public DomainWhoisClient getDomainWhois() {
-        return this.domainWhois;
-    }
-
-    /** The EntitiesClient object to access its operations. */
     private final EntitiesClient entities;
 
     /**
      * Gets the EntitiesClient object to access its operations.
-     *
+     * 
      * @return the EntitiesClient object.
      */
     public EntitiesClient getEntities() {
         return this.entities;
     }
 
-    /** The EntitiesGetTimelinesClient object to access its operations. */
+    /**
+     * The IncidentsClient object to access its operations.
+     */
+    private final IncidentsClient incidents;
+
+    /**
+     * Gets the IncidentsClient object to access its operations.
+     * 
+     * @return the IncidentsClient object.
+     */
+    public IncidentsClient getIncidents() {
+        return this.incidents;
+    }
+
+    /**
+     * The BillingStatisticsClient object to access its operations.
+     */
+    private final BillingStatisticsClient billingStatistics;
+
+    /**
+     * Gets the BillingStatisticsClient object to access its operations.
+     * 
+     * @return the BillingStatisticsClient object.
+     */
+    public BillingStatisticsClient getBillingStatistics() {
+        return this.billingStatistics;
+    }
+
+    /**
+     * The BookmarksClient object to access its operations.
+     */
+    private final BookmarksClient bookmarks;
+
+    /**
+     * Gets the BookmarksClient object to access its operations.
+     * 
+     * @return the BookmarksClient object.
+     */
+    public BookmarksClient getBookmarks() {
+        return this.bookmarks;
+    }
+
+    /**
+     * The BookmarkRelationsClient object to access its operations.
+     */
+    private final BookmarkRelationsClient bookmarkRelations;
+
+    /**
+     * Gets the BookmarkRelationsClient object to access its operations.
+     * 
+     * @return the BookmarkRelationsClient object.
+     */
+    public BookmarkRelationsClient getBookmarkRelations() {
+        return this.bookmarkRelations;
+    }
+
+    /**
+     * The BookmarkOperationsClient object to access its operations.
+     */
+    private final BookmarkOperationsClient bookmarkOperations;
+
+    /**
+     * Gets the BookmarkOperationsClient object to access its operations.
+     * 
+     * @return the BookmarkOperationsClient object.
+     */
+    public BookmarkOperationsClient getBookmarkOperations() {
+        return this.bookmarkOperations;
+    }
+
+    /**
+     * The ContentPackagesClient object to access its operations.
+     */
+    private final ContentPackagesClient contentPackages;
+
+    /**
+     * Gets the ContentPackagesClient object to access its operations.
+     * 
+     * @return the ContentPackagesClient object.
+     */
+    public ContentPackagesClient getContentPackages() {
+        return this.contentPackages;
+    }
+
+    /**
+     * The ContentPackageOperationsClient object to access its operations.
+     */
+    private final ContentPackageOperationsClient contentPackageOperations;
+
+    /**
+     * Gets the ContentPackageOperationsClient object to access its operations.
+     * 
+     * @return the ContentPackageOperationsClient object.
+     */
+    public ContentPackageOperationsClient getContentPackageOperations() {
+        return this.contentPackageOperations;
+    }
+
+    /**
+     * The ProductPackagesClient object to access its operations.
+     */
+    private final ProductPackagesClient productPackages;
+
+    /**
+     * Gets the ProductPackagesClient object to access its operations.
+     * 
+     * @return the ProductPackagesClient object.
+     */
+    public ProductPackagesClient getProductPackages() {
+        return this.productPackages;
+    }
+
+    /**
+     * The ProductPackageOperationsClient object to access its operations.
+     */
+    private final ProductPackageOperationsClient productPackageOperations;
+
+    /**
+     * Gets the ProductPackageOperationsClient object to access its operations.
+     * 
+     * @return the ProductPackageOperationsClient object.
+     */
+    public ProductPackageOperationsClient getProductPackageOperations() {
+        return this.productPackageOperations;
+    }
+
+    /**
+     * The ProductTemplatesClient object to access its operations.
+     */
+    private final ProductTemplatesClient productTemplates;
+
+    /**
+     * Gets the ProductTemplatesClient object to access its operations.
+     * 
+     * @return the ProductTemplatesClient object.
+     */
+    public ProductTemplatesClient getProductTemplates() {
+        return this.productTemplates;
+    }
+
+    /**
+     * The ProductTemplateOperationsClient object to access its operations.
+     */
+    private final ProductTemplateOperationsClient productTemplateOperations;
+
+    /**
+     * Gets the ProductTemplateOperationsClient object to access its operations.
+     * 
+     * @return the ProductTemplateOperationsClient object.
+     */
+    public ProductTemplateOperationsClient getProductTemplateOperations() {
+        return this.productTemplateOperations;
+    }
+
+    /**
+     * The ContentTemplatesClient object to access its operations.
+     */
+    private final ContentTemplatesClient contentTemplates;
+
+    /**
+     * Gets the ContentTemplatesClient object to access its operations.
+     * 
+     * @return the ContentTemplatesClient object.
+     */
+    public ContentTemplatesClient getContentTemplates() {
+        return this.contentTemplates;
+    }
+
+    /**
+     * The ContentTemplateOperationsClient object to access its operations.
+     */
+    private final ContentTemplateOperationsClient contentTemplateOperations;
+
+    /**
+     * Gets the ContentTemplateOperationsClient object to access its operations.
+     * 
+     * @return the ContentTemplateOperationsClient object.
+     */
+    public ContentTemplateOperationsClient getContentTemplateOperations() {
+        return this.contentTemplateOperations;
+    }
+
+    /**
+     * The IpGeodatasClient object to access its operations.
+     */
+    private final IpGeodatasClient ipGeodatas;
+
+    /**
+     * Gets the IpGeodatasClient object to access its operations.
+     * 
+     * @return the IpGeodatasClient object.
+     */
+    public IpGeodatasClient getIpGeodatas() {
+        return this.ipGeodatas;
+    }
+
+    /**
+     * The DomainWhoisClient object to access its operations.
+     */
+    private final DomainWhoisClient domainWhois;
+
+    /**
+     * Gets the DomainWhoisClient object to access its operations.
+     * 
+     * @return the DomainWhoisClient object.
+     */
+    public DomainWhoisClient getDomainWhois() {
+        return this.domainWhois;
+    }
+
+    /**
+     * The EntitiesGetTimelinesClient object to access its operations.
+     */
     private final EntitiesGetTimelinesClient entitiesGetTimelines;
 
     /**
      * Gets the EntitiesGetTimelinesClient object to access its operations.
-     *
+     * 
      * @return the EntitiesGetTimelinesClient object.
      */
     public EntitiesGetTimelinesClient getEntitiesGetTimelines() {
         return this.entitiesGetTimelines;
     }
 
-    /** The EntitiesRelationsClient object to access its operations. */
+    /**
+     * The EntitiesRelationsClient object to access its operations.
+     */
     private final EntitiesRelationsClient entitiesRelations;
 
     /**
      * Gets the EntitiesRelationsClient object to access its operations.
-     *
+     * 
      * @return the EntitiesRelationsClient object.
      */
     public EntitiesRelationsClient getEntitiesRelations() {
         return this.entitiesRelations;
     }
 
-    /** The EntityRelationsClient object to access its operations. */
+    /**
+     * The EntityRelationsClient object to access its operations.
+     */
     private final EntityRelationsClient entityRelations;
 
     /**
      * Gets the EntityRelationsClient object to access its operations.
-     *
+     * 
      * @return the EntityRelationsClient object.
      */
     public EntityRelationsClient getEntityRelations() {
         return this.entityRelations;
     }
 
-    /** The EntityQueriesClient object to access its operations. */
+    /**
+     * The EntityQueriesClient object to access its operations.
+     */
     private final EntityQueriesClient entityQueries;
 
     /**
      * Gets the EntityQueriesClient object to access its operations.
-     *
+     * 
      * @return the EntityQueriesClient object.
      */
     public EntityQueriesClient getEntityQueries() {
         return this.entityQueries;
     }
 
-    /** The EntityQueryTemplatesClient object to access its operations. */
+    /**
+     * The EntityQueryTemplatesClient object to access its operations.
+     */
     private final EntityQueryTemplatesClient entityQueryTemplates;
 
     /**
      * Gets the EntityQueryTemplatesClient object to access its operations.
-     *
+     * 
      * @return the EntityQueryTemplatesClient object.
      */
     public EntityQueryTemplatesClient getEntityQueryTemplates() {
         return this.entityQueryTemplates;
     }
 
-    /** The FileImportsClient object to access its operations. */
+    /**
+     * The FileImportsClient object to access its operations.
+     */
     private final FileImportsClient fileImports;
 
     /**
      * Gets the FileImportsClient object to access its operations.
-     *
+     * 
      * @return the FileImportsClient object.
      */
     public FileImportsClient getFileImports() {
         return this.fileImports;
     }
 
-    /** The IncidentCommentsClient object to access its operations. */
+    /**
+     * The HuntsClient object to access its operations.
+     */
+    private final HuntsClient hunts;
+
+    /**
+     * Gets the HuntsClient object to access its operations.
+     * 
+     * @return the HuntsClient object.
+     */
+    public HuntsClient getHunts() {
+        return this.hunts;
+    }
+
+    /**
+     * The HuntRelationsClient object to access its operations.
+     */
+    private final HuntRelationsClient huntRelations;
+
+    /**
+     * Gets the HuntRelationsClient object to access its operations.
+     * 
+     * @return the HuntRelationsClient object.
+     */
+    public HuntRelationsClient getHuntRelations() {
+        return this.huntRelations;
+    }
+
+    /**
+     * The HuntCommentsClient object to access its operations.
+     */
+    private final HuntCommentsClient huntComments;
+
+    /**
+     * Gets the HuntCommentsClient object to access its operations.
+     * 
+     * @return the HuntCommentsClient object.
+     */
+    public HuntCommentsClient getHuntComments() {
+        return this.huntComments;
+    }
+
+    /**
+     * The IncidentCommentsClient object to access its operations.
+     */
     private final IncidentCommentsClient incidentComments;
 
     /**
      * Gets the IncidentCommentsClient object to access its operations.
-     *
+     * 
      * @return the IncidentCommentsClient object.
      */
     public IncidentCommentsClient getIncidentComments() {
         return this.incidentComments;
     }
 
-    /** The IncidentRelationsClient object to access its operations. */
+    /**
+     * The IncidentRelationsClient object to access its operations.
+     */
     private final IncidentRelationsClient incidentRelations;
 
     /**
      * Gets the IncidentRelationsClient object to access its operations.
-     *
+     * 
      * @return the IncidentRelationsClient object.
      */
     public IncidentRelationsClient getIncidentRelations() {
         return this.incidentRelations;
     }
 
-    /** The MetadatasClient object to access its operations. */
+    /**
+     * The IncidentTasksClient object to access its operations.
+     */
+    private final IncidentTasksClient incidentTasks;
+
+    /**
+     * Gets the IncidentTasksClient object to access its operations.
+     * 
+     * @return the IncidentTasksClient object.
+     */
+    public IncidentTasksClient getIncidentTasks() {
+        return this.incidentTasks;
+    }
+
+    /**
+     * The MetadatasClient object to access its operations.
+     */
     private final MetadatasClient metadatas;
 
     /**
      * Gets the MetadatasClient object to access its operations.
-     *
+     * 
      * @return the MetadatasClient object.
      */
     public MetadatasClient getMetadatas() {
         return this.metadatas;
     }
 
-    /** The OfficeConsentsClient object to access its operations. */
+    /**
+     * The OfficeConsentsClient object to access its operations.
+     */
     private final OfficeConsentsClient officeConsents;
 
     /**
      * Gets the OfficeConsentsClient object to access its operations.
-     *
+     * 
      * @return the OfficeConsentsClient object.
      */
     public OfficeConsentsClient getOfficeConsents() {
         return this.officeConsents;
     }
 
-    /** The SentinelOnboardingStatesClient object to access its operations. */
+    /**
+     * The SentinelOnboardingStatesClient object to access its operations.
+     */
     private final SentinelOnboardingStatesClient sentinelOnboardingStates;
 
     /**
      * Gets the SentinelOnboardingStatesClient object to access its operations.
-     *
+     * 
      * @return the SentinelOnboardingStatesClient object.
      */
     public SentinelOnboardingStatesClient getSentinelOnboardingStates() {
         return this.sentinelOnboardingStates;
     }
 
-    /** The SecurityMLAnalyticsSettingsClient object to access its operations. */
+    /**
+     * The GetRecommendationsClient object to access its operations.
+     */
+    private final GetRecommendationsClient getRecommendations;
+
+    /**
+     * Gets the GetRecommendationsClient object to access its operations.
+     * 
+     * @return the GetRecommendationsClient object.
+     */
+    public GetRecommendationsClient getGetRecommendations() {
+        return this.getRecommendations;
+    }
+
+    /**
+     * The GetsClient object to access its operations.
+     */
+    private final GetsClient gets;
+
+    /**
+     * Gets the GetsClient object to access its operations.
+     * 
+     * @return the GetsClient object.
+     */
+    public GetsClient getGets() {
+        return this.gets;
+    }
+
+    /**
+     * The UpdatesClient object to access its operations.
+     */
+    private final UpdatesClient updates;
+
+    /**
+     * Gets the UpdatesClient object to access its operations.
+     * 
+     * @return the UpdatesClient object.
+     */
+    public UpdatesClient getUpdates() {
+        return this.updates;
+    }
+
+    /**
+     * The SecurityMLAnalyticsSettingsClient object to access its operations.
+     */
     private final SecurityMLAnalyticsSettingsClient securityMLAnalyticsSettings;
 
     /**
      * Gets the SecurityMLAnalyticsSettingsClient object to access its operations.
-     *
+     * 
      * @return the SecurityMLAnalyticsSettingsClient object.
      */
     public SecurityMLAnalyticsSettingsClient getSecurityMLAnalyticsSettings() {
         return this.securityMLAnalyticsSettings;
     }
 
-    /** The ProductSettingsClient object to access its operations. */
+    /**
+     * The ProductSettingsClient object to access its operations.
+     */
     private final ProductSettingsClient productSettings;
 
     /**
      * Gets the ProductSettingsClient object to access its operations.
-     *
+     * 
      * @return the ProductSettingsClient object.
      */
     public ProductSettingsClient getProductSettings() {
         return this.productSettings;
     }
 
-    /** The SourceControlsClient object to access its operations. */
+    /**
+     * The SourceControlsClient object to access its operations.
+     */
     private final SourceControlsClient sourceControls;
 
     /**
      * Gets the SourceControlsClient object to access its operations.
-     *
+     * 
      * @return the SourceControlsClient object.
      */
     public SourceControlsClient getSourceControls() {
         return this.sourceControls;
     }
 
-    /** The SourceControlsOperationsClient object to access its operations. */
+    /**
+     * The SourceControlsOperationsClient object to access its operations.
+     */
     private final SourceControlsOperationsClient sourceControlsOperations;
 
     /**
      * Gets the SourceControlsOperationsClient object to access its operations.
-     *
+     * 
      * @return the SourceControlsOperationsClient object.
      */
     public SourceControlsOperationsClient getSourceControlsOperations() {
         return this.sourceControlsOperations;
     }
 
-    /** The ThreatIntelligenceIndicatorsClient object to access its operations. */
+    /**
+     * The ThreatIntelligenceIndicatorsClient object to access its operations.
+     */
     private final ThreatIntelligenceIndicatorsClient threatIntelligenceIndicators;
 
     /**
      * Gets the ThreatIntelligenceIndicatorsClient object to access its operations.
-     *
+     * 
      * @return the ThreatIntelligenceIndicatorsClient object.
      */
     public ThreatIntelligenceIndicatorsClient getThreatIntelligenceIndicators() {
         return this.threatIntelligenceIndicators;
     }
 
-    /** The ThreatIntelligenceIndicatorsOperationsClient object to access its operations. */
+    /**
+     * The ThreatIntelligenceIndicatorsOperationsClient object to access its operations.
+     */
     private final ThreatIntelligenceIndicatorsOperationsClient threatIntelligenceIndicatorsOperations;
 
     /**
      * Gets the ThreatIntelligenceIndicatorsOperationsClient object to access its operations.
-     *
+     * 
      * @return the ThreatIntelligenceIndicatorsOperationsClient object.
      */
     public ThreatIntelligenceIndicatorsOperationsClient getThreatIntelligenceIndicatorsOperations() {
         return this.threatIntelligenceIndicatorsOperations;
     }
 
-    /** The ThreatIntelligenceIndicatorMetricsClient object to access its operations. */
+    /**
+     * The ThreatIntelligenceIndicatorMetricsClient object to access its operations.
+     */
     private final ThreatIntelligenceIndicatorMetricsClient threatIntelligenceIndicatorMetrics;
 
     /**
      * Gets the ThreatIntelligenceIndicatorMetricsClient object to access its operations.
-     *
+     * 
      * @return the ThreatIntelligenceIndicatorMetricsClient object.
      */
     public ThreatIntelligenceIndicatorMetricsClient getThreatIntelligenceIndicatorMetrics() {
         return this.threatIntelligenceIndicatorMetrics;
     }
 
-    /** The WatchlistsClient object to access its operations. */
+    /**
+     * The TriggeredAnalyticsRuleRunOperationsClient object to access its operations.
+     */
+    private final TriggeredAnalyticsRuleRunOperationsClient triggeredAnalyticsRuleRunOperations;
+
+    /**
+     * Gets the TriggeredAnalyticsRuleRunOperationsClient object to access its operations.
+     * 
+     * @return the TriggeredAnalyticsRuleRunOperationsClient object.
+     */
+    public TriggeredAnalyticsRuleRunOperationsClient getTriggeredAnalyticsRuleRunOperations() {
+        return this.triggeredAnalyticsRuleRunOperations;
+    }
+
+    /**
+     * The GetTriggeredAnalyticsRuleRunsClient object to access its operations.
+     */
+    private final GetTriggeredAnalyticsRuleRunsClient getTriggeredAnalyticsRuleRuns;
+
+    /**
+     * Gets the GetTriggeredAnalyticsRuleRunsClient object to access its operations.
+     * 
+     * @return the GetTriggeredAnalyticsRuleRunsClient object.
+     */
+    public GetTriggeredAnalyticsRuleRunsClient getGetTriggeredAnalyticsRuleRuns() {
+        return this.getTriggeredAnalyticsRuleRuns;
+    }
+
+    /**
+     * The AlertRuleOperationsClient object to access its operations.
+     */
+    private final AlertRuleOperationsClient alertRuleOperations;
+
+    /**
+     * Gets the AlertRuleOperationsClient object to access its operations.
+     * 
+     * @return the AlertRuleOperationsClient object.
+     */
+    public AlertRuleOperationsClient getAlertRuleOperations() {
+        return this.alertRuleOperations;
+    }
+
+    /**
+     * The WatchlistsClient object to access its operations.
+     */
     private final WatchlistsClient watchlists;
 
     /**
      * Gets the WatchlistsClient object to access its operations.
-     *
+     * 
      * @return the WatchlistsClient object.
      */
     public WatchlistsClient getWatchlists() {
         return this.watchlists;
     }
 
-    /** The WatchlistItemsClient object to access its operations. */
+    /**
+     * The WatchlistItemsClient object to access its operations.
+     */
     private final WatchlistItemsClient watchlistItems;
 
     /**
      * Gets the WatchlistItemsClient object to access its operations.
-     *
+     * 
      * @return the WatchlistItemsClient object.
      */
     public WatchlistItemsClient getWatchlistItems() {
         return this.watchlistItems;
     }
 
-    /** The DataConnectorsClient object to access its operations. */
+    /**
+     * The WorkspaceManagerAssignmentsClient object to access its operations.
+     */
+    private final WorkspaceManagerAssignmentsClient workspaceManagerAssignments;
+
+    /**
+     * Gets the WorkspaceManagerAssignmentsClient object to access its operations.
+     * 
+     * @return the WorkspaceManagerAssignmentsClient object.
+     */
+    public WorkspaceManagerAssignmentsClient getWorkspaceManagerAssignments() {
+        return this.workspaceManagerAssignments;
+    }
+
+    /**
+     * The WorkspaceManagerAssignmentJobsClient object to access its operations.
+     */
+    private final WorkspaceManagerAssignmentJobsClient workspaceManagerAssignmentJobs;
+
+    /**
+     * Gets the WorkspaceManagerAssignmentJobsClient object to access its operations.
+     * 
+     * @return the WorkspaceManagerAssignmentJobsClient object.
+     */
+    public WorkspaceManagerAssignmentJobsClient getWorkspaceManagerAssignmentJobs() {
+        return this.workspaceManagerAssignmentJobs;
+    }
+
+    /**
+     * The WorkspaceManagerConfigurationsClient object to access its operations.
+     */
+    private final WorkspaceManagerConfigurationsClient workspaceManagerConfigurations;
+
+    /**
+     * Gets the WorkspaceManagerConfigurationsClient object to access its operations.
+     * 
+     * @return the WorkspaceManagerConfigurationsClient object.
+     */
+    public WorkspaceManagerConfigurationsClient getWorkspaceManagerConfigurations() {
+        return this.workspaceManagerConfigurations;
+    }
+
+    /**
+     * The WorkspaceManagerGroupsClient object to access its operations.
+     */
+    private final WorkspaceManagerGroupsClient workspaceManagerGroups;
+
+    /**
+     * Gets the WorkspaceManagerGroupsClient object to access its operations.
+     * 
+     * @return the WorkspaceManagerGroupsClient object.
+     */
+    public WorkspaceManagerGroupsClient getWorkspaceManagerGroups() {
+        return this.workspaceManagerGroups;
+    }
+
+    /**
+     * The WorkspaceManagerMembersClient object to access its operations.
+     */
+    private final WorkspaceManagerMembersClient workspaceManagerMembers;
+
+    /**
+     * Gets the WorkspaceManagerMembersClient object to access its operations.
+     * 
+     * @return the WorkspaceManagerMembersClient object.
+     */
+    public WorkspaceManagerMembersClient getWorkspaceManagerMembers() {
+        return this.workspaceManagerMembers;
+    }
+
+    /**
+     * The DataConnectorDefinitionsClient object to access its operations.
+     */
+    private final DataConnectorDefinitionsClient dataConnectorDefinitions;
+
+    /**
+     * Gets the DataConnectorDefinitionsClient object to access its operations.
+     * 
+     * @return the DataConnectorDefinitionsClient object.
+     */
+    public DataConnectorDefinitionsClient getDataConnectorDefinitions() {
+        return this.dataConnectorDefinitions;
+    }
+
+    /**
+     * The DataConnectorsClient object to access its operations.
+     */
     private final DataConnectorsClient dataConnectors;
 
     /**
      * Gets the DataConnectorsClient object to access its operations.
-     *
+     * 
      * @return the DataConnectorsClient object.
      */
     public DataConnectorsClient getDataConnectors() {
         return this.dataConnectors;
     }
 
-    /** The DataConnectorsCheckRequirementsOperationsClient object to access its operations. */
+    /**
+     * The DataConnectorsCheckRequirementsOperationsClient object to access its operations.
+     */
     private final DataConnectorsCheckRequirementsOperationsClient dataConnectorsCheckRequirementsOperations;
 
     /**
      * Gets the DataConnectorsCheckRequirementsOperationsClient object to access its operations.
-     *
+     * 
      * @return the DataConnectorsCheckRequirementsOperationsClient object.
      */
     public DataConnectorsCheckRequirementsOperationsClient getDataConnectorsCheckRequirementsOperations() {
         return this.dataConnectorsCheckRequirementsOperations;
     }
 
-    /** The OperationsClient object to access its operations. */
+    /**
+     * The OperationsClient object to access its operations.
+     */
     private final OperationsClient operations;
 
     /**
      * Gets the OperationsClient object to access its operations.
-     *
+     * 
      * @return the OperationsClient object.
      */
     public OperationsClient getOperations() {
@@ -551,7 +1008,7 @@ public final class SecurityInsightsImpl implements SecurityInsights {
 
     /**
      * Initializes an instance of SecurityInsights client.
-     *
+     * 
      * @param httpPipeline The HTTP pipeline to send requests through.
      * @param serializerAdapter The serializer to serialize an object into a string.
      * @param defaultPollInterval The default poll interval for long-running operation.
@@ -559,41 +1016,52 @@ public final class SecurityInsightsImpl implements SecurityInsights {
      * @param subscriptionId The ID of the target subscription.
      * @param endpoint server parameter.
      */
-    SecurityInsightsImpl(
-        HttpPipeline httpPipeline,
-        SerializerAdapter serializerAdapter,
-        Duration defaultPollInterval,
-        AzureEnvironment environment,
-        String subscriptionId,
-        String endpoint) {
+    SecurityInsightsImpl(HttpPipeline httpPipeline, SerializerAdapter serializerAdapter, Duration defaultPollInterval,
+        AzureEnvironment environment, String subscriptionId, String endpoint) {
         this.httpPipeline = httpPipeline;
         this.serializerAdapter = serializerAdapter;
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2022-09-01-preview";
+        this.apiVersion = "2023-11-01-preview";
         this.alertRules = new AlertRulesClientImpl(this);
         this.actions = new ActionsClientImpl(this);
         this.alertRuleTemplates = new AlertRuleTemplatesClientImpl(this);
         this.automationRules = new AutomationRulesClientImpl(this);
+        this.entities = new EntitiesClientImpl(this);
         this.incidents = new IncidentsClientImpl(this);
+        this.billingStatistics = new BillingStatisticsClientImpl(this);
         this.bookmarks = new BookmarksClientImpl(this);
         this.bookmarkRelations = new BookmarkRelationsClientImpl(this);
         this.bookmarkOperations = new BookmarkOperationsClientImpl(this);
+        this.contentPackages = new ContentPackagesClientImpl(this);
+        this.contentPackageOperations = new ContentPackageOperationsClientImpl(this);
+        this.productPackages = new ProductPackagesClientImpl(this);
+        this.productPackageOperations = new ProductPackageOperationsClientImpl(this);
+        this.productTemplates = new ProductTemplatesClientImpl(this);
+        this.productTemplateOperations = new ProductTemplateOperationsClientImpl(this);
+        this.contentTemplates = new ContentTemplatesClientImpl(this);
+        this.contentTemplateOperations = new ContentTemplateOperationsClientImpl(this);
         this.ipGeodatas = new IpGeodatasClientImpl(this);
         this.domainWhois = new DomainWhoisClientImpl(this);
-        this.entities = new EntitiesClientImpl(this);
         this.entitiesGetTimelines = new EntitiesGetTimelinesClientImpl(this);
         this.entitiesRelations = new EntitiesRelationsClientImpl(this);
         this.entityRelations = new EntityRelationsClientImpl(this);
         this.entityQueries = new EntityQueriesClientImpl(this);
         this.entityQueryTemplates = new EntityQueryTemplatesClientImpl(this);
         this.fileImports = new FileImportsClientImpl(this);
+        this.hunts = new HuntsClientImpl(this);
+        this.huntRelations = new HuntRelationsClientImpl(this);
+        this.huntComments = new HuntCommentsClientImpl(this);
         this.incidentComments = new IncidentCommentsClientImpl(this);
         this.incidentRelations = new IncidentRelationsClientImpl(this);
+        this.incidentTasks = new IncidentTasksClientImpl(this);
         this.metadatas = new MetadatasClientImpl(this);
         this.officeConsents = new OfficeConsentsClientImpl(this);
         this.sentinelOnboardingStates = new SentinelOnboardingStatesClientImpl(this);
+        this.getRecommendations = new GetRecommendationsClientImpl(this);
+        this.gets = new GetsClientImpl(this);
+        this.updates = new UpdatesClientImpl(this);
         this.securityMLAnalyticsSettings = new SecurityMLAnalyticsSettingsClientImpl(this);
         this.productSettings = new ProductSettingsClientImpl(this);
         this.sourceControls = new SourceControlsClientImpl(this);
@@ -601,8 +1069,17 @@ public final class SecurityInsightsImpl implements SecurityInsights {
         this.threatIntelligenceIndicators = new ThreatIntelligenceIndicatorsClientImpl(this);
         this.threatIntelligenceIndicatorsOperations = new ThreatIntelligenceIndicatorsOperationsClientImpl(this);
         this.threatIntelligenceIndicatorMetrics = new ThreatIntelligenceIndicatorMetricsClientImpl(this);
+        this.triggeredAnalyticsRuleRunOperations = new TriggeredAnalyticsRuleRunOperationsClientImpl(this);
+        this.getTriggeredAnalyticsRuleRuns = new GetTriggeredAnalyticsRuleRunsClientImpl(this);
+        this.alertRuleOperations = new AlertRuleOperationsClientImpl(this);
         this.watchlists = new WatchlistsClientImpl(this);
         this.watchlistItems = new WatchlistItemsClientImpl(this);
+        this.workspaceManagerAssignments = new WorkspaceManagerAssignmentsClientImpl(this);
+        this.workspaceManagerAssignmentJobs = new WorkspaceManagerAssignmentJobsClientImpl(this);
+        this.workspaceManagerConfigurations = new WorkspaceManagerConfigurationsClientImpl(this);
+        this.workspaceManagerGroups = new WorkspaceManagerGroupsClientImpl(this);
+        this.workspaceManagerMembers = new WorkspaceManagerMembersClientImpl(this);
+        this.dataConnectorDefinitions = new DataConnectorDefinitionsClientImpl(this);
         this.dataConnectors = new DataConnectorsClientImpl(this);
         this.dataConnectorsCheckRequirementsOperations = new DataConnectorsCheckRequirementsOperationsClientImpl(this);
         this.operations = new OperationsClientImpl(this);
@@ -610,7 +1087,7 @@ public final class SecurityInsightsImpl implements SecurityInsights {
 
     /**
      * Gets default client context.
-     *
+     * 
      * @return the default client context.
      */
     public Context getContext() {
@@ -619,7 +1096,7 @@ public final class SecurityInsightsImpl implements SecurityInsights {
 
     /**
      * Merges default client context with provided context.
-     *
+     * 
      * @param context the context to be merged with default client context.
      * @return the merged context.
      */
@@ -629,7 +1106,7 @@ public final class SecurityInsightsImpl implements SecurityInsights {
 
     /**
      * Gets long running operation result.
-     *
+     * 
      * @param activationResponse the response of activation operation.
      * @param httpPipeline the http pipeline.
      * @param pollResultType type of poll result.
@@ -639,26 +1116,15 @@ public final class SecurityInsightsImpl implements SecurityInsights {
      * @param <U> type of final result.
      * @return poller flux for poll result and final result.
      */
-    public <T, U> PollerFlux<PollResult<T>, U> getLroResult(
-        Mono<Response<Flux<ByteBuffer>>> activationResponse,
-        HttpPipeline httpPipeline,
-        Type pollResultType,
-        Type finalResultType,
-        Context context) {
-        return PollerFactory
-            .create(
-                serializerAdapter,
-                httpPipeline,
-                pollResultType,
-                finalResultType,
-                defaultPollInterval,
-                activationResponse,
-                context);
+    public <T, U> PollerFlux<PollResult<T>, U> getLroResult(Mono<Response<Flux<ByteBuffer>>> activationResponse,
+        HttpPipeline httpPipeline, Type pollResultType, Type finalResultType, Context context) {
+        return PollerFactory.create(serializerAdapter, httpPipeline, pollResultType, finalResultType,
+            defaultPollInterval, activationResponse, context);
     }
 
     /**
      * Gets the final result, or an error, based on last async poll response.
-     *
+     * 
      * @param response the last async poll response.
      * @param <T> type of poll result.
      * @param <U> type of final result.
@@ -671,19 +1137,16 @@ public final class SecurityInsightsImpl implements SecurityInsights {
             HttpResponse errorResponse = null;
             PollResult.Error lroError = response.getValue().getError();
             if (lroError != null) {
-                errorResponse =
-                    new HttpResponseImpl(
-                        lroError.getResponseStatusCode(), lroError.getResponseHeaders(), lroError.getResponseBody());
+                errorResponse = new HttpResponseImpl(lroError.getResponseStatusCode(), lroError.getResponseHeaders(),
+                    lroError.getResponseBody());
 
                 errorMessage = response.getValue().getError().getMessage();
                 String errorBody = response.getValue().getError().getResponseBody();
                 if (errorBody != null) {
                     // try to deserialize error body to ManagementError
                     try {
-                        managementError =
-                            this
-                                .getSerializerAdapter()
-                                .deserialize(errorBody, ManagementError.class, SerializerEncoding.JSON);
+                        managementError = this.getSerializerAdapter().deserialize(errorBody, ManagementError.class,
+                            SerializerEncoding.JSON);
                         if (managementError.getCode() == null || managementError.getMessage() == null) {
                             managementError = null;
                         }
