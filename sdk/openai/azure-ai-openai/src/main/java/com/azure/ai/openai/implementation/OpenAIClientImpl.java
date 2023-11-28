@@ -8,6 +8,7 @@ import com.azure.ai.openai.OpenAIServiceVersion;
 import com.azure.ai.openai.implementation.models.BatchImageGenerationOperationResponse;
 import com.azure.core.annotation.BodyParam;
 import com.azure.core.annotation.ExpectedResponses;
+import com.azure.core.annotation.Get;
 import com.azure.core.annotation.HeaderParam;
 import com.azure.core.annotation.Host;
 import com.azure.core.annotation.HostParam;
@@ -326,7 +327,7 @@ public final class OpenAIClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
-        Mono<Response<BinaryData>> beginAzureBatchImageGeneration(@HostParam("endpoint") String endpoint,
+        Mono<Response<BinaryData>> beginImageGenerations(@HostParam("endpoint") String endpoint,
             @QueryParam("api-version") String apiVersion, @HeaderParam("accept") String accept,
             @BodyParam("application/json") BinaryData imageGenerationOptions, RequestOptions requestOptions,
             Context context);
@@ -337,10 +338,52 @@ public final class OpenAIClientImpl {
         @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
         @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
         @UnexpectedResponseExceptionType(HttpResponseException.class)
-        Response<BinaryData> beginAzureBatchImageGenerationSync(@HostParam("endpoint") String endpoint,
+        Response<BinaryData> beginImageGenerationsSync(@HostParam("endpoint") String endpoint,
             @QueryParam("api-version") String apiVersion, @HeaderParam("accept") String accept,
             @BodyParam("application/json") BinaryData imageGenerationOptions, RequestOptions requestOptions,
             Context context);
+
+        @Get("/operations/images/{operationId}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
+        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
+        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Mono<Response<BinaryData>> getAzureBatchImageGenerationOperationStatus(@HostParam("endpoint") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("operationId") String operationId,
+            @HeaderParam("accept") String accept, RequestOptions requestOptions, Context context);
+
+        @Get("/operations/images/{operationId}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
+        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
+        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Response<BinaryData> getAzureBatchImageGenerationOperationStatusSync(@HostParam("endpoint") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("operationId") String operationId,
+            @HeaderParam("accept") String accept, RequestOptions requestOptions, Context context);
+
+        @Post("/deployments/{deploymentId}/images/generations")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
+        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
+        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Mono<Response<BinaryData>> getImageGenerations(@HostParam("endpoint") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("deploymentId") String deploymentOrModelName,
+            @HeaderParam("accept") String accept, @BodyParam("application/json") BinaryData imageGenerationOptions,
+            RequestOptions requestOptions, Context context);
+
+        @Post("/deployments/{deploymentId}/images/generations")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
+        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
+        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Response<BinaryData> getImageGenerationsSync(@HostParam("endpoint") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("deploymentId") String deploymentOrModelName,
+            @HeaderParam("accept") String accept, @BodyParam("application/json") BinaryData imageGenerationOptions,
+            RequestOptions requestOptions, Context context);
 
         @Post("/deployments/{deploymentId}/embeddings")
         @ExpectedResponses({ 200 })
@@ -835,6 +878,16 @@ public final class OpenAIClientImpl {
      *                 violence (Optional): (recursive schema, see violence above)
      *                 hate (Optional): (recursive schema, see hate above)
      *                 self_harm (Optional): (recursive schema, see self_harm above)
+     *                 profanity (Optional): {
+     *                     filtered: boolean (Required)
+     *                     detected: boolean (Required)
+     *                 }
+     *                 custom_blocklists (Optional): [
+     *                      (Optional){
+     *                         id: String (Required)
+     *                         filtered: boolean (Required)
+     *                     }
+     *                 ]
      *                 error (Optional): {
      *                     code: String (Required)
      *                     message: String (Required)
@@ -847,6 +900,7 @@ public final class OpenAIClientImpl {
      *                         innererror (Optional): (recursive schema, see innererror above)
      *                     }
      *                 }
+     *                 jailbreak (Required): (recursive schema, see jailbreak above)
      *             }
      *         }
      *     ]
@@ -854,7 +908,24 @@ public final class OpenAIClientImpl {
      *          (Required){
      *             text: String (Required)
      *             index: int (Required)
-     *             content_filter_results (Optional): (recursive schema, see content_filter_results above)
+     *             content_filter_results (Optional): {
+     *                 sexual (Optional): (recursive schema, see sexual above)
+     *                 violence (Optional): (recursive schema, see violence above)
+     *                 hate (Optional): (recursive schema, see hate above)
+     *                 self_harm (Optional): (recursive schema, see self_harm above)
+     *                 profanity (Optional): (recursive schema, see profanity above)
+     *                 custom_blocklists (Optional): [
+     *                     (recursive schema, see above)
+     *                 ]
+     *                 error (Optional): (recursive schema, see error above)
+     *                 protected_material_text (Optional): (recursive schema, see protected_material_text above)
+     *                 protected_material_code (Optional): {
+     *                     filtered: boolean (Required)
+     *                     detected: boolean (Required)
+     *                     URL: String (Optional)
+     *                     license: String (Required)
+     *                 }
+     *             }
      *             logprobs (Required): {
      *                 tokens (Required): [
      *                     String (Required)
@@ -871,7 +942,7 @@ public final class OpenAIClientImpl {
      *                     int (Required)
      *                 ]
      *             }
-     *             finish_reason: String(stop/length/content_filter/function_call) (Required)
+     *             finish_reason: String(stop/length/content_filter/function_call/tool_calls) (Required)
      *         }
      *     ]
      *     usage (Required): {
@@ -955,6 +1026,16 @@ public final class OpenAIClientImpl {
      *                 violence (Optional): (recursive schema, see violence above)
      *                 hate (Optional): (recursive schema, see hate above)
      *                 self_harm (Optional): (recursive schema, see self_harm above)
+     *                 profanity (Optional): {
+     *                     filtered: boolean (Required)
+     *                     detected: boolean (Required)
+     *                 }
+     *                 custom_blocklists (Optional): [
+     *                      (Optional){
+     *                         id: String (Required)
+     *                         filtered: boolean (Required)
+     *                     }
+     *                 ]
      *                 error (Optional): {
      *                     code: String (Required)
      *                     message: String (Required)
@@ -967,6 +1048,7 @@ public final class OpenAIClientImpl {
      *                         innererror (Optional): (recursive schema, see innererror above)
      *                     }
      *                 }
+     *                 jailbreak (Required): (recursive schema, see jailbreak above)
      *             }
      *         }
      *     ]
@@ -974,7 +1056,24 @@ public final class OpenAIClientImpl {
      *          (Required){
      *             text: String (Required)
      *             index: int (Required)
-     *             content_filter_results (Optional): (recursive schema, see content_filter_results above)
+     *             content_filter_results (Optional): {
+     *                 sexual (Optional): (recursive schema, see sexual above)
+     *                 violence (Optional): (recursive schema, see violence above)
+     *                 hate (Optional): (recursive schema, see hate above)
+     *                 self_harm (Optional): (recursive schema, see self_harm above)
+     *                 profanity (Optional): (recursive schema, see profanity above)
+     *                 custom_blocklists (Optional): [
+     *                     (recursive schema, see above)
+     *                 ]
+     *                 error (Optional): (recursive schema, see error above)
+     *                 protected_material_text (Optional): (recursive schema, see protected_material_text above)
+     *                 protected_material_code (Optional): {
+     *                     filtered: boolean (Required)
+     *                     detected: boolean (Required)
+     *                     URL: String (Optional)
+     *                     license: String (Required)
+     *                 }
+     *             }
      *             logprobs (Required): {
      *                 tokens (Required): [
      *                     String (Required)
@@ -991,7 +1090,7 @@ public final class OpenAIClientImpl {
      *                     int (Required)
      *                 ]
      *             }
-     *             finish_reason: String(stop/length/content_filter/function_call) (Required)
+     *             finish_reason: String(stop/length/content_filter/function_call/tool_calls) (Required)
      *         }
      *     ]
      *     usage (Required): {
@@ -1035,18 +1134,6 @@ public final class OpenAIClientImpl {
      * {
      *     messages (Required): [
      *          (Required){
-     *             role: String(system/assistant/user/function/tool) (Required)
-     *             content: String (Required)
-     *             name: String (Optional)
-     *             function_call (Optional): {
-     *                 name: String (Required)
-     *                 arguments: String (Required)
-     *             }
-     *             context (Optional): {
-     *                 messages (Optional): [
-     *                     (recursive schema, see above)
-     *                 ]
-     *             }
      *         }
      *     ]
      *     functions (Optional): [
@@ -1074,10 +1161,23 @@ public final class OpenAIClientImpl {
      *     model: String (Optional)
      *     dataSources (Optional): [
      *          (Optional){
-     *             type: String(AzureCognitiveSearch) (Required)
-     *             parameters: Object (Required)
      *         }
      *     ]
+     *     enhancements (Optional): {
+     *         grounding (Optional): {
+     *             enabled: boolean (Required)
+     *         }
+     *         ocr (Optional): {
+     *             enabled: boolean (Required)
+     *         }
+     *     }
+     *     seed: Long (Optional)
+     *     response_format: String(text/json_object) (Optional)
+     *     tools (Optional): [
+     *          (Optional){
+     *         }
+     *     ]
+     *     tool_choice: BinaryData (Optional)
      * }
      * }</pre>
      * <p>
@@ -1092,7 +1192,11 @@ public final class OpenAIClientImpl {
      *             message (Optional): {
      *                 role: String(system/assistant/user/function/tool) (Required)
      *                 content: String (Required)
-     *                 name: String (Optional)
+     *                 tool_calls (Optional): [
+     *                      (Optional){
+     *                         id: String (Required)
+     *                     }
+     *                 ]
      *                 function_call (Optional): {
      *                     name: String (Required)
      *                     arguments: String (Required)
@@ -1104,7 +1208,9 @@ public final class OpenAIClientImpl {
      *                 }
      *             }
      *             index: int (Required)
-     *             finish_reason: String(stop/length/content_filter/function_call) (Required)
+     *             finish_reason: String(stop/length/content_filter/function_call/tool_calls) (Required)
+     *             finish_details (Optional): {
+     *             }
      *             delta (Optional): (recursive schema, see delta above)
      *             content_filter_results (Optional): {
      *                 sexual (Optional): {
@@ -1114,6 +1220,16 @@ public final class OpenAIClientImpl {
      *                 violence (Optional): (recursive schema, see violence above)
      *                 hate (Optional): (recursive schema, see hate above)
      *                 self_harm (Optional): (recursive schema, see self_harm above)
+     *                 profanity (Optional): {
+     *                     filtered: boolean (Required)
+     *                     detected: boolean (Required)
+     *                 }
+     *                 custom_blocklists (Optional): [
+     *                      (Optional){
+     *                         id: String (Required)
+     *                         filtered: boolean (Required)
+     *                     }
+     *                 ]
      *                 error (Optional): {
      *                     code: String (Required)
      *                     message: String (Required)
@@ -1126,15 +1242,56 @@ public final class OpenAIClientImpl {
      *                         innererror (Optional): (recursive schema, see innererror above)
      *                     }
      *                 }
+     *                 protected_material_text (Optional): (recursive schema, see protected_material_text above)
+     *                 protected_material_code (Optional): {
+     *                     filtered: boolean (Required)
+     *                     detected: boolean (Required)
+     *                     URL: String (Optional)
+     *                     license: String (Required)
+     *                 }
+     *             }
+     *             enhancements (Required): {
+     *                 grounding (Optional): {
+     *                     lines (Required): [
+     *                          (Required){
+     *                             text: String (Required)
+     *                             spans (Required): [
+     *                                  (Required){
+     *                                     text: String (Required)
+     *                                     offset: int (Required)
+     *                                     length: int (Required)
+     *                                     polygon (Required): [
+     *                                          (Required){
+     *                                             x: double (Required)
+     *                                             y: double (Required)
+     *                                         }
+     *                                     ]
+     *                                 }
+     *                             ]
+     *                         }
+     *                     ]
+     *                 }
      *             }
      *         }
      *     ]
      *     prompt_filter_results (Optional): [
      *          (Optional){
      *             prompt_index: int (Required)
-     *             content_filter_results (Optional): (recursive schema, see content_filter_results above)
+     *             content_filter_results (Optional): {
+     *                 sexual (Optional): (recursive schema, see sexual above)
+     *                 violence (Optional): (recursive schema, see violence above)
+     *                 hate (Optional): (recursive schema, see hate above)
+     *                 self_harm (Optional): (recursive schema, see self_harm above)
+     *                 profanity (Optional): (recursive schema, see profanity above)
+     *                 custom_blocklists (Optional): [
+     *                     (recursive schema, see above)
+     *                 ]
+     *                 error (Optional): (recursive schema, see error above)
+     *                 jailbreak (Required): (recursive schema, see jailbreak above)
+     *             }
      *         }
      *     ]
+     *     system_fingerprint: String (Required)
      *     usage (Required): {
      *         completion_tokens: int (Required)
      *         prompt_tokens: int (Required)
@@ -1177,18 +1334,6 @@ public final class OpenAIClientImpl {
      * {
      *     messages (Required): [
      *          (Required){
-     *             role: String(system/assistant/user/function/tool) (Required)
-     *             content: String (Required)
-     *             name: String (Optional)
-     *             function_call (Optional): {
-     *                 name: String (Required)
-     *                 arguments: String (Required)
-     *             }
-     *             context (Optional): {
-     *                 messages (Optional): [
-     *                     (recursive schema, see above)
-     *                 ]
-     *             }
      *         }
      *     ]
      *     functions (Optional): [
@@ -1216,10 +1361,23 @@ public final class OpenAIClientImpl {
      *     model: String (Optional)
      *     dataSources (Optional): [
      *          (Optional){
-     *             type: String(AzureCognitiveSearch) (Required)
-     *             parameters: Object (Required)
      *         }
      *     ]
+     *     enhancements (Optional): {
+     *         grounding (Optional): {
+     *             enabled: boolean (Required)
+     *         }
+     *         ocr (Optional): {
+     *             enabled: boolean (Required)
+     *         }
+     *     }
+     *     seed: Long (Optional)
+     *     response_format: String(text/json_object) (Optional)
+     *     tools (Optional): [
+     *          (Optional){
+     *         }
+     *     ]
+     *     tool_choice: BinaryData (Optional)
      * }
      * }</pre>
      * <p>
@@ -1234,7 +1392,11 @@ public final class OpenAIClientImpl {
      *             message (Optional): {
      *                 role: String(system/assistant/user/function/tool) (Required)
      *                 content: String (Required)
-     *                 name: String (Optional)
+     *                 tool_calls (Optional): [
+     *                      (Optional){
+     *                         id: String (Required)
+     *                     }
+     *                 ]
      *                 function_call (Optional): {
      *                     name: String (Required)
      *                     arguments: String (Required)
@@ -1246,7 +1408,9 @@ public final class OpenAIClientImpl {
      *                 }
      *             }
      *             index: int (Required)
-     *             finish_reason: String(stop/length/content_filter/function_call) (Required)
+     *             finish_reason: String(stop/length/content_filter/function_call/tool_calls) (Required)
+     *             finish_details (Optional): {
+     *             }
      *             delta (Optional): (recursive schema, see delta above)
      *             content_filter_results (Optional): {
      *                 sexual (Optional): {
@@ -1256,6 +1420,16 @@ public final class OpenAIClientImpl {
      *                 violence (Optional): (recursive schema, see violence above)
      *                 hate (Optional): (recursive schema, see hate above)
      *                 self_harm (Optional): (recursive schema, see self_harm above)
+     *                 profanity (Optional): {
+     *                     filtered: boolean (Required)
+     *                     detected: boolean (Required)
+     *                 }
+     *                 custom_blocklists (Optional): [
+     *                      (Optional){
+     *                         id: String (Required)
+     *                         filtered: boolean (Required)
+     *                     }
+     *                 ]
      *                 error (Optional): {
      *                     code: String (Required)
      *                     message: String (Required)
@@ -1268,15 +1442,56 @@ public final class OpenAIClientImpl {
      *                         innererror (Optional): (recursive schema, see innererror above)
      *                     }
      *                 }
+     *                 protected_material_text (Optional): (recursive schema, see protected_material_text above)
+     *                 protected_material_code (Optional): {
+     *                     filtered: boolean (Required)
+     *                     detected: boolean (Required)
+     *                     URL: String (Optional)
+     *                     license: String (Required)
+     *                 }
+     *             }
+     *             enhancements (Required): {
+     *                 grounding (Optional): {
+     *                     lines (Required): [
+     *                          (Required){
+     *                             text: String (Required)
+     *                             spans (Required): [
+     *                                  (Required){
+     *                                     text: String (Required)
+     *                                     offset: int (Required)
+     *                                     length: int (Required)
+     *                                     polygon (Required): [
+     *                                          (Required){
+     *                                             x: double (Required)
+     *                                             y: double (Required)
+     *                                         }
+     *                                     ]
+     *                                 }
+     *                             ]
+     *                         }
+     *                     ]
+     *                 }
      *             }
      *         }
      *     ]
      *     prompt_filter_results (Optional): [
      *          (Optional){
      *             prompt_index: int (Required)
-     *             content_filter_results (Optional): (recursive schema, see content_filter_results above)
+     *             content_filter_results (Optional): {
+     *                 sexual (Optional): (recursive schema, see sexual above)
+     *                 violence (Optional): (recursive schema, see violence above)
+     *                 hate (Optional): (recursive schema, see hate above)
+     *                 self_harm (Optional): (recursive schema, see self_harm above)
+     *                 profanity (Optional): (recursive schema, see profanity above)
+     *                 custom_blocklists (Optional): [
+     *                     (recursive schema, see above)
+     *                 ]
+     *                 error (Optional): (recursive schema, see error above)
+     *                 jailbreak (Required): (recursive schema, see jailbreak above)
+     *             }
      *         }
      *     ]
+     *     system_fingerprint: String (Required)
      *     usage (Required): {
      *         completion_tokens: int (Required)
      *         prompt_tokens: int (Required)
@@ -1318,18 +1533,6 @@ public final class OpenAIClientImpl {
      * {
      *     messages (Required): [
      *          (Required){
-     *             role: String(system/assistant/user/function/tool) (Required)
-     *             content: String (Required)
-     *             name: String (Optional)
-     *             function_call (Optional): {
-     *                 name: String (Required)
-     *                 arguments: String (Required)
-     *             }
-     *             context (Optional): {
-     *                 messages (Optional): [
-     *                     (recursive schema, see above)
-     *                 ]
-     *             }
      *         }
      *     ]
      *     functions (Optional): [
@@ -1357,10 +1560,23 @@ public final class OpenAIClientImpl {
      *     model: String (Optional)
      *     dataSources (Optional): [
      *          (Optional){
-     *             type: String(AzureCognitiveSearch) (Required)
-     *             parameters: Object (Required)
      *         }
      *     ]
+     *     enhancements (Optional): {
+     *         grounding (Optional): {
+     *             enabled: boolean (Required)
+     *         }
+     *         ocr (Optional): {
+     *             enabled: boolean (Required)
+     *         }
+     *     }
+     *     seed: Long (Optional)
+     *     response_format: String(text/json_object) (Optional)
+     *     tools (Optional): [
+     *          (Optional){
+     *         }
+     *     ]
+     *     tool_choice: BinaryData (Optional)
      * }
      * }</pre>
      * <p>
@@ -1375,7 +1591,11 @@ public final class OpenAIClientImpl {
      *             message (Optional): {
      *                 role: String(system/assistant/user/function/tool) (Required)
      *                 content: String (Required)
-     *                 name: String (Optional)
+     *                 tool_calls (Optional): [
+     *                      (Optional){
+     *                         id: String (Required)
+     *                     }
+     *                 ]
      *                 function_call (Optional): {
      *                     name: String (Required)
      *                     arguments: String (Required)
@@ -1387,7 +1607,9 @@ public final class OpenAIClientImpl {
      *                 }
      *             }
      *             index: int (Required)
-     *             finish_reason: String(stop/length/content_filter/function_call) (Required)
+     *             finish_reason: String(stop/length/content_filter/function_call/tool_calls) (Required)
+     *             finish_details (Optional): {
+     *             }
      *             delta (Optional): (recursive schema, see delta above)
      *             content_filter_results (Optional): {
      *                 sexual (Optional): {
@@ -1397,6 +1619,16 @@ public final class OpenAIClientImpl {
      *                 violence (Optional): (recursive schema, see violence above)
      *                 hate (Optional): (recursive schema, see hate above)
      *                 self_harm (Optional): (recursive schema, see self_harm above)
+     *                 profanity (Optional): {
+     *                     filtered: boolean (Required)
+     *                     detected: boolean (Required)
+     *                 }
+     *                 custom_blocklists (Optional): [
+     *                      (Optional){
+     *                         id: String (Required)
+     *                         filtered: boolean (Required)
+     *                     }
+     *                 ]
      *                 error (Optional): {
      *                     code: String (Required)
      *                     message: String (Required)
@@ -1409,15 +1641,56 @@ public final class OpenAIClientImpl {
      *                         innererror (Optional): (recursive schema, see innererror above)
      *                     }
      *                 }
+     *                 protected_material_text (Optional): (recursive schema, see protected_material_text above)
+     *                 protected_material_code (Optional): {
+     *                     filtered: boolean (Required)
+     *                     detected: boolean (Required)
+     *                     URL: String (Optional)
+     *                     license: String (Required)
+     *                 }
+     *             }
+     *             enhancements (Required): {
+     *                 grounding (Optional): {
+     *                     lines (Required): [
+     *                          (Required){
+     *                             text: String (Required)
+     *                             spans (Required): [
+     *                                  (Required){
+     *                                     text: String (Required)
+     *                                     offset: int (Required)
+     *                                     length: int (Required)
+     *                                     polygon (Required): [
+     *                                          (Required){
+     *                                             x: double (Required)
+     *                                             y: double (Required)
+     *                                         }
+     *                                     ]
+     *                                 }
+     *                             ]
+     *                         }
+     *                     ]
+     *                 }
      *             }
      *         }
      *     ]
      *     prompt_filter_results (Optional): [
      *          (Optional){
      *             prompt_index: int (Required)
-     *             content_filter_results (Optional): (recursive schema, see content_filter_results above)
+     *             content_filter_results (Optional): {
+     *                 sexual (Optional): (recursive schema, see sexual above)
+     *                 violence (Optional): (recursive schema, see violence above)
+     *                 hate (Optional): (recursive schema, see hate above)
+     *                 self_harm (Optional): (recursive schema, see self_harm above)
+     *                 profanity (Optional): (recursive schema, see profanity above)
+     *                 custom_blocklists (Optional): [
+     *                     (recursive schema, see above)
+     *                 ]
+     *                 error (Optional): (recursive schema, see error above)
+     *                 jailbreak (Required): (recursive schema, see jailbreak above)
+     *             }
      *         }
      *     ]
+     *     system_fingerprint: String (Required)
      *     usage (Required): {
      *         completion_tokens: int (Required)
      *         prompt_tokens: int (Required)
@@ -1461,18 +1734,6 @@ public final class OpenAIClientImpl {
      * {
      *     messages (Required): [
      *          (Required){
-     *             role: String(system/assistant/user/function/tool) (Required)
-     *             content: String (Required)
-     *             name: String (Optional)
-     *             function_call (Optional): {
-     *                 name: String (Required)
-     *                 arguments: String (Required)
-     *             }
-     *             context (Optional): {
-     *                 messages (Optional): [
-     *                     (recursive schema, see above)
-     *                 ]
-     *             }
      *         }
      *     ]
      *     functions (Optional): [
@@ -1500,10 +1761,23 @@ public final class OpenAIClientImpl {
      *     model: String (Optional)
      *     dataSources (Optional): [
      *          (Optional){
-     *             type: String(AzureCognitiveSearch) (Required)
-     *             parameters: Object (Required)
      *         }
      *     ]
+     *     enhancements (Optional): {
+     *         grounding (Optional): {
+     *             enabled: boolean (Required)
+     *         }
+     *         ocr (Optional): {
+     *             enabled: boolean (Required)
+     *         }
+     *     }
+     *     seed: Long (Optional)
+     *     response_format: String(text/json_object) (Optional)
+     *     tools (Optional): [
+     *          (Optional){
+     *         }
+     *     ]
+     *     tool_choice: BinaryData (Optional)
      * }
      * }</pre>
      * <p>
@@ -1518,7 +1792,11 @@ public final class OpenAIClientImpl {
      *             message (Optional): {
      *                 role: String(system/assistant/user/function/tool) (Required)
      *                 content: String (Required)
-     *                 name: String (Optional)
+     *                 tool_calls (Optional): [
+     *                      (Optional){
+     *                         id: String (Required)
+     *                     }
+     *                 ]
      *                 function_call (Optional): {
      *                     name: String (Required)
      *                     arguments: String (Required)
@@ -1530,7 +1808,9 @@ public final class OpenAIClientImpl {
      *                 }
      *             }
      *             index: int (Required)
-     *             finish_reason: String(stop/length/content_filter/function_call) (Required)
+     *             finish_reason: String(stop/length/content_filter/function_call/tool_calls) (Required)
+     *             finish_details (Optional): {
+     *             }
      *             delta (Optional): (recursive schema, see delta above)
      *             content_filter_results (Optional): {
      *                 sexual (Optional): {
@@ -1540,6 +1820,16 @@ public final class OpenAIClientImpl {
      *                 violence (Optional): (recursive schema, see violence above)
      *                 hate (Optional): (recursive schema, see hate above)
      *                 self_harm (Optional): (recursive schema, see self_harm above)
+     *                 profanity (Optional): {
+     *                     filtered: boolean (Required)
+     *                     detected: boolean (Required)
+     *                 }
+     *                 custom_blocklists (Optional): [
+     *                      (Optional){
+     *                         id: String (Required)
+     *                         filtered: boolean (Required)
+     *                     }
+     *                 ]
      *                 error (Optional): {
      *                     code: String (Required)
      *                     message: String (Required)
@@ -1552,15 +1842,56 @@ public final class OpenAIClientImpl {
      *                         innererror (Optional): (recursive schema, see innererror above)
      *                     }
      *                 }
+     *                 protected_material_text (Optional): (recursive schema, see protected_material_text above)
+     *                 protected_material_code (Optional): {
+     *                     filtered: boolean (Required)
+     *                     detected: boolean (Required)
+     *                     URL: String (Optional)
+     *                     license: String (Required)
+     *                 }
+     *             }
+     *             enhancements (Required): {
+     *                 grounding (Optional): {
+     *                     lines (Required): [
+     *                          (Required){
+     *                             text: String (Required)
+     *                             spans (Required): [
+     *                                  (Required){
+     *                                     text: String (Required)
+     *                                     offset: int (Required)
+     *                                     length: int (Required)
+     *                                     polygon (Required): [
+     *                                          (Required){
+     *                                             x: double (Required)
+     *                                             y: double (Required)
+     *                                         }
+     *                                     ]
+     *                                 }
+     *                             ]
+     *                         }
+     *                     ]
+     *                 }
      *             }
      *         }
      *     ]
      *     prompt_filter_results (Optional): [
      *          (Optional){
      *             prompt_index: int (Required)
-     *             content_filter_results (Optional): (recursive schema, see content_filter_results above)
+     *             content_filter_results (Optional): {
+     *                 sexual (Optional): (recursive schema, see sexual above)
+     *                 violence (Optional): (recursive schema, see violence above)
+     *                 hate (Optional): (recursive schema, see hate above)
+     *                 self_harm (Optional): (recursive schema, see self_harm above)
+     *                 profanity (Optional): (recursive schema, see profanity above)
+     *                 custom_blocklists (Optional): [
+     *                     (recursive schema, see above)
+     *                 ]
+     *                 error (Optional): (recursive schema, see error above)
+     *                 jailbreak (Required): (recursive schema, see jailbreak above)
+     *             }
      *         }
      *     ]
+     *     system_fingerprint: String (Required)
      *     usage (Required): {
      *         completion_tokens: int (Required)
      *         prompt_tokens: int (Required)
@@ -1599,10 +1930,13 @@ public final class OpenAIClientImpl {
      * </p>
      * <pre>{@code
      * {
+     *     model: String (Optional)
      *     prompt: String (Required)
      *     n: Integer (Optional)
-     *     size: String(256x256/512x512/1024x1024) (Optional)
+     *     size: String(256x256/512x512/1024x1024/1792x1024/1024x1792) (Optional)
      *     response_format: String(url/b64_json) (Optional)
+     *     quality: String(standard/hd) (Optional)
+     *     style: String(natural/vivid) (Optional)
      *     user: String (Optional)
      * }
      * }</pre>
@@ -1616,7 +1950,13 @@ public final class OpenAIClientImpl {
      *     expires: Long (Optional)
      *     result (Optional): {
      *         created: long (Required)
-     *         data: BinaryData (Required)
+     *         data (Required): [
+     *              (Required){
+     *                 url: String (Optional)
+     *                 b64_json: String (Optional)
+     *                 revised_prompt: String (Optional)
+     *             }
+     *         ]
      *     }
      *     status: String(notRunning/running/succeeded/canceled/failed) (Required)
      *     error (Optional): {
@@ -1644,10 +1984,10 @@ public final class OpenAIClientImpl {
      * successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<BinaryData>> beginAzureBatchImageGenerationWithResponseAsync(
-        BinaryData imageGenerationOptions, RequestOptions requestOptions) {
+    private Mono<Response<BinaryData>> beginImageGenerationsWithResponseAsync(BinaryData imageGenerationOptions,
+        RequestOptions requestOptions) {
         final String accept = "application/json";
-        return FluxUtil.withContext(context -> service.beginAzureBatchImageGeneration(this.getEndpoint(),
+        return FluxUtil.withContext(context -> service.beginImageGenerations(this.getEndpoint(),
             this.getServiceVersion().getVersion(), accept, imageGenerationOptions, requestOptions, context));
     }
 
@@ -1658,10 +1998,13 @@ public final class OpenAIClientImpl {
      * </p>
      * <pre>{@code
      * {
+     *     model: String (Optional)
      *     prompt: String (Required)
      *     n: Integer (Optional)
-     *     size: String(256x256/512x512/1024x1024) (Optional)
+     *     size: String(256x256/512x512/1024x1024/1792x1024/1024x1792) (Optional)
      *     response_format: String(url/b64_json) (Optional)
+     *     quality: String(standard/hd) (Optional)
+     *     style: String(natural/vivid) (Optional)
      *     user: String (Optional)
      * }
      * }</pre>
@@ -1675,7 +2018,13 @@ public final class OpenAIClientImpl {
      *     expires: Long (Optional)
      *     result (Optional): {
      *         created: long (Required)
-     *         data: BinaryData (Required)
+     *         data (Required): [
+     *              (Required){
+     *                 url: String (Optional)
+     *                 b64_json: String (Optional)
+     *                 revised_prompt: String (Optional)
+     *             }
+     *         ]
      *     }
      *     status: String(notRunning/running/succeeded/canceled/failed) (Required)
      *     error (Optional): {
@@ -1702,11 +2051,11 @@ public final class OpenAIClientImpl {
      * @return a polling status update or final response payload for an image operation along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Response<BinaryData> beginAzureBatchImageGenerationWithResponse(BinaryData imageGenerationOptions,
+    private Response<BinaryData> beginImageGenerationsWithResponse(BinaryData imageGenerationOptions,
         RequestOptions requestOptions) {
         final String accept = "application/json";
-        return service.beginAzureBatchImageGenerationSync(this.getEndpoint(), this.getServiceVersion().getVersion(),
-            accept, imageGenerationOptions, requestOptions, Context.NONE);
+        return service.beginImageGenerationsSync(this.getEndpoint(), this.getServiceVersion().getVersion(), accept,
+            imageGenerationOptions, requestOptions, Context.NONE);
     }
 
     /**
@@ -1716,10 +2065,13 @@ public final class OpenAIClientImpl {
      * </p>
      * <pre>{@code
      * {
+     *     model: String (Optional)
      *     prompt: String (Required)
      *     n: Integer (Optional)
-     *     size: String(256x256/512x512/1024x1024) (Optional)
+     *     size: String(256x256/512x512/1024x1024/1792x1024/1024x1792) (Optional)
      *     response_format: String(url/b64_json) (Optional)
+     *     quality: String(standard/hd) (Optional)
+     *     style: String(natural/vivid) (Optional)
      *     user: String (Optional)
      * }
      * }</pre>
@@ -1733,7 +2085,13 @@ public final class OpenAIClientImpl {
      *     expires: Long (Optional)
      *     result (Optional): {
      *         created: long (Required)
-     *         data: BinaryData (Required)
+     *         data (Required): [
+     *              (Required){
+     *                 url: String (Optional)
+     *                 b64_json: String (Optional)
+     *                 revised_prompt: String (Optional)
+     *             }
+     *         ]
      *     }
      *     status: String(notRunning/running/succeeded/canceled/failed) (Required)
      *     error (Optional): {
@@ -1761,10 +2119,10 @@ public final class OpenAIClientImpl {
      * operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public PollerFlux<BinaryData, BinaryData>
-        beginBeginAzureBatchImageGenerationAsync(BinaryData imageGenerationOptions, RequestOptions requestOptions) {
+    public PollerFlux<BinaryData, BinaryData> beginBeginImageGenerationsAsync(BinaryData imageGenerationOptions,
+        RequestOptions requestOptions) {
         return PollerFlux.create(Duration.ofSeconds(1),
-            () -> this.beginAzureBatchImageGenerationWithResponseAsync(imageGenerationOptions, requestOptions),
+            () -> this.beginImageGenerationsWithResponseAsync(imageGenerationOptions, requestOptions),
             new DefaultPollingStrategy<>(new PollingStrategyOptions(this.getHttpPipeline())
                 .setEndpoint("{endpoint}/openai".replace("{endpoint}", this.getEndpoint()))
                 .setContext(requestOptions != null && requestOptions.getContext() != null ? requestOptions.getContext()
@@ -1780,10 +2138,13 @@ public final class OpenAIClientImpl {
      * </p>
      * <pre>{@code
      * {
+     *     model: String (Optional)
      *     prompt: String (Required)
      *     n: Integer (Optional)
-     *     size: String(256x256/512x512/1024x1024) (Optional)
+     *     size: String(256x256/512x512/1024x1024/1792x1024/1024x1792) (Optional)
      *     response_format: String(url/b64_json) (Optional)
+     *     quality: String(standard/hd) (Optional)
+     *     style: String(natural/vivid) (Optional)
      *     user: String (Optional)
      * }
      * }</pre>
@@ -1797,7 +2158,13 @@ public final class OpenAIClientImpl {
      *     expires: Long (Optional)
      *     result (Optional): {
      *         created: long (Required)
-     *         data: BinaryData (Required)
+     *         data (Required): [
+     *              (Required){
+     *                 url: String (Optional)
+     *                 b64_json: String (Optional)
+     *                 revised_prompt: String (Optional)
+     *             }
+     *         ]
      *     }
      *     status: String(notRunning/running/succeeded/canceled/failed) (Required)
      *     error (Optional): {
@@ -1825,10 +2192,10 @@ public final class OpenAIClientImpl {
      * operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<BinaryData, BinaryData> beginBeginAzureBatchImageGeneration(BinaryData imageGenerationOptions,
+    public SyncPoller<BinaryData, BinaryData> beginBeginImageGenerations(BinaryData imageGenerationOptions,
         RequestOptions requestOptions) {
         return SyncPoller.createPoller(Duration.ofSeconds(1),
-            () -> this.beginAzureBatchImageGenerationWithResponse(imageGenerationOptions, requestOptions),
+            () -> this.beginImageGenerationsWithResponse(imageGenerationOptions, requestOptions),
             new SyncDefaultPollingStrategy<>(new PollingStrategyOptions(this.getHttpPipeline())
                 .setEndpoint("{endpoint}/openai".replace("{endpoint}", this.getEndpoint()))
                 .setContext(requestOptions != null && requestOptions.getContext() != null ? requestOptions.getContext()
@@ -1844,10 +2211,13 @@ public final class OpenAIClientImpl {
      * </p>
      * <pre>{@code
      * {
+     *     model: String (Optional)
      *     prompt: String (Required)
      *     n: Integer (Optional)
-     *     size: String(256x256/512x512/1024x1024) (Optional)
+     *     size: String(256x256/512x512/1024x1024/1792x1024/1024x1792) (Optional)
      *     response_format: String(url/b64_json) (Optional)
+     *     quality: String(standard/hd) (Optional)
+     *     style: String(natural/vivid) (Optional)
      *     user: String (Optional)
      * }
      * }</pre>
@@ -1861,7 +2231,13 @@ public final class OpenAIClientImpl {
      *     expires: Long (Optional)
      *     result (Optional): {
      *         created: long (Required)
-     *         data: BinaryData (Required)
+     *         data (Required): [
+     *              (Required){
+     *                 url: String (Optional)
+     *                 b64_json: String (Optional)
+     *                 revised_prompt: String (Optional)
+     *             }
+     *         ]
      *     }
      *     status: String(notRunning/running/succeeded/canceled/failed) (Required)
      *     error (Optional): {
@@ -1890,10 +2266,9 @@ public final class OpenAIClientImpl {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public PollerFlux<BatchImageGenerationOperationResponse, BatchImageGenerationOperationResponse>
-        beginBeginAzureBatchImageGenerationWithModelAsync(BinaryData imageGenerationOptions,
-            RequestOptions requestOptions) {
+        beginBeginImageGenerationsWithModelAsync(BinaryData imageGenerationOptions, RequestOptions requestOptions) {
         return PollerFlux.create(Duration.ofSeconds(1),
-            () -> this.beginAzureBatchImageGenerationWithResponseAsync(imageGenerationOptions, requestOptions),
+            () -> this.beginImageGenerationsWithResponseAsync(imageGenerationOptions, requestOptions),
             new DefaultPollingStrategy<>(new PollingStrategyOptions(this.getHttpPipeline())
                 .setEndpoint("{endpoint}/openai".replace("{endpoint}", this.getEndpoint()))
                 .setContext(requestOptions != null && requestOptions.getContext() != null ? requestOptions.getContext()
@@ -1910,10 +2285,13 @@ public final class OpenAIClientImpl {
      * </p>
      * <pre>{@code
      * {
+     *     model: String (Optional)
      *     prompt: String (Required)
      *     n: Integer (Optional)
-     *     size: String(256x256/512x512/1024x1024) (Optional)
+     *     size: String(256x256/512x512/1024x1024/1792x1024/1024x1792) (Optional)
      *     response_format: String(url/b64_json) (Optional)
+     *     quality: String(standard/hd) (Optional)
+     *     style: String(natural/vivid) (Optional)
      *     user: String (Optional)
      * }
      * }</pre>
@@ -1927,7 +2305,13 @@ public final class OpenAIClientImpl {
      *     expires: Long (Optional)
      *     result (Optional): {
      *         created: long (Required)
-     *         data: BinaryData (Required)
+     *         data (Required): [
+     *              (Required){
+     *                 url: String (Optional)
+     *                 b64_json: String (Optional)
+     *                 revised_prompt: String (Optional)
+     *             }
+     *         ]
      *     }
      *     status: String(notRunning/running/succeeded/canceled/failed) (Required)
      *     error (Optional): {
@@ -1956,9 +2340,9 @@ public final class OpenAIClientImpl {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<BatchImageGenerationOperationResponse, BatchImageGenerationOperationResponse>
-        beginBeginAzureBatchImageGenerationWithModel(BinaryData imageGenerationOptions, RequestOptions requestOptions) {
+        beginBeginImageGenerationsWithModel(BinaryData imageGenerationOptions, RequestOptions requestOptions) {
         return SyncPoller.createPoller(Duration.ofSeconds(1),
-            () -> this.beginAzureBatchImageGenerationWithResponse(imageGenerationOptions, requestOptions),
+            () -> this.beginImageGenerationsWithResponse(imageGenerationOptions, requestOptions),
             new SyncDefaultPollingStrategy<>(new PollingStrategyOptions(this.getHttpPipeline())
                 .setEndpoint("{endpoint}/openai".replace("{endpoint}", this.getEndpoint()))
                 .setContext(requestOptions != null && requestOptions.getContext() != null ? requestOptions.getContext()
@@ -1966,6 +2350,215 @@ public final class OpenAIClientImpl {
                 .setServiceVersion(this.getServiceVersion().getVersion())),
             TypeReference.createInstance(BatchImageGenerationOperationResponse.class),
             TypeReference.createInstance(BatchImageGenerationOperationResponse.class));
+    }
+
+    /**
+     * Returns the status of the images operation.
+     * <p>
+     * <strong>Response Body Schema</strong>
+     * </p>
+     * <pre>{@code
+     * {
+     *     id: String (Required)
+     *     created: long (Required)
+     *     expires: Long (Optional)
+     *     result (Optional): {
+     *         created: long (Required)
+     *         data (Required): [
+     *              (Required){
+     *                 url: String (Optional)
+     *                 b64_json: String (Optional)
+     *                 revised_prompt: String (Optional)
+     *             }
+     *         ]
+     *     }
+     *     status: String(notRunning/running/succeeded/canceled/failed) (Required)
+     *     error (Optional): {
+     *         code: String (Required)
+     *         message: String (Required)
+     *         target: String (Optional)
+     *         details (Optional): [
+     *             (recursive schema, see above)
+     *         ]
+     *         innererror (Optional): {
+     *             code: String (Optional)
+     *             innererror (Optional): (recursive schema, see innererror above)
+     *         }
+     *     }
+     * }
+     * }</pre>
+     * 
+     * @param operationId .
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return a polling status update or final response payload for an image operation along with {@link Response} on
+     * successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<BinaryData>> getAzureBatchImageGenerationOperationStatusWithResponseAsync(String operationId,
+        RequestOptions requestOptions) {
+        final String accept = "application/json";
+        return FluxUtil.withContext(context -> service.getAzureBatchImageGenerationOperationStatus(this.getEndpoint(),
+            this.getServiceVersion().getVersion(), operationId, accept, requestOptions, context));
+    }
+
+    /**
+     * Returns the status of the images operation.
+     * <p>
+     * <strong>Response Body Schema</strong>
+     * </p>
+     * <pre>{@code
+     * {
+     *     id: String (Required)
+     *     created: long (Required)
+     *     expires: Long (Optional)
+     *     result (Optional): {
+     *         created: long (Required)
+     *         data (Required): [
+     *              (Required){
+     *                 url: String (Optional)
+     *                 b64_json: String (Optional)
+     *                 revised_prompt: String (Optional)
+     *             }
+     *         ]
+     *     }
+     *     status: String(notRunning/running/succeeded/canceled/failed) (Required)
+     *     error (Optional): {
+     *         code: String (Required)
+     *         message: String (Required)
+     *         target: String (Optional)
+     *         details (Optional): [
+     *             (recursive schema, see above)
+     *         ]
+     *         innererror (Optional): {
+     *             code: String (Optional)
+     *             innererror (Optional): (recursive schema, see innererror above)
+     *         }
+     *     }
+     * }
+     * }</pre>
+     * 
+     * @param operationId .
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return a polling status update or final response payload for an image operation along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<BinaryData> getAzureBatchImageGenerationOperationStatusWithResponse(String operationId,
+        RequestOptions requestOptions) {
+        final String accept = "application/json";
+        return service.getAzureBatchImageGenerationOperationStatusSync(this.getEndpoint(),
+            this.getServiceVersion().getVersion(), operationId, accept, requestOptions, Context.NONE);
+    }
+
+    /**
+     * Creates an image given a prompt.
+     * <p>
+     * <strong>Request Body Schema</strong>
+     * </p>
+     * <pre>{@code
+     * {
+     *     model: String (Optional)
+     *     prompt: String (Required)
+     *     n: Integer (Optional)
+     *     size: String(256x256/512x512/1024x1024/1792x1024/1024x1792) (Optional)
+     *     response_format: String(url/b64_json) (Optional)
+     *     quality: String(standard/hd) (Optional)
+     *     style: String(natural/vivid) (Optional)
+     *     user: String (Optional)
+     * }
+     * }</pre>
+     * <p>
+     * <strong>Response Body Schema</strong>
+     * </p>
+     * <pre>{@code
+     * {
+     *     created: long (Required)
+     *     data (Required): [
+     *          (Required){
+     *             url: String (Optional)
+     *             b64_json: String (Optional)
+     *             revised_prompt: String (Optional)
+     *         }
+     *     ]
+     * }
+     * }</pre>
+     * 
+     * @param deploymentOrModelName Specifies either the model deployment name (when using Azure OpenAI) or model name
+     * (when using non-Azure OpenAI) to use for this request.
+     * @param imageGenerationOptions Represents the request data used to generate images.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the result of a successful image generation operation along with {@link Response} on successful
+     * completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<BinaryData>> getImageGenerationsWithResponseAsync(String deploymentOrModelName,
+        BinaryData imageGenerationOptions, RequestOptions requestOptions) {
+        final String accept = "application/json";
+        return FluxUtil.withContext(
+            context -> service.getImageGenerations(this.getEndpoint(), this.getServiceVersion().getVersion(),
+                deploymentOrModelName, accept, imageGenerationOptions, requestOptions, context));
+    }
+
+    /**
+     * Creates an image given a prompt.
+     * <p>
+     * <strong>Request Body Schema</strong>
+     * </p>
+     * <pre>{@code
+     * {
+     *     model: String (Optional)
+     *     prompt: String (Required)
+     *     n: Integer (Optional)
+     *     size: String(256x256/512x512/1024x1024/1792x1024/1024x1792) (Optional)
+     *     response_format: String(url/b64_json) (Optional)
+     *     quality: String(standard/hd) (Optional)
+     *     style: String(natural/vivid) (Optional)
+     *     user: String (Optional)
+     * }
+     * }</pre>
+     * <p>
+     * <strong>Response Body Schema</strong>
+     * </p>
+     * <pre>{@code
+     * {
+     *     created: long (Required)
+     *     data (Required): [
+     *          (Required){
+     *             url: String (Optional)
+     *             b64_json: String (Optional)
+     *             revised_prompt: String (Optional)
+     *         }
+     *     ]
+     * }
+     * }</pre>
+     * 
+     * @param deploymentOrModelName Specifies either the model deployment name (when using Azure OpenAI) or model name
+     * (when using non-Azure OpenAI) to use for this request.
+     * @param imageGenerationOptions Represents the request data used to generate images.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the result of a successful image generation operation along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<BinaryData> getImageGenerationsWithResponse(String deploymentOrModelName,
+        BinaryData imageGenerationOptions, RequestOptions requestOptions) {
+        final String accept = "application/json";
+        return service.getImageGenerationsSync(this.getEndpoint(), this.getServiceVersion().getVersion(),
+            deploymentOrModelName, accept, imageGenerationOptions, requestOptions, Context.NONE);
     }
 
     /**
