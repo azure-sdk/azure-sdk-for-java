@@ -8,20 +8,28 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Enum to determine endpoint compute type. */
+/**
+ * Enum to determine endpoint compute type.
+ */
 public final class EndpointComputeType extends ExpandableStringEnum<EndpointComputeType> {
-    /** Static value Managed for EndpointComputeType. */
+    /**
+     * Static value Managed for EndpointComputeType.
+     */
     public static final EndpointComputeType MANAGED = fromString("Managed");
 
-    /** Static value Kubernetes for EndpointComputeType. */
+    /**
+     * Static value Kubernetes for EndpointComputeType.
+     */
     public static final EndpointComputeType KUBERNETES = fromString("Kubernetes");
 
-    /** Static value AzureMLCompute for EndpointComputeType. */
+    /**
+     * Static value AzureMLCompute for EndpointComputeType.
+     */
     public static final EndpointComputeType AZURE_MLCOMPUTE = fromString("AzureMLCompute");
 
     /**
      * Creates a new instance of EndpointComputeType value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -30,7 +38,7 @@ public final class EndpointComputeType extends ExpandableStringEnum<EndpointComp
 
     /**
      * Creates or finds a EndpointComputeType from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding EndpointComputeType.
      */
@@ -41,7 +49,7 @@ public final class EndpointComputeType extends ExpandableStringEnum<EndpointComp
 
     /**
      * Gets known EndpointComputeType values.
-     *
+     * 
      * @return known EndpointComputeType values.
      */
     public static Collection<EndpointComputeType> values() {

@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
 
-/** Featurization Configuration. */
+/**
+ * Featurization Configuration.
+ */
 @Fluent
 public final class TableVerticalFeaturizationSettings extends FeaturizationSettings {
     /*
@@ -49,13 +51,15 @@ public final class TableVerticalFeaturizationSettings extends FeaturizationSetti
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, List<ColumnTransformer>> transformerParams;
 
-    /** Creates an instance of TableVerticalFeaturizationSettings class. */
+    /**
+     * Creates an instance of TableVerticalFeaturizationSettings class.
+     */
     public TableVerticalFeaturizationSettings() {
     }
 
     /**
      * Get the blockedTransformers property: These transformers shall not be used in featurization.
-     *
+     * 
      * @return the blockedTransformers value.
      */
     public List<BlockedTransformers> blockedTransformers() {
@@ -64,7 +68,7 @@ public final class TableVerticalFeaturizationSettings extends FeaturizationSetti
 
     /**
      * Set the blockedTransformers property: These transformers shall not be used in featurization.
-     *
+     * 
      * @param blockedTransformers the blockedTransformers value to set.
      * @return the TableVerticalFeaturizationSettings object itself.
      */
@@ -75,7 +79,7 @@ public final class TableVerticalFeaturizationSettings extends FeaturizationSetti
 
     /**
      * Get the columnNameAndTypes property: Dictionary of column name and its type (int, float, string, datetime etc).
-     *
+     * 
      * @return the columnNameAndTypes value.
      */
     public Map<String, String> columnNameAndTypes() {
@@ -84,7 +88,7 @@ public final class TableVerticalFeaturizationSettings extends FeaturizationSetti
 
     /**
      * Set the columnNameAndTypes property: Dictionary of column name and its type (int, float, string, datetime etc).
-     *
+     * 
      * @param columnNameAndTypes the columnNameAndTypes value to set.
      * @return the TableVerticalFeaturizationSettings object itself.
      */
@@ -95,7 +99,7 @@ public final class TableVerticalFeaturizationSettings extends FeaturizationSetti
 
     /**
      * Get the enableDnnFeaturization property: Determines whether to use Dnn based featurizers for data featurization.
-     *
+     * 
      * @return the enableDnnFeaturization value.
      */
     public Boolean enableDnnFeaturization() {
@@ -104,7 +108,7 @@ public final class TableVerticalFeaturizationSettings extends FeaturizationSetti
 
     /**
      * Set the enableDnnFeaturization property: Determines whether to use Dnn based featurizers for data featurization.
-     *
+     * 
      * @param enableDnnFeaturization the enableDnnFeaturization value to set.
      * @return the TableVerticalFeaturizationSettings object itself.
      */
@@ -115,9 +119,10 @@ public final class TableVerticalFeaturizationSettings extends FeaturizationSetti
 
     /**
      * Get the mode property: Featurization mode - User can keep the default 'Auto' mode and AutoML will take care of
-     * necessary transformation of the data in featurization phase. If 'Off' is selected then no featurization is done.
+     * necessary transformation of the data in featurization phase.
+     * If 'Off' is selected then no featurization is done.
      * If 'Custom' is selected then user can specify additional inputs to customize how featurization is done.
-     *
+     * 
      * @return the mode value.
      */
     public FeaturizationMode mode() {
@@ -126,9 +131,10 @@ public final class TableVerticalFeaturizationSettings extends FeaturizationSetti
 
     /**
      * Set the mode property: Featurization mode - User can keep the default 'Auto' mode and AutoML will take care of
-     * necessary transformation of the data in featurization phase. If 'Off' is selected then no featurization is done.
+     * necessary transformation of the data in featurization phase.
+     * If 'Off' is selected then no featurization is done.
      * If 'Custom' is selected then user can specify additional inputs to customize how featurization is done.
-     *
+     * 
      * @param mode the mode value to set.
      * @return the TableVerticalFeaturizationSettings object itself.
      */
@@ -138,9 +144,9 @@ public final class TableVerticalFeaturizationSettings extends FeaturizationSetti
     }
 
     /**
-     * Get the transformerParams property: User can specify additional transformers to be used along with the columns to
-     * which it would be applied and parameters for the transformer constructor.
-     *
+     * Get the transformerParams property: User can specify additional transformers to be used along with the columns
+     * to which it would be applied and parameters for the transformer constructor.
+     * 
      * @return the transformerParams value.
      */
     public Map<String, List<ColumnTransformer>> transformerParams() {
@@ -148,19 +154,21 @@ public final class TableVerticalFeaturizationSettings extends FeaturizationSetti
     }
 
     /**
-     * Set the transformerParams property: User can specify additional transformers to be used along with the columns to
-     * which it would be applied and parameters for the transformer constructor.
-     *
+     * Set the transformerParams property: User can specify additional transformers to be used along with the columns
+     * to which it would be applied and parameters for the transformer constructor.
+     * 
      * @param transformerParams the transformerParams value to set.
      * @return the TableVerticalFeaturizationSettings object itself.
      */
-    public TableVerticalFeaturizationSettings withTransformerParams(
-        Map<String, List<ColumnTransformer>> transformerParams) {
+    public TableVerticalFeaturizationSettings
+        withTransformerParams(Map<String, List<ColumnTransformer>> transformerParams) {
         this.transformerParams = transformerParams;
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public TableVerticalFeaturizationSettings withDatasetLanguage(String datasetLanguage) {
         super.withDatasetLanguage(datasetLanguage);
@@ -169,21 +177,18 @@ public final class TableVerticalFeaturizationSettings extends FeaturizationSetti
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (transformerParams() != null) {
-            transformerParams()
-                .values()
-                .forEach(
-                    e -> {
-                        if (e != null) {
-                            e.forEach(e1 -> e1.validate());
-                        }
-                    });
+            transformerParams().values().forEach(e -> {
+                if (e != null) {
+                    e.forEach(e1 -> e1.validate());
+                }
+            });
         }
     }
 }

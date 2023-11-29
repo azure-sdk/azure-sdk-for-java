@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The FqdnEndpoint model. */
+/**
+ * The FqdnEndpoint model.
+ */
 @Fluent
 public final class FqdnEndpoint {
     /*
@@ -23,13 +25,15 @@ public final class FqdnEndpoint {
     @JsonProperty(value = "endpointDetails")
     private List<FqdnEndpointDetail> endpointDetails;
 
-    /** Creates an instance of FqdnEndpoint class. */
+    /**
+     * Creates an instance of FqdnEndpoint class.
+     */
     public FqdnEndpoint() {
     }
 
     /**
      * Get the domainName property: The domainName property.
-     *
+     * 
      * @return the domainName value.
      */
     public String domainName() {
@@ -38,7 +42,7 @@ public final class FqdnEndpoint {
 
     /**
      * Set the domainName property: The domainName property.
-     *
+     * 
      * @param domainName the domainName value to set.
      * @return the FqdnEndpoint object itself.
      */
@@ -49,7 +53,7 @@ public final class FqdnEndpoint {
 
     /**
      * Get the endpointDetails property: The endpointDetails property.
-     *
+     * 
      * @return the endpointDetails value.
      */
     public List<FqdnEndpointDetail> endpointDetails() {
@@ -58,7 +62,7 @@ public final class FqdnEndpoint {
 
     /**
      * Set the endpointDetails property: The endpointDetails property.
-     *
+     * 
      * @param endpointDetails the endpointDetails value to set.
      * @return the FqdnEndpoint object itself.
      */
@@ -69,7 +73,7 @@ public final class FqdnEndpoint {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

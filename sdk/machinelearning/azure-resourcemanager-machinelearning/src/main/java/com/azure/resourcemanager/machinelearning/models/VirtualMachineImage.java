@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Virtual Machine image for Windows AML Compute. */
+/**
+ * Virtual Machine image for Windows AML Compute.
+ */
 @Fluent
 public final class VirtualMachineImage {
     /*
@@ -17,13 +19,15 @@ public final class VirtualMachineImage {
     @JsonProperty(value = "id", required = true)
     private String id;
 
-    /** Creates an instance of VirtualMachineImage class. */
+    /**
+     * Creates an instance of VirtualMachineImage class.
+     */
     public VirtualMachineImage() {
     }
 
     /**
      * Get the id property: Virtual Machine image path.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -32,7 +36,7 @@ public final class VirtualMachineImage {
 
     /**
      * Set the id property: Virtual Machine image path.
-     *
+     * 
      * @param id the id value to set.
      * @return the VirtualMachineImage object itself.
      */
@@ -43,14 +47,13 @@ public final class VirtualMachineImage {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (id() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property id in model VirtualMachineImage"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property id in model VirtualMachineImage"));
         }
     }
 

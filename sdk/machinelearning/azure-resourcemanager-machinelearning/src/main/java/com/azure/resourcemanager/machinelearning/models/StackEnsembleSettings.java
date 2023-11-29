@@ -7,7 +7,9 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Advances setting to customize StackEnsemble run. */
+/**
+ * Advances setting to customize StackEnsemble run.
+ */
 @Fluent
 public final class StackEnsembleSettings {
     /*
@@ -29,13 +31,15 @@ public final class StackEnsembleSettings {
     @JsonProperty(value = "stackMetaLearnerType")
     private StackMetaLearnerType stackMetaLearnerType;
 
-    /** Creates an instance of StackEnsembleSettings class. */
+    /**
+     * Creates an instance of StackEnsembleSettings class.
+     */
     public StackEnsembleSettings() {
     }
 
     /**
      * Get the stackMetaLearnerKWargs property: Optional parameters to pass to the initializer of the meta-learner.
-     *
+     * 
      * @return the stackMetaLearnerKWargs value.
      */
     public Object stackMetaLearnerKWargs() {
@@ -44,7 +48,7 @@ public final class StackEnsembleSettings {
 
     /**
      * Set the stackMetaLearnerKWargs property: Optional parameters to pass to the initializer of the meta-learner.
-     *
+     * 
      * @param stackMetaLearnerKWargs the stackMetaLearnerKWargs value to set.
      * @return the StackEnsembleSettings object itself.
      */
@@ -56,7 +60,7 @@ public final class StackEnsembleSettings {
     /**
      * Get the stackMetaLearnerTrainPercentage property: Specifies the proportion of the training set (when choosing
      * train and validation type of training) to be reserved for training the meta-learner. Default value is 0.2.
-     *
+     * 
      * @return the stackMetaLearnerTrainPercentage value.
      */
     public Double stackMetaLearnerTrainPercentage() {
@@ -66,7 +70,7 @@ public final class StackEnsembleSettings {
     /**
      * Set the stackMetaLearnerTrainPercentage property: Specifies the proportion of the training set (when choosing
      * train and validation type of training) to be reserved for training the meta-learner. Default value is 0.2.
-     *
+     * 
      * @param stackMetaLearnerTrainPercentage the stackMetaLearnerTrainPercentage value to set.
      * @return the StackEnsembleSettings object itself.
      */
@@ -78,7 +82,7 @@ public final class StackEnsembleSettings {
     /**
      * Get the stackMetaLearnerType property: The meta-learner is a model trained on the output of the individual
      * heterogeneous models.
-     *
+     * 
      * @return the stackMetaLearnerType value.
      */
     public StackMetaLearnerType stackMetaLearnerType() {
@@ -88,7 +92,7 @@ public final class StackEnsembleSettings {
     /**
      * Set the stackMetaLearnerType property: The meta-learner is a model trained on the output of the individual
      * heterogeneous models.
-     *
+     * 
      * @param stackMetaLearnerType the stackMetaLearnerType value to set.
      * @return the StackEnsembleSettings object itself.
      */
@@ -99,7 +103,7 @@ public final class StackEnsembleSettings {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
