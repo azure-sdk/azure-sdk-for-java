@@ -49,8 +49,6 @@ public interface ConfigurationsClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param deploymentName The name of targeted NGINX deployment.
-     * @param configurationName The name of configuration, only 'default' is supported value due to the singleton of
-     * NGINX conf.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -58,31 +56,26 @@ public interface ConfigurationsClient {
      * @return the NGINX configuration of given NGINX deployment along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<NginxConfigurationInner> getWithResponse(String resourceGroupName, String deploymentName,
-        String configurationName, Context context);
+    Response<NginxConfigurationInner> getWithResponse(String resourceGroupName, String deploymentName, Context context);
 
     /**
      * Get the NGINX configuration of given NGINX deployment.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param deploymentName The name of targeted NGINX deployment.
-     * @param configurationName The name of configuration, only 'default' is supported value due to the singleton of
-     * NGINX conf.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the NGINX configuration of given NGINX deployment.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    NginxConfigurationInner get(String resourceGroupName, String deploymentName, String configurationName);
+    NginxConfigurationInner get(String resourceGroupName, String deploymentName);
 
     /**
      * Create or update the NGINX configuration for given NGINX deployment.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param deploymentName The name of targeted NGINX deployment.
-     * @param configurationName The name of configuration, only 'default' is supported value due to the singleton of
-     * NGINX conf.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -90,15 +83,13 @@ public interface ConfigurationsClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<NginxConfigurationInner>, NginxConfigurationInner>
-        beginCreateOrUpdate(String resourceGroupName, String deploymentName, String configurationName);
+        beginCreateOrUpdate(String resourceGroupName, String deploymentName);
 
     /**
      * Create or update the NGINX configuration for given NGINX deployment.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param deploymentName The name of targeted NGINX deployment.
-     * @param configurationName The name of configuration, only 'default' is supported value due to the singleton of
-     * NGINX conf.
      * @param body The NGINX configuration.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -108,31 +99,26 @@ public interface ConfigurationsClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<NginxConfigurationInner>, NginxConfigurationInner> beginCreateOrUpdate(
-        String resourceGroupName, String deploymentName, String configurationName, NginxConfigurationInner body,
-        Context context);
+        String resourceGroupName, String deploymentName, NginxConfigurationInner body, Context context);
 
     /**
      * Create or update the NGINX configuration for given NGINX deployment.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param deploymentName The name of targeted NGINX deployment.
-     * @param configurationName The name of configuration, only 'default' is supported value due to the singleton of
-     * NGINX conf.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    NginxConfigurationInner createOrUpdate(String resourceGroupName, String deploymentName, String configurationName);
+    NginxConfigurationInner createOrUpdate(String resourceGroupName, String deploymentName);
 
     /**
      * Create or update the NGINX configuration for given NGINX deployment.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param deploymentName The name of targeted NGINX deployment.
-     * @param configurationName The name of configuration, only 'default' is supported value due to the singleton of
-     * NGINX conf.
      * @param body The NGINX configuration.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -141,7 +127,7 @@ public interface ConfigurationsClient {
      * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    NginxConfigurationInner createOrUpdate(String resourceGroupName, String deploymentName, String configurationName,
+    NginxConfigurationInner createOrUpdate(String resourceGroupName, String deploymentName,
         NginxConfigurationInner body, Context context);
 
     /**
@@ -149,24 +135,19 @@ public interface ConfigurationsClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param deploymentName The name of targeted NGINX deployment.
-     * @param configurationName The name of configuration, only 'default' is supported value due to the singleton of
-     * NGINX conf.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String deploymentName,
-        String configurationName);
+    SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String deploymentName);
 
     /**
      * Reset the NGINX configuration of given NGINX deployment to default.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param deploymentName The name of targeted NGINX deployment.
-     * @param configurationName The name of configuration, only 'default' is supported value due to the singleton of
-     * NGINX conf.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -174,35 +155,30 @@ public interface ConfigurationsClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String deploymentName,
-        String configurationName, Context context);
+    SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String deploymentName, Context context);
 
     /**
      * Reset the NGINX configuration of given NGINX deployment to default.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param deploymentName The name of targeted NGINX deployment.
-     * @param configurationName The name of configuration, only 'default' is supported value due to the singleton of
-     * NGINX conf.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    void delete(String resourceGroupName, String deploymentName, String configurationName);
+    void delete(String resourceGroupName, String deploymentName);
 
     /**
      * Reset the NGINX configuration of given NGINX deployment to default.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param deploymentName The name of targeted NGINX deployment.
-     * @param configurationName The name of configuration, only 'default' is supported value due to the singleton of
-     * NGINX conf.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    void delete(String resourceGroupName, String deploymentName, String configurationName, Context context);
+    void delete(String resourceGroupName, String deploymentName, Context context);
 }

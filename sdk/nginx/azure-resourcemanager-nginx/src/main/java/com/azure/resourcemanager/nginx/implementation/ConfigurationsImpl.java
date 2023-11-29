@@ -39,9 +39,9 @@ public final class ConfigurationsImpl implements Configurations {
     }
 
     public Response<NginxConfiguration> getWithResponse(String resourceGroupName, String deploymentName,
-        String configurationName, Context context) {
+        Context context) {
         Response<NginxConfigurationInner> inner
-            = this.serviceClient().getWithResponse(resourceGroupName, deploymentName, configurationName, context);
+            = this.serviceClient().getWithResponse(resourceGroupName, deploymentName, context);
         if (inner != null) {
             return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new NginxConfigurationImpl(inner.getValue(), this.manager()));
@@ -50,8 +50,8 @@ public final class ConfigurationsImpl implements Configurations {
         }
     }
 
-    public NginxConfiguration get(String resourceGroupName, String deploymentName, String configurationName) {
-        NginxConfigurationInner inner = this.serviceClient().get(resourceGroupName, deploymentName, configurationName);
+    public NginxConfiguration get(String resourceGroupName, String deploymentName) {
+        NginxConfigurationInner inner = this.serviceClient().get(resourceGroupName, deploymentName);
         if (inner != null) {
             return new NginxConfigurationImpl(inner, this.manager());
         } else {
@@ -59,88 +59,32 @@ public final class ConfigurationsImpl implements Configurations {
         }
     }
 
-    public void delete(String resourceGroupName, String deploymentName, String configurationName) {
-        this.serviceClient().delete(resourceGroupName, deploymentName, configurationName);
+    public NginxConfiguration createOrUpdate(String resourceGroupName, String deploymentName) {
+        NginxConfigurationInner inner = this.serviceClient().createOrUpdate(resourceGroupName, deploymentName);
+        if (inner != null) {
+            return new NginxConfigurationImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
-    public void delete(String resourceGroupName, String deploymentName, String configurationName, Context context) {
-        this.serviceClient().delete(resourceGroupName, deploymentName, configurationName, context);
+    public NginxConfiguration createOrUpdate(String resourceGroupName, String deploymentName,
+        NginxConfigurationInner body, Context context) {
+        NginxConfigurationInner inner
+            = this.serviceClient().createOrUpdate(resourceGroupName, deploymentName, body, context);
+        if (inner != null) {
+            return new NginxConfigurationImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
-    public NginxConfiguration getById(String id) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
-        if (resourceGroupName == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
-        }
-        String deploymentName = Utils.getValueFromIdByName(id, "nginxDeployments");
-        if (deploymentName == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                String.format("The resource ID '%s' is not valid. Missing path segment 'nginxDeployments'.", id)));
-        }
-        String configurationName = Utils.getValueFromIdByName(id, "configurations");
-        if (configurationName == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                String.format("The resource ID '%s' is not valid. Missing path segment 'configurations'.", id)));
-        }
-        return this.getWithResponse(resourceGroupName, deploymentName, configurationName, Context.NONE).getValue();
+    public void deleteByResourceGroup(String resourceGroupName, String deploymentName) {
+        this.serviceClient().delete(resourceGroupName, deploymentName);
     }
 
-    public Response<NginxConfiguration> getByIdWithResponse(String id, Context context) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
-        if (resourceGroupName == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
-        }
-        String deploymentName = Utils.getValueFromIdByName(id, "nginxDeployments");
-        if (deploymentName == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                String.format("The resource ID '%s' is not valid. Missing path segment 'nginxDeployments'.", id)));
-        }
-        String configurationName = Utils.getValueFromIdByName(id, "configurations");
-        if (configurationName == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                String.format("The resource ID '%s' is not valid. Missing path segment 'configurations'.", id)));
-        }
-        return this.getWithResponse(resourceGroupName, deploymentName, configurationName, context);
-    }
-
-    public void deleteById(String id) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
-        if (resourceGroupName == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
-        }
-        String deploymentName = Utils.getValueFromIdByName(id, "nginxDeployments");
-        if (deploymentName == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                String.format("The resource ID '%s' is not valid. Missing path segment 'nginxDeployments'.", id)));
-        }
-        String configurationName = Utils.getValueFromIdByName(id, "configurations");
-        if (configurationName == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                String.format("The resource ID '%s' is not valid. Missing path segment 'configurations'.", id)));
-        }
-        this.delete(resourceGroupName, deploymentName, configurationName, Context.NONE);
-    }
-
-    public void deleteByIdWithResponse(String id, Context context) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
-        if (resourceGroupName == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
-        }
-        String deploymentName = Utils.getValueFromIdByName(id, "nginxDeployments");
-        if (deploymentName == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                String.format("The resource ID '%s' is not valid. Missing path segment 'nginxDeployments'.", id)));
-        }
-        String configurationName = Utils.getValueFromIdByName(id, "configurations");
-        if (configurationName == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                String.format("The resource ID '%s' is not valid. Missing path segment 'configurations'.", id)));
-        }
-        this.delete(resourceGroupName, deploymentName, configurationName, context);
+    public void delete(String resourceGroupName, String deploymentName, Context context) {
+        this.serviceClient().delete(resourceGroupName, deploymentName, context);
     }
 
     private ConfigurationsClient serviceClient() {
@@ -149,9 +93,5 @@ public final class ConfigurationsImpl implements Configurations {
 
     private com.azure.resourcemanager.nginx.NginxManager manager() {
         return this.serviceManager;
-    }
-
-    public NginxConfigurationImpl define(String name) {
-        return new NginxConfigurationImpl(name, this.manager());
     }
 }

@@ -114,6 +114,8 @@ public final class CertificatesListSamples {
 ### Configurations_CreateOrUpdate
 
 ```java
+import com.azure.resourcemanager.nginx.fluent.models.NginxConfigurationInner;
+
 /**
  * Samples for Configurations CreateOrUpdate.
  */
@@ -127,7 +129,7 @@ public final class ConfigurationsCreateOrUpdateSamples {
      * @param manager Entry point to NginxManager.
      */
     public static void configurationsCreateOrUpdate(com.azure.resourcemanager.nginx.NginxManager manager) {
-        manager.configurations().define("default").withExistingNginxDeployment("myResourceGroup", "myDeployment").create();
+        manager.configurations().createOrUpdate("myResourceGroup", "myDeployment", null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -148,7 +150,7 @@ public final class ConfigurationsDeleteSamples {
      * @param manager Entry point to NginxManager.
      */
     public static void configurationsDelete(com.azure.resourcemanager.nginx.NginxManager manager) {
-        manager.configurations().delete("myResourceGroup", "myDeployment", "default", com.azure.core.util.Context.NONE);
+        manager.configurations().delete("myResourceGroup", "myDeployment", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -169,7 +171,7 @@ public final class ConfigurationsGetSamples {
      * @param manager Entry point to NginxManager.
      */
     public static void configurationsGet(com.azure.resourcemanager.nginx.NginxManager manager) {
-        manager.configurations().getWithResponse("myResourceGroup", "myDeployment", "default", com.azure.core.util.Context.NONE);
+        manager.configurations().getWithResponse("myResourceGroup", "myDeployment", com.azure.core.util.Context.NONE);
     }
 }
 ```

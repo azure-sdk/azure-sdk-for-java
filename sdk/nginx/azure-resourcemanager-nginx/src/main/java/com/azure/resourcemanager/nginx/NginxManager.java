@@ -211,7 +211,7 @@ public final class NginxManager {
 
             StringBuilder userAgentBuilder = new StringBuilder();
             userAgentBuilder.append("azsdk-java").append("-").append("com.azure.resourcemanager.nginx").append("/")
-                .append("1.0.0");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (").append(Configuration.getGlobalConfiguration().get("java.version"))
                     .append("; ").append(Configuration.getGlobalConfiguration().get("os.name")).append("; ")
@@ -263,7 +263,7 @@ public final class NginxManager {
     }
 
     /**
-     * Gets the resource collection API of Configurations. It manages NginxConfiguration.
+     * Gets the resource collection API of Configurations.
      * 
      * @return Resource collection API of Configurations.
      */

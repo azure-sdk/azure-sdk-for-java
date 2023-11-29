@@ -4,18 +4,21 @@
 
 package com.azure.resourcemanager.nginx.implementation;
 
-import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.nginx.fluent.models.NginxConfigurationInner;
 import com.azure.resourcemanager.nginx.models.NginxConfiguration;
 import com.azure.resourcemanager.nginx.models.NginxConfigurationProperties;
 
-public final class NginxConfigurationImpl
-    implements NginxConfiguration, NginxConfiguration.Definition, NginxConfiguration.Update {
+public final class NginxConfigurationImpl implements NginxConfiguration {
     private NginxConfigurationInner innerObject;
 
     private final com.azure.resourcemanager.nginx.NginxManager serviceManager;
+
+    NginxConfigurationImpl(NginxConfigurationInner innerObject,
+        com.azure.resourcemanager.nginx.NginxManager serviceManager) {
+        this.innerObject = innerObject;
+        this.serviceManager = serviceManager;
+    }
 
     public String id() {
         return this.innerModel().id();
@@ -41,105 +44,11 @@ public final class NginxConfigurationImpl
         return this.innerModel().systemData();
     }
 
-    public Region region() {
-        return Region.fromName(this.regionName());
-    }
-
-    public String regionName() {
-        return this.location();
-    }
-
-    public String resourceGroupName() {
-        return resourceGroupName;
-    }
-
     public NginxConfigurationInner innerModel() {
         return this.innerObject;
     }
 
     private com.azure.resourcemanager.nginx.NginxManager manager() {
         return this.serviceManager;
-    }
-
-    private String resourceGroupName;
-
-    private String deploymentName;
-
-    private String configurationName;
-
-    public NginxConfigurationImpl withExistingNginxDeployment(String resourceGroupName, String deploymentName) {
-        this.resourceGroupName = resourceGroupName;
-        this.deploymentName = deploymentName;
-        return this;
-    }
-
-    public NginxConfiguration create() {
-        this.innerObject = serviceManager.serviceClient().getConfigurations().createOrUpdate(resourceGroupName,
-            deploymentName, configurationName, this.innerModel(), Context.NONE);
-        return this;
-    }
-
-    public NginxConfiguration create(Context context) {
-        this.innerObject = serviceManager.serviceClient().getConfigurations().createOrUpdate(resourceGroupName,
-            deploymentName, configurationName, this.innerModel(), context);
-        return this;
-    }
-
-    NginxConfigurationImpl(String name, com.azure.resourcemanager.nginx.NginxManager serviceManager) {
-        this.innerObject = new NginxConfigurationInner();
-        this.serviceManager = serviceManager;
-        this.configurationName = name;
-    }
-
-    public NginxConfigurationImpl update() {
-        return this;
-    }
-
-    public NginxConfiguration apply() {
-        this.innerObject = serviceManager.serviceClient().getConfigurations().createOrUpdate(resourceGroupName,
-            deploymentName, configurationName, this.innerModel(), Context.NONE);
-        return this;
-    }
-
-    public NginxConfiguration apply(Context context) {
-        this.innerObject = serviceManager.serviceClient().getConfigurations().createOrUpdate(resourceGroupName,
-            deploymentName, configurationName, this.innerModel(), context);
-        return this;
-    }
-
-    NginxConfigurationImpl(NginxConfigurationInner innerObject,
-        com.azure.resourcemanager.nginx.NginxManager serviceManager) {
-        this.innerObject = innerObject;
-        this.serviceManager = serviceManager;
-        this.resourceGroupName = Utils.getValueFromIdByName(innerObject.id(), "resourceGroups");
-        this.deploymentName = Utils.getValueFromIdByName(innerObject.id(), "nginxDeployments");
-        this.configurationName = Utils.getValueFromIdByName(innerObject.id(), "configurations");
-    }
-
-    public NginxConfiguration refresh() {
-        this.innerObject = serviceManager.serviceClient().getConfigurations()
-            .getWithResponse(resourceGroupName, deploymentName, configurationName, Context.NONE).getValue();
-        return this;
-    }
-
-    public NginxConfiguration refresh(Context context) {
-        this.innerObject = serviceManager.serviceClient().getConfigurations()
-            .getWithResponse(resourceGroupName, deploymentName, configurationName, context).getValue();
-        return this;
-    }
-
-    public NginxConfigurationImpl withRegion(Region location) {
-        this.innerModel().withLocation(location.toString());
-        return this;
-    }
-
-    public NginxConfigurationImpl withRegion(String location) {
-        this.innerModel().withLocation(location);
-        return this;
-    }
-
-    public NginxConfigurationImpl withProperties(NginxConfigurationProperties properties) {
-        this.innerModel().withProperties(properties);
-        return this;
     }
 }

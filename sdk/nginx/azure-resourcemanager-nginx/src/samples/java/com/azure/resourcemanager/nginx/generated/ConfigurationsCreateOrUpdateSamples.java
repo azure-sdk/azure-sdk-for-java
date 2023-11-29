@@ -19,7 +19,7 @@ public final class ConfigurationsCreateOrUpdateSamples {
      * @param manager Entry point to NginxManager.
      */
     public static void configurationsCreateOrUpdate(com.azure.resourcemanager.nginx.NginxManager manager) {
-        manager.configurations().define("default").withExistingNginxDeployment("myResourceGroup", "myDeployment")
-            .create();
+        manager.configurations().createOrUpdate("myResourceGroup", "myDeployment", null,
+            com.azure.core.util.Context.NONE);
     }
 }

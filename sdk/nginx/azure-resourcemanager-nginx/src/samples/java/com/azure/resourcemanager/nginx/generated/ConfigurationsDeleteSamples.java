@@ -18,6 +18,6 @@ public final class ConfigurationsDeleteSamples {
      * @param manager Entry point to NginxManager.
      */
     public static void configurationsDelete(com.azure.resourcemanager.nginx.NginxManager manager) {
-        manager.configurations().delete("myResourceGroup", "myDeployment", "default", com.azure.core.util.Context.NONE);
+        manager.configurations().delete("myResourceGroup", "myDeployment", com.azure.core.util.Context.NONE);
     }
 }

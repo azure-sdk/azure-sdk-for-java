@@ -18,7 +18,6 @@ public final class ConfigurationsGetSamples {
      * @param manager Entry point to NginxManager.
      */
     public static void configurationsGet(com.azure.resourcemanager.nginx.NginxManager manager) {
-        manager.configurations().getWithResponse("myResourceGroup", "myDeployment", "default",
-            com.azure.core.util.Context.NONE);
+        manager.configurations().getWithResponse("myResourceGroup", "myDeployment", com.azure.core.util.Context.NONE);
     }
 }
