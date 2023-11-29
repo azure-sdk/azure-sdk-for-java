@@ -21,22 +21,18 @@ public final class NetworkInterfacesOperationsImpl implements NetworkInterfacesO
 
     private final com.azure.resourcemanager.azurestackhci.AzureStackHciManager serviceManager;
 
-    public NetworkInterfacesOperationsImpl(
-        NetworkInterfacesOperationsClient innerClient,
+    public NetworkInterfacesOperationsImpl(NetworkInterfacesOperationsClient innerClient,
         com.azure.resourcemanager.azurestackhci.AzureStackHciManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
 
-    public Response<NetworkInterfaces> getByResourceGroupWithResponse(
-        String resourceGroupName, String networkInterfaceName, Context context) {
-        Response<NetworkInterfacesInner> inner =
-            this.serviceClient().getByResourceGroupWithResponse(resourceGroupName, networkInterfaceName, context);
+    public Response<NetworkInterfaces> getByResourceGroupWithResponse(String resourceGroupName,
+        String networkInterfaceName, Context context) {
+        Response<NetworkInterfacesInner> inner
+            = this.serviceClient().getByResourceGroupWithResponse(resourceGroupName, networkInterfaceName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new NetworkInterfacesImpl(inner.getValue(), this.manager()));
         } else {
             return null;
@@ -66,8 +62,8 @@ public final class NetworkInterfacesOperationsImpl implements NetworkInterfacesO
     }
 
     public PagedIterable<NetworkInterfaces> listByResourceGroup(String resourceGroupName, Context context) {
-        PagedIterable<NetworkInterfacesInner> inner =
-            this.serviceClient().listByResourceGroup(resourceGroupName, context);
+        PagedIterable<NetworkInterfacesInner> inner
+            = this.serviceClient().listByResourceGroup(resourceGroupName, context);
         return Utils.mapPage(inner, inner1 -> new NetworkInterfacesImpl(inner1, this.manager()));
     }
 
@@ -84,20 +80,13 @@ public final class NetworkInterfacesOperationsImpl implements NetworkInterfacesO
     public NetworkInterfaces getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String networkInterfaceName = Utils.getValueFromIdByName(id, "networkInterfaces");
         if (networkInterfaceName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format(
-                                "The resource ID '%s' is not valid. Missing path segment 'networkInterfaces'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'networkInterfaces'.", id)));
         }
         return this.getByResourceGroupWithResponse(resourceGroupName, networkInterfaceName, Context.NONE).getValue();
     }
@@ -105,20 +94,13 @@ public final class NetworkInterfacesOperationsImpl implements NetworkInterfacesO
     public Response<NetworkInterfaces> getByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String networkInterfaceName = Utils.getValueFromIdByName(id, "networkInterfaces");
         if (networkInterfaceName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format(
-                                "The resource ID '%s' is not valid. Missing path segment 'networkInterfaces'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'networkInterfaces'.", id)));
         }
         return this.getByResourceGroupWithResponse(resourceGroupName, networkInterfaceName, context);
     }
@@ -126,20 +108,13 @@ public final class NetworkInterfacesOperationsImpl implements NetworkInterfacesO
     public void deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String networkInterfaceName = Utils.getValueFromIdByName(id, "networkInterfaces");
         if (networkInterfaceName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format(
-                                "The resource ID '%s' is not valid. Missing path segment 'networkInterfaces'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'networkInterfaces'.", id)));
         }
         this.delete(resourceGroupName, networkInterfaceName, Context.NONE);
     }
@@ -147,20 +122,13 @@ public final class NetworkInterfacesOperationsImpl implements NetworkInterfacesO
     public void deleteByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
         String networkInterfaceName = Utils.getValueFromIdByName(id, "networkInterfaces");
         if (networkInterfaceName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format(
-                                "The resource ID '%s' is not valid. Missing path segment 'networkInterfaces'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'networkInterfaces'.", id)));
         }
         this.delete(resourceGroupName, networkInterfaceName, context);
     }

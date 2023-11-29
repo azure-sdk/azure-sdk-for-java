@@ -12,7 +12,9 @@ import com.azure.resourcemanager.azurestackhci.models.GuestCredential;
 import com.azure.resourcemanager.azurestackhci.models.ProvisioningAction;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Defines the GuestAgent. */
+/**
+ * Defines the GuestAgent.
+ */
 @Fluent
 public final class GuestAgentInner extends ProxyResource {
     /*
@@ -27,13 +29,15 @@ public final class GuestAgentInner extends ProxyResource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of GuestAgentInner class. */
+    /**
+     * Creates an instance of GuestAgentInner class.
+     */
     public GuestAgentInner() {
     }
 
     /**
      * Get the innerProperties property: Resource properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private GuestAgentProperties innerProperties() {
@@ -42,7 +46,7 @@ public final class GuestAgentInner extends ProxyResource {
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -51,7 +55,7 @@ public final class GuestAgentInner extends ProxyResource {
 
     /**
      * Get the credentials property: Username / Password Credentials to provision guest agent.
-     *
+     * 
      * @return the credentials value.
      */
     public GuestCredential credentials() {
@@ -60,7 +64,7 @@ public final class GuestAgentInner extends ProxyResource {
 
     /**
      * Set the credentials property: Username / Password Credentials to provision guest agent.
-     *
+     * 
      * @param credentials the credentials value to set.
      * @return the GuestAgentInner object itself.
      */
@@ -74,7 +78,7 @@ public final class GuestAgentInner extends ProxyResource {
 
     /**
      * Get the provisioningAction property: The guest agent provisioning action.
-     *
+     * 
      * @return the provisioningAction value.
      */
     public ProvisioningAction provisioningAction() {
@@ -83,7 +87,7 @@ public final class GuestAgentInner extends ProxyResource {
 
     /**
      * Set the provisioningAction property: The guest agent provisioning action.
-     *
+     * 
      * @param provisioningAction the provisioningAction value to set.
      * @return the GuestAgentInner object itself.
      */
@@ -97,7 +101,7 @@ public final class GuestAgentInner extends ProxyResource {
 
     /**
      * Get the status property: The guest agent status.
-     *
+     * 
      * @return the status value.
      */
     public String status() {
@@ -106,7 +110,7 @@ public final class GuestAgentInner extends ProxyResource {
 
     /**
      * Get the provisioningState property: The provisioning state.
-     *
+     * 
      * @return the provisioningState value.
      */
     public String provisioningState() {
@@ -115,14 +119,13 @@ public final class GuestAgentInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (innerProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property innerProperties in model GuestAgentInner"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property innerProperties in model GuestAgentInner"));
         } else {
             innerProperties().validate();
         }

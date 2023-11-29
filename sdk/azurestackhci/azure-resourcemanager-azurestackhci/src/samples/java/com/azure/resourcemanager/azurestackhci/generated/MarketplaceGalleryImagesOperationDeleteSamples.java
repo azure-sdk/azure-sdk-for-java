@@ -4,20 +4,23 @@
 
 package com.azure.resourcemanager.azurestackhci.generated;
 
-/** Samples for MarketplaceGalleryImagesOperation Delete. */
+/**
+ * Samples for MarketplaceGalleryImagesOperation Delete.
+ */
 public final class MarketplaceGalleryImagesOperationDeleteSamples {
     /*
-     * x-ms-original-file: specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/preview/2023-09-01-preview/examples/DeleteMarketplaceGalleryImage.json
+     * x-ms-original-file:
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/stable/2024-01-01/examples/
+     * DeleteMarketplaceGalleryImage.json
      */
     /**
      * Sample code: DeleteMarketplaceGalleryImage.
-     *
+     * 
      * @param manager Entry point to AzureStackHciManager.
      */
-    public static void deleteMarketplaceGalleryImage(
-        com.azure.resourcemanager.azurestackhci.AzureStackHciManager manager) {
-        manager
-            .marketplaceGalleryImagesOperations()
-            .delete("test-rg", "test-marketplace-gallery-image", com.azure.core.util.Context.NONE);
+    public static void
+        deleteMarketplaceGalleryImage(com.azure.resourcemanager.azurestackhci.AzureStackHciManager manager) {
+        manager.marketplaceGalleryImagesOperations().delete("test-rg", "test-marketplace-gallery-image",
+            com.azure.core.util.Context.NONE);
     }
 }

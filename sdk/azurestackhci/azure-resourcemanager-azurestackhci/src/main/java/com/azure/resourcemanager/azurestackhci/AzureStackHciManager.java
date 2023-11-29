@@ -32,7 +32,6 @@ import com.azure.resourcemanager.azurestackhci.implementation.HybridIdentityMeta
 import com.azure.resourcemanager.azurestackhci.implementation.LogicalNetworksOperationsImpl;
 import com.azure.resourcemanager.azurestackhci.implementation.MarketplaceGalleryImagesOperationsImpl;
 import com.azure.resourcemanager.azurestackhci.implementation.NetworkInterfacesOperationsImpl;
-import com.azure.resourcemanager.azurestackhci.implementation.OperationsImpl;
 import com.azure.resourcemanager.azurestackhci.implementation.StorageContainersOperationsImpl;
 import com.azure.resourcemanager.azurestackhci.implementation.VirtualHardDisksOperationsImpl;
 import com.azure.resourcemanager.azurestackhci.implementation.VirtualMachineInstancesImpl;
@@ -43,7 +42,6 @@ import com.azure.resourcemanager.azurestackhci.models.HybridIdentityMetadatas;
 import com.azure.resourcemanager.azurestackhci.models.LogicalNetworksOperations;
 import com.azure.resourcemanager.azurestackhci.models.MarketplaceGalleryImagesOperations;
 import com.azure.resourcemanager.azurestackhci.models.NetworkInterfacesOperations;
-import com.azure.resourcemanager.azurestackhci.models.Operations;
 import com.azure.resourcemanager.azurestackhci.models.StorageContainersOperations;
 import com.azure.resourcemanager.azurestackhci.models.VirtualHardDisksOperations;
 import com.azure.resourcemanager.azurestackhci.models.VirtualMachineInstances;
@@ -54,11 +52,12 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-/** Entry point to AzureStackHciManager. Azure Stack HCI management service. */
+/**
+ * Entry point to AzureStackHciManager.
+ * Azure Stack HCI management service.
+ */
 public final class AzureStackHciManager {
     private GalleryImagesOperations galleryImagesOperations;
-
-    private Operations operations;
 
     private LogicalNetworksOperations logicalNetworksOperations;
 
@@ -83,18 +82,14 @@ public final class AzureStackHciManager {
     private AzureStackHciManager(HttpPipeline httpPipeline, AzureProfile profile, Duration defaultPollInterval) {
         Objects.requireNonNull(httpPipeline, "'httpPipeline' cannot be null.");
         Objects.requireNonNull(profile, "'profile' cannot be null.");
-        this.clientObject =
-            new AzureStackHciClientBuilder()
-                .pipeline(httpPipeline)
-                .endpoint(profile.getEnvironment().getResourceManagerEndpoint())
-                .subscriptionId(profile.getSubscriptionId())
-                .defaultPollInterval(defaultPollInterval)
-                .buildClient();
+        this.clientObject = new AzureStackHciClientBuilder().pipeline(httpPipeline)
+            .endpoint(profile.getEnvironment().getResourceManagerEndpoint()).subscriptionId(profile.getSubscriptionId())
+            .defaultPollInterval(defaultPollInterval).buildClient();
     }
 
     /**
      * Creates an instance of AzureStackHci service API entry point.
-     *
+     * 
      * @param credential the credential to use.
      * @param profile the Azure profile for client.
      * @return the AzureStackHci service API instance.
@@ -107,7 +102,7 @@ public final class AzureStackHciManager {
 
     /**
      * Creates an instance of AzureStackHci service API entry point.
-     *
+     * 
      * @param httpPipeline the {@link HttpPipeline} configured with Azure authentication credential.
      * @param profile the Azure profile for client.
      * @return the AzureStackHci service API instance.
@@ -120,14 +115,16 @@ public final class AzureStackHciManager {
 
     /**
      * Gets a Configurable instance that can be used to create AzureStackHciManager with optional configuration.
-     *
+     * 
      * @return the Configurable instance allowing configurations.
      */
     public static Configurable configure() {
         return new AzureStackHciManager.Configurable();
     }
 
-    /** The Configurable allowing configurations to be set. */
+    /**
+     * The Configurable allowing configurations to be set.
+     */
     public static final class Configurable {
         private static final ClientLogger LOGGER = new ClientLogger(Configurable.class);
 
@@ -199,8 +196,8 @@ public final class AzureStackHciManager {
 
         /**
          * Sets the retry options for the HTTP pipeline retry policy.
-         *
-         * <p>This setting has no effect, if retry policy is set via {@link #withRetryPolicy(RetryPolicy)}.
+         * <p>
+         * This setting has no effect, if retry policy is set via {@link #withRetryPolicy(RetryPolicy)}.
          *
          * @param retryOptions the retry options for the HTTP pipeline retry policy.
          * @return the configurable object itself.
@@ -217,8 +214,8 @@ public final class AzureStackHciManager {
          * @return the configurable object itself.
          */
         public Configurable withDefaultPollInterval(Duration defaultPollInterval) {
-            this.defaultPollInterval =
-                Objects.requireNonNull(defaultPollInterval, "'defaultPollInterval' cannot be null.");
+            this.defaultPollInterval
+                = Objects.requireNonNull(defaultPollInterval, "'defaultPollInterval' cannot be null.");
             if (this.defaultPollInterval.isNegative()) {
                 throw LOGGER
                     .logExceptionAsError(new IllegalArgumentException("'defaultPollInterval' cannot be negative"));
@@ -238,21 +235,12 @@ public final class AzureStackHciManager {
             Objects.requireNonNull(profile, "'profile' cannot be null.");
 
             StringBuilder userAgentBuilder = new StringBuilder();
-            userAgentBuilder
-                .append("azsdk-java")
-                .append("-")
-                .append("com.azure.resourcemanager.azurestackhci")
-                .append("/")
-                .append("1.0.0-beta.4");
+            userAgentBuilder.append("azsdk-java").append("-").append("com.azure.resourcemanager.azurestackhci")
+                .append("/").append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
-                userAgentBuilder
-                    .append(" (")
-                    .append(Configuration.getGlobalConfiguration().get("java.version"))
-                    .append("; ")
-                    .append(Configuration.getGlobalConfiguration().get("os.name"))
-                    .append("; ")
-                    .append(Configuration.getGlobalConfiguration().get("os.version"))
-                    .append("; auto-generated)");
+                userAgentBuilder.append(" (").append(Configuration.getGlobalConfiguration().get("java.version"))
+                    .append("; ").append(Configuration.getGlobalConfiguration().get("os.name")).append("; ")
+                    .append(Configuration.getGlobalConfiguration().get("os.version")).append("; auto-generated)");
             } else {
                 userAgentBuilder.append(" (auto-generated)");
             }
@@ -271,154 +259,129 @@ public final class AzureStackHciManager {
             policies.add(new UserAgentPolicy(userAgentBuilder.toString()));
             policies.add(new AddHeadersFromContextPolicy());
             policies.add(new RequestIdPolicy());
-            policies
-                .addAll(
-                    this
-                        .policies
-                        .stream()
-                        .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_CALL)
-                        .collect(Collectors.toList()));
+            policies.addAll(this.policies.stream().filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_CALL)
+                .collect(Collectors.toList()));
             HttpPolicyProviders.addBeforeRetryPolicies(policies);
             policies.add(retryPolicy);
             policies.add(new AddDatePolicy());
             policies.add(new ArmChallengeAuthenticationPolicy(credential, scopes.toArray(new String[0])));
-            policies
-                .addAll(
-                    this
-                        .policies
-                        .stream()
-                        .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_RETRY)
-                        .collect(Collectors.toList()));
+            policies.addAll(this.policies.stream()
+                .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_RETRY).collect(Collectors.toList()));
             HttpPolicyProviders.addAfterRetryPolicies(policies);
             policies.add(new HttpLoggingPolicy(httpLogOptions));
-            HttpPipeline httpPipeline =
-                new HttpPipelineBuilder()
-                    .httpClient(httpClient)
-                    .policies(policies.toArray(new HttpPipelinePolicy[0]))
-                    .build();
+            HttpPipeline httpPipeline = new HttpPipelineBuilder().httpClient(httpClient)
+                .policies(policies.toArray(new HttpPipelinePolicy[0])).build();
             return new AzureStackHciManager(httpPipeline, profile, defaultPollInterval);
         }
     }
 
     /**
      * Gets the resource collection API of GalleryImagesOperations. It manages GalleryImages.
-     *
+     * 
      * @return Resource collection API of GalleryImagesOperations.
      */
     public GalleryImagesOperations galleryImagesOperations() {
         if (this.galleryImagesOperations == null) {
-            this.galleryImagesOperations =
-                new GalleryImagesOperationsImpl(clientObject.getGalleryImagesOperations(), this);
+            this.galleryImagesOperations
+                = new GalleryImagesOperationsImpl(clientObject.getGalleryImagesOperations(), this);
         }
         return galleryImagesOperations;
     }
 
     /**
-     * Gets the resource collection API of Operations.
-     *
-     * @return Resource collection API of Operations.
-     */
-    public Operations operations() {
-        if (this.operations == null) {
-            this.operations = new OperationsImpl(clientObject.getOperations(), this);
-        }
-        return operations;
-    }
-
-    /**
      * Gets the resource collection API of LogicalNetworksOperations. It manages LogicalNetworks.
-     *
+     * 
      * @return Resource collection API of LogicalNetworksOperations.
      */
     public LogicalNetworksOperations logicalNetworksOperations() {
         if (this.logicalNetworksOperations == null) {
-            this.logicalNetworksOperations =
-                new LogicalNetworksOperationsImpl(clientObject.getLogicalNetworksOperations(), this);
+            this.logicalNetworksOperations
+                = new LogicalNetworksOperationsImpl(clientObject.getLogicalNetworksOperations(), this);
         }
         return logicalNetworksOperations;
     }
 
     /**
      * Gets the resource collection API of MarketplaceGalleryImagesOperations. It manages MarketplaceGalleryImages.
-     *
+     * 
      * @return Resource collection API of MarketplaceGalleryImagesOperations.
      */
     public MarketplaceGalleryImagesOperations marketplaceGalleryImagesOperations() {
         if (this.marketplaceGalleryImagesOperations == null) {
-            this.marketplaceGalleryImagesOperations =
-                new MarketplaceGalleryImagesOperationsImpl(clientObject.getMarketplaceGalleryImagesOperations(), this);
+            this.marketplaceGalleryImagesOperations = new MarketplaceGalleryImagesOperationsImpl(
+                clientObject.getMarketplaceGalleryImagesOperations(), this);
         }
         return marketplaceGalleryImagesOperations;
     }
 
     /**
      * Gets the resource collection API of NetworkInterfacesOperations. It manages NetworkInterfaces.
-     *
+     * 
      * @return Resource collection API of NetworkInterfacesOperations.
      */
     public NetworkInterfacesOperations networkInterfacesOperations() {
         if (this.networkInterfacesOperations == null) {
-            this.networkInterfacesOperations =
-                new NetworkInterfacesOperationsImpl(clientObject.getNetworkInterfacesOperations(), this);
+            this.networkInterfacesOperations
+                = new NetworkInterfacesOperationsImpl(clientObject.getNetworkInterfacesOperations(), this);
         }
         return networkInterfacesOperations;
     }
 
     /**
      * Gets the resource collection API of StorageContainersOperations. It manages StorageContainers.
-     *
+     * 
      * @return Resource collection API of StorageContainersOperations.
      */
     public StorageContainersOperations storageContainersOperations() {
         if (this.storageContainersOperations == null) {
-            this.storageContainersOperations =
-                new StorageContainersOperationsImpl(clientObject.getStorageContainersOperations(), this);
+            this.storageContainersOperations
+                = new StorageContainersOperationsImpl(clientObject.getStorageContainersOperations(), this);
         }
         return storageContainersOperations;
     }
 
     /**
      * Gets the resource collection API of VirtualHardDisksOperations. It manages VirtualHardDisks.
-     *
+     * 
      * @return Resource collection API of VirtualHardDisksOperations.
      */
     public VirtualHardDisksOperations virtualHardDisksOperations() {
         if (this.virtualHardDisksOperations == null) {
-            this.virtualHardDisksOperations =
-                new VirtualHardDisksOperationsImpl(clientObject.getVirtualHardDisksOperations(), this);
+            this.virtualHardDisksOperations
+                = new VirtualHardDisksOperationsImpl(clientObject.getVirtualHardDisksOperations(), this);
         }
         return virtualHardDisksOperations;
     }
 
     /**
      * Gets the resource collection API of VirtualMachineInstances.
-     *
+     * 
      * @return Resource collection API of VirtualMachineInstances.
      */
     public VirtualMachineInstances virtualMachineInstances() {
         if (this.virtualMachineInstances == null) {
-            this.virtualMachineInstances =
-                new VirtualMachineInstancesImpl(clientObject.getVirtualMachineInstances(), this);
+            this.virtualMachineInstances
+                = new VirtualMachineInstancesImpl(clientObject.getVirtualMachineInstances(), this);
         }
         return virtualMachineInstances;
     }
 
     /**
      * Gets the resource collection API of HybridIdentityMetadatas.
-     *
+     * 
      * @return Resource collection API of HybridIdentityMetadatas.
      */
     public HybridIdentityMetadatas hybridIdentityMetadatas() {
         if (this.hybridIdentityMetadatas == null) {
-            this.hybridIdentityMetadatas =
-                new HybridIdentityMetadatasImpl(clientObject.getHybridIdentityMetadatas(), this);
+            this.hybridIdentityMetadatas
+                = new HybridIdentityMetadatasImpl(clientObject.getHybridIdentityMetadatas(), this);
         }
         return hybridIdentityMetadatas;
     }
 
     /**
      * Gets the resource collection API of GuestAgents.
-     *
+     * 
      * @return Resource collection API of GuestAgents.
      */
     public GuestAgents guestAgents() {
@@ -430,7 +393,7 @@ public final class AzureStackHciManager {
 
     /**
      * Gets the resource collection API of GuestAgentsOperations.
-     *
+     * 
      * @return Resource collection API of GuestAgentsOperations.
      */
     public GuestAgentsOperations guestAgentsOperations() {
@@ -443,7 +406,7 @@ public final class AzureStackHciManager {
     /**
      * Gets wrapped service client AzureStackHciClient providing direct access to the underlying auto-generated API
      * implementation, based on Azure REST API.
-     *
+     * 
      * @return Wrapped service client AzureStackHciClient.
      */
     public AzureStackHciClient serviceClient() {

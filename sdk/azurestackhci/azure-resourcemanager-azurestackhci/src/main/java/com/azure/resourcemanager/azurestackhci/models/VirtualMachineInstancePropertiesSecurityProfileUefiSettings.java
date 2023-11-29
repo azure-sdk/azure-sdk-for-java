@@ -7,7 +7,9 @@ package com.azure.resourcemanager.azurestackhci.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The VirtualMachineInstancePropertiesSecurityProfileUefiSettings model. */
+/**
+ * The VirtualMachineInstancePropertiesSecurityProfileUefiSettings model.
+ */
 @Fluent
 public final class VirtualMachineInstancePropertiesSecurityProfileUefiSettings {
     /*
@@ -16,14 +18,16 @@ public final class VirtualMachineInstancePropertiesSecurityProfileUefiSettings {
     @JsonProperty(value = "secureBootEnabled")
     private Boolean secureBootEnabled;
 
-    /** Creates an instance of VirtualMachineInstancePropertiesSecurityProfileUefiSettings class. */
+    /**
+     * Creates an instance of VirtualMachineInstancePropertiesSecurityProfileUefiSettings class.
+     */
     public VirtualMachineInstancePropertiesSecurityProfileUefiSettings() {
     }
 
     /**
      * Get the secureBootEnabled property: Specifies whether secure boot should be enabled on the virtual machine
      * instance.
-     *
+     * 
      * @return the secureBootEnabled value.
      */
     public Boolean secureBootEnabled() {
@@ -33,19 +37,19 @@ public final class VirtualMachineInstancePropertiesSecurityProfileUefiSettings {
     /**
      * Set the secureBootEnabled property: Specifies whether secure boot should be enabled on the virtual machine
      * instance.
-     *
+     * 
      * @param secureBootEnabled the secureBootEnabled value to set.
      * @return the VirtualMachineInstancePropertiesSecurityProfileUefiSettings object itself.
      */
-    public VirtualMachineInstancePropertiesSecurityProfileUefiSettings withSecureBootEnabled(
-        Boolean secureBootEnabled) {
+    public VirtualMachineInstancePropertiesSecurityProfileUefiSettings
+        withSecureBootEnabled(Boolean secureBootEnabled) {
         this.secureBootEnabled = secureBootEnabled;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
