@@ -8,11 +8,17 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Distribution expressions to sweep over values of model settings. &lt;example&gt; Some examples are: &lt;code&gt;
- * ModelName = "choice('seresnext', 'resnest50')"; LearningRate = "uniform(0.001, 0.01)"; LayersToFreeze = "choice(0,
- * 2)"; &lt;/code&gt;&lt;/example&gt; For more details on how to compose distribution expressions please check the
- * documentation: https://docs.microsoft.com/en-us/azure/machine-learning/how-to-tune-hyperparameters For more
- * information on the available settings please visit the official documentation:
+ * Distribution expressions to sweep over values of model settings.
+ * &lt;example&gt;
+ * Some examples are:
+ * ```
+ * ModelName = "choice('seresnext', 'resnest50')";
+ * LearningRate = "uniform(0.001, 0.01)";
+ * LayersToFreeze = "choice(0, 2)";
+ * ```&lt;/example&gt;
+ * For more details on how to compose distribution expressions please check the documentation:
+ * https://docs.microsoft.com/en-us/azure/machine-learning/how-to-tune-hyperparameters
+ * For more information on the available settings please visit the official documentation:
  * https://docs.microsoft.com/en-us/azure/machine-learning/how-to-auto-train-image-models.
  */
 @Fluent
@@ -42,14 +48,16 @@ public final class ImageModelDistributionSettingsClassification extends ImageMod
     @JsonProperty(value = "weightedLoss")
     private String weightedLoss;
 
-    /** Creates an instance of ImageModelDistributionSettingsClassification class. */
+    /**
+     * Creates an instance of ImageModelDistributionSettingsClassification class.
+     */
     public ImageModelDistributionSettingsClassification() {
     }
 
     /**
      * Get the trainingCropSize property: Image crop size that is input to the neural network for the training dataset.
      * Must be a positive integer.
-     *
+     * 
      * @return the trainingCropSize value.
      */
     public String trainingCropSize() {
@@ -59,7 +67,7 @@ public final class ImageModelDistributionSettingsClassification extends ImageMod
     /**
      * Set the trainingCropSize property: Image crop size that is input to the neural network for the training dataset.
      * Must be a positive integer.
-     *
+     * 
      * @param trainingCropSize the trainingCropSize value to set.
      * @return the ImageModelDistributionSettingsClassification object itself.
      */
@@ -71,7 +79,7 @@ public final class ImageModelDistributionSettingsClassification extends ImageMod
     /**
      * Get the validationCropSize property: Image crop size that is input to the neural network for the validation
      * dataset. Must be a positive integer.
-     *
+     * 
      * @return the validationCropSize value.
      */
     public String validationCropSize() {
@@ -81,7 +89,7 @@ public final class ImageModelDistributionSettingsClassification extends ImageMod
     /**
      * Set the validationCropSize property: Image crop size that is input to the neural network for the validation
      * dataset. Must be a positive integer.
-     *
+     * 
      * @param validationCropSize the validationCropSize value to set.
      * @return the ImageModelDistributionSettingsClassification object itself.
      */
@@ -91,9 +99,9 @@ public final class ImageModelDistributionSettingsClassification extends ImageMod
     }
 
     /**
-     * Get the validationResizeSize property: Image size to which to resize before cropping for validation dataset. Must
-     * be a positive integer.
-     *
+     * Get the validationResizeSize property: Image size to which to resize before cropping for validation dataset.
+     * Must be a positive integer.
+     * 
      * @return the validationResizeSize value.
      */
     public String validationResizeSize() {
@@ -101,9 +109,9 @@ public final class ImageModelDistributionSettingsClassification extends ImageMod
     }
 
     /**
-     * Set the validationResizeSize property: Image size to which to resize before cropping for validation dataset. Must
-     * be a positive integer.
-     *
+     * Set the validationResizeSize property: Image size to which to resize before cropping for validation dataset.
+     * Must be a positive integer.
+     * 
      * @param validationResizeSize the validationResizeSize value to set.
      * @return the ImageModelDistributionSettingsClassification object itself.
      */
@@ -113,9 +121,9 @@ public final class ImageModelDistributionSettingsClassification extends ImageMod
     }
 
     /**
-     * Get the weightedLoss property: Weighted loss. The accepted values are 0 for no weighted loss. 1 for weighted loss
-     * with sqrt.(class_weights). 2 for weighted loss with class_weights. Must be 0 or 1 or 2.
-     *
+     * Get the weightedLoss property: Weighted loss. The accepted values are 0 for no weighted loss.
+     * 1 for weighted loss with sqrt.(class_weights). 2 for weighted loss with class_weights. Must be 0 or 1 or 2.
+     * 
      * @return the weightedLoss value.
      */
     public String weightedLoss() {
@@ -123,9 +131,9 @@ public final class ImageModelDistributionSettingsClassification extends ImageMod
     }
 
     /**
-     * Set the weightedLoss property: Weighted loss. The accepted values are 0 for no weighted loss. 1 for weighted loss
-     * with sqrt.(class_weights). 2 for weighted loss with class_weights. Must be 0 or 1 or 2.
-     *
+     * Set the weightedLoss property: Weighted loss. The accepted values are 0 for no weighted loss.
+     * 1 for weighted loss with sqrt.(class_weights). 2 for weighted loss with class_weights. Must be 0 or 1 or 2.
+     * 
      * @param weightedLoss the weightedLoss value to set.
      * @return the ImageModelDistributionSettingsClassification object itself.
      */
@@ -134,197 +142,253 @@ public final class ImageModelDistributionSettingsClassification extends ImageMod
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelDistributionSettingsClassification withAmsGradient(String amsGradient) {
         super.withAmsGradient(amsGradient);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelDistributionSettingsClassification withAugmentations(String augmentations) {
         super.withAugmentations(augmentations);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelDistributionSettingsClassification withBeta1(String beta1) {
         super.withBeta1(beta1);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelDistributionSettingsClassification withBeta2(String beta2) {
         super.withBeta2(beta2);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelDistributionSettingsClassification withDistributed(String distributed) {
         super.withDistributed(distributed);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelDistributionSettingsClassification withEarlyStopping(String earlyStopping) {
         super.withEarlyStopping(earlyStopping);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelDistributionSettingsClassification withEarlyStoppingDelay(String earlyStoppingDelay) {
         super.withEarlyStoppingDelay(earlyStoppingDelay);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelDistributionSettingsClassification withEarlyStoppingPatience(String earlyStoppingPatience) {
         super.withEarlyStoppingPatience(earlyStoppingPatience);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelDistributionSettingsClassification withEnableOnnxNormalization(String enableOnnxNormalization) {
         super.withEnableOnnxNormalization(enableOnnxNormalization);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelDistributionSettingsClassification withEvaluationFrequency(String evaluationFrequency) {
         super.withEvaluationFrequency(evaluationFrequency);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelDistributionSettingsClassification withGradientAccumulationStep(String gradientAccumulationStep) {
         super.withGradientAccumulationStep(gradientAccumulationStep);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelDistributionSettingsClassification withLayersToFreeze(String layersToFreeze) {
         super.withLayersToFreeze(layersToFreeze);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelDistributionSettingsClassification withLearningRate(String learningRate) {
         super.withLearningRate(learningRate);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelDistributionSettingsClassification withLearningRateScheduler(String learningRateScheduler) {
         super.withLearningRateScheduler(learningRateScheduler);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelDistributionSettingsClassification withModelName(String modelName) {
         super.withModelName(modelName);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelDistributionSettingsClassification withMomentum(String momentum) {
         super.withMomentum(momentum);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelDistributionSettingsClassification withNesterov(String nesterov) {
         super.withNesterov(nesterov);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelDistributionSettingsClassification withNumberOfEpochs(String numberOfEpochs) {
         super.withNumberOfEpochs(numberOfEpochs);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelDistributionSettingsClassification withNumberOfWorkers(String numberOfWorkers) {
         super.withNumberOfWorkers(numberOfWorkers);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelDistributionSettingsClassification withOptimizer(String optimizer) {
         super.withOptimizer(optimizer);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelDistributionSettingsClassification withRandomSeed(String randomSeed) {
         super.withRandomSeed(randomSeed);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelDistributionSettingsClassification withStepLRGamma(String stepLRGamma) {
         super.withStepLRGamma(stepLRGamma);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelDistributionSettingsClassification withStepLRStepSize(String stepLRStepSize) {
         super.withStepLRStepSize(stepLRStepSize);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelDistributionSettingsClassification withTrainingBatchSize(String trainingBatchSize) {
         super.withTrainingBatchSize(trainingBatchSize);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelDistributionSettingsClassification withValidationBatchSize(String validationBatchSize) {
         super.withValidationBatchSize(validationBatchSize);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelDistributionSettingsClassification withWarmupCosineLRCycles(String warmupCosineLRCycles) {
         super.withWarmupCosineLRCycles(warmupCosineLRCycles);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public ImageModelDistributionSettingsClassification withWarmupCosineLRWarmupEpochs(
-        String warmupCosineLRWarmupEpochs) {
+    public ImageModelDistributionSettingsClassification
+        withWarmupCosineLRWarmupEpochs(String warmupCosineLRWarmupEpochs) {
         super.withWarmupCosineLRWarmupEpochs(warmupCosineLRWarmupEpochs);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelDistributionSettingsClassification withWeightDecay(String weightDecay) {
         super.withWeightDecay(weightDecay);
@@ -333,7 +397,7 @@ public final class ImageModelDistributionSettingsClassification extends ImageMod
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

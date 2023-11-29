@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** Container for data asset versions. */
+/**
+ * Container for data asset versions.
+ */
 @Fluent
 public final class DataContainerProperties extends AssetContainer {
     /*
@@ -18,13 +20,15 @@ public final class DataContainerProperties extends AssetContainer {
     @JsonProperty(value = "dataType", required = true)
     private DataType dataType;
 
-    /** Creates an instance of DataContainerProperties class. */
+    /**
+     * Creates an instance of DataContainerProperties class.
+     */
     public DataContainerProperties() {
     }
 
     /**
      * Get the dataType property: [Required] Specifies the type of data.
-     *
+     * 
      * @return the dataType value.
      */
     public DataType dataType() {
@@ -33,7 +37,7 @@ public final class DataContainerProperties extends AssetContainer {
 
     /**
      * Set the dataType property: [Required] Specifies the type of data.
-     *
+     * 
      * @param dataType the dataType value to set.
      * @return the DataContainerProperties object itself.
      */
@@ -42,28 +46,36 @@ public final class DataContainerProperties extends AssetContainer {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DataContainerProperties withIsArchived(Boolean isArchived) {
         super.withIsArchived(isArchived);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DataContainerProperties withDescription(String description) {
         super.withDescription(description);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DataContainerProperties withProperties(Map<String, String> properties) {
         super.withProperties(properties);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DataContainerProperties withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -72,17 +84,15 @@ public final class DataContainerProperties extends AssetContainer {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (dataType() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property dataType in model DataContainerProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property dataType in model DataContainerProperties"));
         }
     }
 
