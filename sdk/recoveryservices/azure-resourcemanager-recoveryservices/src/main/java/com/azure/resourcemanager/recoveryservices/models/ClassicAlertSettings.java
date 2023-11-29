@@ -7,7 +7,9 @@ package com.azure.resourcemanager.recoveryservices.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Settings for classic alerts. */
+/**
+ * Settings for classic alerts.
+ */
 @Fluent
 public final class ClassicAlertSettings {
     /*
@@ -16,13 +18,15 @@ public final class ClassicAlertSettings {
     @JsonProperty(value = "alertsForCriticalOperations")
     private AlertsState alertsForCriticalOperations;
 
-    /** Creates an instance of ClassicAlertSettings class. */
+    /**
+     * Creates an instance of ClassicAlertSettings class.
+     */
     public ClassicAlertSettings() {
     }
 
     /**
      * Get the alertsForCriticalOperations property: The alertsForCriticalOperations property.
-     *
+     * 
      * @return the alertsForCriticalOperations value.
      */
     public AlertsState alertsForCriticalOperations() {
@@ -31,7 +35,7 @@ public final class ClassicAlertSettings {
 
     /**
      * Set the alertsForCriticalOperations property: The alertsForCriticalOperations property.
-     *
+     * 
      * @param alertsForCriticalOperations the alertsForCriticalOperations value to set.
      * @return the ClassicAlertSettings object itself.
      */
@@ -42,7 +46,7 @@ public final class ClassicAlertSettings {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
