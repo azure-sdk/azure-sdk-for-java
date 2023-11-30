@@ -8,18 +8,22 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Specifies Windows operating system settings on the virtual machine. */
+/**
+ * Specifies Windows operating system settings on the virtual machine.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "osType")
 @JsonTypeName("Windows")
 @Immutable
 public final class WindowsConfiguration extends OSConfiguration {
-    /** Creates an instance of WindowsConfiguration class. */
+    /**
+     * Creates an instance of WindowsConfiguration class.
+     */
     public WindowsConfiguration() {
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

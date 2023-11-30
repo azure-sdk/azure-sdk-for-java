@@ -11,8 +11,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * Gets or sets the three tier SAP configuration. For prerequisites for creating the infrastructure, please see
- * [here](https://go.microsoft.com/fwlink/?linkid=2212611&amp;clcid=0x409).
+ * Gets or sets the three tier SAP configuration.
  */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "deploymentType")
 @JsonTypeName("ThreeTier")
@@ -60,13 +59,15 @@ public final class ThreeTierConfiguration extends InfrastructureConfiguration {
     @JsonProperty(value = "customResourceNames")
     private ThreeTierCustomResourceNames customResourceNames;
 
-    /** Creates an instance of ThreeTierConfiguration class. */
+    /**
+     * Creates an instance of ThreeTierConfiguration class.
+     */
     public ThreeTierConfiguration() {
     }
 
     /**
      * Get the networkConfiguration property: Network configuration common to all servers.
-     *
+     * 
      * @return the networkConfiguration value.
      */
     public NetworkConfiguration networkConfiguration() {
@@ -75,7 +76,7 @@ public final class ThreeTierConfiguration extends InfrastructureConfiguration {
 
     /**
      * Set the networkConfiguration property: Network configuration common to all servers.
-     *
+     * 
      * @param networkConfiguration the networkConfiguration value to set.
      * @return the ThreeTierConfiguration object itself.
      */
@@ -86,7 +87,7 @@ public final class ThreeTierConfiguration extends InfrastructureConfiguration {
 
     /**
      * Get the centralServer property: The central server configuration.
-     *
+     * 
      * @return the centralServer value.
      */
     public CentralServerConfiguration centralServer() {
@@ -95,7 +96,7 @@ public final class ThreeTierConfiguration extends InfrastructureConfiguration {
 
     /**
      * Set the centralServer property: The central server configuration.
-     *
+     * 
      * @param centralServer the centralServer value to set.
      * @return the ThreeTierConfiguration object itself.
      */
@@ -106,7 +107,7 @@ public final class ThreeTierConfiguration extends InfrastructureConfiguration {
 
     /**
      * Get the applicationServer property: The application server configuration.
-     *
+     * 
      * @return the applicationServer value.
      */
     public ApplicationServerConfiguration applicationServer() {
@@ -115,7 +116,7 @@ public final class ThreeTierConfiguration extends InfrastructureConfiguration {
 
     /**
      * Set the applicationServer property: The application server configuration.
-     *
+     * 
      * @param applicationServer the applicationServer value to set.
      * @return the ThreeTierConfiguration object itself.
      */
@@ -126,7 +127,7 @@ public final class ThreeTierConfiguration extends InfrastructureConfiguration {
 
     /**
      * Get the databaseServer property: The database configuration.
-     *
+     * 
      * @return the databaseServer value.
      */
     public DatabaseConfiguration databaseServer() {
@@ -135,7 +136,7 @@ public final class ThreeTierConfiguration extends InfrastructureConfiguration {
 
     /**
      * Set the databaseServer property: The database configuration.
-     *
+     * 
      * @param databaseServer the databaseServer value to set.
      * @return the ThreeTierConfiguration object itself.
      */
@@ -146,7 +147,7 @@ public final class ThreeTierConfiguration extends InfrastructureConfiguration {
 
     /**
      * Get the highAvailabilityConfig property: The high availability configuration.
-     *
+     * 
      * @return the highAvailabilityConfig value.
      */
     public HighAvailabilityConfiguration highAvailabilityConfig() {
@@ -155,7 +156,7 @@ public final class ThreeTierConfiguration extends InfrastructureConfiguration {
 
     /**
      * Set the highAvailabilityConfig property: The high availability configuration.
-     *
+     * 
      * @param highAvailabilityConfig the highAvailabilityConfig value to set.
      * @return the ThreeTierConfiguration object itself.
      */
@@ -166,7 +167,7 @@ public final class ThreeTierConfiguration extends InfrastructureConfiguration {
 
     /**
      * Get the storageConfiguration property: The storage configuration.
-     *
+     * 
      * @return the storageConfiguration value.
      */
     public StorageConfiguration storageConfiguration() {
@@ -175,7 +176,7 @@ public final class ThreeTierConfiguration extends InfrastructureConfiguration {
 
     /**
      * Set the storageConfiguration property: The storage configuration.
-     *
+     * 
      * @param storageConfiguration the storageConfiguration value to set.
      * @return the ThreeTierConfiguration object itself.
      */
@@ -187,7 +188,7 @@ public final class ThreeTierConfiguration extends InfrastructureConfiguration {
     /**
      * Get the customResourceNames property: The set of custom names to be used for underlying azure resources that are
      * part of the SAP system.
-     *
+     * 
      * @return the customResourceNames value.
      */
     public ThreeTierCustomResourceNames customResourceNames() {
@@ -197,7 +198,7 @@ public final class ThreeTierConfiguration extends InfrastructureConfiguration {
     /**
      * Set the customResourceNames property: The set of custom names to be used for underlying azure resources that are
      * part of the SAP system.
-     *
+     * 
      * @param customResourceNames the customResourceNames value to set.
      * @return the ThreeTierConfiguration object itself.
      */
@@ -206,7 +207,9 @@ public final class ThreeTierConfiguration extends InfrastructureConfiguration {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ThreeTierConfiguration withAppResourceGroup(String appResourceGroup) {
         super.withAppResourceGroup(appResourceGroup);
@@ -215,7 +218,7 @@ public final class ThreeTierConfiguration extends InfrastructureConfiguration {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
@@ -225,26 +228,20 @@ public final class ThreeTierConfiguration extends InfrastructureConfiguration {
             networkConfiguration().validate();
         }
         if (centralServer() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property centralServer in model ThreeTierConfiguration"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property centralServer in model ThreeTierConfiguration"));
         } else {
             centralServer().validate();
         }
         if (applicationServer() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property applicationServer in model ThreeTierConfiguration"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property applicationServer in model ThreeTierConfiguration"));
         } else {
             applicationServer().validate();
         }
         if (databaseServer() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property databaseServer in model ThreeTierConfiguration"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property databaseServer in model ThreeTierConfiguration"));
         } else {
             databaseServer().validate();
         }

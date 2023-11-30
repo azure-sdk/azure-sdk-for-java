@@ -7,7 +7,9 @@ package com.azure.resourcemanager.workloads.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Defines the url and storage account ID where deployer VM packages are uploaded. */
+/**
+ * Defines the url and storage account ID where deployer VM packages are uploaded.
+ */
 @Fluent
 public final class DeployerVmPackages {
     /*
@@ -22,13 +24,15 @@ public final class DeployerVmPackages {
     @JsonProperty(value = "storageAccountId")
     private String storageAccountId;
 
-    /** Creates an instance of DeployerVmPackages class. */
+    /**
+     * Creates an instance of DeployerVmPackages class.
+     */
     public DeployerVmPackages() {
     }
 
     /**
      * Get the url property: The URL to the deployer VM packages file.
-     *
+     * 
      * @return the url value.
      */
     public String url() {
@@ -37,7 +41,7 @@ public final class DeployerVmPackages {
 
     /**
      * Set the url property: The URL to the deployer VM packages file.
-     *
+     * 
      * @param url the url value to set.
      * @return the DeployerVmPackages object itself.
      */
@@ -48,7 +52,7 @@ public final class DeployerVmPackages {
 
     /**
      * Get the storageAccountId property: The deployer VM packages storage account id.
-     *
+     * 
      * @return the storageAccountId value.
      */
     public String storageAccountId() {
@@ -57,7 +61,7 @@ public final class DeployerVmPackages {
 
     /**
      * Set the storageAccountId property: The deployer VM packages storage account id.
-     *
+     * 
      * @param storageAccountId the storageAccountId value to set.
      * @return the DeployerVmPackages object itself.
      */
@@ -68,7 +72,7 @@ public final class DeployerVmPackages {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

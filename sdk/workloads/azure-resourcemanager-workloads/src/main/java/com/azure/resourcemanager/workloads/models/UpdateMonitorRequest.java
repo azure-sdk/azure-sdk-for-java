@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** Defines the request body for updating SAP monitor resource. */
+/**
+ * Defines the request body for updating SAP monitor resource.
+ */
 @Fluent
 public final class UpdateMonitorRequest {
     /*
@@ -20,18 +22,20 @@ public final class UpdateMonitorRequest {
     private Map<String, String> tags;
 
     /*
-     * [currently not in use] Managed service identity(user assigned identities)
+     * Managed service identity (user assigned identities)
      */
     @JsonProperty(value = "identity")
     private UserAssignedServiceIdentity identity;
 
-    /** Creates an instance of UpdateMonitorRequest class. */
+    /**
+     * Creates an instance of UpdateMonitorRequest class.
+     */
     public UpdateMonitorRequest() {
     }
 
     /**
      * Get the tags property: Gets or sets the Resource tags.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -40,7 +44,7 @@ public final class UpdateMonitorRequest {
 
     /**
      * Set the tags property: Gets or sets the Resource tags.
-     *
+     * 
      * @param tags the tags value to set.
      * @return the UpdateMonitorRequest object itself.
      */
@@ -50,8 +54,8 @@ public final class UpdateMonitorRequest {
     }
 
     /**
-     * Get the identity property: [currently not in use] Managed service identity(user assigned identities).
-     *
+     * Get the identity property: Managed service identity (user assigned identities).
+     * 
      * @return the identity value.
      */
     public UserAssignedServiceIdentity identity() {
@@ -59,8 +63,8 @@ public final class UpdateMonitorRequest {
     }
 
     /**
-     * Set the identity property: [currently not in use] Managed service identity(user assigned identities).
-     *
+     * Set the identity property: Managed service identity (user assigned identities).
+     * 
      * @param identity the identity value to set.
      * @return the UpdateMonitorRequest object itself.
      */
@@ -71,7 +75,7 @@ public final class UpdateMonitorRequest {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

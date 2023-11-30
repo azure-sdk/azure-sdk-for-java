@@ -9,7 +9,9 @@ import com.azure.resourcemanager.workloads.fluent.models.SapCentralServerInstanc
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Defines the collection of SAP Central Services Instance resources. */
+/**
+ * Defines the collection of SAP Central Services Instance resources.
+ */
 @Fluent
 public final class SapCentralInstanceList {
     /*
@@ -24,13 +26,15 @@ public final class SapCentralInstanceList {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of SapCentralInstanceList class. */
+    /**
+     * Creates an instance of SapCentralInstanceList class.
+     */
     public SapCentralInstanceList() {
     }
 
     /**
      * Get the value property: Gets the list of SAP central services instance resources.
-     *
+     * 
      * @return the value value.
      */
     public List<SapCentralServerInstanceInner> value() {
@@ -39,7 +43,7 @@ public final class SapCentralInstanceList {
 
     /**
      * Set the value property: Gets the list of SAP central services instance resources.
-     *
+     * 
      * @param value the value value to set.
      * @return the SapCentralInstanceList object itself.
      */
@@ -50,7 +54,7 @@ public final class SapCentralInstanceList {
 
     /**
      * Get the nextLink property: Gets the value of next link.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class SapCentralInstanceList {
 
     /**
      * Set the nextLink property: Gets the value of next link.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the SapCentralInstanceList object itself.
      */
@@ -70,7 +74,7 @@ public final class SapCentralInstanceList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The recommended configuration for a single server SAP system. */
+/**
+ * The recommended configuration for a single server SAP system.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "deploymentType")
 @JsonTypeName("SingleServer")
 @Fluent
@@ -21,13 +23,15 @@ public final class SingleServerRecommendationResult extends SapSizingRecommendat
     @JsonProperty(value = "vmSku")
     private String vmSku;
 
-    /** Creates an instance of SingleServerRecommendationResult class. */
+    /**
+     * Creates an instance of SingleServerRecommendationResult class.
+     */
     public SingleServerRecommendationResult() {
     }
 
     /**
      * Get the vmSku property: The recommended VM SKU for single server.
-     *
+     * 
      * @return the vmSku value.
      */
     public String vmSku() {
@@ -36,7 +40,7 @@ public final class SingleServerRecommendationResult extends SapSizingRecommendat
 
     /**
      * Set the vmSku property: The recommended VM SKU for single server.
-     *
+     * 
      * @param vmSku the vmSku value to set.
      * @return the SingleServerRecommendationResult object itself.
      */
@@ -47,7 +51,7 @@ public final class SingleServerRecommendationResult extends SapSizingRecommendat
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

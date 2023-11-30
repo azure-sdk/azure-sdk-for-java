@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Gets or sets the application server configuration. */
+/**
+ * Gets or sets the application server configuration.
+ */
 @Fluent
 public final class ApplicationServerConfiguration {
     /*
@@ -29,13 +31,15 @@ public final class ApplicationServerConfiguration {
     @JsonProperty(value = "instanceCount", required = true)
     private long instanceCount;
 
-    /** Creates an instance of ApplicationServerConfiguration class. */
+    /**
+     * Creates an instance of ApplicationServerConfiguration class.
+     */
     public ApplicationServerConfiguration() {
     }
 
     /**
      * Get the subnetId property: The subnet id.
-     *
+     * 
      * @return the subnetId value.
      */
     public String subnetId() {
@@ -44,7 +48,7 @@ public final class ApplicationServerConfiguration {
 
     /**
      * Set the subnetId property: The subnet id.
-     *
+     * 
      * @param subnetId the subnetId value to set.
      * @return the ApplicationServerConfiguration object itself.
      */
@@ -55,7 +59,7 @@ public final class ApplicationServerConfiguration {
 
     /**
      * Get the virtualMachineConfiguration property: Gets or sets the virtual machine configuration.
-     *
+     * 
      * @return the virtualMachineConfiguration value.
      */
     public VirtualMachineConfiguration virtualMachineConfiguration() {
@@ -64,19 +68,19 @@ public final class ApplicationServerConfiguration {
 
     /**
      * Set the virtualMachineConfiguration property: Gets or sets the virtual machine configuration.
-     *
+     * 
      * @param virtualMachineConfiguration the virtualMachineConfiguration value to set.
      * @return the ApplicationServerConfiguration object itself.
      */
-    public ApplicationServerConfiguration withVirtualMachineConfiguration(
-        VirtualMachineConfiguration virtualMachineConfiguration) {
+    public ApplicationServerConfiguration
+        withVirtualMachineConfiguration(VirtualMachineConfiguration virtualMachineConfiguration) {
         this.virtualMachineConfiguration = virtualMachineConfiguration;
         return this;
     }
 
     /**
      * Get the instanceCount property: The number of app server instances.
-     *
+     * 
      * @return the instanceCount value.
      */
     public long instanceCount() {
@@ -85,7 +89,7 @@ public final class ApplicationServerConfiguration {
 
     /**
      * Set the instanceCount property: The number of app server instances.
-     *
+     * 
      * @param instanceCount the instanceCount value to set.
      * @return the ApplicationServerConfiguration object itself.
      */
@@ -96,22 +100,17 @@ public final class ApplicationServerConfiguration {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (subnetId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property subnetId in model ApplicationServerConfiguration"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property subnetId in model ApplicationServerConfiguration"));
         }
         if (virtualMachineConfiguration() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property virtualMachineConfiguration in model"
-                            + " ApplicationServerConfiguration"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property virtualMachineConfiguration in model ApplicationServerConfiguration"));
         } else {
             virtualMachineConfiguration().validate();
         }

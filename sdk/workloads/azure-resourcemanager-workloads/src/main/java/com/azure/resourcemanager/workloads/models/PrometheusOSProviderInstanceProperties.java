@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Gets or sets the PrometheusOS provider properties. */
+/**
+ * Gets or sets the PrometheusOS provider properties.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "providerType")
 @JsonTypeName("PrometheusOS")
 @Fluent
@@ -38,13 +40,15 @@ public final class PrometheusOSProviderInstanceProperties extends ProviderSpecif
     @JsonProperty(value = "sapSid")
     private String sapSid;
 
-    /** Creates an instance of PrometheusOSProviderInstanceProperties class. */
+    /**
+     * Creates an instance of PrometheusOSProviderInstanceProperties class.
+     */
     public PrometheusOSProviderInstanceProperties() {
     }
 
     /**
      * Get the prometheusUrl property: URL of the Node Exporter endpoint.
-     *
+     * 
      * @return the prometheusUrl value.
      */
     public String prometheusUrl() {
@@ -53,7 +57,7 @@ public final class PrometheusOSProviderInstanceProperties extends ProviderSpecif
 
     /**
      * Set the prometheusUrl property: URL of the Node Exporter endpoint.
-     *
+     * 
      * @param prometheusUrl the prometheusUrl value to set.
      * @return the PrometheusOSProviderInstanceProperties object itself.
      */
@@ -64,7 +68,7 @@ public final class PrometheusOSProviderInstanceProperties extends ProviderSpecif
 
     /**
      * Get the sslPreference property: Gets or sets certificate preference if secure communication is enabled.
-     *
+     * 
      * @return the sslPreference value.
      */
     public SslPreference sslPreference() {
@@ -73,7 +77,7 @@ public final class PrometheusOSProviderInstanceProperties extends ProviderSpecif
 
     /**
      * Set the sslPreference property: Gets or sets certificate preference if secure communication is enabled.
-     *
+     * 
      * @param sslPreference the sslPreference value to set.
      * @return the PrometheusOSProviderInstanceProperties object itself.
      */
@@ -85,7 +89,7 @@ public final class PrometheusOSProviderInstanceProperties extends ProviderSpecif
     /**
      * Get the sslCertificateUri property: Gets or sets the blob URI to SSL certificate for the prometheus node
      * exporter.
-     *
+     * 
      * @return the sslCertificateUri value.
      */
     public String sslCertificateUri() {
@@ -95,7 +99,7 @@ public final class PrometheusOSProviderInstanceProperties extends ProviderSpecif
     /**
      * Set the sslCertificateUri property: Gets or sets the blob URI to SSL certificate for the prometheus node
      * exporter.
-     *
+     * 
      * @param sslCertificateUri the sslCertificateUri value to set.
      * @return the PrometheusOSProviderInstanceProperties object itself.
      */
@@ -106,7 +110,7 @@ public final class PrometheusOSProviderInstanceProperties extends ProviderSpecif
 
     /**
      * Get the sapSid property: Gets or sets the SAP System Identifier.
-     *
+     * 
      * @return the sapSid value.
      */
     public String sapSid() {
@@ -115,7 +119,7 @@ public final class PrometheusOSProviderInstanceProperties extends ProviderSpecif
 
     /**
      * Set the sapSid property: Gets or sets the SAP System Identifier.
-     *
+     * 
      * @param sapSid the sapSid value to set.
      * @return the PrometheusOSProviderInstanceProperties object itself.
      */
@@ -126,7 +130,7 @@ public final class PrometheusOSProviderInstanceProperties extends ProviderSpecif
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

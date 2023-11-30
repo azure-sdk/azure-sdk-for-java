@@ -13,11 +13,13 @@ import com.azure.resourcemanager.workloads.models.UserAssignedServiceIdentity;
 import com.azure.resourcemanager.workloads.models.WorkloadMonitorProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** A provider instance associated with SAP monitor. */
+/**
+ * A provider instance associated with SAP monitor.
+ */
 @Fluent
 public final class ProviderInstanceInner extends ProxyResource {
     /*
-     * [currently not in use] Managed service identity(user assigned identities)
+     * Managed service identity (user assigned identities)
      */
     @JsonProperty(value = "identity")
     private UserAssignedServiceIdentity identity;
@@ -34,13 +36,15 @@ public final class ProviderInstanceInner extends ProxyResource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of ProviderInstanceInner class. */
+    /**
+     * Creates an instance of ProviderInstanceInner class.
+     */
     public ProviderInstanceInner() {
     }
 
     /**
-     * Get the identity property: [currently not in use] Managed service identity(user assigned identities).
-     *
+     * Get the identity property: Managed service identity (user assigned identities).
+     * 
      * @return the identity value.
      */
     public UserAssignedServiceIdentity identity() {
@@ -48,8 +52,8 @@ public final class ProviderInstanceInner extends ProxyResource {
     }
 
     /**
-     * Set the identity property: [currently not in use] Managed service identity(user assigned identities).
-     *
+     * Set the identity property: Managed service identity (user assigned identities).
+     * 
      * @param identity the identity value to set.
      * @return the ProviderInstanceInner object itself.
      */
@@ -60,7 +64,7 @@ public final class ProviderInstanceInner extends ProxyResource {
 
     /**
      * Get the innerProperties property: Provider Instance properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private ProviderInstanceProperties innerProperties() {
@@ -69,7 +73,7 @@ public final class ProviderInstanceInner extends ProxyResource {
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -78,7 +82,7 @@ public final class ProviderInstanceInner extends ProxyResource {
 
     /**
      * Get the provisioningState property: State of provisioning of the provider instance.
-     *
+     * 
      * @return the provisioningState value.
      */
     public WorkloadMonitorProvisioningState provisioningState() {
@@ -87,7 +91,7 @@ public final class ProviderInstanceInner extends ProxyResource {
 
     /**
      * Get the errors property: Defines the provider instance errors.
-     *
+     * 
      * @return the errors value.
      */
     public ProviderInstancePropertiesErrors errors() {
@@ -95,8 +99,8 @@ public final class ProviderInstanceInner extends ProxyResource {
     }
 
     /**
-     * Get the providerSettings property: Defines the provider specific properties.
-     *
+     * Get the providerSettings property: Defines the provider instance errors.
+     * 
      * @return the providerSettings value.
      */
     public ProviderSpecificProperties providerSettings() {
@@ -104,8 +108,8 @@ public final class ProviderInstanceInner extends ProxyResource {
     }
 
     /**
-     * Set the providerSettings property: Defines the provider specific properties.
-     *
+     * Set the providerSettings property: Defines the provider instance errors.
+     * 
      * @param providerSettings the providerSettings value to set.
      * @return the ProviderInstanceInner object itself.
      */
@@ -119,7 +123,7 @@ public final class ProviderInstanceInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
