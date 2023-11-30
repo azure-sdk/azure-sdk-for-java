@@ -20,7 +20,7 @@ public final class ManagedResourceGroupConfiguration {
     private String name;
 
     /*
-     * Managed Resource Group location
+     * Managed Resource Group location.
      */
     @JsonProperty(value = "location", required = true)
     private String location;
