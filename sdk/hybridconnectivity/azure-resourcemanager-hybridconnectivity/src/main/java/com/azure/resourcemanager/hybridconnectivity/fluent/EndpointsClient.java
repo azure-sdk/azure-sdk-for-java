@@ -14,14 +14,15 @@ import com.azure.resourcemanager.hybridconnectivity.fluent.models.EndpointResour
 import com.azure.resourcemanager.hybridconnectivity.fluent.models.IngressGatewayResourceInner;
 import com.azure.resourcemanager.hybridconnectivity.fluent.models.ManagedProxyResourceInner;
 import com.azure.resourcemanager.hybridconnectivity.models.ListCredentialsRequest;
-import com.azure.resourcemanager.hybridconnectivity.models.ListIngressGatewayCredentialsRequest;
 import com.azure.resourcemanager.hybridconnectivity.models.ManagedProxyRequest;
 
-/** An instance of this class provides access to all the operations defined in EndpointsClient. */
+/**
+ * An instance of this class provides access to all the operations defined in EndpointsClient.
+ */
 public interface EndpointsClient {
     /**
      * List of endpoints to the target resource.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -33,7 +34,7 @@ public interface EndpointsClient {
 
     /**
      * List of endpoints to the target resource.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -46,7 +47,7 @@ public interface EndpointsClient {
 
     /**
      * Gets the endpoint to the resource.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
      * @param endpointName The endpoint name.
      * @param context The context to associate with this operation.
@@ -60,7 +61,7 @@ public interface EndpointsClient {
 
     /**
      * Gets the endpoint to the resource.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
      * @param endpointName The endpoint name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -73,7 +74,7 @@ public interface EndpointsClient {
 
     /**
      * Create or update the endpoint to the target resource.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
      * @param endpointName The endpoint name.
      * @param endpointResource Endpoint details.
@@ -84,12 +85,12 @@ public interface EndpointsClient {
      * @return the endpoint for the target resource along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<EndpointResourceInner> createOrUpdateWithResponse(
-        String resourceUri, String endpointName, EndpointResourceInner endpointResource, Context context);
+    Response<EndpointResourceInner> createOrUpdateWithResponse(String resourceUri, String endpointName,
+        EndpointResourceInner endpointResource, Context context);
 
     /**
      * Create or update the endpoint to the target resource.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
      * @param endpointName The endpoint name.
      * @param endpointResource Endpoint details.
@@ -99,12 +100,12 @@ public interface EndpointsClient {
      * @return the endpoint for the target resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    EndpointResourceInner createOrUpdate(
-        String resourceUri, String endpointName, EndpointResourceInner endpointResource);
+    EndpointResourceInner createOrUpdate(String resourceUri, String endpointName,
+        EndpointResourceInner endpointResource);
 
     /**
      * Update the endpoint to the target resource.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
      * @param endpointName The endpoint name.
      * @param endpointResource Endpoint details.
@@ -115,12 +116,12 @@ public interface EndpointsClient {
      * @return the endpoint for the target resource along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<EndpointResourceInner> updateWithResponse(
-        String resourceUri, String endpointName, EndpointResourceInner endpointResource, Context context);
+    Response<EndpointResourceInner> updateWithResponse(String resourceUri, String endpointName,
+        EndpointResourceInner endpointResource, Context context);
 
     /**
      * Update the endpoint to the target resource.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
      * @param endpointName The endpoint name.
      * @param endpointResource Endpoint details.
@@ -134,7 +135,7 @@ public interface EndpointsClient {
 
     /**
      * Deletes the endpoint access to the target resource.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
      * @param endpointName The endpoint name.
      * @param context The context to associate with this operation.
@@ -148,7 +149,7 @@ public interface EndpointsClient {
 
     /**
      * Deletes the endpoint access to the target resource.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
      * @param endpointName The endpoint name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -160,7 +161,7 @@ public interface EndpointsClient {
 
     /**
      * Gets the endpoint access credentials to the resource.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
      * @param endpointName The endpoint name.
      * @param expiresin The is how long the endpoint access token is valid (in seconds).
@@ -172,16 +173,12 @@ public interface EndpointsClient {
      * @return the endpoint access credentials to the resource along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<EndpointAccessResourceInner> listCredentialsWithResponse(
-        String resourceUri,
-        String endpointName,
-        Long expiresin,
-        ListCredentialsRequest listCredentialsRequest,
-        Context context);
+    Response<EndpointAccessResourceInner> listCredentialsWithResponse(String resourceUri, String endpointName,
+        Long expiresin, ListCredentialsRequest listCredentialsRequest, Context context);
 
     /**
      * Gets the endpoint access credentials to the resource.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
      * @param endpointName The endpoint name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -194,11 +191,10 @@ public interface EndpointsClient {
 
     /**
      * Gets the ingress gateway endpoint credentials.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
      * @param endpointName The endpoint name.
      * @param expiresin The is how long the endpoint access token is valid (in seconds).
-     * @param listIngressGatewayCredentialsRequest Object of type ListIngressGatewayCredentialsRequest.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -206,16 +202,12 @@ public interface EndpointsClient {
      * @return the ingress gateway endpoint credentials along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<IngressGatewayResourceInner> listIngressGatewayCredentialsWithResponse(
-        String resourceUri,
-        String endpointName,
-        Long expiresin,
-        ListIngressGatewayCredentialsRequest listIngressGatewayCredentialsRequest,
-        Context context);
+    Response<IngressGatewayResourceInner> listIngressGatewayCredentialsWithResponse(String resourceUri,
+        String endpointName, Long expiresin, Context context);
 
     /**
      * Gets the ingress gateway endpoint credentials.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
      * @param endpointName The endpoint name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -228,7 +220,7 @@ public interface EndpointsClient {
 
     /**
      * Fetches the managed proxy details.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
      * @param endpointName The endpoint name.
      * @param managedProxyRequest Object of type ManagedProxyRequest.
@@ -239,12 +231,12 @@ public interface EndpointsClient {
      * @return managed Proxy along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<ManagedProxyResourceInner> listManagedProxyDetailsWithResponse(
-        String resourceUri, String endpointName, ManagedProxyRequest managedProxyRequest, Context context);
+    Response<ManagedProxyResourceInner> listManagedProxyDetailsWithResponse(String resourceUri, String endpointName,
+        ManagedProxyRequest managedProxyRequest, Context context);
 
     /**
      * Fetches the managed proxy details.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
      * @param endpointName The endpoint name.
      * @param managedProxyRequest Object of type ManagedProxyRequest.
@@ -254,6 +246,6 @@ public interface EndpointsClient {
      * @return managed Proxy.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    ManagedProxyResourceInner listManagedProxyDetails(
-        String resourceUri, String endpointName, ManagedProxyRequest managedProxyRequest);
+    ManagedProxyResourceInner listManagedProxyDetails(String resourceUri, String endpointName,
+        ManagedProxyRequest managedProxyRequest);
 }

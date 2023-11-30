@@ -7,23 +7,26 @@ package com.azure.resourcemanager.hybridconnectivity.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The details of the service for which credentials needs to be returned. */
+/**
+ * Represent ListCredentials Request object.
+ */
 @Fluent
 public final class ListCredentialsRequest {
     /*
-     * The name of the service. If not provided, the request will by pass the generation of service configuration token
+     * The name of the service.
      */
     @JsonProperty(value = "serviceName")
     private ServiceName serviceName;
 
-    /** Creates an instance of ListCredentialsRequest class. */
+    /**
+     * Creates an instance of ListCredentialsRequest class.
+     */
     public ListCredentialsRequest() {
     }
 
     /**
-     * Get the serviceName property: The name of the service. If not provided, the request will by pass the generation
-     * of service configuration token.
-     *
+     * Get the serviceName property: The name of the service.
+     * 
      * @return the serviceName value.
      */
     public ServiceName serviceName() {
@@ -31,9 +34,8 @@ public final class ListCredentialsRequest {
     }
 
     /**
-     * Set the serviceName property: The name of the service. If not provided, the request will by pass the generation
-     * of service configuration token.
-     *
+     * Set the serviceName property: The name of the service.
+     * 
      * @param serviceName the serviceName value to set.
      * @return the ListCredentialsRequest object itself.
      */
@@ -44,7 +46,7 @@ public final class ListCredentialsRequest {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

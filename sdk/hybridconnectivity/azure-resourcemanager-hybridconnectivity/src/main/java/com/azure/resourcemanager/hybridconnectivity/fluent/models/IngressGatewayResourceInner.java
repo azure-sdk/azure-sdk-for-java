@@ -7,7 +7,9 @@ package com.azure.resourcemanager.hybridconnectivity.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The ingress gateway access credentials. */
+/**
+ * The ingress gateway access credentials.
+ */
 @Fluent
 public final class IngressGatewayResourceInner {
     /*
@@ -22,13 +24,15 @@ public final class IngressGatewayResourceInner {
     @JsonProperty(value = "ingress")
     private IngressProfileProperties innerIngress;
 
-    /** Creates an instance of IngressGatewayResourceInner class. */
+    /**
+     * Creates an instance of IngressGatewayResourceInner class.
+     */
     public IngressGatewayResourceInner() {
     }
 
     /**
      * Get the innerRelay property: Azure relay hybrid connection access properties.
-     *
+     * 
      * @return the innerRelay value.
      */
     private RelayNamespaceAccessProperties innerRelay() {
@@ -37,7 +41,7 @@ public final class IngressGatewayResourceInner {
 
     /**
      * Get the innerIngress property: Ingress gateway profile.
-     *
+     * 
      * @return the innerIngress value.
      */
     private IngressProfileProperties innerIngress() {
@@ -46,7 +50,7 @@ public final class IngressGatewayResourceInner {
 
     /**
      * Get the namespaceName property: The namespace name.
-     *
+     * 
      * @return the namespaceName value.
      */
     public String namespaceName() {
@@ -55,7 +59,7 @@ public final class IngressGatewayResourceInner {
 
     /**
      * Set the namespaceName property: The namespace name.
-     *
+     * 
      * @param namespaceName the namespaceName value to set.
      * @return the IngressGatewayResourceInner object itself.
      */
@@ -69,7 +73,7 @@ public final class IngressGatewayResourceInner {
 
     /**
      * Get the namespaceNameSuffix property: The suffix domain name of relay namespace.
-     *
+     * 
      * @return the namespaceNameSuffix value.
      */
     public String namespaceNameSuffix() {
@@ -78,7 +82,7 @@ public final class IngressGatewayResourceInner {
 
     /**
      * Set the namespaceNameSuffix property: The suffix domain name of relay namespace.
-     *
+     * 
      * @param namespaceNameSuffix the namespaceNameSuffix value to set.
      * @return the IngressGatewayResourceInner object itself.
      */
@@ -92,7 +96,7 @@ public final class IngressGatewayResourceInner {
 
     /**
      * Get the hybridConnectionName property: Azure Relay hybrid connection name for the resource.
-     *
+     * 
      * @return the hybridConnectionName value.
      */
     public String hybridConnectionName() {
@@ -101,7 +105,7 @@ public final class IngressGatewayResourceInner {
 
     /**
      * Set the hybridConnectionName property: Azure Relay hybrid connection name for the resource.
-     *
+     * 
      * @param hybridConnectionName the hybridConnectionName value to set.
      * @return the IngressGatewayResourceInner object itself.
      */
@@ -115,7 +119,7 @@ public final class IngressGatewayResourceInner {
 
     /**
      * Get the accessKey property: Access key for hybrid connection.
-     *
+     * 
      * @return the accessKey value.
      */
     public String accessKey() {
@@ -124,7 +128,7 @@ public final class IngressGatewayResourceInner {
 
     /**
      * Get the expiresOn property: The expiration of access key in unix time.
-     *
+     * 
      * @return the expiresOn value.
      */
     public Long expiresOn() {
@@ -133,7 +137,7 @@ public final class IngressGatewayResourceInner {
 
     /**
      * Set the expiresOn property: The expiration of access key in unix time.
-     *
+     * 
      * @param expiresOn the expiresOn value to set.
      * @return the IngressGatewayResourceInner object itself.
      */
@@ -147,7 +151,7 @@ public final class IngressGatewayResourceInner {
 
     /**
      * Get the serviceConfigurationToken property: The token to access the enabled service.
-     *
+     * 
      * @return the serviceConfigurationToken value.
      */
     public String serviceConfigurationToken() {
@@ -156,7 +160,7 @@ public final class IngressGatewayResourceInner {
 
     /**
      * Set the serviceConfigurationToken property: The token to access the enabled service.
-     *
+     * 
      * @param serviceConfigurationToken the serviceConfigurationToken value to set.
      * @return the IngressGatewayResourceInner object itself.
      */
@@ -170,7 +174,7 @@ public final class IngressGatewayResourceInner {
 
     /**
      * Get the hostname property: The ingress hostname.
-     *
+     * 
      * @return the hostname value.
      */
     public String hostname() {
@@ -179,7 +183,7 @@ public final class IngressGatewayResourceInner {
 
     /**
      * Set the hostname property: The ingress hostname.
-     *
+     * 
      * @param hostname the hostname value to set.
      * @return the IngressGatewayResourceInner object itself.
      */
@@ -193,7 +197,7 @@ public final class IngressGatewayResourceInner {
 
     /**
      * Get the serverId property: The arc ingress gateway server app id.
-     *
+     * 
      * @return the serverId value.
      */
     public String serverId() {
@@ -202,7 +206,7 @@ public final class IngressGatewayResourceInner {
 
     /**
      * Set the serverId property: The arc ingress gateway server app id.
-     *
+     * 
      * @param serverId the serverId value to set.
      * @return the IngressGatewayResourceInner object itself.
      */
@@ -216,7 +220,7 @@ public final class IngressGatewayResourceInner {
 
     /**
      * Get the tenantId property: The target resource home tenant id.
-     *
+     * 
      * @return the tenantId value.
      */
     public String tenantId() {
@@ -225,7 +229,7 @@ public final class IngressGatewayResourceInner {
 
     /**
      * Set the tenantId property: The target resource home tenant id.
-     *
+     * 
      * @param tenantId the tenantId value to set.
      * @return the IngressGatewayResourceInner object itself.
      */
@@ -239,7 +243,7 @@ public final class IngressGatewayResourceInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

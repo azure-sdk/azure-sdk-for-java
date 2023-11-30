@@ -7,42 +7,46 @@ package com.azure.resourcemanager.hybridconnectivity.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Service configuration details. */
+/**
+ * Service configuration details.
+ */
 @Fluent
 public final class ServiceConfigurationPropertiesPatch {
     /*
      * The port on which service is enabled.
      */
     @JsonProperty(value = "port")
-    private Long port;
+    private String port;
 
-    /** Creates an instance of ServiceConfigurationPropertiesPatch class. */
+    /**
+     * Creates an instance of ServiceConfigurationPropertiesPatch class.
+     */
     public ServiceConfigurationPropertiesPatch() {
     }
 
     /**
      * Get the port property: The port on which service is enabled.
-     *
+     * 
      * @return the port value.
      */
-    public Long port() {
+    public String port() {
         return this.port;
     }
 
     /**
      * Set the port property: The port on which service is enabled.
-     *
+     * 
      * @param port the port value to set.
      * @return the ServiceConfigurationPropertiesPatch object itself.
      */
-    public ServiceConfigurationPropertiesPatch withPort(Long port) {
+    public ServiceConfigurationPropertiesPatch withPort(String port) {
         this.port = port;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

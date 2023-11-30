@@ -7,65 +7,113 @@ package com.azure.resourcemanager.hybridconnectivity.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
-import com.azure.resourcemanager.hybridconnectivity.models.EndpointProperties;
+import com.azure.resourcemanager.hybridconnectivity.models.Type;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The endpoint for the target resource. */
+/**
+ * The endpoint for the target resource.
+ */
 @Fluent
 public final class EndpointResourceInner extends ProxyResource {
+    /*
+     * System data of endpoint resource
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData innerSystemData;
+
     /*
      * The endpoint properties.
      */
     @JsonProperty(value = "properties")
-    private EndpointProperties properties;
+    private EndpointProperties innerProperties;
 
-    /*
-     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+    /**
+     * Creates an instance of EndpointResourceInner class.
      */
-    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
-    private SystemData systemData;
-
-    /** Creates an instance of EndpointResourceInner class. */
     public EndpointResourceInner() {
     }
 
     /**
-     * Get the properties property: The endpoint properties.
-     *
-     * @return the properties value.
+     * Get the innerSystemData property: System data of endpoint resource.
+     * 
+     * @return the innerSystemData value.
      */
-    public EndpointProperties properties() {
-        return this.properties;
+    private SystemData innerSystemData() {
+        return this.innerSystemData;
     }
 
     /**
-     * Set the properties property: The endpoint properties.
-     *
-     * @param properties the properties value to set.
+     * Get the innerProperties property: The endpoint properties.
+     * 
+     * @return the innerProperties value.
+     */
+    private EndpointProperties innerProperties() {
+        return this.innerProperties;
+    }
+
+    /**
+     * Get the type property: The type of endpoint.
+     * 
+     * @return the type value.
+     */
+    public Type typePropertiesType() {
+        return this.innerProperties() == null ? null : this.innerProperties().type();
+    }
+
+    /**
+     * Set the type property: The type of endpoint.
+     * 
+     * @param type the type value to set.
      * @return the EndpointResourceInner object itself.
      */
-    public EndpointResourceInner withProperties(EndpointProperties properties) {
-        this.properties = properties;
+    public EndpointResourceInner withTypePropertiesType(Type type) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new EndpointProperties();
+        }
+        this.innerProperties().withType(type);
         return this;
     }
 
     /**
-     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
-     * @return the systemData value.
+     * Get the resourceId property: The resource Id of the connectivity endpoint (optional).
+     * 
+     * @return the resourceId value.
      */
-    public SystemData systemData() {
-        return this.systemData;
+    public String resourceId() {
+        return this.innerProperties() == null ? null : this.innerProperties().resourceId();
+    }
+
+    /**
+     * Set the resourceId property: The resource Id of the connectivity endpoint (optional).
+     * 
+     * @param resourceId the resourceId value to set.
+     * @return the EndpointResourceInner object itself.
+     */
+    public EndpointResourceInner withResourceId(String resourceId) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new EndpointProperties();
+        }
+        this.innerProperties().withResourceId(resourceId);
+        return this;
+    }
+
+    /**
+     * Get the provisioningState property: The resource provisioning state.
+     * 
+     * @return the provisioningState value.
+     */
+    public String provisioningState() {
+        return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (properties() != null) {
-            properties().validate();
+        if (innerProperties() != null) {
+            innerProperties().validate();
         }
     }
 }

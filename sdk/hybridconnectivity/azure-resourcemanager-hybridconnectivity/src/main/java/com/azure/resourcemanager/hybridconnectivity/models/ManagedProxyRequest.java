@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Represent ManageProxy Request object. */
+/**
+ * Represent ManageProxy Request object.
+ */
 @Fluent
 public final class ManagedProxyRequest {
     /*
@@ -24,19 +26,20 @@ public final class ManagedProxyRequest {
     private String hostname;
 
     /*
-     * The name of the service. It is an optional property, if not provided, service configuration tokens issue code
-     * would be by passed.
+     * The name of the service.
      */
     @JsonProperty(value = "serviceName")
     private ServiceName serviceName;
 
-    /** Creates an instance of ManagedProxyRequest class. */
+    /**
+     * Creates an instance of ManagedProxyRequest class.
+     */
     public ManagedProxyRequest() {
     }
 
     /**
      * Get the service property: The name of the service.
-     *
+     * 
      * @return the service value.
      */
     public String service() {
@@ -45,7 +48,7 @@ public final class ManagedProxyRequest {
 
     /**
      * Set the service property: The name of the service.
-     *
+     * 
      * @param service the service value to set.
      * @return the ManagedProxyRequest object itself.
      */
@@ -56,7 +59,7 @@ public final class ManagedProxyRequest {
 
     /**
      * Get the hostname property: The target host name.
-     *
+     * 
      * @return the hostname value.
      */
     public String hostname() {
@@ -65,7 +68,7 @@ public final class ManagedProxyRequest {
 
     /**
      * Set the hostname property: The target host name.
-     *
+     * 
      * @param hostname the hostname value to set.
      * @return the ManagedProxyRequest object itself.
      */
@@ -75,9 +78,8 @@ public final class ManagedProxyRequest {
     }
 
     /**
-     * Get the serviceName property: The name of the service. It is an optional property, if not provided, service
-     * configuration tokens issue code would be by passed.
-     *
+     * Get the serviceName property: The name of the service.
+     * 
      * @return the serviceName value.
      */
     public ServiceName serviceName() {
@@ -85,9 +87,8 @@ public final class ManagedProxyRequest {
     }
 
     /**
-     * Set the serviceName property: The name of the service. It is an optional property, if not provided, service
-     * configuration tokens issue code would be by passed.
-     *
+     * Set the serviceName property: The name of the service.
+     * 
      * @param serviceName the serviceName value to set.
      * @return the ManagedProxyRequest object itself.
      */
@@ -98,14 +99,13 @@ public final class ManagedProxyRequest {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (service() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property service in model ManagedProxyRequest"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property service in model ManagedProxyRequest"));
         }
     }
 

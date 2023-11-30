@@ -6,11 +6,13 @@ package com.azure.resourcemanager.hybridconnectivity.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
-import com.azure.resourcemanager.hybridconnectivity.models.ProvisioningState;
+import com.azure.resourcemanager.hybridconnectivity.models.Result;
 import com.azure.resourcemanager.hybridconnectivity.models.ServiceName;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Service configuration details. */
+/**
+ * Service configuration details.
+ */
 @Fluent
 public final class ServiceConfigurationProperties {
     /*
@@ -29,21 +31,23 @@ public final class ServiceConfigurationProperties {
      * The port on which service is enabled.
      */
     @JsonProperty(value = "port")
-    private Long port;
+    private String port;
 
     /*
      * The resource provisioning state.
      */
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
-    private ProvisioningState provisioningState;
+    private Result provisioningState;
 
-    /** Creates an instance of ServiceConfigurationProperties class. */
+    /**
+     * Creates an instance of ServiceConfigurationProperties class.
+     */
     public ServiceConfigurationProperties() {
     }
 
     /**
      * Get the serviceName property: Name of the service.
-     *
+     * 
      * @return the serviceName value.
      */
     public ServiceName serviceName() {
@@ -52,7 +56,7 @@ public final class ServiceConfigurationProperties {
 
     /**
      * Set the serviceName property: Name of the service.
-     *
+     * 
      * @param serviceName the serviceName value to set.
      * @return the ServiceConfigurationProperties object itself.
      */
@@ -63,7 +67,7 @@ public final class ServiceConfigurationProperties {
 
     /**
      * Get the resourceId property: The resource Id of the connectivity endpoint (optional).
-     *
+     * 
      * @return the resourceId value.
      */
     public String resourceId() {
@@ -72,7 +76,7 @@ public final class ServiceConfigurationProperties {
 
     /**
      * Set the resourceId property: The resource Id of the connectivity endpoint (optional).
-     *
+     * 
      * @param resourceId the resourceId value to set.
      * @return the ServiceConfigurationProperties object itself.
      */
@@ -83,44 +87,42 @@ public final class ServiceConfigurationProperties {
 
     /**
      * Get the port property: The port on which service is enabled.
-     *
+     * 
      * @return the port value.
      */
-    public Long port() {
+    public String port() {
         return this.port;
     }
 
     /**
      * Set the port property: The port on which service is enabled.
-     *
+     * 
      * @param port the port value to set.
      * @return the ServiceConfigurationProperties object itself.
      */
-    public ServiceConfigurationProperties withPort(Long port) {
+    public ServiceConfigurationProperties withPort(String port) {
         this.port = port;
         return this;
     }
 
     /**
      * Get the provisioningState property: The resource provisioning state.
-     *
+     * 
      * @return the provisioningState value.
      */
-    public ProvisioningState provisioningState() {
+    public Result provisioningState() {
         return this.provisioningState;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (serviceName() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property serviceName in model ServiceConfigurationProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property serviceName in model ServiceConfigurationProperties"));
         }
     }
 

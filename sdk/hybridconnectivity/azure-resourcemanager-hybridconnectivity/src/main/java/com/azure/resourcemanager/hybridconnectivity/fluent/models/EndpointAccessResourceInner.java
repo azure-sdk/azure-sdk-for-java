@@ -7,7 +7,9 @@ package com.azure.resourcemanager.hybridconnectivity.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The endpoint access for the target resource. */
+/**
+ * The endpoint access for the target resource.
+ */
 @Fluent
 public final class EndpointAccessResourceInner {
     /*
@@ -16,13 +18,15 @@ public final class EndpointAccessResourceInner {
     @JsonProperty(value = "relay")
     private RelayNamespaceAccessProperties innerRelay;
 
-    /** Creates an instance of EndpointAccessResourceInner class. */
+    /**
+     * Creates an instance of EndpointAccessResourceInner class.
+     */
     public EndpointAccessResourceInner() {
     }
 
     /**
      * Get the innerRelay property: Azure relay hybrid connection access properties.
-     *
+     * 
      * @return the innerRelay value.
      */
     private RelayNamespaceAccessProperties innerRelay() {
@@ -31,7 +35,7 @@ public final class EndpointAccessResourceInner {
 
     /**
      * Get the namespaceName property: The namespace name.
-     *
+     * 
      * @return the namespaceName value.
      */
     public String namespaceName() {
@@ -40,7 +44,7 @@ public final class EndpointAccessResourceInner {
 
     /**
      * Set the namespaceName property: The namespace name.
-     *
+     * 
      * @param namespaceName the namespaceName value to set.
      * @return the EndpointAccessResourceInner object itself.
      */
@@ -54,7 +58,7 @@ public final class EndpointAccessResourceInner {
 
     /**
      * Get the namespaceNameSuffix property: The suffix domain name of relay namespace.
-     *
+     * 
      * @return the namespaceNameSuffix value.
      */
     public String namespaceNameSuffix() {
@@ -63,7 +67,7 @@ public final class EndpointAccessResourceInner {
 
     /**
      * Set the namespaceNameSuffix property: The suffix domain name of relay namespace.
-     *
+     * 
      * @param namespaceNameSuffix the namespaceNameSuffix value to set.
      * @return the EndpointAccessResourceInner object itself.
      */
@@ -77,7 +81,7 @@ public final class EndpointAccessResourceInner {
 
     /**
      * Get the hybridConnectionName property: Azure Relay hybrid connection name for the resource.
-     *
+     * 
      * @return the hybridConnectionName value.
      */
     public String hybridConnectionName() {
@@ -86,7 +90,7 @@ public final class EndpointAccessResourceInner {
 
     /**
      * Set the hybridConnectionName property: Azure Relay hybrid connection name for the resource.
-     *
+     * 
      * @param hybridConnectionName the hybridConnectionName value to set.
      * @return the EndpointAccessResourceInner object itself.
      */
@@ -100,7 +104,7 @@ public final class EndpointAccessResourceInner {
 
     /**
      * Get the accessKey property: Access key for hybrid connection.
-     *
+     * 
      * @return the accessKey value.
      */
     public String accessKey() {
@@ -109,7 +113,7 @@ public final class EndpointAccessResourceInner {
 
     /**
      * Get the expiresOn property: The expiration of access key in unix time.
-     *
+     * 
      * @return the expiresOn value.
      */
     public Long expiresOn() {
@@ -118,7 +122,7 @@ public final class EndpointAccessResourceInner {
 
     /**
      * Set the expiresOn property: The expiration of access key in unix time.
-     *
+     * 
      * @param expiresOn the expiresOn value to set.
      * @return the EndpointAccessResourceInner object itself.
      */
@@ -132,7 +136,7 @@ public final class EndpointAccessResourceInner {
 
     /**
      * Get the serviceConfigurationToken property: The token to access the enabled service.
-     *
+     * 
      * @return the serviceConfigurationToken value.
      */
     public String serviceConfigurationToken() {
@@ -141,7 +145,7 @@ public final class EndpointAccessResourceInner {
 
     /**
      * Set the serviceConfigurationToken property: The token to access the enabled service.
-     *
+     * 
      * @param serviceConfigurationToken the serviceConfigurationToken value to set.
      * @return the EndpointAccessResourceInner object itself.
      */
@@ -155,7 +159,7 @@ public final class EndpointAccessResourceInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

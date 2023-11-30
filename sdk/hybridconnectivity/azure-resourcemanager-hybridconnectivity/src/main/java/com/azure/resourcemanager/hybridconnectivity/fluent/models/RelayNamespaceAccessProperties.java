@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Azure relay hybrid connection access properties. */
+/**
+ * Azure relay hybrid connection access properties.
+ */
 @Fluent
 public final class RelayNamespaceAccessProperties {
     /*
@@ -47,13 +49,15 @@ public final class RelayNamespaceAccessProperties {
     @JsonProperty(value = "serviceConfigurationToken")
     private String serviceConfigurationToken;
 
-    /** Creates an instance of RelayNamespaceAccessProperties class. */
+    /**
+     * Creates an instance of RelayNamespaceAccessProperties class.
+     */
     public RelayNamespaceAccessProperties() {
     }
 
     /**
      * Get the namespaceName property: The namespace name.
-     *
+     * 
      * @return the namespaceName value.
      */
     public String namespaceName() {
@@ -62,7 +66,7 @@ public final class RelayNamespaceAccessProperties {
 
     /**
      * Set the namespaceName property: The namespace name.
-     *
+     * 
      * @param namespaceName the namespaceName value to set.
      * @return the RelayNamespaceAccessProperties object itself.
      */
@@ -73,7 +77,7 @@ public final class RelayNamespaceAccessProperties {
 
     /**
      * Get the namespaceNameSuffix property: The suffix domain name of relay namespace.
-     *
+     * 
      * @return the namespaceNameSuffix value.
      */
     public String namespaceNameSuffix() {
@@ -82,7 +86,7 @@ public final class RelayNamespaceAccessProperties {
 
     /**
      * Set the namespaceNameSuffix property: The suffix domain name of relay namespace.
-     *
+     * 
      * @param namespaceNameSuffix the namespaceNameSuffix value to set.
      * @return the RelayNamespaceAccessProperties object itself.
      */
@@ -93,7 +97,7 @@ public final class RelayNamespaceAccessProperties {
 
     /**
      * Get the hybridConnectionName property: Azure Relay hybrid connection name for the resource.
-     *
+     * 
      * @return the hybridConnectionName value.
      */
     public String hybridConnectionName() {
@@ -102,7 +106,7 @@ public final class RelayNamespaceAccessProperties {
 
     /**
      * Set the hybridConnectionName property: Azure Relay hybrid connection name for the resource.
-     *
+     * 
      * @param hybridConnectionName the hybridConnectionName value to set.
      * @return the RelayNamespaceAccessProperties object itself.
      */
@@ -113,7 +117,7 @@ public final class RelayNamespaceAccessProperties {
 
     /**
      * Get the accessKey property: Access key for hybrid connection.
-     *
+     * 
      * @return the accessKey value.
      */
     public String accessKey() {
@@ -122,7 +126,7 @@ public final class RelayNamespaceAccessProperties {
 
     /**
      * Get the expiresOn property: The expiration of access key in unix time.
-     *
+     * 
      * @return the expiresOn value.
      */
     public Long expiresOn() {
@@ -131,7 +135,7 @@ public final class RelayNamespaceAccessProperties {
 
     /**
      * Set the expiresOn property: The expiration of access key in unix time.
-     *
+     * 
      * @param expiresOn the expiresOn value to set.
      * @return the RelayNamespaceAccessProperties object itself.
      */
@@ -142,7 +146,7 @@ public final class RelayNamespaceAccessProperties {
 
     /**
      * Get the serviceConfigurationToken property: The token to access the enabled service.
-     *
+     * 
      * @return the serviceConfigurationToken value.
      */
     public String serviceConfigurationToken() {
@@ -151,7 +155,7 @@ public final class RelayNamespaceAccessProperties {
 
     /**
      * Set the serviceConfigurationToken property: The token to access the enabled service.
-     *
+     * 
      * @param serviceConfigurationToken the serviceConfigurationToken value to set.
      * @return the RelayNamespaceAccessProperties object itself.
      */
@@ -162,27 +166,21 @@ public final class RelayNamespaceAccessProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (namespaceName() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property namespaceName in model RelayNamespaceAccessProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property namespaceName in model RelayNamespaceAccessProperties"));
         }
         if (namespaceNameSuffix() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property namespaceNameSuffix in model RelayNamespaceAccessProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property namespaceNameSuffix in model RelayNamespaceAccessProperties"));
         }
         if (hybridConnectionName() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property hybridConnectionName in model RelayNamespaceAccessProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property hybridConnectionName in model RelayNamespaceAccessProperties"));
         }
     }
 

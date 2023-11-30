@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Managed Proxy. */
+/**
+ * Managed Proxy.
+ */
 @Fluent
 public final class ManagedProxyResourceInner {
     /*
@@ -23,13 +25,15 @@ public final class ManagedProxyResourceInner {
     @JsonProperty(value = "expiresOn", required = true)
     private long expiresOn;
 
-    /** Creates an instance of ManagedProxyResourceInner class. */
+    /**
+     * Creates an instance of ManagedProxyResourceInner class.
+     */
     public ManagedProxyResourceInner() {
     }
 
     /**
      * Get the proxy property: The short lived proxy name.
-     *
+     * 
      * @return the proxy value.
      */
     public String proxy() {
@@ -38,7 +42,7 @@ public final class ManagedProxyResourceInner {
 
     /**
      * Set the proxy property: The short lived proxy name.
-     *
+     * 
      * @param proxy the proxy value to set.
      * @return the ManagedProxyResourceInner object itself.
      */
@@ -49,7 +53,7 @@ public final class ManagedProxyResourceInner {
 
     /**
      * Get the expiresOn property: The expiration time of short lived proxy name in unix epoch.
-     *
+     * 
      * @return the expiresOn value.
      */
     public long expiresOn() {
@@ -58,7 +62,7 @@ public final class ManagedProxyResourceInner {
 
     /**
      * Set the expiresOn property: The expiration time of short lived proxy name in unix epoch.
-     *
+     * 
      * @param expiresOn the expiresOn value to set.
      * @return the ManagedProxyResourceInner object itself.
      */
@@ -69,14 +73,13 @@ public final class ManagedProxyResourceInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (proxy() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property proxy in model ManagedProxyResourceInner"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property proxy in model ManagedProxyResourceInner"));
         }
     }
 
