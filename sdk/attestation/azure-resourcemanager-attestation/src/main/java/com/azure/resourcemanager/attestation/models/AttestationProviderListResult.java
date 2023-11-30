@@ -4,30 +4,88 @@
 
 package com.azure.resourcemanager.attestation.models;
 
-import com.azure.core.management.SystemData;
-import com.azure.resourcemanager.attestation.fluent.models.AttestationProviderListResultInner;
+import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
+import com.azure.resourcemanager.attestation.fluent.models.AttestationProviderInner;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** An immutable client-side representation of AttestationProviderListResult. */
-public interface AttestationProviderListResult {
-    /**
-     * Gets the systemData property: The system metadata relating to this resource.
-     *
-     * @return the systemData value.
+/**
+ * The response of a AttestationProvider list operation.
+ */
+@Fluent
+public final class AttestationProviderListResult {
+    /*
+     * The AttestationProvider items on this page
      */
-    SystemData systemData();
+    @JsonProperty(value = "value", required = true)
+    private List<AttestationProviderInner> value;
+
+    /*
+     * The link to the next page of items
+     */
+    @JsonProperty(value = "nextLink")
+    private String nextLink;
 
     /**
-     * Gets the value property: Attestation Provider array.
-     *
+     * Creates an instance of AttestationProviderListResult class.
+     */
+    public AttestationProviderListResult() {
+    }
+
+    /**
+     * Get the value property: The AttestationProvider items on this page.
+     * 
      * @return the value value.
      */
-    List<AttestationProvider> value();
+    public List<AttestationProviderInner> value() {
+        return this.value;
+    }
 
     /**
-     * Gets the inner com.azure.resourcemanager.attestation.fluent.models.AttestationProviderListResultInner object.
-     *
-     * @return the inner object.
+     * Set the value property: The AttestationProvider items on this page.
+     * 
+     * @param value the value value to set.
+     * @return the AttestationProviderListResult object itself.
      */
-    AttestationProviderListResultInner innerModel();
+    public AttestationProviderListResult withValue(List<AttestationProviderInner> value) {
+        this.value = value;
+        return this;
+    }
+
+    /**
+     * Get the nextLink property: The link to the next page of items.
+     * 
+     * @return the nextLink value.
+     */
+    public String nextLink() {
+        return this.nextLink;
+    }
+
+    /**
+     * Set the nextLink property: The link to the next page of items.
+     * 
+     * @param nextLink the nextLink value to set.
+     * @return the AttestationProviderListResult object itself.
+     */
+    public AttestationProviderListResult withNextLink(String nextLink) {
+        this.nextLink = nextLink;
+        return this;
+    }
+
+    /**
+     * Validates the instance.
+     * 
+     * @throws IllegalArgumentException thrown if the instance is not valid.
+     */
+    public void validate() {
+        if (value() == null) {
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property value in model AttestationProviderListResult"));
+        } else {
+            value().forEach(e -> e.validate());
+        }
+    }
+
+    private static final ClientLogger LOGGER = new ClientLogger(AttestationProviderListResult.class);
 }

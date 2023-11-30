@@ -6,18 +6,45 @@ package com.azure.resourcemanager.attestation.fluent;
 
 import com.azure.core.annotation.ReturnType;
 import com.azure.core.annotation.ServiceMethod;
+import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.attestation.fluent.models.AttestationProviderInner;
-import com.azure.resourcemanager.attestation.fluent.models.AttestationProviderListResultInner;
-import com.azure.resourcemanager.attestation.models.AttestationServiceCreationParams;
-import com.azure.resourcemanager.attestation.models.AttestationServicePatchParams;
+import com.azure.resourcemanager.attestation.fluent.models.PrivateLinkResourceListResultInner;
+import com.azure.resourcemanager.attestation.models.AttestationProviderUpdate;
 
-/** An instance of this class provides access to all the operations defined in AttestationProvidersClient. */
+/**
+ * An instance of this class provides access to all the operations defined in AttestationProvidersClient.
+ */
 public interface AttestationProvidersClient {
     /**
+     * Returns attestation providers list in a resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a AttestationProvider list operation as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<AttestationProviderInner> listByResourceGroup(String resourceGroupName);
+
+    /**
+     * Returns attestation providers list in a resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a AttestationProvider list operation as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<AttestationProviderInner> listByResourceGroup(String resourceGroupName, Context context);
+
+    /**
      * Get the status of Attestation Provider.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param providerName Name of the attestation provider.
      * @param context The context to associate with this operation.
@@ -27,12 +54,12 @@ public interface AttestationProvidersClient {
      * @return the status of Attestation Provider along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<AttestationProviderInner> getByResourceGroupWithResponse(
-        String resourceGroupName, String providerName, Context context);
+    Response<AttestationProviderInner> getByResourceGroupWithResponse(String resourceGroupName, String providerName,
+        Context context);
 
     /**
      * Get the status of Attestation Provider.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param providerName Name of the attestation provider.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -44,11 +71,11 @@ public interface AttestationProvidersClient {
     AttestationProviderInner getByResourceGroup(String resourceGroupName, String providerName);
 
     /**
-     * Creates a new Attestation Provider.
-     *
+     * Creates or updates an Attestation Provider.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param providerName Name of the attestation provider.
-     * @param creationParams Client supplied parameters.
+     * @param resource Resource create parameters.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -56,33 +83,29 @@ public interface AttestationProvidersClient {
      * @return attestation service response message along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<AttestationProviderInner> createWithResponse(
-        String resourceGroupName,
-        String providerName,
-        AttestationServiceCreationParams creationParams,
-        Context context);
+    Response<AttestationProviderInner> createWithResponse(String resourceGroupName, String providerName,
+        AttestationProviderInner resource, Context context);
 
     /**
-     * Creates a new Attestation Provider.
-     *
+     * Creates or updates an Attestation Provider.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param providerName Name of the attestation provider.
-     * @param creationParams Client supplied parameters.
+     * @param resource Resource create parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return attestation service response message.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    AttestationProviderInner create(
-        String resourceGroupName, String providerName, AttestationServiceCreationParams creationParams);
+    AttestationProviderInner create(String resourceGroupName, String providerName, AttestationProviderInner resource);
 
     /**
      * Updates the Attestation Provider.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param providerName Name of the attestation provider.
-     * @param updateParams Client supplied parameters.
+     * @param properties The resource properties to be updated.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -90,29 +113,29 @@ public interface AttestationProvidersClient {
      * @return attestation service response message along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<AttestationProviderInner> updateWithResponse(
-        String resourceGroupName, String providerName, AttestationServicePatchParams updateParams, Context context);
+    Response<AttestationProviderInner> updateWithResponse(String resourceGroupName, String providerName,
+        AttestationProviderUpdate properties, Context context);
 
     /**
      * Updates the Attestation Provider.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param providerName Name of the attestation provider.
-     * @param updateParams Client supplied parameters.
+     * @param properties The resource properties to be updated.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return attestation service response message.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    AttestationProviderInner update(
-        String resourceGroupName, String providerName, AttestationServicePatchParams updateParams);
+    AttestationProviderInner update(String resourceGroupName, String providerName,
+        AttestationProviderUpdate properties);
 
     /**
      * Delete Attestation Service.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param providerName Name of the attestation service.
+     * @param providerName Name of the attestation provider.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -124,9 +147,9 @@ public interface AttestationProvidersClient {
 
     /**
      * Delete Attestation Service.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param providerName Name of the attestation service.
+     * @param providerName Name of the attestation provider.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -136,96 +159,34 @@ public interface AttestationProvidersClient {
 
     /**
      * Returns a list of attestation providers in a subscription.
-     *
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param providerName The name of the attestation provider.
+     * @param subscriptionId The ID of the target subscription.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws com.azure.resourcemanager.attestation.models.AzureCoreFoundationsErrorException thrown if the request is
+     * rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return attestation Providers List along with {@link Response}.
+     * @return a list of private link resources along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<AttestationProviderListResultInner> listWithResponse(Context context);
+    Response<PrivateLinkResourceListResultInner> listByProviderWithResponse(String resourceGroupName,
+        String providerName, String subscriptionId, Context context);
 
     /**
      * Returns a list of attestation providers in a subscription.
-     *
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return attestation Providers List.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    AttestationProviderListResultInner list();
-
-    /**
-     * Returns attestation providers list in a resource group.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param context The context to associate with this operation.
+     * @param providerName The name of the attestation provider.
+     * @param subscriptionId The ID of the target subscription.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws com.azure.resourcemanager.attestation.models.AzureCoreFoundationsErrorException thrown if the request is
+     * rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return attestation Providers List along with {@link Response}.
+     * @return a list of private link resources.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<AttestationProviderListResultInner> listByResourceGroupWithResponse(
-        String resourceGroupName, Context context);
-
-    /**
-     * Returns attestation providers list in a resource group.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return attestation Providers List.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    AttestationProviderListResultInner listByResourceGroup(String resourceGroupName);
-
-    /**
-     * Get the default provider.
-     *
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the default provider along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<AttestationProviderListResultInner> listDefaultWithResponse(Context context);
-
-    /**
-     * Get the default provider.
-     *
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the default provider.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    AttestationProviderListResultInner listDefault();
-
-    /**
-     * Get the default provider by location.
-     *
-     * @param location The location of the default provider.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the default provider by location along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<AttestationProviderInner> getDefaultByLocationWithResponse(String location, Context context);
-
-    /**
-     * Get the default provider by location.
-     *
-     * @param location The location of the default provider.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the default provider by location.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    AttestationProviderInner getDefaultByLocation(String location);
+    PrivateLinkResourceListResultInner listByProvider(String resourceGroupName, String providerName,
+        String subscriptionId);
 }

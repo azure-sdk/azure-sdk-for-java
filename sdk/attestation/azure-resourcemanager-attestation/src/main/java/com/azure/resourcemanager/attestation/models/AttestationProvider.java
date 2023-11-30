@@ -11,236 +11,408 @@ import com.azure.resourcemanager.attestation.fluent.models.AttestationProviderIn
 import java.util.List;
 import java.util.Map;
 
-/** An immutable client-side representation of AttestationProvider. */
+/**
+ * An immutable client-side representation of AttestationProvider.
+ */
 public interface AttestationProvider {
     /**
      * Gets the id property: Fully qualified resource Id for the resource.
-     *
+     * 
      * @return the id value.
      */
     String id();
 
     /**
      * Gets the name property: The name of the resource.
-     *
+     * 
      * @return the name value.
      */
     String name();
 
     /**
      * Gets the type property: The type of the resource.
-     *
+     * 
      * @return the type value.
      */
     String type();
 
     /**
      * Gets the location property: The geo-location where the resource lives.
-     *
+     * 
      * @return the location value.
      */
     String location();
 
     /**
      * Gets the tags property: Resource tags.
-     *
+     * 
      * @return the tags value.
      */
     Map<String, String> tags();
 
     /**
-     * Gets the systemData property: The system metadata relating to this resource.
-     *
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
      * @return the systemData value.
      */
     SystemData systemData();
 
     /**
      * Gets the trustModel property: Trust model for the attestation provider.
-     *
+     * 
      * @return the trustModel value.
      */
     String trustModel();
 
     /**
      * Gets the status property: Status of attestation service.
-     *
+     * 
      * @return the status value.
      */
     AttestationServiceStatus status();
 
     /**
      * Gets the attestUri property: Gets the uri of attestation service.
-     *
+     * 
      * @return the attestUri value.
      */
     String attestUri();
 
     /**
+     * Gets the publicNetworkAccess property: Controls whether traffic from the public network is allowed to access the
+     * Attestation Provider APIs.
+     * 
+     * @return the publicNetworkAccess value.
+     */
+    PublicNetworkAccessType publicNetworkAccess();
+
+    /**
      * Gets the privateEndpointConnections property: List of private endpoint connections associated with the
      * attestation provider.
-     *
+     * 
      * @return the privateEndpointConnections value.
      */
-    List<PrivateEndpointConnection> privateEndpointConnections();
+    List<AzureResourceManagerPrivateEndpointConnection> privateEndpointConnections();
+
+    /**
+     * Gets the tpmAttestationAuthentication property: The setting that controls whether authentication is enabled or
+     * disabled for TPM Attestation REST APIs.
+     * 
+     * @return the tpmAttestationAuthentication value.
+     */
+    TpmAttestationAuthenticationType tpmAttestationAuthentication();
 
     /**
      * Gets the region of the resource.
-     *
+     * 
      * @return the region of the resource.
      */
     Region region();
 
     /**
      * Gets the name of the resource region.
-     *
+     * 
      * @return the name of the resource region.
      */
     String regionName();
 
     /**
      * Gets the name of the resource group.
-     *
+     * 
      * @return the name of the resource group.
      */
     String resourceGroupName();
 
     /**
      * Gets the inner com.azure.resourcemanager.attestation.fluent.models.AttestationProviderInner object.
-     *
+     * 
      * @return the inner object.
      */
     AttestationProviderInner innerModel();
 
-    /** The entirety of the AttestationProvider definition. */
-    interface Definition
-        extends DefinitionStages.Blank,
-            DefinitionStages.WithLocation,
-            DefinitionStages.WithResourceGroup,
-            DefinitionStages.WithProperties,
-            DefinitionStages.WithCreate {
+    /**
+     * The entirety of the AttestationProvider definition.
+     */
+    interface Definition extends DefinitionStages.Blank, DefinitionStages.WithLocation,
+        DefinitionStages.WithResourceGroup, DefinitionStages.WithCreate {
     }
-    /** The AttestationProvider definition stages. */
+
+    /**
+     * The AttestationProvider definition stages.
+     */
     interface DefinitionStages {
-        /** The first stage of the AttestationProvider definition. */
+        /**
+         * The first stage of the AttestationProvider definition.
+         */
         interface Blank extends WithLocation {
         }
-        /** The stage of the AttestationProvider definition allowing to specify location. */
+
+        /**
+         * The stage of the AttestationProvider definition allowing to specify location.
+         */
         interface WithLocation {
             /**
              * Specifies the region for the resource.
-             *
-             * @param location The supported Azure location where the attestation provider should be created.
+             * 
+             * @param location The geo-location where the resource lives.
              * @return the next definition stage.
              */
             WithResourceGroup withRegion(Region location);
 
             /**
              * Specifies the region for the resource.
-             *
-             * @param location The supported Azure location where the attestation provider should be created.
+             * 
+             * @param location The geo-location where the resource lives.
              * @return the next definition stage.
              */
             WithResourceGroup withRegion(String location);
         }
-        /** The stage of the AttestationProvider definition allowing to specify parent resource. */
+
+        /**
+         * The stage of the AttestationProvider definition allowing to specify parent resource.
+         */
         interface WithResourceGroup {
             /**
              * Specifies resourceGroupName.
-             *
+             * 
              * @param resourceGroupName The name of the resource group. The name is case insensitive.
              * @return the next definition stage.
              */
-            WithProperties withExistingResourceGroup(String resourceGroupName);
+            WithCreate withExistingResourceGroup(String resourceGroupName);
         }
-        /** The stage of the AttestationProvider definition allowing to specify properties. */
-        interface WithProperties {
-            /**
-             * Specifies the properties property: Properties of the attestation provider.
-             *
-             * @param properties Properties of the attestation provider.
-             * @return the next definition stage.
-             */
-            WithCreate withProperties(AttestationServiceCreationSpecificParams properties);
-        }
+
         /**
          * The stage of the AttestationProvider definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithTags {
+        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithTrustModel,
+            DefinitionStages.WithStatus, DefinitionStages.WithAttestUri, DefinitionStages.WithPublicNetworkAccess,
+            DefinitionStages.WithTpmAttestationAuthentication {
             /**
              * Executes the create request.
-             *
+             * 
              * @return the created resource.
              */
             AttestationProvider create();
 
             /**
              * Executes the create request.
-             *
+             * 
              * @param context The context to associate with this operation.
              * @return the created resource.
              */
             AttestationProvider create(Context context);
         }
-        /** The stage of the AttestationProvider definition allowing to specify tags. */
+
+        /**
+         * The stage of the AttestationProvider definition allowing to specify tags.
+         */
         interface WithTags {
             /**
-             * Specifies the tags property: The tags that will be assigned to the attestation provider..
-             *
-             * @param tags The tags that will be assigned to the attestation provider.
+             * Specifies the tags property: Resource tags..
+             * 
+             * @param tags Resource tags.
              * @return the next definition stage.
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
+        /**
+         * The stage of the AttestationProvider definition allowing to specify trustModel.
+         */
+        interface WithTrustModel {
+            /**
+             * Specifies the trustModel property: Trust model for the attestation provider..
+             * 
+             * @param trustModel Trust model for the attestation provider.
+             * @return the next definition stage.
+             */
+            WithCreate withTrustModel(String trustModel);
+        }
+
+        /**
+         * The stage of the AttestationProvider definition allowing to specify status.
+         */
+        interface WithStatus {
+            /**
+             * Specifies the status property: Status of attestation service..
+             * 
+             * @param status Status of attestation service.
+             * @return the next definition stage.
+             */
+            WithCreate withStatus(AttestationServiceStatus status);
+        }
+
+        /**
+         * The stage of the AttestationProvider definition allowing to specify attestUri.
+         */
+        interface WithAttestUri {
+            /**
+             * Specifies the attestUri property: Gets the uri of attestation service.
+             * 
+             * @param attestUri Gets the uri of attestation service.
+             * @return the next definition stage.
+             */
+            WithCreate withAttestUri(String attestUri);
+        }
+
+        /**
+         * The stage of the AttestationProvider definition allowing to specify publicNetworkAccess.
+         */
+        interface WithPublicNetworkAccess {
+            /**
+             * Specifies the publicNetworkAccess property: Controls whether traffic from the public network is allowed
+             * to access the Attestation Provider APIs..
+             * 
+             * @param publicNetworkAccess Controls whether traffic from the public network is allowed to access the
+             * Attestation Provider APIs.
+             * @return the next definition stage.
+             */
+            WithCreate withPublicNetworkAccess(PublicNetworkAccessType publicNetworkAccess);
+        }
+
+        /**
+         * The stage of the AttestationProvider definition allowing to specify tpmAttestationAuthentication.
+         */
+        interface WithTpmAttestationAuthentication {
+            /**
+             * Specifies the tpmAttestationAuthentication property: The setting that controls whether authentication is
+             * enabled or disabled for TPM Attestation REST APIs..
+             * 
+             * @param tpmAttestationAuthentication The setting that controls whether authentication is enabled or
+             * disabled for TPM Attestation REST APIs.
+             * @return the next definition stage.
+             */
+            WithCreate withTpmAttestationAuthentication(TpmAttestationAuthenticationType tpmAttestationAuthentication);
+        }
     }
+
     /**
      * Begins update for the AttestationProvider resource.
-     *
+     * 
      * @return the stage of resource update.
      */
     AttestationProvider.Update update();
 
-    /** The template for AttestationProvider update. */
-    interface Update extends UpdateStages.WithTags {
+    /**
+     * The template for AttestationProvider update.
+     */
+    interface Update
+        extends UpdateStages.WithTags, UpdateStages.WithTrustModel, UpdateStages.WithStatus, UpdateStages.WithAttestUri,
+        UpdateStages.WithPublicNetworkAccess, UpdateStages.WithTpmAttestationAuthentication {
         /**
          * Executes the update request.
-         *
+         * 
          * @return the updated resource.
          */
         AttestationProvider apply();
 
         /**
          * Executes the update request.
-         *
+         * 
          * @param context The context to associate with this operation.
          * @return the updated resource.
          */
         AttestationProvider apply(Context context);
     }
-    /** The AttestationProvider update stages. */
+
+    /**
+     * The AttestationProvider update stages.
+     */
     interface UpdateStages {
-        /** The stage of the AttestationProvider update allowing to specify tags. */
+        /**
+         * The stage of the AttestationProvider update allowing to specify tags.
+         */
         interface WithTags {
             /**
-             * Specifies the tags property: The tags that will be assigned to the attestation provider..
-             *
-             * @param tags The tags that will be assigned to the attestation provider.
+             * Specifies the tags property: Resource tags..
+             * 
+             * @param tags Resource tags.
              * @return the next definition stage.
              */
             Update withTags(Map<String, String> tags);
         }
+
+        /**
+         * The stage of the AttestationProvider update allowing to specify trustModel.
+         */
+        interface WithTrustModel {
+            /**
+             * Specifies the trustModel property: Trust model for the attestation provider..
+             * 
+             * @param trustModel Trust model for the attestation provider.
+             * @return the next definition stage.
+             */
+            Update withTrustModel(String trustModel);
+        }
+
+        /**
+         * The stage of the AttestationProvider update allowing to specify status.
+         */
+        interface WithStatus {
+            /**
+             * Specifies the status property: Status of attestation service..
+             * 
+             * @param status Status of attestation service.
+             * @return the next definition stage.
+             */
+            Update withStatus(AttestationServiceStatus status);
+        }
+
+        /**
+         * The stage of the AttestationProvider update allowing to specify attestUri.
+         */
+        interface WithAttestUri {
+            /**
+             * Specifies the attestUri property: Gets the uri of attestation service.
+             * 
+             * @param attestUri Gets the uri of attestation service.
+             * @return the next definition stage.
+             */
+            Update withAttestUri(String attestUri);
+        }
+
+        /**
+         * The stage of the AttestationProvider update allowing to specify publicNetworkAccess.
+         */
+        interface WithPublicNetworkAccess {
+            /**
+             * Specifies the publicNetworkAccess property: Controls whether traffic from the public network is allowed
+             * to access the Attestation Provider APIs..
+             * 
+             * @param publicNetworkAccess Controls whether traffic from the public network is allowed to access the
+             * Attestation Provider APIs.
+             * @return the next definition stage.
+             */
+            Update withPublicNetworkAccess(PublicNetworkAccessType publicNetworkAccess);
+        }
+
+        /**
+         * The stage of the AttestationProvider update allowing to specify tpmAttestationAuthentication.
+         */
+        interface WithTpmAttestationAuthentication {
+            /**
+             * Specifies the tpmAttestationAuthentication property: The setting that controls whether authentication is
+             * enabled or disabled for TPM Attestation REST APIs..
+             * 
+             * @param tpmAttestationAuthentication The setting that controls whether authentication is enabled or
+             * disabled for TPM Attestation REST APIs.
+             * @return the next definition stage.
+             */
+            Update withTpmAttestationAuthentication(TpmAttestationAuthenticationType tpmAttestationAuthentication);
+        }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
-     *
+     * 
      * @return the refreshed resource.
      */
     AttestationProvider refresh();
 
     /**
      * Refreshes the resource to sync with Azure.
-     *
+     * 
      * @param context The context to associate with this operation.
      * @return the refreshed resource.
      */

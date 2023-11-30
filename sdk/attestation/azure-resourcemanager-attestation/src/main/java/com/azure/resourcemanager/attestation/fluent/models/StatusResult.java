@@ -6,10 +6,15 @@ package com.azure.resourcemanager.attestation.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.attestation.models.AttestationServiceStatus;
+import com.azure.resourcemanager.attestation.models.AzureResourceManagerPrivateEndpointConnection;
+import com.azure.resourcemanager.attestation.models.PublicNetworkAccessType;
+import com.azure.resourcemanager.attestation.models.TpmAttestationAuthenticationType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Status of attestation service. */
+/**
+ * Status of attestation service.
+ */
 @Fluent
 public final class StatusResult {
     /*
@@ -31,18 +36,32 @@ public final class StatusResult {
     private String attestUri;
 
     /*
+     * Controls whether traffic from the public network is allowed to access the Attestation Provider APIs.
+     */
+    @JsonProperty(value = "publicNetworkAccess")
+    private PublicNetworkAccessType publicNetworkAccess;
+
+    /*
      * List of private endpoint connections associated with the attestation provider.
      */
     @JsonProperty(value = "privateEndpointConnections", access = JsonProperty.Access.WRITE_ONLY)
-    private List<PrivateEndpointConnectionInner> privateEndpointConnections;
+    private List<AzureResourceManagerPrivateEndpointConnection> privateEndpointConnections;
 
-    /** Creates an instance of StatusResult class. */
+    /*
+     * The setting that controls whether authentication is enabled or disabled for TPM Attestation REST APIs.
+     */
+    @JsonProperty(value = "tpmAttestationAuthentication")
+    private TpmAttestationAuthenticationType tpmAttestationAuthentication;
+
+    /**
+     * Creates an instance of StatusResult class.
+     */
     public StatusResult() {
     }
 
     /**
      * Get the trustModel property: Trust model for the attestation provider.
-     *
+     * 
      * @return the trustModel value.
      */
     public String trustModel() {
@@ -51,7 +70,7 @@ public final class StatusResult {
 
     /**
      * Set the trustModel property: Trust model for the attestation provider.
-     *
+     * 
      * @param trustModel the trustModel value to set.
      * @return the StatusResult object itself.
      */
@@ -62,7 +81,7 @@ public final class StatusResult {
 
     /**
      * Get the status property: Status of attestation service.
-     *
+     * 
      * @return the status value.
      */
     public AttestationServiceStatus status() {
@@ -71,7 +90,7 @@ public final class StatusResult {
 
     /**
      * Set the status property: Status of attestation service.
-     *
+     * 
      * @param status the status value to set.
      * @return the StatusResult object itself.
      */
@@ -82,7 +101,7 @@ public final class StatusResult {
 
     /**
      * Get the attestUri property: Gets the uri of attestation service.
-     *
+     * 
      * @return the attestUri value.
      */
     public String attestUri() {
@@ -91,7 +110,7 @@ public final class StatusResult {
 
     /**
      * Set the attestUri property: Gets the uri of attestation service.
-     *
+     * 
      * @param attestUri the attestUri value to set.
      * @return the StatusResult object itself.
      */
@@ -101,18 +120,63 @@ public final class StatusResult {
     }
 
     /**
-     * Get the privateEndpointConnections property: List of private endpoint connections associated with the attestation
-     * provider.
-     *
+     * Get the publicNetworkAccess property: Controls whether traffic from the public network is allowed to access the
+     * Attestation Provider APIs.
+     * 
+     * @return the publicNetworkAccess value.
+     */
+    public PublicNetworkAccessType publicNetworkAccess() {
+        return this.publicNetworkAccess;
+    }
+
+    /**
+     * Set the publicNetworkAccess property: Controls whether traffic from the public network is allowed to access the
+     * Attestation Provider APIs.
+     * 
+     * @param publicNetworkAccess the publicNetworkAccess value to set.
+     * @return the StatusResult object itself.
+     */
+    public StatusResult withPublicNetworkAccess(PublicNetworkAccessType publicNetworkAccess) {
+        this.publicNetworkAccess = publicNetworkAccess;
+        return this;
+    }
+
+    /**
+     * Get the privateEndpointConnections property: List of private endpoint connections associated with the
+     * attestation provider.
+     * 
      * @return the privateEndpointConnections value.
      */
-    public List<PrivateEndpointConnectionInner> privateEndpointConnections() {
+    public List<AzureResourceManagerPrivateEndpointConnection> privateEndpointConnections() {
         return this.privateEndpointConnections;
     }
 
     /**
+     * Get the tpmAttestationAuthentication property: The setting that controls whether authentication is enabled or
+     * disabled for TPM Attestation REST APIs.
+     * 
+     * @return the tpmAttestationAuthentication value.
+     */
+    public TpmAttestationAuthenticationType tpmAttestationAuthentication() {
+        return this.tpmAttestationAuthentication;
+    }
+
+    /**
+     * Set the tpmAttestationAuthentication property: The setting that controls whether authentication is enabled or
+     * disabled for TPM Attestation REST APIs.
+     * 
+     * @param tpmAttestationAuthentication the tpmAttestationAuthentication value to set.
+     * @return the StatusResult object itself.
+     */
+    public StatusResult
+        withTpmAttestationAuthentication(TpmAttestationAuthenticationType tpmAttestationAuthentication) {
+        this.tpmAttestationAuthentication = tpmAttestationAuthentication;
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
